@@ -16,6 +16,8 @@ You can find out what was or wasn't translated with an
 LLM in [translation/manual](translation/manual),
 or better yet, by going [here](https://github.com/search?q=repo%3Aayla6%2Fmegami-ibunroku-persona-translation+machine-translated+language%3ATSV&type=code&l=TSV).
 
+This is a hard fork of [Redeted/megami-ibunroku-persona-ps1-translation](https://github.com/Redeted/megami-ibunroku-persona-ps1-translation).
+
 ## Play it
 
 You need an original Japanese copy of *Megami Ibunroku Persona* (SLPS-00500),
