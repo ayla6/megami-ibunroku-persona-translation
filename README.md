@@ -45,7 +45,7 @@ xdelta3 -d -s persona-saves-mark.bin saves-mark-to-saves-mark-60fps-rewards-enco
 | Black Mark | Makes Masao Inaba black. Uses a custom sprite so that he's both black and still wears his original outfit. Doesn't change the script. |
 | Battle speedup | Doubles the speed of summons and skill effects in battle. |
 | 60 FPS | Interpolates frames to get the dungeons to 60fps and the map to 30fps. Only does it when you're actively moving around. Needs overclocking. |
-| Easy mode | Halves random encounters and doubles rewards. |
+| Easy mode | Halves random encounters and doubles EXP, Persona points and money after battles. |
 
 On Black Mark: I edited it myself, since I don't like his outfit in Revelations,
 much less the fact that his overworld sprite is red instead of, y'know, black.

@@ -43,7 +43,7 @@ const FEATURES = {
   },
   "rewards-encounters": {
     "name": "Easy mode",
-    "description": "Halves random encounters and doubles rewards."
+    "description": "Halves random encounters and doubles EXP, Persona points and money after battles."
   }
 };
 
