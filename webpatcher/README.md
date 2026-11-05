@@ -22,10 +22,12 @@ produced the release patches) compiled to WebAssembly - see
   option, keyed by the manifest label: `name` is the title, `description`
   the paragraph under it. Rewording is a site change, not a release.
   `tools/tests/test_webpatcher.py` fails if a release choice has no entry.
-- The manifest and patches come from `patches/` next to the page when it
-  exists (local testing), otherwise from the latest GitHub release of
-  `RELEASE_REPO` at the top of `app.js`. `tools/publish_patches.py`
-  uploads the release to that same repository.
+- The manifest and patches come from `patches/` next to the page, served
+  from the same origin. The public site gets that directory from the Pages
+  workflow, which mirrors the latest release into it; release assets cannot
+  be fetched at runtime because github.com serves release downloads without
+  CORS headers, so a browser blocks them. `tools/publish_patches.py`
+  uploads the release to `RELEASE_REPO` at the top of `app.js`.
 - The disc revision is detected automatically: the worker applies a release
   patch in xdelta's check-only mode (`-J`, decode and verify but write
   nothing). `rev1-to-rev0` succeeds only on a Rev 1 disc and `rev0-to-base`
@@ -54,9 +56,10 @@ produced the release patches) compiled to WebAssembly - see
 
 ## Assembling a release site
 
-The public page loads its patches from the repository's latest GitHub
-release at runtime - the site never bundles them, so patch updates are just
-a new release. One script uploads it:
+The public page serves the patches from its own origin: the Pages workflow
+downloads the latest release into `webpatcher/patches/` right before it
+uploads the artifact, so patch updates are just a new release. One script
+uploads it:
 
     python tools/publish_patches.py
 
@@ -69,20 +72,27 @@ reads `manifest.tsv` first and then only the patches along the chosen chain
 the browser. The same files are also uploaded as `persona-patches.zip` for
 people applying xdelta by hand.
 
-The page itself is deployed by `.github/workflows/pages.yml` on every push
-to `main`; it uploads the `webpatcher/` directory as the Pages artifact,
-with no build step. `webpatcher/patches` is git-ignored, so a fresh checkout
-(and therefore the artifact) never contains it, and the page downloads the
-patches from the release at runtime. Enable Pages once in the repository
-settings: Settings -> Pages -> Build and deployment -> Source -> GitHub
-Actions. The project site is then `https://<owner>.github.io/<repo>/`; the
-wasm is served with the correct MIME type, so the subpath project site works.
-`python tools/build_patches.py --publish-release` uploads the release after
-a finished build - pushing afterwards deploys the site.
+The page itself is deployed by `.github/workflows/pages.yml`. The workflow
+runs on every push to `main`, on `release: published`, and manually; each
+run downloads the release's `manifest.tsv`, `README.txt` and `.xdelta`
+files into `webpatcher/patches/` (git-ignored, so a fresh checkout does not
+have it) and uploads `webpatcher/` as the Pages artifact - no build step.
+Serving the patches from the site is not cosmetic: a page at
+`<owner>.github.io` cannot fetch release assets, because github.com answers
+those downloads without `Access-Control-Allow-Origin`. Replacing the assets
+of an existing release fires no event, so `tools/publish_patches.py`
+dispatches the workflow after a clobbering upload.
 
-For local testing the page reads `webpatcher/patches/` first - the script
-keeps that copy fresh - and falls back to the GitHub release when it is
-missing:
+Enable Pages once in the repository settings: Settings -> Pages -> Build
+and deployment -> Source -> GitHub Actions. The project site is then
+`https://<owner>.github.io/<repo>/`; the wasm is served with the correct
+MIME type, so the subpath project site works.
+`python tools/build_patches.py --publish-release` uploads the release after
+a finished build and the site redeploys from it.
+
+For local testing the page reads `webpatcher/patches/`, which
+`tools/publish_patches.py --no-release` keeps in sync with `dist/patches/`
+(a symlink works too):
 
     python -m http.server -d webpatcher 8000
 

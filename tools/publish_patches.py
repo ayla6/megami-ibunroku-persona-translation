@@ -1,8 +1,10 @@
-"""Upload the patch release the web patcher reads.
+"""Upload the patch release the web patcher serves.
 
-The page itself is deployed by .github/workflows/pages.yml, which publishes
-the webpatcher/ directory as the Pages artifact. This script only handles
-the release assets that page reads at runtime:
+The page itself is deployed by .github/workflows/pages.yml, which mirrors
+the latest release into webpatcher/patches before publishing the artifact,
+so the page reads the patches same-origin (release downloads carry no CORS
+headers, so a browser cannot fetch them directly). This script handles the
+release assets that mirror reads:
 
 - upload the release directory (dist/patches/ by default) as release assets
   (gh CLI, --no-release to skip): the tag defaults to patches-YYYYMMDD;
@@ -146,6 +148,7 @@ def upload_release(tag, directory=None):
             run('gh', 'release', 'upload', '--repo', GITHUB_REPO,
                 tag, '--clobber', *assets)
             print(f'release {tag} assets updated on {GITHUB_REPO}')
+            return 'updated'
         except subprocess.CalledProcessError:
             run('gh', 'release', 'create', '--repo', GITHUB_REPO, tag, *assets,
                 '--title', f'Persona translation patches ({time.strftime("%Y-%m-%d")})',
@@ -153,6 +156,24 @@ def upload_release(tag, directory=None):
                            ' described in manifest.tsv and README.txt.'
                            f' {ARCHIVE_NAME} bundles the same files for offline use.')
             print(f'release {tag} created on {GITHUB_REPO}')
+            return 'created'
+
+
+def deploy_site():
+    """Redeploy the Pages site so its mirror picks up a replaced release.
+
+    A new release deploys the site through the workflow's
+    `release: published` trigger. Clobbering the assets of a release that
+    already exists fires nothing, so that case dispatches the workflow
+    itself. Either way the site keeps serving patches from its own origin.
+    """
+    try:
+        run('gh', 'workflow', 'run', 'pages.yml', '--repo', GITHUB_REPO,
+            '--ref', 'main', capture=True)
+        print(f'Pages deploy triggered on {GITHUB_REPO}')
+    except subprocess.CalledProcessError:
+        print('warning: could not trigger the Pages deploy - run'
+              ' "Deploy web patcher" from the Actions tab')
 
 
 def publish(tag=None, *, directory=None, release=True,
@@ -161,8 +182,8 @@ def publish(tag=None, *, directory=None, release=True,
 
     This is the single entry point used by the CLI and by
     build_patches.py --publish-release, so a finished build cannot
-    half-publish through a different code path. The site itself is deployed
-    by GitHub Actions on the next push.
+    half-publish through a different code path. The site then redeploys to
+    mirror the release it serves.
     """
     directory = Path(directory) if directory else DIST
     tag = tag or f'patches-{time.strftime("%Y%m%d")}'
@@ -172,11 +193,12 @@ def publish(tag=None, *, directory=None, release=True,
                 f'{directory / "manifest.tsv"} does not list a complete'
                 f' release ({COMPLETE_RELEASE} patches) - rerun the release'
                 ' build, or pass --allow-incomplete')
-        upload_release(tag, directory)
+        if upload_release(tag, directory) == 'updated':
+            deploy_site()
     sync_local_patches(directory)
     owner, project = GITHUB_REPO.split('/')
     print(f'site: https://{owner}.github.io/{project}/'
-          ' (GitHub Actions deploys it on push to main)')
+          ' (GitHub Actions mirrors this release into the page)')
     return tag
 
 

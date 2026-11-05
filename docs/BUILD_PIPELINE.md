@@ -143,12 +143,15 @@ named by `RELEASE_REPO` in `webpatcher/app.js`, since `origin` is not
 GitHub.
 
 The web patcher site itself deploys from this repository through
-`.github/workflows/pages.yml` on every push to `main`. The workflow uploads
-the `webpatcher/` directory as the Pages artifact - no build step, no
-second repository and no `gh-pages` branch. `webpatcher/patches` is
-git-ignored, so the artifact never carries patches. Enable it once under
-Settings -> Pages -> Build and deployment -> Source -> GitHub Actions; the
-project site is `https://<owner>.github.io/<repo>/`.
+`.github/workflows/pages.yml` on every push to `main`, on every published
+release, and on demand. Before uploading the artifact, the workflow
+downloads the release's `manifest.tsv`, `README.txt` and `.xdelta` files
+into `webpatcher/patches` (git-ignored), so the site serves the patches
+from its own origin: a page on `github.io` cannot fetch release assets,
+since github.com answers those downloads without CORS headers. No build
+step, second repository or `gh-pages` branch is involved. Enable it once
+under Settings -> Pages -> Build and deployment -> Source -> GitHub
+Actions; the project site is `https://<owner>.github.io/<repo>/`.
 
 Common preparation runs once, and so do the variant-independent outputs: the
 save-UI armips inputs, the TALK and ending builders, and their inventory unit

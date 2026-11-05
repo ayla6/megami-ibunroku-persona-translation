@@ -1,12 +1,17 @@
 name: Deploy web patcher
 
-# The site is the webpatcher/ directory, deployed from the same repository as
-# the patches. There is no build step: the page reads the release at runtime,
-# and webpatcher/patches is a git-ignored local symlink that never reaches a
-# fresh checkout, let alone the artifact.
+# The site is the webpatcher/ directory together with the patches it serves.
+# There is no build step: the patches are mirrored from the latest release
+# into webpatcher/patches (git-ignored, so a fresh checkout only has it
+# after the mirror step) and go out inside the artifact. The page cannot
+# fetch release assets at runtime - github.com serves release downloads
+# without CORS headers, so a browser blocks those requests - but everything
+# under patches/ is same-origin and served by Pages like any other file.
 on:
   push:
     branches: [main]
+  release:
+    types: [published]
   workflow_dispatch:
 
 permissions:
@@ -27,6 +32,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Mirror the release patches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          mkdir -p webpatcher/patches
+          gh release download ${TAG:+"$TAG"} --repo "$GITHUB_REPOSITORY" \
+            --dir webpatcher/patches --clobber \
+            --pattern '*.xdelta' --pattern 'manifest.tsv' --pattern 'README.txt'
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload the Pages artifact

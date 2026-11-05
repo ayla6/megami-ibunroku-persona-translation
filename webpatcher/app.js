@@ -1,11 +1,12 @@
 'use strict';
 /* Persona translation web patcher - page logic.
  *
- * The release output (dist/patches/) is copied next to this page as
- * patches/ (manifest.tsv + the .xdelta files). The manifest drives
- * everything: which options exist, which patch file each combination
- * maps to, and the chain between them. xdelta checksums every step while
- * applying it. Nothing here is hardcoded per release.
+ * The release output (dist/patches/) is served next to this page as
+ * patches/ (manifest.tsv + the .xdelta files): the Pages workflow mirrors
+ * it from the latest release, and local testing copies or symlinks it. The
+ * manifest drives everything: which options exist, which patch file each
+ * combination maps to, and the chain between them. xdelta checksums every
+ * step while applying it. Nothing here is hardcoded per release.
  */
 
 const PATCHES = 'patches/';
@@ -56,7 +57,7 @@ const state = {
   rows: [],
   byChoices: new Map(),  // sorted-choice key -> manifest row
   labels: [],            // option labels, in manifest order
-  patches: null,         // {manifestText, tag, urlFor}
+  patches: null,         // {manifestText, urlFor}
   source: null,
   rev: null,             // detected revision (0 or 1), null until checked
   identifying: false,
@@ -74,59 +75,20 @@ const choiceKey = row => row.choices.split(',').sort().join(',');
 const stepOf = row => ({patch: row.patch,
                         expectBytes: Number(row.target_bytes)});
 
-/* Patch sources: the local patches/ directory first (how you test), then
- * the latest GitHub release of this repository (how the public page
- * works). GitHub's API and release-asset downloads both send permissive
- * CORS headers, so a static page can read them directly. */
-
-async function localSource() {
-  const response = await fetch(PATCHES + 'manifest.tsv');
-  if (!response.ok) throw new Error(`no local ${PATCHES}manifest.tsv`);
-  return {manifestText: await response.text(), tag: null,
-          urlFor: name => PATCHES + name};
-}
-
-async function releaseSource(repo) {
-  const response = await fetch(
-      `https://api.github.com/repos/${repo}/releases/latest`,
-      {headers: {Accept: 'application/vnd.github+json'}});
-  if (!response.ok) {
-    throw new Error(`no release found on github.com/${repo} (${response.status})`);
-  }
-  const release = await response.json();
-  const assets = new Map(release.assets.map(asset => [asset.name, asset]));
-  const manifest = assets.get('manifest.tsv');
-  if (!manifest) {
-    throw new Error(`release ${release.tag_name} does not include manifest.tsv`);
-  }
-  const manifestText = await (await fetch(manifest.browser_download_url)).text();
-  return {manifestText, tag: release.tag_name,
-          urlFor: name => {
-            const asset = assets.get(name);
-            if (!asset) {
-              throw new Error(`${name} is missing from release ${release.tag_name}`);
-            }
-            return asset.browser_download_url;
-          }};
-}
+/* Patches come from patches/ next to the page, which is the only way a
+ * static page can read them: github.com serves release downloads without
+ * CORS headers, so fetching an asset URL from this origin is blocked by the
+ * browser. .github/workflows/pages.yml mirrors the latest release into that
+ * directory, so the public site serves the files itself. */
 
 async function loadPatches() {
-  try {
-    return await localSource();
-  } catch (localError) {
-    const repo = RELEASE_REPO;
-    if (!repo) {
-      throw new Error(`cannot load ${PATCHES}manifest.tsv (${localError.message})`
-          + ' - copy the release files from dist/patches/ into'
-          + ' webpatcher/patches/');
-    }
-    try {
-      return await releaseSource(repo);
-    } catch (releaseError) {
-      throw new Error(`no patches found: ${releaseError.message}; for local`
-          + ` testing, ${localError.message}`);
-    }
+  const response = await fetch(PATCHES + 'manifest.tsv');
+  if (!response.ok) {
+    throw new Error(`no ${PATCHES}manifest.tsv (${response.status}) - copy the`
+        + ' release files from dist/patches/ into webpatcher/patches/');
   }
+  return {manifestText: await response.text(),
+          urlFor: name => PATCHES + name};
 }
 
 async function loadManifest() {
@@ -220,8 +182,7 @@ async function apply(source, rev) {
   const plan = buildPlan(rev);
   const patchFiles = [];
   for (const name of plan.patchNames) {
-    const where = state.patches.tag ? ` from release ${state.patches.tag}` : '';
-    status(`Fetching ${name}${where}`);
+    status(`Fetching ${name}`);
     const response = await fetch(state.patches.urlFor(name));
     if (!response.ok) {
       throw new Error(`cannot load ${name} (${response.status})`);
@@ -405,8 +366,7 @@ async function init() {
   try {
     await loadManifest();
     renderGrid();
-    status(`Patches loaded from ${state.patches.tag ? `release ${state.patches.tag}` : 'patches/'}`
-        + ` - ${state.labels.length} options`);
+    status(`Patches loaded from ${PATCHES} - ${state.labels.length} options`);
   } catch (err) {
     status(err.message, true);
   }

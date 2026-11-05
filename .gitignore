@@ -43,5 +43,7 @@ __pycache__/
 # web patcher: static page plus the vendored xdelta3 wasm build. The release
 # patch files themselves (patches/) stay untracked, like dist/patches - the
 # rule has no trailing slash so it also covers a symlink to dist/patches.
+# The Pages workflow fills this directory from the release before packaging
+# the artifact, so the page serves the patches from its own origin.
 !/webpatcher/
 /webpatcher/patches

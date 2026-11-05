@@ -91,6 +91,21 @@ class PublishArchiveTest(unittest.TestCase):
         upload.assert_called_once_with('patches-test', output)
         sync.assert_called_once_with(output)
 
+    def test_replacing_an_existing_release_redeploys_the_site(self):
+        # A new release fires the workflow's release trigger; clobbering an
+        # existing one fires nothing, so publish() dispatches the workflow.
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp)
+            for uploaded, expected in (('updated', 1), ('created', 0)):
+                with patch.object(self.publish, 'release_is_complete',
+                                  return_value=True), \
+                        patch.object(self.publish, 'upload_release',
+                                     return_value=uploaded), \
+                        patch.object(self.publish, 'deploy_site') as deploy, \
+                        patch.object(self.publish, 'sync_local_patches'):
+                    self.publish.publish(tag='patches-test', directory=output)
+                self.assertEqual(deploy.call_count, expected, uploaded)
+
     def test_release_upload_targets_the_repository_the_page_reads(self):
         calls = []
 
