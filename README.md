@@ -10,9 +10,11 @@ out so you can play that instead, and so that everyone has like two takes on the
 translation of the same game.
 
 The main script is automatically ported from the PSP game, but there were
-lines that are missing from the PSP version, those were machine translated.
+a tiny few amount of lines that are missing from the PSP version,
+those were machine translated.
 You can find out what was or wasn't translated with an
-LLM in [translation/manual](translation/manual).
+LLM in [translation/manual](translation/manual),
+or better yet, by going [here](https://github.com/search?q=repo%3Aayla6%2Fmegami-ibunroku-persona-translation+machine-translated+language%3ATSV&type=code&l=TSV).
 
 ## Play it
 
