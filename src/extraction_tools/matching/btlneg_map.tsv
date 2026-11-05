@@ -1,0 +1,249 @@
+idx	kind	src	keys	strategy	prefix	tone	seg	parts	words	pre	post	strip
+34	auto	0x2a563e,0x2a5678,0x2a568c	スペルカードにくっついて;アヴァターラを手に入れた	middle								
+35	auto	0x2a55aa,0x2a55d6,0x2a5600,0x2a560e	ラッキー;アヴァターラ	middle								
+36	auto	0x2a550e,0x2a554e,0x2a555c	すっげー;アヴァターラ	middle								
+37	auto	0x2a5456,0x2a5488,0x2a5496	封神具;アヴァターラ	middle								
+39	auto	0x2a5226,0x2a5242,0x2a5252	化身;アヴァターラ	middle								
+47	auto	0x2addee	麻希;頼み込	first	>							
+48	auto	0x2adda8	麻希;おだて	first	>							
+49	auto	0x2add72	麻希;でまかせ	first	>							
+50	auto	0x2add34	麻希;怯えるフリ	first	>							
+51	auto	0x2adcfe	ブラウン;ナンパ	first	>							
+52	auto	0x2adcd2	ブラウン;ジョーク	first	>							
+53	auto	0x2adca0	ブラウン;世間話	first	>							
+54	auto	0x2adc58	ブラウン;驚かそう	first	>							
+55	auto	0x2adbfc	南条;物でつろう	first	>							
+56	auto	0x2adbc4	南条;演説	first	>							
+57	auto	0x2adb8c	南条;一喝	first	>							
+58	auto	0x2adb40	南条;皮肉	first	>							
+59	auto	0x2adb14	マーク;踊ってみせ	first	>							
+60	auto	0x2adae0	マーク;挑発	first	>							
+61	auto	0x2adaa6	マーク;見つめた	first	>							
+62	auto	0x2ada72	マーク;ホラを吹	first	>							
+63	auto	0x2ada3c	エリー;怖い話	first	>							
+64	auto	0x2ada14	エリー;歌った	first	>							
+65	auto	0x2ad9de	エリー;あやした	first	>							
+66	auto	0x2ad98c	エリー;勧誘	first	>							
+67	auto	0x2ad956	アヤセ;けなした	first	>							
+68	auto	0x2ad91e	アヤセ;誘惑	first	>							
+69	auto	0x2ad8e0	アヤセ;泣き落とそう	first	>							
+70	auto	0x2ad8a4	アヤセ;脅した	first	>							
+71	auto	0x2ad866	ゆきの;いじめた	first	>							
+72	auto	0x2ad824	ゆきの;さとそう	first	>							
+73	auto	0x2ad7ec	ゆきの;叱った	first	>							
+74	auto	0x2ad7b2	ゆきの;無視	first	>							
+75	auto	0x2ad77c	レイジ;無視	first	>							
+76	auto	0x2ad740	レイジ;脅した	first	>							
+77	auto	0x2ad70a	レイジ;叫んだ	first	>							
+78	auto	0x2ad6c8	レイジ;手品	first	>							
+291	auto	0x2adece	説得した	first	>							
+292	auto	0x2adea0	挑発した	first	>							
+293	auto	0x2ade52	勧誘した	first	>							
+294	auto	0x2ade2e	歌った	first	>							
+231	auto	0x2ab432	マーク;ステップ	first	>							
+232	auto	0x2ab406	マーク;激しく踊	first	>							
+233	auto	0x2ab3c0	マーク;悩ましげに	first	>							
+237	auto	0x2ab2a4	マーク;熱く	first	>							
+238	auto	0x2ab258	マーク;じっと	first	>							
+239	auto	0x2ab202	マーク;流し目	first	>							
+246	auto	0x2aad86	エリー;ボサノバ	first	>							
+247	auto	0x2aad46	エリー;大好きな歌	first	>							
+248	auto	0x2aad06	エリー;心にしみいる	first	>							
+280	auto	0x2a9956	レイジ;口笛	first	>							
+281	auto	0x2a98fe	レイジ;あらぬこと	first	>							
+357	auto	0x2acc82	魔石;手に入れた	first	>							
+168	auto	0x2a8bce	整理する必要	middle								
+169	auto	0x2a8b42	持ちすぎだ馬鹿が;管理	middle								
+170	auto	0x2a8980	ふぉっふぉっ	middle								
+171	auto	0x2a7d64	てーめーえー	middle								
+172	auto	0x2a8370	あれ～;いっぱいだよ	middle								
+173	auto	0x2a8a1c	オレサマ;ステロ	middle		1						
+174	auto	0x2a887c	わらわのカードは;尊重	middle								
+175	auto	0x2a87d4	持ちすぎよ;他の人のカード	middle								
+176	auto	0x2a7f2c	バカ;枚数;覚えて	middle								
+177	auto	0x2a86ca	ガードいっばい;ぐれよう	middle								
+178	auto	0x2a862e	１２枚以上持てない	middle								
+179	auto	0x2a85d4	置キ場;ナイノカ	middle								
+180	auto	0x2a853c	信じらんない;他の人のカード	middle								
+181	auto	0x2a848a	俺が勝手に捨てるぞ	middle								
+182	auto	0x2a83ee	チリンチリン	middle								
+183	auto	0x2a8370	うひ;どれか捨てて	middle								
+185	auto	0x2a81ba	キサマ;イッパイ;ステロ	middle		1						
+186	auto	0x2a7fc0	なんじゃこりゃ;ぶち回す	middle								
+187	auto	0x2a8ac4	オバオバ;モチスギ	middle		1						
+189	auto	0x2a805a	つまらない;私は嫌です	middle								
+190	auto	0x2a7fc0	なめとんか;捨てやぁ	middle								
+191	auto	0x2a873e	バカ;枚数;覚えて	middle								
+192	auto	0x2a7d64	てーめーえー	middle								
+193	auto	0x2a862e	持でない;捨でで	middle								
+194	auto	0x2a8a1c	オバエ;捨てとけよ	middle								
+356	auto	0x2a8c76	つまらない;私は嫌ですよ	middle								
+196	auto	0x2ac7a2,0x2ac7fc	自由な生き物;力を貸して	middle								
+197	auto	0x2ac6ae,0x2ac752	刺激的な日々;力になって	middle								
+198	auto	0x2ac606,0x2ac62a	一目で分かっちゃった;迫力	middle								
+199	auto	0x2ac57e	芸術家;魅了	middle								
+200	auto	0x2ac4e6	力が手に入る;うらやましい	middle								
+201	auto	0x2ac43e	銅像が建っちゃう	middle								
+202	auto	0x2ac3a2	糸を引いてるのは;宇宙人	middle								
+203	auto	0x2ac2f2	守護霊;おじいちゃん	middle								
+204	auto	0x2ac2ae	命だけは助けて	middle								
+205	auto	0x2ac23a	迷い込んだ;許してください	middle								
+206	auto	0x2ac1ea	来ないでぇ	middle								
+358	auto	0x2ac89a	力には限りがある;助けて	middle								
+207	auto	0x2ac14a	構わないぜ;愛のハーモニー	middle								
+208	auto	0x2ac0b2	カラオケ;歌うまい	middle								
+209	auto	0x2abfaa,0x2ac056	つきあってる人;楽しいぜ	middle								
+213	auto	0x2abc32	バリバリやってる;ボチボチ	middle								
+214	auto	0x2abb9a	暑ちいねー;夏は好き	middle								
+215	auto	0x2abb0a	好きな奴;気になる奴	middle								
+216	auto	0x2abac6	驚いたろ	middle								
+218	auto	0x2ab9d2	ウソだよー;わはは	middle								
+219	auto	0x2ab976	土地か;株か	middle								
+220	auto	0x2ab8e2	手付け金;１０円玉	middle								
+221	auto	0x2ab89e	サイン入り;ブロマイド	middle								
+222	auto	0x2ab806	愚鈍なる大衆は;エリート	middle								
+223	auto	0x2ab762	境遇に;満足しているか	middle								
+224	auto	0x2ab6c2	人は善;悪魔は悪	middle								
+225	auto	0x2ab682	馬鹿め	middle								
+226	auto	0x2ab63e	しれもの	middle								
+227	auto	0x2ab5f2	たわけが	middle								
+228	auto	0x2ab552	位の高い;光栄の極み	middle								
+229	auto	0x2ab50a	お美しくて	middle								
+230	auto	0x2ab47e	足元にも;及ばぬ	middle								
+240	auto	0x2ab15e	留学中;プリンス	middle								
+241	auto	0x2ab0ee	呪いのせいで;人間の姿	middle								
+242	auto	0x2ab09a	愛しい子;ジュテーム	middle								
+244	auto	0x2aae82,0x2aaf2a	自殺を目撃;足を運んで	middle								
+245	auto	0x2aadca	１１時１１分１１秒;寿命が６日	middle								
+249	auto	0x2aacaa	おイタはいけません	middle								
+250	auto	0x2aac32	いい子いい子	middle								
+251	auto	0x2aabe6	ミルクでちゅか	middle								
+252	auto	0x2aab4e	守る仕事	middle								
+253	auto	0x2aaa9e	ボディガード	middle								
+254	auto	0x2aaa06	エスコート	middle								
+255	auto	0x2aa95e	イモ;チョベリバ	middle								
+256	auto	0x2aa8be	フケてん;としよりクサ	middle								
+257	auto	0x2aa81a	スッパイ臭い;あんたじゃないの	middle								
+258	auto	0x2aa77a	純情なんだけど;大胆	middle								
+259	auto	0x2aa6d2	怖い顔;仲良くしましょう	middle								
+260	auto	0x2aa642	ムネが苦しく;さすって	middle								
+261	auto	0x2aa5a2	２３人;兄弟;食べさせてる	middle								
+262	auto	0x2aa4fe	マッチ買って;ぶたれる	middle								
+263	auto	0x2aa3da,0x2aa46a	ＵＦＯ;秘密結社;改造	middle								
+264	auto	0x2aa342	聞けないのかよ;ブッ殺すぞ	middle								
+265	auto	0x2aa29a	生首;シュミ	middle								
+266	auto	0x2aa1de,0x2aa22c	優しいし冷静;暴走	middle								
+267	auto	0x2aa12a,0x2aa182	悪魔って;呼びたくなる	middle								
+268	auto	0x2aa08a	弱い犬ほど;よく吠える	middle								
+269	auto	0x2a9fd6	誰に向かって;礼儀知らず	middle								
+270	auto	0x2a9f32	自分の意思で決めないと;無意味	middle								
+271	auto	0x2a9e2e,0x2a9eda	人と悪魔の違い;意味なんてない	middle								
+272	auto	0x2a9d36,0x2a9dc6	半端に生きる;寝てる方がまし	middle								
+273	auto	0x2a9ca2	迷惑をかけるな;幼稚園	middle								
+274	auto	0x2a9c52	じたばた;みっともない	middle								
+275	auto	0x2a9b42,0x2a9bca	黙って聞きな;ヤキ入れる	middle								
+276	auto	0x2a9ade	夕はん;何にするかな	middle								
+277	auto	0x2a9a5a	電気;消したかな	middle								
+278	auto	0x2a99b2	コンクール;写真;決めなきゃ	middle								
+282	auto	0x2a9876	生きちゃ帰れねえぜ	middle								
+283	auto	0x2a97d6	お前の分まで;安心して死ね	middle								
+284	auto	0x2a969e,0x2a9726	足を折る;目玉を;えぐって	middle								
+288	auto	0x2a9556	指をならしゃあ;花が出る	middle								
+289	auto	0x2a94e6	多く回ってるぜ	middle								
+79	blob	0x2acdc0:32	あげない									
+82	blob	0x2acdc0:33	あげる									
+83	blob	0x2acdc0:30	あーげない									
+84	blob	0x2acdc0:13	うん									
+85	blob	0x2acdc0:28	いや									
+86	blob	0x2acdc0:27	ドロボウ									
+87	blob	0x2acdc0:26	やっぱやめ									
+88	blob	0x2acdc0:25	オッケー									
+89	blob	0x2acdc0:24	い・や・だ									
+90	blob	0x2acdc0:23	くれてやろう									
+91	blob	0x2acdc0:18	やらん									
+92	blob	0x2acdc0:21	いいだろう									
+93	blob	0x2acdc0:20	ごめんだな									
+94	blob	0x2acdc0:31	くれてやらぁ									
+95	blob	0x2acdc0:2	やらねぇ									
+96	blob	0x2acdc0:17	しゃーねぇな									
+97	blob	0x2acdc0:16	ざけんな									
+98	blob	0x2acdc0:15	差し上げます									
+99	blob	0x2acdc0:14	差し上げられません									
+100	blob	0x2acdc0:13	Ｙｅｓ									
+101	blob	0x2acdc0:12	Ｎｏ									
+102	blob	0x2acdc0:33	あげる									
+103	blob	0x2acdc0:4	ヤダ;あげない									
+104	blob	0x2acdc0:29	はーい									
+105	blob	0x2acdc0:8	やだやだ									
+106	blob	0x2acdc0:19	やるよ									
+107	blob	0x2acdc0:2	やらないよ									
+108	blob	0x2acdc0:17	しょうがないね									
+109	blob	0x2acdc0:12	いやだね									
+110	blob	0x2acdc0:7	持ってきな									
+111	blob	0x2acdc0:2	やれねぇな									
+112	blob	0x2acdc0:21	いいだろう									
+113	blob	0x2acdc0:10	ふざけんな									
+353	blob	0x2acdc0:33	あげる									
+80	blob	0x2accd0:1	はい									
+81	blob	0x2accd0:0	いいえ									
+115	blob	0x2accd0:4	・・・									
+116	blob	0x2accd0:2	無視する									
+117	blob	0x2accd0:3	答える									
+300	blob	0x2accd0:0	いいえ									
+354	blob	0x2accd0:5	ちょっと待って									
+119	blob	0x2ad1c0:25	何かくれ									
+120	blob	0x2ad1c0:24	去れ									
+121	blob	0x2ad1c0:26	スペルカード									
+122	blob	0x2ad1c0:22	ちょうだい									
+123	blob	0x2ad1c0:21	どっか行って									
+124	blob	0x2ad1c0:23	スペルカード									
+125	blob	0x2ad1c0:19	何かくれよぉ									
+126	blob	0x2ad1c0:18	消えちまいな									
+127	blob	0x2ad1c0:20	スペルカード									
+128	blob	0x2ad1c0:16	受け取ってやる									
+129	blob	0x2ad1c0:15	失せろ									
+130	blob	0x2ad1c0:17	スペルカード									
+131	blob	0x2ad1c0:13	よこせオラ									
+132	blob	0x2ad1c0:12	消えろオラァ									
+133	blob	0x2ad1c0:14	スペルカード									
+134	blob	0x2ad1c0:10	頂けます									
+135	blob	0x2ad1c0:9	Ｂｙｅ									
+136	blob	0x2ad1c0:11	スペルカード									
+137	blob	0x2ad1c0:7	ちょーだい									
+138	blob	0x2ad1c0:6	行ってくれる									
+139	blob	0x2ad1c0:8	スペルカード									
+140	blob	0x2ad1c0:4	よこしな									
+141	blob	0x2ad1c0:3	消えな									
+142	blob	0x2ad1c0:5	スペルカード									
+143	blob	0x2ad1c0:1	置いていけ									
+144	blob	0x2ad1c0:0	消えろ									
+355	blob	0x2ad1c0:2	スペルカード									
+146	revrange	0x2a8e94-0x2a8fa2	妖魔;妖精;天使;堕天使;龍王;邪龍;妖鳥;凶鳥;魔獣;妖獣;鬼女;妖鬼;地霊;邪鬼;幽鬼;悪霊;屍鬼;外道;業;超人;魔人									
+41	exseg	0x2a4fca,0x2a502a,0x2a5070,0x2a507e	綺麗なカード;ついてる日も				0	0	-		<FFFC>	
+41	exseg	0x2a4fca,0x2a502a,0x2a5070,0x2a507e					1	1	0-5			
+41	exseg	0x2a4fca,0x2a502a,0x2a5070,0x2a507e					2	1	5-		<FFFB><FFF7>	
+41	exseg	0x2a4fca,0x2a502a,0x2a5070,0x2a507e					3	2	-			
+42	exseg	0x2a4ece,0x2a4f00,0x2a4f10	要らねぇな;捨てた;拾った				0	0	0-5		<FFFC>	1
+42	exseg	0x2a4ece,0x2a4f00,0x2a4f10					1	0	5-		<FFFC>	1
+42	exseg	0x2a4ece,0x2a4f00,0x2a4f10					2	1	-		<FFFB><FFF7>	1
+42	exseg	0x2a4ece,0x2a4f00,0x2a4f10					3	2	-	>	<FFFB><FFF7>	1
+42	exseg	0x2a4ece,0x2a4f00,0x2a4f10					4	3	-	>		1
+243	exseg	0x2aaf7e,0x2afffa	開かずのトイレ;ドアが開かない				0	0,1	-,-		<FFFC>	
+243	exseg	0x2aaf7e,0x2afffa					1	2	-			
+243	exseg	0x2aaf7e,0x2afffa					2	3	-			
+290	exseg	0x2a9472	しあわせ;パワーだ				0	0	-			
+290	exseg	0x2a9472					1	1	-		<FFFC>	
+279	blob	0x2accd0:4	…									
+210	auto	0x2abcd6,0x2abd5e	ヘイができた;かっこいー	middle		1						
+211	auto	0x2abda2,0x2abe52	フが１０個;とうふ	middle		1						
+212	auto	0x2abeaa,0x2abf3e	七日;火曜	middle		1						
+234	auto	0x2ab2fa	オラオラ	middle		1						
+235	auto	0x2ab332	うっふーん	middle		1						
+236	auto	0x2ab386	ヘイヘイヘイ	middle		1						
+217	exseg	0x2aba52	バーカ;ブータ				0	0	0-3			
+217	exseg	0x2aba52					1	0	3-			
+217	exseg	0x2aba52					2	1	-			
+285	auto	0x2a9632	うおおお	middle								
+286	auto	0x2a9666	ぐわあああ	middle								
+38	auto	0x2a52da,0x2a5312,0x2a53ac	うっそ;アヴァターラ	middle		1						
+40	auto	0x2a50d2,0x2a513a,0x2a518a,0x2a51aa,0x2a51ba	変なカード;ヴィシュヌ	middle		1						

@@ -1,0 +1,62 @@
+kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
+meta	matches_sha1	47cb38ea594efd143043d139edba97a61d727013								
+meta	matching_inputs_sha1	9654add1a63bb23823ff34a4c10b6091347fbc8a								
+meta	psx:E0	76d06de35a00e2bc0f42087b8b30fa1088f811d0								
+meta	psx:E1	2cbf2a9a21f57f04e119a311bfab6f168d319750								
+meta	psx:E2	fc5d4a8106a6a0a8851e8ccfcb8eb6ab89c82616								
+meta	psx:E3	858edb63f7b3378aca72a2855713b5adba2ab378								
+meta	us:E0	40650916416baf889a5ee9ea948612e1c948f113								
+meta	us:E1	00d685f8a0aa7033b7759ee7e1cb0a89f154abd0								
+meta	us:E2	3c824511544bc6547167be3097a93db66b568a25								
+meta	us:E3	cadf9c7fe79733466def879f642d90c6d74f835c								
+meta	version	1								
+match			E0	4:3	arbitrate			same		
+match			E0	36:0	arbitrate			same		
+match			E0	42:2	arbitrate			same		
+match			E0	42:5	arbitrate			same		
+match			E0	42:11	arbitrate			same		
+match			E0	42:18	arbitrate			same		
+match			E0	42:20	arbitrate			same		
+match			E0	57:2	arbitrate			same		
+match			E0	57:3	arbitrate			same		
+match			E0	57:20	arbitrate			same		
+match			E0	57:23	arbitrate			same		
+match			E0	64:34	arbitrate			same		
+match			E0	64:35	arbitrate			same		
+match			E0	101:12	arbitrate			same		
+match			E0	118:49	arbitrate			same		
+match			E0	153:24	arbitrate			same		
+match			E0	153:25	arbitrate			same		
+match			E0	161:18	arbitrate			same		
+match			E0	161:20	arbitrate			same		
+match			E0	161:21	arbitrate			same		
+match			E0	216:13	arbitrate			same		
+match			E1	11:14	arbitrate			same		
+match			E1	86:19	arbitrate			same		
+match			E2	1:0	arbitrate			same		
+match			E2	1:2	arbitrate			same		
+match			E2	1:3	arbitrate			same		
+match			E2	1:4	arbitrate			same		
+match			E2	1:6	arbitrate			same		
+match			E2	1:8	arbitrate			same		
+match			E2	1:11	arbitrate			same		
+match			E2	1:14	arbitrate			same		
+match			E2	53:0	arbitrate			same		
+match			E2	53:1	arbitrate			same		
+match			E2	53:2	arbitrate			same		
+match			E2	167:0	arbitrate			same		
+match			E2	167:3	arbitrate			same		
+match			E2	167:15	arbitrate			same		
+match			E2	181:0	arbitrate			same		
+match			E2	181:2	arbitrate			same		
+match			E2	181:8	arbitrate			same		
+match			E2	181:12	arbitrate			same		
+match			E2	181:14	arbitrate			same		
+match			E2	181:15	arbitrate			same		
+match			E2	181:17	arbitrate			same		
+match			E2	210:2	arbitrate			same		
+match			E3	4:3	arbitrate			same		
+match			E3	2:0x1370	slot			none		
+match			E3	11:0x2770	slot			none		
+match			E3	47:0x1198	slot			none		
+match			E3	88:0x11a4	slot			none		

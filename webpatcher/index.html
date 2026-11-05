@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Megami Ibunroku Persona Translation Patcher</title>
+<style>
+  body, button, input {
+    font: 16px/1.6 serif;
+    text-shadow: 2px 2px 0px black;
+    color: #fff;
+  }
+  button {
+    background-color: #000;
+  }
+  body {
+    margin: 0;
+    height: 100vh;
+    background-image:
+      linear-gradient(to right, #444 3px, transparent 3px),
+      linear-gradient(to bottom, #444 3px, transparent 3px),
+      linear-gradient(to bottom, #00F, #000);
+    background-size:
+      64px 64px,
+      64px 64px,
+      100% 100%;
+    display: flow-root;
+  }
+  fieldset {
+    color: #FFF;
+    background: linear-gradient(to bottom, #002a00aa, #007a00ff) padding-box;
+  }
+  #content { max-width: 42rem; margin: 2rem auto; padding: 0 1rem; }
+  fieldset { margin: 1rem 0; }
+  #choices .choice { display: flex; align-items: flex-start; gap: 0.5rem; margin: 0.9rem 0; }
+  .choice-text { flex: 1; }
+  .choice-name { font-weight: bold; }
+  .choice-description { display: inline-block; margin-top: 0.15rem; }
+  #status { white-space: pre-wrap; }
+  #status.error { color: #b00; }
+  #results a { display: block; }
+  input[type="file"] {width: 100%}
+  p, label {margin-top: 0;}
+  a { color: #FF0; }
+</style>
+</head>
+<body>
+<div id="content">
+<h1>Persona 1 Translation Patcher</h1>
+
+<fieldset>
+  <legend>Source disc</legend>
+  <input type="file" id="source" accept=".bin">
+</fieldset>
+
+<fieldset id="choices-box" hidden>
+  <legend>Options</legend>
+  <p>The translation itself isn't toggleable! It's always enabled!</p>
+  <div id="choices"></div>
+</fieldset>
+
+<fieldset>
+<legend><button id="apply" disabled>Apply patches</button></legend>
+
+<div id="status"></div>
+<div id="results"></div>
+</fieldset>
+<a href="https://github.com/ayla6/megami-ibunroku-persona-translation">source code - ayla6/megami-ibunroku-persona-translation</a>
+<script src="app.js"></script>
+</body>
+</div>
+</html>

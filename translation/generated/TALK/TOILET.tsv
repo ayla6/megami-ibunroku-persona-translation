@@ -1,0 +1,984 @@
+id	pos	psp	en
+0	0x2014	pack/talk/TOILET:0x2030	I don't really get what you're saying,<FFF6>mister, but I think I can help you.<FFF5>
+1	0x2045	pack/talk/TOILET:0x20c8	Hmm... You're actually<FFF6>pretty reliable, mister.<FFFD>　<FFF5>
+2	0x2071	pack/talk/TOILET:0x2130	Hey! Don't talk crap just<FFF6>'cause I'm a toilet ghost!<FFF5>
+3	0x209b	pack/talk/TOILET:0x21a0	Your story sounds like a big<FFF6>phony to me! Is it for real?<FFFD>あ<FFF5>
+4	0x20cb	pack/talk/TOILET:0x2218	Say what you want, but you<FFF6>wanna sit on me, huh? This is one<FFF6>comfortable toilet seat, after all!<FFF5>
+5	0x20fd	pack/talk/TOILET:0x22e0	Hee hee!<FFF6>You're trying to persuade me...<FFF6>In other words, you need me, right?<FFFD>い<FFF5>
+6	0x212e	pack/talk/TOILET:0x2380	Normally someone who taunted<FFF6>a toilet would be seen as a freak...<FFFB><FFF7>but you might be<FFF6>an interesting person.<FFF5>
+7	0x2167	pack/talk/TOILET:0x2458	You seem strong, mister!<FFF6>So, what are your plans for me?<FFFD>う<FFF5>
+8	0x2192	pack/talk/TOILET:0x24d0	...Fine! See if I play with you anymore!<FFF5>
+9	0x21bc	pack/talk/TOILET:0x2528	You're a smooth talker, mister!<FFFD>え<FFF5>
+10	0x21da	pack/talk/TOILET:0x2570	W-Waaaaah! You get your kicks<FFF6>out of taunting a toilet...?<FFF5>
+11	0x2206	pack/talk/TOILET:0x25e8	W-Waaaaah! I'm scared...<FFFD>お<FFF5>
+12	0x221f	pack/talk/TOILET:0x2620	I don't really get what you're saying,<FFF6>mister, but I feel like I'm<FFF6>being invited.<FFF5>
+13	0x224d	pack/talk/TOILET:0x26c8	I don't mind thinking about that...<FFF6>but I hate people who<FFF6>promise to pay up later!<FFF1><FFF5>
+14	0x227d	pack/talk/TOILET:0x2770	Hey! Don't talk crap just<FFF6>'cause I'm a toilet ghost!<FFF5>
+15	0x22a7	pack/talk/TOILET:0x27e0	Your story sounds like a big<FFF6>phony to me! Is it for real?<FFFD>か<FFF5>
+16	0x22d7	pack/talk/TOILET:0x2858	I'm in kind of a rush...<FFF6>Um, can I leave now...?<FFF5>
+17	0x22ff	pack/talk/TOILET:0x28c0	D-Don't tell me you're<FFF6>going to kidnap me...?<FFFD>き<FFF5>
+18	0x2319	pack/talk/TOILET:0x2920	You really wanna show off how<FFF6>good you can sing, huh?<FFF6>You're a lousy human!<FFF5>
+19	0x2346	pack/talk/TOILET:0x29b8	Don't act all cool over something like<FFF6>that! I'm way better than you!<FFFD>く<FFF5>
+20	0x2370	pack/talk/TOILET:0x2a48	Y-You're better than me...<FFF5>
+21	0x2382	pack/talk/TOILET:0x2a80	Do they call you Donald or<FFF6>something!? Seriously, just stop...<FFFD>け<FFF5>
+22	0x23bc	pack/talk/TOILET:0x2b08	You're not nearly as good as me, but<FFF6>I think you have talent.<FFF5>
+23	0x23eb	pack/talk/TOILET:0x2b88	Hee hee! You're pretty good!<FFFD>こ<FFF5>
+24	0x2405	pack/talk/TOILET:0x2bc8	I don't really get what you're saying,<FFF6>miss, but I think I can help you.<FFF5>
+25	0x2436	pack/talk/TOILET:0x2c60	I don't mind thinking about that...<FFF6>but I hate people who<FFF6>promise to pay up later!<FFF1><FFF5>
+26	0x2466	pack/talk/TOILET:0x2d08	Hey! Don't talk crap just<FFF6>'cause I'm a toilet ghost!<FFF5>
+27	0x2490	pack/talk/TOILET:0x2d78	Your story sounds like a big<FFF6>phony to me! Is it for real?<FFFD>さ<FFF5>
+28	0x24c0	pack/talk/TOILET:0x2df0	Say what you want, but you<FFF6>wanna sit on me, huh? This is one<FFF6>comfortable toilet seat, after all!<FFF5>
+29	0x24f2	pack/talk/TOILET:0x2eb8	I don't mind thinking about that...<FFF6>but I hate people who<FFF6>promise to pay up later!<FFF1><FFF5>
+30	0x2522	pack/talk/TOILET:0x2f60	Helloooo! It's completely<FFF6>obvious that you don't mean it!<FFF5>
+31	0x2548	pack/talk/TOILET:0x2fd8	Don't you have any pride, miss?<FFF6>I hate girls like you<FFF6>more than anything!<FFFD>し<FFF5>
+32	0x2576	pack/talk/TOILET:0x3070	W-Waaaah! You're up to something...<FFF5>
+33	0x25a0	pack/talk/TOILET:0x30b8	You're... complimenting me, right...?<FFF6>I've heard a lot of rumors about<FFF6>you, Miss Maki...<FFFD>す<FFF5>
+34	0x25dd	pack/talk/TOILET:0x3170	Hee hee! Modesty is the way to go!<FFF6>Yep!<FFF5>
+35	0x25fe	pack/talk/TOILET:0x31c0	I always knew I was too perfect!<FFF6>I even scare myself... squee!<FFFD>せ<FFF5>
+36	0x263f	pack/talk/TOILET:0x3248	I don't really get what you're saying,<FFF6>miss, but you might be right.<FFF5>
+37	0x2667	pack/talk/TOILET:0x32d8	You're pretty easy to trick,<FFF6>huh miss?<FFF6>But that's what makes you so cute!<FFF5>
+38	0x269b	pack/talk/TOILET:0x3370	Hey! Don't say whatever comes to<FFF6>mind! It's easy to tell you're lying!<FFF5>
+39	0x26c7	pack/talk/TOILET:0x3400	Your story sounds like a big<FFF6>phony to me! Is it for real?<FFFD>そ<FFF5>
+40	0x26f7	pack/talk/TOILET:0x3478	Say what you want, but you<FFF6>wanna sit on me, huh? This is one<FFF6>comfortable toilet seat, after all!<FFF5>
+41	0x2729	pack/talk/TOILET:0x3540	Hee hee!<FFF6>I can't believe your story, miss.<FFFB><FFF7>Hee hee hee! Of course, it would be<FFF6>different if you gave me something!<FFF1><FFF5>
+42	0x2775	pack/talk/TOILET:0x3630	You really get it!<FFF6>I like people who are on the ball!<FFF5>
+43	0x27a3	pack/talk/TOILET:0x36a0	Huh...<FFF6>I thought you were just plain dumb,<FFFB><FFF7>miss... But you actually know what<FFF6>you're doing when it comes to demons!<FFFD>た<FFF5>
+44	0x27e0	pack/talk/TOILET:0x3790	Helloooo! It's completely<FFF6>obvious that you don't mean it!<FFF5>
+45	0x2806	pack/talk/TOILET:0x3808	Don't you have any pride, miss?<FFF6>I hate girls like you<FFF6>more than anything!<FFFD>ち<FFF5>
+46	0x2834	pack/talk/TOILET:0x38a0	Hee hee! Modesty is the way to go!<FFF6>Yep!<FFF5>
+47	0x2855	pack/talk/TOILET:0x38f0	I always knew I was too perfect!<FFF6>I even scare myself... squee!<FFFD>つ<FFF5>
+48	0x2896	pack/talk/TOILET:0x3978	Huh... well, that was weird!<FFF6>But you seem cool, so I don't mind!<FFF5>
+49	0x28c6	pack/talk/TOILET:0x3a00	I don't mind going out with you, as<FFF6>long as it's just to grab a bite.<FFF6>It's your treat, right?<FFFD>て<FFF5>
+50	0x28fc	pack/talk/TOILET:0x3ac0	D-Do I look that easy to pick up...?<FFF6>I don't think I like that...<FFF5>
+51	0x292b	pack/talk/TOILET:0x3b48	I'm only interested in toilets!<FFF6>You're out of the picture!<FFFD>と<FFF5>
+52	0x2955	pack/talk/TOILET:0x3bc8	You're not a guy, so... pass.<FFF5>
+53	0x2964	pack/talk/TOILET:0x3c08	You're not a guy, so... pass.<FFF5>
+54	0x2973	pack/talk/TOILET:0x3c48	Hee hee! Are you hitting on me?<FFF6>I'm glad to know there are people with<FFFB><FFF7>a toilet fetish--maybe I<FFF6>have a chance!<FFF5>
+55	0x29aa	pack/talk/TOILET:0x3d28	Whoa, are you hitting on me? I'm glad,<FFF6>but... Hee hee! What should I do?<FFFD>な<FFF5>
+56	0x29de	pack/talk/TOILET:0x3dc0	Do you really want my attention that<FFF6>bad? You're like a kid, mister!<FFF5>
+57	0x2a0a	pack/talk/TOILET:0x3e50	Hee hee! I heard that entertainers<FFF6>are really smart!<FFF5>
+58	0x2a33	pack/talk/TOILET:0x3ec0	What's up with that!?<FFF5>
+59	0x2a40	pack/talk/TOILET:0x3ef0	This is so boring! I don't even get<FFF6>what the joke's supposed to be!<FFFD>に<FFF5>
+60	0x2a67	pack/talk/TOILET:0x3f80	W-Waaaaaah! This is so lame...<FFF5>
+61	0x2a7c	pack/talk/TOILET:0x3fc0	Huuuh!? No way!<FFF6>You're a weird guy...<FFFD>ぬ<FFF5>
+62	0x2aa1	pack/talk/TOILET:0x4010	Hee hee! My tummy hurts!<FFF5>
+63	0x2abc	pack/talk/TOILET:0x4048	Hee hee! Listening to students<FFF6>gossiping is way more fun!<FFFD>ね<FFF5>
+64	0x2ae9	pack/talk/TOILET:0x40c0	When you're stuck in<FFF6>a bathroom for so long,<FFFB><FFF7>you really get the itch to<FFF6>talk about stuff like this...<FFF5>
+65	0x2b12	pack/talk/TOILET:0x4190	Huh... don't you know any<FFF6>stories that are more interesting?<FFFD>の<FFF5>
+66	0x2b34	pack/talk/TOILET:0x4210	This isn't the time to be<FFF6>talking about that stuff!<FFF6>Man, you're really killing the mood!<FFF5>
+67	0x2b56	pack/talk/TOILET:0x42c8	Will you be serious for once!?<FFF6>I'm telling you, this isn't the time to<FFF6>be talking about that stuff!<FFFD>は<FFF5>
+68	0x2b87	pack/talk/TOILET:0x4398	Thanks for telling me a story! Ooh, I'll<FFF6>tell you a great story I know later!<FFF5>
+69	0x2bbc	pack/talk/TOILET:0x4438	Thanks for telling me a story!<FFF6>But what I like most of all is<FFF6>badmouthing people!<FFFD>ひ<FFF5>
+70	0x2bf4	pack/talk/TOILET:0x44e0	Do you really want my attention that<FFF6>bad? You're like a kid, mister!<FFF5>
+71	0x2c20	pack/talk/TOILET:0x4570	Wh-What was that just now!?<FFFD>ふ<FFF5>
+72	0x2c32	pack/talk/TOILET:0x45b0	Wh-What was that!? Oh... I see...<FFF6>I get it now! You really piss me off!<FFF5>
+73	0x2c64	pack/talk/TOILET:0x4640	What's wrong with you!?<FFF6>Are you stupid or something!?<FFFD>へ<FFF5>
+74	0x2c87	pack/talk/TOILET:0x46b0	W-Waaaaah! What are you up to?<FFF6>You're like, in outer space!<FFF5>
+75	0x2cb4	pack/talk/TOILET:0x4728	Are you okay, mister? You could<FFF6>break something if you're that<FFF6>hyper... Calm down a little, okay?<FFFD>ほ<FFF5>
+76	0x2cec	pack/talk/TOILET:0x47f0	You're giving me a present? Huh...<FFF5>
+77	0x2d09	pack/talk/TOILET:0x4838	Are you from a rich family?<FFF6>Then you can give me more, right!?<FFFD>ま<FFF5>
+78	0x2d3f	pack/talk/TOILET:0x48c0	Hey!<FFF6>A gift like that will clog up the toilet!<FFF5>
+79	0x2d68	pack/talk/TOILET:0x4920	I don't want something<FFF6>boring like that!<FFF6>Don't you have anything better?<FFFD>み<FFF5>
+80	0x2d96	pack/talk/TOILET:0x49b8	Hee hee! Yaaaay! I got a present!<FFF5>
+81	0x2db9	pack/talk/TOILET:0x4a00	Hee hee! Make more offerings to me!<FFF6>More!<FFFD>む<FFF5>
+82	0x2de0	pack/talk/TOILET:0x4a58	I don't really get what you're saying,<FFF6>mister, but you might be right.<FFF5>
+83	0x2e08	pack/talk/TOILET:0x4ae8	Hmm... You're actually<FFF6>pretty reliable, mister.<FFFD>め<FFF5>
+84	0x2e34	pack/talk/TOILET:0x4b50	Hey! Don't make up stuff!<FFF5>
+85	0x2e50	pack/talk/TOILET:0x4b88	Your story sounds suspicious to me!<FFF6>Is it for real?<FFFD>も<FFF5>
+86	0x2e81	pack/talk/TOILET:0x4bf8	Say what you want, but you<FFF6>wanna sit on me, huh? This is one<FFF6>comfortable toilet seat, after all!<FFF5>
+87	0x2eb3	pack/talk/TOILET:0x4cc0	Hee hee!<FFF6>You're making a big speech, but<FFF6>what you mean is, you need me, right?<FFFD>や<FFF5>
+88	0x2ee4	pack/talk/TOILET:0x4d68	Normally someone who yelled at<FFF6>a toilet would be seen as a freak...<FFFB><FFF7>but you might be<FFF6>an interesting person.<FFF5>
+89	0x2f1d	pack/talk/TOILET:0x4e40	If you say you're strong,<FFF6>mister, I guess you are!<FFF6>So, what are your plans for me?<FFFD>ゆ<FFF5>
+90	0x2f55	pack/talk/TOILET:0x4ef0	...Fine! See if I play with you anymore!<FFF5>
+91	0x2f7f	pack/talk/TOILET:0x4f48	You're a smooth talker, mister!<FFFD>よ<FFF5>
+92	0x2f9d	pack/talk/TOILET:0x4f90	W-Waaaaah! You get your kicks<FFF6>out of surprising a toilet...?<FFF5>
+93	0x2fc8	pack/talk/TOILET:0x5010	W-Waaaaah! I'm scared...<FFFD>ら<FFF5>
+94	0x2fe1	pack/talk/TOILET:0x5048	Say what you want, but you've got<FFF6>one nasty personality, mister...<FFF5>
+95	0x3015	pack/talk/TOILET:0x50d0	Hey, mister, is this your first<FFF6>time talking to a girl?<FFFD>り<FFF5>
+96	0x3046	pack/talk/TOILET:0x5148	I'm actually older than you, you know!<FFF6>Now start acting normal!<FFF5>
+97	0x3077	pack/talk/TOILET:0x51c8	You should brush up on<FFF6>your negotiation skills...<FFF6>If you want to live a long life, that is!<FFFD>る<FFF5>
+98	0x30ac	pack/talk/TOILET:0x5288	Hee hee! I get so embarrassed when<FFF6>you praise me that much...<FFF5>
+99	0x30d1	pack/talk/TOILET:0x5308	Hee hee!<FFF6>You're smart too, aren't you, mister!?<FFFD>れ<FFF5>
+100	0x3102	pack/talk/TOILET:0x5370	Hmm... Not bad at all!<FFF5>
+101	0x311d	pack/talk/TOILET:0x53a0	Hey, you're pretty good!<FFF6>Teach me too next time!<FFFD>ろ<FFF5>
+102	0x3145	pack/talk/TOILET:0x5408	Awww, you suck. You're the worst!<FFF5>
+103	0x316c	pack/talk/TOILET:0x5450	Yikes, what're you doing!?<FFF6>The bathroom's that way!<FFF6>I'm not letting you use mine!<FFFD>わ<FFF5>
+104	0x31a0	pack/talk/TOILET:0x54f8	Hee hee! You're so cool!<FFF5>
+105	0x31b8	pack/talk/TOILET:0x5530	Hee hee! This is my first time<FFF6>seeing a human dance!<FFFD>を<FFF5>
+106	0x31db	pack/talk/TOILET:0x55a0	Normally someone who taunted<FFF6>a toilet would be seen as a freak...<FFFB><FFF7>but you might be<FFF6>an interesting person.<FFF5>
+107	0x3214	pack/talk/TOILET:0x5678	You seem strong, mister!<FFF6>So, what are your plans for me?<FFFD>ん<FFF5>
+108	0x323f	pack/talk/TOILET:0x56f0	...Fine! See if I play with you anymore!<FFF5>
+109	0x3269	pack/talk/TOILET:0x5748	You're a smooth talker, mister!<FFFD>が<FFF5>
+110	0x3287	pack/talk/TOILET:0x5790	W-Waaaaah! You get your kicks<FFF6>out of surprising a toilet...?<FFF5>
+111	0x32b6	pack/talk/TOILET:0x5810	W-Waaaaah! I'm scared...<FFFD>ぎ<FFF5>
+112	0x32cf	pack/talk/TOILET:0x5848	Huh... So are you curious about<FFF6>my toilet? You're so weird!<FFF5>
+113	0x32fa	pack/talk/TOILET:0x58c0	What is it? Are you THAT<FFF6>curious about my toilet?<FFFD>ぐ<FFF5>
+114	0x3317	pack/talk/TOILET:0x5928	What...? What's wrong with<FFF6>me being in a toilet?<FFF6>You got a problem with that!?<FFF5>
+115	0x3342	pack/talk/TOILET:0x59c8	Stop staring at me!<FFFD>げ<FFF5>
+116	0x3356	pack/talk/TOILET:0x59f8	You're staring at me all dreamily!<FFF6>Hee hee! It's 'cause I'm pretty.<FFF5>
+117	0x3382	pack/talk/TOILET:0x5a80	Hmm? What's wrong?<FFF6>Never seen a demon as cute as me?<FFFD>ご<FFF5>
+118	0x33b0	pack/talk/TOILET:0x5af0	I don't really get what you're saying,<FFF6>mister, but you might be right.<FFF5>
+119	0x33da	pack/talk/TOILET:0x5b80	You're pretty easy to trick,<FFF6>huh mister?<FFF6>But that's what makes you so cute!<FFF5>
+120	0x340e	pack/talk/TOILET:0x5c18	Hey! Don't make up stuff!<FFF5>
+121	0x342a	pack/talk/TOILET:0x5c50	Your story sounds like a big<FFF6>phony to me! Is it for real?<FFFD>ざ<FFF5>
+122	0x3459	pack/talk/TOILET:0x5cc8	Say what you want, but you<FFF6>wanna sit on me, huh? This is one<FFF6>comfortable toilet seat, after all!<FFF5>
+123	0x348b	pack/talk/TOILET:0x5d90	Hee hee! I can't believe your story,<FFF6>mister. Of course, it would be<FFF6>different if you gave me something!<FFF1><FFF5>
+124	0x34c3	pack/talk/TOILET:0x5e68	You're such a kid for believing in<FFF6>something like that!<FFF5>
+125	0x34e3	pack/talk/TOILET:0x5ed8	So what are you hinting? That I'm<FFF6>like one of those ghosts, too?<FFFD>じ<FFF5>
+126	0x3511	pack/talk/TOILET:0x5f60	W-Waaaaah! I'm scared!<FFF5>
+127	0x3527	pack/talk/TOILET:0x5f90	W-Waaaaah!<FFF6>I'm not one of those demons<FFF6>who likes stuff like that!<FFFD>ず<FFF5>
+128	0x3554	pack/talk/TOILET:0x6018	You know, my stories are<FFF6>much scarier than that!<FFF6>You wanna hear one?<FFFD>ぜ<FFF5>
+129	0x3580	pack/talk/TOILET:0x60a8	I wanna go to a spooky place on<FFF6>a dare, too! Do you know anywhere<FFF6>I could do something like that?<FFFD>ぞ<FFF5>
+130	0x35b3	pack/talk/TOILET:0x6170	Hmm, that was pretty good.<FFF6>You've got talent, miss!<FFF5>
+131	0x35d7	pack/talk/TOILET:0x61d8	Let's do a duet next time!<FFF6>I'll do Posh's part!<FFFD>だ<FFF5>
+132	0x3601	pack/talk/TOILET:0x6240	You really wanna show off how<FFF6>good you can sing, huh?<FFF6>You're a lousy human!<FFF5>
+133	0x362e	pack/talk/TOILET:0x62d8	Don't act all cool over something like<FFF6>that! I'm way better than you!<FFFD>ぢ<FFF5>
+134	0x3658	pack/talk/TOILET:0x6368	You're not nearly as good as me, but<FFF6>I think you have talent.<FFF5>
+135	0x3687	pack/talk/TOILET:0x63e8	Hee hee! It feels so nice...<FFFD>づ<FFF5>
+136	0x369f	pack/talk/TOILET:0x6428	Hmm... Sure, I'll play along!<FFF6>How ish it going, Mommy?<FFF5>
+137	0x36cb	pack/talk/TOILET:0x6498	Huhhh...<FFF6>I'm not that much of a kid, you know.<FFFD>で<FFF5>
+138	0x36f8	pack/talk/TOILET:0x6500	You're the worst!<FFF6>I'm gonna finish you off...!<FFF5>
+139	0x3718	pack/talk/TOILET:0x6560	What a rude human!<FFF6>You don't have any manners at all!<FFFD>ど<FFF5>
+140	0x3738	pack/talk/TOILET:0x65d0	For some reason,<FFF6>I'm feeling all nostalgic... Hee hee!<FFF5>
+141	0x375c	pack/talk/TOILET:0x6640	Hee hee! This is kinda fun!<FFFD>ば<FFF5>
+142	0x377a	pack/talk/TOILET:0x6680	I don't really get what you're saying,<FFF6>miss, but I feel like I'm being invited.<FFF5>
+143	0x37a8	pack/talk/TOILET:0x6720	I don't mind thinking about that...<FFF6>but I hate people who<FFF6>promise to pay up later!<FFF1><FFF5>
+144	0x37d8	pack/talk/TOILET:0x67c8	Hmph! You're planning on stealing<FFF6>my toilet, aren't you? Not happening!<FFF5>
+145	0x3806	pack/talk/TOILET:0x6858	Your story sounds like a big<FFF6>phony to me! Is it for real?<FFFD>び<FFF5>
+146	0x3836	pack/talk/TOILET:0x68d0	Say what you want, but you<FFF6>wanna sit on me, huh? This is one<FFF6>comfortable toilet seat, after all!<FFF5>
+147	0x3868	pack/talk/TOILET:0x6998	So in other words...<FFF6>you need my toilet?<FFFD>ぶ<FFF5>
+148	0x3892	pack/talk/TOILET:0x69f0	Huh... Say what you want...<FFF6>I'm just a toilet, after all.<FFF5>
+149	0x38c6	pack/talk/TOILET:0x6a68	Hey, you better brush up on<FFF6>your negotiation skills. You want to<FFF6>live a long life, don't you!?<FFFD>べ<FFF5>
+150	0x3900	pack/talk/TOILET:0x6b30	You're the worst!<FFF6>I'm gonna finish you off...!<FFF5>
+151	0x3920	pack/talk/TOILET:0x6b90	What a rude human!<FFF6>You don't have any manners at all!<FFFD>ぼ<FFF5>
+152	0x3940	pack/talk/TOILET:0x6c00	W-Waaaaah! Even if I am just a toilet,<FFF6>you're still too mean...<FFF5>
+153	0x3970	pack/talk/TOILET:0x6c80	W-Waaaaah! A tanned girl told me off!<FFF6>How humiliating...<FFFD>ぱ<FFF5>
+154	0x39a0	pack/talk/TOILET:0x6cf8	It feels kinda weird,<FFF6>being seduced by a girl...<FFF6>But I... kinda don't mind.<FFF5>
+155	0x39d7	pack/talk/TOILET:0x6d90	I don't mind going out with your if<FFF6>it's just to have some tea...<FFF6>It'll be your treat, right?<FFFD>ぴ<FFF5>
+156	0x3a0c	pack/talk/TOILET:0x6e50	I'm a girl! I only go with boys!<FFF5>
+157	0x3a34	pack/talk/TOILET:0x6e98	Oh, is that so... then I'll play<FFF6>extra nice with you, heheh!<FFFD>ぷ<FFF5>
+158	0x3a5a	pack/talk/TOILET:0x6f18	Hee hee!<FFF6>I was waiting for you to talk to me!<FFF5>
+159	0x3a80	pack/talk/TOILET:0x6f78	Hee hee! I like you, Ayase...!<FFFD>ぺ<FFF5>
+160	0x3aa1	pack/talk/TOILET:0x6fc0	Stories like that really get to me...<FFF6>*sniffle*<FFF5>
+161	0x3aca	pack/talk/TOILET:0x7020	Cheer up!<FFF6>Not everything in life is bad!<FFFD>ぽ<FFF5>
+162	0x3afc	pack/talk/TOILET:0x7078	You think I'm gonna fall for a trick<FFF6>like that? How stupid are you?<FFF5>
+163	0x3b28	pack/talk/TOILET:0x7100	Will you just quit it!?<FFF6>I already know those are fake tears!<FFFD>ぁ<FFF5>
+164	0x3b50	pack/talk/TOILET:0x7180	I-I didn't do anything! You just<FFF6>started crying for no reason...<FFF5>
+165	0x3b82	pack/talk/TOILET:0x7208	Why'd you have to start crying...?<FFFD>ぃ<FFF5>
+166	0x3b91	pack/talk/TOILET:0x7258	Normally someone who threatened<FFF6>a toilet would be seen as a freak...<FFFB><FFF7>but you might be<FFF6>an interesting person.<FFF5>
+167	0x3bc7	pack/talk/TOILET:0x7338	You seem strong, miss!<FFF6>So, what are your plans for me?<FFFD>ぅ<FFF5>
+168	0x3bf0	pack/talk/TOILET:0x73b0	...Fine! See if I play with you anymore!<FFF5>
+169	0x3c1b	pack/talk/TOILET:0x7408	You're a smooth talker, miss!<FFFD>ぇ<FFF5>
+170	0x3c38	pack/talk/TOILET:0x7448	W-Waaaaah! You get your kicks<FFF6>out of threatening a toilet...?<FFF5>
+171	0x3c62	pack/talk/TOILET:0x74c8	W-Waaaaah! I'm scared...<FFFD>ぉ<FFF5>
+172	0x3c7b	pack/talk/TOILET:0x7500	You're the worst! I'm gonna flush you<FFF6>all the way out to the ocean!<FFF5>
+173	0x3c9d	pack/talk/TOILET:0x7588	You're so rude all of a sudden!<FFF6>You don't have any manners at all!<FFFD>っ<FFF5>
+174	0x3cc1	pack/talk/TOILET:0x7618	W-Waaaaah! Please stop, miss...<FFF5>
+175	0x3ce2	pack/talk/TOILET:0x7658	W-Waaaaah! Why're you bullying me!?<FFF6>I didn't do anything!<FFFD>ゃ<FFF5>
+176	0x3d10	pack/talk/TOILET:0x76d0	Hee hee! I think I'm starting to<FFF6>like it when you torment me!<FFF5>
+177	0x3d35	pack/talk/TOILET:0x7750	Hee hee! I've been a bad girl...<FFF6>so bully me more!<FFFD>ゅ<FFF5>
+178	0x3d67	pack/talk/TOILET:0x77c0	I don't really get what you're saying,<FFF6>miss, but I think I can help you.<FFF5>
+179	0x3d8f	pack/talk/TOILET:0x7858	Hmm...<FFF6>You're actually pretty reliable, miss.<FFFD>ょ<FFF5>
+180	0x3dbd	pack/talk/TOILET:0x78b8	Isn't there something wrong with<FFF6>you if you're trying to<FFF6>persuade a toilet!?<FFF5>
+181	0x3ddc	pack/talk/TOILET:0x7958	Your story sounds like a big<FFF6>phony to me! Is it for real?<FFFD>ゎ<FFF5>
+182	0x3e0c	pack/talk/TOILET:0x79d0	Say what you want, but you<FFF6>wanna sit on me, huh? This is one<FFF6>comfortable toilet seat, after all!<FFF5>
+183	0x3e3e	pack/talk/TOILET:0x7a98	If you're interested in me,<FFF6>it means you need this toilet, right?<FFFD>ア<FFF5>
+184	0x3e72	pack/talk/TOILET:0x7b20	Will you shut up!?<FFF6>I won't think twice about<FFF6>flushing you out to sea, you know!<FFF5>
+185	0x3e92	pack/talk/TOILET:0x7bc0	You're so rude all of a sudden!<FFF6>You don't have any manners at all!<FFFD>イ<FFF5>
+186	0x3eb6	pack/talk/TOILET:0x7c50	W-Waaaah! I'm sorry...<FFF5>
+187	0x3ecf	pack/talk/TOILET:0x7c80	W-Waaaaah! Why're you scolding me!?<FFF6>I didn't do anything!<FFFD>ウ<FFF5>
+188	0x3efc	pack/talk/TOILET:0x7cf8	Hee hee! You're real full of energy!<FFF5>
+189	0x3f13	pack/talk/TOILET:0x7d48	Hee hee! I've been a bad girl...<FFF6>so scold me more!<FFFD>エ<FFF5>
+190	0x3f45	pack/talk/TOILET:0x7db8	Huh, you're pretty confident.<FFF6>I'll be impressed if you can<FFF6>keep that up until the end.<FFF5>
+191	0x3f75	pack/talk/TOILET:0x7e68	Huh...? Miss,<FFF6>don't you want something with me?<FFFD>オ<FFF5>
+192	0x3fa4	pack/talk/TOILET:0x7ed0	Hey! Don't ignore me!<FFF6>Ooh, how annoying!<FFF5>
+193	0x3fc8	pack/talk/TOILET:0x7f28	So you're gonna ignore me, huh?<FFF6>Hmph! How dare you make<FFF6>fun of me like that!?<FFFD>カ<FFF5>
+194	0x3fef	pack/talk/TOILET:0x7fc8	Did I do something...?<FFF5>
+195	0x4008	pack/talk/TOILET:0x7ff8	Um...<FFF6>Didn't you need something from me?<FFFD>キ<FFF5>
+196	0x4026	pack/talk/TOILET:0x8050	Huh, you're pretty confident.<FFF6>I'll be impressed if you can<FFF6>keep that up until the end.<FFF5>
+197	0x4056	pack/talk/TOILET:0x8100	Huh...? Mister,<FFF6>don't you want something with me?<FFFD>ク<FFF5>
+198	0x4085	pack/talk/TOILET:0x8168	Hey! Don't ignore me!<FFF6>Ooh, how annoying!<FFF5>
+199	0x40a9	pack/talk/TOILET:0x81c0	So you're gonna ignore me, huh?<FFF6>Hmph! How dare you make<FFF6>fun of me like that!?<FFFD>ケ<FFF5>
+200	0x40ce	pack/talk/TOILET:0x8260	Did I do something...?<FFF5>
+201	0x40e7	pack/talk/TOILET:0x8290	Um...<FFF6>Didn't you need something from me?<FFFD>コ<FFF5>
+202	0x4105	pack/talk/TOILET:0x82e8	Normally someone who threatened<FFF6>a toilet would be seen as a freak...<FFFB><FFF7>but you might be<FFF6>an interesting person.<FFF5>
+203	0x413b	pack/talk/TOILET:0x83c8	You seem strong, mister!<FFF6>So, what are your plans for me?<FFFD>サ<FFF5>
+204	0x4168	pack/talk/TOILET:0x8440	...Fine! See if I play with you anymore!<FFF5>
+205	0x4192	pack/talk/TOILET:0x8498	You're a smooth talker, mister!<FFFD>シ<FFF5>
+206	0x41b1	pack/talk/TOILET:0x84e0	W-Waaaaah! You get your kicks<FFF6>out of threatening a toilet...?<FFF5>
+207	0x41dd	pack/talk/TOILET:0x8560	W-Waaaaah! I'm scared...<FFFD>ス<FFF5>
+208	0x41f6	pack/talk/TOILET:0x8598	Will you shut up!?<FFF6>Go roar someplace else!<FFF5>
+209	0x420f	pack/talk/TOILET:0x85f0	Will you shut up!?<FFF6>Are you stupid or something!?<FFFD>セ<FFF5>
+210	0x4231	pack/talk/TOILET:0x8658	W-Waaaaah! What're you roaring for?<FFF6>Y-You're dangerous, I can tell...!<FFF5>
+211	0x425d	pack/talk/TOILET:0x86e8	Are you okay, mister? You could<FFF6>break something if you're that<FFF6>hyper... Calm down a little, okay?<FFFD>ソ<FFF5>
+212	0x4293	pack/talk/TOILET:0x87b0	You're weird, mister!<FFF6>But you seem cool, so I don't mind!<FFF5>
+213	0x42b9	pack/talk/TOILET:0x8828	Hee hee! You're crazy!<FFF6>I like dangerous people!<FFFD>タ<FFF5>
+214	0x42e3	pack/talk/TOILET:0x8890	You'd go as far as pulling out magic<FFF6>tricks to get me to play with you?<FFF6>You're such a kid, mister!<FFF5>
+215	0x4315	pack/talk/TOILET:0x8958	Huh... so you're a sorcerer!<FFFD>チ<FFF5>
+216	0x4340	pack/talk/TOILET:0x8998	W-Waaaaah! There's something<FFF6>spooky about this guy...<FFF6>I-I'm scared...<FFF5>
+217	0x436f	pack/talk/TOILET:0x8a28	Don't try anything funny,<FFF6>like making me disappear, okay...?<FFFD>ツ<FFF5>
+218	0x439b	pack/talk/TOILET:0x8aa8	Magic tricks, huh...? Hee hee!<FFF6>You're so refined, mister!<FFF5>
+219	0x43c6	pack/talk/TOILET:0x8b20	Hey, Mr. Handsome! Use your magic to<FFF6>conjure me up a new toilet!<FFFD>テ<FFF5>
+220	0x4409	pack/talk/TOILET:0x8ba8	Hmm... Human stories are interesting!<FFF6>I love listening to them.<FFF5>
+221	0x4438	pack/talk/TOILET:0x8c28	Why're you being so serious...? Huh...<FFF6>Do you think I'm that charming?<FFF5>
+222	0x446e	pack/talk/TOILET:0x8cb8	I don't mind listening to<FFF6>your story, but you know,<FFF6>it'd be nice if my wallet was heavier...<FFF1><FFF5>
+223	0x44a7	pack/talk/TOILET:0x8d78	That's the worst story I've<FFF6>ever heard! So stupid!<FFF5>
+224	0x44c6	pack/talk/TOILET:0x8de0	It's no use going on and on about<FFF6>stupid stuff like that to me!<FFF5>
+225	0x44e1	pack/talk/TOILET:0x8e60	Your story's boring, you know!<FFF6>But if you gave me something,<FFF6>maybe I'd be in a good mood again...<FFF1><FFF5>
+226	0x4521	pack/talk/TOILET:0x8f28	W-Waaaaah! That glare you<FFF6>have when you talk to me is scary...<FFF5>
+227	0x4543	pack/talk/TOILET:0x8fa8	I hesitate to bring this up, but...<FFF6>you're scaring me...<FFF5>
+228	0x455c	pack/talk/TOILET:0x9020	Hee hee! It's been a long time<FFF6>since I've been this happy!<FFF5>
+229	0x4582	pack/talk/TOILET:0x9098	Hee hee! It's been a long time since<FFF6>I heard such a fun story!<FFF5>
+230	0x45a8	pack/talk/TOILET:0x9118	Hee hee! This is so much fun...<FFF6>I wish I could keep chatting<FFF6>like this forever...<FFF5>
+231	0x45d4	pack/talk/TOILET:0x91c0	Hmm... You actually have a keen<FFF6>eye for demons... I have some pretty<FFF6>high expectations for you!<FFF5>
+232	0x4610	pack/talk/TOILET:0x9280	C'mon! Just negotiate, no frills!<FFF5>
+233	0x4626	pack/talk/TOILET:0x92c8	I totally understand what you want to<FFF6>say! So you should listen to me, too!<FFF5>
+234	0x465b	pack/talk/TOILET:0x9360	I'm not lending my powers to some<FFF6>human! Who do you think I am?<FFF5>
+235	0x4683	pack/talk/TOILET:0x93e0	Are you stupid or something!?<FFF6>Why would you ask for help from<FFF6>a toilet like me!?<FFF5>
+236	0x46a8	pack/talk/TOILET:0x9488	Aren't you a human!? Then we have<FFF6>nothing more to talk about!<FFFB><FFF7>Though I might change my tune if<FFF6>you coughed up a little...<FFF1><FFF5>
+237	0x46ee	pack/talk/TOILET:0x9580	That's what you say now, but<FFF6>you're gonna trick me, huh?<FFF6>Humans are scary...<FFF5>
+238	0x4720	pack/talk/TOILET:0x9620	I don't feel like listening to<FFF6>requests from humans.<FFF6>I really want to just get out of here...<FFF5>
+239	0x4758	pack/talk/TOILET:0x96e0	I don't feel like listening to<FFF6>requests from humans.<FFF6>I really want to just get out of here...<FFF5>
+240	0x4790	pack/talk/TOILET:0x97a0	Huh? You actually want me?<FFF6>Wow, this is so great!<FFF5>
+241	0x47b3	pack/talk/TOILET:0x9808	Does that mean you want me?<FFF6>Ooh, keep saying stuff like that!<FFF5>
+242	0x47e0	pack/talk/TOILET:0x9888	Hee hee!<FFF6>My charms drive humans mad, too.<FFF5>
+243	0x4810	pack/talk/TOILET:0x98e0	Aren't you doing that on purpose?<FFF6>Well, I get it, already, so hurry<FFF6>up and get to the point.<FFF5>
+244	0x4845	pack/talk/TOILET:0x99a0	I'm kind of interested in people<FFF6>who aren't quite normal...<FFF5>
+245	0x486a	pack/talk/TOILET:0x9a18	If you want to get to know me, there's<FFF6>a better way to do it than with<FFF6>those tired negotiation skills!<FFF1><FFF5>
+246	0x48a1	pack/talk/TOILET:0x9ae8	Did you just make fun of me?<FFF6>I hope you have a will prepared!<FFF5>
+247	0x48c4	pack/talk/TOILET:0x9b68	I see no reason to hold back when<FFF6>I have to deal with annoying<FFF6>humans like you!<FFF5>
+248	0x48e3	pack/talk/TOILET:0x9c08	I'm so incredibly annoyed!<FFF6>I won't forgive you unless<FFF6>you give me something!<FFF1><FFF5>
+249	0x490e	pack/talk/TOILET:0x9ca8	W-Waaaaah! You're so cruel,<FFF6>taunting a cute demon like me...<FFF5>
+250	0x493c	pack/talk/TOILET:0x9d28	What's wrong with you?<FFF6>Stop making fun of me... W-Waaaaah!<FFF5>
+251	0x4964	pack/talk/TOILET:0x9da0	W-Waaaaah! I'm just a cute girl...<FFF5>
+252	0x498d	pack/talk/TOILET:0x9de8	Hee hee! You're full of confidence!<FFF5>
+253	0x49a9	pack/talk/TOILET:0x9e30	Hee hee! Well, it's something a kid like<FFF6>you would do, so I guess it's okay.<FFF5>
+254	0x49d6	pack/talk/TOILET:0x9ed0	Hee hee! Well, it's something a kid like<FFF6>you would do, so I guess it's okay.<FFF5>
+255	0x4a03	pack/talk/TOILET:0x9f70	Hmm... could you be a fresh face on<FFF6>the entertainment scene?<FFF6>Good luck with that!<FFF5>
+256	0x4a2f	pack/talk/TOILET:0xa018	Sorry, but not quite!<FFF6>You weren't bad,<FFF6>though, so please try again sometime!<FFF5>
+257	0x4a68	pack/talk/TOILET:0xa0b8	Hmm... that wasn't so great, so<FFF6>I'll give you some advice!<FFF6>But you'll have to pay up first!<FFF1><FFF5>
+258	0x4a9c	pack/talk/TOILET:0xa178	Boooooriiiing...!<FFF5>
+259	0x4aba	pack/talk/TOILET:0xa1a0	Bleeeeah! Go home already!<FFF5>
+260	0x4acf	pack/talk/TOILET:0xa1d8	You expect to make some cash with<FFF6>something like that? Forget it!<FFFB><FFF7>I'm the one who'll be taking<FFF6>money from you!<FFF1><FFF5>
+261	0x4af6	pack/talk/TOILET:0xa2b8	Wh-What in the world...?<FFF6>I don't get it at all...<FFF5>
+262	0x4b16	pack/talk/TOILET:0xa320	Was that a ritual or something...?<FFF6>W-Waaaaah! It's a cultist...!<FFF5>
+263	0x4b49	pack/talk/TOILET:0xa3a8	Hee hee! Man, you're funny.<FFF6>I could watch you all day!<FFF5>
+264	0x4b78	pack/talk/TOILET:0xa418	I wish I could do some kind of trick,<FFF6>too...<FFF6>Maybe I should take up a hobby.<FFF5>
+265	0x4ba4	pack/talk/TOILET:0xa4b8	Hee hee! Show me more!<FFF5>
+266	0x4bbd	pack/talk/TOILET:0xa4e8	Huh... So you want me?<FFF6>Maybe I'll let myself fall for it!<FFF5>
+267	0x4be4	pack/talk/TOILET:0xa560	Huh... I'm actually much older than I<FFF6>look. Are you okay with that?<FFF5>
+268	0x4c12	pack/talk/TOILET:0xa5e8	Hmm... I'll think about it, sure...<FFF6>But you gotta show some generosity!<FFF1><FFF5>
+269	0x4c44	pack/talk/TOILET:0xa680	Are you making fun of me?<FFF5>
+270	0x4c54	pack/talk/TOILET:0xa6b8	I can't betray my toilet for that!<FFF6>Do I LOOK that stupid to you?<FFF5>
+271	0x4c85	pack/talk/TOILET:0xa740	One yell from me and loads of<FFF6>my friends will show up. You wouldn't<FFF6>want that to happen, right?<FFFB><FFF7>If not, then give me something!<FFF1><FFF5>
+272	0x4cdd	pack/talk/TOILET:0xa848	Uh-oh! I-I was wrong...<FFF5>
+273	0x4cf7	pack/talk/TOILET:0xa878	Uh-oh! I-I was wrong...<FFF5>
+274	0x4d11	pack/talk/TOILET:0xa8a8	Uh-oh! I-I was wrong...<FFF5>
+275	0x4d2b	pack/talk/TOILET:0xa8d8	Oh no... I think I'm falling for it...<FFF5>
+276	0x4d3c	pack/talk/TOILET:0xa928	That's a pretty old<FFF6>trick for seducing people!<FFFB><FFF7>But that makes it an antique...<FFF6>So it might be a good thing!<FFF5>
+277	0x4d71	pack/talk/TOILET:0xaa00	Hee hee! I want something!<FFF1><FFF5>
+278	0x4d90	pack/talk/TOILET:0xaa38	Huh... So you have to do stuff<FFF6>like that because you're so weak!<FFF5>
+279	0x4db9	pack/talk/TOILET:0xaac0	Tooooo bad! I can see<FFF6>right through your schemes!<FFF5>
+280	0x4dd9	pack/talk/TOILET:0xab28	Shut up!<FFF5>
+281	0x4de4	pack/talk/TOILET:0xab40	Ugh, you're annoying the crap<FFF6>out of me! Will you stop it!?<FFF5>
+282	0x4df9	pack/talk/TOILET:0xabb8	If you want to be my slave,<FFF6>do as I say!<FFF1><FFF5>
+283	0x4e1d	pack/talk/TOILET:0xac10	Something seems wrong...<FFF6>You're suspicious...<FFF5>
+284	0x4e40	pack/talk/TOILET:0xac70	Are you scheming something?<FFF6>If you are, just come out and tell me...<FFF5>
+285	0x4e6b	pack/talk/TOILET:0xad00	Hee hee! Maybe I should<FFF6>make you my bodyguard!<FFF5>
+286	0x4e97	pack/talk/TOILET:0xad60	Hee hee! I feel like I finally<FFF6>have a minion of my own!<FFF5>
+287	0x4eb8	pack/talk/TOILET:0xadd0	My name seems to be famous in<FFF6>the human world, too! Hee hee...<FFF6>That's so great!<FFF5>
+288	0x4eee	pack/talk/TOILET:0xae70	Huh? You already have my card! You<FFF6>better take good care of it, okay!?<FFEF>
+289	0x4f23	pack/talk/TOILET:0xaf00	Then I'll give you this!<FFEF>
+290	0x4f32	pack/talk/TOILET:0xaf38	Huh? Is that so?<FFEF>
+291	0x4f3e	pack/talk/TOILET:0xaf60	Sorry, it seems like our tastes<FFF6>are too different.<FFEF>
+292	0x4f66	pack/talk/TOILET:0xafc8	Aren't you a little too<FFF6>cocky for how weak you are?<FFF6>I'm not giving you my card!<FFF5>
+293	0x4f9c	pack/talk/TOILET:0xb068	Then I'll give you this.<FFEF>
+294	0x4fab	pack/talk/TOILET:0xb0a0	Well, bye-bye!<FFEF>
+295	0x4fbb	pack/talk/TOILET:0xb0c0	Here's something extra on top!<FFEF>
+296	0x4fc7	pack/talk/TOILET:0xb100	I'm gonna get going now!<FFEF>
+297	0x4fd6	pack/talk/TOILET:0xb138	I'll give you my card, but don't make<FFF6>too big of a Persona out of it, okay?<FFF6>I don't want it clogging up my drain!<FFEF>
+298	0x5011	pack/talk/TOILET:0xb220	I'll give you this...<FFF6>so please, spare my life!<FFEF>
+299	0x5032	pack/talk/TOILET:0xb280	Ugh, I've had enough! I'm leaving!<FFEF>
+300	0x5049	pack/talk/TOILET:0xb2c8	I'll give you this if you go<FFF6>home like a good human.<FFEF>
+301	0x5068	pack/talk/TOILET:0xb338	Sheesh! Humans have made me so<FFF6>angry lately! Honestly... I feel like<FFF6>a total idiot for negotiating with you!<FFF5>
+302	0x50a5	pack/talk/TOILET:0xb418	I just don't even care anymore! You<FFF6>want my spell card? Fine! It's yours!<FFEF>
+303	0x50dc	pack/talk/TOILET:0xb4b0	Um... I... I want to be useful...<FFEF>
+304	0x5111	pack/talk/TOILET:0xb4f8	Here's my spell card...<FFF6>Feel free to make it into<FFF6>whatever Persona you want!<FFF5>
+305	0x5146	pack/talk/TOILET:0xb598	I can't fight you...<FFEF>
+306	0x5156	pack/talk/TOILET:0xb5c8	This is from me...<FFEF>
+307	0x5163	pack/talk/TOILET:0xb5f0	But you're human, so you have at<FFF6>least a little mercy in you... Right...?<FFF5>
+308	0x519f	pack/talk/TOILET:0xb688	Oh! I know! I'll give you my spell card!<FFF6>So please? Please?<FFEF>
+309	0x51d1	pack/talk/TOILET:0xb700	Hey, are you doing anything fun now?<FFFD>ト<FFF5>
+310	0x51ed	pack/talk/TOILET:0xb750	*sniff* *sniff* Hmm,<FFF6>I can smell demons on you.<FFF5>
+311	0x5219	pack/talk/TOILET:0xb7b0	Hmm... This is my first<FFF6>encounter with a human.<FFF6>Give me something to remember it by!<FFF1><FFF5>
+312	0x524d	pack/talk/TOILET:0xb860	What's with that face!? If you've<FFF6>got a problem, then spit it out!<FFFD>ナ<FFF5>
+313	0x527a	pack/talk/TOILET:0xb8f0	I'm in a bad mood today. If you don't<FFF6>get out of my sight, you'll be sorry!<FFF5>
+314	0x52ae	pack/talk/TOILET:0xb988	You obviously have a present for me,<FFF6>right? Hurry up and give it!<FFF1><FFF5>
+315	0x52e0	pack/talk/TOILET:0xba10	From this point on is<FFF6>my territory, got it...?<FFFD>ニ<FFF5>
+316	0x5300	pack/talk/TOILET:0xba78	I can't stop shivering...<FFF6>Your face is just that scary.<FFF5>
+317	0x532e	pack/talk/TOILET:0xbae8	There's no moon out.<FFF6>That's why I'm scared and I<FFF6>don't think I can sleep tonight...<FFFB><FFF7>Show me some tenderness, mister...<FFF1><FFF5>
+318	0x5384	pack/talk/TOILET:0xbbe0	Hee hee! It's such a nice day today!<FFFD>ヌ<FFF5>
+319	0x53a0	pack/talk/TOILET:0xbc30	Hey, do you prefer well-behaved<FFF6>girls? Hee hee!<FFF5>
+320	0x53ce	pack/talk/TOILET:0xbc90	A full moon! Hee hee! Gimme something!<FFF1><FFF5>
+321	0x53fa	pack/talk/TOILET:0xbce0	<FFED>I got a full schedule, so if you don't<FFF6>need anything, I'm gonna go.<FFFD>ネ<FFF5>
+322	0x5428	pack/talk/TOILET:0xbd70	<FFED>I'm busy! If you have something to<FFF6>say, make it quick!<FFF5>
+323	0x5455	pack/talk/TOILET:0xbde0	<FFEE>I'm busy, but if you're gonna give me<FFF6>something, I'll hear you out!<FFF1><FFF5>
+324	0x5484	pack/talk/TOILET:0xbe70	<FFEC>Um... if you don't really have any<FFF6>business with me, I wanna go home.<FFFD>ノ<FFF5>
+325	0x54b4	pack/talk/TOILET:0xbf08	<FFEE>A human really wants something with<FFF6>me...? I don't want any trouble, okay?<FFF5>
+326	0x54e3	pack/talk/TOILET:0xbfa0	<FFEC>If you make one wrong move,<FFF6>I'll be gone in a flash...<FFF5>
+327	0x5509	pack/talk/TOILET:0xc010	<FFEB>Do you believe in destiny? I feel like<FFF6>I've waited a long time for this day...<FFFD>ハ<FFF5>
+328	0x5544	pack/talk/TOILET:0xc0b8	<FFEB>Do you believe in destiny? I think<FFF6>our meeting is pretty good proof!<FFF5>
+329	0x557d	pack/talk/TOILET:0xc148	<FFEE>Eep!<FFF6>I feel like your gaze is sucking me in!<FFF5>
+330	0x55a4	pack/talk/TOILET:0xc1a8	<FFEC>Um, do you happen to be <FFFA>?<FFFD>ヒ<FFF5>
+331	0x55be	pack/talk/TOILET:0xc1e8	<FFEC>No! No! Stay away from me,<FFF6>you *bleeeeeep*!<FFF5>
+332	0x55ef	pack/talk/TOILET:0xc248	<FFED>I warn you...<FFF6>i-if you kill me, you'll regret it...!<FFF5>
+333	0x561f	pack/talk/TOILET:0xc2b8	<FFED>Hey! Don't tell me you think you and<FFF6>me are on equal grounds here.<FFFD>フ<FFF5>
+334	0x564d	pack/talk/TOILET:0xc348	<FFED>Humans again...?<FFF6>I'm tired of dealing with all of you!<FFF6>I wanna go home!<FFF5>
+335	0x5683	pack/talk/TOILET:0xc3e0	<FFEB>Hey, human! C'mon,<FFF6>where's your gift for your queen?<FFF1><FFF5>
+336	0x56b5	pack/talk/TOILET:0xc450	<FFEB>A human... thank goodness! I'll do<FFF6>anything, just please spare my life!<FFFD>ヘ<FFF5>
+337	0x56e3	pack/talk/TOILET:0xc4e8	<FFEB>I'm all hyper for some reason<FFF6>right now... I'm all yours!<FFF5>
+338	0x5715	pack/talk/TOILET:0xc560	<FFEC>I don't think I can resist any more...<FFF6>I want you to make me your pussycat!<FFF5>
+339	0x5747	pack/talk/TOILET:0xc600	So what're you trying to say?<FFEF>
+340	0x5759	pack/talk/TOILET:0xc640	Don't get carried away, lowly human!<FFF5>
+341	0x5777	pack/talk/TOILET:0xc690	Am I... going to be defeated by<FFF6>a human? That would be terrible...!<FFF5>
+342	0x57a0	pack/talk/TOILET:0xc718	Hee hee! Humans aren't scary<FFF6>like I thought they'd be!<FFF5>
+343	0x57cf	pack/talk/TOILET:0xc788	Ugh! Stop wasting my time!<FFF6>If you want to say something, say it!<FFEF>
+344	0x57fa	pack/talk/TOILET:0xc810	...... I'll listen to your request.<FFF6>But no cruel stuff, okay?<FFEF>
+345	0x5838	pack/talk/TOILET:0xc890	I'm in a good mood today.<FFF6>I'll listen to whatever you say!<FFEF>
+346	0x586f	pack/talk/TOILET:0xc908	It's too early for me to<FFF6>depart from this world!<FFF6>There's still so much I want to do!<FFF5>
+347	0x58a1	pack/talk/TOILET:0xc9b8	I think I've had enough!<FFF6>I'm tired of negotiating with you. I'm<FFF6>gonna go look for some other humans.<FFF5>
+348	0x58d6	pack/talk/TOILET:0xca88	...... Whether I live or die is<FFF6>all up to you, isn't it...?<FFF5>
+349	0x5910	pack/talk/TOILET:0xcb00	You know what I want? <FFF8> yen.<FFEF>
+350	0x5930	pack/talk/TOILET:0xcb40	Hehe, thanks!<FFF5>
+351	0x593d	pack/talk/TOILET:0xcb60	You're terrible! If you don't have<FFF6>money, you might as well be dead!<FFF5>
+352	0x5972	pack/talk/TOILET:0xcbf0	I'm not at all interested in<FFF6>poor people.<FFF5>
+353	0x5998	pack/talk/TOILET:0xcc48	Are you trying to negotiate with<FFF6>me without paying the price?<FFF6>Isn't that a little selfish!?<FFF5>
+354	0x59cf	pack/talk/TOILET:0xcd00	What's with you? You don't even<FFF6>want to negotiate with me, do you?<FFF6>Ugh, what a waste of time.<FFF5>
+355	0x5a00	pack/talk/TOILET:0xcdc0	Gimme one of those things that<FFF6>starts with "l" and ends with "e"!<FFEF>
+356	0x5a2c	pack/talk/TOILET:0xce48	Hee hee! I'm so happy!<FFF5>
+357	0x5a41	pack/talk/TOILET:0xce78	So you were negotiating with me and<FFF6>you didn't have any life stones?<FFF6>Ohhh, you make me so mad!<FFF5>
+358	0x5a73	pack/talk/TOILET:0xcf38	You don't even have any life stones?<FFF6>Ugh, how lame...<FFF5>
+359	0x5a95	pack/talk/TOILET:0xcfa8	Oh, is that so...? Then why don't<FFF6>you take it with you to hell!?<FFF5>
+360	0x5ab5	pack/talk/TOILET:0xd030	You're human and<FFF6>you're that reluctant to<FFF6>give up your life stones?<FFFB><FFF7>You're kind of like a demon that way.<FFF5>
+361	0x5aeb	pack/talk/TOILET:0xd108	I want a <FFF4>, darling!<FFEF>
+362	0x5b04	pack/talk/TOILET:0xd138	Lucky me! Just what I wanted...<FFF5>
+363	0x5b21	pack/talk/TOILET:0xd178	Nooo! I've been had! And I made<FFF6>a point only to deal with rich people!<FFF5>
+364	0x5b4f	pack/talk/TOILET:0xd208	I've had it! I'm gonna kill you and<FFF6>flush your corpse to the ocean!<FFF5>
+365	0x5b69	pack/talk/TOILET:0xd290	...You can't possibly be my darling, so<FFF6>I guess I'll let this one slide!<FFF5>
+366	0x5b9d	pack/talk/TOILET:0xd328	I'm hungry... just let me have<FFF6>a little sip. It won't hurt!<FFEF>
+367	0x5bcd	pack/talk/TOILET:0xd3a0	Hee hee! I'll be extra gentle!<FFF5>
+368	0x5be6	pack/talk/TOILET:0xd3e0	Grrr! I only wanted a little.<FFF6>You're so stingy!<FFF5>
+369	0x5c0f	pack/talk/TOILET:0xd440	Oh, is that so...?<FFF6>I guess I'll let it go this time!<FFF5>
+370	0x5c33	pack/talk/TOILET:0xd4b0	That's nothing to brag about!<FFF5>
+371	0x5c4d	pack/talk/TOILET:0xd4f0	Huh, that's cool of you!<FFF5>
+372	0x5c5f	pack/talk/TOILET:0xd528	I can't believe it!<FFF5>
+373	0x5c6b	pack/talk/TOILET:0xd550	Wait, I can't tell which it is when you<FFF6>say it like that. What did you mean...?<FFF5>
+374	0x5c9b	pack/talk/TOILET:0xd5f0	Hee hee! Don't dodge the question!<FFF6>Seriously, which is it?<FFF5>
+375	0x5cc3	pack/talk/TOILET:0xd668	That's what I thought! Hey, but don't<FFF6>take a dump on me, okay!?<FFF5>
+376	0x5cf0	pack/talk/TOILET:0xd6e8	So you're pretty constipated,<FFF6>huh mister? Hee hee... just like me!<FFF5>
+377	0x5d21	pack/talk/TOILET:0xd770	What're you holding back for? Hmph!<FFF6>I know you want to let it all<FFF6>out and feel refreshed!<FFF5>
+378	0x5d4c	pack/talk/TOILET:0xd828	Thank goodness... I was wondering<FFF6>what I'd do if you went all over me...<FFF5>
+379	0x5d83	pack/talk/TOILET:0xd8c0	Oh, is that so!?<FFF6>Then why don't we test it out!?<FFF6>I'm much harder than you!<FFF5>
+380	0x5dae	pack/talk/TOILET:0xd958	W-Waaaaah! You're scary!<FFF5>
+381	0x5dcb	pack/talk/TOILET:0xd990	Hmph,<FFF6>don't you understand sarcasm?<FFF5>
+382	0x5ddf	pack/talk/TOILET:0xd9d8	Hmmmmm, really? I wonder if I seem<FFF6>like a cocky demon to others...<FFF5>
+383	0x5e0e	pack/talk/TOILET:0xda60	You think so?<FFF6>But I'm still no match for you, mister.<FFF5>
+384	0x5e36	pack/talk/TOILET:0xdad0	Hmm, you're pretty gullible. Hehe...<FFF5>
+385	0x5e62	pack/talk/TOILET:0xdb20	You're such an idiot!<FFF6>You'll fall for anything!<FFF5>
+386	0x5e82	pack/talk/TOILET:0xdb80	W-Waaaaah! I hate you...!<FFF5>
+387	0x5ea2	pack/talk/TOILET:0xdbb8	I can't believe it!<FFF5>
+388	0x5eae	pack/talk/TOILET:0xdbe0	Hmmm...<FFF6>I think we can get along pretty good!<FFF5>
+389	0x5edb	pack/talk/TOILET:0xdc40	Hee hee! I feel like I'm<FFF6>the heroine on some show!<FFF5>
+390	0x5f08	pack/talk/TOILET:0xdca8	W-Wait a second... are you taking<FFF6>me and the toilet all together?<FFF5>
+391	0x5f2c	pack/talk/TOILET:0xdd30	Hee hee! That's good!<FFF6>I can't live without my toilet!<FFF5>
+392	0x5f59	pack/talk/TOILET:0xdda0	What's up with that!?<FFF6>You're just a kid yourself!<FFF5>
+393	0x5f7e	pack/talk/TOILET:0xde08	Really, sound echoes inside<FFF6>a toilet, so I end up hearing a lot!<FFF5>
+394	0x5faf	pack/talk/TOILET:0xde90	You told me it would be amazing, but I<FFF6>didn't think it would be THIS good!<FFF6>Thanks for the tip!<FFF5>
+395	0x5fe5	pack/talk/TOILET:0xdf50	W-Waaaaah...!<FFF6>I thought I was going to die...<FFF5>
+396	0x600c	pack/talk/TOILET:0xdfb0	It's so bad it could kill me!<FFF6>Seriously, stop it!<FFF5>
+397	0x602d	pack/talk/TOILET:0xe018	You were awesome, mister!<FFF6>That was really cool...! Hee hee!<FFF5>
+398	0x6059	pack/talk/TOILET:0xe090	You still have enough air in you...?<FFF6>Hey mister, are you really human?<FFF5>
+399	0x608a	pack/talk/TOILET:0xe120	Hmm, I'm surprised you still<FFF6>have enough air in you...<FFF6>It's like you're not even human!<FFF5>
+400	0x60b1	pack/talk/TOILET:0xe1d0	I can't believe it!<FFF5>
+401	0x60bd	pack/talk/TOILET:0xe1f8	Wait, I can't tell which it is when you<FFF6>say it like that. What did you mean...?<FFF5>
+402	0x60ed	pack/talk/TOILET:0xe298	Hee hee! Don't dodge the question!<FFF6>Seriously, which is it?<FFF5>
+403	0x6115	pack/talk/TOILET:0xe310	Oh, is that so? You do, huh...?<FFF5>
+404	0x612d	pack/talk/TOILET:0xe350	Oh, is that so? You do, huh...?<FFF6>Then why don't you use a different<FFF6>negotiation tactic!?<FFF5>
+405	0x615f	pack/talk/TOILET:0xe400	What's with this human!?<FFF6>Don't underestimate me!<FFF5>
+406	0x617b	pack/talk/TOILET:0xe468	That means if I defeat you,<FFF6>I'll be the next talk of the town!<FFF5>
+407	0x61a7	pack/talk/TOILET:0xe4e8	Ugh, you're taking it seriously...?<FFF6>You're soooo stupid!<FFF5>
+408	0x61cc	pack/talk/TOILET:0xe560	Hmm...<FFF6>You know, you're kind of cute, Maki!<FFF5>
+409	0x61f7	pack/talk/TOILET:0xe5b8	I know you don't want to admit there<FFF6>are demons out there better than<FFF6>you, but that attitude has got to go!<FFF5>
+410	0x6231	pack/talk/TOILET:0xe690	Umm... I just like toilets.<FFF6>The toilet itself isn't my main body...<FFF5>
+411	0x6264	pack/talk/TOILET:0xe718	Really? Hey, what should I do?<FFF6>Should I become an idol?<FFF5>
+412	0x628e	pack/talk/TOILET:0xe788	I can't believe it!<FFF5>
+413	0x629a	pack/talk/TOILET:0xe7b0	Wait, I can't tell which it is when you<FFF6>say it like that. What did you mean...?<FFF5>
+414	0x62ca	pack/talk/TOILET:0xe850	Hee hee! Don't dodge the question!<FFF6>Seriously, which is it?<FFF5>
+415	0x62f2	pack/talk/TOILET:0xe8c8	W-Waaaaah! Don't get all mad...!<FFF5>
+416	0x630f	pack/talk/TOILET:0xe910	There's no need to be so<FFF6>embarrassed! You're so cute, miss!<FFF5>
+417	0x6331	pack/talk/TOILET:0xe988	There's no need to get<FFF6>all embarrassed over<FFF6>something like this...<FFF5>
+418	0x634d	pack/talk/TOILET:0xea10	Oh, is that so? You do, huh...?<FFF5>
+419	0x6365	pack/talk/TOILET:0xea50	Oh, is that so? You do, huh...?<FFF6>Then why don't you use a different<FFF6>negotiation tactic!?<FFF5>
+420	0x6397	pack/talk/TOILET:0xeb00	What's with this human!?<FFF6>Don't underestimate me!<FFF5>
+421	0x63b3	pack/talk/TOILET:0xeb68	I know you don't want to admit there<FFF6>are demons out there better than<FFF6>you, but that attitude has got to go!<FFF5>
+422	0x63ed	pack/talk/TOILET:0xec40	Umm... I just like toilets.<FFF6>The toilet itself isn't my main body...<FFF5>
+423	0x6420	pack/talk/TOILET:0xecc8	Really? Hey, what should I do?<FFF6>Should I become an idol?<FFF5>
+424	0x644a	pack/talk/TOILET:0xed38	Just so you don't get the wrong idea,<FFF6>let me be clear:<FFF6>I'm only going out to dinner! That's it!<FFF5>
+425	0x6479	pack/talk/TOILET:0xedf8	Huh, so you're pretty poor...<FFF6>Well, I don't mind! No worries!<FFF5>
+426	0x64b3	pack/talk/TOILET:0xee78	Hee hee! You're so dumb!<FFF5>
+427	0x64cc	pack/talk/TOILET:0xeeb0	Hee hee! Sorry, mister, but toilets<FFF6>are usually only built for one.<FFF5>
+428	0x6500	pack/talk/TOILET:0xef38	That's right! Now get out of my sight!<FFF5>
+429	0x651a	pack/talk/TOILET:0xef88	Never mind! I mean,<FFF6>I'm most comfortable inside a toilet.<FFF5>
+430	0x6549	pack/talk/TOILET:0xf000	I really shouldn't go with<FFF6>a guy this easily...<FFF5>
+431	0x6577	pack/talk/TOILET:0xf060	What should I do...?<FFF6>Maybe it'd be best if I went with you...<FFF5>
+432	0x65a1	pack/talk/TOILET:0xf0e0	Oh, so that's what you mean!<FFF6>Yes, I get it now! Hee hee!<FFF5>
+433	0x65cd	pack/talk/TOILET:0xf158	Enough's enough!<FFF5>
+434	0x65d6	pack/talk/TOILET:0xf180	Hey! Don't come over here!<FFF5>
+435	0x65ec	pack/talk/TOILET:0xf1b8	But... your eyes say otherwise...<FFF5>
+436	0x6607	pack/talk/TOILET:0xf200	What're you so angry about!?<FFF6>You need to take criticism better!<FFF5>
+437	0x662c	pack/talk/TOILET:0xf280	Honestly, will you grow up? There's<FFF6>no use getting mad about criticism.<FFF5>
+438	0x665b	pack/talk/TOILET:0xf310	Hmm... If that made you laugh,<FFF6>you might have some promise.<FFF5>
+439	0x6687	pack/talk/TOILET:0xf388	Huh, so you do... Then tell me later!<FFF5>
+440	0x66a6	pack/talk/TOILET:0xf3d8	Oh, is that so...? I'll flush anyone<FFF6>who bullies me out to the ocean!<FFF5>
+441	0x66d5	pack/talk/TOILET:0xf468	W-Waaaaah!<FFF6>Why're you bullying me...?<FFF5>
+442	0x66f4	pack/talk/TOILET:0xf4b8	Hey!<FFF6>I just told you to be more serious!<FFF5>
+443	0x6716	pack/talk/TOILET:0xf510	You know, you should at least<FFF6>listen to what I have to say!<FFF5>
+444	0x673b	pack/talk/TOILET:0xf588	If you're not going to listen to<FFF6>what I say, then screw you!!<FFF5>
+445	0x6761	pack/talk/TOILET:0xf608	Hee hee! You think so?<FFF5>
+446	0x6775	pack/talk/TOILET:0xf638	Huh... so that's how you are.<FFF6>I think I misunderstood you, mister.<FFF5>
+447	0x67a9	pack/talk/TOILET:0xf6c0	Well, SORRY!<FFF5>
+448	0x67b8	pack/talk/TOILET:0xf6e0	What's with you!?<FFF6>Quit putting on airs!<FFF5>
+449	0x67d3	pack/talk/TOILET:0xf730	Uhh, what was that? C'mon, stop<FFF6>being so high and mighty and tell me!<FFF5>
+450	0x67fd	pack/talk/TOILET:0xf7c0	It really doesn't help<FFF6>even if you explain it...<FFF5>
+451	0x6817	pack/talk/TOILET:0xf828	Hee hee! That's what I thought!<FFF5>
+452	0x682b	pack/talk/TOILET:0xf868	W-Waaaah! You're more<FFF6>dangerous than a complete idiot!<FFF5>
+453	0x6848	pack/talk/TOILET:0xf8d8	Hmph! That's<FFF5>
+454	0x684e	pack/talk/TOILET:0xf8e8	right, calm down.<FFF5>
+455	0x685f	pack/talk/TOILET:0xf920	You're so gross! What's wrong with<FFF6>you!? Get away from me!<FFF5>
+456	0x6880	pack/talk/TOILET:0xf998	W-Waaaaah! You're gross...<FFF5>
+457	0x68a0	pack/talk/TOILET:0xf9d0	Men are so easy to manipulate...<FFF6>You're naive, too.<FFF5>
+458	0x68c3	pack/talk/TOILET:0xfa38	Hee hee!<FFF6>Men are so easy to manipulate.<FFF5>
+459	0x68e2	pack/talk/TOILET:0xfa88	Whaaat? Don't you have any<FFF6>money...? Stingy people are useless!<FFF6>I don't have any more time for you!<FFF5>
+460	0x6917	pack/talk/TOILET:0xfb50	W-Waaaaah! I'm sorry...<FFF5>
+461	0x692d	pack/talk/TOILET:0xfb80	Yay! Hee hee! Thanks, mister!<FFF5>
+462	0x6951	pack/talk/TOILET:0xfbc0	You're not gonna give it to me?<FFF6>Fine, then! Go away!<FFF5>
+463	0x6973	pack/talk/TOILET:0xfc30	Hee hee! I'm so happy!<FFF5>
+464	0x6988	pack/talk/TOILET:0xfc60	That's nothing to brag about!<FFF5>
+465	0x69a2	pack/talk/TOILET:0xfca0	Huh, that's cool of you!<FFF5>
+466	0x69b4	pack/talk/TOILET:0xfcd8	I can't believe it!<FFF5>
+467	0x69c0	pack/talk/TOILET:0xfd00	W-Waaaaah! This human lied to me!<FFF6>There's a bad human here!<FFF5>
+468	0x69e8	pack/talk/TOILET:0xfd78	Hee hee! That's what I thought!<FFF5>
+469	0x69fd	pack/talk/TOILET:0xfdb8	That's what I thought! Hey, but don't<FFF6>take a dump on me, okay!?<FFF5>
+470	0x6a2a	pack/talk/TOILET:0xfe38	Hee hee!<FFF6>Deep down, you really want it!<FFF5>
+471	0x6a4a	pack/talk/TOILET:0xfe88	What're you holding back for? Hmph!<FFF6>I know you want to let it all<FFF6>out and feel refreshed!<FFF5>
+472	0x6a75	pack/talk/TOILET:0xff40	Thank goodness... I was wondering<FFF6>what I'd do if you went all over me...<FFF5>
+473	0x6aac	pack/talk/TOILET:0xffd8	Oh, is that so!?<FFF6>Then why don't we test it out!?<FFF6>I'm much harder than you!<FFF5>
+474	0x6ad7	pack/talk/TOILET:0x10070	W-Waaaaah! You're scary!<FFF5>
+475	0x6af4	pack/talk/TOILET:0x100a8	Hmph,<FFF6>don't you understand sarcasm?<FFF5>
+476	0x6b08	pack/talk/TOILET:0x100f0	Hmm, you're right.<FFF5>
+477	0x6b15	pack/talk/TOILET:0x10118	You think so?<FFF6>But I'm still no match for you, mister.<FFF5>
+478	0x6b3d	pack/talk/TOILET:0x10188	You're so naive that it's easy to<FFF6>trick you, mister... Hehe...<FFF5>
+479	0x6b6d	pack/talk/TOILET:0x10208	You're such an idiot!<FFF6>You'll fall for anything!<FFF5>
+480	0x6b8d	pack/talk/TOILET:0x10268	W-Waaaaah! I hate you...!<FFF5>
+481	0x6bad	pack/talk/TOILET:0x102a0	Awww, you're cute after all!<FFF5>
+482	0x6bc5	pack/talk/TOILET:0x102e0	Awww, don't make me kill you! Hee hee!<FFF5>
+483	0x6bef	pack/talk/TOILET:0x10330	I'm gonna kill you!<FFF5>
+484	0x6bfa	pack/talk/TOILET:0x10358	You better be careful from now on!<FFF5>
+485	0x6c0d	pack/talk/TOILET:0x103a0	What did you say?<FFF6>It's none of my business? Dude, like,<FFF6>get your butt over here right now!<FFF5>
+486	0x6c46	pack/talk/TOILET:0x10458	Hee hee! You're really self-confident!<FFF5>
+487	0x6c65	pack/talk/TOILET:0x104a8	That's not true!<FFF5>
+488	0x6c6e	pack/talk/TOILET:0x104d0	Why're you so excited? Oh, I get it...<FFF6>You were hoping for something more,<FFFB><FFF7>huh?<FFF6>Haha, you're such a perv, mister!<FFF5>
+489	0x6ca3	pack/talk/TOILET:0x105b8	Oh, is that so!? Fine, then!<FFF5>
+490	0x6cb8	pack/talk/TOILET:0x105f8	I'm sorry I messed with you!<FFF6>I knew it was really a dance...<FFF6>please don't relieve yourself on me!<FFF5>
+491	0x6cef	pack/talk/TOILET:0x106c0	You don't even know sarcasm when<FFF6>you hear it... That's so stupid!<FFF5>
+492	0x6d0f	pack/talk/TOILET:0x10748	Wooooow! That's so cool!<FFF5>
+493	0x6d24	pack/talk/TOILET:0x10780	Wait a sec, that was cool! Huh...<FFF6>I guess humans aren't so bad.<FFF5>
+494	0x6d52	pack/talk/TOILET:0x10800	So boooooring!<FFF5>
+495	0x6d5d	pack/talk/TOILET:0x10820	Thank goodness... I was wondering<FFF6>what I'd do if you went all over me...<FFF5>
+496	0x6d94	pack/talk/TOILET:0x108b8	Oh, is that so!?<FFF6>Then why don't we test it out!?<FFF6>I'm much harder than you!<FFF5>
+497	0x6dbf	pack/talk/TOILET:0x10950	W-Waaaaah! You're scary!<FFF5>
+498	0x6ddc	pack/talk/TOILET:0x10988	Hmph,<FFF6>don't you understand sarcasm?<FFF5>
+499	0x6df0	pack/talk/TOILET:0x109d0	Hmmmmm, really? I wonder if I seem<FFF6>like a cocky demon to others...<FFF5>
+500	0x6e1f	pack/talk/TOILET:0x10a58	You think so?<FFF6>But I'm still no match for you, mister.<FFF5>
+501	0x6e47	pack/talk/TOILET:0x10ac8	Hmm... You're...<FFF6>actually pretty nice, mister!<FFF5>
+502	0x6e74	pack/talk/TOILET:0x10b28	You're such an idiot!<FFF6>You'll fall for anything!<FFF5>
+503	0x6e94	pack/talk/TOILET:0x10b88	W-Waaaaah! I hate you...!<FFF5>
+504	0x6eb4	pack/talk/TOILET:0x10bc0	W-Waaaaah!<FFF6>I didn't know you went Asian-style...<FFF5>
+505	0x6ed4	pack/talk/TOILET:0x10c28	You know,<FFF6>I think it's because everyone's<FFF6>gotten beat up by you, mister!<FFF5>
+506	0x6eff	pack/talk/TOILET:0x10cc0	Then why are you staring at me so<FFF6>much? Oh, could it be...?<FFF6>Hee hee, I'm popular!<FFF5>
+507	0x6f32	pack/talk/TOILET:0x10d68	Oh, so I'm right? But is it okay for<FFF6>you to call over a demoness?<FFF5>
+508	0x6f66	pack/talk/TOILET:0x10df0	Screw that, you jerk!<FFF6>I'll flush you all the way to the ocean!<FFF5>
+509	0x6f7e	pack/talk/TOILET:0x10e70	But you're totally not my type! You<FFF6>make me feel all dirty... stop looking!<FFF5>
+510	0x6fb3	pack/talk/TOILET:0x10f08	Hee hee! You're embarrassed, so<FFF6>you're saying stuff you don't mean.<FFF6>I understand...<FFF5>
+511	0x6fe8	pack/talk/TOILET:0x10fb0	*sigh* Won't you play along<FFF6>even just a little?<FFF5>
+512	0x700f	pack/talk/TOILET:0x11010	You know, I can't believe it!<FFF5>
+513	0x701e	pack/talk/TOILET:0x11050	Wait, I can't tell which it is when you<FFF6>say it like that. What did you mean...?<FFF5>
+514	0x704e	pack/talk/TOILET:0x110f0	Ahahaha! Don't dodge the question!<FFF6>Seriously, which is it?<FFF5>
+515	0x7072	pack/talk/TOILET:0x11168	Well, I am a demon, so that's how I'd<FFF6>prefer people to think of me.<FFF5>
+516	0x7097	pack/talk/TOILET:0x111f0	Something seems suspicious, but...<FFF5>
+517	0x70a4	pack/talk/TOILET:0x11238	What do you mean, "no"?<FFF6>You can be such a jerk!<FFF5>
+518	0x70c2	pack/talk/TOILET:0x11298	Honestly...<FFF6>Don't talk about stuff like that!<FFF5>
+519	0x70db	pack/talk/TOILET:0x112f8	Hee hee! Don't talk about stuff<FFF6>like that anymore, okay?<FFF5>
+520	0x70f9	pack/talk/TOILET:0x11370	W-Waaaah! I don't wanna<FFF6>hear about that kinda stuff...<FFF5>
+521	0x7117	pack/talk/TOILET:0x113e0	Huh... So you like scary stories...<FFF6>But you better be careful not to<FFF6>let yourself get too into them!<FFF5>
+522	0x714f	pack/talk/TOILET:0x114b0	So you were just bluffing! Hee hee!<FFF5>
+523	0x716a	pack/talk/TOILET:0x114f8	Huh... You like that kind of thing,<FFF6>miss? Looks like we might<FFF6>get along real good!<FFF5>
+524	0x71a1	pack/talk/TOILET:0x115a0	How would you know about<FFF6>something like that, miss...?<FFF5>
+525	0x71cc	pack/talk/TOILET:0x11610	Cheapskate!<FFF5>
+526	0x71d8	pack/talk/TOILET:0x11628	I gotta practice my moves.<FFF6>This is no time to be playing around.<FFF5>
+527	0x71f9	pack/talk/TOILET:0x116b0	Then I should practice my moves too!<FFF5>
+528	0x7218	pack/talk/TOILET:0x11700	I can't? That sucks...<FFF5>
+529	0x7230	pack/talk/TOILET:0x11730	What're you acting all<FFF6>high and mighty for!?<FFF6>You're just a kid yourself!<FFF5>
+530	0x725b	pack/talk/TOILET:0x117c8	Hee hee! I know...<FFF6>Of course, I'm much more charming!<FFF5>
+531	0x728c	pack/talk/TOILET:0x11838	You were awesome, miss!<FFF6>That was really cool...! Hee hee!<FFF5>
+532	0x72b8	pack/talk/TOILET:0x118b0	The drawback of humans is that they<FFF6>get carried away too easy!<FFF5>
+533	0x72dd	pack/talk/TOILET:0x11930	You can reach such high ranges...<FFF6>It's like you're not even human!<FFF5>
+534	0x7303	pack/talk/TOILET:0x119b8	Wroooooong!<FFF5>
+535	0x730f	pack/talk/TOILET:0x119d0	That's right. I'm an adult! Hee hee!<FFF5>
+536	0x7336	pack/talk/TOILET:0x11a20	Well, I guess that's fine.<FFF5>
+537	0x7345	pack/talk/TOILET:0x11a58	W-Waaaaah! I'm sorry!<FFF6>I don't wanna die...<FFF5>
+538	0x736f	pack/talk/TOILET:0x11ab0	Hmph! I'm not scared at all!<FFF5>
+539	0x738b	pack/talk/TOILET:0x11af0	Hee hee! It's even more fun now!<FFF5>
+540	0x73a4	pack/talk/TOILET:0x11b38	Awww... so boring!<FFF5>
+541	0x73af	pack/talk/TOILET:0x11b60	I can't believe it!<FFF5>
+542	0x73bb	pack/talk/TOILET:0x11b88	Wait, I can't tell which it is when you<FFF6>say it like that. What did you mean...?<FFF5>
+543	0x73eb	pack/talk/TOILET:0x11c28	Hee hee! Don't dodge the question!<FFF6>Seriously, which is it?<FFF5>
+544	0x7413	pack/talk/TOILET:0x11ca0	That's what I thought! Hey, but don't<FFF6>take a dump on me, okay!?<FFF5>
+545	0x7440	pack/talk/TOILET:0x11d20	So you're pretty constipated,<FFF6>huh miss? Hee hee... just like me!<FFF5>
+546	0x7471	pack/talk/TOILET:0x11da8	What're you holding back for? Hmph!<FFF6>I know you want to let it all<FFF6>out and feel refreshed!<FFF5>
+547	0x749c	pack/talk/TOILET:0x11e60	Huh... You're honest! I have a higher<FFF6>opinion of you now, miss!<FFF5>
+548	0x74ca	pack/talk/TOILET:0x11ee0	What did you say?<FFF6>It's none of my business? Dude, like,<FFF6>get your butt over here right now!<FFF5>
+549	0x7503	pack/talk/TOILET:0x11f98	Well, I guess that's fine.<FFF5>
+550	0x7512	pack/talk/TOILET:0x11fd0	W-Waaaaah! I'm sorry!<FFF6>I don't wanna die...<FFF5>
+551	0x753c	pack/talk/TOILET:0x12028	Hmph! I'm not scared at all!<FFF5>
+552	0x7558	pack/talk/TOILET:0x12068	Hee hee! In your face!<FFF5>
+553	0x7572	pack/talk/TOILET:0x12098	Y-You make me so mad!<FFF5>
+554	0x7582	pack/talk/TOILET:0x120c8	Okay, okay. We'll just go Dutch on it!<FFF6>Man, human women are so stern...<FFF5>
+555	0x75b2	pack/talk/TOILET:0x12158	Huh? So you're not going?<FFF6>You're so scatterbrained, Ayase!<FFF5>
+556	0x75db	pack/talk/TOILET:0x121d0	Boy, Ayase, you sure are naive,<FFF6>huh...? That was a lie.<FFF5>
+557	0x75fc	pack/talk/TOILET:0x12240	You won't get anywhere if<FFF6>you're scared all the time!<FFF5>
+558	0x761a	pack/talk/TOILET:0x122b0	You won't get anywhere if<FFF6>you're scared all the time!<FFF5>
+559	0x7638	pack/talk/TOILET:0x12320	If you die, I'll be sure to flush<FFF6>your bones for you, miss!<FFF5>
+560	0x7669	pack/talk/TOILET:0x12398	Sheesh, you're annoying!<FFF6>What are you so scared for!?<FFF5>
+561	0x7687	pack/talk/TOILET:0x12408	Huh? What're you scared about<FFF6>all of a sudden...?<FFF5>
+562	0x76a3	pack/talk/TOILET:0x12470	But noble people like you only<FFF6>make me want to bully them!<FFF5>
+563	0x76c9	pack/talk/TOILET:0x124e8	But noble people like you make me<FFF6>want to bully them even more!<FFF5>
+564	0x76ef	pack/talk/TOILET:0x12568	If you don't mind, I'll lend you my help!<FFF5>
+565	0x7709	pack/talk/TOILET:0x125c0	There's a few tricks to fake crying.<FFF6>I'll teach you some later.<FFF5>
+566	0x7729	pack/talk/TOILET:0x12640	Hee hee! WHATEVER!<FFF5>
+567	0x7744	pack/talk/TOILET:0x12668	Sheesh! You so don't mean that!<FFF5>
+568	0x7759	pack/talk/TOILET:0x126a8	W-Waaaaah! I don't know what to do...<FFF5>
+569	0x7776	pack/talk/TOILET:0x126f8	Hee hee! Thank goodness...<FFF5>
+570	0x7790	pack/talk/TOILET:0x12730	Thank goodness... I was wondering<FFF6>what I'd do if you went all over me...<FFF5>
+571	0x77c7	pack/talk/TOILET:0x127c8	Oh, is that so!?<FFF6>Then why don't we test it out!?<FFF6>I'm much harder than you!<FFF5>
+572	0x77f2	pack/talk/TOILET:0x12860	W-Waaaaah! You're scary!<FFF5>
+573	0x780f	pack/talk/TOILET:0x12898	Hmph,<FFF6>don't you understand sarcasm?<FFF5>
+574	0x7823	pack/talk/TOILET:0x128e0	Hmmmmm, really? I wonder if I seem<FFF6>like a cocky demon to others...<FFF5>
+575	0x7852	pack/talk/TOILET:0x12968	You think so?<FFF6>But I'm still no match for you, miss.<FFF5>
+576	0x787a	pack/talk/TOILET:0x129d0	Huh... You're pretty nice, miss!<FFF5>
+577	0x789b	pack/talk/TOILET:0x12a18	You're such an idiot!<FFF6>You'll fall for anything!<FFF5>
+578	0x78bb	pack/talk/TOILET:0x12a78	W-Waaaaah! I hate you...!<FFF5>
+579	0x78db	pack/talk/TOILET:0x12ab0	Well, I guess that's fine.<FFF5>
+580	0x78ea	pack/talk/TOILET:0x12ae8	W-Waaaaah! I'm sorry!<FFF6>I don't wanna die...<FFF5>
+581	0x7914	pack/talk/TOILET:0x12b40	Hmph! I'm not scared at all!<FFF5>
+582	0x7930	pack/talk/TOILET:0x12b80	Oh, so you like that sort of thing!<FFF6>Okay then, miss!<FFF5>
+583	0x795f	pack/talk/TOILET:0x12bf0	You're a fiend!<FFF5>
+584	0x796c	pack/talk/TOILET:0x12c10	W-Waaaaah! There's a fiend here...<FFF5>
+585	0x7987	pack/talk/TOILET:0x12c58	Hee hee! I'm so happy!<FFF5>
+586	0x7995	pack/talk/TOILET:0x12c88	Why'd you stop!?<FFF5>
+587	0x79a5	pack/talk/TOILET:0x12cb0	That kind of mean stuff is...<FFF6>Hee hee, it's not bad either...<FFF5>
+588	0x79c4	pack/talk/TOILET:0x12d30	This isn't something to get<FFF6>all embarrassed about!<FFF5>
+589	0x79dc	pack/talk/TOILET:0x12d98	Huh, that's cool of you!<FFF5>
+590	0x79ee	pack/talk/TOILET:0x12dd0	I can't believe it!<FFF5>
+591	0x79fa	pack/talk/TOILET:0x12df8	Wait, I can't tell which it is when you<FFF6>say it like that. What did you mean...?<FFF5>
+592	0x7a2a	pack/talk/TOILET:0x12e98	Hee hee! Don't dodge the question!<FFF6>Seriously, which is it?<FFF5>
+593	0x7a52	pack/talk/TOILET:0x12f10	That's what I thought! Hey, but don't<FFF6>take a dump on me, okay!?<FFF5>
+594	0x7a7f	pack/talk/TOILET:0x12f90	So you're pretty constipated,<FFF6>huh miss? Hee hee... just like me!<FFF5>
+595	0x7ab0	pack/talk/TOILET:0x13018	What're you holding back for? Hmph!<FFF6>I know you want to let it all<FFF6>out and feel refreshed!<FFF5>
+596	0x7adb	pack/talk/TOILET:0x130d0	Well, I guess that's fine.<FFF5>
+597	0x7aea	pack/talk/TOILET:0x13108	W-Waaaaah! I'm sorry!<FFF6>I don't wanna die...<FFF5>
+598	0x7b14	pack/talk/TOILET:0x13160	Hmph! I'm not scared at all!<FFF5>
+599	0x7b30	pack/talk/TOILET:0x131a0	Oh, so you like that sort of thing!<FFF6>Okay then, miss!<FFF5>
+600	0x7b5f	pack/talk/TOILET:0x13210	You're a fiend!<FFF5>
+601	0x7b6c	pack/talk/TOILET:0x13230	W-Waaaaah! There's a fiend here...<FFF5>
+602	0x7b87	pack/talk/TOILET:0x13278	Hee hee! I'm so happy!<FFF5>
+603	0x7b95	pack/talk/TOILET:0x132a8	Why'd you stop!?<FFF5>
+604	0x7ba5	pack/talk/TOILET:0x132d0	That kind of mean stuff is...<FFF6>Hee hee, it's not bad either...<FFF5>
+605	0x7bc4	pack/talk/TOILET:0x13350	You're such a nasty human!<FFF5>
+606	0x7bd3	pack/talk/TOILET:0x13388	C'mon, don't tease me like that!<FFF5>
+607	0x7be4	pack/talk/TOILET:0x133d0	Are you shy, miss? Hmmm?<FFF5>
+608	0x7c0d	pack/talk/TOILET:0x13408	Grrr!<FFF6>You better stop underestimating me!<FFF5>
+609	0x7c2a	pack/talk/TOILET:0x13460	What is it?<FFF6>You want something from me, right...?<FFF5>
+610	0x7c43	pack/talk/TOILET:0x134c8	What's with you!? If you don't want<FFF6>anything with me, get out of my sight!<FFF5>
+611	0x7c65	pack/talk/TOILET:0x13560	Ohhh... If you wanted to negotiate,<FFF6>you should've said so from the start.<FFF5>
+612	0x7c8d	pack/talk/TOILET:0x135f8	You're such a nasty human!<FFF5>
+613	0x7c9c	pack/talk/TOILET:0x13630	C'mon, don't tease me like that!<FFF5>
+614	0x7cad	pack/talk/TOILET:0x13678	Are you shy, mister? Hmmm?<FFF5>
+615	0x7cd6	pack/talk/TOILET:0x136b0	Grrr!<FFF6>You better stop underestimating me!<FFF5>
+616	0x7cf3	pack/talk/TOILET:0x13708	What is it?<FFF6>You want something from me, right...?<FFF5>
+617	0x7d0c	pack/talk/TOILET:0x13770	What's with you!? If you don't want<FFF6>anything with me, get out of my sight!<FFF5>
+618	0x7d2e	pack/talk/TOILET:0x13808	Ohhh... If you wanted to negotiate,<FFF6>you should've said so from the start.<FFF5>
+619	0x7d56	pack/talk/TOILET:0x138a0	Thank goodness... I was wondering<FFF6>what I'd do if you went all over me...<FFF5>
+620	0x7d8d	pack/talk/TOILET:0x13938	Oh, is that so!?<FFF6>Then why don't we test it out!?<FFF6>I'm much harder than you!<FFF5>
+621	0x7db6	pack/talk/TOILET:0x139d0	W-Waaaaah! You're scary!<FFF5>
+622	0x7dd3	pack/talk/TOILET:0x13a08	Hmph,<FFF6>don't you understand sarcasm?<FFF5>
+623	0x7de7	pack/talk/TOILET:0x13a50	Hmmmmm, really? I wonder if I seem<FFF6>like a cocky demon to others...<FFF5>
+624	0x7e16	pack/talk/TOILET:0x13ad8	You think so?<FFF6>But I'm still no match for you, mister.<FFF5>
+625	0x7e3e	pack/talk/TOILET:0x13b48	Hehe... You're so naive that it's<FFF6>easy to trick you, mister!<FFF5>
+626	0x7e6e	pack/talk/TOILET:0x13bc8	You're such an idiot!<FFF6>You'll fall for anything!<FFF5>
+627	0x7e8e	pack/talk/TOILET:0x13c28	W-Waaaaah! I hate you...!<FFF5>
+628	0x7eae	pack/talk/TOILET:0x13c60	Hee hee! That's what I thought!<FFF5>
+629	0x7ec3	pack/talk/TOILET:0x13ca0	He admitted it...! W-Waaaah! He's more<FFF6>dangerous than a normal idiot!<FFF5>
+630	0x7ef1	pack/talk/TOILET:0x13d30	Hmph! That's<FFF5>
+631	0x7ef7	pack/talk/TOILET:0x13d40	right, calm down.<FFF5>
+632	0x7f08	pack/talk/TOILET:0x13d78	You're so gross! What's wrong with<FFF6>you!? Get away from me!<FFF5>
+633	0x7f29	pack/talk/TOILET:0x13df0	W-Waaaaah! You're gross...<FFF5>
+634	0x7f49	pack/talk/TOILET:0x13e28	Hee hee! Just kidding!<FFF6>I like serious people!<FFF5>
+635	0x7f75	pack/talk/TOILET:0x13e88	Don't you want me to like you!?<FFF5>
+636	0x7f8a	pack/talk/TOILET:0x13ec8	So you hate me... W-Waaaaah!<FFF5>
+637	0x7fa6	pack/talk/TOILET:0x13f08	Hee hee! That really surprised me!<FFF5>
+638	0x7fc2	pack/talk/TOILET:0x13f50	Then what? I'm starting to<FFF6>get scared... W-Waaaaah!<FFF5>
+639	0x7feb	pack/talk/TOILET:0x13fb8	Huuuuh!? Then what is it?<FFF6>I'm really curious now!<FFF5>
+640	0x8018	pack/talk/TOILET:0x14020	Are you going to threaten me!?<FFF6>Don't underestimate me!<FFF5>
+641	0x8034	pack/talk/TOILET:0x14090	W-Waaaaah! You're up to something...<FFF5>
+642	0x8057	pack/talk/TOILET:0x140e0	Hee hee! I want the kind with a bidet!<FFF6>Make sure to deliver it later, okay?<FFF5>
+643	0x8086	pack/talk/TOILET:0x14178	I was lying when I said it was cool!<FFF6>Cheapskate!<FFF6>You're nowhere near cool!<FFF5>
+644	0x80ab	pack/talk/TOILET:0x14210	W-Waaaaah! You're the worst...<FFF5>
+645	0x80cc	pack/talk/TOILET:0x14250	Hee hee! Sheesh, you're good!<FFF5>
+646	0x80e7	pack/talk/TOILET:0x14290	Wh-What the? Teach me!<FFF5>
+647	0x80fd	pack/talk/TOILET:0x142c0	Shut up!<FFF5>
+648	0x8107	pack/talk/TOILET:0x142d8	What's with you? I won't understand<FFF6>unless you speak up!<FFF5>
+649	0x8122	pack/talk/TOILET:0x14350	I won't understand<FFF6>unless you speak up.<FFF5>
+650	0x8139	pack/talk/TOILET:0x143a0	I won't lose even if you threaten me!<FFF5>
+651	0x8154	pack/talk/TOILET:0x143f0	Hee hee! Okay!<FFF5>
+652	0x816a	pack/talk/TOILET:0x14410	Territory is territory!<FFF5>
+653	0x817c	pack/talk/TOILET:0x14440	But... territory is territory...<FFF5>
+654	0x8199	pack/talk/TOILET:0x14488	Nope! You get none!<FFF5>
+655	0x81a5	pack/talk/TOILET:0x144b0	Hee hee! It seems like it's<FFF6>gonna be cold this year.<FFF5>
+656	0x81c5	pack/talk/TOILET:0x14520	Well, that was just a formality, so...<FFF6>Let's see... I want something before<FFF6>we start negotiating...<FFF1><FFF5>
+657	0x81fd	pack/talk/TOILET:0x145f0	The weather's important, you know!<FFF6>The moon affects how I feel, too.<FFF5>
+658	0x8226	pack/talk/TOILET:0x14680	What do you want with me? I bet it's<FFF6>gonna be some stupid negotiation!<FFF5>
+659	0x825a	pack/talk/TOILET:0x14710	Hee hee!<FFF6>Then I'm not going back home!<FFF5>
+660	0x8276	pack/talk/TOILET:0x14760	Awwwww... you're so cute!<FFF5>
+661	0x8286	pack/talk/TOILET:0x14798	W-Waaaaah!<FFF6>I'm getting caught up in a crime...<FFF5>
+662	0x82a8	pack/talk/TOILET:0x147f8	W-Waaaaah!<FFF6>You seem cold, for some reason...<FFF5>
+663	0x82c5	pack/talk/TOILET:0x14858	Huh? Me? Hee hee! Let's negotiate!<FFF5>
+664	0x82eb	pack/talk/TOILET:0x148a0	Huh... So you think so too, mister.<FFF5>
+665	0x830c	pack/talk/TOILET:0x148e8	That's not it? I see...<FFF6>That's unfortunate...<FFF5>
+666	0x8329	pack/talk/TOILET:0x14948	You want me to jump in there?<FFF6>Hee hee!<FFF5>
+667	0x8348	pack/talk/TOILET:0x14998	...That's a lie! I won't fall for it!<FFF5>
+668	0x8365	pack/talk/TOILET:0x149e8	W-Waaaaah! You're going to kill me,<FFF6>huh? Noooo... I don't wanna die!<FFF5>
+669	0x8396	pack/talk/TOILET:0x14a78	I heard <FFFA> slaughters any demon<FFF6>he meets... That's a lie, right?<FFF6>They mean someone else, right?<FFF5>
+670	0x83cc	pack/talk/TOILET:0x14b38	Huh... I envy your self-confidence...<FFF5>
+671	0x83f7	pack/talk/TOILET:0x14b88	Hey!<FFF6>You're forgetting to add "totally"!<FFF5>
+672	0x8411	pack/talk/TOILET:0x14be0	Hee hee! If you get angry,<FFF6>your blood pressure's gonna rise!<FFF5>
+673	0x8430	pack/talk/TOILET:0x14c60	Hee hee! It's 'cause it's just<FFF6>how you wanted it, mister!<FFF5>
+674	0x8455	pack/talk/TOILET:0x14cd8	...Things aren't getting any livelier...<FFF5>
+675	0x847a	pack/talk/TOILET:0x14d30	I don't really get it...<FFF6>but I'm scared! W-Waaaaaah!<FFF5>
+676	0x84a1	pack/talk/TOILET:0x14da0	I don't really get it...<FFF6>but I'm scared! W-Waaaaaah!<FFF5>
+677	0x8cac	TOILET:0	Well, yeah.<FFF5>
+678	0x8cb1	TOILET:1	A lot happened...<FFF5>
+679	0x8cbe	TOILET:2	Of course.<FFF5>
+680	0x8cc4	TOILET:3	It might be a lie.<FFF5>
+681	0x8cca	TOILET:4	It might be a lie.<FFF5>
+682	0x8cd0	TOILET:5	Bingo.<FFF5>
+683	0x8cd8	TOILET:6	I don't want it.<FFF5>
+684	0x8ce3	TOILET:7	I don't want it.<FFF5>
+685	0x8cee	TOILET:8	I won't do anything.<FFF5>
+686	0x8cf6	TOILET:9	I'll do something bad.<FFF5>
+687	0x8d03	TOILET:10	I'll do something bad.<FFF5>
+688	0x8d10	TOILET:11	It's not that great.<FFF5>
+689	0x8d18	TOILET:12	But I can't beat you.<FFF5>
+690	0x8d23	TOILET:13	But I can't beat you.<FFF5>
+691	0x8d2e	TOILET:14	Console it<FFF5>
+692	0x8d35	TOILET:15	Console it<FFF5>
+693	0x8d3c	TOILET:16	Surprise it more<FFF5>
+694	0x8d45	TOILET:17	Of course.<FFF5>
+695	0x8d4b	TOILET:18	I just decided to.<FFF5>
+696	0x8d57	TOILET:19	I'll kidnap you.<FFF5>
+697	0x8d5f	TOILET:20	I'll kidnap you.<FFF5>
+698	0x8d67	TOILET:21	That's not it.<FFF5>
+699	0x8d6e	TOILET:22	I won't lose.<FFF5>
+700	0x8d76	TOILET:23	Absolutely right.<FFF5>
+701	0x8d82	TOILET:24	Stop<FFF5>
+702	0x8d87	TOILET:25	Stop<FFF5>
+703	0x8d8c	TOILET:26	Keep singing<FFF5>
+704	0x8d94	TOILET:27	Stop<FFF5>
+705	0x8d99	TOILET:28	Keep singing<FFF5>
+706	0x8da1	TOILET:29	Keep singing<FFF5>
+707	0x8da9	TOILET:30	Of course.<FFF5>
+708	0x8db0	TOILET:31	It might be a lie.<FFF5>
+709	0x8db7	TOILET:32	It might be a lie.<FFF5>
+710	0x8dbe	TOILET:33	I do.<FFF5>
+711	0x8dc3	TOILET:34	I do.<FFF5>
+712	0x8dc8	TOILET:35	I haven't.<FFF5>
+713	0x8dcd	TOILET:36	Heeheehee.<FFF5>
+714	0x8dd5	TOILET:37	Heeheehee.<FFF5>
+715	0x8ddd	TOILET:38	That's not true.<FFF5>
+716	0x8de7	TOILET:39	Aren't you a toilet?<FFF5>
+717	0x8df2	TOILET:40	Aren't you a toilet?<FFF5>
+718	0x8dfd	TOILET:41	You're right.<FFF5>
+719	0x8e03	TOILET:42	Of course!<FFF5>
+720	0x8e0b	TOILET:43	It might be a lie.<FFF5>
+721	0x8e12	TOILET:44	It might be a lie.<FFF5>
+722	0x8e26	TOILET:46	Heeheehee.<FFF5>
+723	0x8e2f	TOILET:47	Heeheehee.<FFF5>
+724	0x8e38	TOILET:48	I do.<FFF5>
+725	0x8e3d	TOILET:49	I do.<FFF5>
+726	0x8e42	TOILET:50	I haven't.<FFF5>
+727	0x8e47	TOILET:51	Aren't you a toilet?<FFF5>
+728	0x8e52	TOILET:52	Aren't you a toilet?<FFF5>
+729	0x8e5d	TOILET:53	You're right.<FFF5>
+730	0x8e63	TOILET:54	Roger that.<FFF5>
+731	0x8e6f	TOILET:55	Awwww...<FFF5>
+732	0x8e77	TOILET:56	I'll be a toilet too!<FFF5>
+733	0x8e86	TOILET:57	Awwww...<FFF5>
+734	0x8e8e	TOILET:58	Awwww...<FFF5>
+735	0x8e96	TOILET:59	It'll be okay!<FFF5>
+736	0x8ea3	TOILET:60	No worries!<FFF5>
+737	0x8eaf	TOILET:61	No worries!<FFF5>
+738	0x8ebb	TOILET:62	Explain in detail<FFF5>
+739	0x8ec7	TOILET:63	Make it laugh again<FFF5>
+740	0x8ed6	TOILET:64	You think so?<FFF5>
+741	0x8edd	TOILET:65	That's not true.<FFF5>
+742	0x8ee8	TOILET:66	Don't joke with me!<FFF5>
+743	0x8ef2	TOILET:67	Don't joke with me!<FFF5>
+744	0x8efc	TOILET:68	Mwahahahaha!<FFF5>
+745	0x8f06	TOILET:69	I do.<FFF5>
+746	0x8f0b	TOILET:70	I can't tell you.<FFF5>
+747	0x8f16	TOILET:71	I can't tell you.<FFF5>
+748	0x8f21	TOILET:72	O-kaaay!<FFF5>
+749	0x8f2d	TOILET:73	NO. WAY.<FFF5>
+750	0x8f36	TOILET:74	NO. WAY.<FFF5>
+751	0x8f3f	TOILET:75	You're cute.<FFF5>
+752	0x8f4a	TOILET:76	So lame.<FFF5>
+753	0x8f53	TOILET:77	So lame.<FFF5>
+754	0x8f5c	TOILET:78	It's nothin'.<FFF5>
+755	0x8f68	TOILET:79	It's nothin'.<FFF5>
+756	0x8f74	TOILET:80	I was gonna surprise you.<FFF5>
+757	0x8f80	TOILET:81	Yep, I'm dumb!<FFF5>
+758	0x8f8b	TOILET:82	Yep, I'm dumb!<FFF5>
+759	0x8fa4	TOILET:84	Calm down<FFF5>
+760	0x8faa	TOILET:85	Smirk<FFF5>
+761	0x8fb3	TOILET:86	Smirk<FFF5>
+762	0x8fbc	TOILET:87	All right.<FFF5>
+763	0x8fc3	TOILET:88	All right.<FFF5>
+764	0x8fca	TOILET:89	Heh... I refuse.<FFF5>
+765	0x8fdf	TOILET:91	Here, some deodorant.<FFF5>
+766	0x8fee	TOILET:92	Don't joke with me.<FFF5>
+767	0x8ff5	TOILET:93	All right.<FFF5>
+768	0x8ffc	TOILET:94	Of course.<FFF5>
+769	0x9003	TOILET:95	The fruit of my labor.<FFF5>
+770	0x900f	TOILET:96	Of course.<FFF5>
+771	0x9016	TOILET:97	I'm lying.<FFF5>
+772	0x901d	TOILET:98	I'm lying.<FFF5>
+773	0x9024	TOILET:99	You're right.<FFF5>
+774	0x902a	TOILET:100	Don't get me wrong.<FFF5>
+775	0x9034	TOILET:101	Don't get me wrong.<FFF5>
+776	0x903e	TOILET:102	I won't do anythying!<FFF5>
+777	0x9047	TOILET:103	I'll do something bad.<FFF5>
+778	0x9054	TOILET:104	I'll do something bad.<FFF5>
+779	0x9061	TOILET:105	I know.<FFF5>
+780	0x9069	TOILET:106	But I can't beat you.<FFF5>
+781	0x9076	TOILET:107	But I can't beat you.<FFF5>
+782	0x9083	TOILET:108	Console it<FFF5>
+783	0x908a	TOILET:109	Console it<FFF5>
+784	0x9091	TOILET:110	Keep threatening<FFF5>
+785	0x909a	TOILET:111	That's right...<FFF5>
+786	0x90a1	TOILET:112	Aren't you a toilet?<FFF5>
+787	0x90ae	TOILET:113	Aren't you a toilet?<FFF5>
+788	0x90bb	TOILET:114	I guess I will...<FFF5>
+789	0x90c4	TOILET:115	None of your business.<FFF5>
+790	0x90d3	TOILET:116	I know.<FFF5>
+791	0x90db	TOILET:117	But you're an idiot.<FFF5>
+792	0x90e8	TOILET:118	All right!<FFF5>
+793	0x90f1	TOILET:119	I ain't telling.<FFF5>
+794	0x90fd	TOILET:120	I'll relieve myself!<FFF5>
+795	0x910b	TOILET:121	It's a dance!<FFF5>
+796	0x9119	TOILET:122	Keep dancing<FFF5>
+797	0x9122	TOILET:123	Keep dancing<FFF5>
+798	0x912b	TOILET:124	Stop<FFF5>
+799	0x9130	TOILET:125	I'm doing nothing.<FFF5>
+800	0x913b	TOILET:126	I'm gonna bully you!<FFF5>
+801	0x9146	TOILET:127	I'm gonna bully you!<FFF5>
+802	0x9151	TOILET:128	Well, yeah.<FFF5>
+803	0x9157	TOILET:129	But I can't beat you.<FFF5>
+804	0x9163	TOILET:130	But I can't beat you.<FFF5>
+805	0x916f	TOILET:131	Oh crap...<FFF5>
+806	0x9178	TOILET:132	Oh crap...<FFF5>
+807	0x9181	TOILET:133	Hey, hey!<FFF5>
+808	0x918d	TOILET:134	It's rare.<FFF5>
+809	0x9194	TOILET:135	It's rare.<FFF5>
+810	0x919b	TOILET:136	It ain't rare.<FFF5>
+811	0x91a5	TOILET:137	'Cause you're pretty.<FFF5>
+812	0x91c0	TOILET:139	Oh yeah!<FFF5>
+813	0x91d1	TOILET:140	That's so dumb.<FFF5>
+814	0x91dc	TOILET:141	That's so dumb.<FFF5>
+815	0x91e7	TOILET:142	It's for real.<FFF5>
+816	0x91f3	TOILET:143	It might be a lie.<FFF5>
+817	0x91fa	TOILET:144	It might be a lie.<FFF5>
+818	0x9201	TOILET:145	Yes.<FFF5>
+819	0x9209	TOILET:146	No.<FFF5>
+820	0x920f	TOILET:147	No.<FFF5>
+821	0x9215	TOILET:148	Stop<FFF5>
+822	0x921a	TOILET:149	Stop<FFF5>
+823	0x921f	TOILET:150	Continue<FFF5>
+824	0x9225	TOILET:151	Please do so.<FFF5>
+825	0x922f	TOILET:152	I'll pass.<FFF5>
+826	0x923d	TOILET:153	I'll guide you.<FFF5>
+827	0x9248	TOILET:154	I'll guide you.<FFF5>
+828	0x9253	TOILET:155	That's a secret.<FFF5>
+829	0x925e	TOILET:156	Okay!<FFF5>
+830	0x9266	TOILET:157	Okay!<FFF5>
+831	0x926e	TOILET:158	I decline.<FFF5>
+832	0x9277	TOILET:159	You say something?<FFF5>
+833	0x9284	TOILET:160	I didn't mean that...<FFF5>
+834	0x9290	TOILET:161	Stop<FFF5>
+835	0x9295	TOILET:162	Keep singing<FFF5>
+836	0x929d	TOILET:163	Keep singing<FFF5>
+837	0x92a5	TOILET:164	You're a child too.<FFF5>
+838	0x92af	TOILET:165	You're right.<FFF5>
+839	0x92b7	TOILET:166	I'm sorry...<FFF5>
+840	0x92c1	TOILET:167	You wanna die?<FFF5>
+841	0x92ce	TOILET:168	You wanna die?<FFF5>
+842	0x92db	TOILET:169	Keep soothing<FFF5>
+843	0x92e3	TOILET:170	Act serious<FFF5>
+844	0x92eb	TOILET:171	It's only natural.<FFF5>
+845	0x92f4	TOILET:172	Who knows...?<FFF5>
+846	0x9302	TOILET:173	Who knows...?<FFF5>
+847	0x9310	TOILET:174	You are correct.<FFF5>
+848	0x931a	TOILET:175	No, thank you.<FFF5>
+849	0x9322	TOILET:176	No, thank you.<FFF5>
+850	0x932a	TOILET:177	O-kay!<FFF5>
+851	0x9330	TOILET:178	None of your business!<FFF5>
+852	0x933f	TOILET:179	I'm soooorry.<FFF5>
+853	0x934b	TOILET:180	You wanna die?<FFF5>
+854	0x9359	TOILET:181	You wanna die?<FFF5>
+855	0x9367	TOILET:182	Hey!<FFF5>
+856	0x9372	TOILET:183	Bleaaaaah!<FFF5>
+857	0x937c	TOILET:184	Well, all right...<FFF5>
+858	0x9385	TOILET:185	Whaaat!? No!<FFF5>
+859	0x938f	TOILET:186	Get closer<FFF5>
+860	0x9395	TOILET:187	Be cautious<FFF5>
+861	0x939d	TOILET:188	Be cautious<FFF5>
+862	0x93a5	TOILET:189	I like you too!<FFF5>
+863	0x93ce	TOILET:192	You're right!<FFF5>
+864	0x93d7	TOILET:193	You're right!<FFF5>
+865	0x93e0	TOILET:194	But it hurts...<FFF5>
+866	0x93ed	TOILET:195	You figured it out!<FFF5>
+867	0x93f8	TOILET:196	Waaaaaaaah!<FFF5>
+868	0x9402	TOILET:197	Waaaaaaaah!<FFF5>
+869	0x940c	TOILET:198	Keep crying<FFF5>
+870	0x9414	TOILET:199	Stop<FFF5>
+871	0x9419	TOILET:200	I won't do anything.<FFF5>
+872	0x9425	TOILET:201	I'll torment you.<FFF5>
+873	0x942f	TOILET:202	I'll torment you.<FFF5>
+874	0x9439	TOILET:203	You think so?<FFF5>
+875	0x9440	TOILET:204	But I can't beat you.<FFF5>
+876	0x944d	TOILET:205	But I can't beat you.<FFF5>
+877	0x945a	TOILET:206	Console it<FFF5>
+878	0x9461	TOILET:207	Console it<FFF5>
+879	0x9468	TOILET:208	Keep threatening<FFF5>
+880	0x9470	TOILET:209	I'll apologize...<FFF5>
+881	0x9478	TOILET:210	So you wanna die?<FFF5>
+882	0x9484	TOILET:211	So you wanna die?<FFF5>
+883	0x9490	TOILET:212	To see you cry.<FFF5>
+884	0x949f	TOILET:213	Because I hate you.<FFF5>
+885	0x94aa	TOILET:214	Because I hate you.<FFF5>
+886	0x94b5	TOILET:215	Hell no!<FFF5>
+887	0x94c1	TOILET:216	I stopped.<FFF5>
+888	0x94c6	TOILET:217	I stopped.<FFF5>
+889	0x94cb	TOILET:218	Stop it...<FFF5>
+890	0x94d3	TOILET:219	A lot has happened...<FFF5>
+891	0x94e1	TOILET:220	I'm serious.<FFF5>
+892	0x94e9	TOILET:221	Who knows?<FFF5>
+893	0x94f0	TOILET:222	Who knows?<FFF5>
+894	0x94f7	TOILET:223	Yeah, that's right.<FFF5>
+895	0x9501	TOILET:224	I don't want it.<FFF5>
+896	0x9508	TOILET:225	I don't want it.<FFF5>
+897	0x950f	TOILET:226	I'll apologize...<FFF5>
+898	0x9517	TOILET:227	So you wanna die?<FFF5>
+899	0x9523	TOILET:228	So you wanna die?<FFF5>
+900	0x952f	TOILET:229	To see you cry.<FFF5>
+901	0x953e	TOILET:230	Because I hate you.<FFF5>
+902	0x9549	TOILET:231	Because I hate you.<FFF5>
+903	0x9554	TOILET:232	Hell no!<FFF5>
+904	0x9560	TOILET:233	I stopped.<FFF5>
+905	0x9565	TOILET:234	I stopped.<FFF5>
+906	0x956a	TOILET:235	I don't need a toilet.<FFF5>
+907	0x9577	TOILET:236	Who knows?<FFF5>
+908	0x957e	TOILET:237	......<FFF5>
+909	0x9594	TOILET:238	......<FFF5>
+910	0x95aa	TOILET:239	Then let's talk.<FFF5>
+911	0x95b6	TOILET:240	I don't need a toilet.<FFF5>
+912	0x95c3	TOILET:241	Then let's talk.<FFF5>
+913	0x95cf	TOILET:242	I don't need a toilet.<FFF5>
+914	0x95dc	TOILET:243	Wanna talk, then?<FFF5>
+915	0x95e5	TOILET:244	......<FFF5>
+916	0x95fb	TOILET:245	......<FFF5>
+917	0x9611	TOILET:246	Wanna talk, then?<FFF5>
+918	0x961a	TOILET:247	I don't need a toilet.<FFF5>
+919	0x9627	TOILET:248	Wanna talk, then?<FFF5>
+920	0x9630	TOILET:249	I won't do anything.<FFF5>
+921	0x9639	TOILET:250	I'll kill you.<FFF5>
+922	0x963f	TOILET:251	I'll kill you.<FFF5>
+923	0x9645	TOILET:252	Yeah.<FFF5>
+924	0x9649	TOILET:253	But I can't beat you.<FFF5>
+925	0x9655	TOILET:254	But I can't beat you.<FFF5>
+926	0x9661	TOILET:255	Console it<FFF5>
+927	0x9668	TOILET:256	Console it<FFF5>
+928	0x966f	TOILET:257	Keep threatening<FFF5>
+929	0x9679	TOILET:258	I'm an idiot.<FFF5>
+930	0x967f	TOILET:259	I'm an idiot.<FFF5>
+931	0x9685	TOILET:260	You wanna die, huh!?<FFF5>
+932	0x9692	TOILET:261	Calm down<FFF5>
+933	0x9698	TOILET:262	Smirk<FFF5>
+934	0x96a1	TOILET:263	Smirk<FFF5>
+935	0x96aa	TOILET:264	Roar again<FFF5>
+936	0x96b5	TOILET:265	Act serious<FFF5>
+937	0x96bd	TOILET:266	Act serious<FFF5>
+938	0x96c5	TOILET:267	Were you surprised?<FFF5>
+939	0x96ce	TOILET:268	It's not a spell.<FFF5>
+940	0x96d9	TOILET:269	It's not a spell.<FFF5>
+941	0x96e4	TOILET:270	I dunno about that.<FFF5>
+942	0x96ed	TOILET:271	Heh...<FFF5>
+943	0x96f2	TOILET:272	All right.<FFF5>
+944	0x96f9	TOILET:273	Don't joke with me!<FFF5>
+945	0x9702	TOILET:274	Hunting demons.<FFF5>
+946	0x970b	TOILET:275	Waiting for you.<FFF5>
+947	0x9718	TOILET:276	Something nice.<FFF5>
+948	0x971e	TOILET:277	Say<FFF5>
+949	0x9723	TOILET:278	Don't say<FFF5>
+950	0x972a	TOILET:279	Don't say<FFF5>
+951	0x9731	TOILET:280	Yell<FFF5>
+952	0x9738	TOILET:281	Don't go in<FFF5>
+953	0x973f	TOILET:282	Like I give a damn!<FFF5>
+954	0x974d	TOILET:283	Like I give a damn!<FFF5>
+955	0x9768	TOILET:285	You're right.<FFF5>
+956	0x976e	TOILET:286	You think so?<FFF5>
+957	0x9776	TOILET:287	I don't care.<FFF5>
+958	0x977e	TOILET:288	We got business.<FFF5>
+959	0x9785	TOILET:289	Get out of here.<FFF5>
+960	0x978a	TOILET:290	Don't leave!<FFF5>
+961	0x9793	TOILET:291	We got business.<FFF5>
+962	0x979a	TOILET:292	Get out of here.<FFF5>
+963	0x979f	TOILET:293	You need something?<FFF5>
+964	0x97ac	TOILET:294	Nod<FFF5>
+965	0x97b2	TOILET:295	Shake your head<FFF5>
+966	0x97bb	TOILET:296	Spread your arms<FFF5>
+967	0x97c4	TOILET:297	Yes.<FFF5>
+968	0x97c8	TOILET:298	No.<FFF5>
+969	0x97cd	TOILET:299	I dunno about that.<FFF5>
+970	0x97d3	TOILET:300	Of course.<FFF5>
+971	0x97d9	TOILET:301	We're not a match.<FFF5>
+972	0x97e4	TOILET:302	Don't joke with me.<FFF5>
+973	0x97eb	TOILET:303	Snort<FFF5>
+974	0x97f3	TOILET:304	Act serious<FFF5>
+975	0x97fb	EBOOT:2acb4e	Joke<FFF5>
+976	0x8f96	TOILET:83	You callin' me dumb!?<FFF5>
+977	0x8fd2	TOILET:90	Quiet or I'll do it!<FFF5>
+978	0x91b2	TOILET:138	Whaddaya want!?<FFF5>
+979	0x93b2	TOILET:190	Are you serious?<FFF5>
+980	0x93c0	TOILET:191	Are you serious?<FFF5>
+981	0x975b	TOILET:284	How about the sky?<FFF5>
+982	0x8e19	TOILET:45	What did you say!?<FFF5>

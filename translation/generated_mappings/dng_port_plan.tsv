@@ -1,0 +1,146 @@
+kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
+meta	matches_sha1	a13a359f019e1f4528acacc7dc780c9c3a93032c								
+meta	psx:D00/D00	e79b512df35d0c2c3624265a41b6f4e45acfc73a								
+meta	psx:D00/D01	07f5f259dc347fa21b45dcae01e039ae54a2910d								
+meta	psx:D00/D02	166dbac77e9f292a1599aa8dac0d3e59e919856a								
+meta	psx:D00/D03	78c0fd2c6ea8863d2e29042cd9b38f5712018d71								
+meta	psx:D00/D05	f22888f145cb1ecef4ddb9d9577d0cab61dc9d74								
+meta	psx:D00/D06	19ad575a41568910c94aaecdf29112599e3e9b36								
+meta	psx:D00/D07	0555915a8b0c2e7ff4b2f70ea30647f374f1560c								
+meta	psx:D01/D08	f113b9f7c7f3dce2f893b3b45e0bde8d5cbfb5e4								
+meta	psx:D01/D0A	b9982cc59cf6db801f4a3168b2ad972648404199								
+meta	psx:D01/D0C	508616b5093d5c9849b11f6d66e230342343b27f								
+meta	psx:D01/D0E	002b20c206b0359d0e51c1b1ec48f00939151c6f								
+meta	psx:D02/D11	962af3b8228f28ba02b449cd8afce8c1792e6e91								
+meta	psx:D02/D13	926d8c30a684a92937a994143ed8f0ac4aab8e90								
+meta	psx:D02/D14	713a96dfedfa4eba9ea5c636133474080b6e024f								
+meta	psx:D02/D16	e664c4d3c337ac62cfab55680ab2a1989f3a55c7								
+meta	psx:D03/D18	84e6bebeffc253534a54a8ccc2300209a10c5cf8								
+meta	psx:D03/D19	cf14b56ff89b54d80c0679676689281de0859d0f								
+meta	psx:D03/D1A	1cd8969a7dae6d61804fd31d4901799468bb2868								
+meta	psx:D03/D1B	e38373f5ebde5cb322a36a57bab2f196fe9ab8af								
+meta	psx:D03/D1C	3e56c29e4ad6b2971416b0979000363174f6b095								
+meta	psx:D03/D1D	ebbc7ef2e074d2fa24575f96d8cafd6730746dfe								
+meta	psx:D03/D1E	63c7540eb35fb1157fbe9e136829361812300ea3								
+meta	psx:D04/D21	fc92cfc09abe1749b67582c3fb561bee6c25034b								
+meta	psx:D04/D24	1759ab8214b17c718f660e75e3bcc02ef6e6699d								
+meta	rule_sha1	9520f4cfeddc60b75bef90f9e72008fd71a71a05								
+meta	us:d00	91631536c009689f9654a1343a6d6c2f5ae0c79a								
+meta	us:d01	a0bb9f09c8a74b1d94c3cd8c785b0dc0657cce03								
+meta	us:d02	516a725dc838c6e8a1cc65ca0788628888cb7950								
+meta	us:d03	5ef87a4f507b3920f43b070a46fec8dd756d5561								
+meta	us:d04	8a4eb668314a2ab6e92f7a0550ed2680f3250593								
+meta	us:d05	d1b56c3e731e6d5f3e4a728682c16068b2f918b8								
+meta	us:d06	2e8b9bff09759f1052affa89ec68ea1c8323aba4								
+meta	us:d07	890adba9c469e2c9b945a6268fa54eeb8e0cff7f								
+meta	us:d08	b5d4a0cca0d9ebc4472c797995496dd4976e2865								
+meta	us:d09	3ae001b70bae563fa9e5c7f5a4d4282756ed1864								
+meta	us:d0a	b429d590ea4ced5e0b2ee1268e9d443f4baeff1c								
+meta	us:d0b	aa6b8fff692bae115b6d82f78a3814ed417b3683								
+meta	us:d0c	a4f73beff01e30410ba99a011ef2c4b31ea00079								
+meta	us:d0d	0dee8362dba88d44e428b4d557eadc6432b03f2a								
+meta	us:d0e	28578c1d310f2cb56b548780a111abb619d88c96								
+meta	us:d0f	fd3137f5a361d3116b9f4175891126de17ffae06								
+meta	us:d11	57112bed8ce39b4effc41c52207b88d7dc9471a5								
+meta	us:d12	dab1e4e7119e5b84258b86eb1dd4bd3c45d4f805								
+meta	us:d13	6b5e2770d0e4a0fdfa3e67c7cf2ba8d9f77c0fab								
+meta	us:d14	94d02b88499db027990c7bafd506b6b919e684bf								
+meta	us:d15	2ba31a14036c28e038574ab9542e099c5f59d59c								
+meta	us:d16	7ac4440f1c8c9a6b96491ff9b7107b649100fd0e								
+meta	us:d17	f6322ae17bc082d8e777f63d9623b9aa8d1af7d6								
+meta	us:d18	aed72a0ff01f75f7a244e6b77e855e5fff2e06d7								
+meta	us:d19	ba42ef6b6a0b5d3240f5b3a7251273380f8496d0								
+meta	us:d1a	ebda7330f38d0d7c4e09a64041da77cfaf4c7d25								
+meta	us:d1b	b5f0137861c73d174c5e357a0f0165b4c6ebbc74								
+meta	us:d1c	eb9263837e30117396476e94224466b42fd77967								
+meta	us:d1d	bf59b056496717c5e625ada3b7e6a95c08ed2b27								
+meta	us:d1e	186e180aec6d4b449f05f0ef53dbc0d140000d9d								
+meta	us:d1f	c5cc367e53561825eb541975ad74540e36cac30a								
+meta	us:d21	0ce57164361fbd9bd84e4e199643bd2a07d767c3								
+meta	us:d22	b1d699fa0b4cfb7900673c34b4d4bd482339bdb2								
+meta	us:d23	763d5940259300bfd71bf15bab2835e69f585308								
+meta	us:d24	7f24be8b5e1d37aea848ad78373b69f495faaca8								
+meta	us:d25	c08413aa215b94b90453464250aa6b67abe5016e								
+meta	version	1								
+match			D00/D00	0x23194	d00	0x23c74		anchored		
+match			D00/D00	0x23130	d24	0x23b84		anchored		
+match			D00/D00	0x22f7c	d00	0x23894		anchored		
+match			D00/D00	0x22fcc	d00	0x23914		anchored		
+match			D00/D00	0x23024	d00	0x239d4		anchored		
+match			D00/D00	0x230bc	d00	0x239d4		anchored		
+match			D00/D00	0x230cd	d00	0x23afa		anchored		
+match			D00/D00	0x23130	d00	0x23ba4		anchored		
+match			D00/D00	0x230bc	d00	0x23acc		anchored		
+match			D00/D00	0x23024	d00	0x239d4		anchored		
+match			D00/D01	0x23758	d01	0x23de4		anchored		
+match			D00/D02	0x102d4	d00	0x23894		anchored		
+match			D00/D02	0x102d4	d00	0x23894		anchored		
+match			D00/D02	0x1037c	d02	0x10824		anchored		
+match			D00/D02	0x10328	d02	0x107b4		anchored		
+match			D00/D02	0x103d0	d02	0x108b4		similarity		
+match			D00/D03	0xfea0	d03	0x10334		similarity		
+match			D00/D05	0x23a74	d01	0x23de4		anchored		
+match			D00/D06	0xc9da	d06	0xce0c		similarity		
+match			D00/D06	0xca64	d06	0xced0		similarity		
+match			D00/D06	0xca99	d06	0xcf1e		similarity		
+match			D00/D06	0xcaec	d06	0xcf8a		similarity		
+match			D00/D07	0xaab0	d07	0xae10		similarity		
+match			D00/D07	0xab24	d07	0xae10		similarity		
+match			D01/D08	0x153a4	d08	0x15a5c		similarity		
+match			D01/D08	0x153c5	d08	0x15d92		similarity		
+match			D01/D08	0x15400	d08	0x15e12		similarity		
+match			D01/D08	0x15458	d08	0x15f9e		similarity		
+match			D01/D08	0x15466	d08	0x15d22		similarity		
+match			D01/D0A	0x248c4	d0a	0x252e4		anchored		
+match			D01/D0A	0x24964	d0a	0x252e4		anchored		
+match			D01/D0A	0x248c4	d0a	0x252e4		anchored		
+match			D01/D0A	0x24964	d0a	0x252e4		anchored		
+match			D01/D0A	0x24914	d0a	0x25374		anchored		
+match			D01/D0A	0x249b4	d0b	0x23424		anchored		
+match			D01/D0C	0x9638	d0e	0x1e670		anchored		
+match			D01/D0E	0x1dcf0	d0e	0x1e1fc		anchored		
+match			D01/D0E	0x1dd4c	d0e	0x1e1fc		anchored		
+match			D01/D0E	0x1dda8	d0e	0x1e1fc		anchored		
+match			D01/D0E	0x1de04	d0e	0x1e1fc		anchored		
+match			D01/D0E	0x1df60	d0e	0x1e1fc		anchored		
+match			D01/D0E	0x1dfbc	d0e	0x1e1fc		anchored		
+match			D01/D0E	0x1de84	d0e	0x1e520		anchored		
+match			D01/D0E	0x1ded3	d0e	0x1e61a		anchored		
+match			D02/D11	0xc7cc	d11	0xcce4		anchored		
+match			D02/D13	0xbde0	d13	0xc1f0		anchored		
+match			D02/D13	0xbdf7	d13	0xc236		similarity		
+match			D02/D13	0xbe49	d13	0xc354		similarity		
+match			D02/D13	0xbe94	d13	0xc420		similarity		
+match			D02/D13	0xbebb	d13	0xc486		similarity		
+match			D02/D13	0xbeec	d13	0xc4fc		similarity		
+match			D02/D14	0xc3e8	d14	0xc964		anchored		
+match			D02/D14	0xc2e4	d14	0xc774		similarity		
+match			D02/D14	0xc31e	d14	0xc84a		similarity		
+match			D02/D14	0xc380	d07	0xae10		similarity		
+match			D02/D16	0x98f0	d16	0x9d04		anchored		
+match			D02/D16	0x98f0	d00	0x23ba4		anchored		
+match			D03/D18	0x20b28	d18	0x21424		anchored		
+match			D03/D18	0x20b28	d18	0x21424		anchored		
+match			D03/D18	0x20b78	d0e	0x1e670		anchored		
+match			D03/D18	0x20a28	d18	0x21168		similarity		
+match			D03/D19	0xb84c	d0e	0x1e670		anchored		
+match			D03/D1A	0xc598	d1a	0xca64		anchored		
+match			D03/D1A	0xc6f8	d0e	0x1e670		anchored		
+match			D03/D1B	0xb1f0	d1a	0xca64		anchored		
+match			D03/D1C	0xed60	d1a	0xca64		anchored		
+match			D03/D1C	0xeec0	d0e	0x1e670		anchored		
+match			D03/D1D	0xd48c	d1a	0xca64		anchored		
+match			D03/D1D	0xd5ec	d0e	0x1e670		anchored		
+match			D03/D1E	0xc41c	d1a	0xca64		anchored		
+match			D04/D21	0x18c24	d21	0x192f4		similarity		
+match			D04/D21	0x18ca4	d21	0x194ae		similarity		
+match			D04/D24	0x230e4	d24	0x23af4		anchored		
+match			D04/D24	0x23140	d24	0x23b84		anchored		
+match			D04/D24	0x231a0	d24	0x23c44		anchored		
+match			D04/D24	0x22fcc	d00	0x23894		anchored		
+match			D04/D24	0x2301c	d00	0x23914		anchored		
+match			D04/D24	0x23074	d00	0x239d4		anchored		
+match			D04/D24	0x230e4	d24	0x23af4		anchored		
+match			D04/D24	0x231a0	d24	0x23c44		anchored		
+match			D04/D24	0x23140	d02	0x10824		anchored		
+match			D04/D24	0x23074	d00	0x239d4		anchored		

@@ -1,0 +1,515 @@
+;; =============================================================
+;; Address definitions and filename constants - single source of truth
+;; Naming: OVERLAY_FUNCTION_PURPOSE_ADDR for addresses
+;;         OVERLAY_FILENAME / OVERLAY_OUTPUT for binary filenames
+;; Suffixes: _LUI_ADDR (pointer load), _WIDTH_ADDR, _COLUMN_ADDR
+;; =============================================================
+
+;; PS-X EXE files carry a 0x800-byte header before t_addr.
+;; .open base = t_addr - header so file offset 0 lines up.
+PSX_EXE_HEADER_SIZE equ 0x800
+
+;; Shared overlay slot. ADV/BTLP/CASINO/DNG/S2D/NAME.BIN all load here;
+;; file offset 0 is the overlay ID word. Runtime-confirmed for ADV.BIN
+;; (99.6% of words match RAM); assumed identical for the others.
+OVERLAY_SLOT_ADDR equ 0x800643C4
+
+;; --- SLPS_005.00 - Main executable (resident), t_addr 0x80010000 ---
+SLPS_FILENAME equ "../../data/psx/SLPS_005.00"
+SLPS_OUTPUT equ "../../build/SLPS_005.00"
+SLPS_ADDR equ 0x80010000 - PSX_EXE_HEADER_SIZE
+;; Free space: zero padding at the end of the EXE's data.
+; WARNING: NOT free at runtime - 0x80055C34 is the CD-ready flag (hangs the game if overwritten). Do not use.
+SLPS_FREE_START equ 0x80055C10
+SLPS_FREE_END equ 0x80056000
+;; The image does NOT grow past its retail end: t_size stays 0x46000. The
+;; game's init WIPES its BSS above the image (0x80056000..0x8005E760+) with
+;; a blanket clear at boot, and the BIOS itself keeps live boot state in the
+;; last KBs below 0x8005CD74 - a bigger t_size both erased build-time data
+;; placed there and froze the boot before the game loaded (both proven on
+;; emulated sessions; see the smallfont kit history). NOTHING may be
+;; appended to SLPS_005.00.
+SLPS_IMAGE_RETAIL_END equ 0x80056000
+SLPS_IMAGE_END equ SLPS_IMAGE_RETAIL_END
+SLPS_IMAGE_LIMIT equ SLPS_IMAGE_END
+;; --- the small-font VWF kit's resident anchor lives in FONT.BIN ---
+;; FONT.BIN is loaded once at boot to 0x801E0000 (0x10000 bytes), is never
+;; wiped, never overlapped, and stays resident while overlays and EXEs swap.
+;; Its atlas has 2048 32-byte cells. The gate, replay and registration
+;; addresses below own parts of the unused FONT_SLOT_RUNS; the font allocator
+;; subtracts these ranges and checks every other retail atlas cell after build.
+;; These are build-time, never-wiped executable bytes:
+SF_FONT_GATE_BG equ 0x801ECCE0              ; cell 0x667: load cell, guard-check, jump
+SF_FONT_GATE_FAST equ 0x801EDBA0            ; cell 0x6DD: same, fastbg
+SF_FONT_REPLAY_BG equ 0x801EFFC4            ; cell 0x7FE: the ENTRY (first instruction); the
+SF_FONT_REPLAY_FAST equ 0x801EFFE4          ; guard word sits at entry-4 - cell 0x7FF likewise.
+                                            ; (Off-by-one-word here executed the magic as an
+                                            ; instruction: ReservedInstruction at 0x801effc0.)
+SF_FONT_CELL_BG equ 0x801E1A50              ; cell 0x0D2 lower half: registration cells
+SF_FONT_CELL_FAST equ 0x801E1A54            ; (pre-install = the replay addresses; the
+                                            ; recorder overwrites them per overlay)
+GS_DRAW_OFS_X_ADDR equ 0x8005E63C           ; signed libgs sprite-coordinate offset
+GS_DRAW_OFS_Y_ADDR equ 0x8005E640
+GSORT_BG_ADDR equ 0x8003235C               ; GsSortBg (retail libgs in SLPS; ADV/S2D/NAME call it)
+GSORT_FASTBG_ADDR equ 0x8003F554           ; GsSortFastBg (the map sorter; DNG's two field jal sites
+                                            ; land here). NOT 0x800333A4: that is the generic OT
+                                            ; append helper (packet, ot, pri, len) every sprite sort
+                                            ; calls - hooking it fed it GsBG arguments.
+;; The small-font row tables and name scratch are loaded with each overlay;
+;; vwf/smallfont_defs.asm defines their sizes, the wrappers own their placement.
+;; --- story-battle spill (btlp.py / btlp/btlevt_unpack.asm) ---
+;; A battle message whose ENGLISH does not fit its own slot puts 'FF 00 hi lo'
+;; in the slot and its text in BTLP's own dead space (BTLEVT_SPILL_ADDR:
+;; build-time strings, read only while BTLP is the live overlay), and the
+;; string being drawn unpacks into the resident buffer below - RUNTIME
+;; scratch in the game's wiped BSS (proven safe while battles draw; the
+;; buffer's whole content is rewritten per draw).
+BTLEVT_BUF_ADDR equ 0x80057400
+BTLEVT_BUF_SIZE equ 1024                    ; the string the unpacker is drawing
+;; Runtime scratch in the unused tail of the resident CD path-table cache.
+;; build_disc.py checks the disc's complete path-table entry count against the
+;; first scratch byte (BTLEVT_BUF_ADDR), so neither buffer can overwrite a
+;; live directory record. The CD sector buffer starts at 0x80058018.
+;; Each compositor cell is initialized before use.
+VWF_DLG_RING_ADDR equ BTLEVT_BUF_ADDR + BTLEVT_BUF_SIZE
+VWF_DLG_RING_LIMIT equ 0x80057E00
+BTL_SECOND_BUF_ADDR equ VWF_DLG_RING_LIMIT
+BTL_SECOND_BUF_SIZE equ 512                ; second battle window, before CD sector buffer
+;; the spill strings: dead SLPS fragments (deadfuncs.py 16; the only
+;; build-time homes left in the image - the guard in btlp.py fails the
+;; build when the wording outgrows them and more fragments must be found)
+BTLEVT_SPILL_ADDR equ 0x80018D40            ; fragment 44B (deadfuncs.py)
+BTLEVT_SPILL_END equ 0x80018D6C
+BTLEVT_SPILL2_ADDR equ 0x8001B2CC           ; fragment 44B
+BTLEVT_SPILL2_END equ 0x8001B2F8
+BTLEVT_SPILL3_ADDR equ 0x80024E94           ; fragment 44B
+BTLEVT_SPILL3_END equ 0x80024EC0
+BTLEVT_SPILL4_ADDR equ 0x800269C8           ; fragment 36B
+BTLEVT_SPILL4_END equ 0x800269EC
+;; --- per-overlay small-font kit data (the overlays swap as wholes; the
+;; state is per-overlay and freshly zero at every load) and the per-overlay
+;; full-name blocks (tails + copy code, read only while their overlay is
+;; the live one) ---
+ADV_SF_DATA_ADDR equ 0x800BD240            ; state + advance table + affinity pool, loaded
+                                           ; with ADV.BIN (past the sysmsg spill)
+;; ADV packs state, widths/pool, names, code, table and scratch under one
+;; sector-safe ceiling. DNG/S2D reserve a fixed data window for
+;; state/widths/pool; their loaded names, row table and scratch follow it.
+;; The window must hold state + advance table + the whole affinity pool; the
+;; pool grows with the English wording, so the reservation carries headroom.
+;; smallfont.asm asserts the literal ITEM_DATA_ADDRs below keep this width.
+SF_DATA_WINDOW equ 0x1000                  ; state + widths + affinity pool
+ADV_SF_EXTENSION_END equ 0x800BFBC4       ; largest sector-safe end below work area 0x800C0000
+DNG_SF_DATA_ADDR equ 0x800B3000            ; past the dungeon-script glue
+DNG_ITEM_DATA_ADDR equ 0x800B4000          ; DNG_SF_DATA_ADDR + SF_DATA_WINDOW
+DNG_ITEM_DATA_END equ 0x800C0000
+S2D_SF_DATA_ADDR equ 0x800BC200            ; past the extension glue
+S2D_ITEM_DATA_ADDR equ 0x800BD200          ; S2D_SF_DATA_ADDR + SF_DATA_WINDOW
+S2D_ITEM_DATA_END equ 0x800E0000           ; S2D's work-area bias ceiling
+
+;; --- FONT.BIN (resident at 0x801E0000, loaded once at boot) ---
+FONT_FILENAME equ "../../data/psx/FONT.BIN"
+FONT_OUTPUT equ "../../build/FONT.BIN"
+FONT_GLYPHS_ADDR equ 0x801E0000
+FONT_IMAGE_LIMIT equ 0x801F0000
+
+;; --- VWF engine home: unreferenced SLPS_005.00 functions (tools/deadfuncs.py) ---
+;; Verified: no jal/j, address word or lui pair to them on the disc, and no
+;; hits from execution breakpoints in title, event, name entry, field and
+;; hospital save states.
+VWF_CODE_A_ADDR equ 0x8002E7BC           ; 0x8002E7BC + 0x8002E7FC
+VWF_CODE_A_SIZE equ 0x8002EAA8 - VWF_CODE_A_ADDR
+VWF_CODE_B_ADDR equ 0x800121B0           ; 4 functions
+SF_TAB_HELPER_ADDR equ 0x80011C40         ; resident tab-stop helper, formerly choice spill
+SF_TAB_HELPER_END equ 0x80011CA0
+VWF_CODE_B_SIZE equ 0x80012484 - VWF_CODE_B_ADDR
+VWF_DATA_ADDR equ 0x80021848             ; 2 functions
+VWF_DATA_SIZE equ 0x138                  ; 0x80021980 - VWF_DATA_ADDR: stops before the party/name-owner code
+VWF_TABLE_ADDR equ 0x8001D8D4            ; 2 functions
+VWF_TABLE_SIZE equ 0x8001DAA4 - VWF_TABLE_ADDR
+VWF_BTLP_CODE_ADDR equ 0x800124B4        ; 1 dead function (328 bytes)
+VWF_BTLP_CODE_SIZE equ 0x800125FC - VWF_BTLP_CODE_ADDR
+VWF_BTLP_CODE2_ADDR equ 0x8001EE84       ; dead fragment (284 bytes)
+VWF_BTLP_CODE2_SIZE equ 0x8001EFA0 - VWF_BTLP_CODE2_ADDR
+;; Party full names (src/injection_tools/partynames.py): 18 slots of 10 bytes -
+;; the company, the protagonist's placeholder, then eight family / given pairs.
+;; The name-insertion path must tell this table's DIALOGUE text apart from the
+;; small-font cells of every other insert, so vwf_glyph_map's entry is a jump
+;; to the wrapper below (it tests the insert pointer against this range).
+PARTY_NAMES_ADDR equ 0x80049040
+PARTY_NAMES_SIZE equ 0xB4                 ; 18 * 10
+PARTY_NAME_VWF_ADDR equ 0x80021980        ; unreferenced SLPS function (tools/deadfuncs.py, unclaimed)
+PARTY_NAME_VWF_SIZE equ 0x80021AB8 - PARTY_NAME_VWF_ADDR
+VWF_STATE_ADDR equ 0x800155E4             ; spare tail of the dead vwf_name_map run: vwf_dlg_state
+VWF_NAME_CODE_ADDR equ 0x80015510        ; dead function (252 bytes): vwf_name_map (typed names -> narrow English)
+VWF_NAME_CODE_SIZE equ 0x8001560C - VWF_NAME_CODE_ADDR
+;; small-font VWF kit (adv/dng/s2d/smallfont.asm, engine vwf/smallfont.asm)
+;; - placement rules. Nothing may sit where the game writes: the SLPS
+;; "free space" at 0x80055C10 is the CD-system's (g_cd_busy, overwrite
+;; it and the game hangs), the appended SLPS region below the verified
+;; span must stay ZERO (the Psy-Q CD subsystem's globals and directory
+;; cache - see the SLPS section above), and the overlay images carry
+;; live state of their own (ADV's image-upload queue is at 0x800BC714,
+;; its CD-buffer table at the file's end). So: the recorder, the
+;; renderer AND this overlay's config go in dead functions per overlay
+;; (tools/deadfuncs.py - no call, no pointer word and no lui/addiu pair
+;; on the disc names them; the config is the renderer run's first 0x20
+;; bytes), the per-frame packet buffers in the decomp-verified gap
+;; between g_menu_cells and bg_map0 (ADV/DNG 0x800E6400, S2D
+;; 0x80106400). Never wiped: FONT.BIN's reserved cells hold the
+;; registration words, the sort gate and the retail replays
+;; (vwf/sf_font.asm); SLPS holds the two sorter entry jumps
+;; (vwf/sf_stubs.asm). State, row tables and name scratch belong to each
+;; overlay's loaded extension and are zero at load. ADV also packs its
+;; recorder/renderer there; DNG/S2D retain their verified code slots.
+
+;; --- ADV.BIN - Overlay #7: field / events ---
+ADV_FILENAME equ "../../data/psx/ADV.BIN"
+ADV_OUTPUT equ "../../build/ADV.BIN"
+ADV_ADDR equ OVERLAY_SLOT_ADDR
+ADV_IMAGE_LIMIT equ ADV_SF_EXTENSION_END
+ADV_EOF_ADDR equ ADV_ADDR + 0x58D04          ; end of the retail overlay image (past the live CD-buffer table)
+;; dialogue text interpreter (0x800669AC) - runtime-verified
+ADV_TEXT_STATE equ 0x800E1E4C              ; +0xA u16 pos (cell 0-59), +0xC read ptr
+ADV_CELL_ACTIVATE equ 0x80067908           ; void(u16 pos)
+ADV_UPLOAD_COUNT equ 0x800BC714            ; LoadImage queue count
+ADV_UPLOAD_QUEUE equ 0x800BC748            ; LoadImage queue entries
+ADV_FLUSH_UPLOADS equ 0x80068414           ; FlushImageUploads (imagequeue.c)
+;; --- ADV.BIN extension partition -------------------------------------------
+;; sysmsg's overflow strings, then the small-font kit's own data block
+;; (state, advance table, affinity pool - *_SF_DATA_ADDR) and the
+;; full-name block (*_ITEM_DATA_ADDR). The game's work area (GsSetWorkBase
+;; 0x800C0000, OT tags 0x800D6000/0x800D9000) is live above it, so
+;; 0x800C0000 is the ceiling; BTLP's fx code occupies 0x800BD330+ only
+;; while BTLP is resident, and the spill strings are ADV's own extension.
+ADV_EXT_BASE equ 0x800BD100                ; past the live CD-buffer table at 0x800BD0C8; gdb (menu open): file bytes survive from here
+ADV_SYSMSG_SPILL_ADDR equ 0x800BD100       ; sysmsg.py overflow strings (build/sysmsg.asm)
+ADV_SYSMSG_SPILL_END equ 0x800BD240        ; below the kit's data in ADV's loaded extension
+ADV_SYSMSG_SPILL_SIZE equ ADV_SYSMSG_SPILL_END - ADV_SYSMSG_SPILL_ADDR
+;; small-font VWF line (adv/smallfont.asm: recorder + renderer; vwf/sf_font.asm: the resident gate)
+ADV_SF_HOOK_ADDR equ 0x80067C00            ; TileMapWriteRow loop entry: la t0,cfg / j sf_record
+ADV_SF_MAP_BASE equ 0x800E3E4C             ; the text map's cell base (CellsInit atlas)
+ADV_SF_CENTER_ADDR equ 0x800AADE8          ; unreferenced ADV function (deadovl.py)
+ADV_SF_CENTER_END equ 0x800AAE5C
+;; ADV code/table positions follow the actual data/name sizes; see adv/smallfont.asm.
+ADV_SF_BUFS_ADDR equ 0x800E624C            ; 2 x 0x1200-byte buffers, after g_menu_cells
+ADV_SF_BUFS_LIMIT equ 0x800E864C           ; bg_map0's cell table starts here
+                                           ; g_font_blank (0x800E864C, FontCellsInit)
+ADV_NAME_EMIT_JAL_ADDR equ 0x80066DA0      ; jal glyph renderer (name chars)
+ADV_NAME_ACTIVATE_JAL_ADDR equ 0x80066DAC  ; jal cell activate
+ADV_NAME_POS_INC_ADDR equ 0x80066DC0       ; addiu v0,v0,1 (pos++)
+ADV_TEXT_CLASSIFY_ADDR equ 0x800677BC      ; sltiu v0,a2,0x80 / beqz v0 (3 words)
+ADV_TEXT_TWO_BYTE_ADDR equ 0x800677F8      ; two-byte glyph decode path
+ADV_TEXT_WIDE_ARG_ADDR equ 0x8006783C      ; move a2,s0 (two-byte glyph arg)
+ADV_TEXT_EMIT_JAL_ADDR equ 0x80067840      ; jal glyph renderer (text)
+ADV_TEXT_ACTIVATE_JAL_ADDR equ 0x8006784C  ; jal cell activate
+ADV_TEXT_POS_INC_ADDR equ 0x80067860       ; addiu v0,v0,1 (pos++)
+
+;; --- BTLP.BIN - Overlay #5: battle ---
+BTLP_FILENAME equ "../../data/psx/BTLP.BIN"
+BTLP_OUTPUT equ "../../build/BTLP.BIN"
+BTLP_ADDR equ OVERLAY_SLOT_ADDR
+;; text interpreter 0x8007C9E0 calls the glyph function 0x8007C754(struct, ptr) -> ptr here
+BTLP_TEXT_EMIT_JAL_ADDR equ 0x8007CCD4
+BTLP_TEXT_EMIT2_JAL_ADDR equ 0x8007CF80
+;; battle skill menu (btlp/skill_menu.asm): 7 small-font text descriptors per set (x, y, ptr, count ...),
+;; filled by three copy loops; English names use the SKILL_MENU_STRIDE buffer in SLPS (SKILL_MENU_BUF)
+BTLP_SF_WIDTH_ADDR equ 0x800F8960      ; after QOL_REWARDS, inside the last loaded BTLP sector
+BTLP_SF_CODE_ADDR equ 0x800F8A60       ; immediately after the existing 256-byte SF width table
+BTLP_SF_END_ADDR equ 0x800F8BC4        ; end of that retail loaded sector
+BTLP_NAME_DATA_ADDR equ 0x800F8BC4    ; immutable data after the sprite bridge
+BTLP_NAME_DATA_END equ 0x800F9148     ; first sound-work buffer (entry.c)
+BTLP_IMAGE_LIMIT equ BTLP_NAME_DATA_END
+BTLP_OFFER_NAME_BASE equ 0x800EB26D  ; first BtlOffer.name; three records
+BTLP_ENEMY_NAME_BASE equ 0x8005DB53  ; first enemy BtlActor.c.name; nine records
+BTLP_SKILL_DESC_A equ 0x800DD788       ; 7 x 12 bytes, ptr at +4, glyph count at +8
+BTLP_SKILL_DESC_B equ 0x800DDD68       ; second set, same buffer
+
+;; --- full-length skill names (tools/skills.py, slps_005.00/skill_names.asm) ---
+SKILL_RECORDS_ADDR equ 0x80047D44      ; + id*0x14 (id 1-based)
+SKILL_COUNT equ 242                    ; physical skill records after reserved ID 0
+SKILL_FIELD equ 10
+SKILL_SPARE equ 0x11                   ; unreferenced record bytes +0x11..+0x13
+SKILL_MAXLEN equ 23                    ; menu slot: 23 glyphs + terminator (SKILL_MENU_STRIDE 24)
+SKILL_CODE_ADDR equ 0x80011FBC         ; unreferenced function (taken from tools/choices.py FREE)
+SKILL_CODE_END equ 0x800120A4
+SKILL_CODE_SIZE equ SKILL_CODE_END - SKILL_CODE_ADDR
+SKILL_VWF_FLAGS_ADDR equ 0x80012080     ; 31-byte bitmap: English ownership by skill ID
+SKILL_VWF_SLOTS_ADDR equ 0x800120A0     ; u16: ownership bits (Persona 0..2, skill slot i at 3+i)
+SKILL_TAILS_ADDR equ 0x8004CE6F         ; affinity records 63-95 (unused 'リザーブ' slots, tools/affinity.py FREE)
+SKILL_TAILS_SIZE equ 0x91               ; ends at AFF_FREE2_ADDR; the offset byte is not an ownership bound
+AFF_FREE2_ADDR equ 0x8004CF00            ; rest of the free affinity records: slps_005.00/aff_free.asm
+AFF_FREE_END equ 0x8004D1A8              ; record 96 starts here
+VWF_SMALL_MAP_LEN equ 0xD0
+;; The two battle name banks are separate ranges of one ownership bitmap
+;; (vwf/btl_name_owner.asm): each range reports its own slot index and adds its
+;; own bit offset. They must stay separate - the dead run in SLPS that holds the
+;; skill slots ends at the live function 0x8002C2F0 (BTLP calls it 8 times), so
+;; only 168 bytes are free there.
+PERSONA_HDR_STRIDE equ 16              ; Persona names are 16 glyphs
+PERSONA_HDR_BUF equ 0x8002BC84          ; dead SLPS function (tools/deadfuncs.py), 4 x 16 bytes
+PERSONA_HDR_BUF_END equ 0x8002BCC4      ; PERSONA_HDR_BUF + 4 * PERSONA_HDR_STRIDE
+PERSONA_HDR_LIMIT equ 0x8002BD60        ; end of that dead run (asserted in asm)
+PERSONA_BIT_OFFSET equ 0               ; ownership bits 0..2
+BATTLE_LABEL_BUF equ 0x8002BCB4        ; PERSONA_HDR_BUF + 3 * PERSONA_HDR_STRIDE: static "Cost" label string (fixed-width, unowned)
+SKILL_MENU_STRIDE equ 24               ; 23 glyphs + terminator; 7 slots fill the run exactly
+SKILL_MENU_BUF equ 0x8002C248          ; dead code run before the live function 0x8002C2F0
+SKILL_MENU_BUF_END equ 0x8002C2F0      ; = the live function entry (asserted in asm)
+SKILL_BIT_OFFSET equ 3                 ; ownership bits 3..9
+BATTLE_NAME_BITS equ 10                ; ownership halfword: Persona 0..2, skill slot i at 3+i
+BANNER_SPILL_ADDR equ 0x8002C374        ; first banner spill fragment after the battle name bank
+BTLP_ITEM_NAMES_ADDR equ 0x800F81CC     ; 12 retail 10-byte names, two columns
+BTLP_ITEM_FULL_ADDR equ 0x80057E00      ; 12 x 21 bytes, path-cache tail after dialogue ring
+BTLP_ITEM_FULL_STRIDE equ 21
+BTLP_ITEM_FULL_END equ BTLP_ITEM_FULL_ADDR + BTLP_ITEM_ROWS * BTLP_ITEM_FULL_STRIDE
+BTLP_ITEM_IDS_ADDR equ 0x800F8088       ; current packed inventory IDs, 12 x u16
+BTLP_ITEM_DESC equ 0x800DD828           ; 12 name descriptors; counts at +0x90
+BTLP_ITEM_COUNT_ADDR equ 0x800F7D64     ; separate 12 x 3-byte count rows
+BTLP_ITEM_ID_COUNT equ 0x56            ; source producer rejects IDs at/above this
+BTLP_ITEM_ROWS equ 12
+BTLP_ITEM_FIELD equ 10
+
+;; --- CASINO.BIN - Overlay #8: casino ---
+CASINO_FILENAME equ "../../data/psx/CASINO.BIN"
+CASINO_OUTPUT equ "../../build/CASINO.BIN"
+CASINO_ADDR equ OVERLAY_SLOT_ADDR
+
+;; --- DNG.BIN - Overlay #4: dungeon ---
+DNG_FILENAME equ "../../data/psx/DNG.BIN"
+DNG_OUTPUT equ "../../build/DNG.BIN"
+DNG_ADDR equ OVERLAY_SLOT_ADDR
+DNG_IMAGE_LIMIT equ DNG_ITEM_DATA_END
+;; dialogue text interpreter: copy of ADV's (main path at ADV+0xFC2C).
+;; Statically derived (jal targets consistent with base) - not yet run.
+DNG_GLUE_ADDR equ 0x800A1200           ; extension of DNG.BIN behind the image (dng/vwf_script.asm)
+DNG_SCRIPTMSG_ADDR equ 0x800A1C00       ; relocated FF55 script messages (above glue and optional FPS glue)
+DNG_SCRIPTMSG_LIMIT equ 0x800A2000
+DNG_SPILL_ADDR equ 0x800A2000          ; spill table, text, and redirect code; beyond optional FPS glue
+DNG_SPILL_LIMIT equ 0x800B0000         ; below the held-pause title renderer
+DNG_FIELD_TITLE_ADDR equ 0x800B0000     ; held-pause VWF renderer + 160x16 scratch
+DNG_FIELD_TITLE_LIMIT equ 0x800B0C00    ; below the shared title index/blob
+DNG_FIELD_TITLE_ENTRY equ 0x8006E700     ; FieldLoadWallCluts entry
+DNG_FIELD_TITLE_WIDTH equ 160            ; ten 16px cells in the held-pause strip
+DNG_TEXT_STATE equ 0x800E1E4C
+DNG_CELL_ACTIVATE equ 0x80077534
+DNG_UPLOAD_COUNT equ 0x800A072C
+DNG_UPLOAD_QUEUE equ 0x800A0760
+DNG_FLUSH_UPLOADS equ 0x80077B74
+;; small-font VWF line (dng/smallfont.asm)
+DNG_SF_HOOK_ADDR equ 0x8007782C            ; TileMapWriteRow loop entry: la t0,cfg / j sf_record
+DNG_SF_MAP_BASE equ 0x800E3E4C             ; same work area as ADV (WORK_BIAS 0)
+DNG_SF_ROW_ADDR equ 0x800939EC             ; DNG.BIN +0x2F628: a dead function (tools/deadfuncs.py)
+DNG_SF_ROW_SIZE equ 2420                   ; ... its span up to the next function
+DNG_SF_CFG_ADDR equ DNG_SF_ROW_ADDR        ; the config block: the run's first 0x20 bytes
+DNG_SF_HELP_ADDR equ 0x80080A54            ; DNG.BIN +0x1C690: a dead function (tools/deadfuncs.py)
+DNG_SF_HELP_SIZE equ 2012
+DNG_SF_BUFS_ADDR equ 0x800E624C            ; same decomp-verified gap as ADV
+DNG_SF_BUFS_LIMIT equ 0x800E864C
+DNG_NAME_EMIT_JAL_ADDR equ 0x80076BD0
+DNG_NAME_ACTIVATE_JAL_ADDR equ 0x80076BDC
+DNG_NAME_POS_INC_ADDR equ 0x80076BF0
+;; map titles (dng/map_title.asm): the JA-match table + EN blob
+;; (build/dng_titles.asm) sits in front of the hook, and its budget is the
+;; room between the two. dngnames.py reads these two and places
+;; the table; nothing else may move them.
+DNG_TITLE_TABLE_ADDR equ 0x800B0C00
+DNG_TITLE_HOOK_ADDR equ 0x800B2400
+DNG_TEXT_CLASSIFY_ADDR equ 0x800773E8
+DNG_TEXT_TWO_BYTE_ADDR equ 0x80077424
+DNG_TEXT_WIDE_ARG_ADDR equ 0x80077468
+DNG_TEXT_EMIT_JAL_ADDR equ 0x8007746C
+DNG_TEXT_ACTIVATE_JAL_ADDR equ 0x80077478
+DNG_TEXT_POS_INC_ADDR equ 0x8007748C
+
+;; --- S2D.BIN - Overlay #6: 2D map ---
+S2D_FILENAME equ "../../data/psx/S2D.BIN"
+S2D_OUTPUT equ "../../build/S2D.BIN"
+S2D_ADDR equ OVERLAY_SLOT_ADDR
+S2D_IMAGE_LIMIT equ S2D_ITEM_DATA_END
+;; dialogue text interpreter: copy of ADV's (main path at ADV-0x820).
+;; Statically derived (jal targets consistent with base) - not yet run.
+S2D_TEXT_STATE equ 0x80101E4C
+;; extension of S2D.BIN behind its last sector (RAM 0x800BA3C4..): English overworld boxes (tools/s2dscript.py SPILL = ..0x800BB200), then VWF glue code
+S2D_GLUE_ADDR equ 0x800BB200
+S2D_GLUE_SIZE equ 0x800BB8E8 - S2D_GLUE_ADDR
+S2D_CELL_ACTIVATE equ 0x800670E8
+S2D_UPLOAD_COUNT equ 0x800B92C8
+S2D_UPLOAD_QUEUE equ 0x800B92FC
+S2D_FLUSH_UPLOADS equ 0x80067B9C
+;; small-font VWF line (s2d/smallfont.asm)
+S2D_SF_HOOK_ADDR equ 0x800673E0            ; TileMapWriteRow loop entry: la t0,cfg / j sf_record
+S2D_SF_MAP_BASE equ 0x80103E4C             ; the text map's cell base (+0x20000 bias)
+S2D_SF_ROW_ADDR equ 0x80083B24             ; S2D.BIN +0x1F760: a dead function (tools/deadfuncs.py)
+S2D_SF_ROW_SIZE equ 2420                   ; ... its span up to the next function
+S2D_SF_CFG_ADDR equ S2D_SF_ROW_ADDR        ; the config block: the run's first 0x20 bytes
+S2D_SF_HELP_ADDR equ 0x800708F4            ; S2D.BIN +0xC530: a dead function (tools/deadfuncs.py)
+S2D_SF_HELP_SIZE equ 2012
+S2D_SF_BUFS_ADDR equ 0x8010624C            ; the same gap + S2D's 0x20000 work-area bias
+S2D_SF_BUFS_LIMIT equ 0x8010864C           ; g_font_blank / bg_map0
+S2D_NAME_EMIT_JAL_ADDR equ 0x80066784
+S2D_NAME_ACTIVATE_JAL_ADDR equ 0x80066790
+S2D_NAME_POS_INC_ADDR equ 0x800667A4
+S2D_TEXT_CLASSIFY_ADDR equ 0x80066F9C
+S2D_TEXT_TWO_BYTE_ADDR equ 0x80066FD8
+S2D_TEXT_WIDE_ARG_ADDR equ 0x8006701C
+S2D_TEXT_EMIT_JAL_ADDR equ 0x80067020
+S2D_TEXT_ACTIVATE_JAL_ADDR equ 0x8006702C
+S2D_TEXT_POS_INC_ADDR equ 0x80067040
+
+;; --- NAME.BIN - Overlay #9: name entry ---
+NAME_FILENAME equ "../../data/psx/NAME.BIN"
+NAME_OUTPUT equ "../../build/NAME.BIN"
+NAME_ADDR equ OVERLAY_SLOT_ADDR
+NAME_INIT_JAL_TARGET equ 0x80067318      ; first init callee, NAME.BIN +0x14 (name/latin_start.asm)
+NAME_TAB_STUB_ADDR equ 0x80024744        ; dead SLPS function (tools/deadfuncs.py, unclaimed)
+NAME_RING_STUB_ADDR equ 0x800316DC       ; dead SLPS function, taken from tools/choices.py FREE (name/ring.asm)
+NAME_RING_STUB_END equ 0x80031770
+
+;; --- OPEN.BIN - Title/opening data archive (seen resident at 0x80180000) ---
+OPEN_FILENAME equ "../../data/psx/OPEN.BIN"
+OPEN_OUTPUT equ "../../build/OPEN.BIN"
+OPEN_ADDR equ 0x80180000
+OPEN_IMAGE_LIMIT equ 0x801E0000          ; FONT.BIN is loaded here
+
+;; --- EXE/ATLUS.EXE - Atlus logo EXE, t_addr 0x80080000 ---
+ATLUS_EXE_FILENAME equ "../../data/psx/EXE/ATLUS.EXE"
+ATLUS_EXE_OUTPUT equ "../../build/EXE/ATLUS.EXE"
+ATLUS_EXE_ADDR equ 0x80080000 - PSX_EXE_HEADER_SIZE
+
+;; --- EXE/OPEN.EXE - Opening/title EXE, t_addr 0x80080000 ---
+OPEN_EXE_FILENAME equ "../../data/psx/EXE/OPEN.EXE"
+OPEN_EXE_OUTPUT equ "../../build/EXE/OPEN.EXE"
+OPEN_EXE_ADDR equ 0x80080000 - PSX_EXE_HEADER_SIZE
+OPEN_EXE_IMAGE_LIMIT equ 0x80180000      ; OPEN.BIN is loaded here
+
+;; --- EXE/MOVIE.EXE - Movie player EXE, t_addr 0x80080000 ---
+MOVIE_EXE_FILENAME equ "../../data/psx/EXE/MOVIE.EXE"
+MOVIE_EXE_OUTPUT equ "../../build/EXE/MOVIE.EXE"
+MOVIE_EXE_ADDR equ 0x80080000 - PSX_EXE_HEADER_SIZE
+MOVIE_EXE_IMAGE_LIMIT equ 0x801E0000     ; FONT.BIN is loaded here
+;; Separate armips pass for the in-engine subtitle renderer; it is copied
+;; to this window by the movie player (movie_exe/subs_boot.asm).
+MOVIE_SUBS_CODE_OUTPUT equ "../../build/movie_subs_code.bin"
+MOVIE_SUBS_CODE_ADDR equ 0x80160000
+MOVIE_SUBS_CODE_IMAGE_LIMIT equ 0x80180000
+
+;; --- EXE/END.EXE - Ending EXE, t_addr 0x80080000 ---
+END_EXE_FILENAME equ "../../data/psx/EXE/END.EXE"
+END_EXE_OUTPUT equ "../../build/EXE/END.EXE"
+END_EXE_ADDR equ 0x80080000 - PSX_EXE_HEADER_SIZE
+
+;; =============================================================
+;; Text data files (addresses are file offsets)
+;; =============================================================
+
+;; --- ADV/MES.BIN - Event script text (13 MB) - file offsets ---
+MES_FILENAME equ "../../data/psx/ADV/MES.BIN"
+MES_OUTPUT equ "../../build/ADV/MES.BIN"
+MES_ADDR equ 0
+
+;; --- NAMEDT.BIN - Name data - file offsets ---
+NAMEDT_FILENAME equ "../../data/psx/NAMEDT.BIN"
+NAMEDT_OUTPUT equ "../../build/NAMEDT.BIN"
+NAMEDT_ADDR equ 0
+
+;; --- Battle small-font page: patched in /B/BF.BIN by tools/btlfont.py. ---
+;; BTLP uploads the page to VRAM 960,256 from compressed battle data.
+BTLP_PAGE_LOAD_JAL_ADDR equ 0x80081E80  ; jal LoadImage (0x8002B810) in the BTLP TIM loader
+GPU_LOAD_IMAGE equ 0x8002B810           ; LoadImage(rect, src)
+GPU_DRAW_SYNC  equ 0x8002B5E8           ; DrawSync(int)
+GPU_MOVE_IMAGE equ 0x8002B8D8           ; MoveImage(rect, x, y)
+BTLP_PAGE_FIX_ADDR equ 0x8001A4A8       ; 2 unreferenced SLPS functions (tools/deadfuncs.py)
+BTLP_PAGE_FIX_SIZE equ 0x8001A510 - BTLP_PAGE_FIX_ADDR
+
+;; --- battle banner names (tools/banner.py): pointer table 0x800D92F4 (347 words), pool 0x800D835C-0x800D92F4;
+;; overflow strings in dead SLPS functions 0x8002C2B8-0x8002C2F0, 0x80026A10-0x80026A54, 0x80018B50-0x80018B88
+
+;; --- full-length Persona names (tools/personas.py, slps_005.00/persona_names.asm) ---
+PERSONA_RECORDS_ADDR equ 0x8004B0CC     ; + id*0x2C (id 1-based)
+PERSONA_NAME equ 8
+PERSONA_FIELD equ 10
+PERSONA_SPARE equ 0x29                  ; unreferenced record bytes +0x29..+0x2B
+PERSONA_MAXLEN equ 16
+PERSONA_CODE_ADDR equ 0x80031878        ; 2 unreferenced functions (taken from tools/s2dnames.py SPILL)
+PERSONA_CODE_SIZE equ 0x8003191C - PERSONA_CODE_ADDR
+PERSONA_TAILS_ADDR equ 0x8001EA10       ; unreferenced function
+PERSONA_TAILS_SIZE equ 0x8001EA4C - PERSONA_TAILS_ADDR
+PERSONA_VWF_CODE_ADDR equ 0x80012484    ; freed Persona scratch, 48 bytes, bounded by VWF_BTLP_CODE_ADDR
+;; battle skill menu header descriptors (x, y, ptr, count): Persona name, "Cost" label, summon cost value
+BTLP_HDR_NAME_DESC equ 0x800DD74C
+BTLP_HDR_LABEL_DESC equ 0x800DD80C      ; -> label string BATTLE_LABEL_BUF (しょうかんSP retail string stays unused)
+BTLP_HDR_VALUE_DESC equ 0x800DD764
+
+;; --- ANALYZE status board: translated producer buffers ---
+;; The board's rows are runtime-generated and sit outside every producer
+;; ownership range (Persona/skill/item banks), so vwf_slps.asm registers the
+;; buffers their translated producers write as always-owned spans. A row
+;; pointer inside one is VWF; untranslated rows (ailments, full-width rank and
+;; kind labels, the shared kana label bank) stay retail. The span ends are the
+;; buffers' own bounds, not the row descriptor addresses; the board list is
+;; checked against these spans by tools/tests/test_btlp_analyze_ownership.py.
+;; The MAG ATK / MAG DEF labels at 0x800DEA2C are translated but fixed-width,
+;; like the other board labels: they are not an owned span.
+ANALYZE_NAME_BUF equ 0x800F6FB4         ; race:name header (enemystatus.c producer)
+ANALYZE_NAME_END equ 0x800F6FCC
+ANALYZE_SPELL_BUF equ 0x800F8780        ; six 11-byte spell rows (skills.py)
+ANALYZE_SPELL_END equ 0x800F87C2
+;; The affinity line is the record's 25-cell head plus the pool tail that
+;; completes it (smallfont_vwf.write_pool): the retail 28-byte slot ends at
+;; g_btl_slot_owner, so the whole 47-cell line lives in the free run below.
+ANALYZE_TRAIT_BUF equ 0x800F83C0        ; affinity line: head + pool tail (47 cells)
+ANALYZE_TRAIT_END equ 0x800F83EF
+BTLP_TRAIT_CODE_ADDR equ 0x800F83F0     ; btl_trait_tail (btlp/analyze_trait.asm)
+BTLP_TRAIT_POOL_ADDR equ 0x800F8460     ; build/affinity_pool.bin: 120 x u16 + suffix-shared text
+BTLP_TRAIT_POOL_END equ 0x800F85B0      ; first word the battle runtime WRITES here (heap pointer)
+                                        ; 0x800F8680 is only the end of the retail zero run - not free
+
+;; --- full-length item/demon names (tools/slps.py + items.py/demons.py,
+;;     slps_005.00/item_names.asm) ---
+;; The 10-byte record field carries the head; a name over 10 glyphs
+;; continues in an overlay-owned [length][glyphs] tail bank, indexed by
+;; a has-tail bitmap. item_name_copy/demon_name_copy share the traversal
+;; and append the tail to that overlay's scratch. Same contract as
+;; skill_name_copy: clobbers v0,v1,a0,a1,a2,at only.
+ITEM_NAME_BASE equ 0x8004440C          ; + id*0x20 (id 1-based): the name field
+ITEM_NAME_FIELD equ 10
+ITEM_NAME_STRIDE equ 0x20                ; one g_item_defs record (items.py STRIDE)
+ITEM_RECORDS equ 382                     ; ids 0..381 (items.py COUNT)
+ITEM_NAME_MAXLEN equ 20
+ITEM_NAME_ROW_PX equ 80                ; the name row's ten 8-px cells
+DEMON_NAME_BASE equ 0x800417A0         ; + id*0x38 (id 1-based)
+DEMON_NAME_FIELD equ 10
+DEMON_NAME_STRIDE equ 0x38              ; one demon record (demons.py STRIDE)
+DEMON_RECORDS equ 194                    ; ids 1..194 (demons.py COUNT)
+DEMON_NAME_MAXLEN equ 20
+;; DrawItemName's tail-jump stubs (dead functions per overlay): the row
+;; draws the full name from name_scratch instead of the 10-glyph field
+ADV_ITEM_NAME_STUB equ 0x800662D4    ; dead ADV function (80 B)
+DNG_ITEM_NAME_STUB equ 0x800761C4    ; dead DNG function (80 B)
+S2D_ITEM_NAME_STUB equ 0x80083A00    ; dead S2D function (100 B)
+
+;; --- party full-name inserts (src/injection_tools/partynames.py): the
+;; name-insert opcodes print 5 glyphs; the glue raises the count to 8 (the
+;; hero keeps 5 - his typed name fills the whole slot). One dead function
+;; per overlay, and it must NOT be an *_ITEM_NAME_STUB site: two features,
+;; one .org, last include wins - that overwrite is what killed the status
+;; page's item rows (commit 43b3312). partynames.py reads these three with
+;; toolbelt.asm_equ(), so the addresses exist exactly once.
+ADV_PARTY_COUNT_FIX_ADDR equ 0x800824C0   ; dead ADV function (tools/deadovl.py)
+DNG_PARTY_COUNT_FIX_ADDR equ 0x8008FF8C   ; dead DNG function
+S2D_PARTY_COUNT_FIX_ADDR equ 0x80065DB4   ; dead S2D function
+
+;; --- story-battle dialogue (tools/btlevt.py, btlp/btlevt_unpack.asm): BPE-packed strings + unpacker in their zone ---
+BTLEVT_ZONE_START equ 0x800CFA14
+BTLEVT_ZONE_END equ 0x800D0AE4
+BTLEVT_UNPACK_ADDR equ (BTLEVT_ZONE_END - 0x370)  ; both window fronts + unpacker + pairs
+;; The string being drawn and the strings that outgrew their slots are in the
+;; RESIDENT spill bank (BTLEVT_SPILL_ADDR / BTLEVT_BUF_ADDR above): this zone
+;; has no room left, and a slot that only has to hold 'FF 00 hi lo' needs none.
+BTLEVT_MARK equ 0xFF00                      ; 'FF 00' + big-endian address of the real string
+;; PRS-CHG window (btlp/prschg_names.asm): NOW / SUB / SUB Persona names, 16 glyphs each, in the header buffer area
+PRSCHG_BUF equ PERSONA_HDR_BUF          ; +0 NOW, +16 SUB, +32 SUB (+48: the static "Cost" label, 64 bytes)
+BTLP_PRSCHG_DESC equ 0x800DDD44         ; 3 descriptors x 12 bytes (x -96, y -4/8/20)
+;; battle text name copy (btlp/name_lowercase.asm): unreferenced BTLP function (tools/deadovl.py)
+BTLP_NAME_COPY_ADDR equ 0x800BD360
+BTLP_NAME_COPY_SIZE equ (0x800BD3F8 - BTLP_NAME_COPY_ADDR)

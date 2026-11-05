@@ -1,0 +1,28 @@
+id	pos	psp	en	note
+0	0x56d24		Not enough money.<FF01>	machine-translated; ja お金が足りません<FF01>
+1	0x56d30		You can't carry any more coins.<FF01>	machine-translated; ja もうコインは持てません<FF01>
+2	0x56d3e		Select the number of coins.<FF01>	machine-translated; ja 枚数を指定して下さい<FF01>
+4	0x56db6		Is this the Persona you'd like?<FF01>	PSP-US; ja このペルソナで良いですかな？<FF01>
+5	0x56dcb		You already have this Persona.<FF01>	PSP-US; ja 同じペルソナがすでにおりますぞ<FF01>
+6	0x56ddf	EBOOT:2d4caa	It seems that your level is too<FF03>low to create this Persona...<FF01>	PSP-US; ja あなたのレベルでは扱えません<FF01>
+7	0x56df2	EBOOT:2d4b02	Are you certain that you wish to<FF03>delete this Persona?<FF01>	PSP-US; ja このペルソナを消すのだね？<FF01>
+8	0x56e06		Quit the game.<FF03>Are you sure?<FF01>	machine-translated; ja ?RQQLK　　ゲームを終了します<FF03>よろしいですか？<FF01>
+9	0x56e2a		Turn off the power.<FF03>(Press any button to<FF03>return to the game.)<FF01>	machine-translated; ja 電源を切って下さい<FF03>（何かボタンを押すと<FF03>　ゲームに戻ります）<FF01>
+10	0x56e5b		No memory card is<FF03>inserted.<FF03>Unable to save.<FF02><FF01>	machine-translated; ja メモリーカードが<FF03>セットされていません<FF03>セーブが出来ません<FF02><FF01>
+11	0x56e87		Select the memory card<FF03>slot to use.<FF01>	machine-translated; ja 使用するメモリーカードの<FF03>スロットを選んで下さい<FF01>
+12	0x56eab		The memory card is<FF03>damaged.<FF03>Unable to save.<FF02><FF01>	machine-translated; ja メモリーカードが壊れています<FF03>このメモリーカードには<FF03>セーブ出来ません<FF02><FF01>
+13	0x56ee0		Not enough free space<FF03>on the memory card.<FF03>Unable to save.<FF02><FF01>	machine-translated; ja メモリーカードに<FF03>空き容量がありません<FF03>セーブが出来ません<FF02><FF01>
+14	0x56f0d		Save complete.<FF02><FF01>	machine-translated; ja セーブは無事完了しました<FF02><FF01>
+15	0x56f26		The memory card is<FF03>not formatted.<FF02><FF04>Format it?<FF03><FF0E> <FF01>	machine-translated; ja メモリーカードが<FF03>フォーマットされていません<FF02><FF04>フォーマットしますか？<FF03><FF0E>　<FF01>
+16	0x56f5f		Formatting the<FF03>memory card.<FF03>Please wait...<FF01>	machine-translated; ja メモリーカードを<FF03>フォーマットしています<FF03>しばらくお待ちください<FF01>
+17	0x56f8b		Memory card formatting<FF03>complete.<FF02><FF01>	machine-translated; ja メモリーカードのフォーマットが終了しました<FF02><FF01>
+18	0x56fad		Memory card formatting<FF03>failed.<FF02><FF01>	machine-translated; ja メモリーカードのフォーマットに失敗しました<FF02><FF01>
+19	0x56fd1		Writing data.<FF03>Do not remove the<FF03>memory card.<FF01>	machine-translated; ja データを書き込んでいます<FF03>メモリーカードを<FF03>抜かないで下さい<FF01>
+20	0x56fff		The suspend save<FF03>is complete.<FF03>The game will now end.<FF02><FF04>Choose CONTINUE to<FF03>resume from this data.<FF02><FF04>You may now turn off the power.<FF03>(Press any button to<FF03>return to the title screen.)<FF02><FF01>	machine-translated; ja 中断データのセーブが<FF03>完了しました<FF03>ゲームを終了します<FF02><FF04>ＣＯＮＴＩＮＵＥで<FF03>このデータの続きを始めることができます<FF02><FF04>このまま電源を切って下さい<FF03>（何かボタンを押すと<FF03>　タイトル画面に戻ります）<FF02><FF01>
+21	0x57093		Overwriting will erase<FF03>the original data.<FF02><FF03>Overwrite?<FF02><FF03><FF0E> <FF01>	machine-translated; ja 上書きすると　元のデータは<FF03>消えてしまいます<FF02><FF03>上書きしますか？<FF03><FF0E>　<FF01>
+22	0x570c7		Suspend data (C data)<FF03>cannot be overwritten<FF03>with save data (S data).<FF02><FF01>	machine-translated; ja 中断データ（Ｃデータ）領域に<FF03>セーブデータ（Ｓデータ）を<FF03>上書きすることはできません<FF02><FF01>
+23	0x5710e		Save data (S data) cannot<FF03>be overwritten with<FF03>suspend data (C data).<FF02><FF01>	machine-translated; ja セーブデータ（Ｓデータ）領域に中断データ（Ｃデータ）を<FF03>上書きすることはできません<FF02><FF01>
+24	0x56d90		Would you like to add an item?<FF01>	PSP-US; ja さらにアイテムを加えるかね？<FF01>
+25	0x57180	EBOOT:2d4822	An ancient sort of soul has been<FF03>awakened...<FF02><FF04>So... The time has come to release<FF03>the bonds of <FF0C><BB>...<FF02><FF04>Then the other soul that shall fight<FF03>at your side...<FF02><FF04>I offer you this <FF09><BB><0B><FF03>in return...<FF02><FF04>＞ <FF08><01> and the others obtained<FF03><FF09><BB><0B>.<FF02><FF01>	PSP-US; ja 呼び覚まされたる古き心のカタチ<FF0C>Sを<FF03>極め解き放つときが来ましたか…<FF02><FF04>ならば共に戦いしその別なる心<FF03><FF09>Sさに替えて<FF03>あなたに返しましょうかな…<FF02><FF04><FF08>あたちは<FF03><FF09>Sさを<FF03>手に入れた<FF02><FF01>
+27	0x528b8		There's nothing inside.<FF02><FF01>	PSP-US; ja なにも　はいっていない<FF02><FF01>
+28	0x528e0		You can't get it from that side.<FF02><FF01>	PSP-US; ja そちらからは<FF03>とれない<FF02><FF01>

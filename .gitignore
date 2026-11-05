@@ -1,0 +1,47 @@
+# Whitelist: only source, docs, and translation data are committed. Local game
+# data, build output, and final disc images remain untracked.
+/*
+
+# project metadata and documentation
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/LICENSE
+!/DEVELOPMENT.md
+!/TRANSLATION_GUIDE.md
+!/docs/
+!/requirements.txt
+# GitHub Actions: the Pages workflow deploys the web patcher from this repo.
+!/.github/
+
+# patch source: assembly, injection, extraction, matching
+!/src/
+# Local armips scratch test, not part of the patch.
+/src/asm/_t.asm
+__pycache__/
+*.pyc
+
+# manually-run tools (not part of the build): the text navigator, the
+# disc verifier, the PSP-JP glyph derivation
+!/tools/
+
+# External binaries are downloaded locally; keep only a placeholder in Git.
+!/external_tools/
+/external_tools/*
+!/external_tools/.gitkeep
+
+# Local game images/trees and decoded PSP-text caches stay local. Authored
+# correspondence inputs and patch assets are tracked under src/.
+/data/
+
+# translation data: manual wording and the tracked generated mappings.
+!/translation/
+!/translation/HANDOFF.md
+/translation/manual/work/*
+!/translation/manual/work/races_en.tsv
+
+# web patcher: static page plus the vendored xdelta3 wasm build. The release
+# patch files themselves (patches/) stay untracked, like dist/patches - the
+# rule has no trailing slash so it also covers a symlink to dist/patches.
+!/webpatcher/
+/webpatcher/patches

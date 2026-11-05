@@ -1,0 +1,35 @@
+file	key	sub	off	fix	note	us_key
+DNGTEXT	僕の姓は	d00	0x23c74	split <FF08>	name machine; box3 split mirrors JA	My last name is
+DNGTEXT	誰も　いないようだ	d0a	0x252e8			There seems to be no one here
+DNGTEXT	戻されてしまった	d0e	0x1e214			invisible wall
+DNGTEXT	クイーン様は　ただいま	d0e	0x1e4a8		Man-voice speaker per PSP	Queen is resting
+DNGTEXT	威張ってるじゃねーの	d0e	0x1e61e		NMark -> Mark: label	pretty arrogant
+DNGTEXT	扉は閉ざされている	d11	0xc7cc		D11<->d11 file-parallel	tightly closed
+DNGTEXT	聞こえるか	d13	0xc1fe		PSP-US owns the name insert; field-script conversion supplies its operand	you hear somethin
+DNGTEXT	カギがかかってるね	d14	0xc966		Maki: label from NMark/NMaki	don't think
+DNGTEXT	もうここには入れない	d16	0x9d14			cannot enter anymore
+DNGTEXT	扉は凍り付いている	d18	0x212f0			frozen shut
+DNGTEXT	時間切れよ	d1a	0xca66		full Snow Queen speech	your time is up
+DNGTEXT	この教室は今は	d24	0x23a58			isn't in use now
+DNGTEXT	長い間使われていない	d24	0x23ac8		while-variant	hasn't been
+DNGTEXT	体育館は閉鎖されている	d24	0x23b32			closed off
+DNGMSG	かかっているようだ	d00	0x23898			seems to be locked
+DNGMSG	入れそうにない	d00	0x23918			doesn't seem as though
+DNGMSG	あの少女は	d00	0x239d8			illusion
+DNGMSG	扉には鍵がかかっている	d00	0x23a26			The door is locked.
+DNGMSG	いつのまにかまた	d00	0x23a50			locked again
+DNGMSG	もう	d00	0x23acc		room-unused while-variant	quite some time
+DNGMSG	店は閉まっている	d01	0x23dec			store is closed
+DNGMSG	いないようだ	d0a	0x252e8			no one here
+DNGMSG	人の気配はない	d0a	0x2534e			don't think anyone
+DNGMSG	鍵がかかっている…<FF02>	d0b	0x2342e			The door is locked.
+DNGMSG	扉は凍り付いている	d18	0x212f0			frozen shut
+DNGMSG	固く閉ざされている	d0e	0x1e510		closed-variant; sealed exists too	tightly closed
+DNGMSG	この教室は今は	d24	0x23a58			isn't in use now
+DNGMSG	体育館は閉鎖されている	d24	0x23b32			closed off
+DNGMSG	NO_SUCH_KEY	d02	0x10816		short in-use variant; manual match below	doesn't seem to be in use
+DNGTEXT	…鍵がかかっているようだ	d00	0x23898			seems to be locked
+DNGTEXT	使われていない部屋のようだ	d02	0x10828			doesn't seem to be in use
+DNGTEXT	扉には鍵がかかっている	d00	0x23ad0			The door is locked.
+DNGTEXT	扉には鍵がかけられている<FF02><FF01>	d02	0x107b8			The door is locked.
+DNGTEXT	幻だったのだろうか	d00	0x239d8			illusion

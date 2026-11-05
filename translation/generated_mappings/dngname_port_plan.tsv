@@ -1,0 +1,183 @@
+kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
+meta	matches_sha1	57348150f7f6a23fa196f0a7abd0d9f3babd112d								
+meta	psx:D00/D00M	c65a2891d1bf473b168738d8c12062bda86d8e89								
+meta	psx:D00/D01M	0411c42a4885aa09fc95206d9519f07b67a00e73								
+meta	psx:D00/D02M	4c5276c4de649b53df0dbf144142ff4feaf49127								
+meta	psx:D00/D03M	c3e08ba3af0620be485cb0728c342b6e7d967df2								
+meta	psx:D00/D04M	edf5728537dec44864188b3298f42fefc9866f78								
+meta	psx:D00/D05M	d5053ee5a61b9d8c9daf7de2089f51ffa32c007b								
+meta	psx:D00/D06M	3c69f09859ba62ffbfd45515e7b49ca4dd808479								
+meta	psx:D00/D07M	9003c8c0df2eea7ffdc8dfab98f5c089f1f04e14								
+meta	psx:D01/D08M	360781c88d0a42d985b5d6084f2f539fe2988e42								
+meta	psx:D01/D09M	ad2d899deaf22312ec58748e6432b5c3351fba3a								
+meta	psx:D01/D0AM	46329fe14dd5326db65445b3584c387864026a09								
+meta	psx:D01/D0BM	ff8c5327e8e2f56510518fa4e065cf2f468b5219								
+meta	psx:D01/D0CM	e2a06063de2f0d2224e1f6d97111da33007903b5								
+meta	psx:D01/D0DM	9f03dd41a88816a20270d72d70d57681adb3413c								
+meta	psx:D01/D0EM	e3cf6013ad9494eada67fb10acedbe97738f8600								
+meta	psx:D01/D0FM	418ab5370521e4bc180fec428901bb2b24a9e906								
+meta	psx:D02/D11M	b87b10d1f986f3c68fb8c5c834fab4b4ade02706								
+meta	psx:D02/D12M	aeb812ce117a2672ec575a5833c24f500faa3a39								
+meta	psx:D02/D13M	2e0481af45e9ac4f203a61b8e9bf634e4d0ea8ce								
+meta	psx:D02/D14M	b04898343f040e71a334658f6f31bd7dfe77f665								
+meta	psx:D02/D15M	eceadd0562b40589f493ec9445c11ea1100fe64d								
+meta	psx:D02/D16M	90031aedd93bd00bd953e3c53d1fec1492e19987								
+meta	psx:D02/D17M	daa279ad4bf2d62e62cc5cb988d0ca024e435e17								
+meta	psx:D03/D18M	aa6d02004b4cfe084265e1f156e311ab572594d0								
+meta	psx:D03/D19M	74307d3cb2b048c0bb5b9a3d92d38df4b2d6d228								
+meta	psx:D03/D1AM	f1a91b2e35b75323e46f57542faca08387847b56								
+meta	psx:D03/D1BM	f73e5635231d402c895d378e5439b4c9beb4fee4								
+meta	psx:D03/D1CM	9b00346f025c8e03386b6fdf4de82b060a5d7757								
+meta	psx:D03/D1DM	d35095bb710029749d057d8982e46039c64d4880								
+meta	psx:D03/D1EM	e880c5d41e315c0768b5f68143ec7bad9309004e								
+meta	psx:D03/D1FM	79bd180cecdee15bd1484f7d33117c8305ca2d2f								
+meta	psx:D04/D21M	e8b9b6e6758b553b5c2c222af76715681baf6cd1								
+meta	psx:D04/D22M	14c75485e975e4e0ecd81d9c160595aa37dd9b4f								
+meta	psx:D04/D23M	7826f72c397e19601465380972e8959f624ecfa0								
+meta	psx:D04/D24M	67271483908143f917b4a518be5f85a5ffab6f5c								
+meta	rule_sha1	919f5f355812254e66fd591d26bfca86115f3358								
+meta	us:EBOOT	f00e8c7ffb1e4a853c2b9b54af0e2e0bdee7b8b3								
+meta	version	1								
+match			D00/D00M	0xc88	dngname	0x28fc7a		ok		
+match			D00/D00M	0xd4c	dngname	0x28fcba		ok		
+match			D00/D00M	0xe10	dngname	0x28fcfa		ok		
+match			D00/D00M	0xed4	dngname	0x28fd3a		ok		
+match			D00/D01M	0x7fc	dngname	0x2921ba		ok		
+match			D00/D02M	0x764	dngname	0x29203a		ok		
+match			D00/D02M	0x828	dngname	0x29207a		ok		
+match			D00/D02M	0x8ec	dngname	0x2920ba		ok		
+match			D00/D03M	0x764	dngname	0x29203a		ok		
+match			D00/D03M	0x828	dngname	0x29207a		ok		
+match			D00/D03M	0x8ec	dngname	0x2920ba		ok		
+match			D00/D04M	0x5d0	dngname	0x291fba		ok		
+match			D00/D04M	0x694	dngname	0x291ffa		ok		
+match			D00/D05M	0x804	dngname	0x291f3a		ok		
+match			D00/D05M	0x8c8	dngname	0x291f3a		ok		
+match			D00/D06M	0x690	dngname	0x291eba		ok		
+match			D00/D06M	0x754	dngname	0x291efa		ok		
+match			D00/D07M	0x81c	dngname	0x291e3a		ok		
+match			D00/D07M	0x8e0	dngname	0x291e3a		ok		
+match			D01/D08M	0x99c	dngname	0x291cfa		ok		
+match			D01/D08M	0xa60	dngname	0x291d3a		ok		
+match			D01/D08M	0xb24	dngname	0x291d7a		ok		
+match			D01/D08M	0xbe8	dngname	0x291dba		ok		
+match			D01/D08M	0xcac	dngname	0x291cba		ok		
+match			D01/D08M	0xd70	dngname			none		
+match			D01/D09M	0x5c4	dngname	0x291c7a		ok		
+match			D01/D09M	0x688	dngname	0x291cba		ok		
+match			D01/D0AM	0xc98	dngname	0x28fc7a		ok		
+match			D01/D0AM	0xd5c	dngname	0x28fcba		ok		
+match			D01/D0AM	0xe20	dngname	0x28fcfa		ok		
+match			D01/D0AM	0xee4	dngname	0x28fc7a		ok		
+match			D01/D0AM	0xfa8	dngname	0x28fcba		ok		
+match			D01/D0AM	0x106c	dngname	0x28fcfa		ok		
+match			D01/D0BM	0x8e4	dngname	0x29197a		ok		
+match			D01/D0BM	0x9a8	dngname	0x29197a		ok		
+match			D01/D0BM	0xa6c	dngname	0x29197a		ok		
+match			D01/D0BM	0xb30	dngname	0x29197a		ok		
+match			D01/D0BM	0xbf4	dngname	0x29197a		ok		
+match			D01/D0BM	0xcb8	dngname	0x29197a		ok		
+match			D01/D0CM	0x960	dngname	0x29177a		ok		
+match			D01/D0CM	0xa24	dngname	0x2917ba		ok		
+match			D01/D0CM	0xae8	dngname	0x2917fa		ok		
+match			D01/D0CM	0xbac	dngname	0x29183a		ok		
+match			D01/D0CM	0xc70	dngname	0x29187a		ok		
+match			D01/D0CM	0xd34	dngname	0x2918ba		ok		
+match			D01/D0CM	0xdf8	dngname	0x2918ba		ok		
+match			D01/D0CM	0xebc	dngname	0x29193a		ok		
+match			D01/D0DM	0x6a0	dngname	0x29153a		ok		
+match			D01/D0DM	0x764	dngname	0x29157a		ok		
+match			D01/D0DM	0x828	dngname	0x2915ba		ok		
+match			D01/D0DM	0x8ec	dngname	0x2915fa		ok		
+match			D01/D0EM	0x43c	dngname	0x2914fa		ok		
+match			D01/D0FM	0x82c	dngname	0x29127a		ok		
+match			D01/D0FM	0x8f0	dngname	0x2912ba		ok		
+match			D01/D0FM	0x9b4	dngname	0x2912fa		ok		
+match			D01/D0FM	0xa78	dngname	0x29133a		ok		
+match			D01/D0FM	0xb3c	dngname	0x29137a		ok		
+match			D01/D0FM	0xc00	dngname	0x2913ba		ok		
+match			D01/D0FM	0xcc4	dngname	0x2913fa		ok		
+match			D01/D0FM	0xd88	dngname	0x29143a		ok		
+match			D01/D0FM	0xe4c	dngname	0x29147a		ok		
+match			D01/D0FM	0xf10	dngname	0x2914ba		ok		
+match			D02/D11M	0x5b8	dngname	0x2911ba		ok		
+match			D02/D11M	0x67c	dngname	0x2911ba		ok		
+match			D02/D12M	0x69c	dngname	0x29107a		ok		
+match			D02/D12M	0x760	dngname	0x2910ba		ok		
+match			D02/D12M	0x824	dngname	0x2910fa		ok		
+match			D02/D12M	0x8e8	dngname	0x29113a		ok		
+match			D02/D12M	0x9ac	dngname	0x29117a		ok		
+match			D02/D13M	0x6b0	dngname	0x290fba		ok		
+match			D02/D13M	0x774	dngname	0x290ffa		ok		
+match			D02/D13M	0x838	dngname	0x29103a		ok		
+match			D02/D14M	0x824	dngname	0x290e3a		ok		
+match			D02/D14M	0x8e8	dngname	0x290e7a		ok		
+match			D02/D14M	0x9ac	dngname	0x290eba		ok		
+match			D02/D14M	0xa70	dngname	0x290efa		ok		
+match			D02/D14M	0xb34	dngname	0x290f3a		ok		
+match			D02/D14M	0xbf8	dngname	0x290f7a		ok		
+match			D02/D15M	0x5b0	dngname	0x2911ba		ok		
+match			D02/D16M	0x98c	dngname	0x290bba		ok		
+match			D02/D16M	0xa50	dngname	0x290bfa		ok		
+match			D02/D16M	0xb14	dngname	0x290c3a		ok		
+match			D02/D16M	0xbd8	dngname	0x290c7a		ok		
+match			D02/D16M	0xc9c	dngname	0x290cba		ok		
+match			D02/D16M	0xd60	dngname	0x290cfa		ok		
+match			D02/D16M	0xe24	dngname	0x290d3a		ok		
+match			D02/D16M	0xee8	dngname	0x290d7a		ok		
+match			D02/D16M	0xfac	dngname	0x290dba		ok		
+match			D02/D17M	0x818	dngname	0x28fd7a		ok		
+match			D02/D17M	0x8dc	dngname	0x28fd7a		ok		
+match			D02/D17M	0x9a0	dngname	0x28fd7a		ok		
+match			D02/D17M	0xa64	dngname	0x28fd7a		ok		
+match			D02/D17M	0xb28	dngname	0x28fd7a		ok		
+match			D02/D17M	0xbec	dngname	0x28fd7a		ok		
+match			D03/D18M	0xa78	dngname	0x2909fa		ok		
+match			D03/D19M	0x6ac	dngname	0x2906fa		ok		
+match			D03/D19M	0x770	dngname	0x29073a		ok		
+match			D03/D19M	0x834	dngname	0x29077a		ok		
+match			D03/D19M	0x8f8	dngname	0x2907ba		ok		
+match			D03/D19M	0x9bc	dngname	0x2907fa		ok		
+match			D03/D19M	0xa80	dngname	0x29083a		ok		
+match			D03/D19M	0xb44	dngname	0x29087a		ok		
+match			D03/D1AM	0x78c	dngname	0x2904fa		ok		
+match			D03/D1AM	0x850	dngname	0x29053a		ok		
+match			D03/D1AM	0x914	dngname	0x29057a		ok		
+match			D03/D1AM	0x9d8	dngname	0x2905ba		ok		
+match			D03/D1AM	0xa9c	dngname	0x2905fa		ok		
+match			D03/D1AM	0xb60	dngname	0x29063a		ok		
+match			D03/D1AM	0xc24	dngname	0x29067a		ok		
+match			D03/D1AM	0xce8	dngname	0x2906ba		ok		
+match			D03/D1BM	0x754	dngname	0x2904ba		ok		
+match			D03/D1CM	0x81c	dngname	0x2902ba		ok		
+match			D03/D1CM	0x8e0	dngname	0x2902fa		ok		
+match			D03/D1CM	0x9a4	dngname	0x29033a		ok		
+match			D03/D1CM	0xa68	dngname	0x29037a		ok		
+match			D03/D1CM	0xb2c	dngname	0x2903ba		ok		
+match			D03/D1CM	0xbf0	dngname	0x2903fa		ok		
+match			D03/D1CM	0xcb4	dngname	0x29043a		ok		
+match			D03/D1CM	0xd78	dngname	0x29047a		ok		
+match			D03/D1DM	0x820	dngname	0x2900fa		ok		
+match			D03/D1DM	0x8e4	dngname	0x29013a		ok		
+match			D03/D1DM	0x9a8	dngname	0x29017a		ok		
+match			D03/D1DM	0xa6c	dngname	0x2901ba		ok		
+match			D03/D1DM	0xb30	dngname	0x2901fa		ok		
+match			D03/D1DM	0xbf4	dngname	0x29023a		ok		
+match			D03/D1DM	0xcb8	dngname	0x29027a		ok		
+match			D03/D1EM	0x7f0	dngname	0x2900ba		ok		
+match			D03/D1FM	0xa4c	dngname	0x28fffa		ok		
+match			D03/D1FM	0xb10	dngname	0x29003a		ok		
+match			D03/D1FM	0xbd4	dngname	0x29007a		ok		
+match			D04/D21M	0xb8c	dngname	0x28feba		ok		
+match			D04/D21M	0xc50	dngname	0x28fefa		ok		
+match			D04/D21M	0xd14	dngname	0x28ff3a		ok		
+match			D04/D21M	0xdd8	dngname	0x28ff7a		ok		
+match			D04/D22M	0xb84	dngname	0x28fdfa		ok		
+match			D04/D22M	0xc48	dngname	0x28fe3a		ok		
+match			D04/D22M	0xd0c	dngname	0x28fe7a		ok		
+match			D04/D23M	0x7f8	dngname	0x28fd7a		ok		
+match			D04/D23M	0x8bc	dngname	0x28fd7a		ok		
+match			D04/D24M	0xc88	dngname	0x28fc7a		ok		
+match			D04/D24M	0xd4c	dngname	0x28fcba		ok		
+match			D04/D24M	0xe10	dngname	0x28fcfa		ok		
+match			D04/D24M	0xed4	dngname	0x28fd3a		ok		

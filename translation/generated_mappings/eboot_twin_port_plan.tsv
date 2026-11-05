@@ -1,0 +1,92 @@
+kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
+meta	map:boot_btlmsg	fffeb222faa24d5466d83daa4072ee0e4858d93e								
+meta	map:btlneg	c72af019b544786c322280f0bd3385780858f900								
+meta	matches_sha1	074a6e55da4371a70ebd2b3783c36ddfdc85a24e								
+meta	psx:BTLP	b2cba081ee71bd645969ec85ee11dc6ac18f2976								
+meta	rule_sha1	15aa6fc4cdac7a4d4fa488c014974698190b4997								
+meta	us:EBOOT	08e9592c6d19ae1a355f016b6664408be61089e4								
+meta	us:boot-bin	ffe2a970ebbcb974e5a022f572cbb5892d36f035								
+meta	version	1								
+match			boot_btlmsg	0x6d988	boot	29ba3e		exact		
+match			boot_btlmsg	0x6d998	boot	29ba12		exact		
+match			boot_btlmsg	0x6d9a4	boot	29b9f0		exact		
+match			boot_btlmsg	0x6d9ac	boot	29b9c6		exact		
+match			boot_btlmsg	0x6d9b8	boot	29b9a0		exact		
+match			boot_btlmsg	0x6d9c4	boot	29b95e		exact		
+match			boot_btlmsg	0x6d9dc	boot	29b920		exact		
+match			boot_btlmsg	0x6d9f0	boot	29b902		exact		
+match			boot_btlmsg	0x6da00	boot	29b8e4		exact		
+match			boot_btlmsg	0x6da14	boot	29b8cc		exact		
+match			boot_btlmsg	0x6da24	boot	29b89a		exact		
+match			boot_btlmsg	0x6da38	boot	29b860		exact		
+match			boot_btlmsg	0x6da48	boot	29b84c		exact		
+match			boot_btlmsg	0x6da50	boot	29b826		exact		
+match			boot_btlmsg	0x6da60	boot	29b80e		exact		
+match			boot_btlmsg	0x6da68	boot	29b7ea		exact		
+match			boot_btlmsg	0x6da74	boot	29b7b6		exact		
+match			boot_btlmsg	0x6da84	boot	29b792		exact		
+match			boot_btlmsg	0x6da94	boot	29b75a		exact		
+match			boot_btlmsg	0x6dac4	boot	29b718		exact		
+match			boot_btlmsg	0x6dad4	boot	29b700		exact		
+match			boot_btlmsg	0x6dae4	boot	29b6c2		exact		
+match			boot_btlmsg	0x6daf4	boot	29b690		exact		
+match			boot_btlmsg	0x6db08	boot	29b650		exact		
+match			boot_btlmsg	0x6dbac	boot	29b552		exact		
+match			boot_btlmsg	0x6dbe8	boot	29b4dc		exact		
+match			boot_btlmsg	0x6dbf8	boot	29b4b8		exact		
+match			boot_btlmsg	0x6dc08	boot	29b490		exact		
+match			boot_btlmsg	0x6dc18	boot	29b45c		exact		
+match			boot_btlmsg	0x6dc2c	boot	29b42e		exact		
+match			boot_btlmsg	0x6dc40	boot	29b3fa		exact		
+match			boot_btlmsg	0x6dc54	boot	29b3b6		exact		
+match			boot_btlmsg	0x6dc64	boot	29b380		exact		
+match			boot_btlmsg	0x6dc78	boot	29b354		exact		
+match			boot_btlmsg	0x6dc88	boot	29b334		exact		
+match			boot_btlmsg	0x6dc98	boot	29b30a		exact		
+match			boot_btlmsg	0x6dca8	boot	29b2f6		exact		
+match			boot_btlmsg	0x6dcd8	boot	29b29e		exact		
+match			boot_btlmsg	0x6dce0	boot	29b26e		exact		
+match			boot_btlmsg	0x6dd00	boot	29b220		exact		
+match			boot_btlmsg	0x6dd14	boot	29b1fe		exact		
+match			boot_btlmsg	0x6dd20	boot	29b1b8		exact		
+match			boot_btlmsg	0x6dd34	boot	29b18e		exact		
+match			boot_btlmsg	0x6dd44	boot	29b15e		exact		
+match			boot_btlmsg	0x6dd70	boot	29b0f4		exact		
+match			boot_btlmsg	0x6dd7c	boot	29b0ca		exact		
+match			boot_btlmsg	0x6dd88	boot	29b0a4		exact		
+match			boot_btlmsg	0x6dda0	boot	29b06e		exact		
+match			boot_btlmsg	0x6ddb8	boot	29b04a		exact		
+match			boot_btlmsg	0x6ddc8	boot	29b02c		exact		
+match			boot_btlmsg	0x6ddd4	boot	29b00a		exact		
+match			boot_btlmsg	0x6dde4	boot	29aff0		exact		
+match			boot_btlmsg	0x6ddf0	boot	29afda		exact		
+match			boot_btlmsg	0x6ddfc	boot	29afb8		exact		
+match			boot_btlmsg	0x6de0c	boot	29afa6		exact		
+match			boot_btlmsg	0x6de14	boot	29af7c		exact		
+match			boot_btlmsg	0x6de24	boot	29af42		exact		
+match			boot_btlmsg	0x6de38	boot	29af10		exact		
+match			boot_btlmsg	0x6de48	boot	29aef2		exact		
+match			boot_btlmsg	0x6de58	boot	29aed4		exact		
+match			consumer:notice	33	boot	2a5776		consumer		
+match			consumer:control	25	boot	2a58ec		consumer		
+match			consumer:control	27	boot	2a58a6		consumer		
+match			btlneg	114				exact	none	
+match			btlneg	118				exact	none	
+match			btlneg	145				exact	none	
+match			btlneg	167				exact	none	
+match			btlneg	184				exact	none	
+match			btlneg	195				exact	none	
+match			btlneg	295				exact	none	
+match			btlneg	296				exact	none	
+match			btlneg	297				exact	none	
+match			btlneg	299				exact	none	
+match			btlneg	301				exact	none	
+match			btlneg	332				exact	none	
+match			btlneg	335				exact	none	
+match			btlneg	344				exact	none	
+match			btlneg	346				exact	none	
+match			btlneg	351				exact	none	
+match			btlneg	352				exact	none	
+match			btlbanner	0x800d835c	boot	278ee4		unanimous		
+match			btlbanner	0x800d87b8	boot	278ee4		unanimous		
+match			btlbanner	0x800d87c8	boot	278ee4		unanimous		

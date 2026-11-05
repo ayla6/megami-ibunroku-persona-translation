@@ -1,0 +1,107 @@
+kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
+meta	matches_sha1	9caa1371215c986603c8628f50bd8b4b3810f878								
+meta	matching_inputs_sha1	ed1707d57bb658d690c50ba7916c021d19b1a1ce								
+meta	psx:BTLP	b2cba081ee71bd645969ec85ee11dc6ac18f2976								
+meta	us:EBOOT	08e9592c6d19ae1a355f016b6664408be61089e4								
+meta	version	1								
+match			BTLP	0x6b650	btlevt	0x29ea02	0x29ea02	ok		Nanjo
+match			BTLP	0x6b66c	btlevt	0x29e9d2	0x29e9d2	ok		Yukino
+match			BTLP	0x6b680	btlevt	0x29e936	0x29e936	ok		Mark
+match			BTLP	0x6b6b0	btlevt			gap		
+match			BTLP	0x6b6bc	btlevt	0x29e846	0x29e846	ok		
+match			BTLP	0x6b6f4	btlevt	0x29e816	0x29e816	ok		Nanjo
+match			BTLP	0x6b70c	btlevt	0x29e782	0x29e782	ok		Elly
+match			BTLP	0x6b74c	btlevt	0x29e72a	0x29e72a	ok		Yukino
+match			BTLP	0x6b770	btlevt	0x29e6e6	0x29e6e6	ok		Mark
+match			BTLP	0x6b790	btlevt	0x29e6a2	0x29e6a2	ok		Maki
+match			BTLP	0x6b7a4	btlevt	0x29e64e	0x29e64e	ok		Nanjo
+match			BTLP	0x6b7bc	btlevt	0x29e602	0x29e602	ok		Demon
+match			BTLP	0x6b7dc	btlevt	0x29e5c6	0x29e5c6	ok		Demon
+match			BTLP	0x6b800	btlevt	0x29e572	0x29e572	ok		Brown
+match			BTLP	0x6b824	btlevt	0x29e4ee	0x29e4ee	ok		Mark
+match			BTLP	0x6b848	btlevt	0x29e456	0x29e456	ok		Demon Lieutenant
+match			BTLP	0x6b87c	btlevt	0x29e40e	0x29e40e	ok		Brown
+match			BTLP	0x6b8a4	btlevt	0x29e396	0x29e396	ok		Brown
+match			BTLP	0x6b8d0	btlevt	0x29e2fa	0x29e2fa	ok		Demon Lieutenant
+match			BTLP	0x6b910	btlevt	0x29e2ae	0x29e2ae	ok		Brown
+match			BTLP	0x6b938	btlevt	0x29e1ca	0x29e256	ok		Ayase
+match			BTLP	0x6b984	btlevt	0x29e126	0x29e126	ok		Right M.I.B.
+match			BTLP	0x6b9a4	btlevt	0x29e0f2	0x29e0f2	ok		Left M.I.B.
+match			BTLP	0x6b9b4	btlevt	0x29e05e	0x29e05e	ok		Ayase
+match			BTLP	0x6b9e8	btlevt	0x29df96	0x29dfe6	ok		Takeda
+match			BTLP	0x6ba24	btlevt	0x29df72	0x29df72	ok		Nanjo
+match			BTLP	0x6ba34	btlevt	0x29dec6	0x29dec6	ok		Kandori
+match			BTLP	0x6ba68	btlevt	0x29de6e	0x29de6e	ok		Mark
+match			BTLP	0x6ba88	btlevt	0x29ddd2	0x29ddd2	ok		Kandori
+match			BTLP	0x6bac0	btlevt	0x29ddaa	0x29ddaa	ok		Takeda
+match			BTLP	0x6bacc	btlevt	0x29dd6e	0x29dd6e	ok		Nanjo
+match			BTLP	0x6badc	btlevt	0x29dd36	0x29dd36	ok		Takeda
+match			BTLP	0x6baf0	btlevt	0x29dc62	0x29dcdc	ok		Takeda
+match			BTLP	0x6bb2c	btlevt	0x29dbbe	0x29dbbe	ok		Reiji
+match			BTLP	0x6bb64	btlevt	0x29db8a	0x29db8a	ok		Reiji
+match			BTLP	0x6bb74	btlevt	0x29db62	0x29db62	ok		Tesso
+match			BTLP	0x6bb8c	btlevt	0x29db16	0x29db16	ok		Mark
+match			BTLP	0x6bba0	btlevt	0x29dac2	0x29dac2	ok		Brown
+match			BTLP	0x6bbc4	btlevt	0x29da4e	0x29da4e	ok		Elly
+match			BTLP	0x6bbec	btlevt	0x29da12	0x29da12	ok		Ayase
+match			BTLP	0x6bc00	btlevt	0x29d9d6	0x29d9d6	ok		Maki
+match			BTLP	0x6bc14	btlevt	0x29d99e	0x29d99e	ok		Brown
+match			BTLP	0x6bc2c	btlevt	0x29d946	0x29d946	ok		Elly
+match			BTLP	0x6bc44	btlevt	0x29d8ce	0x29d8ce	ok		Ayase
+match			BTLP	0x6bc68	btlevt	0x29d862	0x29d862	ok		Maki
+match			BTLP	0x6bc8c	btlevt	0x29d80a	0x29d80a	ok		Nanjo
+match			BTLP	0x6bca8	btlevt	0x29d7de	0x29d7de	ok		Tesso
+match			BTLP	0x6bcc0	btlevt	0x29d742	0x29d742	ok		Yog-Sothoth Jr.
+match			BTLP	0x6bcfc	btlevt	0x29d722	0x29d722	ok		Mark
+match			BTLP	0x6bd10	btlevt	0x29d6da	0x29d6da	ok		Yog-Sothoth Jr.
+match			BTLP	0x6bd28	btlevt	0x29d602	0x29d692	ok		Harem Queen
+match			BTLP	0x6bd8c	btlevt	0x29d526	0x29d562	ok		Maki
+match			BTLP	0x6bdd8	btlevt	0x29d446	0x29d482	ok		Harem Queen
+match			BTLP	0x6be28	btlevt	0x29d406	0x29d406	ok		Harem Queen
+match			BTLP	0x6be40	btlevt	0x29d34e	0x29d34e	ok		Nanjo
+match			BTLP	0x6be74	btlevt	0x29d302	0x29d302	ok		Reiji
+match			BTLP	0x6be8c	btlevt	0x29d27e	0x29d27e	ok		Mark
+match			BTLP	0x6beb4	btlevt	0x29d22e	0x29d22e	ok		Saurva
+match			BTLP	0x6bed4	btlevt	0x29d1b6	0x29d1b6	ok		Saurva
+match			BTLP	0x6befc	btlevt	0x29d156	0x29d156	ok		Hariti
+match			BTLP	0x6bf38	btlevt	0x29d0fa	0x29d0fa	ok		Mark
+match			BTLP	0x6bf64	btlevt	0x29d0ca	0x29d0ca	ok		Nanjo
+match			BTLP	0x6bf74	btlevt	0x29d042	0x29d042	ok		Kandori
+match			BTLP	0x6bf98	btlevt	0x29cffa	0x29cffa	ok		Mark
+match			BTLP	0x6bfc0	btlevt	0x29cf02	0x29cf4c	ok		Maki
+match			BTLP	0x6c014	btlevt	0x29cda2	0x29ce4e	ok		Kandori
+match			BTLP	0x6c07c	btlevt	0x29cd6a	0x29cd6a	ok		Brown
+match			BTLP	0x6c098	btlevt	0x29ccb2	0x29ccd2	ok		Elly
+match			BTLP	0x6c0dc	btlevt	0x29cc3a	0x29cc3a	ok		Ayase
+match			BTLP	0x6c0fc	btlevt	0x29cbb2	0x29cbb2	ok		Reiji
+match			BTLP	0x6c124	btlevt	0x29cb06	0x29cb06	ok		Nanjo
+match			BTLP	0x6c164	btlevt	0x29c9aa	0x29ca5a	ok		Kandori
+match			BTLP	0x6c1d8	btlevt	0x29c8e6	0x29c922	ok		Kandori
+match			BTLP	0x6c214	btlevt	0x29c7da	0x29c868	ok		Nyarlathotep's voice
+match			BTLP	0x6c258	btlevt	0x29c7b2	0x29c7b2	ok		Kandori
+match			BTLP	0x6c26c	btlevt	0x29c786	0x29c786	ok		Maki
+match			BTLP	0x6c27c	btlevt	0x29c75e	0x29c75e	ok		Mark
+match			BTLP	0x6c28c	btlevt	0x29c6de	0x29c6de	ok		Nanjo
+match			BTLP	0x6c2b0	btlevt	0x29c682	0x29c682	ok		Kandori
+match			BTLP	0x6c2d8	btlevt	0x29c602	0x29c602	ok	tail	Pandora
+match			BTLP	0x6c300	btlevt	0x29c602	0x29c602	ok	leading	Pandora
+match			BTLP	0x6c318	btlevt	0x29c5ae	0x29c5ae	ok		Mark
+match			BTLP	0x6c32c	btlevt	0x29c57a	0x29c57a	ok		Maki
+match			BTLP	0x6c33c	btlevt	0x29c4f2	0x29c4f2	ok		Pandora
+match			BTLP	0x6c370	btlevt	0x29c4aa	0x29c4aa	ok		Yukino
+match			BTLP	0x6c38c	btlevt	0x29c412	0x29c412	ok		Ayase
+match			BTLP	0x6c3c0	btlevt	0x29c34e	0x29c3ee	ok		Toro
+match			BTLP	0x6c3fc	btlevt	0x29c2fa	0x29c2fa	ok		Yukino
+match			BTLP	0x6c418	btlevt	0x29c296	0x29c296	ok		Ayase
+match			BTLP	0x6c44c	btlevt	0x29c1b2	0x29c214	ok		Brown
+match			BTLP	0x6c484	btlevt	0x29c192	0x29c192	ok		Ayase
+match			BTLP	0x6c494	btlevt	0x29c08e	0x29c110	ok		Hypnos
+match			BTLP	0x6c4d4	btlevt	0x29c032	0x29c032	ok		Yukino
+match			BTLP	0x6c4f4	btlevt	0x29bf6e	0x29bfd4	ok		Nemesis
+match			BTLP	0x6c560	btlevt	0x29be66	0x29bf10	ok		Yukino
+match			BTLP	0x6c5a4	btlevt	0x29bdbe	0x29bdbe	ok		Ayase
+match			BTLP	0x6c5dc	btlevt	0x29bce6	0x29bd54	ok		Nemesis
+match			BTLP	0x6c638	btlevt	0x29bbe6	0x29bc58	ok		Thanatos
+match			BTLP	0x6c6a0	btlevt	0x29bb7a	0x29bb7a	ok		Ayase
+match			BTLP	0x6c6c4	btlevt	0x29bada	0x29bada	ok		Thanatos
+match			BTLP	0x6c704	btlevt			gap		

@@ -1,0 +1,8 @@
+id	pos	psp	en
+0	0x23194	d00:23c74	My last name is <FF0F><00>.<FF03>My first name is <FF07><00>.<FF02><FF04>My full name is <FF07><00> <FF0F><00>.<FF02><FF04>My nickname is <FF08><00>.<FF02>
+1	0x23130	d00:23ba4	This room doesn't seem to have<FF03>been used in quite some time...<FF02>
+2	0x22f7c	d00:23894	It seems to be locked...<FF02>
+3	0x22fcc	d00:23914	It's locked. It doesn't seem as<FF03>though you can enter.<FF02>
+4	0x23024	d00:239d4	The door is locked. Could that<FF03>girl have been an illusion...?<FF02>
+5	0x230bc	d00:23acc	The door is locked.<FF02>
+6	0x230cd	d00:23afa	The door was locked again<FF03>before you knew it...<FF02>

@@ -1,0 +1,1062 @@
+id	pos	psp	en
+0	0x2014	pack/talk/YOUEN:0x2030	You want me? Hmm...<FFF6>it doesn't SEEM like you're lying...<FFF5>
+1	0x2032	pack/talk/YOUEN:0x20a8	Wow, you're young...<FFF6>you have a pretty level head to<FFF6>try and persuade a demon!<FFFD>　<FFF5>
+2	0x2062	pack/talk/YOUEN:0x2150	Hey! Don't just say the first<FFF6>thing that pops into your head!<FFF5>
+3	0x2084	pack/talk/YOUEN:0x21d0	Something seems fishy...<FFF6>Do you really mean what you say?<FFFD>あ<FFF5>
+4	0x20a7	pack/talk/YOUEN:0x2248	Whatever you say,<FFF6>you're still interested in me, right?<FFF6>With a figure like mine, you must be!<FFF5>
+5	0x20d4	pack/talk/YOUEN:0x2308	So that's why you need my help!<FFFD>い<FFF5>
+6	0x20ed	pack/talk/YOUEN:0x2350	I see. You have that much<FFF6>confidence in yourself?<FFF6>I'd love to put that to the test!<FFF5>
+7	0x210e	pack/talk/YOUEN:0x23f8	You seem pretty strong. So... what<FFF6>are you going to do to me, hmmm?<FFFD>う<FFF5>
+8	0x2130	pack/talk/YOUEN:0x2488	Oh, is that so?<FFF6>If you prefer, I wouldn't mind<FFF6>fighting you without holding back!<FFF5>
+9	0x215e	pack/talk/YOUEN:0x2530	Well, if nothing else,<FFF6>you have quite the silver tongue.<FFF6>Where'd you learn to talk like that?<FFFD>え<FFF5>
+10	0x2180	pack/talk/YOUEN:0x25f0	Why are you threatening me...?<FFF5>
+11	0x2195	pack/talk/YOUEN:0x2630	Don't make such awful faces...<FFFD>お<FFF5>
+12	0x21a9	pack/talk/YOUEN:0x2678	You want me? Hmm...<FFF6>it doesn't SEEM like you're lying...<FFF5>
+13	0x21c7	pack/talk/YOUEN:0x26f0	You're young, but<FFF6>you've got backbone,<FFF6>inviting a demon to come along.<FFFD>か<FFF5>
+14	0x21f0	pack/talk/YOUEN:0x2788	Hey! Don't just say the first<FFF6>thing that pops into your head!<FFF5>
+15	0x2210	pack/talk/YOUEN:0x2808	Something seems fishy...<FFF6>Do you really mean what you say?<FFFD>き<FFF5>
+16	0x2233	pack/talk/YOUEN:0x2880	I'm not into that kind of thing...<FFF5>
+17	0x2246	pack/talk/YOUEN:0x28c8	Psh! You're just sweet-talking<FFF6>me so you can kidnap me!<FFFD>く<FFF5>
+18	0x2272	pack/talk/YOUEN:0x2940	You've got a nice voice for a human...<FFF6>Let's hear what it sounds<FFF6>like when you scream!<FFF5>
+19	0x22a9	pack/talk/YOUEN:0x29f0	Is that a challenge to a fellow<FFF6>chanteuse? Then I accept!<FFFD>け<FFF5>
+20	0x22e6	pack/talk/YOUEN:0x2a68	You're... better than me...!<FFF6>What am I supposed to do?<FFF5>
+21	0x22fd	pack/talk/YOUEN:0x2ad8	You're killing my brain cells!<FFF6>Stop, please!<FFFD>こ<FFF5>
+22	0x2322	pack/talk/YOUEN:0x2b38	You've got a long way to go to catch<FFF6>up to me... but you're pretty good!<FFF5>
+23	0x2345	pack/talk/YOUEN:0x2bd0	*dreamy sigh*<FFFD>さ<FFF5>
+24	0x235a	pack/talk/YOUEN:0x2bf0	You want me? Hmm...<FFF6>it doesn't SEEM like you're lying...<FFF5>
+25	0x2378	pack/talk/YOUEN:0x2c68	Wow, you're young...<FFF6>you have a pretty level head to<FFF6>try and get a demon's help!<FFFD>し<FFF5>
+26	0x23a5	pack/talk/YOUEN:0x2d10	Hey! Don't just say the first<FFF6>thing that pops into your head!<FFF5>
+27	0x23c5	pack/talk/YOUEN:0x2d90	Something seems fishy...<FFF6>Do you really mean what you say?<FFFD>す<FFF5>
+28	0x23e8	pack/talk/YOUEN:0x2e08	Whatever you say,<FFF6>you're still interested in me, right?<FFF6>With a figure like mine, you must be!<FFF5>
+29	0x2415	pack/talk/YOUEN:0x2ec8	So that's why you need my help!<FFFD>せ<FFF5>
+30	0x242e	pack/talk/YOUEN:0x2f10	Don't you have any pride?<FFF6>I hate mousy girls like you!<FFF5>
+31	0x2456	pack/talk/YOUEN:0x2f80	Stop trying the obvious! Don't think I<FFF6>don't know what you're really after!<FFFD>そ<FFF5>
+32	0x247e	pack/talk/YOUEN:0x3020	Hey, stop it...<FFF6>You're creeping me out...<FFF5>
+33	0x249c	pack/talk/YOUEN:0x3078	Oh, no, I'm nothing compared to<FFF6>the others. And may I say you look as<FFF6>strong as always, <FFF9>...<FFFD>た<FFF5>
+34	0x24c8	pack/talk/YOUEN:0x3138	Yes! That's how things should be!<FFF6>Kneel before me!<FFF5>
+35	0x24ec	pack/talk/YOUEN:0x31a0	Ahhh... Why am I so perfect?<FFF6>My own greatness frightens me...<FFFD>ち<FFF5>
+36	0x2525	pack/talk/YOUEN:0x3220	In other words, you want me? Hmm...<FFF6>it doesn't SEEM like you're lying...<FFF5>
+37	0x2546	pack/talk/YOUEN:0x32b8	Wow, you're young, but you<FFF6>think about things like that, too.<FFF6>Good for you!<FFFD>つ<FFF5>
+38	0x256f	pack/talk/YOUEN:0x3358	Hey! Don't just say the first<FFF6>thing that pops into your head!<FFF5>
+39	0x258f	pack/talk/YOUEN:0x33d8	Something seems fishy...<FFF6>Do you really mean what you say?<FFFD>て<FFF5>
+40	0x25b2	pack/talk/YOUEN:0x3450	Whatever you say,<FFF6>you're still interested in me, right?<FFF6>With a figure like mine, you must be!<FFF5>
+41	0x25df	pack/talk/YOUEN:0x3510	So when you get down to it,<FFF6>you need my help!<FFFD>と<FFF5>
+42	0x25fd	pack/talk/YOUEN:0x3570	You seem to have an innate<FFF6>understanding of your true strength.<FFF6>That's a very good thing.<FFF5>
+43	0x2631	pack/talk/YOUEN:0x3628	Oh, my...<FFF6>I was afraid you were an idiot, but<FFF6>you're actually very smart.<FFFD>な<FFF5>
+44	0x265d	pack/talk/YOUEN:0x36c0	Don't you have any pride?<FFF6>I hate mousy girls like you!<FFF5>
+45	0x2685	pack/talk/YOUEN:0x3730	Stop trying the obvious! Don't think I<FFF6>don't know what you're really after!<FFFD>に<FFF5>
+46	0x26ad	pack/talk/YOUEN:0x37d0	Yes! That's how things should be!<FFF6>Kneel before me!<FFF5>
+47	0x26d1	pack/talk/YOUEN:0x3838	Ahhh... Why am I so perfect?<FFF6>My own greatness frightens me...<FFFD>ぬ<FFF5>
+48	0x270a	pack/talk/YOUEN:0x38b8	You're hitting on a demon? What<FFF6>an odd boy... Still, you're a cute one!<FFF5>
+49	0x273a	pack/talk/YOUEN:0x3948	I... I guess I wouldn't mind<FFF6>having dinner with you...<FFFD>ね<FFF5>
+50	0x2765	pack/talk/YOUEN:0x39c0	Hey! I'm out of your league, kid!<FFF5>
+51	0x2783	pack/talk/YOUEN:0x3a08	I'm not the easy pickup<FFF6>you think I am!<FFFD>の<FFF5>
+52	0x27a1	pack/talk/YOUEN:0x3a60	I'm scaaaaaared!<FFF5>
+53	0x27aa	pack/talk/YOUEN:0x3a88	I'm scaaaaaared!<FFF5>
+54	0x27b3	pack/talk/YOUEN:0x3ab0	Reaaaally? Awwww, no way!<FFF6>But I already have a boyfriend, so...<FFF6>sorry.<FFF5>
+55	0x27e5	pack/talk/YOUEN:0x3b40	Are you hitting on me? Ahaha...<FFF6>What should I do...?<FFFD>は<FFF5>
+56	0x280d	pack/talk/YOUEN:0x3bb0	Someone like you is<FFF6>actually very smart.<FFF5>
+57	0x282f	pack/talk/YOUEN:0x3c08	What was that?<FFFD>ひ<FFF5>
+58	0x283e	pack/talk/YOUEN:0x3c30	Enough is enough!<FFF5>
+59	0x284d	pack/talk/YOUEN:0x3c58	What's so interesting about that?<FFFD>ふ<FFF5>
+60	0x2861	pack/talk/YOUEN:0x3ca0	...Laaaaame...<FFF5>
+61	0x2874	pack/talk/YOUEN:0x3cc0	What's wrong!?<FFF6>You suddenly blurted out a joke!<FFFD>へ<FFF5>
+62	0x2896	pack/talk/YOUEN:0x3d28	You're pretty funny!<FFF6>Not as funny as your face, though.<FFF5>
+63	0x28b8	pack/talk/YOUEN:0x3d98	No way, you're funny! Want to<FFF6>debut as a pro? I'll be your manager.<FFFD>ほ<FFF5>
+64	0x28f9	pack/talk/YOUEN:0x3e28	Huh, is that so...? The human<FFF6>world sounds complicated too.<FFF5>
+65	0x291d	pack/talk/YOUEN:0x3ea0	Don't you have more<FFF6>interesting news?<FFFD>ま<FFF5>
+66	0x2935	pack/talk/YOUEN:0x3ef0	I don't care about that stuff.<FFF6>If you're going to tell a story,<FFF6>make it a more interesting one!<FFF5>
+67	0x2962	pack/talk/YOUEN:0x3fb0	This isn't the place for small talk!<FFF6>Take this seriously!<FFFD>み<FFF5>
+68	0x2996	pack/talk/YOUEN:0x4028	Then I'll tell you an interesting<FFF6>story afterwards, too!<FFF5>
+69	0x29b6	pack/talk/YOUEN:0x40a0	All girls love gossip!<FFFD>む<FFF5>
+70	0x29d8	pack/talk/YOUEN:0x40d8	All that, just to get my attention?<FFF6>You're such a child...<FFF5>
+71	0x29fe	pack/talk/YOUEN:0x4150	What was that?<FFFD>め<FFF5>
+72	0x2a0d	pack/talk/YOUEN:0x4178	Wh-What the!? Sheesh!<FFF6>Don't surprise me like that!<FFF5>
+73	0x2a2e	pack/talk/YOUEN:0x41e0	What was that for!? You moron!<FFFD>も<FFF5>
+74	0x2a4c	pack/talk/YOUEN:0x4228	Eeeeek! Wh-What was that for?<FFF5>
+75	0x2a64	pack/talk/YOUEN:0x4268	I won't do anything, okay? Relax...<FFFD>や<FFF5>
+76	0x2a85	pack/talk/YOUEN:0x42b8	Is that a present for me?<FFF6>Oooh, hurry up and hand it over!<FFF5>
+77	0x2aa5	pack/talk/YOUEN:0x4330	Rich, huh? I want more!<FFFD>ゆ<FFF5>
+78	0x2ac9	pack/talk/YOUEN:0x4368	Are you trying to sway me with gifts?<FFF6>Hah! You won't win me over that way!<FFF5>
+79	0x2af2	pack/talk/YOUEN:0x4400	If you must give me a gift,<FFF6>make it a better one than that!<FFFD>よ<FFF5>
+80	0x2b13	pack/talk/YOUEN:0x4480	It's been so long since I last got<FFF6>a present... What a great day!<FFF5>
+81	0x2b32	pack/talk/YOUEN:0x4508	It feels great to get gifts!<FFFD>ら<FFF5>
+82	0x2b4d	pack/talk/YOUEN:0x4548	In other words, you want me? Hmm...<FFF6>it doesn't SEEM like you're lying...<FFF5>
+83	0x2b6e	pack/talk/YOUEN:0x45e0	Wow, you're young... but you seem<FFF6>pretty reliable. Impressive!<FFFD>り<FFF5>
+84	0x2b9a	pack/talk/YOUEN:0x4668	Hey! Don't just say the first<FFF6>thing that pops into your head!<FFF5>
+85	0x2bba	pack/talk/YOUEN:0x46e8	Something seems fishy...<FFF6>Do you really mean what you say?<FFFD>る<FFF5>
+86	0x2bdd	pack/talk/YOUEN:0x4760	Whatever you say,<FFF6>you're still interested in me, right?<FFF6>With a figure like mine, you must be!<FFF5>
+87	0x2c0a	pack/talk/YOUEN:0x4820	So that's why you need my help!<FFFD>れ<FFF5>
+88	0x2c23	pack/talk/YOUEN:0x4868	I see. You have that much<FFF6>confidence in yourself?<FFF6>I'd love to put that to the test!<FFF5>
+89	0x2c44	pack/talk/YOUEN:0x4910	You seem pretty strong. So... what<FFF6>are you going to do to me, hmmm?<FFFD>ろ<FFF5>
+90	0x2c66	pack/talk/YOUEN:0x49a0	Oh, is that so?<FFF6>Well, I wouldn't mind fighting you!<FFF5>
+91	0x2c83	pack/talk/YOUEN:0x4a08	Well, if nothing else,<FFF6>you have quite the silver tongue.<FFF6>Where'd you learn to talk like that?<FFFD>わ<FFF5>
+92	0x2ca5	pack/talk/YOUEN:0x4ac8	You don't have to threaten<FFF6>me like that...<FFF5>
+93	0x2cc1	pack/talk/YOUEN:0x4b20	Don't make such awful faces...<FFFD>を<FFF5>
+94	0x2cd5	pack/talk/YOUEN:0x4b68	You've got a hell of<FFF6>a mouth for a brat...<FFF6>Well, I'll forgive you this time.<FFF5>
+95	0x2d0b	pack/talk/YOUEN:0x4c08	If you don't learn at least a few<FFF6>manners, you won't live very long.<FFFD>ん<FFF5>
+96	0x2d32	pack/talk/YOUEN:0x4c98	You act like a grownup, but you've<FFF6>got a lot to learn about<FFF6>how to treat women!<FFF5>
+97	0x2d69	pack/talk/YOUEN:0x4d38	I've been alive for much longer than<FFF6>you! Watch how you speak to me!<FFFD>が<FFF5>
+98	0x2d9f	pack/talk/YOUEN:0x4dc8	I'll start to blush if you keep<FFF6>praising me that much!<FFF5>
+99	0x2db8	pack/talk/YOUEN:0x4e38	Heehee... you're smart!<FFFD>ぎ<FFF5>
+100	0x2dd5	pack/talk/YOUEN:0x4e70	Not bad, not bad at all! I'm good at<FFF6>doing sexy dances too, you know!<FFF5>
+101	0x2e04	pack/talk/YOUEN:0x4f00	You're good! Teach me that one<FFF6>too when we meet again!<FFFD>ぐ<FFF5>
+102	0x2e2d	pack/talk/YOUEN:0x4f78	You're not ready for prime time yet.<FFF6>Come back when you've<FFF6>practiced more!<FFF5>
+103	0x2e63	pack/talk/YOUEN:0x5010	Hey, what're you doing!?<FFF6>Do you need to use the restroom?<FFFD>げ<FFF5>
+104	0x2e88	pack/talk/YOUEN:0x5088	Oh, how wonderful!<FFF6>I'm going to dance, too!<FFF5>
+105	0x2ea6	pack/talk/YOUEN:0x50e0	I'm so excited,<FFF6>I could dance the night away!<FFFD>ご<FFF5>
+106	0x2ed3	pack/talk/YOUEN:0x5140	I see. You have that much<FFF6>confidence in yourself?<FFF6>I'd love to put that to the test!<FFF5>
+107	0x2ef4	pack/talk/YOUEN:0x51e8	You seem pretty strong. So... what<FFF6>are you going to do to me, hmmm?<FFFD>ざ<FFF5>
+108	0x2f16	pack/talk/YOUEN:0x5278	Oh, is that so?<FFF6>Well, I wouldn't mind fighting you!<FFF5>
+109	0x2f33	pack/talk/YOUEN:0x52e0	Well, if nothing else,<FFF6>you have quite the silver tongue.<FFF6>Where'd you learn to talk like that?<FFFD>じ<FFF5>
+110	0x2f55	pack/talk/YOUEN:0x53a0	You don't have to threaten<FFF6>me like that...<FFF5>
+111	0x2f71	pack/talk/YOUEN:0x53f8	Don't make such awful faces...<FFFD>ず<FFF5>
+112	0x2f85	pack/talk/YOUEN:0x5440	Is my makeup messed up?<FFF5>
+113	0x2f95	pack/talk/YOUEN:0x5470	If you keep that up,<FFF6>you'll stare a hole right through me!<FFFD>ぜ<FFF5>
+114	0x2fb5	pack/talk/YOUEN:0x54f0	What's with that glare? I don't like it!<FFF5>
+115	0x2fd2	pack/talk/YOUEN:0x5548	What're you looking at!?<FFFD>ぞ<FFF5>
+116	0x2fe1	pack/talk/YOUEN:0x5580	Look at you,<FFF6>gazing at me so dreamily...<FFF6>It's well-said that beauty is a sin.<FFF5>
+117	0x300d	pack/talk/YOUEN:0x5620	What's the matter? Have you never<FFF6>seen anyone so radiant as myself?<FFFD>だ<FFF5>
+118	0x302e	pack/talk/YOUEN:0x56b0	Was that a lie? Nah...<FFF6>didn't seem like it...<FFF5>
+119	0x3044	pack/talk/YOUEN:0x5710	Wow, is that the kind of life you've<FFF6>led? You've been through a lot,<FFF6>haven't you?<FFFD>ぢ<FFF5>
+120	0x3075	pack/talk/YOUEN:0x57b8	Hey! Don't just say the first<FFF6>thing that pops into your head!<FFF5>
+121	0x3095	pack/talk/YOUEN:0x5838	Something seems fishy...<FFF6>Do you really mean what you say?<FFFD>づ<FFF5>
+122	0x30b8	pack/talk/YOUEN:0x58b0	Whatever you say,<FFF6>you're still interested in me, right?<FFF6>With a figure like mine, you must be!<FFF5>
+123	0x30e5	pack/talk/YOUEN:0x5970	I don't really get it, but I can<FFF6>see you need my help!<FFFD>で<FFF5>
+124	0x3106	pack/talk/YOUEN:0x59e8	That story is nonsense! Anything<FFF6>nowadays can be proved by science!<FFF5>
+125	0x3137	pack/talk/YOUEN:0x5a70	I have a story like that too! Honestly,<FFF6>don't you think it's so rude?<FFFD>ど<FFF5>
+126	0x316a	pack/talk/YOUEN:0x5b00	N-No... stop it! Why'd you go and<FFF6>tell a story like that!?<FFF5>
+127	0x3183	pack/talk/YOUEN:0x5b78	I can't handle stories like that!<FFF6>Please stop!<FFFD>ば<FFF5>
+128	0x31a5	pack/talk/YOUEN:0x5be0	I know a much scarier story.<FFF6>Wanna hear?<FFFD>び<FFF5>
+129	0x31c7	pack/talk/YOUEN:0x5c38	Do you know<FFF6>a lot of stories like that?<FFFB><FFF7>Then do you know any good haunted<FFF6>places to dare people to enter?<FFFD>ぶ<FFF5>
+130	0x3200	pack/talk/YOUEN:0x5d10	Wow, that's an amazing voice.<FFF6>You really can do anything!<FFF5>
+131	0x3221	pack/talk/YOUEN:0x5d88	Let's try a duet next time!<FFF6>I'll sing Corin's part!<FFFD>べ<FFF5>
+132	0x324b	pack/talk/YOUEN:0x5df8	You've got a nice voice for a human...<FFF6>Let's hear what it sounds<FFF6>like when you scream!<FFF5>
+133	0x3280	pack/talk/YOUEN:0x5ea8	Is that a challenge to a fellow<FFF6>chanteuse? Then I accept!<FFFD>ぼ<FFF5>
+134	0x32bd	pack/talk/YOUEN:0x5f20	You've got a long way to go to catch<FFF6>up to me... but you're pretty good!<FFF5>
+135	0x32e0	pack/talk/YOUEN:0x5fb8	*dreamy sigh*<FFFD>ぱ<FFF5>
+136	0x32f5	pack/talk/YOUEN:0x5fd8	Now this is an interesting approach!<FFF6>What ish it you're planning, Mommy?<FFF5>
+137	0x3318	pack/talk/YOUEN:0x6070	Heehee... Do I look that young?<FFFD>ぴ<FFF5>
+138	0x3338	pack/talk/YOUEN:0x60b8	You think you know so much, huh?<FFF6>Come back and see me in<FFF6>a hundred years!<FFF5>
+139	0x335e	pack/talk/YOUEN:0x6150	How rude! You don't even show any<FFF6>manners when negotiating!<FFFD>ぷ<FFF5>
+140	0x338f	pack/talk/YOUEN:0x61d0	That's odd...<FFF6>For some reason, I feel all nostalgic.<FFF5>
+141	0x33b2	pack/talk/YOUEN:0x6240	Squeeee! This is so fun!<FFFD>ぺ<FFF5>
+142	0x33cb	pack/talk/YOUEN:0x6278	You want me? Hmm...<FFF6>it doesn't SEEM like you're lying...<FFF5>
+143	0x33e9	pack/talk/YOUEN:0x62f0	You're young, but<FFF6>you've got backbone,<FFF6>inviting a demon to come along.<FFFD>ぽ<FFF5>
+144	0x3412	pack/talk/YOUEN:0x6388	Hey! Don't just say the first<FFF6>thing that pops into your head!<FFF5>
+145	0x3432	pack/talk/YOUEN:0x6408	Something seems fishy...<FFF6>Do you really mean what you say?<FFFD>ぁ<FFF5>
+146	0x3455	pack/talk/YOUEN:0x6480	Whatever you say,<FFF6>you're still interested in me, right?<FFF6>With a figure like mine, you must be!<FFF5>
+147	0x3482	pack/talk/YOUEN:0x6540	So that's why you need my help!<FFFD>ぃ<FFF5>
+148	0x349b	pack/talk/YOUEN:0x6588	You've got a hell of<FFF6>a mouth for a brat...<FFF6>Well, I'll forgive you this time.<FFF5>
+149	0x34d1	pack/talk/YOUEN:0x6628	If you don't learn at least a few<FFF6>manners, you won't live very long.<FFFD>ぅ<FFF5>
+150	0x34f8	pack/talk/YOUEN:0x66b8	You think you know so much, huh?<FFF6>Come back and see me in<FFF6>a hundred years!<FFF5>
+151	0x351e	pack/talk/YOUEN:0x6750	How rude! You have no manners at all!<FFFD>ぇ<FFF5>
+152	0x353f	pack/talk/YOUEN:0x67a0	Th-That's not true... *sniff*<FFF5>
+153	0x3556	pack/talk/YOUEN:0x67e0	Wh-What's the deal here!?<FFF6>Just because you're young and<FFF6>cute... Grrrr! Oooh, I'm so jealous!<FFFD>ぉ<FFF5>
+154	0x3587	pack/talk/YOUEN:0x68a0	You're one odd girl. Cute, though!<FFF5>
+155	0x359e	pack/talk/YOUEN:0x68e8	I... I guess I wouldn't mind going<FFF6>out to dinner with you...<FFFD>っ<FFF5>
+156	0x35c6	pack/talk/YOUEN:0x6968	Sorry, but I'm only interested in men!<FFF5>
+157	0x35e4	pack/talk/YOUEN:0x69b8	Then come over here!<FFF6>I'll show you love, <FFF3>-style!<FFFD>ゃ<FFF5>
+158	0x3615	pack/talk/YOUEN:0x6a20	Oooh, really? See you later, then!<FFF5>
+159	0x362f	pack/talk/YOUEN:0x6a68	Are you sure? I'm going to take<FFF6>you at your word, you know...<FFFD>ゅ<FFF5>
+160	0x3651	pack/talk/YOUEN:0x6ae8	Poor thing... you gotta hang in there!<FFF5>
+161	0x3669	pack/talk/YOUEN:0x6b38	My... you're going through<FFF6>a lot for someone your age.<FFFD>ょ<FFF5>
+162	0x3688	pack/talk/YOUEN:0x6bb0	Girls like you always use the most<FFF6>cliched tactics! Why don't you try<FFF6>something original for a change?<FFF5>
+163	0x36c1	pack/talk/YOUEN:0x6c80	Oh, every demon knows you...<FFF6>Ayase, the Pseudo-Sobber!<FFFD>ゎ<FFF5>
+164	0x36ef	pack/talk/YOUEN:0x6cf8	Hey, don't cry!<FFF6>You make it look like I'm bullying you!<FFF5>
+165	0x3715	pack/talk/YOUEN:0x6d68	Huh? C'mon, you don't have to cry...<FFFD>ア<FFF5>
+166	0x372b	pack/talk/YOUEN:0x6db8	I see. You have that much<FFF6>confidence in yourself?<FFF6>I'd love to put that to the test!<FFF5>
+167	0x374c	pack/talk/YOUEN:0x6e60	You seem pretty strong. So... what<FFF6>are you going to do to me, hmmm?<FFFD>イ<FFF5>
+168	0x376e	pack/talk/YOUEN:0x6ef0	Oh, is that so?<FFF6>Well, I wouldn't mind fighting you!<FFF5>
+169	0x378b	pack/talk/YOUEN:0x6f58	Well, if nothing else,<FFF6>you have quite the silver tongue.<FFF6>Where'd you learn to talk like that?<FFFD>ウ<FFF5>
+170	0x37b6	pack/talk/YOUEN:0x7018	You don't have to threaten<FFF6>me like that...<FFF5>
+171	0x37d2	pack/talk/YOUEN:0x7070	Don't make such awful faces...<FFFD>エ<FFF5>
+172	0x37e6	pack/talk/YOUEN:0x70b8	You think you know so much, huh?<FFF6>Come back and see me in<FFF6>a hundred years!<FFF5>
+173	0x380c	pack/talk/YOUEN:0x7150	How rude! You don't even show any<FFF6>manners when negotiating!<FFFD>オ<FFF5>
+174	0x383d	pack/talk/YOUEN:0x71d0	U-Um, I'm sorry...<FFF5>
+175	0x384d	pack/talk/YOUEN:0x71f8	I didn't do anything...<FFF6>Why are you treating me like this!?<FFFD>カ<FFF5>
+176	0x3874	pack/talk/YOUEN:0x7278	This is a new experience for me...<FFF6>I like it, though!<FFF5>
+177	0x388e	pack/talk/YOUEN:0x72e8	I'm sorry, Mistress... Bully me more!<FFFD>キ<FFF5>
+178	0x38b1	pack/talk/YOUEN:0x7338	It doesn't seem like you're<FFF6>just making it all up...<FFF5>
+179	0x38cd	pack/talk/YOUEN:0x73a8	Wow, you're young... but you have<FFF6>a pretty level head. Good for you!<FFFD>ク<FFF5>
+180	0x38f4	pack/talk/YOUEN:0x7438	Hey! Don't just say the first<FFF6>thing that pops into your head!<FFF5>
+181	0x3914	pack/talk/YOUEN:0x74b8	Something seems fishy...<FFF6>Do you really mean what you say?<FFFD>ケ<FFF5>
+182	0x3937	pack/talk/YOUEN:0x7530	Whatever you say,<FFF6>you're still interested in me, right?<FFF6>With a figure like mine, you must be!<FFF5>
+183	0x3964	pack/talk/YOUEN:0x75f0	So basically,<FFF6>that's why you need my help!<FFFD>コ<FFF5>
+184	0x3985	pack/talk/YOUEN:0x7650	You think you know so much, huh?<FFF6>Come back and see me in<FFF6>a hundred years!<FFF5>
+185	0x39ab	pack/talk/YOUEN:0x76e8	How rude! You have no manners at all!<FFFD>サ<FFF5>
+186	0x39cc	pack/talk/YOUEN:0x7738	U-Um, I'm sorry...<FFF5>
+187	0x39de	pack/talk/YOUEN:0x7760	I didn't do anything...<FFF6>Why are you treating me like this!?<FFFD>シ<FFF5>
+188	0x3a05	pack/talk/YOUEN:0x77e0	Heehee!<FFF6>You're quite a rambunctious girl.<FFF5>
+189	0x3a1f	pack/talk/YOUEN:0x7838	I'm sorry, Mistress... Bully me more!<FFFD>ス<FFF5>
+190	0x3a42	pack/talk/YOUEN:0x7888	You've got backbone. If that's for<FFF6>real, then it's pretty amazing.<FFF5>
+191	0x3a71	pack/talk/YOUEN:0x7910	Oh? Aren't you going to<FFF6>negotiate with me?<FFFD>セ<FFF5>
+192	0x3a8f	pack/talk/YOUEN:0x7970	You've got backbone, but that's<FFF6>not the kind of attitude you<FFF6>should be showing me!<FFF5>
+193	0x3ac0	pack/talk/YOUEN:0x7a18	Are you trying to ignore me?<FFF6>How dare you make a fool of me!<FFFD>ソ<FFF5>
+194	0x3ae7	pack/talk/YOUEN:0x7a98	...I haven't done anything, have I?<FFF5>
+195	0x3afb	pack/talk/YOUEN:0x7ae0	Um... Um, sorry about that...<FFFD>タ<FFF5>
+196	0x3b14	pack/talk/YOUEN:0x7b20	You've got backbone. If that's for<FFF6>real, then it's pretty amazing.<FFF5>
+197	0x3b43	pack/talk/YOUEN:0x7ba8	Oh? Aren't you going to<FFF6>negotiate with me?<FFFD>チ<FFF5>
+198	0x3b61	pack/talk/YOUEN:0x7c08	You've got backbone, but that's<FFF6>not the kind of attitude you<FFF6>should be showing me!<FFF5>
+199	0x3b92	pack/talk/YOUEN:0x7cb0	Are you trying to ignore me?<FFF6>How dare you make a fool of me!<FFFD>ツ<FFF5>
+200	0x3bb7	pack/talk/YOUEN:0x7d30	...I haven't done anything, have I?<FFF5>
+201	0x3bcb	pack/talk/YOUEN:0x7d78	Um... Um, sorry about that...<FFFD>テ<FFF5>
+202	0x3be4	pack/talk/YOUEN:0x7db8	I see. You have that much<FFF6>confidence in yourself?<FFF6>I'd love to put that to the test!<FFF5>
+203	0x3c05	pack/talk/YOUEN:0x7e60	You seem pretty strong. So... what<FFF6>are you going to do to me, hmmm?<FFFD>ト<FFF5>
+204	0x3c27	pack/talk/YOUEN:0x7ef0	Oh, is that so?<FFF6>Well, I wouldn't mind fighting you!<FFF5>
+205	0x3c44	pack/talk/YOUEN:0x7f58	Well, if nothing else,<FFF6>you have quite the silver tongue.<FFF6>Where'd you learn to talk like that?<FFFD>ナ<FFF5>
+206	0x3c66	pack/talk/YOUEN:0x8018	You don't have to threaten<FFF6>me like that...<FFF5>
+207	0x3c82	pack/talk/YOUEN:0x8070	Don't make such awful faces...<FFFD>ニ<FFF5>
+208	0x3c96	pack/talk/YOUEN:0x80b8	Wh-What the!? Sheesh!<FFF6>Don't surprise me like that!<FFF5>
+209	0x3cb7	pack/talk/YOUEN:0x8120	What was that for!? You moron!<FFFD>ヌ<FFF5>
+210	0x3cd5	pack/talk/YOUEN:0x8168	Eeeeek! Wh-What was that for?<FFF5>
+211	0x3ced	pack/talk/YOUEN:0x81a8	I won't do anything, okay? Relax...<FFFD>ネ<FFF5>
+212	0x3d0a	pack/talk/YOUEN:0x81f8	What an odd boy...<FFF6>Still, you're a cute one!<FFF5>
+213	0x3d21	pack/talk/YOUEN:0x8258	You're dangerous!<FFF6>But I like that in a man!<FFFD>ノ<FFF5>
+214	0x3d53	pack/talk/YOUEN:0x82b8	All that, just to get my attention?<FFF6>You're such a child...<FFF5>
+215	0x3d79	pack/talk/YOUEN:0x8330	Wooooow! You can use spells!?<FFFD>ハ<FFF5>
+216	0x3d9c	pack/talk/YOUEN:0x8370	I can't believe it...<FFF6>a human, using spells...<FFF5>
+217	0x3db3	pack/talk/YOUEN:0x83d0	I haven't done anything, right...?<FFF6>You won't make me<FFF6>disappear or anything?<FFFD>ヒ<FFF5>
+218	0x3dd8	pack/talk/YOUEN:0x8470	Wooooow! Can you pull anything<FFF6>out of that? I think I just hit<FFF6>the jackpot with this negotiation!<FFF5>
+219	0x3e0b	pack/talk/YOUEN:0x8538	You're not that famous magician,<FFF6>are you? Ummm... Who-dini?<FFFD>フ<FFF5>
+220	0x3e4b	pack/talk/YOUEN:0x85b8	That's an interesting story!<FFF6>Hey, tell me more!<FFF5>
+221	0x3e6f	pack/talk/YOUEN:0x8618	You must be really interested in<FFF6>me if you're saying all that!<FFF5>
+222	0x3e97	pack/talk/YOUEN:0x8698	I don't mind hearing you out, but you<FFF6>have to do something for me first!<FFF1><FFF5>
+223	0x3ec0	pack/talk/YOUEN:0x8730	This is no fun... What a letdown.<FFF5>
+224	0x3edf	pack/talk/YOUEN:0x8778	Stop going on and on about that<FFF6>stupid crap!<FFF5>
+225	0x3f01	pack/talk/YOUEN:0x87d8	Will you shut up already!?<FFF6>You're making me mad!<FFF6>Give me something or else!<FFF1><FFF5>
+226	0x3f34	pack/talk/YOUEN:0x8878	You get this scary look in<FFF6>your eyes when you talk to me...<FFF6>Are you under someone's control...?<FFF5>
+227	0x3f6c	pack/talk/YOUEN:0x8938	If that's what you want to talk about,<FFF6>I think someone else would<FFF6>understand it better than me...<FFF5>
+228	0x3f9f	pack/talk/YOUEN:0x8a00	Heehee...<FFF6>I haven't felt this nice in a while.<FFF5>
+229	0x3fc8	pack/talk/YOUEN:0x8a60	Heehee... You say such cute things!<FFF5>
+230	0x3fdf	pack/talk/YOUEN:0x8aa8	You're good at making small talk...<FFF6>I'd like to chat a little more.<FFF5>
+231	0x4006	pack/talk/YOUEN:0x8b30	You want me? Heehee...<FFF6>What should I do...?<FFF5>
+232	0x402b	pack/talk/YOUEN:0x8b88	I like how you started this.<FFF6>If you give me something, I might<FFF6>really listen to what you have to say.<FFF1><FFF5>
+233	0x4063	pack/talk/YOUEN:0x8c58	Lend you my power...? But you're still<FFF6>just a kid... Let me think about it.<FFF5>
+234	0x409c	pack/talk/YOUEN:0x8cf0	I'm not interested in kids like<FFF6>you in the slightest.<FFF5>
+235	0x40b9	pack/talk/YOUEN:0x8d60	Boring! If you want to negotiate,<FFF6>do something more interesting!<FFF5>
+236	0x40e8	pack/talk/YOUEN:0x8de8	Hmph! That was pitiful... Who do you<FFF6>think I am? I'm <FFF0> <FFF3>!<FFFB><FFF7>If you really want my help,<FFF6>listen to what I have to say!<FFF1><FFF5>
+237	0x4143	pack/talk/YOUEN:0x8ed8	I feel like there's something<FFF6>else at work here...<FFF5>
+238	0x4154	pack/talk/YOUEN:0x8f40	Aren't you a human...? You shouldn't<FFF6>be asking demons for help.<FFF5>
+239	0x4184	pack/talk/YOUEN:0x8fc0	If you have a request,<FFF6>try some other demon--not me.<FFF5>
+240	0x41ab	pack/talk/YOUEN:0x9030	Ahaha... What should I do...?<FFF5>
+241	0x41c0	pack/talk/YOUEN:0x9070	Ahaha...<FFF6>It's so nice to hear that you need me!<FFF5>
+242	0x41eb	pack/talk/YOUEN:0x90d0	I simply love being asked favors...<FFF6>Ask me another one!<FFFB><FFF7>...Wait a second! I think I deserve<FFF6>something from you first.<FFF1><FFF5>
+243	0x4249	pack/talk/YOUEN:0x91c0	What's with that attitude? Are you<FFF6>trying to make me mad on purpose?<FFF6>Something's strange about this...<FFF5>
+244	0x4289	pack/talk/YOUEN:0x9290	It's useless to try and get me angry.<FFF6>Not a bad try, though.<FFF5>
+245	0x42c2	pack/talk/YOUEN:0x9310	It's no use doing that.<FFF6>There are better ways to get<FFF6>your opponent's interest.<FFF1><FFF5>
+246	0x42fa	pack/talk/YOUEN:0x93b0	How dare you make fun of me!<FFF6>I hope you're prepared for<FFF6>the consequences!<FFF5>
+247	0x431f	pack/talk/YOUEN:0x9448	You really make me mad!<FFF6>But then, if you didn't...<FFF6>you wouldn't be worth killing!<FFF5>
+248	0x4353	pack/talk/YOUEN:0x94f0	How dare you make a fool out of me!?<FFF6>Now I'm really mad!<FFFB><FFF7>I'm not going to calm down<FFF6>unless you give me something!<FFF1><FFF5>
+249	0x4391	pack/talk/YOUEN:0x95d8	You're making fun of me...?<FFF6>You're so cruel...<FFF5>
+250	0x43b2	pack/talk/YOUEN:0x9638	This isn't how a normal<FFF6>negotiation goes...<FFF5>
+251	0x43d2	pack/talk/YOUEN:0x9690	Wh-What the...? I can't figure out<FFF6>what you're trying to accomplish...<FFF5>
+252	0x43f5	pack/talk/YOUEN:0x9720	Wow, that attitude... You must be<FFF6>really self-confident! I like that!<FFF5>
+253	0x4427	pack/talk/YOUEN:0x97b0	I'll let a couple rude things<FFF6>slide here and there.<FFF6>Kids should be aggressive!<FFF5>
+254	0x444e	pack/talk/YOUEN:0x9850	Ahaha... You're trying to figure out<FFF6>what I like... That's so cute!<FFF5>
+255	0x4479	pack/talk/YOUEN:0x98d8	Hm? Are you a budding entertainer?<FFF6>Remember to give me credit when<FFF6>you make it big.<FFF5>
+256	0x44ac	pack/talk/YOUEN:0x9980	Don't you need some practice?<FFF6>Let's try this again after you<FFF6>brush up on your skills.<FFFB><FFF7>I'll be looking forward to it!<FFF5>
+257	0x44e5	pack/talk/YOUEN:0x9a70	I feel like something's missing...<FFF6>I can give you advice, but I'll<FFF6>expect payment for it!<FFF1><FFF5>
+258	0x4523	pack/talk/YOUEN:0x9b28	What was that about? It was so<FFF6>inane that I feel like you should die!<FFF5>
+259	0x4554	pack/talk/YOUEN:0x9bb8	You suck! Get off the stage!<FFF5>
+260	0x456c	pack/talk/YOUEN:0x9bf8	You want money for THAT?<FFF6>Ha! What a joke!<FFF6>I think I'll take YOUR money instead!<FFF1><FFF5>
+261	0x45a6	pack/talk/YOUEN:0x9ca0	What is that...? I don't understand!<FFF5>
+262	0x45c2	pack/talk/YOUEN:0x9cf0	Is this some forbidden ritual of black<FFF6>magic? It doesn't have anything to<FFF6>do with me, right...?<FFF5>
+263	0x45f5	pack/talk/YOUEN:0x9db0	Ahaha... Well done.<FFF6>I'd like to hear that again!<FFF5>
+264	0x4621	pack/talk/YOUEN:0x9e18	Marvelous! I wonder if I should<FFF6>learn something too.<FFF5>
+265	0x4643	pack/talk/YOUEN:0x9e88	Bravissimo! Encore, encore!<FFF5>
+266	0x465f	pack/talk/YOUEN:0x9ec0	Humans, huh...?<FFF6>Might be a good way to kill time.<FFF5>
+267	0x467d	pack/talk/YOUEN:0x9f28	Heehee... Will you talk a while with<FFF6>an old lady like me, too?<FFF5>
+268	0x46a5	pack/talk/YOUEN:0x9fa8	So you want me?<FFF6>I don't mind if you try to deceive<FFF6>me, but I prefer generous types!<FFF1><FFF5>
+269	0x46df	pack/talk/YOUEN:0xa058	Are you making fun of me?<FFF5>
+270	0x46ee	pack/talk/YOUEN:0xa090	I'm not so foolish a demon as to<FFF6>betray my comrades over<FFF6>something like that!<FFF5>
+271	0x471d	pack/talk/YOUEN:0xa130	What're you doing? Wait... you're not<FFF6>trying to seduce me, are you!?<FFFB><FFF7>The other demons will tear you<FFF6>apart if they find out you seduced<FFFB><FFF7>me! How badly do you want me to<FFF6>keep this secret...?<FFF1><FFF5>
+272	0x4783	pack/talk/YOUEN:0xa2b0	Wait a second...<FFF6>I-I wouldn't know what to do even if<FFF6>you told me something like that...<FFF5>
+273	0x47b3	pack/talk/YOUEN:0xa368	Wait a second...<FFF6>I-I wouldn't know what to do even if<FFF6>you told me something like that...<FFF5>
+274	0x47e3	pack/talk/YOUEN:0xa420	Wait a second...<FFF6>I-I wouldn't know what to do even if<FFF6>you told me something like that...<FFF5>
+275	0x4813	pack/talk/YOUEN:0xa4d8	Ahaha... Awesome!<FFF5>
+276	0x481b	pack/talk/YOUEN:0xa4f0	I... I feel<FFF5>
+277	0x4823	pack/talk/YOUEN:0xa508	like I'm falling for you!<FFF5>
+278	0x4847	pack/talk/YOUEN:0xa558	Is that supposed to be a compliment!?<FFF6>You're not really that weak,<FFF6>are you...?<FFF5>
+279	0x4877	pack/talk/YOUEN:0xa5f8	That's right! You understand<FFF6>just how dreadful I am.<FFFB><FFF7>Which means you'll give me<FFF6>something, won't you!?<FFF1><FFF5>
+280	0x48b8	pack/talk/YOUEN:0xa6d0	Don't bother stating the obvious!<FFF6>You can't even compare to me!<FFF5>
+281	0x48f0	pack/talk/YOUEN:0xa750	Hmph!<FFF6>You've got another thing coming if<FFF6>you think I'll forgive you with that!<FFF5>
+282	0x4918	pack/talk/YOUEN:0xa7f0	If that's the case,<FFF6>I don't mind making you my slave!<FFFB><FFF7>But first,<FFF6>you need to make me want you!<FFF1><FFF5>
+283	0x4958	pack/talk/YOUEN:0xa8b8	You're scheming something,<FFF6>aren't you...?<FFF5>
+284	0x4969	pack/talk/YOUEN:0xa910	Are you really angry...? Hey, you're<FFF6>actually mad, aren't you? Awww...<FFF5>
+285	0x49a4	pack/talk/YOUEN:0xa9a0	Ohohohoho! Humans are nothing but<FFF6>slaves for demons!<FFF5>
+286	0x49c5	pack/talk/YOUEN:0xaa10	Ohohohoho! Now beg for your life!<FFF6>Or else I'll rip you to shreds!<FFF1><FFF5>
+287	0x49f4	pack/talk/YOUEN:0xaa98	Ohohohoho! So even humans<FFF6>can grasp my greatness!<FFF5>
+288	0x4a21	pack/talk/YOUEN:0xab00	You already have my spell card,<FFF6>right?<FFF6>Make me into a beautiful Persona!<FFEF>
+289	0x4a58	pack/talk/YOUEN:0xab98	Then I'll give you this.<FFEF>
+290	0x4a6c	pack/talk/YOUEN:0xabd0	Oh, is that so?<FFEF>
+291	0x4a77	pack/talk/YOUEN:0xabf0	It's a shame, but it seems like<FFF6>our interests are too different.<FFEF>
+292	0x4a9c	pack/talk/YOUEN:0xac78	Hey, aren't you a little<FFF6>cocky for a greenhorn?<FFFB><FFF7>It's useless to negotiate unless<FFF6>you're mature enough to handle it!<FFF5>
+293	0x4ae4	pack/talk/YOUEN:0xad68	In any case, I'll give you this to<FFF6>commemorate our meeting.<FFEF>
+294	0x4b08	pack/talk/YOUEN:0xade0	Well, I hope we meet again!<FFEF>
+295	0x4b1b	pack/talk/YOUEN:0xae18	This isn't much...<FFF6>but you can have it, too.<FFF5>
+296	0x4b38	pack/talk/YOUEN:0xae78	Well, I'm pretty busy, so...<FFEF>
+297	0x4b4b	pack/talk/YOUEN:0xaeb8	Here's my spell card. Make me into<FFF6>a Persona with beauty and brawn!<FFEF>
+298	0x4b75	pack/talk/YOUEN:0xaf40	I'll give you this, just forgive me!<FFEF>
+299	0x4b93	pack/talk/YOUEN:0xaf90	I'm tired of negotiating with you.<FFF6>There's no depth to your technique!<FFEF>
+300	0x4bd8	pack/talk/YOUEN:0xb020	I'm tired of negotiating with you.<FFF6>Children who can't even negotiate<FFF6>should just take this and run along!<FFEF>
+301	0x4c23	pack/talk/YOUEN:0xb0f8	I'm so irritated with myself being too<FFF6>stupid even to negotiate with humans!<FFEF>
+302	0x4c59	pack/talk/YOUEN:0xb198	I give up! I'll give you my spell card!<FFEF>
+303	0x4c81	pack/talk/YOUEN:0xb1e8	This is my first time negotiating with<FFF6>someone as strong and funny as you...<FFEF>
+304	0x4cb6	pack/talk/YOUEN:0xb288	Here, a small gift from me...<FFF6>I hope it helps.<FFEF>
+305	0x4ce4	pack/talk/YOUEN:0xb2e8	I can't fight you...<FFEF>
+306	0x4cff	pack/talk/YOUEN:0xb318	I'll give you this.<FFF6>Please take good care of it.<FFEF>
+307	0x4d21	pack/talk/YOUEN:0xb380	...Though if I give you my card,<FFF6>it could be helpful...<FFEF>
+308	0x4d50	pack/talk/YOUEN:0xb3f0	I'll hand over my spell card...<FFF6>please, forgive me!<FFEF>
+309	0x4d7e	pack/talk/YOUEN:0xb458	Oooh, what a fine man... Hello there.<FFF6>What brings you here?<FFFD>ヘ<FFF5>
+310	0x4db2	pack/talk/YOUEN:0xb4d8	I'm not trying to<FFF6>be rude in saying this...<FFF6>but you wear some weird clothes.<FFF5>
+311	0x4ddb	pack/talk/YOUEN:0xb578	This is my first time seeing a human.<FFF6>Mind giving me something to<FFF6>mark the occasion?<FFF1><FFF5>
+312	0x4e06	pack/talk/YOUEN:0xb628	Hey! You there! You're in my way!<FFF6>Could you move over a skosh?<FFFD>ホ<FFF5>
+313	0x4e33	pack/talk/YOUEN:0xb6b0	Don't even start with me today!<FFF6>If you try anything funny, I'll beat<FFF6>the tar out of you! Got that!?<FFF5>
+314	0x4e6e	pack/talk/YOUEN:0xb778	I bet I'm the only demoness<FFF6>negotiating with humans with such<FFF6>a beautiful, full moon out! Honestly!<FFFB><FFF7>So, did you bring any presents for<FFF6>me? Ugh, you're so inconsiderate!<FFF6>Give me something!<FFF1><FFF5>
+315	0x4ee5	pack/talk/YOUEN:0xb8f8	You're a human, right...?<FFF6>You shouldn't come in past this line...<FFFD>マ<FFF5>
+316	0x4f15	pack/talk/YOUEN:0xb980	...That's one scary face...<FFF5>
+317	0x4f36	pack/talk/YOUEN:0xb9b8	That's one scary face... I'm sure not<FFF6>getting any sleep tonight...<FFF5>
+318	0x4f59	pack/talk/YOUEN:0xba40	Oh my, a human! The strangest things<FFF6>have been happening to me lately.<FFF6>How are you?<FFFD>ミ<FFF5>
+319	0x4f91	pack/talk/YOUEN:0xbaf0	Oooh, what a fine man...<FFF6>Hey, you don't have anything against<FFF6>demon girls, hm...?<FFF5>
+320	0x4fc0	pack/talk/YOUEN:0xbb98	Heeheehee...<FFF5>
+321	0x4fca	pack/talk/YOUEN:0xbbb8	<FFED>You know, if you don't have<FFF6>any business with me,<FFF6>I have other things to do.<FFFD>ム<FFF5>
+322	0x4ff3	pack/talk/YOUEN:0xbc58	<FFED>I really wish you would've<FFF6>talked to me first, you know!<FFF6>You're such a coward.<FFF5>
+323	0x502a	pack/talk/YOUEN:0xbcf8	<FFEE>What an ordinary face...<FFF6>I'm a little disappointed...<FFFB><FFF7>Well, I'll let it slide. I'll hear you out<FFF6>anyway if you give me something.<FFF1><FFF5>
+324	0x5073	pack/talk/YOUEN:0xbe08	<FFEE>Um... If there's nothing you want,<FFF6>I'm going to leave.<FFFD>メ<FFF5>
+325	0x509c	pack/talk/YOUEN:0xbe80	<FFEC>Y-You... smell of blood... Sheesh, how<FFF6>do I always attract the weirdos...?<FFF5>
+326	0x50d6	pack/talk/YOUEN:0xbf18	<FFEC>Anyways, let's talk. Keep that<FFF6>weapon tucked away, all right?<FFF5>
+327	0x5106	pack/talk/YOUEN:0xbf98	<FFEE>If I said I wanted to go with you,<FFF6>what would you do?<FFFD>モ<FFF5>
+328	0x5137	pack/talk/YOUEN:0xc010	<FFEB>You... me... it was meant to happen!<FFF6>Now, let's negotiate!<FFF5>
+329	0x516d	pack/talk/YOUEN:0xc088	<FFEE>Oooh, what a fine man... This is my big<FFF6>chance! Now, let's negotiate!<FFF5>
+330	0x51a3	pack/talk/YOUEN:0xc118	<FFEC>Uh-oh, a human! Eeeek!<FFF6>Eeeeeek! EEEEEEEEEEK!<FFFD>ヤ<FFF5>
+331	0x51dc	pack/talk/YOUEN:0xc178	<FFEC>Hey... what's that hovering over<FFF6>you...!? Yikes! Don't look at me!<FFF5>
+332	0x520d	pack/talk/YOUEN:0xc200	<FFED>I-If you kill me, I'll curse the next<FFF6>eight generations of your family!<FFF5>
+333	0x5238	pack/talk/YOUEN:0xc298	<FFED>Hey! What's the big idea,<FFF6>answering my call!?<FFFB><FFF7>Don't tell me you think YOU'RE<FFF6>good enough for me!<FFFD>ユ<FFF5>
+334	0x5288	pack/talk/YOUEN:0xc368	<FFED>I don't get the sense that<FFF6>negotiating with you<FFF6>will be very exciting...<FFFB><FFF7>but I'll give you a shot anyway!<FFF5>
+335	0x52c1	pack/talk/YOUEN:0xc440	<FFEB>Why'd you answer me? Oh, I get it!<FFF6>You came to give me a gift, right?<FFF1><FFF5>
+336	0x52f7	pack/talk/YOUEN:0xc4d0	<FFEC>You have scary eyes...<FFF6>what are you going to do to me...!?<FFFD>ヨ<FFF5>
+337	0x531d	pack/talk/YOUEN:0xc550	<FFEB>I'm in the strangest mood right now!<FFF6>I just don't care anymore...<FFF6>Do whatever you want to me!<FFF5>
+338	0x5357	pack/talk/YOUEN:0xc610	I'm s-scared of you...<FFF6>but I'm also hoping for something.<FFF6>What's gotten into me...?<FFF5>
+339	0x5392	pack/talk/YOUEN:0xc6b8	You're interesting! So, what do you<FFF6>want? I'm in the mood to listen.<FFEF>
+340	0x53c6	pack/talk/YOUEN:0xc748	I won't gain anything by<FFF6>spending more time with you.<FFF6>In fact, I feel like I've wasted my time!<FFEF>
+341	0x5400	pack/talk/YOUEN:0xc808	I-I'm scared...<FFF6>it looks like my luck's run out...<FFF5>
+342	0x542d	pack/talk/YOUEN:0xc870	Aaaahahaha! You know what it<FFF6>takes to keep a demon happy.<FFEF>
+343	0x545e	pack/talk/YOUEN:0xc8e8	I can't spend all day negotiating with<FFF6>you! Tell me what you want!<FFEF>
+344	0x5490	pack/talk/YOUEN:0xc970	I'll listen...<FFF6>just don't do anything cruel, okay?<FFEF>
+345	0x54b7	pack/talk/YOUEN:0xc9d8	Ahahah... I'm glad I met you.<FFF6>I'll grant any desire you have!<FFEF>
+346	0x54e8	pack/talk/YOUEN:0xca58	Ugh! I'm annoyed AND I'm feeling<FFF6>a chill down my spine! Hey, Master!<FFFB><FFF7>Please punish these--hey,<FFF6>where'd he go!?<FFF5>
+347	0x5543	pack/talk/YOUEN:0xcb38	Well, it's about time to<FFF6>draw a line under this.<FFF6>I can't play with you all day.<FFF5>
+348	0x5573	pack/talk/YOUEN:0xcbd8	I'm enjoying this, but it's scary, too...<FFF6>Guess I should be a good<FFF6>demon and obey.<FFEF>
+349	0x55a3	pack/talk/YOUEN:0xcc80	Let's see, I'll take <FFF8> yen.<FFEF>
+350	0x55bc	pack/talk/YOUEN:0xccb8	Heehee... thanks.<FFF5>
+351	0x55cd	pack/talk/YOUEN:0xcce0	What!? You don't even have that<FFF6>much? Frickin' bums!<FFF5>
+352	0x55fd	pack/talk/YOUEN:0xcd50	What!? You don't even have that<FFF6>much? Sheesh! I can't believe this!<FFF5>
+353	0x5629	pack/talk/YOUEN:0xcdd8	There's no use saving all that money.<FFF6>It'll all be mine in the end!<FFF5>
+354	0x565f	pack/talk/YOUEN:0xce60	...If you didn't want to negotiate, you<FFF6>should've said so from the start...<FFF5>
+355	0x5691	pack/talk/YOUEN:0xcef8	I want a life stone.<FFEF>
+356	0x56a3	pack/talk/YOUEN:0xcf28	Heehee... thanks.<FFF5>
+357	0x56b4	pack/talk/YOUEN:0xcf50	What, you were negotiating without<FFF6>any life stones?<FFF6>Uggggh, you're the worst!<FFF5>
+358	0x56e6	pack/talk/YOUEN:0xcff0	No way! It's just common sense to<FFF6>carry life stones with you!<FFF5>
+359	0x5708	pack/talk/YOUEN:0xd070	What!?<FFF6>You don't deserve any life stones!<FFF5>
+360	0x572c	pack/talk/YOUEN:0xd0c8	You've been negotiating without any<FFF6>life stones? You gotta be kidding<FFF6>me... Are you for real...?<FFF5>
+361	0x575e	pack/talk/YOUEN:0xd190	Heehee... You have a <FFF4>,<FFF6>don't you? That's what I want.<FFEF>
+362	0x578c	pack/talk/YOUEN:0xd200	This shine...<FFF6>It never stops being wonderful,<FFF6>no matter how many times I look at it...<FFF5>
+363	0x57ac	pack/talk/YOUEN:0xd2b0	Hey!<FFF6>Isn't there something wrong here?<FFF5>
+364	0x57cb	pack/talk/YOUEN:0xd300	Oh, is that so? Then I'll just<FFF6>have to take it by force!<FFF5>
+365	0x57ef	pack/talk/YOUEN:0xd378	No way! Not even if it's me asking?<FFF6>You can't appreciate<FFF6>beauty, can you?<FFF5>
+366	0x5824	pack/talk/YOUEN:0xd410	I want your life... Well, just a little of<FFF6>it, really. A small sip is enough.<FFEF>
+367	0x585c	pack/talk/YOUEN:0xd4b0	Heehee...<FFF6>your life energy looks delicious!<FFF5>
+368	0x5880	pack/talk/YOUEN:0xd508	Oh...? Are you scared of me?<FFF6>I'm even scarier to kids who don't<FFF6>listen to what I tell them!<FFF5>
+369	0x58b2	pack/talk/YOUEN:0xd5c0	Oh, is that so? I don't want to take<FFF6>any if you don't want to give...<FFF6>Well, I'll let it go this once.<FFF5>
+370	0x58e2	pack/talk/YOUEN:0xd690	Oh, is that so?<FFF5>
+371	0x58eb	pack/talk/YOUEN:0xd6b0	I think it's cute when you do that.<FFF5>
+372	0x590b	pack/talk/YOUEN:0xd6f8	Even if that's true, you're not<FFF6>supposed to say so yourself!<FFF5>
+373	0x592c	pack/talk/YOUEN:0xd778	Is that so? All right, then.<FFF5>
+374	0x5940	pack/talk/YOUEN:0xd7b8	Is that so? All right, then.<FFF5>
+375	0x5954	pack/talk/YOUEN:0xd7f8	I can't trust you!<FFF5>
+376	0x5967	pack/talk/YOUEN:0xd820	Ahaha... I understand very well now.<FFF6>You're not bad at all.<FFF5>
+377	0x598a	pack/talk/YOUEN:0xd898	Is that so!<FFF5>
+378	0x5994	pack/talk/YOUEN:0xd8b0	Ahaha... You're so cute when<FFF6>you're embarrassed.<FFF5>
+379	0x59ae	pack/talk/YOUEN:0xd918	That's what you have to say for<FFF6>yourself after taunting me? Ahaha...<FFF6>you have quite the silver tongue.<FFF5>
+380	0x59d5	pack/talk/YOUEN:0xd9e8	What do you mean, something bad!?<FFF6>Let's see you try!<FFF5>
+381	0x59f8	pack/talk/YOUEN:0xda58	N-No way... What did I do...?<FFF5>
+382	0x5a16	pack/talk/YOUEN:0xda98	That's what I thought!<FFF6>The sentence structure's all wrong.<FFF6>You're such an idiot!<FFF5>
+383	0x5a42	pack/talk/YOUEN:0xdb40	That's what I thought!<FFF6>The sentence structure's all wrong.<FFF5>
+384	0x5a5d	pack/talk/YOUEN:0xdbb8	Huh? Really? What ARE they<FFF6>teaching them in schools today...?<FFF5>
+385	0x5a7f	pack/talk/YOUEN:0xdc38	Thanks... that's nice of you!<FFF5>
+386	0x5a93	pack/talk/YOUEN:0xdc78	Don't get conceited!<FFF5>
+387	0x5aa3	pack/talk/YOUEN:0xdca8	Why...? I'm just a weak demoness...<FFF5>
+388	0x5ac4	pack/talk/YOUEN:0xdcf0	Oh, is that so?<FFF5>
+389	0x5acd	pack/talk/YOUEN:0xdd10	I think it's cute when you do that.<FFF5>
+390	0x5aed	pack/talk/YOUEN:0xdd58	Even if that's true, you're not<FFF6>supposed to say so yourself!<FFF5>
+391	0x5b0e	pack/talk/YOUEN:0xddd8	Is that so? All right, then.<FFF5>
+392	0x5b22	pack/talk/YOUEN:0xde18	Is that so? All right, then.<FFF5>
+393	0x5b36	pack/talk/YOUEN:0xde58	I can't trust you!<FFF5>
+394	0x5b49	pack/talk/YOUEN:0xde80	Uh-oh...<FFF5>
+395	0x5b51	pack/talk/YOUEN:0xde98	Ahaha...<FFF6>you're honest in the strangest ways!<FFF5>
+396	0x5b70	pack/talk/YOUEN:0xdef8	Now I'm even more suspicious...!<FFF5>
+397	0x5b7f	pack/talk/YOUEN:0xdf40	Well, bring it on! I'm not responsible if<FFF6>you lose your voice!<FFF5>
+398	0x5bac	pack/talk/YOUEN:0xdfc0	Hm, you seem pretty confident.<FFF6>...Let's call it off for now!<FFF5>
+399	0x5be3	pack/talk/YOUEN:0xe040	Hmhmhm, you must've gotten scared.<FFF6>No surprise there!<FFF5>
+400	0x5c08	pack/talk/YOUEN:0xe0b0	*gasp* *gasp* I've never been<FFF6>treated so cruelly before...<FFF5>
+401	0x5c2f	pack/talk/YOUEN:0xe128	Enough is enough!<FFF5>
+402	0x5c40	pack/talk/YOUEN:0xe150	Ahhh... that was marvelous...<FFF5>
+403	0x5c55	pack/talk/YOUEN:0xe190	That voice... I can't believe<FFF6>it's coming from a human!<FFF6>What ARE you...?<FFF5>
+404	0x5c85	pack/talk/YOUEN:0xe228	That voice... I can't believe<FFF6>it's coming from a human!<FFF5>
+405	0x5ca9	pack/talk/YOUEN:0xe298	What are you so embarrassed about?<FFF5>
+406	0x5cb8	pack/talk/YOUEN:0xe2e0	I think it's cute when you do that.<FFF5>
+407	0x5cd8	pack/talk/YOUEN:0xe328	Even if that's true, you're not<FFF6>supposed to say so yourself!<FFF5>
+408	0x5cf9	pack/talk/YOUEN:0xe3a8	Is that so? All right, then.<FFF5>
+409	0x5d0d	pack/talk/YOUEN:0xe3e8	Is that so? All right, then.<FFF5>
+410	0x5d21	pack/talk/YOUEN:0xe428	I can't trust you!<FFF5>
+411	0x5d34	pack/talk/YOUEN:0xe450	Ahaha... I understand very well now.<FFF6>You're not bad at all.<FFF5>
+412	0x5d57	pack/talk/YOUEN:0xe4c8	Is that so!<FFF5>
+413	0x5d61	pack/talk/YOUEN:0xe4e0	Ahaha... You know you want me, but<FFF6>it's cute that you're so<FFF6>embarrassed about it.<FFF5>
+414	0x5d8b	pack/talk/YOUEN:0xe588	So you're going to keep<FFF6>pretending you don't know?<FFF5>
+415	0x5d9f	pack/talk/YOUEN:0xe5f0	You're one stubborn girl! Heh...<FFF6>it's a welcome challenge.<FFF5>
+416	0x5dc3	pack/talk/YOUEN:0xe668	Don't give me that crap!<FFF6>I'm not falling for your silver tongue!<FFF5>
+417	0x5de4	pack/talk/YOUEN:0xe6f0	Man, you're so modest!<FFF5>
+418	0x5df7	pack/talk/YOUEN:0xe720	You know... you being so modest<FFF6>makes me anxious...<FFF5>
+419	0x5e1d	pack/talk/YOUEN:0xe788	C'mon, I was just flattering you!<FFF5>
+420	0x5e30	pack/talk/YOUEN:0xe7d0	That wasn't a joke at all, you know!<FFF5>
+421	0x5e4d	pack/talk/YOUEN:0xe820	C-C'mon...<FFF6>I've just always wanted to say that!<FFF5>
+422	0x5e66	pack/talk/YOUEN:0xe880	You think so, too? Ah...<FFF6>I'm such a sinful woman!<FFF5>
+423	0x5e8f	pack/talk/YOUEN:0xe8e8	What're you all embarrassed about?<FFF5>
+424	0x5e9e	pack/talk/YOUEN:0xe930	I think it's cute when you do that.<FFF5>
+425	0x5ebe	pack/talk/YOUEN:0xe978	Even if that's true, you're not<FFF6>supposed to say so yourself!<FFF5>
+426	0x5edf	pack/talk/YOUEN:0xe9f8	Is that so? All right, then.<FFF5>
+427	0x5ef3	pack/talk/YOUEN:0xea38	Is that so? All right, then.<FFF5>
+428	0x5f07	pack/talk/YOUEN:0xea78	I can't trust you!<FFF5>
+429	0x5f1a	pack/talk/YOUEN:0xeaa0	Ahaha... I understand very well now.<FFF6>You're not bad at all.<FFF5>
+430	0x5f3d	pack/talk/YOUEN:0xeb18	Is that so!<FFF5>
+431	0x5f47	pack/talk/YOUEN:0xeb30	Ahaha... You know you want me, but<FFF6>it's cute that you're so<FFF6>embarrassed about it.<FFF5>
+432	0x5f71	pack/talk/YOUEN:0xebd8	What!? You got a problem!?<FFF5>
+433	0x5f87	pack/talk/YOUEN:0xec10	Oh my, I'm sorry.<FFF5>
+434	0x5f98	pack/talk/YOUEN:0xec38	That's what I thought...<FFF5>
+435	0x5fa1	pack/talk/YOUEN:0xec70	So you're going to keep<FFF6>pretending you don't know?<FFF5>
+436	0x5fb5	pack/talk/YOUEN:0xecd8	You're one stubborn girl! Heh...<FFF6>it's a welcome challenge.<FFF5>
+437	0x5fd9	pack/talk/YOUEN:0xed50	Don't give me that crap!<FFF6>I'm not falling for your silver tongue!<FFF5>
+438	0x5ffa	pack/talk/YOUEN:0xedd8	That wasn't a joke at all, you know!<FFF5>
+439	0x6017	pack/talk/YOUEN:0xee28	C-C'mon...<FFF6>I've just always wanted to say that!<FFF5>
+440	0x6030	pack/talk/YOUEN:0xee88	You think so, too? Ah...<FFF6>I'm such a sinful woman!<FFF5>
+441	0x6059	pack/talk/YOUEN:0xeef0	That "mwahahaha" laugh of yours<FFF6>really makes me sick, you know!<FFF5>
+442	0x6077	pack/talk/YOUEN:0xef70	Um... it'll just be dinner, okay...?<FFF5>
+443	0x608c	pack/talk/YOUEN:0xefc0	You're a shy one!<FFF6>But that's all right... I understand!<FFF5>
+444	0x60b5	pack/talk/YOUEN:0xf030	If you understand, I'll let it slide.<FFF5>
+445	0x60c7	pack/talk/YOUEN:0xf080	What, you don't believe me?<FFF6>It's true! Urgh, you annoy me!<FFF5>
+446	0x60ed	pack/talk/YOUEN:0xf0f8	That's right! It was a lie!<FFF5>
+447	0x60fe	pack/talk/YOUEN:0xf130	Huh? But... we just met, and...<FFF6>I'm going to pass after all.<FFF5>
+448	0x6126	pack/talk/YOUEN:0xf1b0	Can I trust you? I'm a little nervous...<FFF5>
+449	0x6149	pack/talk/YOUEN:0xf208	You're right... it might be good to<FFF6>kick back once in a while...<FFF5>
+450	0x616f	pack/talk/YOUEN:0xf290	Hey! Tell me!<FFF5>
+451	0x6183	pack/talk/YOUEN:0xf2b0	Why won't you tell me? Ohhh, I get it!<FFF6>That's your plan to get<FFF6>my attention, huh?<FFF5>
+452	0x61bb	pack/talk/YOUEN:0xf358	Huh? That was a joke...?<FFF6>(What should I do...?)<FFF5>
+453	0x61db	pack/talk/YOUEN:0xf3b8	Explain it all you want, it won't make<FFF6>boring stuff any less boring!<FFF5>
+454	0x620a	pack/talk/YOUEN:0xf448	Will you give it a rest!? You don't<FFF6>have a talented bone in your body!<FFF5>
+455	0x6229	pack/talk/YOUEN:0xf4d8	It's interesting this time!<FFF5>
+456	0x623a	pack/talk/YOUEN:0xf510	Is that so? You have a hidden<FFF6>agenda, don't you...<FFF5>
+457	0x6262	pack/talk/YOUEN:0xf578	Ahaha... Is that so?<FFF5>
+458	0x6273	pack/talk/YOUEN:0xf5a8	You seem dangerous...<FFF5>
+459	0x628d	pack/talk/YOUEN:0xf5d8	Ahaha... I'm sorry. I was only joking.<FFF5>
+460	0x62a7	pack/talk/YOUEN:0xf628	Whew... That was just a joke!<FFF5>
+461	0x62bc	pack/talk/YOUEN:0xf668	It was a lie. Don't take it so seriously.<FFF5>
+462	0x62d6	pack/talk/YOUEN:0xf6c0	Huh? Seriously!? I want to hear that!<FFF5>
+463	0x62f0	pack/talk/YOUEN:0xf710	Hmph, fine!<FFF6>Humans probably don't have<FFF6>anything worth knowing anyways!<FFF5>
+464	0x631f	pack/talk/YOUEN:0xf7a0	Awwww, lame!<FFF5>
+465	0x632d	pack/talk/YOUEN:0xf7c0	Sheesh... You don't listen to what<FFF6>other people have to say at all...<FFF5>
+466	0x6351	pack/talk/YOUEN:0xf850	Didn't I just say to take<FFF6>this seriously!?<FFF5>
+467	0x636c	pack/talk/YOUEN:0xf8a8	Is that so?<FFF6>Then do whatever you want!<FFF5>
+468	0x6388	pack/talk/YOUEN:0xf8f8	I don't like your attitude. It seems<FFF6>like you're making fun of me...<FFF5>
+469	0x63af	pack/talk/YOUEN:0xf988	Sheesh... making fun of me like that...!<FFF5>
+470	0x63bd	pack/talk/YOUEN:0xf9e0	Well, SORRY!<FFF5>
+471	0x63c8	pack/talk/YOUEN:0xfa00	Hey! Tell me!<FFF5>
+472	0x63dc	pack/talk/YOUEN:0xfa20	Why won't you tell me? Ohhh, I get it!<FFF6>That's your plan to get<FFF6>my attention, huh?<FFF5>
+473	0x6414	pack/talk/YOUEN:0xfac8	Huh? Is that so? I don't understand<FFF6>what you're trying to do, though...<FFF5>
+474	0x6433	pack/talk/YOUEN:0xfb58	I can't keep up with this.<FFF5>
+475	0x643f	pack/talk/YOUEN:0xfb90	If you die,<FFF6>I bet everyone will just laugh!<FFF5>
+476	0x645d	pack/talk/YOUEN:0xfbe8	I-I'm sorry...<FFF5>
+477	0x646a	pack/talk/YOUEN:0xfc08	Whew... At least you can listen...<FFF5>
+478	0x647e	pack/talk/YOUEN:0xfc50	What's with you? You're disgusting!<FFF5>
+479	0x6497	pack/talk/YOUEN:0xfc98	Yikes... what's with you...?<FFF5>
+480	0x64aa	pack/talk/YOUEN:0xfcd8	Men fall so easily for a pretty face...<FFF6>Looks like you're no different.<FFF5>
+481	0x64df	pack/talk/YOUEN:0xfd68	I just need to bat my eyes, and I've<FFF6>got you wrapped around my finger!<FFF6>You're so easy to manipulate.<FFF5>
+482	0x650a	pack/talk/YOUEN:0xfe38	Meanie! You're<FFF5>
+483	0x6510	pack/talk/YOUEN:0xfe48	right, that was vulgar... I'm sorry.<FFF5>
+484	0x6536	pack/talk/YOUEN:0xfea0	What's with that tone of voice!?<FFF6>Don't act all holier-than-thou!<FFF5>
+485	0x6557	pack/talk/YOUEN:0xff28	You're so good-natured.<FFF6>Heehee... Wow... That<FFF5>
+486	0x6577	pack/talk/YOUEN:0xff70	was a cool way to say it...<FFF5>
+487	0x6593	pack/talk/YOUEN:0xffc0	Yep, I'm happy! So give me more!<FFF5>
+488	0x65b0	pack/talk/YOUEN:0x10008	What, I'm not allowed to be happy!?<FFF6>I don't like your wording very much!<FFF5>
+489	0x65e5	pack/talk/YOUEN:0x100a0	Hmhmhm, eh...?<FFF5>
+490	0x65ef	pack/talk/YOUEN:0x100c0	Ahaha...<FFF6>I think it's cute when you do that.<FFF5>
+491	0x661a	pack/talk/YOUEN:0x10120	Even if that's true, you're not<FFF6>supposed to say so yourself!<FFF5>
+492	0x663b	pack/talk/YOUEN:0x101a0	Is that so? All right, then.<FFF5>
+493	0x664f	pack/talk/YOUEN:0x101e0	Is that so? All right, then.<FFF5>
+494	0x6663	pack/talk/YOUEN:0x10220	I can't trust you!<FFF5>
+495	0x6676	pack/talk/YOUEN:0x10248	Ahaha... I understand very well now.<FFF6>You're not bad at all.<FFF5>
+496	0x6699	pack/talk/YOUEN:0x102c0	Is that so!<FFF5>
+497	0x66a3	pack/talk/YOUEN:0x102d8	Ahaha... You're so cute when<FFF6>you're embarrassed.<FFF5>
+498	0x66bd	pack/talk/YOUEN:0x10340	That's what you have to say for<FFF6>yourself after yelling at me?<FFFB><FFF7>Ahaha...<FFF6>you have quite the silver tongue.<FFF5>
+499	0x66e4	pack/talk/YOUEN:0x10418	What do you mean, you're going to<FFF6>torment me!? Let's see you try!<FFF5>
+500	0x6706	pack/talk/YOUEN:0x104a0	N-No way... What did I do...?<FFF5>
+501	0x6724	pack/talk/YOUEN:0x104e0	I'm not surprised!<FFF6>Even if I didn't want to,<FFF6>I could tell by how cocky you are!<FFF5>
+502	0x674e	pack/talk/YOUEN:0x10580	Huh? Really? What ARE they<FFF6>teaching them in schools today...?<FFF5>
+503	0x6770	pack/talk/YOUEN:0x10600	Thanks... that's nice of you!<FFF5>
+504	0x6784	pack/talk/YOUEN:0x10640	Don't get conceited!<FFF5>
+505	0x6794	pack/talk/YOUEN:0x10670	Why...? I'm just a weak demoness...<FFF5>
+506	0x67b5	pack/talk/YOUEN:0x106b8	You're cocky, but honest, I'll admit.<FFF5>
+507	0x67c9	pack/talk/YOUEN:0x10708	I told you nicely, too!<FFF5>
+508	0x67db	pack/talk/YOUEN:0x10738	Ahaha... You're an honest one.<FFF6>You know, now that I look at you,<FFF6>you're pretty cute.<FFF5>
+509	0x6805	pack/talk/YOUEN:0x107e8	Oh, is that so!<FFF6>With that huge face of yours,<FFFB><FFF7>I bet you could paint a picture with<FFF6>all the blood you'll lose!<FFF5>
+510	0x6831	pack/talk/YOUEN:0x108c8	Don't you know sarcasm when you<FFF6>hear it? Humans really are stupid.<FFF5>
+511	0x685c	pack/talk/YOUEN:0x10950	What are you getting all solemn over?<FFF6>You're so self-centered!<FFF5>
+512	0x6882	pack/talk/YOUEN:0x109d0	Uh-oh... You're plotting something,<FFF6>aren't you...?<FFF5>
+513	0x6895	pack/talk/YOUEN:0x10a38	I'm so happy!<FFF5>
+514	0x689d	pack/talk/YOUEN:0x10a58	Huh, you're actually pretty stingy.<FFF5>
+515	0x68b9	pack/talk/YOUEN:0x10aa0	Heehee, just joking!<FFF6>You're dancing, right?<FFF5>
+516	0x68d2	pack/talk/YOUEN:0x10af8	I know that!<FFF6>Don't you know you suck?<FFF5>
+517	0x68ff	pack/talk/YOUEN:0x10b48	What amazing stamina...<FFF6>You really do seem like you're<FFF6>going to dance through the night...<FFF5>
+518	0x6923	pack/talk/YOUEN:0x10c00	What, you're going to stop?<FFF6>No, please keep going!<FFF5>
+519	0x6944	pack/talk/YOUEN:0x10c68	That's what you have to say for<FFF6>yourself after taunting me? Ahaha...<FFF6>you have quite the silver tongue.<FFF5>
+520	0x6969	pack/talk/YOUEN:0x10d38	Oh, is that so!? Let's see you try!<FFF5>
+521	0x6986	pack/talk/YOUEN:0x10d80	N-No way... What did I do...?<FFF5>
+522	0x69a4	pack/talk/YOUEN:0x10dc0	That's what I thought!<FFF6>That doesn't actually mean anything.<FFF6>You're such an idiot!<FFF5>
+523	0x69cf	pack/talk/YOUEN:0x10e68	That's what I thought!<FFF6>That doesn't actually mean anything.<FFF5>
+524	0x69e9	pack/talk/YOUEN:0x10ee0	Huh? Really? What ARE they<FFF6>teaching them in schools today...?<FFF5>
+525	0x6a0b	pack/talk/YOUEN:0x10f60	Thanks... that's nice of you!<FFF5>
+526	0x6a1f	pack/talk/YOUEN:0x10fa0	Don't get conceited!<FFF5>
+527	0x6a2f	pack/talk/YOUEN:0x10fd0	Why...? I'm just a weak demoness...<FFF5>
+528	0x6a50	pack/talk/YOUEN:0x11018	Awww... I don't know what to say...!<FFF5>
+529	0x6a64	pack/talk/YOUEN:0x11068	Heehee... Then why are you looking?<FFF6>Ah, I'm such a sinful woman.<FFF5>
+530	0x6a8d	pack/talk/YOUEN:0x110f0	What's with you, you little brat!?<FFF5>
+531	0x6a9d	pack/talk/YOUEN:0x11138	Ha! It's so obvious!<FFF5>
+532	0x6aae	pack/talk/YOUEN:0x11168	What's up with that!?<FFF6>Then what do YOU want from me!?<FFF5>
+533	0x6ace	pack/talk/YOUEN:0x111d8	You're cute! I'll play with you later...<FFF6>Heeheehee.<FFF5>
+534	0x6aef	pack/talk/YOUEN:0x11240	Heehee... You're so embarrassed that<FFF6>you're saying things you don't mean.<FFF6>I can tell.<FFF5>
+535	0x6b1f	pack/talk/YOUEN:0x112f0	Yikes...<FFF6>don't you have a sense of humor?<FFF5>
+536	0x6b3d	pack/talk/YOUEN:0x11348	What're you so embarrassed about?<FFF5>
+537	0x6b4c	pack/talk/YOUEN:0x11390	Awww, you're trying to act all modest.<FFF6>I think it's cute when you do that.<FFF5>
+538	0x6b7b	pack/talk/YOUEN:0x11428	Even if that's true, you're not<FFF6>supposed to say so yourself!<FFF5>
+539	0x6b9c	pack/talk/YOUEN:0x114a8	Is that so? All right, then.<FFF5>
+540	0x6bb0	pack/talk/YOUEN:0x114e8	Is that so? All right, then.<FFF5>
+541	0x6bc4	pack/talk/YOUEN:0x11528	I can't trust you!<FFF5>
+542	0x6bd7	pack/talk/YOUEN:0x11550	Ahaha... I understand very well now.<FFF6>You're not bad at all.<FFF5>
+543	0x6bfa	pack/talk/YOUEN:0x115c8	Is that so!<FFF5>
+544	0x6c04	pack/talk/YOUEN:0x115e0	Ahaha... You know you want me, but<FFF6>it's cute that you're so<FFF6>embarrassed about it.<FFF5>
+545	0x6c2e	pack/talk/YOUEN:0x11688	I know, right? It makes me so angry.<FFF5>
+546	0x6c47	pack/talk/YOUEN:0x116d8	I know, right?<FFF6>I wish they'd do something about it.<FFF5>
+547	0x6c64	pack/talk/YOUEN:0x11740	Hey! You think this has nothing to<FFF6>do with you, huh!?<FFF5>
+548	0x6c82	pack/talk/YOUEN:0x117b0	Listen up! NEVER talk about<FFF6>anything like that again!<FFF5>
+549	0x6ca3	pack/talk/YOUEN:0x11820	Sheesh, don't tell me any more stories<FFF6>like that... I really don't like them.<FFF5>
+550	0x6ccc	pack/talk/YOUEN:0x118c0	I said stop it!<FFF5>
+551	0x6ce3	pack/talk/YOUEN:0x118e0	Eep! Please stop!<FFF5>
+552	0x6cf4	pack/talk/YOUEN:0x11908	This is the story of a girl<FFF6>who foolishly tried to<FFF6>negotiate with a demon...<FFFB><FFF7>She ruined the beautiful demoness'<FFF6>mood, and it ended up eating her!<FFF6>The end!<FFF5>
+553	0x6d5e	pack/talk/YOUEN:0x11a40	That's so boring...<FFF5>
+554	0x6d69	pack/talk/YOUEN:0x11a68	That's what you like, huh...?<FFF5>
+555	0x6d88	pack/talk/YOUEN:0x11aa8	You're nice.<FFF6>I think we could be good friends!<FFF5>
+556	0x6dae	pack/talk/YOUEN:0x11b08	You're going to keep it<FFF6>all for yourself, aren't you?<FFF6>I hate greediness like that.<FFF5>
+557	0x6dd2	pack/talk/YOUEN:0x11bb0	Okay! Well, all<FFF5>
+558	0x6ddc	pack/talk/YOUEN:0x11bc0	right. I'll let you have it...<FFF5>
+559	0x6dfc	pack/talk/YOUEN:0x11c18	No! Well, bring<FFF5>
+560	0x6e04	pack/talk/YOUEN:0x11c20	it on! I'm not responsible if<FFF6>you lose your voice!<FFF5>
+561	0x6e31	pack/talk/YOUEN:0x11ca0	Hm, you seem pretty confident.<FFF6>...Let's call it off for now!<FFF5>
+562	0x6e68	pack/talk/YOUEN:0x11d20	Hmhmhm, you must've gotten scared.<FFF6>No surprise there!<FFF5>
+563	0x6e8d	pack/talk/YOUEN:0x11d90	Awesome! That was totally amazing!<FFF5>
+564	0x6ea6	pack/talk/YOUEN:0x11dd8	What amazing pitch...<FFF6>Hey, are you really human?<FFF5>
+565	0x6ed4	pack/talk/YOUEN:0x11e40	What a voice you have... I really can't<FFF6>believe you're actually a human.<FFF5>
+566	0x6f02	pack/talk/YOUEN:0x11ed8	...Was that sarcasm?<FFF6>You're such an awful girl!<FFF5>
+567	0x6f2b	pack/talk/YOUEN:0x11f38	...I'm not surprised.<FFF5>
+568	0x6f40	pack/talk/YOUEN:0x11f68	Then you did it on purpose!<FFF6>If you underestimate me,<FFF6>you'll regret it later!<FFF5>
+569	0x6f73	pack/talk/YOUEN:0x12008	If you don't know, oh well...<FFF5>
+570	0x6f88	pack/talk/YOUEN:0x12048	Looks like humans aren't as scary as<FFF6>I always thought they'd be...<FFF5>
+571	0x6faf	pack/talk/YOUEN:0x120d0	Sheesh, and I was having such fun!<FFF6>You're so dull!<FFF5>
+572	0x6fd1	pack/talk/YOUEN:0x12138	Oh, is that so?<FFF5>
+573	0x6fda	pack/talk/YOUEN:0x12158	I think it's cute when you do that.<FFF5>
+574	0x6ffa	pack/talk/YOUEN:0x121a0	Even if that's true, you're not<FFF6>supposed to say so yourself!<FFF5>
+575	0x701b	pack/talk/YOUEN:0x12220	Is that so? All right, then.<FFF5>
+576	0x702f	pack/talk/YOUEN:0x12260	Is that so? All right, then.<FFF5>
+577	0x7043	pack/talk/YOUEN:0x122a0	I can't trust you!<FFF5>
+578	0x7056	pack/talk/YOUEN:0x122c8	Ahaha... I understand very well now.<FFF6>You're not bad at all.<FFF5>
+579	0x7079	pack/talk/YOUEN:0x12340	Is that so!<FFF5>
+580	0x7083	pack/talk/YOUEN:0x12358	There's no need to hold back,<FFF6>you know.<FFF6>Deep down, you know you want me...<FFF5>
+581	0x70a7	pack/talk/YOUEN:0x123f0	Huh...<FFF6>You're actually pretty obedient.<FFF5>
+582	0x70c0	pack/talk/YOUEN:0x12440	I told you nicely, too!<FFF5>
+583	0x70d2	pack/talk/YOUEN:0x12470	Then you did it on purpose!<FFF6>If you underestimate me,<FFF6>you'll regret it later!<FFF5>
+584	0x7105	pack/talk/YOUEN:0x12510	If you don't know, oh well...<FFF5>
+585	0x711a	pack/talk/YOUEN:0x12550	Grrrrrr!<FFF5>
+586	0x7126	pack/talk/YOUEN:0x12568	I can't believe I'm letting this...<FFF6>lowly human... console me.<FFF5>
+587	0x7153	pack/talk/YOUEN:0x125e8	That "totally" is really<FFF6>annoying, you know!<FFF5>
+588	0x716e	pack/talk/YOUEN:0x12648	Um... it'll just be dinner, okay...?<FFF5>
+589	0x7183	pack/talk/YOUEN:0x12698	Is a dinner outing<FFF6>not enough for you?<FFF6>You're actually pretty greedy...<FFF5>
+590	0x71a7	pack/talk/YOUEN:0x12728	Will you hurry up and make up<FFF6>your mind!? I'm losing my patience!<FFF5>
+591	0x71c4	pack/talk/YOUEN:0x127b0	Huh... I'm surprised at how<FFF6>smart you really are.<FFF5>
+592	0x71de	pack/talk/YOUEN:0x12818	Huh... I'm surprised at<FFF6>how smart you really are.<FFF6>Though it's kind of annoying.<FFF5>
+593	0x7209	pack/talk/YOUEN:0x128b8	It's too bad, though...<FFF6>Things would have gone<FFF6>smoother if you were a demon.<FFF5>
+594	0x7237	pack/talk/YOUEN:0x12958	Oh, are you scared now?<FFF6>Well, considering it's me you're<FFF6>dealing with, that's no surprise.<FFF5>
+595	0x726c	pack/talk/YOUEN:0x12a10	You're backing out now...?<FFF6>You're such a coward!<FFF5>
+596	0x728e	pack/talk/YOUEN:0x12a78	You may still be a child, but there's<FFF6>something admirable about you.<FFF6>I'm impressed.<FFF5>
+597	0x72ac	pack/talk/YOUEN:0x12b20	Oh, is that so...<FFF5>
+598	0x72b3	pack/talk/YOUEN:0x12b48	Is it really "totally"?<FFF6>I have my doubts.<FFF5>
+599	0x72d7	pack/talk/YOUEN:0x12ba0	Honestly, that silver tongue of<FFF6>yours... You're a pretty bad girl.<FFF5>
+600	0x7300	pack/talk/YOUEN:0x12c28	Oh, it was true? I'm sorry,<FFF6>I can't always read human emotions.<FFF5>
+601	0x7339	pack/talk/YOUEN:0x12ca8	You're still going to play dumb?<FFF6>There's no way you're<FFF6>putting one over on me!<FFF5>
+602	0x735e	pack/talk/YOUEN:0x12d48	I'm in a fix here...<FFF5>
+603	0x736a	pack/talk/YOUEN:0x12d78	Thank goodness...<FFF6>I don't deal well with people crying.<FFF5>
+604	0x7388	pack/talk/YOUEN:0x12de8	That's what you have to say for<FFF6>yourself after threatening me?<FFFB><FFF7>Ahaha...<FFF6>you have quite the silver tongue.<FFF5>
+605	0x73ab	pack/talk/YOUEN:0x12ec0	Oh, is that so!? Let's see you try!<FFF5>
+606	0x73c8	pack/talk/YOUEN:0x12f08	N-No way... What did I do...?<FFF5>
+607	0x73e6	pack/talk/YOUEN:0x12f48	That's what I thought!<FFF6>The sentence structure's all wrong.<FFF6>You're such an idiot!<FFF5>
+608	0x7412	pack/talk/YOUEN:0x12ff0	Heehee...<FFF6>the sentence structure's all wrong.<FFF5>
+609	0x742b	pack/talk/YOUEN:0x13050	Huh? Really? What ARE they<FFF6>teaching them in schools today...?<FFF5>
+610	0x744d	pack/talk/YOUEN:0x130d0	Thanks... that's actually nice of you!<FFF5>
+611	0x7468	pack/talk/YOUEN:0x13120	Don't get conceited, you little witch!<FFF5>
+612	0x7486	pack/talk/YOUEN:0x13170	Why...? I'm just a weak demoness...<FFF5>
+613	0x74a7	pack/talk/YOUEN:0x131b8	What's with that attitude...?<FFF6>Who do you think you are?<FFF5>
+614	0x74c6	pack/talk/YOUEN:0x13228	What's with that attitude!?<FFF6>If you underestimate me,<FFF6>you'll regret it later!<FFF5>
+615	0x74f7	pack/talk/YOUEN:0x132c8	If you don't know, oh well...<FFF5>
+616	0x750c	pack/talk/YOUEN:0x13308	Could this also be a form of love...?<FFF5>
+617	0x7520	pack/talk/YOUEN:0x13358	How cruel...<FFF6>I thought we were friends...<FFF5>
+618	0x7537	pack/talk/YOUEN:0x133b0	Y-You fiend! That's so cruel!<FFF6>I'll never forgive you for that!<FFF5>
+619	0x755e	pack/talk/YOUEN:0x13430	Ahaha! How could<FFF5>
+620	0x7565	pack/talk/YOUEN:0x13440	you stop just when it was getting<FFF6>good!? You're so cruel!<FFF5>
+621	0x757c	pack/talk/YOUEN:0x134c8	Ah, a new approach to bullying! But I<FFF6>still like the traditional style more.<FFF5>
+622	0x75b2	pack/talk/YOUEN:0x13568	Oh, is that so?<FFF5>
+623	0x75bb	pack/talk/YOUEN:0x13588	I think it's cute when you do that.<FFF5>
+624	0x75db	pack/talk/YOUEN:0x135d0	Even if that's true, you're not<FFF6>supposed to say so yourself!<FFF5>
+625	0x75fc	pack/talk/YOUEN:0x13650	Is that so? All right, then.<FFF5>
+626	0x7610	pack/talk/YOUEN:0x13690	Is that so? All right, then.<FFF5>
+627	0x7624	pack/talk/YOUEN:0x136d0	I can't trust you!<FFF5>
+628	0x7637	pack/talk/YOUEN:0x136f8	Ahaha... I understand very well now.<FFF6>You're not bad at all.<FFF5>
+629	0x765a	pack/talk/YOUEN:0x13770	If you can admonish others that way,<FFF6>you're independent after all.<FFF6>Humans like you interest me...<FFF5>
+630	0x768f	pack/talk/YOUEN:0x13838	Oh, is that so!<FFF6>You talk all big, but your judgement<FFF6>stinks when it comes to demons!<FFF5>
+631	0x76be	pack/talk/YOUEN:0x138e8	What's with that attitude...?<FFF6>Who do you think you are?<FFF5>
+632	0x76dd	pack/talk/YOUEN:0x13958	What's with that attitude!?<FFF6>If you underestimate me,<FFF6>you'll regret it later!<FFF5>
+633	0x770e	pack/talk/YOUEN:0x139f8	If you don't know, oh well...<FFF5>
+634	0x7723	pack/talk/YOUEN:0x13a38	Could this also be a form of love...?<FFF5>
+635	0x7737	pack/talk/YOUEN:0x13a88	How cruel...<FFF6>I thought we were friends...<FFF5>
+636	0x774e	pack/talk/YOUEN:0x13ae0	Y-You fiend! That's so cruel!<FFF6>I'll never forgive you for that!<FFF5>
+637	0x7775	pack/talk/YOUEN:0x13b60	Ahaha! How could<FFF5>
+638	0x777c	pack/talk/YOUEN:0x13b70	you stop just when it was getting<FFF6>good!? You're so cruel!<FFF5>
+639	0x7793	pack/talk/YOUEN:0x13bf8	Ah, a new approach to bullying! But I<FFF6>still like the traditional style more.<FFF5>
+640	0x77c9	pack/talk/YOUEN:0x13c98	Ugh, what is it? That really makes<FFF6>me uncomfortable, you know!<FFF5>
+641	0x77e7	pack/talk/YOUEN:0x13d18	Hmph! If you're gonna ignore me,<FFF6>you can ignore me to the end!<FFF5>
+642	0x780b	pack/talk/YOUEN:0x13d98	Oh, you talked... You really don't<FFF6>have much willpower, hm?<FFF5>
+643	0x7831	pack/talk/YOUEN:0x13e10	You know, enough's enough!<FFF5>
+644	0x7847	pack/talk/YOUEN:0x13e48	It's bad!<FFF5>
+645	0x7852	pack/talk/YOUEN:0x13e60	That's right,<FFF6>you just needed to say something.<FFF5>
+646	0x7870	pack/talk/YOUEN:0x13ec0	...Do you even want to negotiate?<FFF5>
+647	0x7889	pack/talk/YOUEN:0x13f08	Thank goodness you talked...<FFF5>
+648	0x78a1	pack/talk/YOUEN:0x13f48	What do you mean,<FFF6>"What do you want"!? We're in<FFF6>the middle of negotiating here!<FFF5>
+649	0x78c3	pack/talk/YOUEN:0x13fe8	Ugh, what is it? That really makes<FFF6>me uncomfortable, you know!<FFF5>
+650	0x78e1	pack/talk/YOUEN:0x14068	Hmph! If you're gonna ignore me,<FFF6>you can ignore me to the end!<FFF5>
+651	0x7905	pack/talk/YOUEN:0x140e8	Oh, you talked... You really don't<FFF6>have much willpower, hm?<FFF5>
+652	0x792b	pack/talk/YOUEN:0x14160	You know, enough's enough!<FFF5>
+653	0x7941	pack/talk/YOUEN:0x14198	It's bad!<FFF5>
+654	0x794c	pack/talk/YOUEN:0x141b0	That's right,<FFF6>you just needed to say something.<FFF5>
+655	0x796a	pack/talk/YOUEN:0x14210	...Do you even want to negotiate?<FFF5>
+656	0x7983	pack/talk/YOUEN:0x14258	Thank goodness you talked...<FFF5>
+657	0x799b	pack/talk/YOUEN:0x14298	What do you mean,<FFF6>"What do you want"!? We're in<FFF6>the middle of negotiating here!<FFF5>
+658	0x79bd	pack/talk/YOUEN:0x14338	That's what you have to say for<FFF6>yourself after threatening me?<FFFB><FFF7>Ahaha...<FFF6>you have quite the silver tongue.<FFF5>
+659	0x79e0	pack/talk/YOUEN:0x14410	Oh, is that so!? Let's see you try!<FFF5>
+660	0x79fd	pack/talk/YOUEN:0x14458	N-No way... What did I do...?<FFF5>
+661	0x7a1b	pack/talk/YOUEN:0x14498	What's with that attitude!? And to<FFF6>think, I paid special attention to you!<FFF5>
+662	0x7a3f	pack/talk/YOUEN:0x14530	Heehee... You're a shy one!<FFF5>
+663	0x7a58	pack/talk/YOUEN:0x14568	What's with you...?<FFF5>
+664	0x7a6a	pack/talk/YOUEN:0x14590	Thanks, that's nice of you!<FFF5>
+665	0x7a7a	pack/talk/YOUEN:0x145c8	Don't get conceited!<FFF5>
+666	0x7a8a	pack/talk/YOUEN:0x145f8	N-No way...<FFF5>
+667	0x7a98	pack/talk/YOUEN:0x14610	What are you bragging about!?<FFF6>I can't stand you anymore!<FFF5>
+668	0x7aba	pack/talk/YOUEN:0x14688	I-I'm sorry...<FFF5>
+669	0x7acb	pack/talk/YOUEN:0x146a8	That's right, calm down.<FFF5>
+670	0x7adc	pack/talk/YOUEN:0x146e0	You're so disgusting...<FFF5>
+671	0x7aec	pack/talk/YOUEN:0x14710	You're so disgusting!<FFF6>What's wrong with you!? Go away!<FFF5>
+672	0x7b0d	pack/talk/YOUEN:0x14780	You big silly, I was lying!<FFF5>
+673	0x7b1b	pack/talk/YOUEN:0x147b8	Don't you want me to like you!?<FFF5>
+674	0x7b2f	pack/talk/YOUEN:0x147f8	Huh...? You don't want me to like you?<FFF5>
+675	0x7b4b	pack/talk/YOUEN:0x14848	Yes, I'm surprised. I didn't know<FFF6>there were human sorcerers!<FFF5>
+676	0x7b70	pack/talk/YOUEN:0x148c8	I know! Don't take it so seriously!<FFF5>
+677	0x7b8f	pack/talk/YOUEN:0x14910	Huh? Then what is it...?<FFF5>
+678	0x7ba4	pack/talk/YOUEN:0x14948	You're right. I mean,<FFF6>you want to negotiate, so you'd have<FFF6>no reason to try anything funny.<FFF5>
+679	0x7bd9	pack/talk/YOUEN:0x14a00	Are you trying to threaten me...?<FFF5>
+680	0x7bed	pack/talk/YOUEN:0x14a48	"Heh," my ass!<FFF6>What's with that "heh" of yours!?<FFF5>
+681	0x7c0c	pack/talk/YOUEN:0x14ab0	I knew it! I just knew it!<FFF5>
+682	0x7c22	pack/talk/YOUEN:0x14ae8	I'm not going to do<FFF6>anything in particular.<FFF5>
+683	0x7c33	pack/talk/YOUEN:0x14b40	You tricked me!<FFF6>This is negotiation fraud!<FFF5>
+684	0x7c4c	pack/talk/YOUEN:0x14b98	Hey... C'mon, you're joking, right?<FFF5>
+685	0x7c65	pack/talk/YOUEN:0x14be0	You don't think that at all!<FFF6>Stop playing with me!<FFF5>
+686	0x7c89	pack/talk/YOUEN:0x14c48	No way! Adventuring? In this day and<FFF6>age? You're a rare bird!<FFF5>
+687	0x7cb2	pack/talk/YOUEN:0x14cc8	Huh... Well, you're honest.<FFF5>
+688	0x7cc3	pack/talk/YOUEN:0x14d00	Hey! You're supposed to<FFF6>be polite to a lady!<FFF5>
+689	0x7ceb	pack/talk/YOUEN:0x14d60	What did you say!?<FFF6>I think I've just about had it!<FFF5>
+690	0x7d0a	pack/talk/YOUEN:0x14dc8	All right! Okay.<FFF5>
+691	0x7d19	pack/talk/YOUEN:0x14df0	Don't you have any sense of humor?<FFF6>How sad for you...<FFF5>
+692	0x7d3a	pack/talk/YOUEN:0x14e60	None! You're too sly!<FFF5>
+693	0x7d54	pack/talk/YOUEN:0x14e90	None. One's body<FFF5>
+694	0x7d5b	pack/talk/YOUEN:0x14ea0	is one's most precious<FFF6>possession, after all!<FFF5>
+695	0x7d70	pack/talk/YOUEN:0x14f18	I see. Are you all right?<FFF5>
+696	0x7d7e	pack/talk/YOUEN:0x14f50	D-Don't come near me, okay...?<FFF5>
+697	0x7d90	pack/talk/YOUEN:0x14f90	Huh... What should I do?<FFF5>
+698	0x7da8	pack/talk/YOUEN:0x14fc8	Is that so!<FFF5>
+699	0x7db0	pack/talk/YOUEN:0x14fe0	What a weird human...<FFF5>
+700	0x7dbf	pack/talk/YOUEN:0x15010	You won't do anything<FFF6>painful, right...?<FFF5>
+701	0x7dd0	pack/talk/YOUEN:0x15068	Huh? Is that really true...?<FFF5>
+702	0x7de6	pack/talk/YOUEN:0x150a8	Huh? Me? Well, who knows?<FFF5>
+703	0x7e02	pack/talk/YOUEN:0x150e0	Hmmm... I feel like there's<FFF6>something else at work here...<FFF5>
+704	0x7e1f	pack/talk/YOUEN:0x15158	Hmph! I hate you too!<FFF5>
+705	0x7e3b	pack/talk/YOUEN:0x15188	Is there an obstacle in<FFF6>the way of our love? Ahaha...<FFF6>I've always wanted to say that!<FFF5>
+706	0x7e73	pack/talk/YOUEN:0x15238	Oh, I'm sorry... I'm okay now.<FFF5>
+707	0x7e8e	pack/talk/YOUEN:0x15278	Nooooo! I'm scaaared!<FFF5>
+708	0x7ea2	pack/talk/YOUEN:0x152a8	A-Ahahaha...!<FFF5>
+709	0x7eae	pack/talk/YOUEN:0x152c8	Where's that confidence coming from?<FFF6>Then again, it's better that than<FFF6>a man who has no confidence at all.<FFF5>
+710	0x7ee6	pack/talk/YOUEN:0x153a0	You think so too? You understand!<FFF5>
+711	0x7f03	pack/talk/YOUEN:0x153e8	Sheesh!<FFF6>You don't have to get so angry!<FFF5>
+712	0x7f28	pack/talk/YOUEN:0x15438	Hey! You got my hopes up!<FFF5>
+713	0x7f41	pack/talk/YOUEN:0x15470	Oh, my! What should I do?<FFF5>
+714	0x7f54	pack/talk/YOUEN:0x154a8	A-A secret...? I've got a really<FFF6>bad feeling about this...<FFF5>
+715	0x7f77	pack/talk/YOUEN:0x15520	A-A secret...? I've got a really<FFF6>bad feeling about this...<FFF5>
+716	0x8780	YOUEN:0	It's not that great.<FFF5>
+717	0x8788	YOUEN:1	It's not that great.<FFF5>
+718	0x8790	YOUEN:2	It's been hard for me.<FFF5>
+719	0x879c	YOUEN:3	Yes.<FFF5>
+720	0x87a0	YOUEN:4	Yes.<FFF5>
+721	0x87a4	YOUEN:5	No.<FFF5>
+722	0x87a9	YOUEN:6	That's right.<FFF5>
+723	0x87b0	YOUEN:7	I don't want it.<FFF5>
+724	0x87bb	YOUEN:8	I don't want it.<FFF5>
+725	0x87c6	YOUEN:9	I won't do anything.<FFF5>
+726	0x87ce	YOUEN:10	I'll do something bad.<FFF5>
+727	0x87dd	YOUEN:11	I'll do something bad.<FFF5>
+728	0x87eb	YOUEN:12	I learned on my own.<FFF5>
+729	0x87f6	YOUEN:13	I learned on my own.<FFF5>
+730	0x8801	YOUEN:14	I learned at school.<FFF5>
+731	0x880c	YOUEN:15	Console it<FFF5>
+732	0x8813	YOUEN:16	Taunt even further<FFF5>
+733	0x881c	YOUEN:17	Taunt even further<FFF5>
+734	0x8825	YOUEN:18	It's not that great.<FFF5>
+735	0x882d	YOUEN:19	It's not that great.<FFF5>
+736	0x8835	YOUEN:20	It's been hard for me.<FFF5>
+737	0x8841	YOUEN:21	Yes.<FFF5>
+738	0x8845	YOUEN:22	Yes.<FFF5>
+739	0x8849	YOUEN:23	No.<FFF5>
+740	0x884e	YOUEN:24	Yes.<FFF5>
+741	0x8852	YOUEN:25	Yes.<FFF5>
+742	0x8856	YOUEN:26	No.<FFF5>
+743	0x885b	YOUEN:27	I won't lose!<FFF5>
+744	0x8865	YOUEN:28	I won't lose!<FFF5>
+745	0x886f	YOUEN:29	I didn't mean that...<FFF5>
+746	0x887b	YOUEN:30	Stop<FFF5>
+747	0x8880	YOUEN:31	Keep singing<FFF5>
+748	0x8888	YOUEN:32	Stop<FFF5>
+749	0x888d	YOUEN:33	Keep singing<FFF5>
+750	0x8895	YOUEN:34	Keep singing<FFF5>
+751	0x889d	YOUEN:35	Heeheehee.<FFF5>
+752	0x88a5	YOUEN:36	Heeheehee.<FFF5>
+753	0x88ad	YOUEN:37	It's been hard for me.<FFF5>
+754	0x88b9	YOUEN:38	Mm-hmm!<FFF5>
+755	0x88bf	YOUEN:39	Mm-hmm!<FFF5>
+756	0x88c5	YOUEN:40	That's not it.<FFF5>
+757	0x88cb	YOUEN:41	Heheh, that's right.<FFF5>
+758	0x88d6	YOUEN:42	I don't want it.<FFF5>
+759	0x88dd	YOUEN:43	I don't want it.<FFF5>
+760	0x88f1	YOUEN:45	Ooh, you found out?<FFF5>
+761	0x8900	YOUEN:46	Ooh, you found out?<FFF5>
+762	0x890f	YOUEN:47	That's not true.<FFF5>
+763	0x8919	YOUEN:48	That's not true.<FFF5>
+764	0x8923	YOUEN:49	You think so too?<FFF5>
+765	0x8950	YOUEN:52	Wooooow!<FFF5>
+766	0x895a	YOUEN:53	Heeheehee.<FFF5>
+767	0x8962	YOUEN:54	Heeheehee.<FFF5>
+768	0x896a	YOUEN:55	It's been hard for me.<FFF5>
+769	0x8976	YOUEN:56	Mm-hmm!<FFF5>
+770	0x897c	YOUEN:57	Mm-hmm!<FFF5>
+771	0x8982	YOUEN:58	That's not it.<FFF5>
+772	0x8988	YOUEN:59	Heheh, that's right.<FFF5>
+773	0x8993	YOUEN:60	I don't want it.<FFF5>
+774	0x899a	YOUEN:61	I don't want it.<FFF5>
+775	0x89a1	YOUEN:62	What did you say!?<FFF5>
+776	0x89ad	YOUEN:63	What did you say!?<FFF5>
+777	0x89b9	YOUEN:64	Heeheehee.<FFF5>
+778	0x89ce	YOUEN:66	Ooh, you found out?<FFF5>
+779	0x89dd	YOUEN:67	Ooh, you found out?<FFF5>
+780	0x8a0a	YOUEN:70	Wooooow!<FFF5>
+781	0x8a14	YOUEN:71	Mwahahaha, okay!<FFF5>
+782	0x8a24	YOUEN:72	Mwahahaha, okay!<FFF5>
+783	0x8a34	YOUEN:73	Eh, never mind...<FFF5>
+784	0x8a3f	YOUEN:74	Sorry...<FFF5>
+785	0x8a47	YOUEN:75	That's a lie!<FFF5>
+786	0x8a4f	YOUEN:76	That's a lie!<FFF5>
+787	0x8a57	YOUEN:77	You'll say yes?<FFF5>
+788	0x8a63	YOUEN:78	No worries.<FFF5>
+789	0x8a6d	YOUEN:79	No worries.<FFF5>
+790	0x8a77	YOUEN:80	Nothing...<FFF5>
+791	0x8a83	YOUEN:81	Nothing...<FFF5>
+792	0x8a8f	YOUEN:82	It's just a joke!<FFF5>
+793	0x8aa1	YOUEN:83	Explain in detail<FFF5>
+794	0x8aad	YOUEN:84	Make it laugh again<FFF5>
+795	0x8abc	YOUEN:85	Make it laugh again<FFF5>
+796	0x8acb	YOUEN:86	I wanted you to smile.<FFF5>
+797	0x8ada	YOUEN:87	I wanted you to smile.<FFF5>
+798	0x8ae9	YOUEN:88	I was ordered to.<FFF5>
+799	0x8af6	YOUEN:89	Heeheehee!<FFF5>
+800	0x8b01	YOUEN:90	Heeheehee!<FFF5>
+801	0x8b0c	YOUEN:91	What should I do?<FFF5>
+802	0x8b15	YOUEN:92	I do.<FFF5>
+803	0x8b1a	YOUEN:93	I can't tell you...<FFF5>
+804	0x8b27	YOUEN:94	I can't tell you...<FFF5>
+805	0x8b34	YOUEN:95	Roger that!<FFF5>
+806	0x8b40	YOUEN:96	Roger that!<FFF5>
+807	0x8b4c	YOUEN:97	NO. WAY!<FFF5>
+808	0x8b57	YOUEN:98	That's pretty cute.<FFF5>
+809	0x8b64	YOUEN:99	That's pretty cute.<FFF5>
+810	0x8b71	YOUEN:100	So lame...<FFF5>
+811	0x8b7c	YOUEN:101	Never mind...<FFF5>
+812	0x8b88	YOUEN:102	Never mind...<FFF5>
+813	0x8b94	YOUEN:103	I was gonna surprise you.<FFF5>
+814	0x8ba2	YOUEN:104	Mwahahahaha!<FFF5>
+815	0x8bac	YOUEN:105	Mwahahahaha!<FFF5>
+816	0x8bb6	YOUEN:106	Don't joke with me!<FFF5>
+817	0x8bc0	YOUEN:107	Roger that.<FFF5>
+818	0x8bca	YOUEN:108	Heeheehee.<FFF5>
+819	0x8bd3	YOUEN:109	Heeheehee.<FFF5>
+820	0x8bdc	YOUEN:110	All right.<FFF5>
+821	0x8be3	YOUEN:111	All right.<FFF5>
+822	0x8bea	YOUEN:112	I refuse!<FFF5>
+823	0x8bf1	YOUEN:113	You ask too much!<FFF5>
+824	0x8bfb	YOUEN:114	Something else okay?<FFF5>
+825	0x8c06	YOUEN:115	Something else okay?<FFF5>
+826	0x8c11	YOUEN:116	Don't get excited.<FFF5>
+827	0x8c36	YOUEN:119	Hmhm...<FFF5>
+828	0x8c3b	YOUEN:120	Hmhm...<FFF5>
+829	0x8c40	YOUEN:121	It's been hard for me.<FFF5>
+830	0x8c4c	YOUEN:122	Of course.<FFF5>
+831	0x8c53	YOUEN:123	Of course.<FFF5>
+832	0x8c5a	YOUEN:124	Hmhm...<FFF5>
+833	0x8c5f	YOUEN:125	That's right.<FFF5>
+834	0x8c64	YOUEN:126	I don't want it!<FFF5>
+835	0x8c6b	YOUEN:127	I don't want it!<FFF5>
+836	0x8c72	YOUEN:128	Never heard of it.<FFF5>
+837	0x8c79	YOUEN:129	Torment<FFF5>
+838	0x8c7f	YOUEN:130	Torment<FFF5>
+839	0x8c85	YOUEN:131	I taught myself.<FFF5>
+840	0x8c8c	YOUEN:132	I learned at school.<FFF5>
+841	0x8c93	YOUEN:133	Console it<FFF5>
+842	0x8c9a	YOUEN:134	Yell again<FFF5>
+843	0x8ca3	YOUEN:135	Yell again<FFF5>
+844	0x8cac	YOUEN:136	I know.<FFF5>
+845	0x8cb4	YOUEN:137	Will you be quiet!?<FFF5>
+846	0x8cc4	YOUEN:138	You're right.<FFF5>
+847	0x8cca	YOUEN:139	Hmph. I refuse.<FFF5>
+848	0x8cd3	YOUEN:140	Of course.<FFF5>
+849	0x8cda	YOUEN:141	You're a fool!<FFF5>
+850	0x8ce8	YOUEN:142	Well, all right.<FFF5>
+851	0x8cf1	YOUEN:143	Well, all right.<FFF5>
+852	0x8cfa	YOUEN:144	Don't joke with me.<FFF5>
+853	0x8d00	YOUEN:145	Gotta use the john!<FFF5>
+854	0x8d0e	YOUEN:146	That ain't it.<FFF5>
+855	0x8d15	YOUEN:147	Keep dancing<FFF5>
+856	0x8d1e	YOUEN:148	Stop<FFF5>
+857	0x8d23	YOUEN:149	I'm doing nothing.<FFF5>
+858	0x8d2e	YOUEN:150	I'm gonna bully you!<FFF5>
+859	0x8d39	YOUEN:151	I'm gonna bully you!<FFF5>
+860	0x8d44	YOUEN:152	It's my power.<FFF5>
+861	0x8d4c	YOUEN:153	It's my power.<FFF5>
+862	0x8d54	YOUEN:154	At school.<FFF5>
+863	0x8d60	YOUEN:155	Console it<FFF5>
+864	0x8d67	YOUEN:156	Taunt even further<FFF5>
+865	0x8d70	YOUEN:157	Taunt even further<FFF5>
+866	0x8d79	YOUEN:158	'Cause you're pretty.<FFF5>
+867	0x8d86	YOUEN:159	Don't get me wrong.<FFF5>
+868	0x8d91	YOUEN:160	Don't get me wrong.<FFF5>
+869	0x8d9c	YOUEN:161	'Cause you're pretty.<FFF5>
+870	0x8db7	YOUEN:163	Oh yeah!<FFF5>
+871	0x8dc8	YOUEN:164	That's so dumb.<FFF5>
+872	0x8dd3	YOUEN:165	That's so dumb.<FFF5>
+873	0x8dde	YOUEN:166	That ain't true.<FFF5>
+874	0x8de9	YOUEN:167	That ain't true.<FFF5>
+875	0x8e00	YOUEN:169	Yeah, I'm serious.<FFF5>
+876	0x8e0c	YOUEN:170	Yeah, I'm serious.<FFF5>
+877	0x8e18	YOUEN:171	Maybe not.<FFF5>
+878	0x8e30	YOUEN:173	I don't want it.<FFF5>
+879	0x8e38	YOUEN:174	I don't want it.<FFF5>
+880	0x8e40	YOUEN:175	That's rude.<FFF5>
+881	0x8e4c	YOUEN:176	That's rude.<FFF5>
+882	0x8e58	YOUEN:177	*chuckle*<FFF5>
+883	0x8e5f	YOUEN:178	Stop<FFF5>
+884	0x8e64	YOUEN:179	Stop<FFF5>
+885	0x8e69	YOUEN:180	Continue<FFF5>
+886	0x8e6f	YOUEN:181	Continue<FFF5>
+887	0x8e75	YOUEN:182	Yes.<FFF5>
+888	0x8e7d	YOUEN:183	No.<FFF5>
+889	0x8e83	YOUEN:184	I'll guide you.<FFF5>
+890	0x8e8e	YOUEN:185	I'll guide you.<FFF5>
+891	0x8e99	YOUEN:186	That's a secret.<FFF5>
+892	0x8ea4	YOUEN:187	Then I'll be Carrie.<FFF5>
+893	0x8eb3	YOUEN:188	I'm doing Corin's!<FFF5>
+894	0x8ec0	YOUEN:189	I'm doing Corin's!<FFF5>
+895	0x8ecd	YOUEN:190	I won't lose!<FFF5>
+896	0x8ed9	YOUEN:191	I won't lose!<FFF5>
+897	0x8ee5	YOUEN:192	What should I do...?<FFF5>
+898	0x8ef0	YOUEN:193	Stop<FFF5>
+899	0x8ef5	YOUEN:194	Keep singing<FFF5>
+900	0x8efd	YOUEN:195	Keep singing<FFF5>
+901	0x8f05	YOUEN:196	Yes, I see it.<FFF5>
+902	0x8f11	YOUEN:197	I can't see it.<FFF5>
+903	0x8f1a	YOUEN:198	I know.<FFF5>
+904	0x8f23	YOUEN:199	I don't know.<FFF5>
+905	0x8f2c	YOUEN:200	Keep soothing<FFF5>
+906	0x8f34	YOUEN:201	Act serious<FFF5>
+907	0x8f3c	YOUEN:202	It's not that great...<FFF5>
+908	0x8f46	YOUEN:203	It's not that great...<FFF5>
+909	0x8f50	YOUEN:204	It's been hard for me.<FFF5>
+910	0x8f5e	YOUEN:205	Yes.<FFF5>
+911	0x8f66	YOUEN:206	Yes.<FFF5>
+912	0x8f6e	YOUEN:207	Who knows...?<FFF5>
+913	0x8f78	YOUEN:208	Yes.<FFF5>
+914	0x8f80	YOUEN:209	No.<FFF5>
+915	0x8f86	YOUEN:210	No.<FFF5>
+916	0x8f8c	YOUEN:211	O-kay!<FFF5>
+917	0x8f92	YOUEN:212	I understand!<FFF5>
+918	0x8f9d	YOUEN:213	I know.<FFF5>
+919	0x8fa6	YOUEN:214	I don't know.<FFF5>
+920	0x8faf	YOUEN:215	Ahahahaha!<FFF5>
+921	0x8fba	YOUEN:216	It's okay.<FFF5>
+922	0x8fc5	YOUEN:217	I'm totally happy!<FFF5>
+923	0x8fd2	YOUEN:218	I'm totally happy!<FFF5>
+924	0x8fdf	YOUEN:219	Whaaat!? No!<FFF5>
+925	0x8fe9	YOUEN:220	What should I do?<FFF5>
+926	0x8ff5	YOUEN:221	Whaaat!? No!<FFF5>
+927	0x8fff	YOUEN:222	Whaaat!? No!<FFF5>
+928	0x9009	YOUEN:223	Mistress!<FFF5>
+929	0x9013	YOUEN:224	Seriously...?<FFF5>
+930	0x9020	YOUEN:225	Seriously...?<FFF5>
+931	0x902d	YOUEN:226	I'm fine.<FFF5>
+932	0x9036	YOUEN:227	It totally hurts.<FFF5>
+933	0x903f	YOUEN:228	It totally hurts.<FFF5>
+934	0x9048	YOUEN:229	You figured it out.<FFF5>
+935	0x9052	YOUEN:230	But that's mean...<FFF5>
+936	0x905e	YOUEN:231	But that's mean...<FFF5>
+937	0x906a	YOUEN:232	Keep crying<FFF5>
+938	0x9072	YOUEN:233	Stop<FFF5>
+939	0x9077	YOUEN:234	I won't do anything.<FFF5>
+940	0x9082	YOUEN:235	I'm gonna bully you.<FFF5>
+941	0x908c	YOUEN:236	I'm gonna bully you.<FFF5>
+942	0x9096	YOUEN:237	I taught myself.<FFF5>
+943	0x90a2	YOUEN:238	I taught myself.<FFF5>
+944	0x90ae	YOUEN:239	I learned at school.<FFF5>
+945	0x90b8	YOUEN:240	Console it<FFF5>
+946	0x90bf	YOUEN:241	Keep threatening<FFF5>
+947	0x90c7	YOUEN:242	Keep threatening<FFF5>
+948	0x90cf	YOUEN:243	Who knows?<FFF5>
+949	0x90d6	YOUEN:244	Who knows?<FFF5>
+950	0x90dd	YOUEN:245	I don't know.<FFF5>
+951	0x90e5	YOUEN:246	Because I'm curious.<FFF5>
+952	0x90ee	YOUEN:247	Because I hate you.<FFF5>
+953	0x90f8	YOUEN:248	Because I hate you.<FFF5>
+954	0x9102	YOUEN:249	Hell no!<FFF5>
+955	0x910e	YOUEN:250	I stopped.<FFF5>
+956	0x9113	YOUEN:251	I stopped.<FFF5>
+957	0x9118	YOUEN:252	Stop it...<FFF5>
+958	0x9120	YOUEN:253	Stop it...<FFF5>
+959	0x9128	YOUEN:254	It's been hard for me.<FFF5>
+960	0x9133	YOUEN:255	I'm serious.<FFF5>
+961	0x913b	YOUEN:256	I'm serious.<FFF5>
+962	0x9143	YOUEN:257	Who knows?<FFF5>
+963	0x914a	YOUEN:258	You're right.<FFF5>
+964	0x914f	YOUEN:259	I don't want it.<FFF5>
+965	0x9156	YOUEN:260	I don't want it.<FFF5>
+966	0x915d	YOUEN:261	Who knows?<FFF5>
+967	0x9164	YOUEN:262	Who knows?<FFF5>
+968	0x916b	YOUEN:263	I don't know.<FFF5>
+969	0x9173	YOUEN:264	Because I'm curious.<FFF5>
+970	0x917c	YOUEN:265	Because I hate you.<FFF5>
+971	0x9186	YOUEN:266	Because I hate you.<FFF5>
+972	0x9190	YOUEN:267	Hell no!<FFF5>
+973	0x919c	YOUEN:268	I stopped.<FFF5>
+974	0x91a1	YOUEN:269	I stopped.<FFF5>
+975	0x91a6	YOUEN:270	......<FFF5>
+976	0x91b2	YOUEN:271	Nothing special.<FFF5>
+977	0x91bb	YOUEN:272	Nothing special.<FFF5>
+978	0x91c4	YOUEN:273	......<FFF5>
+979	0x91ea	YOUEN:276	......<FFF5>
+980	0x91f6	YOUEN:277	What do you want?<FFF5>
+981	0x9201	YOUEN:278	What do you want?<FFF5>
+982	0x920c	YOUEN:279	......<FFF5>
+983	0x9218	YOUEN:280	I don't hear it.<FFF5>
+984	0x9221	YOUEN:281	I don't hear it.<FFF5>
+985	0x922a	YOUEN:282	......<FFF5>
+986	0x9236	YOUEN:283	Why not!?<FFF5>
+987	0x9241	YOUEN:284	Why not!?<FFF5>
+988	0x924c	YOUEN:285	......<FFF5>
+989	0x9258	YOUEN:286	What do you want?<FFF5>
+990	0x9264	YOUEN:287	What do you want?<FFF5>
+991	0x9270	YOUEN:288	I won't do anything.<FFF5>
+992	0x927b	YOUEN:289	I'll bully you.<FFF5>
+993	0x9283	YOUEN:290	I'll bully you.<FFF5>
+994	0x928b	YOUEN:291	Leave me alone.<FFF5>
+995	0x9294	YOUEN:292	Leave me alone.<FFF5>
+996	0x929d	YOUEN:293	Shut up. Get lost.<FFF5>
+997	0x92a9	YOUEN:294	Console it<FFF5>
+998	0x92b0	YOUEN:295	Keep threatening<FFF5>
+999	0x92b8	YOUEN:296	Keep threatening<FFF5>
+1000	0x92c0	YOUEN:297	I'm a fool.<FFF5>
+1001	0x92ca	YOUEN:298	You wanna die, huh!?<FFF5>
+1002	0x92d7	YOUEN:299	Calm down<FFF5>
+1003	0x92dd	YOUEN:300	Smirk<FFF5>
+1004	0x92e6	YOUEN:301	Smirk<FFF5>
+1005	0x92ef	YOUEN:302	Roar again<FFF5>
+1006	0x92fa	YOUEN:303	Act serious<FFF5>
+1007	0x9302	YOUEN:304	Act serious<FFF5>
+1008	0x930a	YOUEN:305	Were you surprised?<FFF5>
+1009	0x9311	YOUEN:306	It's not a spell.<FFF5>
+1010	0x931c	YOUEN:307	It's not a spell.<FFF5>
+1011	0x9327	YOUEN:308	I dunno about that.<FFF5>
+1012	0x9330	YOUEN:309	I dunno about that.<FFF5>
+1013	0x9339	YOUEN:310	Heh...<FFF5>
+1014	0x933e	YOUEN:311	So what?<FFF5>
+1015	0x9347	YOUEN:312	So what?<FFF5>
+1016	0x9350	YOUEN:313	I'm Reiji.<FFF5>
+1017	0x935a	YOUEN:314	Hunting demons.<FFF5>
+1018	0x9363	YOUEN:315	Waiting for you.<FFF5>
+1019	0x936e	YOUEN:316	Having an adventure.<FFF5>
+1020	0x9377	YOUEN:317	Yes.<FFF5>
+1021	0x937b	YOUEN:318	No.<FFF5>
+1022	0x9380	YOUEN:319	You're in MY way.<FFF5>
+1023	0x938c	YOUEN:320	Don't go in.<FFF5>
+1024	0x9393	YOUEN:321	Like I give a damn!<FFF5>
+1025	0x93bb	YOUEN:324	I'm doing okay.<FFF5>
+1026	0x93c1	YOUEN:325	I could be better.<FFF5>
+1027	0x93cb	YOUEN:326	I'm about to puke.<FFF5>
+1028	0x93d6	YOUEN:327	We got business.<FFF5>
+1029	0x93dd	YOUEN:328	Get outta here.<FFF5>
+1030	0x93e2	YOUEN:329	Hey, don't leave!<FFF5>
+1031	0x93ee	YOUEN:330	We got business.<FFF5>
+1032	0x93f5	YOUEN:331	Get outta here.<FFF5>
+1033	0x93fa	YOUEN:332	You need something?<FFF5>
+1034	0x9407	YOUEN:333	My door's open.<FFF5>
+1035	0x940f	YOUEN:334	Don't come near me.<FFF5>
+1036	0x9415	YOUEN:335	I want to, but...<FFF5>
+1037	0x9422	YOUEN:336	Calm it down<FFF5>
+1038	0x942c	YOUEN:337	Scare it<FFF5>
+1039	0x9434	YOUEN:338	Make it laugh<FFF5>
+1040	0x943b	YOUEN:339	Of course.<FFF5>
+1041	0x9441	YOUEN:340	I don't measure up.<FFF5>
+1042	0x944e	YOUEN:341	Don't joke with me.<FFF5>
+1043	0x9455	YOUEN:342	Do nothing<FFF5>
+1044	0x945d	YOUEN:343	Adore it<FFF5>
+1045	0x9465	KOSIKI:337	It's a secret.<FFF5>
+1046	0x88e4	YOUEN:44	No, that's not it!<FFF5>
+1047	0x8932	YOUEN:50	You think so too?<FFF5>
+1048	0x8941	YOUEN:51	Is that a joke?<FFF5>
+1049	0x89c1	YOUEN:65	No, that's not it!<FFF5>
+1050	0x89ec	YOUEN:68	Is that a joke?<FFF5>
+1051	0x89fb	YOUEN:69	Is that a joke?<FFF5>
+1052	0x8c1c	YOUEN:117	Hmph. Are you happy?<FFF5>
+1053	0x8c29	YOUEN:118	Hmph. Are you happy?<FFF5>
+1054	0x8da9	YOUEN:162	Whaddaya want!?<FFF5>
+1055	0x8df4	YOUEN:168	Could you tell?<FFF5>
+1056	0x8e24	YOUEN:172	Could you tell?<FFF5>
+1057	0x91d0	YOUEN:274	Why not?<FFF5>
+1058	0x91dd	YOUEN:275	Why not?<FFF5>
+1059	0x93a1	YOUEN:322	How about the sky?<FFF5>
+1060	0x93ae	YOUEN:323	How about the sky?<FFF5>

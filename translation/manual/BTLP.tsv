@@ -1,0 +1,152 @@
+id	pos	psp	en	note
+0	0x6b6b0		<FFF9>: !!	machine-translated; ja <FFF9>：！！
+26	0x64680		＞ Obtained <FFF8> yen.	PSP-US; ja ＞<FFF8>円を、<FFF6>　手に入れた。
+33	0x64ac8		＞ <FFFA> sang a song!	PSP-US; ja ＞<FFFA>は、<FFF6>　歌った！
+39	0x65a40		78974145<FFF6>7412369<FFFB><FFF7>74123<FFF6>74123！	same as JP; ja ７８９７４１４５<FFF6>７４１２３６９<FFFB><FFF7>７４１２３<FFF6>７４１２３！
+47	0x69a48		Anger	machine-translated; ja いかり
+48	0x69a54		Fear	machine-translated; ja きょうふ
+49	0x69a60		Joy	machine-translated; ja よろこび
+50	0x69c68		Floor No.	machine-translated; ja フローナンバ
+51	0x69c70		Hi: Angel	machine-translated; ja じょうま　てんし
+52	0x69c7c		Hi: Herald	machine-translated; ja じょうま　しんし
+53	0x69c88		Hi: Pride	machine-translated; ja じょうま　こうまん
+54	0x69c94		Lo: Tiger-Wolf	machine-translated; ja げま　ころう
+55	0x69c9c		Lo: Madness	machine-translated; ja げま　きょうき
+56	0x69ca8		Lo: Heeho	machine-translated; ja げま　ヒーホー
+57	0x69cb4		Lo: Beast	machine-translated; ja げま　けもの
+58	0x69cbc		F: Old Style	machine-translated; ja じょま　こしき
+59	0x69cc8		F: Bewitch	machine-translated; ja じょま　ようえん
+60	0x69cd4		F: Girl	machine-translated; ja じょま　しょうじょ
+61	0x69ce0		Zombie M.	machine-translated; ja ゾンビ　おとこ
+62	0x69cec		Zombie W.	machine-translated; ja ゾンビ　おんな
+63	0x69cf8		Wanderer	machine-translated; ja まよえるもの
+64	0x69d08		Doppelganger	machine-translated; ja ドッペル鈍指
+65	0x69d20		Poltergeist	machine-translated; ja ポルター念スト
+66	0x69d34		Worm	machine-translated; ja ワーム
+67	0x69d3c		Yakuza	machine-translated; ja やーさん
+68	0x69d44		Slime	machine-translated; ja すらいむ
+69	0x69d4c		Alien	machine-translated; ja うちゅうじん
+70	0x69d54		F.Angel	machine-translated; ja てんしじょせい
+71	0x69d60		Punk	machine-translated; ja ちんぴら
+72	0x69d68		Benki-chan	machine-translated; ja べんきちゃん
+73	0x69d70		Basketman	machine-translated; ja ばすけっとまん
+75	0x69eec		Select	machine-translated; ja せんたく
+76	0x69ef4		Demand	machine-translated; ja ようきゅう
+78	0x6a31c		Char. 0	machine-translated; ja キャラ０
+79	0x6a324		Char. 1	machine-translated; ja キャラ１
+80	0x6a32c		Char. 2	machine-translated; ja キャラ２
+81	0x6a334		Char. 3	machine-translated; ja キャラ３
+82	0x6a33c		Char. 4	machine-translated; ja キャラ４
+83	0x6a344		Money	machine-translated; ja おかね
+84	0x6a34c		1 yen	machine-translated; ja いちえん
+85	0x6a354		Bill	machine-translated; ja おさつ
+87	0x6a57c		No cards	machine-translated; ja ／カードない／
+89	0x6a680		Talk type	machine-translated; ja トークタイプ
+90	0x6a688		Address info	machine-translated; ja アドレスじょうほう
+91	0x6a694		Msg check	machine-translated; ja メッセー◆くにん
+92	0x6a6a0		Displaying various	machine-translated; ja いろいろひょうじちゅう
+102	0x6db20		Good status: Cloak	PSP-US; ja グッドステータス　ＣＬＯＡＫ
+103	0x6db3c		Bad status: Guilt	PSP-US; ja バッドステータス　ＧＵＩＬＴ
+104	0x6db58		Bad status: Mute	PSP-US; ja バッドステータス　ＣＬＯＳＥ (the PSP calls this ailment Mute)
+105	0x6db74		Good status: Puppet	PSP-US; ja グッドステータス　ＰＵＰＰＥＴ
+106	0x6db90		Bad status: Blind	PSP-US; ja バッドステータス　ＢＬＩＮＤ
+107	0x6dbd4		No gun equipped.	PSP-US; ja ＧＵＮが装備されていません
+117	0x6dcb4		・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・	same as JP; ja ・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・
+132	0x7a2fc		Normal	machine-translated; ja ノーマル
+133	0x7a304		Easy	machine-translated; ja イージー
+134	0x7a30c		Control key list	machine-translated; ja そうさキー　いちらん
+135	0x7a318		Current mode	machine-translated; ja げんざいのモード
+136	0x7a324		Confirm	machine-translated; ja けってい
+137	0x7a32c		Cancel	machine-translated; ja キャンセル
+138	0x7a334		Set shortcut	machine-translated; ja ショートカットけってい
+139	0x7a340		Cancel all	machine-translated; ja オールキャンセル
+140	0x7a34c		Player list	machine-translated; ja プレイヤーいちらん
+141	0x7a358		Online help ON/OFF	machine-translated; ja オンラインヘルプＯＮ／ＯＦＦ
+142	0x7a368		Enemy list	machine-translated; ja てきいちらん
+143	0x7a370		Control key list	machine-translated; ja そうさキーいちらん
+144	0x7a37c		Battle config	machine-translated; ja バトルコンフィグ
+145	0x7a388		Toggle status display	machine-translated; ja ステータスひょうじきりかえ
+146	0x7b9b8		Battle config settings	machine-translated; ja バトルコンフィグせってい
+147	0x7b9c8		Remember cursor position	machine-translated; ja カーソルいちきおく
+148	0x7b9d4		Personal auto settings	machine-translated; ja パーソナルオートせってい
+149	0x7b9e4		Confirm final command	machine-translated; ja コマンドさいしゅうかくにん
+150	0x7b9f4		Battle message speed	machine-translated; ja バトルメッセージスピード
+151	0x7ba04		Battle window animation	machine-translated; ja バトルウィンドウアニメ
+152	0x7ba10		On	machine-translated; ja する
+153	0x7ba14		Off	machine-translated; ja しない
+154	0x7ba18		Normal	machine-translated; ja ふつう
+155	0x7ba1c		Fast	machine-translated; ja はやい
+156	0x7ba20		None	machine-translated; ja なし
+157	0x7a84c		Sword	machine-translated; ja けん
+158	0x7a850		Gun	machine-translated; ja じゅう
+159	0x7a854		Free	machine-translated; ja フリー
+160	0x7a858		Personal auto settings	machine-translated; ja パーソナルオートせってい
+161	0x795f4		Take that!	machine-translated; ja それっ
+162	0x795fe		Waaaaah!	machine-translated; ja うわぁぁぁぁ
+163	0x79608		So scary!	machine-translated; ja こわぃぃぃぃ
+164	0x79612		Wahahaha!	machine-translated; ja わっはっは
+165	0x7961c		Hmmm...	machine-translated; ja ふーむ
+166	0x79626		Fuming!	machine-translated; ja プンスカプン
+167	0x79630		Magic 1	machine-translated; ja まほう１
+168	0x7963a		Magic 2	machine-translated; ja まほう２
+169	0x79644		Magic 3	machine-translated; ja まほう３
+170	0x7964e		Magic 4	machine-translated; ja まほう４
+171	0x79658		Magic 5	machine-translated; ja まほう５
+172	0x79662		Magic 6	machine-translated; ja まほう６
+173	0x7966c		Guard	machine-translated; ja ぼうぎょ
+174	0x79676		Nanmaidabu	machine-translated; ja ナンマイダブ
+175	0x79d2c		Wait	machine-translated; ja たいき
+176	0x79d36		Attack	machine-translated; ja こうげき
+177	0x79d40		Persona	machine-translated; ja ぺるそな
+178	0x79d4a		Guard	machine-translated; ja ぼうぎょ
+179	0x79d54		Damage	machine-translated; ja だめーじ
+180	0x79d5e		Down	machine-translated; ja たおれ
+181	0x79d68		Kneel	machine-translated; ja ひざまづき
+182	0x79d72		Death	machine-translated; ja しぼう
+183	0x79d7c		Kill for real	machine-translated; ja ほんとにころす
+184	0x79fbc		No. 1	machine-translated; ja その１
+185	0x79fc6		No. 2	machine-translated; ja その２
+186	0x79fd0		No. 3	machine-translated; ja その３
+187	0x79fda		No. 4	machine-translated; ja その４
+188	0x7a0fc		Party status	machine-translated; ja パーティステータス
+189	0x7a106		Demon status	machine-translated; ja あくまステータス
+190	0x7a110		Persona change	machine-translated; ja ペルソナチェンジ
+191	0x7a12e		I'd like to cut in	machine-translated; ja できればきりたい
+192	0x7a138		Doping mode	machine-translated; ja ドーピングモード
+193	0x7a142		In the name of the moon	machine-translated; ja つきにかわって
+194	0x7a14c		Various settings	machine-translated; ja かくしゅせってい
+195	0x7b68c		Alexandrite	machine-translated; ja アレキサンドライト
+196	0x7b696		Diamond	machine-translated; ja ダイアモンド
+197	0x7b6a0		Sapphire	machine-translated; ja サファイア
+198	0x7b6aa		Emerald	machine-translated; ja エメラルド
+199	0x7b6b4		Ruby	machine-translated; ja ルビー
+200	0x7b6be		Pearl	machine-translated; ja パール
+201	0x7b6c8		Tanzanite	machine-translated; ja タンザナイト
+202	0x7b6d2		Opal	machine-translated; ja オパール
+203	0x7b6dc		Amethyst	machine-translated; ja アメジスト
+204	0x7b6e6		Garnet	machine-translated; ja ガーネット
+205	0x7b6f0		Aquamarine	machine-translated; ja アクアマリン
+206	0x7b6fa		Topaz	machine-translated; ja トパーズ
+207	0x7b704		Moonstone	machine-translated; ja ムーンストーン
+208	0x7b70e		Malachite	machine-translated; ja マラカイト
+209	0x7b718		Onyx	machine-translated; ja オニキス
+210	0x7b034		Sword:	machine-translated; ja けん：
+211	0x7b039		Gun:	machine-translated; ja じゅう：
+212	0x7b03e		Ball:	machine-translated; ja たま：
+213	0x7b043		Head:	machine-translated; ja あたま：
+214	0x7b048		Body:	machine-translated; ja からだ：
+215	0x7b04d		Hand:	machine-translated; ja て：
+216	0x7b052		Feet:	machine-translated; ja あし：
+217	0x7a0e8		Sorry, but	machine-translated; ja すまんが
+218	0x7a0f2		there isn't enough memory.	machine-translated; ja メモリがたらんのだ
+219	0x7a11a		Sorry, Misaki-chan	machine-translated; ja みさきちゃんゴメン
+220	0x7a124		Sorry, Eisuke	machine-translated; ja いーすけスマン
+221	0x7a156		Sorry, Sakai-kun	machine-translated; ja さかいくんゴメン
+222	0x7a160		Sorry, Sakai-kun	machine-translated; ja さかいくんゴメン
+223	0x7a16a		None	machine-translated; ja なし
+224	0x79d86		None	machine-translated; ja なし
+324	0x6c704		Ayase: Urgh... she's not the only one<FFF6>who's had it...!	PSP-US; ja アヤセ：アヤセ…<FFF6>やってらんなァーい…
+613	0x69d00		Kuchisake-onna	machine-translated; ja くちさけ
+642	0x6daac		A character cannot move	PSP-US; ja 行動入力不能キャラがいます
+649	0x6dbbc		Revert formation?	PSP-US; ja フォーメーションを戻しますか？
+664	0x6dcf0		Are you sure?	PSP-US; ja これで、いいですか？

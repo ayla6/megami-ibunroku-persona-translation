@@ -1,0 +1,851 @@
+id	pos	psp	en
+0	0x6b650	EBOOT:29ea02	Nanjo:<FFF6>I'll never forgive you bastards!
+1	0x6b66c	EBOOT:29e9d2	Yukino: Careful, guys!
+2	0x6b680	EBOOT:29e936	Mark:<FFF6>How the hell are we supposed to fight<FFF6>somethin' that's already dead!?
+3	0x6b6bc	EBOOT:29e846	Thou art I... and I am thou...<FFFC><FFF6>From the sea of thy soul, I cometh...<FFFC><FFF6>I shall lend you my strength…
+4	0x6b6f4	EBOOT:29e816	Nanjo: Eriko! Get back!
+5	0x6b70c	EBOOT:29e782	Elly: No worries! <FFFC>I may not look it, but<FFF6>I'm a rather capable fencer.
+6	0x6b74c	EBOOT:29e72a	Yukino:<FFF6>Eriko! This is no ordinary enemy!
+7	0x6b770	EBOOT:29e6e6	Mark: Sheesh, that girl's crazy!
+8	0x6b790	EBOOT:29e6a2	Maki: I won't go down that easy!
+9	0x6b7a4	EBOOT:29e64e	Nanjo:<FFF6>Maki, don't do anything foolish!
+10	0x6b7bc	EBOOT:29e602	Demon: Hahaha! <FFFC>I barely felt that!
+11	0x6b7dc	EBOOT:29e5c6	Demon: Owwwww! <FFFC>That HURT!
+12	0x6b800	EBOOT:29e572	Brown: Wh-Whooooa! I... <FFFC>I'm gonna die!
+13	0x6b824	EBOOT:29e4ee	Mark: We didn't have a choice!<FFF6>No hard feelings, right, old man?
+14	0x6b848	EBOOT:29e456	Demon Lieutenant: Execution,<FFF6>execution, execution!<FFFC><FFF6>Kill 'em stone dead!
+15	0x6b87c	EBOOT:29e40e	Brown: Huh!? <FFFC>Wh-Wh-What the...!?
+16	0x6b8a4	EBOOT:29e396	Brown: What the hell, man!?<FFFC><FFF6>What happened to you guys!?
+17	0x6b8d0	EBOOT:29e2fa	Demon Lieutenant: Rrrrrrrgh!<FFF6><FFFC>I'm taking at least one of<FFF6>you down with me!
+18	0x6b910	EBOOT:29e2ae	Brown: Waaaaaah! I don't wanna die!
+19	0x6b938	EBOOT:29e1ca	Ayase: Haha...ha...! You're all so cool!<FFF6>It's reaaaally fascinating.<FFFC><FFFB><FFF7>So c'mon, let us go! Pretty please?
+20	0x6b984	EBOOT:29e126	Right M.I.B.: We can't have<FFF6>the company's secrets leaking out.<FFF6>Dispose of them.
+21	0x6b9a4	EBOOT:29e0f2	Left M.I.B.: Roger that.
+22	0x6b9b4	EBOOT:29e05e	Ayase: Gah! Watch it! What were you<FFF6>gonna do if that hit me!? Murderers!<FFFC>
+23	0x6b9e8	EBOOT:29df96	Takeda: Mr. Kandori,<FFF6>please step back!<FFFB><FFF7>All right,<FFF6>don't let a single one of them escape!<FFFC>
+24	0x6ba24	EBOOT:29df72	Nanjo: Kandori!
+25	0x6ba34	EBOOT:29dec6	Kandori: What a surprise...<FFF6><FFFC><FFFC>I didn't expect that you'd be<FFF6>Persona-users as well.
+26	0x6ba68	EBOOT:29de6e	Mark: What!? Don't tell me... <FFFC>You too!?
+27	0x6ba88	EBOOT:29ddd2	Kandori: Takeda. I leave this to you.<FFF6><FFFC><FFFC>You can handle a few children, mm?
+28	0x6bac0	EBOOT:29ddaa	Takeda: Yes, Sir.
+29	0x6bacc	EBOOT:29dd6e	Nanjo: You're going nowhere!
+30	0x6badc	EBOOT:29dd36	Takeda: Oh, no you don't!
+31	0x6baf0	EBOOT:29dc62	Takeda: Damn kids! <FFFC>You're not taking<FFF6>one step outta here!<FFFC>Now taste<FFF6>the power of my Persona!
+32	0x6bb2c	EBOOT:29dbbe	Reiji: You wanna kill ME?<FFF6><FFFC><FFFC><FFFC>What a joke...<FFF6>You're the one that's going down!<FFFC><FFFC><FFFC>
+33	0x6bb64	EBOOT:29db8a	Reiji: What an idiot…
+34	0x6bb74	EBOOT:29db62	Tesso: Sgweaaaaak!
+35	0x6bb8c	EBOOT:29db16	Mark: What the hell IS this thing!?
+36	0x6bba0	EBOOT:29dac2	Brown: Mwahaha!<FFF6><FFFC>This is gonna be cake!
+37	0x6bbc4	EBOOT:29da4e	Elly: When you look closely,<FFF6>it's actually pretty cute!
+38	0x6bbec	EBOOT:29da12	Ayase: I-It's kinda... cute!
+39	0x6bc00	EBOOT:29d9d6	Maki: Awww... it's adorable!
+40	0x6bc14	EBOOT:29d99e	Brown: Th-That was close!
+41	0x6bc2c	EBOOT:29d946	Elly:<FFF6>I, ah, take back what I said before.
+42	0x6bc44	EBOOT:29d8ce	Ayase: What was that for!?<FFF6><FFFC>It's, like, not cute at all!
+43	0x6bc68	EBOOT:29d862	Maki: That wasn't cute!<FFF6><FFFC>That wasn't cute at ALL!
+44	0x6bc8c	EBOOT:29d80a	Nanjo:<FFF6>Take it seriously or pay the price!
+45	0x6bca8	EBOOT:29d7de	Tesso: Zgweaaaaaaak!
+46	0x6bcc0	EBOOT:29d742	Yog-Sothoth Jr.: Ia Shub-Niggurath!<FFF6>Ia Yog-Sothoth!<FFFC><FFFC> A ia ia ia iaaaaaaa!
+47	0x6bcfc	EBOOT:29d722	Mark: Shaddup!
+48	0x6bd10	EBOOT:29d6da	Yog-Sothoth Jr.: Iiiiiiiiaaaaaaa!
+49	0x6bd28	EBOOT:29d602	Harem Queen: Tchahahahaha! <FFFC><FFFC>My<FFF6>paintings are the best in the world!<FFFC><FFFC><FFFB><FFF7>Now hurry up and die!
+50	0x6bd8c	EBOOT:29d526	Maki: Please, Chisato! Stop!<FFFB><FFF7>If you insist on hurting everyone,<FFF6>I... <FFFC>I... <FFFC>I'll have to fight you!<FFFC>
+51	0x6bdd8	EBOOT:29d446	Harem Queen: Tchahahahaaaaa!<FFFB><FFF7>That terrified face! That's the face!<FFFC><FFF6>That's it! God, I LOVE it!
+52	0x6be28	EBOOT:29d406	Harem Queen: N-No waaaaay...!
+53	0x6be40	EBOOT:29d34e	Nanjo: First a robot and now<FFF6>a stuffed bear!?<FFFC> I hate to do<FFF6>this, but we have no choice!
+54	0x6be74	EBOOT:29d302	Reiji: Get outta my way, pipsqueak!
+55	0x6be8c	EBOOT:29d27e	Mark: We can't waste any time!<FFF6>Let's get this over with, quick!
+56	0x6beb4	EBOOT:29d22e	Saurva:<FFF6>I'll make you eat those words!
+57	0x6bed4	EBOOT:29d1b6	Saurva: Y-You filth...<FFF6><FFFC><FFFC>Are you really sons of man...?
+58	0x6befc	EBOOT:29d156	Hariti: My child...<FFF6><FFFC><FFFC>Give Maki baaaaaaack!<FFFC><FFFC>
+59	0x6bf38	EBOOT:29d0fa	Mark:<FFF6>H-Hey! <FFFC>Isn't this really Maki's mom?
+60	0x6bf64	EBOOT:29d0ca	Nanjo: Here it comes!
+61	0x6bf74	EBOOT:29d042	Kandori: You won't get an easy<FFF6>death... Are you prepared for that?<FFFC>
+62	0x6bf98	EBOOT:29cffa	Mark: Shut up! <FFFC>That's our line!
+63	0x6bfc0	EBOOT:29cf02	Maki: If what Nanjo said is true...<FFFB><FFF7>There's still time! <FFFC>Stop this nonsense,<FFF6><FFFC>and bring back our town--our world!
+64	0x6c014	EBOOT:29cda2	Kandori: Hah... You'd tell<FFF6>a god to condone nonsense?<FFF6><FFFC>That, too, is a grave sin...<FFFC><FFFB><FFF7>A god commands and condemns.<FFF6><FFFC>It does not lend an ear to<FFF6>the pleas of vermin.
+65	0x6c07c	EBOOT:29cd6a	Brown: Heh, keep dreamin'!
+66	0x6c098	EBOOT:29ccb2	Elly: Shut up!<FFFB><FFF7>A man who can't answer for himself<FFF6>has no right to condemn mankind.
+67	0x6c0dc	EBOOT:29cc3a	Ayase: Use all the big words you<FFF6>want! It doesn't fool us!
+68	0x6c0fc	EBOOT:29cbb2	Reiji: Spout that crap in hell.<FFF6><FFFC>I'll send you straight there...!
+69	0x6c124	EBOOT:29cb06	Nanjo: Kandori...<FFF6><FFFC>We'll close the curtain on<FFF6>this farce, if that's what you wish!<FFFC><FFFC><FFFC>
+70	0x6c164	EBOOT:29c9aa	Kandori:<FFF6>Ngh... <FFFC><FFFC><FFFC>I refuse to accept this!<FFFC> I'm<FFF6>supposed to have transcended man!<FFFB><FFF7>Who am I!? <FFFC><FFFC>I am Takahisa Kandori!<FFFC><FFFC><FFF6>The man who transcended humanity!
+71	0x6c1d8	EBOOT:29c8e6	Kandori:<FFF6>Nrrrrrrrghaaaaaaa!?<FFFC>Wh-What the...<FFF6>Something's forcing<FFFC><FFFC> itself into me...!
+72	0x6c214	EBOOT:29c7da	Nyarlathotep's voice: Hohohoh...<FFF6><FFFC>Foolish man who has gone astray...<FFFB><FFF7>I shall give you the power you desire.
+73	0x6c258	EBOOT:29c7b2	Kandori: N-Nooooo!
+74	0x6c26c	EBOOT:29c786	Maki: Wh-What the!?
+75	0x6c27c	EBOOT:29c75e	Mark: Holy shit…
+76	0x6c28c	EBOOT:29c6de	Nanjo: Have his body and soul been<FFF6>dominated by the Persona!?
+77	0x6c2b0	EBOOT:29c682	Kandori: I am Kandori... <FFFC><FFFC>God Kandori…
+78	0x6c2d8	EBOOT:29c602	Pandora:<FFF6>Now, let us disappear togetherrrr!<FFFC>
+79	0x6c300	EBOOT:29c602	Pandora: Rrrrwwaaaaa...!
+80	0x6c318	EBOOT:29c5ae	Mark: Damn, man…
+81	0x6c32c	EBOOT:29c57a	Maki: It's beautiful…
+82	0x6c33c	EBOOT:29c4f2	Pandora: Why won't you give up?<FFFC><FFF6>Please... give up... <FFFC>please…
+83	0x6c370	EBOOT:29c4aa	Yukino: Whoa! <FFFC>What's with him!?
+84	0x6c38c	EBOOT:29c412	Ayase: Haha... ha... <FFFC>S-Sorry, Kenta.<FFF6><FFFC>Is, uh, it too late to apologize?
+85	0x6c3c0	EBOOT:29c34e	Toro: Ahahahahahahahahaha...<FFF6><FFFC>It's much, much, much, much,<FFF6>much too laaaaate!<FFFC>Eat THIS!
+86	0x6c3fc	EBOOT:29c2fa	Yukino: Agh! <FFFC>Dammit... How dare you!?
+87	0x6c418	EBOOT:29c296	Ayase: Yikes! <FFFC>Huh?<FFF6>What the--!? <FFFC> What NOW!?
+88	0x6c44c	EBOOT:29c1b2	Brown: Whoa whoa whoa...<FFF6><FFFC>What IS this thing!?<FFFC>I didn't<FFF6>give it permission to come<FFF6>out of me like that!
+89	0x6c484	EBOOT:29c192	Ayase: ......?
+90	0x6c494	EBOOT:29c08e	Hypnos: Allow me to teach you<FFF6>the wonders of the Dream World...<FFFC>An<FFF6>eternal slumber from whence<FFF6>there is no awakening…
+91	0x6c4d4	EBOOT:29c032	Yukino: Yeah, right...<FFF6>in your dreams, pal!<FFFC>
+92	0x6c4f4	EBOOT:29bf6e	Nemesis: Aaaaaaahahahaha!<FFF6><FFFC>THIS is my true form!<FFFB><FFF7>Soooo lovely... <FFFC>and soooo elegant!
+93	0x6c560	EBOOT:29be66	Yukino: ...<FFFC>You gotta be joking!<FFF6><FFFC>I've had enough with the fun and<FFF6>games already!<FFFB><FFF7>I'm so disgusted I can barely speak.
+94	0x6c5a4	EBOOT:29bdbe	Ayase: Like, have you<FFF6>ever even SEEN a mirror!?<FFFC><FFF6>You don't look like that at ALL!
+95	0x6c5dc	EBOOT:29bce6	Nemesis: ScreeeeeeEEEEE!<FFF6><FFFC>Silence! Silence! SILENCE!<FFFB><FFF7>I'll slice those insolent<FFF6>faces right off!
+96	0x6c638	EBOOT:29bbe6	Thanatos: Transformation complete!<FFFC><FFF6>Here comes Yuriko!<FFFB><FFF7>All righty, time to beat everyone up.<FFFC><FFF6>Hope you're ready!
+97	0x6c6a0	EBOOT:29bb7a	Ayase: Pbbbbt! You're uglier than<FFF6>death warmed over!<FFFC>
+98	0x6c6c4	EBOOT:29bada	Thanatos: Excuse me!? Oh, I have HAD<FFF6>it!<FFFC> I'm SO not forgiving you for that!<FFFC>
+99	0x64750	EBOOT:2a563e,EBOOT:2a5678,EBOOT:2a568c	＞ Obtained Deity Vishnu's Avatar＞<FFF6>There was another card stuck to<FFF6>the <FFF3> spell card!<FFEF>
+100	0x647b0	EBOOT:2a55aa,EBOOT:2a55d6,EBOOT:2a5600,EBOOT:2a560e	Maki: Wow, lucky me! Isn't<FFFC><FFF6>this an Avatar Wow,<FFFC>this is so cool!
+101	0x647ec	EBOOT:2a550e,EBOOT:2a554e,EBOOT:2a555c	Brown: Daaaamn!<FFFC>So this is an Avatar,<FFF6>huh?<FFFC>Good thing you had me along!
+102	0x64824	EBOOT:2a5456,EBOOT:2a5488,EBOOT:2a5496	Nanjo: Ah...<FFFC>the totem Avatar, hmm?<FFF6><FFFC>It must be a reward for<FFF6>my exemplary behavior…
+103	0x648e0	EBOOT:2a5226,EBOOT:2a5242,EBOOT:2a5252	Elly: This Avatar is an incarnation of<FFF6>Vishnu!<FFF6>I'm very fortunate to have found it!
+104	0x64adc	EBOOT:2addee	＞ Maki pleaded with the demon!
+105	0x64af8	EBOOT:2adda8	＞ Maki tried flattering the demon!
+106	0x64b14	EBOOT:2add72	＞ Maki made something up!
+107	0x64b30	EBOOT:2add34	＞ Maki pretended to be scared!
+108	0x64b4c	EBOOT:2adcfe	＞ Brown hit on the demon!
+109	0x64b68	EBOOT:2adcd2	＞ Brown told a joke!
+110	0x64b88	EBOOT:2adca0	＞ Brown made small talk!
+111	0x64ba4	EBOOT:2adc58	＞ Brown tried to startle the demon!
+112	0x64bc4	EBOOT:2adbfc	＞ Nanjo tried bribing<FFF6>the demon with an item!
+113	0x64be4	EBOOT:2adbc4	＞ Nanjo delivered a speech!
+114	0x64bfc	EBOOT:2adb8c	＞ Nanjo insulted the demon!
+115	0x64c18	EBOOT:2adb40	＞ Nanjo delivered<FFF6>a sarcastic remark!
+116	0x64c34	EBOOT:2adb14	＞ Mark busted a move!
+117	0x64c4c	EBOOT:2adae0	＞ Mark taunted the demon!
+118	0x64c68	EBOOT:2adaa6	＞ Mark stared at the demon!
+119	0x64c84	EBOOT:2ada72	＞ Mark started bragging!
+120	0x64c9c	EBOOT:2ada3c	＞ Elly told a scary story!
+121	0x64cb4	EBOOT:2ada14	＞ Elly sang a song!
+122	0x64cc8	EBOOT:2ad9de	＞ Elly soothed the demon!
+123	0x64ce4	EBOOT:2ad98c	＞ Elly invited the demon into<FFF6>the party!
+124	0x64d00	EBOOT:2ad956	＞ Ayase dissed the demon!
+125	0x64d1c	EBOOT:2ad91e	＞ Ayase seduced the demon!
+126	0x64d38	EBOOT:2ad8e0	＞ Ayase cried crocodile tears!
+127	0x64d58	EBOOT:2ad8a4	＞ Ayase threatened the demon!
+128	0x64d70	EBOOT:2ad866	＞ Yukino picked on the demon!
+129	0x64d88	EBOOT:2ad824	＞ Yukino tried a logical appeal!
+130	0x64da0	EBOOT:2ad7ec	＞ Yukino scolded the demon!
+131	0x64db8	EBOOT:2ad7b2	＞ Yukino ignored the demon!
+132	0x64dd4	EBOOT:2ad77c	＞ Reiji ignored the demon!
+133	0x64df0	EBOOT:2ad740	＞ Reiji threatened the demon!
+134	0x64e0c	EBOOT:2ad70a	＞ Reiji gave a loud yell!
+135	0x64e20	EBOOT:2ad6c8	＞ Reiji performed a magic trick!
+136	0x681d4	EBOOT:2adece	＞ <FFFA> tried to persuade it!
+137	0x681e8	EBOOT:2adea0	＞ <FFFA> taunted the demon!
+138	0x681fc	EBOOT:2ade52	＞ <FFFA> invited<FFF6>the demon into the party!
+139	0x68210	EBOOT:2ade2e	＞ <FFFA> sang a song!
+140	0x6781c	EBOOT:2ab432	＞ Mark showed off his smooth moves.
+141	0x6783c	EBOOT:2ab406	＞ Mark danced crazy!
+142	0x67854	EBOOT:2ab3c0	＞ Mark did a seductive slow dance.
+143	0x67894	EBOOT:2ab2a4	＞ Mark stared passionately at<FFF6>the demon.
+144	0x678b4	EBOOT:2ab258	＞ Mark stared intensely at the demon.
+145	0x678d4	EBOOT:2ab202	＞ Mark stared flirtatiously at<FFF6>the demon.
+146	0x67a44	EBOOT:2aad86	＞ Elly sang a chic bossa nova.
+147	0x67a68	EBOOT:2aad46	＞ Elly sang her favorite song.
+148	0x67a8c	EBOOT:2aad06	＞ Elly sang a touching ballad.
+149	0x68080	EBOOT:2a9956	＞ Reiji whistles to himself.
+150	0x6809c	EBOOT:2a98fe	＞ Reiji is thinking of<FFF6>an unrelated thing.
+151	0x69154	EBOOT:2acc82	＞ Obtained a Life Stone.
+152	0x655e0	EBOOT:2a8bce	Wait just a moment!<FFFC>You can't<FFF6>hold that many cards.<FFF6>I suggest that you sort them.
+153	0x6561c	EBOOT:2a8b42	Heh! That's too many cards, moron!<FFFC><FFF6>Can't you manage your own stuff?
+154	0x65658	EBOOT:2a8980	Huh-ho? You hee-have too many<FFF6>cards, ho.<FFFC>You need to<FFF6>hee-throw one away, ho.
+155	0x65688	EBOOT:2a7d64	Gyahaha! Gyahaha! What's this!?<FFF6>You're over the card limit!<FFFC><FFF6>Throw some away!
+156	0x656c4	EBOOT:2a8370	Huh? You have too many cards.<FFFC><FFF6>C'mon, throw one of them away!
+157	0x656ec	EBOOT:2a8a1c	Why you little...!<FFFC>You've<FFF6>got too many cards now!<FFF6>Keep the best and toss the rest!
+158	0x65718	EBOOT:2a887c	It seems thy limit is reached...<FFFC><FFF6>My card is to be<FFF6>treated with respect.
+159	0x6574c	EBOOT:2a87d4	Oh my, you're carrying too many...<FFFC><FFF6>If you want me, throw someone<FFF6>else's card away.
+160	0x65788	EBOOT:2a7f2c	...Are you an idiot?<FFFC>You'd better<FFF6>remember how many cards<FFF6>you can carry!
+161	0x657c4	EBOOT:2a86ca	Wuuuut?<FFFC>You got too many cardz...<FFF6>Thro one of 'em away.
+162	0x657ec	EBOOT:2a862e	Hey!<FFFC>You can't have more than<FFF6>12 cards.<FFFC>Throw away<FFF6>the ones you don't need.
+163	0x65820	EBOOT:2a85d4	Augh...<FFFC><FFF3> has no<FFF6>place... even as a card…
+164	0x6584c	EBOOT:2a853c	Ugh, I don't believe this!<FFFC>If you want<FFF6>me, throw someone else's card away.
+165	0x65884	EBOOT:2a848a	You have too many cards...<FFF6><FFFC>if you don't hurry and throw some<FFF6>away, I'll do it for you!
+166	0x658b4	EBOOT:2a83ee	*ring* *ring* Too many-any<FFF6>cardddddds!<FFFC>Which one<FFF6>willyouthrow away-way-way?
+167	0x658e8	EBOOT:2a8370	Huh?<FFFC>You have too many cards.<FFFC><FFF6>C'mon, throw one of them away!
+168	0x659b4	EBOOT:2a81ba	What the hell!?<FFFC>You need to<FFF6>throw away a card, punk! Hurry up<FFF6>before I beat them outta ya!
+169	0x659e8	EBOOT:2a7fc0	Ya makin' fun o' me!?<FFF6><FFFC>Well ya got too many cards!<FFF6>Hurry and throw one away!
+170	0x65a1c	EBOOT:2a8ac4	Ho, ho! Now just a minute!<FFF6>Looks like you've got a full deck!
+171	0x65a80	EBOOT:2a805a	...You carry too many needless cards.<FFFC><FFF6>Your request is denied unless you<FFF6>mend the situation.
+172	0x65abc	EBOOT:2a7fc0	Ya makin' fun o' me!?<FFF6><FFFC>Well ya got too many cards!<FFF6>Hurry and throw one away!
+173	0x65af0	EBOOT:2a873e	...Are you an idiot?<FFFC>You'd better<FFF6>remember how many cards<FFF6>you can carry!
+174	0x65b2c	EBOOT:2a7d64	Gyahaha! Gyahaha! What's this!?<FFF6>You're over the card limit!<FFFC><FFF6>Throw some away!
+175	0x65b68	EBOOT:2a862e	Hey!<FFFC>You can't have more than<FFF6>12 cards. Throw away<FFF6>the ones you don't need.
+176	0x65ba0	EBOOT:2a8a1c	Why you little...!<FFFC>You've<FFF6>got too many cards now!<FFF6>Keep the best and toss the rest!
+177	0x655a4	EBOOT:2a8c76	...You carry too many needless cards.<FFFC><FFF6>Your request is denied unless you<FFF6>mend the situation.
+178	0x671cc	EBOOT:2ac7a2,EBOOT:2ac7fc	Maki: Demons live the way they<FFF6>want, right? It would be<FFF6>nice if you could put aside<FFF6>our differences and help me out.
+179	0x67210	EBOOT:2ac6ae,EBOOT:2ac752	Maki: I can't do much for<FFF6>you, but I promise our time<FFF6>together will be exciting.<FFF6>So c'mon, lend me your strength!
+180	0x6724c	EBOOT:2ac606,EBOOT:2ac62a	Maki: Are you <FFF3>?<FFF6>I could tell right off! You have<FFF6>a unique aura about you…
+181	0x6727c	EBOOT:2ac57e	Maki: Many artists have been<FFF6>captivated by you, and now I see why!
+182	0x672b0	EBOOT:2ac4e6	Maki: Hey, how can<FFF6>I get power like yours?<FFF6>Because I'm super jealous of it.
+183	0x672e8	EBOOT:2ac43e	Maki: If you do what I say, by<FFF6>some miracle a bronze statue of<FFF6>you will be erected!
+184	0x67320	EBOOT:2ac3a2	Maki: Want to know the truth?<FFF6>The ones behind all this...<FFF6>are really aliens.
+185	0x67354	EBOOT:2ac2f2	Maki: Hmm... I think your mother's<FFF6>grandpa is your guardian angel.<FFF6>He's really strong!
+186	0x67390	EBOOT:2ac2ae	Maki: Eeeeek! Please... spare me!
+187	0x673ac	EBOOT:2ac23a	Maki: I got lost and wandered here...<FFF6>Please forgive me!
+188	0x673d8	EBOOT:2ac1ea	Maki: A-A demon!<FFF6>D-Don't come near me!
+189	0x67198	EBOOT:2ac89a	Maki: I can only do so much on my own.<FFF6>I could use your help... Please?
+190	0x673f4	EBOOT:2ac14a	Brown: So you're a demon?<FFF6>So what! C'mon, baby,<FFF6>let's play a symphony of love!
+191	0x67438	EBOOT:2ac0b2	Brown: Hey there! Wanna come to<FFF6>karaoke with me?<FFF6>I'm a really good singer.
+192	0x6746c	EBOOT:2abfaa,EBOOT:2ac056	Brown: Are you seeing anyone?<FFF6>If you aren't... How about<FFF6>you and me go out sometime?<FFF6>C'mon, it'll be fun! What do you say?
+193	0x67544	EBOOT:2abc32	Brown: How've you been?<FFF6>I heard you're on a roll.<FFF6>Not me, it's been pretty slow.
+194	0x67574	EBOOT:2abb9a	Brown: Man, it's hot out!<FFF6>I like summer, but not<FFF6>this kind of extreme heat.
+195	0x675a8	EBOOT:2abb0a	Brown: So, got any crushes? Yeah,<FFF6>there's been someone on my mind, too.
+196	0x675dc	EBOOT:2abac6	Brown: BOO! Hehe, did I scare ya?
+197	0x67628	EBOOT:2ab9d2	Brown: Blrgh... Urrrrgh...<FFF6>*puke*<FFFC>...Just kidding! Mwahahaha!
+198	0x6765c	EBOOT:2ab976	Nanjo: Land? Stocks?<FFF6>Name it, and it's yours.
+199	0x6767c	EBOOT:2ab8e2	Nanjo: Here, a down payment... a coin<FFF6>whose front and back are reversed.
+200	0x676ac	EBOOT:2ab89e	Nanjo: Here, have a signed photo!
+201	0x676cc	EBOOT:2ab806	Nanjo: The masses are<FFF6>only truly happy when<FFF6>being shepherded by the elite!
+202	0x67704	EBOOT:2ab762	Nanjo: Are you happy with<FFF6>your station in life? Then act, or<FFF6>nothing will change!
+203	0x6773c	EBOOT:2ab6c2	Nanjo: "Good" humans and<FFF6>"evil" demons... Pure nonsense!<FFF6>Cooperation is vital!
+204	0x6777c	EBOOT:2ab682	Nanjo: Hmph...<FFFC>What a cretin.
+205	0x6778c	EBOOT:2ab63e	Nanjo: You're an utter imbecile!
+206	0x6779c	EBOOT:2ab5f2	Nanjo: I've never known such a dunce!
+207	0x677a4	EBOOT:2ab552	Nanjo: You have NO idea how honored<FFF6>I am to speak to a demon of<FFF6>your status…
+208	0x677d4	EBOOT:2ab50a	Nanjo: Your beauty is... stunning.
+209	0x677f0	EBOOT:2ab47e	Nanjo: There's definitely no<FFF6>comparison between<FFF6>humans and your kind.
+210	0x678f8	EBOOT:2ab15e	Mark: I'm actually a prince of<FFF6>the underworld, studying<FFF6>abroad in the human world!
+211	0x67928	EBOOT:2ab0ee	Mark: I'm only in this human form<FFF6>'cause I got cursed!
+212	0x67954	EBOOT:2ab09a	Mark: Ah, my dear child...<FFF6><FFF3>! Je t'aime.
+213	0x679bc	EBOOT:2aae82,EBOOT:2aaf2a	Elly: The children of people who<FFF6>witnessed a suicide<FFF6>unwittingly visit the site...<FFF6>You can imagine what happens next.
+214	0x67a00	EBOOT:2aadca	Elly: If you see 11:11:11 on<FFF6>the clock on three straight days,<FFF6>you'll live six fewer days.
+215	0x67ab0	EBOOT:2aacaa	Elly: There, there,<FFF6>little demon... Play nice.
+216	0x67ad8	EBOOT:2aac32	Elly: There... that's a dear...<FFF6>Goodnight, my sweet child.
+217	0x67b08	EBOOT:2aabe6	Elly: Yes? Would you like some milk?
+218	0x67b20	EBOOT:2aab4e	Elly: You're a very capable demon.<FFF6>Won't you take on a job as<FFF6>my bodyguard?
+219	0x67b4c	EBOOT:2aaa9e	Elly: I have an offer for you.<FFF6>Wouldn't you like to protect<FFF6>a beautiful woman like me?
+220	0x67b84	EBOOT:2aaa06	Elly: I'd like a demon like you to walk<FFF6>me home on my way back from school.
+221	0x67bb8	EBOOT:2aa95e	Ayase: You're seriously willing to<FFF6>be seen outside looking like<FFF6>that? What a dork!
+222	0x67bf0	EBOOT:2aa8be	Ayase: Wow, you must be REALLY old,<FFF6>'cause that style is like,<FFF6>PRE-prehistoric.
+223	0x67c1c	EBOOT:2aa81a	Ayase: Hey... does it<FFF6>smell funny around here?<FFF6>It's you, isn't it? Uchhh, gag me.
+224	0x67c4c	EBOOT:2aa77a	Ayase: Y'know... I'm usually really<FFF6>innocent... But today?<FFF6>I'm feeling daring.
+225	0x67c80	EBOOT:2aa6d2	Ayase: C'mon, don't make that<FFF6>awful face... We just need to<FFF6>get to know each other.
+226	0x67cb8	EBOOT:2aa642	Ayase: Ooooh, my chest is sore...<FFF6>Maybe if you gave it a little rub...?
+227	0x67ce8	EBOOT:2aa5a2	Ayase: I'm the oldest of<FFF6>23 brothers and sisters...<FFF6>I have to feed them all…
+228	0x67d20	EBOOT:2aa4fe	Ayase: Won't someone buy<FFF6>my matches...? If I don't sell any,<FFF6>Papa will beat me…
+229	0x67d54	EBOOT:2aa3da,EBOOT:2aa46a	Ayase: My daddy was abducted by<FFF6>a UFO... My mom joined an evil cult...<FFF6>And now I've been taken apart and<FFF6>put back together as a cyborg…
+230	0x67d98	EBOOT:2aa342	Ayase: You're not gonna do what I<FFF6>say!? Don't make me blow<FFF6>your brains out!
+231	0x67dc8	EBOOT:2aa29a	Ayase: I got this hobby...<FFF6>I collect severed demon heads!<FFF6>Wanna join my collection?
+232	0x67e00	EBOOT:2aa1de,EBOOT:2aa22c	Ayase: I'd watch out if I were you...<FFF6>I'm nice and calm now, but<FFF6>I go nuts in a snap.
+233	0x67e3c	EBOOT:2aa12a,EBOOT:2aa182	Yukino: You'll be calling ME<FFF6>a demon soon. Heheh...<FFF6>Now where should I start...?
+234	0x67e74	EBOOT:2aa08a	Yukino: Hmph! It's true what they<FFF6>say... A demon's bark is<FFF6>worse than its bite!
+235	0x67e98	EBOOT:2a9fd6	Yukino: Who the hell do<FFF6>you think you're talking to?<FFF6>I hate rudeness worse than anything!
+236	0x67ed0	EBOOT:2a9f32	Yukino: Your actions have no worth<FFF6>unless you choose them of<FFF6>your own free will.
+237	0x67f08	EBOOT:2a9e2e,EBOOT:2a9eda	Yukino: Y'know, I've been<FFF6>thinking about<FFF6>the difference between humans and<FFF6>demons... And it's useless.<FFFB><FFF7>There isn't any.
+238	0x67f40	EBOOT:2a9d36,EBOOT:2a9dc6	Yukino: It's better to stay in<FFF6>bed than to go through life<FFF6>half-assed. There's too many<FFF6>people like that already.
+239	0x67f74	EBOOT:2a9ca2	Yukino: Hey! Didn't they teach you in<FFF6>kindergarten not to cause trouble!?
+240	0x67fa8	EBOOT:2a9c52	Yukino: Stop whining! No one likes it!
+241	0x67fc4	EBOOT:2a9b42,EBOOT:2a9bca	Yukino: Stay quiet for once and<FFF6>listen to what others have to say!<FFF6>And don't you make fun of them, or<FFF6>I'll make you regret it!
+242	0x67fec	EBOOT:2a9ade	Yukino: Hmm... what should I<FFF6>make for dinner...?
+243	0x68010	EBOOT:2a9a5a	Yukino: Hm...? Did I remember to<FFF6>turn the lights off when I left?
+244	0x68038	EBOOT:2a99b2	Yukino: I should decide soon which<FFF6>photo I'm going to enter in<FFF6>the next contest…
+245	0x680b8	EBOOT:2a9876	Reiji: This isn't your lucky day...<FFF6>You won't be leaving here alive.
+246	0x680d4	EBOOT:2a97d6	Reiji: Only one of us is gonna die of<FFF6>old age, and it ain't you... Go to hell!
+247	0x68108	EBOOT:2a969e,EBOOT:2a9726	Reiji: First I'll break your legs, and<FFF6>then dislocate your arms... I'll bend<FFF6>each finger backwards until it<FFF6>snaps, and then I'll take your eyes…
+248	0x68178	EBOOT:2a9556	Reiji: With a snap of my fingers...<FFFC><FFF6>presto! Flowers appear.<FFF6>Beautiful, aren't they?
+249	0x6819c	EBOOT:2a94e6	Reiji: Watch the top...<FFF6>Don't take your eyes off it…
+250	0x674a4	EBOOT:2abcd6,EBOOT:2abd5e	Brown: Why did the buffalos throw<FFF6>a party on their 200th birthday?<FFF6>It was their bisontennial!
+251	0x674dc	EBOOT:2abda2,EBOOT:2abe52	Brown: What do you do if you're on<FFF6>a horse and<FFFC>you see a giraffe and<FFF6>lion next to you? Get off<FFF6>the carousel!<FFFC>C'mon, laugh!
+252	0x6750c	EBOOT:2abeaa,EBOOT:2abf3e	Brown: Alright, what's the difference<FFF6>between<FFFC>a rottweiler and a poodle?<FFF6>They're two totally different<FFF6>breeds! Get it?
+253	0x67870	EBOOT:2ab2fa	Mark: Hey! I'm right here!
+254	0x6787c	EBOOT:2ab332	Mark: You think you're<FFF6>bad? Then try me!
+255	0x67888	EBOOT:2ab386	Mark: You want some of this!?
+256	0x6814c	EBOOT:2a9632	Reiji: Grrrwaaaaaaahhhh!
+257	0x6815c	EBOOT:2a9666	Reiji: Rrrrrwwaaaaaoooarrr!
+258	0x6485c	EBOOT:2a52da,EBOOT:2a5312,EBOOT:2a53ac	Mark: No way... for real!? But<FFF6>what's an "Avatar"?<FFFC><FFFC>It's not gonna<FFF6>explode or nothin', is it...?<FFFC>Seriously,<FFF6>what do I do with this thing?<FFFC><FFFC>...<FFFC>Hah!<FFFB><FFF7>Whatever it is, it's mine!<FFFC>
+259	0x64920	EBOOT:2a50d2,EBOOT:2a513a,EBOOT:2a518a,EBOOT:2a51aa,EBOOT:2a51ba	Ayase: Hey! Don't stick me with<FFFC><FFF6>this weird card......<FFFC>Wait...<FFFC><FFF6><FFFC>Is this for real!? Is this Avatar<FFFC><FFF6>thingie related to Vishnu!?<FFFB><FFF7>Wow, that's some luck!
+260	0x64ef4	EBOOT:2acdc0	Don't give
+261	0x64f08	EBOOT:2acdc0	Give
+262	0x64f10	EBOOT:2acdc0	You can't have any!
+263	0x64f18	EBOOT:2acdc0	Yes.
+264	0x64f20	EBOOT:2acdc0	No!
+265	0x64f28	EBOOT:2acdc0	Take it, you thief!
+266	0x64f34	EBOOT:2acdc0	Eh, never mind.
+267	0x64f44	EBOOT:2acdc0	Okay.
+268	0x64f4c	EBOOT:2acdc0	No. Way.
+269	0x64f58	EBOOT:2acdc0	Very well, take it.
+270	0x64f60	EBOOT:2acdc0	You don't get any.
+271	0x64f68	EBOOT:2acdc0	Very well.
+272	0x64f70	EBOOT:2acdc0	Out of the question.
+273	0x64f78	EBOOT:2acdc0	Sure, here you go.
+274	0x64f80	EBOOT:2acdc0	I can't give you any.
+275	0x64f88	EBOOT:2acdc0	Oh well, sure.
+276	0x64f94	EBOOT:2acdc0	Screw that!
+277	0x64f9c	EBOOT:2acdc0	Here you are.
+278	0x64fa8	EBOOT:2acdc0	I'm afraid not.
+279	0x64fb8	EBOOT:2acdc0	Yes.
+280	0x64fc0	EBOOT:2acdc0	No.
+281	0x64fc8	EBOOT:2acdc0	Give
+282	0x64fd0	EBOOT:2acdc0	No way.
+283	0x64fdc	EBOOT:2acdc0	Okay!
+284	0x64fe4	EBOOT:2acdc0	Nope! Nuh-uh!
+285	0x64ff0	EBOOT:2acdc0	Take it!
+286	0x64ff8	EBOOT:2acdc0	I can't give you any.
+287	0x65000	EBOOT:2acdc0	Oh well, sure.
+288	0x6500c	EBOOT:2acdc0	No.
+289	0x65014	EBOOT:2acdc0	Here, take it.
+290	0x6501c	EBOOT:2acdc0	I can't give you any.
+291	0x65024	EBOOT:2acdc0	Very well.
+292	0x6502c	EBOOT:2acdc0	No way! Get lost!
+293	0x64eec	EBOOT:2acdc0	Give
+294	0x64efc	EBOOT:2accd0	Yes
+295	0x64f00	EBOOT:2accd0	No
+296	0x650d0	EBOOT:2accd0	...…
+297	0x650e4	EBOOT:2accd0	Ignore
+298	0x650ec	EBOOT:2accd0	Answer
+299	0x697fc	EBOOT:2accd0	No
+300	0x650c4	EBOOT:2accd0	Wait a minute!
+301	0x6511c	EBOOT:2ad1c0	Give me something.
+302	0x65124	EBOOT:2ad1c0	Get out of here.
+303	0x6512c	EBOOT:2ad1c0	I want a spell card!
+304	0x6513c	EBOOT:2ad1c0	I want something.
+305	0x6514c	EBOOT:2ad1c0	Go away!
+306	0x65158	EBOOT:2ad1c0	Spell card, please!
+307	0x65168	EBOOT:2ad1c0	Give me your stuff!
+308	0x65174	EBOOT:2ad1c0	Get outta here!
+309	0x65180	EBOOT:2ad1c0	Spell card! Now!
+310	0x65190	EBOOT:2ad1c0	Compensate me.
+311	0x651a0	EBOOT:2ad1c0	Leave my sight.
+312	0x651a8	EBOOT:2ad1c0	I need a spell card.
+313	0x651b8	EBOOT:2ad1c0	Gimme what you got.
+314	0x651c4	EBOOT:2ad1c0	Get outta here!
+315	0x651d0	EBOOT:2ad1c0	Spell card! Hit me!
+316	0x651e0	EBOOT:2ad1c0	May I have an item?
+317	0x651ec	EBOOT:2ad1c0	Be on your way.
+318	0x651fc	EBOOT:2ad1c0	A spell card, please.
+319	0x6520c	EBOOT:2ad1c0	Like, gimme an item!
+320	0x6521c	EBOOT:2ad1c0	Just go already!
+321	0x6522c	EBOOT:2ad1c0	Um, a spell card?
+322	0x6523c	EBOOT:2ad1c0	Fork something over.
+323	0x65248	EBOOT:2ad1c0	Get outta here.
+324	0x65250	EBOOT:2ad1c0	Spell card. Now.
+325	0x65260	EBOOT:2ad1c0	Pay me a tribute.
+326	0x6526c	EBOOT:2ad1c0	Get out of my sight.
+327	0x6510c	EBOOT:2ad1c0	I want a spell card.
+328	0x68060	EBOOT:2accd0	...…
+329	0x65498	EBOOT:2a8e94	Fiend
+330	0x65490	EBOOT:2a8ea0	Meta
+331	0x6548c	EBOOT:2a8eaa	Karma
+332	0x65484	EBOOT:2a8eb8	Foul
+333	0x6547c	EBOOT:2a8ec2	Grave
+334	0x65474	EBOOT:2a8ed0	Spirit
+335	0x6546c	EBOOT:2a8ede	Haunt
+336	0x65464	EBOOT:2a8eec	Jaki
+337	0x6545c	EBOOT:2a8ef6	Jirae
+338	0x65454	EBOOT:2a8f04	Brute
+339	0x6544c	EBOOT:2a8f10	Femme
+340	0x65444	EBOOT:2a8f1c	Wilder
+341	0x6543c	EBOOT:2a8f2a	Beast
+342	0x65434	EBOOT:2a8f38	Raptor
+343	0x6542c	EBOOT:2a8f46	Flight
+344	0x65424	EBOOT:2a8f56	Drake
+345	0x6541c	EBOOT:2a8f64	Snake
+346	0x65414	EBOOT:2a8f70	Fallen
+347	0x6540c	EBOOT:2a8f7e	Angel
+348	0x65404	EBOOT:2a8f8c	Fairy
+349	0x653fc	EBOOT:2a8f98	Yoma
+350	0x653f4	EBOOT:2a8fa2	Night
+351	0x696e8	EBOOT:2ac606,EBOOT:2ac62a	Maki: Are you <FFF3>?<FFF6>I could tell right off! You have<FFF6>a unique aura about you…
+352	0x649a8	EBOOT:2a4fca,EBOOT:2a502a,EBOOT:2a5070,EBOOT:2a507e	Yukino: This is one hell of<FFF6>an amazing card...<FFFC>Huh. So<FFF6>this is the totem Avatar, huh?<FFFB><FFF7>Looks like it's my lucky day…
+353	0x64a0c	EBOOT:2a4ece,EBOOT:2a4f00,EBOOT:2a4f10	Reiji: What is this, an Avatar<FFFC><FFF6>Heh...<FFFC>I don't need it.<FFFB><FFF7>>＞ Reiji tossed the Avatar aside...<FFFB><FFF7>>＞ <FFFA> picked up<FFF6>the Avatar…
+354	0x6797c	EBOOT:2aaf7e,EBOOT:2afffa	Elly: Have you heard of the restroom<FFF6>stall you can't escape?<FFFC><FFF6>PART-MISSING PART-MISSING
+355	0x681b4	EBOOT:2a9472	Reiji: Watch, as I power a small<FFF6>lamp by my chi alone...<FFFC>
+356	0x675f4	EBOOT:2aba52	Brown: Wh... What's that!?<FFF6><FFFC>Hee heeeee! You fell for it!
+357	0x6473c	EBOOT:2a5776	The demon spoke to you!
+358	0x64668	EBOOT:2a58ec	＞ Obtained <FFF4>.
+359	0x64698	EBOOT:2a58a6	＞ Gained <FFF8> EXP.
+360	0x64468	EBOOT:2a5e1c	It's in no state to answer.
+361	0x6447c	EBOOT:2a5dec	Can't talk right now…
+362	0x64490	EBOOT:2a5dc6	The demon left.
+363	0x644a0	EBOOT:2a5d7a	Which spell card will you discard?
+364	0x644b8	EBOOT:2a5d38	＞ You have too many spell cards!
+365	0x644d0	EBOOT:2a5d00	＞ Discard the <FFF2> spell<FFF6>card?
+366	0x644f0	EBOOT:2a5cc2	＞ Discarded the <FFF2> spell<FFF6>card.
+367	0x64510	EBOOT:2a5c88	＞ Obtained the <FFF3> spell<FFF6>card.
+368	0x64530	EBOOT:2a5c54	The demon is worked up.
+369	0x64540	EBOOT:2a5a08	The demon ran away.
+370	0x64550	EBOOT:2a5bf4	The demon is panicking!
+371	0x64568	EBOOT:2a5bbe	The demon is losing it.
+372	0x64578	EBOOT:2a5b86	The demon is pissed off!
+373	0x64590	EBOOT:2a5b4e	The demon surprised you!
+374	0x645a4	EBOOT:2a5b0e	The demon is coercing you…
+375	0x645bc	EBOOT:2a5ad4	The demon intimidated you!
+376	0x645d0	EBOOT:2a5a9c	But you just glared back!
+377	0x645e4	EBOOT:2a5a6a	The demon is charmed!
+378	0x645f4	EBOOT:2a5a34	The demon is fascinated.
+379	0x64604	EBOOT:2a5c28	The demon ran away.
+380	0x64614	EBOOT:2a59d2	The demon is terrified!
+381	0x64628	EBOOT:2a59a2	The demon is scared.
+382	0x64638	EBOOT:2a596e	The demon seems happy!
+383	0x64648	EBOOT:2a5938	The demon is snickering.
+384	0x64658	EBOOT:2a5908	The demon is sulking.
+385	0x646b4	EBOOT:2a5878	＞ <FFF3> used a life stone.
+386	0x646cc	EBOOT:2a5856	＞ <FFF9> was healed!
+387	0x646e0	EBOOT:2a5834	＞ <FFF9> took damage.
+388	0x646fc	EBOOT:2a57fa	＞ But <FFF9><FFF6>didn't have enough.
+389	0x6471c	EBOOT:2a57b0	＞ But <FFF9><FFF6>didn't have any life stones.
+390	0x64a78	EBOOT:2a943a	＞ <FFFA> persuaded the demon.
+391	0x64a90	EBOOT:2a940a	＞ <FFFA> taunted the demon.
+392	0x64aac	EBOOT:2a93da	＞ <FFFA> invited the demon.
+393	0x68168	EBOOT:2a95fe	Reiji: Haaaaaaaaaaaaah!
+394	0x69d14	EBOOT:2741b2	Quicksilver
+395	0x69d2c	EBOOT:27469a	Kokkuri
+396	0x6dd98	EBOOT:1e48dc	Escape
+397	0x6dd54	EBOOT:29b132	Obtained a scalpel.<FF02>
+398	0x6dd60	EBOOT:29b110	Obtained a mop.<FF02>
+399	0x6d988	EBOOT:29ba3e	Guaranteed escape<FF02>
+400	0x6d998	EBOOT:29ba12	Guaranteed survival<FF02>
+401	0x6d9a4	EBOOT:29b9f0	Guaranteed kill<FF02>
+402	0x6d9ac	EBOOT:29b9c6	Enemies won't move<FF02>
+403	0x6d9b8	EBOOT:29b9a0	SP won't decrease<FF02>
+404	0x6d9c4	EBOOT:29b95e	Don't use attack/defend skills<FF02>
+405	0x6d9dc	EBOOT:29b920	Don't receive status ailments<FF02>
+406	0x6d9f0	EBOOT:29b902	Cement group<FF02>
+407	0x6da00	EBOOT:29b8e4	No Game Overs<FF02>
+408	0x6da14	EBOOT:29b8cc	Won't be 1<FF02>
+409	0x6da24	EBOOT:29b89a	Demons can only defend<FF02>
+410	0x6da38	EBOOT:29b860	Absolutely no running away!<FF02>
+411	0x6da48	EBOOT:29b84c	Meatball<FF02>
+412	0x6da50	EBOOT:29b826	No event battles<FF02>
+413	0x6da60	EBOOT:29b80e	Doughnuts<FF02>
+414	0x6da68	EBOOT:29b7ea	Nothing happens<FF02>
+415	0x6da74	EBOOT:29b7b6	Dormant power activates<FF02>
+416	0x6da84	EBOOT:29b792	Counterattack!!<FF02>
+417	0x6da94	EBOOT:29b75a	No one can choose actions<FF02>
+418	0x6dac4	EBOOT:29b718	Save?<FF02>
+419	0x6dad4	EBOOT:29b700	Overwrite?<FF02>
+420	0x6dae4	EBOOT:29b6c2	There are no enemies nearby.<FF02>
+421	0x6daf4	EBOOT:29b690	Not enough SP to invoke<FF02>
+422	0x6db08	EBOOT:29b650	Bad compability. Cannot invoke<FF02>
+423	0x6dbac	EBOOT:29b552	No characters are KO'd.<FF02>
+424	0x6dbe8	EBOOT:29b4dc	No bullets equipped.<FF02>
+425	0x6dbf8	EBOOT:29b4b8	No usable items.<FF02>
+426	0x6dc08	EBOOT:29b490	No active Persona.<FF02>
+427	0x6dc18	EBOOT:29b45c	It's sealed in Tartarus.<FF02>
+428	0x6dc2c	EBOOT:29b42e	No reserve Personas.<FF02>
+429	0x6dc40	EBOOT:29b3fa	Cannot change Personas.<FF02>
+430	0x6dc54	EBOOT:29b3b6	Cannot be used during New Moon.<FF02>
+431	0x6dc64	EBOOT:29b380	Wall effect already cast.<FF02>
+432	0x6dc78	EBOOT:29b354	Resurrection failed!<FF02>
+433	0x6dc88	EBOOT:29b334	Attack failed!<FF02>
+434	0x6dc98	EBOOT:29b30a	Invocation failed!<FF02>
+435	0x6dca8	EBOOT:29b2f6	Failed!<FF02>
+436	0x6dcd8	EBOOT:29b29e	Successfully escaped.<FF05><3C><00>
+437	0x6dce0	EBOOT:29b26e	You couldn't escape!<FF05><3C><00>
+438	0x6dd00	EBOOT:29b220	Distribute <FFF8> points.
+439	0x6dd14	EBOOT:29b1fe	<FFF9> was revived.
+440	0x6dd20	EBOOT:29b1b8	<FFF9> and friends<FFF6>were annihilated…
+441	0x6dd34	EBOOT:29b18e	Preemptive strike!<FF02>
+442	0x6dd44	EBOOT:29b15e	Ambushed from behind!<FF02>
+443	0x6dd70	EBOOT:29b0f4	Enter battle<FF02>
+444	0x6dd7c	EBOOT:29b0ca	Begin negotiations<FF02>
+445	0x6dd88	EBOOT:29b0a4	Enter auto-battle<FF02>
+446	0x6dda0	EBOOT:29b06e	Change formation<FF02>
+447	0x6ddb8	EBOOT:29b04a	Analyze a demon<FF02>
+448	0x6ddc8	EBOOT:29b02c	Weapon attack<FF02>
+449	0x6ddd4	EBOOT:29b00a	Invoke Persona<FF02>
+450	0x6dde4	EBOOT:29aff0	Use an item<FF02>
+451	0x6ddf0	EBOOT:29afda	Fire gun<FF02>
+452	0x6ddfc	EBOOT:29afb8	Change Personas<FF02>
+453	0x6de0c	EBOOT:29afa6	Defend<FF02>
+454	0x6de14	EBOOT:29af7c	Weapon attack - all<FF02>
+455	0x6de24	EBOOT:29af42	Reuse last turn's commands<FF02>
+456	0x6de38	EBOOT:29af10	Set individual commands<FF02>
+457	0x6de48	EBOOT:29aef2	Set manually<FF02>
+458	0x6de58	EBOOT:29aed4	Load commands<FF02>
+459	0x73fa8	EBOOT:0x267638	Agi
+460	0x73fb0	EBOOT:0x267668	Agilao
+461	0x73fb8	EBOOT:0x267698	Agidyne
+462	0x73fc4	EBOOT:0x2676c8	Maragi
+463	0x73fcc	EBOOT:0x2676f8	Maragion
+464	0x73fd8	EBOOT:0x267728	Maragidyne
+465	0x73fe4	EBOOT:0x267758	Bufu
+466	0x73fec	EBOOT:0x267788	Bufula
+467	0x73ff4	EBOOT:0x2677b8	Bufudyne
+468	0x74000	EBOOT:0x2677e8	Mabufu
+469	0x7400c	EBOOT:0x267818	Mabufula
+470	0x74018	EBOOT:0x267848	Mabufudyne
+471	0x74024	EBOOT:0x267878	Garu
+472	0x7402c	EBOOT:0x2678a8	Garula
+473	0x74034	EBOOT:0x2678d8	Garudyne
+474	0x74040	EBOOT:0x267908	Magaru
+475	0x7404c	EBOOT:0x267938	Magarula
+476	0x74058	EBOOT:0x267968	Magarudyne
+477	0x74064	EBOOT:0x267998	Magna
+478	0x7406c	EBOOT:0x2679c8	Magnara
+479	0x74074	EBOOT:0x2679f8	Magnadyne
+480	0x74080	EBOOT:0x267a28	Mamagna
+481	0x74088	EBOOT:0x267a58	Mamagnara
+482	0x74094	EBOOT:0x267a88	Mamagnadyne
+483	0x740a0	EBOOT:0x267ab8	Frei
+484	0x740a8	EBOOT:0x267ae8	Freila
+485	0x740b0	EBOOT:0x267b18	Freidyne
+486	0x740bc	EBOOT:0x267b48	Megido
+487	0x740c4	EBOOT:0x267b78	Megidola
+488	0x740cc	EBOOT:0x267ba8	Megidolaon
+489	0x740d8	EBOOT:0x267bd8	Zan
+490	0x740e0	EBOOT:0x267c08	Zanma
+491	0x740e8	EBOOT:0x267c38	Zandyne
+492	0x740f4	EBOOT:0x267c68	Mazan
+493	0x740fc	EBOOT:0x267c98	Mazanma
+494	0x74104	EBOOT:0x267cc8	Mazandyne
+495	0x74110	EBOOT:0x267cf8	Gry
+496	0x74118	EBOOT:0x267d28	Gryva
+497	0x74120	EBOOT:0x267d58	Grydyne
+498	0x7412c	EBOOT:0x267d88	Magry
+499	0x74134	EBOOT:0x267db8	Magryva
+500	0x74140	EBOOT:0x267de8	Magrydyne
+501	0x7414c	EBOOT:0x267e18	Zio
+502	0x74154	EBOOT:0x267e48	Zionga
+503	0x7415c	EBOOT:0x267e78	Ziodyne
+504	0x74168	EBOOT:0x267ea8	Mazio
+505	0x74170	EBOOT:0x267ed8	Mazionga
+506	0x7417c	EBOOT:0x267f08	Maziodyne
+507	0x74188	EBOOT:0x267f38	Eiha
+508	0x74190	EBOOT:0x267f68	Baeiha
+509	0x74198	EBOOT:0x267f98	Maeiha
+510	0x741a0	EBOOT:0x267fc8	Mudo
+511	0x741a8	EBOOT:0x267ff8	Mudoon
+512	0x741b0	EBOOT:0x268028	Mamudo
+513	0x741b8	EBOOT:0x268058	Dormina
+514	0x741c4	EBOOT:0x268088	Shibaboo
+515	0x741d0	EBOOT:0x2680b8	Pulinpa
+516	0x741d8	EBOOT:0x2680e8	Hapirma
+517	0x741e0	EBOOT:0x268118	Marin Karin
+518	0x741e8	EBOOT:0x268148	Makajam
+519	0x741f4	EBOOT:0x268178	Delyte
+520	0x741fc	EBOOT:0x2681a8	Slumpa
+521	0x74204	EBOOT:0x2681d8	Decover
+522	0x74210	EBOOT:0x268208	Desanga
+523	0x74218	EBOOT:0x268238	Doronpa
+524	0x74220	EBOOT:0x268268	Doroid
+525	0x74228	EBOOT:0x268298	Quikka
+526	0x74230	EBOOT:0x2682c8	Balzac
+527	0x7423c	EBOOT:0x2682f8	Mador
+528	0x74244	EBOOT:0x268328	Wolvaan
+529	0x74250	EBOOT:0x268358	Deathtika
+530	0x7425c	EBOOT:0x268388	Petrama
+531	0x74264	EBOOT:0x2683b8	Paralama
+532	0x7426c	EBOOT:0x2683e8	Poisma
+533	0x74274	EBOOT:0x268418	Nervma
+534	0x7427c	EBOOT:0x268448	Omega Cluster
+535	0x74288	EBOOT:0x268478	Kouha
+536	0x74290	EBOOT:0x2684a8	Baikouha
+537	0x74298	EBOOT:0x2684d8	Makouha
+538	0x742a0	EBOOT:0x268508	Hama
+539	0x742a8	EBOOT:0x268538	Hamaon
+540	0x742b0	EBOOT:0x268568	Mahama
+541	0x742b8	EBOOT:0x268598	Tarunda
+542	0x742c0	EBOOT:0x2685c8	Rakunda
+543	0x742c8	EBOOT:0x2685f8	Sukunda
+544	0x742d0	EBOOT:0x268628	Dekunda
+545	0x742d8	EBOOT:0x268658	Tarukaja
+546	0x742e4	EBOOT:0x268688	Rakukaja
+547	0x742f0	EBOOT:0x2686b8	Sukukaja
+548	0x742fc	EBOOT:0x2686e8	Makakaja
+549	0x74308	EBOOT:0x268718	Dekaja
+550	0x74314	EBOOT:0x268748	Tetraja
+551	0x74320	EBOOT:0x268778	Makarakarn
+552	0x7432c	EBOOT:0x2687a8	Tetrakarn
+553	0x74338	EBOOT:0x2687d8	Dia
+554	0x74340	EBOOT:0x268808	Diarama
+555	0x7434c	EBOOT:0x268838	Diarahan
+556	0x74358	EBOOT:0x268868	Media
+557	0x74360	EBOOT:0x268898	Mediarama
+558	0x7436c	EBOOT:0x2688c8	Mediarahan
+559	0x74378	EBOOT:0x2688f8	Patra
+560	0x74380	EBOOT:0x268928	Pen Patra
+561	0x7438c	EBOOT:0x268958	Posumudi
+562	0x74398	EBOOT:0x268988	Paraladi
+563	0x743a4	EBOOT:0x2689b8	Petradi
+564	0x743b0	EBOOT:0x2689e8	Nervundi
+565	0x743bc	EBOOT:0x268a18	Recarm
+566	0x743c4	EBOOT:0x268a48	Samarecarm
+567	0x743d0	EBOOT:0x268a78	Recarmdra
+568	0x743dc	EBOOT:0x268aa8	Alpha Blaster
+569	0x743e8	EBOOT:0x268ad8	Mappa
+570	0x74414	EBOOT:0x268b68	Outoma
+571	0x7441c	EBOOT:0x268b98	Liftoma
+572	0x74424	EBOOT:0x268bc8	Alsanga
+573	0x7442c	EBOOT:0x268bf8	Paral Eyes
+574	0x74438	EBOOT:0x268c28	Petra Eyes
+575	0x74444	EBOOT:0x268c58	Hell Eyes
+576	0x74450	EBOOT:0x268c88	Guilt Eyes
+577	0x7445c	EBOOT:0x268cb8	Terror Eyes
+578	0x74468	EBOOT:0x268ce8	Sexy Dance
+579	0x74474	EBOOT:0x268d18	Happy Dance
+580	0x74484	EBOOT:0x268d48	Hula of Misfortune
+581	0x74494	EBOOT:0x268d78	Tango of Dispelling
+582	0x744a0	EBOOT:0x268da8	Waltz of Sadness
+583	0x744ac	EBOOT:0x268dd8	Lullaby
+584	0x744b4	EBOOT:0x268e08	Panic Voice
+585	0x744c0	EBOOT:0x268e38	Bind Voice
+586	0x744cc	EBOOT:0x268e68	Frenzy Song
+587	0x744d8	EBOOT:0x268e98	Candy Voice
+588	0x744e8	EBOOT:0x268ec8	Passionate Kiss
+589	0x744f4	EBOOT:0x268ef8	Demon's Kiss
+590	0x74500	EBOOT:0x268f28	Evil Smile
+591	0x7450c	EBOOT:0x268f58	Deathtouch
+592	0x74518	EBOOT:0x268f88	Fire Breath
+593	0x74524	EBOOT:0x268fb8	Ice Breath
+594	0x74530	EBOOT:0x268fe8	Poison Breath
+595	0x7453c	EBOOT:0x269018	Fog Breath
+596	0x7454c	EBOOT:0x269048	Water Wall
+597	0x74554	EBOOT:0x269078	Fire Wall
+598	0x7455c	EBOOT:0x2690a8	Crystal Wall
+599	0x74568	EBOOT:0x2690d8	Steel Wall
+600	0x74574	EBOOT:0x269108	Crimson Sublation
+601	0x74580	EBOOT:0x269138	Azure Cessation
+602	0x7458c	EBOOT:0x269168	Mighty Wave
+603	0x74594	EBOOT:0x269198	Gentle Wave
+604	0x7459c	EBOOT:0x2691c8	Heavenly Cyclone
+605	0x745a8	EBOOT:0x2691f8	Earthly Vortex
+606	0x745b4	EBOOT:0x269228	Hell Drop
+607	0x745bc	EBOOT:0x269258	Gokuraku Fall
+608	0x745c4	EBOOT:0x269288	Eastern Impact
+609	0x745cc	EBOOT:0x2692b8	Western Blow
+610	0x745d4	EBOOT:0x2692e8	Sanraigeki
+611	0x745dc	EBOOT:0x269318	Shuuraigeki
+612	0x745e4	EBOOT:0x269348	Eternal Black
+613	0x745f0	EBOOT:0x269378	Dark Verdict
+614	0x745fc	EBOOT:0x2693a8	Eternal White
+615	0x74608	EBOOT:0x2693d8	Bright Judgement
+616	0x74610	EBOOT:0x269408	Hieroglyphein
+617	0x74620	EBOOT:0x269438	Summon
+618	0x74628	EBOOT:0x269468	Luna Trap
+619	0x74634	EBOOT:0x269498	Feral Bite
+620	0x7463c	EBOOT:0x2694c8	Venom Bite
+621	0x74648	EBOOT:0x2694f8	Stun Bite
+622	0x74654	EBOOT:0x269528	Virus Bite
+623	0x74660	EBOOT:0x269558	Stone Bite
+624	0x7466c	EBOOT:0x269588	Feral Claw
+625	0x74674	EBOOT:0x2695b8	Poison Claw
+626	0x74680	EBOOT:0x2695e8	Stun Claw
+627	0x7468c	EBOOT:0x269618	Virus Claw
+628	0x74698	EBOOT:0x269648	Stone Claw
+629	0x746a4	EBOOT:0x269678	Toxic Sting
+630	0x746ac	EBOOT:0x2696a8	Stun Needle
+631	0x746b4	EBOOT:0x2696d8	Needle Rush
+632	0x746c0	EBOOT:0x269708	Genocide Fan
+633	0x746cc	EBOOT:0x269738	Tackle
+634	0x746d4	EBOOT:0x269768	Bonecrusher
+635	0x746e4	EBOOT:0x269798	Squash
+636	0x746ec	EBOOT:0x2697c8	Heavenly Hit
+637	0x746f4	EBOOT:0x2697f8	Megaton Raid
+638	0x74700	EBOOT:0x269828	Beak
+639	0x74708	EBOOT:0x269858	Wing Flap
+640	0x74710	EBOOT:0x269888	Dive
+641	0x74718	EBOOT:0x2698b8	Spike Claw
+642	0x74724	EBOOT:0x2698e8	Death Claw
+643	0x74730	EBOOT:0x269918	Twinkle Punch
+644	0x7473c	EBOOT:0x269948	Fist of Fury
+645	0x74748	EBOOT:0x269978	Deadly Fist
+646	0x7475c	EBOOT:0x2699a8	Spin Kick
+647	0x74768	EBOOT:0x2699d8	Thunder Kick
+648	0x74770	EBOOT:0x269a08	Lightning Kick
+649	0x74780	EBOOT:0x269a38	Twin Slash
+650	0x7478c	EBOOT:0x269a68	Heat Wave
+651	0x74798	EBOOT:0x269a98	Deathbound
+652	0x747a4	EBOOT:0x269ac8	Ichimonji Slash
+653	0x747b0	EBOOT:0x269af8	Wolf Fang
+654	0x747bc	EBOOT:0x269b28	Triple Slice
+655	0x747c8	EBOOT:0x269b58	Double Thrust
+656	0x747d0	EBOOT:0x269b88	Dragon Whirl
+657	0x747dc	EBOOT:0x269bb8	Burning Spear
+658	0x747e8	EBOOT:0x269be8	Flurry Stab
+659	0x747f4	EBOOT:0x269c18	Destruction Smash
+660	0x74800	EBOOT:0x269c48	Earth Slicer
+661	0x7480c	EBOOT:0x269c78	Love Whip
+662	0x74814	EBOOT:0x269ca8	Infinite Spiral
+663	0x74824	EBOOT:0x269cd8	Moon Shatterer
+664	0x74830	EBOOT:0x269d08	Fastball
+665	0x74838	EBOOT:0x269d38	Darkness Nail
+666	0x74844	EBOOT:0x269d68	Sonic Bullet
+667	0x74850	EBOOT:0x269d98	Rapid Fire
+668	0x74858	EBOOT:0x269dc8	Myriad Arrows
+669	0x74868	EBOOT:0x269df8	Arrow Volley
+670	0x74874	EBOOT:0x269e28	Single Shot
+671	0x74884	EBOOT:0x269e58	Drive Shot
+672	0x74894	EBOOT:0x269e88	Middle Shot
+673	0x748a0	EBOOT:0x269eb8	Powder Shot
+674	0x748b0	EBOOT:0x269ee8	Long Shot
+675	0x748bc	EBOOT:0x269f18	Sweet Trap
+676	0x748cc	EBOOT:0x269f48	Viper Smash
+677	0x748dc	EBOOT:0x269f78	Drumroll Punch
+678	0x748ec	EBOOT:0x269fa8	Rainbow Strike
+679	0x748f8	EBOOT:0x269fd8	Binal Strike
+680	0x74904	EBOOT:0x26a008	Last Resort
+681	0x7490c	EBOOT:0x26a038	Self-Destruct
+682	0x74914	EBOOT:0x26a068	Clone
+683	0x7491c	EBOOT:0x26a098	Dissolvent
+684	0x74924	EBOOT:0x26a0c8	Illusion
+685	0x74934	EBOOT:0x26a0f8	Scatter
+686	0x7493c	EBOOT:0x26a128	Paralyze Puncture
+687	0x7494c	EBOOT:0x26a158	Dark Mirror
+688	0x74958	EBOOT:0x26a188	Fire Arrow
+689	0x74968	EBOOT:0x26a1b8	Dark Slumber
+690	0x74974	EBOOT:0x26a1e8	Revenge Leak
+691	0x74980	EBOOT:0x26a218	Absolute Zero
+692	0x74990	EBOOT:0x26a248	Devil's Wall
+693	0x749a0	EBOOT:0x26a278	Crawling Chaos
+694	0x749ac	EBOOT:0x26a2a8	Symphony of Lament
+695	0x749bc	EBOOT:0x26a2d8	All Guard
+696	0x749c8	EBOOT:0x26a308	Butterfly Storm
+697	0x749d8	EBOOT:0x26a338	Bloody Rose
+698	0x749e8	EBOOT:0x26a368	Derangement Voice
+699	0x749f8	EBOOT:0x26a440	Medicine
+700	0x74a00	EBOOT:0x26a480	Rattle Drink
+701	0x74a10	EBOOT:0x26a4c0	Bead
+702	0x74a18	EBOOT:0x26a500	Revival Bead
+703	0x74a24	EBOOT:0x26a540	Balm of Life
+704	0x74a2c	EBOOT:0x26a580	Dis-Stone
+705	0x74a38	EBOOT:0x26a5c0	Dis-Para
+706	0x74a48	EBOOT:0x26a600	Dis-Poison
+707	0x74a58	EBOOT:0x26a640	Dis-Sick
+708	0x74a64	EBOOT:0x26a680	Slick Drop
+709	0x74a74	EBOOT:0x26a6c0	Turtle Candy
+710	0x74a84	EBOOT:0x26a700	Silver Prayer Wheel
+711	0x74a90	EBOOT:0x26a740	Magical Guard
+712	0x74aa0	EBOOT:0x26a780	Physical Guard
+713	0x74ab0	EBOOT:0x26a7c0	Skull Pendulum
+714	0x74abc	EBOOT:0x26a800	Life Stone
+715	0x74ac4	EBOOT:0x26a840	Repulse Bell
+716	0x74ad0	EBOOT:0x26a880	Core Shield
+717	0x74adc	EBOOT:0x26a8c0	St Incense
+718	0x74aec	EBOOT:0x26a900	Vi Incense
+719	0x74afc	EBOOT:0x26a940	Dx Incense
+720	0x74b0c	EBOOT:0x26a980	Ag Incense
+721	0x74b1c	EBOOT:0x26a9c0	Lu Incense
+722	0x74b2c	EBOOT:0x26aa00	HP Incense
+723	0x74b38	EBOOT:0x26aa40	SP Incense
+724	0x74b44	EBOOT:0x26aa80	Muscle Drink
+725	0x74b50	EBOOT:0x26aac0	Hiranya
+726	0x74b58	EBOOT:0x26ab00	Soma
+727	0x74b60	EBOOT:0x26ab40	Numerous Bell
+728	0x74b6c	EBOOT:0x26ab80	Divine Voice
+729	0x74b78	EBOOT:0x26abc0	Millionaire Bomb
+730	0x74b84	EBOOT:0x26ac00	Demon House
+731	0x74b90	EBOOT:0x26ac40	Demon Den
+732	0x74b9c	EBOOT:0x26ac80	Chewing Soul
+733	0x74ba8	EBOOT:0x26acc0	Metal Card
+734	0x74bb4	EBOOT:0x26ad00	Agidyne Stone
+735	0x74bc4	EBOOT:0x26ad40	Maragi Stone
+736	0x74bd0	EBOOT:0x26ad80	Maragion Stone
+737	0x74be0	EBOOT:0x26adc0	Evil Fire Tablet
+738	0x74bec	EBOOT:0x26ae00	Bufudyne Stone
+739	0x74bfc	EBOOT:0x26ae40	Mabufu Stone
+740	0x74c08	EBOOT:0x26ae80	Mabufula Stone
+741	0x74c18	EBOOT:0x26aec0	Evil Ice Tablet
+742	0x74c24	EBOOT:0x26af00	Garudyne Stone
+743	0x74c34	EBOOT:0x26af40	Magaru Stone
+744	0x74c40	EBOOT:0x26af80	Magarula Stone
+745	0x74c50	EBOOT:0x26afc0	Evil Wind Tablet
+746	0x74c5c	EBOOT:0x26b000	Magnadyne Stone
+747	0x74c6c	EBOOT:0x26b040	Mamagna Stone
+748	0x74c7c	EBOOT:0x26b080	Mamagnara Stone
+749	0x74c8c	EBOOT:0x26b0c0	Evil Quake Tablet
+750	0x74c98	EBOOT:0x26b100	Freidyne Stone
+751	0x74ca8	EBOOT:0x26b140	Megido Stone
+752	0x74cb4	EBOOT:0x26b180	Megidola Stone
+753	0x74cc4	EBOOT:0x26b1c0	Scorching Tablet
+754	0x74cd0	EBOOT:0x26b200	Zandyne Stone
+755	0x74ce0	EBOOT:0x26b240	Mazan Stone
+756	0x74cec	EBOOT:0x26b280	Mazanma Stone
+757	0x74cfc	EBOOT:0x26b2c0	Gale Tablet
+758	0x74d08	EBOOT:0x26b300	Grydyne Stone
+759	0x74d18	EBOOT:0x26b340	Magry Stone
+760	0x74d28	EBOOT:0x26b380	Magryva Stone
+761	0x74d38	EBOOT:0x26b3c0	Wall Tablet
+762	0x74d44	EBOOT:0x26b400	Ziodyne Stone
+763	0x74d54	EBOOT:0x26b440	Mazio Stone
+764	0x74d60	EBOOT:0x26b480	Mazionga Stone
+765	0x74d70	EBOOT:0x26b4c0	Flash Tablet
+766	0x74d7c	EBOOT:0x26b500	Dark Wave Tablet
+767	0x74d88	EBOOT:0x26b540	Doggerel Tablet
+768	0x74d94	EBOOT:0x26b580	Ebon Rope Tablet
+769	0x74da0	EBOOT:0x26b5c0	Petra Stone
+770	0x74dac	EBOOT:0x26b600	Para Stone
+771	0x74db8	EBOOT:0x26b640	Poisma Stone
+772	0x74dc8	EBOOT:0x26b680	Nerve Stone
+773	0x74dd8	EBOOT:0x26b6c0	Falsehood Tablet
+774	0x74de4	EBOOT:0x26b700	Light Wave Tablet
+775	0x74df0	EBOOT:0x26b740	Holy Writ Tablet
+776	0x74dfc	EBOOT:0x26b780	Quarter Moon Tablet
+777	0x74e0c	EBOOT:0x26b7c0	Half Moon Tablet
+778	0x74e18	EBOOT:0x26b800	Posumudi Stone
+779	0x74e28	EBOOT:0x26b840	Paraladi Stone
+780	0x74e38	EBOOT:0x26b880	Petradi Stone
+781	0x74e48	EBOOT:0x26b8c0	Nervundi Stone
+782	0x74e58	EBOOT:0x26b900	Full Moon Tablet
+783	0x74e64	EBOOT:0x26b940	Verity Tablet
+784	0x74e70	EBOOT:0x26b980	Alexandrite
+785	0x74e7c	EBOOT:0x26b9c0	Diamond
+786	0x74e88	EBOOT:0x26ba00	Sapphire
+787	0x74e90	EBOOT:0x26ba40	Emerald
+788	0x74e98	EBOOT:0x26ba80	Ruby
+789	0x74ea0	EBOOT:0x26bac0	Pearl
+790	0x74ea8	EBOOT:0x26bb00	Tanzanite
+791	0x74eb4	EBOOT:0x26bb40	Opal
+792	0x74ebc	EBOOT:0x26bb80	Amethyst
+793	0x74ec4	EBOOT:0x26bbc0	Garnet
+794	0x74ed0	EBOOT:0x26bc00	Aquamarine
+795	0x74ed8	EBOOT:0x26bc40	Topaz
+796	0x74ee4	EBOOT:0x26bc80	Moonstone
+797	0x74ef0	EBOOT:0x26bcc0	Malachite
+798	0x74ef8	EBOOT:0x26bd00	Onyx
+799	0x74f00	EBOOT:0x26bd40	Turquoise
+800	0x74f0c	EBOOT:0x26bd80	Apple Pie
+801	0x74f18	EBOOT:0x26bdc0	AppIe Pie
+802	0x74f24	EBOOT:0x26be00	AqqIe Pie
+803	0x73f98	EBOOT:278ee4	RESERVE
+804	0x743f4	EBOOT:278ee4	RESERVE
+805	0x74404	EBOOT:278ee4	RESERVE
+806	0x66f6c	EBOOT:2acbc8	Persuade
+807	0x66f74	EBOOT:2acbbc	Taunt
+808	0x66f7c	EBOOT:2acbac	Invite
+809	0x66f84	EBOOT:2acba0	Sing
+810	0x66f8c	EBOOT:2acb94	Plead
+811	0x66f94	EBOOT:2acb84	Flatter
+812	0x66f9c	EBOOT:2acb7c	Lie
+813	0x66fa4	EBOOT:2acb6c	Cringe
+814	0x66fac	EBOOT:2acb5c	Pickup
+815	0x66fb4	EBOOT:2acb50	Joke
+816	0x66fbc	EBOOT:2acb44	Chat
+817	0x66fc4	EBOOT:2acb34	Startle
+818	0x66fcc	EBOOT:2acb28	Bribe
+819	0x66fd4	EBOOT:2acb10	Pontificate
+820	0x66fdc	EBOOT:2acaf8	Condescend
+821	0x66fe4	EBOOT:2acae8	Sarcasm
+822	0x66ff0	EBOOT:2acadc	Dance
+823	0x66ff8	EBOOT:2acad0	Taunt
+824	0x67000	EBOOT:2acac4	Stare
+825	0x67008	EBOOT:2acab8	Brag
+826	0x67010	EBOOT:2acaa8	Horrify
+827	0x67018	EBOOT:2aca9c	Sing
+828	0x67020	EBOOT:2aca8c	Soothe
+829	0x67028	EBOOT:2aca7c	Invite
+830	0x67030	EBOOT:2aca70	Abuse
+831	0x67038	EBOOT:2aca60	Seduce
+832	0x67040	EBOOT:2aca58	Cry
+833	0x6704c	EBOOT:2aca44	Threaten
+834	0x67054	EBOOT:2aca38	Bully
+835	0x6705c	EBOOT:2aca24	Persuade
+836	0x67064	EBOOT:2aca18	Scold
+837	0x6706c	EBOOT:2aca08	Ignore
+838	0x67074	EBOOT:2ac9f8	Ignore
+839	0x6707c	EBOOT:2ac9e4	Threaten
+840	0x67084	EBOOT:2ac9d8	Yell
+841	0x6708c	EBOOT:2ac9b8	Prestidigitate
+842	0x64428	EBOOT:2acc70	Wise
+843	0x64430	EBOOT:2acc60	Foolish
+844	0x64438	EBOOT:2acc50	Joyful
+845	0x64440	EBOOT:2acc40	Gloomy
+846	0x64448	EBOOT:2acc2c	Forceful
+847	0x64450	EBOOT:2acc20	Timid
+848	0x64458	EBOOT:2acc0c	Snappish
+849	0x64460	EBOOT:2acbfc	Haughty

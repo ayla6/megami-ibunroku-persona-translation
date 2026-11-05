@@ -1,0 +1,237 @@
+id	pos	psp	en
+0	0x2014	pack/talk/KOKURI:0x2030	...I... S-E-E...<FFF5>
+1	0x2099	pack/talk/KOKURI:0x2058	...N-O...<FFF5>
+2	0x210c	pack/talk/KOKURI:0x2070	...H-E-E... H-E-E...<FFF5>
+3	0x21bb	pack/talk/KOKURI:0x20a0	...I... S-E-E...<FFF5>
+4	0x2240	pack/talk/KOKURI:0x20c8	...K-I-L-L...<FFF5>
+5	0x22cb	pack/talk/KOKURI:0x20e8	...O-H... C-R-A-P...<FFF5>
+6	0x2352	pack/talk/KOKURI:0x2118	...I... S-E-E...<FFF5>
+7	0x23d7	pack/talk/KOKURI:0x2140	...N-O...<FFF5>
+8	0x2443	pack/talk/KOKURI:0x2158	...W-H-Y...?<FFF5>
+9	0x24b0	pack/talk/KOKURI:0x2178	...S-H-U-T... U-P...<FFF5>
+10	0x252c	pack/talk/KOKURI:0x21a8	...C-R-U-E-L...<FFF5>
+11	0x2595	pack/talk/KOKURI:0x21c8	...H-A... H-A...<FFF5>
+12	0x2638	pack/talk/KOKURI:0x21f0	...I... S-E-E...<FFF5>
+13	0x26bd	pack/talk/KOKURI:0x2218	...N-O...<FFF5>
+14	0x2730	pack/talk/KOKURI:0x2230	...H-E-E... H-E-E...<FFF5>
+15	0x27df	pack/talk/KOKURI:0x2260	...S-H-U-T... U-P...<FFF5>
+16	0x285b	pack/talk/KOKURI:0x2290	...W-H-Y...?<FFF5>
+17	0x28c8	pack/talk/KOKURI:0x22b0	...H-A... H-A...<FFF5>
+18	0x296b	pack/talk/KOKURI:0x22d8	...I... S-E-E...<FFF5>
+19	0x29f0	pack/talk/KOKURI:0x2300	...S-H-U-T... U-P...<FFF5>
+20	0x2a6c	pack/talk/KOKURI:0x2330	...H-A... H-A...<FFF5>
+21	0x2b0f	pack/talk/KOKURI:0x2358	...I... S-E-E...<FFF5>
+22	0x2b94	pack/talk/KOKURI:0x2380	...S-H-U-T... U-P...<FFF5>
+23	0x2c10	pack/talk/KOKURI:0x23b0	...H-A... H-A...<FFF5>
+24	0x2cb3	pack/talk/KOKURI:0x23d8	...I... S-E-E...<FFF5>
+25	0x2d38	pack/talk/KOKURI:0x2400	...K-I-L-L...<FFF5>
+26	0x2dc3	pack/talk/KOKURI:0x2420	...O-H... C-R-A-P...<FFF5>
+27	0x2e4a	pack/talk/KOKURI:0x2450	...H-A... H-A...<FFF5>
+28	0x2eed	pack/talk/KOKURI:0x2478	...I... S-E-E...<FFF5>
+29	0x2f72	pack/talk/KOKURI:0x24a0	...K-I-L-L...<FFF5>
+30	0x2ffd	pack/talk/KOKURI:0x24c0	...O-H... C-R-A-P...<FFF5>
+31	0x3084	pack/talk/KOKURI:0x24f0	...H-A... H-A...<FFF5>
+32	0x3127	pack/talk/KOKURI:0x2518	...I... S-E-E...<FFF5>
+33	0x31ac	pack/talk/KOKURI:0x2540	...S-H-U-T... U-P...<FFF5>
+34	0x3228	pack/talk/KOKURI:0x2570	...H-E-E... H-E-E...<FFF5>
+35	0x32d7	pack/talk/KOKURI:0x25a0	...I... S-E-E...<FFF5>
+36	0x335c	pack/talk/KOKURI:0x25c8	...K-I-L-L...<FFF5>
+37	0x33e7	pack/talk/KOKURI:0x25e8	...C-R-U-E-L...<FFF5>
+38	0x3450	pack/talk/KOKURI:0x2608	...I... S-E-E...<FFF5>
+39	0x34d5	pack/talk/KOKURI:0x2630	...S-H-U-T... U-P...<FFF5>
+40	0x3551	pack/talk/KOKURI:0x2660	...H-E-E... H-E-E...<FFF5>
+41	0x3600	pack/talk/KOKURI:0x2690	...I... S-E-E...<FFF5>
+42	0x3685	pack/talk/KOKURI:0x26b8	...S-H-U-T... U-P...<FFF5>
+43	0x3701	pack/talk/KOKURI:0x26e8	...H-A... H-A...<FFF5>
+44	0x37a4	pack/talk/KOKURI:0x2710	...I... S-E-E...<FFF5>
+45	0x3829	pack/talk/KOKURI:0x2738	...K-I-L-L...<FFF5>
+46	0x38b4	pack/talk/KOKURI:0x2758	...C-R-U-E-L...<FFF5>
+47	0x391d	pack/talk/KOKURI:0x2778	...I... S-E-E...<FFF5>
+48	0x39a2	pack/talk/KOKURI:0x27a0	...K-I-L-L...<FFF5>
+49	0x3a2d	pack/talk/KOKURI:0x27c0	...H-E-E... H-E-E...<FFF5>
+50	0x3adc	pack/talk/KOKURI:0x27f0	...I... S-E-E...<FFF5>
+51	0x3b61	pack/talk/KOKURI:0x2818	...Y-O-U... S-U-C-K...<FFF5>
+52	0x3bf3	pack/talk/KOKURI:0x2848	...H-A... H-A...<FFF5>
+53	0x3c96	pack/talk/KOKURI:0x2870	...I... S-E-E...<FFF5>
+54	0x3d1b	pack/talk/KOKURI:0x2898	...K-I-L-L...<FFF5>
+55	0x3da6	pack/talk/KOKURI:0x28b8	...C-R-U-E-L...<FFF5>
+56	0x3e0f	pack/talk/KOKURI:0x28d8	...I... S-E-E...<FFF5>
+57	0x3e94	pack/talk/KOKURI:0x2900	...K-I-L-L...<FFF5>
+58	0x3f1f	pack/talk/KOKURI:0x2920	...H-E-E... H-E-E...<FFF5>
+59	0x3fce	pack/talk/KOKURI:0x2950	...I... S-E-E...<FFF5>
+60	0x4053	pack/talk/KOKURI:0x2978	...S-H-U-T... U-P...<FFF5>
+61	0x40cf	pack/talk/KOKURI:0x29a8	...H-A... H-A...<FFF5>
+62	0x4172	pack/talk/KOKURI:0x29d0	...S-H-U-T... U-P...<FFF5>
+63	0x41ee	pack/talk/KOKURI:0x2a00	...O-H... C-R-A-P...<FFF5>
+64	0x4275	pack/talk/KOKURI:0x2a30	...H-A... H-A...<FFF5>
+65	0x4318	pack/talk/KOKURI:0x2a58	...I... S-E-E...<FFF5>
+66	0x439d	pack/talk/KOKURI:0x2a80	...Y-O-U... S-U-C-K...<FFF5>
+67	0x442f	pack/talk/KOKURI:0x2ab0	...H-A... H-A...<FFF5>
+68	0x44d2	pack/talk/KOKURI:0x2ad8	...I... S-E-E...<FFF5>
+69	0x4557	pack/talk/KOKURI:0x2b00	...S-H-U-T... U-P...<FFF5>
+70	0x45d3	pack/talk/KOKURI:0x2b30	...H-E-E... H-E-E...<FFF5>
+71	0x4682	pack/talk/KOKURI:0x2b60	...I... S-E-E...<FFF5>
+72	0x4707	pack/talk/KOKURI:0x2b88	...N-O...<FFF5>
+73	0x477a	pack/talk/KOKURI:0x2ba0	...H-E-E... H-E-E...<FFF5>
+74	0x4829	pack/talk/KOKURI:0x2bd0	...I... S-E-E...<FFF5>
+75	0x48ae	pack/talk/KOKURI:0x2bf8	...K-I-L-L...<FFF5>
+76	0x4939	pack/talk/KOKURI:0x2c18	...C-R-U-E-L...<FFF5>
+77	0x49a2	pack/talk/KOKURI:0x2c38	...I... S-E-E...<FFF5>
+78	0x4a27	pack/talk/KOKURI:0x2c60	...S-H-U-T... U-P...<FFF5>
+79	0x4aa3	pack/talk/KOKURI:0x2c90	...H-E-E... H-E-E...<FFF5>
+80	0x4b52	pack/talk/KOKURI:0x2cc0	...I... S-E-E...<FFF5>
+81	0x4bd7	pack/talk/KOKURI:0x2ce8	...S-H-U-T... U-P...<FFF5>
+82	0x4c53	pack/talk/KOKURI:0x2d18	...C-R-U-E-L...<FFF5>
+83	0x4cbc	pack/talk/KOKURI:0x2d38	...I... S-E-E...<FFF5>
+84	0x4d41	pack/talk/KOKURI:0x2d60	...K-I-L-L...<FFF5>
+85	0x4dcc	pack/talk/KOKURI:0x2d80	...C-R-U-E-L...<FFF5>
+86	0x4e35	pack/talk/KOKURI:0x2da0	...K-I-L-L...<FFF5>
+87	0x4ec0	pack/talk/KOKURI:0x2dc0	...C-R-U-E-L...<FFF5>
+88	0x4f29	pack/talk/KOKURI:0x2de0	...H-E-E... H-E-E...<FFF5>
+89	0x4fd8	pack/talk/KOKURI:0x2e10	...I... S-E-E...<FFF5>
+90	0x505d	pack/talk/KOKURI:0x2e38	...N-O...<FFF5>
+91	0x50c9	pack/talk/KOKURI:0x2e50	...H-A... H-A...<FFF5>
+92	0x516c	pack/talk/KOKURI:0x2e78	...S-H-U-T... U-P...<FFF5>
+93	0x51e8	pack/talk/KOKURI:0x2ea8	...W-H-Y...?<FFF5>
+94	0x5255	pack/talk/KOKURI:0x2ec8	...H-E-E... H-E-E...<FFF5>
+95	0x5304	pack/talk/KOKURI:0x2ef8	...I... S-E-E...<FFF5>
+96	0x5389	pack/talk/KOKURI:0x2f20	...K-I-L-L...<FFF5>
+97	0x5414	pack/talk/KOKURI:0x2f40	...C-R-U-E-L...<FFF5>
+98	0x547d	pack/talk/KOKURI:0x2f60	...I... S-E-E...<FFF5>
+99	0x5502	pack/talk/KOKURI:0x2f88	...K-I-L-L...<FFF5>
+100	0x558d	pack/talk/KOKURI:0x2fa8	...C-R-U-E-L...<FFF5>
+101	0x55f6	pack/talk/KOKURI:0x2fc8	...I... S-E-E...<FFF5>
+102	0x567b	pack/talk/KOKURI:0x2ff0	...K-I-L-L...<FFF5>
+103	0x5706	pack/talk/KOKURI:0x3010	...C-R-U-E-L...<FFF5>
+104	0x576f	pack/talk/KOKURI:0x3030	...S-H-U-T... U-P...<FFF5>
+105	0x57eb	pack/talk/KOKURI:0x3060	...O-H... C-R-A-P...<FFF5>
+106	0x5872	pack/talk/KOKURI:0x3090	...H-A... H-A...<FFF5>
+107	0x5915	pack/talk/KOKURI:0x30b8	...I... S-E-E...<FFF5>
+108	0x599a	pack/talk/KOKURI:0x30e0	...W-H-Y...?<FFF5>
+109	0x5a07	pack/talk/KOKURI:0x3100	...H-A... H-A...<FFF5>
+110	0x5aaa	pack/talk/KOKURI:0x3128	...I... S-E-E...<FFF5>
+111	0x5b2f	pack/talk/KOKURI:0x3150	...I... S-E-E...<FFF5>
+112	0x5bb4	pack/talk/KOKURI:0x3178	...S-H-U-T... U-P... G-I-V-E...<FFF6>M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+113	0x5c50	pack/talk/KOKURI:0x31f8	...S-H-U-T... U-P... G-I-V-E...<FFF6>M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+114	0x5cec	pack/talk/KOKURI:0x3278	...W-H-Y...?<FFF5>
+115	0x5d59	pack/talk/KOKURI:0x3298	...W-H-Y...?<FFF5>
+116	0x5dc6	pack/talk/KOKURI:0x32b8	...H-E-E... H-E-E...<FFF5>
+117	0x5e75	pack/talk/KOKURI:0x32e8	...H-E-E... H-E-E...<FFF5>
+118	0x5f24	pack/talk/KOKURI:0x3318	...I... S-E-E...<FFF5>
+119	0x5fa9	pack/talk/KOKURI:0x3340	...I... S-E-E...<FFF5>
+120	0x602e	pack/talk/KOKURI:0x3368	...S-H-U-T... U-P... G-I-V-E...<FFF6>M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+121	0x60ca	pack/talk/KOKURI:0x33e8	...S-H-U-T... U-P... G-I-V-E...<FFF6>M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+122	0x6166	pack/talk/KOKURI:0x3468	...C-R-U-E-L...<FFF5>
+123	0x61cf	pack/talk/KOKURI:0x3488	...C-R-U-E-L...<FFF5>
+124	0x6238	pack/talk/KOKURI:0x34a8	...H-E-E... H-E-E...<FFF5>
+125	0x62e7	pack/talk/KOKURI:0x34d8	...H-E-E... H-E-E...<FFF5>
+126	0x6396	pack/talk/KOKURI:0x3508	...I... S-E-E...<FFF5>
+127	0x641b	pack/talk/KOKURI:0x3530	...I... S-E-E...<FFF5>
+128	0x64a0	pack/talk/KOKURI:0x3558	...W-I-L-L... K-I-L-L... Y-O-U... G-I-V-<FFF6>E... M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+129	0x6541	pack/talk/KOKURI:0x35f0	...W-I-L-L... K-I-L-L... Y-O-U... G-I-V-<FFF6>E... M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+130	0x65e2	pack/talk/KOKURI:0x3688	...W-H-Y...?<FFF5>
+131	0x664f	pack/talk/KOKURI:0x36a8	...W-H-Y...?<FFF5>
+132	0x66bc	pack/talk/KOKURI:0x36c8	...H-A... H-A...<FFF5>
+133	0x675f	pack/talk/KOKURI:0x36f0	...H-A... H-A...<FFF5>
+134	0x6802	pack/talk/KOKURI:0x3718	...I... S-E-E...<FFF5>
+135	0x6887	pack/talk/KOKURI:0x3740	...I... S-E-E...<FFF5>
+136	0x690c	pack/talk/KOKURI:0x3768	...C-A-N-'-T... S-T-A-N-D...<FFF6>S-I-G-H-T... O-F... Y-O-U... G-I-V-E...<FFF6>M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+137	0x69ad	pack/talk/KOKURI:0x3830	...C-A-N-'-T... S-T-A-N-D...<FFF6>S-I-G-H-T... O-F... Y-O-U... G-I-V-E...<FFF6>M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+138	0x6a4e	pack/talk/KOKURI:0x38f8	...C-R-U-E-L...<FFF5>
+139	0x6ab7	pack/talk/KOKURI:0x3918	...C-R-U-E-L...<FFF5>
+140	0x6b20	pack/talk/KOKURI:0x3938	...H-A... H-A...<FFF5>
+141	0x6bc3	pack/talk/KOKURI:0x3960	...H-A... H-A...<FFF5>
+142	0x6c66	pack/talk/KOKURI:0x3988	...I... S-E-E...<FFF5>
+143	0x6ceb	pack/talk/KOKURI:0x39b0	...I... S-E-E...<FFF5>
+144	0x6d70	pack/talk/KOKURI:0x39d8	...S-H-U-T... U-P... G-I-V-E...<FFF6>M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+145	0x6e0c	pack/talk/KOKURI:0x3a58	...S-H-U-T... U-P... G-I-V-E...<FFF6>M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+146	0x6ea8	pack/talk/KOKURI:0x3ad8	...W-H-Y...?<FFF5>
+147	0x6f15	pack/talk/KOKURI:0x3af8	...W-H-Y...?<FFF5>
+148	0x6f82	pack/talk/KOKURI:0x3b18	...H-E-E... H-E-E...<FFF5>
+149	0x7031	pack/talk/KOKURI:0x3b48	...H-E-E... H-E-E...<FFF5>
+150	0x70e0	pack/talk/KOKURI:0x3b78	...I... S-E-E...<FFF5>
+151	0x7165	pack/talk/KOKURI:0x3ba0	...I... S-E-E...<FFF5>
+152	0x71ea	pack/talk/KOKURI:0x3bc8	...S-H-U-T... U-P... G-I-V-E...<FFF6>M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+153	0x7286	pack/talk/KOKURI:0x3c48	...S-H-U-T... U-P... G-I-V-E...<FFF6>M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+154	0x7322	pack/talk/KOKURI:0x3cc8	...W-H-Y...?<FFF5>
+155	0x738f	pack/talk/KOKURI:0x3ce8	...W-H-Y...?<FFF5>
+156	0x73fc	pack/talk/KOKURI:0x3d08	...H-A... H-A...<FFF5>
+157	0x749f	pack/talk/KOKURI:0x3d30	...H-A... H-A...<FFF5>
+158	0x7542	pack/talk/KOKURI:0x3d58	...H-A-V-E... C-A-R-D...<FFEF>
+159	0x75bb	pack/talk/KOKURI:0x3d90	...T-H-I-S... I-S... F-O-R... Y-O-U...<FFEF>
+160	0x7663	pack/talk/KOKURI:0x3de0	...R-E-A-L-L-Y... N-O-W...<FFEF>
+161	0x7680	pack/talk/KOKURI:0x3e18	...N-O...<FFEF>
+162	0x76c4	pack/talk/KOKURI:0x3e30	...N-O... T-O-O... W-E-A-K...<FFEF>
+163	0x7749	pack/talk/KOKURI:0x3e70	...T-H-I-S... I-S... F-O-R... Y-O-U...<FFEF>
+164	0x77f1	pack/talk/KOKURI:0x3ec0	...G-O-O-D... B-Y-E...<FFEF>
+165	0x783e	pack/talk/KOKURI:0x3ef0	...T-A-K-E... T-H-I-S...<FFF6>W-I-T-H... Y-O-U... T-O-O...<FFEF>
+166	0x78e5	pack/talk/KOKURI:0x3f60	...H-U-R-R-Y... U-P...<FFF6>A-N-D... C-H-O-O-S-E...<FFEF>
+167	0x7983	pack/talk/KOKURI:0x3fc0	...T-A-K-E... T-H-I-S...<FFEF>
+168	0x79d5	pack/talk/KOKURI:0x3ff8	...G-O... H-O-M-E...<FFEF>
+169	0x7a2a	pack/talk/KOKURI:0x4028	...I-'-M... L-E-A-V-I-N-G...!...<FFEF>
+170	0x7a81	pack/talk/KOKURI:0x4070	...I-'-L-L... G-I-V-E... T-H-I-S...<FFF6>T-O... A... M-O-R-O-N...!...<FFEF>
+171	0x7b13	pack/talk/KOKURI:0x40f8	ABCDEFGHIJKLMNOPQRSTUVWXYZ<FFFB><FFF7>Ugh, screw this! I get all irritated if<FFF6>I don't talk normally sometimes.<FFEF>
+172	0x7b72	pack/talk/KOKURI:0x41c8	*yip* I'm not in the mood to use<FFF6>the board this time, so I'll<FFF6>just give you my card.<FFEF>
+173	0x7ba1	pack/talk/KOKURI:0x4278	You seem pretty amazing for a human.<FFF6>Let's just talk like normal.<FFEF>
+174	0x7bd1	pack/talk/KOKURI:0x4300	*yip* Not only that, I'll give you<FFF6>my card, too. Gracious, aren't I?<FFEF>
+175	0x7c04	pack/talk/KOKURI:0x4390	...L-I-K-E... I-T... A... L-O-T...<FFEF>
+176	0x7c39	pack/talk/KOKURI:0x43d8	...T-H-I-S... I-S... F-O-R... Y-O-U...<FFEF>
+177	0x7ce0	pack/talk/KOKURI:0x4428	Alright, I'll talk normally...<FFF6>Just stop scaring me so much...<FFEF>
+178	0x7d11	pack/talk/KOKURI:0x44a8	C'mon, I'll give you my card.<FFF6>You won't have any complaints if<FFF6>I do that, right?<FFEF>
+179	0x7d37	pack/talk/KOKURI:0x4550	...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+180	0x7d9c	pack/talk/KOKURI:0x45a8	...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+181	0x7e01	pack/talk/KOKURI:0x4600	...G-I-M-M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+182	0x7e3d	pack/talk/KOKURI:0x4650	...H-A-N-D... S-O-M-E-T-H-I-N-G...<FFF6>O-V-E-R...<FFF1><FFF5>
+183	0x7eb7	pack/talk/KOKURI:0x46b0	...I... W-A-N-T... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+184	0x7f21	pack/talk/KOKURI:0x4708	...I... W-A-N-T... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+185	0x7f8b	pack/talk/KOKURI:0x4760	*yip* A full moon! This is so awesome!<FFFB><FFF7>Oh crap, I talked normally!<FFF6>Eh, oh well. *yip*<FFF5>
+186	0x7fd7	pack/talk/KOKURI:0x4810	*yip* That full moon feels great...<FFF6>By the way, human,<FFF6>do you know who I am?<FFFD>　<FFF5>
+187	0x8016	pack/talk/KOKURI:0x48b0	<FFEE>...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+188	0x807d	pack/talk/KOKURI:0x4908	<FFED>...H-A-N-D... S-O-M-E-T-H-I-N-G...<FFF6>O-V-E-R...<FFF1><FFF5>
+189	0x80f9	pack/talk/KOKURI:0x4968	<FFEE>...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+190	0x8160	pack/talk/KOKURI:0x49c0	<FFEC>...I... W-A-N-T... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+191	0x81cc	pack/talk/KOKURI:0x4a18	<FFEE>...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+192	0x8233	pack/talk/KOKURI:0x4a70	<FFEB>...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+193	0x829a	pack/talk/KOKURI:0x4ac8	<FFED>...H-A-N-D... S-O-M-E-T-H-I-N-G...<FFF6>O-V-E-R...<FFF1><FFF5>
+194	0x8316	pack/talk/KOKURI:0x4b28	<FFEC>...I... W-A-N-T... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+195	0x8382	pack/talk/KOKURI:0x4b80	<FFED>...H-A-N-D... S-O-M-E-T-H-I-N-G...<FFF6>O-V-E-R...<FFF1><FFF5>
+196	0x83fe	pack/talk/KOKURI:0x4be0	<FFEB>...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+197	0x8465	pack/talk/KOKURI:0x4c38	<FFEC>...I... W-A-N-T... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+198	0x84d1	pack/talk/KOKURI:0x4c90	<FFEB>...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+199	0x8538	pack/talk/KOKURI:0x4ce8	...L-I-K-E... Y-O-U... W-H-A-T...<FFF6>D-O... Y-O-U... W-A-N-T...?...<FFEF>
+200	0x85b9	pack/talk/KOKURI:0x4d70	...B-O-R-I-N-G... D-I-E...!...<FFEF>
+201	0x8669	pack/talk/KOKURI:0x4db0	...S-O... S-C-A-R-Y... S-C-A-R-E-D...<FFEF>
+202	0x86bc	pack/talk/KOKURI:0x4e00	...S-O... N-I-C-E...<FFEF>
+203	0x8750	pack/talk/KOKURI:0x4e30	...B-O-R-I-N-G... B-U-T...<FFF6>I... W-I-L-L... L-I-S-T-E-N... T-O...<FFF6>Y-O-U-R... R-E-Q-U-E-S-T...<FFEF>
+204	0x87e9	pack/talk/KOKURI:0x4ef0	I... W-I-L-L... L-I-S-T-E-N... T-O...<FFF6>Y-O-U-R... R-E-Q-U-E-S-T...<FFEF>
+205	0x8854	pack/talk/KOKURI:0x4f78	...Y-O-U-'-R-E... F-U-N-N-Y...<FFF6>T-E-L-L... M-E... W-H-A-T...<FFF6>Y-O-U... W-A-N-T...<FFEF>
+206	0x88e6	pack/talk/KOKURI:0x5018	...W-E-I-R-D... H-U-M-A-N...<FFEF>
+207	0x893b	pack/talk/KOKURI:0x5058	...L-A-M-E...!...<FFEF>
+208	0x8990	pack/talk/KOKURI:0x5080	...Y-O-U-R-'-E... A-M-A-Z-I-N-G...!...<FFEF>
+209	0x8a26	pack/talk/KOKURI:0x50d0	...M-O-N-E-Y...<FFEF>
+210	0x8a56	pack/talk/KOKURI:0x50f0	*yip*...F<FFF5>
+211	0x8a5e	pack/talk/KOKURI:0x5100	-O-O-L...<FFF5>
+212	0x8ae3	pack/talk/KOKURI:0x5120	...C-O-M-P-L-E-T-E...<FFF6>L-E-T-D-O-W-N...<FFF5>
+213	0x8b59	pack/talk/KOKURI:0x5170	...K-I-L-L...<FFF5>
+214	0x8be4	pack/talk/KOKURI:0x5190	...W-H-Y...?<FFF5>
+215	0x8c51	pack/talk/KOKURI:0x51b0	...L-I-F-E... S-T-O-N-E...<FFEF>
+216	0x8c8e	pack/talk/KOKURI:0x51e8	*yip*...F<FFF5>
+217	0x8c96	pack/talk/KOKURI:0x51f8	-O-O-L...<FFF5>
+218	0x8d1b	pack/talk/KOKURI:0x5218	...C-O-M-P-L-E-T-E...<FFF6>L-E-T-D-O-W-N...<FFF5>
+219	0x8d91	pack/talk/KOKURI:0x5268	...K-I-L-L...<FFF5>
+220	0x8e1c	pack/talk/KOKURI:0x5288	...W-H-Y...?<FFF5>
+221	0x8e89	pack/talk/KOKURI:0x52a8	...G-E-M... *yip*<FFEF>
+222	0x8ec3	pack/talk/KOKURI:0x52c0	*whine*<FFF5>
+223	0x8ecb	pack/talk/KOKURI:0x52d0	...K<FFF5>
+224	0x8ed3	pack/talk/KOKURI:0x52e0	-I-L-L...<FFF5>
+225	0x8f5e	pack/talk/KOKURI:0x5300	...W-H-Y...?<FFF5>
+226	0x8fcb	pack/talk/KOKURI:0x5320	...E-N-E-R-G-Y...<FFF1><FFF5>
+227	0x901a	pack/talk/KOKURI:0x5348	*yip*...K<FFF5>
+228	0x9022	pack/talk/KOKURI:0x5358	-I-L-L...<FFF5>
+229	0x90ad	pack/talk/KOKURI:0x5378	...W-H-Y...?<FFF5>
+230	0x911a	pack/talk/KOKURI:0x5398	No, that's Comet.<FFF6>I like her too, you know.<FFF5>
+231	0x913f	pack/talk/KOKURI:0x53f0	No, that's a brokery. Dude, don't<FFF6>mistake me for one of those sharks...<FFF5>
+232	0x9165	pack/talk/KOKURI:0x5480	That's jiggery-pokery! You got it<FFF6>wrong, so I'm gonna curse you!<FFF5>
+233	0x9191	pack/talk/KOKURI:0x5508	That's jiggery-pokery! You got it<FFF6>wrong, so I'm gonna curse you!<FFF5>
+234	0x999c	KOKURI:0	An alien?<FFF5>
+235	0x99a6	KOKURI:1	An insurance agent?<FFF5>

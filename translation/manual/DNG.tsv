@@ -1,0 +1,3 @@
+id	pos	psp	en	note
+0	0x35dc8	EBOOT:292e3a	The <NAME>'s effect has worn off.<FF02><FF01>	PSP-US; ja <FF09><12><00>の効果がきれた<FF02><FF01> | US: The Core Shield's effect has worn off. (<NAME> is the FF09 item insert)
+1	0x35df0	EBOOT:292dda	The effect of <NAME> has worn off.<FF02><FF01>	PSP-US; ja <FF0A><73>の効果がきれた<FF02><FF01> | US: The effect of Liftoma has worn off. (<NAME> is the FF0A skill insert)

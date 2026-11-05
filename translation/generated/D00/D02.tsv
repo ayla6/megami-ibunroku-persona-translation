@@ -1,0 +1,5 @@
+id	pos	psp	en
+0	0x102d4	d00:23894	It seems to be locked...<FF02>
+1	0x1037c	d02:10824	This room doesn't seem to be in use.<FF02>
+2	0x10328	d02:107b4	The door is locked.<FF02>
+3	0x103d0	d02:108b4	It's the ICU.<FF03>You need special permission to enter.<FF02><FF01>

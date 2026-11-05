@@ -1,0 +1,104 @@
+id	pos	psp	en	note
+25	0x3a5d0	EBOOT:27a6a2	Absorbs Fire magic and restores HP	machine-translated; JP: 火炎魔法を吸収してＨＰ回復<FF01> | US: Party absorbs 50% Fire spells, 3 turns
+28	0x3aefc	EBOOT:278854	Recovers HP every turn	machine-translated; JP: 毎ターンＨＰ回復<FF01> | US: Restores a little HP each turn (all allies)
+29	0x3ad64	EBOOT:2794ac	Affinity-changing attack (all foes)	machine-translated; JP: 敵全　攻撃相性が変わる謎の攻撃<FF01> | US: Special Phys damage+Affinity change (area)
+34	0x3a044		???	same as JP; ja ？？？<FF01>
+48	0x3a384	EBOOT:27acb4	Restores Persona change (1 ally)	over limit 255px/239px; Restores Persona change ability (1 ally)
+142	0x3b104	EBOOT:2778c0	Frame that can hold 12 Mirror Shards	over limit 249px/239px; A frame that can hold 12 Mirror Shards
+145	0x3c9a4	EBOOT:26752c	KamakuraGongorou	over limit 17 chars/16 chars; Kamakura Gongorou
+146	0x3d061	EBOOT:27bba2	Repel: Fire / Weak: Force	machine-translated; JP: アギけいをはんしゃ　ぶつりまほうによわい | US: Repel: 50% Fire Weak: Electric, Nuclear, Gravity, Blast
+147	0x3d07a	EBOOT:27bca2	Repel: Ice / Weak: Force	machine-translated; JP: ブフけいをはんしゃ　ぶつりまほうによわい | US: Repel: 50% Ice Weak: Electric, Nuclear, Gravity, Blast
+148	0x3d093	EBOOT:27bda2	Repel: Wind / Weak: Force	machine-translated; JP: ガルけいをはんしゃ　ぶつりまほうによわい | US: Repel: 50% Wind Weak: Electric, Nuclear, Gravity, Blast
+149	0x3d0ac	EBOOT:27bea2	Repel: Earth / Weak: Force	machine-translated; JP: マグナけいをはんしゃ　ぶつりまほうによわい | US: Repel: 50% Earth Weak: Electric, Nuclear, Gravity, Blast
+150	0x3d0c5	EBOOT:27bfa2	Absorb: Electric / Weak: Force	machine-translated; JP: ジオけいをきゅうしゅう　ぶつりまほうによわい | US: Absorb: 100% Electric Weak: Nuclear, Blast, Gravity
+151	0x3d0de	EBOOT:27c0a2	Absorb: Nuclear / Weak: Force	machine-translated; JP: フレイ　メギドをきゅうしゅう　ぶつりまほうによわい | US: Absorb: 100% Nuclear Weak: Electric, Blast, Gravity
+152	0x3d0f7	EBOOT:27c1a2	Absorb: Blast / Weak: Force	machine-translated; JP: ザンけいをきゅうしゅう　ぶつりまほうによわい | US: Absorb: 100% Blast Weak: Electric, Nuclear, Gravity
+159	0x3d1a6	EBOOT:27c8a2	Repel: Electric / Weak: Element	machine-translated; JP: ジオけいをはんしゃ　せいれいまほうによわい | US: Repel: 50% Electric Weak: Fire, Ice, Wind, Earth
+160	0x3d1bf	EBOOT:27c9a2	Repel: Nuclear / Weak: Element	machine-translated; JP: フレイ　メギドをはんしゃ　せいれいまほうによわい | US: Repel: 50% Nuclear Weak: Fire, Ice, Wind, Earth
+161	0x3d1d8	EBOOT:27caa2	Repel: Blast / Weak: Element	machine-translated; JP: ザンけいをはんしゃ　せいれいまほうによわい | US: Repel: 50% Blast Weak: Fire, Ice, Wind, Earth
+162	0x3d1f1	EBOOT:27cba2	Repel: Gravity / Weak: Element	machine-translated; JP: グライけいをはんしゃ　せいれいまほうによわい | US: Repel: 50% Gravity Weak: Fire, Ice, Wind, Earth
+163	0x3d20a	EBOOT:27cca2	Absorb: Fire / Weak: Element	machine-translated; JP: アギけいをきゅうしゅう　せいれいまほうによわい | US: Absorb: 100% Fire Weak: Ice, Wind, Earth
+164	0x3d223	EBOOT:27cda2	Absorb: Ice / Weak: Element	machine-translated; JP: ブフけいをきゅうしゅう　せいれいまほうによわい | US: Absorb: 100% Ice Weak: Fire, Wind, Earth
+165	0x3d23c	EBOOT:27cea2	Absorb: Wind / Weak: Element	machine-translated; JP: ガルけいをきゅうしゅう　せいれいまほうによわい | US: Absorb: 100% Wind Weak: Fire, Ice, Earth
+166	0x3d255	EBOOT:27cfa2	Absorb: Earth / Weak: Element	machine-translated; JP: マグナけいをきゅうしゅう　せいれいまほうによわい | US: Absorb: 100% Earth Weak: Fire, Ice, Wind
+172	0x3d2eb	EBOOT:27d5a2	Strong: Force / Weak: Element	machine-translated; JP: ぶつりまほうにつよく　せいれいまほうによわい | US: Strong: Nuclear, Blast, Gravity, Electric Weak: Fire, Ice, Wind, Earth
+175	0x3d336	EBOOT:27d8a2	Strong: Force / Weak: Element	machine-translated; JP: ぶつりまほうにつよく　せいれいまほうによわい | US: Strong: Nuclear, Blast, Gravity, Electric Weak: Fire, Ice, Wind, Earth
+176	0x3d34f	EBOOT:27d9a2	Null: Some physical / Weak: Magic	machine-translated; JP: いちぶのぶつりこうげきがきかない　まほうによわい | US: Null: Sword, Spear, Arrow Weak: Fire, Ice, Wind, Earth
+179	0x3d39a	EBOOT:27dca2	Repel: Physical / Weak: Magic	machine-translated; JP: ぶつりこうげきをはんしゃ　まほうによわい | US: Repel: 50% Physical Weak: Element, Force
+180	0x3d3b3	EBOOT:27dda2	Absorb: Physical / Weak: Magic	machine-translated; JP: ぶつりこうげきをきゅうしゅう　まほうによわい | US: Absorb: 100% Phys, Death Weak: Element, Force
+181	0x3d3cc	EBOOT:27dea2	Repel: Magic / Weak: Spear	machine-translated; JP: まほうをはんしゃ　やりのこうげきによわい | US: Repel: 50% Element, Force Weak: Rush, Expel, Miracle
+182	0x3d3e5	EBOOT:27dfa2	Null: Magic / Weak: Physical	machine-translated; JP: まほうがきかない　ぶつりこうげきによわい | US: Null: All magic besides Expel, Death Weak: Physical
+183	0x3d3fe	EBOOT:27e0a2	Absorb: Magic / Weak: Physical	machine-translated; JP: まほうをきゅうしゅう　ぶつりこうげきによわい | US: Absorb: 100% Element, Force Weak: Physical
+186	0x3d449	EBOOT:27e3a2	Resist: Physical / Weak: Fire	machine-translated; JP: ぶつりこうげきがあまりきかない　ほのおによわい | US: Null: Gun, Tech, Rush Weak: Sword, Fire, Expel
+187	0x3d47b	EBOOT:27e5a2	Strong: All attacks	machine-translated; JP: あらゆるこうげきにつよい | US: Strong: Physical, Magic Weak: Spear, Expel
+188	0x3d494	EBOOT:27e6a2	Null: Element	machine-translated; JP: せいれいまほうはきかない | US: Null: Fire, Ice, Wind, Earth Weak: Axe, Expel, Miracle
+189	0x3d4ad	EBOOT:27e7a2	Resist: Physical	machine-translated; JP: ぶつりこうげきがあまりきかない | US: Strong: Physical Weak: Thrown, Expel, Miracle
+191	0x3d4df	EBOOT:27e9a2	Absorb: Fire / Vulnerable: Ice	machine-translated; JP: アギけいをきゅうしゅう　ややブフけいによわい | US: Absorb: 100% Fire, Expel Vulnerable: Ice
+192	0x3d4f8	EBOOT:27eaa2	Absorb: Ice / Vulnerable: Fire	machine-translated; JP: ブフけいをきゅうしゅう　ややアギけいによわい | US: Absorb: 100% Ice, Expel Vulnerable: Fire
+193	0x3d511	EBOOT:27eba2	Absorb: Earth / Vulnerable: Wind	machine-translated; JP: マグナけいをきゅうしゅう　ややガルけいによわい | US: Absorb: 100% Earth, Expel Vulnerable: Wind
+194	0x3d52a	EBOOT:27eca2	Absorb: Electric / Vulnerable: Nuclear	machine-translated; JP: ジオけいをきゅうしゅう　ややフレイ　メギドによわい | US: Absorb: 100% Electric, Expel Vulnerable: Nuclear
+198	0x3d58e	EBOOT:27f0a2	Repel: Magic / Weak: Spear	machine-translated; JP: まほうをはんしゃ　やりのこうげきによわい | US: Repel: 50% Element, Force Weak: Spear, Death, Curse
+202	0x3d5f2	EBOOT:27f4a2	Resist: Magic	machine-translated; JP: ややまほうにつよい | US: Resist: Element, Force Weak: Axe, Death, Curse
+203	0x3d60b	EBOOT:27f5a2	Strong: Magic / Weak: Axe, Arrow	machine-translated; JP: まほうにつよい　おの　ゆみのこうげきによわい | US: Resist: Element, Force Weak: Axe, Arrow, Fist
+205	0x3d63d	EBOOT:27f7a2	Repel: Magic / Weak: Spear	machine-translated; JP: まほうをはんしゃする　やりのこうげきによわい | US: Repel: 50% Element, Force Weak: Spear, Death, Curse
+542	0x3d110	EBOOT:27c2a2	Strong: Magic / Weak: Physical	machine-translated; JP: まほうにつよい　ぶつりこうげきによわい | US: Strong: Element, Force Weak: Physical
+544	0x3d15b	EBOOT:27c5a2	Null: Wind / Weak: Gun	PSP-US; JP: ガルけいがきかない　ガンによわい | US: Null: Wind Weak: Gun
+545	0x3d174	EBOOT:27c6a2	Absorb: Earth / Weak: Blast	machine-translated; JP: マグけいをきゅうしゅう　ザンけいによわい | US: Absorb: 100% Earth Weak: Wind, Blast
+547	0x3d26e	EBOOT:27d0a2	Strong: Magic / Weak: Physical	machine-translated; JP: まほうにつよい　ぶつりこうげきによわい | US: Strong: Element, Force Weak: Physical
+549	0x3d2b9	EBOOT:27d3a2	Strong: Physical / Weak: Magic	machine-translated; JP: ぶつりこうげきにつよく　まほうによわい | US: Strong: Physical Weak: Element, Force
+550	0x3d2d2	EBOOT:27d4a2	Null: Blast / Weak: Gun	machine-translated; JP: ザンけいがきかない　ガンによわい | US: Null: Weapons, Force Weak: Gun
+551	0x3d304	EBOOT:27d6a2	Null: Gun / Weak: Magic	machine-translated; JP: ガンがきかない　まほうによわい | US: Null: Gun Weak: Element, Force
+553	0x3d368	EBOOT:27daa2	Strong: Magic / Weak: Physical	PSP-US; JP: まほうにつよい　ぶつりこうげきによわい | US: Strong: Magic Weak: Physical
+554	0x3d381	EBOOT:27dba2	Absorb: Fire / Weak: Ice	machine-translated; JP: アギけいをきゅうしゅう　ブフけいによわい | US: Absorb: 100% Fire, Death Weak: Ice
+555	0x3d417	EBOOT:27e1a2	Null: Tech, Rush / Weak: Whip	machine-translated; JP: たいあたりなどがきかない　ムチのこうげきによわい | US: Null: Tech, Rush Weak: Whip, Gun
+556	0x3d430	EBOOT:27e2a2	Repel: Gun / Resist: Magic	PSP-US; JP: ガンをはんしゃする　ややまほうにつよい | US: Repel: 200% Gun Resist: Magic
+557	0x3d543	EBOOT:27eda2	Strong: Magic / Weak: Physical	machine-translated; JP: まほうにつよい　ぶつりこうげきによわい | US: Strong: Element, Force Weak: Physical
+559	0x3d575	EBOOT:27efa2	Absorb: Physical	machine-translated; JP: ぶつりこうげきをきゅうしゅう | US: Repel: 100% Physical Weak: Magic
+561	0x3d5c0	EBOOT:27f2a2	Strong: Physical / Weak: Magic	machine-translated; JP: ぶつりこうげきにつよく　まほうによわい | US: Strong: Physical Weak: Element, Force
+562	0x3d5d9	EBOOT:27f3a2	Null: Tech, Rush / Weak: Whip	machine-translated; JP: たいあたりなどがきかない　ムチのこうげきによわい | US: Null: Tech, Rush Weak: Whip, Gun
+563	0x3d624	EBOOT:27f6a2	Resist: Gun	machine-translated; JP: ガンはあまりきかない | US: Resist: Gun Weak: Thrown, Death, Curse
+564	0x3d462	EBOOT:27e4a2	Only magic works	machine-translated; JP: まほうしかききめがない | US: Null: Physical Weak: Expel
+1434	0x3b268		Boss-only spell	PSP-US; ja ボス専用魔法<FF01>
+1435	0x3d048	EBOOT:27baa4	Nothing in particular	PSP-US; JP: とくになし | US: Nothing in particular
+1436	0x3d129	EBOOT:27c3a2	Repel: Physical	machine-translated; JP: ぶつりこうげきをはんしゃ | US: Repel: 50% Physical Weak: Element, Force
+1437	0x3d142	EBOOT:27c4a2	Absorb: Physical	machine-translated; JP: ぶつりこうげきをきゅうしゅう | US: Absorb: 100% Physical Weak: Element, Force
+1438	0x3d18d	EBOOT:27c7a2	Strong: Element / Weak: Force	PSP-US; JP: せいれいまほうにつよい　ぶつりまほうによわい | US: Strong: Element Weak: Force
+1439	0x3d287	EBOOT:27d1a2	Repel: Physical / Weak: Magic	machine-translated; JP: ぶつりこうげきをはんしゃ　まほうによわい | US: Repel: 50% Physical Weak: Element, Force
+1440	0x3d2a0	EBOOT:27d2a2	Absorb: Physical / Weak: Magic	machine-translated; JP: ぶつりこうげきをきゅうしゅう　まほうによわい | US: Absorb: 100% Physical Weak: Element, Force
+1441	0x3d31d	EBOOT:27d7a2	Weak: Magic	machine-translated; JP: まほうによわい | US: Weak: Element, Force
+1442	0x3d4c6	EBOOT:27e8a2	Resist: Magic	machine-translated; JP: ややまほうにつよい | US: Resist: Element, Force Weak: Death, Curse
+1443	0x3d55c	EBOOT:27eea2	Repel: Physical	machine-translated; JP: ぶつりこうげきをはんしゃ | US: Repel: 50% Physical Weak: Magic
+1444	0x3d5a7	EBOOT:27f1a2	Null: Magic / Weak: Physical	machine-translated; JP: まほうがきかない　ぶつりこうげきによわい | US: Null: Element, Force Weak: Physical
+1445	0x3d656	EBOOT:27f8a2	Strong: All attacks	PSP-US; JP: すべてのこうげきにつよい | US: Strong: All attacks
+1446	0x3d9a8	EBOOT:281aa2	Strong: Everything	PSP-US; JP: すべてにつよい | US: Strong: Everything
+1447	0x3d9c1	EBOOT:281ba2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1448	0x3d9da	EBOOT:281ca2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1449	0x3d9f3	EBOOT:281da2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1450	0x3da0c	EBOOT:281ea2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1451	0x3da25	EBOOT:281fa2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1452	0x3da3e	EBOOT:2820a2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1453	0x3da57	EBOOT:2821a2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1454	0x3da70	EBOOT:2822a2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1455	0x3da89	EBOOT:2823a2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1456	0x3daa2	EBOOT:2824a2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1457	0x3dabb	EBOOT:2825a2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1458	0x3dad4	EBOOT:2826a2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1459	0x3daed	EBOOT:2827a2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1460	0x3db06	EBOOT:2828a2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1461	0x3db1f	EBOOT:2829a2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1462	0x3db38	EBOOT:282aa2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1463	0x3db51	EBOOT:282ba2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1464	0x3db6a	EBOOT:282ca2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1465	0x3db83	EBOOT:282da2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1466	0x3db9c	EBOOT:282ea2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1467	0x3dbb5	EBOOT:282fa2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1468	0x3dbce	EBOOT:2830a2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1469	0x3dbe7	EBOOT:2831a2	Reserve	PSP-US; JP: リザーブ | US: Reserve
+1470	0x3a1a4	EBOOT:278bea	Reflects magic attacks (all allies)	machine-translated; JP: 味全　魔法攻撃を反射<FF01> | US: Reflects 25% magic damage, 1 turn
+1471	0x3a1b8	EBOOT:278ba8	Reflects physical attacks (all allies)	machine-translated; JP: 味全　物理攻撃を反射<FF01> | US: Reflects 25% phys damage, 1 turn
+1472	0x3a304	EBOOT:27ad82	Heals party fully; user near death	machine-translated; JP: 味全　ＨＰ全回復　術者『瀕死』<FF01> | US: Sacrifice life to fully heal party
+1473	0x3a5b4	EBOOT:27a6f2	Absorbs Ice magic and restores HP	machine-translated; JP: 氷結魔法を吸収してＨＰ回復<FF01> | US: Party absorbs 50% Ice spells, 3 turns
+1474	0x3a5ec	EBOOT:27a650	Reflects all attacks back at foes	machine-translated; JP: 全ての攻撃を反射して敵を攻撃<FF01> | US: Party reflects 25% spell damage, 2 turns
+1475	0x3a604	EBOOT:27a600	Reflects all attacks back at foes	machine-translated; JP: 全ての攻撃を反射して敵を攻撃<FF01> | US: Party reflects 25% phys damage, 2 turns
+1476	0x3ad80	EBOOT:279436	Heavy damage (all foes); user dies	machine-translated; JP: 敵全　大ダメージ　術者『死亡』<FF01> | US: Special Phys damage; user dies (area)
+1477	0x3ada0	EBOOT:2793ec	Self-destructs; hits allies and foes	machine-translated; JP: 敵全　自爆して敵味方にダメージ<FF01> | US: Heavy special Phys damage (all foes)

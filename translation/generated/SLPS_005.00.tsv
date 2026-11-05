@@ -1,0 +1,1249 @@
+id	pos	psp	en
+0	0x3b8f8	EBOOT:265860	Ildanach
+1	0x3b924	EBOOT:2658ac	Hanuman
+2	0x3b950	EBOOT:2658f8	Frey
+3	0x3b97c	EBOOT:265944	Varuna
+4	0x3b9a8	EBOOT:265990	Hermod
+5	0x3b9d4	EBOOT:2659dc	Cu Chulainn
+6	0x3ba00	EBOOT:265a28	Urvashi
+7	0x3ba2c	EBOOT:265a74	Houri
+8	0x3ba58	EBOOT:265ac0	Skuld
+9	0x3ba84	EBOOT:265b0c	Laksmi
+10	0x3bab0	EBOOT:265b58	Verdandi
+11	0x3badc	EBOOT:265ba4	Usas
+12	0x3bb08	EBOOT:265bf0	Tensen Nyannyan
+13	0x3bb34	EBOOT:265c3c	Urdr
+14	0x3bb60	EBOOT:265c88	Hathor
+15	0x3bb8c	EBOOT:265cd4	Sati
+16	0x3bbb8	EBOOT:265d20	Ame no Uzume
+17	0x3bbe4	EBOOT:265d6c	Maso
+18	0x3bc10	EBOOT:265db8	Kali
+19	0x3bc3c	EBOOT:265e04	Ishtar
+20	0x3bc68	EBOOT:265e50	Durga
+21	0x3bc94	EBOOT:265e9c	Seioubo
+22	0x3bcc0	EBOOT:265ee8	Brigid
+23	0x3bcec	EBOOT:265f34	Arianrhod
+24	0x3bd18	EBOOT:265f80	Mokosh
+25	0x3bd44	EBOOT:265fcc	Vesta
+26	0x3bd70	EBOOT:266018	Vishnu
+27	0x3bd9c	EBOOT:266064	Amen Ra
+28	0x3bdc8	EBOOT:2660b0	Baal
+29	0x3bdf4	EBOOT:2660fc	Odin
+30	0x3be20	EBOOT:266148	Marduk
+31	0x3be4c	EBOOT:266194	Brahma
+32	0x3be78	EBOOT:2661e0	Airgetlam
+33	0x3bea4	EBOOT:26622c	Seimen Kongou
+34	0x3bed0	EBOOT:266278	Indra
+35	0x3befc	EBOOT:2662c4	Fuhedi Mergane
+36	0x3bf28	EBOOT:266310	Thor
+37	0x3bf54	EBOOT:26635c	Take-Mikazuchi
+38	0x3bf80	EBOOT:2663a8	Ogma
+39	0x3bfac	EBOOT:2663f4	Shouki
+40	0x3bfd8	EBOOT:266440	Aizen Myouou
+41	0x3c004	EBOOT:26648c	Yama
+42	0x3c030	EBOOT:2664d8	Pyro Jack
+43	0x3c05c	EBOOT:266524	Jack Frost
+44	0x3c088	EBOOT:266570	Pixie
+45	0x3c0b4	EBOOT:2665bc	Shiva
+46	0x3c0e0	EBOOT:266608	Susano-o
+47	0x3c10c	EBOOT:266654	Seiten Taisei
+48	0x3c138	EBOOT:2666a0	Hokuto Seikun
+49	0x3c164	EBOOT:2666ec	Gozu-Tennoh
+50	0x3c190	EBOOT:266738	Ogun
+51	0x3c1bc	EBOOT:266784	Otohime
+52	0x3c1e8	EBOOT:2667d0	Byakko
+53	0x3c214	EBOOT:26681c	Aonbharr
+54	0x3c240	EBOOT:266868	Fuutai
+55	0x3c26c	EBOOT:2668b4	Cerberus
+56	0x3c298	EBOOT:266900	Pallas Athena
+57	0x3c2c4	EBOOT:26694c	Bishamonten
+58	0x3c2f0	EBOOT:266998	Tyr
+59	0x3c31c	EBOOT:2669e4	Morrigan
+60	0x3c348	EBOOT:266a30	Verethragna
+61	0x3c374	EBOOT:266a7c	Macha
+62	0x3c3a0	EBOOT:266ac8	Triglav
+63	0x3c3cc	EBOOT:266b14	Nemhain
+64	0x3c3f8	EBOOT:266b60	Barbatos
+65	0x3c424	EBOOT:266bac	Mot
+66	0x3c450	EBOOT:266bf8	Ankou
+67	0x3c47c	EBOOT:266c44	Hel
+68	0x3c4a8	EBOOT:266c90	Genbu
+69	0x3c4d4	EBOOT:266cdc	Anubis
+70	0x3c500	EBOOT:266d28	Lucifer
+71	0x3c52c	EBOOT:266d74	Beelzebub
+72	0x3c558	EBOOT:266dc0	Loki
+73	0x3c584	EBOOT:266e0c	Bres
+74	0x3c5b0	EBOOT:266e58	Amatsu Mikaboshi
+75	0x3c5dc	EBOOT:266ea4	Nyarlathotep
+76	0x3c608	EBOOT:266ef0	Janus
+77	0x3c634	EBOOT:266f3c	Succubus
+78	0x3c660	EBOOT:266f88	Lilim
+79	0x3c68c	EBOOT:266fd4	Garuda
+80	0x3c6b8	EBOOT:267020	Suzaku
+81	0x3c6e4	EBOOT:26706c	Yatagarasu
+82	0x3c710	EBOOT:2670b8	Vidofnir
+83	0x3c73c	EBOOT:267104	Bennu
+84	0x3c768	EBOOT:267150	Vohu Manah
+85	0x3c794	EBOOT:26719c	Satan
+86	0x3c7c0	EBOOT:2671e8	Michael
+87	0x3c7ec	EBOOT:267234	Yamaoka
+88	0x3c818	EBOOT:267280	Armaiti
+89	0x3c844	EBOOT:2672cc	Azrael
+90	0x3c870	EBOOT:267318	Phaleg
+91	0x3c89c	EBOOT:267364	Nike
+92	0x3c8c8	EBOOT:2673b0	Shokuin
+93	0x3c8f4	EBOOT:2673fc	Mucalinda
+94	0x3c920	EBOOT:267448	Seiryuu
+95	0x3c94c	EBOOT:267494	Illuyanka
+96	0x3c978	EBOOT:2674e0	Quetzalcoatl
+97	0x3c9d0	EBOOT:267578	Narukami
+98	0x3c9fc	EBOOT:2675c4	Tenjiku Tokubei
+99	0x31fd8	EBOOT:271734	Jahi
+100	0x32010	EBOOT:27178c	Tlazolteotl
+101	0x32048	EBOOT:2717e4	Succubus
+102	0x32080	EBOOT:27183c	Incubus
+103	0x320b8	EBOOT:271894	Hi no Enma
+104	0x320f0	EBOOT:2718ec	Pairika
+105	0x32128	EBOOT:271944	Lilim
+106	0x32160	EBOOT:27199c	Nightmare
+107	0x32198	EBOOT:2719f4	Nacht Kobold
+108	0x321d0	EBOOT:271a4c	Ganesha
+109	0x32208	EBOOT:271aa4	Xiuhtecuhtli
+110	0x32240	EBOOT:271afc	Tengu
+111	0x32278	EBOOT:271b54	Cupid
+112	0x322b0	EBOOT:271bac	Jinn
+113	0x322e8	EBOOT:271c04	Haokah
+114	0x32320	EBOOT:271c5c	Gandharva
+115	0x32358	EBOOT:271cb4	Agathion
+116	0x32390	EBOOT:271d0c	Oberon
+117	0x323c8	EBOOT:271d64	Titania
+118	0x32400	EBOOT:271dbc	Sumizome
+119	0x32438	EBOOT:271e14	Polisun
+120	0x32470	EBOOT:271e6c	Dark Elf
+121	0x324a8	EBOOT:271ec4	Rusalka
+122	0x324e0	EBOOT:271f1c	Pyro Jack
+123	0x32518	EBOOT:271f74	Jack Frost
+124	0x32550	EBOOT:271fcc	Pixie
+125	0x32588	EBOOT:272024	Cherub
+126	0x325c0	EBOOT:27207c	Throne
+127	0x325f8	EBOOT:2720d4	Dominion
+128	0x32630	EBOOT:27212c	Virtue
+129	0x32668	EBOOT:272184	Power
+130	0x326a0	EBOOT:2721dc	Principality
+131	0x326d8	EBOOT:272234	Archangel
+132	0x32710	EBOOT:27228c	Angel
+133	0x32748	EBOOT:2722e4	Adramelech
+134	0x32780	EBOOT:27233c	Paimon
+135	0x327b8	EBOOT:272394	Barbatos
+136	0x327f0	EBOOT:2723ec	Berith
+137	0x32828	EBOOT:272444	Alastor
+138	0x32860	EBOOT:27249c	Eligor
+139	0x32898	EBOOT:2724f4	Malphas
+140	0x328d0	EBOOT:27254c	Nisroc
+141	0x32908	EBOOT:2725a4	Ukobach
+142	0x32940	EBOOT:2725fc	Ouroboros
+143	0x32978	EBOOT:272654	Culebre
+144	0x329b0	EBOOT:2726ac	Otohime
+145	0x329e8	EBOOT:272704	Mizuchi
+146	0x32a20	EBOOT:27275c	Naga
+147	0x32a58	EBOOT:2727b4	Nozuchi
+148	0x32a90	EBOOT:27280c	Yato no Kami
+149	0x32ac8	EBOOT:272864	Fafnir
+150	0x32b00	EBOOT:2728bc	Cromm Cruach
+151	0x32b38	EBOOT:272914	Mushus
+152	0x32b70	EBOOT:27296c	Kiyohime
+153	0x32ba8	EBOOT:2729c4	Phunbaba
+154	0x32be0	EBOOT:272a1c	Wyvern
+155	0x32c18	EBOOT:272a74	Cockatrice
+156	0x32c50	EBOOT:272acc	Rukh
+157	0x32c88	EBOOT:272b24	Aello
+158	0x32cc0	EBOOT:272b7c	Celaeno
+159	0x32cf8	EBOOT:272bd4	Ocypete
+160	0x32d30	EBOOT:272c2c	Toufei
+161	0x32d68	EBOOT:272c84	Ba
+162	0x32da0	EBOOT:272cdc	Hresvelgr
+163	0x32dd8	EBOOT:272d34	Alecto
+164	0x32e10	EBOOT:272d8c	Tisiphone
+165	0x32e48	EBOOT:272de4	Megaera
+166	0x32e80	EBOOT:272e3c	Moh Shuvuu
+167	0x32eb8	EBOOT:272e94	Gdon
+168	0x32ef0	EBOOT:272eec	Selket
+169	0x32f28	EBOOT:272f44	Orthrus
+170	0x32f60	EBOOT:272f9c	Genkurou
+171	0x32f98	EBOOT:272ff4	Nekomata
+172	0x32fd0	EBOOT:27304c	Cu Sith
+173	0x33008	EBOOT:2730a4	Cait Sith
+174	0x33040	EBOOT:2730fc	Fenrir
+175	0x33078	EBOOT:273154	Mangadhai
+176	0x330b0	EBOOT:2731ac	Catoblepas
+177	0x330e8	EBOOT:273204	Scylla
+178	0x33120	EBOOT:27325c	Black Widow
+179	0x33158	EBOOT:2732b4	Cath Palug
+180	0x33190	EBOOT:27330c	Nue
+181	0x331c8	EBOOT:273364	Afanc
+182	0x33200	EBOOT:2733bc	Rangda
+183	0x33238	EBOOT:273414	Dakini
+184	0x33270	EBOOT:27346c	Salome
+185	0x332a8	EBOOT:2734c4	Arachne
+186	0x332e0	EBOOT:27351c	Iwate
+187	0x33318	EBOOT:273574	Siren
+189	0x33388	EBOOT:273624	Yaksa
+190	0x333c0	EBOOT:27367c	Purski
+191	0x333f8	EBOOT:2736d4	Yaksini
+192	0x33430	EBOOT:27372c	Picollus
+193	0x33468	EBOOT:273784	Tokebi
+194	0x334a0	EBOOT:2737dc	Hannya
+195	0x334d8	EBOOT:273834	Ihika
+196	0x33510	EBOOT:27388c	Ubelluris
+197	0x33548	EBOOT:2738e4	Kwancha
+198	0x33580	EBOOT:27393c	Duergar
+199	0x335b8	EBOOT:273994	Kobold
+200	0x335f0	EBOOT:2739ec	Leprechaun
+201	0x33628	EBOOT:273a44	Knocker
+202	0x33660	EBOOT:273a9c	Hecatoncheires
+203	0x33698	EBOOT:273af4	Girimehkala
+204	0x336d0	EBOOT:273b4c	Rakshasa
+205	0x33708	EBOOT:273ba4	Ocelot
+206	0x33740	EBOOT:273bfc	Sarashina-hime
+207	0x33778	EBOOT:273c54	Ogre
+208	0x337b0	EBOOT:273cac	Gremlin
+209	0x337e8	EBOOT:273d04	Miyasudokoro
+210	0x33820	EBOOT:273d5c	Vetala
+211	0x33858	EBOOT:273db4	Druj
+212	0x33890	EBOOT:273e0c	Yaka
+213	0x338c8	EBOOT:273e64	Carrie
+214	0x33900	EBOOT:273ebc	Enku
+215	0x33938	EBOOT:273f14	Fuji Musume
+216	0x33970	EBOOT:273f6c	Preta
+217	0x339a8	EBOOT:273fc4	Legion
+218	0x339e0	EBOOT:27401c	Kuchisake-onna
+219	0x33a18	EBOOT:274074	Hanako
+220	0x33a50	EBOOT:2740cc	Bukimi
+221	0x33a88	EBOOT:274124	Dribbler
+222	0x33ac0	EBOOT:27417c	Ghost
+223	0x33af8	EBOOT:2741d4	Quicksilver
+224	0x33b30	EBOOT:27422c	Poltergeist
+225	0x33b68	EBOOT:274284	Zombie Painter
+226	0x33ba0	EBOOT:2742dc	Zap
+227	0x33bd8	EBOOT:274334	Teketeke
+228	0x33c10	EBOOT:27438c	Zombie Cop
+229	0x33c48	EBOOT:2743e4	Zombie Nurse
+230	0x33c80	EBOOT:27443c	Zombie Girl
+231	0x33cb8	EBOOT:274494	Zombie Boy
+232	0x33cf0	EBOOT:2744ec	Mr. Zombie
+233	0x33d28	EBOOT:274544	Grimies
+234	0x33d60	EBOOT:27459c	Shadow
+235	0x33d98	EBOOT:2745f4	Doppelganger
+236	0x33dd0	EBOOT:27464c	Anatomy
+237	0x33e08	EBOOT:2746a4	Kokkuri
+238	0x33e40	EBOOT:2746fc	Yakuza
+239	0x33e78	EBOOT:274754	Hoodlum
+240	0x33eb0	EBOOT:2747ac	Slime
+241	0x33ee8	EBOOT:274804	Pride
+242	0x33f20	EBOOT:27485c	Sloth
+243	0x33f58	EBOOT:2748b4	Wrath
+244	0x33f90	EBOOT:27490c	Envy
+245	0x33fc8	EBOOT:274964	Greed
+246	0x34000	EBOOT:2749bc	Lust
+247	0x34038	EBOOT:274a14	M.I.B.
+248	0x34070	EBOOT:274a6c	Agent
+249	0x340a8	EBOOT:274ac4	Secret Police
+250	0x340e0	EBOOT:274b1c	Alice
+251	0x34118	EBOOT:274b74	Hariti
+252	0x34150	EBOOT:274bcc	Thanatos
+253	0x34188	EBOOT:274c24	Thanatos
+254	0x341c0	EBOOT:274c7c	Nyarlathotep
+255	0x341f8	EBOOT:274cd4	Nemesis
+256	0x34230	EBOOT:274d2c	Nemesis
+257	0x34268	EBOOT:274d84	Nemesis
+258	0x342a0	EBOOT:274ddc	Nemesis
+259	0x342d8	EBOOT:274e34	Nemesis
+260	0x34310	EBOOT:274e8c	Nemesis
+262	0x34380	EBOOT:274f3c	Hypnos
+263	0x343b8	EBOOT:274f94	Hypnos
+264	0x343f0	EBOOT:274fec	Hypnos
+265	0x34428	EBOOT:275044	Hypnos
+266	0x34460	EBOOT:27509c	Saurva
+267	0x34498	EBOOT:2750f4	Pandora
+268	0x344d0	EBOOT:27514c	Pandora
+269	0x34508	EBOOT:2751a4	Pandora
+270	0x34540	EBOOT:2751fc	Queen Asura
+271	0x34578	EBOOT:275254	Queen Asura
+272	0x345b0	EBOOT:2752ac	Queen Asura
+273	0x345e8	EBOOT:275304	Lady Snow
+274	0x34620	EBOOT:27535c	Shikijirou
+275	0x34658	EBOOT:2753b4	Tesso
+276	0x34690	EBOOT:27540c	Mr. Bear
+277	0x346c8	EBOOT:275464	Lady Masquerade
+278	0x34700	EBOOT:2754bc	Kenta
+279	0x34738	EBOOT:275514	Takeda
+280	0x34770	EBOOT:27556c	Harem Queen
+281	0x347a8	EBOOT:2755c4	Harem Queen
+282	0x347e0	EBOOT:27561c	Kandori
+283	0x34818	EBOOT:275674	God Kandori
+284	0x34850	EBOOT:2756cc	Agent
+285	0x34888	EBOOT:275724	Thanatos
+286	0x348c0	EBOOT:27577c	Thanatos
+287	0x348f8	EBOOT:2757d4	Tentacle
+288	0x34930	EBOOT:27582c	Tentacle
+289	0x34968	EBOOT:275884	Tentacle
+290	0x349a0	EBOOT:2758dc	Tentacle
+291	0x349d8	EBOOT:275934	Kandori
+292	0x34a10	EBOOT:27598c	Kandori
+293	0x34c2c	EBOOT:26a440	Medicine
+294	0x34c4c	EBOOT:26a480	Rattle Drink
+295	0x34c6c	EBOOT:26a4c0	Bead
+296	0x34c8c	EBOOT:26a500	Revival Bead
+297	0x34cac	EBOOT:26a540	Balm of Life
+298	0x34ccc	EBOOT:26a580	Dis-Stone
+299	0x34cec	EBOOT:26a5c0	Dis-Para
+300	0x34d0c	EBOOT:26a600	Dis-Poison
+301	0x34d2c	EBOOT:26a640	Dis-Sick
+302	0x34d4c	EBOOT:26a680	Slick Drop
+303	0x34d6c	EBOOT:26a6c0	Turtle Candy
+305	0x34dac	EBOOT:26a740	Magical Guard
+306	0x34dcc	EBOOT:26a780	Physical Guard
+307	0x34dec	EBOOT:26a7c0	Skull Pendulum
+308	0x34e0c	EBOOT:26a800	Life Stone
+309	0x34e2c	EBOOT:26a840	Repulse Bell
+310	0x34e4c	EBOOT:26a880	Core Shield
+311	0x34e6c	EBOOT:26a8c0	St Incense
+312	0x34e8c	EBOOT:26a900	Vi Incense
+313	0x34eac	EBOOT:26a940	Dx Incense
+314	0x34ecc	EBOOT:26a980	Ag Incense
+315	0x34eec	EBOOT:26a9c0	Lu Incense
+316	0x34f0c	EBOOT:26aa00	HP Incense
+317	0x34f2c	EBOOT:26aa40	SP Incense
+318	0x34f4c	EBOOT:26aa80	Muscle Drink
+319	0x34f6c	EBOOT:26aac0	Hiranya
+320	0x34f8c	EBOOT:26ab00	Soma
+321	0x34fac	EBOOT:26ab40	Numerous Bell
+322	0x34fcc	EBOOT:26ab80	Divine Voice
+323	0x34fec	EBOOT:26abc0	Millionaire Bomb
+324	0x3500c	EBOOT:26ac00	Demon House
+325	0x3502c	EBOOT:26ac40	Demon Den
+326	0x3504c	EBOOT:26ac80	Chewing Soul
+327	0x3506c	EBOOT:26acc0	Metal Card
+328	0x3508c	EBOOT:26ad00	Agidyne Stone
+329	0x350ac	EBOOT:26ad40	Maragi Stone
+330	0x350cc	EBOOT:26ad80	Maragion Stone
+331	0x350ec	EBOOT:26adc0	Evil Fire Tablet
+332	0x3510c	EBOOT:26ae00	Bufudyne Stone
+333	0x3512c	EBOOT:26ae40	Mabufu Stone
+334	0x3514c	EBOOT:26ae80	Mabufula Stone
+335	0x3516c	EBOOT:26aec0	Evil Ice Tablet
+336	0x3518c	EBOOT:26af00	Garudyne Stone
+337	0x351ac	EBOOT:26af40	Magaru Stone
+338	0x351cc	EBOOT:26af80	Magarula Stone
+339	0x351ec	EBOOT:26afc0	Evil Wind Tablet
+340	0x3520c	EBOOT:26b000	Magnadyne Stone
+341	0x3522c	EBOOT:26b040	Mamagna Stone
+342	0x3524c	EBOOT:26b080	Mamagnara Stone
+344	0x3528c	EBOOT:26b100	Freidyne Stone
+345	0x352ac	EBOOT:26b140	Megido Stone
+346	0x352cc	EBOOT:26b180	Megidola Stone
+348	0x3530c	EBOOT:26b200	Zandyne Stone
+349	0x3532c	EBOOT:26b240	Mazan Stone
+350	0x3534c	EBOOT:26b280	Mazanma Stone
+351	0x3536c	EBOOT:26b2c0	Gale Tablet
+352	0x3538c	EBOOT:26b300	Grydyne Stone
+353	0x353ac	EBOOT:26b340	Magry Stone
+354	0x353cc	EBOOT:26b380	Magryva Stone
+355	0x353ec	EBOOT:26b3c0	Wall Tablet
+356	0x3540c	EBOOT:26b400	Ziodyne Stone
+357	0x3542c	EBOOT:26b440	Mazio Stone
+358	0x3544c	EBOOT:26b480	Mazionga Stone
+359	0x3546c	EBOOT:26b4c0	Flash Tablet
+361	0x354ac	EBOOT:26b540	Doggerel Tablet
+363	0x354ec	EBOOT:26b5c0	Petra Stone
+364	0x3550c	EBOOT:26b600	Para Stone
+365	0x3552c	EBOOT:26b640	Poisma Stone
+366	0x3554c	EBOOT:26b680	Nerve Stone
+372	0x3560c	EBOOT:26b800	Posumudi Stone
+373	0x3562c	EBOOT:26b840	Paraladi Stone
+374	0x3564c	EBOOT:26b880	Petradi Stone
+375	0x3566c	EBOOT:26b8c0	Nervundi Stone
+377	0x356ac	EBOOT:26b940	Verity Tablet
+378	0x356cc	EBOOT:26b980	Alexandrite
+379	0x356ec	EBOOT:26b9c0	Diamond
+380	0x3570c	EBOOT:26ba00	Sapphire
+381	0x3572c	EBOOT:26ba40	Emerald
+382	0x3574c	EBOOT:26ba80	Ruby
+383	0x3576c	EBOOT:26bac0	Pearl
+384	0x3578c	EBOOT:26bb00	Tanzanite
+385	0x357ac	EBOOT:26bb40	Opal
+386	0x357cc	EBOOT:26bb80	Amethyst
+387	0x357ec	EBOOT:26bbc0	Garnet
+388	0x3580c	EBOOT:26bc00	Aquamarine
+389	0x3582c	EBOOT:26bc40	Topaz
+390	0x3584c	EBOOT:26bc80	Moonstone
+391	0x3586c	EBOOT:26bcc0	Malachite
+392	0x3588c	EBOOT:26bd00	Onyx
+393	0x358ac	EBOOT:26bd40	Turquoise
+394	0x358cc	EBOOT:26bd80	Apple Pie
+395	0x358ec	EBOOT:26bdc0	AppIe Pie
+396	0x3590c	EBOOT:26be00	AqqIe Pie
+397	0x3592c	EBOOT:26be40	Snow Queen Mask
+398	0x3594c	EBOOT:26be80	Mirror Shard
+399	0x3596c	EBOOT:26bec0	Cell Key Ring
+400	0x3598c	EBOOT:26bf00	Ambrosia
+401	0x359ac	EBOOT:26bf40	Mirror Frame
+402	0x359cc	EBOOT:26bf80	Last Apple Pie
+403	0x359ec	EBOOT:26bfc0	Last AppIe Pie
+404	0x35a0c	EBOOT:26c000	Last AqqIe Pie
+405	0x35a2c	EBOOT:26c040	Security Card
+406	0x35a4c	EBOOT:26c080	Broken Compact
+407	0x35a6c	EBOOT:26c0c0	Prison Key
+408	0x35a8c	EBOOT:26c100	Northern Haniwa
+409	0x35aac	EBOOT:26c140	Expel Mirror
+410	0x35acc	EBOOT:26c180	Compact Half
+411	0x35aec	EBOOT:26c1c0	Green Compact
+412	0x35b0c	EBOOT:26c200	Mirror Piece
+413	0x35b2c	EBOOT:26c240	Red Compact
+414	0x35b4c	EBOOT:26c280	Blue Compact
+415	0x35b6c	EBOOT:26c2c0	Avatar
+416	0x35b8c	EBOOT:26c300	Rosetta Stone
+418	0x35bcc	EBOOT:26c380	Dragon Scale
+419	0x35bec	EBOOT:26c3c0	Blue Tablet
+420	0x35c0c	EBOOT:26c400	Avenir
+421	0x35c2c	EBOOT:26c440	Pasque Flower
+422	0x35c4c	EBOOT:26c480	Present
+423	0x35c6c	EBOOT:26c4c0	White Tablet
+424	0x35c8c	EBOOT:26c500	Daily Meal
+427	0x35cec	EBOOT:26c5c0	Flame Shawl
+428	0x35d0c	EBOOT:26c600	Dordona's Oar
+429	0x35d2c	EBOOT:26c640	Stuffed Deer
+433	0x35dac	EBOOT:26c740	Bisonskin Drums
+435	0x35dec	EBOOT:26c7c0	Raven Feather
+436	0x35e0c	EBOOT:26c800	Olive Necklace
+437	0x35e2c	EBOOT:26c840	General Piece
+438	0x35e4c	EBOOT:26c880	Victorian Rune
+439	0x35e6c	EBOOT:26c8c0	Maxi Tempest
+440	0x35e8c	EBOOT:26c900	Purified Water
+441	0x35eac	EBOOT:26c940	Gottabe Shoes
+442	0x35ecc	EBOOT:26c980	Karura
+443	0x35eec	EBOOT:26c9c0	Crimson Tablet
+445	0x35f2c	EBOOT:26ca40	Kaminari-Okoshi
+446	0x35f4c	EBOOT:26ca80	Enma Notebook
+447	0x35f6c	EBOOT:26cac0	Black Tablet
+448	0x35f8c	EBOOT:26cb00	Amber Glasses
+449	0x35fac	EBOOT:26cb40	Morning Star
+450	0x35fcc	EBOOT:26cb80	Pagan Idol
+452	0x3600c	EBOOT:26cc00	Faceless Mask
+453	0x3602c	EBOOT:26cc40	Nibel Crystal
+454	0x3604c	EBOOT:26cc80	Fomor Lineage
+455	0x3606c	EBOOT:26ccc0	Scalpel
+456	0x3608c	EBOOT:26cd00	Rapier
+457	0x360ac	EBOOT:26cd40	Athame Knife
+458	0x360cc	EBOOT:26cd80	Mail Breaker
+459	0x360ec	EBOOT:26cdc0	Luna Blade
+461	0x3612c	EBOOT:26ce40	Kris Naga
+462	0x3614c	EBOOT:26ce80	Phurba Dagger
+463	0x3616c	EBOOT:26cec0	Lone Sword
+465	0x361ac	EBOOT:26cf40	Kusanagi's Sword
+466	0x361cc	EBOOT:26cf80	Spiegel Blade
+467	0x361ec	EBOOT:26cfc0	Mop
+468	0x3620c	EBOOT:26d000	Backsword
+469	0x3622c	EBOOT:26d040	Plasma Sword
+470	0x3624c	EBOOT:26d080	Sonic Blade
+471	0x3626c	EBOOT:26d0c0	Sol Blade
+472	0x3628c	EBOOT:26d100	Claimh Solais
+473	0x362ac	EBOOT:26d140	Answeller
+474	0x362cc	EBOOT:26d180	Nihiru
+475	0x362ec	EBOOT:26d1c0	Kenunmaru
+476	0x3630c	EBOOT:26d200	Konryumaru
+477	0x3632c	EBOOT:26d240	Brionac
+478	0x3634c	EBOOT:26d280	Ameno-Murakumo
+479	0x3636c	EBOOT:26d2c0	Apache Lance
+480	0x3638c	EBOOT:26d300	Corseque
+481	0x363ac	EBOOT:26d340	Fauchard
+482	0x363cc	EBOOT:26d380	Mard Geer
+483	0x363ec	EBOOT:26d3c0	Dubthach Lance
+484	0x3640c	EBOOT:26d400	Kenkonseki
+485	0x3642c	EBOOT:26d440	Longinus
+486	0x3644c	EBOOT:26d480	Fang Tian Huaji
+487	0x3646c	EBOOT:26d4c0	Gae Bolg
+488	0x3648c	EBOOT:26d500	Kouma Staff
+489	0x364ac	EBOOT:26d540	Hisou Futakage
+490	0x364cc	EBOOT:26d580	Ameno-Nuboko
+491	0x364ec	EBOOT:26d5c0	Two-Handed Axe
+492	0x3650c	EBOOT:26d600	Guillotine Axe
+493	0x3652c	EBOOT:26d640	Guten Tag
+494	0x3654c	EBOOT:26d680	Head Basher
+495	0x3656c	EBOOT:26d6c0	Raiga Axe
+496	0x3658c	EBOOT:26d700	Bardiche
+497	0x365ac	EBOOT:26d740	Houtoufu
+498	0x365cc	EBOOT:26d780	Raydog
+501	0x3662c	EBOOT:26d840	Mandau Spoon
+502	0x3664c	EBOOT:26d880	Gokufu Tennou
+503	0x3666c	EBOOT:26d8c0	Gymnast's Rope
+504	0x3668c	EBOOT:26d900	Scorpion Whip
+505	0x366ac	EBOOT:26d940	Guren no Muchi
+506	0x366cc	EBOOT:26d980	Strike Tail
+507	0x366ec	EBOOT:26d9c0	Queen's Whip
+508	0x3670c	EBOOT:26da00	Blizzard Storm
+509	0x3672c	EBOOT:26da40	Kyubi no Muchi
+510	0x3674c	EBOOT:26da80	Heiji's Rope
+511	0x3676c	EBOOT:26dac0	Shisenchu
+512	0x3678c	EBOOT:26db00	Gleipnir
+513	0x367ac	EBOOT:26db40	Silver Medusa
+514	0x367cc	EBOOT:26db80	Jingle Whip
+515	0x367ec	EBOOT:26dbc0	Crane Razor
+516	0x3680c	EBOOT:26dc00	Shadow Needle
+517	0x3682c	EBOOT:26dc40	Majou-Sen
+518	0x3684c	EBOOT:26dc80	Chakram
+519	0x3686c	EBOOT:26dcc0	Spike Somai
+520	0x3688c	EBOOT:26dd00	Twin Bird
+521	0x368ac	EBOOT:26dd40	Oniguruma
+522	0x368cc	EBOOT:26dd80	Enkeller
+524	0x3690c	EBOOT:26de00	Justice Coin
+525	0x3692c	EBOOT:26de40	Senko Rinda
+526	0x3694c	EBOOT:26de80	Infinity
+527	0x3696c	EBOOT:26dec0	Archery Set
+528	0x3698c	EBOOT:26df00	Delta Storm
+529	0x369ac	EBOOT:26df40	Kokuteki Bow
+530	0x369cc	EBOOT:26df80	Gunfish
+531	0x369ec	EBOOT:26dfc0	Stargazer
+532	0x36a0c	EBOOT:26e000	Hexa Drive
+533	0x36a2c	EBOOT:26e040	Yuan Rong
+534	0x36a4c	EBOOT:26e080	Papageno
+535	0x36a6c	EBOOT:26e0c0	Kagirohi-maru
+536	0x36a8c	EBOOT:26e100	Harald's Bow
+537	0x36aac	EBOOT:26e140	Death Cross
+538	0x36acc	EBOOT:26e180	Holy Comet
+539	0x36aec	EBOOT:26e1c0	Boxing Glove
+540	0x36b0c	EBOOT:26e200	Frisker Plus
+541	0x36b2c	EBOOT:26e240	Iron Claw
+542	0x36b4c	EBOOT:26e280	Megaton Glove
+543	0x36b6c	EBOOT:26e2c0	Eleking Glove
+544	0x36b8c	EBOOT:26e300	Adamantium Claw
+545	0x36bac	EBOOT:26e340	Bagh Nakh
+546	0x36bcc	EBOOT:26e380	Damascus Hand
+548	0x36c0c	EBOOT:26e400	Knuckle Barong
+551	0x36c6c	EBOOT:26e4c0	Tokarev
+552	0x36c8c	EBOOT:26e500	Glock 26
+553	0x36cac	EBOOT:26e540	M380 Revolver
+554	0x36ccc	EBOOT:26e580	HK VP70Z
+555	0x36cec	EBOOT:26e5c0	Gray Ghost
+556	0x36d0c	EBOOT:26e600	Strike Gun
+557	0x36d2c	EBOOT:26e640	Desert Eagle
+558	0x36d4c	EBOOT:26e680	Dollar Shot
+559	0x36d6c	EBOOT:26e6c0	Thunderer
+560	0x36d8c	EBOOT:26e700	Jolly Roger
+561	0x36dac	EBOOT:26e740	Reaper Colt
+562	0x36dcc	EBOOT:26e780	Peacemaker
+563	0x36dec	EBOOT:26e7c0	Scorpion
+564	0x36e0c	EBOOT:26e800	Ingram
+565	0x36e2c	EBOOT:26e840	Steyr TMP
+566	0x36e4c	EBOOT:26e880	HK MP5K
+567	0x36e6c	EBOOT:26e8c0	Hien Renhappou
+568	0x36e8c	EBOOT:26e900	Phantom Killer
+569	0x36eac	EBOOT:26e940	M134 Vulcan
+570	0x36ecc	EBOOT:26e980	Avenger
+572	0x36f0c	EBOOT:26ea00	Crazy Chain
+573	0x36f2c	EBOOT:26ea40	Hell Rain
+575	0x36f6c	EBOOT:26eac0	Randall Custom
+576	0x36f8c	EBOOT:26eb00	Mossberg M500
+577	0x36fac	EBOOT:26eb40	SPAS-12
+578	0x36fcc	EBOOT:26eb80	Franchi PA3
+579	0x36fec	EBOOT:26ebc0	SPAS-15
+580	0x3700c	EBOOT:26ec00	MADMAX
+581	0x3702c	EBOOT:26ec40	Kiraihou
+582	0x3704c	EBOOT:26ec80	Manhunter
+583	0x3706c	EBOOT:26ecc0	Jakou Fuuinhou
+584	0x3708c	EBOOT:26ed00	Bi-Buster
+585	0x370ac	EBOOT:26ed40	Koppa-Mijinhou
+586	0x370cc	EBOOT:26ed80	Megido Fire
+587	0x370ec	EBOOT:26edc0	M16A2
+588	0x3710c	EBOOT:26ee00	AK-47
+589	0x3712c	EBOOT:26ee40	SIG-SG550
+590	0x3714c	EBOOT:26ee80	Hydrojet
+591	0x3716c	EBOOT:26eec0	Steyr AUG A1
+592	0x3718c	EBOOT:26ef00	FA-MAS Carbine
+593	0x371ac	EBOOT:26ef40	HK G11
+594	0x371cc	EBOOT:26ef80	Gepard M2
+595	0x371ec	EBOOT:26efc0	M41A Pulse Gun
+596	0x3720c	EBOOT:26f000	Mars 133
+597	0x3722c	EBOOT:26f040	Double Death
+598	0x3724c	EBOOT:26f080	Heaven's Gate
+599	0x3726c	EBOOT:26f0c0	9mm Parabellum
+600	0x3728c	EBOOT:26f100	Shot Shells
+601	0x372ac	EBOOT:26f140	Serpent Fangs
+602	0x372cc	EBOOT:26f180	Flashbangs
+603	0x372ec	EBOOT:26f1c0	Tranquilizers
+604	0x3730c	EBOOT:26f200	Mage Killers
+605	0x3732c	EBOOT:26f240	Circle Bullets
+606	0x3734c	EBOOT:26f280	Cupid Rounds
+607	0x3736c	EBOOT:26f2c0	Silver Bullets
+608	0x3738c	EBOOT:26f300	Iron Bullets
+609	0x373ac	EBOOT:26f340	Dead Ends
+610	0x373cc	EBOOT:26f380	Angel Whispers
+611	0x373ec	EBOOT:26f3c0	QQ Helmet
+612	0x3740c	EBOOT:26f400	Headgear
+613	0x3742c	EBOOT:26f440	Shadow Mask
+614	0x3744c	EBOOT:26f480	Fever Crown
+615	0x3746c	EBOOT:26f4c0	Iron Pumpkin
+616	0x3748c	EBOOT:26f500	Kazeyomi Kabuto
+617	0x374ac	EBOOT:26f540	Parade Helm
+618	0x374cc	EBOOT:26f580	Witch's Hat
+619	0x374ec	EBOOT:26f5c0	Dragon Helm
+620	0x3750c	EBOOT:26f600	Daybreak Helmet
+621	0x3752c	EBOOT:26f640	Egili's Helmet
+622	0x3754c	EBOOT:26f680	Suzaku Helmet
+623	0x3756c	EBOOT:26f6c0	Jagd Helm
+624	0x3758c	EBOOT:26f700	Sturm Helm
+625	0x375ac	EBOOT:26f740	Caesar Helm
+626	0x375cc	EBOOT:26f780	Spiegel Mask
+627	0x375ec	EBOOT:26f7c0	School Uniform
+628	0x3760c	EBOOT:26f800	Spectra Vest
+629	0x3762c	EBOOT:26f840	Stealth Suit
+630	0x3764c	EBOOT:26f880	Seventh Coat
+631	0x3766c	EBOOT:26f8c0	TAC-V2
+632	0x3768c	EBOOT:26f900	Golden Armor
+633	0x376ac	EBOOT:26f940	Parade Armor
+634	0x376cc	EBOOT:26f980	Spinney Suit
+635	0x376ec	EBOOT:26f9c0	Angel Wing
+636	0x3770c	EBOOT:26fa00	Daybreak Armor
+637	0x3772c	EBOOT:26fa40	Megin Gjord
+638	0x3774c	EBOOT:26fa80	Genbu Armor
+639	0x3776c	EBOOT:26fac0	Jagd Armor
+640	0x3778c	EBOOT:26fb00	Sturm Armor
+641	0x377ac	EBOOT:26fb40	Caesar Armor
+642	0x377cc	EBOOT:26fb80	Spiegel Mail
+643	0x377ec	EBOOT:26fbc0	Arm Guard
+644	0x3780c	EBOOT:26fc00	Titanium Guard
+645	0x3782c	EBOOT:26fc40	Dark Guard
+646	0x3784c	EBOOT:26fc80	Platinum Queen
+647	0x3786c	EBOOT:26fcc0	Jamming Guard
+649	0x378ac	EBOOT:26fd40	Parade Guard
+651	0x378ec	EBOOT:26fdc0	Demon Gauntlet
+653	0x3792c	EBOOT:26fe40	Raime Gauntlet
+655	0x3796c	EBOOT:26fec0	Jagd Guard
+656	0x3798c	EBOOT:26ff00	Sturm Guard
+657	0x379ac	EBOOT:26ff40	Caesar Guard
+658	0x379cc	EBOOT:26ff80	Spiegel Shield
+659	0x379ec	EBOOT:26ffc0	Leather Shoes
+660	0x37a0c	EBOOT:270000	Toe Shoes
+661	0x37a2c	EBOOT:270040	Black Shoes
+662	0x37a4c	EBOOT:270080	Rouge Noir
+663	0x37a6c	EBOOT:2700c0	Hyper Fox
+664	0x37a8c	EBOOT:270100	Bell Greaves
+665	0x37aac	EBOOT:270140	Parade Boots
+666	0x37acc	EBOOT:270180	Slime Shoes
+667	0x37aec	EBOOT:2701c0	Ghost Geta
+669	0x37b2c	EBOOT:270240	Vidar's Shoes
+670	0x37b4c	EBOOT:270280	Byakko Greaves
+671	0x37b6c	EBOOT:2702c0	Jagd Leg
+672	0x37b8c	EBOOT:270300	Sturm Leg
+673	0x37bac	EBOOT:270340	Caesar Leg
+674	0x37bcc	EBOOT:270380	Spiegel Beine
+675	0x38558	EBOOT:267638	Agi
+676	0x3856c	EBOOT:267668	Agilao
+677	0x38580	EBOOT:267698	Agidyne
+678	0x38594	EBOOT:2676c8	Maragi
+679	0x385a8	EBOOT:2676f8	Maragion
+680	0x385bc	EBOOT:267728	Maragidyne
+681	0x385d0	EBOOT:267758	Bufu
+682	0x385e4	EBOOT:267788	Bufula
+683	0x385f8	EBOOT:2677b8	Bufudyne
+684	0x3860c	EBOOT:2677e8	Mabufu
+685	0x38620	EBOOT:267818	Mabufula
+686	0x38634	EBOOT:267848	Mabufudyne
+687	0x38648	EBOOT:267878	Garu
+688	0x3865c	EBOOT:2678a8	Garula
+689	0x38670	EBOOT:2678d8	Garudyne
+690	0x38684	EBOOT:267908	Magaru
+691	0x38698	EBOOT:267938	Magarula
+692	0x386ac	EBOOT:267968	Magarudyne
+693	0x386c0	EBOOT:267998	Magna
+694	0x386d4	EBOOT:2679c8	Magnara
+695	0x386e8	EBOOT:2679f8	Magnadyne
+696	0x386fc	EBOOT:267a28	Mamagna
+697	0x38710	EBOOT:267a58	Mamagnara
+698	0x38724	EBOOT:267a88	Mamagnadyne
+699	0x38738	EBOOT:267ab8	Frei
+700	0x3874c	EBOOT:267ae8	Freila
+701	0x38760	EBOOT:267b18	Freidyne
+702	0x38774	EBOOT:267b48	Megido
+703	0x38788	EBOOT:267b78	Megidola
+704	0x3879c	EBOOT:267ba8	Megidolaon
+705	0x387b0	EBOOT:267bd8	Zan
+706	0x387c4	EBOOT:267c08	Zanma
+707	0x387d8	EBOOT:267c38	Zandyne
+708	0x387ec	EBOOT:267c68	Mazan
+709	0x38800	EBOOT:267c98	Mazanma
+710	0x38814	EBOOT:267cc8	Mazandyne
+711	0x38828	EBOOT:267cf8	Gry
+712	0x3883c	EBOOT:267d28	Gryva
+713	0x38850	EBOOT:267d58	Grydyne
+714	0x38864	EBOOT:267d88	Magry
+715	0x38878	EBOOT:267db8	Magryva
+716	0x3888c	EBOOT:267de8	Magrydyne
+717	0x388a0	EBOOT:267e18	Zio
+718	0x388b4	EBOOT:267e48	Zionga
+719	0x388c8	EBOOT:267e78	Ziodyne
+720	0x388dc	EBOOT:267ea8	Mazio
+721	0x388f0	EBOOT:267ed8	Mazionga
+722	0x38904	EBOOT:267f08	Maziodyne
+723	0x38918	EBOOT:267f38	Eiha
+724	0x3892c	EBOOT:267f68	Baeiha
+725	0x38940	EBOOT:267f98	Maeiha
+726	0x38954	EBOOT:267fc8	Mudo
+727	0x38968	EBOOT:267ff8	Mudoon
+728	0x3897c	EBOOT:268028	Mamudo
+729	0x38990	EBOOT:268058	Dormina
+730	0x389a4	EBOOT:268088	Shibaboo
+731	0x389b8	EBOOT:2680b8	Pulinpa
+732	0x389cc	EBOOT:2680e8	Hapirma
+733	0x389e0	EBOOT:268118	Marin Karin
+734	0x389f4	EBOOT:268148	Makajam
+735	0x38a08	EBOOT:268178	Delyte
+736	0x38a1c	EBOOT:2681a8	Slumpa
+737	0x38a30	EBOOT:2681d8	Decover
+738	0x38a44	EBOOT:268208	Desanga
+739	0x38a58	EBOOT:268238	Doronpa
+740	0x38a6c	EBOOT:268268	Doroid
+741	0x38a80	EBOOT:268298	Quikka
+742	0x38a94	EBOOT:2682c8	Balzac
+743	0x38aa8	EBOOT:2682f8	Mador
+744	0x38abc	EBOOT:268328	Wolvaan
+745	0x38ad0	EBOOT:268358	Deathtika
+746	0x38ae4	EBOOT:268388	Petrama
+747	0x38af8	EBOOT:2683b8	Paralama
+748	0x38b0c	EBOOT:2683e8	Poisma
+749	0x38b20	EBOOT:268418	Nervma
+750	0x38b34	EBOOT:268448	Omega Cluster
+751	0x38b48	EBOOT:268478	Kouha
+752	0x38b5c	EBOOT:2684a8	Baikouha
+753	0x38b70	EBOOT:2684d8	Makouha
+754	0x38b84	EBOOT:268508	Hama
+755	0x38b98	EBOOT:268538	Hamaon
+756	0x38bac	EBOOT:268568	Mahama
+757	0x38bc0	EBOOT:268598	Tarunda
+758	0x38bd4	EBOOT:2685c8	Rakunda
+759	0x38be8	EBOOT:2685f8	Sukunda
+760	0x38bfc	EBOOT:268628	Dekunda
+761	0x38c10	EBOOT:268658	Tarukaja
+762	0x38c24	EBOOT:268688	Rakukaja
+763	0x38c38	EBOOT:2686b8	Sukukaja
+764	0x38c4c	EBOOT:2686e8	Makakaja
+765	0x38c60	EBOOT:268718	Dekaja
+766	0x38c74	EBOOT:268748	Tetraja
+767	0x38c88	EBOOT:268778	Makarakarn
+768	0x38c9c	EBOOT:2687a8	Tetrakarn
+769	0x38cb0	EBOOT:2687d8	Dia
+770	0x38cc4	EBOOT:268808	Diarama
+771	0x38cd8	EBOOT:268838	Diarahan
+772	0x38cec	EBOOT:268868	Media
+773	0x38d00	EBOOT:268898	Mediarama
+774	0x38d14	EBOOT:2688c8	Mediarahan
+775	0x38d28	EBOOT:2688f8	Patra
+776	0x38d3c	EBOOT:268928	Pen Patra
+777	0x38d50	EBOOT:268958	Posumudi
+778	0x38d64	EBOOT:268988	Paraladi
+779	0x38d78	EBOOT:2689b8	Petradi
+780	0x38d8c	EBOOT:2689e8	Nervundi
+781	0x38da0	EBOOT:268a18	Recarm
+782	0x38db4	EBOOT:268a48	Samarecarm
+783	0x38dc8	EBOOT:268a78	Recarmdra
+784	0x38ddc	EBOOT:268aa8	Alpha Blaster
+785	0x38df0	EBOOT:268ad8	Mappa
+786	0x38e04	EBOOT:268b08	Trafuri
+787	0x38e18	EBOOT:268b38	Traesto
+788	0x38e2c	EBOOT:268b68	Outoma
+789	0x38e40	EBOOT:268b98	Liftoma
+790	0x38e54	EBOOT:268bc8	Alsanga
+791	0x38e68	EBOOT:268bf8	Paral Eyes
+792	0x38e7c	EBOOT:268c28	Petra Eyes
+793	0x38e90	EBOOT:268c58	Hell Eyes
+794	0x38ea4	EBOOT:268c88	Guilt Eyes
+795	0x38eb8	EBOOT:268cb8	Terror Eyes
+796	0x38ecc	EBOOT:268ce8	Sexy Dance
+797	0x38ee0	EBOOT:268d18	Happy Dance
+798	0x38ef4	EBOOT:268d48	Hula of Misfortune
+799	0x38f08	EBOOT:268d78	Tango of Dispelling
+800	0x38f1c	EBOOT:268da8	Waltz of Sadness
+801	0x38f30	EBOOT:268dd8	Lullaby
+802	0x38f44	EBOOT:268e08	Panic Voice
+803	0x38f58	EBOOT:268e38	Bind Voice
+804	0x38f6c	EBOOT:268e68	Frenzy Song
+805	0x38f80	EBOOT:268e98	Candy Voice
+806	0x38f94	EBOOT:268ec8	Passionate Kiss
+807	0x38fa8	EBOOT:268ef8	Demon's Kiss
+808	0x38fbc	EBOOT:268f28	Evil Smile
+809	0x38fd0	EBOOT:268f58	Deathtouch
+810	0x38fe4	EBOOT:268f88	Fire Breath
+811	0x38ff8	EBOOT:268fb8	Ice Breath
+812	0x3900c	EBOOT:268fe8	Poison Breath
+813	0x39020	EBOOT:269018	Fog Breath
+814	0x39034	EBOOT:269048	Water Wall
+815	0x39048	EBOOT:269078	Fire Wall
+816	0x3905c	EBOOT:2690a8	Crystal Wall
+817	0x39070	EBOOT:2690d8	Steel Wall
+818	0x39084	EBOOT:269108	Crimson Sublation
+819	0x39098	EBOOT:269138	Azure Cessation
+820	0x390ac	EBOOT:269168	Mighty Wave
+821	0x390c0	EBOOT:269198	Gentle Wave
+822	0x390d4	EBOOT:2691c8	Heavenly Cyclone
+823	0x390e8	EBOOT:2691f8	Earthly Vortex
+824	0x390fc	EBOOT:269228	Hell Drop
+825	0x39110	EBOOT:269258	Gokuraku Fall
+826	0x39124	EBOOT:269288	Eastern Impact
+827	0x39138	EBOOT:2692b8	Western Blow
+828	0x3914c	EBOOT:2692e8	Sanraigeki
+829	0x39160	EBOOT:269318	Shuuraigeki
+830	0x39174	EBOOT:269348	Eternal Black
+831	0x39188	EBOOT:269378	Dark Verdict
+832	0x3919c	EBOOT:2693a8	Eternal White
+833	0x391b0	EBOOT:2693d8	Bright Judgement
+834	0x391c4	EBOOT:269408	Hieroglyphein
+835	0x391d8	EBOOT:269438	Summon
+836	0x391ec	EBOOT:269468	Luna Trap
+837	0x39200	EBOOT:269498	Feral Bite
+838	0x39214	EBOOT:2694c8	Venom Bite
+839	0x39228	EBOOT:2694f8	Stun Bite
+840	0x3923c	EBOOT:269528	Virus Bite
+841	0x39250	EBOOT:269558	Stone Bite
+842	0x39264	EBOOT:269588	Feral Claw
+843	0x39278	EBOOT:2695b8	Poison Claw
+844	0x3928c	EBOOT:2695e8	Stun Claw
+845	0x392a0	EBOOT:269618	Virus Claw
+846	0x392b4	EBOOT:269648	Stone Claw
+847	0x392c8	EBOOT:269678	Toxic Sting
+848	0x392dc	EBOOT:2696a8	Stun Needle
+849	0x392f0	EBOOT:2696d8	Needle Rush
+850	0x39304	EBOOT:269708	Genocide Fan
+851	0x39318	EBOOT:269738	Tackle
+852	0x3932c	EBOOT:269768	Bonecrusher
+853	0x39340	EBOOT:269798	Squash
+854	0x39354	EBOOT:2697c8	Heavenly Hit
+855	0x39368	EBOOT:2697f8	Megaton Raid
+856	0x3937c	EBOOT:269828	Beak
+857	0x39390	EBOOT:269858	Wing Flap
+858	0x393a4	EBOOT:269888	Dive
+859	0x393b8	EBOOT:2698b8	Spike Claw
+860	0x393cc	EBOOT:2698e8	Death Claw
+861	0x393e0	EBOOT:269918	Twinkle Punch
+862	0x393f4	EBOOT:269948	Fist of Fury
+863	0x39408	EBOOT:269978	Deadly Fist
+864	0x3941c	EBOOT:2699a8	Spin Kick
+865	0x39430	EBOOT:2699d8	Thunder Kick
+866	0x39444	EBOOT:269a08	Lightning Kick
+867	0x39458	EBOOT:269a38	Twin Slash
+868	0x3946c	EBOOT:269a68	Heat Wave
+869	0x39480	EBOOT:269a98	Deathbound
+870	0x39494	EBOOT:269ac8	Ichimonji Slash
+871	0x394a8	EBOOT:269af8	Wolf Fang
+872	0x394bc	EBOOT:269b28	Triple Slice
+873	0x394d0	EBOOT:269b58	Double Thrust
+874	0x394e4	EBOOT:269b88	Dragon Whirl
+875	0x394f8	EBOOT:269bb8	Burning Spear
+876	0x3950c	EBOOT:269be8	Flurry Stab
+877	0x39520	EBOOT:269c18	Destruction Smash
+878	0x39534	EBOOT:269c48	Earth Slicer
+879	0x39548	EBOOT:269c78	Love Whip
+880	0x3955c	EBOOT:269ca8	Infinite Spiral
+881	0x39570	EBOOT:269cd8	Moon Shatterer
+882	0x39584	EBOOT:269d08	Fastball
+883	0x39598	EBOOT:269d38	Darkness Nail
+884	0x395ac	EBOOT:269d68	Sonic Bullet
+885	0x395c0	EBOOT:269d98	Rapid Fire
+886	0x395d4	EBOOT:269dc8	Myriad Arrows
+887	0x395e8	EBOOT:269df8	Arrow Volley
+888	0x395fc	EBOOT:269e28	Single Shot
+889	0x39610	EBOOT:269e58	Drive Shot
+890	0x39624	EBOOT:269e88	Middle Shot
+891	0x39638	EBOOT:269eb8	Powder Shot
+892	0x3964c	EBOOT:269ee8	Long Shot
+893	0x39660	EBOOT:269f18	Sweet Trap
+894	0x39674	EBOOT:269f48	Viper Smash
+895	0x39688	EBOOT:269f78	Drumroll Punch
+896	0x3969c	EBOOT:269fa8	Rainbow Strike
+897	0x396b0	EBOOT:269fd8	Binal Strike
+898	0x396c4	EBOOT:26a008	Last Resort
+899	0x396d8	EBOOT:26a038	Self-Destruct
+900	0x396ec	EBOOT:26a068	Clone
+901	0x39700	EBOOT:26a098	Dissolvent
+902	0x39714	EBOOT:26a0c8	Illusion
+903	0x39728	EBOOT:26a0f8	Scatter
+904	0x3973c	EBOOT:26a128	Paralyze Puncture
+905	0x39750	EBOOT:26a158	Dark Mirror
+906	0x39764	EBOOT:26a188	Fire Arrow
+907	0x39778	EBOOT:26a1b8	Dark Slumber
+908	0x3978c	EBOOT:26a1e8	Revenge Leak
+909	0x397a0	EBOOT:26a218	Absolute Zero
+910	0x397b4	EBOOT:26a248	Devil's Wall
+911	0x397c8	EBOOT:26a278	Crawling Chaos
+912	0x397dc	EBOOT:26a2a8	Symphony of Lament
+913	0x397f0	EBOOT:26a2d8	All Guard
+914	0x39804	EBOOT:26a308	Butterfly Storm
+915	0x39818	EBOOT:26a338	Bloody Rose
+916	0x3982c	EBOOT:26a368	Derangement Voice
+917	0x34ab2	EBOOT:27144e	ATLUS
+918	0x34ada	EBOOT:271496	Maki
+919	0x34b02	EBOOT:2714de	Brown
+920	0x34b2a	EBOOT:271526	Nanjo
+921	0x34b52	EBOOT:27156e	Mark
+922	0x34b7a	EBOOT:2715b6	Elly
+923	0x34ba2	EBOOT:2715fe	Ayase
+924	0x34bca	EBOOT:271646	Yukino
+925	0x34bf2	EBOOT:27168e	Reiji
+926	0x3dc30	EBOOT:2c06ec	Yes<FF03>No
+927	0x3dc3c	EBOOT:2c06ec	 Sure.<FF03>No way.
+928	0x3dc48	EBOOT:2c06ec	 Yeah, I do.<FF03>No, I don't.
+929	0x3dc58	EBOOT:2c06ec	 Start game|Stop playing<FF03>Check coins|See explanations
+930	0x3dc80	EBOOT:2c06ec	No<FF03>Yes
+931	0x3dc8c	EBOOT:2c06ec	 Game rules|Controls<FF03>Winning hands|Go back
+932	0x3dcb4	EBOOT:2c06ec	Game rules|Controls<FF03>Tips|Go back
+933	0x3dcdc	EBOOT:2c06ec	Let them join<FF03>Don't let them join
+934	0x3dcf4	EBOOT:2c06ec	Help her<FF03>Don't help her
+935	0x3dd08	EBOOT:2c06ec	Don't leave<FF03>Leave
+936	0x3dd1c	EBOOT:2c06ec	Don't open it<FF03>Open it
+937	0x3dd2c	EBOOT:2c06ec	Don't listen<FF03>Listen
+938	0x3dd38	EBOOT:2c06ec	 Create Persona|Leave<FF03>Take on Persona|Talk
+939	0x3dd60	EBOOT:2c06ec	Stop hiding.|Yes, it's safe here.<FF03>That's true, but...|I don't really know.
+940	0x3dd84	EBOOT:2c06ec	For myself.|Just 'cause.<FF03>For everyone's sake.|That's how it went.
+941	0x3dda4	EBOOT:2c06ec	 I don't really know.<FF03>To find my reason.
+942	0x3ddc0	EBOOT:2c06ec	 Press the red button<FF03>Press the blue button
+943	0x3dddc	EBOOT:2c06ec	Heal us, please.<FF03>Just dropping by.
+944	0x3ddf0	EBOOT:2c06ec	 Fight Hariti<FF03>Lower your weapons
+945	0x3de0c	EBOOT:2c06ec	 Don't hide like that!<FF03>Maybe you are...
+946	0x3de24	EBOOT:2c06ec	Stay here|Go to 8F<FF03>Go to 4F|Go to 1F
+947	0x3de40	EBOOT:2c06ec	 Manual Fusion|Guided Fusion<FF03>View cards|Cancel
+948	0x3de68	EBOOT:2c06ec	The Queen's is better.<FF03>Maki's is better.
+949	0x3de90	EBOOT:2c06ec	 Beginner tips|Regular tips<FF03>About Personas|Advanced tips
+950	0x3dec4	EBOOT:2c06ec	 Start game|Cancel<FF03>Check cards|See explanations
+951	0x3deec	EBOOT:2c06ec	 Bet on Mark<FF03>Bet on Brown
+952	0x3df00	EBOOT:2c06ec	 That's the plan.<FF03>Not really.
+953	0x3df14	EBOOT:2c06ec	Yeah.<FF03>That's not true.
+954	0x3df24	EBOOT:2c06ec	Yeah, I do.<FF03>No, no one.
+955	0x3df30	EBOOT:2c06ec	A few.<FF03>Not a one.
+956	0x3df38	EBOOT:2c06ec	 I like the old way.<FF03>I like the new way.
+957	0x3df4c	EBOOT:2c06ec	Sure, put me down.<FF03>Don't you dare.
+958	0x39904	EBOOT:27ba6e	Light Fire DMG (1 foe)
+959	0x3991c	EBOOT:27ba38	Medium Fire DMG (1 foe)
+960	0x39934	EBOOT:27871e	Heavy Fire DMG (area)
+961	0x3994c	EBOOT:2786e4	Light Fire DMG (all foes)
+962	0x39964	EBOOT:2786a6	Medium Fire DMG (all foes)
+963	0x3997c	EBOOT:27866a	Heavy Fire DMG (all foes)
+964	0x39994	EBOOT:27b9f6	Light Ice DMG+Freeze (1 foe)
+965	0x399b4	EBOOT:27b9b4	Medium Ice DMG+Freeze (1 foe)
+966	0x399d4	EBOOT:27864e	Heavy Ice DMG+Freeze (area)
+967	0x399f4	EBOOT:2785e4	Light Ice DMG+Freeze (all foes)
+968	0x39a14	EBOOT:27859a	Medium Ice DMG+Freeze (all foes)
+969	0x39a34	EBOOT:278576	Heavy Ice DMG+Freeze (all foes)
+970	0x39a54	EBOOT:27b97e	Light Wind DMG (1 foe)
+971	0x39a6c	EBOOT:27b946	Medium Wind DMG (1 foe)
+972	0x39a84	EBOOT:27851e	Heavy Wind DMG (area)
+973	0x39a9c	EBOOT:2784e4	Light Wind DMG (all foes)
+974	0x39ab4	EBOOT:2784a6	Medium Wind DMG (all foes)
+975	0x39acc	EBOOT:27846c	Heavy Wind DMG (all foes)
+976	0x39ae4	EBOOT:27b910	Light Earth DMG (1 foe)
+977	0x39afc	EBOOT:27b8d6	Medium Earth DMG (1 foe)
+978	0x39b14	EBOOT:278438	Heavy Earth DMG (area)
+979	0x39b2c	EBOOT:2783fa	Light Earth DMG (all foes)
+980	0x39b44	EBOOT:2783bc	Medium Earth DMG (all foes)
+981	0x39b5c	EBOOT:27837e	Heavy Earth DMG (all foes)
+982	0x39b74	EBOOT:27b89c	Light Nuclear DMG (1 foe)
+983	0x39b8c	EBOOT:27b85e	Medium Nuclear DMG (1 foe)
+984	0x39ba4	EBOOT:278344	Heavy Nuclear DMG (1 foe)
+985	0x39bbc	EBOOT:278302	Light Nuclear DMG (all foes)
+986	0x39bd4	EBOOT:2782c0	Medium Nuclear DMG (all foes)
+987	0x39bec	EBOOT:278280	Heavy Nuclear DMG (all foes)
+988	0x39c04	EBOOT:27b828	Light Blast DMG (1 foe)
+989	0x39c1c	EBOOT:27b7ee	Medium Blast DMG (1 foe)
+990	0x39c34	EBOOT:27824c	Heavy Blast DMG (area)
+991	0x39c4c	EBOOT:27820e	Light Blast DMG (all foes)
+992	0x39c64	EBOOT:2781d0	Medium Blast DMG (all foes)
+993	0x39c7c	EBOOT:278194	Heavy Blast DMG (all foes)
+994	0x39c94	EBOOT:27b7b4	Light Gravity DMG (1 foe)
+995	0x39cac	EBOOT:27b778	Medium Gravity DMG (1 foe)
+996	0x39cc4	EBOOT:27815c	Heavy Gravity DMG (area)
+997	0x39cdc	EBOOT:27811a	Light Gravity DMG (all foes)
+998	0x39cf4	EBOOT:2780d8	Medium Gravity DMG (all foes)
+999	0x39d0c	EBOOT:278096	Heavy Gravity DMG (all foes)
+1000	0x39d24	EBOOT:27b736	Light Elec DMG+Shock (1 foe)
+1001	0x39d44	EBOOT:27b6f2	Medium Elec DMG+Shock (1 foe)
+1002	0x39d64	EBOOT:27807c	Heavy Elec DMG+Shock (area)
+1003	0x39d84	EBOOT:278010	Light Elec DMG+Shock (all foes)
+1004	0x39da4	EBOOT:277fc6	Medium Elec DMG+Shock (all foes)
+1005	0x39dc4	EBOOT:277fa4	Heavy Elec DMG+Shock (all foes)
+1006	0x39de4	EBOOT:27b6a6	Light Death DMG each turn (1 foe)
+1007	0x39e68	EBOOT:27aa1e	Inflicts Sleep (area)
+1008	0x39e80	EBOOT:27a9ac	Inflicts Bind (area)
+1009	0x39e98	EBOOT:27a9e4	Inflicts Panic (area)
+1010	0x39eb0	EBOOT:27ab0e	Inflicts Happy (area)
+1011	0x39ec8	EBOOT:27a938	Inflicts Charm (area)
+1012	0x39ee0	EBOOT:27aa96	Inflicts Mute (area)
+1013	0x39ef8	EBOOT:27b41e	Inflicts Blind (area)
+1014	0x39f10	EBOOT:27aad0	Inflicts Unlucky (area)
+1015	0x39f50	EBOOT:27b312	Gives Cloak (1 ally)
+1016	0x39f64	EBOOT:27b2d8	Gives Puppet (1 ally)
+1017	0x39f78	EBOOT:27b29c	Gives Counter (1 ally)
+1018	0x39fe0	EBOOT:27ac00	Insta Death kill (1 foe)
+1019	0x39ff4	EBOOT:27ac36	Inflict Stone (1 foe)
+1020	0x3a008	EBOOT:27ac72	Inflict Paralyze (1 foe)
+1021	0x3a01c	EBOOT:27a064	Light Tech DMG+Poison (1 foe)
+1022	0x3a030	EBOOT:279fdc	Light Tech DMG+Sick (1 foe)
+1023	0x3a04c	EBOOT:27b146	Light Expel DMG each turn (1 foe)
+1024	0x3a0d0	EBOOT:27b028	Lowers Attack (all foes)
+1025	0x3a0e4	EBOOT:27aff2	Lowers Defense (all foes)
+1026	0x3a0f8	EBOOT:27afbc	Lowers Hit rate (all foes)
+1027	0x3a10c	EBOOT:27af72	Removes stat penalties (all allies)
+1028	0x3a124	EBOOT:27af3c	Raises Attack (all allies)
+1029	0x3a138	EBOOT:27af02	Raises Defense (all allies)
+1030	0x3a14c	EBOOT:27aec8	Raises Hit Rate (all allies)
+1031	0x3a160	EBOOT:27ae94	Raises Magic (all allies)
+1032	0x3a174	EBOOT:27ae54	Removes stat bonuses (all foes)
+1033	0x3a1cc	EBOOT:278ea8	Restores a little HP (1 ally)
+1034	0x3a1e0	EBOOT:278e6c	Restores moderate HP (1 ally)
+1035	0x3a1f0	EBOOT:278e36	Restores full HP (1 ally)
+1036	0x3a204	EBOOT:27ae10	Restores a little HP (all allies)
+1037	0x3a218	EBOOT:27adca	Restores moderate HP (all allies)
+1038	0x3a228	EBOOT:277cb8	Restores full HP (all allies)
+1039	0x3a23c	EBOOT:278cc4	Cures ailments (1 ally)
+1040	0x3a254	EBOOT:278c72	Cures 1 degree of ailments (all allies)
+1041	0x3a270	EBOOT:278d2a	Cures Poison (1 ally)
+1042	0x3a288	EBOOT:278d66	Cures Paralyze (1 ally)
+1043	0x3a2a0	EBOOT:278da6	Cures Stone (1 ally)
+1044	0x3a2b8	EBOOT:278cf4	Cures Sick (1 ally)
+1045	0x3a2d0	EBOOT:278e18	Revives 1 ally
+1046	0x3a2e8	EBOOT:278de0	Revives 1 ally with full HP
+1047	0x3a304	EBOOT:27ad82	Sacrifice life to fully heal party
+1048	0x3a324	EBOOT:278b78	Shows a map of the area
+1049	0x3a35c	EBOOT:2774b8	Wards off weak foes
+1050	0x3a368	EBOOT:278afe	Temporarily nulls damage floors
+1051	0x3a39c	EBOOT:27ac72	Inflict Paralyze (1 foe)
+1052	0x3a3b0	EBOOT:27ac36	Inflict Stone (1 foe)
+1053	0x3a3c4	EBOOT:27ac00	Insta Death kill (1 foe)
+1054	0x3a3d8	EBOOT:27abc2	Inflicts Guilt (1 foe)
+1055	0x3a3f0	EBOOT:27ab86	Inflicts Fear (1 foe)
+1056	0x3a408	EBOOT:27a938	Inflicts Charm (area)
+1057	0x3a420	EBOOT:27ab0e	Inflicts Happy (area)
+1058	0x3a438	EBOOT:27aad0	Inflicts Unlucky (area)
+1059	0x3a450	EBOOT:27aa96	Inflicts Mute (area)
+1060	0x3a468	EBOOT:27aa5a	Inflicts Guilt (area)
+1061	0x3a480	EBOOT:27aa1e	Inflicts Sleep (area)
+1062	0x3a498	EBOOT:27a9e4	Inflicts Panic (area)
+1063	0x3a4b0	EBOOT:27a9ac	Inflicts Bind (area)
+1064	0x3a4c8	EBOOT:27a972	Inflicts Fear (area)
+1065	0x3a4e0	EBOOT:27a938	Inflicts Charm (area)
+1066	0x3a4f8	EBOOT:27a90c	Lowers LV+Paralyze (1 male foe)
+1067	0x3a50c	EBOOT:27a8c8	Lowers LV+Paralyze (1 female foe)
+1068	0x3a520	EBOOT:27a884	Lowers LV+Paralyze (1 human foe)
+1069	0x3a538	EBOOT:27a83c	Lowers experience (1 foe)
+1070	0x3a54c	EBOOT:27a808	Medium Fire DMG (area)
+1071	0x3a560	EBOOT:27a53c	Medium Ice DMG+Freeze (area)
+1072	0x3a57c	EBOOT:27a7ac	Medium Nerve DMG+Poison (area)
+1073	0x3a598	EBOOT:27a768	Medium Nerve DMG+Blind (area)
+1074	0x3a5b4	EBOOT:27a6f2	Party absorbs 50% Ice spells, 3 turns
+1075	0x3a61c	EBOOT:27a598	Medium Fire DMG (area)
+1076	0x3a638	EBOOT:27a5cc	Medium Fire DMG (area)
+1077	0x3a654	EBOOT:27a57c	Medium Ice DMG+Freeze (area)
+1078	0x3a670	EBOOT:27a7ec	Medium Ice DMG+Freeze (area)
+1079	0x3a68c	EBOOT:27a4ae	Medium Wind DMG (area)
+1080	0x3a6a8	EBOOT:27a4e4	Medium Wind DMG (area)
+1081	0x3a6c4	EBOOT:27a43e	Medium Earth DMG (area)
+1082	0x3a6e0	EBOOT:27a476	Medium Earth DMG (area)
+1083	0x3a6fc	EBOOT:27a3d0	Medium Blast DMG (area)
+1084	0x3a718	EBOOT:27a406	Medium Blast DMG (area)
+1085	0x3a734	EBOOT:27a376	Medium Elec DMG+Shock (area)
+1086	0x3a750	EBOOT:27a3b6	Medium Elec DMG+Shock (area)
+1087	0x3a76c	EBOOT:27a2e8	Heavy Curse DMG (area)
+1088	0x3a788	EBOOT:27a31c	Heavy Curse DMG (area)
+1089	0x3a7a4	EBOOT:27a278	Heavy Miracle DMG (area)
+1090	0x3a7c0	EBOOT:27a2b0	Heavy Miracle DMG (area)
+1091	0x3a7dc	EBOOT:27a246	Summons multiple demons
+1092	0x3a7ec	EBOOT:27a1fc	Prevents escape from battle, 3 turns
+1093	0x3a80c	EBOOT:277dde	Inflicts Poison (1 foe)
+1094	0x3a828	EBOOT:277e1e	Inflicts Paralyze (1 foe)
+1095	0x3a844	EBOOT:277da4	Inflicts Sick (1 foe)
+1096	0x3a860	EBOOT:277e62	Inflicts Stone (1 foe)
+1097	0x3a88c	EBOOT:277dde	Inflicts Poison (1 foe)
+1098	0x3a8a8	EBOOT:277e1e	Inflicts Paralyze (1 foe)
+1099	0x3a8c4	EBOOT:277da4	Inflicts Sick (1 foe)
+1100	0x3a8e0	EBOOT:277e62	Inflicts Stone (1 foe)
+1101	0x3a95c	EBOOT:279e4e	Medium Rush DMG (1 foe)
+1102	0x3a998	EBOOT:279d78	Heavy Rush DMG (1 foe)
+1103	0x3a9ac	EBOOT:279dac	Heavy Rush DMG (1 foe)
+1104	0x3aa24	EBOOT:279bd8	Medium Fist DMG (area)
+1105	0x3aa38	EBOOT:279c0c	Light Fist DMG (1 foe)
+1106	0x3aa50	EBOOT:279c40	Light Fist DMG (1 foe)
+1107	0x3aa68	EBOOT:279b3c	Medium Tech DMG (area)
+1108	0x3aa7c	EBOOT:279b70	Light Tech DMG (1 foe)
+1109	0x3aa94	EBOOT:279ba4	Light Tech DMG (1 foe)
+1110	0x3aaac	EBOOT:279a96	Heavy Sword DMG (area)
+1111	0x3aac4	EBOOT:279acc	Heavy Sword DMG (1 foe)
+1112	0x3aae0	EBOOT:279b02	Medium Sword DMG (1 foe)
+1113	0x3aafc	EBOOT:2799de	Heavy Two-Hand DMG (area)
+1114	0x3ab14	EBOOT:279a1a	Heavy Two-Hand DMG (1 foe)
+1115	0x3ab30	EBOOT:279a58	Medium Two-Hand DMG (1 foe)
+1116	0x3ab4c	EBOOT:27993a	Heavy Spear DMG (area)
+1117	0x3ab60	EBOOT:279970	Heavy Spear DMG (1 foe)
+1118	0x3ab78	EBOOT:2799a6	Medium Spear DMG (area)
+1119	0x3ab90	EBOOT:27989e	Heavy Axe DMG (1 foe)
+1120	0x3aba4	EBOOT:2798d2	Heavy Axe DMG (1 foe)
+1121	0x3abbc	EBOOT:279906	Heavy Axe DMG (1 foe)
+1122	0x3abd4	EBOOT:279802	Medium Whip DMG (area)
+1123	0x3abe8	EBOOT:279838	Medium Whip DMG (area)
+1124	0x3ac00	EBOOT:27986c	Light Whip DMG (area)
+1125	0x3ac18	EBOOT:27975a	Heavy Thrown DMG (area)
+1126	0x3ac30	EBOOT:279792	Medium Thrown DMG (area)
+1127	0x3ac4c	EBOOT:2797cc	Light Thrown DMG (area)
+1128	0x3ac64	EBOOT:2796b6	Heavy Arrow DMG (area)
+1129	0x3ac7c	EBOOT:2796ec	Medium Arrow DMG (area)
+1130	0x3ac98	EBOOT:279722	Medium Arrow DMG (area)
+1131	0x3acb0	EBOOT:27967a	Light Handgun DMG (1 foe)
+1132	0x3acc4	EBOOT:279638	Light Machine Gun DMG (1 foe)
+1133	0x3acd8	EBOOT:2795f8	Light Machine Gun DMG (area)
+1134	0x3acec	EBOOT:2795be	Light Shotgun DMG (area)
+1135	0x3ad04	EBOOT:279588	Light Rifle DMG (1 foe)
+1136	0x3ad48	EBOOT:2794da	Random DMG (area)
+1137	0x3adbc	EBOOT:2793aa	Insta kill; user dies (1 foe)
+1138	0x3add4	EBOOT:27938a	Split into two
+1139	0x3ade8	EBOOT:279354	1 DMG each turn (1 foe)
+1140	0x3ae04	EBOOT:278ace	Increase Strength by 1
+1141	0x3ae1c	EBOOT:278aa0	Increase Vitality by 1
+1142	0x3ae4c	EBOOT:278a42	Increase Agility by 1
+1143	0x3ae64	EBOOT:278a1a	Increase Luck by 1
+1144	0x3ae7c	EBOOT:2789e6	Increase maximum HP by 5
+1145	0x3ae90	EBOOT:2789b2	Increase maximum SP by 5
+1146	0x3aea4	EBOOT:278966	Restores HP/Increase max HP (1 ally)
+1147	0x3aeb8	EBOOT:27891c	Restores a little HP and SP (1 ally)
+1148	0x3aec8	EBOOT:2788e0	Cures all but severe ailments
+1149	0x3aee4	EBOOT:2788ac	Cures all ailments but KO
+1150	0x3af0c	EBOOT:278820	Reduce HP to 1 (all foes)
+1151	0x3af20	EBOOT:2787fa	Sucks in all foes
+1152	0x3af30	EBOOT:2787c8	Blows all foes backwards
+1153	0x3af40	EBOOT:27878c	Restores a little SP (1 ally)
+1154	0x3af4c	EBOOT:278752	Play 1 game of Code Breaker
+1155	0x3af64	EBOOT:277ab6	A beautiful gem
+1156	0x3af78	EBOOT:277ab6	A beautiful gem
+1157	0x3af88	EBOOT:277ab6	A beautiful gem
+1158	0x3af98	EBOOT:277ab6	A beautiful gem
+1159	0x3afa8	EBOOT:277ab6	A beautiful gem
+1160	0x3afb8	EBOOT:277ab6	A beautiful gem
+1161	0x3afc8	EBOOT:277ab6	A beautiful gem
+1162	0x3afd8	EBOOT:277ab6	A beautiful gem
+1163	0x3afe8	EBOOT:277ab6	A beautiful gem
+1164	0x3aff8	EBOOT:277ab6	A beautiful gem
+1165	0x3b008	EBOOT:277ab6	A beautiful gem
+1166	0x3b018	EBOOT:277ab6	A beautiful gem
+1167	0x3b028	EBOOT:277ab6	A beautiful gem
+1168	0x3b03c	EBOOT:277ab6	A beautiful gem
+1169	0x3b04c	EBOOT:277ab6	A beautiful gem
+1170	0x3b058	EBOOT:277ab6	A beautiful gem
+1171	0x3b068	EBOOT:277a7e	Some apple pie Ayase baked
+1172	0x3b07c	EBOOT:277a46	Some appIe pie Ayase baked
+1173	0x3b090	EBOOT:277a0e	Some aqqIe pie Ayase baked
+1174	0x3b0a4	EBOOT:2779ca	The drama club's Snow Queen mask
+1175	0x3b0c0	EBOOT:27798a	A fragment of the Demon Mirror
+1176	0x3b0d8	EBOOT:27793a	The key to the cell in the Dream World
+1177	0x3b0ec	EBOOT:27790e	The food of the gods
+1178	0x3b120	EBOOT:277888	The last piece of apple pie
+1179	0x3b134	EBOOT:277850	The last piece of appIe pie
+1180	0x3b148	EBOOT:277818	The last piece of aqqIe pie
+1181	0x3b15c	EBOOT:2777d2	Opens the secret factory entrance
+1182	0x3b178	EBOOT:2777b2	Maki's compact
+1183	0x3b18c	EBOOT:277784	Opens the police cells
+1184	0x3b1a4	EBOOT:277748	If you use it at the ruins...
+1185	0x3b1bc	EBOOT:277704	Nullifies a certain demon's power
+1186	0x3b1d4	EBOOT:2776c8	The mysterious girl's compact
+1187	0x3b1ec	EBOOT:277694	The "real" Maki's compact
+1188	0x3b204	EBOOT:27764e	A fragment of the Mirror of Chaos
+1189	0x3b220	EBOOT:277618	The "ideal" Maki's compact
+1190	0x3b238	EBOOT:2775dc	The "awakened" Maki's compact
+1191	0x3b250	EBOOT:27759e	A special item used in fusion
+1192	0x39dfc	EBOOT:27b65c	Medium Death DMG each turn (area)
+1193	0x39e14	EBOOT:277f2e	Heavy Death DMG each turn (all foes)
+1194	0x39e2c	EBOOT:27b60a	Death DMG/Insta Angel kill (1 foe)
+1195	0x39e40	EBOOT:27b5ba	Death DMG/Insta Angel kill (area)
+1196	0x39e54	EBOOT:277ed6	Death DMG/Insta Angel kill (all foes)
+1197	0x39f8c	EBOOT:27b246	Gives Fury/Cures ailments (1 ally)
+1198	0x39fa8	EBOOT:27b1ea	Gives Berserk/Cures ailments (1 ally)
+1199	0x39fc4	EBOOT:27b192	Gives Beast/Cures ailments (1 ally)
+1200	0x3a064	EBOOT:27b0fc	Medium Expel DMG each turn (area)
+1201	0x3a07c	EBOOT:277d4a	Heavy Expel DMG each turn (all foes)
+1202	0x3a094	EBOOT:27b0aa	Expel DMG/Insta Grave kill (1 foe)
+1203	0x3a0a8	EBOOT:27b05a	Expel DMG/Insta Grave kill (area)
+1204	0x3a0bc	EBOOT:277cf4	Expel DMG/Insta Grave kill (all foes)
+1205	0x3a1a4	EBOOT:278bea	Reflects 25% magic DMG, 1 turn
+1206	0x3a1b8	EBOOT:278ba8	Reflects 25% phys DMG, 1 turn
+1207	0x3a18c	EBOOT:278c30	Removes LV decrease (all allies)
+1208	0x3ae34	EBOOT:278a70	Increase Dexterity by 1
+1209	0x3a340	EBOOT:27ad06	Insta escape from the dungeon
+1210	0x3a350	EBOOT:27ad48	Insta escape from a battle
+1211	0x3a5ec	EBOOT:27a650	Party reflects 25% spell DMG, 2 turns
+1212	0x3a604	EBOOT:27a600	Party reflects 25% phys DMG, 2 turns
+1213	0x3a7fc	EBOOT:27a1c6	Light Rush DMG (1 foe)
+1214	0x3a87c	EBOOT:27a082	Light Tech DMG (1 foe)
+1215	0x3a8fc	EBOOT:279f34	Light Tech DMG+Poison (area)
+1216	0x3a918	EBOOT:279eee	Light Tech DMG+Paralyze (area)
+1217	0x3a934	EBOOT:279ebc	Light Tech DMG (area)
+1218	0x3a948	EBOOT:279e86	Light Tech DMG (1 foe)
+1219	0x3a970	EBOOT:279e16	Medium Rush DMG (1 foe)
+1220	0x3a984	EBOOT:279de0	Medium Rush DMG (1 foe)
+1221	0x3a9c0	EBOOT:279d44	Light Rush DMG (1 foe)
+1222	0x3a9d0	EBOOT:279d10	Light Rush DMG (1 foe)
+1223	0x3a9e8	EBOOT:279cdc	Light Rush DMG (1 foe)
+1224	0x3a9fc	EBOOT:279ca8	Light Rush DMG (1 foe)
+1225	0x3aa10	EBOOT:279c74	Light Rush DMG (1 foe)
+1226	0x3ad14	EBOOT:27954e	Special Phys DMG (1 foe)
+1227	0x3ad2c	EBOOT:279506	Special Phys DMG+Charge (1 foe)
+1228	0x3ad80	EBOOT:279436	Special Phys DMG; user dies (area)
+1229	0x3ada0	EBOOT:2793ec	Heavy special Phys DMG (all foes)
+1230	0x39f28	EBOOT:27b398	No HP recovery for 3 turns (1 foe)
+1231	0x39f3c	EBOOT:27b34c	No Persona change for 3 turns (1 foe)
+1232	0x33350	EBOOT:2735cc	Yomotsu Shikome
+1233	0x34348	EBOOT:274ee4	Yog-Sothoth Jr.
+1234	0x34d8c	EBOOT:26a700	Silver Prayer Wheel
+1235	0x3526c	EBOOT:26b0c0	Evil Quake Tablet
+1236	0x352ec	EBOOT:26b1c0	Scorching Tablet
+1237	0x3548c	EBOOT:26b500	Dark Wave Tablet
+1238	0x354cc	EBOOT:26b580	Ebon Rope Tablet
+1239	0x3556c	EBOOT:26b6c0	Falsehood Tablet
+1240	0x3558c	EBOOT:26b700	Light Wave Tablet
+1241	0x355ac	EBOOT:26b740	Holy Writ Tablet
+1242	0x355cc	EBOOT:26b780	Quarter Moon Tablet
+1243	0x355ec	EBOOT:26b7c0	Half Moon Tablet
+1244	0x3568c	EBOOT:26b900	Full Moon Tablet
+1245	0x35bac	EBOOT:26c340	Masamune's Eyepatch
+1246	0x35cac	EBOOT:26c540	Prosecutor's Diary
+1247	0x35ccc	EBOOT:26c580	Judgement Contract
+1248	0x35d4c	EBOOT:26c680	Suitengu Talisman
+1249	0x35d6c	EBOOT:26c6c0	Black Garter Belt
+1250	0x35d8c	EBOOT:26c700	Kolkata Souvenir
+1251	0x35dcc	EBOOT:26c780	Emperor Wu's Peach
+1252	0x35f0c	EBOOT:26ca00	Tora Stomachband
+1253	0x35fec	EBOOT:26cbc0	Babylonian Coffin
+1254	0x3610c	EBOOT:26ce00	Fuuma's Wakizashi
+1255	0x3618c	EBOOT:26cf00	Futsu-no-Mitama
+1256	0x365ec	EBOOT:26d7c0	Kabutsuchi Kyouko
+1257	0x3660c	EBOOT:26d800	Gouma Daisetsudan
+1258	0x368ec	EBOOT:26ddc0	Wu Huo Shen Yan Shan
+1259	0x36bec	EBOOT:26e3c0	Stroke of Darkness
+1260	0x36c2c	EBOOT:26e440	Yuuma Ankoku Sho
+1261	0x36c4c	EBOOT:26e480	Shinsa Bakunetsu Sho
+1262	0x36eec	EBOOT:26e9c0	Gettou Soutenhou
+1263	0x36f4c	EBOOT:26ea80	Kokonoe Raijinhou
+1264	0x3788c	EBOOT:26fd00	Hamagari Gauntlet
+1265	0x378cc	EBOOT:26fd80	Shishiou Gauntlet
+1266	0x3790c	EBOOT:26fe00	Daybreak Gauntlet
+1267	0x3794c	EBOOT:26fe80	Seiryuu Gauntlet
+1268	0x37b0c	EBOOT:270200	Daybreak Greaves
+1269	0x39854	EBOOT:28374c	Sonomura
+1270	0x3985e	EBOOT:28374c	Maki
+1271	0x39868	EBOOT:28376a	Uesugi
+1272	0x39872	EBOOT:28376a	Hidehiko
+1273	0x3987c	EBOOT:28378c	Nanjo
+1274	0x39886	EBOOT:28378c	Kei
+1275	0x39890	EBOOT:2837aa	Inaba
+1276	0x3989a	EBOOT:2837aa	Masao
+1277	0x398a4	EBOOT:2837ca	Kirishima
+1278	0x398ae	EBOOT:2837ca	Eriko
+1279	0x398b8	EBOOT:2837ec	Ayase
+1280	0x398c2	EBOOT:2837ec	Yuka
+1281	0x398cc	EBOOT:28380a	Mayuzumi
+1282	0x398d6	EBOOT:28380a	Yukino
+1283	0x398e0	EBOOT:28382c	Kido
+1284	0x398ea	EBOOT:28382c	Reiji

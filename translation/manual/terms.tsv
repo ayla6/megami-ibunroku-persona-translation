@@ -1,0 +1,189 @@
+domain	key	en	note
+hand	２　ＰＡＩＲ	Two pair	
+hand	３　ＯＦ　Ａ　ＫＩＮＤ	Three of a kind	
+hand	４　ＯＦ　Ａ　ＫＩＮＤ	Four of a kind	
+hand	ＳＴＲＡＩＧＨＴ	Straight	
+hand	ＳＴＲＡＩＧＨＴ　ＦＬＵＳＨ	Straight flush	
+hand	ＲＯＹＡＬ　ＳＴＲＡＩＧＨＴ　ＦＬＵＳＨ	Royal flush	
+hand	ＦＬＵＳＨ	Flush	
+hand	ＦＵＬＬ　ＨＯＵＳＥ	Full house	
+hand	ＷＩＮ	Win	
+hand	Ｂ．ＪＡＣＫ	Blackjack	
+hand	ＳＰＲＩＴ	Split	
+hand	Ｄ．ＤＯＷＮ	Double Down	
+hand	ＨＩＴ	Hit	
+hand	ＳＴＡＮＤ	Stand	
+hand	ＩＮＳＵＲＡＮＣＥ	Insurance	
+hand	あの声	A voice	
+hand	の声	A voice	
+hand	あ	A voice	
+hand	ＣＯＭＰ	COMP	
+name	マーク	Mark	
+name	ブラウン	Brown	
+name	エリー	Elly	
+name	アヤセ	Ayase	
+name	南条	Nanjo	
+name	ゆきの	Yukino	
+name	玲司	Reiji	
+name	姫野	Himeno	
+name	麻希	Maki	
+card	たまきちゃん	Tamaki	
+card	ただしくん	Tadashi	
+card	生徒会長	Student council president	
+card	反谷教頭	Vice-Principal Hanya	
+card	大石校長	Principal Ooishi	
+card	姫野　由子	Yuko Himeno	
+card	山岡	Yamaoka	
+card	園村　麻希	Maki Sonomura	
+card	麻希の母	Setsuko Sonomura	
+card	ニコライ博士	Dr. Nicholai	
+card	内藤　陽介	Yosuke Naito	
+card	黒瓜　勉	Tsutomu Kurouri	
+card	金田カツエ	Katsue Kaneda	
+card	武多	Takeda	
+card	神取　鷹久	Takahisa Kandori	
+card	梨本みのり	Minori Nashimoto	
+card	横内　健太	Kenta Yokouchi	
+card	吉野　夏美	Natsumi Yoshino	
+card	高見　冴子	Saeko Takami	
+card	桐島　英理子	Eriko Kirishima	
+card	黒瓜	Tsutomu	
+personality	0	Wise	
+personality	1	Fool	
+personality	2	Joy	
+personality	3	Gloom	
+personality	4	Bold	
+personality	5	Timid	
+personality	6	Snappy	
+personality	7	Proud	
+auto	0x800de5fc	Normal	
+auto	0x800de606	Replay	
+auto	0x800de610	Personal	
+btlui_label	0x800dea2c	MAG ATK	
+btlui_label	0x800dea34	MAG DEF	
+btlui_label	0x800dea3c	TRAIT:	
+race_literal	23	Mother	ジボシン/ジャシン/ボンジン source slot; no PSP table
+race_literal	25	Evil	ジボシン/ジャシン/ボンジン source slot; no PSP table
+race_literal	27	Mortal	ジボシン/ジャシン/ボンジン source slot; no PSP table
+name_gfx	0,0	Hira	
+name_gfx	48,0	Kata	
+name_gfx	96,0	ABC	
+name_gfx	144,0	Kanji	
+name_gfx	192,0	Clear	
+name_gfx	0,16	Enter	
+name_gfx	0,48	Family	
+name_gfx	48,48	Given	
+name_gfx	96,48	Nick	
+name_gfx	144,48	Delete	
+name_gfx	192,48	Back	
+who	Hat-wearing student	Mark	
+who	Smug student	Brown	
+who	Airheaded student	Ayase	
+who	Ponytailed student	Elly	
+who	Glasses-wearing student	Nanjo	
+who	Cool-headed student	Yukino	
+who	Girl in white	Girl in white	
+who	Girl in black	Girl in black	
+who	マーク	Mark	
+who	ブラウン	Brown	
+who	アヤセ	Ayase	
+who	エリー	Elly	
+who	南条	Nanjo	
+who	ゆきの	Yukino	
+who	千里	Chisato	
+who	Mark	Mark	
+who	Brown	Brown	
+who	Ayase	Ayase	
+who	Elly	Elly	
+who	Nanjo	Nanjo	
+who	Yukino	Yukino	
+who	Maki	Maki	
+name_extra	アガスティアの木	Agastya Tree	
+name_extra	トリッシュ	Trish	
+name_extra	黒瓜	Tsutomu	
+name_extra	香西	Chisato	
+opentext	0x800a0134	Select the¦card slot	
+opentext	0x800a0164	No card found	
+opentext	0x800a0180	Card error	
+opentext	0x800a0198	Card is not¦formatted	
+opentext	0x800a01cc	Loading data¦Don't remove¦the card	
+opentext	0x800a0214	File 0 data¦is corrupted	
+opentext	0x800a0244	No save data	
+opentext	0x800a025c	Card is not¦inserted	
+opentext	0x800a0288	Slot 1 has¦no space	
+opentext	0x800a02b0	Slot 2 has¦no space	
+opentext	0x800a02d8	Suspend data.¦Deleted from¦card on load	
+title_gfx	0x25840	Checking Memory Card	
+cfgtext	0x800b95cc	CURSOR MEM	
+cfgtext	0x800b95d8	MSG SPEED	
+cfgtext	0x800b95e4	WINDOW	
+cfgtext	0x800b95f0	AUTOMAP	
+cfgtext	0x800b95f8	SOUND	
+cfgtext	0x800b9600	CONTROLLER	
+cfgtext	0x800b9618	BATTLE	
+cfgtext	0x800b9620	AUTO BTL	
+cfgtext	0x800b962c	CMD FINAL CHECK	
+cfgtext	0x800b963c	BTL MSG SPEED	
+cfgtext	0x800b964c	BTL WINDOW ANIM	
+cfgtext	0x800b965c	BTL ANIM	
+cfgtext	0x800b9670	 ON<TAB>OFF	
+cfgtext	0x800b967c	 NOR<TAB>FST<TAB> NO	
+cfgtext	0x800b9698	 FREE<TAB> FIX	
+cfgtext	0x800b96a4	 MONO<TAB>STER	
+cfgtext	0x800b9714	UNUSED	
+cfgtext	0x800b971c	CONFIRM	
+cfgtext	0x800b9724	CANCEL	
+cfgtext	0x800b972c	COMMAND MENU	
+cfgtext	0x800b973c	ALL CANCEL	
+cfgtext	0x800b9748	AUTOMAP	
+cfgtext	0x800b9754	DEVIL ANALYZE	
+cfgtext	0x800b9764	OK/TALK/OPEN	
+cfgtext	0x800b9774	PLAYER LIST	
+cfgtext	0x800b9780	ONLINE HELP	
+cfgtext	0x800b978c	ENEMIES	
+cfgtext	0x800b9794	CONTROLS	
+cfgtext	0x800b97a0	BATTLE CFG	
+cfgtext	0x800b97ac	SIDESTEP R	
+cfgtext	0x800b97b8	SIDESTEP L	
+cfgtext	0x800b97c4	 AREA NAME	
+cfgtext	0x800b97d0	 NO WIN	
+cfgtext	0x800b97d8	ANGLE	
+cfgtext	0x800b97e0	FULL MAP	
+cfgtext	0x800b9cf8	SETTINGS	
+cfgtext	0x800b2310	CMD CHECK	
+cfgtext	0x800b231c	WIN ANIM	
+cfgtext	0x800b2328	 FST<TAB> SLW<TAB> NO	
+cfgtext	0x800b2338	 ON<TAB>OFF	
+cfgtext	0x800b2374	SWAP ITEM	
+cfgtext	0x800b2384	SWD GUN	
+cfgtext	0x800b238c	FREE	
+cfgtext	0x800b23a8	 COMMAND	
+cfgtext	0x800bb124	QTY	
+cfgtext	0x800bb128	OWNED	
+cfgtext	0x800bb130	EXCH QTY	
+cfgtext	0x800bb138	REQ. GEMS	
+cfgtext	0x800bb144	OWNED	
+cfgtext	0x800bb14c	SELL	
+cfgtext	0x800b2360	Compact the items?	
+menutext	987a60662d1a360d	Remove	
+menutext	6d9ecc73cc5da47f	Form	
+menutext	525364723c06021c08	Item Heal	
+menutext	987a60663c06021c08	Pers.Heal	
+menutext	5e80987a5780cc808f2f01281f0e2e	No Spell Cards.	
+menutext	5e80987a5780cc808f82c081fa	Delete Card	
+menu_gfx	208,156	MATK	
+menu_gfx	0,168	MDEF	
+menu_gfx	112,156	ATK	
+menu_gfx	136,156	HIT	
+menu_gfx	160,156	DEF	
+menu_gfx	184,156	EVA	
+fusionmsg	accident	Hmm... It seems there's been an<FF03>irregularity in the process...	
+fusionmsg	result_pre	The resulting Persona is...	
+fusionmsg	result_after	.	
+fusionmsg	result_last	Please take good care of it...	
+giftmsg	sample_persona	Seimen Kongou	
+giftmsg	sample_item	St Incense	
+giftmsg	sample_name	TLProject	
+casinoprize	metal_card	MTL CARD	
+party	アトラス	ATLUS	
+party	主人公	Hero	

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Persona PS1 — textbox visualiser</title>
+<style>
+:root{color-scheme:light dark}
+*{box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{margin:0;font:14px/1.45 var(--albedo-sans,system-ui,sans-serif);
+     background:var(--albedo-bg,#111);color:var(--albedo-text,#eee);
+     display:flex;flex-direction:column}
+header{padding:14px 18px;border-bottom:1px solid var(--albedo-border,#333);
+       display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+h1{font-size:15px;margin:0;font-weight:600;letter-spacing:.02em}
+.sub{color:var(--albedo-muted,#999);font-size:12px}
+main{display:grid;grid-template-columns:340px 1fr;flex:1;min-height:0;overflow:hidden}
+@media (max-width:820px){main{grid-template-columns:1fr}}
+#side{border-right:1px solid var(--albedo-border,#333);display:flex;flex-direction:column;min-height:0;overflow:hidden}
+#pick{display:flex;flex-direction:column;gap:6px;padding:10px;border-bottom:1px solid var(--albedo-border,#333)}
+#modes{display:flex;gap:4px}
+.mode{flex:1;padding:4px 8px;border-radius:6px;border:1px solid var(--albedo-border,#333);
+      background:transparent;color:var(--albedo-muted,#999);font:inherit;font-size:11px;cursor:pointer}
+.mode.on{background:var(--albedo-surface,#1a1a1a);color:inherit;border-color:var(--albedo-accent,#6cf)}
+#loc{display:flex;gap:8px;align-items:center;font-size:12px;flex-wrap:wrap}
+#loc .k{font-family:var(--albedo-mono,monospace);color:var(--albedo-muted,#999)}
+.btn{padding:3px 9px;border-radius:6px;border:1px solid var(--albedo-border,#333);
+     background:var(--albedo-surface,#1a1a1a);color:inherit;font:inherit;font-size:11px;cursor:pointer}
+.btn+.btn{margin-left:0}
+.btn:hover{border-color:var(--albedo-accent,#6cf)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.primary{border-color:var(--albedo-accent,#6cf);color:var(--albedo-accent,#6cf)}
+#filt,#fam,#manfilt{padding:7px 9px;border-radius:8px;border:1px solid var(--albedo-border,#333);
+      background:var(--albedo-surface,#1a1a1a);color:inherit;font:inherit;width:100%}
+#count{font-size:11px}
+.fam{color:var(--albedo-accent,#6cf);font-size:10px;letter-spacing:.04em;text-transform:uppercase}
+.tag{display:inline-block;margin-left:6px;padding:0 5px;border-radius:4px;font-size:9px;
+     letter-spacing:.06em;text-transform:uppercase;border:1px solid currentColor;vertical-align:1px}
+.tag.man{color:var(--albedo-added,#3fa66a)}
+.tag.q{color:#e8c15a}
+.tag.e{color:var(--albedo-faint,#777)}
+.tag.n{color:var(--albedo-muted,#999)}
+.tag.us{color:var(--albedo-accent,#6cf)}
+.tag.jp{color:#c58cf0}
+#list{overflow-y:auto;flex:1;min-height:0}
+.row{padding:6px 12px;border-bottom:1px solid var(--albedo-border,#222);cursor:pointer;font-size:12px}
+.row:hover{background:var(--albedo-surface,#1c1c1c)}
+.row .k{color:var(--albedo-faint,#777);font-size:11px;font-family:var(--albedo-mono,monospace);
+        display:flex;align-items:center;gap:4px}
+.row .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* the per-row "psp" button: a hover affordance, not a layout change -
+   the row keeps its height and the button only takes a click on itself */
+.mini{margin-left:auto;padding:0 5px;border-radius:4px;font:9px/1.5 inherit;cursor:pointer;
+      border:1px solid var(--albedo-border,#333);background:transparent;
+      color:var(--albedo-faint,#777);letter-spacing:.06em;text-transform:uppercase;
+      opacity:0;transition:opacity .12s}
+.row:hover .mini{opacity:1}
+.mini:hover,.mini:focus-visible{border-color:var(--albedo-accent,#6cf);
+      color:var(--albedo-accent,#6cf);opacity:1}
+#pane{padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-width:0;overflow:auto}
+textarea{width:100%;min-height:150px;padding:10px;border-radius:8px;resize:vertical;
+         overflow:auto;font:13px/1.5 var(--albedo-mono,monospace);
+         border:1px solid var(--albedo-border,#333);background:var(--albedo-surface,#1a1a1a);
+         color:inherit}
+textarea.dirty{border-color:#e8c15a}
+#cvwrap{overflow:auto;max-width:100%;border-radius:6px;flex:0 0 auto;min-height:190px;
+        background:#0b1a10}
+canvas{image-rendering:pixelated;background:#0a140c;display:block;max-width:none}
+.tools{display:flex;gap:14px;align-items:center;flex-wrap:wrap;color:var(--albedo-muted,#999);font-size:12px}
+label{display:flex;gap:6px;align-items:center}
+pre{margin:2px 0 10px;padding:8px;background:var(--albedo-surface,#1a1a1a);border-radius:6px;
+    font:12px/1.45 var(--albedo-mono,monospace);white-space:pre-wrap;word-break:break-word}
+#sources div{display:flex;flex-direction:column;gap:2px}
+#sources .k{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--albedo-faint,#777)}
+#sources .meta{font-size:10px;letter-spacing:0;text-transform:none;color:var(--albedo-muted,#999);
+               font-family:var(--albedo-mono,monospace)}
+table{border-collapse:collapse;font:12px/1.4 var(--albedo-mono,monospace);width:100%}
+td{padding:2px 8px 2px 0;vertical-align:top;white-space:pre-wrap;word-break:break-word}
+td.w{color:var(--albedo-muted,#999);text-align:right;white-space:pre}
+td.pg{color:var(--albedo-faint,#777)}
+.warn{color:var(--albedo-danger,#e5534b)}
+.ok{color:var(--albedo-added,#3fa66a)}
+h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--albedo-muted,#999);margin:8px 0 2px}
+#ref{border:1px solid var(--albedo-border,#333);border-radius:8px;padding:8px 10px;
+     display:flex;flex-direction:column;gap:4px;background:var(--albedo-surface,#161616)}
+#ref[hidden]{display:none}
+#ref .unit{display:flex;gap:8px;font:12px/1.5 var(--albedo-mono,monospace);color:var(--albedo-muted,#999)}
+#ref .unit.cur{color:inherit}
+#ref .pk{color:var(--albedo-faint,#777);min-width:28px;text-align:right}
+#ref .pv{flex:1;min-width:0;white-space:pre-wrap;word-break:break-word}
+#ref .twinhead{margin-top:4px;padding-top:4px;border-top:1px dashed var(--albedo-border,#333);
+               font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--albedo-faint,#777)}
+#ref .refbtns{display:flex;gap:6px;margin-top:2px}
+#matches{display:flex;flex-direction:column;gap:6px}
+#matches:empty{display:none}
+.matchbar{display:flex;gap:10px;align-items:center;margin-bottom:6px}
+.mcard{border:1px solid var(--albedo-border,#333);border-radius:8px;padding:7px 9px;
+       background:var(--albedo-surface,#161616);display:flex;flex-direction:column;gap:4px}
+.mcard .mk{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;font-size:11px;
+           font-family:var(--albedo-mono,monospace);color:var(--albedo-muted,#999)}
+.mcard .mk .fam{font-size:10px}
+.mcard .lik{margin-left:auto;font-size:12px;font-weight:600;color:var(--albedo-text,#eee)}
+.bar{height:3px;border-radius:2px;background:var(--albedo-border,#333);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--albedo-accent,#6cf)}
+.bar.mid i{background:#e8c15a}
+.bar.low i{background:#a06060}
+.mcard .mt{font:12px/1.45 var(--albedo-mono,monospace);white-space:pre-wrap;word-break:break-word}
+.mcard .chips{display:flex;gap:4px;flex-wrap:wrap}
+.mcard .chip{font:10px/1.4 var(--albedo-mono,monospace);border:1px solid var(--albedo-border,#333);
+             border-radius:4px;padding:0 4px;color:var(--albedo-muted,#999)}
+.mcard .chips .none{opacity:.6;border-style:dashed}
+.mcard .flags{font-size:11px;color:var(--albedo-danger,#e5534b)}
+.mcard .mbtns{display:flex;gap:6px}
+</style></head><body>
+<main>
+  <div id="side">
+    <div id="pick">
+      <div id="modes">
+        <button class="mode on" data-mode="rows">rows</button>
+        <button class="mode" data-mode="psp">psp search</button>
+      </div>
+      <select id="fam"></select>
+      <select id="manfilt" title="filter by manual entries">
+        <option value="all">all rows</option>
+        <option value="manual">manual en</option>
+        <option value="inman">has a manual row</option>
+        <option value="queue">queued (ja, no en)</option>
+        <option value="noman">no manual row</option>
+      </select>
+      <input id="filt" placeholder="filter rows…" autocomplete="off" spellcheck="false">
+      <div id="count" class="sub"></div>
+    </div>
+    <div id="list"></div>
+  </div>
+  <div id="pane">
+    <div id="loc">
+      <span id="locid" class="k">typed text — no row</span>
+      <span id="badge"></span>
+      <span id="savestat" class="sub"></span>
+      <span style="margin-left:auto"></span>
+      <button id="save" class="btn primary" disabled title="write this draft to translation/manual (Ctrl+S)">save</button>
+      <button id="copy" class="btn" title="copy the row's locator">copy</button>
+      <button id="copyt" class="btn" title="copy the row's stored text">copy text</button>
+    </div>
+    <textarea id="src" spellcheck="false" autocomplete="off">Yukino: So there is something that can faze you, Ms. Saeko... alright, we'll go.</textarea>
+    <div class="tools">
+      <label>zoom <input id="zoom" type="range" min="1" max="5" value="3"></label>
+      <label><input id="shadow" type="checkbox" checked> shadow</label>
+      <label><input id="guides" type="checkbox" checked> width guides</label>
+      <label><input id="longonly" type="checkbox" checked> 3+ words only</label>
+      <span class="sub">codes are literal: &lt;FF03&gt; line · &lt;FF04&gt; box · &lt;FF02&gt; scroll/dismiss</span>
+      <span id="stat"></span>
+    </div>
+    <div id="cvwrap"><canvas id="cv" width="800" height="300"></canvas></div>
+    <div id="ref" hidden></div>
+    <h2>psp matches</h2>
+    <div class="matchbar">
+      <button id="find" class="btn primary" disabled
+              title="search the PSP-US and PSP-JP text for this row">find psp</button>
+      <span id="matchstat" class="sub">search the PSP text for this row's wording</span>
+    </div>
+    <div id="matches"></div>
+    <h2>lines as stored</h2>
+    <table id="lines"></table>
+    <h2>sources — read-only, codes as stored</h2>
+    <div id="sources">
+      <div><span class="k">manual — en <span id="src_man_meta" class="meta"></span></span><pre id="src_man"></pre>
+           <span class="k">manual — note</span><pre id="src_note"></pre></div>
+      <div><span class="k">generated — en <span id="src_gen_meta" class="meta"></span></span><pre id="src_gen"></pre></div>
+      <div><span class="k">psp-us <span id="src_psp_meta" class="meta"></span></span><pre id="src_psp"></pre></div>
+      <div><span class="k">psx-ja</span><pre id="src_ja"></pre></div>
+    </div>
+  </div>
+</main>
+<script src="app.js"></script>
+</body></html>

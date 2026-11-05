@@ -1,0 +1,14 @@
+jp_pos	us_pos	how
+0x27452c	0x278ee4	read	ＲＥＳＥＲＶＥ / RESERVE
+0x274952	0x279334	read	ボス専用魔法 / Boss-only spell
+0x28b48a	0x29b220	read	<FFF8>ポイント振り分けて下さい / Distribute <FFF8> points.
+0x28b4c4	0x29b26e	read	逃げられない！！ / You couldn't escape!
+0x28b4da	0x29b29e	read	逃げのびた。 / Successfully escaped.
+0x298e5c	0x2a93da	read	＞<FFFA>は悪魔を勧誘した！ / … <FFFA> invited the demon.
+0x28ca2a	0x29d860	read	麻希：かわいくない！ぜんっぜんかわいくない！ / <FF1B>Maki<FF03>That wasn't cute!…
+0x29387c	0x2a57b0	read	＞しかしは　魔石を持っていなかった。 / … But <FFF9> didn't have any life stones.
+0x28b7fe	0x29b7b6	read	潜在的な力が発動 / Dormant power activates
+0x28b62e	0x29b4dc	read	弾が装備されていません / No bullets equipped.
+0x26911c	0x269490	read	噛み付き / <FF0D>Feral Bite
+0x27da12	0x289c36	read	＞資料館は閉まっているようだ…… / The historical society seems to be closed...  (資料館 consistently "Historical Society" in PSP-US)
+0x27d880	0x289926	read	＞姫野宅は閉まっているようだ…… / The Himeno residence seems to be locked up...
