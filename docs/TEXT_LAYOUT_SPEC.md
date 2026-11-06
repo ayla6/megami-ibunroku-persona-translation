@@ -64,6 +64,15 @@ cel-entry line: eighty-eight pixels right of the arcana's origin and four
 pixels (half a character) lower. Bit 7 of the writer's page
 argument selects that remap and pins the regular face (the writer has no text
 tier); every other `CellsWriteRow` caller keeps the retail fixed-cell atlas.
+DNG's dungeon-menu Persona Data page uses the same sprite-cell path for its
+race + demon-name bar: both cel entries are marked, the race block keeps
+retail's six cells and the name block grows from ten to twenty cells in the
+image extension, with retail's dx=0x40/dy=0xC placement unchanged. Skill
+rows are ordinary recorder rows: every overlay copy of `DrawSpellName`
+(ADV, DNG and S2D) builds the complete name with `skill_name_copy` in that
+overlay's scratch and the tiered row keeps the caller's ten-cell (80 px)
+footprint, so a long skill name is drawn whole rather than cut to its
+ten-glyph record head.
 Family storage/scratch bounds remain enforced. In battle object text,
 source-proven translated skill and Persona slots read the battle width table's
 packed bearing and advance through `sf_glyph_layout`; the field kit reads its

@@ -192,6 +192,11 @@ ADV_SYSMSG_SPILL_SIZE equ ADV_SYSMSG_SPILL_END - ADV_SYSMSG_SPILL_ADDR
 ;; small-font VWF line (adv/smallfont.asm: recorder + renderer; vwf/sf_font.asm: the resident gate)
 ADV_SF_HOOK_ADDR equ 0x80067C00            ; TileMapWriteRow loop entry: la t0,cfg / j sf_record
 ADV_SF_MAP_BASE equ 0x800E3E4C             ; the text map's cell base (CellsInit atlas)
+;; DrawSpellName (adv/draw_spell.asm): the spell-list row reads the full
+;; skill name from the kit's scratch instead of the ten-glyph record head.
+ADV_DRAW_SPELL_NAME equ 0x8007BA94         ; rewritten in place (0xBC bytes avail)
+ADV_TILEMAP_FILLRECT equ 0x80067CEC        ; TileMapFillRect(dst, value, w, h, [sp]=stride)
+ADV_SPELL_RULE_GLYPHS equ 0x800B2F74       ; the eight-glyph rule under an empty slot
 ADV_SF_CENTER_ADDR equ 0x800AADE8          ; unreferenced ADV function (deadovl.py)
 ADV_SF_CENTER_END equ 0x800AAE5C
 ;; --- persona status/fusion bottom bar: VWF sprite cells (adv/bar.asm) ---
@@ -250,6 +255,30 @@ DNG_KIND_LABELS    equ 0x8009AF94          ; g_kind_labels (same records as ADV)
 DNG_BAR_SLOT_INIT  equ 0x8007EE34          ; the status layout's list pointer (lui/addiu pair)
 DNG_BAR_ADV_SITE   equ 0x80075B54          ; SlotsRenderAll's per-cell pen advance (jal + nop)
 DNG_STATUS_NAMES   equ 0x8007F464          ; DNG StatusPersonaNames, rewritten in place (0xC0 bytes)
+;; --- the dungeon menu's Persona Data page (dng/pdata.asm) ---
+;; The page's skill rows and its race+demon-name bar are sprite/tilemap rows
+;; that retail drew with fixed ten-cell fields. DrawSpellName is rewritten in
+;; place to hand the recorder the full skill name; the bar's two cel-list
+;; entries are marked for the same advance hook as the status bar and its
+;; name block grows to twenty cells in the image extension (the retail
+;; ten-cell block sits in front of the list and cannot grow). The block
+;; follows the status bar's list at the current image end; the helper code
+;; follows it, still below the sector-safe extension ceiling.
+DNG_PDATA_RACE_BLOCK equ 0x8009D300        ; retail header: cols 6, rows 1 (kept)
+DNG_PDATA_RACE_CELLS equ 0x8009D308        ; the 6 race cells (kept)
+DNG_PDATA_CEL_LIST equ 0x8009D390          ; the page's two-entry cel list (retail dx/dy kept)
+DNG_PDATA_NAME_BLOCK equ 0x800B562C        ; header: cols 20, rows 1
+DNG_PDATA_NAME_CELLS equ 0x800B5634        ; the 20 name cells (ends 0x800B56D4)
+DNG_PDATA_NAME_COLS equ 20
+DNG_PDATA_BAR      equ 0x800B56E0          ; dng_pdata_bar: both VWF rows
+DNG_PDATA_BAR_END  equ 0x800B5800
+DNG_PDATA_EXT_LIMIT equ 0x800B5BC4         ; the last sector's safe end (grow-by-sectors)
+DNG_PDATA_RACE_TABLE equ 0x8009AEB0        ; 26 six-byte race names
+DNG_PDATA_TAIL     equ 0x800998F8          ; PersonaDataDraw's bar tail (0x70 bytes)
+DNG_PDATA_TAIL_END equ 0x80099968
+DNG_DRAW_SPELL_NAME equ 0x8008A8A4         ; DNG DrawSpellName, rewritten in place (0xC0)
+DNG_TILEMAP_FILLRECT equ 0x80077918        ; TileMapFillRect(dst, value, w, h, [sp]=stride)
+DNG_SPELL_RULE_GLYPHS equ 0x8009BA64       ; the eight-glyph rule under an empty slot
 ;; --- the same bar in S2D.BIN (s2d/bar.asm): the overworld menu's status page ---
 ;; S2D holds its own compiled copy of the status bar (that copy is what the
 ;; overworld save's status page used, so it still drew retail fixed-width
@@ -418,6 +447,10 @@ S2D_FLUSH_UPLOADS equ 0x80067B9C
 ;; small-font VWF line (s2d/smallfont.asm)
 S2D_SF_HOOK_ADDR equ 0x800673E0            ; TileMapWriteRow loop entry: la t0,cfg / j sf_record
 S2D_SF_MAP_BASE equ 0x80103E4C             ; the text map's cell base (+0x20000 bias)
+;; DrawSpellName (s2d/draw_spell.asm), same rule as ADV's copy.
+S2D_DRAW_SPELL_NAME equ 0x8007A908         ; rewritten in place (0xBC bytes avail)
+S2D_TILEMAP_FILLRECT equ 0x800674CC        ; TileMapFillRect(dst, value, w, h, [sp]=stride)
+S2D_SPELL_RULE_GLYPHS equ 0x800AE5F4       ; the eight-glyph rule under an empty slot
 S2D_SF_ROW_ADDR equ 0x80083B24             ; S2D.BIN +0x1F760: a dead function (tools/deadfuncs.py)
 S2D_SF_ROW_SIZE equ 2420                   ; ... its span up to the next function
 S2D_SF_CFG_ADDR equ S2D_SF_ROW_ADDR        ; the config block: the run's first 0x20 bytes

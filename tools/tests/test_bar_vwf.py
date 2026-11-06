@@ -64,6 +64,20 @@ DNG_SLOT_INIT = 0x8007EE34
 DNG_STATUS = 0x8007F464
 DNG_WIDTHS = 0x800B3024                      # sf_widths_dng
 
+# DNG's dungeon-menu Persona Data page (dng/pdata.asm)
+DNG_PDATA_RACE_BLOCK = 0x8009D300
+DNG_PDATA_RACE_CELLS = 0x8009D308
+DNG_PDATA_LIST = 0x8009D390
+DNG_PDATA_NAME_BLOCK = 0x800B562C
+DNG_PDATA_NAME_CELLS = 0x800B5634
+DNG_PDATA_BAR = 0x800B56E0
+DNG_PDATA_TAIL = 0x800998F8
+DNG_PDATA_TAIL_END = 0x80099968
+DNG_DRAW_SPELL_NAME = 0x8008A8A4
+DNG_SKILL_NAME_COPY = 0x80011FBC
+DNG_DEMON_BASE = 0x800417A0
+DNG_RACE_TABLE = 0x8009AEB0
+
 # S2D (the overworld menu's own status page)
 S2D_WRITER = 0x80083A64
 S2D_WRITER_SPAN = (0x80083A64, 0x80083B24)
@@ -288,6 +302,96 @@ class BarVWF(unittest.TestCase):
             hi = self.word(self.dng, site) & 0xFFFF
             imm = struct.unpack_from('<h', self.dng, site + 4 - OVERLAY_BASE)[0]
             self.assertEqual(((hi << 16) + imm) & 0xFFFFFFFF, 0x8009AB90)
+
+    def test_dng_pdata_page(self):
+        """The Persona Data page: full skill names and a VWF race/name bar.
+
+        DrawSpellName now builds the full name through skill_name_copy into
+        the kit's scratch and hands the scratch to the same recorder, whose
+        tiered row keeps the caller's ten-cell (80 px) footprint. The bar's
+        tail hands the demon id to dng_pdata_bar; both cel entries carry the
+        advance mark and the name block grows to twenty cells in the extension.
+        """
+        # DrawSpellName: copy the full skill name, then the unchanged row call
+        self.assertEqual(self.word(self.dng, DNG_DRAW_SPELL_NAME + 0x58),
+                         jal(DNG_SKILL_NAME_COPY))
+        self.assertEqual(self.word(self.dng, DNG_DRAW_SPELL_NAME + 0x94),
+                         jal(0x8007782C))                 # the DNG recorder hook
+        self.assertEqual(self.half(self.dng, DNG_DRAW_SPELL_NAME + 0x74), 10)
+        self.assertEqual(self.word(self.dng, DNG_DRAW_SPELL_NAME + 0x60), 0x3C04800B)  # lui a0,0x800B
+        self.assertEqual(self.half(self.dng, DNG_DRAW_SPELL_NAME + 0x64), 0x54D0)      # sf_name_scratch_dng
+        # the next retail function is untouched
+        self.assertEqual(self.word(self.dng, DNG_DRAW_SPELL_NAME + 0xC0),
+                         self.word(self.retail_dng, DNG_DRAW_SPELL_NAME + 0xC0))
+
+        # PersonaDataDraw's old fixed-width tail is a jump to the VWF helper
+        self.assertEqual(self.word(self.dng, DNG_PDATA_TAIL), 0x00152400)  # sll a0,s5,16
+        self.assertEqual(self.word(self.dng, DNG_PDATA_TAIL + 4), 0x00042403)  # sra a0,a0,16
+        self.assertEqual(self.word(self.dng, DNG_PDATA_TAIL + 8), jal(DNG_PDATA_BAR))
+        self.assertEqual(self.word(self.dng, DNG_PDATA_TAIL + 12), 0)
+        self.assertEqual(self.dng[DNG_PDATA_TAIL + 16 - OVERLAY_BASE:
+                                  DNG_PDATA_TAIL_END - OVERLAY_BASE], bytes(DNG_PDATA_TAIL_END - DNG_PDATA_TAIL - 16))
+        self.assertEqual(self.word(self.dng, DNG_PDATA_TAIL_END),
+                         self.word(self.retail_dng, DNG_PDATA_TAIL_END))
+
+        # the cel list keeps retail's race entry and name dx/dy, adds the mark
+        self.assertEqual(self.bar_rows(self.dng, DNG_PDATA_LIST),
+                         (DNG_PDATA_RACE_BLOCK, 0, 0, MARK,
+                          DNG_PDATA_NAME_BLOCK, 0x40, 0x0C, MARK, 0xFFFFFFFF))
+        self.assertEqual(self.dng[DNG_PDATA_RACE_BLOCK - OVERLAY_BASE:
+                                  DNG_PDATA_RACE_BLOCK - OVERLAY_BASE + 2],
+                         bytes([6, 1]))
+        self.assertEqual(self.dng[DNG_PDATA_NAME_BLOCK - OVERLAY_BASE:
+                                  DNG_PDATA_NAME_BLOCK - OVERLAY_BASE + 2],
+                         bytes([20, 1]))
+        self.assertEqual(DNG_PDATA_NAME_CELLS, DNG_PDATA_NAME_BLOCK + 8)
+        self.assertLessEqual(DNG_PDATA_NAME_CELLS + 20 * 8, DNG_PDATA_BAR)
+        for i in range(20):
+            self.assertEqual(self.dng[DNG_PDATA_NAME_CELLS - OVERLAY_BASE + i * 8:
+                                      DNG_PDATA_NAME_CELLS - OVERLAY_BASE + i * 8 + 8],
+                             bytes.fromhex('00001E000000FF01'))
+
+    def test_dng_pdata_bar_runtime(self):
+        """Run the real helper: race and full demon name into their cells."""
+        sys.path.insert(0, str(ROOT / 'src/injection_tools'))
+        import smallfont_variants                         # noqa: E402
+        editable = smallfont_variants.editable_codes()
+        regular, _compact = smallfont_variants.cell_codes()
+
+        def uv(code):
+            if code in editable:
+                return smallfont_variants.cell_uv(regular[editable.index(code)])
+            return ((code % 31) * 8, (code // 31) * 12)
+
+        ident = 1                                        # Jahi: no tail
+        record = DNG_DEMON_BASE + ident * 0x38
+        name = bytes([0xAF, 0x23, 0x34])                 # J a h i
+        race = 1                                         # Night
+        cpu = self.machine(self.dng)
+        cpu.load(record, name + b'\xff' + bytes(6))
+        cpu.write(record + 0xB, race, 1)
+        cpu.r[REG['a0']] = ident
+        cpu.start(DNG_PDATA_BAR)
+        cpu.run(RETURN, limit=20000)
+
+        race_codes = self.dng[DNG_RACE_TABLE - OVERLAY_BASE +
+                              (race - 1) * 6:DNG_RACE_TABLE - OVERLAY_BASE +
+                              (race - 1) * 6 + 6]
+        for i, code in enumerate(race_codes):
+            base = DNG_PDATA_RACE_CELLS + i * 8
+            u, v = uv(code)
+            self.assertEqual(cpu.read(base, 1), u)
+            self.assertEqual(cpu.read(base + 1, 1), v)
+            self.assertEqual(cpu.read(base + 3, 1), self.dng_widths[code] & 0xF)
+        for i, code in enumerate(name):
+            base = DNG_PDATA_NAME_CELLS + i * 8
+            u, v = uv(code)
+            self.assertEqual(cpu.read(base, 1), u)
+            self.assertEqual(cpu.read(base + 1, 1), v)
+            self.assertEqual(cpu.read(base + 3, 1), self.dng_widths[code] & 0xF)
+        # the FF ended the row; the rest of the twenty cells stay cleared
+        for i in range(len(name), 20):
+            self.assertEqual(cpu.read(DNG_PDATA_NAME_CELLS + i * 8, 1), 0xFF)
 
     def test_s2d_patches(self):
         self.assertEqual(self.word(self.s2d, S2D_ADVANCE_SITE), jal(S2D_HOOK))

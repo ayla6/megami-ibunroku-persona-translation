@@ -96,6 +96,21 @@ at retail's dx=0x58/dy=4 (expanded to sixteen cells), so the name is its own
 cel-entry line, 88 px right of the arcana and 4 px (half a character) lower,
 as in the Japanese original.
 
+DNG's dungeon-menu Persona Data page uses the same sprite-row path for its
+race + demon-name bar. Both cel entries carry `SF_BAR_MARK`; the race block
+keeps retail's six cells (race names are at most six glyphs) and the
+demon-name block grows from ten cells to twenty in the image extension, so
+`demon_name_copy_dng` can place the full name. Retail's dx=0x40/dy=0xC
+placement of the name entry is unchanged.
+
+`DrawSpellName` builds the full name with `skill_name_copy` into the
+overlay's name scratch and hands that to the recorder; the recorder's tiered
+row still occupies the caller's ten-cell (80 px) footprint. That is the rule
+in all three copies of the function - ADV (`adv/draw_spell.asm`), DNG
+(`dng/pdata.asm`, every caller: status menu, status Persona page, skill draw
+and Persona Data) and S2D (`s2d/draw_spell.asm`) - so a long skill name is
+drawn whole instead of being cut to its ten-glyph record head.
+
 The sorter reserves complete rows before temporarily marking their map cells
 empty. It restores the logical map before returning. A page clear or rewrite
 therefore retires the corresponding records. Each claimed row becomes one
