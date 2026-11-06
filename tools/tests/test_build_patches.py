@@ -55,11 +55,11 @@ class ReleaseIO(unittest.TestCase):
 
 
 class ReleasePatches(unittest.TestCase):
-    def test_release_matrix_has_eight_choices_and_no_debug(self):
+    def test_release_matrix_has_nine_choices_and_no_debug(self):
         choices = list(release.combinations())
-        self.assertEqual(len(choices), 256)
+        self.assertEqual(len(choices), 512)
         self.assertEqual(choices[0], ([], []))
-        self.assertEqual(len({tuple(selected) for _labels, selected in choices}), 256)
+        self.assertEqual(len({tuple(selected) for _labels, selected in choices}), 512)
         for labels, selected in choices:
             self.assertNotIn('debug', selected)
             self.assertEqual('rewards' in labels, 'rewards' in selected)
@@ -96,6 +96,7 @@ class ReleasePatches(unittest.TestCase):
             ('mark', 'rewards'): ('add-rewards.xdelta', ('mark',), 'sha256'),
             ('mark', 'run'): ('add-run.xdelta', ('mark',), 'sha256'),
             ('mark', 'upright'): ('add-upright.xdelta', ('mark',), 'sha256'),
+            ('mark', 'skipfmv'): ('add-skipfmv.xdelta', ('mark',), 'sha256'),
             ('battlespeed', '60fps'): ('add-60fps.xdelta', ('battlespeed',), 'sha256'),
             ('mark', 'saves', '60fps'):
                 ('add-60fps-saves.xdelta', ('mark', 'saves'), 'sha256'),
@@ -121,7 +122,7 @@ class ReleasePatches(unittest.TestCase):
             release.release_file_names(),
             {'add-mark.xdelta', 'add-battlespeed.xdelta',
              'add-rewards.xdelta', 'add-encounters.xdelta', 'add-run.xdelta',
-             'add-upright.xdelta',
+             'add-upright.xdelta', 'add-skipfmv.xdelta',
              'add-saves.xdelta', 'add-60fps.xdelta', 'add-60fps-saves.xdelta',
              'rev0-to-base.xdelta', 'rev1-to-rev0.xdelta'})
 
@@ -195,8 +196,8 @@ class ReleasePatches(unittest.TestCase):
                     patch.object(release.build, 'main', side_effect=fake_build) as builder, \
                     patch.object(release.subprocess, 'run', side_effect=run):
                 release.build_release(rev0, rev1, out, tool)
-                self.assertEqual(len(verified), 256)
-                self.assertEqual(len(list(out.glob('*.xdelta'))), 11)
+                self.assertEqual(len(verified), 512)
+                self.assertEqual(len(list(out.glob('*.xdelta'))), 12)
                 self.assertFalse(list(out.glob('*.bin')))
                 # the README is generated from the graph and the one
                 # wording file, so it names every file and every option
@@ -205,13 +206,13 @@ class ReleasePatches(unittest.TestCase):
                     self.assertIn(name, readme)
                 for item in release.RELEASE_OPTIONS:
                     self.assertIn(item['name'], readme)
-                self.assertIn('257 steps', readme)
-                self.assertIn('11 patch files', readme)
+                self.assertIn('513 steps', readme)
+                self.assertIn('12 patch files', readme)
                 self.assertFalse(list((root / 'build/patch-work').glob('parent-*')))
                 with (out / 'manifest.tsv').open() as f:
                     rows = {(row['patch'], row['source_sha256']): row
                             for row in csv.DictReader(f, delimiter='\t')}
-                self.assertEqual(len(rows), 257)
+                self.assertEqual(len(rows), 513)
                 self.assertEqual(rows[('rev1-to-rev0.xdelta', release.sha256(rev1))]['source_sha256'],
                                  release.sha256(rev1))
                 base = rows[('rev0-to-base.xdelta', release.sha256(rev0))]

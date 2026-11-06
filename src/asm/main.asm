@@ -231,6 +231,9 @@
 ;; --- EXE/MOVIE.EXE - Movie player EXE, t_addr 0x80080000 ---
 .open MOVIE_EXE_FILENAME, MOVIE_EXE_OUTPUT, MOVIE_EXE_ADDR
 .include "movie_exe/feature.asm"
+.ifdef QOL_SKIPFMV
+.include "qol/skip_fmv_movie.asm"    ; QoL (--qol=skipfmv): Start skips the movie that is playing
+.endif
 .include "movie_exe/subs_boot.asm"   ; in-engine FMV subtitles: hooks + blob
 .close
 

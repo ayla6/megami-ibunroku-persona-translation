@@ -26,6 +26,7 @@ filename; a plain build uses the retail save flow and the regular translation fi
 | `rewards` | `QOL_REWARDS` | EXP, Persona points and money after a battle x2 |
 | `run` | `QOL_RUN` | hold Cross to walk and turn at double speed in the 3D dungeons; the controller page lists it as its own RUN/CANCEL action on Cross in both control schemes |
 | `upright` | `QOL_UPRIGHT` | Upward Movement Orientation: Upper Right in the 2D rooms - pressing Up walks to the upper right instead of the retail upper left |
+| `skipfmv` | `QOL_SKIPFMV` | press Start to skip the movie that is playing (the story FMVs, Philemon's scenes among them; the opening quote and the Atlus logo already skip) |
 | `battlespeed` | `QOL_BATTLESPEED` | summons and skill effects at double speed |
 | `debug` | `QOL_DEBUG` | battle debug menu: drops the party-leader name gate, so the hidden controller-2 button sequence works and Cancel in the command phase opens the debug page |
 | `mark` | `QOL_MARK` | Mark wears the Revelations design: the dialogue/status headshot, battle sheet and overworld walk sheet are swapped for the art in `src/assets/mark/black` (edit those PNGs to change it; see `src/assets/mark/README.md`). No code changes: the BST face slot and his B/P.BIN battle entry are rewritten in place and the ~207 MES.BIN scene entries carrying his walk sheet are re-encoded around the swapped page |
@@ -217,6 +218,22 @@ Only the four direction constants change, in place (`0x8007EB54`, `0x8007EB68`, 
 scripted walk directions, triggers, exits and facing are untouched. `tools/tests/test_qol_upright.py`
 runs `AdvFieldRun`'s direction selection for each d-pad button and checks the stored walk direction,
 plus the bytes that changed.
+
+## Skipping the movie that is playing (`--qol=skipfmv`)
+
+`qol/skip_fmv_movie.asm`. `MOVIE.EXE` plays every story FMV - Philemon's scenes among them - and its
+frame loop already calls `PadRead(1)` at `0x80080FBC`, but throws the result away, so the scene always
+runs to its last frame. `OPEN.EXE` (the Zhuangzi quote) and `ATLUS.EXE` (the logo) have their own
+loops and already leave on Start; this patch adds the same to the movie player.
+
+The loop's `jal VSync` at `0x80080FC4` still has PadRead's result in `v0` (the subtitle hook at
+`0x80080FBC` tail-jumps to PadRead), so that call is routed through a stub: when Start is held it
+raises `g_movie_end`, the flag `StrGetReadyFrame` raises two frames from the end, and the loop leaves
+through the ordinary end-of-stream path. The movie-after table still sets the scene, map and position
+the movie returns to, and the player runs its normal teardown. The stub sits in the zero padding the
+EXE already carries below the subtitle blob at `0x80160000` (inside the loader's `t_size`), so the
+disc image does not grow. `tools/tests/test_qol_skipfmv.py` runs the loop's VSync call with and
+without Start and checks the flag and the bytes that changed.
 
 ## 1. Status (2026-10-09, evening): approach B implemented in both engines
 

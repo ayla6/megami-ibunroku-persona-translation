@@ -40,7 +40,7 @@ ARCHIVE_NAME = 'persona-patches.zip'
 # One rev conversion step each, plus one add- file per option and per
 # size-changer anchor: the authoritative layout is
 # tools/build_patches.py.release_file_names().
-COMPLETE_RELEASE = 11
+COMPLETE_RELEASE = 12
 
 
 def release_repo():

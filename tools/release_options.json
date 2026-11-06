@@ -38,5 +38,10 @@
     "label": "upright",
     "name": "Upper-right movement",
     "description": "Forces Upward Movement Orientation to Upper Right: pressing Up walks to the upper right in the 2D rooms instead of the retail upper left."
+  },
+  {
+    "label": "skipfmv",
+    "name": "Skip movies",
+    "description": "Press Start to skip the movie that is playing. This covers the story FMVs, Philemon's scenes among them; the opening quote and the Atlus logo already skip on Start."
   }
 ]

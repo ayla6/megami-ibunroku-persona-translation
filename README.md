@@ -61,6 +61,7 @@ automatically.
 | Half encounters | Halves the rate of random encounters. |
 | Run in dungeons | Hold Cross to walk and turn at double speed in the 3D dungeons. The controller page lists it as RUN/CANCEL on Cross in both control schemes. |
 | Upper-right movement | Forces Upward Movement Orientation to Upper Right: pressing Up walks to the upper right in the 2D rooms instead of the retail upper left. |
+| Skip movies | Press Start to skip the movie that is playing. This covers the story FMVs, Philemon's scenes among them; the opening quote and the Atlus logo already skip on Start. |
 
 On Black Mark: I edited it myself, since I don't like his outfit in Revelations,
 much less the fact that his overworld sprite is red instead of, y'know, black.

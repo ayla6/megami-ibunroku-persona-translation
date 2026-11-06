@@ -149,15 +149,15 @@ class PublishArchiveTest(unittest.TestCase):
             manifest = output / 'manifest.tsv'
             header = 'patch\tchoices\tsource_sha256\ttarget_sha256\n'
             manifest.write_text(header + '\n'.join(
-                f'p{i}.xdelta\t\t\ta{i}' for i in range(10)) + '\n')
-            self.assertFalse(self.publish.release_is_complete(output),
-                             'ten patch files are not a release')
-            manifest.write_text(header + '\n'.join(
                 f'p{i}.xdelta\t\t\ta{i}' for i in range(11)) + '\n')
-            self.assertTrue(self.publish.release_is_complete(output))
-            # 257 steps across 10 files: duplicate names do not inflate it
+            self.assertFalse(self.publish.release_is_complete(output),
+                             'eleven patch files are not a release')
             manifest.write_text(header + '\n'.join(
-                f'p{i % 10}.xdelta\t\t\ta{i}' for i in range(257)))
+                f'p{i}.xdelta\t\t\ta{i}' for i in range(12)) + '\n')
+            self.assertTrue(self.publish.release_is_complete(output))
+            # 513 steps across 11 files: duplicate names do not inflate it
+            manifest.write_text(header + '\n'.join(
+                f'p{i % 11}.xdelta\t\t\ta{i}' for i in range(513)))
             self.assertFalse(self.publish.release_is_complete(output))
 
     def test_missing_release_repository_stops_before_the_archive(self):

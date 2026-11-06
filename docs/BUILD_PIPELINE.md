@@ -123,16 +123,17 @@ the ordinary build dependencies. The script defaults to `--no-port` and
 incremental asset preparation; `--port` explicitly refreshes translations
 first and rebuilds every variant patch.
 
-The seven release choices are save UI, Mark artwork, battle speed, 60 fps,
-double battle rewards, half random encounters, and running in dungeons.
-Rewards and encounters ship as separate options, so someone can take one
-without the other. Debug is not included. The release ships ten patch files
-instead of one per combination: `rev1-to-rev0.xdelta` and `rev0-to-base.xdelta`
-convert the retail disc to the base translation, and every option is an
+The nine release choices are save UI, Mark artwork, battle speed, 60 fps,
+double battle rewards, half random encounters, running in dungeons,
+Upper Right movement and Start-to-skip movies. Rewards and encounters ship
+as separate options, so someone can take one without the other. Debug is not
+included. The release ships twelve patch files instead of one per
+combination: `rev1-to-rev0.xdelta` and `rev0-to-base.xdelta` convert the
+retail disc to the base translation, and every option is an
 `add-<option>.xdelta` file that splices its own changes into whatever
 variant it is given. Options whose edits stay in place (Mark, battle
-speed, rewards, encounters, run) never move another option's offsets, so one
-file each serves every variant. Options that add bytes shift every offset
+speed, rewards, encounters, run, upright, skipfmv) never move another
+option's offsets, so one file each serves every variant. Options that add bytes shift every offset
 after the insertion, so an option applied after them is encoded against
 the accumulated size-changers: `add-60fps.xdelta` for discs without the
 save menu and `add-60fps-saves.xdelta` for discs with it. `manifest.tsv`
@@ -261,7 +262,7 @@ what feeds the disc - `src/`, `translation/`, the extracted data, and the
 two scripts it runs - so unrelated churn in `tools/tests/` never
 invalidates a running release. The Rev 1 to Rev 0 conversion never depends
 on build inputs and is reused across any same-source run. A release is
-complete when its manifest lists all 129 steps across the 10 patch files.
+complete when its manifest lists all 513 steps across the 12 patch files.
 
 The run's scratch images live in a private workspace that is deleted on
 exit. It prefers the system temp directory (tmpfs on most Linux systems) when

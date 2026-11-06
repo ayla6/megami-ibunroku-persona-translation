@@ -50,6 +50,9 @@ QOL_PATCHES = {
     'upright':     ('QOL_UPRIGHT',     'Upward Movement Orientation: Upper Right in the 2D rooms - '
                                        'pressing Up walks to the upper right instead of the retail '
                                        'upper left'),
+    'skipfmv':     ('QOL_SKIPFMV',     'press Start to skip the movie that is playing (the story FMVs, '
+                                       'the Philemon scenes among them; the opening quote and the Atlus '
+                                       'logo already skip)'),
     'battlespeed': ('QOL_BATTLESPEED', 'summons and skill effects at double speed'),
     'debug':       ('QOL_DEBUG',       'battle debug menu: drop the party-leader name gate, so the hidden '
                                        'sequence works on controller 2 (Up Up Down Down Left Right Left Right '
