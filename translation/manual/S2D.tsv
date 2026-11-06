@@ -5,4 +5,5 @@ id	pos	psp	en	note
 22	0x47504		Nanjo: ...<FF02><FF01>	PSP-US; Nanjo ellipsis (ADV E0 116:0x25bc) but halved; ja 南条：…<FF02>
 26	0x4789c		Nanjo: ...<FF02><FF01>	PSP-US; Nanjo ellipsis (ADV E0 116:0x25bc) but halved; ja 南条：…<FF02>
 27	0x47a80		Nanjo: ......<FF02><FF01>	PSP-US; Nanjo ellipsis (ADV E0 116:0x25bc); ja 南条：………<FF02>
+32	0x46bce	EBOOT:28c000	C-Store	For now, "Convenience Store" is too long and causes the text to get corrupted on the map
 68	0x471ac		St. Hermelin High has<FF03>turned into an ice castle...<FF02><FF01>	machine-translated; ja 聖エルミン学園は<FF03>氷の城と　化している…<FF02>
