@@ -70,7 +70,7 @@ id	pos	psp	en
 68	0x2b56	pack/talk/POLUTAR:0x3f68	Hyuk hyuk! You say some<FFF6>pretty cute things, lady.<FFF5>
 69	0x2b86	pack/talk/POLUTAR:0x3fd0	Uuuurrrgh!<FFF6>I'm not a kid like you think I am!<FFF5>
 70	0x2bb5	pack/talk/POLUTAR:0x4030	Oooohehehehe! Wanna act like a baby,<FFF6>too? The more, the better!<FFFD>と<FFF5>
-71	0x2be9	pack/talk/POLUTAR:0x40b8	Hyuk hyuk! It must be tough for you<FFF6>too, lady. Maybe next time, if I'm free,<FFF6>I'll be up for it.<FFF5>
+71	0x2be9	pack/talk/POLUTAR:0x40b8	Hyuk hyuk! It must be tough for<FFF6>you too, lady. Maybe next time,<FFF6>if I'm free, I'll be up for it.<FFF5>
 72	0x2c24	pack/talk/POLUTAR:0x4178	It's not easy to pick me up, you know!<FFF6>I'm not a cheap <FFF0>!<FFF5>
 73	0x2c55	pack/talk/POLUTAR:0x41f0	Ooohehehe! I guess I'm still useful!<FFF6>Ooohehehehehehe!<FFF5>
 74	0x2c94	pack/talk/POLUTAR:0x4260	Hyuk hyuk! You've got style, lady!<FFFB><FFF7>No <FFF0> could ever say<FFF6>such horrible things!<FFF5>
@@ -109,7 +109,7 @@ id	pos	psp	en
 107	0x321b	pack/talk/POLUTAR:0x50b0	Are you a magician, mister?<FFF6>C-Could you teach me<FFF6>a trick or two sometime...?<FFF5>
 108	0x324a	pack/talk/POLUTAR:0x5150	Eeep... Warlocks are scary...<FFF5>
 109	0x3268	pack/talk/POLUTAR:0x5190	Ooohehehe!<FFF6>Your tricks are the best, mister!<FFFB><FFF7>You're so good I bet Mr. Loki would<FFF6>get all jealous of you. Ooohehehehe!<FFF5>
-110	0x32af	pack/talk/POLUTAR:0x5280	Hyuk hyuk! I don't really get it, but<FFF6>that's an interesting story.<FFF5>
+110	0x32af	pack/talk/POLUTAR:0x5280	Hyuk hyuk! I don't really get it,<FFF6>but that's an interesting story.<FFF5>
 111	0x32d4	pack/talk/POLUTAR:0x5308	Hyuk hyuk!<FFF6>Human stories are so interesting...<FFFB><FFF7>Hey, you're in the mood to give me<FFF6>something just 'cause, right?<FFF1><FFF5>
 112	0x3313	pack/talk/POLUTAR:0x53f0	Uuuurrrrgh! So what!?<FFF6>Will you shut up already!?<FFF5>
 113	0x333b	pack/talk/POLUTAR:0x5458	Uuuurrrgh!<FFF6>I don't wanna hear a story like that!<FFF6>I want something physical!<FFF1><FFF5>
@@ -184,7 +184,7 @@ id	pos	psp	en
 182	0x3e0f	pack/talk/POLUTAR:0x73d0	Ooohehehehe!<FFF6>I'm really happy right now!<FFF5>
 183	0x3e31	pack/talk/POLUTAR:0x7428	Ooohehehe! Let's play, mister! Okay?<FFF5>
 184	0x3e56	pack/talk/POLUTAR:0x7478	<FFEE>Uh-oh... humans! Hmm... I don't really<FFF6>wanna deal with them, but I don't<FFF6>feel like running away either.<FFF5>
-185	0x3e84	pack/talk/POLUTAR:0x7550	<FFED>Why are humans human!?<FFF6>I don't get it. And that annoys<FFF6>me, so gimme something!<FFF1><FFF5>
+185	0x3e84	pack/talk/POLUTAR:0x7550	<FFED>Why are humans human!?<FFF6>I don't get it. And that annoys me,<FFF6>so gimme something!<FFF1><FFF5>
 186	0x3ec0	pack/talk/POLUTAR:0x75f8	<FFEC>Hyuk... For me, it's like how they<FFF6>say... curiosity trumps fear...<FFF5>
 187	0x3ef1	pack/talk/POLUTAR:0x7680	<FFEE>I felt like there was something I was<FFF6>drawn to... But I guess I'll hang<FFF6>around with you a while...<FFF5>
 188	0x3f22	pack/talk/POLUTAR:0x7748	<FFEE>I think tonight's the night I finally<FFF6>fall in love with humans!<FFF5>
@@ -229,7 +229,7 @@ id	pos	psp	en
 227	0x4525	pack/talk/POLUTAR:0x8740	Don't make fun of me... Go to hell!<FFF5>
 228	0x4538	pack/talk/POLUTAR:0x8788	Wh-What...?<FFF6>Then what am I supposed to do?<FFF5>
 229	0x4558	pack/talk/POLUTAR:0x87e0	What? "Yaaaay"...?<FFF6>You can just roll over and die.<FFF5>
-230	0x457a	pack/talk/POLUTAR:0x8848	Yep, it's me. I don't get it, but that<FFF6>has a nice ring to it!<FFF5>
+230	0x457a	pack/talk/POLUTAR:0x8848	Yep, it's me. I don't get it,<FFF6>but that has a nice ring to it!<FFF5>
 231	0x45a1	pack/talk/POLUTAR:0x88c8	R-Really...?<FFF5>
 232	0x45ae	pack/talk/POLUTAR:0x88e8	Huh!? I-I think my heart's<FFF6>starting to pound!<FFF5>
 233	0x45cc	pack/talk/POLUTAR:0x8948	Turtles! Dogs! Cats! That's the stuff<FFF6>I like! Oops... I kinda drooled.<FFF5>

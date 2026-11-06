@@ -4,7 +4,7 @@ id	pos	psp	en
 2	0x2060	pack/talk/MAYOERU:0x20d0	Uiii! Man of flesh...<FFF6><FFF3> is happy.<FFF5>
 3	0x2086	pack/talk/MAYOERU:0x2118	Man of flesh... What do you gain by<FFF6>challenging <FFF3>?<FFF5>
 4	0x20af	pack/talk/MAYOERU:0x2180	Uuuurh! I feel anger! <FFF3><FFF6>will make that body belong to<FFF6><FFF3>!<FFF5>
-5	0x20de	pack/talk/MAYOERU:0x21f8	Is it fun to threaten <FFF3><FFF6> with no place to call home...?<FFF5>
+5	0x20de	pack/talk/MAYOERU:0x21f8	Is it fun to threaten <FFF3><FFF6>with no place to call home...?<FFF5>
 6	0x2103	pack/talk/MAYOERU:0x2268	Never imagined being<FFF6>asked to join humans...<FFF6>Man of flesh, you have good soul.<FFF5>
 7	0x2130	pack/talk/MAYOERU:0x2308	Uuurh! <FFF3> has pride too!<FFF5>
 8	0x2151	pack/talk/MAYOERU:0x2338	Augh...<FFF6>Those of flesh invite a <FFF0>...<FFF5>
@@ -142,7 +142,7 @@ id	pos	psp	en
 140	0x37e5	pack/talk/MAYOERU:0x6008	Those of flesh bring delight!<FFF6><FFF3><FFF6>should find place for self too!<FFF5>
 141	0x3813	pack/talk/MAYOERU:0x6088	Good going! Do more!<FFF6><FFF3> will watch.<FFF5>
 142	0x3837	pack/talk/MAYOERU:0x60d0	<FFF3><FFF6>is interested in those of flesh...<FFF6>Might be good to accept invitation.<FFF5>
-143	0x3861	pack/talk/MAYOERU:0x6168	Will spend time with those of<FFF6>flesh, but <FFF3><FFF6>has request too.<FFF1><FFF5>
+143	0x3861	pack/talk/MAYOERU:0x6168	Will spend time with those of flesh,<FFF6>but <FFF3> has request too.<FFF1><FFF5>
 144	0x388c	pack/talk/MAYOERU:0x61e8	Uuuurh! <FFF3> is <FFF0>.<FFF6>Incomptabible with flesh-havers!<FFF5>
 145	0x38b3	pack/talk/MAYOERU:0x6250	<FFF3> is looking for place to<FFF6>belong! Have no time to give to<FFF6>those of flesh! Buy own time!<FFF1><FFF5>
 146	0x38e9	pack/talk/MAYOERU:0x6308	Augh... Those of flesh are sly...<FFF6>This may be a trap...<FFF5>
@@ -164,7 +164,7 @@ id	pos	psp	en
 162	0x3b68	pack/talk/MAYOERU:0x69b0	<FFF3> is interested in those of<FFF6>flesh, but doesn't like weak ones.<FFEF>
 163	0x3b8f	pack/talk/MAYOERU:0x6a30	Will give this to commemorate meeting.<FFF6>Take good care of it.<FFEF>
 164	0x3bb3	pack/talk/MAYOERU:0x6ab0	Well then, time to part ways...<FFF6><FFF3><FFF6>will begin another journey to be lost.<FFEF>
-165	0x3bdd	pack/talk/MAYOERU:0x6b48	<FFF3> likes those of<FFF6>flesh, so will give this as well.<FFEF>
+165	0x3bdd	pack/talk/MAYOERU:0x6b48	<FFF3> likes those of flesh,<FFF6>so will give this as well.<FFEF>
 166	0x3c03	pack/talk/MAYOERU:0x6bb0	<FFF3><FFF6>is busy looking for places to be...<FFEF>
 167	0x3c23	pack/talk/MAYOERU:0x6c00	<FFF3> has a place to call home<FFF6>again! Take good care of card...<FFEF>
 168	0x3c4e	pack/talk/MAYOERU:0x6c78	Augh... Augh... Forgive with this...<FFEF>
@@ -197,7 +197,7 @@ id	pos	psp	en
 195	0x4229	pack/talk/MAYOERU:0x7b98	<FFEB>Happy and annoyed... <FFF3><FFF6>fails to understand fleshlings!<FFF5>
 196	0x425a	pack/talk/MAYOERU:0x7c08	<FFED><FFF3> is happy and angry!<FFF6>Those of flesh... Give something.<FFF1><FFF5>
 197	0x4284	pack/talk/MAYOERU:0x7c80	<FFEC>Augh... But why does <FFF3>'s<FFF6>heart dance in happiness...?<FFF5>
-198	0x42ad	pack/talk/MAYOERU:0x7cf0	<FFEB><FFF3> isn't a masochist, but<FFF6>being scared feels good...<FFF5>
+198	0x42ad	pack/talk/MAYOERU:0x7cf0	<FFEB><FFF3> isn't a masochist,<FFF6>but being scared feels good...<FFF5>
 199	0x42d6	pack/talk/MAYOERU:0x7d60	<FFF3> likes fleshlings now.<FFF6>Will listen to flesh-haver wishes.<FFEF>
 200	0x4305	pack/talk/MAYOERU:0x7dd8	Uuurrhhh! Hate those of flesh!<FFF6>Will possess them!<FFEF>
 201	0x4338	pack/talk/MAYOERU:0x7e40	Augh... Augh... Want to go home...<FFEF>

@@ -54,7 +54,7 @@ id	pos	psp	en
 52	0x2acb	pack/talk/SINSI:0x3fd8	I should have worn my silk pants...<FFF5>
 53	0x2aef	pack/talk/SINSI:0x4020	I... I am a male.<FFF6>Please, do not make such jokes...<FFFD>は<FFF5>
 54	0x2b19	pack/talk/SINSI:0x4090	This is quite delightful! It seems<FFF6>my charm is not bound by gender.<FFF5>
-55	0x2b49	pack/talk/SINSI:0x4118	I am pleased, but this is<FFF6>unfamiliar ground for me...<FFF6>What am I supposed to do?<FFFD>ひ<FFF5>
+55	0x2b49	pack/talk/SINSI:0x4118	I am pleased,<FFF6>but this is unfamiliar ground for me...<FFF6>What am I supposed to do?<FFFD>ひ<FFF5>
 56	0x2b83	pack/talk/SINSI:0x41c0	That's a childish idea. But I<FFF6>understand the need for attention.<FFF5>
 57	0x2bc0	pack/talk/SINSI:0x4248	You! Are you already associated with<FFF6>a talent agency? You truly have<FFF6>an excellent sense of humor!<FFF5>
 58	0x2bff	pack/talk/SINSI:0x4310	...What rubbish!<FFF5>
@@ -70,17 +70,17 @@ id	pos	psp	en
 68	0x2df9	pack/talk/SINSI:0x48a8	Conversations like this are<FFF6>good for me every so often.<FFF6>I'm always so tense...<FFF5>
 69	0x2e25	pack/talk/SINSI:0x4948	If that is what this is about,<FFF6>it's quite cute. Take me for example.<FFFB><FFF7>The secrets I know are<FFF6>universe-bending.<FFFD>む<FFF5>
 70	0x2e65	pack/talk/SINSI:0x4a28	That's a childish idea. But I<FFF6>understand the need for attention.<FFF5>
-71	0x2ea2	pack/talk/SINSI:0x4ab0	You may have a point, but allow<FFF6>me to ask... What was it?<FFFD>め<FFF5>
+71	0x2ea2	pack/talk/SINSI:0x4ab0	You may have a point,<FFF6>but allow me to ask... What was it?<FFFD>め<FFF5>
 72	0x2eda	pack/talk/SINSI:0x4b28	How unsightly...!<FFF5>
 73	0x2ee6	pack/talk/SINSI:0x4b50	Gentle as I am,<FFF6>even I am moved to anger sometimes!<FFFD>も<FFF5>
-74	0x2f0c	pack/talk/SINSI:0x4bc0	Did I hurt your feelings?<FFF6>I'm sorry, but your logic is rather<FFF6>flawed. That's not good...<FFF5>
+74	0x2f0c	pack/talk/SINSI:0x4bc0	Did I hurt your feelings? I'm sorry,<FFF6>but your logic is rather flawed.<FFF6>That's not good...<FFF5>
 75	0x2f49	pack/talk/SINSI:0x4c78	Calm down, young man...<FFF6>You are taking this too far...<FFFD>や<FFF5>
 76	0x2f86	pack/talk/SINSI:0x4cf0	You've come all this way to do<FFF6>business? You are a hard worker.<FFF5>
 77	0x2fac	pack/talk/SINSI:0x4d70	If you were willing to give me<FFF6>something, I would not refuse it!<FFF6>Is there anything you've forgotten?<FFFD>ゆ<FFF5>
 78	0x2fda	pack/talk/SINSI:0x4e40	Negotiating with demons for your own<FFF6>benefit!? You may as well be<FFF6>a merchant of death! How horrible!<FFF5>
 79	0x3016	pack/talk/SINSI:0x4f10	Do you think the entire world can be<FFF6>moved with dirty money and power?<FFFD>よ<FFF5>
 80	0x304e	pack/talk/SINSI:0x4fa8	Now I have a souvenir to bring home.<FFF6>Thank you!<FFF5>
-81	0x306d	pack/talk/SINSI:0x5008	I receive many gifts from many<FFF6>women, but this is the first time<FFF6>I've received one from a man.<FFFD>ら<FFF5>
+81	0x306d	pack/talk/SINSI:0x5008	I receive many gifts from many women,<FFF6>but this is the first time I've<FFF6>received one from a man.<FFFD>ら<FFF5>
 82	0x30a7	pack/talk/SINSI:0x50d0	It seems logical, but I'm rather<FFF6>suspicious as to whether or not<FFF6>you comprehend its meaning.<FFF5>
 83	0x30de	pack/talk/SINSI:0x5190	So, what merits are there to<FFF6>listening to you speak?<FFFD>り<FFF5>
 84	0x3114	pack/talk/SINSI:0x5200	Such senseless chit-chat...<FFF6>I would rather you<FFF6>refrained from mocking me!<FFF5>
@@ -111,7 +111,7 @@ id	pos	psp	en
 109	0x35da	pack/talk/SINSI:0x6090	The changing seasons always<FFF6>bring these types around.<FFF6>It's so troubling...<FFFD>じ<FFF5>
 110	0x35fe	pack/talk/SINSI:0x6130	It would be easiest<FFF6>were I to just crush you...<FFF6>But I will stay my hand a bit longer...<FFF5>
 111	0x3630	pack/talk/SINSI:0x61e0	If you kill a demon who<FFF6>puts up no resistance,<FFF6>your reputation will suffer.<FFFD>ず<FFF5>
-112	0x3669	pack/talk/SINSI:0x6280	I know my face is beautiful, but<FFF6>what would you do if you bored<FFF6>a hole right through it?<FFFB><FFF7>You're a troubling one...<FFF5>
+112	0x3669	pack/talk/SINSI:0x6280	I know my face is beautiful,<FFF6>but what would you do if you<FFF6>bored a hole right through it?<FFFB><FFF7>You're a troubling one...<FFF5>
 113	0x36a5	pack/talk/SINSI:0x6368	How troubling...<FFF6>I welcome the passionate<FFF6>gaze of a woman, but this...<FFFD>ぜ<FFF5>
 114	0x36d9	pack/talk/SINSI:0x6400	It is rude to stare at<FFF6>a stranger like that!<FFF5>
 115	0x3705	pack/talk/SINSI:0x6460	You look at me as though I've stolen<FFF6>your love or something of the sort!<FFFD>ぞ<FFF5>
@@ -130,7 +130,7 @@ id	pos	psp	en
 128	0x39a8	pack/talk/SINSI:0x6c10	Hmm... You enjoy stories of that sort?<FFF6>I find that becoming of a girl.<FFF5>
 129	0x39e0	pack/talk/SINSI:0x6ca0	You are easily scared, and yet you<FFF6>still enjoy stories like that!?<FFFB><FFF7>You've piqued my curiosity.<FFF6>Tell me why this is.<FFFD>び<FFF5>
 130	0x3a30	pack/talk/SINSI:0x6d90	Hm, quite beautiful. Surely,<FFF6>your voice matches your face.<FFF5>
-131	0x3a57	pack/talk/SINSI:0x6e08	I see... Now is the voice<FFF6>good, or merely the song?<FFFD>ぶ<FFF5>
+131	0x3a57	pack/talk/SINSI:0x6e08	I see... Now is the voice good,<FFF6>or merely the song?<FFFD>ぶ<FFF5>
 132	0x3a86	pack/talk/SINSI:0x6e78	That unsophisticated song is nothing<FFF6>short of disturbing... Stop at once!<FFF5>
 133	0x3ab6	pack/talk/SINSI:0x6f10	You thought to gain my interest with<FFF6>such an amateur voice!? How absurd!<FFF6>I recommend voice lessons!<FFFD>べ<FFF5>
 134	0x3af4	pack/talk/SINSI:0x6fe0	Hmmm... Hmmmmmm...<FFF6>Yes, I like it! Keep it up!<FFF5>
@@ -162,7 +162,7 @@ id	pos	psp	en
 160	0x405b	pack/talk/SINSI:0x7e28	That brings a tear to my eye...<FFF6>Your hard work will be<FFF6>rewarded one day.<FFF5>
 161	0x407e	pack/talk/SINSI:0x7ec0	Your tear-stained face is cute, but<FFF6>I'm sure your smile is many times more<FFF6>beautiful... Wipe your tears, child.<FFFD>ゅ<FFF5>
 162	0x40bf	pack/talk/SINSI:0x7fa8	What proof do I have that<FFF6>those tears are real!?<FFF6>Your plan is to trick me, isn't it!?<FFF5>
-163	0x40f6	pack/talk/SINSI:0x8058	Women have cried a thousand<FFF6>tears, and I have been<FFF6>taken by each one of them!<FFFB><FFF7>Am I too good at heart...?<FFFD>ょ<FFF5>
+163	0x40f6	pack/talk/SINSI:0x8058	Women have cried a thousand tears,<FFF6>and I have been taken by each one of<FFF6>them! Am I too good at heart...?<FFFD>ょ<FFF5>
 164	0x4139	pack/talk/SINSI:0x8130	M-Miss...? Is something the matter...?<FFF5>
 165	0x415a	pack/talk/SINSI:0x8180	Wh-What is wrong? I don't think<FFF6>this is a very fitting place to cry...<FFFD>ゎ<FFF5>
 166	0x418e	pack/talk/SINSI:0x8218	Hmm... Well, well.<FFF6>Sounds like we should spar.<FFF5>
@@ -208,8 +208,8 @@ id	pos	psp	en
 206	0x49d2	pack/talk/SINSI:0x9aa0	It would be easiest<FFF6>were I to just crush you...<FFF6>But I will stay my hand a bit longer...<FFF5>
 207	0x4a04	pack/talk/SINSI:0x9b50	If you kill a demon who<FFF6>puts up no resistance,<FFF6>your reputation will suffer.<FFFD>ナ<FFF5>
 208	0x4a3d	pack/talk/SINSI:0x9bf0	That's a childish idea. But I<FFF6>understand the need for attention.<FFF5>
-209	0x4a7a	pack/talk/SINSI:0x9c78	You may have a point, but allow<FFF6>me to ask... What was it?<FFFD>ニ<FFF5>
-210	0x4ab2	pack/talk/SINSI:0x9cf0	Did I hurt your feelings?<FFF6>I'm sorry, but your logic is rather<FFF6>flawed. That's not good...<FFF5>
+209	0x4a7a	pack/talk/SINSI:0x9c78	You may have a point,<FFF6>but allow me to ask... What was it?<FFFD>ニ<FFF5>
+210	0x4ab2	pack/talk/SINSI:0x9cf0	Did I hurt your feelings? I'm sorry,<FFF6>but your logic is rather flawed.<FFF6>That's not good...<FFF5>
 211	0x4aef	pack/talk/SINSI:0x9da8	Calm down, young man...<FFF6>You are taking this too far...<FFFD>ヌ<FFF5>
 212	0x4b2c	pack/talk/SINSI:0x9e20	I cannot believe you, yet... nor can I<FFF6>bring myself to hate you. A mystery...<FFF5>
 213	0x4b5f	pack/talk/SINSI:0x9ec0	Hahaha, I will consider that an overly<FFF6>expressive show of your emotions.<FFF5>
@@ -218,7 +218,7 @@ id	pos	psp	en
 216	0x4be7	pack/talk/SINSI:0xa030	Such uncanny trickery...<FFF6>You may be a much stronger<FFF6>opponent than I first imagined...<FFF5>
 217	0x4c1c	pack/talk/SINSI:0xa0e0	Using such uncanny trickery... How<FFF6>alarming! You are far too dangerous!<FFFD>ノ<FFF5>
 218	0x4c59	pack/talk/SINSI:0xa178	Ah, thank goodness!<FFF6>If you can continue to make<FFFB><FFF7>such things appear, perhaps we<FFF6>could ride out this depression.<FFF5>
-219	0x4c8b	pack/talk/SINSI:0xa258	What superb magic!<FFF6>I won't be able to sleep if I<FFFB><FFF7>don't know its mechanisms, so<FFF6>I do hope you'll tell me!<FFFD>ハ<FFF5>
+219	0x4c8b	pack/talk/SINSI:0xa258	What superb magic! I won't be able to<FFF6>sleep if I don't know its mechanisms,<FFF6>so I do hope you'll tell me!<FFFD>ハ<FFF5>
 220	0x4cc3	pack/talk/SINSI:0xa330	No matter the subject,<FFF6>I will learn something new, correct?<FFFB><FFF7>From here on, be a good<FFF6>conversation partner with me!<FFF5>
 221	0x4d08	pack/talk/SINSI:0xa418	Hahaha, I admit,<FFF6>I'm quite interested in<FFF6>what humans have to say.<FFF5>
 222	0x4d35	pack/talk/SINSI:0xa4a0	Are you saying you'd like<FFF6>me to be the listener?<FFFB><FFF7>Well, my reply depends on<FFF6>the weight of your reward.<FFF1><FFF5>
@@ -267,12 +267,12 @@ id	pos	psp	en
 265	0x55de	pack/talk/SINSI:0xbe30	Hahaha! That is good!<FFF6>I could use a stiff drink!<FFF5>
 266	0x5602	pack/talk/SINSI:0xbe98	Honestly, this makes me happy.<FFF6>You are quite a charmer.<FFF5>
 267	0x5628	pack/talk/SINSI:0xbf08	If this is a dream, then...<FFF6>Hmmm... What to do...?<FFF5>
-268	0x564e	pack/talk/SINSI:0xbf70	That is quite enticing, but I<FFF6>think I'd like a little extra.<FFF1><FFF5>
+268	0x564e	pack/talk/SINSI:0xbf70	That is quite enticing,<FFF6>but I think I'd like a little extra.<FFF1><FFF5>
 269	0x5685	pack/talk/SINSI:0xbff0	Will you stop mocking me!?<FFF5>
 270	0x56a3	pack/talk/SINSI:0xc028	Was that an attempt to win me over?<FFF6>I must say, it was not very proper!<FFF5>
 271	0x56d7	pack/talk/SINSI:0xc0b8	You plan to tempt me over to you,<FFF6>is that it?<FFF6>If so, it's not going to work!<FFF1><FFF5>
 272	0x5702	pack/talk/SINSI:0xc158	You never know what humans like you<FFF6>will do if you don't play along...<FFF5>
-273	0x5733	pack/talk/SINSI:0xc1e8	I may be beautiful, but to<FFF6>accept such an invitation...<FFF6>I have a reputation...<FFF5>
+273	0x5733	pack/talk/SINSI:0xc1e8	I may be beautiful,<FFF6>but to accept such an invitation...<FFF6>I have a reputation...<FFF5>
 274	0x5768	pack/talk/SINSI:0xc288	I already have plans.<FFF6>Maybe next time...<FFF5>
 275	0x5793	pack/talk/SINSI:0xc2e0	That is wonderful!<FFF5>
 276	0x57a3	pack/talk/SINSI:0xc308	Hahaha, what a pickle I'm in! I cannot<FFF6>simply decline your offer... Haha,<FFF6>indeed, it's quite a predicament!<FFF5>
@@ -290,13 +290,13 @@ id	pos	psp	en
 288	0x5996	pack/talk/SINSI:0xc8a8	Ahh, you already have my spell card!<FFF6>Not bad!<FFEF>
 289	0x59cc	pack/talk/SINSI:0xc908	Then I shall give you this.<FFEF>
 290	0x59dd	pack/talk/SINSI:0xc940	I see...<FFEF>
-291	0x59ec	pack/talk/SINSI:0xc958	It seems our values are irreconciably<FFF6>different. We'd only be unhappy, so<FFF6>I think we should break up...<FFEF>
+291	0x59ec	pack/talk/SINSI:0xc958	It seems our values are irreconciably<FFF6>different. We'd only be unhappy,<FFF6>so I think we should break up...<FFEF>
 292	0x5a29	pack/talk/SINSI:0xca28	A low-level demon would be more<FFF6>becoming of such low-level humans.<FFF6>You understand that, right?<FFEF>
 293	0x5a64	pack/talk/SINSI:0xcae8	Then at least make use of this!<FFEF>
 294	0x5a7f	pack/talk/SINSI:0xcb28	Then excuse me, if you will.<FFF6>I look forward to meeting again.<FFEF>
 295	0x5aba	pack/talk/SINSI:0xcba8	Here is a token of my gratitude.<FFEF>
 296	0x5ace	pack/talk/SINSI:0xcbf0	If you are done, I'll be on my way!<FFEF>
-297	0x5aeb	pack/talk/SINSI:0xcc38	Then I will give you my spell card, as<FFF6>you have requested. Make me<FFF6>a Persona both gentle and firm.<FFEF>
+297	0x5aeb	pack/talk/SINSI:0xcc38	Then I will give you my spell card,<FFF6>as you have requested. Make me<FFF6>a Persona both gentle and firm.<FFEF>
 298	0x5b28	pack/talk/SINSI:0xcd00	I shall give you this... so... er...<FFF6>Please, just let me go!<FFEF>
 299	0x5b5d	pack/talk/SINSI:0xcd80	If I continue this conversation,<FFF6>my level will drop as well!<FFEF>
 300	0x5b87	pack/talk/SINSI:0xce00	You want this?<FFF6>Very well, take it and be gone!<FFEF>
@@ -305,20 +305,20 @@ id	pos	psp	en
 303	0x5c29	pack/talk/SINSI:0xcfe0	So,<FFF6>I'd like for you to have my spell card!<FFEF>
 304	0x5c56	pack/talk/SINSI:0xd038	Now! Take my spell card!<FFEF>
 305	0x5c7e	pack/talk/SINSI:0xd070	So you see,<FFF6>I have no intention of fighting you.<FFF6>I hold you in high esteem!<FFEF>
-306	0x5cb4	pack/talk/SINSI:0xd108	This isn't much, but it'd be<FFF6>an honor if you'd take it!<FFEF>
+306	0x5cb4	pack/talk/SINSI:0xd108	This isn't much,<FFF6>but it'd be an honor if you'd take it!<FFEF>
 307	0x5cdb	pack/talk/SINSI:0xd178	I will give you my spell card...<FFF6>But please do not concern<FFF6>yourself with me again!<FFEF>
 308	0x5d06	pack/talk/SINSI:0xd220	Please, don't rip the spell card...<FFEF>
 309	0x5d26	pack/talk/SINSI:0xd268	You answered my call... So allow me to<FFF6>ask: what are your intentions?<FFFD>ヒ<FFF5>
 310	0x5d62	pack/talk/SINSI:0xd2f8	So you answered my call...<FFF6>I am conducting a study on<FFF6>humans, you see...<FFFB><FFF7>But, it's quite strange...<FFF6>I don't see what reason you have for<FFF6>coming to such a dangerous place...<FFF5>
 311	0x5dce	pack/talk/SINSI:0xd458	Ah, you've answered my call.<FFF6>I am glad to meet you.<FFFB><FFF7>In any case,<FFF6>would you be so kind as to<FFFB><FFF7>provide some token by which I could<FFF6>commemorate this occasion by?<FFF1><FFF5>
 312	0x5e2b	pack/talk/SINSI:0xd598	For some reason, it irks me to<FFF6>simply look upon your face.<FFF6>Why do you think that is?<FFFD>フ<FFF5>
-313	0x5e5c	pack/talk/SINSI:0xd648	A human has answered my call, and<FFF6>it is a child, no less!<FFFB><FFF7>I would have rather it been<FFF6>a beautiful woman!<FFF5>
+313	0x5e5c	pack/talk/SINSI:0xd648	A human has answered my call,<FFF6>and it is a child, no less!<FFFB><FFF7>I would have rather it been<FFF6>a beautiful woman!<FFF5>
 314	0x5ebb	pack/talk/SINSI:0xd720	I am the guardian here! If you wish to<FFF6>pass, you must pay the toll!<FFF1><FFF5>
 315	0x5ef2	pack/talk/SINSI:0xd7b0	Do you believe that everything you<FFF6>say is automatically correct?<FFFD>ヘ<FFF5>
 316	0x5f26	pack/talk/SINSI:0xd838	Am I going to be killed by a human?<FFF6>Of all the ways to die...<FFFB><FFF7>Hmm? Don't mind me,<FFF6>I was just thinking aloud...<FFF5>
 317	0x5f76	pack/talk/SINSI:0xd918	I am strong! A vision of perfection!<FFF6>I cannot lose... to humans...<FFF6>or at least... I don't think I can...<FFF5>
 318	0x5fb8	pack/talk/SINSI:0xd9f0	I feel as though we've met before!<FFF6>Do you have any idea where?<FFFD>ホ<FFF5>
-319	0x5ff3	pack/talk/SINSI:0xda78	You seem to have your own troubles.<FFF6>Do not lose faith, and<FFF6>continue to persevere.<FFF5>
+319	0x5ff3	pack/talk/SINSI:0xda78	You seem to have your own troubles.<FFF6>Do not lose faith,<FFF6>and continue to persevere.<FFF5>
 320	0x6024	pack/talk/SINSI:0xdb20	I feel good today! Were I a human,<FFF6>I'd offer to go drinking with you!<FFF5>
 321	0x6064	pack/talk/SINSI:0xdbb0	<FFED>So it seems you've been busy<FFF6>tempting demons, and killing<FFF6>them if they don't comply...<FFFB><FFF7>Are you an idler, or a fool?<FFFD>マ<FFF5>
 322	0x60a5	pack/talk/SINSI:0xdca0	<FFED>Have you grown weary of<FFF6>the mundane life you lead?<FFFB><FFF7>...You must be ecstatic that<FFF6>things have come to this!<FFF5>
@@ -356,7 +356,7 @@ id	pos	psp	en
 354	0x67cb	pack/talk/SINSI:0xf0d0	Why did you begin this conversation?<FFF6>I don't understand your attitude.<FFF5>
 355	0x6808	pack/talk/SINSI:0xf160	Then I shall take a life stone.<FFF6>Just one will be sufficient.<FFEF>
 356	0x682a	pack/talk/SINSI:0xf1e0	Ah, how obedient!<FFF5>
-357	0x683b	pack/talk/SINSI:0xf208	A good answer, but if you<FFF6>don't actually have it...<FFF5>
+357	0x683b	pack/talk/SINSI:0xf208	A good answer,<FFF6>but if you don't actually have it...<FFF5>
 358	0x6856	pack/talk/SINSI:0xf270	You don't have a life stone!?<FFF6>This is preposterous!<FFF6>A colossal waste of time!<FFF5>
 359	0x6890	pack/talk/SINSI:0xf310	Is that so...? I suggest you put more<FFF6>value on your life than on a stone!<FFF5>
 360	0x68c5	pack/talk/SINSI:0xf3a8	Is that so...? I suggest you put more<FFF6>value on your life than on a stone!<FFF5>
@@ -367,13 +367,13 @@ id	pos	psp	en
 365	0x699d	pack/talk/SINSI:0xf600	The fairy of the gem must be happy,<FFF6>being so protected by you.<FFF6>I will relent for now...<FFF5>
 366	0x69d9	pack/talk/SINSI:0xf6b0	Then would you please share<FFF6>some of your power with me?<FFF6>...It'll be painless.<FFEF>
 367	0x6a08	pack/talk/SINSI:0xf750	Excuse me, then...<FFF5>
-368	0x6a16	pack/talk/SINSI:0xf778	Your power will sustain my flesh...<FFF6>Nothing is more<FFF6>honorable than that, and yet you...!<FFF5>
+368	0x6a16	pack/talk/SINSI:0xf778	Your power will sustain my flesh...<FFF6>Nothing is more honorable than that,<FFF6>and yet you...!<FFF5>
 369	0x6a4a	pack/talk/SINSI:0xf830	Are you not feeling well?<FFF6>If you plan on surviving in this world,<FFF6>you must attend to your health.<FFF5>
 370	0x6a8b	pack/talk/SINSI:0xf8f8	Is that so...? You can never trust<FFF6>the words of a human, though.<FFF5>
 371	0x6ab9	pack/talk/SINSI:0xf980	I'm nitpicky, you say!? Hahahaha!<FFF6>What an answer! Hahahaha!<FFF5>
 372	0x6ae2	pack/talk/SINSI:0xf9f8	My question is nitpicky, you say!?<FFF6>Do you realize a single mistake can<FFF6>lead to a life or death situation!?<FFF5>
 373	0x6b21	pack/talk/SINSI:0xfad0	You should consider who you<FFF6>are trying to fool before<FFF6>you engage the trick.<FFFB><FFF7>I don't trust a word you say.<FFF5>
-374	0x6b59	pack/talk/SINSI:0xfba8	I won't nod to every word out of<FFF6>your mouth, but I may<FFF6>believe some of them.<FFF5>
+374	0x6b59	pack/talk/SINSI:0xfba8	I won't nod to every<FFF6>word out of your mouth,<FFF6>but I may believe some of them.<FFF5>
 375	0x6b8c	pack/talk/SINSI:0xfc48	Right? There is nothing I do not know.<FFF5>
 376	0x6bb4	pack/talk/SINSI:0xfc98	Right!? You weak humans<FFF6>must be quite jealous!<FFF5>
 377	0x6be6	pack/talk/SINSI:0xfcf8	How tragic! Are your eyes clouded!?<FFF6>Allow me to polish them then!<FFF5>
@@ -391,11 +391,11 @@ id	pos	psp	en
 389	0x6e25	pack/talk/SINSI:0x103c8	I'm nitpicky, you say!? Hahahaha!<FFF6>What an answer! Hahahaha!<FFF5>
 390	0x6e4e	pack/talk/SINSI:0x10440	My question is nitpicky, you say!?<FFF6>Do you realize a single mistake can<FFF6>lead to a life or death situation!?<FFF5>
 391	0x6e8d	pack/talk/SINSI:0x10518	You should consider who you<FFF6>are trying to fool before<FFF6>you engage the trick.<FFFB><FFF7>I don't trust a word you say.<FFF5>
-392	0x6ec5	pack/talk/SINSI:0x105f0	I won't nod to every word out of<FFF6>your mouth, but I may<FFF6>believe some of them.<FFF5>
+392	0x6ec5	pack/talk/SINSI:0x105f0	I won't nod to every<FFF6>word out of your mouth,<FFF6>but I may believe some of them.<FFF5>
 393	0x6ef8	pack/talk/SINSI:0x10690	Right? There is nothing I do not know.<FFF5>
 394	0x6f20	pack/talk/SINSI:0x106e0	What...? You enjoy the loss of life?<FFF6>I cannot fathom how anyone can't<FFF6>understand its precious nature...<FFF5>
 395	0x6f50	pack/talk/SINSI:0x107b0	Oh... Please, spare me a moment!<FFF6>I need time to think...<FFF5>
-396	0x6f7d	pack/talk/SINSI:0x10828	It may not have been<FFF6>your intention, but in the end,<FFFB><FFF7>you tricked me!<FFF6>I cannot forgive you for this!<FFF5>
+396	0x6f7d	pack/talk/SINSI:0x10828	It may not have been your intention,<FFF6>but in the end, you tricked me!<FFF6>I cannot forgive you for this!<FFF5>
 397	0x6fb2	pack/talk/SINSI:0x108f0	Hahaha, I kid! An honest answer<FFF6>would only put me on the spot.<FFF6>Hahahaha!<FFF5>
 398	0x6fe8	pack/talk/SINSI:0x10988	Hahaha, it's just a joke! You must<FFF6>have it hard, doing this and that to<FFF6>try and get on a demon's good side.<FFF5>
 399	0x7022	pack/talk/SINSI:0x10a60	What are you looking for?<FFF6>A warrior to fight by your side?<FFFB><FFF7>Or a circus performer?<FFF6>Now isn't the time to sing!<FFF5>
@@ -408,7 +408,7 @@ id	pos	psp	en
 406	0x71b2	pack/talk/SINSI:0x10f28	I'm nitpicky, you say!? Hahahaha!<FFF6>What an answer! Hahahaha!<FFF5>
 407	0x71db	pack/talk/SINSI:0x10fa0	My question is nitpicky, you say!?<FFF6>Do you realize a single mistake can<FFF6>lead to a life or death situation!?<FFF5>
 408	0x721a	pack/talk/SINSI:0x11078	You should consider who you<FFF6>are trying to fool before<FFF6>you engage the trick.<FFFB><FFF7>I don't trust a word you say.<FFF5>
-409	0x7252	pack/talk/SINSI:0x11150	I won't nod to every word out of<FFF6>your mouth, but I may<FFF6>believe some of them.<FFF5>
+409	0x7252	pack/talk/SINSI:0x11150	I won't nod to every<FFF6>word out of your mouth,<FFF6>but I may believe some of them.<FFF5>
 410	0x7285	pack/talk/SINSI:0x111f0	Right? There is nothing I do not know.<FFF5>
 411	0x72ad	pack/talk/SINSI:0x11240	Right!? You weak humans<FFF6>must be quite jealous!<FFF5>
 412	0x72df	pack/talk/SINSI:0x112a0	How tragic! Are your eyes clouded!?<FFF6>Allow me to polish them then!<FFF5>
@@ -423,7 +423,7 @@ id	pos	psp	en
 421	0x74e2	pack/talk/SINSI:0x117e8	I'm nitpicky, you say!? Hahahaha!<FFF6>What an answer! Hahahaha!<FFF5>
 422	0x750b	pack/talk/SINSI:0x11860	My question is nitpicky, you say!?<FFF6>Do you realize a single mistake can<FFF6>lead to a life or death situation!?<FFF5>
 423	0x754a	pack/talk/SINSI:0x11938	You should consider who you<FFF6>are trying to fool before<FFF6>you engage the trick.<FFFB><FFF7>I don't trust a word you say.<FFF5>
-424	0x7582	pack/talk/SINSI:0x11a10	I won't nod to every word out of<FFF6>your mouth, but I may<FFF6>believe some of them.<FFF5>
+424	0x7582	pack/talk/SINSI:0x11a10	I won't nod to every<FFF6>word out of your mouth,<FFF6>but I may believe some of them.<FFF5>
 425	0x75b5	pack/talk/SINSI:0x11ab0	Right? There is nothing I do not know.<FFF5>
 426	0x75dd	pack/talk/SINSI:0x11b00	Right!? You weak humans<FFF6>must be quite jealous!<FFF5>
 427	0x760f	pack/talk/SINSI:0x11b60	How tragic! Are your eyes clouded!?<FFF6>Allow me to polish them then!<FFF5>
@@ -484,7 +484,7 @@ id	pos	psp	en
 482	0x8176	pack/talk/SINSI:0x13b28	I'm nitpicky, you say!? Hahahaha!<FFF6>What an answer! Hahahaha!<FFF5>
 483	0x819f	pack/talk/SINSI:0x13ba0	My question is boring, you say!?<FFF6>Do you realize a single mistake can<FFF6>lead to a life or death situation!?<FFF5>
 484	0x81de	pack/talk/SINSI:0x13c78	You should consider who you<FFF6>are trying to fool before<FFF6>you engage the trick.<FFFB><FFF7>I don't trust a word you say.<FFF5>
-485	0x8216	pack/talk/SINSI:0x13d50	I won't nod to every word out of<FFF6>your mouth, but I may<FFF6>believe some of them.<FFF5>
+485	0x8216	pack/talk/SINSI:0x13d50	I won't nod to every<FFF6>word out of your mouth,<FFF6>but I may believe some of them.<FFF5>
 486	0x8249	pack/talk/SINSI:0x13df0	Right? There is nothing I do not know.<FFF5>
 487	0x8271	pack/talk/SINSI:0x13e40	Right!? You weak humans<FFF6>must be quite jealous!<FFF5>
 488	0x82a3	pack/talk/SINSI:0x13ea0	How tragic! Are your eyes clouded!?<FFF6>Allow me to polish them then!<FFF5>
@@ -512,7 +512,7 @@ id	pos	psp	en
 510	0x86db	pack/talk/SINSI:0x14ac0	Hahaha,<FFF6>I knew that from the start, Mr. Klutz!<FFF5>
 511	0x8711	pack/talk/SINSI:0x14b20	Really? You should rest a little.<FFF6>Don't strain yourself so much...<FFF5>
 512	0x8744	pack/talk/SINSI:0x14ba8	Yeah! Yeah! Yeahhhh!<FFF5>
-513	0x8761	pack/talk/SINSI:0x14bd8	Are you alright? Breakfast is<FFF6>an important meal in the day, and<FFF6>you shouldn't skip it, you know.<FFF5>
+513	0x8761	pack/talk/SINSI:0x14bd8	Are you alright? Breakfast<FFF6>is an important meal in the day,<FFF6>and you shouldn't skip it, you know.<FFF5>
 514	0x8799	pack/talk/SINSI:0x14ca0	You! I go through the pain of inviting<FFF6>you, and you have the nerve to fall!?<FFF5>
 515	0x87cc	pack/talk/SINSI:0x14d40	Hahaha, you are like a child!<FFF5>
 516	0x87e5	pack/talk/SINSI:0x14d80	Then would you be so kind as to tell<FFF6>me what the meaning of this is!?<FFF6>Hmph, there are no excuses!<FFF5>
@@ -534,7 +534,7 @@ id	pos	psp	en
 532	0x8b22	pack/talk/SINSI:0x15768	I'm nitpicky, you say!? Hahahaha!<FFF6>What an answer! Hahahaha!<FFF5>
 533	0x8b50	pack/talk/SINSI:0x157e0	You think it has no merit!?<FFF6>Do you realize that a single<FFFB><FFF7>mistake could lead to a life or<FFF6>death situation here!?<FFF5>
 534	0x8b8a	pack/talk/SINSI:0x158c0	You should consider who you<FFF6>are trying to fool before<FFF6>you engage the trick.<FFFB><FFF7>I don't trust a word you say.<FFF5>
-535	0x8bc2	pack/talk/SINSI:0x15998	I won't nod to every word out of<FFF6>your mouth, but I may<FFF6>believe some of them.<FFF5>
+535	0x8bc2	pack/talk/SINSI:0x15998	I won't nod to every<FFF6>word out of your mouth,<FFF6>but I may believe some of them.<FFF5>
 536	0x8bf5	pack/talk/SINSI:0x15a38	Right? There is nothing I do not know.<FFF5>
 537	0x8c1d	pack/talk/SINSI:0x15a88	Right!? You weak humans<FFF6>must be quite jealous!<FFF5>
 538	0x8c4f	pack/talk/SINSI:0x15ae8	How tragic! Are your eyes clouded!?<FFF6>Allow me to polish them then!<FFF5>
@@ -545,11 +545,11 @@ id	pos	psp	en
 543	0x8d69	pack/talk/SINSI:0x15e78	I-I am not s-scared!<FFF6>How can I be scared of f-fiction!?<FFF5>
 544	0x8d9c	pack/talk/SINSI:0x15ee8	You've finally realized it!<FFF6>I must say, your low level has cost<FFF6>me an exorbitant amount of time!<FFF5>
 545	0x8dd8	pack/talk/SINSI:0x15fb0	I can sympathize! Our emotions<FFF6>themselves are a mystery.<FFF5>
-546	0x8e0c	pack/talk/SINSI:0x16028	I see, but you<FFF6>should moderate yourself.<FFF6>Curiosity killed the cat, you know.<FFF5>
+546	0x8e0c	pack/talk/SINSI:0x16028	I see,<FFF6>but you should moderate yourself.<FFF6>Curiosity killed the cat, you know.<FFF5>
 547	0x8e39	pack/talk/SINSI:0x160c8	Dreaming?<FFF6>Do you enjoy dreams? Then,<FFFB><FFF7>allow me to show you a nightmare<FFF6>you shall never wake up from!<FFF5>
 548	0x8e6f	pack/talk/SINSI:0x16190	Hmph!<FFF6>You shall be an expert when you<FFF6>can kill a man using only your voice!<FFF5>
 549	0x8eac	pack/talk/SINSI:0x16228	Oh, is that so? How nice.<FFF5>
-550	0x8eca	pack/talk/SINSI:0x16260	I probably would have ripped<FFF6>your throat out if you had<FFFB><FFF7>bragged about your voice, but<FFF6>you are actually quite humble!<FFF5>
+550	0x8eca	pack/talk/SINSI:0x16260	I probably would have ripped<FFF6>your throat out if you had<FFFB><FFF7>bragged about your voice,<FFF6>but you are actually quite humble!<FFF5>
 551	0x8f02	pack/talk/SINSI:0x16350	Hahaha, I kid! An honest answer<FFF6>would only put me on the spot.<FFF6>Hahahaha!<FFF5>
 552	0x8f38	pack/talk/SINSI:0x163e8	Hahaha, it's just a joke! You must<FFF6>have it hard, doing this and that to<FFF6>try and get on a demon's good side.<FFF5>
 553	0x8f72	pack/talk/SINSI:0x164c0	What are you looking for?<FFF6>A warrior to fight by your side?<FFFB><FFF7>Or a circus performer?<FFF6>Now isn't the time to sing!<FFF5>
@@ -567,7 +567,7 @@ id	pos	psp	en
 565	0x91d4	pack/talk/SINSI:0x16c18	You haven't a clue!?<FFF6>That's quite an answer! Hahahaha!<FFF5>
 566	0x9203	pack/talk/SINSI:0x16c88	How irresponsible! Don't you realize<FFF6>the life and death predicament that<FFF6>one mistake can create for you!?<FFF5>
 567	0x9242	pack/talk/SINSI:0x16d60	You should consider who you<FFF6>are trying to fool before<FFF6>you engage the trick.<FFFB><FFF7>I don't trust a word you say.<FFF5>
-568	0x927a	pack/talk/SINSI:0x16e38	I won't nod to every word out of<FFF6>your mouth, but I may<FFF6>believe some of them.<FFF5>
+568	0x927a	pack/talk/SINSI:0x16e38	I won't nod to every<FFF6>word out of your mouth,<FFF6>but I may believe some of them.<FFF5>
 569	0x92ad	pack/talk/SINSI:0x16ed8	Right? There is nothing I do not know.<FFF5>
 570	0x92d5	pack/talk/SINSI:0x16f28	Right!? You weak humans<FFF6>must be quite jealous!<FFF5>
 571	0x9307	pack/talk/SINSI:0x16f88	How tragic! Are your eyes clouded!?<FFF6>Allow me to polish them then!<FFF5>
@@ -582,7 +582,7 @@ id	pos	psp	en
 580	0x94c7	pack/talk/SINSI:0x17450	Is... Is that so... V-Very well... Ugh!<FFF6>No! My body will not move...<FFF5>
 581	0x9505	pack/talk/SINSI:0x174e0	What do you have to fear now?<FFF6>Hahaha! Allow me!<FFF5>
 582	0x9532	pack/talk/SINSI:0x17540	You dare to quit<FFF6>after enticing me to do so!?<FFF6>A gentleman never breaks his word!<FFF5>
-583	0x9569	pack/talk/SINSI:0x175e8	I am no moral philosopher, but<FFF6>you shouldn't do something if<FFF6>your heart isn't in it!<FFF5>
+583	0x9569	pack/talk/SINSI:0x175e8	I am no moral philosopher,<FFF6>but you shouldn't do something if<FFF6>your heart isn't in it!<FFF5>
 584	0x959f	pack/talk/SINSI:0x17698	Hahahahaha! That short temper of<FFF6>yours is proof of your foolishness!<FFF5>
 585	0x95ce	pack/talk/SINSI:0x17728	Oh be quiet! I've been known to eat<FFF6>conceited children head first!<FFF5>
 586	0x9600	pack/talk/SINSI:0x177b0	You may think I am but an old man,<FFF6>but!<FFF6>You should hear what I have to say!<FFFB><FFF7>Those who are willing to-sell<FFF6>their souls to achieve their desires...<FFF6>They're a dime a dozen!<FFF5>
@@ -591,7 +591,7 @@ id	pos	psp	en
 589	0x96dc	pack/talk/SINSI:0x17a40	Ahh, I knew it...<FFF6>Your smile is beautiful.<FFF6>Much moreso than a banshee's!<FFF5>
 590	0x9710	pack/talk/SINSI:0x17ad8	Ahh, just as I had imagined...<FFF6>Your smile could lead me to Eden!<FFF5>
 591	0x9751	pack/talk/SINSI:0x17b60	I... I am gross!? M-Me... gross...<FFF6>Gross!? Gross... Gross...<FFF5>
-592	0x9796	pack/talk/SINSI:0x17be0	So you agree...<FFF6>I have failed as a gentleman, but<FFF6>it is better than being malicious...<FFF5>
+592	0x9796	pack/talk/SINSI:0x17be0	So you agree...<FFF6>I have failed as a gentleman,<FFF6>but it is better than being malicious...<FFF5>
 593	0x97ce	pack/talk/SINSI:0x17c90	You don't understand!<FFF6>It is because of women like<FFF6>you that my troubles never cease!<FFF5>
 594	0x9802	pack/talk/SINSI:0x17d38	Well... It is not something that can<FFF6>be settled with a smile... Ha...<FFF6>You are a unique young lady...<FFF5>
 595	0x983b	pack/talk/SINSI:0x17e08	I cannot undersatnd you if<FFF6>you're going to sit here in tears!<FFF6>It is best to ignore women like this.<FFF5>
@@ -616,7 +616,7 @@ id	pos	psp	en
 614	0x9bca	pack/talk/SINSI:0x18858	I'm nitpicky, you say!? Hahahaha!<FFF6>What an answer! Hahahaha!<FFF5>
 615	0x9bf3	pack/talk/SINSI:0x188d0	My question is nitpicky, you say!?<FFF6>Do you realize a single mistake can<FFF6>lead to a life or death situation!?<FFF5>
 616	0x9c32	pack/talk/SINSI:0x189a8	You should consider who you<FFF6>are trying to fool before<FFF6>you engage the trick.<FFFB><FFF7>I don't trust a word you say.<FFF5>
-617	0x9c6a	pack/talk/SINSI:0x18a80	I won't nod to every word out of<FFF6>your mouth, but I may<FFF6>believe some of them.<FFF5>
+617	0x9c6a	pack/talk/SINSI:0x18a80	I won't nod to every<FFF6>word out of your mouth,<FFF6>but I may believe some of them.<FFF5>
 618	0x9c9d	pack/talk/SINSI:0x18b20	Right? There is nothing I do not know.<FFF5>
 619	0x9cc5	pack/talk/SINSI:0x18b70	Right!? You weak humans<FFF6>must be quite jealous!<FFF5>
 620	0x9cf7	pack/talk/SINSI:0x18bd0	How tragic! Are your eyes clouded!?<FFF6>Allow me to polish them then!<FFF5>
@@ -659,7 +659,7 @@ id	pos	psp	en
 657	0xa3c8	pack/talk/SINSI:0x19e98	Oh, you cannot hear? Then I shall<FFF6>have you answer with your body!<FFF5>
 658	0xa3ee	pack/talk/SINSI:0x19f20	*sigh* I cannot comprehend you!<FFF6>Are you a dimwit or a genius...?<FFF5>
 659	0xa42a	pack/talk/SINSI:0x19fa8	*sigh* I cannot comprehend you.<FFF6>Humans are a strange species...<FFF5>
-660	0xa464	pack/talk/SINSI:0x1a028	I have seen the magic of<FFF6>Dr. Faustus, and you are equals!<FFF5>
+660	0xa464	pack/talk/SINSI:0x1a028	I have seen the magic of Dr. Faustus,<FFF6>and you are equals!<FFF5>
 661	0xa49e	pack/talk/SINSI:0x1a0a0	Have you ever seen the sorcery of<FFF6>Dr. Faustus? Or Merlin?<FFF6>Or perhaps Crowley?<FFFB><FFF7>I assume the answer is no! Then do<FFF6>not presume greatness until you<FFF6>have seen the greats!<FFF5>
 662	0xa518	pack/talk/SINSI:0x1a1f0	I enjoy the fact that you do<FFF6>not become oddly modest.<FFFB><FFF7>If I travel with you,<FFF6>my days will be anything but boring.<FFF5>
 663	0xa557	pack/talk/SINSI:0x1a2d8	Hmmmmm... What fool enjoys<FFF6>this danger being out in the world!?<FFF5>
@@ -669,8 +669,8 @@ id	pos	psp	en
 667	0xa638	pack/talk/SINSI:0x1a508	Well if that's how you'd put it, then...<FFF6>die!...Er... I lied. Please,<FFF6>just say you'll tell me someday!<FFF5>
 668	0xa66d	pack/talk/SINSI:0x1a5d8	N-No... You wish to deprive<FFF6>me of sleep that much?<FFF5>
 669	0xa68b	pack/talk/SINSI:0x1a640	That is a noble objective! I shall<FFF6>cheer you on from the sidelines.<FFF5>
-670	0xa6b7	pack/talk/SINSI:0x1a6c8	So that is your answer...<FFF6>I wonder which is faster: that, or<FFF6>human genocide!<FFF5>
-671	0xa6ed	pack/talk/SINSI:0x1a768	I understand gathering gems, but<FFF6>you wish to be a hero in<FFF6>this day and age?<FFFB><FFF7>I am disappointed in you... Go have<FFF6>a sandwich and play with your dolls.<FFF5>
+670	0xa6b7	pack/talk/SINSI:0x1a6c8	So that is your answer...<FFF6>I wonder which is faster:<FFF6>that, or human genocide!<FFF5>
+671	0xa6ed	pack/talk/SINSI:0x1a768	I understand gathering gems,<FFF6>but you wish to be a hero in<FFF6>this day and age?<FFFB><FFF7>I am disappointed in you... Go have<FFF6>a sandwich and play with your dolls.<FFF5>
 672	0xa74d	pack/talk/SINSI:0x1a898	No, that's not it! I simply hate you!<FFF5>
 673	0xa779	pack/talk/SINSI:0x1a8e8	Hmm... I'd rather not admit it, but...<FFF6>perhaps it's true...<FFF5>
 674	0xa7a2	pack/talk/SINSI:0x1a960	That is incorrect! Nothing is more<FFF6>irksome than a silly answer<FFF6>delivered with a straight face!<FFF5>

@@ -19,7 +19,10 @@
 ;;     StatusPersonaNames and the fusion draw helper's two write pairs:
 ;;     every name is persona_name_copy(_at)'d straight into the name cells
 ;;     and written back in place with count 16, so the full name shows and
-;;     both texts render at their own widths;
+;;     both texts render at their own widths. Each pair also reloads the
+;;     arcana base before its arcana row, because CellsWriteRow clobbers a0
+;;     (retail's reload was load-bearing); the label index is kind*10
+;;     against ADV_KIND_LABELS-10 to keep the pair in retail's span;
 ;;   * passes bit 7 of the writer's page argument on both rows, so the
 ;;     writer maps each retail cell code to the regular VWF Latin cell the
 ;;     text renderer uses. Without it the bar kept the retail atlas with
@@ -248,24 +251,30 @@ status_names_end:
 .area 0x4C
 
     move    a0, sp                      ; the frame's free 0x00..0x0F quad: the scratch
-    jal     persona_name_copy_at        ; the def's own name field, a1 below
-    addiu   a1, s3, 8                   ; (delay)
+    jal     persona_name_copy_at        ; the def's own name field, v1 below
+    addiu   v1, s3, 8                   ; (delay) persona_name_copy_at reads v1
     lui     a0, 0x800B
     addiu   a0, a0, 0x2108              ; ADV_BAR_NAME_CELLS
     ori     a2, zero, 0x80              ; page 0 + bit 7: the VWF Latin face
     ori     a3, zero, 16
     jal     ADV_CELLS_ROW
     move    a1, sp                      ; (delay) the scratch
+    ;; The arcana, at the retail label table. The row writer clobbers a0
+    ;; (its destination is t0; a0 becomes the glyph column), so retail's
+    ;; reload of the arcana base is load-bearing and this rewrite must set
+    ;; a0 again. The index is kind*10 against ADV_KIND_LABELS-10, which is
+    ;; what (kind-1)*10 against the table is - and the shorter form keeps
+    ;; the whole pair inside the retail span.
     lbu     v0, 0x14(s3)                ; kind
     ori     a3, zero, 10
-    addiu   v0, v0, -1
     sll     a1, v0, 2
     addu    a1, a1, v0
-    sll     a1, a1, 1
+    sll     a1, a1, 1                   ; kind*10
     lui     v0, 0x800B
-    addiu   v0, v0, 0x24A4              ; ADV_KIND_LABELS
+    addiu   v0, v0, 0x249A              ; ADV_KIND_LABELS - 10
+    addu    a1, a1, v0                  ; (kind-1)*10 + ADV_KIND_LABELS
     jal     ADV_CELLS_ROW               ; a2 = 0x80 survives the row writer
-    addu    a1, a1, v0                  ; (delay)
+    addiu   a0, v0, -0x3EA              ; (delay) ADV_BAR_CELLS = v0 - 0x3EA
 
 .endarea
 
@@ -274,23 +283,26 @@ status_names_end:
 .area 0x4C
 
     move    a0, sp                      ; the frame's free quad: the scratch
-    jal     persona_name_copy_at        ; the built record's name field, a1 below
-    addiu   a1, s4, 0x19                ; (delay)
+    jal     persona_name_copy_at        ; the built record's name field, v1 below
+    addiu   v1, s4, 0x19                ; (delay) persona_name_copy_at reads v1
     lui     a0, 0x800B
     addiu   a0, a0, 0x2108              ; ADV_BAR_NAME_CELLS
     ori     a2, zero, 0x80              ; page 0 + bit 7: the VWF Latin face
     ori     a3, zero, 16
     jal     ADV_CELLS_ROW
     move    a1, sp                      ; (delay) the scratch
+    ;; The arcana base must be reloaded after the name write: the row
+    ;; writer clobbers a0. kind*10 against ADV_KIND_LABELS-10 keeps the
+    ;; pair inside the retail span (see the def path above).
     lbu     v0, 0x25(s4)                ; kind
     ori     a3, zero, 10
-    addiu   v0, v0, -1
     sll     a1, v0, 2
     addu    a1, a1, v0
-    sll     a1, a1, 1
+    sll     a1, a1, 1                   ; kind*10
     lui     v0, 0x800B
-    addiu   v0, v0, 0x24A4              ; ADV_KIND_LABELS
+    addiu   v0, v0, 0x249A              ; ADV_KIND_LABELS - 10
+    addu    a1, a1, v0                  ; (kind-1)*10 + ADV_KIND_LABELS
     jal     ADV_CELLS_ROW               ; a2 = 0x80 survives the row writer
-    addu    a1, a1, v0                  ; (delay)
+    addiu   a0, v0, -0x3EA              ; (delay) ADV_BAR_CELLS = v0 - 0x3EA
 
 .endarea

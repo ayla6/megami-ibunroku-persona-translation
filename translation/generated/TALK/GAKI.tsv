@@ -90,7 +90,7 @@ id	pos	psp	en
 88	0x2e34	pack/talk/GAKI:0x4a50	Gyahahaha! Gyahahaha! Bring it on!<FFF5>
 89	0x2e5a	pack/talk/GAKI:0x4a98	Gah! You must be smart, girl!<FFF6>I think I'm fallin' for ya!<FFF5>
 90	0x2e83	pack/talk/GAKI:0x4b10	What was that, lameass!? You think<FFF6>you're betta than a preta!?<FFF6>Quit tryin' to be so mature!<FFF5>
-91	0x2eb5	pack/talk/GAKI:0x4bc8	I've snapped out of it, and<FFF6>I owe it all to you, sister!<FFF6>Gyahahaha! Gyahahaha!<FFF5>
+91	0x2eb5	pack/talk/GAKI:0x4bc8	I've snapped out of it,<FFF6>and I owe it all to you, sister!<FFF6>Gyahahaha! Gyahahaha!<FFF5>
 92	0x2ee5	pack/talk/GAKI:0x4c68	What was that, lameass!?<FFF6>I'm a preta! I do what I want!<FFF5>
 93	0x2f14	pack/talk/GAKI:0x4cd8	Damn, no need to be so harsh...<FFF5>
 94	0x2f36	pack/talk/GAKI:0x4d18	Gyahahaha! Gyahahaha! I'm a preta!<FFF6>Nobody tells me what to do!<FFF5>
@@ -109,7 +109,7 @@ id	pos	psp	en
 107	0x30ee	pack/talk/GAKI:0x5280	Are you a magician, bro?<FFF6>Show me the trick next time!<FFF5>
 108	0x3118	pack/talk/GAKI:0x52f0	Tricks like that are way outta<FFF6>style... You're lame, bro...<FFF5>
 109	0x313d	pack/talk/GAKI:0x5368	Gyahahaha! Gyahahaha!<FFF6>Magic tricks give me a good laugh!<FFF5>
-110	0x316b	pack/talk/GAKI:0x53e0	Gah! I don't really get it, but it<FFF6>was interesting anyway!<FFF5>
+110	0x316b	pack/talk/GAKI:0x53e0	Gah! I don't really get it,<FFF6>but it was interesting anyway!<FFF5>
 111	0x318f	pack/talk/GAKI:0x5458	Gah! Humans tell the most interesting<FFF6>stories! But you know what makes 'em<FFF6>better? When you give me stuff!<FFF1><FFF5>
 112	0x31df	pack/talk/GAKI:0x5530	What was that, lameass!?<FFF6>So what? Shut the hell up!<FFF5>
 113	0x320c	pack/talk/GAKI:0x5598	What was that, lameass!? I don't give<FFF6>a shit about stories like that!<FFF6>Give me somethin', now!<FFF1><FFF5>
@@ -164,7 +164,7 @@ id	pos	psp	en
 162	0x3a31	pack/talk/GAKI:0x6d28	Wait a sec...<FFF6>Are you weaker than me!?<FFF6>I can't give my card to a weakling!<FFEF>
 163	0x3a63	pack/talk/GAKI:0x6dc0	I'll give you this...<FFEF>
 164	0x3a71	pack/talk/GAKI:0x6df0	...Later!<FFEF>
-165	0x3a7a	pack/talk/GAKI:0x6e08	You're such a cool<FFF6>guy, so take this too!<FFEF>
+165	0x3a7a	pack/talk/GAKI:0x6e08	You're such a cool guy,<FFF6>so take this too!<FFEF>
 166	0x3a9d	pack/talk/GAKI:0x6e60	You don't need my card?<FFF6>Then I'm outta here!<FFEF>
 167	0x3abe	pack/talk/GAKI:0x6ec0	This is my card! Isn't it the best card<FFF6>ever!? You owe me big time! Thank me!<FFEF>
 168	0x3aef	pack/talk/GAKI:0x6f60	I'll give ya this, so you<FFF6>have to let me go!<FFEF>
@@ -186,9 +186,9 @@ id	pos	psp	en
 184	0x3dc4	pack/talk/GAKI:0x78c0	Lemme make myself clear... I ain't that<FFF6>tasty... alright? So no fighting...<FFF5>
 185	0x3dfd	pack/talk/GAKI:0x7958	Gyahahaha! Gyahahaha! I'm awesome!<FFF6>I'm so frickin' happy right now!<FFF5>
 186	0x3e2f	pack/talk/GAKI:0x79e0	Gyahahaha! Gyahahaha!<FFF6>I wanna play with you, bro!<FFF6>Hurry up and do somethin'!<FFF5>
-187	0x3e66	pack/talk/GAKI:0x7a80	<FFEE>Oh man, humans! I like killin' 'em, but<FFF6>might as well negotiate first...<FFF5>
+187	0x3e66	pack/talk/GAKI:0x7a80	<FFEE>Oh man, humans! I like killin' 'em,<FFF6>but might as well negotiate first...<FFF5>
 188	0x3e95	pack/talk/GAKI:0x7b18	<FFEE>You're a human, right!?<FFF6>When I run into humans,<FFF6>I always have them give me somethin'!<FFF1><FFF5>
-189	0x3eca	pack/talk/GAKI:0x7bc8	<FFEC>Words are better than fightin', so<FFF6>let's start with a negotiation...<FFF5>
+189	0x3eca	pack/talk/GAKI:0x7bc8	<FFEC>Words are better than fightin',<FFF6>so let's start with a negotiation...<FFF5>
 190	0x3eea	pack/talk/GAKI:0x7c58	<FFEE>I thought I felt somethin'<FFF6>catch my attention...<FFF6>Figured I'd check it out.<FFF5>
 191	0x3f1c	pack/talk/GAKI:0x7cf0	<FFEE>I love humans! Let's hurry up and<FFF6>get this negotiation started!<FFF5>
 192	0x3f41	pack/talk/GAKI:0x7d78	<FFEB>I ain't a social demon, but I feel like<FFF6>negotiating! First... gimme somethin'!<FFF1><FFF5>

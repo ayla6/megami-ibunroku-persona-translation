@@ -47,7 +47,7 @@ id	pos	psp	en
 45	0x28f2	pack/talk/KUTISAKE:0x3a70	There's no reason to yell at me!<FFF6>This is why I hate stupid brats!<FFF5>
 46	0x291a	pack/talk/KUTISAKE:0x3af8	...My time has already passed... I<FFF6>wonder if I should just go into hiding.<FFF5>
 47	0x2956	pack/talk/KUTISAKE:0x3b90	I don't really like kids.<FFF6>They can be such smart-alecks...<FFFB><FFF7>Will you really grow into a handsome<FFF6>man someday? Mmm.<FFF5>
-48	0x299c	pack/talk/KUTISAKE:0x3c78	You pretend to be mature, but you've<FFF6>got a long way to go when it<FFF6>comes to dealing with women!<FFF5>
+48	0x299c	pack/talk/KUTISAKE:0x3c78	You pretend to be mature,<FFF6>but you've got a long way to go when<FFF6>it comes to dealing with women!<FFF5>
 49	0x29cd	pack/talk/KUTISAKE:0x3d38	Oh, stop... you're embarrassing me...!<FFF5>
 50	0x29eb	pack/talk/KUTISAKE:0x3d88	Is that the takenoko?<FFF6>I was active in the 70s... I don't<FFF6>know much about modern dances.<FFF5>
 51	0x2a25	pack/talk/KUTISAKE:0x3e38	Hmph! Your moves are best kept to<FFF6>yourself, if you ask me. Come<FFF6>back when you've had more practice!<FFF5>
@@ -156,7 +156,7 @@ id	pos	psp	en
 154	0x3ebf	pack/talk/KUTISAKE:0x7d80	You really are a talented child.<FFF6>I'm having lots of fun...<FFFB><FFF7>...And I'd have even more if you<FFF6>gave me something, you know?<FFF1><FFF5>
 155	0x3f0e	pack/talk/KUTISAKE:0x7e78	Hahah...<FFF6>Is it all right if I leave my mask on?<FFF5>
 156	0x3f30	pack/talk/KUTISAKE:0x7ed8	You're just a kid... But who knows?<FFF6>It might be a good way to kill time.<FFFB><FFF7>Alright, I'll hang around. But you'd<FFF6>better give me something in return!<FFF1><FFF5>
-157	0x3f8b	pack/talk/KUTISAKE:0x8000	Are you trying to hit on me?<FFF6>That's fine, but I like<FFF6>someone who's generous!<FFF1><FFF5>
+157	0x3f8b	pack/talk/KUTISAKE:0x8000	Are you trying to hit on me?<FFF6>That's fine,<FFF6>but I like someone who's generous!<FFF1><FFF5>
 158	0x3fc8	pack/talk/KUTISAKE:0x80a0	Are you making fun of me!?<FFF6>I can't stand that in brats like you!<FFF5>
 159	0x3fed	pack/talk/KUTISAKE:0x8128	I'm not stupid! You think I'd betray<FFF6>my sisters just for that!?<FFFB><FFF7>Honestly, what a brat!<FFF6>You've made me mad... What are<FFF6>you going to give me to fix it!?<FFF1><FFF5>
 160	0x4048	pack/talk/KUTISAKE:0x8260	What're you doing? Wait... you're not<FFF6>trying to seduce me, are you!?<FFFB><FFF7>If the other demons find out<FFF6>you seduced me, they'll mob you!<FFF6>I'll keep quiet, though... for a price...<FFF1><FFF5>
@@ -233,7 +233,7 @@ id	pos	psp	en
 231	0x4e4e	pack/talk/KUTISAKE:0xac90	What's the use<FFF6>hoarding all that money?<FFF6>It'll all be mine eventually anyway!<FFF5>
 232	0x4e84	pack/talk/KUTISAKE:0xad30	...If you didn't want to negotiate,<FFF6>you should've said so at the start...<FFF5>
 233	0x4eb6	pack/talk/KUTISAKE:0xadc8	I want a life stone...<FFEF>
-234	0x4ec8	pack/talk/KUTISAKE:0xadf8	It's not as good as candy, but<FFF6>this stone is still delicious...<FFF5>
+234	0x4ec8	pack/talk/KUTISAKE:0xadf8	It's not as good as candy,<FFF6>but this stone is still delicious...<FFF5>
 235	0x4efb	pack/talk/KUTISAKE:0xae78	What!? It's just common sense to<FFF6>carry life stones with you!<FFF5>
 236	0x4f1d	pack/talk/KUTISAKE:0xaef8	Wait,<FFF6>you were negotiating with me and<FFF6>you didn't have ANY life stones!?<FFFB><FFF7>Oooh, you make me soooo mad!<FFF5>
 237	0x4f4f	pack/talk/KUTISAKE:0xafc8	What did you say!? Giving you a life<FFF6>stone would just be wasting it!<FFF5>
@@ -246,5 +246,5 @@ id	pos	psp	en
 244	0x505d	pack/talk/KUTISAKE:0xb328	I want your life... Even just a little<FFF6>bit will be fine. C'mon... just a sip?<FFEF>
 245	0x5095	pack/talk/KUTISAKE:0xb3c8	Ahahah...<FFF6>Your vital energy is delicious!<FFF5>
 246	0x50b9	pack/talk/KUTISAKE:0xb420	Oh my... Are you scared of me?<FFF6>I'm even scarier to children<FFF6>who don't listen!<FFF5>
-247	0x50eb	pack/talk/KUTISAKE:0xb4c0	No way... I know I have a large<FFF6>mouth, but that's so cruel!<FFF6>You're terrible!<FFF5>
-248	0x5117	pack/talk/KUTISAKE:0xb560	No way... I know I have a large<FFF6>mouth, but that's so cruel!<FFF6>You're terrible!<FFF5>
+247	0x50eb	pack/talk/KUTISAKE:0xb4c0	No way... I know I have a large mouth,<FFF6>but that's so cruel! You're terrible!<FFF5>
+248	0x5117	pack/talk/KUTISAKE:0xb560	No way... I know I have a large mouth,<FFF6>but that's so cruel! You're terrible!<FFF5>

@@ -57,7 +57,7 @@ id	pos	psp	en
 55	0x3705	pack/talk/ETC:0x54f0	Hmph, enough jesting.<FFF6>My son, I ask that you lend<FFF6>this human your power.<FFFB><FFF7><FFEB> As you wish, father.<FFF6>Son of man, take my card.<FFEF>
 56	0x377f	pack/talk/ETC:0x5608	Still only one tusk, my son?<FFF6>You should just break it off...<FFFB><FFF7><FFEC> Very well...<FFF6>Mother will be sad, but I shall<FFF6>break my tusk per your command...<FFEF>
 57	0x37fe	pack/talk/ETC:0x5748	Hmph, enough jesting.<FFF6>My son, I ask that you lend<FFF6>this human your power.<FFFB><FFF7><FFEB> Excuse my insolence, father, but I am<FFF6>a god. I cannot serve under man...<FFEF>
-58	0x3883	pack/talk/ETC:0x5890	Fool... My son may be disfigured, but<FFF6>I assure you, he is strong.<FFFB><FFF7><FFED> Father, it is fine.<FFF6>Such are the limits of humanity.<FFFB><FFF7>I must excuse myself.<FFEF>
+58	0x3883	pack/talk/ETC:0x5890	Fool... My son may be disfigured,<FFF6>but I assure you, he is strong.<FFFB><FFF7><FFED> Father, it is fine.<FFF6>Such are the limits of humanity.<FFFB><FFF7>I must excuse myself.<FFEF>
 59	0x3909	pack/talk/ETC:0x59f0	<FFEC> Father... You must make more Amrita<FFF6>soon, or we shall all be parched...<FFFB><FFF7>I know!<FFF6>Go and finish your composition!<FFEF>
 60	0x3983	pack/talk/ETC:0x5af8	Bones of the underworld! I am<FFF6>the great and supreme destroyer!<FFFB><FFF7>Surely you have not forgotten me?<FFFB><FFF7><FFED> Of course not!<FFFB><FFF7>But I'm surprised to see you of all<FFF6>deities fooling around with humans.<FFEF>
 61	0x3a08	pack/talk/ETC:0x5cb0	Do not concern yourself with that.<FFFB><FFF7>Due to unforseen circumstances,<FFF6>I am merely lending<FFF6>my power to this human.<FFFB><FFF7>You! Aid us as well!<FFFB><FFF7><FFEC> Your wish is my command.<FFF6>...Human, take my card.<FFEF>
@@ -72,9 +72,9 @@ id	pos	psp	en
 70	0x3e68	pack/talk/ETC:0x68a8	<FFEC> No way... Am I dreaming?<FFF6>I can't believe this! Ughhhh!<FFEF>
 71	0x3ea6	pack/talk/ETC:0x6938	<FFEB> Yay! See ya later then,<FFF6>big me and Mr. Human!<FFEF>
 72	0x3edb	pack/talk/ETC:0x69a8	AWOOOOOO! ME YOUR BROTHER!<FFF6>YOU DOING WELL?<FFFB><FFF7><FFEB> AWOOOO! ME FINE. BUT BROTHER,<FFF6>WHAT ABOUT GUARDING HADES?<FFEF>
-73	0x3f4c	pack/talk/ETC:0x6aa0	ME TAKE VACATION... BUT ENOUGH OF<FFF6>THAT. CAN YOU LEND POWER TO<FFF6>THIS HUMAN?<FFFB><FFF7><FFEE> HMMM... BROTHER'S REQUEST. ME NOT<FFF6>ABLE TO DECLINE. HUMAN, TAKE CARD.<FFEF>
+73	0x3f4c	pack/talk/ETC:0x6aa0	ME TAKE VACATION...<FFF6>BUT ENOUGH OF THAT. CAN<FFF6>YOU LEND POWER TO THIS HUMAN?<FFFB><FFF7><FFEE> HMMM... BROTHER'S REQUEST. ME NOT<FFF6>ABLE TO DECLINE. HUMAN, TAKE CARD.<FFEF>
 74	0x3fb9	pack/talk/ETC:0x6be8	AWOOOOOO! ME YOUR BROTHER!<FFF6>YOU DOING WELL?<FFFB><FFF7><FFEB> AWOOOO! ME FINE. BUT BROTHER,<FFF6>WHAT ABOUT GUARDING HADES?<FFEF>
-75	0x402a	pack/talk/ETC:0x6ce0	ME TAKE VACATION... BUT ENOUGH OF<FFF6>THAT. CAN YOU LEND POWER TO<FFF6>THIS HUMAN?<FFFB><FFF7><FFEE> HRRMMM... HE LOOK TOO WEAK. <FFED>ME<FFF6>GO BACK TO WORK. YOU SHOULD TOO.<FFEF>
+75	0x402a	pack/talk/ETC:0x6ce0	ME TAKE VACATION...<FFF6>BUT ENOUGH OF THAT. CAN<FFF6>YOU LEND POWER TO THIS HUMAN?<FFFB><FFF7><FFEE> HRRMMM... HE LOOK TOO WEAK. <FFED>ME<FFF6>GO BACK TO WORK. YOU SHOULD TOO.<FFEF>
 76	0x4097	pack/talk/ETC:0x6e20	<FFED> GAAAAAH! THIS HUMAN...<FFF6>DUMB, BROTHER!<FFF6>YOU SHOULD GO BACK TO WORK!<FFEF>
 77	0x40d7	pack/talk/ETC:0x6ec0	<FFEB> THIS FINE?<FFF6>THEN ME RETURN TO HADES.<FFFB><FFF7>BROTHER, YOU COME TOO.<FFFB><FFF7>NO. ME HAVE RESPONSIBILITY.<FFF6>YOU GO AHEAD.<FFFB><FFF7>RED CATTLE WAITING FOR YOU.<FFEF>
 78	0x4155	pack/talk/ETC:0x7018	Holy smokes! You're still alive?<FFF6>I thought you up and croaked.<FFFB><FFF7><FFEB> Whatchya talkin' 'bout, fool?<FFF6>I'm still alive and kickin', obviously!<FFEF>
@@ -84,9 +84,9 @@ id	pos	psp	en
 82	0x4343	pack/talk/ETC:0x7568	<FFED> Whaddaya mean you<FFF6>don't need my card!?<FFFB><FFF7><FFED> And on top of that,<FFF6>yer an ingrate for rejectin' my offer!<FFEF>
 83	0x43af	pack/talk/ETC:0x7660	It's just an evil whim. I know it.<FFFB><FFF7><FFED> It don't matter! I'm going home!<FFEF>
 84	0x4415	pack/talk/ETC:0x7718	<FFEE> When ya make me a Persona,<FFF6>gimme back my youth, m'kay?<FFF6>I'll be leavin' now.<FFEF>
-85	0x4452	pack/talk/ETC:0x77c8	Hey, what the hell? YOU'RE my son?<FFF6>Is this some kinda joke?<FFFB><FFF7>How do all my kids end up as snakes,<FFF6>horses, or wolves, man?<FFFB><FFF7><FFED> GAAHHH! THE GODS BOUND ME, AND<FFF6>EVEN STILL, FATHER IGNORES ME!<FFF6>HOW CRUEL!<FFEF>
+85	0x4452	pack/talk/ETC:0x77c8	Hey, what the hell? YOU'RE my son?<FFF6>Is this some kinda joke?<FFFB><FFF7>How do all my kids end up as snakes,<FFF6>horses, or wolves, man?<FFFB><FFF7><FFED> GAAHHH! THE GODS BOUND ME,<FFF6>AND EVEN STILL,<FFF6>FATHER IGNORES ME! HOW CRUEL!<FFEF>
 86	0x44db	pack/talk/ETC:0x7980	Uhh... Let's let bygones<FFF6>be bygones, shall we?<FFFB><FFF7>So! You've still got some cards left,<FFF6>right? Wanna give one to this human?<FFED><FFFB><FFF7>GRRR... IF YOU WEREN'T DAD, ME EAT<FFF6>YOU WHOLE!...HUMAN, TAKE CARD!<FFEF>
-87	0x455b	pack/talk/ETC:0x7b28	Hey, what the hell? YOU'RE my son?<FFF6>Is this some kinda joke?<FFFB><FFF7>How do all my kids end up as snakes,<FFF6>horses, or wolves, man?<FFFB><FFF7><FFED> GAAHHH! THE GODS BOUND ME, AND<FFF6>EVEN STILL, FATHER IGNORES ME!<FFF6>HOW CRUEL!<FFEF>
+87	0x455b	pack/talk/ETC:0x7b28	Hey, what the hell? YOU'RE my son?<FFF6>Is this some kinda joke?<FFFB><FFF7>How do all my kids end up as snakes,<FFF6>horses, or wolves, man?<FFFB><FFF7><FFED> GAAHHH! THE GODS BOUND ME,<FFF6>AND EVEN STILL,<FFF6>FATHER IGNORES ME! HOW CRUEL!<FFEF>
 88	0x45e2	pack/talk/ETC:0x7ce0	Uhh... Let's let bygones<FFF6>be bygones, shall we?<FFFB><FFF7>So! You've still got some cards left,<FFF6>right? Wanna give one to this human?<FFFB><FFF7><FFED> GAAAAAAH! ME NO WANT TO!<FFEF>
 89	0x4641	pack/talk/ETC:0x7e38	What's your deal, human?<FFF6>You don't want the world's<FFF6>strongest wolf here with ya?<FFFB><FFF7><FFEE> HMMM... NEXT TIME WE MEET,<FFF6>ME EAT YOU WHOLE.<FFEF>
 90	0x46b5	pack/talk/ETC:0x7f60	Alright, thanks. We're done with<FFF6>you now, so scamper along.<FFFB><FFF7><FFED> FATHER... ME EAT YOU SOMEDAY...<FFEF>
@@ -114,17 +114,17 @@ id	pos	psp	en
 112	0x5085	pack/talk/ETC:0x98d8	<FFED> GAAAAAAAH! ME HAD MANY<FFF6>RUN-INS WITH YOUR CHILDREN.<FFFB><FFF7>NOW IS THE TIME TO RETURN<FFF6>THE FAVOR. ME DEVOUR YOUR SOUL!<FFEF>
 113	0x50fd	pack/talk/ETC:0x99e8	na It is unpleasant to be in<FFF6>the presence of a spider-woman.<FFF6>Begone!<FFFB><FFF7><FFEC>...You're the one who did this to me.<FFF6>Don't you have anything else to say?<FFEF>
 114	0x517e	pack/talk/ETC:0x9b38	na Your words fall on deaf ears. You<FFF6>shall spin thread for all eternity!<FFFB><FFF7><FFED> You're just mad because<FFF6>I'm better than you!<FFF6>You call yourself a goddess!?<FFEF>
-115	0x5203	pack/talk/ETC:0x9c90	Cherub... The garden of Eden<FFF6>is safe, I presume?<FFFB><FFF7>We guard the gate from the tree of<FFF6>life. Infiltration would be unthinkable.<FFEF>
+115	0x5203	pack/talk/ETC:0x9c90	Cherub... The garden of<FFF6>Eden is safe, I presume?<FFFB><FFF7>We guard the gate from the tree of<FFF6>life. Infiltration would be unthinkable.<FFEF>
 116	0x5280	pack/talk/ETC:0x9db0	Very well.<FFFB><FFF7>Then I have a favor to ask of you...<FFF6>I'd like you to lend this human power.<FFFB><FFF7><FFEB> If it is your will, how can I refuse?<FFF6>Please, take this card.<FFEF>
-117	0x52fd	pack/talk/ETC:0x9f18	Cherub... The garden of Eden<FFF6>is safe, I presume?<FFFB><FFF7>We guard the gate from the tree of<FFF6>life. Infiltration would be unthinkable.<FFEF>
-118	0x537a	pack/talk/ETC:0xa038	Very well.<FFFB><FFF7>Then I have a favor to ask of you...<FFF6>I'd like you to lend this human power.<FFFB><FFF7><FFEC> Excuse me, archangel, but<FFF6>my powers are to protect Eden...<FFF6>I cannot waste them...<FFEF>
+117	0x52fd	pack/talk/ETC:0x9f18	Cherub... The garden of<FFF6>Eden is safe, I presume?<FFFB><FFF7>We guard the gate from the tree of<FFF6>life. Infiltration would be unthinkable.<FFEF>
+118	0x537a	pack/talk/ETC:0xa038	Very well.<FFFB><FFF7>Then I have a favor to ask of you...<FFF6>I'd like you to lend this human power.<FFFB><FFF7><FFEC> Excuse me, archangel,<FFF6>but my powers are to protect Eden...<FFF6>I cannot waste them...<FFEF>
 119	0x53fa	pack/talk/ETC:0xa1c8	This troubles me, human. You refuse<FFF6>the power of an arbitrator?<FFFB><FFF7>Cherub, I apologize...<FFFB><FFF7><FFED>...No need, high one!<FFF6>It is the blindness of human eyes...<FFEF>
 120	0x5478	pack/talk/ETC:0xa328	<FFEE> I must return to my duties, Master.<FFF6>Lead your flock to paradise.<FFEF>
 121	0x54ba	pack/talk/ETC:0xa3c0	Very well.<FFFB><FFF7>Cherub! I again leave the gate of<FFF6>Eden in your capable hands.<FFFB><FFF7><FFEB> As you wish, Master...<FFEF>
 122	0x5504	pack/talk/ETC:0xa4c0	Throne... I assume you are fulfilling<FFF6>your duty as His chariot-bearer?<FFFB><FFF7><FFEC> We exist for that sole purpose...<FFF6>We try not to shame<FFF6>our rank among angels.<FFEF>
 123	0x5585	pack/talk/ETC:0xa610	Very well.<FFFB><FFF7>Then I have a favor to ask of you...<FFF6>I'd like you to lend this human power.<FFFB><FFF7><FFEB> If it is your will, how can I refuse?<FFF6>Please, take this card.<FFEF>
 124	0x5601	pack/talk/ETC:0xa778	Throne... I assume you are fulfilling<FFF6>your duty as His chariot-bearer?<FFFB><FFF7><FFEC> We exist for that sole purpose...<FFF6>We try not to shame<FFF6>our rank among angels.<FFEF>
-125	0x5682	pack/talk/ETC:0xa8c8	Very well.<FFFB><FFF7>Then I have a favor to ask of you...<FFF6>I'd like you to lend this human power.<FFFB><FFF7><FFEC> Excuse me, archangel, but<FFF6>my powers are for the chariot...<FFF6>I cannot waste them...<FFEF>
+125	0x5682	pack/talk/ETC:0xa8c8	Very well.<FFFB><FFF7>Then I have a favor to ask of you...<FFF6>I'd like you to lend this human power.<FFFB><FFF7><FFEC> Excuse me, archangel,<FFF6>but my powers are for the chariot...<FFF6>I cannot waste them...<FFEF>
 126	0x5701	pack/talk/ETC:0xaa58	This troubles me, human. You refuse<FFF6>the power of a ranking angel?<FFFB><FFF7>Throne, I apologize...<FFFB><FFF7><FFED>...No need, high one!<FFF6>It is the blindness of human eyes...<FFEF>
 127	0x577d	pack/talk/ETC:0xabc0	<FFEE> I must return to my duties, Master.<FFF6>Lead your flock to paradise.<FFEF>
 128	0x57be	pack/talk/ETC:0xac58	Very well.<FFFB><FFF7>Throne!<FFF6>I again leave His chariot to you.<FFFB><FFF7><FFEB> As you wish, Master...<FFEF>
@@ -141,7 +141,7 @@ id	pos	psp	en
 139	0x5ce1	pack/talk/ETC:0xb900	Very well.<FFFB><FFF7>Then I have a favor to ask of you...<FFF6>I'd like you to lend this human power.<FFFB><FFF7><FFEC> I must refuse, Master.<FFEF>
 140	0x5d35	pack/talk/ETC:0xba18	This troubles me, human.<FFF6>You refuse the power of virtue?<FFFB><FFF7>Virtue, I apologize...<FFFB><FFF7><FFED>...No need, high one!<FFF6>It is the blindness of human eyes...<FFEF>
 141	0x5dba	pack/talk/ETC:0xbb68	<FFEE> I must return to my duties, Master.<FFF6>Lead your flock to paradise.<FFEF>
-142	0x5dfb	pack/talk/ETC:0xbc00	Very well.<FFFB><FFF7>Virtue!<FFF6>Please return to your duties, and<FFF6>bring hope to humanity.<FFFB><FFF7><FFEB> As you wish, Master...<FFEF>
+142	0x5dfb	pack/talk/ETC:0xbc00	Very well.<FFFB><FFF7>Virtue! Please return to your duties,<FFF6>and bring hope to humanity.<FFFB><FFF7><FFEB> As you wish, Master...<FFEF>
 143	0x5e51	pack/talk/ETC:0xbd08	Power? How goes your patrol of<FFF6>the heavens?<FFFB><FFF7><FFEB> There is no need to worry.<FFFB><FFF7>Even the fallen ones stand no<FFF6>chance against we Powers.<FFEF>
 144	0x5eda	pack/talk/ETC:0xbe40	Very well.<FFFB><FFF7>Then I have a favor to ask of you...<FFF6>I'd like you to lend<FFF6>this human strength.<FFFB><FFF7><FFEB> If it is your will, how can I refuse?<FFF6>Please, take this card.<FFEF>
 145	0x5f58	pack/talk/ETC:0xbfa8	Power? How goes your patrol of<FFF6>the heavens?<FFFB><FFF7><FFEB> There is no need to worry.<FFFB><FFF7>Even the fallen ones stand no<FFF6>chance against we Powers.<FFEF>

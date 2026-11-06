@@ -1,5 +1,5 @@
 id	pos	psp	en
-0	0x2014	pack/talk/ZOMB_MAN:0x2030	Iunno wut yur saying, but thaa<FFF6>voice sounz nostalgic.<FFF5>
+0	0x2014	pack/talk/ZOMB_MAN:0x2030	Iunno wut yur saying,<FFF6>but thaa voice sounz nostalgic.<FFF5>
 1	0x2033	pack/talk/ZOMB_MAN:0x20a0	You dun even kno how painful<FFF6>thiz coldness iz...!<FFF5>
 2	0x204e	pack/talk/ZOMB_MAN:0x2108	There'z no proov you won't trick me...<FFF5>
 3	0x2072	pack/talk/ZOMB_MAN:0x2158	I wuz so lonely bein all 'lone...<FFF5>
@@ -23,7 +23,7 @@ id	pos	psp	en
 21	0x22b9	pack/talk/ZOMB_MAN:0x28b8	Wut're you all mad for?<FFF5>
 22	0x22c9	pack/talk/ZOMB_MAN:0x28e8	If I wuz my old self,<FFF6>I wudn't forgive you... nope...<FFF5>
 23	0x22e6	pack/talk/ZOMB_MAN:0x2958	Girlz these dayz're scary...<FFF5>
-24	0x22fe	pack/talk/ZOMB_MAN:0x2998	Yur alive, wearing cool clothez, and<FFF6>you still wanna pick on me?<FFF5>
+24	0x22fe	pack/talk/ZOMB_MAN:0x2998	Yur alive, wearing cool clothez,<FFF6>and you still wanna pick on me?<FFF5>
 25	0x2328	pack/talk/ZOMB_MAN:0x2a20	Hurrhurr... How embarrazing...<FFF5>
 26	0x233a	pack/talk/ZOMB_MAN:0x2a60	Wut'z with you allova sudden?<FFF6>I'm not a baby, y'kno...<FFF5>
 27	0x2356	pack/talk/ZOMB_MAN:0x2ad0	Izzit okay if I act like a kid...?<FFF5>
@@ -122,7 +122,7 @@ id	pos	psp	en
 120	0x2eed	pack/talk/ZOMB_MAN:0x4ee8	I feel like my brain'z gonna<FFF6>rot if I keep talking to you!<FFEF>
 121	0x2f0b	pack/talk/ZOMB_MAN:0x4f60	I'll give you this. You should go<FFF6>home before it'z too late...<FFEF>
 122	0x2f32	pack/talk/ZOMB_MAN:0x4fe0	...Why won't you disappear!?<FFF6>Urrrgh... I really am a zombie!<FFEF>
-123	0x2f67	pack/talk/ZOMB_MAN:0x5060	I'll give you my card, but hurry and<FFF6>make a Persona with<FFF6>it, or it might rot.<FFEF>
+123	0x2f67	pack/talk/ZOMB_MAN:0x5060	I'll give you my card, but hurry and<FFF6>make a Persona with it,<FFF6>or it might rot.<FFEF>
 124	0x2f93	pack/talk/ZOMB_MAN:0x5100	We're frienz already! Right? Right!<FFEF>
 125	0x2fbb	pack/talk/ZOMB_MAN:0x5148	I don't wanna fight you!<FFEF>
 126	0x2fd3	pack/talk/ZOMB_MAN:0x5180	Take this and hang in there.<FFF6>Tho maybe you won't like<FFF6>getting it from me...<FFEF>
@@ -179,5 +179,5 @@ id	pos	psp	en
 177	0x376b	pack/talk/ZOMB_MAN:0x6940	Huh...? Are you my rival!? Urrrgh...<FFF6>You won't be eazy to beat...<FFF5>
 178	0x379b	pack/talk/ZOMB_MAN:0x69c8	I only wanted a little!<FFF6>Yur such a jerk!<FFF5>
 179	0x37bc	pack/talk/ZOMB_MAN:0x6a20	Dammit! I'll give you my spell card!<FFEF>
-180	0x37de	pack/talk/ZOMB_MAN:0x6a70	We're frienz, so I'll<FFF6>give you my spell card!<FFF6>But you better not thro it away...<FFEF>
-181	0x3807	pack/talk/ZOMB_MAN:0x6b18	We're frienz, so I'll<FFF6>give you my spell card!<FFF6>But you better not thro it away...<FFEF>
+180	0x37de	pack/talk/ZOMB_MAN:0x6a70	We're frienz,<FFF6>so I'll give you my spell card!<FFF6>But you better not thro it away...<FFEF>
+181	0x3807	pack/talk/ZOMB_MAN:0x6b18	We're frienz,<FFF6>so I'll give you my spell card!<FFF6>But you better not thro it away...<FFEF>

@@ -78,6 +78,7 @@
 .include "adv/msg_name.asm"            ; MsgStep inserts: full item/skill/demon/Persona names
 .include "adv/cells_row.asm"           ; CellsWriteRow in place: sprite-cell rows carry advances
 .include "adv/bar.asm"                 ; the persona status/fusion bottom bar as one VWF row
+.include "adv/pdata.asm"               ; the Velvet Room card page: VWF race/demon-name bar
 .include "adv/draw_spell.asm"          ; DrawSpellName: full skill names in the skill rows
 .ifdef QOL_SAVES
 .include "qol/saves_adv.asm"            ; QoL (--qol=saves): one 14-row panel, no card-choice screen

@@ -12,17 +12,10 @@
 vwf_dialog_draw:
     sw      ra, 0x0C(sp)
 
-    ; --- touched cells: px>>4 .. min(14, last cell holding ink or shadow) ---
-    ; A narrow glyph's sheet keeps one blank column after its ink (LETTER_GAP),
-    ; so its rightmost ink is advance-2 and the +1 shadow column is advance-1;
-    ; a wide glyph may ink the full advance-1 and shadow at advance. Rounding
-    ; px+advance UP here used to mint one phantom cell past short text. Every
-    ; sprite record is drawn, so that cell sampled VRAM the text never wrote
-    ; (a neighbouring strip on the map labels) - the visible corruption.
-    srl     s1, s2, 4                   ; s1 = first cell (upload reuses it)
+    ; --- touched cells: px>>4 .. min(14, (px+adv+2)>>4) ---
+    srl     t6, s2, 4                   ; t6 = first cell
     addu    t7, s2, s3
-    sltiu   t0, a1, 1                   ; 1 = narrow: ink ends at advance-2,
-    subu    t7, t7, t0                  ; 0 = wide: ink may use advance-1
+    addiu   t7, t7, 2
     srl     t7, t7, 4
     sltiu   t0, t7, DLG_BOX_COLS
     bnez    t0, @@last_ok
@@ -32,7 +25,7 @@ vwf_dialog_draw:
     la      t4, vwf_dlg_state
     sh      t7, DLG_LAST(t4)
     lh      t5, DLG_INIT(t4)            ; highest cell already cleared
-    move    t0, s1
+    move    t0, t6
 @@prep:                                 ; clear ring cells entered for the first time
     slt     t1, t5, t0
     beqz    t1, @@prep_next
@@ -113,7 +106,8 @@ vwf_dialog_draw:
     nop
 
     ; --- queue upload + activate each touched cell ---
-@@cell:                                 ; s1 = cell iterator (saved by emit)
+    srl     s1, s2, 4                   ; s1 = cell iterator (saved by emit)
+@@cell:
     li      t1, RING_CELLS              ; ring slot = cell mod RING_CELLS
     divu    s1, t1
     nop

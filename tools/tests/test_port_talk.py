@@ -25,7 +25,7 @@ class TalkBoundaries(unittest.TestCase):
     def test_complete_tail_does_not_absorb_next_message(self):
         rows = self.rows('GAKI')
         self.assertEqual(rows[164], '...Later!<FFEF>')
-        self.assertEqual(rows[165], "You're such a cool<FFF6>guy, so take this too!<FFEF>")
+        self.assertEqual(rows[165], "You're such a cool guy,<FFF6>so take this too!<FFEF>")
         self.assertNotIn('I wa<FFEF>', rows[214])
 
 

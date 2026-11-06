@@ -220,7 +220,13 @@ def route_label_drafts():
 
 
 def dump():
-    rows, _man = toolbelt.dump_scaffold(REL, [(hex(off), psp) for off, psp in families(data())])
+    # S2D.tsv is shared: this scan owns the text boxes and location slots,
+    # while boot_tables.py's race pass owns the 26-name race table that is
+    # copied into the same overlay (demons.RACE_TABLES). Keep those filled
+    # rows - the default position surface would drop them.
+    rows, _man = toolbelt.dump_scaffold(
+        REL, [(hex(off), psp) for off, psp in families(data())],
+        keep_other=True)
     route_label_drafts()
     print(f's2d: {len(rows)} rows -> {toolbelt.gen_path(REL)}')
 

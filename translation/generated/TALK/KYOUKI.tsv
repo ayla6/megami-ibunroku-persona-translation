@@ -10,7 +10,7 @@ id	pos	psp	en
 8	0x2200	pack/talk/KYOUKI:0x2500	Hehehe!<FFF6>Time to see if the blood of stupid<FFF6>humans runs as red as they say!<FFF5>
 9	0x2232	pack/talk/KYOUKI:0x2598	What's that? You want me to kill<FFF6>you first? Ha, my pleasure!<FFFD>え<FFF5>
 10	0x226e	pack/talk/KYOUKI:0x2618	I didn't do anything... C'mon,<FFF6>you're fingerin' the wrong guy...<FFF5>
-11	0x22a2	pack/talk/KYOUKI:0x26a0	I'm beggin' ya, lemme go.<FFF6>I've got a wife and kid back<FFF6>home, and they're starvin'.<FFFD>お<FFF5>
+11	0x22a2	pack/talk/KYOUKI:0x26a0	I'm beggin' ya, lemme go.<FFF6>I've got a wife and kid back home,<FFF6>and they're starvin'.<FFFD>お<FFF5>
 12	0x22e4	pack/talk/KYOUKI:0x2750	I don't know what nerds like you<FFF6>talk about, but it sounds kinda fun.<FFF5>
 13	0x2319	pack/talk/KYOUKI:0x27e0	Bein' invited's fine and all, but are<FFF6>you really a high school kid? You<FFF6>better not be lyin' 'bout your age...<FFFD>か<FFF5>
 14	0x235b	pack/talk/KYOUKI:0x28c0	You punk!<FFF6>You pullin' one over on me!? Are ya!?<FFF5>
@@ -39,7 +39,7 @@ id	pos	psp	en
 37	0x28c2	pack/talk/KYOUKI:0x35a8	You don't sound much like a high<FFF6>schooler when you talk...<FFF6>You lyin' about your age?<FFFD>つ<FFF5>
 38	0x2905	pack/talk/KYOUKI:0x3658	You tramp!<FFF6>You pullin' one over on me!? Are ya!?<FFF5>
 39	0x2934	pack/talk/KYOUKI:0x36c0	You serious, girl?<FFF6>If it's a lie, you're in deep shit!<FFFB><FFF7>Because liars get their tongues<FFF6>ripped out by the law!<FFFD>て<FFF5>
-40	0x29ac	pack/talk/KYOUKI:0x37a8	I don't even know what you're<FFF6>saying, but I'm pretty sweet huh!?<FFF5>
+40	0x29ac	pack/talk/KYOUKI:0x37a8	I don't even know what you're saying,<FFF6>but I'm pretty sweet huh!?<FFF5>
 41	0x29dc	pack/talk/KYOUKI:0x3830	You tryin' to sign me on to<FFF6>your cause or somethin'? Whatever,<FFF6>you just want my power, yeah?<FFFD>と<FFF5>
 42	0x2a19	pack/talk/KYOUKI:0x38f0	Don't be scared! I'm nice to the ladies!<FFF5>
 43	0x2a45	pack/talk/KYOUKI:0x3948	Fighting a chick is lame. Bring out<FFF6>your boyfriend, I'll take him on!<FFFD>な<FFF5>
@@ -62,7 +62,7 @@ id	pos	psp	en
 60	0x2dba	pack/talk/KYOUKI:0x4108	Wowww... Just wow...<FFF5>
 61	0x2dcd	pack/talk/KYOUKI:0x4138	You're tryin' to make me laugh so I<FFF6>put down my guard! That's low, man!<FFFD>へ<FFF5>
 62	0x2e08	pack/talk/KYOUKI:0x41d0	Hahahaha! You know what's even<FFF6>funnier than that?...Your FACE!<FFF5>
-63	0x2e34	pack/talk/KYOUKI:0x4250	I consider myself an upbeat<FFF6>guy, so I've always wanted<FFF6>upbeat friends like you!<FFFD>ほ<FFF5>
+63	0x2e34	pack/talk/KYOUKI:0x4250	I consider myself an upbeat guy,<FFF6>so I've always wanted upbeat<FFF6>friends like you!<FFFD>ほ<FFF5>
 64	0x2e70	pack/talk/KYOUKI:0x42f8	Well, that's life. I may look pretty<FFF6>chill, but I've had it rough...<FFF5>
 65	0x2eab	pack/talk/KYOUKI:0x4388	Hey, do humans really think<FFF6>they'd be better off dead?<FFFD>ま<FFF5>
 66	0x2ee0	pack/talk/KYOUKI:0x4400	That's stupid! You're dumber than<FFF6>a bag of hammers!<FFF5>
@@ -75,7 +75,7 @@ id	pos	psp	en
 73	0x3003	pack/talk/KYOUKI:0x4730	Hey! Were you absent the day<FFF6>they handed out brains!?<FFFD>も<FFF5>
 74	0x3029	pack/talk/KYOUKI:0x47a0	Yikes... What the hell was that...?<FFF5>
 75	0x3046	pack/talk/KYOUKI:0x47e8	H-Hey, hold up... Did I do something to<FFF6>you? I didn't, did I?<FFFD>や<FFF5>
-76	0x3082	pack/talk/KYOUKI:0x4868	This ain't Akiba station!<FFF6>I take my cow there a lot, but<FFF6>it's kinda far, y'know?<FFF5>
+76	0x3082	pack/talk/KYOUKI:0x4868	This ain't Akiba station!<FFF6>I take my cow there a lot,<FFF6>but it's kinda far, y'know?<FFF5>
 77	0x30c0	pack/talk/KYOUKI:0x4910	Sweet! You're giving that to<FFF6>me for free, yeah?<FFFD>ゆ<FFF5>
 78	0x30f4	pack/talk/KYOUKI:0x4978	You've been foolin' demons like that,<FFF6>have ya!? Well this is MY territory!<FFF5>
 79	0x312d	pack/talk/KYOUKI:0x4a10	That ain't nearly blingin' enough for<FFF6>me! You got better than that, right?<FFFD>よ<FFF5>
@@ -92,7 +92,7 @@ id	pos	psp	en
 90	0x3381	pack/talk/KYOUKI:0x4fa0	Hehehe!<FFF6>Time to see if the blood of stupid<FFF6>humans runs as red as they say!<FFF5>
 91	0x33b3	pack/talk/KYOUKI:0x5038	What's that? You want me to kill<FFF6>you first? Ha, my pleasure!<FFFD>わ<FFF5>
 92	0x33ef	pack/talk/KYOUKI:0x50b8	I didn't do anything... C'mon,<FFF6>you're fingerin' the wrong guy...<FFF5>
-93	0x3423	pack/talk/KYOUKI:0x5140	I'm beggin' ya, lemme go.<FFF6>I've got a wife and kid back<FFF6>home, and they're starvin'.<FFFD>を<FFF5>
+93	0x3423	pack/talk/KYOUKI:0x5140	I'm beggin' ya, lemme go.<FFF6>I've got a wife and kid back home,<FFF6>and they're starvin'.<FFFD>を<FFF5>
 94	0x3465	pack/talk/KYOUKI:0x51f0	Hmm... I'd heard you kids were getting<FFF6>more conceited, but it's true.<FFF5>
 95	0x3499	pack/talk/KYOUKI:0x5280	I'll teach ya some manners...<FFF6>Hahaha... Gimme your hand!<FFFD>ん<FFF5>
 96	0x34d1	pack/talk/KYOUKI:0x52f8	You're a dude!<FFF6>Quit yappin' on and on like a chick!<FFF5>
@@ -110,7 +110,7 @@ id	pos	psp	en
 108	0x3706	pack/talk/KYOUKI:0x58b0	Hehehe!<FFF6>Time to see if the blood of stupid<FFF6>humans runs as red as they say!<FFF5>
 109	0x3738	pack/talk/KYOUKI:0x5948	What's that? You want me to kill<FFF6>you first? Ha, my pleasure!<FFFD>じ<FFF5>
 110	0x3774	pack/talk/KYOUKI:0x59c8	I didn't do anything... C'mon,<FFF6>you're fingerin' the wrong guy...<FFF5>
-111	0x37a8	pack/talk/KYOUKI:0x5a50	I'm beggin' ya, lemme go.<FFF6>I've got a wife and kid back<FFF6>home, and they're starvin'.<FFFD>ず<FFF5>
+111	0x37a8	pack/talk/KYOUKI:0x5a50	I'm beggin' ya, lemme go.<FFF6>I've got a wife and kid back home,<FFF6>and they're starvin'.<FFFD>ず<FFF5>
 112	0x37ea	pack/talk/KYOUKI:0x5b00	Oh, this scar? I got this from<FFF6>a fight a few years back.<FFF6>Scars are a man's medal!<FFF5>
 113	0x3826	pack/talk/KYOUKI:0x5ba8	Uh... Is there... something behind me?<FFFD>ぜ<FFF5>
 114	0x3848	pack/talk/KYOUKI:0x5c00	What, man!? You wanna get started!?<FFF5>
@@ -121,7 +121,7 @@ id	pos	psp	en
 119	0x393e	pack/talk/KYOUKI:0x5e58	You don't sound much like a high<FFF6>schooler when you talk...<FFF6>You lyin' about your age?<FFFD>ぢ<FFF5>
 120	0x397d	pack/talk/KYOUKI:0x5f08	You punk!<FFF6>You pullin' one over on me!? Are ya!?<FFF5>
 121	0x39ae	pack/talk/KYOUKI:0x5f68	That sounds like a false statement!<FFF6>Lying only causes trouble, man!<FFF6>Wanna know why?<FFFB><FFF7>Because liars get their tongues<FFF6>ripped out by the law!<FFFD>づ<FFF5>
-122	0x3a24	pack/talk/KYOUKI:0x6088	I have no clue what you're<FFF6>saying, but I'm havin' fun!<FFF5>
+122	0x3a24	pack/talk/KYOUKI:0x6088	I have no clue what you're saying,<FFF6>but I'm havin' fun!<FFF5>
 123	0x3a57	pack/talk/KYOUKI:0x60f8	You on a mission or something?<FFF6>Whatever,<FFF6>you just want my power anyway.<FFFD>で<FFF5>
 124	0x3a8f	pack/talk/KYOUKI:0x6190	You call that scary!? Humans are<FFF6>such wusses! You know that, girl!?<FFF5>
 125	0x3acc	pack/talk/KYOUKI:0x6218	Screw that! Let's make it scarier!<FFF6>You play the chick who gets<FFF6>killed by the demons!<FFFD>ど<FFF5>
@@ -170,7 +170,7 @@ id	pos	psp	en
 168	0x4360	pack/talk/KYOUKI:0x7760	Hehehe!<FFF6>Time to see if the blood of stupid<FFF6>humans runs as red as they say!<FFF5>
 169	0x4392	pack/talk/KYOUKI:0x77f8	What's that? You want me to kill<FFF6>you first? Ha, my pleasure!<FFFD>ア<FFF5>
 170	0x43ce	pack/talk/KYOUKI:0x7878	I didn't do anything... C'mon,<FFF6>you're fingerin' the wrong guy...<FFF5>
-171	0x4402	pack/talk/KYOUKI:0x7900	I'm beggin' ya, lemme go.<FFF6>I've got a wife and kid back<FFF6>home, and they're starvin'.<FFFD>イ<FFF5>
+171	0x4402	pack/talk/KYOUKI:0x7900	I'm beggin' ya, lemme go.<FFF6>I've got a wife and kid back home,<FFF6>and they're starvin'.<FFFD>イ<FFF5>
 172	0x4444	pack/talk/KYOUKI:0x79b0	What was that!?<FFF6>You better shut your mouth!<FFF5>
 173	0x4475	pack/talk/KYOUKI:0x7a08	I'm about to beat some sense into you!<FFF6>This may hurt, but you'll live...<FFF6>Maybe!<FFFD>ウ<FFF5>
 174	0x44af	pack/talk/KYOUKI:0x7ab0	...I-I'm sorry...<FFF5>
@@ -206,7 +206,7 @@ id	pos	psp	en
 204	0x4ad6	pack/talk/KYOUKI:0x8ae8	Hehehe!<FFF6>Time to see if the blood of stupid<FFF6>humans runs as red as they say!<FFF5>
 205	0x4b08	pack/talk/KYOUKI:0x8b80	What's that? You want me to kill<FFF6>you first? Ha, my pleasure!<FFFD>テ<FFF5>
 206	0x4b44	pack/talk/KYOUKI:0x8c00	I didn't do anything... C'mon,<FFF6>you're fingerin' the wrong guy...<FFF5>
-207	0x4b78	pack/talk/KYOUKI:0x8c88	I'm beggin' ya, lemme go.<FFF6>I've got a wife and kid back<FFF6>home, and they're starvin'.<FFFD>ト<FFF5>
+207	0x4b78	pack/talk/KYOUKI:0x8c88	I'm beggin' ya, lemme go.<FFF6>I've got a wife and kid back home,<FFF6>and they're starvin'.<FFFD>ト<FFF5>
 208	0x4bba	pack/talk/KYOUKI:0x8d38	Quit your yellin'! If you're<FFF6>screwin' with me, you'll be sorry!<FFF5>
 209	0x4be4	pack/talk/KYOUKI:0x8db8	Hey! Were you absent the day<FFF6>they handed out brains!?<FFFD>ナ<FFF5>
 210	0x4c0a	pack/talk/KYOUKI:0x8e28	Yikes... What the hell was that...?<FFF5>
@@ -222,7 +222,7 @@ id	pos	psp	en
 220	0x4de7	pack/talk/KYOUKI:0x92a0	Argh! This can't be!<FFF6>You're making me smarter!<FFF5>
 221	0x4e1c	pack/talk/KYOUKI:0x9300	You're doing all this by the book...<FFF6>Can't you be more interesting!?<FFF5>
 222	0x4e58	pack/talk/KYOUKI:0x9390	What, what, what!?<FFF6>You want me to listen to you?<FFF6>Then hand something over!<FFF1><FFF5>
-223	0x4e91	pack/talk/KYOUKI:0x9428	That was stupid, but I<FFF6>listened all the way through.<FFFB><FFF7>You don't wanna leave this world with<FFF6>something left to say, huh?<FFF5>
+223	0x4e91	pack/talk/KYOUKI:0x9428	That was stupid,<FFF6>but I listened all the way through.<FFFB><FFF7>You don't wanna leave this world with<FFF6>something left to say, huh?<FFF5>
 224	0x4eda	pack/talk/KYOUKI:0x9518	Would you shut the hell up!?<FFF6>Listening to you talk is<FFF6>makin' me wanna puke!<FFF5>
 225	0x4f0e	pack/talk/KYOUKI:0x95b0	Cut the crap! Out with it already!<FFF1><FFF5>
 226	0x4f32	pack/talk/KYOUKI:0x95f8	What good is telling me that...?<FFF5>
@@ -237,7 +237,7 @@ id	pos	psp	en
 235	0x50e9	pack/talk/KYOUKI:0x9a68	This is boring as hell! I deserve<FFF6>a way better negotiation than this!<FFF5>
 236	0x510f	pack/talk/KYOUKI:0x9af8	Who'd listen to your request!?<FFF5>
 237	0x512b	pack/talk/KYOUKI:0x9b38	Something smells here...<FFF6>I'm gonna open this carefully...<FFF5>
-238	0x5153	pack/talk/KYOUKI:0x9bb0	I could help you, but there's<FFF6>nothing in it for me...<FFF5>
+238	0x5153	pack/talk/KYOUKI:0x9bb0	I could help you,<FFF6>but there's nothing in it for me...<FFF5>
 239	0x5188	pack/talk/KYOUKI:0x9c20	Oh, sorry...<FFF6>I nodded off for a second there...<FFF5>
 240	0x51ba	pack/talk/KYOUKI:0x9c80	Hyahahaha! I'm too damn irresistible!<FFF5>
 241	0x51d9	pack/talk/KYOUKI:0x9cd0	It's nice to come through for<FFF6>somebody, but it's tough sometimes!<FFF6>Really!<FFF5>
@@ -247,7 +247,7 @@ id	pos	psp	en
 245	0x52ab	pack/talk/KYOUKI:0x9f00	I don't care if you make fun of me!<FFF6>Just gimme the goods!<FFFB><FFF7>A badass gets the goods no matter<FFF6>what! So hand 'em over!<FFF1><FFF5>
 246	0x531d	pack/talk/KYOUKI:0x9ff0	Huh!? You must be ready to die!<FFF5>
 247	0x533e	pack/talk/KYOUKI:0xa030	You just made the top of<FFF6>my "to die" list!<FFF5>
-248	0x5365	pack/talk/KYOUKI:0xa088	With an attitude like that,<FFF6>you must want me to kill you, huh!?<FFFB><FFF7>Not that you stand a chance, so<FFF6>you better listen to orders!<FFF1><FFF5>
+248	0x5365	pack/talk/KYOUKI:0xa088	With an attitude like that,<FFF6>you must want me to kill you, huh!?<FFFB><FFF7>Not that you stand a chance,<FFF6>so you better listen to orders!<FFF1><FFF5>
 249	0x53cf	pack/talk/KYOUKI:0xa188	Why you... Don't you know<FFF6>the difference between a good<FFF6>idea and a bad one?<FFF5>
 250	0x53fe	pack/talk/KYOUKI:0xa220	*sniff* What an attitude...*sniff*<FFF6>...I'm not crying! It's sweat...<FFF5>
 251	0x5438	pack/talk/KYOUKI:0xa2a8	I ain't gonna get worked<FFF6>up over some punk kids...<FFF5>
@@ -259,13 +259,13 @@ id	pos	psp	en
 257	0x5593	pack/talk/KYOUKI:0xa618	Uh... Shouldn't your act be something<FFF6>people would actually pay to see?<FFF1><FFF5>
 258	0x55bf	pack/talk/KYOUKI:0xa6b0	Do something interesting!<FFF5>
 259	0x55d9	pack/talk/KYOUKI:0xa6e8	That sucks... It sucks, man!<FFF5>
-260	0x55f1	pack/talk/KYOUKI:0xa728	My time is precious, and you're<FFF6>wasting it with this crap!<FFFB><FFF7>You better pay me back, pronto!<FFF1><FFF5>
+260	0x55f1	pack/talk/KYOUKI:0xa728	My time is precious,<FFF6>and you're wasting it with this crap!<FFFB><FFF7>You better pay me back, pronto!<FFF1><FFF5>
 261	0x5641	pack/talk/KYOUKI:0xa7e8	Who do you think I am...?<FFF6>You better get serious here!<FFF5>
 262	0x5673	pack/talk/KYOUKI:0xa858	D-Did you die of fear?<FFF5>
 263	0x569a	pack/talk/KYOUKI:0xa888	I'm jealous...<FFF6>You've got nerves of steel...<FFF5>
 264	0x56ba	pack/talk/KYOUKI:0xa8e8	Maybe I should learn a trick or two.<FFF5>
 265	0x56dc	pack/talk/KYOUKI:0xa938	Hyhahahaha! That was cool!<FFF6>I feel like drinking...<FFF5>
-266	0x5711	pack/talk/KYOUKI:0xa9a0	I'm not interested, actually...<FFF6>But I feel sorry for ya, so I'll<FFF6>hang around a little longer!<FFF5>
+266	0x5711	pack/talk/KYOUKI:0xa9a0	I'm not interested, actually...<FFF6>But I feel sorry for ya,<FFF6>so I'll hang around a little longer!<FFF5>
 267	0x5751	pack/talk/KYOUKI:0xaa60	There's no guarantee this ain't<FFF6>a trap... Tough call...<FFF5>
 268	0x5788	pack/talk/KYOUKI:0xaad0	I can't give you the nod for this!<FFF6>How 'bout a little more?<FFF1><FFF5>
 269	0x57b5	pack/talk/KYOUKI:0xab50	You shouldn't mess with adults!<FFF5>
@@ -278,7 +278,7 @@ id	pos	psp	en
 276	0x5901	pack/talk/KYOUKI:0xae80	Don't put me on the spot like that...<FFF6>But I guess I won't turn down<FFF6>kindness, so I'll take something!<FFF1><FFF5>
 277	0x593c	pack/talk/KYOUKI:0xaf50	You're better than a buncha<FFF6>demons... Maybe I'll go with you...<FFF5>
 278	0x596a	pack/talk/KYOUKI:0xafd0	Makin' threats, calmin' 'em down...<FFF6>you've got your work<FFF6>cut out for you...<FFF5>
-279	0x598b	pack/talk/KYOUKI:0xb068	I know cute when I see it, and I'm<FFF6>seeing it, so I'll let it slide!<FFF5>
+279	0x598b	pack/talk/KYOUKI:0xb068	I know cute when I see it,<FFF6>and I'm seeing it, so I'll let it slide!<FFF5>
 280	0x59c2	pack/talk/KYOUKI:0xb0f0	Heh, scared of me, huh? Good!<FFF6>Bow before me! Beg for mercy!<FFF5>
 281	0x59fb	pack/talk/KYOUKI:0xb168	Hey! You think you kids can handle<FFF6>a negotiation with me!?<FFF5>
 282	0x5a34	pack/talk/KYOUKI:0xb1e0	Words are empty, man.<FFF6>Wouldn't you agree?<FFF1><FFF5>
@@ -320,8 +320,8 @@ id	pos	psp	en
 318	0x6152	pack/talk/KYOUKI:0xc318	Hey, what's all the fuss about?<FFF6>Some kinda concert going on?<FFFD>ホ<FFF5>
 319	0x617b	pack/talk/KYOUKI:0xc398	You answered!<FFF6>I must be world famous, man!<FFF5>
 320	0x61af	pack/talk/KYOUKI:0xc3f0	Heh, I haven't talked to too many<FFF6>humans, so... I'm kinda nervous...<FFF5>
-321	0x61e6	pack/talk/KYOUKI:0xc480	<FFED>I don't expect an answer, but<FFF6>I've gotta ask anyway...<FFFB><FFF7>Don't you have anything<FFF6>better to do?<FFFD>マ<FFF5>
-322	0x6250	pack/talk/KYOUKI:0xc548	<FFED>Let's get this straight!<FFF6>Do you got some business with<FFF6>me, or are you here to hang out!?<FFF5>
+321	0x61e6	pack/talk/KYOUKI:0xc480	<FFED>I don't expect an answer,<FFF6>but I've gotta ask anyway...<FFFB><FFF7>Don't you have anything<FFF6>better to do?<FFFD>マ<FFF5>
+322	0x6250	pack/talk/KYOUKI:0xc548	<FFED>Let's get this straight!<FFF6>Do you got some business with me,<FFF6>or are you here to hang out!?<FFF5>
 323	0x6286	pack/talk/KYOUKI:0xc600	<FFEE>If ya gave me something,<FFF6>maybe I'd be willing to listen!<FFF1><FFF5>
 324	0x62bb	pack/talk/KYOUKI:0xc678	<FFEC>You don't really have business with<FFF6>me, do ya? I'm shovin' off then...<FFFD>ミ<FFF5>
 325	0x62f2	pack/talk/KYOUKI:0xc710	<FFEC>Oh great, a human!<FFF6>*sigh* Of all the luck...<FFFB><FFF7>I always find the troublemakers.<FFF6>Even in my love life...<FFF5>
@@ -339,7 +339,7 @@ id	pos	psp	en
 337	0x6615	pack/talk/KYOUKI:0xce78	<FFEB>What's this? My heart wants to<FFF6>leap outta my chest...<FFF5>
 338	0x6644	pack/talk/KYOUKI:0xcee8	<FFEB>Yes, hurt me moooooooooore!<FFF5>
 339	0x6667	pack/talk/KYOUKI:0xcf28	...So what're ya saying?<FFEF>
-340	0x668c	pack/talk/KYOUKI:0xcf60	You've pissed me off, and<FFF6>the punishment for that is death.<FFF6>Time to pay up!<FFEF>
+340	0x668c	pack/talk/KYOUKI:0xcf60	You've pissed me off,<FFF6>and the punishment for that is death.<FFF6>Time to pay up!<FFEF>
 341	0x66cb	pack/talk/KYOUKI:0xcff8	Wh-What? You hate me, don't you?<FFEF>
 342	0x66ef	pack/talk/KYOUKI:0xd040	...I don't feel like you and me are<FFF6>strangers. Can I call you brother?<FFEF>
 343	0x672a	pack/talk/KYOUKI:0xd0d0	How long are you<FFF6>plannin' on tyin' me up?<FFF6>If you've got business, out with it!<FFEF>
@@ -393,12 +393,12 @@ id	pos	psp	en
 391	0x7018	pack/talk/KYOUKI:0xe6d0	Oh, er... Um... I don't have time to...<FFF6>Ugh, this guy ain't even listening...<FFF5>
 392	0x704f	pack/talk/KYOUKI:0xe770	An errand is an errand, man! Don't be<FFF6>talkin' like some nosy old lady!<FFF5>
 393	0x7089	pack/talk/KYOUKI:0xe800	I don't need comforting, dammit!<FFF6>I'll make sure you never sing again!<FFF5>
-394	0x70c2	pack/talk/KYOUKI:0xe890	Huh!?<FFF6>I hope you enjoyed saying that to<FFFB><FFF7>my face, because after I crush<FFF6>your throat, you won't speak again!<FFF5>
+394	0x70c2	pack/talk/KYOUKI:0xe890	Huh!? I hope you enjoyed<FFF6>saying that to my face,<FFFB><FFF7>because after I crush your throat,<FFF6>you won't speak again!<FFF5>
 395	0x70f9	pack/talk/KYOUKI:0xe968	Hey man,<FFF6>I was tryin' to be a better dude too...<FFF5>
 396	0x7126	pack/talk/KYOUKI:0xe9d0	What're you doing!?<FFF6>That attack was freakin' inhumane!<FFF5>
 397	0x7155	pack/talk/KYOUKI:0xea40	Ahh... I can see a flower<FFF6>field in the distance...<FFF5>
 398	0x717e	pack/talk/KYOUKI:0xeaa8	Encore! Encore!<FFF5>
-399	0x71a6	pack/talk/KYOUKI:0xeac8	If I made you my slave, I could<FFF6>hear that song whenever I wanted!<FFF6>Damn, I'm a genius!<FFFB><FFF7>But...I 'm a nice guy, so I'll<FFF6>take something instead.<FFF1><FFF5>
+399	0x71a6	pack/talk/KYOUKI:0xeac8	If I made you my slave, I could<FFF6>hear that song whenever I wanted!<FFF6>Damn, I'm a genius!<FFFB><FFF7>But...I 'm a nice guy,<FFF6>so I'll take something instead.<FFF1><FFF5>
 400	0x721a	pack/talk/KYOUKI:0xebe8	Wait a sec... If I keep listening, am I<FFF6>gonna get sucked in by the spell?<FFF5>
 401	0x7247	pack/talk/KYOUKI:0xec80	You got a lotta guts lyin' to me!<FFF6>When did you grow a pair?<FFF5>
 402	0x727f	pack/talk/KYOUKI:0xecf8	Gimme a break, bud! You're pretty old<FFF6>fashioned for a high schooler!<FFF5>
@@ -411,7 +411,7 @@ id	pos	psp	en
 409	0x73d8	pack/talk/KYOUKI:0xf028	So you threw away<FFF6>your pride for that?<FFF6>You must have some deeper reason...<FFF5>
 410	0x740f	pack/talk/KYOUKI:0xf0c0	Hehehe... Then you don't mind what<FFF6>happens to you, huh!? Hehehe!<FFF5>
 411	0x7439	pack/talk/KYOUKI:0xf148	Don't get all arrogant, damn it!<FFF5>
-412	0x744c	pack/talk/KYOUKI:0xf190	...I understand, but it<FFF6>still pisses me off!<FFF5>
+412	0x744c	pack/talk/KYOUKI:0xf190	...I understand,<FFF6>but it still pisses me off!<FFF5>
 413	0x7478	pack/talk/KYOUKI:0xf1f0	Well, yeah! I asked the obvious.<FFF6>So I guess I'm asking for something!<FFF1><FFF5>
 414	0x74ad	pack/talk/KYOUKI:0xf280	That so?<FFF6>Maybe I'm not that bad after all!<FFF5>
 415	0x74de	pack/talk/KYOUKI:0xf2d8	Don't talk like you know!<FFF6>Humans don't need weak-ass<FFF6>guys like you either!<FFF5>
@@ -490,7 +490,7 @@ id	pos	psp	en
 488	0x83aa	pack/talk/KYOUKI:0x117c8	That so...? Let's test it out!<FFF5>
 489	0x83c8	pack/talk/KYOUKI:0x11808	Heh! Confident, aren't ya!? Not bad!<FFF5>
 490	0x83f8	pack/talk/KYOUKI:0x11858	Well, duh! If you get it now,<FFF6>time to improve this negotiation!<FFF5>
-491	0x8432	pack/talk/KYOUKI:0x118d8	Then I'll take something from ya!<FFF6>I know it's outta the blue, but<FFF6>don't sweat it!<FFF1><FFF5>
+491	0x8432	pack/talk/KYOUKI:0x118d8	Then I'll take something from ya!<FFF6>I know it's outta the blue,<FFF6>but don't sweat it!<FFF1><FFF5>
 492	0x8466	pack/talk/KYOUKI:0x11980	Ooh, now we're talking.<FFF6>Why can't kids be more like that?<FFF5>
 493	0x8498	pack/talk/KYOUKI:0x119f8	Ooh, now we're talking.<FFF6>Makes it easier to kill ya!<FFF5>
 494	0x84bc	pack/talk/KYOUKI:0x11a60	It's worse than that...<FFF6>Listen, don't ever tie the knot, man!<FFF5>
@@ -516,7 +516,7 @@ id	pos	psp	en
 514	0x8868	pack/talk/KYOUKI:0x12388	That so...? Let's test it out!<FFF5>
 515	0x8886	pack/talk/KYOUKI:0x123c8	Heh, pretty confident, aren't ya!?<FFF6>Heh! Not bad!<FFF5>
 516	0x88b6	pack/talk/KYOUKI:0x12430	Well, duh! If you get it now,<FFF6>time to improve this negotiation!<FFF5>
-517	0x88f0	pack/talk/KYOUKI:0x124b0	Then I'll take something from ya!<FFF6>I know it's outta the blue, but<FFF6>don't sweat it!<FFF1><FFF5>
+517	0x88f0	pack/talk/KYOUKI:0x124b0	Then I'll take something from ya!<FFF6>I know it's outta the blue,<FFF6>but don't sweat it!<FFF1><FFF5>
 518	0x8924	pack/talk/KYOUKI:0x12558	Ooh, now we're talking.<FFF6>Why can't kids be more like that?<FFF5>
 519	0x8956	pack/talk/KYOUKI:0x125d0	Ooh, now we're talking.<FFF6>Makes it easier to kill ya!<FFF5>
 520	0x897a	pack/talk/KYOUKI:0x12638	It's worse than that...<FFF6>Listen, don't ever tie the knot, man!<FFF5>
@@ -540,18 +540,18 @@ id	pos	psp	en
 538	0x8ce0	pack/talk/KYOUKI:0x12e70	Which do you prefer? "The Tokyo<FFF6>Chainsaw Massacre" or "Mummy Girl"?<FFF5>
 539	0x8d1e	pack/talk/KYOUKI:0x12ef8	Why, man...? You might become<FFF6>famous and get your own movie!<FFF5>
 540	0x8d54	pack/talk/KYOUKI:0x12f78	You don't get it!<FFF6>This is your chance to be famous!<FFFB><FFF7>You could play the girl who dies in<FFF6>the credits after the movie ends!<FFF6>...Whoa. How would that even work...?<FFF5>
-541	0x8dbc	pack/talk/KYOUKI:0x130c0	AHHHH! H-H-Help meeee, for<FFF6>the love of--......Huh?<FFF5>
+541	0x8dbc	pack/talk/KYOUKI:0x130c0	AHHHH! H-H-Help meeee,<FFF6>for the love of--......Huh?<FFF5>
 542	0x8df2	pack/talk/KYOUKI:0x13128	I thought so! I fear nothing!<FFF5>
 543	0x8e27	pack/talk/KYOUKI:0x13168	Yeah! YEAH! There's nothing<FFF6>the great <FFF3> is afraid of!<FFF5>
 544	0x8e55	pack/talk/KYOUKI:0x131d8	Wh-Why are you laughing!?<FFF6>You lied, didn't you!?<FFF5>
 545	0x8e8c	pack/talk/KYOUKI:0x13240	No way! I'm being laughed at...?<FFF6>Hey, what's so funny about me...?<FFF5>
-546	0x8ebe	pack/talk/KYOUKI:0x132c8	I see, I see. Got any requests?<FFF6>I like songs from "Demon School<FFF6>Musical" or "The Killer Dance."<FFFB><FFF7>Anyway, did you forget the karaoke<FFF6>machine? Hahaha! Lame!<FFF5>
+546	0x8ebe	pack/talk/KYOUKI:0x132c8	I see, I see. Got any requests? I like<FFF6>songs from "Demon School Musical" or<FFF6>"The Killer Dance."<FFFB><FFF7>Anyway, did you forget the karaoke<FFF6>machine? Hahaha! Lame!<FFF5>
 547	0x8f43	pack/talk/KYOUKI:0x13400	Who'd do a duet with<FFF6>a brat like you!?<FFF5>
 548	0x8f7a	pack/talk/KYOUKI:0x13450	I don't need comforting, dammit!<FFF6>I'll make sure you never sing again!<FFF5>
-549	0x8fb3	pack/talk/KYOUKI:0x134e0	Huh!?<FFF6>I hope you enjoyed saying that to<FFFB><FFF7>my face, because after I crush<FFF6>your throat, you won't speak again!<FFF5>
+549	0x8fb3	pack/talk/KYOUKI:0x134e0	Huh!? I hope you enjoyed<FFF6>saying that to my face,<FFFB><FFF7>because after I crush your throat,<FFF6>you won't speak again!<FFF5>
 550	0x8fea	pack/talk/KYOUKI:0x135b8	Hey man,<FFF6>I was tryin' to be a better dude too...<FFF5>
 551	0x9017	pack/talk/KYOUKI:0x13620	Encore! Encore!<FFF5>
-552	0x903f	pack/talk/KYOUKI:0x13640	If I made you my slave, I could<FFF6>hear that song whenever I wanted!<FFF6>Damn, I'm a genius!<FFFB><FFF7>But...I 'm a nice guy, so I'll<FFF6>take something instead.<FFF1><FFF5>
+552	0x903f	pack/talk/KYOUKI:0x13640	If I made you my slave, I could<FFF6>hear that song whenever I wanted!<FFF6>Damn, I'm a genius!<FFFB><FFF7>But...I 'm a nice guy,<FFF6>so I'll take something instead.<FFF1><FFF5>
 553	0x90b3	pack/talk/KYOUKI:0x13760	Wait a sec... If I keep listening, am I<FFF6>gonna get sucked in by the spell?<FFF5>
 554	0x90e0	pack/talk/KYOUKI:0x137f8	Then I'll do something bad while I've<FFF6>got the chance! Gimme something!<FFF1><FFF5>
 555	0x9114	pack/talk/KYOUKI:0x13888	So you're saying I've got mature<FFF6>charm just oozing out of me?<FFF6>Hehe, I like it!<FFF5>
@@ -559,7 +559,7 @@ id	pos	psp	en
 557	0x9170	pack/talk/KYOUKI:0x13960	Hm... You wanna rumble?<FFF6>Well, I'm not huge on violence, but...<FFF5>
 558	0x91a6	pack/talk/KYOUKI:0x139e0	What a fool! Resisting is only gonna<FFF6>make it hurt more, and I can prove it!<FFF5>
 559	0x91db	pack/talk/KYOUKI:0x13a78	I've never felt so relaxed...<FFF5>
-560	0x91f7	pack/talk/KYOUKI:0x13ab8	Well, excuse me for bein' myself!<FFF6>No one trusts me, so I<FFF6>don't trust anyone!<FFF5>
+560	0x91f7	pack/talk/KYOUKI:0x13ab8	Well, excuse me for bein' myself!<FFF6>No one trusts me,<FFF6>so I don't trust anyone!<FFF5>
 561	0x9235	pack/talk/KYOUKI:0x13b58	You got a lotta guts lyin' to me!<FFF6>When did you grow a pair?<FFF5>
 562	0x926d	pack/talk/KYOUKI:0x13bd0	No way! Seriously?<FFF6>You're one pretty high schooler...<FFF5>
 563	0x92a5	pack/talk/KYOUKI:0x13c40	I got it, I got it. You can finish<FFF6>your conversation in hell.<FFF5>
@@ -593,7 +593,7 @@ id	pos	psp	en
 591	0x97e9	pack/talk/KYOUKI:0x14ad0	That so...? Let's test it out!<FFF5>
 592	0x9807	pack/talk/KYOUKI:0x14b10	Heh, pretty confident, aren't ya!?<FFF6>Heh! Not bad!<FFF5>
 593	0x9837	pack/talk/KYOUKI:0x14b78	Well, duh! If you get it now,<FFF6>time to improve this negotiation!<FFF5>
-594	0x9871	pack/talk/KYOUKI:0x14bf8	Then I'll take something from ya!<FFF6>I know it's outta the blue, but<FFF6>don't sweat it!<FFF1><FFF5>
+594	0x9871	pack/talk/KYOUKI:0x14bf8	Then I'll take something from ya!<FFF6>I know it's outta the blue,<FFF6>but don't sweat it!<FFF1><FFF5>
 595	0x98a5	pack/talk/KYOUKI:0x14ca0	Ooh, now we're talking.<FFF6>Why can't kids be more like that?<FFF5>
 596	0x98d7	pack/talk/KYOUKI:0x14d18	Ooh, now we're talking.<FFF6>Makes it easier to kill ya!<FFF5>
 597	0x98fb	pack/talk/KYOUKI:0x14d80	Rough doesn't even begin to describe<FFF6>it. Listen, make sure you marry rich!<FFF5>
@@ -643,7 +643,7 @@ id	pos	psp	en
 641	0xa150	pack/talk/KYOUKI:0x162c0	That so...? Let's test it out!<FFF5>
 642	0xa16e	pack/talk/KYOUKI:0x16300	Heh, pretty confident, aren't ya!?<FFF6>Heh! Not bad!<FFF5>
 643	0xa19e	pack/talk/KYOUKI:0x16368	Well, I'll say it one more time then...<FFF6>Hand something over!<FFF1><FFF5>
-644	0xa1cd	pack/talk/KYOUKI:0x163e8	Then I'll take something from ya!<FFF6>I know it's outta the blue, but<FFF6>don't sweat it!<FFF1><FFF5>
+644	0xa1cd	pack/talk/KYOUKI:0x163e8	Then I'll take something from ya!<FFF6>I know it's outta the blue,<FFF6>but don't sweat it!<FFF1><FFF5>
 645	0xa201	pack/talk/KYOUKI:0x16490	Ooh, now we're talking.<FFF6>Why can't kids be more like that?<FFF5>
 646	0xa233	pack/talk/KYOUKI:0x16508	Ooh, now we're talking.<FFF6>Makes it easier to kill ya!<FFF5>
 647	0xa257	pack/talk/KYOUKI:0x16570	It's worse than that...<FFF6>Listen, don't ever tie the knot, man!<FFF5>
@@ -678,7 +678,7 @@ id	pos	psp	en
 676	0xa7b8	pack/talk/KYOUKI:0x173e0	Huh? There really is!?<FFF6>Well, if you insist, I'll go...<FFF5>
 677	0xa7ed	pack/talk/KYOUKI:0x17450	Hahaha, well, yeah! I know there's no<FFF6>such place, but it still pisses me off!<FFF5>
 678	0xa828	pack/talk/KYOUKI:0x174f0	Hahaha, well, yeah!<FFF6>There's no such place! Duhhh!<FFF5>
-679	0xa84f	pack/talk/KYOUKI:0x17558	Listen here, ya cheap bastard, if<FFF6>there's nothing there, you're dead!<FFF5>
+679	0xa84f	pack/talk/KYOUKI:0x17558	Listen here, ya cheap bastard,<FFF6>if there's nothing there, you're dead!<FFF5>
 680	0xa88c	pack/talk/KYOUKI:0x175e8	As long as there're humans like you,<FFF6>the demon business is safe!<FFF6>Thanks, man!<FFF5>
 681	0xa8c5	pack/talk/KYOUKI:0x17688	Don't think, act!<FFF6>Kids are all talk these days!<FFF5>
 682	0xa900	pack/talk/KYOUKI:0x176e8	Whaddaya want me to do?<FFF6>Help you pick up cans to recycle?<FFF6>Sorry, but I'm a bad guy!<FFF5>
@@ -691,7 +691,7 @@ id	pos	psp	en
 689	0xaa41	pack/talk/KYOUKI:0x179e0	Why ya gotta be all cold!?<FFF6>You don't get demons at all!<FFF5>
 690	0xaa7e	pack/talk/KYOUKI:0x17a50	What, are you worried about me?<FFF6>Damn, man... I'm touched...<FFF5>
 691	0xaab4	pack/talk/KYOUKI:0x17ac8	I-I knew it! You're gonna shut me up!<FFF6>I'll be killed or locked away forever!<FFF5>
-692	0xaaf7	pack/talk/KYOUKI:0x17b68	That was a joke? C'mon, <FFF3><FFF6>, if ya don't laugh, they'll kill ya...<FFF5>
+692	0xaaf7	pack/talk/KYOUKI:0x17b68	That was a joke? C'mon, <FFF3>,<FFF6>if ya don't laugh, they'll kill ya...<FFF5>
 693	0xab27	pack/talk/KYOUKI:0x17bf0	Hyahaha! Good one!<FFF6>But I ain't gonna be fooled!<FFF5>
 694	0xab59	pack/talk/KYOUKI:0x17c50	Ha, brings back memories.<FFF6>I was kinda like that once...<FFF6>Maybe I should relive those days!<FFF5>
 695	0xab94	pack/talk/KYOUKI:0x17d08	So it's something you've gotta do,<FFF6>even if you don't believe in it.<FFF6>Hm. I see...<FFF5>

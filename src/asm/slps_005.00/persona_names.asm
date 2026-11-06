@@ -24,9 +24,10 @@ persona_name_copy:
     sll     v0, v0, 2                   ; id * 0x2C
     la      v1, PERSONA_RECORDS_ADDR + PERSONA_NAME
     addu    v1, v1, v0                  ; v1 = name field
-;; a0 = destination, a1 = the record's name field: the same copy, reached
+;; a0 = destination, v1 = the record's name field: the same copy, reached
 ;; with the field pointer the caller already holds (the fusion draw helper's
-;; def path). Falls into the shared body; the id math above is skipped.
+;; def path). Falls into the shared body; the id math above is skipped, so a
+;; direct caller must put the field pointer in v1 itself.
 persona_name_copy_at:
     li      a1, PERSONA_FIELD           ; a1 = glyph count where this phase stops
     move    a2, zero                    ; a2 = glyphs written

@@ -1,6 +1,6 @@
 id	pos	psp	en
 0	0x2014	pack/talk/BASKET:0x2030	Athletic types like me are<FFF6>suckers for passionate logic...<FFF6>Eh, I'll think about it.<FFF5>
-1	0x2050	pack/talk/BASKET:0x20d8	I don't mind helping, but my goal<FFF6>is to make it to finals...<FFFD>　<FFF5>
+1	0x2050	pack/talk/BASKET:0x20d8	I don't mind helping,<FFF6>but my goal is to make it to finals...<FFFD>　<FFF5>
 2	0x2087	pack/talk/BASKET:0x2158	I ain't stupid enough to fall for<FFF6>some weak-ass rhetoric!<FFF5>
 3	0x20b8	pack/talk/BASKET:0x21d0	Shut up, man! The only thing on<FFF6>my mind is making it to the pros!<FFFD>あ<FFF5>
 4	0x20e8	pack/talk/BASKET:0x2258	Hahaha! You need me on your team?<FFF6>You'd make a good scout!<FFF5>
@@ -12,7 +12,7 @@ id	pos	psp	en
 10	0x2232	pack/talk/BASKET:0x2548	Don't say such scary things... I'm<FFF6>sorry about that last foul, so c'mon...<FFF5>
 11	0x2263	pack/talk/BASKET:0x25e0	C'mon, can't ya look the other way?<FFF6>I'm gonna be on the dream<FFF6>team some day...<FFFD>お<FFF5>
 12	0x22a2	pack/talk/BASKET:0x2688	Jocks like me always fall for<FFF6>the passionate invitations...<FFFB><FFF7>Well, I'll think about it.<FFF5>
-13	0x22de	pack/talk/BASKET:0x2738	I don't mind helping, but my goal<FFF6>is to make it to finals...<FFFD>か<FFF5>
+13	0x22de	pack/talk/BASKET:0x2738	I don't mind helping,<FFF6>but my goal is to make it to finals...<FFFD>か<FFF5>
 14	0x2315	pack/talk/BASKET:0x27b8	I can see straight through you!<FFF6>I ain't dumb enough to fall for that!<FFF5>
 15	0x2347	pack/talk/BASKET:0x2848	Shut up, man! The only thing on<FFF6>my mind is making it to the pros!<FFFD>き<FFF5>
 16	0x2377	pack/talk/BASKET:0x28d0	Where you tryin' to take me? I'm not<FFF6>goin' anywhere that don't got a ball...<FFF5>
@@ -24,7 +24,7 @@ id	pos	psp	en
 22	0x24b3	pack/talk/BASKET:0x2bf8	That song ain't half bad! It'd make<FFF6>a perfect theme song for me!<FFF5>
 23	0x24e0	pack/talk/BASKET:0x2c80	Bravo! Bravooo!<FFFD>さ<FFF5>
 24	0x24fc	pack/talk/BASKET:0x2ca8	I'm a sucker for the pleas of a lady...<FFF6>I'll think about it.<FFF5>
-25	0x252c	pack/talk/BASKET:0x2d28	I don't mind helping, but my goal<FFF6>is to make it to finals...<FFFD>し<FFF5>
+25	0x252c	pack/talk/BASKET:0x2d28	I don't mind helping,<FFF6>but my goal is to make it to finals...<FFFD>し<FFF5>
 26	0x2563	pack/talk/BASKET:0x2da8	You think I'm weak enough to<FFF6>be persuaded by some<FFF6>girl's sweet talk!?<FFF5>
 27	0x2595	pack/talk/BASKET:0x2e38	Shut up, man! The only thing on<FFF6>my mind is making it to the pros!<FFFD>す<FFF5>
 28	0x25c5	pack/talk/BASKET:0x2ec0	Hahaha! It ain't easy bein' the man!<FFF5>
@@ -39,7 +39,7 @@ id	pos	psp	en
 37	0x278d	pack/talk/BASKET:0x3338	Hey, I ain't gonna condone lying, but<FFF6>imagination is important in sports!<FFFD>つ<FFF5>
 38	0x27cf	pack/talk/BASKET:0x33d0	Hey woman, are you tryin' to<FFF6>pull a fast one on me!?<FFF5>
 39	0x27fe	pack/talk/BASKET:0x3440	You better not be playin' me, girlie...<FFF6>If you are, you're in for it!<FFFB><FFF7>The rule is,<FFF6>liars get their tongues pulled out!<FFFD>て<FFF5>
-40	0x2876	pack/talk/BASKET:0x3538	I don't know what the hell<FFF6>you're sayin', but you<FFF6>must mean I'm a genius!<FFF5>
+40	0x2876	pack/talk/BASKET:0x3538	I don't know what<FFF6>the hell you're sayin',<FFF6>but you must mean I'm a genius!<FFF5>
 41	0x28aa	pack/talk/BASKET:0x35d0	Huh!? I've never heard that before!<FFFB><FFF7>You should cut back on the TV.<FFFD>と<FFF5>
 42	0x28de	pack/talk/BASKET:0x3660	Don't be scared!<FFF6>I'm a nice guy to the ladies!<FFF5>
 43	0x290f	pack/talk/BASKET:0x36c0	Hey, c'mon, I'm a baller! I would never<FFF6>try to beat you down!...Right?<FFFD>な<FFF5>
@@ -121,13 +121,13 @@ id	pos	psp	en
 119	0x37c2	pack/talk/BASKET:0x5b50	Hey, I ain't gonna condone lying, but<FFF6>imagination is important in sports!<FFFD>ぢ<FFF5>
 120	0x3804	pack/talk/BASKET:0x5be8	Hey, punk!<FFF6>You tryin' to pull a fast one on me!?<FFF5>
 121	0x3835	pack/talk/BASKET:0x5c50	You better not be playin' me...<FFF6>If you are, you're in for it!<FFFB><FFF7>The rule is, law,<FFF6>liars get their tongues pulled out!<FFFD>づ<FFF5>
-122	0x38ab	pack/talk/BASKET:0x5d40	I don't know what the hell<FFF6>you're sayin', but you<FFF6>must mean I'm a genius!<FFF5>
+122	0x38ab	pack/talk/BASKET:0x5d40	I don't know what<FFF6>the hell you're sayin',<FFF6>but you must mean I'm a genius!<FFF5>
 123	0x38e0	pack/talk/BASKET:0x5dd8	Huh!? I've never heard that before!<FFFB><FFF7>You should cut back on the TV.<FFFD>で<FFF5>
 124	0x3914	pack/talk/BASKET:0x5e68	That's not scary at all!<FFF6>Argh!<FFED> I coulda been<FFF6>practicin' that whole time!<FFF5>
 125	0x394d	pack/talk/BASKET:0x5f00	I could tell a scarier story than that!<FFF6>The heroine killed by a demon<FFF6>will be played by you!<FFFD>ど<FFF5>
 126	0x398a	pack/talk/BASKET:0x5fc0	That's really depressing...<FFF6>I shoulda tuned you out...<FFF5>
 127	0x39ad	pack/talk/BASKET:0x6030	H-Hey, that wasn't a true story...<FFF6>Right?<FFFD>ば<FFF5>
-128	0x39df	pack/talk/BASKET:0x6088	It's a little childish, but I like<FFF6>stories with blood and guts!<FFF5>
+128	0x39df	pack/talk/BASKET:0x6088	It's a little childish,<FFF6>but I like stories with blood and guts!<FFF5>
 129	0x3a12	pack/talk/BASKET:0x6108	That was good!<FFF6>Do humans fear me like that too?<FFFD>び<FFF5>
 130	0x3a47	pack/talk/BASKET:0x6170	Hm, you've got a nice voice!<FFF6>With you cheering me on,<FFF6>the next game's as good as won!<FFF5>
 131	0x3a86	pack/talk/BASKET:0x6220	You're good! How 'bout we do a duet?<FFF6>You'd be okay with that, right?<FFFD>ぶ<FFF5>
@@ -142,7 +142,7 @@ id	pos	psp	en
 140	0x3c2e	pack/talk/BASKET:0x6630	Hahaha! Your negotation<FFF6>style doesn't jive with me.<FFF6>Well, it's been fun.<FFF5>
 141	0x3c5f	pack/talk/BASKET:0x66c8	Do I look like a baby? You're losin' it!<FFFD>ぷ<FFF5>
 142	0x3c9c	pack/talk/BASKET:0x6720	I'm a sucker for the pleas of a lady...<FFF6>I'll think about it.<FFF5>
-143	0x3cd2	pack/talk/BASKET:0x67a0	I don't mind helping, but my goal<FFF6>is to make it to finals...<FFFD>ぺ<FFF5>
+143	0x3cd2	pack/talk/BASKET:0x67a0	I don't mind helping,<FFF6>but my goal is to make it to finals...<FFFD>ぺ<FFF5>
 144	0x3d09	pack/talk/BASKET:0x6820	You think I'm weak enough to<FFF6>be persuaded by some<FFF6>girl's sweet talk!?<FFF5>
 145	0x3d3b	pack/talk/BASKET:0x68b0	Shut up, man! The only thing on<FFF6>my mind is making it to the pros!<FFFD>ぽ<FFF5>
 146	0x3d6b	pack/talk/BASKET:0x6938	Hahaha! It ain't easy bein' the man!<FFF5>
@@ -175,7 +175,7 @@ id	pos	psp	en
 173	0x42c1	pack/talk/BASKET:0x7700	You didn't think I'd be afraid of that,<FFF6>did ya!? Huh!?<FFFD>ウ<FFF5>
 174	0x42f5	pack/talk/BASKET:0x7778	What the heck are you? Talkin'<FFF6>like that to a god among ballers...<FFF5>
 175	0x4320	pack/talk/BASKET:0x7800	Why...?<FFF6>Why would I need you to tell me that?<FFFD>エ<FFF5>
-176	0x4355	pack/talk/BASKET:0x7860	Hahaha! You may be interested, but<FFF6>I sure as hell ain't!<FFF5>
+176	0x4355	pack/talk/BASKET:0x7860	Hahaha! You may be interested,<FFF6>but I sure as hell ain't!<FFF5>
 177	0x437b	pack/talk/BASKET:0x78d8	Hahaha! I bet you were a bully when<FFF6>you were a kid, huh?<FFFD>オ<FFF5>
 178	0x439e	pack/talk/BASKET:0x7950	Hmm, you're a good speaker.<FFFB><FFF7>If you were the coach, the team<FFF6>would be pumped for the game!<FFF5>
 179	0x43d7	pack/talk/BASKET:0x7a08	You don't sound much<FFF6>like a high school kid...<FFF6>Are you lyin' 'bout your age?<FFFD>カ<FFF5>
@@ -222,7 +222,7 @@ id	pos	psp	en
 220	0x4ab1	pack/talk/BASKET:0x8dd0	Hahaha! I think I'm gettin'<FFF6>smarter just watchin' you!<FFF5>
 221	0x4ae5	pack/talk/BASKET:0x8e40	Talk, wait for a reaction,<FFF6>gain some interest... Your negotations<FFF6>are straight outta the playbook.<FFF5>
 222	0x4b20	pack/talk/BASKET:0x8f08	Whatwhatwhat!? You want<FFF6>somethin' from me!? How about<FFF6>an advance on the contract then!?<FFF1><FFF5>
-223	0x4b5d	pack/talk/BASKET:0x8fc0	It was a stupid conversation, but<FFF6>I listened anyway.<FFFB><FFF7>I don't think I'll let you have<FFF6>any last words after all!<FFF5>
+223	0x4b5d	pack/talk/BASKET:0x8fc0	It was a stupid conversation,<FFF6>but I listened anyway.<FFFB><FFF7>I don't think I'll let you have<FFF6>any last words after all!<FFF5>
 224	0x4ba6	pack/talk/BASKET:0x90a0	You are horrifically annoying!<FFF6>Your voice makes me wanna<FFF6>puke my guts out!<FFF5>
 225	0x4bda	pack/talk/BASKET:0x9138	Stop your yappin' and<FFF6>come out with it!<FFF1><FFF5>
 226	0x4bfe	pack/talk/BASKET:0x9190	What is telling me that<FFF6>supposed to do for you?<FFF5>
@@ -259,13 +259,13 @@ id	pos	psp	en
 257	0x525f	pack/talk/BASKET:0xa1e0	Comedy is somethin' you're<FFF6>supposed to charge for, ya know...<FFF1><FFF5>
 258	0x528b	pack/talk/BASKET:0xa260	Show me somethin' more interesting!<FFF5>
 259	0x52a4	pack/talk/BASKET:0xa2a8	That... was......... boring!<FFF5>
-260	0x52bc	pack/talk/BASKET:0xa2e8	You wasted my time with<FFF6>your stupidity!<FFFB><FFF7>I won't forgive you very easily, so<FFF6>gimme somethin' to make up for it!<FFF1><FFF5>
+260	0x52bc	pack/talk/BASKET:0xa2e8	You wasted my time with<FFF6>your stupidity!<FFFB><FFF7>I won't forgive you very easily,<FFF6>so gimme somethin' to make up for it!<FFF1><FFF5>
 261	0x530c	pack/talk/BASKET:0xa3d0	Who do you think I am...?<FFF6>You better start gettin' serious here!<FFF5>
 262	0x533e	pack/talk/BASKET:0xa458	W-Was I so scary that you lost it?<FFF5>
 263	0x5365	pack/talk/BASKET:0xa4a0	I'm jealous...<FFF6>You don't get nervous, do you?<FFF5>
 264	0x5385	pack/talk/BASKET:0xa500	Maybe I should learn a trick or two.<FFF5>
 265	0x53a7	pack/talk/BASKET:0xa550	Hahaha! You're funny!<FFF6>Man, I feel like havin' a drink now...<FFF5>
-266	0x53dc	pack/talk/BASKET:0xa5d0	That kinda stuff doesn't<FFF6>interest me...<FFFB><FFF7>But I feel sorry for you, so<FFF6>I'll hear you out!<FFF5>
+266	0x53dc	pack/talk/BASKET:0xa5d0	That kinda stuff doesn't<FFF6>interest me...<FFFB><FFF7>But I feel sorry for you,<FFF6>so I'll hear you out!<FFF5>
 267	0x541c	pack/talk/BASKET:0xa688	There's no guarantee<FFF6>this isn't a trap... Hmmm...<FFF5>
 268	0x5453	pack/talk/BASKET:0xa6f0	I can't sign with you for just that!<FFF6>How 'bout throwin' in an extra one?<FFF1><FFF5>
 269	0x5480	pack/talk/BASKET:0xa788	Don't tease your elders like that!<FFF5>
@@ -295,14 +295,14 @@ id	pos	psp	en
 293	0x590d	pack/talk/BASKET:0xb3d8	Oh well. Go ahead, take it.<FFEF>
 294	0x592c	pack/talk/BASKET:0xb410	Lates. I'll give<FFF5>
 295	0x5936	pack/talk/BASKET:0xb420	this to you, too. Nice meetin' ya!<FFEF>
-296	0x5959	pack/talk/BASKET:0xb480	*sigh* Stick around here too<FFF6>long, and I'll have roots growin'<FFF6>outta my ass. I'm outta here.<FFEF>
+296	0x5959	pack/talk/BASKET:0xb480	*sigh* Stick around here too long,<FFF6>and I'll have roots growin' outta<FFF6>my ass. I'm outta here.<FFEF>
 297	0x5991	pack/talk/BASKET:0xb540	Here's my card.<FFF6>I don't care who you fuse me with,<FFF6>just not with any crap, okay!?<FFFB><FFF7>Make me a Persona that can bring<FFF6>his A game to the hoop!<FFF5>
 298	0x59fa	pack/talk/BASKET:0xb658	...Oh yeah! I'll give you this!<FFF6>You're happy now, right? Right!?<FFF6>So, please! Just lemme go!<FFEF>
 299	0x5a36	pack/talk/BASKET:0xb710	Man, if I hang around you any longer,<FFF6>my head's gonna get moldy!<FFEF>
 300	0x5a6a	pack/talk/BASKET:0xb798	I'll give ya this, so scram! Hahaha!<FFEF>
 301	0x5aa0	pack/talk/BASKET:0xb7e8	Now then, what should I do with<FFF6>you...? I have no idea!<FFF6>Is my brain that weak!?<FFEF>
 302	0x5ae1	pack/talk/BASKET:0xb888	Argh! I don't get it! You want a card,<FFF6>right!? Fine, take it!<FFEF>
-303	0x5b17	pack/talk/BASKET:0xb908	I'm not too good with words, but<FFF6>I wanna help you guys out.<FFEF>
+303	0x5b17	pack/talk/BASKET:0xb908	I'm not too good with words,<FFF6>but I wanna help you guys out.<FFEF>
 304	0x5b5a	pack/talk/BASKET:0xb980	If it's okay with you, take my card!<FFF6>I don't think it's a bad offer...<FFEF>
 305	0x5b8f	pack/talk/BASKET:0xba10	Damn it! I don't wanna fight you!<FFEF>
 306	0x5bb6	pack/talk/BASKET:0xba58	I must be goin' soft...<FFF6>But here's a present! Take it!<FFEF>
@@ -320,9 +320,9 @@ id	pos	psp	en
 318	0x5e35	pack/talk/BASKET:0xc0b0	Hey, what's happening?<FFF6>There a game goin' on?<FFFD>ホ<FFF5>
 319	0x5e5e	pack/talk/BASKET:0xc110	You answered!<FFF6>Is it because I'm just so popular?<FFF5>
 320	0x5e92	pack/talk/BASKET:0xc178	Y'know, I don't talk to humans too<FFF6>often. I'm actually kinda nervous...<FFF5>
-321	0x5ec9	pack/talk/BASKET:0xc208	<FFED>Well, I'm glad you answered<FFF6>my call, but I have a question...<FFFB><FFF7>If you've got time to be doin'<FFF6>this, don't you have somethin'<FFF6>better you could be doin'?<FFFD>マ<FFF5>
+321	0x5ec9	pack/talk/BASKET:0xc208	<FFED>Well, I'm glad you answered my call,<FFF6>but I have a question...<FFFB><FFF7>If you've got time to be doin'<FFF6>this, don't you have somethin'<FFF6>better you could be doin'?<FFFD>マ<FFF5>
 322	0x5f33	pack/talk/BASKET:0xc340	<FFED>You got some business with me!?<FFF6>Or are you just here to chill?<FFF6>Gimme a straight answer!<FFF5>
-323	0x5f69	pack/talk/BASKET:0xc3f8	<FFEE>Gimme somethin', and maybe<FFF6>I'll be willing to listen!<FFF1><FFF5>
+323	0x5f69	pack/talk/BASKET:0xc3f8	<FFEE>Gimme somethin',<FFF6>and maybe I'll be willing to listen!<FFF1><FFF5>
 324	0x5f9e	pack/talk/BASKET:0xc468	<FFEC>You don't really want anything from<FFF6>me, huh? Guess I'll be off...<FFFD>ミ<FFF5>
 325	0x5fd5	pack/talk/BASKET:0xc4f8	<FFEC>Aw crap, humans!<FFF6>Man, I have the worst luck...<FFFB><FFF7>I always get the troublemakers.<FFF6>Same with my love life.<FFF5>
 326	0x6039	pack/talk/BASKET:0xc5d0	<FFEC>First off, let's set some ground rules.<FFF6>NO VIOLENCE! I'll treat ya right...<FFF5>
@@ -390,7 +390,7 @@ id	pos	psp	en
 388	0x6c07	pack/talk/BASKET:0xe468	Well, there you have it.<FFF5>
 389	0x6c15	pack/talk/BASKET:0xe4a0	You're an honest one, huh?<FFF6>It might be fun to watch honesty<FFF6>turn around and bite ya...<FFF5>
 390	0x6c52	pack/talk/BASKET:0xe550	You'll see whether or not that's<FFF6>possible when ya eat my dunk!<FFF5>
-391	0x6c7b	pack/talk/BASKET:0xe5d0	Oh er... Um...<FFF6>I'm short on time here, and<FFF6>this guy ain't even listening...<FFF5>
+391	0x6c7b	pack/talk/BASKET:0xe5d0	Oh er... Um... I'm short on time here,<FFF6>and this guy ain't even listening...<FFF5>
 392	0x6cb2	pack/talk/BASKET:0xe668	You idiot! You can't win without<FFF6>practice! Don't you get it!?<FFF5>
 393	0x6ce4	pack/talk/BASKET:0xe6e8	I don't need your sympathy!<FFF6>So what if my only skill is ballin'!?<FFF5>
 394	0x6d1f	pack/talk/BASKET:0xe770	Huh!? Well, aren't we frank!<FFF6>I'll crush your throat!<FFF5>
@@ -398,7 +398,7 @@ id	pos	psp	en
 396	0x6d8b	pack/talk/BASKET:0xe850	What are you doing to me!? I've got<FFF6>a game comin' up! You're dead, man!<FFF5>
 397	0x6dbb	pack/talk/BASKET:0xe8e0	I'm losing consciousness... It's kinda<FFF6>different from runnin' outta breath...<FFF5>
 398	0x6de9	pack/talk/BASKET:0xe980	Encore! Encore! Sing another one!<FFF5>
-399	0x6e11	pack/talk/BASKET:0xe9c8	If I made you my slave,<FFF6>I could hear that song anytime...!<FFF6>I'm a genius!<FFFB><FFF7>But I'm a nice guy, so I'll take<FFF6>somethin' else instead.<FFF1><FFF5>
+399	0x6e11	pack/talk/BASKET:0xe9c8	If I made you my slave,<FFF6>I could hear that song anytime...!<FFF6>I'm a genius!<FFFB><FFF7>But I'm a nice guy,<FFF6>so I'll take somethin' else instead.<FFF1><FFF5>
 400	0x6e85	pack/talk/BASKET:0xead0	Hold on, man... If I keep listening,<FFF6>I'll be like a charmed snake...<FFF5>
 401	0x6eb2	pack/talk/BASKET:0xeb60	What!? I... I! I'm chasing the dream!<FFF5>
 402	0x6edd	pack/talk/BASKET:0xebb0	Huh!? Really!? Wow, I'm all fired up!<FFF5>
@@ -418,7 +418,7 @@ id	pos	psp	en
 416	0x714c	pack/talk/BASKET:0xf210	Yeah, even humans don't bother<FFF6>dealing with weaklings!<FFF5>
 417	0x717b	pack/talk/BASKET:0xf280	Hey, hey, hey!<FFF6>You don't know b-ball, do you?<FFF6>Come watch me play some time!<FFF5>
 418	0x71b0	pack/talk/BASKET:0xf318	You still frontin' with lies!?<FFF6>That's not good, man!<FFF5>
-419	0x71d1	pack/talk/BASKET:0xf388	An honest heart is the key to gettin'<FFF6>better! Take my advice, and you'll<FFF6>have it made in the shade!<FFF5>
+419	0x71d1	pack/talk/BASKET:0xf388	An honest heart is the key to<FFF6>gettin' better! Take my advice,<FFF6>and you'll have it made in the shade!<FFF5>
 420	0x720b	pack/talk/BASKET:0xf450	I get it, I get it. You can continue<FFF6>this conversation in hell.<FFF5>
 421	0x723b	pack/talk/BASKET:0xf4d0	You're an honest one, huh?<FFF6>It might be fun to watch honesty<FFF6>turn around and bite ya...<FFF5>
 422	0x7278	pack/talk/BASKET:0xf580	Then stick out your tongue!<FFF6>I'll yank it out gently!<FFF5>
@@ -426,7 +426,7 @@ id	pos	psp	en
 424	0x72df	pack/talk/BASKET:0xf660	Hahaha! I've seen a lotta guys like<FFF6>that! But I'll keep my mouth shut.<FFF5>
 425	0x7315	pack/talk/BASKET:0xf6f0	I'm super pissed! I'm exploding with<FFF6>the urge to kill you!<FFF5>
 426	0x7347	pack/talk/BASKET:0xf768	Heh! You're on! I'll crush you!<FFF5>
-427	0x7366	pack/talk/BASKET:0xf7a8	Y'know, with girls...<FFF6>It makes me feel kinda guilty, so<FFF6>I don't really like to...<FFF5>
+427	0x7366	pack/talk/BASKET:0xf7a8	Y'know, with girls...<FFF6>It makes me feel kinda guilty,<FFF6>so I don't really like to...<FFF5>
 428	0x73a1	pack/talk/BASKET:0xf850	Don't worry about it. Just gimme<FFF6>somethin' and it'll be all good.<FFF1><FFF5>
 429	0x73c9	pack/talk/BASKET:0xf8d8	Huh? That's not it? Sorry,<FFF6>I get all hyped up before a game.<FFF6>But my fans are welcome anytime!<FFF5>
 430	0x7409	pack/talk/BASKET:0xf998	Hehehe... So you're okay with<FFF6>anything I do to you, right!?<FFF6>Hehehehe...<FFF5>
@@ -511,7 +511,7 @@ id	pos	psp	en
 509	0x82b1	pack/talk/BASKET:0x121e8	Oh! I love the chicken dance!<FFF6>That's how the party gets started,<FFF6>right!? Hahaha!<FFF5>
 510	0x82e4	pack/talk/BASKET:0x12290	That's... a dance? I can't keep<FFF6>up with these human fads...<FFF5>
 511	0x8313	pack/talk/BASKET:0x12308	Oooh, they like it! Way to go, me!<FFF6>You're awesome!<FFF5>
-512	0x833b	pack/talk/BASKET:0x12370	Oh... No good huh? U-Um...<FFF6>Anyone wanna do the New<FFF6>York Hustle with me?<FFF5>
+512	0x833b	pack/talk/BASKET:0x12370	Oh... No good huh?<FFF6>U-Um... Anyone wanna do<FFF6>the New York Hustle with me?<FFF5>
 513	0x8370	pack/talk/BASKET:0x12400	No dice?... Well, whatever.<FFF6>I'm no dancer anyway.<FFF5>
 514	0x83a8	pack/talk/BASKET:0x12468	Is that so? Then let's try it out!<FFF5>
 515	0x83c6	pack/talk/BASKET:0x124b0	Heh, what a bull! You see what you<FFF6>want, and you charge! I like that!<FFF5>
@@ -530,7 +530,7 @@ id	pos	psp	en
 528	0x860b	pack/talk/BASKET:0x12b60	If you say so, I guess I'll have to put<FFF6>my foot down! But I'm kinda scared...<FFF5>
 529	0x863d	pack/talk/BASKET:0x12c00	Huh? That was easy! Tch! Is that all<FFF6>you're gonna bring to the table!?<FFF5>
 530	0x866b	pack/talk/BASKET:0x12c90	You still frontin' with lies!?<FFF6>That's not good, man!<FFF5>
-531	0x868c	pack/talk/BASKET:0x12d00	An honest heart is the key to gettin'<FFF6>better! Take my advice, and you'll<FFF6>have it made in the shade!<FFF5>
+531	0x868c	pack/talk/BASKET:0x12d00	An honest heart is the key to<FFF6>gettin' better! Take my advice,<FFF6>and you'll have it made in the shade!<FFF5>
 532	0x86c6	pack/talk/BASKET:0x12dc8	I get it, I get it. You can continue<FFF6>this conversation in hell.<FFF5>
 533	0x86f6	pack/talk/BASKET:0x12e48	You're an honest one, huh?<FFF6>It might be fun to watch honesty<FFF6>turn around and bite ya...<FFF5>
 534	0x8733	pack/talk/BASKET:0x12ef8	Then stick out your tongue!<FFF6>I'll yank it out gently!<FFF5>
@@ -551,7 +551,7 @@ id	pos	psp	en
 549	0x8a34	pack/talk/BASKET:0x135a0	Huh!? Well, aren't we frank!<FFF6>I'll crush your throat!<FFF5>
 550	0x8a6b	pack/talk/BASKET:0x13610	I'm goin' to nationals!<FFF6>Not like I wanna be a singer...<FFF5>
 551	0x8aa0	pack/talk/BASKET:0x13680	Encore! Encore! Sing another one!<FFF5>
-552	0x8ac8	pack/talk/BASKET:0x136c8	If I made you my slave,<FFF6>I could hear that song anytime...!<FFF6>I'm a genius!<FFFB><FFF7>But I'm a nice guy, so I'll take<FFF6>somethin' else instead.<FFF1><FFF5>
+552	0x8ac8	pack/talk/BASKET:0x136c8	If I made you my slave,<FFF6>I could hear that song anytime...!<FFF6>I'm a genius!<FFFB><FFF7>But I'm a nice guy,<FFF6>so I'll take somethin' else instead.<FFF1><FFF5>
 553	0x8b3c	pack/talk/BASKET:0x137d0	Hold on man... If I keep listening,<FFF6>I'll be like a charmed snake...<FFF5>
 554	0x8b69	pack/talk/BASKET:0x13858	Then I'll do somethin' bad now!<FFF6>Gimme somethin'!<FFF1><FFF5>
 555	0x8b9b	pack/talk/BASKET:0x138c0	What's up with that crazy accent!?<FFF6>You're weird!<FFF5>
@@ -565,7 +565,7 @@ id	pos	psp	en
 563	0x8d11	pack/talk/BASKET:0x13c70	Well, there you have it.<FFF5>
 564	0x8d1f	pack/talk/BASKET:0x13ca8	You're an honest one, huh?<FFF6>It might be fun to watch honesty<FFF6>turn around and bite ya...<FFF5>
 565	0x8d5c	pack/talk/BASKET:0x13d58	I guess I'm gonna hafta break you off<FFF6>a little sumthin' sumthin'!<FFF5>
-566	0x8d86	pack/talk/BASKET:0x13de0	I don't mind if you're<FFF6>serious, but you should know,<FFF6>I'm already married to the hoop!<FFF5>
+566	0x8d86	pack/talk/BASKET:0x13de0	I don't mind if you're serious,<FFF6>but you should know,<FFF6>I'm already married to the hoop!<FFF5>
 567	0x8db8	pack/talk/BASKET:0x13e90	You ain't worthy to speak to<FFF6>the super-star of<FFF6>the basketball world!<FFF5>
 568	0x8dea	pack/talk/BASKET:0x13f20	Oh well! This is why I hate kids!<FFF5>
 569	0x8e0c	pack/talk/BASKET:0x13f68	You're right... I probably shouldn't...<FFF5>
@@ -577,7 +577,7 @@ id	pos	psp	en
 575	0x8ef1	pack/talk/BASKET:0x14198	Huh?<FFF6>What that's about a kitchen? Wait!<FFF6>You're not gonna eat me, are you?<FFF5>
 576	0x8f28	pack/talk/BASKET:0x14230	Oh, is that so!? Then I hate you too!<FFF5>
 577	0x8f5b	pack/talk/BASKET:0x14280	Well, there you have it.<FFF5>
-578	0x8f69	pack/talk/BASKET:0x142b8	Let's see... Gimme somethin', and<FFF6>I'll think about it.<FFF1><FFF5>
+578	0x8f69	pack/talk/BASKET:0x142b8	Let's see... Gimme somethin',<FFF6>and I'll think about it.<FFF1><FFF5>
 579	0x8f93	pack/talk/BASKET:0x14328	Lay off, woman! I ain't gonna let<FFF6>my dreams get shaken by no perfume!<FFF5>
 580	0x8fbf	pack/talk/BASKET:0x143b8	Hahaha! That's right!<FFF6>I AM a star, huh?<FFF5>
 581	0x8fea	pack/talk/BASKET:0x14408	What the heck!? Weren't we<FFF6>gonna do somethin' awesome!?<FFF6>You were toyin' with me, weren't you!?<FFF5>

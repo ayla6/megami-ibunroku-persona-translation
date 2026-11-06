@@ -67,7 +67,14 @@ tier); every other `CellsWriteRow` caller keeps the retail fixed-cell atlas.
 DNG's dungeon-menu Persona Data page uses the same sprite-cell path for its
 race + demon-name bar: both cel entries are marked, the race block keeps
 retail's six cells and the name block grows from ten to twenty cells in the
-image extension, with retail's dx=0x40/dy=0xC placement unchanged. Skill
+image extension, with retail's dx=0x40/dy=0xC placement unchanged. ADV's
+Velvet Room card page draws the same race + demon-name bar: its ten-cell name
+block sits immediately before the page's cel list and cannot grow in place,
+so the name entry points at the status bar's sixteen-cell block instead. The
+card page and the status page are separate layouts; each rewrites that block
+before its own slot renders, so the shared cells never carry a stale name.
+The race block keeps retail's six cells and the card list keeps retail's
+dx=0x40/dy=0xC placement. Skill
 rows are ordinary recorder rows: every overlay copy of `DrawSpellName`
 (ADV, DNG and S2D) builds the complete name with `skill_name_copy` in that
 overlay's scratch and the tiered row keeps the caller's ten-cell (80 px)
@@ -459,7 +466,9 @@ Order of preference, highest first - a lower rule NEVER beats a higher one:
    Hospital", "Saeko Takami". Not a wall: it is a cost, so it loses to 1-2 and
    beats everything below. Names are derived from capitalisation and sentence
    shape - never from a list. A comma or semicolon ends a name run; separate
-   names in a list are not one full name. A double-quoted term of up to four
+   names in a list are not one full name. A glued atom is judged by the words
+   that touch the break, not by its first letter: `the Peace | Diner on` still
+   splits the name "Peace Diner", even though the first atom begins lowercase. A double-quoted term of up to four
    words that fits a line has the same soft protection. Neither may buy an
    extra line or scroll.
 4. **Do not clip a tiny fragment onto a speaker label.** At the same line
@@ -498,6 +507,9 @@ Glue (what a break may not fall inside):
   without, through, toward(s), between, among, against, because, while, when,
   where, if, so, yet` end the line they sit on. A line never STARTS with one
   (the one exception: the connector's left neighbour is itself a break).
+  A comma, semicolon or colon boundary releases the connector: the clause
+  ends there, so the connector may start the next clause's line
+  (`C'mon, <FFF3>,<FFF6>if ya don't laugh...` keeps its comma break).
 - **A PROSE newline in the source is not a break of ours.** The PSP broke its
   lines where ITS 16px glyphs ran out, and English has different widths.
   The flow owns every line break in prose.
@@ -628,38 +640,27 @@ page remains a gap rather than resetting the pen, changing timing, or
 shortening text. PSP line breaks after hyphens rejoin without a space.
 
 **S2D overworld 1-row objects.** The area labels are 8x1 text objects and the
-arrival banner is 15x1. A 1-row object owns a VRAM strip exactly `cols*16` px
-wide (128 px for a label, 240 px for the banner), so it never draws or uploads
-past that strip: the next strip begins there, and on the map labels it belongs
-to the neighbouring place. The VWF pen stops at the object's pixel width and
-a glyph that would cross it is skipped; the renderer clips at a glyph boundary
-and never wraps or rewinds.
+arrival banner is 15x1. The label path stops its pen at 224 px (14 cells) and
+the banner path at the screen width (320 px); a glyph that would cross the cap
+is skipped, and the renderer never wraps or rewinds. The clip is presentation
+only: the wording is never cut.
+
+An 8x1 label owns a 128 px VRAM strip, narrower than the renderer's pen cap,
+so map wording is kept within that strip by the wording itself; a label wider
+than 128 px draws into the neighbouring label's strip.
 
 **S2D location slot: banner name and map label.** A location slot feeds two
 consumers, and the builder gives them separate strings. The slot's own row is
 the arrival / current-location banner name, capped at the banner's strip
 (`s2d.BANNER_LIMIT`, 240 px). The 8x1 map labels reach the slot through
 pointer words in the label-entry tables; every such word is rewired to a label
-string capped at the label's own strip (`s2d.LABEL_LIMIT`, 128 px), which by
-default is the same wording as the name. A manual row keyed at any of the
-slot's map-label pointer words (never at the slot's own pos, which is the
-banner) supplies shorter map wording; it is a normal filled manual row, so
-the wording is the user's. A label whose name is wider than its strip is
-queued in manual as an over-limit draft (`over limit Npx/128px; <name>`) while
-the banner keeps the full name; until the draft is filled the label still
-draws the full name, clipped at its own strip. The string itself is never cut:
-the renderer's clip is presentation, the wording stays whole.
-
-**Touched cells and the sprite map.** A narrow glyph touches cells
-`px>>4 .. (px+advance-1)>>4`: the sheet keeps one blank column after its ink
-(`LETTER_GAP`) and the drop shadow is one pixel right, so the last inked-and-
-shadowed column is `advance-1`. A 16px glyph may ink the full `advance-1` and
-shadow at `advance`, so its span ends one cell later. Every touched cell is
-cleared, composited, uploaded and given exactly one sprite record. Rounding
-`px+advance` up instead (the old `+2`) minted a phantom record past the last
-glyph; the sprite map draws every record, so that record sampled a VRAM cell
-the text never wrote - on a map label, the next place's strip. Records and
-cells match one for one at every draw.
+string, which by default is the same wording as the name. A manual row keyed
+at any of the slot's map-label pointer words (never at the slot's own pos,
+which is the banner) supplies shorter map wording; it is a normal filled
+manual row, so the wording is the user's. A label whose name is wider than
+its 128 px strip is queued in manual as an over-limit draft
+(`over limit Npx/128px; <name>`) while the banner keeps the full name; the
+draft row is the place to shorten the map wording.
 
 **Name inserts.** PSP-US wording determines which name is meant; translate the
 insert to the destination interpreter, never to match the Japanese row. The

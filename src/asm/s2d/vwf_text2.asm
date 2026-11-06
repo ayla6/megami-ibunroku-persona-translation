@@ -12,8 +12,8 @@
 ;;   * the glyph function 0x8009AF6C (one call site, 0x8009BA0C) is replaced by s2d_txt_put: 15x3 objects go through the
 ;;     shared engine (vwf_dialog_emit with a private config); 8x1 area labels and the 15x1 arrival banner go through a
 ;;     dedicated 1-row VWF path (greedy pen, CLIP on overflow - no wrap / no rewind).
-;;     A 1-row object draws only inside its own cols*16 px VRAM strip (labels 8 cells = 128 px, the banner
-;;     15 cells = 240 px); glyphs past that limit are skipped, so text can never overwrite the next strip.
+;;     Labels draw up to 224 px (14 cells), the banner up to the screen width; glyphs past
+;;     the limit are skipped.
 ;;   * s2d_txt_activate (engine callback): uploads the composed cell and creates / reuses the cell's sprite record.
 ;;   * the message window's background plate (the banner band, func_800937FC): s2d_plate_w
 ;;     supplies the pen extent s2d_txt_put keeps per object, plus 8px margin either side,
@@ -210,12 +210,13 @@ s2d_txt_put:
     li      s3, 16
     li      a1, 1
 @@limit:
-    lh      t5, 0x1D8(s4)               ; the object's own width: its VRAM
-    nop                                 ; (load delay)
-    sll     t5, t5, 4                   ; strip is exactly cols 16-px cells, so
-                                        ; a glyph past it would land in the
-                                        ; neighbouring strip (a label's is
-                                        ; 8 cells, the banner's 15)
+    lh      t4, 0x1D8(s4)                   ; s2 already holds this object's
+    li      t5, 320                     ; banner limit (screen width)
+    li      t6, 8
+    bne     t4, t6, @@lim
+    nop
+    li      t5, 224 ; label limit: 14 cells
+@@lim:
     addu    t7, s2, s3
     sltu    t7, t5, t7                  ; LIMIT < pen+adv: clipped
     bnez    t7, @@skip

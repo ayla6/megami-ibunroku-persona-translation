@@ -11,7 +11,7 @@ id	pos	psp	en
 9	0x2193	pack/talk/ZMBITYAN:0x2598	Do you have to like, brag about<FFF6>being such a good singer?<FFF6>You're like, a douchebag squared!<FFF5>
 10	0x21c5	pack/talk/ZMBITYAN:0x2650	I'm like, trippin' out!<FFF6>You actually make the singers<FFF6>around when I was alive sound good!<FFF5>
 11	0x21e9	pack/talk/ZMBITYAN:0x2708	You are like, so lame! I'm like...<FFF6>a zombie, and I'm cooler than you!<FFF5>
-12	0x2211	pack/talk/ZMBITYAN:0x2798	Hey dudette, I don't really like,<FFF6>get you, but you don't<FFF6>trip me out either...<FFF5>
+12	0x2211	pack/talk/ZMBITYAN:0x2798	Hey dudette,<FFF6>I don't really like, get you,<FFF6>but you don't trip me out either...<FFF5>
 13	0x2240	pack/talk/ZMBITYAN:0x2838	I'm like, a zombie!<FFF6>You need help from the undead? As if!<FFF5>
 14	0x226f	pack/talk/ZMBITYAN:0x28b0	I'm like, way shocked that someone<FFF6>totally wants my help!<FFF5>
 15	0x2295	pack/talk/ZMBITYAN:0x2928	Hey! It's like, totally obvious that<FFF6>you're faking that!<FFF5>
@@ -19,7 +19,7 @@ id	pos	psp	en
 17	0x22e7	pack/talk/ZMBITYAN:0x2a18	I'm like, totally stoked that<FFF6>I became a zombie...<FFF5>
 18	0x2303	pack/talk/ZMBITYAN:0x2a80	You're like, hysterical, dudette!<FFF6>I wish we'd met sooner in life...<FFF5>
 19	0x2332	pack/talk/ZMBITYAN:0x2b08	Yo, sister, it's like,<FFF6>totally not cool to lie!<FFF5>
-20	0x2352	pack/talk/ZMBITYAN:0x2b68	That was like,<FFF6>totally bunk, but I laughed anyway!<FFF5>
+20	0x2352	pack/talk/ZMBITYAN:0x2b68	That was like, totally bunk,<FFF6>but I laughed anyway!<FFF5>
 21	0x236f	pack/talk/ZMBITYAN:0x2bd0	Damn skippy! You totally<FFF6>understand how strong I am!<FFF5>
 22	0x2389	pack/talk/ZMBITYAN:0x2c40	Hey! It's like, so obvious that you<FFF6>totally don't mean that...<FFF5>
 23	0x23ae	pack/talk/ZMBITYAN:0x2cc0	I'm like, totally stoked that<FFF6>I became a zombie...<FFF5>
@@ -131,7 +131,7 @@ id	pos	psp	en
 129	0x3354	pack/talk/ZMBITYAN:0x6210	If someone's totally annoying me,<FFF6>I don't even care! I'll fight 'em!<FFF5>
 130	0x3377	pack/talk/ZMBITYAN:0x62a0	Wow, talk about spacing out...<FFF5>
 131	0x3393	pack/talk/ZMBITYAN:0x62e0	I know I'm like, a zombie, but that's so<FFF6>uncool to treat me like that...<FFF5>
-132	0x33c0	pack/talk/ZMBITYAN:0x6378	I'm like, still young and all, but<FFF6>you're like, light years younger!<FFF5>
+132	0x33c0	pack/talk/ZMBITYAN:0x6378	I'm like, still young and all,<FFF6>but you're like, light years younger!<FFF5>
 133	0x33e5	pack/talk/ZMBITYAN:0x6408	You're like,<FFF6>totally flunking your negotiation.<FFF6>Get with the program...<FFF5>
 134	0x3411	pack/talk/ZMBITYAN:0x6498	I didn't know there were street<FFF6>performers in this area...<FFF5>
 135	0x3430	pack/talk/ZMBITYAN:0x6510	That was totally radical!<FFF5>
@@ -147,7 +147,7 @@ id	pos	psp	en
 145	0x3542	pack/talk/ZMBITYAN:0x6978	Zombies go with zombies, and humans<FFF6>go with humans! That's like, the way!<FFF5>
 146	0x356b	pack/talk/ZMBITYAN:0x6a10	I'm kinda scared...<FFF5>
 147	0x3572	pack/talk/ZMBITYAN:0x6a38	I'm kinda scared...<FFF5>
-148	0x3579	pack/talk/ZMBITYAN:0x6a60	Like wow...<FFF6>I forgot how to feel excited, but<FFF6>it's coming back to me now.<FFF5>
+148	0x3579	pack/talk/ZMBITYAN:0x6a60	Like wow...<FFF6>I forgot how to feel excited,<FFF6>but it's coming back to me now.<FFF5>
 149	0x3590	pack/talk/ZMBITYAN:0x6af8	That pick-up is so last year!<FFF6>But I think it's kinda classic!<FFF5>
 150	0x35bb	pack/talk/ZMBITYAN:0x6b78	You're like, a good actor!<FFF5>
 151	0x35ca	pack/talk/ZMBITYAN:0x6bb0	I already like you, so like, you don't<FFF6>need to say silly stuff like that!<FFF5>
@@ -189,7 +189,7 @@ id	pos	psp	en
 187	0x3b76	pack/talk/ZMBITYAN:0x7f48	<FFED>I'm crazy busy today, so if you've<FFF6>got somethin' to say, keep it simple!<FFF5>
 188	0x3ba3	pack/talk/ZMBITYAN:0x7fe0	<FFEE>I'm crazy busy today, but if you've<FFF6>got somethin' to give me,<FFF6>I'll make time!<FFF1><FFF5>
 189	0x3bd2	pack/talk/ZMBITYAN:0x8080	<FFEE>I'm scared, but like, kinda curious...<FFF6>How about negotiating with me...?<FFF5>
-190	0x3c04	pack/talk/ZMBITYAN:0x8118	<FFEC>You make one trippy move, and<FFF6>I'm going back to the grave<FFF6>I crawled out of...<FFF5>
+190	0x3c04	pack/talk/ZMBITYAN:0x8118	<FFEC>You make one trippy move,<FFF6>and I'm going back to the grave<FFF6>I crawled out of...<FFF5>
 191	0x3c29	pack/talk/ZMBITYAN:0x81b8	<FFEE>Eep! I think your eyes are totally<FFF6>gonna sweep me off my feet!<FFF5>
 192	0x3c4f	pack/talk/ZMBITYAN:0x8238	<FFEB>Hey! Let's chat!<FFF5>
 193	0x3c6a	pack/talk/ZMBITYAN:0x8260	<FFED>Not you! Gross! I meant the other one!<FFF5>
@@ -218,7 +218,7 @@ id	pos	psp	en
 216	0x4047	pack/talk/ZMBITYAN:0x8e60	Ahhh... It's so warm...<FFF5>
 217	0x4055	pack/talk/ZMBITYAN:0x8e90	Hey! If you don't have any,<FFF6>you should just say so!<FFF6>Seriously, that's like, so rude!<FFF5>
 218	0x408c	pack/talk/ZMBITYAN:0x8f40	It's so not my lucky day...<FFF6>I saw some other people who looked<FFF6>like they had life stones...<FFF5>
-219	0x40c5	pack/talk/ZMBITYAN:0x8ff8	You better watch your back, or<FFF6>I'll eat your brains!<FFF5>
+219	0x40c5	pack/talk/ZMBITYAN:0x8ff8	You better watch your back,<FFF6>or I'll eat your brains!<FFF5>
 220	0x40e6	pack/talk/ZMBITYAN:0x9068	You're like, a total cheapskate.<FFF6>It's pretty useless talking to<FFF6>humans like you...<FFF5>
 221	0x411a	pack/talk/ZMBITYAN:0x9110	I'll come right out and say it!<FFF6>I want a <FFF4>!<FFEF>
 222	0x4152	pack/talk/ZMBITYAN:0x9168	Only two things are forever to<FFF6>a girl... Gems and zombies...<FFF5>

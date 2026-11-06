@@ -235,6 +235,26 @@ ADV_STATUS_NAMES   equ 0x80070144          ; StatusPersonaNames, rewritten in pl
 ADV_FUSE_CLEAR1    equ 0x8009F900          ; fusion draw helper: kind/name clears
 ADV_FUSE_SITE_A    equ 0x8009FB40          ; name+kind write, built-def path (s3 = def)
 ADV_FUSE_SITE_B    equ 0x8009FE38          ; name+kind write, built-persona path (s4 = Persona)
+;; --- ADV's card page (adv/pdata.asm): the Velvet Room card list's race+name bar ---
+;; The page's two retail blocks are fixed at ten cells (name) and six (race);
+;; the name block sits immediately before the page's cel list, so it cannot
+;; grow in place. The name row instead reuses the status bar's sixteen-cell
+;; block (adv/bar.asm); the race block and the cel list stay where retail put
+;; them, and the page's old ten-cell block becomes the name-row helper. The
+;; page and the status screen are separate layouts (slot 0x1E points at each
+;; screen's own list), so the shared block is always rewritten by the draw
+;; that uses it before the slot renderer reads it.
+ADV_PDATA_RACE_BLOCK equ 0x800BA080        ; retail header: cols 6, rows 1 (kept)
+ADV_PDATA_RACE_CELLS equ 0x800BA088        ; the 6 race cells (kept)
+ADV_PDATA_CEL_LIST  equ 0x800BA110         ; retail's two-entry cel list (28 bytes)
+ADV_PDATA_NAME_BLOCK equ ADV_BAR_NAME_BLOCK ; the shared 16-cell name block
+ADV_PDATA_NAME_CELLS equ ADV_BAR_NAME_CELLS
+ADV_PDATA_NAME_COLS equ 16
+ADV_PDATA_BAR       equ 0x800BA0B8         ; pdata_bar_adv: the full name row (old 10-cell block)
+ADV_PDATA_BAR_END   equ 0x800BA110
+ADV_PDATA_RACE_TABLE equ 0x800B23C0        ; 26 six-byte race labels (1-based)
+ADV_PDATA_TAIL      equ 0x80099014         ; PersonaDataDraw's bar tail (0x70 bytes)
+ADV_PDATA_TAIL_END  equ 0x80099084
 
 ;; --- the same bar in DNG.BIN (dng/bar.asm): one status screen, no fusion ---
 ;; DNG's hint table (0x8009AB90, twenty bytes) is read from SEVENTEEN sites,

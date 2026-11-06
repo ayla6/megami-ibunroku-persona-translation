@@ -20,3 +20,7 @@
 ;; --- The empty tab column closes up: the keyboard panel's divider
 ;;     tile drops out of the BG map (see name/abc_only.asm) ---
 .include "namedt/tab_column.asm"
+
+;; --- The family and given name rules run to eight cells, like nickname
+;;     (see name/long_names.asm) ---
+.include "namedt/name_fields.asm"

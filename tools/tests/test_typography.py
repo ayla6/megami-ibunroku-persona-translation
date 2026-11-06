@@ -25,6 +25,24 @@ class FlowRules(unittest.TestCase):
         self.assertFalse(wrap._caps_word('Example;'))
         self.assertTrue(wrap._caps_word('Example'))
 
+    def test_punctuation_boundary_releases_a_connector(self):
+        # A comma/semicolon/colon boundary is a real break: the connector may
+        # start the next clause's line instead of being clamped to the word.
+        items = wrap._glue_items([('w', w) for w in
+                                  ["C'mon,", '<FFF3>,', 'if', 'ya']])
+        self.assertIn(('w', 'if'), [it[:2] for it in items])
+        items = wrap._glue_items([('w', w) for w in ['go', 'to', 'town']])
+        self.assertIn(('w', 'go to'), [it[:2] for it in items])
+
+    def test_closer_split_off_a_code_run_never_starts_a_line(self):
+        pieces = wrap.word_pieces('<FF07><00>?')
+        self.assertEqual(''.join(p[0] for p in pieces), '<FF07><00>?')
+        self.assertFalse(pieces[-1][1])
+        text = wrap.wrap('Nanjo: What should we do, <FF07><00>? '
+                         'It may be a trap. Should we go in?')
+        self.assertIn('<FF07><00>?', text)
+        self.assertNotRegex(text, r'<FF03>\s*[.,!?;:»)\]]')
+
     def test_short_quoted_terms_have_soft_protection(self):
         items = wrap._glue_items([('w', w) for w in 'stop saying "young master." please'.split()])
         close = next(it for it in items if it[1] == 'master."')
@@ -133,9 +151,14 @@ class ReportedLayouts(unittest.TestCase):
         widths = [wrap.text_width(line) for line in lines]
         self.assertLess(abs(widths[0] - widths[1]), 20)
 
-    def test_opening_three_line_block_tapers_instead_of_dipping(self):
+    def test_opening_block_uses_fewest_lines_and_tapers(self):
+        # The comma after "future, exactly," releases "but": the block now
+        # fits two lines (238/184 px) instead of a three-line dip.
         lines = self.result['opening_taper'].split('<FF04>')[1].split('<FF03>')
-        self.assertEqual([len(re.sub(r'<[^>]+>', '', line).split()) for line in lines], [5, 4, 2])
+        self.assertEqual([len(re.sub(r'<[^>]+>', '', line).split()) for line in lines], [6, 5])
+        widths = [wrap.text_width(line) for line in lines]
+        self.assertEqual(len(widths), 2)
+        self.assertGreaterEqual(widths[0], widths[1])
 
     def test_greeting_still_breaks_at_its_sentence_boundary(self):
         lines = self.lines('greeting')

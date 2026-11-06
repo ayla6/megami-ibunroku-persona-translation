@@ -19,7 +19,7 @@ id	pos	psp	en
 17	0x2211	pack/talk/DOPPEL:0x2568	Are you Maki Sonomura?<FFF6>I could tell right off!<FFF6>You have a unique aura about you...<FFF5>
 18	0x2248	pack/talk/DOPPEL:0x2610	Hmm... I think your mother's grandpa<FFF6>is your guardian angel.<FFF6>He's really strong!<FFF5>
 19	0x2281	pack/talk/DOPPEL:0x26b8	Want to know the truth?<FFF6>The ones behind all this...<FFF6>are really aliens. Or not!<FFF5>
-20	0x22bb	pack/talk/DOPPEL:0x2758	If you do what I say, by some<FFF6>miracle a bronze statue of<FFF6>you will be erected!<FFF5>
+20	0x22bb	pack/talk/DOPPEL:0x2758	If you do what I say,<FFF6>by some miracle a bronze<FFF6>statue of you will be erected!<FFF5>
 21	0x22f2	pack/talk/DOPPEL:0x27f8	I got lost and wandered here...<FFF6>Please forgive me!<FFF5>
 22	0x231e	pack/talk/DOPPEL:0x2860	A-A human! D-Don't come near me!<FFF5>
 23	0x233b	pack/talk/DOPPEL:0x28a8	Ahahahahaha! Please... spare me!<FFF5>
@@ -73,7 +73,7 @@ id	pos	psp	en
 71	0x29de	pack/talk/DOPPEL:0x3c90	You're a very capable human. Won't<FFF6>you take on a job as my bodyguard?<FFF5>
 72	0x2a10	pack/talk/DOPPEL:0x3d20	What did you just say...? I refuse.<FFF5>
 73	0x2a35	pack/talk/DOPPEL:0x3d68	Ahahah... What should I do?<FFF5>
-74	0x2a4c	pack/talk/DOPPEL:0x3da0	I may have a smart mouth, but<FFF6>I'm really a good girl!<FFF5>
+74	0x2a4c	pack/talk/DOPPEL:0x3da0	I may have a smart mouth,<FFF6>but I'm really a good girl!<FFF5>
 75	0x2a79	pack/talk/DOPPEL:0x3e10	It smells kind of funny around here!<FFF6>And that style is like,<FFF6>PRE-prehistoric! What a dork!<FFF5>
 76	0x2aaf	pack/talk/DOPPEL:0x3ec8	You're seriously willing to be seen<FFF6>outside looking like that?<FFF5>
 77	0x2ac2	pack/talk/DOPPEL:0x3f48	Ooooh, my chest is sore...<FFF6>Maybe if you gave it a little rub...?<FFF5>
@@ -82,7 +82,7 @@ id	pos	psp	en
 80	0x2b3c	pack/talk/DOPPEL:0x4098	My daddy was abducted by a UFO...<FFF6>My mom joined an evil cult...Now I've<FFFB><FFF7>been taken apart and put back<FFF6>together as a cyborg...<FFF5>
 81	0x2b7e	pack/talk/DOPPEL:0x4198	Won't someone buy my matches...?<FFF6>If I don't sell any, Papa will beat me...<FFF5>
 82	0x2bae	pack/talk/DOPPEL:0x4230	I'm the oldest of 23 brothers and<FFF6>sisters... I have to eat them all...<FFF5>
-83	0x2be1	pack/talk/DOPPEL:0x42c0	I'd watch out if I were you...<FFF6>I'm nice and calm now, but<FFF6>I go nuts in a snap.<FFF5>
+83	0x2be1	pack/talk/DOPPEL:0x42c0	I'd watch out if I were you...<FFF6>I'm nice and calm now,<FFF6>but I go nuts in a snap.<FFF5>
 84	0x2c1b	pack/talk/DOPPEL:0x4360	You're not gonna do what I say!?<FFF6>Don't make me blow your brains out!<FFF5>
 85	0x2c48	pack/talk/DOPPEL:0x43f0	My hobby is collecting<FFF6>severed demon heads...<FFF5>
 86	0x2c6f	pack/talk/DOPPEL:0x4450	Hmph! It's true what they say...<FFF6>A human's bark is worse than its bite!<FFF5>
@@ -91,7 +91,7 @@ id	pos	psp	en
 89	0x2cee	pack/talk/DOPPEL:0x45d0	Y'know, I've been thinking about<FFF6>the difference between humans and<FFF6>demons... And it's useless.<FFFB><FFF7>There isn't any.<FFF5>
 90	0x2d23	pack/talk/DOPPEL:0x46b0	It's better to stay in bed than to<FFF6>go through life half-assed. There's<FFF6>too many people like that already.<FFF5>
 91	0x2d58	pack/talk/DOPPEL:0x4788	Your actions have no worth.<FFF6>I'm so smart!<FFF5>
-92	0x2d8a	pack/talk/DOPPEL:0x47e0	Stay quiet for once and listen to<FFF6>what others have to say!<FFFB><FFF7>And don't you make fun of<FFF6>them, or I'll make you regret it!<FFF5>
+92	0x2d8a	pack/talk/DOPPEL:0x47e0	Stay quiet for once and listen to<FFF6>what others have to say!<FFFB><FFF7>And don't you make fun of them,<FFF6>or I'll make you regret it!<FFF5>
 93	0x2db1	pack/talk/DOPPEL:0x48d0	Stop whining... No one likes it...<FFF5>
 94	0x2dca	pack/talk/DOPPEL:0x4918	Haha... who knows?<FFF5>
 95	0x2ddb	pack/talk/DOPPEL:0x4940	............<FFF5>
@@ -188,7 +188,7 @@ id	pos	psp	en
 186	0x407e	pack/talk/DOPPEL:0x8228	If you're my double, I don't need to<FFF6>be shy! Gimme something!<FFF1><FFF5>
 187	0x40b2	pack/talk/DOPPEL:0x82a8	<FFED>The moon shall be our witness...<FFF6>Let us determine who is the true <FFFA>...<FFF5>
 188	0x40dd	pack/talk/DOPPEL:0x8338	<FFEE>So if you're me, you should be able to<FFF6>grant this request of mine...<FFF1><FFF5>
-189	0x4104	pack/talk/DOPPEL:0x83c8	<FFEC>The new moon is in the sky, and<FFF6>you're not afraid... That's<FFF6>the difference between you and me...<FFF5>
+189	0x4104	pack/talk/DOPPEL:0x83c8	<FFEC>The new moon is in the sky,<FFF6>and you're not afraid... That's<FFF6>the difference between you and me...<FFF5>
 190	0x4137	pack/talk/DOPPEL:0x8490	<FFEE>You're trying to<FFF6>negotiate with your double?<FFFB><FFF7>Well, give me something, and maybe<FFF6>I can put my feelings aside...<FFF1><FFF5>
 191	0x4175	pack/talk/DOPPEL:0x8578	<FFEE>Hello, <FFFA>! I am <FFFA>too!<FFF6>It's amazing, but true!<FFF5>
 192	0x419e	pack/talk/DOPPEL:0x85d8	<FFEB>Hello, <FFFA>! I am <FFFA>too!<FFF6>Give me a memento of our meeting!<FFF1><FFF5>
@@ -198,7 +198,7 @@ id	pos	psp	en
 196	0x427d	pack/talk/DOPPEL:0x8898	<FFED>If you're my double, then there's no<FFF6>need for modesty! Give me a gift!<FFF1><FFF5>
 197	0x42b5	pack/talk/DOPPEL:0x8930	<FFEC>You're my double...?<FFF6>I don't know about this...<FFF6>How is it going to end...?<FFF5>
 198	0x42f3	pack/talk/DOPPEL:0x89c8	<FFEB>If you're my double,<FFF6>I may as well ask... Give me something.<FFF1><FFF5>
-199	0x4329	pack/talk/DOPPEL:0x8a48	...I thank you, as your double, for<FFF6>the chance to experience<FFF6>something so rare...<FFFB><FFF7>Tell me what you desire.<FFEF>
+199	0x4329	pack/talk/DOPPEL:0x8a48	...I thank you, as your double,<FFF6>for the chance to experience<FFF6>something so rare...<FFFB><FFF7>Tell me what you desire.<FFEF>
 200	0x436a	pack/talk/DOPPEL:0x8b20	...Absurd! I don't want to share<FFF6>my experiences as a double with you!<FFF6>Of all the nerve!<FFEF>
 201	0x43a5	pack/talk/DOPPEL:0x8bd0	You're a dreadful thing... Not even I,<FFF6>your double, can understand...<FFEF>
 202	0x43d2	pack/talk/DOPPEL:0x8c60	...It was pleasant, the time I spent as<FFF6>your double. I quite enjoyed it!<FFEF>

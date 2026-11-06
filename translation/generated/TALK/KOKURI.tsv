@@ -171,7 +171,7 @@ id	pos	psp	en
 169	0x7a2a	pack/talk/KOKURI:0x4028	...I-'-M... L-E-A-V-I-N-G...!...<FFEF>
 170	0x7a81	pack/talk/KOKURI:0x4070	...I-'-L-L... G-I-V-E... T-H-I-S...<FFF6>T-O... A... M-O-R-O-N...!...<FFEF>
 171	0x7b13	pack/talk/KOKURI:0x40f8	ABCDEFGHIJKLMNOPQRSTUVWXYZ<FFFB><FFF7>Ugh, screw this! I get all irritated if<FFF6>I don't talk normally sometimes.<FFEF>
-172	0x7b72	pack/talk/KOKURI:0x41c8	*yip* I'm not in the mood to use<FFF6>the board this time, so I'll<FFF6>just give you my card.<FFEF>
+172	0x7b72	pack/talk/KOKURI:0x41c8	*yip* I'm not in the mood to<FFF6>use the board this time,<FFF6>so I'll just give you my card.<FFEF>
 173	0x7ba1	pack/talk/KOKURI:0x4278	You seem pretty amazing for a human.<FFF6>Let's just talk like normal.<FFEF>
 174	0x7bd1	pack/talk/KOKURI:0x4300	*yip* Not only that, I'll give you<FFF6>my card, too. Gracious, aren't I?<FFEF>
 175	0x7c04	pack/talk/KOKURI:0x4390	...L-I-K-E... I-T... A... L-O-T...<FFEF>

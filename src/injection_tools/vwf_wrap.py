@@ -301,14 +301,20 @@ def _glue_items(items):
                 and not re.match(CLOSERS_RE, nxt[1])):
             out[i:i + 2] = [('w', word + ' ' + nxt[1])]
         i -= 1
-    # 2. connectors: left to right, glued onto the word they follow
+    # 2. connectors: left to right, glued onto the word they follow. A
+    # comma/semicolon/colon boundary releases the connector: clamping it to
+    # that word would erase the only break a clause boundary offers
+    # ("C'mon, <FFF3>,<FFF6>if ya don't laugh..." keeps its comma break).
     glue = []
     for it in out:
-        if (it[0] == 'w' and glue and glue[-1][0] == 'w'
+        prev = glue[-1][1] if glue and glue[-1][0] == 'w' else ''
+        prev_text = re.sub(r'<[^>]+>', '', prev).rstrip()
+        if (it[0] == 'w' and prev
                 and _core_word(it[1]).rstrip(',;:').lower() in CONNECTORS
-                and not sent_end(glue[-1][1])
-                and not re.match(CLOSERS_RE, it[1])):
-            glue[-1] = ('w', glue[-1][1] + ' ' + it[1])
+                and not sent_end(prev)
+                and not re.match(CLOSERS_RE, it[1])
+                and prev_text[-1:] not in ',;:'):
+            glue[-1] = ('w', prev + ' ' + it[1])
         else:
             glue.append(it)
     out = glue
@@ -337,8 +343,14 @@ def _mark_names(items):
             prev, run = None, 0
             continue
         w = it[1]
-        if prev is not None and run < 9 and _caps_word(prev) and _caps_word(w) \
-                and not sent_end(prev):
+        # A glued atom may hold several words ("the Peace", "Diner on").
+        # The name test must use the words that actually touch the break,
+        # not the atom's first letter: "the Peace | Diner on" splits
+        # "Peace Diner" even though "the Peace" begins lowercase.
+        prev_word = prev.rsplit(' ', 1)[-1] if prev is not None else ''
+        first_word = w.split(' ', 1)[0]
+        if prev is not None and run < 9 and _caps_word(prev_word) \
+                and _caps_word(first_word) and not sent_end(prev_word):
             run += 1
             out.append((it[0], it[1], run))
         else:
@@ -400,7 +412,13 @@ def word_pieces(w):
     cuts.update(len(h) for h, _t in hyphen_heads(w))
     out, prev = [], 0
     for c in sorted(c for c in cuts if 0 < c < len(w)) + [len(w)]:
-        out.append((w[prev:c], prev > 0, 1))
+        piece = w[prev:c]
+        # A closer never starts a line, not even a piece split off a code
+        # run ("<FF07><00>?" must keep its "?"). Multi-dot ellipses are the
+        # one exception ("..." is a fine dramatic pause).
+        inner = prev > 0 and not (re.match(CLOSERS_RE, piece)
+                                  and not piece.startswith('..'))
+        out.append((piece, inner, 1))
         prev = c
     return out or [(w, False, 1)]
 

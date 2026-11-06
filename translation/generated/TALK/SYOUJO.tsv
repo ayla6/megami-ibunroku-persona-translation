@@ -11,7 +11,7 @@ id	pos	psp	en
 9	0x217d	pack/talk/SYOUJO:0x2410	You're a smooth talker, mister!<FFFD>え<FFF5>
 10	0x219b	pack/talk/SYOUJO:0x2458	What's so fun about surprising<FFF6>a demon like me...?<FFF5>
 11	0x21be	pack/talk/SYOUJO:0x24c0	I'm scared...<FFFD>お<FFF5>
-12	0x21cb	pack/talk/SYOUJO:0x24e0	I don't really get what you're saying,<FFF6>mister, but I feel like I'm<FFF6>being invited.<FFF5>
+12	0x21cb	pack/talk/SYOUJO:0x24e0	I don't really get what you're saying,<FFF6>mister,<FFF6>but I feel like I'm being invited.<FFF5>
 13	0x21fb	pack/talk/SYOUJO:0x2588	I don't mind thinking about that...<FFF6>but I hate people who<FFF6>promise to pay up later!<FFF1><FFF5>
 14	0x222b	pack/talk/SYOUJO:0x2630	Don't make stuff up!<FFF5>
 15	0x223e	pack/talk/SYOUJO:0x2660	Your story sounds like a big<FFF6>phony to me! Is it for real?<FFFD>か<FFF5>
@@ -21,7 +21,7 @@ id	pos	psp	en
 19	0x22d4	pack/talk/SYOUJO:0x2828	Don't act all cool over something like<FFF6>that! I'm way better than you!<FFFD>く<FFF5>
 20	0x22fe	pack/talk/SYOUJO:0x28b8	Y-You're better than me...<FFF5>
 21	0x2310	pack/talk/SYOUJO:0x28f0	Do they call you Donald or<FFF6>something!? Seriously, just stop...<FFFD>け<FFF5>
-22	0x2348	pack/talk/SYOUJO:0x2978	You're not nearly as good as me, but<FFF6>I think you have talent.<FFF5>
+22	0x2348	pack/talk/SYOUJO:0x2978	You're not nearly as good as me,<FFF6>but I think you have talent.<FFF5>
 23	0x2377	pack/talk/SYOUJO:0x29f8	You're pretty good...<FFFD>こ<FFF5>
 24	0x238f	pack/talk/SYOUJO:0x2a28	I don't really get what you're saying,<FFF6>miss, but I think I can help you.<FFF5>
 25	0x23b7	pack/talk/SYOUJO:0x2ac0	I don't mind thinking about that...<FFF6>but I hate people who<FFF6>promise to pay up later!<FFF1><FFF5>
@@ -86,7 +86,7 @@ id	pos	psp	en
 84	0x2ca2	pack/talk/SYOUJO:0x4688	Hey! Don't make up stuff!<FFF5>
 85	0x2cb5	pack/talk/SYOUJO:0x46c0	Your story sounds like a big<FFF6>phony to me! Is it for real?<FFFD>も<FFF5>
 86	0x2ce5	pack/talk/SYOUJO:0x4738	You just wanna talk to me, don't you?<FFF6>I know I'm cute and all...<FFF5>
-87	0x2d16	pack/talk/SYOUJO:0x47c0	Hee hee!<FFF6>You're making a big speech, but<FFF6>what you mean is, you need me, right?<FFFD>や<FFF5>
+87	0x2d16	pack/talk/SYOUJO:0x47c0	Hee hee! You're making a big speech,<FFF6>but what you mean is,<FFF6>you need me, right?<FFFD>や<FFF5>
 88	0x2d3b	pack/talk/SYOUJO:0x4868	You're confident, aren't ya miss?<FFF6>But I bet you're all talk!<FFF5>
 89	0x2d60	pack/talk/SYOUJO:0x48e8	If you say you're strong,<FFF6>mister, I guess you are!<FFF6>So, what are your plans for me?<FFFD>ゆ<FFF5>
 90	0x2d98	pack/talk/SYOUJO:0x4998	...Fine! See if I play with you anymore!<FFF5>
@@ -133,7 +133,7 @@ id	pos	psp	en
 131	0x33ac	pack/talk/SYOUJO:0x5bc8	Let's do a duet next time!<FFF6>I'll do Posh's part!<FFFD>だ<FFF5>
 132	0x33d6	pack/talk/SYOUJO:0x5c30	You really wanna show off how<FFF6>good you can sing, huh?<FFF6>You're a lousy human!<FFF5>
 133	0x3403	pack/talk/SYOUJO:0x5cc8	Don't act all cool over something like<FFF6>that! I'm way better than you!<FFFD>ぢ<FFF5>
-134	0x342d	pack/talk/SYOUJO:0x5d58	You're not nearly as good as me, but<FFF6>I think you have talent.<FFF5>
+134	0x342d	pack/talk/SYOUJO:0x5d58	You're not nearly as good as me,<FFF6>but I think you have talent.<FFF5>
 135	0x345c	pack/talk/SYOUJO:0x5dd8	This feels so nice...<FFFD>づ<FFF5>
 136	0x3472	pack/talk/SYOUJO:0x5e08	I wanna play too, okay?<FFF6>How ish it going, Mommy?<FFF5>
 137	0x348e	pack/talk/SYOUJO:0x5e70	I'm not that young, you know...<FFF6>Ahahaha...<FFFD>で<FFF5>
@@ -147,7 +147,7 @@ id	pos	psp	en
 145	0x3591	pack/talk/SYOUJO:0x61b8	Your story sounds like a big<FFF6>phony to me! Is it for real?<FFFD>び<FFF5>
 146	0x35c1	pack/talk/SYOUJO:0x6230	You just wanna talk to me, don't you?<FFF6>I know I'm cute and all...<FFF5>
 147	0x35f4	pack/talk/SYOUJO:0x62b8	So in other words...<FFF6>you need my card?<FFFD>ぶ<FFF5>
-148	0x361e	pack/talk/SYOUJO:0x6310	You can say whatever you want, but<FFF6>you're a nasty person...<FFF5>
+148	0x361e	pack/talk/SYOUJO:0x6310	You can say whatever you want,<FFF6>but you're a nasty person...<FFF5>
 149	0x3651	pack/talk/SYOUJO:0x6388	Hey, you better brush up on<FFF6>your negotiation skills. You want to<FFF6>live a long life, don't you!?<FFFD>べ<FFF5>
 150	0x368c	pack/talk/SYOUJO:0x6450	You're the worst!<FFF6>I'm gonna finish you off...!<FFF5>
 151	0x36ac	pack/talk/SYOUJO:0x64b0	What a rude human!<FFF6>You don't have any manners at all!<FFFD>ぼ<FFF5>
@@ -221,7 +221,7 @@ id	pos	psp	en
 219	0x40d0	pack/talk/SYOUJO:0x81e0	Hey, Mr. Handsome! Use your magic to<FFF6>conjure me up some new clothes!<FFFD>テ<FFF5>
 220	0x410f	pack/talk/SYOUJO:0x8270	Hmm... Human stories are interesting!<FFF6>I love listening to them.<FFF5>
 221	0x4130	pack/talk/SYOUJO:0x82f0	Why're you being so serious...? Huh...<FFF6>Do you think I'm that charming?<FFF5>
-222	0x4167	pack/talk/SYOUJO:0x8380	I don't mind listening to<FFF6>your story, but you know,<FFF6>it'd be nice if my wallet was heavier...<FFF1><FFF5>
+222	0x4167	pack/talk/SYOUJO:0x8380	I don't mind listening to your story,<FFF6>but you know,<FFF6>it'd be nice if my wallet was heavier...<FFF1><FFF5>
 223	0x41a0	pack/talk/SYOUJO:0x8440	That's the worst story I've<FFF6>ever heard! So stupid!<FFF5>
 224	0x41bf	pack/talk/SYOUJO:0x84a8	It's no use going on and on about<FFF6>stupid stuff like that to me!<FFF5>
 225	0x41da	pack/talk/SYOUJO:0x8528	Your story's boring, you know!<FFF6>But if you gave me something,<FFF6>maybe I'd be in a good mood again...<FFF1><FFF5>
@@ -236,13 +236,13 @@ id	pos	psp	en
 234	0x435c	pack/talk/SYOUJO:0x89e8	Who do you think I am?<FFF6>I'm <FFF3> of the <FFF0>!<FFF6>I'm not lending my powers to a human!<FFF5>
 235	0x4390	pack/talk/SYOUJO:0x8a88	Are you stupid or something!?<FFF6>Why ask for help from someone who<FFF6>doesn't deal with slimy humans!?<FFF5>
 236	0x43bc	pack/talk/SYOUJO:0x8b50	Aren't you a human!? Then we have<FFF6>nothing more to talk about!<FFFB><FFF7>Though I might change my tune if<FFF6>you coughed up a little...<FFF1><FFF5>
-237	0x4402	pack/talk/SYOUJO:0x8c48	That's what you say now, but<FFF6>you're gonna trick me, huh?<FFF6>Humans are scary...<FFF5>
+237	0x4402	pack/talk/SYOUJO:0x8c48	That's what you say now,<FFF6>but you're gonna trick me, huh?<FFF6>Humans are scary...<FFF5>
 238	0x4434	pack/talk/SYOUJO:0x8ce8	I don't feel like listening to<FFF6>requests from humans.<FFF6>I really want to just get out of here...<FFF5>
 239	0x446c	pack/talk/SYOUJO:0x8da8	I hate humans... So stay away from<FFF6>me! If you don't, I'll cry...<FFF5>
 240	0x44a3	pack/talk/SYOUJO:0x8e30	Huh? You actually want me?<FFF6>Wow, this is so great!<FFF5>
 241	0x44c6	pack/talk/SYOUJO:0x8e98	Does that mean you want me?<FFF6>Ooh, keep saying stuff like that!<FFF5>
 242	0x44f3	pack/talk/SYOUJO:0x8f18	Hahaha!<FFF6>My charms drive humans mad, too.<FFF5>
-243	0x4529	pack/talk/SYOUJO:0x8f70	Aren't you doing that on purpose?<FFF6>Well, I get it, already, so hurry<FFF6>up and get to the point.<FFF5>
+243	0x4529	pack/talk/SYOUJO:0x8f70	Aren't you doing that on purpose?<FFF6>Well, I get it, already,<FFF6>so hurry up and get to the point.<FFF5>
 244	0x455e	pack/talk/SYOUJO:0x9030	I'm kind of interested in people<FFF6>who aren't quite normal...<FFF5>
 245	0x4583	pack/talk/SYOUJO:0x90a8	If you want to get to know me, there's<FFF6>a better way to do it than with<FFF6>those tired negotiation skills!<FFF1><FFF5>
 246	0x45ba	pack/talk/SYOUJO:0x9178	Did you just make fun of me?<FFF6>I hope you have a will prepared!<FFF5>
@@ -252,11 +252,11 @@ id	pos	psp	en
 250	0x464c	pack/talk/SYOUJO:0x93a0	What's wrong with you?<FFF6>Stop making fun of me... *sniff*<FFF5>
 251	0x466f	pack/talk/SYOUJO:0x9410	I'm just a cute girl...*sniff* *sniff*<FFF5>
 252	0x4698	pack/talk/SYOUJO:0x9460	I love a thrilling negotiation!<FFF5>
-253	0x46b6	pack/talk/SYOUJO:0x94a0	You annoy me, but you're just<FFF6>a kid, so I'll forgive you!<FFF5>
+253	0x46b6	pack/talk/SYOUJO:0x94a0	You annoy me, but you're just a kid,<FFF6>so I'll forgive you!<FFF5>
 254	0x46e3	pack/talk/SYOUJO:0x9518	Ahahaha! You're just<FFF6>jealous because I'm cute, huh?<FFFB><FFF7>Well, all right, I'll play with you!<FFF6>Just give me something first!<FFF1><FFF5>
 255	0x473d	pack/talk/SYOUJO:0x9610	Oh, are you an entertainer?<FFF6>Well, good luck to you!<FFF5>
-256	0x4767	pack/talk/SYOUJO:0x9678	Sorry, but not quite!<FFF6>You weren't bad,<FFF6>though, so please try again sometime!<FFF5>
-257	0x47a0	pack/talk/SYOUJO:0x9718	Hmm... that wasn't so great, so<FFF6>I'll give you some advice!<FFF6>But you'll have to pay up first!<FFF1><FFF5>
+256	0x4767	pack/talk/SYOUJO:0x9678	Sorry, but not quite!<FFF6>You weren't bad, though,<FFF6>so please try again sometime!<FFF5>
+257	0x47a0	pack/talk/SYOUJO:0x9718	Hmm... that wasn't so great,<FFF6>so I'll give you some advice!<FFF6>But you'll have to pay up first!<FFF1><FFF5>
 258	0x47d4	pack/talk/SYOUJO:0x97d8	Boooooriiiing...!<FFF5>
 259	0x47f2	pack/talk/SYOUJO:0x9800	Bleeeeah! Go home already!<FFF5>
 260	0x4807	pack/talk/SYOUJO:0x9838	You expect to make some cash with<FFF6>something like that? Forget it!<FFFB><FFF7>I'm the one who'll be taking<FFF6>money from you!<FFF1><FFF5>
@@ -324,8 +324,8 @@ id	pos	psp	en
 322	0x5128	pack/talk/SYOUJO:0xb378	<FFED>I'm busy! If you have something to<FFF6>say, make it quick!<FFF5>
 323	0x5156	pack/talk/SYOUJO:0xb3e8	<FFEE>I'm busy, but if you're gonna give me<FFF6>something, I'll hear you out!<FFF1><FFF5>
 324	0x5185	pack/talk/SYOUJO:0xb478	<FFEC>Um... if you don't really have any<FFF6>business with me, I wanna go home.<FFFD>ノ<FFF5>
-325	0x51b5	pack/talk/SYOUJO:0xb510	<FFEE>Do you have real business with<FFF6>Mistress <FFF3> of the <FFF0><FFF6>? I don't want any trouble, okay?<FFF5>
-326	0x51e2	pack/talk/SYOUJO:0xb5c0	You make one funny move, and I'm<FFF6>outta here, lickety split!<FFF5>
+325	0x51b5	pack/talk/SYOUJO:0xb510	<FFEE>Do you have real<FFF6>business with Mistress<FFF6><FFF3> of the <FFF0>?<FFFB><FFF7>I don't want any trouble, okay?<FFF5>
+326	0x51e2	pack/talk/SYOUJO:0xb5c0	You make one funny move,<FFF6>and I'm outta here, lickety split!<FFF5>
 327	0x5207	pack/talk/SYOUJO:0xb638	<FFEB>Do you believe in destiny? I feel like<FFF6>I've waited a long time for this day...<FFFD>ハ<FFF5>
 328	0x5242	pack/talk/SYOUJO:0xb6e0	<FFEB>Do you believe in destiny? I think<FFF6>our meeting is pretty good proof!<FFF5>
 329	0x527c	pack/talk/SYOUJO:0xb770	<FFEE>Eep!<FFF6>I feel like your gaze is sucking me in!<FFF5>
@@ -364,7 +364,7 @@ id	pos	psp	en
 362	0x57d3	pack/talk/SYOUJO:0xc748	Lucky me! Just what I wanted...<FFF5>
 363	0x57f0	pack/talk/SYOUJO:0xc788	Nooo! I've been had! And I made<FFF6>a point only to deal with rich people!<FFF5>
 364	0x581e	pack/talk/SYOUJO:0xc818	I've had it! I'm killing you for sure!<FFF5>
-365	0x5835	pack/talk/SYOUJO:0xc868	...You can't possibly be my darling, so<FFF6>I guess I'll let this one slide!<FFF5>
+365	0x5835	pack/talk/SYOUJO:0xc868	...You can't possibly be my darling,<FFF6>so I guess I'll let this one slide!<FFF5>
 366	0x5869	pack/talk/SYOUJO:0xc900	I'm hungry... just let me have<FFF6>a little sip. It won't hurt!<FFEF>
 367	0x5899	pack/talk/SYOUJO:0xc978	I'll be extra gentle!<FFF5>
 368	0x58a6	pack/talk/SYOUJO:0xc9a8	Grrr! I only wanted a little.<FFF6>You're so stingy!<FFF5>
@@ -394,7 +394,7 @@ id	pos	psp	en
 392	0x5b85	pack/talk/SYOUJO:0xd250	What's up with that!?<FFF6>You're just a kid yourself!<FFF5>
 393	0x5baa	pack/talk/SYOUJO:0xd2b8	Ahaha! So you're finally<FFF6>falling for my charms!<FFF5>
 394	0x5bd6	pack/talk/SYOUJO:0xd318	You told me it would be amazing, but I<FFF6>didn't think it would be THIS good!<FFF6>Thanks for the tip!<FFF5>
-395	0x5c0c	pack/talk/SYOUJO:0xd3d8	Oh my god, I thought I was going to<FFF6>die... They told me it was<FFF6>insane, but I had no idea...<FFF5>
+395	0x5c0c	pack/talk/SYOUJO:0xd3d8	Oh my god, I thought I was going to<FFF6>die... They told me it was insane,<FFF6>but I had no idea...<FFF5>
 396	0x5c44	pack/talk/SYOUJO:0xd490	It's so bad it could kill me!<FFF6>Seriously, stop it!<FFF5>
 397	0x5c65	pack/talk/SYOUJO:0xd4f8	You were awesome, mister!<FFF6>That was really cool...!<FFF5>
 398	0x5c85	pack/talk/SYOUJO:0xd560	You still have enough air in you...?<FFF6>Hey mister, are you really human?<FFF5>

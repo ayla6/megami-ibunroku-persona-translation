@@ -54,6 +54,21 @@ class WriteGuard(unittest.TestCase):
         path = self.listing(['@0x80000004 .byte 0x11,0x22'])
         self.assertEqual(self.check(path), [])
 
+    def test_relative_listing_paths_use_the_given_root(self):
+        # armips writes the source's relative paths (../../build/...) into
+        # the listing. They belong to the tree that was assembled, not to
+        # this repo, so an isolated assembly can be guarded in place.
+        data = bytearray(16)
+        data[4:6] = b'\x11\x22'
+        self.write_output(data)
+        path = self.root / 'relative.lst'
+        path.write_text(
+            'FFFFFFFF .open "../../build/input.bin","../../build/out.bin",'
+            '0x80000000; src line 1\n'
+            '80000004 .byte 0x11,0x22 ; src line 2\n'
+            '80000000 .close ; src line 3\n')
+        self.assertEqual(self.check(path), [])
+
     def test_duplicate_output_fails(self):
         data = bytearray(16)
         data[4:6] = b'\x11\x22'

@@ -26,7 +26,7 @@ id	pos	psp	en
 24	0x238a	pack/talk/ZOMBIKO:0x2c88	When I was still human,<FFF6>I really liked guys like you.<FFFB><FFF7>I was so immature then!<FFF5>
 25	0x23c2	pack/talk/ZOMBIKO:0x2d28	Well, I'm honored to hear you say so.<FFF5>
 26	0x23d5	pack/talk/ZOMBIKO:0x2d78	Oh? What is it?<FFF6>Do you wanna play house?<FFF5>
-27	0x23f2	pack/talk/ZOMBIKO:0x2dd0	I might not look like it now, but<FFF6>I actually liked kids when<FFF6>I was still a human.<FFF5>
+27	0x23f2	pack/talk/ZOMBIKO:0x2dd0	I might not look like it now,<FFF6>but I actually liked kids when<FFF6>I was still a human.<FFF5>
 28	0x2413	pack/talk/ZOMBIKO:0x2e78	Are my moves out of date?<FFF6>That kind of thing worries me...<FFF5>
 29	0x2437	pack/talk/ZOMBIKO:0x2ef0	Sheesh, you suck! And anyway, if you<FFF6>wore that getup, the bouncers would<FFF6>stop you before you could go in.<FFF5>
 30	0x246b	pack/talk/ZOMBIKO:0x2fc8	Haha... Leave the dancing to me.<FFF6>I used to dance every day<FFF6>back when... you know.<FFF5>
@@ -62,7 +62,7 @@ id	pos	psp	en
 60	0x2898	pack/talk/ZOMBIKO:0x3ee8	Hey... I bet you want to be like me.<FFF6>Want me to give you<FFF6>a helping hand...?<FFF5>
 61	0x28c3	pack/talk/ZOMBIKO:0x3f80	No matter what era it is, young<FFF6>people all tend to think the same way.<FFF5>
 62	0x28ea	pack/talk/ZOMBIKO:0x4010	I don't trust words. It takes solid<FFF6>proof to make me believe something.<FFF1><FFF5>
-63	0x290f	pack/talk/ZOMBIKO:0x40a8	We finally got to meet, and<FFF6>that's all you have to say?<FFF5>
+63	0x290f	pack/talk/ZOMBIKO:0x40a8	We finally got to meet,<FFF6>and that's all you have to say?<FFF5>
 64	0x292d	pack/talk/ZOMBIKO:0x4118	I don't want to hear that stuff.<FFF6>There's only one thing I want...<FFF1><FFF5>
 65	0x2954	pack/talk/ZOMBIKO:0x41a0	Why are you telling me this...?<FFF5>
 66	0x2970	pack/talk/ZOMBIKO:0x41e0	Of all the people to<FFF6>tell that to, why me?<FFF5>
@@ -70,7 +70,7 @@ id	pos	psp	en
 68	0x29be	pack/talk/ZOMBIKO:0x42b0	I feel like I've gone back in time!<FFF5>
 69	0x29d0	pack/talk/ZOMBIKO:0x42f8	So you need me... Is that so? Huh...<FFF5>
 70	0x29f4	pack/talk/ZOMBIKO:0x4348	Now, what's the most important<FFF6>step in negotiation?<FFF6>You know, right...?<FFF1><FFF5>
-71	0x2a28	pack/talk/ZOMBIKO:0x43e0	We finally got to meet, and<FFF6>that's all you have to say?<FFF5>
+71	0x2a28	pack/talk/ZOMBIKO:0x43e0	We finally got to meet,<FFF6>and that's all you have to say?<FFF5>
 72	0x2a46	pack/talk/ZOMBIKO:0x4450	I can't agree to a request like that.<FFF6>But you'd better agree to mine!<FFF1><FFF5>
 73	0x2a6e	pack/talk/ZOMBIKO:0x44e0	I dunno... what are you going to<FFF6>use my powers for...?<FFF5>
 74	0x2a88	pack/talk/ZOMBIKO:0x4550	Ewwww!<FFF6>I can't stand being around you!<FFF5>
@@ -99,7 +99,7 @@ id	pos	psp	en
 97	0x2d7a	pack/talk/ZOMBIKO:0x4fc0	I'd forgotten the excitement I felt as<FFF6>a girl, but it's coming back to me...<FFF5>
 98	0x2d91	pack/talk/ZOMBIKO:0x5060	I might not mind being your servant...<FFF6>Is there anyone in particular<FFF6>you want dead?<FFF5>
 99	0x2dbc	pack/talk/ZOMBIKO:0x5108	You're a really bad actor.<FFF5>
-100	0x2dc9	pack/talk/ZOMBIKO:0x5140	I'd like to go along with<FFF6>your lie, but I just can't.<FFF5>
+100	0x2dc9	pack/talk/ZOMBIKO:0x5140	I'd like to go along with your lie,<FFF6>but I just can't.<FFF5>
 101	0x2de0	pack/talk/ZOMBIKO:0x51b0	You're pretty cocky.<FFF5>
 102	0x2dee	pack/talk/ZOMBIKO:0x51e0	You wouldn't want to make me mad,<FFF6>right? Then agree to my request...<FFF1><FFF5>
 103	0x2e15	pack/talk/ZOMBIKO:0x5270	Are you trying to praise me to<FFF6>death? I wonder if it'll work...<FFF5>

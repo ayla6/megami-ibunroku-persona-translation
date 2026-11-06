@@ -36,6 +36,7 @@ MARK = 0x5342
 
 # ADV
 ADV_WRITER = 0x8008F730
+ADV_CELLS_CLEAR = 0x8008F5B4
 ADV_WRITER_SPAN = (0x8008F730, 0x8008F7F0)
 ADV_ADVANCE_SITE = 0x80065C64
 ADV_HOOK = 0x800BD1F4
@@ -51,6 +52,19 @@ ADV_HINT_RD2 = (0x800734B8, 0x800734C8)
 ADV_SLOT_INIT = 0x8006FB08
 ADV_STATUS = 0x80070144
 ADV_WIDTHS = 0x800BD264                      # sf_widths_adv
+ADV_KIND_LABELS = 0x800B24A4                 # g_kind_labels
+
+# ADV's Velvet Room card page (adv/pdata.asm)
+ADV_PDATA_RACE_BLOCK = 0x800BA080
+ADV_PDATA_RACE_CELLS = 0x800BA088
+ADV_PDATA_LIST = 0x800BA110
+ADV_PDATA_NAME_BLOCK = ADV_NAME_BLOCK        # shared with the status bar
+ADV_PDATA_NAME_CELLS = ADV_NAME_CELLS
+ADV_PDATA_BAR = 0x800BA0B8                   # retail's old ten-cell name block
+ADV_PDATA_TAIL = 0x80099014
+ADV_PDATA_TAIL_END = 0x80099084
+ADV_DEMON_BASE = 0x800417A0
+ADV_RACE_TABLE = 0x800B23C0
 
 # DNG
 DNG_WRITER = 0x8009392C
@@ -219,14 +233,78 @@ class BarVWF(unittest.TestCase):
         # the surrounding retail stack stores survived
         for address, word in ADV_FUSE_ALIVE:
             self.assertEqual(self.word(self.adv, address), word)
-        # both fusion sites grow the name through persona_name_copy_at
+        # both fusion sites grow the name through persona_name_copy_at,
+        # whose direct entry reads the source pointer from v1 (only the
+        # key-based persona_name_copy computes v1 from a1 first)
         self.assertEqual(self.word(self.adv, ADV_FUSE_A + 4), jal(0x80031898))
-        self.assertEqual(self.half(self.adv, ADV_FUSE_A + 8), 8)      # addiu a1,s3,8
+        self.assertEqual(self.word(self.adv, ADV_FUSE_A + 8), 0x26630008)  # addiu v1,s3,8
         self.assertEqual(self.word(self.adv, ADV_FUSE_B + 4), jal(0x80031898))
-        self.assertEqual(self.half(self.adv, ADV_FUSE_B + 8), 0x19)   # addiu a1,s4,0x19
+        self.assertEqual(self.word(self.adv, ADV_FUSE_B + 8), 0x26830019)  # addiu v1,s4,0x19
         # the copy grows into the frame's free outgoing quad
         self.assertEqual(self.word(self.adv, ADV_FUSE_A), 0x03A02021)      # move a0,sp
         self.assertEqual(self.half(self.adv, ADV_FUSE_A + 0x24), 0x14)     # lbu v0,0x14(s3) kind
+        # the arcana row is written with a fresh base: CellsWriteRow keeps its
+        # destination in t0 and turns a0 into the glyph column, so retail's
+        # reload of the arcana base is load-bearing. The index is kind*10
+        # against ADV_KIND_LABELS-10, and the delay slot rebases onto
+        # ADV_BAR_CELLS (0x800B249A - 0x3EA == 0x800B20B0).
+        for site, kind_load in ((ADV_FUSE_A, 0x92620014),   # lbu v0,0x14(s3)
+                                (ADV_FUSE_B, 0x92820025)):  # lbu v0,0x25(s4)
+            self.assertEqual(self.word(self.adv, site + 0x24), kind_load)
+            self.assertEqual(self.word(self.adv, site + 0x28), 0x3407000A)  # ori a3,10
+            self.assertEqual(self.word(self.adv, site + 0x38), 0x3C02800B)  # lui v0,0x800B
+            self.assertEqual(self.word(self.adv, site + 0x3C), 0x2442249A)  # addiu v0,ADV_KIND_LABELS-10
+            self.assertEqual(self.word(self.adv, site + 0x44), jal(ADV_WRITER))
+            self.assertEqual(self.word(self.adv, site + 0x48), 0x2444FC16)  # addiu a0,v0,-0x3EA
+        self.assertEqual((ADV_KIND_LABELS - 10 - 0x3EA) & 0xFFFFFFFF, ADV_CELLS)
+
+    def test_adv_pdata_page(self):
+        """The Velvet Room card page: race and full demon name in VWF cells.
+
+        Retail's ten-cell name block sits immediately before the page's cel
+        list, so the name entry points at the status bar's sixteen-cell block;
+        the race block and the list keep retail's placement. The old name
+        block becomes the name-row helper, and PersonaDataDraw's tail keeps
+        retail's race write (now with the VWF face) after that call.
+        """
+        # the tail: one helper call, then retail's race write
+        self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL), 0x02A02021)  # move a0,s5
+        self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 4), jal(ADV_PDATA_BAR))
+        self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 8), 0)       # nop
+        for off in range(12, 0x30, 4):
+            self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + off), 0)
+        self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 0x30), 0x3C04800C)  # lui a0,0x800C
+        self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 0x34), 0x2484A088)  # addiu a0,-0x5F78
+        self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 0x38), 0x34060080)  # ori a2,0x80
+        self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 0x68), jal(ADV_WRITER))
+        self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 0x6C), 0x00A22821)  # addu a1,a1,v0
+        # the epilogue and the next function survived
+        self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL_END),
+                         self.word(self.retail_adv, ADV_PDATA_TAIL_END))
+
+        # the cel list: retail's race entry, the shared name block, both marks
+        self.assertEqual(self.bar_rows(self.adv, ADV_PDATA_LIST),
+                         (ADV_PDATA_RACE_BLOCK, 0, 0, MARK,
+                          ADV_PDATA_NAME_BLOCK, 0x40, 0x0C, MARK, 0xFFFFFFFF))
+        self.assertEqual(self.adv[ADV_PDATA_RACE_BLOCK - OVERLAY_BASE:
+                                  ADV_PDATA_RACE_BLOCK - OVERLAY_BASE + 2],
+                         bytes([6, 1]))
+        self.assertEqual(ADV_PDATA_NAME_BLOCK, ADV_NAME_BLOCK)
+        self.assertEqual(ADV_PDATA_NAME_CELLS, ADV_NAME_CELLS)
+
+        # the helper fills retail's old name block exactly
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR), 0x27BDFFF8)  # addiu sp,-8
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 4), 0xAFBF0000)  # sw ra,(sp)
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x14), jal(0x800BDA88))
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x1C), 0x3C04800B)  # lui a0,0x800B
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x20), 0x24842108)  # ADV_BAR_NAME_CELLS
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x28), jal(ADV_CELLS_CLEAR))
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x40), 0x34060080)  # ori a2,0x80
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x44), 0x34070010)  # ori a3,16
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x50),
+                         0x08000000 | ((ADV_WRITER >> 2) & 0x03FFFFFF))  # j ADV_CELLS_ROW
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x54), 0)  # nop (delay)
+        self.assertEqual(ADV_PDATA_BAR + 0x58, ADV_PDATA_LIST)
 
     def a2_selects_vwf(self, data, site, writer):
         """The a2 in force at a row call is page 0 + bit 7.
@@ -392,6 +470,53 @@ class BarVWF(unittest.TestCase):
         # the FF ended the row; the rest of the twenty cells stay cleared
         for i in range(len(name), 20):
             self.assertEqual(cpu.read(DNG_PDATA_NAME_CELLS + i * 8, 1), 0xFF)
+
+    def test_adv_pdata_tail_runtime(self):
+        """The real card-page tail: the shared name block gets the full
+        demon name and the race row gets its six VWF cells."""
+        sys.path.insert(0, str(ROOT / 'src/injection_tools'))
+        import demons                                   # noqa: E402
+        import skills                                   # noqa: E402
+        import smallfont_variants                       # noqa: E402
+        editable = smallfont_variants.editable_codes()
+        regular, _compact = smallfont_variants.cell_codes()
+
+        def uv(code):
+            if code in editable:
+                return smallfont_variants.cell_uv(regular[editable.index(code)])
+            return ((code % 31) * 8, (code // 31) * 12)
+
+        ident = 90                                      # Yomotsu Shikome: 15 glyphs
+        codes = list(skills.encode_glyphs(ident, demons.record_en()[ident]))
+        self.assertGreater(len(codes), 10)              # the head alone would cut it
+
+        cpu = self.machine(self.adv)
+        frame = STACK - 0x80
+        cpu.write(frame + 0x30, RETURN, 4)              # the tail's epilogue
+        cpu.r[REG['sp']] = frame
+        cpu.r[REG['s5']] = ident
+        cpu.r[REG['s0']] = ident * 0x38
+        cpu.start(ADV_PDATA_TAIL)
+        cpu.run(RETURN, limit=200000)
+
+        for i, code in enumerate(codes):
+            base = ADV_PDATA_NAME_CELLS + i * 8
+            u, v = uv(code)
+            self.assertEqual(cpu.read(base, 1), u)
+            self.assertEqual(cpu.read(base + 1, 1), v)
+            self.assertEqual(cpu.read(base + 3, 1), self.widths[code] & 0xF)
+        # the FF ended the row; the remaining cells stayed cleared
+        self.assertEqual(cpu.read(ADV_PDATA_NAME_CELLS + len(codes) * 8, 1), 0xFF)
+
+        race = cpu.read(ADV_DEMON_BASE + ident * 0x38 + 0xB, 1)
+        race_codes = self.adv[ADV_RACE_TABLE - OVERLAY_BASE + (race - 1) * 6:
+                              ADV_RACE_TABLE - OVERLAY_BASE + (race - 1) * 6 + 6]
+        for i, code in enumerate(race_codes):
+            base = ADV_PDATA_RACE_CELLS + i * 8
+            u, v = uv(code)
+            self.assertEqual(cpu.read(base, 1), u)
+            self.assertEqual(cpu.read(base + 1, 1), v)
+            self.assertEqual(cpu.read(base + 3, 1), self.widths[code] & 0xF)
 
     def test_s2d_patches(self):
         self.assertEqual(self.word(self.s2d, S2D_ADVANCE_SITE), jal(S2D_HOOK))
@@ -580,6 +705,68 @@ class BarVWF(unittest.TestCase):
                 self.assertEqual(cpu.read(base, 1), u)
                 self.assertEqual(cpu.read(base + 1, 1), v)
                 self.assertEqual(cpu.read(base + 3, 1), self.widths[code] & 0xF)
+
+    def writer_row(self, cells, codes, count):
+        """Run CellsWriteRow on its own cleared row: the expected bytes."""
+        cpu = self.machine(self.adv)
+        dst, src = 0x80190000, 0x80190100
+        cpu.load(dst, bytes(cells))
+        cpu.load(src, bytes(codes))
+        cpu.r[REG['a0']] = dst
+        cpu.r[REG['a1']] = src
+        cpu.r[REG['a2']] = 0x80                     # the bar's VWF face
+        cpu.r[REG['a3']] = count
+        cpu.start(ADV_WRITER)
+        cpu.run(RETURN, limit=20000)
+        return bytes(cpu.read(dst + i, 1) for i in range(len(cells)))
+
+    def test_adv_fusion_sites_write_arcana_and_name(self):
+        """Each fusion write pair fills both rows.
+
+        CellsWriteRow keeps its destination in t0 and reuses a0 for the
+        glyph column, so the arcana row is only drawn when the site reloads
+        its base after the name row. Run the real site over a cleared pair
+        of rows and compare every byte with a direct writer run.
+        """
+        clear = bytes.fromhex('ffff1e000000ff01')
+        cases = (
+            # site, record register, name offset, kind offset, name codes, kind
+            (ADV_FUSE_A, 's3', 8, 0x14,
+             [0xA6, 0x39, 0x36, 0x3A, 0x40], 13),        # Ankou / DEATH
+            (ADV_FUSE_B, 's4', 0x19, 0x25,
+             [0xB2, 0xA6, 0xAC, 0xAE, 0xA8, 0xAE, 0xA6, 0xB3], 1),  # MAGICIAN
+        )
+        for site, reg, name_off, kind_off, codes, kind in cases:
+            cpu = self.machine(self.adv)
+            record = BUF
+            cpu.load(record, bytes(0x40))
+            cpu.load(record + name_off, bytes(codes + [0xFF]))
+            cpu.load(record + kind_off, bytes([kind]))
+            cpu.load(ADV_CELLS, clear * 10)
+            cpu.load(ADV_NAME_CELLS, clear * 16)
+            cpu.r[REG[reg]] = record
+            # the site falls through into the next retail write; stop it
+            # there (ra cannot be used: the site's last jal writes it)
+            cpu.r[REG['s5']] = RETURN
+            cpu.load(site + 0x4C, struct.pack('<II', 0x02A00008, 0))  # jr s5
+            cpu.start(site)
+            cpu.run(RETURN, limit=20000)
+
+            copied = bytes(cpu.read(STACK + i, 1) for i in range(16))
+            self.assertEqual(copied[:len(codes)], bytes(codes))
+            self.assertEqual(copied[len(codes):], bytes(16 - len(codes)))
+
+            arcana = bytes(cpu.read(ADV_CELLS + i, 1) for i in range(80))
+            name = bytes(cpu.read(ADV_NAME_CELLS + i, 1) for i in range(128))
+            label = self.adv[ADV_KIND_LABELS + (kind - 1) * 10 - OVERLAY_BASE:
+                             ADV_KIND_LABELS + (kind - 1) * 10 - OVERLAY_BASE + 10]
+            self.assertEqual(arcana, self.writer_row(clear * 10, label, 10),
+                             f'{site:#x}: arcana row')
+            self.assertNotEqual(arcana[:2], b'\xff\xff',
+                                f'{site:#x}: the arcana row was never drawn')
+            self.assertEqual(name, self.writer_row(clear * 16,
+                                                   copied + b'\xff', 16),
+                             f'{site:#x}: name row')
 
     def test_persona_name_copy_uses_the_retail_record_key(self):
         """The bar hands persona_name_copy the same key retail indexes with.

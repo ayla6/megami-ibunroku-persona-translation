@@ -4,7 +4,7 @@ id	pos	psp	en
 2	0x6b680	EBOOT:29e936	Mark:<FFF6>How the hell are we supposed to fight<FFF6>somethin' that's already dead!?
 3	0x6b6bc	EBOOT:29e846	Thou art I... and I am thou...<FFFC><FFF6>From the sea of thy soul, I cometh...<FFFC><FFF6>I shall lend you my strength…
 4	0x6b6f4	EBOOT:29e816	Nanjo: Eriko! Get back!
-5	0x6b70c	EBOOT:29e782	Elly: No worries! <FFFC>I may not look it, but<FFF6>I'm a rather capable fencer.
+5	0x6b70c	EBOOT:29e782	Elly: No worries! <FFFC>I may not look it,<FFF6>but I'm a rather capable fencer.
 6	0x6b74c	EBOOT:29e72a	Yukino:<FFF6>Eriko! This is no ordinary enemy!
 7	0x6b770	EBOOT:29e6e6	Mark: Sheesh, that girl's crazy!
 8	0x6b790	EBOOT:29e6a2	Maki: I won't go down that easy!
@@ -68,7 +68,7 @@ id	pos	psp	en
 66	0x6c098	EBOOT:29ccb2	Elly: Shut up!<FFFB><FFF7>A man who can't answer for himself<FFF6>has no right to condemn mankind.
 67	0x6c0dc	EBOOT:29cc3a	Ayase: Use all the big words you<FFF6>want! It doesn't fool us!
 68	0x6c0fc	EBOOT:29cbb2	Reiji: Spout that crap in hell.<FFF6><FFFC>I'll send you straight there...!
-69	0x6c124	EBOOT:29cb06	Nanjo: Kandori...<FFF6><FFFC>We'll close the curtain on<FFF6>this farce, if that's what you wish!<FFFC><FFFC><FFFC>
+69	0x6c124	EBOOT:29cb06	Nanjo: Kandori...<FFF6><FFFC>We'll close the curtain on this farce,<FFF6>if that's what you wish!<FFFC><FFFC><FFFC>
 70	0x6c164	EBOOT:29c9aa	Kandori:<FFF6>Ngh... <FFFC><FFFC><FFFC>I refuse to accept this!<FFFC> I'm<FFF6>supposed to have transcended man!<FFFB><FFF7>Who am I!? <FFFC><FFFC>I am Takahisa Kandori!<FFFC><FFFC><FFF6>The man who transcended humanity!
 71	0x6c1d8	EBOOT:29c8e6	Kandori:<FFF6>Nrrrrrrrghaaaaaaa!?<FFFC>Wh-What the...<FFF6>Something's forcing<FFFC><FFFC> itself into me...!
 72	0x6c214	EBOOT:29c7da	Nyarlathotep's voice: Hohohoh...<FFF6><FFFC>Foolish man who has gone astray...<FFFB><FFF7>I shall give you the power you desire.
