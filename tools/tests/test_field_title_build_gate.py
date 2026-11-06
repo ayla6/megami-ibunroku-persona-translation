@@ -48,8 +48,16 @@ class TitleGeneratorGate(unittest.TestCase):
         self.assertIn('dng_title_blob_end:', Path(self.asm).read_text())
 
     def test_rejects_overwide_full_title_without_shortening(self):
+        # 19 'R's is 171px: wider than the 160px held-pause strip, but still
+        # short enough to reach that check (33+ glyphs fail the cells first).
         with self.assertRaisesRegex(SystemExit, 'exceeds held-pause strip'):
-            self.emit('R' * 80)
+            self.emit('R' * 19)
+        self.assertFalse(Path(self.bin).exists())
+
+    def test_rejects_title_longer_than_the_map_name_cells(self):
+        # MapDrawName's script area is 0x22 bytes: 32 glyph bytes + FF 01.
+        with self.assertRaisesRegex(SystemExit, 'map-name cells'):
+            self.emit('R' * 33)
         self.assertFalse(Path(self.bin).exists())
 
     def test_rejects_non_vwf_encoded_byte(self):

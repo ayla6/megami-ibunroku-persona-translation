@@ -35,7 +35,7 @@ meta	psx:D04/D21M	e8b9b6e6758b553b5c2c222af76715681baf6cd1
 meta	psx:D04/D22M	14c75485e975e4e0ecd81d9c160595aa37dd9b4f								
 meta	psx:D04/D23M	7826f72c397e19601465380972e8959f624ecfa0								
 meta	psx:D04/D24M	67271483908143f917b4a518be5f85a5ffab6f5c								
-meta	rule_sha1	919f5f355812254e66fd591d26bfca86115f3358								
+meta	rule_sha1	0894996d96cb78a1a39aa9c4e83c48751f42b97b								
 meta	us:EBOOT	f00e8c7ffb1e4a853c2b9b54af0e2e0bdee7b8b3								
 meta	version	1								
 match			D00/D00M	0xc88	dngname	0x28fc7a		ok		

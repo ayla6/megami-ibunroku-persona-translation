@@ -724,8 +724,16 @@ Every check failure resumes the retail ten-pair body, which still needs the
 hook's saved `ra`, `a0` and the `0x801D0000` pack base: the BIOS `bzero` the
 hook calls does not preserve caller-saved registers, so the matched row
 pointer and the fallback's entry state live in the hook's frame, never in
-`t*`. `tools/tests/test_map_title.py` executes every row and every fallback,
-and its BIOS stub clobbers the same caller-saved set as the console's BIOS.
+`t*`. `tools/tests/test_map_title.py` executes every row and every fallback
+with the same caller-saved clobber the console's BIOS performs, with RAM
+poisoned so a read of unwritten state is visible, and with a write ledger
+that fails on any store outside the hook's frame, the cells' `0x22` bytes,
+the strip words and the shown-bits word. It also sweeps every width byte and
+malformed blob offsets, and proves incoming garbage in the caller-saved
+registers cannot change the outcome. `mips_cpu.clobber_bios_registers` and
+`CPU.fill`/`CPU.track_writes` are the shared harness for that rule;
+`tools/tests/test_field_pause_title.py` applies the same write ledger and
+poisoned-register rule to the held-START renderer.
 
 - **One-row destinations** (`sysmsg.display_size`): a proven one-row message
   carries no line/page move into the disc; its wording is measured as one

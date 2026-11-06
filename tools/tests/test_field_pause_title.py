@@ -131,8 +131,19 @@ class BuiltPauseTitle(unittest.TestCase):
                 cpu.r[REG[reg]] = 0xC1000000 + REG[reg] * 0x101
             cpu.pc, cpu.next_pc = ret, ret + 4
             return True
+        c.writes.clear()
+        c.track_writes = True
         c.start(ENTRY)
         c.run(RETURN, limit=2000000, intercept=intercept)
+        # The crash-class invariant: the renderer may write its own frame,
+        # the floor key it reads, and the 160x16 pixel scratch - nowhere
+        # else. A title that widened the scratch would show up here.
+        owned = ((STACK - 0x68, 0x68), (FLOOR, 20), (scratch, PIXELS))
+        for address, size in c.writes:
+            inside = any(start <= address and address + size <= start + length
+                         for start, length in owned)
+            if not inside:
+                self.fail(f'write outside owned regions: {address:#010x}+{size}')
         after = bytes(c.mem[c.offset(scratch - 16, PIXELS + 32):
                             c.offset(scratch - 16, PIXELS + 32) + PIXELS + 32])
         self.assertEqual(after[:16], before[:16])

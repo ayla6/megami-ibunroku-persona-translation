@@ -8,6 +8,20 @@ MASK = 0xFFFFFFFF
 REG = {name: i for i, name in enumerate(
     "zero at v0 v1 a0 a1 a2 a3 t0 t1 t2 t3 t4 t5 t6 t7 s0 s1 s2 s3 s4 s5 s6 s7 t8 t9 k0 k1 gp sp fp ra".split())}
 
+# The registers a BIOS call may destroy. The real bzero at 0x800412FC returns
+# with t0=0xBFC01ACC and t1=t2=0xA0 (observed on the console), and the BIOS is
+# under no obligation to preserve any of these. Code that calls the BIOS must
+# keep live state in callee-saved registers or memory, never across the call.
+BIOS_CALLER_SAVED = ('v0', 'v1', 'a0', 'a1', 'a2', 'a3',
+                     't0', 't1', 't2', 't3', 't4', 't5',
+                     't6', 't7', 't8', 't9')
+
+
+def clobber_bios_registers(cpu, pattern=0xDEAD0000):
+    """Model the BIOS ABI: every caller-saved register is now garbage."""
+    for name in BIOS_CALLER_SAVED:
+        cpu.r[REG[name]] = pattern | (REG[name] & 0xFF)
+
 
 def signed(x):
     return x - 0x100000000 if x & 0x80000000 else x
@@ -22,6 +36,10 @@ class CPU:
         self.pending = None
         self.steps = 0
         self.trace = []
+        # Opt-in write ledger: a test can prove the code under test touched
+        # only the addresses it owns (and not, say, a walked copy's output).
+        self.track_writes = False
+        self.writes = []
 
     def offset(self, address, size=1):
         address &= MASK
@@ -44,7 +62,14 @@ class CPU:
         if address & (size - 1):
             raise ValueError(f"unaligned write {address:08x}/{size}")
         offset = self.offset(address, size)
+        if self.track_writes:
+            self.writes.append((address & MASK, size))
         self.mem[offset:offset + size] = (value & ((1 << (8 * size)) - 1)).to_bytes(size, "little")
+
+    def fill(self, value):
+        """Poison all RAM. A test loads its code/data on top afterwards, so
+        anything the code reads without writing is visibly garbage."""
+        self.mem[:] = bytes([value]) * len(self.mem)
 
     def start(self, pc):
         self.pc, self.next_pc, self.pending = pc, pc + 4, None

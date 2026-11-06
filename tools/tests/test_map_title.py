@@ -13,7 +13,7 @@ import re
 import struct
 import unittest
 
-from mips_cpu import CPU, REG
+from mips_cpu import CPU, REG, clobber_bios_registers
 
 ROOT = Path(__file__).resolve().parents[2]
 DNG_BASE = 0x800643C4
@@ -28,6 +28,14 @@ FIELD_OFF = 0x100
 GUARD = CELLS - 0x30        # canary around the 0x22-byte script area
 GUARD_LEN = 0xC0
 CANARY = 0x5A
+STACK = 0x801CEFE0          # the hook's frame (initial sp - 0x20)
+POISON = 0xA5
+
+# Every byte the hook (or the retail body it resumes) may write, as
+# (start, length): its own frame, the map-name cells' 0x22-byte script area,
+# the banner strip's x/y/w/h words, and the shown-bits word.
+OWNED = ((STACK, 0x20), (CELLS, 0x22),
+         (0x8009C1D8, 8), (0x800A0CCC, 4))
 
 
 class BuiltMapTitle(unittest.TestCase):
@@ -59,13 +67,18 @@ class BuiltMapTitle(unittest.TestCase):
             end = cls.title.index(b'\xff\x01', start) + 2
             cls.rows.append((key, width, cls.title[start:end]))
 
-    def machine(self, key, fake_row=None):
+    def machine(self, key, fake_row=None, poison=None, r=None):
         """A map pack whose entry 0 names the field that holds `key`.
 
         `fake_row` replaces title row 0, so the defensive checks can be
-        exercised without touching the generated table.
+        exercised without touching the generated table. `poison` fills RAM
+        with that byte before the code/data is loaded, so anything the hook
+        reads without writing is visibly garbage. `r` seeds caller-saved
+        registers to prove the outcome never depends on their leftovers.
         """
         c = CPU()
+        if poison is not None:
+            c.fill(poison)
         c.load(DNG_BASE, self.dng)
         if fake_row is not None:
             c.load(self.sym['dng_title_idx'], fake_row)
@@ -76,11 +89,13 @@ class BuiltMapTitle(unittest.TestCase):
         # Canary around the name cells: the hook must never write past
         # cells + 0x22 (the script area MapDrawName zeroes).
         c.load(GUARD, bytes([CANARY]) * GUARD_LEN)
+        for name, value in (r or {}).items():
+            c.r[REG[name]] = value
         c.r[REG['sp']], c.r[REG['ra']] = 0x801CF000, RETURN
         c.r[REG['a0']] = 0
         return c
 
-    def execute(self, c):
+    def execute(self, c, track=False):
         calls = []
 
         def intercept(cpu):
@@ -91,15 +106,9 @@ class BuiltMapTitle(unittest.TestCase):
                 a0, a1 = cpu.r[REG['a0']], cpu.r[REG['a1']]
                 for i in range(a1):
                     cpu.write(a0 + i, 0, 1)
-                # A BIOS call does not preserve the caller-saved registers.
-                # The real bzero returns with t0/t1/t2 holding BIOS values
-                # (observed: t0=0xBFC01ACC, t1=t2=0xA0); clobber the whole
-                # caller-saved set so any hook that keeps state in one
-                # fails here instead of in game.
-                for reg in ('v0', 'v1', 'a0', 'a1', 'a2', 'a3',
-                            't0', 't1', 't2', 't3', 't4', 't5',
-                            't6', 't7', 't8', 't9'):
-                    cpu.r[REG[reg]] = 0xDEAD0000 | (REG[reg] & 0xFF)
+                # A BIOS call does not preserve the caller-saved registers;
+                # the real bzero returns with t0=0xBFC01ACC and t1=t2=0xA0.
+                clobber_bios_registers(cpu)
                 ret = cpu.r[REG['ra']]
                 cpu.pc, cpu.next_pc = ret, ret + 4
                 return True
@@ -112,6 +121,8 @@ class BuiltMapTitle(unittest.TestCase):
                 return True
             return False
 
+        c.writes.clear()
+        c.track_writes = track
         c.start(ENTRY)
         c.run(RETURN, limit=2000000, intercept=intercept)
         return calls, c
@@ -129,12 +140,29 @@ class BuiltMapTitle(unittest.TestCase):
                 continue
             self.assertEqual(value, CANARY,
                              f'stray write at {GUARD + off:#x}')
+        self.assert_owned_writes(cpu)
+
+    def assert_owned_writes(self, cpu):
+        """Every write landed in a span this hook owns, and the ABI is intact.
+
+        This is the crash-class invariant: the old bug copied a garbage row
+        across memory and returned through a clobbered pointer, and neither
+        the cells nor a narrow canary alone could see it. The ledger catches
+        any write anywhere else, and the stack/return checks catch a broken
+        frame even when the copy stayed in bounds.
+        """
+        for address, size in cpu.writes:
+            inside = any(start <= address and address + size <= start + length
+                         for start, length in OWNED)
+            if not inside:
+                self.fail(f'write outside owned regions: {address:#010x}+{size}')
         self.assertEqual(cpu.r[REG['sp']], 0x801CF000, 'stack not balanced')
+        self.assertEqual(cpu.r[REG['ra']], RETURN, 'ra not restored')
 
     def test_every_title_row_hits_and_copies_its_full_title(self):
         for i, (key, width, script) in enumerate(self.rows):
             with self.subTest(row=i, width=width):
-                calls, cpu = self.execute(self.machine(key))
+                calls, cpu = self.execute(self.machine(key), track=True)
                 self.assertEqual([c[0] for c in calls], ['bgmap'],
                                  'Japanese field fell back to retail')
                 self.assertEqual(calls[0][1:3], (CELLS, 0))
@@ -154,7 +182,7 @@ class BuiltMapTitle(unittest.TestCase):
                 continue
             break
         self.assertNotIn(bytes(key), keys)
-        calls, cpu = self.execute(self.machine(bytes(key)))
+        calls, cpu = self.execute(self.machine(bytes(key)), track=True)
         self.assertEqual([c[0] for c in calls], ['fallback', 'bgmap'])
         # retail's ten-pair path always ends the script at cells[20:22]
         self.assertEqual(self.cells(cpu, 20, 2), b'\xff\x01')
@@ -165,7 +193,7 @@ class BuiltMapTitle(unittest.TestCase):
         for width, offset in ((0xA1, 0), (100, 0xFFFF)):
             with self.subTest(width=width, offset=offset):
                 row = key + bytes([width, 0]) + struct.pack('<H', offset)
-                calls, cpu = self.execute(self.machine(key, fake_row=row))
+                calls, cpu = self.execute(self.machine(key, fake_row=row), track=True)
                 self.assertEqual([c[0] for c in calls], ['fallback', 'bgmap'])
                 self.assertEqual(self.cells(cpu, 20, 2), b'\xff\x01')
                 self.assert_cells_bounded(cpu)
@@ -175,10 +203,68 @@ class BuiltMapTitle(unittest.TestCase):
         row = key + bytes([100, 0]) + struct.pack('<H', 0)
         c = self.machine(key, fake_row=row)
         c.load(self.sym['dng_title_blob'], bytes([0x90]) * 33 + b'\xff\x01')
-        calls, cpu = self.execute(c)
+        calls, cpu = self.execute(c, track=True)
         self.assertEqual([item[0] for item in calls], ['fallback', 'bgmap'])
         self.assertEqual(self.cells(cpu, 20, 2), b'\xff\x01')
         self.assert_cells_bounded(cpu)
+
+    def test_every_title_row_survives_poisoned_ram(self):
+        """Reads must come from the hook's inputs, not zeroed BSS leftovers."""
+        for i, (key, width, script) in enumerate(self.rows):
+            with self.subTest(row=i, width=width):
+                calls, cpu = self.execute(
+                    self.machine(key, poison=POISON), track=True)
+                self.assertEqual([c[0] for c in calls], ['bgmap'])
+                self.assertEqual(calls[0][3][:len(script)], script)
+                self.assert_cells_bounded(cpu)
+
+    def test_mutated_key_always_falls_back_and_never_copies(self):
+        keys = {row[0] for row in self.rows}
+        for i, (key, _width, _script) in enumerate(self.rows):
+            bad = bytearray(key)
+            bad[-1] ^= 0xFF
+            if bytes(bad) in keys:
+                continue
+            with self.subTest(row=i):
+                calls, cpu = self.execute(
+                    self.machine(bytes(bad), poison=POISON), track=True)
+                self.assertEqual([c[0] for c in calls], ['fallback', 'bgmap'])
+                self.assertEqual(self.cells(cpu, 20, 2), b'\xff\x01')
+                self.assert_cells_bounded(cpu)
+
+    def test_width_and_offset_sweep_never_escapes_the_cells(self):
+        key = bytes(range(20))
+        blob_len = self.sym['dng_title_blob_end'] - self.sym['dng_title_blob']
+        # (offset, the hook can copy a well-formed script there)
+        cases = ((0, True), (blob_len - 2, True),
+                 (blob_len, False), (0xFFFF, False))
+        for width in range(0x100):
+            for offset, well_formed in cases:
+                hit = well_formed and width <= 0xA0
+                with self.subTest(width=width, offset=offset):
+                    row = key + bytes([width, 0]) + struct.pack('<H', offset)
+                    calls, cpu = self.execute(
+                        self.machine(key, fake_row=row, poison=POISON),
+                        track=True)
+                    self.assertEqual([c[0] for c in calls],
+                                     ['bgmap'] if hit
+                                     else ['fallback', 'bgmap'])
+                    self.assert_cells_bounded(cpu)
+
+    def test_incoming_caller_saved_garbage_cannot_change_the_outcome(self):
+        junk = {name: 0xC0DE0000 | (REG[name] & 0xFF)
+                for name in ('v0', 'v1', 'a1', 'a2', 'a3',
+                             't0', 't1', 't2', 't3', 't4', 't5',
+                             't6', 't7', 't8', 't9')}
+        for i, (key, width, script) in enumerate(self.rows):
+            with self.subTest(row=i, width=width):
+                clean, _ = self.execute(self.machine(key, poison=POISON))
+                dirty, cpu = self.execute(
+                    self.machine(key, poison=POISON, r=junk), track=True)
+                self.assertEqual([c[0] for c in dirty],
+                                 [c[0] for c in clean])
+                self.assertEqual(dirty[0][3][:len(script)], script)
+                self.assert_cells_bounded(cpu)
 
     def test_mikage_subway_fields_show_the_full_names(self):
         pack = ROOT / 'build/D01/D0DM.BIN'
