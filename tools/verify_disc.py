@@ -603,13 +603,12 @@ def main():
     print('disc-byte verification PASSED')
 
 
-def _row_forms(r, name_head=None):
+def _row_forms(r):
     """Candidate byte forms a row's shipped text can take (its family's
     encoding(s)); searched anywhere in the disc file - builders relocate
     text within their file and the check is presence, not placement.
     Returns (all-found, forms): all-found forms (choices rows) split at
-    '|', every piece must be present. `name_head` is the retained name-insert
-    prefix an embedded `<NAME>` row keeps from its Japanese."""
+    '|', every piece must be present."""
     import etext
     import toolbelt as tb
     t = (r.get('en') or '').strip()
@@ -619,12 +618,6 @@ def _row_forms(r, name_head=None):
                       [re.escape(etext.encode(p.strip(), end=None))
                        for p in t.split('|') if p.strip()]))
         return True, forms
-    if name_head is not None and '<NAME>' in t:
-        import scriptmsg
-        try:
-            forms.append(('scriptmsg', [re.escape(scriptmsg._assemble(t, name_head))]))
-        except SystemExit:
-            pass                    # best effort; the miss still fails loud
     try:
         if '<FF05>' in t:
             # FF05 carries 2 parameter bytes the builders copy from the
@@ -811,18 +804,6 @@ def level3(read_file, side_files=None):
         except KeyError:
             pass
     pool_hay = b''.join(pool_parts)
-    # Overlay-embedded messages keep their Japanese name-insert head: the
-    # row's `<NAME>` token stands where those bytes ship. The builder owns
-    # the head lengths (scriptmsg.MSGS), so QA derives them the same way.
-    import scriptmsg
-    name_heads = {}
-    overlay_rels = {rel.upper() for rel in rels}
-    for overlay in ('ADV', 'DNG'):
-        if overlay not in overlay_rels:
-            continue
-        with open(os.path.join(ROOT, 'data', 'psx', overlay + '.BIN'), 'rb') as source:
-            name_heads.update({(overlay, hex(off)): head
-                               for off, head in scriptmsg.heads(overlay, source.read()).items()})
     for rel in sorted(rels):
         # the rel keeps the DIRECTORY CASE it has on disk ('fmv/poems' is the
         # ending-poems SOURCE table, read by fmv_layout - not a position
@@ -871,7 +852,7 @@ def level3(read_file, side_files=None):
                     address = 0
                 if btlp.MSG_ZONE[0] <= address < btlp.MSG_ZONE[1]:
                     record = dict(r, en=btlp.msg_script(r.get('en') or ''))
-            _all, forms = _row_forms(record, name_heads.get((rel.upper(), r['pos'])))
+            _all, forms = _row_forms(record)
             for _what, pats in forms:
                 # THE SMALL-FONT POOL IS IN ANOTHER FILE: its bytes are
                 # incbin'd into the three overlays (ADV/DNG/S2D, see

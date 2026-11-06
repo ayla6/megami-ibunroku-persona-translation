@@ -639,7 +639,7 @@ def merge(rel, gen_rows, man_rows):
 #     reads the next byte as the parameter ('[charset] non-ASCII bytes: 01');
 #   * a box ends with its dismissal wait - '<FF02><FF01>' - because that wait
 #     is the press that closes the box.
-_PARAM_LEN = {'05': 2, '06': 1, '0E': 1}
+_PARAM_LEN = {'05': 2, '06': 1, '09': 2, '0A': 1, '0E': 1}
 # Name insert fixup for the current table format, not a proven conversion
 # between PSP and every destination interpreter. The PSP spells them with NO parameter ("My last
 # name is <FF0F>."), the PSX with the member id, so a parameterless one takes

@@ -10,10 +10,11 @@ English that does not fit relocates to a cave and the FF55 pointer word is
 repointed. ADV's cave is intra-file (CAVE); DNG's is in the overlay extension
 (DNG_SCRIPTMSG_ADDR..DNG_SCRIPTMSG_LIMIT, between the dialogue glue and the
 spill window), which the build loads like the glue itself.
-FF09 takes 2 parameter bytes, FF0A one; the name-insert head is retained.
-An `en` cell places it mid-sentence with `<NAME>` (the PSP-US wording wraps
-the inserted item / skill name), otherwise it stays in front as the source had it.
-The name inserts are printed by the DNG name printer 0x800753AC (dng/vwf_script.asm: name-insertion flag, FF0A through skill_name_copy).
+The name-insert head (`<FF09><12><00>` - code + item id, `<FF0A><73>` - code +
+skill id) is part of the row like any other control code: the en cell carries
+the source's literal tokens wherever the PSP-US wording puts the name. QA
+compares the encoded row against the binary's own head bytes, so a mistyped id
+fails loud instead of shipping a different item.
 """
 import os
 import re
@@ -38,8 +39,6 @@ CAVE = {'ADV': (0x58270, 160)}
 # end is zero-filled by armips, and the generated asm asserts the range
 # against the neighbouring blocks. DNG's relocated messages live here.
 EXT_CAVE = {'DNG': ('DNG_SCRIPTMSG_ADDR', 'DNG_SCRIPTMSG_LIMIT', 'DNG_SPILL_ADDR')}
-# The token a table uses to place the retained name-insert head mid-sentence.
-NAME = '<NAME>'
 # (overlay, RAM address, number of original bytes kept before the text (name codes))
 MSGS = [
     ('ADV', 0x800B6C58, 0),
@@ -48,15 +47,6 @@ MSGS = [
     ('DNG', 0x8009A18C, 4),
     ('DNG', 0x8009A1B4, 3),
 ]
-
-
-def heads(ovl, d):
-    """{file offset: retained name-insert bytes} for `ovl`'s embedded messages.
-
-    The head is the leading item/skill id the English `<NAME>` token keeps in
-    place; QA searches the shipped message (pre + head + post) with it."""
-    return {ram - B: d[ram - B:ram - B + keep]
-            for o, ram, keep in MSGS if o == ovl}
 
 
 def _norm_key(t):
@@ -86,19 +76,70 @@ def messages(d, params=None):
     return out
 
 
-def _assemble(text, head):
-    """The message bytes: the retained name-insert head goes where the
-    table puts NAME (so the English can wrap the inserted name), otherwise
-    it stays in front exactly as the source had it."""
-    end = b'\xff\x02\xff\x01'
-    if NAME not in text:
-        return head + etext.encode(text, end=end)
-    if not head:
-        raise SystemExit(f'scriptmsg: {NAME} needs a retained name-insert head')
-    if text.count(NAME) > 1:
-        raise SystemExit(f'scriptmsg: {NAME} used twice in {text!r}')
-    pre, post = text.split(NAME, 1)
-    return etext.encode(pre, end=b'') + head + etext.encode(post, end=end)
+def _assemble(text):
+    """The message bytes: the row encodes whole, inserts and all."""
+    return etext.encode(text, end=b'\xff\x02\xff\x01')
+
+
+def head_ids(text):
+    """[(code, id)] of the row's name-insert heads (static script data:
+    FF09 carries a 16-bit item id, FF0A an 8-bit skill id)."""
+    out = []
+    for m in re.finditer(r'<FF(09|0A)>((?:<[0-9A-Fa-f]{2}>)+)', text):
+        code = int(m.group(1), 16)
+        raw = bytes(int(x, 16) for x in re.findall(r'<([0-9A-Fa-f]{2})>', m.group(2)))
+        want = {0x09: 2, 0x0A: 1}[code]
+        if len(raw) != want:
+            raise SystemExit(f'scriptmsg: FF{code:02X} takes {want} parameter '
+                             f'byte(s), got {len(raw)}: {m.group(0)}')
+        out.append((code, raw[0] | (raw[1] << 8 if code == 0x09 else 0)))
+    return out
+
+
+def _record_name(code, ident):
+    """The name the insert prints: the id is static, so the line is measured
+    with THIS name - there is no worst case to reserve (insert_widths.tsv is
+    for inserts whose parameter is written at run time)."""
+    import name_tails
+    if code == 0x09:
+        rows = name_tails.item_rows()
+    else:
+        import slps
+        import toolbelt
+        first = slps.SK_FIRST - slps.BASE
+        rows = []
+        for r in toolbelt.merged_rows(slps.REL):
+            pos = int(r['pos'], 16)
+            if (first <= pos < first + slps.SK_STRIDE * slps.SK_COUNT
+                    and not (pos - first) % slps.SK_STRIDE):
+                t = (r.get('en') or '').strip()
+                if t:
+                    rows.append(((pos - first) // slps.SK_STRIDE + 1, t))
+    name = dict(rows).get(ident)
+    if not name:
+        raise SystemExit(f'scriptmsg: insert id {ident} has no English name')
+    return name
+
+
+def check_lines(text, where):
+    """THE BOX RULE at the message's only write: every authored line holds
+    the box, with each insert measured as the name its static id prints."""
+    import vwf_wrap
+    shown = text
+    for code, ident in head_ids(text):
+        shown = shown.replace(_insert_token(code, ident), _record_name(code, ident))
+    for line in (l for l in shown.split('<FF03>') if l.strip()):
+        px = vwf_wrap.text_width(line)
+        if px > vwf_wrap.BOX_WIDTH:
+            raise SystemExit(f'scriptmsg: {where} line {px}px > '
+                             f'{vwf_wrap.BOX_WIDTH}px: {line!r}')
+
+
+def _insert_token(code, ident):
+    """The row spelling of one insert head."""
+    if code == 0x09:
+        return f'<FF09><{ident & 0xFF:02X}><{ident >> 8:02X}>'
+    return f'<FF0A><{ident:02X}>'
 
 
 def _cave(ovl, d):
@@ -216,7 +257,13 @@ def main():
         e = d.index(b'\xff\x01', s) + 2
         if d[e - 4:e] != b'\xff\x02\xff\x01':
             raise SystemExit(f'scriptmsg: {ram:#x}: unexpected end {d[e - 4:e].hex()}')
-        b = _assemble(text, d[s:s + keep])
+        b = _assemble(text)
+        head = d[s:s + keep]
+        if keep and head not in b:
+            raise SystemExit(f'scriptmsg: {ram:#x}: the row lost the source '
+                             f'insert head {head.hex(" ")} - the ids are the '
+                             'source script\'s, keep them verbatim')
+        check_lines(text, f'{ovl} {ram:#x}')
         if len(b) > e - s:
             # Oversize: relocate into a verified cave and repoint the FF55
             # command words (old slot bytes stay). A cave in the file's own

@@ -31,17 +31,25 @@ class DngScriptMessages(unittest.TestCase):
         self.assertTrue(etext.decode(seg, scriptmsg.NAME_PARAMS)
                         .startswith('<FF09><12><00>'))
 
-    def test_name_token_places_the_retained_head_mid_sentence(self):
+    def test_row_tokens_encode_the_source_head_verbatim(self):
+        # The row carries the source's insert head as literal tokens
+        # (`<FF09><12><00>`), placed wherever the English puts the name.
+        # etext prices FF09's two parameter bytes as arguments, so the
+        # encoded message keeps the binary's exact head bytes mid-sentence.
         head = self.data[0x35DC8:0x35DC8 + 4]
-        b = scriptmsg._assemble("The <NAME>'s effect has worn off.<FF02><FF01>",
-                                head)
-        self.assertEqual(b, etext.encode('The ', end=b'') + head
-                         + etext.encode("'s effect has worn off.",
-                                        end=b'\xff\x02\xff\x01'))
+        b = scriptmsg._assemble("The <FF09><12><00>'s effect has worn "
+                                "off.<FF02><FF01>")
+        self.assertEqual(b[:4], etext.encode('The ', end=b''))
+        self.assertIn(head, b)
+        self.assertEqual(scriptmsg.head_ids(
+            "The <FF09><12><00>'s effect."), [(0x09, 0x12)])
+        self.assertEqual(scriptmsg.head_ids('x<FF0A><73>y.'), [(0x0A, 0x73)])
 
-    def test_name_token_without_a_head_is_refused(self):
+    def test_wrong_parameter_count_is_refused(self):
         with self.assertRaises(SystemExit):
-            scriptmsg._assemble('The <NAME>...', b'')
+            scriptmsg.head_ids('x<FF09><12>y.')       # FF09 takes two bytes
+        with self.assertRaises(SystemExit):
+            scriptmsg.head_ids('x<FF0A><73><00>y.')   # FF0A takes one
 
     def test_dng_cave_is_the_declared_extension_window(self):
         base, size = scriptmsg._cave('DNG', self.data)

@@ -394,7 +394,9 @@ is never shortened or replaced to fit.
 5. **Codes with parameters are never printed.** `<FFFD>x` (a branch) and the
    name slots `<FF07|0F|08>` take a parameter byte/character. Neither the
    code nor its parameter is a glyph: they measure 0, draw 0, and are skipped
-   whole by every reader.
+   whole by every reader. The message-machine name inserts below are the one
+   exception: their code measures the room the inserted name takes, while
+   their parameter still measures 0.
 6. **Shadow** is drawn at `+1,+1` and only from rows 0-14 (row 15 has no room
    in the cell). It is derived from the glyph's own ink. Each overlay's
    entry establishes its palette indices before drawing: BTLP uses retail
@@ -679,6 +681,29 @@ Translate before layout so the flow measures the text that will draw. If text
 changes after layout, reflow before measuring it again.
 Dialogue name opcodes are not battle opcodes: a battle row with an untranslated
 dialogue name opcode fails the code gate rather than copying a Japanese insert.
+
+**Inserted records.** The message machine also prints whole records, not just
+the player's slots: `<FF09>` item, `<FF0A>` skill, `<FF0B>` demon, `<FF0C>`
+Persona in ADV (a demon in the DNG field script), and `<FF13>` arcana. A
+layout prices each code at the **widest name that code can print**, because
+the insert's parameter is written at run time and the line must hold every
+legal value. Which name is widest is a fact about the ported wording, so the
+PORT derives it: `port_widths.py` measures the canonical name tables (manual
+wins) plus retail's own arcana cells with the dialogue VWF advances and
+writes `translation/generated/insert_widths.tsv`; `vwf_wrap.insert_widths()`
+reads that table. The current maxima are 140 px (item), 127 px (skill),
+112 px (demon), 122 px (Persona) and 82 px (arcana); `<FF0C>` takes the
+larger of Persona and demon, since ADV and the DNG field script read it
+differently. Regenerate the table with its owner (a port run); never widen a
+line by hand because an insert "might" be long.
+The gift speech row carries its own layout (three lines a page, laid once
+through the shared flow with these widths priced); `giftmsg.py` encodes the
+row verbatim and fails the build if a page outgrows the contract. The same
+rule holds at the other messages' only writes: `fusionmsg.py` measures every
+line of the fusion speech, and the script-message rows carry their
+breaks in the row (their insert heads are the source's literal tokens -
+static ids, so each line is measured with the name its id actually
+prints, and scriptmsg fails the build when a line does not hold).
 
 Codes: `<FF03>` (dialogue) / `<FFF6>` (battle) separate lines; field `<FF02>`
 is a wait/scroll and `<FF04>` is a new box; `<FF01>`/`<FFEF>`/`<FFF5>` end.

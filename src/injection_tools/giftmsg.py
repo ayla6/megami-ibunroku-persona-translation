@@ -21,7 +21,6 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import toolbelt  # noqa: E402
 import etext      # noqa: E402
 import tstatus    # noqa: E402
-import strlib     # noqa: E402
 
 ROOT = etext.ROOT
 B = 0x800643C4
@@ -58,16 +57,25 @@ def main():
         open(OUT, 'w', encoding='utf-8', newline='\n').write(';; no manual English for the Persona gift message yet\n')
         print('giftmsg: no manual English, leaving the original message untouched')
         return
-    import re
     import vwf_wrap
-    _gm = strlib.glossary('giftmsg')
-    sample = en.replace('<FF0C><BB>', _gm['sample_persona']).replace('<FF09><BB><0B>', _gm['sample_item']).replace('<FF08><01>', _gm['sample_name'])
-    for page in re.split(r'<FF04>', sample):
-        lines = re.split(r'<FF03>|<FF02>', page)
-        lines = [l for l in lines if l]
-        assert len(lines) <= 3, page
+    # THE ROW IS THE ONLY WRITE: encode the manual text verbatim, never
+    # re-lay it here. The row carries its layout (the shared flow laid its
+    # pages once, with the insert widths priced); this check fails loud when
+    # a wording edit outgrows a page instead of quietly moving its breaks:
+    # three lines a page, every line within the box at the WIDEST item /
+    # Persona / nickname the engine can insert (insert_widths.tsv).
+    for i, page in enumerate(en.split('<FF04>'), 1):
+        lines = [l for l in page.replace('<FF02>', '<FF03>')
+                 .replace('<FF01>', '').split('<FF03>')
+                 if l.strip()]
+        if len(lines) > 3:
+            raise SystemExit(f'giftmsg: page {i} has {len(lines)} lines, '
+                             f'max 3: {lines}')
         for l in lines:
-            assert vwf_wrap.text_width(l) <= 239, (vwf_wrap.text_width(l), l)
+            px = vwf_wrap.text_width(l)
+            if px > vwf_wrap.BOX_WIDTH:
+                raise SystemExit(f'giftmsg: page {i} line {px}px > '
+                                 f'{vwf_wrap.BOX_WIDTH}px: {l!r}')
     data = etext.encode(en)                       # + FF01
     str_addr = TEXT_START
     code_addr = OLD_A

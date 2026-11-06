@@ -37,7 +37,10 @@ DNGT_ENTRY              equ 0x14                ; config: queue entry {u32 src; 
 .org 0x800753EC
     jal     dng_txt_put_name ; delay slot increments s1
 ; 0x800753AC is only used for the name inserts FF08 (party), FF09 (item), FF0A (skill), FF0B / FF0C (demon): their bytes are small-font
-; codes, so the engine gets the "name insertion" flag (a1 = 1: vwf_glyph_map maps them to the narrow English font)
+; codes, so the engine gets the "name insertion" flag (a1 = 1: vwf_glyph_map maps them to the narrow English font).
+; FF0A / FF09 / FF0B / FF0C now print the FULL name: the case diverts to a stub that copies the complete, FF-terminated
+; name (skill_name_copy_full / item_name_copy_dng / demon_name_copy_dng) and calls the printer with the name bound,
+; so the terminator ends the insert instead of a ten-glyph cap.
 .org 0x8007546C
     addiu   v0, v1, -0x80 ; v1 = byte
 .org 0x80075470
@@ -61,6 +64,17 @@ DNG_SKILL_BUFFER_BYTES equ SKILL_MAXLEN + 1
 ; FF0A: use the full skill-name copy and existing dialogue VWF insertion path
 .org 0x8007420C
     j       dng_skill_name ; delay slot sll a0,a0,2 is harmless
+
+; FF09: full item name. The case enters at its head (the dispatch table points
+; here) with s5 on the command byte; the id is the 16-bit little-endian pair
+; behind it (retail's own read at 0x800741CC..0x800741DC).
+.org 0x800741C8
+    j       dng_item_name ; delay slot lbu a0,1(s5) is harmless (a0 is reloaded)
+
+; FF0B / FF0C: full demon name (both dispatch entries share this case). The
+; id is the byte behind the command byte.
+.org 0x80074214
+    j       dng_demon_name ; delay slot lbu v0,0(s5) is harmless (v0 reloaded)
 
 .org DNG_GLUE_ADDR
 dng_skill_name:                                 ; s5 = the skill id byte
@@ -91,6 +105,39 @@ dng_skill_name:                                 ; s5 = the skill id byte
     lw      ra, 0x1C(sp)
     nop
     j       0x8007423C                          ; as the original after the name printer: next script byte
+    addiu   sp, sp, 0x20
+dng_item_name:                                  ; s5 = the FF09 command byte
+    addiu   sp, sp, -0x20
+    sw      ra, 0x1C(sp)
+    lbu     a1, 1(s5)                           ; 16-bit little-endian id in the two parameter bytes
+    lbu     v0, 2(s5)
+    addiu   s5, s5, 2                           ; the parameters (the common tail adds the command byte)
+    sll     v0, v0, 8
+    addu    a1, a1, v0
+    la      a0, sf_name_scratch_dng
+    jal     item_name_copy_dng                  ; complete, FF-terminated name (clobbers v0, v1, a0-a2, at)
+    nop
+    la      a0, sf_name_scratch_dng
+    jal     0x800753AC
+    li      a1, ITEM_NAME_MAXLEN                ; the copy is FF-terminated: the count is the bound
+    lw      ra, 0x1C(sp)
+    nop
+    j       0x8007423C                          ; as the original after the name printer: next script byte
+    addiu   sp, sp, 0x20
+dng_demon_name:                                 ; s5 = the FF0B/FF0C command byte
+    addiu   sp, sp, -0x20
+    sw      ra, 0x1C(sp)
+    lbu     a1, 1(s5)                           ; demon id
+    addiu   s5, s5, 1                           ; the parameter (the common tail adds the command byte)
+    la      a0, sf_name_scratch_dng
+    jal     demon_name_copy_dng                 ; complete, FF-terminated name (clobbers v0, v1, a0-a2, at)
+    nop
+    la      a0, sf_name_scratch_dng
+    jal     0x800753AC
+    li      a1, DEMON_NAME_MAXLEN
+    lw      ra, 0x1C(sp)
+    nop
+    j       0x8007423C
     addiu   sp, sp, 0x20
 dng_txt_menu_single:
     jal     dng_txt_put_menu

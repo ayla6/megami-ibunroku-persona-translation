@@ -19,6 +19,7 @@ Usage:
 import functools
 import os
 import re
+import strlib   # noqa: E402  (the headered-TSV reader; needs the toolbelt path)
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -205,6 +206,37 @@ BTL_INSERT_WIDTHS = {'<FF%02X>' % code: cap * _NAME_GLYPH
 BTL_NAME_INSERT_CODES = btl_name_insert_codes()
 
 
+# --- message-machine name inserts ------------------------------------
+# The dialogue engine's record insert prints the record the caller points
+# at through the same VWF metrics as text: the small-font bytes go through
+# vwf_small_map to ASCII and char_width prices them. So a line that
+# carries an insert must leave room for the WIDEST name that code can
+# print, not zero:
+#   <FF09> item      <FF0A> skill     <FF0B> demon
+#   <FF0C> Persona (ADV) / demon (DNG field script)
+#   <FF13> arcana    (retail's own full-width Latin table)
+# Which name is widest is a fact about the PORTED wording, so the port
+# derives the widths (extraction_tools/matching/port_widths.py, from the
+# canonical name tables + the retail arcana cells) and this engine only
+# reads its table - no name is typed or scanned here.
+INSERT_CODES = ('<FF09>', '<FF0A>', '<FF0B>', '<FF0C>', '<FF13>')
+INSERT_WIDTHS_PATH = os.path.join(ROOT, 'translation', 'generated',
+                                  'insert_widths.tsv')
+
+
+@functools.lru_cache(maxsize=1)
+def insert_widths():
+    """{insert token: px} from the port's table (port_widths.py)."""
+    try:
+        rows = strlib.tsv_rows(INSERT_WIDTHS_PATH, required=('code', 'px'))
+    except FileNotFoundError:
+        raise SystemExit(
+            'vwf_wrap: ' + os.path.relpath(INSERT_WIDTHS_PATH, ROOT) +
+            ' is missing - the insert widths are port-derived data; run '
+            'python src/extraction_tools/matching/port.py')
+    return {'<%s>' % r['code']: int(r['px']) for r in rows}
+
+
 @functools.lru_cache(maxsize=131072)
 def text_width(s):
     w = 0
@@ -218,9 +250,11 @@ def text_width(s):
                   if not TOKEN.fullmatch(part) for c in part)
             # an insert token is not zero: the window draws the name (or
             # value) the game fills it with, and the flow must leave the
-            # room that copy takes (BTL_INSERT_WIDTHS)
+            # room that copy takes (BTL_INSERT_WIDTHS, INSERT_WIDTHS)
             + sum(BTL_INSERT_WIDTHS[t] for t in TOKEN.findall(s)
-                  if t in BTL_INSERT_WIDTHS))
+                  if t in BTL_INSERT_WIDTHS)
+            + sum(insert_widths()[t] for t in TOKEN.findall(s)
+                  if t in INSERT_CODES))
 
 
 CLOSERS = set('.,!?;:…’”)]]')

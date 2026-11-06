@@ -146,6 +146,9 @@ def _g(g):
 # text). The table is the event codec's; a caller that knows a code takes
 # an argument the event codec does not (the DNG script's FF09/FF0A name
 # inserts take the item / skill id) passes `params` for that decode only.
+# ENCODE prices FF09 (2 bytes) and FF0A (1 byte) as arguments as well, so a
+# row carries the insert literally - `<FF09><12><00>` - wherever its wording
+# puts the name.
 DECODE_ARGS = {5: 2, 6: 1, 14: 1, 15: 1}
 
 
@@ -206,7 +209,8 @@ def encode(s, end=bytes([0xFF, 0x01])):
             t = m.group(1)
             if t.startswith('FF'):
                 out += bytes([0xFF, int(t[2:], 16)])
-                arguments = {5: 2, 6: 1, 14: 1, 15: 1}.get(int(t[2:], 16), 0)
+                arguments = {5: 2, 6: 1, 9: 2, 10: 1,
+                             14: 1, 15: 1}.get(int(t[2:], 16), 0)
             elif t.startswith('G'):
                 g = int(t[1:], 16)
                 out += bytes([g]) if g < 0x80 else bytes([0x80 | (g >> 8), g & 0xFF])

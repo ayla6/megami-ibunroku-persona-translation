@@ -261,6 +261,13 @@ for wrapping, refreshes extracts and shared tables, then runs family
 porters. Its declared write sets determine execution waves: porters writing
 the same table run sequentially.
 
+- `port_widths.py`: the record-insert width table
+  (`translation/generated/insert_widths.tsv`) - the widest name each
+  message-machine insert code can print, measured from the canonical name
+  rows after boot_tables and read by every later layout
+  (`vwf_wrap.insert_widths`). Derived data with one owner, like any
+  generated table.
+
 - `port_story.py`: ADV story rows.
 - `port_talk.py` and `port_answers.py`: TALK dialogue and answer rows.
 - `port_dng.py`: dungeon-pack rows.

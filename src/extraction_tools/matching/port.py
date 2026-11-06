@@ -118,6 +118,10 @@ def port_all():
     # phase 1: the dumps and shared tables. Each writes its own cache; the
     # porters below all read them, so this whole phase goes first.
     port_slps_tables()
+    # the record-insert widths (<FF09>/<FF0A>/<FF0B>/<FF0C>/<FF13>): a
+    # ported-name fact, derived once the name rows exist and read by every
+    # later layout (vwf_wrap.insert_widths prices an insert token with it).
+    must(os.path.join(HERE, 'port_widths.py'))
     run(os.path.join(INJ, 'choices.py'), 'sync-boot')
     run(os.path.join(INJ, 's2d.py'), 'dump')
     run(os.path.join(INJ, 'btlp.py'), 'dump')
