@@ -130,7 +130,11 @@ link PSX, PSP-JP, and PSP-US coordinates; their indexes need not be equal.
   `0xc88`, or `entry:offset` where a file needs sub-structure (archive
   members). Multi-spot rows (the same text at N offsets) are
   comma-separated; builders write every spot. Position is the merge key
-  between manual and generated.
+  between manual and generated. A manual row may also be keyed at a pointer
+  word that is not a slot when one source slot feeds two destinations: the
+  S2D map labels key their shorter wording at a label-entry name word
+  (`docs/TEXT_LAYOUT_SPEC.md`, "S2D location slot"), while the slot's own
+  row stays the arrival banner name.
 - `en` — the translation. In generated it is ephemeral (PSP-US wording,
   rewritten freely). In manual it is SACRED: automatic tools never edit
   it. They may only add rows for new positions and delete an empty row

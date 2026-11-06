@@ -17,7 +17,10 @@ bytes elsewhere - the builder owns final placement and pointer fixing):
   names   47 location names (0x800AAE0E-0x800AB034): arrival banner +
           map labels, byte-packed 1-row VWF entries (FF01-terminated),
           reached through pointer words and lui 0x800B/addiu pairs.
-          LABEL_LIMIT 224 px; longer is refused loudly.
+          One slot feeds two consumers: the slot keeps the banner name
+          (BANNER_LIMIT 240 px), and the map-label placement entries get
+          their own string (LABEL_LIMIT 128 px). A manual row keyed by a
+          label placement's name word supplies the shorter map wording.
 
 All table IO, merging and emission goes through toolbelt. Placement must
 preserve the other S2D extension allocations and grid-full latch.
@@ -52,7 +55,17 @@ BLOCK = (0x800AB040, 0x800AC400)
 SCRIPT_SPILL = [(0x800BA3C4, 0x800BB200)]   # up to S2D_GLUE_ADDR (addresses.inc)
 # names family
 NZONE = (0x800AAE0E, 0x800AB034)
-LABEL_LIMIT = 224                 # px (14 cells; double the old fixed 7-cell cap)
+# The arrival / current-location banner reads its name from this pointer
+# table (one word per name slot, in slot order). The map labels read the
+# same slot through pointer words in the label-entry tables. One slot, two
+# consumers; build() splits them.
+NAME_TABLE_ADDR = 0x800A54DC
+# The 8x1 map labels read their name from placement tables: one 8-byte
+# entry per label (u16 x, u16 y, name pointer), terminated by two -1 words.
+# The root array lists a table per map; its order is not the name slot order.
+LABEL_TABLE_ROOT = 0x800A5764
+BANNER_LIMIT = 240                # px: the 15x1 arrival banner's own strip
+LABEL_LIMIT = 128                 # px: an 8x1 map label's own strip
 # Spill space: the S2D extension past the VWF glue. Keep its existing
 # conservative ceiling; the compositor ring lives in resident scratch.
 NAME_SPILL = [(0x800BB8F0, 0x800BBB70)]
@@ -98,6 +111,39 @@ def name_slots(d):
     return out
 
 
+def label_table_refs(d):
+    """The name-word addresses of the 8x1 map-label placement tables.
+
+    LABEL_TABLE_ROOT lists a placement table per map. Each table is 8-byte
+    entries (u16 x, u16 y, name pointer) ended by two -1 words; the name
+    word is entry+4. These are the only refs the map labels read, so they
+    are the only refs that may take the shorter label wording.
+    """
+    words = set()
+    p = LABEL_TABLE_ROOT
+    while True:
+        base = struct.unpack_from('<I', d, p - B)[0]
+        if not base:
+            break
+        p += 4
+        q = base
+        while True:
+            coords, _name = struct.unpack_from('<II', d, q - B)
+            if coords == 0xFFFFFFFF:
+                break
+            words.add(q + 4)
+            q += 8
+    return words
+
+
+def label_refs(nrf, i, words):
+    """slot i's map-label pointer words (the name words of the placement
+    tables). Every other ref into the slot feeds the arrival banner, which
+    keeps the slot's own wording."""
+    return [w for kind, w, _old, _lui in nrf[i]
+            if kind == 'ptr' and w in words]
+
+
 def name_refs(d, msgs):
     found = {i: [] for i in range(len(msgs))}
 
@@ -140,8 +186,42 @@ def families(d):
     return out
 
 
+def route_label_drafts():
+    """Queue a manual row for every map label wider than its 8x1 strip.
+
+    A label's wording defaults to the location name. When that name does not
+    fit the label's 128 px strip, the row lands in manual with empty `en` and
+    the full name as the over-limit draft; a filled row at any of the slot's
+    label references becomes the shorter map wording. The arrival banner
+    keeps the full name, so this is the one place the two are split.
+    """
+    d = data()
+    msgs = name_slots(d)
+    nrf = name_refs(d, msgs)
+    lwords = label_table_refs(d)
+    gen = {int(r['pos'], 16): r for r in toolbelt.read_generated(REL, optional=True)}
+    man = {int(r['pos'], 16): r for r in toolbelt.read_manual(REL, optional=True)}
+    for i, (a, _e) in enumerate(msgs):
+        refs = label_refs(nrf, i, lwords)
+        if not refs:
+            continue
+        filled = [(w - B) for w in refs
+                  if (man.get(w - B) or {}).get('en', '').strip()]
+        text = (man[filled[0]]['en'].strip() if filled
+                else (gen.get(a - B, {}).get('en') or '').strip())
+        if not text:
+            continue
+        px = vwf_wrap.text_width(text)
+        if px <= LABEL_LIMIT:
+            continue
+        key = filled[0] if filled else refs[0] - B
+        toolbelt.route_over(REL, hex(key), gen.get(a - B, {}).get('psp', ''),
+                            text, toolbelt.note_over(px, LABEL_LIMIT))
+
+
 def dump():
     rows, _man = toolbelt.dump_scaffold(REL, [(hex(off), psp) for off, psp in families(data())])
+    route_label_drafts()
     print(f's2d: {len(rows)} rows -> {toolbelt.gen_path(REL)}')
 
 
@@ -180,14 +260,15 @@ def build():
     rf = script_refs(d, bx)
     tstatus.load_glossary()
     todo = {}
+    box_at = {a - B: i for i, (a, _e) in enumerate(bx)}
     for r in rows:
         pos = int(r['pos'], 16)
-        if not (BLOCK[0] - B <= pos < BLOCK[1] - B):
-            continue
+        i = box_at.get(pos)
+        if i is None:
+            continue                # another family's row (e.g. a map label)
         t = r['en'].strip()
         if not t:
             continue
-        i = next(i for i, (a, _e) in enumerate(bx) if a - B == pos)
         ja = etext.decode(d[bx[i][0] - B:bx[i][1] - B - 2])
         t = fill_pauses(ja, t)
         bad = tstatus.ship_errors(ja, t)     # the QA's gate, exemptions and all
@@ -232,24 +313,50 @@ def build():
             body.append(f'.org {where:#x}\n    .word {addr_of[i]:#x}')
     n_script = len(todo)
 
-    # --- names family: merged zone first (code refs), then spill
+    # --- names family: one slot, two strings ---------------------
+    # Every location slot feeds two consumers: the arrival / current-location
+    # banner (the pointer table at NAME_TABLE_ADDR) and the 8x1 overworld map
+    # labels (pointer words inside the label-entry tables). The slot keeps the
+    # banner name. Each label reference gets its own string: the same name by
+    # default, or the wording of a manual row keyed by any of that slot's
+    # label-reference positions. The short map wording is therefore a normal
+    # manual entry, never a name table inside this tool.
     msgs = name_slots(d)
     nrf = name_refs(d, msgs)
-    ntodo = {}
-    for r in rows:
-        pos = int(r['pos'], 16)
-        if not (NZONE[0] - B <= pos < NZONE[1] - B):
+    lwords = label_table_refs(d)
+    by_pos = {int(r['pos'], 16): r for r in rows}
+    # Map-label wording is a human row keyed at a label pointer, never a
+    # generated row (generated has no positions there).
+    man_by_pos = {int(r['pos'], 16): r
+                  for r in toolbelt.read_manual(REL, optional=True)}
+    slot_pos = {i: a - B for i, (a, _e) in enumerate(msgs)}
+
+    label_wording = {}
+    for i in range(len(msgs)):
+        found = []
+        for w in label_refs(nrf, i, lwords):
+            r = man_by_pos.get(w - B)
+            if r is not None and r['en'].strip():
+                found.append(r['en'].strip())
+        if found:
+            if len(set(found)) != 1:
+                toolbelt.fail(f'name {i}: map-label rows disagree: '
+                              f'{sorted(set(found))}')
+            label_wording[i] = found[0]
+
+    ntodo, ltodo = {}, {}
+    for i in range(len(msgs)):
+        r = by_pos.get(slot_pos[i])
+        if r is None or not r['en'].strip():
             continue
         t = r['en'].strip()
-        if not t:
-            continue
-        i = next(i for i, (a, _e) in enumerate(msgs) if a - B == pos)
-        if not nrf[i]:
-            toolbelt.fail(f'name {i} id {r["id"]}: no reference')
         px = vwf_wrap.text_width(t)
-        if px > LABEL_LIMIT:
-            toolbelt.fail(f'name {i} id {r["id"]} {t!r}: {px}px > {LABEL_LIMIT}px')
+        if px > BANNER_LIMIT:
+            toolbelt.fail(f'name {i} id {r["id"]} {t!r}: {px}px > {BANNER_LIMIT}px')
         ntodo[i] = name_bytes(t)
+        label = label_wording.get(i)
+        if label is not None and label != t:
+            ltodo[i] = name_bytes(label)
     free = sorted(msgs[i] for i in ntodo)
     merged = []
     for a, e in free:
@@ -257,19 +364,18 @@ def build():
             merged[-1] = (merged[-1][0], e)
         else:
             merged.append((a, e))
-    nplaced, naddr = {}, {}
+    placed, naddr, laddr = {}, {}, {}
     spill = list(NAME_SPILL)
 
-    def put(i, pools):
-        b = ntodo[i]
-        if b in nplaced:
-            naddr[i] = nplaced[b]
+    def put(i, b, pools, addr):
+        if b in placed:
+            addr[i] = placed[b]
             return True
         for pool in pools:
             for k, (a, e) in enumerate(pool):
                 if e - a >= len(b):
-                    nplaced[b] = a
-                    naddr[i] = a
+                    placed[b] = a
+                    addr[i] = a
                     pool[k] = (a + len(b), e)
                     return True
         return False
@@ -277,17 +383,23 @@ def build():
     order = sorted(ntodo, key=lambda i: (not any(r[0] in ('addiu', 'ori') for r in nrf[i]), -len(ntodo[i])))
     for i in order:
         has_code = any(r[0] in ('addiu', 'ori') for r in nrf[i])
-        if not put(i, [merged] if has_code else [merged, spill]):
+        if not put(i, ntodo[i], [merged] if has_code else [merged, spill], naddr):
             toolbelt.fail(f'name {i}: out of space ({len(ntodo[i])} bytes, code refs: {has_code})')
+    for i in sorted(ltodo):
+        if ltodo[i] == ntodo[i]:
+            laddr[i] = naddr[i]
+        elif not put(i, ltodo[i], [merged, spill], laddr):
+            toolbelt.fail(f'name {i}: map label out of space ({len(ltodo[i])} bytes)')
     for i in ntodo:
         a, e = msgs[i]
         body.append(f'.org {a:#x}\n.fill {e - a}, 0')
-    for b, a in nplaced.items():
+    for b, a in placed.items():
         if NZONE[0] <= a < NZONE[1]:
             body.append(f'.org {a:#x}\n    .byte ' + ', '.join(f'0x{x:02X}' for x in b))
     for i in ntodo:
         for kind, where, old, lui in nrf[i]:
-            new = naddr[i]
+            label = kind == 'ptr' and where in lwords and i in laddr
+            new = laddr[i] if label else naddr[i]
             if kind == 'ptr':
                 body.append(f'.org {where:#x}\n    .word {new:#x}')
             elif kind == 'addiu':
@@ -295,23 +407,29 @@ def build():
             else:                                              # ori with lui 0x800A
                 body.append(f'.org {where:#x}\n    .halfword {new & 0xFFFF:#x}')
     n_names = len(ntodo)
+    n_labels = sum(1 for i in ltodo if ltodo[i] != ntodo[i])
 
     toolbelt.write_asm(OUT, 's2d', '\n'.join(body) + '\n')
     ptrmap, content = {}, {}
     for i in ntodo:
         for kind, where, old, lui in nrf[i]:
-            ptrmap[f'{old:#010x}'] = f'{naddr[i]:#010x}'
+            label = kind == 'ptr' and where in lwords and i in laddr
+            new = laddr[i] if label else naddr[i]
+            ptrmap[f'{old:#010x}'] = f'{new:#010x}'
         content[ntodo[i].hex()] = f'{naddr[i]:#010x}'
+        if i in ltodo:
+            content[ltodo[i].hex()] = f'{laddr[i]:#010x}'
     with open(OUT_MAP, 'w') as o:
         json.dump({'ptr': ptrmap, 'content': content}, o)
     spill_body = []
-    for b, a in nplaced.items():
+    for b, a in placed.items():
         if not (NZONE[0] <= a < NZONE[1]):
             spill_body.append(f'.org {a:#x}\n    .byte ' + ', '.join(f'0x{x:02X}' for x in b))
     toolbelt.write_asm(OUT_SLPS, 's2d',
                        ';; overworld names spilled into the S2D extension\n'
                        + '\n'.join(spill_body) + ('\n' if spill_body else ''))
-    print(f's2d: {n_script} script boxes, {n_names} names -> {OUT}')
+    print(f's2d: {n_script} script boxes, {n_names} names, '
+          f'{n_labels} map labels -> {OUT}')
 
 
 if __name__ == '__main__':

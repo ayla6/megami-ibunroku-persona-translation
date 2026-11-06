@@ -11,7 +11,10 @@ positions); this porter only writes `en` + `psp` on matching rows:
                 from PSP-JP and proven complete PSP-US twins; decoded_en keeps
                 their authored waits/pages and uses the shared width flow.
   location names boot_s2dnames.tsv (psx_idx -> us_boot_offset) -> the BOOT
-                label verbatim, gated by the LABEL_LIMIT width check.
+                label verbatim, gated by the BANNER_LIMIT width check (the
+                arrival banner is the wider of the slot's two consumers; a
+                map label that does not fit its own strip becomes a manual
+                draft, see s2d.route_label_drafts).
 
 Never touches manual/. Run `python src/injection_tools/s2d.py dump` first.
 
@@ -267,6 +270,14 @@ def script_text(ja, en):
     return port_derive.head_marks(en, ja)
 
 
+def name_over_limit(text):
+    """The located name's gate is the arrival banner, the slot's wider
+    consumer (BANNER_LIMIT). The 8x1 map labels read the same slot but their
+    wording can be split off in s2d (a manual row keyed at a label
+    reference), so a name that only fits the banner still ports."""
+    return vwf_wrap.text_width(text) > s2d.BANNER_LIMIT
+
+
 def port(apply, force=False, without_psp_jp=False, strict=False):
     boot = load_boot()
     table = [(int(r['idx']), int(r['lo'], 16), int(r['hi'], 16),
@@ -398,9 +409,9 @@ def port(apply, force=False, without_psp_jp=False, strict=False):
         if pos in filled and not force:
             continue
         us = boot_labels[int(row['us_boot_offset'], 16)]
-        px = vwf_wrap.text_width(us)
-        if px > s2d.LABEL_LIMIT:
-            fail.append((f'name{i}', f'{px}px > {s2d.LABEL_LIMIT}px'))
+        if name_over_limit(us):
+            px = vwf_wrap.text_width(us)
+            fail.append((f'name{i}', f'{px}px > {s2d.BANNER_LIMIT}px'))
             continue
         rows.append({'pos': pos, 'en': us,
                      'psp': f"EBOOT:{int(row['us_boot_offset'], 16):x}"})

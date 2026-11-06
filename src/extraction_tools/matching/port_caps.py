@@ -348,7 +348,10 @@ def dest_cap(rel, pos):
         import s2d
         off = _off(pos)
         if off is not None and s2d.NZONE[0] - s2d.B <= off < s2d.NZONE[1] - s2d.B:
-            return s2d.LABEL_LIMIT, 'px', 1
+            # A location slot's own row is the arrival/current-location
+            # banner name (the 15x1 banner's strip). The 8x1 map labels are
+            # a separate string the builder splits off, not this row.
+            return s2d.BANNER_LIMIT, 'px', 1
         return None, None, None        # script box: own slot -> free -> spill
     if rel == 'ADV':
         import sysmsg

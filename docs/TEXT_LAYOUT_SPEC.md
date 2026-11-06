@@ -633,8 +633,22 @@ wide (128 px for a label, 240 px for the banner), so it never draws or uploads
 past that strip: the next strip begins there, and on the map labels it belongs
 to the neighbouring place. The VWF pen stops at the object's pixel width and
 a glyph that would cross it is skipped; the renderer clips at a glyph boundary
-and never wraps or rewinds. Wording is the slot's source name (PSP-US or a
-manual override), never a substring cut by the renderer.
+and never wraps or rewinds.
+
+**S2D location slot: banner name and map label.** A location slot feeds two
+consumers, and the builder gives them separate strings. The slot's own row is
+the arrival / current-location banner name, capped at the banner's strip
+(`s2d.BANNER_LIMIT`, 240 px). The 8x1 map labels reach the slot through
+pointer words in the label-entry tables; every such word is rewired to a label
+string capped at the label's own strip (`s2d.LABEL_LIMIT`, 128 px), which by
+default is the same wording as the name. A manual row keyed at any of the
+slot's map-label pointer words (never at the slot's own pos, which is the
+banner) supplies shorter map wording; it is a normal filled manual row, so
+the wording is the user's. A label whose name is wider than its strip is
+queued in manual as an over-limit draft (`over limit Npx/128px; <name>`) while
+the banner keeps the full name; until the draft is filled the label still
+draws the full name, clipped at its own strip. The string itself is never cut:
+the renderer's clip is presentation, the wording stays whole.
 
 **Touched cells and the sprite map.** A narrow glyph touches cells
 `px>>4 .. (px+advance-1)>>4`: the sheet keeps one blank column after its ink

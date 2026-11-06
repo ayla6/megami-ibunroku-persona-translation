@@ -13,9 +13,13 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'src/extraction_tools/psp'))
 sys.path.insert(0, str(ROOT / 'src/extraction_tools/matching'))
+sys.path.insert(0, str(ROOT / 'src/injection_tools'))
 import eboot
+import port_caps
 import port_s2d
+import s2d
 import tables
+import vwf_wrap
 
 
 class SourceCoordinates(unittest.TestCase):
@@ -298,6 +302,27 @@ class PortraitDialogue(unittest.TestCase):
         for pos in ('0x46d08', '0x46d54'):
             self.assertTrue(bypos[pos]['en'])
             self.assertTrue(bypos[pos]['psp'].startswith('EBOOT:'))
+
+
+class NameGate(unittest.TestCase):
+    def test_gate_is_the_banner_not_the_map_label_strip(self):
+        text = 'M'
+        while vwf_wrap.text_width(text) <= s2d.LABEL_LIMIT:
+            text += 'M'
+        self.assertLessEqual(vwf_wrap.text_width(text), s2d.BANNER_LIMIT)
+        self.assertFalse(port_s2d.name_over_limit(text))
+
+        wider = text
+        while vwf_wrap.text_width(wider) <= s2d.BANNER_LIMIT:
+            wider += 'M'
+        self.assertTrue(port_s2d.name_over_limit(wider))
+
+    def test_slot_destination_is_the_banner_strip(self):
+        # The slot's own row is the banner name; the map label is a separate
+        # string the s2d builder splits off, not this row's destination.
+        start, _end = s2d.name_slots(s2d.data())[0]
+        self.assertEqual(port_caps.dest_cap('S2D', hex(start - s2d.B)),
+                         (s2d.BANNER_LIMIT, 'px', 1))
 
 
 if __name__ == '__main__':
