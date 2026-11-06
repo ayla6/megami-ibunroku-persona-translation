@@ -42,7 +42,7 @@ id	pos	psp	en
 40	0x47700	EBOOT:28b4b6	Man in black: Past here is<FF03>SEBEC property! No entry!<FF02><FF01>
 41	0x47df8	EBOOT:28a566	Maki: What the--The school's gone!<FF03>What happened to Yuko and<FF03>everyone!?<FF02><FF01>
 42	0x47e2c	EBOOT:28a4b8	Nanjo: This must be the Deva<FF03>System at work... How dare<FF03>Kandori unleash such madness!<FF02><FF01>
-43	0x46c90	EBOOT:28a178	Nanjo: What's the matter, <FF07><01>?<FF03>Do you have business at<FF03>the historical society?<FF02><FF01>
+43	0x46c90	EBOOT:28a178	Nanjo: What's the matter,<FF03><FF07><01>? Do you have<FF03>business at the historical society?<FF02><FF01>
 44	0x46efc	EBOOT:289d34	Yukino: <FF07><01>!<FF03>Are you just gonna run away?<FF02><FF04>Ms. Saeko would get angry<FF03>again if she found out!<FF02><FF01>
 45	0x46f40	EBOOT:289c98	Nanjo: ...Are you<FF03>planning to run away?<FF03>That won't solve anything, you know.<FF02><FF01>
 46	0x470c4	EBOOT:28998a	Confused young man: Let me out of<FF03>here! Why can't I leave town!?<FF02><FF04>Someone help!<FF02><FF01>
@@ -98,6 +98,32 @@ id	pos	psp	en
 96	0x46c57	EBOOT:28c300	Hospital
 97	0x46c5e	EBOOT:28c340	Historical Society
 98	0x46c68	EBOOT:28c380	Sun Mall
-99	0x47154	EBOOT:2898a0	Elly: No, <FF07><01>! We must hurry and<FF03>bring Maki's mother to the school!<FF02><FF01>
+99	0x47154	EBOOT:2898a0	Elly: No, <FF07><01>!<FF03>We must hurry and bring<FF03>Maki's mother to the school!<FF02><FF01>
 100	0x46f98	EBOOT:289c36	The historical society<FF03>seems to be closed...<FF02><FF01>
 101	0x4711c	EBOOT:289926	The Himeno residence<FF03>seems to be locked up...<FF02><FF01>
+102	0x3967c	EBOOT:2879a0	Night
+103	0x39682	EBOOT:2879b0	Yoma
+104	0x39688	EBOOT:2879c0	Fairy
+105	0x3968e	EBOOT:2879d0	Divine
+106	0x39694	EBOOT:2879e0	Fallen
+107	0x3969a	EBOOT:2879f0	Snake
+108	0x396a0	EBOOT:287a00	Drake
+109	0x396a6	EBOOT:287a10	Flight
+110	0x396ac	EBOOT:287a20	Raptor
+111	0x396b2	EBOOT:287a30	Beast
+112	0x396b8	EBOOT:287a40	Wilder
+113	0x396be	EBOOT:287a50	Femme
+114	0x396c4	EBOOT:287a60	Brute
+115	0x396ca	EBOOT:287a70	Jirae
+116	0x396d0	EBOOT:287a80	Jaki
+117	0x396d6	EBOOT:287a90	Haunt
+118	0x396dc	EBOOT:287aa0	Spirit
+119	0x396e2	EBOOT:287ab0	Grave
+120	0x396e8	EBOOT:287ac0	Foul
+121	0x396ee	EBOOT:287ad0	Karma
+122	0x396f4	EBOOT:287ae0	Meta
+123	0x396fa	EBOOT:287af0	Fiend
+124	0x39700	EBOOT:287b00	Reaper
+125	0x39706	EBOOT:287b10	Tyrant
+126	0x3970c	EBOOT:287b20	Despot
+127	0x39712	EBOOT:287b30	Deity

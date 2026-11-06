@@ -104,7 +104,7 @@ def build():
                 # The human's full wording stays untouched in manual. Until
                 # every consumer can display more than one line, keep the
                 # original Japanese bytes and explicitly report the draft.
-                human_drafts.append((pos, w))
+                human_drafts.append((pos, w, t))
                 new.append(bytes(d[a - B:e - B]))
                 continue
             # porter wording over cap: route to manual (draft in the note),
@@ -139,9 +139,9 @@ def build():
         for q in tab:
             o.write(f'    .word {place[starts[q]]:#x}' + NL)
     with open(DRAFT_OUT, 'w', encoding='utf-8', newline=NL) as o:
-        o.write('pos\twidth_px\n')
-        for pos, width in human_drafts:
-            o.write(f'{pos}\t{width}\n')
+        o.write('pos\twidth_px\tdraft\n')
+        for pos, width, draft in human_drafts:
+            o.write(f'{pos}\t{width}\t{draft}\n')
     print(f'descs: {sum(1 for pos in known if rows.get(pos, {}).get("en", "").strip()) - len(human_drafts)}/{len(strs)} translated, '
           f'{len(routed)} routed to manual, {len(human_drafts)} human draft(s) retained unshipped, '
           f'{p - ZONE[0]} of {ZONE[1] - ZONE[0]} bytes -> {OUT}')

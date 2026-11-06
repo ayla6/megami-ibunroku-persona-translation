@@ -12,7 +12,9 @@
 .org PERSONA_CODE_ADDR
 .area PERSONA_CODE_SIZE
 
-;; a0 = destination (16 bytes), a1 = Persona id (1-based)
+;; a0 = destination (16 bytes), a1 = Persona key (master-table index 1..100;
+;; record 0 at PERSONA_RECORDS_ADDR is unused). The key is the byte retail
+;; indexes its own name reads with: name field 0x8004B0CC + 8 + key*0x2C.
 ;; clobbers v0, v1, a0, a1, a2, at only (same contract as skill_name_copy)
 persona_name_copy:
     sll     v0, a1, 1
@@ -22,6 +24,10 @@ persona_name_copy:
     sll     v0, v0, 2                   ; id * 0x2C
     la      v1, PERSONA_RECORDS_ADDR + PERSONA_NAME
     addu    v1, v1, v0                  ; v1 = name field
+;; a0 = destination, a1 = the record's name field: the same copy, reached
+;; with the field pointer the caller already holds (the fusion draw helper's
+;; def path). Falls into the shared body; the id math above is skipped.
+persona_name_copy_at:
     li      a1, PERSONA_FIELD           ; a1 = glyph count where this phase stops
     move    a2, zero                    ; a2 = glyphs written
 @@copy:

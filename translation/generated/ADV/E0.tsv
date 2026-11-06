@@ -74,11 +74,11 @@ id	pos	psp	en
 72	3:0x1a98	E0:72	Nanjo: It seems we have no choice in<FF03>the matter. Best to get it over with.<FF02><FF01>
 73	3:0x1ac8	E0:73	Mark: Mikage Hospital, huh? That's<FF03>kind of a long walk from school.<FF02><FF04>It's way to the northeast.<FF03>You leave the school, head north...<FF02><FF04>And go all the way to the 3rd ward,<FF03>then take a right at<FF03>the Mikage Ruins.<FF02><FF04>Eh, if we just wander around,<FF03>we'll get there sooner or later.<FF02><FF01>
 74	3:0x1b60	E0:74	Yukino:<FF03>I know I couldn't take being cooped<FF03>up in the hospital for an entire year.<FF02><FF04>Let's go cheer her up!<FF02><FF01>
-75	3:0x1ba0	E0:75	Ms. Saeko: <FF07><01>! You really should<FF03>be on your way to Mikage Hospital!<FF02><FF01>
+75	3:0x1ba0	E0:75	Ms. Saeko: <FF07><01>!<FF03>You really should be on<FF03>your way to Mikage Hospital!<FF02><FF01>
 76	3:0x1bd8	E0:76	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 77	3:0x1c04	E0:77	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 78	3:0x1c30	E0:78	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-79	3:0x1c80	E0:79	Nurse Natsumi: I put a new plant<FF03>there. What do you think?<FF03>Livens up the room, doesn't it?<FF02><FF04>They say plants grow better if you<FF03>talk to them. Give it a try, <FF07><01>.<FF02><FF01>
+79	3:0x1c80	E0:79	Nurse Natsumi: I put a new plant<FF03>there. What do you think?<FF03>Livens up the room, doesn't it?<FF02><FF04>They say plants grow<FF03>better if you talk to them.<FF03>Give it a try, <FF07><01>.<FF02><FF01>
 80	4:0x1364	E0:80	Nanjo: What a shabby collection...<FF03>The library at home is much<FF03>better stocked.<FF02><FF01>
 81	4:0x1398	E0:81	Mark: What're we doin' at<FF03>the library? Let's hurry and<FF03>see--I mean, get checked out!<FF02><FF01>
 82	4:0x13d8	E0:82	Yukino: Those two over there are<FF03>making fun of Devil-Boy...<FF02><FF04>But I prefer Devil-Boy to them.<FF03>At least he doesn't act all<FF03>high and mighty.<FF02><FF01>
@@ -99,7 +99,7 @@ id	pos	psp	en
 97	6:0x1230	E0:97	Nanjo: This megalith shard... It's<FF03>a very precious cultural artifact.<FF02><FF04>Who built it? For what purpose?<FF03>It never ceases to fascinate me.<FF02><FF01>
 98	6:0x1278	E0:98	Mark: Our principal's a cool lady...<FF03>but she can be a little<FF03>too lovey-dovey.<FF02><FF01>
 99	6:0x12b0	E0:99	Yukino: I have part-time work today.<FF03>Let's hurry to the hospital and<FF03>get this over with.<FF02><FF01>
-100	6:0x12f0	E0:100	Principal Ooishi: Well, hello, <FF07><01>!<FF03>Are you all taking a walk, too?<FF02><FF04>It's been part of my daily routine,<FF03>ever since I was a girl...<FF02><FF04>...Praying to the guardian deity that<FF03>everyone grows up into fine adults.<FF02><FF01>
+100	6:0x12f0	E0:100	Principal Ooishi:<FF03>Well, hello, <FF07><01>!<FF03>Are you all taking a walk, too?<FF02><FF04>It's been part of my daily routine,<FF03>ever since I was a girl...<FF02><FF04>...Praying to the guardian deity that<FF03>everyone grows up into fine adults.<FF02><FF01>
 101	6:0x1360	E0:101	<FF06><03>Principal Ooishi<FF03>The principal of St. Hermelin High.<FF03>She adores children and flowers.<FF06><00><FF02><FF01>
 102	6:0x13a4	E0:102	Female student: Ms. Ooishi is so kind.<FF02><FF04>She loves flowers so much,<FF03>she cares for them as if<FF03>they were her children.<FF02><FF01>
 103	6:0x1400	E0:103	Female student: Things seem terrible<FF03>outside, but it's calm in here...<FF02><FF04>I wonder why the demons<FF03>haven't gotten in.<FF03>Could it be divine protection?<FF02><FF01>
@@ -112,12 +112,12 @@ id	pos	psp	en
 110	7:0x1544	E0:110	Student council member:<FF03>Our president does nothing but<FF03>sit around and bark orders.<FF02><FF03>Who voted for this guy?<FF02><FF04>If I was president, I would make a guy<FF03>like him work 'til he keeled over!<FF02><FF01>
 111	7:0x15ac	E0:111	Student council member: Those are<FF03>his true colors, but he's no dummy.<FF03>He's got the faculty on his side.<FF02><FF04>I hear he's never even been<FF03>reprimanded. Talk about unfair!<FF02><FF01>
 112	7:0x160c	E0:112	Student council member:<FF03>He's trying to emulate Kandori,<FF03>the 18th student council president.<FF02><FF04>Huh? You haven't heard of that<FF03>bigshot at SEBEC?<FF03>He graduated from here...<FF02><FF04>He's still young, but he's branch<FF03>president of a big company now.<FF02><FF01>
-113	8:0x1494	E0:113	Nanjo: It seems you're being<FF03>mistaken for someone else, <FF07><01>.<FF02><FF01>
+113	8:0x1494	E0:113	Nanjo: It seems you're being<FF03>mistaken for someone else,<FF03><FF07><01>.<FF02><FF01>
 114	8:0x14bc	E0:114	Mark:<FF03>A guy who keeps goin' into the open<FF03>classroom on the second floor...<FF02><FF04>You know anyone like that?<FF02><FF01>
 115	8:0x14f8	E0:115	Elly: I told Ms. Saeko about<FF03>what happened.<FF02><FF04>Brown seems to have<FF03>already gone home...<FF02><FF04>And I don't think Ayase could<FF03>explain it coherently, do you?<FF02><FF01>
 116	8:0x157c	E0:116	Ayase:<FF03>Hidehiko took off, so me and Eriko<FF03>explained everything to the teach!<FF02><FF04>Man, Hidehiko sure works<FF03>fast at times like these.<FF02><FF01>
 117	8:0x15e0	E0:117	Yukino:<FF03>Eriko and Yuka didn't faint, so they<FF03>don't need to go to the hospital.<FF02><FF04>Why were we the only ones...?<FF02><FF04>Thinking about it, the ones who didn't<FF03>faint had played "Persona" before...<FF03>Meaning Yuka, Eriko, and Hidehiko.<FF02><FF01>
-118	8:0x1680	E0:118	Male teacher: Oh, it's you, <FF07><01>.<FF02><FF04>Hey, I hear someone keeps<FF03>coming in and out of the open<FF03>room on the second floor.<FF02><FF04>Are you the one doing it? Hmm?<FF02><FF01>
+118	8:0x1680	E0:118	Male teacher:<FF03>Oh, it's you, <FF07><01>.<FF02><FF04>Hey, I hear someone keeps<FF03>coming in and out of the open<FF03>room on the second floor.<FF02><FF04>Are you the one doing it? Hmm?<FF02><FF01>
 119	8:0x16d4	E0:119	Male teacher: If it's not you,<FF03>then who's been going into that<FF03>classroom...?<FF02><FF01>
 120	9:0x14b4	E0:120	Yukino: ...Someone's here.<FF02><FF01>
 121	9:0x14cc	E0:121	Mark: Huh? Reiji...?<FF03>You're Reiji Kido!<FF03>What're you doin' here?<FF02><FF01>
@@ -129,7 +129,7 @@ id	pos	psp	en
 127	9:0x15d8	E0:127	Mark: What a gloomy Gus!<FF03>But hey, for all we know...<FF02><FF04>Maybe he's the kinda guy<FF03>who secretly practices<FF03>magic tricks at home.<FF02><FF01>
 128	9:0x1614	E0:128	Yukino: Reiji transferred here soon<FF03>after the SEBEC Building<FF03>was constructed...<FF02><FF04>Oh, but we still need to<FF03>get to the hospital.<FF02><FF01>
 129	10:0x1414	E0:129	Nanjo: Say, what about the hospital?<FF03>Weren't we going there for<FF03>a checkup?<FF02><FF01>
-130	10:0x1448	E0:130	Mark: Hey <FF07><01>, you gotta hear<FF03>the stupid junk this guy is spouting.<FF02><FF01>
+130	10:0x1448	E0:130	Mark: Hey <FF07><01>,<FF03>you gotta hear the stupid<FF03>junk this guy is spouting.<FF02><FF01>
 131	10:0x1478	E0:131	Yukino:<FF03>What's Masao's beef with that guy?<FF03>I don't see what the fuss is about.<FF02><FF01>
 132	10:0x14b0	E0:132	Serious student:<FF03>Don't you think derelict buildings<FF03>should be torn down?<FF02><FF04>Places like that only<FF03>attract hooligans--<FF02><FF01>
 133	10:0x14ec	E0:133	Mark: Haha! "Hooligans"?<FF03>Seriously? What a poindexter!<FF02><FF01>
@@ -238,7 +238,7 @@ id	pos	psp	en
 236	15:0x1788	E0:236	<FF06><02>Reiji Kido (Nickname: Reiji)<FF03>A quiet loner who transferred to<FF03>St. Hermelin High six months ago.<FF06><00><FF02><FF01>
 237	15:0x17d4	E0:237	Black-suited man: Who're youse?<FF03>Past here is SEBEC territory.<FF03>No entry.<FF02><FF01>
 238	15:0x1814	E0:238	Mark: Hey, doesn't Maki's<FF03>mom work for SEBEC?<FF03>What in the world's going on...?<FF02><FF01>
-239	16:0x1500	E0:239	Nanjo: What's the matter, <FF07><01>?<FF03>Have you suddenly<FF03>cottoned to gambling?<FF02><FF01>
+239	16:0x1500	E0:239	Nanjo: What's the matter,<FF03><FF07><01>? Have you suddenly<FF03>cottoned to gambling?<FF02><FF01>
 240	16:0x152c	E0:240	Nanjo: Is there a deeper plan<FF03>underlying your actions, or...?<FF02><FF04>I'm completely unable to fathom<FF03>your motivations for being here.<FF02><FF01>
 241	16:0x1568	E0:241	Mark: Just ignore those guys.<FF03>They'll get bored and wander off<FF03>before too long.<FF02><FF01>
 242	16:0x1590	E0:242	Mark:<FF03>You know, I like the slots too, but we<FF03>should play after our checkup!<FF02><FF01>
@@ -365,7 +365,7 @@ id	pos	psp	en
 363	20:0x1a3c	E0:363	Nanjo: ...Yamaoka.<FF02><FF01>
 364	20:0x1a4c	E0:364	Mark: I can still feel Maki here...<FF03>Hang on, Maki. We'll find you.<FF02><FF01>
 365	20:0x1a84	E0:365	Yukino: I'm worried about Maki<FF03>too, but let's get to the streets.<FF03>I have a bad feeling...<FF02><FF01>
-366	20:0x1abc	E0:366	Yukino: What're you gonna<FF03>do about Maki's mom, <FF07><01>?<FF03>If we don't hurry, she's in trouble.<FF02><FF01>
+366	20:0x1abc	E0:366	Yukino: What're you gonna do about<FF03>Maki's mom, <FF07><01>?<FF03>If we don't hurry, she's in trouble.<FF02><FF01>
 367	20:0x1af0	E0:367	Elly: Is this Maki's hospital room...?<FF03>But it seems... so lonely...<FF02><FF01>
 368	20:0x1b24	E0:368	It's the painting called<FF03>"Gate To Paradise" that Maki<FF03>won an award for.<FF02><FF04>You can sense Maki's pain<FF03>just by looking at it...<FF02><FF01>
 369	21:0x1370	E0:369	Yukino: I wonder if Maki's okay...<FF02><FF01>
@@ -396,19 +396,19 @@ id	pos	psp	en
 394	23:0x18cc	E0:394	Yukino: I heard it, too...<FF03>Think it was that Persona thing?<FF02><FF01>
 395	23:0x18fc	E0:395	Mark: It said it would lend us<FF03>power, so I kinda doubt it's hostile.<FF02><FF04>If we're lucky,<FF03>maybe it'll listen to what we tell it...<FF02><FF04>I guess we might as well go on<FF03>calling it "Persona."<FF02><FF01>
 396	23:0x1964	E0:396	Yukino: That's how it felt to me, too...<FF03>I have a bad feeling about this.<FF03>Let's go.<FF02><FF01>
-397	23:0x1998	E0:397	Yukino: I'm wondering if the school's<FF03>safe. We should get outdoors, <FF07><01>.<FF02><FF01>
+397	23:0x1998	E0:397	Yukino:<FF03>I'm wondering if the school's safe.<FF03>We should get outdoors, <FF07><01>.<FF02><FF01>
 398	23:0x19c0	E0:398	Yukino: Nanjo seemed like a little<FF03>boy in front of that old guy...<FF02><FF04>Failing to protect the ones you love...<FF03>Nothing hurts worse than that.<FF02><FF01>
 399	23:0x1a18	E0:399	Nanjo: Yamaoka... What should I do...?<FF02><FF04>Without you, I'm all alone...<FF03>No one is here to encourage me...<FF02><FF04>No one... will stand by me...<FF02><FF01>
 400	23:0x1a84	E0:400	Mark:<FF03>I didn't think he was gonna cry...<FF03>He must've really loved that old guy.<FF02><FF01>
 401	23:0x1ab4	E0:401	Mark: I feel bad for Nanjo, but we<FF03>gotta worry about the living now.<FF03>Let's hurry and rescue Maki's mom.<FF02><FF01>
 402	23:0x1afc	E0:402	Elly: So that's what happened...<FF03>Losing one's beloved can<FF03>profoundly affect one.<FF02><FF01>
 403	23:0x1b38	E0:403	He's already gone...<FF02><FF01>
-404	24:0x17a4	E0:404	Yukino: <FF07><01>! This one's still alive!<FF03>Gimme a hand here!<FF02><FF01>
+404	24:0x17a4	E0:404	Yukino: <FF07><01>! This one's<FF03>still alive! Gimme a hand here!<FF02><FF01>
 405	24:0x17cc	E0:405	Nanjo: We haven't time to waste here,<FF03><FF07><01>!<FF03>It's too late for her, but not for us!<FF02><FF01>
 406	24:0x1804	E0:406	Mark: Yo, <FF07><01>! The monsters<FF03>are just around the corner!<FF02><FF01>
 407	24:0x182c	E0:407	Severely wounded nurse:<FF03>I... I'm not going to make it...<FF03>You kids... g-get out of here...<FF02><FF01>
 408	24:0x185c	E0:408	Yukino: Don't give up!<FF02><FF01>
-409	24:0x1870	E0:409	I could really use a hand, <FF07><01>!<FF03><FF0E><08><FF01>
+409	24:0x1870	E0:409	I could really use a hand,<FF03><FF07><01>!<FF02><FF03><FF0E><08><FF01>
 410	24:0x1888	E0:410	Yukino: Okay, you take that side!<FF02><FF01>
 411	24:0x18a0	E0:411	Mark: It's no good! They're coming!<FF02><FF01>
 412	24:0x18b8	E0:412	Elly: Oh, good day.<FF03>Oh, my! There are demons here too?<FF02><FF01>
@@ -504,7 +504,7 @@ id	pos	psp	en
 502	32:0x1690	E0:502	Boy on watch: Alright, come in!<FF02><FF01>
 503	32:0x16a4	E0:503	Boy on watch:<FF03>No! We can't let anyone in!<FF02><FF04>I mean, what are we supposed to do if<FF03>you guys are really demons!?<FF02><FF01>
 504	32:0x16ec	E0:504	Elly: The shrine isn't far from here.<FF03>Let's hurry there and come back.<FF02><FF01>
-505	32:0x1710	E0:505	Yukino: Are you gonna leave<FF03>Maki's mom all alone, <FF07><01>?<FF02><FF01>
+505	32:0x1710	E0:505	Yukino: Are you gonna leave Maki's<FF03>mom all alone, <FF07><01>?<FF02><FF01>
 506	32:0x1738	E0:506	Mark: These guys don't<FF03>plan to let anyone in...<FF02><FF01>
 507	32:0x1758	E0:507	Nanjo: Isn't Maki's mother<FF03>supposed to be working at SEBEC?<FF03>Something's peculiar about this...<FF02><FF01>
 508	32:0x1794	E0:508	The school gates are tightly closed...<FF02><FF01>
@@ -590,7 +590,7 @@ id	pos	psp	en
 588	42:0x1e10	E0:591	<FF06><03>Yuko Himeno<FF03>Maki's friend. She works part-time to<FF03>support her family.<FF06><00><FF02><FF01>
 589	42:0x1e58	E0:592	Ayase: Hey, if we block this thing up,<FF03>is that really gonna make us safe?<FF02><FF04>Huh?<FF03>We're not blocking it up anymore?<FF03>Uhh... Is that okay...?<FF02><FF01>
 590	42:0x1ea4	E0:593	Yuko: U-Umm... Be careful...<FF02><FF01>
-591	42:0x1ec0	E0:594	Ayase: Uh, you're going too, <FF07><01>?<FF02><FF01>
+591	42:0x1ec0	E0:594	Ayase:<FF03>Uh, you're going too, <FF07><01>?<FF02><FF01>
 592	42:0x1ee0	E0:595	Gonna go trash SEBEC, huh?<FF03><FF0E><1A><FF01>
 593	42:0x1ef8	E0:596	Ayase: It's like, impossible.<FF03>Don't do it!<FF02><FF01>
 594	42:0x1f10	E0:597	Ayase: Oh, so you're not?<FF03>Well, yeah, I mean, we gotta do<FF03>something about the school.<FF02><FF01>
@@ -613,7 +613,7 @@ id	pos	psp	en
 611	42:0x2310	E0:615	Nanjo: We were able to procure<FF03>some guns... Here you are.<FF02><FF04>It seems it can be quite draining to<FF03>invoke one's Persona.<FF02><FF04>Masao became exhausted<FF03>after repeated use.<FF03>That's how they caught him.<FF02><FF04>But forewarned is forearmed.<FF03>Don't forget to equip these.<FF02><FF01>
 612	42:0x237c	E0:616	Maki: Persona...? I don't get it.<FF03>Oh well, we should hurry anyway!<FF02><FF01>
 613	42:0x23a8	E0:617	Maki: I bet it's that girl in black<FF03>again... Let's teach her a lesson!<FF02><FF01>
-614	42:0x23e0	E0:618	Nanjo: Do you know the way, <FF07><01>?<FF03>The station's north, in the 3rd ward.<FF02><FF01>
+614	42:0x23e0	E0:618	Nanjo:<FF03>Do you know the way, <FF07><01>?<FF03>The station's north, in the 3rd ward.<FF02><FF01>
 615	42:0x2418	E0:619	Nanjo: We haven't time to dilly-dally<FF03>here! Let's be on our way.<FF02><FF01>
 616	43:0x12d8	E0:620	Maki: We have to hurry!<FF05><3C><00><FF03>But what's a police station?<FF02><FF01>
 617	43:0x1308	E0:621	Nanjo: ...This is hardly<FF03>the time for jokes.<FF02><FF01>
@@ -623,7 +623,7 @@ id	pos	psp	en
 621	43:0x13a8	E0:625	Maki: Whoa! What's with the gym back<FF03>there? When did they rebuild it!?<FF02><FF01>
 622	43:0x13dc	E0:626	Nanjo: That happened while<FF03>you were hospitalized.<FF02><FF04>It's been complete for roughly six<FF03>months... You couldn't have known.<FF02><FF01>
 623	43:0x141c	E0:627	Maki:<FF03>Haha, but I was never in the hospital!<FF03>You're the kidder here, not me.<FF02><FF01>
-624	43:0x144c	E0:628	Nanjo: <FF07><01>... Does she seem to be<FF03>suffering from amnesia to you?<FF02><FF04>In her condition,<FF03>she'll only be a hindrance.<FF02><FF01>
+624	43:0x144c	E0:628	Nanjo: <FF07><01>... Does she seem to<FF03>be suffering from amnesia to you?<FF02><FF04>In her condition,<FF03>she'll only be a hindrance.<FF02><FF01>
 625	43:0x148c	E0:629	Maki: What're you guys<FF03>whispering about? Let's hurry!<FF03>Masao might be in trouble!<FF02><FF01>
 626	43:0x14bc	E0:630	Demon: Heeheehee...<FF03>You're the ones in trouble!<FF03>I'll devour you whole!<FF02><FF01>
 627	43:0x14ec	E0:631	Maki: Looks like we got one already...<FF03>Well, bring it on!<FF02><FF01>
@@ -633,9 +633,9 @@ id	pos	psp	en
 631	44:0x13c0	E0:635	Nanjo: That's a poetic<FF03>way of putting it, yes.<FF02><FF04>As one fights fire with fire, it seems<FF03>we'll fight demons with demons.<FF02><FF04>I don't know the reasons for it, but it<FF03>should certainly prove useful.<FF02><FF01>
 632	44:0x1410	E0:636	Maki: Okay! If this is what we<FF03>have to do, let's do it!<FF02><FF04>Let's root out the source of<FF03>these demons and get our town back!<FF02><FF01>
 633	44:0x1450	E0:637	Nanjo: Mm... We'll need to rescue<FF03>the idiot for that. Come, <FF07><01>.<FF02><FF01>
-634	44:0x1480	E0:638	Maki: We're not going to let that awful<FF03>girl have her way! Right, <FF07><01>?<FF02><FF01>
+634	44:0x1480	E0:638	Maki: We're not going to let that<FF03>awful girl have her way!<FF03>Right, <FF07><01>?<FF02><FF01>
 635	44:0x14b0	E0:639	Nanjo: In a way, Kandori is a much<FF03>greater threat than the demons.<FF02><FF04>It's his twisted genius behind<FF03>this situation. Don't forget it.<FF02><FF01>
-636	44:0x14fc	E0:640	Maki: Where are you going, <FF07><01>?<FF03>We have to hurry and rescue Masao!<FF02><FF01>
+636	44:0x14fc	E0:640	Maki: Where are you going,<FF03><FF07><01>?<FF03>We have to hurry and rescue Masao!<FF02><FF01>
 637	45:0x1150	E0:641	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 638	45:0x117c	E0:642	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 639	45:0x11a8	E0:643	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
@@ -648,13 +648,13 @@ id	pos	psp	en
 646	48:0x18fc	E0:650	Maki: So this is... the police station.<FF03>That's right... It WAS like this!<FF02><FF01>
 647	48:0x192c	E0:651	Nanjo: Er... yes.<FF03>Masao should be detained in<FF03>the prison cells, <FF07><01>.<FF02><FF04>But we can't access that<FF03>section without a key. What to do...?<FF02><FF01>
 648	48:0x1994	E0:652	Maki: They might have left it<FF03>somewhere. Let's see if we can find it.<FF02><FF01>
-649	48:0x19bc	E0:653	Nanjo: True. Could you<FF03>help search, <FF07><01>?<FF02><FF01>
+649	48:0x19bc	E0:653	Nanjo: True. Could you help search,<FF03><FF07><01>?<FF02><FF01>
 650	48:0x19e4	E0:654	Found the Prison Key...<FF02><FF04>Obtained the Prison Key.<FF02><FF01>
 651	48:0x1a18	E0:655	There don't seem to be any<FF03>more useful keys...<FF02><FF01>
 652	48:0x1a3c	E0:656	Nanjo: Excellent! We should be able to<FF03>access the prison cells now.<FF02><FF01>
 653	48:0x1a68	E0:657	Nanjo: Masao should be in the prison.<FF03>I'm loathe to rescue him, but he<FF03>does have the security card.<FF02><FF01>
 654	48:0x1ab8	E0:658	Maki: Prison...<FF03>Oh, yes, the prison cells. Yes,<FF03>that's right, they did have those.<FF02><FF01>
-655	48:0x1af4	E0:659	Maki: Hey, <FF07><01>... Nanjo keeps<FF03>saying something's wrong with me.<FF03>You think so?<FF02><FF01>
+655	48:0x1af4	E0:659	Maki: Hey, <FF07><01>...<FF03>Nanjo keeps saying something's<FF03>wrong with me. You think so?<FF02><FF01>
 656	48:0x1b2c	E0:660	Brown: 'Fess up, <FF08><01>...<FF03>You came to save me 'cause you<FF03>thought I'd blown it, huh?<FF02><FF04>Boy, were you wrong!<FF02><FF04>I'd already come<FF03>up with a super-daring,<FF03>super-awesome escape plan, y'know.<FF02><FF04>Maaan, now I'll never get to use it...<FF02><FF01>
 657	48:0x1ba8	E0:661	Nanjo: I'm wondering if we should<FF03>have left those two locked up<FF03>once we had the card.<FF02><FF01>
 658	48:0x1be8	E0:662	Mark: Baldy better not let the demons<FF03>overtake the police that easy!<FF02><FF04>Me and Baldy...<FF03>I mean, that lieutenant, had<FF03>run-ins before, and it pissed me off...<FF02><FF04>But he really was worried about me.<FF03>Could that demon have...?<FF02><FF04>Nah, it can't be...<FF03>There's no way that dude<FF03>would lay down and die, right?<FF02><FF01>
@@ -691,7 +691,7 @@ id	pos	psp	en
 689	50:0x15d8	E0:693	Mark: Alright, lemme explain it to you.<FF03>Listen up...<FF02><FF01>
 690	50:0x1604	E0:694	Brown: Awesome!<FF03>I really am a superhero!<FF02><FF04>Ever since I was a kid... I suspected<FF03>something was different about me...<FF02><FF01>
 691	50:0x166c	E0:695	Mark: I don't think he really gets it...<FF03>Oh well.<FF03>Anyways, I'm comin' too, <FF07><01>.<FF02><FF04>I'd be nervous for you guys if<FF03>you were on your own.<FF02><FF01>
-692	50:0x16cc	E0:696	Nanjo:<FF03>We could say the same about you.<FF02><FF04>You should leave the security<FF03>card in <FF07><01> 's care, Masao.<FF02><FF01>
+692	50:0x16cc	E0:696	Nanjo:<FF03>We could say the same about you.<FF02><FF04>You should leave the security card in<FF03><FF07><01> 's care, Masao.<FF02><FF01>
 693	50:0x1708	E0:697	Mark: Alright...<FF03>Here's the security card, man.<FF03>Better not lose that thing...<FF02><FF01>
 694	50:0x173c	E0:698	Nanjo:<FF03>We have a firearm for you, Masao.<FF03>Just don't shoot us by mistake.<FF02><FF01>
 695	50:0x1768	E0:699	Brown: Hey, hey,<FF03>think I should come with you guys?<FF02><FF04>Without me, you fools don't have<FF03>any star power, y'know?<FF02><FF04>You guys need me to whip you into<FF03>shape! How about it, <FF07><01>!?<FF02><FF01>
@@ -714,7 +714,7 @@ id	pos	psp	en
 712	51:0x17e0	E0:717	Elly: Thank you, but I'll be fine.<FF03>Well, I'll be seeing you.<FF02><FF01>
 713	51:0x1810	E0:718	How about all of you? Have there<FF03>been any new developments?<FF02><FF01>
 714	51:0x1830	E0:719	Mark: Actually, yeah.<FF03>It's a long story, but here goes...<FF02><FF01>
-715	51:0x185c	E0:720	Elly: Is... is this true?<FF03>All that really happened!?<FF02><FF04>I'm sad I wasn't there to witness it...<FF02><FF04>But it sounds like<FF03>it's only just begun.<FF03>There should be more chances for me!<FF02><FF04>Won't you take me with you, <FF07><01>?<FF03>There's so many things<FF03>I'd love to see.<FF02><FF01>
+715	51:0x185c	E0:720	Elly: Is... is this true?<FF03>All that really happened!?<FF02><FF04>I'm sad I wasn't there to witness it...<FF02><FF04>But it sounds like<FF03>it's only just begun.<FF03>There should be more chances for me!<FF02><FF04>Won't you take me with you,<FF03><FF07><01>? There's so many<FF03>things I'd love to see.<FF02><FF01>
 716	51:0x18fc	E0:721	Please, let me come along!<FF03><FF0E><07><FF01>
 717	51:0x1914	E0:724	Elly: Wonderful! I'll help, I promise!<FF02><FF01>
 718	51:0x1938	E0:725	Nanjo: Then I should issue you<FF03>a firearm as well, Eriko...<FF02><FF04>I don't like making a woman carry<FF03>a gun, but there's nothing to<FF03>be done about it.<FF02><FF01>
@@ -809,17 +809,17 @@ id	pos	psp	en
 807	55:0x2d90	E0:814	Maki: I feel kinda sorry for Yuka...<FF02><FF01>
 808	55:0x2dac	E0:815	Nanjo: Kandori...<FF03>I sensed he was a crafty one when<FF03>I met him at a business party...<FF02><FF04>But I didn't imagine he could<FF03>be this audacious.<FF02><FF01>
 809	55:0x2e00	E0:816	Nanjo: Is that you, Ayase?<FF03>What on earth are you doing here?<FF03>It's rather unusual to see you alone.<FF02><FF01>
-810	55:0x2e30	E0:817	Ayase: Count yourself lucky, <FF07><01>,<FF03>'cause I'm coming with you. Got it?<FF02><FF01>
-811	55:0x2e64	E0:818	Maki: Where are you going, <FF07><01>?<FF03>We have to find the entrance.<FF02><FF01>
+810	55:0x2e30	E0:817	Ayase:<FF03>Count yourself lucky, <FF07><01>,<FF03>'cause I'm coming with you. Got it?<FF02><FF01>
+811	55:0x2e64	E0:818	Maki: Where are you going,<FF03><FF07><01>?<FF03>We have to find the entrance.<FF02><FF01>
 812	55:0x2e8c	E0:819	Maki: Yuka!?<FF03>What happened to the school?<FF02><FF04>What happened to<FF03>Yuko and everyone?<FF03>Did you run away by yourself!?<FF02><FF01>
 813	55:0x2edc	E0:820	Ayase: How should I know!? Like I<FF03>have any idea what's going on...<FF02><FF01>
 814	55:0x2f0c	E0:821	Nanjo: Calm down, Maki.<FF03>The school most likely vanished<FF03>due to the Deva System's effects.<FF02><FF04>In which case, our best course of<FF03>action is to make Kandori undo it.<FF02><FF01>
 815	55:0x2f60	E0:822	What's the word?<FF03>Are we gonna bring her along?<FF02><FF03><FF0E><07><FF01>
 816	55:0x2f78	E0:825	Found the security card reader!<FF02><FF01>
-817	55:0x2fa4	E0:826	Mark: You find somethin', <FF07><01>?<FF02><FF01>
+817	55:0x2fa4	E0:826	Mark: You find somethin',<FF03><FF07><01>?<FF02><FF01>
 818	55:0x2fc0	E0:827	Mark:<FF03>Huh! Man, so that's where it was!<FF02><FF01>
 819	55:0x2fe0	E0:828	Nanjo: What's the matter?<FF02><FF01>
-820	55:0x2ff0	E0:829	Mark: <FF07><01> found the machine we're<FF03>supposed to use the card on.<FF02><FF04>C'mon, let's give it a try.<FF02><FF01>
+820	55:0x2ff0	E0:829	Mark: <FF07><01> found the machine<FF03>we're supposed to use the card on.<FF02><FF04>C'mon, let's give it a try.<FF02><FF01>
 821	55:0x302c	E0:830	Nanjo: Wait. We don't know what will<FF03>happen. Let's think this through--<FF02><FF01>
 822	55:0x3058	E0:831	Mark: Man, whatever.<FF03>C'mon, fork it over.<FF02><FF01>
 823	55:0x3074	E0:832	Mark: Huuuuuh?<FF02><FF01>
@@ -833,7 +833,7 @@ id	pos	psp	en
 831	56:0x1a2c	E0:840	Mark: Man... Setting this thing<FF03>up in our studio... not cool.<FF02><FF01>
 832	56:0x1a58	E0:841	Mark: Dude, I really dug this place.<FF03>Now it's all jinxed!<FF02><FF01>
 833	56:0x1a88	E0:842	Nanjo: I'd say our team is<FF03>rather lacking in solemnity.<FF03>It makes me a bit anxious...<FF02><FF01>
-834	56:0x1ac0	E0:843	Nanjo: Do you really think this is<FF03>the time to loiter around, <FF07><01>!?<FF02><FF04>Heaven only knows what Kandori may<FF03>do if we don't hurry and find him!<FF02><FF01>
+834	56:0x1ac0	E0:843	Nanjo: Do you really think this is<FF03>the time to loiter around,<FF03><FF07><01>!?<FF02><FF04>Heaven only knows what Kandori may<FF03>do if we don't hurry and find him!<FF02><FF01>
 835	56:0x1b08	E0:844	Elly: To tell the truth,<FF03>I've had an interest in<FF03>SEBEC for quite some time now.<FF02><FF04>I'm very curious to see<FF03>what's in store here!<FF02><FF01>
 836	56:0x1b48	E0:845	Elly: Where are you going? Our foe is<FF03>within SEBEC! At least, I think he is...<FF02><FF01>
 837	56:0x1b84	E0:846	Brown: S-Sure, you can go first.<FF03>I hate to keep the leader waiting.<FF02><FF01>
@@ -873,7 +873,7 @@ id	pos	psp	en
 871	57:0x22ec	E0:882	It's a switch. Press it?<FF03><FF0E><00><FF01>
 872	57:0x2304	E0:883	Mark: Bingo! Good work, <FF07><01>!<FF02><FF01>
 873	57:0x2320	E0:884	Nanjo: A hidden path, eh?<FF03>He seems to love his cheap tricks...<FF02><FF01>
-874	57:0x2348	E0:885	Maki: <FF07><01>! Let's hurry after him!<FF02><FF01>
+874	57:0x2348	E0:885	Maki: <FF07><01>!<FF03>Let's hurry after him!<FF02><FF01>
 875	57:0x2368	E0:886	Brown: Why don't you check for<FF03>traps and stuff, <FF08><01>?<FF02><FF01>
 876	57:0x2388	E0:887	Elly: Are you wounded, <FF07><01>?<FF03>If not, then let's go.<FF02><FF01>
 877	57:0x23b8	E0:888	Ayase: Oh, are we going?<FF03>Urrrgh, okay, okay!<FF02><FF01>
@@ -909,7 +909,7 @@ id	pos	psp	en
 907	58:0x3bcc	E0:918	Mark: Let's save him!<FF03>There's no need for the old<FF03>guy to die just 'cause of Kandori!<FF02><FF04>We'll smack down Kandori ourselves!<FF03>That's what we came for, isn't it!?<FF02><FF01>
 908	58:0x3c24	E0:919	Nanjo: Wait! The old man must<FF03>have invented the system.<FF03>He's taking responsibility...<FF02><FF04>We should respect his wishes.<FF03>We don't even know how to<FF03>stop the machine.<FF02><FF01>
 909	58:0x3c88	E0:920	Brown: Y-Yeah!<FF03>Let's listen to the old dude!<FF02><FF04>If we don't get outta here quick,<FF03>we're in big trouble!<FF02><FF01>
-910	58:0x3cc0	E0:921	Elly: There's no time for debate,<FF03><FF07><01>. Let's rescue him, quickly.<FF02><FF01>
+910	58:0x3cc0	E0:921	Elly: There's no time for debate,<FF03><FF07><01>.<FF03>Let's rescue him, quickly.<FF02><FF01>
 911	58:0x3cec	E0:922	Ayase: This is totally out of hand!<FF03>Do something, <FF07><01>!<FF02><FF01>
 912	58:0x3d10	E0:923	Maki: <FF07><01>!<FF02><FF04>Here! This'll stop the machine!<FF03>The blue button increases<FF03>the output...<FF02><FF04>But the red button is the emergency<FF03>stop! If you push it, we can save him!<FF02><FF01>
 913	58:0x3d78	E0:924	Nanjo: Maki...?<FF03>Where did you learn that!?<FF02><FF01>
@@ -938,7 +938,7 @@ id	pos	psp	en
 936	58:0x4190	E0:947	Ayase: Sheesh, <FF07><01>!<FF03>Hurry and do something!<FF02><FF01>
 937	58:0x41b0	E0:948	Maki: We can save him if you<FF03>push the red button!<FF02><FF01>
 938	58:0x41cc	E0:949	Red or blue... What's it going to be!?<FF03><FF0E><10><FF01>
-939	58:0x41e8	E0:950	Maki: <FF07><01>!? Where are you going!?<FF03>You have to do something!<FF02><FF01>
+939	58:0x41e8	E0:950	Maki: <FF07><01>!? Where are you<FF03>going!? You have to do something!<FF02><FF01>
 940	58:0x4214	E0:951	It's the Dimensional Variable<FF03>Accelerator System,<FF03>commonly known as the Deva<FF02><FF03>System's holograph.<FF02><FF01>
 941	58:0x4264	E0:952	Emergency alert. Emergency alert.<FF02><FF04>An unknown virus has been<FF03>detected in the extradimensional<FF03>shaft activation program.<FF02><FF04>System cannot shut down.<FF03>System cannot shut down.<FF02><FF04>Manual override is required to<FF03>shut down the system.<FF02><FF01>
 942	59:0x1150	E0:953	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
@@ -1005,7 +1005,7 @@ id	pos	psp	en
 1003	65:0x1a78	E0:1014	Nanjo: A parallel world...<FF03>The "many worlds" theory, where<FF03>countless similar worlds exist.<FF02><FF01>
 1004	65:0x1abc	E0:1015	Mark: Seriously? We thought you<FF03>ran off with Chisato, but you<FF03>were in another world?<FF02><FF04>I want to say that's completely nuts...<FF05><3C><00><FF03>But then again,<FF03>we're in the same boat.<FF02><FF01>
 1005	65:0x1b24	E0:1016	Elly: This is fantastic!<FF03>Oh, how marvelous!<FF03>It's just like in a novel!<FF02><FF01>
-1006	65:0x1b68	E0:1017	Ayase: Is this for real? Awww...<FF03>I had plans for this weekend!<FF02><FF04>What're you gonna<FF03>do about it, <FF07><01>!?<FF02><FF01>
+1006	65:0x1b68	E0:1017	Ayase: Is this for real? Awww...<FF03>I had plans for this weekend!<FF02><FF04>What're you gonna do about it,<FF03><FF07><01>!?<FF02><FF01>
 1007	65:0x1ba0	E0:1018	Brown: What!? Then how are we<FF03>supposed to get back? Sheesh...<FF02><FF01>
 1008	65:0x1bc8	E0:1019	Nanjo: It's hard to believe, but it<FF03>isn't out of the question for<FF03>the Deva System...<FF02><FF01>
 1009	65:0x1c0c	E0:1020	Yosuke: Yeah, I can see that...<FF03>I didn't think you'd bring back<FF03>this world's Maki, though.<FF02><FF01>
@@ -1080,7 +1080,7 @@ id	pos	psp	en
 1078	67:0x2278	E0:1089	Mark:<FF03>C'mon, let's get a move on already!<FF02><FF04>Huh? Whaddaya mean, what's got<FF03>me so pissed off? Shuddup, dude!<FF02><FF01>
 1079	67:0x22b4	E0:1090	Nanjo: Leave him be.<FF03>We're after the same man, so<FF03>we're sure to see one another again.<FF02><FF04>He can do what he wants so long as<FF03>he doesn't get in our way.<FF02><FF01>
 1080	67:0x2304	E0:1091	Nanjo: You're asking me why<FF03>Reiji is after Kandori?<FF02><FF04>Mm... we'll find out eventually.<FF03>For now,<FF03>it's enough that our goals dovetail.<FF02><FF01>
-1081	67:0x2344	E0:1092	Elly: Something important... Someone<FF03>who's precious... <FF07><01>, do you...<FF02><FF01>
+1081	67:0x2344	E0:1092	Elly: Something important...<FF03>Someone who's precious...<FF03><FF07><01>, do you...<FF02><FF01>
 1082	67:0x2370	E0:1093	Do you have someone<FF03>precious to you?<FF02><FF03><FF0E><1C><FF01>
 1083	67:0x2388	E0:1094	Elly: I see...<FF05><3C><00> I...<FF05><3C><00> I'm sorry to ask<FF03>such an odd question...<FF02><FF01>
 1084	67:0x23c0	E0:1095	Elly: I see...<FF05><3C><00> You're like me, then...<FF02><FF01>
@@ -1088,7 +1088,7 @@ id	pos	psp	en
 1086	67:0x2414	E0:1097	You must have stuff you're<FF03>hiding too, right?<FF02><FF03><FF0E><1D><FF01>
 1087	67:0x2430	E0:1098	Brown: See? See? Am I right or am I<FF03>right? That's just how people are!<FF02><FF01>
 1088	67:0x2460	E0:1099	Brown: That's a joke, right?<FF03>Was our friendship that shallow...?<FF02><FF01>
-1089	67:0x2498	E0:1100	Ayase: It's no use worrying about<FF03>what might happen,<FF03>don't you think, <FF07><01>?<FF02><FF01>
+1089	67:0x2498	E0:1100	Ayase: It's no use worrying about<FF03>what might happen, don't you think,<FF03><FF07><01>?<FF02><FF01>
 1090	67:0x24c8	E0:1101	As long as I'm having fun now,<FF03>who cares about tomorrow?<FF02><FF03><FF0E><1B><FF01>
 1091	67:0x24e4	E0:1102	Ayase: Thought so!<FF03>You and me, like, think alike.<FF02><FF01>
 1092	67:0x250c	E0:1103	Ayase: ...What!?<FF03>That's stupid! Stupid, stupid,<FF03>stupidstupidstupidstupidstupid!<FF02><FF01>
@@ -1294,7 +1294,7 @@ id	pos	psp	en
 1292	87:0x28d8	E0:1305	Ayase: We have to fight THAT thing!?<FF03>Waaaah... I don't wanna!<FF02><FF01>
 1293	87:0x2910	E0:1306	Reiji:<FF03>Why don't you think for yourself<FF03>instead of relying on others?<FF02><FF01>
 1294	88:0x1950	E0:1307	Maki: Isn't this town nice? I think<FF03>paradise would be a place like this.<FF02><FF04>It's an ordinary town, but<FF03>every day here is special.<FF02><FF01>
-1295	88:0x19a0	E0:1308	Nanjo:<FF03>I've been wondering about that<FF03>person Tsutomu mentioned...<FF02><FF04>Don't forget to go to<FF03>the Alaya Shrine, <FF07><01>.<FF02><FF01>
+1295	88:0x19a0	E0:1308	Nanjo:<FF03>I've been wondering about that<FF03>person Tsutomu mentioned...<FF02><FF04>Don't forget to go to the Alaya<FF03>Shrine, <FF07><01>.<FF02><FF01>
 1296	88:0x19e4	E0:1309	Mark: This place is just like<FF03>our town... All musty.<FF02><FF01>
 1297	88:0x1a0c	E0:1310	Elly: So this is the Expel Mirror...<FF03>It's so fantastically mysterious!<FF02><FF01>
 1298	88:0x1a40	E0:1311	Brown: This thing's the Expel Mirror?<FF03>Huh. Let's see if it reflects my face...<FF02><FF01>
@@ -1384,7 +1384,7 @@ id	pos	psp	en
 1382	96:0x2150	E0:1395	Mark: Maki...<FF05><30><00> This must be<FF03>a real shock for her.<FF02><FF01>
 1383	96:0x2174	E0:1396	Mark: Yosuke wasn't such<FF03>a bad guy after all.<FF02><FF01>
 1384	96:0x2194	E0:1397	Elly:<FF03>I think I see now why the atmosphere<FF03>here is so oppressive.<FF02><FF01>
-1385	96:0x21c0	E0:1398	Elly: Do you dislike people<FF03>such as the Queen, <FF07><01>?<FF02><FF04>But outwardly pretending to<FF03>obey while carping<FF03>behind one's back...<FF02><FF04>That's how the people in town are.<FF02><FF01>
+1385	96:0x21c0	E0:1398	Elly: Do you dislike people such as<FF03>the Queen, <FF07><01>?<FF02><FF04>But outwardly pretending to<FF03>obey while carping<FF03>behind one's back...<FF02><FF04>That's how the people in town are.<FF02><FF01>
 1386	96:0x2220	E0:1399	Elly: Why wouldn't Yosuke<FF03>despise Chisato now?<FF02><FF04>Isn't it natural to become<FF03>disillusioned after seeing<FF03>someone's unpleasant side?<FF02><FF04>I can't believe others would<FF03>still like one after showing<FF03>everything about oneself.<FF02><FF04>I wonder...<FF05><30><00> if there's someone<FF03>like that for me, too...<FF02><FF01>
 1387	96:0x22c8	E0:1400	Brown: She's a Queen, huh? Sounds<FF03>like a real hottie, don't you think?<FF02><FF04>Am I right?<FF03>Man, I can't wait to feast my eyes!<FF02><FF01>
 1388	96:0x2308	E0:1401	Brown: Y'know...<FF05><20><00> I never thought<FF03>Chisato was that kind of girl.<FF05><20><00><FF03>What a letdown...<FF02><FF01>
@@ -1436,7 +1436,7 @@ id	pos	psp	en
 1434	97:0x1a94	E0:1447	Maki: Hey... I know this painting!<FF03>It's Chisato's...!<FF02><FF01>
 1435	97:0x1ac8	E0:1448	Mark: What, Chisato Kasai's?<FF03>I thought they said she went missing.<FF02><FF04>Wait... Chisato's painting is here, and<FF03>they're saying it's the Queen's...?<FF02><FF01>
 1436	97:0x1b34	E0:1449	Maki: But why?<FF03>Does this mean... Chisato is being<FF03>held captive by the Harem Queen?<FF02><FF01>
-1437	98:0x1814	E0:1450	Harem Queen: Long time no see, Maki.<FF03>Same to <FF07><01>, and the rest of you,<FF03>too. Welcome to my palace.<FF02><FF01>
+1437	98:0x1814	E0:1450	Harem Queen: Long time no see, Maki.<FF03>Same to <FF07><01>, and the rest of<FF03>you, too. Welcome to my palace.<FF02><FF01>
 1438	98:0x1844	E0:1451	Maki: Ch... Chisato!<FF03>It really was you...!?<FF03>No...!<FF02><FF01>
 1439	98:0x187c	E0:1452	Mark: ...Knew it.<FF02><FF04>Yo <FF07><01>, did Chisato always<FF03>have that many moles?<FF02><FF04>Didn't she always used to brag about<FF03>how clear her skin was?<FF02><FF01>
 1440	98:0x18e0	E0:1453	Maki: C'mon, Chisato! There's<FF03>an explanation for this, right?<FF02><FF04>Is the real Queen threatening you?<FF03>You're not really the enemy...<FF03>That's a lie, isn't it?<FF02><FF01>
@@ -1457,7 +1457,7 @@ id	pos	psp	en
 1455	98:0x1dc4	E0:1468	Nanjo: So that's why you stole<FF03>Yosuke... And why you forced<FF03>people to praise your artwork.<FF02><FF04>......?<FF05><30><00> Wait, Chisato.<FF03>You should be aware that<FF03>this isn't the Maki you know.<FF02><FF01>
 1456	98:0x1e4c	E0:1469	Harem Queen: Shut up!<FF03>This has nothing to do with you!<FF03>Just stay out of this!<FF02><FF04>You must've been howling with<FF03>laughter, right Maki?<FF02><FF04>I bet you made<FF03>fun of me behind my back,<FF03>wearing that innocent face of yours!<FF02><FF04>Well,<FF03>I won't let you do it to me anymore!<FF03>I'm much better than you now!<FF02><FF01>
 1457	98:0x1f18	E0:1470	Mark:<FF03>Sure...<FF05><20><00> Thanks to the power that<FF03>girl in black gave you. Right?<FF02><FF01>
-1458	98:0x1f4c	E0:1471	Harem Queen: I said SHUT UP!<FF05><20><00><FF07><01>.<FF03>.. Isn't my painting wonderful?<FF02><FF04>Everyone says so. They all say it's<FF03>much better than Maki's trash!<FF02><FF01>
+1458	98:0x1f4c	E0:1471	Harem Queen: I said SHUT UP!<FF05><20><00><FF03><FF07><01>...<FF03>Isn't my painting wonderful?<FF02><FF04>Everyone says so. They all say it's<FF03>much better than Maki's trash!<FF02><FF01>
 1459	98:0x1fb0	E0:1472	Maki: Chisato... you hated me that<FF03>much? I never knew...<FF02><FF01>
 1460	98:0x1fe8	E0:1473	Mark: Now I get why your paintings<FF03>are so crappy!<FF02><FF04>You're rotten through and through!<FF03>A girl like you could never<FF03>make real art!<FF02><FF04>Quit fooling yourself into<FF03>thinking you're an artist!<FF02><FF01>
 1461	98:0x204c	E0:1474	Harem Queen: ...<FF05><15><00> What...<FF05><15><00><FF03>did you say...?<FF02><FF01>
@@ -1479,7 +1479,7 @@ id	pos	psp	en
 1477	100:0x1ff0	E0:1490	Harem Queen: Ah, you're back!<FF03>Well, what did you think?<FF03>Weren't my paintings better!?<FF02><FF01>
 1478	100:0x2028	E0:1491	Maki: Chisato...<FF03>Just end this already...<FF02><FF04>I know now that your paintings are<FF03>better. And... and your moles...<FF02><FF01>
 1479	100:0x2078	E0:1492	Harem Queen: Shut up!<FF03>Don't say things you don't even mean!<FF02><FF04>You probably think I<FF03>deserve these moles!<FF02><FF01>
-1480	100:0x20c4	E0:1493	Harem Queen: But never mind that...<FF03>I want to show you something, <FF07><01>.<FF02><FF01>
+1480	100:0x20c4	E0:1493	Harem Queen: But never mind that...<FF03>I want to show you something,<FF03><FF07><01>.<FF02><FF01>
 1481	100:0x20f0	E0:1494	Maki: My... My painting...!<FF02><FF01>
 1482	100:0x210c	E0:1495	Harem Queen: Alright, <FF07><01>.<FF03>You saw my paintings in<FF03>the gallery, right?<FF02><FF04>Which did you like more?<FF03>My masterpieces, or Maki's<FF03>filth smeared on a canvas?<FF02><FF01>
 1483	100:0x2174	E0:1496	Mark: Maki's painting is a million<FF03>damn times better than yours!<FF02><FF01>
@@ -1629,7 +1629,7 @@ id	pos	psp	en
 1627	116:0x27bc	E0:1640	Mark: Oh well. Guess we'll go back...<FF03>We gotta find whoever that<FF03>brat was talking about.<FF02><FF01>
 1628	116:0x27ec	E0:1641	Maki: When the Lost<FF03>Forest was a flower garden,<FF03>a girl named Mai used to play there...<FF02><FF04>Is she the one we're looking for?<FF02><FF01>
 1629	116:0x2838	E0:1642	Mark: That brat HAS to be Kandori's<FF03>kid. She sure takes after him...<FF02><FF01>
-1630	116:0x2870	E0:1643	Nanjo: <FF07><01>... doesn't that child's<FF03>behavior trouble you somewhat?<FF02><FF04>I can't quite shake the feeling that<FF03>we're being manipulated.<FF02><FF01>
+1630	116:0x2870	E0:1643	Nanjo: <FF07><01>...<FF03>doesn't that child's behavior<FF03>trouble you somewhat?<FF02><FF04>I can't quite shake the feeling that<FF03>we're being manipulated.<FF02><FF01>
 1631	116:0x28b8	E0:1644	Elly: Kandori must be very<FF03>precious to that girl...<FF03>I'm slightly jealous.<FF02><FF04>Oh,<FF03>I'm sorry if that came off as strange.<FF02><FF01>
 1632	116:0x2910	E0:1645	Brown: Alright, I'll go back with you.<FF03>I mean,<FF03>what would you do without a leader?<FF02><FF01>
 1633	116:0x2944	E0:1646	Ayase: Hey <FF07><01>, gimme<FF03>a piggyback ride to the other side!<FF02><FF04>C'mon, you'd get to feel me warm on<FF03>your back all the way there.<FF03>Pretty please?<FF02><FF01>
@@ -1705,7 +1705,7 @@ id	pos	psp	en
 1703	118:0x2b30	E0:1716	What are you living for?<FF03><FF0E><0F><FF01>
 1704	118:0x2b44	E0:1717	Elly: I agree.<FF03>It's just as <FF07><01> says.<FF02><FF04>Life isn't all pain. There are joys to<FF03>be had during one's life, too.<FF02><FF01>
 1705	118:0x2b84	E0:1718	Brown: Yeah, that's right!<FF03>Listen to this guy.<FF02><FF04>There's fun stuff in<FF03>life, if you look for it.<FF02><FF01>
-1706	118:0x2bbc	E0:1719	Ayase: Yeah... <FF07><01> is prolly right.<FF03>Life can be fun, y'know!<FF02><FF01>
+1706	118:0x2bbc	E0:1719	Ayase: Yeah... <FF07><01><FF03>is prolly right.<FF03>Life can be fun, y'know!<FF02><FF01>
 1707	118:0x2bec	E0:1720	Elly: I haven't thought about things<FF03>like this in a while,but it's true,<FF03>life can be fun.<FF02><FF01>
 1708	118:0x2c1c	E0:1721	Brown: I don't usually<FF03>think about this stuff...<FF03>But yeah, life is good sometimes.<FF02><FF01>
 1709	118:0x2c50	E0:1722	Ayase: It's been a while since<FF03>I thought about that kinda<FF03>stuff, but life's pretty good!<FF02><FF01>
@@ -1783,7 +1783,7 @@ id	pos	psp	en
 1781	128:0x2348	E0:1796	Nanjo: ...It's nothing. Carry on.<FF02><FF01>
 1782	128:0x2368	E0:1797	Mark:<FF03>Man, you've always been weird, but<FF03>it's really ramped up lately.<FF02><FF04>You've been acting<FF03>funny for a while now.<FF02><FF01>
 1783	128:0x23a4	E0:1798	Nanjo: ...Don't worry about it.<FF02><FF01>
-1784	128:0x23b8	E0:1799	Mark: Heh! You heard him, <FF07><01>.<FF03>Go right ahead.<FF02><FF01>
+1784	128:0x23b8	E0:1799	Mark: Heh! You heard him,<FF03><FF07><01>. Go right ahead.<FF02><FF01>
 1785	128:0x23d8	E0:1800	Maki: Kandori and Aki are up there...<FF03>We're getting close, <FF07><01>.<FF02><FF01>
 1786	128:0x240c	E0:1801	Maki: Now what do we do!?<FF03>We have to get Mai's compact back!<FF02><FF01>
 1787	128:0x2438	E0:1802	Mark: Hurry up, man. Just put that<FF03>compact into the pedestal.<FF02><FF01>
@@ -1924,10 +1924,10 @@ id	pos	psp	en
 1922	137:0x1ccc	E0:1937	Hariti: Maki...?<FF03>Oh, Maki, I finally found you.<FF03>You're safe...<FF02><FF01>
 1923	137:0x1d04	E0:1938	Nanjo: That voice... There's no<FF03>mistaking it. It's Maki's mother...!<FF02><FF01>
 1924	137:0x1d30	E0:1939	Hariti: I've been looking for you all<FF03>this time... Please come to me, Maki.<FF02><FF01>
-1925	137:0x1d7c	E0:1940	Elly: Maki! It's no use... It seems that<FF03>the demon is controlling her...<FF02><FF04>I know the voice is unquestionably<FF03>Maki's mother's...<FF02><FF04>But you can't trust that!<FF03>Let's get the first strike, <FF07><01>!<FF02><FF01>
+1925	137:0x1d7c	E0:1940	Elly: Maki! It's no use... It seems that<FF03>the demon is controlling her...<FF02><FF04>I know the voice is unquestionably<FF03>Maki's mother's...<FF02><FF04>But you can't trust that! Let's get<FF03>the first strike, <FF07><01>!<FF02><FF01>
 1926	137:0x1e04	E0:1941	Brown: Dude, <FF08><01>,<FF03>what do we do!?<FF02><FF04>That demon's gonna kill Maki!<FF03>We gotta defeat it, now!<FF02><FF01>
 1927	137:0x1e4c	E0:1942	Ayase:<FF03>Well, what's it gonna be, <FF07><01>!?<FF02><FF04>That monster could kill Maki!<FF03>Let's get it already!<FF02><FF01>
-1928	137:0x1e9c	E0:1943	Reiji:<FF03>Is it right to leave Maki be, <FF07><01>?<FF03>We should destroy that demon!<FF02><FF01>
+1928	137:0x1e9c	E0:1943	Reiji: Is it right to leave Maki be,<FF03><FF07><01>?<FF03>We should destroy that demon!<FF02><FF01>
 1929	137:0x1ed0	E0:1944	Mark: But that voice...<FF03>That's Maki's mom, I'm dead sure...<FF02><FF04>Isn't it?<FF02><FF04>I don't know why she'd look<FF03>like that, but what if it<FF03>really is her mom...?<FF02><FF04>Put your weapon away, <FF07><01>!<FF02><FF01>
 1930	137:0x1f50	E0:1945	Nanjo: ......<FF02><FF01>
 1931	137:0x1f74	E0:1946	What will you do?<FF03><FF0E><12><FF01>
@@ -2023,7 +2023,7 @@ id	pos	psp	en
 2021	144:0x34ac	E0:2036	Brown: Wait, you coward!<FF02><FF01>
 2022	144:0x34c8	E0:2037	Brown: Dammit! Follow me, everyone!<FF02><FF01>
 2023	144:0x34e8	E0:2038	Ayase: Hold it!<FF02><FF01>
-2024	144:0x34fc	E0:2039	Ayase:<FF03>Don't just stare into space, <FF07><01>!<FF02><FF04>We gotta hurry or my future's<FF03>gonna be wiped out!<FF03>So let's go after him already!<FF02><FF01>
+2024	144:0x34fc	E0:2039	Ayase: Don't just stare into space,<FF03><FF07><01>!<FF02><FF04>We gotta hurry or my future's<FF03>gonna be wiped out!<FF03>So let's go after him already!<FF02><FF01>
 2025	144:0x3550	E0:2040	Mark: Maki, Elly, can you stand up?<FF02><FF01>
 2026	144:0x356c	E0:2041	Maki: Are you okay, Elly?<FF02><FF01>
 2027	144:0x3584	E0:2042	Elly: Ngh... Thanks, Maki.<FF03>I'm all right now.<FF02><FF01>
@@ -2046,7 +2046,7 @@ id	pos	psp	en
 2044	144:0x3868	E0:2059	Maki: How does Kandori know me...!?<FF02><FF01>
 2045	144:0x3898	E0:2060	Nanjo: So that's why...<FF03>It's inconceivable...<FF02><FF01>
 2046	144:0x38c4	E0:2061	Reiji: There's no telling what dirty<FF03>tricks that bastard has in store.<FF03>Be careful.<FF02><FF01>
-2047	144:0x3908	E0:2062	Elly: I'm worried about<FF03>the last thing Kandori said...<FF03>I have a slight headache.<FF02><FF04>Don't strain yourself, okay, <FF07><01>?<FF02><FF01>
+2047	144:0x3908	E0:2062	Elly: I'm worried about<FF03>the last thing Kandori said...<FF03>I have a slight headache.<FF02><FF04>Don't strain yourself,<FF03>okay, <FF07><01>?<FF02><FF01>
 2048	144:0x395c	E0:2063	Brown: Kandori's plan to control<FF03>people is out of control!.<FF03>..That was a joke.<FF02><FF01>
 2049	144:0x3988	E0:2064	Brown: C'mon, <FF08><01>... You're<FF03>supposed to laugh! Mwahahahaha...<FF02><FF01>
 2050	144:0x39bc	E0:2065	Brown: What? I'm not all talk, y'know!<FF02><FF01>
@@ -2059,7 +2059,7 @@ id	pos	psp	en
 2057	144:0x3b4c	E0:2072	Brown: Urgh, she's not here!<FF03>Where did Maki go!?<FF02><FF01>
 2058	144:0x3b78	E0:2073	Ayase: Nope, not here either!<FF03>Sheesh,<FF03>why did we decide to look here?<FF02><FF01>
 2059	144:0x3ba8	E0:2074	Dr. Nicholai:<FF03>Ugh... What was I doing...?<FF02><FF04>What!? Is this true!? I see... I'm sorry<FF03>we dragged you into all this.<FF02><FF04>But I have to ask you...<FF03>can't you somehow rescue<FF03>Sonomura's daughter?<FF02><FF04>I'll do my best to adjust<FF03>the system so you can go rescue<FF03>her whenever you wish!<FF02><FF04>And once that's done,<FF03>I'll go to whatever fate awaits me.<FF03>I beg you, young man!<FF02><FF01>
-2060	144:0x3c98	E0:2075	Maki: <FF07><01>! Where are you going!?<FF03>We have to defeat Kandori!<FF02><FF01>
+2060	144:0x3c98	E0:2075	Maki: <FF07><01>! Where are you<FF03>going!? We have to defeat Kandori!<FF02><FF01>
 2061	144:0x3cc8	E0:2076	Mark: <FF07><01>! Where you goin'!?<FF03>Aren't you gonna save Maki!?<FF02><FF01>
 2062	145:0x1150	E0:2077	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 2063	145:0x117c	E0:2078	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
@@ -2134,13 +2134,13 @@ id	pos	psp	en
 2132	148:0x1cbc	E0:2147	Kandori: Then go... Meet your true<FF03>self... She is here, in this castle...<FF02><FF01>
 2133	148:0x1cf4	E0:2148	Maki: But I'm me! This...<FF03>this is too much!<FF02><FF01>
 2134	148:0x1d20	E0:2149	Mark: Maki!<FF02><FF01>
-2135	148:0x1d30	E0:2150	Elly: <FF07><01>! We have to go after her!<FF02><FF01>
+2135	148:0x1d30	E0:2150	Elly: <FF07><01>!<FF03>We have to go after her!<FF02><FF01>
 2136	148:0x1d4c	E0:2151	Brown: This is bad, <FF08><01>...<FF03>We should go after her!<FF02><FF01>
 2137	148:0x1d6c	E0:2152	Ayase: Uh oh... Well, <FF07><01>!?<FF03>Aren't you gonna go after her?<FF02><FF01>
 2138	148:0x1d8c	E0:2153	Reiji: Aren't you going after her?<FF03>You're the only one who can<FF03>save her, you know.<FF02><FF01>
 2139	148:0x1dbc	E0:2154	Kandori: Maki Sonomura...<FF03>she needs to discover her true self.<FF02><FF04>If she doesn't, she'll share my fate...<FF03>Go to her... Don't let her go<FF03>down that lonely path...<FF02><FF01>
 2140	148:0x1e1c	E0:2155	Nanjo: ...What a pitiful man...<FF02><FF01>
-2141	148:0x1e38	E0:2156	Mark: <FF07><01>! We gotta look for Maki!<FF02><FF01>
+2141	148:0x1e38	E0:2156	Mark: <FF07><01>!<FF03>We gotta look for Maki!<FF02><FF01>
 2142	148:0x1e58	E0:2157	Mark: It's gotta be a lie!<FF03>It's too much for Maki...!<FF02><FF01>
 2143	148:0x1e80	E0:2158	Nanjo: I've been thinking it over all<FF03>this time, and my conclusions<FF03>still surprised me.<FF02><FF01>
 2144	148:0x1eb4	E0:2159	Reiji: ...I finally killed the bastard...<FF03>Then why this empty feeling...?<FF02><FF01>
@@ -2328,7 +2328,7 @@ id	pos	psp	en
 2326	160:0x232c	E0:2341	Nanjo: Then that settles that.<FF03>Come on, <FF0F><01>.<FF03>Let's reunite a mother with her child.<FF02><FF01>
 2327	160:0x235c	E0:2342	Mark: Heh... She's one super mom.<FF03>Good looking, too!<FF02><FF04>My mom... she's just a loud nag.<FF03>But she better still be alive!<FF03>I don't think she'd die that easy...<FF02><FF01>
 2328	160:0x23d0	E0:2343	Mark: C'mon! We gotta hurry, or we'll<FF03>be in even more hot water!<FF02><FF01>
-2329	160:0x23f0	E0:2344	Nanjo: That woman is a true mother...<FF02><FF04>I don't even know my own<FF03>mother's birthday...<FF02><FF04>At home,<FF03>everyone other than Yamaoka<FF03>was like a total stranger to me.<FF02><FF04>All I received from my parents was<FF03>money and material possessions.<FF02><FF04><FF07><01>... We must reunite her with<FF03>Maki, even at the cost of our lives.<FF02><FF01>
+2329	160:0x23f0	E0:2344	Nanjo: That woman is a true mother...<FF02><FF04>I don't even know my own<FF03>mother's birthday...<FF02><FF04>At home,<FF03>everyone other than Yamaoka<FF03>was like a total stranger to me.<FF02><FF04>All I received from my parents was<FF03>money and material possessions.<FF02><FF04><FF07><01>...<FF03>We must reunite her with Maki,<FF03>even at the cost of our lives.<FF02><FF01>
 2330	160:0x2494	E0:2345	Nanjo:<FF03>This whole ordeal has made me think.<FF02><FF04>I never considered<FF03>the multiple sides of myself...<FF03>but now they're irrefutable.<FF02><FF01>
 2331	160:0x24f8	E0:2346	Reiji: That's how mothers really are<FF03>inside... Their kids just don't know it.<FF02><FF01>
 2332	160:0x252c	E0:2347	Reiji: How long do you<FF03>intend to stand around here?<FF03>Aren't we going to the shrine?<FF02><FF01>
@@ -2340,7 +2340,7 @@ id	pos	psp	en
 2338	160:0x2630	E0:2353	Elly: Hurry up! We need to move<FF03>it and get to the shrine!<FF02><FF01>
 2339	160:0x2660	E0:2354	Brown: Hey, <FF08><01>!<FF03>If you think I'm the same me I<FF03>always was, you're dead wrong!<FF02><FF04>Now that I've matured a little,<FF03>call me Brown Mk.II!<FF02><FF04>Huh?<FF03>Whaddaya mean, that sounds lame?<FF03>So what should I call myself, then?<FF02><FF01>
 2340	160:0x26dc	E0:2355	Brown: We're going to the shrine next,<FF03>right? Well, "more haste, less speed"!<FF02><FF04>Huh? That's not what that means...?<FF03>Well, it is when I say it!<FF02><FF01>
-2341	160:0x2734	E0:2356	Ayase: Huh... Y'know, up close, you're<FF03>a pretty good-looking guy, <FF07><01>!<FF02><FF01>
+2341	160:0x2734	E0:2356	Ayase: Huh... Y'know, up close,<FF03>you're a pretty good-looking guy,<FF03><FF07><01>!<FF02><FF01>
 2342	160:0x277c	E0:2357	Want me to put you down on<FF03>my list of potential husbands?<FF02><FF03><FF0E><1F><FF01>
 2343	160:0x278c	E0:2358	Ayase: Beep! Got it! Okay, keep<FF03>working yourself to the bone for me!<FF02><FF01>
 2344	160:0x27c8	E0:2359	Ayase: What!? Are you saying I'm<FF03>not good enough for you!?<FF02><FF04>Fine! Like I care!<FF03>I'll dump even more of<FF03>my share of the work on you now!<FF02><FF01>
@@ -2410,7 +2410,7 @@ id	pos	psp	en
 2408	161:0x25dc	E0:2423	Elly: I was quite cute myself, at that<FF03>age. Would you like to see<FF03>a photo sometime?<FF02><FF01>
 2409	161:0x2614	E0:2424	Brown: Little Maki's so cute... But if it<FF03>was like, Little Nanjo or Little Mark...<FF02><FF04>They wouldn't be cute at all.<FF03>Hell, I'd probably punch 'em!<FF02><FF01>
 2410	161:0x2674	E0:2425	Brown: I was really cute as a kid, too.<FF03>The neighborhood ladies<FF03>were all over me!<FF02><FF04>No, really! I'd be walking around and<FF03>they'd wipe my nose for me.<FF02><FF01>
-2411	161:0x26d4	E0:2426	Ayase: Hey, <FF07><01>, what kind of kid<FF03>were you when you were little?<FF02><FF04>I was a little cutie, but<FF03>isn't it gross to imagine<FF03>Hidehiko and Nanjo like that?<FF02><FF01>
+2411	161:0x26d4	E0:2426	Ayase: Hey, <FF07><01>, what kind of<FF03>kid were you when you were little?<FF02><FF04>I was a little cutie, but<FF03>isn't it gross to imagine<FF03>Hidehiko and Nanjo like that?<FF02><FF01>
 2412	161:0x2734	E0:2427	Ayase: Hey, <FF08><01>, what kind of<FF03>kid were you when you were little?<FF02><FF04>I was a little cutie, but<FF03>isn't it gross to imagine<FF03>Hidehiko and Nanjo like that?<FF02><FF01>
 2413	161:0x2790	E0:2428	Ayase: Um, okay, so there's teeny<FF03>Maki and ideal Maki, right?<FF02><FF04>And then real Maki...<FF03>Ugh, it makes my head hurt.<FF02><FF01>
 2414	161:0x27e0	E0:2429	Ayase: Um, okay, so there's teeny<FF03>Maki and ideal Maki, right?<FF02><FF04>And then real Maki...<FF03>Ugh, it makes my head hurt.<FF02><FF01>
@@ -2428,7 +2428,7 @@ id	pos	psp	en
 2426	162:0x1b5c	E0:2441	Elly: Maki...<FF02><FF01>
 2427	162:0x1b70	E0:2442	Brown: Dude, Maki...<FF02><FF01>
 2428	162:0x1b84	E0:2443	Ayase: Aw, Maki...<FF02><FF01>
-2429	162:0x1b94	E0:2444	Maki: You know it, don't you, <FF07><01>!?<FF02><FF01>
+2429	162:0x1b94	E0:2444	Maki: You know it,<FF03>don't you, <FF07><01>!?<FF02><FF01>
 2430	162:0x1bb4	E0:2445	You know I'm the worst girl alive!<FF03><FF0E><13><FF01>
 2431	162:0x1bd0	E0:2446	Nanjo: Get a grip!<FF03>You've sown these seeds and<FF03>now it's time to reap them!<FF02><FF04>If you want to die, then why sit<FF03>around and mope about it?<FF02><FF04>Don't make empty threats if you<FF03>don't have the courage of<FF03>your convictions!<FF02><FF01>
 2432	162:0x1c30	E0:2447	Maki: ......<FF02><FF01>
@@ -2444,17 +2444,17 @@ id	pos	psp	en
 2442	162:0x1e64	E0:2457	Setsuko Sonomura: *sniffle* Thank<FF03>you, all of you... Thank you so much...<FF02><FF01>
 2443	162:0x1e8c	E0:2458	Maki: Mom... I'm sorry. I've been bad...<FF03>I remember it all now.<FF02><FF04>I was so lonely being by myself...<FF03>It hurt... I wanted to see you...<FF02><FF04>I forgot you were working for<FF03>my sake, and held a grudge...<FF03>I'm so sorry.<FF02><FF01>
 2444	162:0x1f14	E0:2459	Setsuko Sonomura: It's okay.<FF03>It's all right, Maki... I'm sorry, too.<FF02><FF01>
-2445	162:0x1f3c	E0:2460	Maki: I'm sorry,<FF03>Nanjo, and you too, <FF07><01>...<FF03>Thank you very much...<FF02><FF01>
+2445	162:0x1f3c	E0:2460	Maki: I'm sorry, Nanjo, and you too,<FF03><FF07><01>...<FF03>Thank you very much...<FF02><FF01>
 2446	162:0x1f6c	E0:2461	Nanjo: ...I should apologize, too.<FF03>I said some harsh things.<FF02><FF01>
 2447	162:0x1f94	E0:2462	Mark: Nanjo? Dude...<FF03>are you blushing!? Haha, I get it!<FF02><FF04>You're so stuck-up, this is the first<FF03>time anyone's ever thanked you!<FF02><FF01>
 2448	162:0x1fe8	E0:2463	Nanjo: S-Silence, Masao! Honestly...<FF03>Let's get back, <FF07><01>!<FF02><FF01>
 2449	162:0x2018	E0:2464	Nanjo: <FF07><01> is right!<FF03>You've sown these seeds and<FF03>now it's time to reap them!<FF02><FF04>If you want to die, then why sit<FF03>around and mope about it?<FF02><FF04>Don't make empty threats if you<FF03>don't have the courage of<FF03>your convictions!<FF02><FF01>
-2450	162:0x2078	E0:2465	Maki: I've finally come to my senses.<FF02><FF04>Even if I'm a dream, or an illusion, or<FF03>a shadow, I'm still me...<FF02><FF04>Plus, I have <FF07><01> and the rest of<FF03>you with me! That's all I need...<FF02><FF01>
+2450	162:0x2078	E0:2465	Maki: I've finally come to my senses.<FF02><FF04>Even if I'm a dream, or an illusion, or<FF03>a shadow, I'm still me...<FF02><FF04>Plus, I have <FF07><01> and<FF03>the rest of you with me!<FF03>That's all I need...<FF02><FF01>
 2451	162:0x20e4	E0:2466	Mark: I guess Nanjo's harebrained<FF03>arguments do come in handy<FF03>once in a while.<FF02><FF01>
 2452	162:0x2118	E0:2467	Nanjo: Hmp. It's nothing unusual for<FF03>people to thank me, I can assure you.<FF02><FF01>
 2453	162:0x2140	E0:2468	Reiji: A touching scene, but we can't<FF03>stick around here forever, you know.<FF02><FF01>
-2454	162:0x2160	E0:2469	Elly: Whew, it all worked out. But<FF03><FF07><01>, if that had happened to me...<FF02><FF04>Oh, I shouldn't act so weird. Sorry.<FF05><58><00><FF03>I'm sure you'd come and rescue me...<FF02><FF01>
-2455	162:0x21b8	E0:2470	Elly: I'm glad everything worked out.<FF03>But if it had happened to<FF03>me, <FF07><01>...<FF02><FF04>No. I'm sorry for acting so strange.<FF05><58><00><FF03>I'm sure you'd come to my aid, <FF07><01>.<FF02><FF01>
+2454	162:0x2160	E0:2469	Elly: Whew, it all worked out.<FF03>But <FF07><01>, if that<FF03>had happened to me...<FF02><FF04>Oh, I shouldn't act so weird. Sorry.<FF05><58><00><FF03>I'm sure you'd come and rescue me...<FF02><FF01>
+2455	162:0x21b8	E0:2470	Elly: I'm glad everything worked out.<FF03>But if it had happened to me,<FF03><FF07><01>...<FF02><FF04>No. I'm sorry for acting so strange.<FF05><58><00><FF03>I'm sure you'd come to my aid,<FF03><FF07><01>.<FF02><FF01>
 2456	162:0x2214	E0:2471	Brown: *sniff* That was so touching,<FF03>even I couldn't help but tear up...<FF02><FF01>
 2457	162:0x2234	E0:2472	Ayase: That was pretty harsh,<FF03><FF07><01>. I was worried about<FF03>what might happen.<FF02><FF01>
 2458	162:0x2264	E0:2473	Ayase: That was pretty harsh,<FF03><FF08><01>. I was worried about<FF03>what might happen.<FF02><FF01>
@@ -2523,20 +2523,20 @@ id	pos	psp	en
 2521	177:0x2b04	E0:2536	Maki: I'm happy not to be alone...<FF03>Having you and the others<FF03>all here with me...!<FF02><FF01>
 2522	177:0x2b40	E0:2537	Reiji: ...You better not die in there.<FF03>I still want to spar with you sometime.<FF02><FF01>
 2523	177:0x2b70	E0:2538	Reiji: You still ain't going?<FF02><FF01>
-2524	177:0x2b88	E0:2539	Elly: Where're you going?<FF03>I'll go wherever you go, <FF07><01>, but...<FF02><FF01>
-2525	177:0x2bbc	E0:2540	Elly: Where are you off to? I'll follow<FF03>you wherever you go, <FF07><01>, but...<FF02><FF01>
+2524	177:0x2b88	E0:2539	Elly: Where're you going? I'll go<FF03>wherever you go, <FF07><01>, but...<FF02><FF01>
+2525	177:0x2bbc	E0:2540	Elly: Where are you off to?<FF03>I'll follow you wherever you go,<FF03><FF07><01>, but...<FF02><FF01>
 2526	177:0x2bf4	E0:2541	Elly: Watch yourself, <FF07><01>...<FF03>I'll be waiting for you...<FF02><FF01>
 2527	177:0x2c1c	E0:2542	Elly: Please be careful, <FF07><01>...<FF03>I'll be waiting for your safe return.<FF02><FF01>
 2528	177:0x2c44	E0:2543	Brown: Say hi to the real Maki for us!<FF02><FF01>
 2529	177:0x2c64	E0:2544	Brown: Huh? You haven't gone yet?<FF03>Ohhh, I get it... Got cold feet, huh?<FF02><FF01>
-2530	177:0x2c98	E0:2545	Ayase: You haven't gone yet,<FF03><FF07><01>? Don't tell me you're chicken!<FF02><FF01>
+2530	177:0x2c98	E0:2545	Ayase:<FF03>You haven't gone yet, <FF07><01>?<FF03>Don't tell me you're chicken!<FF02><FF01>
 2531	177:0x2cc4	E0:2546	Ayase:<FF03>You haven't gone yet, <FF08><01>?<FF03>Don't tell me you're chicken!<FF02><FF01>
 2532	177:0x2cf0	E0:2547	Ayase: <FF08><01>!<FF03>You better go see Maki, quick!<FF02><FF01>
 2533	177:0x2d14	E0:2548	Ayase: <FF07><01>!<FF03>You better go see Maki, quick!<FF02><FF01>
 2534	178:0x1150	E0:2549	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 2535	178:0x117c	E0:2550	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 2536	178:0x11a8	E0:2551	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-2537	179:0x14a0	E0:2552	Yukino: <FF07><01>! This one's still alive!<FF03>Gimme a hand here!<FF02><FF01>
+2537	179:0x14a0	E0:2552	Yukino: <FF07><01>! This one's<FF03>still alive! Gimme a hand here!<FF02><FF01>
 2538	179:0x14c8	E0:2553	Nanjo: We haven't time to waste here,<FF03><FF07><01>!<FF03>It's too late for her, but not for us!<FF02><FF01>
 2539	179:0x1500	E0:2554	Mark: Yo, <FF07><01>! The monsters<FF03>are just around the corner!<FF02><FF01>
 2540	179:0x1528	E0:2555	<FF08><01> 's voice Remember this?<FF03>You left the poor woman to die...<FF02><FF04><FF08><01> 's voice "I'm looking<FF03>out for number one"... Are you<FF03>sure that wasn't your reasoning?<FF02><FF01>
@@ -2553,7 +2553,7 @@ id	pos	psp	en
 2551	183:0x11ec	E0:2566	Kandori: You, boy...<FF03>I haven't heard your answer yet.<FF03>What are you living for?<FF02><FF01>
 2552	183:0x1218	E0:2567	<FF08><01> 's voice This man's<FF03>soul was sick with doubt...<FF02><FF04><FF08><01> 's voice But you could<FF03>not give his soul the salvation<FF03>it yearned for...<FF02><FF04><FF08><01><FF03>'s voice And the cause was<FF03>the doubt gnawing at your own soul.<FF02><FF01>
 2553	183:0x1280	E0:2568	<FF08><01> 's voice This man's<FF03>soul was sick with doubt...<FF02><FF04><FF08><01> 's voice But you were<FF03>able to soothe his soul's torment...<FF02><FF04><FF08><01> 's voice You could do<FF03>this because your own soul was<FF03>free and clear of doubt.<FF02><FF01>
-2554	184:0x1294	E0:2569	Maki:<FF03>You know it, don't you, <FF07><01>!?<FF03>You know I'm the worst girl alive!<FF02><FF01>
+2554	184:0x1294	E0:2569	Maki: You know it,<FF03>don't you, <FF07><01>!?<FF03>You know I'm the worst girl alive!<FF02><FF01>
 2555	184:0x12cc	E0:2570	<FF08><01> 's voice And what<FF03>did you say to that?<FF02><FF04><FF08><01> 's voice You couldn't tell<FF03>her not to run, for you too were<FF03>running, weren't you?<FF02><FF04><FF08><01> 's voice Can you look<FF03>me in the eye and deny that, self?<FF02><FF01>
 2556	184:0x1340	E0:2571	<FF08><01> 's voice You answered<FF03>well. It's easy to run from<FF03>one's problems, yes...<FF02><FF04><FF08><01> 's voice But the further<FF03>you run, the more you resent<FF03>yourself. You know all too well.<FF02><FF01>
 2557	185:0x36dc	E0:2572	Trish: Hi! I'm Trish and this is<FF03>my fountain of healing!<FF02><FF04>This world runs on give-and-take!<FF03>Give me money and I'll take<FF03>away your pain!<FF02><FF01>
@@ -2596,7 +2596,7 @@ id	pos	psp	en
 2594	197:0x1548	E0:2609	Maki: <FF07><01>!<FF03>There's two of you! How...!?<FF02><FF04>Why is he here?<FF03>And why is he playing games!?<FF02><FF01>
 2595	197:0x1588	E0:2610	<FF08><01>.<FF03>..Could you shut up for a second?<FF03>Who gives a damn what I do...<FF02><FF01>
 2596	197:0x15b0	E0:2611	Maki: A-Are you... really <FF07><01>?<FF02><FF01>
-2597	197:0x15cc	E0:2612	<FF08><01> That's right. I'm <FF07><01><FF03><FF0F><01>. You can call me <FF08><01>.<FF02><FF04><FF08><01> I'm a second-year at<FF03>St. Hermelin High in class 4.<FF02><FF04><FF08><01> Don't believe me?<FF03>Want me to tell you my height,<FF03>weight, and favorite girl?<FF02><FF01>
+2597	197:0x15cc	E0:2612	<FF08><01> That's right.<FF03>I'm <FF07><01><FF0F><01>.<FF03>You can call me <FF08><01>.<FF02><FF04><FF08><01> I'm a second-year at<FF03>St. Hermelin High in class 4.<FF02><FF04><FF08><01> Don't believe me?<FF03>Want me to tell you my height,<FF03>weight, and favorite girl?<FF02><FF01>
 2598	197:0x1640	E0:2613	Maki: Huh?<FF02><FF01>
 2599	197:0x1650	E0:2614	<FF08><01> I'm you.<FF02><FF04><FF08><01> I know everything you've<FF03>done up to now. And the kind of<FF03>person you really are...<FF02><FF01>
 2600	198:0x1150	E0:2615	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
@@ -2635,20 +2635,20 @@ id	pos	psp	en
 2633	201:0x1920	E0:2648	Maki: Stop that!<FF03>I don't want to hear that<FF03>kind of talk from my own mouth!<FF02><FF04>Did you ever try to change? How?<FF02><FF04>All you did was hide under<FF03>the sheets and cry!<FF02><FF04>But now's our chance! We can change<FF03>along with Masao, Kei, Yuka...<FF03>And <FF07><01>...<FF02><FF04>Doesn't looking at those guys make<FF03>you feel like nothing is impossible?<FF03>You just have to get over yourself!<FF02><FF01>
 2634	201:0x1a0c	E0:2649	Maki: ......<FF02><FF01>
 2635	201:0x1a1c	E0:2650	Maki: I won't run away anymore...<FF03>I'll own up to the mistakes I've made!<FF02><FF01>
-2636	201:0x1a50	E0:2651	Maki: ...You should take this...<FF02><FF04>You can use it to enter the Avidya<FF03>World, where Pandora is.<FF02><FF04>I... really didn't want you to<FF03>see me this way, <FF07><01>...<FF02><FF01>
+2636	201:0x1a50	E0:2651	Maki: ...You should take this...<FF02><FF04>You can use it to enter the Avidya<FF03>World, where Pandora is.<FF02><FF04>I... really didn't want you to see<FF03>me this way, <FF07><01>...<FF02><FF01>
 2637	201:0x1ac0	E0:2652	Maki: I wonder if what I was<FF03>trying to say got across...<FF02><FF04>Well, all I can do now is keep<FF03>believing in myself...<FF03>Let's go back to the others!<FF02><FF01>
 2638	201:0x1b08	E0:2653	Obtained Blue Compact.<FF02><FF01>
 2639	202:0x24c8	E0:2654	Maki: Sorry to keep you all waiting!<FF02><FF01>
 2640	202:0x24dc	E0:2655	Mark: 'Bout time!<FF03>I was getting tired of sitting around.<FF02><FF01>
 2641	202:0x24f4	E0:2656	Nanjo: It seems to have gone well, mm?<FF03>Now then, let's head to<FF03>the school and meet this Pandora.<FF02><FF01>
 2642	202:0x2530	E0:2657	Maki: They seem to have been pretty<FF03>bored while we were gone...<FF02><FF01>
-2643	202:0x254c	E0:2658	Mark: Yo <FF07><01>, you didn't try<FF03>anything funny, did you?<FF02><FF01>
+2643	202:0x254c	E0:2658	Mark: Yo <FF07><01>, you didn't<FF03>try anything funny, did you?<FF02><FF01>
 2644	202:0x256c	E0:2659	Nanjo: What's the matter?<FF03>Did something happen inside?<FF02><FF01>
 2645	202:0x258c	E0:2660	Reiji: Looks like you made it back in<FF03>one piece. When this is all over...<FF02><FF04>What would you say to some<FF03>sparring to see who's stronger?<FF03>You up for it?<FF02><FF01>
-2646	202:0x25d0	E0:2661	Elly: <FF07><01>! I'm so glad you're back!<FF03>You're not hurt anywhere, are you?<FF02><FF01>
-2647	202:0x25f8	E0:2662	Elly: Oh, <FF07><01>! It's good to have<FF03>you back... Are you hurt anywhere?<FF02><FF01>
+2646	202:0x25d0	E0:2661	Elly: <FF07><01>!<FF03>I'm so glad you're back!<FF03>You're not hurt anywhere, are you?<FF02><FF01>
+2647	202:0x25f8	E0:2662	Elly: Oh, <FF07><01>!<FF03>It's good to have you back...<FF03>Are you hurt anywhere?<FF02><FF01>
 2648	202:0x2620	E0:2663	Brown: Tch... You're pretty tough.<FF02><FF04>I kinda thought you'd eat it.<FF03>Then I could rush in and<FF03>rescue the princess!<FF02><FF01>
-2649	202:0x2664	E0:2664	Ayase: Yeesh, <FF07><01>, you were in<FF03>there so long I thought you'd died.<FF02><FF01>
+2649	202:0x2664	E0:2664	Ayase: Yeesh, <FF07><01>,<FF03>you were in there so long<FF03>I thought you'd died.<FF02><FF01>
 2650	202:0x268c	E0:2665	Ayase: Yeesh, <FF08><01>,<FF03>you were in there so long<FF03>I thought you'd died.<FF02><FF01>
 2651	202:0x26b4	E0:2666	Mysterious butterfly:<FF03>There isn't much time until this world<FF03>vanishes completely. You must hurry.<FF02><FF01>
 2652	203:0x1150	E0:2667	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
@@ -2691,7 +2691,7 @@ id	pos	psp	en
 2689	208:0x2868	E0:2704	Brown: Alright! Time to do this thing!<FF02><FF01>
 2690	208:0x2888	E0:2705	Ayase: Woo! Let's get going!<FF02><FF01>
 2691	208:0x28a4	E0:2706	Maki: All my worst qualities<FF03>are through this door...<FF03>I refuse to let them win!<FF02><FF01>
-2692	208:0x28d8	E0:2707	Mark: This is finally it... Let's give<FF03>it everything we got, <FF07><01>!<FF02><FF01>
+2692	208:0x28d8	E0:2707	Mark: This is finally it... Let's give it<FF03>everything we got, <FF07><01>!<FF02><FF01>
 2693	208:0x2908	E0:2708	Nanjo:<FF03>Hmm... These compacts may represent<FF03>the three primary colors of light.<FF02><FF04>One's heart can be any color,<FF03>I suppose.<FF02><FF04>Which color all depends on<FF03>one's self... Perhaps that's<FF03>the reasoning behind it.<FF02><FF01>
 2694	208:0x2970	E0:2709	Reiji: Hurry and go.<FF03>I'll take out the small fry for you.<FF02><FF01>
 2695	208:0x2998	E0:2710	Elly: It comes down to this...<FF03>Let's end it quickly and visit to<FF03>the amusement park.<FF02><FF01>
@@ -2736,7 +2736,7 @@ id	pos	psp	en
 2734	212:0x149c	E0:2749	Elly: Do you like school, <FF07><01>?<FF02><FF04>I... used to think it was boring.<FF03>But I'm getting to like it.<FF02><FF04>It's much easier now that<FF03>I've met you all...<FF02><FF01>
 2735	212:0x14f0	E0:2750	Elly: Do you like school, <FF07><01>?<FF02><FF04>I... used to consider it dull.<FF03>But not anymore, I don't think.<FF02><FF04>That's thanks to my friendship with<FF03>you and the others...<FF02><FF01>
 2736	212:0x1550	E0:2751	Brown: I actually really like school.<FF03>I'm a crappy student, though.<FF03>But hey, studying isn't everything!<FF02><FF01>
-2737	212:0x1598	E0:2752	Ayase: Do you like school, <FF07><01>?<FF03>'Cause you know, I kinda do.<FF02><FF04>Most of the time,<FF03>I get to do whatever I want here.<FF02><FF01>
+2737	212:0x1598	E0:2752	Ayase:<FF03>Do you like school, <FF07><01>?<FF03>'Cause you know, I kinda do.<FF02><FF04>Most of the time,<FF03>I get to do whatever I want here.<FF02><FF01>
 2738	212:0x15d4	E0:2753	Ayase:<FF03>Do you like school, <FF08><01>?<FF03>'Cause you know, I kinda do.<FF02><FF04>Most of the time,<FF03>I get to do whatever I want here.<FF02><FF01>
 2739	213:0x1254	E0:2754	Gargantuan monster:<FF03>Shh... Sssshhhhhhhrrrr...<FF02><FF01>
 2740	213:0x1274	E0:2755	Maki: Another me!? So...<FF03>this is Pandora!<FF02><FF01>

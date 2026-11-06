@@ -185,6 +185,12 @@ def build():
                 else:
                     spare = bytes([0xFE, tail_offsets[tail], 0])
                 p.org(toolbelt.file_va(REL, pos + SK_SPARE), spare)
+            elif len(b) == SK_FIELD:
+                # A name that fills the ten-byte head has no FF there. The
+                # copy helper reads +0x11.. as the tail and would otherwise
+                # copy the retail zero padding as three blank glyphs; an FF
+                # in the spare makes the name end exactly where it should.
+                p.org(toolbelt.file_va(REL, pos + SK_SPARE), b'\xff\x00\x00')
             continue
         if nk0 <= pos < nk0 + NK_STRIDE * NK_COUNT and (pos - nk0) % NK_STRIDE == 0:
             b = toolbelt.fit_field(encode_nick(t), NK_FIELD, pad=b'\x00',

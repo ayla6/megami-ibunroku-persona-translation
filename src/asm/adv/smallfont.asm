@@ -38,6 +38,15 @@ sf_table_adv:
 sf_table_end_adv:
 .endif
 
+;; --- MsgStep cases 9-12: full names instead of the ten-glyph record head ---
+.align 4
+sf_msg_name_adv:
+    sf_msg_name_stubs sf_msg_item_adv, sf_msg_skill_adv, sf_msg_demon_adv, \
+                      sf_msg_persona_adv, sf_msg_tail_adv, \
+                      item_name_copy_adv, demon_name_copy_adv, \
+                      sf_name_scratch_adv, 0x80066CF0
+sf_msg_name_end_adv:
+
 .align 4
 sf_name_scratch_adv:
     .fill SF_NAME_BYTES, 0

@@ -101,6 +101,15 @@ sf_table_dng:
     .fill SF_TABLE_SIZE, 0
 sf_table_end_dng:
 .endif
+;; --- MsgStep cases 9-12: full names instead of the ten-glyph record head ---
+.align 4
+sf_msg_name_dng:
+    sf_msg_name_stubs sf_msg_item_dng, sf_msg_skill_dng, sf_msg_demon_dng, \
+                      sf_msg_persona_dng, sf_msg_tail_dng, \
+                      item_name_copy_dng, demon_name_copy_dng, \
+                      sf_name_scratch_dng, 0x80076B20
+sf_msg_name_end_dng:
+
 .align 4
 sf_name_scratch_dng:
     .fill SF_NAME_BYTES, 0

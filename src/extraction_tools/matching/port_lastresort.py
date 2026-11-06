@@ -230,7 +230,7 @@ def place(crel, crow, tier, jp_ptr, ja='', pos='', rel=''):
     fptr, ftext, _ffam = family_wording(ja, pos)
     if ftext.strip():
         raw = fit_codes(ftext, ja, strict=is_fixed_field(rel, pos))
-        ftext = lay_out(raw, rel, ja)
+        ftext = lay_out(raw, rel, ja, pos)
         if not ftext.strip():
             return fptr, '', (unlayable_note(raw)
                               or 'does not fit the box'), raw
@@ -240,7 +240,7 @@ def place(crel, crow, tier, jp_ptr, ja='', pos='', rel=''):
         same = same_psx_text(ja)
         if same:
             raw = fit_codes(same, ja, strict=True)
-            same = lay_out(raw, rel, ja)
+            same = lay_out(raw, rel, ja, pos)
             if same.strip() and codes_match(same, ja):
                 return keep('', same)
     # THE FILE'S OWN MEMORY (name and note fields): a battle note is the
@@ -262,7 +262,7 @@ def place(crel, crow, tier, jp_ptr, ja='', pos='', rel=''):
         if hit:
             fptr, ftext = hit
             raw = fit_codes(ftext, ja, strict=is_fixed_field(rel, pos))
-            ftext = lay_out(raw, rel, ja)
+            ftext = lay_out(raw, rel, ja, pos)
             if ftext.strip():
                 return keep(fptr, ftext)
     if tier == 'lead':
@@ -415,6 +415,13 @@ def main():
         # GENERATED IS DERIVED DATA: the leftover rows re-derive from their
         # `psp` source through today's pipeline on every run.
         renorm_generated()
+        # A queue row that already carries a `psp` source is "parked, not
+        # unclaimed": re-derive it too, or a draft last run routed is never
+        # re-measured and a source that now fits never ships.
+        parked, withdrawn = redraft()
+        if parked or withdrawn:
+            print(f'port_lastresort: {parked} parked row(s) re-derived '
+                  f'from their source, {withdrawn} withdrawn')
     stat = {'exact': 0, 'canonical': 0, 'lead': 0, 'ported': 0, 'over': 0,
             'ready': 0, 'no source': 0}
     for rel in tables():

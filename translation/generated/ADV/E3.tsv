@@ -18,7 +18,7 @@ id	pos	psp	en
 16	0:0x1a38	E3:16	Brown:<FF03>Let's hurry and go somewhere else.<FF02><FF01>
 17	0:0x1a50	E3:17	Elly: A proper adult acting that way<FF03>is rather unsightly in itself.<FF02><FF01>
 18	0:0x1a7c	E3:18	Elly: Where could the Night<FF03>Queen have gone?<FF02><FF01>
-19	1:0x1550	E3:19	Gambling-addicted student: <FF07><01>!<FF03>The room in front of the library<FF03>turned into a casino!<FF02><FF04>I'm so frickin' excited!<FF03>You should check it out, too!<FF02><FF01>
+19	1:0x1550	E3:19	Gambling-addicted student:<FF03><FF07><01>! The room in front of<FF03>the library turned into a casino!<FF02><FF04>I'm so frickin' excited!<FF03>You should check it out, too!<FF02><FF01>
 20	1:0x159c	E3:20	Gambling-addicted student: While you<FF03>guys were gone, I, uh, blew the club's<FF03>whole budget on poker...<FF02><FF04>Whoever's playing next is one lucky<FF03>skunk. The prize bonus must<FF03>be through the roof!<FF02><FF01>
 21	1:0x160c	E3:21	Younger girl: Heh... We're done for.<FF02><FF04>We were always<FF03>going to die someday...<FF03>It's just been sped up a bit.<FF02><FF04>Yep... That's all there is to it.<FF02><FF04>I get to go out while I'm<FF03>still beautiful, so I thank<FF03>the Snow Queen for that.<FF02><FF01>
 22	1:0x1684	E3:22	Younger girl:<FF03>Heh... A blue room and a blue piano.<FF02><FF04>Blue curtains and a blue carpet...<FF03>I wonder what goes on in that room.<FF02><FF04>It's the room just to our left. Heh...<FF02><FF01>
@@ -125,7 +125,7 @@ id	pos	psp	en
 123	7:0x1764	E3:125	Yukino:<FF03>Talk about an annoying bunch.<FF02><FF04>Let's go before they make<FF03>me as crazy as they are.<FF02><FF01>
 124	7:0x1798	E3:126	Yukino:<FF03>They're still spouting that crap.<FF03>It's depressing me, too... let's just go.<FF02><FF01>
 125	7:0x17c8	E3:127	Ayase: Actually, I joke around<FF03>a lot and stuff, but I'm worried too.<FF02><FF04>It's like, are we really gonna be<FF03>able to rescue Ms. Saeko?<FF02><FF04>I mean, we're just high schoolers!<FF03>What can we do!?<FF02><FF01>
-126	7:0x1844	E3:128	Ayase: You're really strong, <FF07><01>.<FF03>You never complain.<FF02><FF04>That's why I look up to you, y'know?<FF02><FF01>
+126	7:0x1844	E3:128	Ayase: You're really strong,<FF03><FF07><01>. You never complain.<FF02><FF04>That's why I look up to you, y'know?<FF02><FF01>
 127	7:0x188c	E3:129	Nanjo: They're forfeiting before<FF03>even making a move...?<FF02><FF04>Not I! I'll fight to the bitter end!<FF03>I refuse to throw my future away.<FF02><FF01>
 128	7:0x18d4	E3:130	Nanjo: We'll accomplish<FF03>nothing by staying here.<FF02><FF01>
 129	7:0x18f0	E3:131	Brown: Don't worry.<FF03>I'll melt that Queen's icy<FF03>heart with my smoldering gaze.<FF02><FF01>
@@ -445,7 +445,7 @@ id	pos	psp	en
 443	43:0x1440	E3:446	Ayase: Seriously!<FF03>Isn't there some cool spell<FF03>that'll warp us right to the Queen!?<FF02><FF01>
 444	43:0x1480	E3:447	Nanjo: This place is as spacious as<FF03>my own home. I'm impressed.<FF02><FF01>
 445	43:0x14ac	E3:448	Brown: Whew! Let's take five.<FF02><FF01>
-446	43:0x14c8	E3:449	Elly: I've wondered for some time<FF03>now... What do you fight for, <FF07><01>?<FF02><FF01>
+446	43:0x14c8	E3:449	Elly:<FF03>I've wondered for some time now...<FF03>What do you fight for, <FF07><01>?<FF02><FF01>
 447	44:0x1564	E3:450	Masked man: Yes?<FF02><FF01>
 448	44:0x157c	E3:451	Do you want to go back downstairs?<FF03><FF0E><14><FF01>
 449	44:0x1594	E3:452	Masked man: I see. Then hurry to<FF03>the highest floor. The Queen awaits.<FF02><FF01>

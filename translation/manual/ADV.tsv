@@ -4,8 +4,8 @@ id	pos	psp	en	note
 2	0x56d3e		Select the number of coins.<FF01>	machine-translated; ja 枚数を指定して下さい<FF01>
 4	0x56db6		Is this the Persona you'd like?<FF01>	PSP-US; ja このペルソナで良いですかな？<FF01>
 5	0x56dcb		You already have this Persona.<FF01>	PSP-US; ja 同じペルソナがすでにおりますぞ<FF01>
-6	0x56ddf	EBOOT:2d4caa	It seems that your level is too<FF03>low to create this Persona...<FF01>	PSP-US; ja あなたのレベルでは扱えません<FF01>
-7	0x56df2	EBOOT:2d4b02	Are you certain that you wish to<FF03>delete this Persona?<FF01>	PSP-US; ja このペルソナを消すのだね？<FF01>
+6	0x56ddf	EBOOT:2d4caa	Your level is too low to handle this!	very annoying having to do this, if you have a better suggestion, please suggest! over limit 368px/240px; It seems that your level is too low to create this Persona…<FF01>
+7	0x56df2	EBOOT:2d4b02	You wish to delete this Persona?	very annoying having to do this, if you have a better suggestion, please suggest! over limit 342px/240px; Are you certain that you wish to delete this Persona?<FF01>
 8	0x56e06		Quit the game.<FF03>Are you sure?<FF01>	machine-translated; ja ?RQQLK　　ゲームを終了します<FF03>よろしいですか？<FF01>
 9	0x56e2a		Turn off the power.<FF03>(Press any button to<FF03>return to the game.)<FF01>	machine-translated; ja 電源を切って下さい<FF03>（何かボタンを押すと<FF03>　ゲームに戻ります）<FF01>
 10	0x56e5b		No memory card is<FF03>inserted.<FF03>Unable to save.<FF02><FF01>	machine-translated; ja メモリーカードが<FF03>セットされていません<FF03>セーブが出来ません<FF02><FF01>

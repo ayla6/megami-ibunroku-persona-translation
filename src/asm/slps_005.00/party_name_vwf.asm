@@ -5,9 +5,11 @@
 ;; first name) prints through the engine's NAME stub, so every byte is looked
 ;; up in vwf_small_map first, whose tables hold 8x12 SMALL-FONT cells: there
 ;; 0xA9 is 'D' and 0xC9 is '9'. The party-name table holds DIALOGUE text
-;; instead (ASCII + 0x68, like every dialogue string and like retail, whose
-;; slots hold 82 4b = 南条), so while the insert pointer is inside it the byte
-;; already IS a VWF character and must pass through without small-font mapping.
+;; instead: ASCII + 0x68 for a name this build wrote, the retail glyph codes in
+;; a save made before the extension (retail's slots hold 82 4b = 南条). While
+;; the insert pointer is inside the table the bytes go through vwf_name_map, so
+;; compact bytes pass unchanged and legacy glyph codes map like typed names;
+;; neither may touch the small-font map.
 ;; src/injection_tools/partynames.py keeps the source's case.
 ;;
 ;; Every other insert keeps the map (Persona / demon / item / arcana names and
@@ -33,8 +35,8 @@ vwf_glyph_map_party:
     j       vwf_glyph_map_small         ; one shared implementation of the map
     nop
 @@party:
-    jr      ra
-    move    v0, a0                      ; dialogue text: the byte is the VWF character
+    j       vwf_name_map                ; compact VWF bytes pass unchanged; legacy glyph codes map like typed names
+    nop
 @@other:
     j       vwf_name_map
     nop

@@ -49,9 +49,13 @@ class OverlayStorage(unittest.TestCase):
                 scratch = self.sym[f'sf_name_scratch_{ovl}']
                 cfg = self.sym[f'sf_cfg_{ovl}']
                 self.assertEqual(end - table, 64 * 56)
-                self.assertEqual(scratch, end)
+                # The scratch sits at or after the table: overlay code (the
+                # MsgStep full-name stubs) may own the run between them, but
+                # it must never share bytes with the table or the scratch.
+                self.assertGreaterEqual(scratch, end)
                 self.assertEqual(struct.unpack_from('<I', data, cfg - BASE + 8)[0], table)
-                self.assertEqual(data[table-BASE:scratch-BASE+21], bytes(64 * 56 + 21))
+                self.assertEqual(data[table-BASE:end-BASE], bytes(64 * 56))
+                self.assertEqual(data[scratch-BASE:scratch-BASE+21], bytes(21))
                 self.assertGreaterEqual(table, self.sym[f'sf_data_end_{ovl}'])
                 self.assertLessEqual(scratch + 21, BASE + len(data))
 

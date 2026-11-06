@@ -57,14 +57,18 @@ def reflow(en, ja='', width=BUDGET_PX, text_rel=''):
     return port_story.layout_box(en, brk=brk)
 
 
-def lay_out(text, rel, ja=''):
+def lay_out(text, rel, ja='', pos=''):
     """Lay a wording out the way its DESTINATION shows it.
 
     A textbox is reflowed at the box width (the words are never shortened -
     only the break points are placed). A fixed one-line field - a name, a
-    skill, an item, a card label - is NOT re-broken: it has no second line,
-    so a break would only make it wrong. Its edges are cleaned and its
+    skill, an item, a card label, an ADV system message whose viewport is
+    one row - is NOT re-broken: it has no second line, so a break would only
+    make it wrong (and, in a one-row message, invisible). Its edges are
+    cleaned, a line/page move is spelled as the word gap it was, and its
     capacity is its builder's (port_caps.dest_cap)."""
+    if port_caps.is_fixed_field(rel, pos):
+        return vwf_wrap.one_line(text)
     if port_caps.is_textbox(rel):
         return reflow(text, ja, text_rel=rel)
     return vwf_wrap.clean_edges(text)
@@ -734,8 +738,13 @@ def derive(text, ja, rel, pos=''):
     """THE derivation, one call for every porter on its first pass: the
     wording's codes in the destination's spelling, laid out at the box,
     and the honest reason when it cannot ship (or '' when it does)."""
+    if not port_caps.has_label_row(rel, pos) and '<FF1B>' not in (ja or ''):
+        # A destination with no label row (the ADV message viewport) never
+        # draws the PSP's nameplate: drop it with its name and break, which
+        # are UI structure, not wording.
+        _label, text = label_head(text)
     raw = fit_codes(text, ja, strict=port_caps.is_fixed_field(rel, pos))
-    laid = lay_out(raw, rel, ja)
+    laid = lay_out(raw, rel, ja, pos)
     if HOLES.search(ink_of(laid or raw)):   # ink: <FFFD> params are the
                                             # engine's own glyphs, not wording
         return laid or raw, JAPANESE_REMNANT

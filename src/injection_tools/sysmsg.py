@@ -14,6 +14,8 @@ fusion prompt (message 24, own zone so the older message indices stay put).
 
 `en` syntax = the event TSVs (`<FF03>` newline, `<FF02>` wait, ...; no trailing <FF01>, the build adds it); checked with
 tools/tstatus.check (control codes identical to the Japanese, 239 px lines, <= 3 lines per page, ASCII).
+A message whose own call site proves a one-row viewport (`display_size`) is one line of the width that viewport shows,
+with no line/page move: `tstatus.ship_errors(..., line_px=...)` measures it against the proven width.
 """
 import os
 import re
@@ -25,6 +27,7 @@ import toolbelt  # noqa: E402
 import etext                  # noqa: E402
 import strlib                  # noqa: E402
 import tstatus    # noqa: E402
+import vwf_wrap   # noqa: E402
 
 ROOT = etext.ROOT
 B = 0x800643C4                       # RAM address of ADV.BIN file offset 0
@@ -46,6 +49,7 @@ assert 0 < ADV_SPILL_SIZE, 'sysmsg spill window is empty - check the ADV extensi
 TSV = os.path.join(ROOT, 'translation', 'manual', 'strings', 'SYSMSG.tsv')
 OUT = os.path.join(ROOT, 'build', 'sysmsg.asm')
 PLACED = os.path.join(ROOT, 'build', 'sysmsg_placed.json')
+DRAFT_OUT = os.path.join(ROOT, 'build', 'sysmsg_drafts.tsv')
 NL = chr(10)
 
 
@@ -102,12 +106,195 @@ def refs(d, msgs):
     return found
 
 
+# --- the message VIEWPORT, read from the code that opens it -----------------
+# Every ADV system message is drawn through BgMapInit (0x800666DC in ADV.BIN).
+# The same straight-line block writes g_bg_layers[4] - the map layer the
+# message is drawn through - so the call site itself proves the visible
+# rectangle: w px across, h / 16 rows down (16 px cells). That rectangle is a
+# property of the CALL SITE, not of the wording: a message whose block proves
+# h == 0x10 has ONE visible row, and its line is w px wide, so a break or a
+# second line is not shown. A call site that proves no local geometry
+# inherits whatever the previous screen left - unknown is never guessed, and
+# the message stays an ordinary textbox.
+BG_INIT = 0x800666DC             # BgMapInit entry
+BG_LAYER4 = {0x800B8EFC: 'x', 0x800B8EFE: 'y',
+             0x800B8F00: 'w', 0x800B8F02: 'h'}   # GsBG x/y/w/h in ADV.BIN
+_MAX_SETUP = 160                 # instructions searched around one call
+_MAX_WIDTH = 240                 # the map is 15 x 16 px cells across
+_DISPLAY = None
+
+
+def _ins(md, d, addr):
+    off = addr - B
+    if off < 0 or off + 4 > len(d):
+        return None
+    return next(md.disasm(d[off:off + 4], addr), None)
+
+
+def _mem_addr(md, d, ins):
+    """The absolute destination address of a store, or None."""
+    import capstone
+    if ins is None or ins.mnemonic not in ('sh', 'sw') or len(ins.operands) != 2:
+        return None
+    mem = ins.operands[1]
+    if mem.type != capstone.mips.MIPS_OP_MEM:
+        return None
+    base = ins.reg_name(mem.mem.base)
+    for k in range(1, 8):
+        prev = _ins(md, d, ins.address - 4 * k)
+        if prev is None:
+            break
+        if prev.mnemonic == 'lui' and prev.operands and \
+                prev.reg_name(prev.operands[0].reg) == base:
+            return ((prev.operands[1].imm << 16) + mem.mem.disp) & 0xFFFFFFFF
+    return None
+
+
+def _const_reg(md, d, addr, reg):
+    """The constant a register holds at `addr` (nearest writer only)."""
+    import capstone
+    for k in range(1, 12):
+        ins = _ins(md, d, addr - 4 * k)
+        if ins is None:
+            return None
+        if not ins.operands or ins.mnemonic in (
+                'sb', 'sh', 'sw', 'swl', 'swr', 'sc'):
+            continue                  # a store reads the register, never writes it
+        dst = ins.operands[0]
+        if dst.type == capstone.mips.MIPS_OP_REG and \
+                ins.reg_name(dst.reg) == reg:
+            if ins.mnemonic in ('ori', 'addiu') and len(ins.operands) == 3 \
+                    and ins.operands[1].type == capstone.mips.MIPS_OP_REG \
+                    and ins.operands[1].reg == capstone.mips.MIPS_REG_ZERO:
+                return ins.operands[2].imm & 0xFFFF
+            return None
+    return None
+
+
+def _find_call(md, d, start):
+    """The BgMapInit call this message reference reaches, following the
+    compiler's own unconditional jump (a shared draw block). A conditional
+    path has no single local answer, so it returns None."""
+    addr = start
+    for _ in range(40):
+        ins = _ins(md, d, addr)
+        if ins is None:
+            return None
+        if ins.mnemonic == 'jal' and ins.operands and \
+                ins.operands[0].imm == BG_INIT:
+            return addr
+        if ins.mnemonic in ('j', 'b') and ins.operands:
+            addr = ins.operands[0].imm
+            continue
+        if ins.mnemonic.startswith('b'):
+            return None
+        addr += 4
+    return None
+
+
+def _viewport(md, d, start, end):
+    """{field: value} of the first g_bg_layers[4] write per field in a walk
+    from `start` to `end` (exclusive). The geometry is one tight block of
+    stores; after the height it is read for a few more instructions so the
+    width that follows it (a call site may write w after h) is still seen."""
+    step = 4 if end > start else -4
+    vals = {}
+    left = None
+    addr = start
+    while (addr < end) if step > 0 else (addr > end):
+        ins = _ins(md, d, addr)
+        if ins is not None and ins.mnemonic == 'sh':
+            field = BG_LAYER4.get(_mem_addr(md, d, ins))
+            if field is not None and field not in vals:
+                value = _const_reg(md, d, addr,
+                                   ins.reg_name(ins.operands[0].reg))
+                if value is not None:
+                    vals[field] = value
+                    if field == 'h' and left is None:
+                        left = 20         # the width sits beside the height
+        if left is not None:
+            left -= 1
+            if left < 0:
+                break
+        addr += step
+    return vals
+
+
+def display_size():
+    """{message file offset: (width px, height px)} of the viewport the
+    message's own call site proves.
+
+    Only messages with a code reference can be followed to a BgMapInit call;
+    a pointer-table message drawn by a loop has no one call site and is not
+    in the map. The numbers come from the block's own `g_bg_layers[4]`, so a
+    message whose geometry is inherited from another screen stays unknown.
+    Cached: the analysis reads the delivered ADV.BIN once."""
+    global _DISPLAY
+    if _DISPLAY is not None:
+        return _DISPLAY
+    import capstone
+    d = adv()
+    msgs = messages(d)
+    rf = refs(d, msgs)
+    md = capstone.Cs(capstone.CS_ARCH_MIPS,
+                     capstone.CS_MODE_MIPS32 + capstone.CS_MODE_LITTLE_ENDIAN)
+    md.detail = True
+    calls = {}
+    for i, (_a, _e) in enumerate(msgs):
+        for kind, where, _old in rf[i]:
+            if kind != 'code':
+                continue
+            call = _find_call(md, d, where)
+            if call is not None:
+                calls.setdefault(call, set()).add(i)
+    order = sorted(calls)
+    out = {}
+    for k, call in enumerate(order):
+        prev = order[k - 1] if k else call - 4 * _MAX_SETUP
+        nxt = order[k + 1] if k + 1 < len(order) else call + 4 * _MAX_SETUP
+        # The block that opens the message can set the geometry just before
+        # the call (a shared setup) or just after it (the long draw block).
+        # The FIRST write after the call belongs to this call; only when the
+        # block has none does the nearest write before it apply.
+        geo = _viewport(md, d, call + 4, min(nxt, call + 4 * _MAX_SETUP))
+        if 'h' not in geo:
+            geo = _viewport(md, d, call - 4, max(prev, call - 4 * _MAX_SETUP))
+        h = geo.get('h')
+        if not h or h % 16:
+            continue                      # no proven viewport: stay a textbox
+        w = geo.get('w')
+        w = min(w, _MAX_WIDTH) if w else None
+        for i in calls[call]:
+            out[msgs[i][0] - B] = (w, h)
+    _DISPLAY = out
+    return out
+
+
+def display_rows():
+    """{message file offset: visible rows its call site proves}."""
+    return {off: h // 16 for off, (_w, h) in display_size().items()}
+
+
+def line_px(off):
+    """The proven width of this message's viewport, or None when the call
+    site proves no local width (the box layout then bounds the line)."""
+    size = display_size().get(off)
+    return size[0] if size else None
+
+
+def is_one_line(off):
+    """True when this message's own call site proves a one-row viewport."""
+    return display_size().get(off, (None, None))[1] == 16
+
+
 def dec(d, a, e):
     return etext.decode(d[a - B:e - B])
 
 
 def read_tsv():
-    """{idx: en} from the canonical ADV table (pos = message file offset)."""
+    """{idx: merged row} from the canonical ADV table (pos = message file
+    offset). The row keeps `psp` and `note`: an over-limit draft needs the
+    locator it came from."""
     import toolbelt
     msgs = messages(d := open(os.path.join(ROOT, 'data', 'psx', 'ADV.BIN'), 'rb').read())
     by_pos = {r['pos']: r for r in toolbelt.merged_rows(toolbelt.rel_for(os.path.join(ROOT, 'data', 'psx', 'ADV.BIN')))}
@@ -115,8 +302,15 @@ def read_tsv():
     for i, (a, e) in enumerate(msgs):
         r = by_pos.get(hex(a - B))
         if r and (r['en'] or '').strip():
-            rows[i] = r['en']
+            rows[i] = r
     return rows
+
+
+def _widest_line(t):
+    """The widest drawn line of `t`, measured the way the gate measures it
+    (pages and lines split on the same codes as tstatus.check)."""
+    return max((vwf_wrap.text_width(ln)
+                for page in tstatus.segments(t) for ln in page), default=0)
 
 
 def dump():
@@ -168,21 +362,62 @@ def build():
     msgs = messages(d)
     rf = refs(d, msgs)
     en = read_tsv()
+    rows = display_rows()
     tstatus.load_glossary()
     todo = {}
     inplace = set()
+    errors = []
+    drafts = []
     for i, (a, e) in enumerate(msgs):
-        t = en.get(i, '').strip(' 	')
+        r = en.get(i) or {}
+        t = (r.get('en') or '').strip(' 	')
         if not t:
             continue
         if not rf[i]:
             inplace.add(i)                  # nothing points at it that we can patch: must fit its own slot
         ja = dec(d, a, e)
         ja = re.sub(r'^(<00>|　)+', '', ja)
-        bad = tstatus.ship_errors(ja, t)
+        width = line_px(a - B)
+        limit = width or vwf_wrap.BOX_WIDTH + 1
+        if rows.get(a - B) == 1:
+            # ONE VISIBLE ROW: the line/page move has nowhere to go; the
+            # wording must fit the one line the viewport proves, with no
+            # invisible line after a break. The width check measures it
+            # against that proven width.
+            t = vwf_wrap.one_line(t)
+        px = _widest_line(t)
+        bad = tstatus.ship_errors(ja, t, line_px=width)
+        # Over the destination's line: a DRAFT, not a broken box. It never
+        # reaches the disc (the Japanese ships); a tool's wording goes to
+        # manual in the standard over-limit shape, a human's row is kept and
+        # reported. Anything else the gate found still fails the build.
+        if px > limit and not [x for x in bad
+                               if not (x[0] == 'width' and 'px over ' in x[1])]:
+            drafts.append((i, hex(a - B), px, limit, t, r.get('psp', '')))
+            continue
         if bad:
-            raise SystemExit(f'sysmsg: {i}: ' + '; '.join(f'[{k}] {m}' for k, m in bad))
+            errors.extend(f'{i}: [{k}] {m}' for k, m in bad)
+            continue
         todo[i] = etext.encode(choice_pages(t))        # + FF01
+    if errors:
+        raise SystemExit('sysmsg:\n  ' + '\n  '.join(errors))
+    routed = kept = 0
+    man = {x['pos']: x for x in toolbelt.read_manual('ADV', optional=True)}
+    with open(DRAFT_OUT, 'w', encoding='utf-8', newline=NL) as o:
+        o.write('pos\twidth_px\tlimit_px\tdraft\n')
+        for _i, pos, px, limit, t, psp in drafts:
+            o.write(f'{pos}\t{px}\t{limit}\t{t}\n')
+            if (man.get(pos, {}).get('en') or '').strip():
+                kept += 1                   # the human's wording: kept, the Japanese ships
+                continue
+            toolbelt.route_over('ADV', pos, psp, t,
+                                toolbelt.note_over(px, limit, 'px'))
+            routed += 1
+    if drafts:
+        print(f'sysmsg: {len(drafts)} over the line, shipped as Japanese'
+              f' ({routed} routed to manual, {kept} human draft(s) kept): '
+              + ', '.join(f'{pos} {px}px/{limit}px'
+                          for _i, pos, px, limit, _t, _p in drafts))
     # free space = the old slots of the translated messages (per zone)
     free = []
     for i in todo:

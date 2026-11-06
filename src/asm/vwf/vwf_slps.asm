@@ -192,6 +192,7 @@ btl_owned_span:
     la      v1, btl_owned_spans
 @@loop:
     lw      a1, 0(v1)
+    nop                                  ; R3000 load delay: a1 retires here
     beqz    a1, @@no
     nop
     lhu     a2, 4(v1)

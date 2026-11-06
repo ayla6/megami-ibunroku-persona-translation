@@ -3,7 +3,7 @@
 ;;
 ;; Names by Persona id (+0x1E in the battle record) through persona_name_copy
 ;; into PRSCHG_BUF + 16*k, descriptors draw 16 glyphs.
-;; persona_name_copy clobbers v0 v1 a0 a1 a2 at;
+;; persona_name_copy clobbers v0 v1 a0 a1 a2 a3 at;
 ;; the function is non-leaf (ra on its stack).
 ;; =============================================================
 

@@ -195,7 +195,11 @@ def assemble_variant(py, patches, disc_path, make_disc=True, mark_builder=None,
     run(py, os.path.join('injection_tools', 'mark.py'), 'retail')
     qol = [x for name in patches for x in ('-definelabel', QOL_PATCHES[name][0], '1')]
     listing = os.path.join(ROOT, 'build', 'armips-main.lst')
-    run_from(ASM_ROOT, ARMIPS, 'main.asm', '-sym2', os.path.join(ROOT, 'build', 'persona.sym'),
+    # -erroronwarning: every armips warning (load delay, branch delay slot,
+    # ...) is a real runtime bug in this codebase. Never ship an image whose
+    # hooks assembled with a warning - fail the build instead.
+    run_from(ASM_ROOT, ARMIPS, '-erroronwarning', 'main.asm',
+             '-sym2', os.path.join(ROOT, 'build', 'persona.sym'),
              '-temp', listing, *qol)
     run(py, os.path.join('injection_tools', 'write_guard.py'), 'check', '--listing', listing)
     run(py, os.path.join('injection_tools', 'make_vwf_font.py'), 'verify')
@@ -336,7 +340,7 @@ def main(variants_override=None, after_variant=None, mark_builder=None,
     # then pack each into build/movie_subs*.bin
     prepare_fmv_data(py, incremental='--incremental' in sys.argv)
     subs_listing = os.path.join(ROOT, "build", "armips-subs.lst")
-    run_from(ASM_ROOT, ARMIPS, os.path.join("movie_exe", "subs_code.asm"),
+    run_from(ASM_ROOT, ARMIPS, '-erroronwarning', os.path.join("movie_exe", "subs_code.asm"),
              "-sym2", os.path.join(ROOT, "build", "movie_subs.sym"),
              "-temp", subs_listing)
     run(py, os.path.join("injection_tools", "write_guard.py"), "check", "--listing", subs_listing)

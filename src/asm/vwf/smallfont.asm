@@ -1137,7 +1137,7 @@ sf_hook:
     lhu     t5, 2(v1)                   ; cba
     lhu     v1, 6(v1)                   ; tpage
     jal     sf_variant_uv
-    nop
+    lw      t7, 0x2C(sp)                ; (delay) the row's tier for the selector
     jal     sf_clip_glyph
     nop
     beqz    v0, @@have_first

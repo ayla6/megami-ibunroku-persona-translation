@@ -1,9 +1,9 @@
 id	pos	psp	en	note
-11	0x46ad9	EBOOT:28bac0	Police Station	
-19	0x47338		Yukino: <FF0F><01>Ah! You really<FF03>like wandering around, don't you?<FF02><FF04>But hey, pick your<FF03>time and place! Sheesh...<FF02><FF01>	machine-translated; ja ゆきの：<FF0F>あ！<FF03>アンタ　本当にフラフラすんのが好きなんだね<FF02><FF04>でもね　時と場所を選びな！<FF03>ったく…<FF02>
+11	0x46ad9	EBOOT:28bac0	Police Station	Mikage Police Station is too long and causes the text to get corrupted on the map. Also i kind of wish I could have it as Police Station on the map but Mikage Police Station on the little current location thing but that's probably a bit hard.
+19	0x47338		Yukino: <FF07><01>! You really<FF03>like wandering around, don't you?<FF02><FF04>But hey, pick your<FF03>time and place! Sheesh...<FF02><FF01>	machine-translated; ja ゆきの：<FF0F><01>！<FF03>アンタ　本当にフラフラすんのが好きなんだね<FF02><FF04>でもね　時と場所を選びな！<FF03>ったく…<FF02>
 21	0x4746c		Maki: ...Wasn't this place<FF03>a castle...?<FF02><FF01>	PSP-US; ja 麻希：…ここ<FF05>で　<FF03>お城じゃなかった…？ (PSP merged this box into its longer Maki line; wording from that line)
 22	0x47504		Nanjo: ...<FF02><FF01>	PSP-US; Nanjo ellipsis (ADV E0 116:0x25bc) but halved; ja 南条：…<FF02>
 26	0x4789c		Nanjo: ...<FF02><FF01>	PSP-US; Nanjo ellipsis (ADV E0 116:0x25bc) but halved; ja 南条：…<FF02>
 27	0x47a80		Nanjo: ......<FF02><FF01>	PSP-US; Nanjo ellipsis (ADV E0 116:0x25bc); ja 南条：………<FF02>
-32	0x46bce	EBOOT:28c000	ConvinienceStore	
+32	0x46bce	EBOOT:28c000	ConvenienceStore	For now, "Convenience Store" is too long and causes the text to get corrupted on the map
 68	0x471ac		St. Hermelin High has<FF03>turned into an ice castle...<FF02><FF01>	machine-translated; ja 聖エルミン学園は<FF03>氷の城と　化している…<FF02>

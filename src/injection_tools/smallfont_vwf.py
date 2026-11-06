@@ -371,7 +371,8 @@ def write_engines():
         hook = hook[:start] + hook[end:]
         import smallfont_variants
         variant = smallfont_variants.assembly()
-        for name in ('sf_variant_uv_end', 'sf_variant_uv', 'sf_variant_cells'):
+        for name in ('sf_variant_uv_end', 'sf_variant_uv_v1', 'sf_variant_uv',
+                     'sf_variant_cells'):
             variant = re.sub(rf'\b{name}\b', f'{name}_{ovl}', variant)
         open(os.path.join(ROOT, 'build', f'smallfont_helpers_{ovl}.asm'), 'w').write(clip + variant)
         stock = open(toolbelt.bin_path(ovl.upper()), 'rb').read()
@@ -1401,10 +1402,25 @@ def verify():
         owner_end = sym['sf_variant_uv_end_adv'] if ovl == 'ADV' else iend
         if table_addr != ((owner_end + 3) & ~3) or table_end != table_addr + table_size:
             raise SystemExit(f'smallfont_vwf: verify: {ovl} row table is outside its owned extension order')
-        if scratch != table_end or extension_end != scratch + name_bytes:
-            raise SystemExit(f'smallfont_vwf: verify: {ovl} name scratch overlaps the row table or extension end')
-        if d[table_addr - BASE:extension_end - BASE] != bytes(table_size + name_bytes):
-            raise SystemExit(f'smallfont_vwf: verify: {ovl} row table/name scratch is not zero-filled in its file')
+        # ADV/DNG pack the message-insert name stubs between the row table and
+        # the scratch (vwf/sf_msg_name.asm); S2D does not use that path.
+        msg_start = sym.get(f'sf_msg_name_{low}')
+        if msg_start is not None:
+            if msg_start != table_end or scratch != sym[f'sf_msg_name_end_{low}']:
+                raise SystemExit(
+                    f'smallfont_vwf: verify: {ovl} message-name stubs do not sit '
+                    f'between the row table and the name scratch')
+            if d[msg_start - BASE:scratch - BASE] == bytes(scratch - msg_start):
+                raise SystemExit(
+                    f'smallfont_vwf: verify: {ovl} message-name stubs are zero-filled')
+        elif scratch != table_end:
+            raise SystemExit(f'smallfont_vwf: verify: {ovl} name scratch does not follow the row table')
+        if extension_end != scratch + name_bytes:
+            raise SystemExit(f'smallfont_vwf: verify: {ovl} name scratch overlaps the extension end')
+        if d[table_addr - BASE:table_end - BASE] != bytes(table_size):
+            raise SystemExit(f'smallfont_vwf: verify: {ovl} row table is not zero-filled in its file')
+        if d[scratch - BASE:extension_end - BASE] != bytes(name_bytes):
+            raise SystemExit(f'smallfont_vwf: verify: {ovl} name scratch is not zero-filled in its file')
         if ovl == 'ADV' and (cfg_addr != ((iend + 3) & ~3) or help_addr != thunks_end):
             raise SystemExit('smallfont_vwf: verify: packed ADV name/code regions are not adjacent')
         work_start = 0x800E0000 if ovl == 'S2D' else 0x800C0000

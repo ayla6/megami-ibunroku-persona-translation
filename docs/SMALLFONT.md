@@ -84,6 +84,18 @@ font faces retain a 1px letter gap. Names no tier can fit remain drafts;
 centered rows keep natural advances. Reservation and emission share the
 recorded tier; see the text-layout specification.
 
+The persona status bottom bar does not go through the recorder and renderer,
+and each overlay compiles its own copy of it: ADV and DNG (which also draw
+the fusion bar) and S2D's overworld status page. Each copy's sprite-cell
+writer stores the regular face's cell coordinates - the same mapping
+`sf_variant_uv` gives the text renderer - and the glyph's advance; bit 7 of
+the writer's page argument selects the face, so every other `CellsWriteRow`
+caller keeps the retail fixed-cell atlas. The bar
+keeps retail's two cel entries: the arcana row at dx=0/dy=0 and the name row
+at retail's dx=0x58/dy=4 (expanded to sixteen cells), so the name is its own
+cel-entry line, 88 px right of the arcana and 4 px (half a character) lower,
+as in the Japanese original.
+
 The sorter reserves complete rows before temporarily marking their map cells
 empty. It restores the logical map before returning. A page clear or rewrite
 therefore retires the corresponding records. Sprites include libgs' signed

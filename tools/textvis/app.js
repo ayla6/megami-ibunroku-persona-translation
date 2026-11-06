@@ -232,7 +232,7 @@ function paginate2(text){
 }
 
 // what the box really shows for one stored line: the player's name stands in
-// as {name} (5 glyphs, the entry's cap), every other code is invisible
+// as {name} (8 glyphs, the entry's cap), every other code is invisible
 function drawText(s){
   return withPlaceholder(s).replace(/<FFFD>./g, '').replace(/<[^>]+>/g, '');
 }

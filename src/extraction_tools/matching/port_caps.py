@@ -355,6 +355,13 @@ def dest_cap(rel, pos):
         off = _off(pos)
         if off is not None and sysmsg.ZONES[0][0] - sysmsg.B <= off < \
                 sysmsg.ZONES[1][1] - sysmsg.B:
+            # The message viewport is read from the code that opens it
+            # (sysmsg.display_size). One visible row is a FIXED line: no
+            # reflow, no invisible second line, and its width is the
+            # layer's own (dest_line_px). A multi-row message scrolls
+            # (PAGE_LINES), so its proven height is not a line cap.
+            if sysmsg.is_one_line(off):
+                return None, None, 1
             return None, None, None
         return _adv_caps().get(off, (None, None, None))
     if rel.startswith('ADV/'):
@@ -368,6 +375,22 @@ def dest_cap(rel, pos):
     if is_textbox(rel):
         return None, None, None        # dungeon boxes relocate (dngspill)
     return None, None, 1
+
+
+def has_label_row(rel, pos):
+    """Whether this destination can draw a speaker label at all.
+
+    The ADV system-message bank is drawn by the message engine into the
+    viewport its call site opens: there is no label row, and the Japanese
+    carries no nameplate. A PSP-US `<FF1B>name<FF03>` there is PSP UI
+    decoration, never wording - the label (and its break) is dropped."""
+    if (rel or '') == 'ADV':
+        import sysmsg
+        off = _off(pos)
+        if off is not None and sysmsg.ZONES[0][0] - sysmsg.B <= off < \
+                sysmsg.ZONES[1][1] - sysmsg.B:
+            return False
+    return True
 
 
 def dest_owned(rel):
@@ -429,6 +452,22 @@ def _extra_codes(text, ja):
                if c not in port_derive.REFLOW_CODES and c != 0xFF01)
 
 
+def dest_line_px(rel, pos):
+    """The line width the destination itself proves, in px, or None where
+    the box layout (`PEN_MAX`) is the only limit. An ADV system message is
+    drawn into the map layer its code opens (sysmsg.display_size): that
+    rectangle's width is what is visible, so it - not the 240 px default -
+    bounds the line (the coin-shop notice is 11 cells, 176 px)."""
+    if (rel or '') != 'ADV':
+        return None
+    import sysmsg
+    off = _off(pos)
+    if off is None or not (sysmsg.ZONES[0][0] - sysmsg.B <= off <
+                           sysmsg.ZONES[1][1] - sysmsg.B):
+        return None
+    return sysmsg.line_px(off)
+
+
 def dest_note(text, rel, pos, ja=''):
     """The reason this wording is over its DESTINATION's limit, or '' when
     it fits. ONE decision, shared by place() and redraft(), so the two can
@@ -447,9 +486,14 @@ def dest_note(text, rel, pos, ja=''):
         # the Japanese carries exactly the codes its own build can show
         return 'codes differ from the Japanese'
     cap, unit, lines = dest_cap(rel, pos)
+    if lines == 1:
+        # the destination draws one row: a line/page move is the space it
+        # stood for, and the width is measured on the line that is drawn
+        text = vwf_wrap.one_line(text)
     px, n = widest(text)
-    if px > PEN_MAX:
-        return toolbelt.note_over(px, PEN_MAX, 'px')
+    limit = dest_line_px(rel, pos) or PEN_MAX
+    if px > limit:
+        return toolbelt.note_over(px, limit, 'px')
     if lines is not None and n > lines:
         return toolbelt.note_over(n, lines, 'lines')
     if n > BUDGET_LINES:

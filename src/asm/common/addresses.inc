@@ -184,13 +184,92 @@ ADV_FLUSH_UPLOADS equ 0x80068414           ; FlushImageUploads (imagequeue.c)
 ;; while BTLP is resident, and the spill strings are ADV's own extension.
 ADV_EXT_BASE equ 0x800BD100                ; past the live CD-buffer table at 0x800BD0C8; gdb (menu open): file bytes survive from here
 ADV_SYSMSG_SPILL_ADDR equ 0x800BD100       ; sysmsg.py overflow strings (build/sysmsg.asm)
-ADV_SYSMSG_SPILL_END equ 0x800BD240        ; below the kit's data in ADV's loaded extension
+ADV_SYSMSG_SPILL_END equ 0x800BD224        ; above the bar's advance hook (0x800BD1F4..0x800BD224,
+                                           ; adv/bar.asm): sysmsg keeps 49 bytes of growth room
+                                           ; below the hook. The 28-byte gap 0x800BD224..0x800BD240
+                                           ; after the spill end now holds ADV_BAR_LIST.
 ADV_SYSMSG_SPILL_SIZE equ ADV_SYSMSG_SPILL_END - ADV_SYSMSG_SPILL_ADDR
 ;; small-font VWF line (adv/smallfont.asm: recorder + renderer; vwf/sf_font.asm: the resident gate)
 ADV_SF_HOOK_ADDR equ 0x80067C00            ; TileMapWriteRow loop entry: la t0,cfg / j sf_record
 ADV_SF_MAP_BASE equ 0x800E3E4C             ; the text map's cell base (CellsInit atlas)
 ADV_SF_CENTER_ADDR equ 0x800AADE8          ; unreferenced ADV function (deadovl.py)
 ADV_SF_CENTER_END equ 0x800AAE5C
+;; --- persona status/fusion bottom bar: VWF sprite cells (adv/bar.asm) ---
+;; The bar is one slot whose cel list names TWO rows, retail's layout: the
+;; arcana block (10 cells, dx=0, dy=0) and a new-line name block (16 cells,
+;; dx=0x58, dy=4 - the retail name entry's own dx/dy, which put the name on
+;; a second line right of the arcana). adv/cells_row.asm rewrites
+;; CellsWriteRow in place so every cell also carries its glyph's advance in
+;; the +3 byte (the cba high byte, which the slot renderer never reads), and
+;; sf_cell_adv - hung on the slot renderer's per-cell pen advance in ADV only -
+;; applies it while the entry's unread pad halfword marks the row. Persona
+;; names are persona_name_copy'd straight into the name cells, so the writer
+;; reads the full name in place; the retail 10-byte record head never reaches
+;; the bar.
+SF_BAR_MARK        equ 0x5342              ; the cel-entry pad halfword that marks a VWF row
+;; The list lives in the 28-byte gap between the advance hook and sf_state_adv.
+ADV_BAR_LIST       equ 0x800BD224          ; two entries {block, dx, dy, z, mark} + FF (0x1C)
+;; The old hint span now holds both headers and all 26 cells, ending exactly
+;; at the next retail structure (g_menu_top_def, 0x800B2188).
+ADV_BAR_ARCANA_BLOCK equ 0x800B20A8        ; header: cols 10, rows 1, attr 0, w 8, h 12
+ADV_BAR_CELLS      equ 0x800B20B0          ; the 10 arcana cells (ends 0x800B2100)
+ADV_BAR_NAME_BLOCK equ 0x800B2100          ; header: cols 16, rows 1
+ADV_BAR_NAME_CELLS equ 0x800B2108          ; the 16 name cells (ends 0x800B2188)
+ADV_BAR_HINTS      equ 0x800BFBA0          ; the six (x,y) hints, moved out of the bar span
+                                           ; (the image ends at 0x5B7F8 of the 0x5B800 sector budget)
+ADV_BAR_HOOK       equ 0x800BD1F4          ; sf_cell_adv, 48 bytes (sysmsg's ceiling moved for it)
+ADV_BAR_HOOK_END   equ 0x800BD224
+ADV_CELLS_ROW      equ 0x8008F730          ; CellsWriteRow, rewritten in place (cells_row.asm)
+ADV_CELLS_CLEAR    equ 0x8008F5B4          ; CellsClear (retail, unchanged)
+ADV_KIND_LABELS    equ 0x800B24A4          ; g_kind_labels: 22 FF-padded 10-byte entries
+ADV_BAR_SLOT_INIT  equ 0x8006FB04          ; the status layout's list pointer (lui/addiu pair)
+ADV_BAR_ADV_SITE   equ 0x80065C64          ; SlotsRenderAll's per-cell pen advance (jal + nop)
+ADV_BAR_HINT_RD    equ 0x80073118          ; the two hint readers (four instructions each):
+ADV_BAR_HINT_RD2   equ 0x800734B8          ;   lui/addiu base+0 and base+2
+ADV_STATUS_NAMES   equ 0x80070144          ; StatusPersonaNames, rewritten in place (0xC0 bytes)
+ADV_FUSE_CLEAR1    equ 0x8009F900          ; fusion draw helper: kind/name clears
+ADV_FUSE_SITE_A    equ 0x8009FB40          ; name+kind write, built-def path (s3 = def)
+ADV_FUSE_SITE_B    equ 0x8009FE38          ; name+kind write, built-persona path (s4 = Persona)
+
+;; --- the same bar in DNG.BIN (dng/bar.asm): one status screen, no fusion ---
+;; DNG's hint table (0x8009AB90, twenty bytes) is read from SEVENTEEN sites,
+;; so it stays put and the bar's rows move out to the image tail instead; the
+;; old span's blocks and list are dead bytes. The layout below the image end
+;; rides the same grow-by-sectors rule as the DNG extension.
+DNG_BAR_LIST       equ 0x800B5610          ; two entries {block, dx, dy, z, mark} + FF (0x1C),
+                                           ; after the hook; 0x54D0..0x54E8 is the name scratch
+DNG_BAR_ARCANA_BLOCK equ 0x800B5500        ; header: cols 10, rows 1, w 8, h 12
+DNG_BAR_CELLS      equ 0x800B5508          ; the 10 arcana cells (ends 0x800B5558)
+DNG_BAR_NAME_BLOCK equ 0x800B5558          ; header: cols 16, rows 1
+DNG_BAR_NAME_CELLS equ 0x800B5560          ; the 16 name cells (ends 0x800B55E0)
+DNG_BAR_HOOK       equ 0x800B55E0          ; sf_cell_adv_dng, 48 bytes
+DNG_BAR_HOOK_END   equ 0x800B5610
+DNG_CELLS_ROW      equ 0x8009392C          ; DNG CellsWriteRow, rewritten in place
+DNG_CELLS_CLEAR    equ 0x800937B0          ; DNG CellsClear (retail, unchanged)
+DNG_KIND_LABELS    equ 0x8009AF94          ; g_kind_labels (same records as ADV)
+DNG_BAR_SLOT_INIT  equ 0x8007EE34          ; the status layout's list pointer (lui/addiu pair)
+DNG_BAR_ADV_SITE   equ 0x80075B54          ; SlotsRenderAll's per-cell pen advance (jal + nop)
+DNG_STATUS_NAMES   equ 0x8007F464          ; DNG StatusPersonaNames, rewritten in place (0xC0 bytes)
+;; --- the same bar in S2D.BIN (s2d/bar.asm): the overworld menu's status page ---
+;; S2D holds its own compiled copy of the status bar (that copy is what the
+;; overworld save's status page used, so it still drew retail fixed-width
+;; cells). Mirror the DNG layout: the retail list points at the two old
+;; 10-cell blocks at 0x8009D734/0x8009D78C; the new pair + hook ride the
+;; image extension past every generated block (0x800BE800, well below the
+;; 0x800E0000 work-area ceiling and inside the last image sector).
+S2D_BAR_LIST       equ 0x800BE800          ; two entries {block, dx, dy, z, mark} + FF (0x1C)
+S2D_BAR_ARCANA_BLOCK equ 0x800BE820        ; header: cols 10, rows 1, w 8, h 12
+S2D_BAR_CELLS      equ 0x800BE828          ; the 10 arcana cells (ends 0x800BE878)
+S2D_BAR_NAME_BLOCK equ 0x800BE878          ; header: cols 16, rows 1
+S2D_BAR_NAME_CELLS equ 0x800BE880          ; the 16 name cells (ends 0x800BE900)
+S2D_BAR_HOOK       equ 0x800BE900          ; sf_cell_adv_s2d, 48 bytes
+S2D_BAR_HOOK_END   equ 0x800BE930
+S2D_CELLS_ROW      equ 0x80083A64          ; S2D CellsWriteRow, rewritten in place (0xC0)
+S2D_CELLS_CLEAR    equ 0x800838E8          ; S2D CellsClear (retail, unchanged)
+S2D_KIND_LABELS    equ 0x8009DB24          ; g_kind_labels (same records as ADV/DNG)
+S2D_BAR_SLOT_INIT  equ 0x8006EC2C          ; status preview's slot 0x1E list pointer
+S2D_BAR_ADV_SITE   equ 0x80065744          ; SlotsRenderAll's per-cell pen advance
+S2D_STATUS_NAMES   equ 0x8006F26C          ; S2D StatusPersonaNames, rewritten in place (0xC0)
 ;; ADV code/table positions follow the actual data/name sizes; see adv/smallfont.asm.
 ADV_SF_BUFS_ADDR equ 0x800E624C            ; 2 x 0x1200-byte buffers, after g_menu_cells
 ADV_SF_BUFS_LIMIT equ 0x800E864C           ; bg_map0's cell table starts here
@@ -364,6 +443,12 @@ NAME_INIT_JAL_TARGET equ 0x80067318      ; first init callee, NAME.BIN +0x14 (na
 NAME_TAB_STUB_ADDR equ 0x80024744        ; dead SLPS function (tools/deadfuncs.py, unclaimed)
 NAME_RING_STUB_ADDR equ 0x800316DC       ; dead SLPS function, taken from tools/choices.py FREE (name/ring.asm)
 NAME_RING_STUB_END equ 0x80031770
+;; The entry screen's family / given cells (u16 glyph codes) and the 10-byte
+;; save slots the compact writer fills (name/long_names.asm).
+NAME_FAMILY_TEXT_ADDR equ 0x800682A0     ; g_name_text[0][0]
+NAME_GIVEN_TEXT_ADDR equ 0x800682B0      ; g_name_text[1][0]
+NAME_SAVE_FAMILY_ADDR equ 0x801F298C     ; SAVE_NAME0
+NAME_SAVE_GIVEN_ADDR equ 0x801F2996      ; SAVE_NAME1
 
 ;; --- OPEN.BIN - Title/opening data archive (seen resident at 0x80180000) ---
 OPEN_FILENAME equ "../../data/psx/OPEN.BIN"
@@ -418,14 +503,15 @@ BTLP_PAGE_LOAD_JAL_ADDR equ 0x80081E80  ; jal LoadImage (0x8002B810) in the BTLP
 GPU_LOAD_IMAGE equ 0x8002B810           ; LoadImage(rect, src)
 GPU_DRAW_SYNC  equ 0x8002B5E8           ; DrawSync(int)
 GPU_MOVE_IMAGE equ 0x8002B8D8           ; MoveImage(rect, x, y)
-BTLP_PAGE_FIX_ADDR equ 0x8001A4A8       ; 2 unreferenced SLPS functions (tools/deadfuncs.py)
-BTLP_PAGE_FIX_SIZE equ 0x8001A510 - BTLP_PAGE_FIX_ADDR
+NAME_COUNT_ADDR equ 0x8001A4A8           ; 2 unreferenced SLPS functions (tools/deadfuncs.py):
+NAME_COUNT_SIZE equ 0x8001A510 - NAME_COUNT_ADDR
+                                         ; name_count_store, the resident name-insert count glue
 
 ;; --- battle banner names (tools/banner.py): pointer table 0x800D92F4 (347 words), pool 0x800D835C-0x800D92F4;
 ;; overflow strings in dead SLPS functions 0x8002C2B8-0x8002C2F0, 0x80026A10-0x80026A54, 0x80018B50-0x80018B88
 
 ;; --- full-length Persona names (tools/personas.py, slps_005.00/persona_names.asm) ---
-PERSONA_RECORDS_ADDR equ 0x8004B0CC     ; + id*0x2C (id 1-based)
+PERSONA_RECORDS_ADDR equ 0x8004B0CC     ; record base; name field at +8 + key*0x2C (key 0 unused)
 PERSONA_NAME equ 8
 PERSONA_FIELD equ 10
 PERSONA_SPARE equ 0x29                  ; unreferenced record bytes +0x29..+0x2B
@@ -489,15 +575,22 @@ DNG_ITEM_NAME_STUB equ 0x800761C4    ; dead DNG function (80 B)
 S2D_ITEM_NAME_STUB equ 0x80083A00    ; dead S2D function (100 B)
 
 ;; --- party full-name inserts (src/injection_tools/partynames.py): the
-;; name-insert opcodes print 5 glyphs; the glue raises the count to 8 (the
-;; hero keeps 5 - his typed name fills the whole slot). One dead function
-;; per overlay, and it must NOT be an *_ITEM_NAME_STUB site: two features,
+;; name-insert opcodes print 5 glyphs; a resident helper (NAME_COUNT_ADDR)
+;; counts a compact English slot up to its FF terminator and keeps retail's
+;; 5 for a legacy all-glyph slot (no terminator). One dead function per overlay
+;; holds the 8-byte stub, and it must NOT be an *_ITEM_NAME_STUB site: two features,
 ;; one .org, last include wins - that overwrite is what killed the status
 ;; page's item rows (commit 43b3312). partynames.py reads these three with
 ;; toolbelt.asm_equ(), so the addresses exist exactly once.
 ADV_PARTY_COUNT_FIX_ADDR equ 0x800824C0   ; dead ADV function (tools/deadovl.py)
 DNG_PARTY_COUNT_FIX_ADDR equ 0x8008FF8C   ; dead DNG function
 S2D_PARTY_COUNT_FIX_ADDR equ 0x80065DB4   ; dead S2D function
+;; DNG's field-script name print (jal 0x80075428 with a1 = 5) goes through a
+;; proxy in the rest of the same dead function: it scans the slot, sets the
+;; count and tail-jumps to FieldMsgPrint (src/injection_tools/partynames.py).
+DNG_NAME_PRINT_ADDR equ 0x8008FF94        ; dead DNG function 0x8008FF8C + 8 (72 bytes total)
+DNG_NAME_PRINT_END equ 0x8008FFD4         ; end of that dead function
+DNG_FIELD_MSG_PRINT_ADDR equ 0x80075428   ; FieldMsgPrint(a0 = string, a1 = glyph count)
 
 ;; --- story-battle dialogue (tools/btlevt.py, btlp/btlevt_unpack.asm): BPE-packed strings + unpacker in their zone ---
 BTLEVT_ZONE_START equ 0x800CFA14

@@ -101,7 +101,7 @@ def fit_advances(font, s, panel, max_gap=3, min_gap=1):
 
 
 # Name insertion codes + parameter byte: <FF07> family name, <FF0F> given name
-# (5 typed characters each, name entry limit), <FF08> nickname (up to 8).
+# (8 typed characters each, name entry limit), <FF08> nickname (up to 8).
 # The parameter is written あ in Japanese source and <XX> in generated
 # English; both forms count. Counted as a run of 'R' - the name the entry
 # allows at its widest: the name entry is locked to its ABC page
@@ -113,7 +113,7 @@ def fit_advances(font, s, panel, max_gap=3, min_gap=1):
 NAME_CODES = ('<FF07>', '<FF08>', '<FF0F>', '<FF10>')   # the hero-name insert codes
 FULL_NAME_CODES = ('<FF07>', '<FF0F>')   # <FF10> spells given + family
 NAME_TOKEN_RE = re.compile(r'<FF(07|0F|08)>(?:あ|<[^>]*>)')
-NAME_LENS = {'07': 5, '0F': 5, '08': 8}   # entry cells used (5/5 typed, 8 nickname)
+NAME_LENS = {'07': 8, '0F': 8, '08': 8}   # entry cells used (8/8 typed + 8 nickname)
 NAME_WIDTHS = {k: sum(char_width(c) for c in 'R' * n) for k, n in NAME_LENS.items()}
 NAME_TOKENS = {'<FF07>あ': NAME_WIDTHS['07'], '<FF0F>あ': NAME_WIDTHS['0F'], '<FF08>あ': NAME_WIDTHS['08']}
 NAME_TOKEN = '<FF0F>あ'
@@ -843,6 +843,25 @@ def clean_edges(en):
         out.append(text)
         i += 1
     return re.sub(r'^(<FF0[234]>)+', '', ''.join(out))
+
+
+# The codes that MOVE the pen to another line/page. A one-row field has no
+# second line to move to: where one of these sat, the reader sees the word
+# gap it stood for, never an invisible line.
+ONE_LINE_MOVES = re.compile(r'<FF(?:03|04)>|<FFF6>')
+
+
+def one_line(text):
+    """A destination that proves a single visible row (the message viewport
+    is 16 px high) cannot show a line or page move: the move becomes the
+    word gap it was, and the result must fit one 240 px line.
+
+    This is a DESTINATION rule, not a wording edit: the same words are kept,
+    only the break the destination has no room for is spelled as a space.
+    (`<FF02>` waits stay: a wait pauses on the same line.)"""
+    t = ONE_LINE_MOVES.sub(' ', text or '')
+    t = re.sub(r' {2,}', ' ', t)
+    return clean_edges(t)
 
 
 def prompt_label_line(head, brk=NEWLINE, width=BOX_WIDTH, measure=text_width):

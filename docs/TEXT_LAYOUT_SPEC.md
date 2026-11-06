@@ -19,6 +19,7 @@ Read it top to bottom: glyphs -> lines -> boxes -> labels -> gates.
 | how many boxes, and where a scroll is | `src/extraction_tools/matching/port_story.py` (`paginate`) |
 | code pairing, labels, gates | `src/extraction_tools/matching/port_derive.py` (`fit_codes`, `codes_match`, `derive`) |
 | what a family's box can hold | `src/extraction_tools/matching/port_caps.py` |
+| which ADV messages have a one-row viewport, and how wide | `src/injection_tools/sysmsg.py` (`display_size`) |
 | which words a description abbreviates | `src/extraction_tools/matching/port_descs.py` (`house_style`) |
 | build-time proof (bytes on the disc) | `src/injection_tools/tstatus.py qa`, `tools/verify_disc.py` |
 | looking at all of it | `tools/textvis/` (page + `serve.py`) |
@@ -51,7 +52,18 @@ complete encoded wording; the retail caller's cell count limits only its
 logical map write, not the VWF name. Dungeon FF0A skill-name inserts use the
 existing dialogue VWF printer with a scratch buffer of `SKILL_MAXLEN + 1`
 bytes (the name bound plus the FF terminator); the builder must still reject
-any name that cannot fit every destination.
+any name that cannot fit every destination. The persona status bottom bar is
+sprite cells, not a text row, and every overlay carries its own copy: ADV and
+DNG (which also draw the fusion bar) and S2D's overworld status page. Each
+overlay's rewritten `CellsWriteRow` stores the regular face's cell coordinates
+- the same mapping `sf_variant_uv` gives the text renderer - plus the glyph's
+advance. Its cel list reproduces
+retail's two entries: the arcana row at dx=0/dy=0 and the name row at retail's
+dx=0x58/dy=4, expanded from ten cells to sixteen. That is retail's second
+cel-entry line: eighty-eight pixels right of the arcana's origin and four
+pixels (half a character) lower. Bit 7 of the writer's page
+argument selects that remap and pins the regular face (the writer has no text
+tier); every other `CellsWriteRow` caller keeps the retail fixed-cell atlas.
 Family storage/scratch bounds remain enforced. In battle object text,
 source-proven translated skill and Persona slots read the battle width table's
 packed bearing and advance through `sf_glyph_layout`; the field kit reads its
@@ -368,8 +380,9 @@ is never shortened or replaced to fit.
    entry establishes its palette indices before drawing: BTLP uses retail
    ink 1 / shadow 2, while ADV uses 2 / 1. BTLP's 4bpp overlap uses the
    shared OR compositor (index 3), whose battle text CLUT is the ink colour.
-7. **The player's name** is a slot 5 glyphs wide (the entry's cap). Any
-   measure that has to price it prices it as 5 of the widest glyph.
+7. **The player's name** is a slot 8 glyphs wide (the entry's cap; the
+   nickname was always 8). Any measure that has to price it prices it as 8
+   of the widest glyph.
 
 ---
 
@@ -390,6 +403,27 @@ so a re-port produces them: `damage` -> `DMG` (the amount; the hazard in
 "damage floors" stays prose), a trailing ` status` after the status' own name,
 and `Instant` -> `Insta`. Wording still wider than the line is routed to manual
 as a draft; no other word is shortened automatically.
+
+**A one-row message viewport has no second line.** Some ADV system messages
+(the Velvet Room's yes/no prompts, the coin-shop notices, ...) are drawn by
+`BgMapInit` into `g_bg_layers[4]` with a rectangle the call site chooses.
+When that block proves `h == 0x10`, the viewport is one 16 px row: a line or
+page move has no row to move to, so it is spelled as the word gap it stood
+for and the whole wording must fit the line that rectangle shows - `w` px,
+read from the same block. That is 240 px for the 15-cell messages; the
+coin-shop notice draws into 11 cells and its line is 176 px, so the default
+240 px budget never applies where the code proves less. `sysmsg.display_size()`
+reads the rectangle from the code that opens each message (not from a list of
+messages); `port_caps.dest_cap` reports a proven one-row row as a fixed
+one-line destination, `port_caps.dest_line_px` carries the proven width, and
+`sysmsg.build` / `port_derive.lay_out` collapse `<FF03>`/`<FFF6>`/`<FF04>` to
+spaces. A call site that proves no local geometry because it inherits one from
+an earlier screen is not guessed: it stays an ordinary box. Wording wider than
+the line never ships: the message keeps its Japanese, a tool's wording is
+routed to manual as `over limit Npx/Mpx; <draft>`, a human's filled row is
+kept and reported (`build/sysmsg_drafts.tsv`, which names the row, its width
+and the draft), and no wording is ever shortened automatically. Nothing here
+fails the build - an unshortened draft is work, not a broken box.
 
 The two battle text windows share the byte-pair decoder, not its output
 buffer. The primary window owns `BTLEVT_BUF_ADDR` (1024 bytes); the second
@@ -667,6 +701,11 @@ to adjacent forty-byte tile-ID arrays at `0x800A3674` and `0x800A369C`.
 descriptors at `0x8009D1B0` describe 8×16 tiles. A capacity change must cover
 both objects' storage, display-entry reservations and visible geometry.
 
+- **One-row destinations** (`sysmsg.display_size`): a proven one-row message
+  carries no line/page move into the disc; its wording is measured as one
+  line of the width that viewport proves (`sysmsg.line_px`). An over-limit
+  wording stays out of the disc (the Japanese shows) and is named in
+  `build/sysmsg_drafts.tsv`; the build still completes.
 - `tstatus.py qa`: **errors: none**. Its width model
   splits lines on the line codes AND respects the box advance.
 - `verify_disc.py`: level 1 (every built file byte-identical on the disc),

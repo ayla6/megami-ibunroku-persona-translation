@@ -37,6 +37,10 @@
 
 Two general checks run on every assembly, not on selected rows or screens:
 
+- `build.py` passes `-erroronwarning` to both armips invocations, so a
+  load-delay or branch-delay warning aborts the build. armips otherwise exits
+  0 on those warnings, which is how a hook can assemble "successfully" while
+  reading a stale register and silently falling back to retail.
 - `build.py` passes `armips -temp build/armips-main.lst` (and
   `build/armips-subs.lst` for the subtitle renderer) and then runs
   `src/injection_tools/write_guard.py check --listing ...`. The listing is the

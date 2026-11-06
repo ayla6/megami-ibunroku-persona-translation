@@ -252,11 +252,13 @@ def reviewed_set():
 reviewed_set.cache = None
 
 
-def check(ja, en, want_label='glossary', alt_label=None):
+def check(ja, en, want_label='glossary', alt_label=None, line_px=None):
     """want_label: 'glossary' (default), a specific 'Label'
     string the en must start with, or None (no label required).
     alt_label: a second acceptable label (the PSP port label during the
-    transition; ported boxes use it, unported ones keep the glossary)."""
+    transition; ported boxes use it, unported ones keep the glossary).
+    line_px: the width the DESTINATION proves (a viewport the code opens);
+    None means the standard box, `vwf_wrap.BOX_WIDTH + 1`."""
     errs = []
     try:
         be = etext.encode(en)
@@ -296,13 +298,16 @@ def check(ja, en, want_label='glossary', alt_label=None):
             errs.append(('width', f'{len(pg)} lines on a page (the page holds {vwf_wrap.PAGE_LINES})'))
             break
         # 239 px max (1 px shadows + uniform 1 px bearings: a 239 line's
-        # shadow always fits); true overflow builds wrapped mid-word.
-        bad = [ln for ln in pg if vwf_wrap.text_width(ln) > vwf_wrap.BOX_WIDTH + 1]
+        # shadow always fits); true overflow builds wrapped mid-word. A
+        # destination that proves its own width (a message viewport the
+        # code opens) is that much narrower and clips silently instead.
+        limit = line_px or vwf_wrap.BOX_WIDTH + 1
+        bad = [ln for ln in pg if vwf_wrap.text_width(ln) > limit]
         if bad:
             # the MEASUREMENT, not a verdict: which line, how many px, and
             # the budget - every overflow anywhere reports this shape
             errs.append(('width', f'{vwf_wrap.text_width(bad[0])} px over '
-                                  f'{vwf_wrap.BOX_WIDTH + 1}: {bad[0][:40]}'))
+                                  f'{limit}: {bad[0][:40]}'))
             break
     if '<FF0E>' in en and vwf_wrap.choice_breaks(en) != en:
         # vwf_wrap.choice_breaks is THE rule (the porters lay the wording
@@ -344,14 +349,16 @@ def check(ja, en, want_label='glossary', alt_label=None):
     return errs
 
 
-def ship_errors(ja, en, want_label=None):
+def ship_errors(ja, en, want_label=None, line_px=None):
     """The errors that keep one box from shipping: exactly what cmd_qa
     counts, exemptions included. A code difference the deviation gate
     approves (a name slot the PSP reorders or drops, a choice the PSP
     adds) is not a broken box - every builder reads its rows through this
-    so the gate can never drift from the QA."""
+    so the gate can never drift from the QA. `line_px` is the width the
+    destination proves when the code that opens it says so."""
     _devs, devs_ok = classify_deviations(ja, en)
-    return [(k, m) for k, m in check(ja, en, want_label=want_label)
+    return [(k, m) for k, m in check(ja, en, want_label=want_label,
+                                     line_px=line_px)
             if not (k == 'codes' and devs_ok)]
 
 

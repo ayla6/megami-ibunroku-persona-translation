@@ -33,7 +33,7 @@ id	pos	psp	en
 31	1:0x30f8	E1:31	Yukino: A game!?<FF02><FF01>
 32	1:0x310c	E1:32	Snow Queen's voice: This school is now<FF03>a castle of ice. There are three<FF03>towers, each with a guardian.<FF02><FF04>If you can defeat them before<FF03>the clocks in each tower<FF03>strikes twelve...<FF02><FF04>I'll turn Saeko and the school<FF03>back to normal.<FF02><FF04>I must leave this mask now and<FF03>prepare to call down<FF03>the Eternal Night.<FF02><FF04>I hope you enjoy yourselves while I'm<FF03>gone. Hahaha... I'll see you later.<FF02><FF01>
 33	1:0x321c	E1:33	Ayase: Hey, wait! Don't leave...!<FF02><FF04>Omigod... Wh-What're we gonna do!?<FF02><FF01>
-34	1:0x3278	E1:34	Ayase: This is all your fault, <FF07><01>!<FF02><FF04>If you never found that stupid mask,<FF03>this wouldn't have happened!<FF02><FF04>You better own up! Are you<FF03>a man or not!? Say something!<FF02><FF01>
+34	1:0x3278	E1:34	Ayase:<FF03>This is all your fault, <FF07><01>!<FF02><FF04>If you never found that stupid mask,<FF03>this wouldn't have happened!<FF02><FF04>You better own up! Are you<FF03>a man or not!? Say something!<FF02><FF01>
 35	1:0x32f0	E1:35	Yukino: Stop it, Yuka! Pointing<FF03>fingers won't help the situation any.<FF02><FF04>It's not like <FF07><01> knew<FF03>what was gonna happen.<FF02><FF01>
 36	1:0x3350	E1:36	Ayase: But Yukino...<FF02><FF01>
 37	1:0x3364	E1:37	Ayase: Whoa! What was that!?<FF02><FF01>
@@ -156,7 +156,7 @@ id	pos	psp	en
 154	9:0x1810	E1:157	Elly: They don't seem to be<FF03>hostile; at least, not for now.<FF02><FF01>
 155	9:0x1834	E1:158	Yukino: Looks like our little<FF03>squad's getting bigger.<FF02><FF01>
 156	9:0x184c	E1:159	Brown: Uh... squad?<FF02><FF01>
-157	9:0x1860	E1:160	Ayase: Huh?<FF03>You mean you and <FF07><01> are like,<FF03>you know... and stuff?<FF02><FF01>
+157	9:0x1860	E1:160	Ayase: Huh?<FF03>You mean you and <FF07><01> are<FF03>like, you know... and stuff?<FF02><FF01>
 158	9:0x1890	E1:161	Nanjo: I'm... not sure what<FF03>you're trying to say, but...<FF02><FF04>There's definitely<FF03>a commonality between us.<FF02><FF01>
 159	9:0x18c0	E1:162	Yukino: Yeah, after we had<FF03>those weird dreams, we can summon...<FF03>Personas, was it?<FF02><FF01>
 160	9:0x18f8	E1:163	Elly: For some reason,<FF03>only those who dreamed of<FF03>the butterfly acquired the power.<FF02><FF04>It also seems related to the demon<FF03>invasion somehow...<FF02><FF01>
@@ -590,8 +590,8 @@ id	pos	psp	en
 588	65:0x1b18	E1:597	Tadashi: ...Nope!<FF02><FF04>All I have is my hand mirror for fixing<FF03>my hair. Is that good enough?<FF02><FF01>
 589	65:0x1b78	E1:598	Tamaki: Of course not, dummy!<FF02><FF04>......! Is this what you meant...?<FF02><FF04>I don't know how it got there, but<FF03>this was in my pocket...<FF02><FF01>
 590	65:0x1c08	E1:599	Tadashi: Wh... What!? Tamaki!<FF02><FF04>Y-You never told me you had that!<FF02><FF04>No... We pledged ourselves to<FF03>each other...<FF02><FF04>And you kept a secret from me!<FF03>Oh, the pain!<FF02><FF01>
-591	65:0x1ca8	E1:600	Tamaki:<FF03>Hey! I only just noticed, okay!?<FF02><FF04>Quit being stupid! Just... let me talk!<FF02><FF04>Here you go, <FF07><01>. Hope this helps.<FF02><FF04>Hahah... Remember how I said,<FF03>"this one's yours"?<FF02><FF04>Well, it looks like I was right.<FF03>But I'm sure you'll do fine.<FF02><FF04>Good luck!<FF02><FF01>
-592	65:0x1d78	E1:601	Tamaki:<FF03>Hey! I only just noticed, okay!?<FF02><FF04>Quit being stupid! Just... let me talk!<FF02><FF04>Here you go, <FF07><01>. Hope this helps.<FF02><FF04>Sorry...<FF03>I wish I could do more to help...<FF02><FF04>I mean, I guess Tadashi and me<FF03>could go with you, but...<FF02><FF04>I think we'd only hold you guys back.<FF02><FF04>Thanks for saving us. Best of luck!<FF02><FF01>
+591	65:0x1ca8	E1:600	Tamaki:<FF03>Hey! I only just noticed, okay!?<FF02><FF04>Quit being stupid! Just... let me talk!<FF02><FF04>Here you go, <FF07><01>.<FF03>Hope this helps.<FF02><FF04>Hahah... Remember how I said,<FF03>"this one's yours"?<FF02><FF04>Well, it looks like I was right.<FF03>But I'm sure you'll do fine.<FF02><FF04>Good luck!<FF02><FF01>
+592	65:0x1d78	E1:601	Tamaki:<FF03>Hey! I only just noticed, okay!?<FF02><FF04>Quit being stupid! Just... let me talk!<FF02><FF04>Here you go, <FF07><01>.<FF03>Hope this helps.<FF02><FF04>Sorry...<FF03>I wish I could do more to help...<FF02><FF04>I mean, I guess Tadashi and me<FF03>could go with you, but...<FF02><FF04>I think we'd only hold you guys back.<FF02><FF04>Thanks for saving us. Best of luck!<FF02><FF01>
 593	65:0x1e70	E1:602	Obtained a Mirror Shard.<FF02><FF01>
 594	65:0x1e88	E1:603	Tadashi:<FF03>Uhh... I don't really understand<FF03>what's going on, but good luck, guys!<FF02><FF04>Leave Tamaki to me!<FF02><FF01>
 595	65:0x1ed0	E1:604	Ayase:<FF03>Wow! Talk about your good luck!<FF03>We got ourselves a Mirror Shard!<FF02><FF04>Good thing we took a little side<FF03>trip to the Dream World.<FF02><FF04>Oh, hey!<FF02><FF04>If Tamaki and Tadashi had a shard...<FF02><FF04>Maybe Nurse Natsumi has one, too!<FF03>Let's ask her!<FF02><FF04>Nurse Natsumi?<FF03>Do you have a Mirror Shard?<FF02><FF04>Nurse Natsumi...? Helllooooo!<FF03>Earth to nurse!<FF02><FF04>Caaaan youuuu heaaaaar meeeee?<FF03>Weee neeed aaaa shaaaard!<FF03>Are you even awake!?<FF02><FF01>
@@ -1117,7 +1117,7 @@ id	pos	psp	en
 1115	144:0x1150	E1:1124	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 1116	144:0x117c	E1:1125	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 1117	144:0x11a8	E1:1126	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-1118	145:0x27d8	E1:1127	Yukino: <FF07><01>! Hold up the mirror!<FF02><FF01>
+1118	145:0x27d8	E1:1127	Yukino: <FF07><01>!<FF03>Hold up the mirror!<FF02><FF01>
 1119	145:0x27f4	E1:1128	Ayase: N-No way...<FF02><FF01>
 1120	145:0x2808	E1:1129	Elly: What... What's going on?<FF02><FF01>
 1121	145:0x2830	E1:1130	Brown: ......? What the...?<FF03>It just flashed.<FF02><FF01>
@@ -1521,7 +1521,7 @@ id	pos	psp	en
 1519	202:0x11d8	E1:1528	Masked man:<FF03>Let's see what you can do.<FF02><FF01>
 1520	203:0x1170	E1:1529	Night Queen's voice: Urgh... I failed...<FF03>against these youths?<FF03>How distressing...<FF02><FF04>But heed my words...<FF02><FF04>Eternal night will fall again so<FF03>long as people seek to turn<FF03>hope to despair...<FF02><FF01>
 1521	203:0x1200	E1:1530	Masked girl:<FF03>No... How could this happen!?<FF03>This is my world...!<FF02><FF01>
-1522	203:0x123c	E1:1531	Masked man: As I thought.<FF03>Improvising didn't suffice, and we<FF03>must take matters into our hands.<FF02><FF04>Your name was <FF0F><01>, yes? I have<FF03>a feeling we'll see each other again.<FF02><FF01>
+1522	203:0x123c	E1:1531	Masked man: As I thought.<FF03>Improvising didn't suffice, and we<FF03>must take matters into our hands.<FF02><FF04>Your name was <FF0F><01>, yes?<FF03>I have a feeling we'll see<FF03>each other again.<FF02><FF01>
 1523	204:0x1150	E1:1532	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 1524	204:0x117c	E1:1533	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 1525	204:0x11a8	E1:1534	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>

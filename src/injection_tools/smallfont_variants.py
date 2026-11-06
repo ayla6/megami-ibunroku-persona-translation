@@ -198,7 +198,11 @@ def prepare(regular, palette, glyph_rows):
 def assembly():
     """Code-to-slot mapping comes from the encoder, not a second alphabet map.
 
-    v0 = code, a0/a1 = retail UV, +2C(sp) = tier. Only at/t6/a0/a1 change.
+    v0 = code, a0/a1 = retail UV, t7 = tier. Only at/t6/a0/a1 change (the
+    v1 entry also pins t7). The renderer sets t7 immediately before the
+    call, so the selector never reads the caller's frame; the sprite-cell
+    writer enters at sf_variant_uv_v1 because it has no text tier and wants
+    the regular face.
     The slot names a cell in the text band, so the UV is that cell's own
     position - no rectangle arithmetic can drift into another screen's page.
     The regular face takes the first spare cells (scattered, so a table);
@@ -213,16 +217,18 @@ def assembly():
     for start in range(0, len(regular), 16):
         values = regular[start:start + 16]
         out.append('    .byte ' + ','.join(str(value) for value in values))
-    out += ['    .align 4', 'sf_variant_uv:']
+    # The writer (adv/cells_row.asm, dng/bar.asm) draws the bar with the
+    # regular face at any text tier, so it enters one instruction earlier
+    # and pins the tier the selector reads.
+    out += ['    .align 4', 'sf_variant_uv_v1:', '    move t7,zero',
+            'sf_variant_uv:']
     slot = 0
     for lo, hi in ranges():
         out += [f'    addiu t6,v0,-{lo}', f'    sltiu at,t6,{hi - lo + 1}',
                 '    bnez at,@@mapped', f'    addiu t6,t6,{slot}']
         slot += hi - lo + 1
     out += ['    jr ra', '    nop', '@@mapped:',
-            '    lw at,0x2C(sp)',
-            '    nop',
-            '    srl at,at,1',                # 0 for stages 1-2, 1 for stage 3
+            '    srl at,t7,1',                # 0 for tiers 0-1, 1 for tiers 2-3
             '    beqz at,@@regular',
             '    nop',
             f'    addiu t6,t6,{base}',        # stage 3: the contiguous run

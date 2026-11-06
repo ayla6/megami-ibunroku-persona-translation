@@ -91,7 +91,9 @@ SF_ST_END          equ 0x24
 
 ;; per-overlay row table, loaded and zeroed with the overlay
 SF_ROWS            equ 64                  ; bounded simultaneous rows; tables ride each overlay
-SF_NAME_BYTES      equ 21                  ; full terminated item/demon scratch
+SF_NAME_BYTES      equ 24                  ; full terminated name scratch: SKILL_MAXLEN
+                                           ; glyphs (23) + FF; covers item/demon (20+FF)
+                                           ; and Persona (16+FF) too
 SF_ROW_REC         equ 56                  ; bytes per record (8 header + 48 codes)
 SF_REC_DST         equ 0x00                ; u32 first map cell (short*); 0 = slot free
 SF_REC_COUNT       equ 0x04                ; u16 cells (the walk's length)

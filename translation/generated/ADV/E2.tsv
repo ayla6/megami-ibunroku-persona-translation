@@ -141,7 +141,7 @@ id	pos	psp	en
 139	22:0x1268	E2:139	Drama club member: Much has<FF03>transpired on this old stage.<FF02><FF04>Its long history has seen countless<FF03>tears, blood, and sweat shed.<FF02><FF04>Though the stage be no more,<FF03>the passion of those who stood<FF03>here shall not fade...<FF02><FF04>How was that?<FF03>It's a tricky speech, so it<FF03>took me a while to memorize.<FF02><FF01>
 140	22:0x1318	E2:140	Drama club member: The time has<FF03>come at last... The ancient passions<FF03>cast on this stage will be free!<FF02><FF04>Just kidding! Cool line though, huh?<FF03>It's part of the script I wrote.<FF02><FF01>
 141	23:0x13a8	E2:141	Nanjo: You're all so slow... You must<FF03>seize the moment, like myself!<FF02><FF04>There's a reason it's said that<FF03>one's youth passes quickly.<FF02><FF01>
-142	23:0x13f0	E2:142	Nanjo: Yes, yes, what IS it, <FF07><01>!?<FF03>If you have nothing to say,<FF03>away with you!<FF02><FF01>
+142	23:0x13f0	E2:142	Nanjo: Yes, yes, what IS it,<FF03><FF07><01>!? If you have<FF03>nothing to say, away with you!<FF02><FF01>
 143	23:0x1428	E2:143	Mark: That Nanjo<FF03>pisses me off so bad...<FF03>I'll find a chink in his armor someday.<FF02><FF01>
 144	23:0x145c	E2:144	Mark: "Young master"! Hah! Did you<FF03>hear that? He's a young master!<FF03>Teeheehee... This is perfect!<FF02><FF01>
 145	23:0x14a4	E2:145	Yukino: Masao and Kei are<FF03>both such children.<FF02><FF01>
@@ -200,7 +200,7 @@ id	pos	psp	en
 198	33:0x15bc	E2:198	Kaneda: Don't act like such<FF03>a know-it-all, missy! Ugh,<FF03>hurry up and get off my property!<FF02><FF01>
 199	34:0x1364	E2:199	Nanjo: Masao seems to be<FF03>acquainted with these officers...<FF02><FF04>Though he doesn't appear to be<FF03>particularly happy to see them.<FF02><FF01>
 200	34:0x13a8	E2:200	Mark: Yeah, well... sorta...<FF02><FF01>
-201	34:0x13c4	E2:201	Mark: Geez, <FF07><01>! What'd you gotta<FF03>bring me to the police station for!?<FF02><FF01>
+201	34:0x13c4	E2:201	Mark: Geez, <FF07><01>!<FF03>What'd you gotta bring me to<FF03>the police station for!?<FF02><FF01>
 202	34:0x13ec	E2:202	Yukino:<FF03>Hah, that look on Mark's face...<FF03>priceless. But uh... the hospital...?<FF02><FF01>
 203	34:0x141c	E2:203	Lieutenant: Well, if it isn't Masao.<FF03>You've been attending school, I hope?<FF02><FF04>Not causing trouble for<FF03>your teachers, are you?<FF02><FF01>
 204	34:0x1470	E2:204	Lieutenant: I'm the one who set<FF03>him straight... I feel somewhat<FF03>responsible for him now.<FF02><FF01>
@@ -568,7 +568,7 @@ id	pos	psp	en
 566	83:0x1184	E2:566	Nanjo: ...<FF05><30><00> Hm? Yes, what is it?<FF02><FF01>
 567	83:0x11a8	E2:567	Mark:<FF03>I wonder if there are other patients<FF03>besides Maki in trouble right now...<FF02><FF01>
 568	83:0x11cc	E2:568	Elly: I'm concerned about<FF03>Maki's mother's condition.<FF05><20><00><FF03>Let's hurry to the shrine!<FF02><FF01>
-569	83:0x1210	E2:569	Yukino: I always thought you<FF03>were a pushover, <FF07><01>...<FF03>I'm surprised how calm you are.<FF02><FF01>
+569	83:0x1210	E2:569	Yukino: I always thought you were<FF03>a pushover, <FF07><01>...<FF03>I'm surprised how calm you are.<FF02><FF01>
 570	83:0x1244	E2:570	Nurse:<FF03>I can't get in touch with the patients!<FF03>What am I supposed to do?<FF02><FF04>Can't you do something!?<FF05><20><00>...I'm sorry.<FF03>I'm asking the impossible.<FF03>I'm just so confused...<FF02><FF01>
 571	83:0x1564	E2:571	Doctor: Are you all right?<FF03>Here, let me take a look...<FF02><FF01>
 572	83:0x158c	E2:572	Doctor: I want to save as<FF03>many people as I can.<FF03>Try not to push yourself too hard.<FF02><FF01>
@@ -673,7 +673,7 @@ id	pos	psp	en
 671	105:0x16c8	E2:671	Nanjo: That clerk seems to<FF03>be suspicious of us.<FF02><FF04>But ARE we really still human<FF03>now that we have this power?<FF03>What do you think?<FF02><FF01>
 672	105:0x1728	E2:672	Mark: I wish I could be as laid<FF03>back as you, <FF07><01>.<FF02><FF01>
 673	105:0x1744	E2:673	Elly: I'm rather surprised that<FF03>some people can remain calm.<FF03>It's very impressive.<FF02><FF01>
-674	105:0x1774	E2:674	Ayase: I didn't know you<FF03>liked this stuff, <FF07><01>!<FF03>Awww, that's so cute!<FF02><FF01>
+674	105:0x1774	E2:674	Ayase: I didn't know you liked<FF03>this stuff, <FF07><01>!<FF03>Awww, that's so cute!<FF02><FF01>
 675	105:0x17a8	E2:675	Storekeeper: Are you... truly human?<FF03>Well, if you're a customer,<FF03>I welcome you.<FF02><FF01>
 676	106:0x13c8	E2:676	Maki: The owner here really knows<FF03>how to sell his product.<FF02><FF01>
 677	106:0x13ec	E2:677	Brown: That was my first<FF03>time in a jail cell!<FF02><FF04>I was kinda nervous at first...<FF03>but it was actually a real blast!<FF02><FF01>
@@ -1030,13 +1030,13 @@ id	pos	psp	en
 1028	159:0x1658	E2:1028	Reiji: ......<FF02><FF01>
 1029	160:0x1244	E2:1029	Maki: This is kinda exciting!<FF02><FF01>
 1030	160:0x1260	E2:1030	Nanjo: It looks like we can enter<FF03>the SEBEC building now.<FF02><FF01>
-1031	160:0x1284	E2:1031	Nanjo: If you're frightened, <FF07><01>,<FF03>I won't blame you for backing out.<FF02><FF04>I'll defeat that man alone if<FF03>that's what it takes!<FF02><FF01>
+1031	160:0x1284	E2:1031	Nanjo: If you're frightened,<FF03><FF07><01>,<FF03>I won't blame you for backing out.<FF02><FF04>I'll defeat that man alone if<FF03>that's what it takes!<FF02><FF01>
 1032	160:0x12c4	E2:1032	Mark:<FF03>I feel like Maki's different somehow...<FF02><FF01>
 1033	160:0x12f0	E2:1033	Elly: Kandori's at SEBEC, yes?<FF02><FF01>
 1034	160:0x1318	E2:1034	Elly: We've brushed up against<FF03>something incredible...<FF03>This could be interesting!<FF02><FF01>
 1035	160:0x1358	E2:1035	Brown: Dude, I'm getting all restless!<FF03>Just turn me loose already!<FF02><FF01>
 1036	160:0x1388	E2:1036	Ayase: Hey, so like, we're just<FF03>ordinary high school kids, right?<FF02><FF04>So even SEBEC wouldn't shoot at<FF03>little old us, would they...?<FF02><FF01>
-1037	160:0x13e4	E2:1037	Ayase: You're such a liar, <FF07><01>!<FF03>Kandori was totally gonna kill us!<FF02><FF01>
+1037	160:0x13e4	E2:1037	Ayase:<FF03>You're such a liar, <FF07><01>!<FF03>Kandori was totally gonna kill us!<FF02><FF01>
 1038	161:0x36dc	E2:1038	Trish: Hi! I'm Trish and this is<FF03>my fountain of healing!<FF02><FF04>This world runs on give-and-take!<FF03>Give me money and I'll take<FF03>away your pain!<FF02><FF01>
 1039	161:0x3750	E2:1039	What do you say?<FF03><FF0E><11><FF01>
 1040	161:0x3764	E2:1040	Trish: Okay!<FF02><FF01>
@@ -1171,7 +1171,7 @@ id	pos	psp	en
 1169	171:0x17b0	E2:1169	Reiji: What the hell? That girl's<FF03>glaring at me...<FF05><20><00> Did I do something?<FF02><FF01>
 1170	171:0x17ec	E2:1170	Smitten girl: Oh, hey. Um...<FF05><20><00> I saw<FF03>this really cool guy a second ago.<FF02><FF04>I've never seen him before.<FF03>A transfer student, maybe?<FF03>Oh man, who is he...?<FF02><FF01>
 1171	171:0x1854	E2:1171	Smitten girl: ...<FF05><15><00> Oh!<FF03>Do you know that guy?<FF03>C'mon, introduce us! Pleeeease!<FF02><FF01>
-1172	172:0x16f8	E2:1172	Principal Ooishi:<FF03>Oh! Did something happen, <FF07><01>...?<FF02><FF04>Don't tell me that girl in<FF03>black showed up again!<FF02><FF01>
+1172	172:0x16f8	E2:1172	Principal Ooishi: Oh! Did something<FF03>happen, <FF07><01>...?<FF02><FF04>Don't tell me that girl in<FF03>black showed up again!<FF02><FF01>
 1173	172:0x1748	E2:1173	Nanjo: No, that's not it. But who's<FF03>this girl in black you mentioned...?<FF02><FF01>
 1174	172:0x1778	E2:1174	Vice-Principal Hanya: You haven't<FF03>heard about her, Kei? A girl in black<FF03>clothes has been appearing...<FF02><FF04>It only started happening recently.<FF03>They say she controls demons.<FF02><FF01>
 1175	172:0x17d4	E2:1175	Elly:<FF03>There are demons here as well...?<FF02><FF01>
@@ -1272,7 +1272,7 @@ id	pos	psp	en
 1270	181:0x14bc	E2:1270	Yuko: Oh... What do you want?<FF03>Did you come to longingly<FF03>examine our valuables?<FF02><FF04>I'm afraid they're not<FF03>accessible to the public.<FF03>So they're not stolen, you see.<FF02><FF01>
 1271	181:0x151c	E2:1271	Mark:<FF03>Why would we care about that stuff?<FF03>What, you think we're thieves?<FF02><FF01>
 1272	181:0x1564	E2:1272	Yuko: My, is that how it came across?<FF03>I didn't mean that at all.<FF02><FF04>It sounds as though you have<FF03>an inferiority complex.<FF02><FF01>
-1273	181:0x15a4	E2:1273	Elly: <FF07><01>... I'm a little disgusted<FF03>now. Do you mind if I wait outside?<FF02><FF01>
+1273	181:0x15a4	E2:1273	Elly: <FF07><01>...<FF03>I'm a little disgusted now.<FF03>Do you mind if I wait outside?<FF02><FF01>
 1274	181:0x15dc	E2:1274	Brown: Ugh That does it!<FF03>You think you're all that just<FF03>'cause you're sorta rich!?<FF02><FF01>
 1275	181:0x1624	E2:1275	Ayase:<FF03>Y'know, you were a lot cuter before.<FF02><FF01>
 1276	181:0x1648	E2:1276	Reiji: ...I'll be waiting outside.<FF02><FF01>
@@ -1300,7 +1300,7 @@ id	pos	psp	en
 1298	182:0x1678	E2:1298	Mark: Hey, that reminds me...<FF03>There was a rumor about how that<FF03>old lady got so rich...<FF02><FF04>About a year back,<FF03>people were sayin' it was 'cause<FF03>she went around raidin' ruins.<FF02><FF04>You believed that stuff, Maki?<FF03>But then again...<FF03>you are a different Maki.<FF02><FF01>
 1299	182:0x1700	E2:1299	Kaneda: Will you shut your yap!?<FF03>If you got no business with me, scram!<FF02><FF01>
 1300	182:0x1730	E2:1300	Kaneda: You're still here!?<FF03>If you got no business with me, scram!<FF02><FF01>
-1301	182:0x1760	E2:1301	Nanjo: <FF07><01>. Maki said that Kaneda<FF03>was working as a ruin raider, yes?<FF02><FF04>In our town, that was nothing<FF03>more than a rumor...<FF02><FF04>But it seems the rumor has become<FF03>reality here. Why, though...?<FF02><FF01>
+1301	182:0x1760	E2:1301	Nanjo: <FF07><01>.<FF03>Maki said that Kaneda was<FF03>working as a ruin raider, yes?<FF02><FF04>In our town, that was nothing<FF03>more than a rumor...<FF02><FF04>But it seems the rumor has become<FF03>reality here. Why, though...?<FF02><FF01>
 1302	182:0x17f0	E2:1302	Maki: A rumor becoming reality...?<FF03>N-No... my head hurts...<FF03>Hey guys, can we get going?<FF02><FF01>
 1303	182:0x1830	E2:1303	Kaneda: What the hell's<FF03>happened to this town!?<FF03>Everything's gone to the dogs!<FF02><FF04>You kids are strong, huh?<FF03>Aren'tcha ashamed of doing<FF03>nothing about it all!?<FF02><FF01>
 1304	182:0x18a8	E2:1304	Mark: Listen, you old hag,<FF03>we're doin' the best we can!<FF02><FF01>
@@ -1580,7 +1580,7 @@ id	pos	psp	en
 1578	197:0x5614	E2:1578	Igor: It isn't enough merely to fuse<FF03>a new Persona in order to<FF03>make it your own...<FF02><FF04>There is rather more to<FF03>it than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of holding<FF03>up to three Personas.<FF02><FF04>A newly-fused Persona will be<FF03>entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas as<FF03>there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and<FF03>substance, to be used<FF03>according to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
 1579	197:0x57e0	E2:1579	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength, or<FF03>increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF02><FF04>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat, but do not<FF03>forget that your Personas<FF03>grow as well.<FF02><FF01>
 1580	197:0x5b78	E2:1580	Igor: Pardon me for being nosy, but...<FF02><FF04>Personas have<FF03>eight levels of growth.<FF03>You should try to develop them fully.<FF02><FF04>I'm sure that there will be an ample<FF03>reward for doing so...<FF02><FF04>You might also be interested to<FF03>know about various factors in fusion.<FF02><FF04>For example, even when creating<FF03>the same Persona...<FF02><FF04>The combination of spell cards,<FF03>the affinities of the demons used...<FF02><FF04>The position of Terra and Luna, and<FF03>any essences added into the mix...<FF02><FF04>All of these factor into the resultant<FF03>Persona. And one more thing...<FF02><FF04>You may also add an item into<FF03>the fusion to trigger a change.<FF02><FF04>There are some items for which<FF03>the result is easily predictable...<FF02><FF04>But sometimes, even I will be unable to<FF03>guess at what may happen.<FF02><FF04>Should that come about,<FF03>I do hope that you'll pardon me.<FF02><FF04>But make no mistake,<FF03>I do believe it is worth trying...<FF02><FF04>I suggest gems for obtaining<FF03>a higher- or lower-ranked<FF03>fusion within an order.<FF02><FF04>As for the other items' effects,<FF03>you should experiment for yourself.<FF02><FF01>
-1581	198:0x14b0	E2:1581	Maki:<FF03>I'm really nervous about this, <FF07><01>.<FF02><FF01>
+1581	198:0x14b0	E2:1581	Maki: I'm really nervous about<FF03>this, <FF07><01>.<FF02><FF01>
 1582	198:0x14d0	E2:1582	Maki: ...What's gotten into Chisato?<FF02><FF01>
 1583	198:0x14f4	E2:1583	Maki: It feels like everyone's<FF03>walking on eggshells around me.<FF03>I'm fine, really.<FF02><FF01>
 1584	198:0x1528	E2:1584	Nanjo: Yamaoka always told<FF03>me to be proud of myself.<FF02><FF04>He also said never to curry<FF03>favor with those stronger than you.<FF02><FF01>
@@ -1908,7 +1908,7 @@ id	pos	psp	en
 1906	217:0x186c	E2:1907	Brown:<FF03>This stuff isn't really my thing.<FF02><FF01>
 1907	217:0x1898	E2:1908	Brown: We're gonna fight that demon?<FF03>Seriously...?<FF02><FF01>
 1908	217:0x18cc	E2:1909	Brown: Once we have<FF03>the Expel Mirror, we can...<FF03>fight that demon... yay.<FF02><FF01>
-1909	217:0x1904	E2:1910	Ayase:<FF03>Oh? You might not look like it, but<FF03>you're pretty studious, <FF07><01>!<FF02><FF01>
+1909	217:0x1904	E2:1910	Ayase: Oh? You might not look like<FF03>it, but you're pretty studious,<FF03><FF07><01>!<FF02><FF01>
 1910	217:0x1930	E2:1911	Ayase: Uuuugh, I can't get that<FF03>monster's smell off me.<FF02><FF01>
 1911	217:0x1958	E2:1912	Ayase: Someday I'll find out<FF03>who that weird guy really is!<FF02><FF01>
 1912	217:0x198c	E2:1913	Reiji: You're taking this all a lot<FF03>better than I thought, <FF07><01>.<FF02><FF01>

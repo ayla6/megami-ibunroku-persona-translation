@@ -33,7 +33,9 @@ class DescriptionDrafts(unittest.TestCase):
                 self.assertEqual(rows[pos]['en'], authored)
                 self.assertEqual(next(r for r in man if r['pos'] == pos)['en'], authored)
                 self.assertFalse(any(call.args[1] == pos for call in route.call_args_list))
-                self.assertIn(pos, (root / 'descs_drafts.tsv').read_text())
+                report = (root / 'descs_drafts.tsv').read_text()
+                self.assertIn(pos, report)
+                self.assertIn(authored, report)
                 self.assertTrue((root / 'descs.asm').is_file())
 
 

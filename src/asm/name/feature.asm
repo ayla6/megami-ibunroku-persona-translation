@@ -28,3 +28,6 @@
 
 ;; --- The caret moves in a ring of the row's real cells (stub in slps_005.00/name_ring.asm) ---
 .include "name/ring.asm"
+
+;; --- Family / given names are 8 characters (writers, preview geometry) ---
+.include "name/long_names.asm"

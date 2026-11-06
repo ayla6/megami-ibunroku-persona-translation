@@ -30,7 +30,7 @@ DNG_TITLE_STRIP_CX      equ 0xAA                ; strip center (0x5A + 0xA0/2)
 
 .org 0x80096D2C                             ; MapDrawName: addiu sp,sp,-0x20
     j       dng_title_hook
-    nop
+    lui     $v1, 0x801D                     ; retail 2nd word, runs in the delay slot
 
 .org DNG_TITLE_HOOK_ADDR
 dng_title_hook:
@@ -44,6 +44,7 @@ dng_title_hook:
     lui     $at, 0x801E
     addu    $at, $v0, $at
     lw      $v0, -0x2FF8($at)            ; entry offset in the pack
+    nop                                  ; R3000 load delay: v0 retires here
     addu    $v0, $v0, $v1                ; abs JA field (20 bytes)
     la      $t0, dng_title_idx
     li      $t1, dng_title_count
@@ -55,6 +56,7 @@ dng_title_hook:
 @@cmp:
     lbu     $t2, 0($t0)
     lbu     $t3, 0($t4)
+    nop                                  ; R3000 load delay: t2 and t3 retire here
     bne     $t2, $t3, @@next
     addiu   $t0, $t0, 1
     addiu   $t4, $t4, 1
@@ -76,7 +78,9 @@ dng_title_hook:
     ;; resume the original body WITH THE FRAME STILL ALLOCATED: the
     ;; body saves s1/ra/s0 into its own frame and its epilogue pops
     ;; it. Restoring sp here would make the body overwrite the caller's stack.
-    j       0x80096D30
+    ;; 0x80096D2C/0x80096D30 are the two stolen words (frame + v1 base);
+    ;; the body continues at the ori that completes v1.
+    j       0x80096D34
     nop
 @@hit:
     ;; the retail ritual also bzeroes the script work area before the
@@ -96,13 +100,14 @@ dng_title_hook:
     addiu   $t7, $t7, 0x730             ; cells
 @@copy:
     lbu     $t4, 0($t5)
+    addiu   $t5, $t5, 1                 ; R3000 load delay: t4 retires here
     sb      $t4, 0($t7)
-    addiu   $t5, $t5, 1
     addiu   $t7, $t7, 1
     xori    $t4, $t4, 0xFF
     bnez    $t4, @@copy
     nop
     lbu     $t4, 0($t5)                 ; the 0x01 of FF01
+    addiu   $t5, $t5, 1                 ; R3000 load delay: t4 retires here
     sb      $t4, 0($t7)
     sw      $t6, 0x10(sp)               ; stash width across the call
     lui     $a0, 0x800A

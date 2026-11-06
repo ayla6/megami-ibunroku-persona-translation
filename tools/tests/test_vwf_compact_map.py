@@ -25,7 +25,7 @@ class CompactMap(unittest.TestCase):
             got = data[base - 1 + code % fusionmsg.MAP_PAGE_SIZE] if base else 0
             self.assertEqual(got, table[code], f'{code:#x}')
 
-    def test_assembled_lookup_and_party_bypass(self):
+    def test_assembled_lookup_and_party_path(self):
         image = (ROOT / 'build/SLPS_005.00').read_bytes()
         symbols = {}
         for line in (ROOT / 'build/persona.sym').read_text().splitlines():
@@ -48,15 +48,27 @@ class CompactMap(unittest.TestCase):
                 cpu.r[REG['a0']] = code; cpu.r[REG['a1']] = int(kind != 'text')
                 cpu.write(0x801ff018, party if kind == 'party' else party - 1)
                 cpu.start(symbols['vwf_glyph_map_small' if kind == 'small' else 'vwf_glyph_map_party'])
-                for _ in range(80):
-                    if cpu.pc in (0x8000fff0, symbols['vwf_name_map']):
+                # The party path tail-jumps into vwf_name_map, so run through it.
+                stops = (0x8000fff0,) if kind == 'party' else (0x8000fff0, symbols['vwf_name_map'])
+                for _ in range(200):
+                    if cpu.pc in stops:
                         break
                     cpu.step()
                 else:
                     self.fail(f'lookup failed to terminate: {kind} {code:#x}')
                 if kind == 'party':
                     self.assertEqual(cpu.pc, 0x8000fff0)
-                    self.assertEqual(cpu.r[REG['v0']], code)
+                    ref = CPU(); ref.load(0x80010000, image[0x800:])
+                    ref.r[REG['sp']] = 0x801ff000; ref.r[REG['ra']] = 0x8000fff0
+                    ref.r[REG['a0']] = code
+                    ref.start(symbols['vwf_name_map'])
+                    for _ in range(80):
+                        if ref.pc == 0x8000fff0:
+                            break
+                        ref.step()
+                    else:
+                        self.fail(f'vwf_name_map failed to terminate: {code:#x}')
+                    self.assertEqual(cpu.r[REG['v0']], ref.r[REG['v0']], f'{kind} {code:#x}')
                 elif kind == 'text' or code >= len(table) or not table[code]:
                     self.assertEqual(cpu.pc, symbols['vwf_name_map'], f'{kind} {code:#x}')
                 else:

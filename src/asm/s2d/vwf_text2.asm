@@ -53,6 +53,16 @@ SPACE_ADVANCE           equ 4                   ; blank advance (font/vwf_width.
 .org 0x8009BA0C
     jal     s2d_txt_put
 
+;; --- name inserts: the text object keeps the slot's real length, not 5 ---
+;; S2dCopyChars (0x8009AEE0) copies the hero's family / given slot into the
+;; text object's cell array. Its fixed cap of five cut every compact name
+;; (8 VWF bytes + FF 01) short and is still right for an older save (five
+;; retail glyphs = exactly ten bytes, no terminator). Ask the slot: FF in
+;; it -> 8, absent -> 5. The call's delay slot is retail's
+;; `ori s2,zero,0xff` at 0x8009AF10.
+.org 0x8009AF0C
+    jal     s2d_name_cap
+
 ;; --- the window's background plate hugs the VWF text ---
 ;; func_800937FC (the message window's per-frame draw) uses the text's
 ;; real extent: a2 = plate width in pixels, including 8px margin per side.
@@ -447,6 +457,29 @@ s2d_plate_w:
     lhu     v0, 4(t0)                   ; the pen = the text's pixel width
     jr      ra
     addiu   v0, v0, 16                  ; + the 8px margin either side
+
+;; S2dCopyChars cap: a0 = a 10-byte name slot; sets s3 (the caller's loop
+;; cap) to 8 when the slot is FF-terminated, else 5. Preserves a0 and every
+;; register the caller keeps live (s0-s2); writes s3 and clobbers t0-t3 only.
+s2d_name_cap:
+    move    t0, a0
+    li      t1, 10
+    li      t3, 0xff
+@@scan:
+    lbu     t2, 0(t0)
+    nop
+    beq     t2, t3, @@compact
+    addiu   t0, t0, 1
+    addiu   t1, t1, -1
+    bnez    t1, @@scan
+    nop
+    li      s3, 5
+    jr      ra
+    nop
+@@compact:
+    li      s3, 8
+    jr      ra
+    nop
 
 .align 4
 s2d_txt_cfg:                            ; engine config (vwf_dialog.asm): state, activate, upload count*, upload queue*

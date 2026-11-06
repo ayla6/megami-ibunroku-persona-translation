@@ -196,6 +196,21 @@ prize bar, characters only where the field is a fixed cell count. The human
 shortens the draft into `en`; only then does the row become theirs and build.
 `route_to_manual` fails loud if a draft ever shows up under `en`.
 
+A human's own filled `en` is never rewritten by a tool (that is their word),
+so a build that finds it over its destination's limit keeps the Japanese on
+the disc and reports the row instead of failing: `descs` writes
+`build/descs_drafts.tsv`, `sysmsg` writes `build/sysmsg_drafts.tsv` with the
+row's position, the measured width and the draft. The row is work waiting
+for a human, not a broken box.
+
+The draft stays the port's job. A queue row that has an empty `en` and a
+`psp` source is *parked*: `port_lastresort.py --apply` re-derives every
+parked row from that source after the renorm (`redraft`). A source that now
+fits ships; one that does not gets a fresh `over limit ...; <draft>` note
+measured against today's destination. The note is never parsed - the next
+run uses the `psp` source again, so a fixed rule fixes the draft instead of
+leaving a stale hand-written one.
+
 No `ja` column anywhere: the source text is looked up via `pos` (PSX
 disc) or `psp` (extracted PSP tree). No notes in generated. No draft
 markers — generated is built only from the PSP discs (`boot`/`pack` extraction).
