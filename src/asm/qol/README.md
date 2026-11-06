@@ -198,10 +198,14 @@ ticks only. A measured draw cost decides how many extra frames fit, so the game 
   Then the previous root position is moved by the step vector too, so the in-between frame continues the
   motion. Word jump threshold also lowered 0x1000 -> 480. Verified with Up held: drawn root positions
   560 480 400 320 240 160 | 720 640 560 ... (80 per frame, no backward frame).
-- Placement: the fixed window 0x800BB5D0..0x800BBBC4 holds S2D VWF glue
-  (`s2d_txt_put`, `s2d_txt_activate`, `s2d_txt_cfg`) and the name spill at 0x800BB8F0.
-  The shared dialogue ring is in resident runtime scratch, not the S2D overlay. The block appends after the image's last blob
-  (`.org sf_item_end_s2d`, 0x800BCC80..0x800BD274) with build-time guards instead of a claimed window; see
+- Placement: the extension behind the S2D image holds the VWF glue at
+  `S2D_GLUE_ADDR` (0x800BB200), the name spill at 0x800BB8F0, the small-font
+  data window at `S2D_SF_DATA_ADDR` (0x800BC200), the full-name block at
+  `S2D_ITEM_DATA_ADDR` (0x800BD200), and the status bar's fixed slots from
+  `S2D_BAR_LIST` (0x800BE800) to `S2D_BAR_HOOK_END` (0x800BE930).
+  The shared dialogue ring is in resident runtime scratch, not the S2D overlay. The block starts at
+  `S2D_BAR_HOOK_END`, after both the bar and the full-name block
+  (`sf_extension_end_s2d`), with build-time guards instead of a claimed window; see
   the rules below.
 - Measured overworld at BMarket (stock CPU): a draw tick costs ~2.1 vblanks, 1.5 of them in the world
   object sort 0x8008B968 (52 GsSortObject4 objects), so the overworld stays at 15 fps there. Setting the
@@ -209,12 +213,13 @@ ticks only. A measured draw cost decides how many extra frames fit, so the game 
   DuckStation UI (181%) the user gets a smooth 30 fps there (see the recommended setting below).
 - Space: DNG reserves 0x5C0 bytes at the next 16-byte boundary after
   `dng_glue_end`, bounded by `DNG_SPILL_ADDR`; its placement follows dialogue
-  code/buffer growth instead of overlapping it. S2D code is appended after `sf_item_end_s2d` (the
-  end of the same loaded sector: 0x58EB0 bytes = 178 sectors, loaded to 0x800BD3C4, so the sector count
-  does not change).
-- Placement rule for QoL blocks: never claim a fixed window behind an image. Place the block at the end of
-  the image (`sf_item_end_s2d`) or behind the feature that owns the space (`dng_glue_end`), and assert the
-  bounds at assembly time (`.error`); an overlap must be a build error, never a crash in game.
+  code/buffer growth instead of overlapping it. S2D code starts at
+  `S2D_BAR_HOOK_END`; it grows the image past the base build's last sector
+  (base 370028 bytes, 60fps 371520) and is bounded by `S2D_ITEM_DATA_END`
+  (0x800E0000).
+- Placement rule for QoL blocks: never claim a fixed window behind an image. Place the block after the
+  last blob that owns the overlay's extension (S2D: `S2D_BAR_HOOK_END`; DNG: behind `dng_glue_end`), and
+  assert the bounds at assembly time (`.error`); an overlap must be a build error, never a crash in game.
 - Test helpers (scratchpad, not in the repo): fps.py (presented frames vs vblanks), ticks.py (vblank
   stamps of real ticks, `dngq_vars+4` / `s2dq_vars+4`), qpatch.py / qpatch_s2d.py (live patch from build/).
 
@@ -302,9 +307,10 @@ VSync semantics (read from the code, important):
 - Measured: 14.9 fps idle and walking; uncapped ~42 fps at stock CPU (needs more overclock than the
   dungeon for 60); 30 fps holds.
 - Free space: S2D glue area 0x800BB200..0x800BB8E8 (used up to 0x800BB7A8), then the name spill
-  (0x800BB8F0..0x800BB9C5) and the small-font / full-name block from 0x800BC200 to `sf_item_end_s2d`
-  (0x800BCC80). The QoL block is appended after that label (0x800BCC80..0x800BD274); nothing else may
-  claim a fixed window in this range.
+  (0x800BB8F0..0x800BB9C5), the small-font / full-name block from 0x800BC200 to `sf_extension_end_s2d`
+  (0x800BE62C), and the status bar slots from `S2D_BAR_LIST` (0x800BE800) to `S2D_BAR_HOOK_END`
+  (0x800BE930). The QoL block starts after those (0x800BE930..0x800BEF04); nothing else may claim a
+  fixed window in this range.
 
 ### Encounters / RNG
 - Encounter-related work happens per step in both engines, so encounter odds per step do not depend on

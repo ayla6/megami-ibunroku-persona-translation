@@ -15,11 +15,12 @@
 .definelabel S2DQ_UPLOADQ, 0x80093BBC          ; one-shot image upload queue
 ;; Placement: the area behind the S2D image is partitioned by the other features
 ;; (VWF glue from S2D_GLUE_ADDR, the name spill at 0x800BB8F0, the smallfont
-;; kit at S2D_SF_DATA_ADDR and the full-name block at S2D_ITEM_DATA_ADDR).
+;; kit at S2D_SF_DATA_ADDR, the full-name block at S2D_ITEM_DATA_ADDR and the
+;; status bar's fixed slots at S2D_BAR_LIST..S2D_BAR_HOOK_END).
 ;; The shared dialogue ring is resident scratch, not part of this overlay.
-;; The block is appended after
-;; the image's last blob (sf_extension_end_s2d) instead of claiming a fixed window;
-;; the guards below turn an overlap into a build error, not a crash in game.
+;; The block starts at the end of the highest fixed blob instead of claiming a
+;; window of its own; the guards below turn an overlap into a build error, not
+;; a crash in game.
 
 ;; main loop: update; draw tick -> subframes, then the real draw tick (delay slot nop kept)
 .org 0x8008B77C
@@ -50,11 +51,17 @@
 ;; restored after drawing, NOT an animation counter. It must run on every
 ;; subframe, just like the plate's matching +0xF0 at 0x80093F90.
 
-.org sf_extension_end_s2d
+;; The bar is included above, so its slots are already placed. Start after the
+;; higher of the two blobs; bar.asm itself refuses an extension that reaches
+;; S2D_BAR_LIST, so S2D_BAR_HOOK_END is always the later end here.
+.if sf_extension_end_s2d > S2D_BAR_HOOK_END
+    .error "qol/60fps: the S2D image extension reaches the status bar slots"
+.endif
+.org S2D_BAR_HOOK_END
 .align 4
 s2dq_start:
-.if s2dq_start < s2d_glue_end
-    .error "qol/60fps: the S2D image ends below the VWF ring: this block would overlap it"
+.if s2dq_start < sf_extension_end_s2d
+    .error "qol/60fps: the block starts inside the S2D image extension"
 .endif
 
 ;; ---- draw-tick driver
