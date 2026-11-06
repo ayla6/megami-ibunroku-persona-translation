@@ -424,6 +424,11 @@ def emit_titles(rows, resolved):
     for (_jb, (en, px)), script in zip(items, blobs):
         if not script.endswith(b'\xff\x01'):
             raise SystemExit(f'dngnames: title lacks FF01: {en!r}')
+        # MapDrawName's cells are 0x22 bytes: glyphs + FF 01 must fit them.
+        if len(script) - 2 > 0x20:
+            raise SystemExit(
+                f'dngnames: title needs more than the map-name cells: '
+                f'{en!r} ({len(script) - 2}/32 glyphs)')
         chars = [b - 0x88 for b in script[:-2]]
         if any(c < 0 or c >= len(widths) for c in chars):
             raise SystemExit(f'dngnames: title is not a plain VWF glyph run: {en!r}')

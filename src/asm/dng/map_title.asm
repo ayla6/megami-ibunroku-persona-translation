@@ -36,6 +36,10 @@ DNG_TITLE_STRIP_CX      equ 0xAA                ; strip center (0x5A + 0xA0/2)
 dng_title_hook:
     addiu   sp, sp, -0x20               ; stolen prologue
     sw      ra, 0x18(sp)
+    sw      $a0, 0x1C(sp)               ; map index: the retail body needs
+                                        ; it again after a late fallback
+                                        ; (bzero clobbers the caller-saved
+                                        ; ABI registers)
     ;; entry pointer, same math as the original head
     lui     $v1, 0x801D
     ori     $v1, $v1, 0xD000
@@ -80,34 +84,72 @@ dng_title_hook:
     ;; it. Restoring sp here would make the body overwrite the caller's stack.
     ;; 0x80096D2C/0x80096D30 are the two stolen words (frame + v1 base);
     ;; the body continues at the ori that completes v1.
+    ;;
+    ;; The body recomputes the pack entry from a0 and the v1 pack base,
+    ;; and saves ra into the frame for its own epilogue. A late fallback
+    ;; (after bzero) has all three clobbered - ra now points at the
+    ;; hook's post-bzero continuation - so restore them from this frame
+    ;; or the body returns into the middle of the hit path.
+    lw      $ra, 0x18(sp)
+    lw      $a0, 0x1C(sp)
+    lui     $v1, 0x801D
     j       0x80096D34
     nop
 @@hit:
-    ;; the retail ritual also bzeroes the script work area before the
+    ;; The retail ritual also bzeroes the script work area before the
     ;; copy (MapDrawName head: 0x800412FC = BIOS bzero(cells, 0x22)).
     ;; Do it here too: stale bytes behind the terminator are scratch
     ;; the map-message system reuses.
+    ;;
+    ;; bzero is a BIOS call: its ABI does not preserve the caller-saved
+    ;; t registers (t0/t1/t2 come back as BIOS internals). The matched
+    ;; row pointer MUST live somewhere safe across it, or the width and
+    ;; blob offset below are read from the BIOS image and the copy walks
+    ;; arbitrary memory. Spill it in the frame's free 0x14 slot.
+    sw      $t0, 0x14(sp)
     lui     $a0, 0x800A
     addiu   $a0, $a0, 0x730
     ori     $a1, $zero, 0x22
     jal     0x800412FC                  ; bzero(cells, 0x22)
     nop
+    lw      $t0, 0x14(sp)               ; the matched row, after the call
+    nop                                 ; R3000 load delay: t0 retires here
     lbu     $t6, 0($t0)                 ; strip width px
+    nop                                 ; R3000 load delay: t6 retires here
+    sltiu   $t4, $t6, 0xA1              ; the map strip's own width limit
+    beqz    $t4, @@miss                 ; corrupt row: retail
+    nop
     lhu     $t5, 2($t0)                 ; blob offset
+    li      $t4, dng_title_blob_end - dng_title_blob
+    sltu    $t4, $t5, $t4               ; offset inside this build's blob
+    beqz    $t4, @@miss                 ; corrupt row: retail
+    nop
     la      $t4, dng_title_blob
     addu    $t5, $t5, $t4
     lui     $t7, 0x800A
     addiu   $t7, $t7, 0x730             ; cells
+    ori     $t8, $zero, 0x20            ; glyph bytes before the FF 01 pair
 @@copy:
     lbu     $t4, 0($t5)
     addiu   $t5, $t5, 1                 ; R3000 load delay: t4 retires here
+    xori    $t9, $t4, 0xFF
+    beqz    $t9, @@end
+    nop
+    beqz    $t8, @@miss                 ; no FF in the cells: retail
+    nop
     sb      $t4, 0($t7)
     addiu   $t7, $t7, 1
-    xori    $t4, $t4, 0xFF
-    bnez    $t4, @@copy
-    nop
+    b       @@copy
+    addiu   $t8, $t8, -1
+@@end:
+    sb      $t4, 0($t7)                 ; the 0xFF of FF01
+    addiu   $t7, $t7, 1
     lbu     $t4, 0($t5)                 ; the 0x01 of FF01
     addiu   $t5, $t5, 1                 ; R3000 load delay: t4 retires here
+    nop
+    li      $t9, 1
+    bne     $t4, $t9, @@miss            ; malformed row: retail
+    nop
     sb      $t4, 0($t7)
     sw      $t6, 0x10(sp)               ; stash width across the call
     lui     $a0, 0x800A

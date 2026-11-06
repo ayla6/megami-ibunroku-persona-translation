@@ -714,6 +714,19 @@ to adjacent forty-byte tile-ID arrays at `0x800A3674` and `0x800A369C`.
 descriptors at `0x8009D1B0` describe 8×16 tiles. A capacity change must cover
 both objects' storage, display-entry reservations and visible geometry.
 
+**Dungeon map titles.** `MapDrawName` (DNG `0x80096D2C`) hands
+`g_map_name_cells` to `BgMapInit` as a script. The hook matches the map pack's
+20-byte field against the generated table and writes the full PSP-US name and
+`FF 01` into the cells; the cells' script area is `0x22` bytes, so a title is
+at most 32 glyph bytes and `dngnames.py` refuses a longer one. The strip hugs
+the text (`x = 0xAA - width/2`) only while the row's width stays `0..0xA0`.
+Every check failure resumes the retail ten-pair body, which still needs the
+hook's saved `ra`, `a0` and the `0x801D0000` pack base: the BIOS `bzero` the
+hook calls does not preserve caller-saved registers, so the matched row
+pointer and the fallback's entry state live in the hook's frame, never in
+`t*`. `tools/tests/test_map_title.py` executes every row and every fallback,
+and its BIOS stub clobbers the same caller-saved set as the console's BIOS.
+
 - **One-row destinations** (`sysmsg.display_size`): a proven one-row message
   carries no line/page move into the disc; its wording is measured as one
   line of the width that viewport proves (`sysmsg.line_px`). An over-limit

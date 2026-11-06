@@ -25,6 +25,9 @@ BZERO = 0x800412FC
 BGMAP_INIT = 0x800765C4
 RETURN = 0x801F0000
 FIELD_OFF = 0x100
+GUARD = CELLS - 0x30        # canary around the 0x22-byte script area
+GUARD_LEN = 0xC0
+CANARY = 0x5A
 
 
 class BuiltMapTitle(unittest.TestCase):
@@ -56,14 +59,23 @@ class BuiltMapTitle(unittest.TestCase):
             end = cls.title.index(b'\xff\x01', start) + 2
             cls.rows.append((key, width, cls.title[start:end]))
 
-    def machine(self, key):
-        """A map pack whose entry 0 names the field that holds `key`."""
+    def machine(self, key, fake_row=None):
+        """A map pack whose entry 0 names the field that holds `key`.
+
+        `fake_row` replaces title row 0, so the defensive checks can be
+        exercised without touching the generated table.
+        """
         c = CPU()
         c.load(DNG_BASE, self.dng)
+        if fake_row is not None:
+            c.load(self.sym['dng_title_idx'], fake_row)
         pack = bytearray(FIELD_OFF + len(key))
         struct.pack_into('<I', pack, 8, FIELD_OFF)   # entry table: map 0
         pack[FIELD_OFF:FIELD_OFF + len(key)] = key
         c.load(PACK, bytes(pack))
+        # Canary around the name cells: the hook must never write past
+        # cells + 0x22 (the script area MapDrawName zeroes).
+        c.load(GUARD, bytes([CANARY]) * GUARD_LEN)
         c.r[REG['sp']], c.r[REG['ra']] = 0x801CF000, RETURN
         c.r[REG['a0']] = 0
         return c
@@ -74,12 +86,20 @@ class BuiltMapTitle(unittest.TestCase):
         def intercept(cpu):
             if cpu.pc == FALLBACK:
                 calls.append(('fallback',))
-                cpu.pc, cpu.next_pc = RETURN, RETURN + 4
-                return True
+                return False                    # run the retail body too
             if cpu.pc == BZERO:
                 a0, a1 = cpu.r[REG['a0']], cpu.r[REG['a1']]
                 for i in range(a1):
                     cpu.write(a0 + i, 0, 1)
+                # A BIOS call does not preserve the caller-saved registers.
+                # The real bzero returns with t0/t1/t2 holding BIOS values
+                # (observed: t0=0xBFC01ACC, t1=t2=0xA0); clobber the whole
+                # caller-saved set so any hook that keeps state in one
+                # fails here instead of in game.
+                for reg in ('v0', 'v1', 'a0', 'a1', 'a2', 'a3',
+                            't0', 't1', 't2', 't3', 't4', 't5',
+                            't6', 't7', 't8', 't9'):
+                    cpu.r[REG[reg]] = 0xDEAD0000 | (REG[reg] & 0xFF)
                 ret = cpu.r[REG['ra']]
                 cpu.pc, cpu.next_pc = ret, ret + 4
                 return True
@@ -94,17 +114,33 @@ class BuiltMapTitle(unittest.TestCase):
 
         c.start(ENTRY)
         c.run(RETURN, limit=2000000, intercept=intercept)
-        return calls
+        return calls, c
+
+    @staticmethod
+    def cells(cpu, offset, length):
+        """Read `length` bytes of the map-name cells (CPU.read returns ints)."""
+        return bytes(cpu.read(CELLS + offset + i, 1) for i in range(length))
+
+    def assert_cells_bounded(self, cpu):
+        """Nothing outside the 0x22-byte script area was written."""
+        guard = bytes(cpu.read(GUARD + i, 1) for i in range(GUARD_LEN))
+        for off, value in enumerate(guard):
+            if CELLS <= GUARD + off < CELLS + 0x22:
+                continue
+            self.assertEqual(value, CANARY,
+                             f'stray write at {GUARD + off:#x}')
+        self.assertEqual(cpu.r[REG['sp']], 0x801CF000, 'stack not balanced')
 
     def test_every_title_row_hits_and_copies_its_full_title(self):
         for i, (key, width, script) in enumerate(self.rows):
             with self.subTest(row=i, width=width):
-                calls = self.execute(self.machine(key))
+                calls, cpu = self.execute(self.machine(key))
                 self.assertEqual([c[0] for c in calls], ['bgmap'],
                                  'Japanese field fell back to retail')
                 self.assertEqual(calls[0][1:3], (CELLS, 0))
                 self.assertEqual(calls[0][3][:len(script)], script)
                 self.assertEqual(calls[0][3][len(script)], 0)
+                self.assert_cells_bounded(cpu)
 
     def test_unknown_field_uses_the_retail_fallback(self):
         keys = {row[0] for row in self.rows}
@@ -118,8 +154,31 @@ class BuiltMapTitle(unittest.TestCase):
                 continue
             break
         self.assertNotIn(bytes(key), keys)
-        calls = self.execute(self.machine(bytes(key)))
-        self.assertEqual(calls, [('fallback',)])
+        calls, cpu = self.execute(self.machine(bytes(key)))
+        self.assertEqual([c[0] for c in calls], ['fallback', 'bgmap'])
+        # retail's ten-pair path always ends the script at cells[20:22]
+        self.assertEqual(self.cells(cpu, 20, 2), b'\xff\x01')
+        self.assert_cells_bounded(cpu)
+
+    def test_corrupt_row_falls_back_before_the_copy(self):
+        key = bytes(range(20))
+        for width, offset in ((0xA1, 0), (100, 0xFFFF)):
+            with self.subTest(width=width, offset=offset):
+                row = key + bytes([width, 0]) + struct.pack('<H', offset)
+                calls, cpu = self.execute(self.machine(key, fake_row=row))
+                self.assertEqual([c[0] for c in calls], ['fallback', 'bgmap'])
+                self.assertEqual(self.cells(cpu, 20, 2), b'\xff\x01')
+                self.assert_cells_bounded(cpu)
+
+    def test_oversized_title_cannot_overrun_the_cells(self):
+        key = bytes(range(20, 40))
+        row = key + bytes([100, 0]) + struct.pack('<H', 0)
+        c = self.machine(key, fake_row=row)
+        c.load(self.sym['dng_title_blob'], bytes([0x90]) * 33 + b'\xff\x01')
+        calls, cpu = self.execute(c)
+        self.assertEqual([item[0] for item in calls], ['fallback', 'bgmap'])
+        self.assertEqual(self.cells(cpu, 20, 2), b'\xff\x01')
+        self.assert_cells_bounded(cpu)
 
     def test_mikage_subway_fields_show_the_full_names(self):
         pack = ROOT / 'build/D01/D0DM.BIN'
@@ -141,8 +200,9 @@ class BuiltMapTitle(unittest.TestCase):
                 self.assertIn(text, found, 'title table lost the PSP-US name')
                 self.assertEqual(data[off:off + 20], found[text],
                                  'built pack field does not carry the title key')
-                calls = self.execute(self.machine(found[text]))
+                calls, cpu = self.execute(self.machine(found[text]))
                 self.assertEqual([c[0] for c in calls], ['bgmap'])
+                self.assert_cells_bounded(cpu)
 
 
 if __name__ == '__main__':
