@@ -40,6 +40,8 @@
   #status { white-space: pre-wrap; }
   #status.error { color: #b00; }
   #results a { display: block; }
+  #scratch-warning { color: #ff0; font-weight: bold; }
+  #low-ram-note { color: #ff0; margin-bottom: 0; }
   input[type="file"] {width: 100%}
   p, label {margin-top: 0;}
   a { color: #FF0; }
@@ -48,6 +50,7 @@
 <body>
 <div id="content">
 <h1>Persona 1 Translation Patcher (Beta)</h1>
+<a href="https://github.com/ayla6/megami-ibunroku-persona-translation">source code - ayla6/megami-ibunroku-persona-translation</a>
 
 <fieldset>
   <legend>Source disc</legend>
@@ -67,8 +70,23 @@
 
 <div id="status"></div>
 <div id="results"></div>
+<p id="scratch-warning" hidden>Please be sure that the patched disc won't
+accidentally stay in your browser's storage forever! Download it or click
+<button id="delete-scratch" type="button">Delete</button>.</p>
 </fieldset>
-<a href="https://github.com/ayla6/megami-ibunroku-persona-translation">source code - ayla6/megami-ibunroku-persona-translation</a>
+<fieldset>
+  <legend>Memory</legend>
+  <label class="choice">
+    <input type="checkbox" id="low-ram">
+    <span class="choice-text">
+      <span class="choice-name">I don't have enough RAM mode</span>
+      <span class="choice-description">Writes the patched disc to browser storage instead of keeping it in memory. It's slower on a computer, but it lets low-memory devices patch.</span>
+    </span>
+  </label>
+  <p id="low-ram-note" hidden></p>
+</fieldset>
+
+<script src="scratch.js"></script>
 <script src="app.js"></script>
 </body>
 </div>

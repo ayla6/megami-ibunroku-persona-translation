@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[2]
 VENDOR = ROOT / 'webpatcher' / 'vendor'
 TESTS = Path(__file__).resolve().parent
 HARNESS = TESTS / 'webpatcher_chain.js'
+OPFS_HARNESS = TESTS / 'webpatcher_opfs_chain.js'
 IDENTIFY = TESTS / 'webpatcher_identify.js'
 
 
@@ -115,7 +116,8 @@ class IdentifySourceTest(unittest.TestCase):
     def run_identify(self, source, patch, expected):
         proc = subprocess.run(
             ['node', str(IDENTIFY), str(VENDOR / 'xdelta3.js'),
-             str(ROOT / 'webpatcher' / 'workerfs.js'), source, patch,
+             str(ROOT / 'webpatcher' / 'workerfs.js'),
+             str(ROOT / 'webpatcher' / 'xdelta.js'), source, patch,
              str(expected)],
             capture_output=True, text=True, timeout=300)
         self.assertEqual(proc.returncode, 0, proc.stderr + proc.stdout)
@@ -165,7 +167,7 @@ class DecodeChainTest(unittest.TestCase):
                         target_file, patch], check=True)
         self.patches.append(patch)
 
-    def test_chain_matches_cli_ground_truth(self):
+    def run_harness(self, harness, marker, opfs=False):
         with tempfile.TemporaryDirectory() as tmp:
             self.work = tmp
             self.patches = []
@@ -178,13 +180,23 @@ class DecodeChainTest(unittest.TestCase):
             self.encode(os.path.join(tmp, 'target0.bin'), final)
             expected = hashlib.sha256(final).hexdigest()
 
-            proc = subprocess.run(
-                ['node', str(HARNESS), str(VENDOR / 'xdelta3.js'),
-                 str(ROOT / 'webpatcher' / 'workerfs.js'), tmp,
-                 expected, 'p0.xdelta', 'p1.xdelta'],
-                capture_output=True, text=True, timeout=300)
+            argv = ['node', str(harness), str(VENDOR / 'xdelta3.js'),
+                    str(ROOT / 'webpatcher' / 'workerfs.js')]
+            if opfs:
+                argv.append(str(ROOT / 'webpatcher' / 'scratch.js'))
+                argv.append(str(ROOT / 'webpatcher' / 'opfsfs.js'))
+            argv.append(str(ROOT / 'webpatcher' / 'xdelta.js'))
+            argv += [tmp, expected, 'p0.xdelta', 'p1.xdelta']
+            proc = subprocess.run(argv, capture_output=True, text=True, timeout=300)
             self.assertEqual(proc.returncode, 0, proc.stderr + proc.stdout)
-            self.assertIn('CHAIN_OK', proc.stdout)
+            self.assertIn(marker, proc.stdout)
+
+    def test_chain_matches_cli_ground_truth(self):
+        self.run_harness(HARNESS, 'CHAIN_OK')
+
+    def test_opfs_chain_matches_cli_ground_truth(self):
+        """The optional on-disk scratch filesystem applies the same chain."""
+        self.run_harness(OPFS_HARNESS, 'OPFS_CHAIN_OK', opfs=True)
 
 
 if __name__ == '__main__':

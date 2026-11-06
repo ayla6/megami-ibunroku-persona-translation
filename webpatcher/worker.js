@@ -12,10 +12,11 @@
  * check-only mode (-J, decodes and verifies, writes nothing): rev1-to-rev0
  * succeeds only on a Rev 1 disc, rev0-to-base only on a Rev 0 disc.
  *
- * Message in:  {type: 'apply', source, patchFiles, steps, sourceExpect}
+ * Message in:  {type: 'apply', source, patchFiles, steps, sourceExpect,
+ *               keepScratch, scratchName, useScratch}  // page-held OPFS dirs
  *              {type: 'identify', source, expect}
  * Message out: {type: 'progress', message}
- *              {type: 'done', blob, bytes}
+ *              {type: 'done', blob, bytes, scratchDir}
  *              {type: 'identified', rev}
  *              {type: 'error', message}
  */
@@ -28,17 +29,8 @@ var Module = {
   onRuntimeInitialized: () => markRuntimeReady(),
 };
 
-importScripts('vendor/xdelta3.js', 'workerfs.js');
-
-function runXdelta(args) {
-  try {
-    Module.callMain(args);
-    return 0;
-  } catch (err) {
-    if (err && typeof err.status === 'number') return err.status;  // ExitStatus
-    throw err;
-  }
-}
+importScripts('vendor/xdelta3.js', 'workerfs.js', 'scratch.js', 'opfsfs.js',
+              'xdelta.js');
 
 /* Match the selected file against the manifest's original discs by running
  * a release patch in check-only mode from it: the patch's own source and
@@ -89,11 +81,17 @@ self.onmessage = async event => {
   const msg = event.data;
   if (msg && msg.type === 'identify') return identifySource(msg);
   if (!msg || msg.type !== 'apply') return;
+
+  const work = '/patchwork';
+  const input = work + '/in';      // mounted read-only; outputs go in `out`
+  const out = work + '/out';
+  let FS = null;
+  let scratch = null;
+  let outMounted = false;
+
   try {
     await runtimeReady;
-    const FS = Module.FS;
-    const work = '/patchwork';
-    const input = work + '/in';      // mounted read-only; outputs go in `work`
+    FS = Module.FS;
 
     postMessage({type: 'progress', message: 'checking the source disc'});
     FS.mkdir(work);
@@ -109,10 +107,23 @@ self.onmessage = async event => {
           + ' disc - select the .bin image, not the .cue');
     }
 
+    /* Memory is the default. The page asks for OPFS only in its low-RAM
+     * mode; then the two output slots live on disk, so the chain never holds
+     * a disc image in the JS heap. `scratch` is null when OPFS is
+     * unavailable and the slots live in MEMFS as usual. */
+    scratch = msg.useScratch ? await OPFSWorkspace.open(
+        ['out0.bin', 'out1.bin'], undefined, msg.keepScratch, msg.scratchName)
+        : null;
+    if (scratch) {
+      OPFSWorkspace.mount(FS, scratch, out);
+      outMounted = true;
+    }
+    const outDir = scratch ? out : work;
+
     let from = sourcePath;
     for (let index = 0; index < msg.steps.length; index++) {
       const step = msg.steps[index];
-      const to = `${work}/out${index % 2}.bin`;  // never the source of this step
+      const to = `${outDir}/out${index % 2}.bin`;  // never the source of this step
       postMessage({type: 'progress', message: 'Applying ' + step.patch});
       const status = runXdelta(
           ['-d', '-f', '-q', '-s', from, input + '/' + step.patch, to]);
@@ -122,18 +133,43 @@ self.onmessage = async event => {
             + " not match the original image this release patches, or the"
             + ' release files are damaged');
       }
-      if (from !== sourcePath) FS.unlink(from);  // drop the previous intermediate
+      /* Drop the previous intermediate before the next step: only the
+       * current input and the output being written exist at any time. */
+      if (from !== sourcePath) FS.truncate(from, 0);
       from = to;
     }
 
     postMessage({type: 'progress', message: 'Preparing the download'});
-    const bytes = FS.readFile(from);
-    postMessage({type: 'done',
-                 blob: new Blob([bytes], {type: 'application/octet-stream'}),
-                 bytes: bytes.length});
+    let blob;
+    let bytes;
+    if (scratch) {
+      /* The OPFS File is a disk-backed Blob: no disc-sized copy is made
+       * here. finish() keeps the one slot it returns, and the page removes
+       * the directory once a newer result replaces this download. */
+      blob = await OPFSWorkspace.finish(scratch, from);
+      bytes = blob.size;
+    } else {
+      /* MEMFS already holds the bytes as a Uint8Array. FS.readFile would
+       * add a disc-sized copy and the Blob copies again; hand the node's
+       * view to the Blob instead. */
+      const node = FS.lookupPath(from).node;
+      const data = node && typeof node.usedBytes === 'number'
+          ? node.contents.subarray(0, node.usedBytes)
+          : FS.readFile(from);
+      blob = new Blob([data], {type: 'application/octet-stream'});
+      bytes = data.length;
+    }
+    postMessage({type: 'done', blob, bytes,
+                 scratchDir: scratch ? scratch.dirName : null});
   } catch (err) {
     postMessage({type: 'error', message: String((err && err.message) || err)});
   } finally {
-    try { Module.FS.unmount('/patchwork/in'); } catch (err) {}
+    if (FS) {
+      try { FS.unmount(input); } catch (err) {}
+      if (outMounted) {
+        try { FS.unmount(out); } catch (err) {}
+      }
+    }
+    if (scratch) await OPFSWorkspace.close(scratch);
   }
 };

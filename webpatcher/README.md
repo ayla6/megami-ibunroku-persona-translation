@@ -32,7 +32,13 @@ produced the release patches) compiled to WebAssembly - see
   patch in xdelta's check-only mode (`-J`, decode and verify but write
   nothing). `rev1-to-rev0` succeeds only on a Rev 1 disc and `rev0-to-base`
   only on a Rev 0 disc, so the patch's own checksums decide - no radio
-  buttons, no filename sniffing.
+  buttons, no filename sniffing. Apply stays available while that check (and
+  its patch download) is still running; a click waits for it. A file that is
+  neither revision is refused with the reason, and nothing is written.
+- The base patch (`rev0-to-base.xdelta`, about 3 MB) is downloaded as soon
+  as the page opens, before a disc is picked, and every patch fetched stays
+  cached for the visit. Identifying a disc and then applying it - or applying
+  again - downloads each file only once.
 - The chain is derived from the manifest itself: each patch's
   `source_sha256` equals the `target_sha256` of the patch before it, so
   the page walks the chain (for example `rev1-to-rev0` on Rev 1 discs,
@@ -41,10 +47,11 @@ produced the release patches) compiled to WebAssembly - see
   instead of producing a download.
 - The source disc and patch files are mounted read-only through a small
   WORKERFS (`workerfs.js`) because the vendored wasm build exposes
-  Emscripten's `FS` but not its workerfs library. xdelta's output is written
-  to the writable directory around that mount, so the 700 MB disc is never
-  copied into the worker heap. A rebuild that includes workerfs makes the
-  shim a no-op.
+  Emscripten's `FS` but not its workerfs library. A rebuild that includes
+  workerfs makes the shim a no-op. xdelta's output goes to the writable
+  directory around that mount: MEMFS in the worker heap by default, or OPFS
+  files on disk in low-RAM mode (`opfsfs.js`). Either way the source disc is
+  never copied into the worker heap.
 - The `.cue` is generated fresh (single MODE2/2352 track, the same
   convention as `src/injection_tools/build_disc.py`) because retail cue
   sheets are often wrong for single-track images.
@@ -100,10 +107,42 @@ Then open <http://localhost:8000>.
 
 ## Memory
 
-Patch application peaks around 1.5 GB in the browser tab (source read plus
-patched output), so desktop browsers are the realistic target. The page
-checks the source file up front and verifies every step before writing
-anything, so a failure never produces a partial download.
+The worker keeps one output slot at a time: each verified step truncates the
+previous intermediate, so the chain never accumulates disc images. The
+selected source is read on demand through `workerfs.js`, not copied into the
+worker heap.
+
+MEMFS is the default: a computer holds the chain in its tab and no disc image
+ever lands in browser storage. Its peak is around 1.5 GB in the tab (one disc
+image plus the Blob handed to the download), which is fine on a desktop but
+not on a phone.
+
+"I don't have enough RAM mode" moves the output to OPFS instead, where both
+slots are real files in the origin private filesystem, mounted into the xdelta
+runtime by `opfsfs.js` (current Chrome, Edge, Firefox and Safari). The tab heap
+then stays small instead of holding a patched disc; OPFS needs room for the
+source being read and the output being written, up to about two disc images
+while a step runs. The page turns the mode on by itself on Android and when
+the browser reports less than 4 GB of memory; it can also be toggled by hand.
+
+The final image stays in OPFS as the download Blob because Chrome invalidates
+a `File` once its entry is removed. A result that is actually backed by OPFS
+shows the storage warning and the Delete button below the download links, so
+the user knows to download and clean up. The image is removed when the page
+replaces the result with a newer run, when the user clicks Delete, or when the
+tab goes away once a download has had a minute to finish. The page also sweeps on load. A directory left by a crash or a close
+that could not finish deleting is no longer behind a Web Lock, so the next
+visit or run removes it after ten minutes; without Web Locks the fallback is
+a day. If OPFS or a sync access handle is unavailable, the run quietly uses
+MEMFS and the page says so.
+
+Leaving the page asks for confirmation while a patch is still running, while
+a finished disc has not been downloaded, and while an OPFS copy is still
+there (so it can still be deleted). Browsers use their own wording for that
+dialog.
+
+The page checks the source file up front and verifies every step before
+writing anything, so a failure never produces a partial download.
 
 ## Rebuilding the vendored wasm
 

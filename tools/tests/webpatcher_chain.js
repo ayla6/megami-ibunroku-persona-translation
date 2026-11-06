@@ -12,13 +12,15 @@ const vm = require('vm');
 
 const vendorJs = path.resolve(process.argv[2]);
 const workerfsJs = path.resolve(process.argv[3]);
-const work = process.argv[4];
-const expectedSha = process.argv[5];
-const patches = process.argv.slice(6);
+const xdeltaJs = path.resolve(process.argv[4]);
+const work = process.argv[5];
+const expectedSha = process.argv[6];
+const patches = process.argv.slice(7);
 
 const Module = require(vendorJs);
 globalThis.Module = Module;
 vm.runInThisContext(fs.readFileSync(workerfsJs, 'utf8'));
+vm.runInThisContext(fs.readFileSync(xdeltaJs, 'utf8'));
 
 /* The browser worker has FileReaderSync; Node does not. Feed it the same
  * Blob-like slice objects the mount receives. */
@@ -48,20 +50,28 @@ FS.mount(FS.filesystems.WORKERFS, {
 const shaOf = bytes =>
     crypto.createHash('sha256').update(bytes).digest('hex');
 
-let sha = shaOf(FS.readFile(mount + '/source.bin'));
 let from = mount + '/source.bin';
 for (let index = 0; index < patches.length; index++) {
   const to = `/work/out${index % 2}.bin`;  // never the source of this step
-  try { FS.unlink(to); } catch (err) {}
-  const status = Module.callMain(
+  const status = runXdelta(
       ['-d', '-f', '-q', '-s', from, mount + '/' + patches[index], to]);
   if (status !== 0) {
     console.error(`CHAIN_FAIL step ${index} (${patches[index]}): exit ${status}`);
     process.exit(1);
   }
-  sha = shaOf(FS.readFile(to));
+  /* Same cleanup as worker.js: only the current input and the output being
+   * written may exist. */
+  if (from !== mount + '/source.bin') FS.truncate(from, 0);
   from = to;
+  const live = FS.readdir('/work').filter(
+      name => name.startsWith('out') && FS.stat('/work/' + name).size > 0);
+  if (live.length !== 1 || live[0] !== path.basename(to)) {
+    console.error(`CHAIN_FAIL step ${index}: live outputs ${JSON.stringify(live)}`);
+    process.exit(1);
+  }
 }
+const node = FS.lookupPath(from).node;
+const sha = shaOf(node.contents.subarray(0, node.usedBytes));
 if (sha !== expectedSha) {
   console.error(`CHAIN_FAIL sha mismatch: got ${sha}, expected ${expectedSha}`);
   process.exit(1);

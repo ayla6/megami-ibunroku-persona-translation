@@ -5,8 +5,8 @@
  * asserts the status. Called by tools/tests/test_webpatcher.py; never used
  * in the browser.
  *
- *   node webpatcher_identify.js <xdelta3.js> <workerfs.js> <source> \
- *        <patch> <expected-exit>
+ *   node webpatcher_identify.js <xdelta3.js> <workerfs.js> <xdelta.js> \
+ *        <source> <patch> <expected-exit>
  */
 const fs = require('fs');
 const path = require('path');
@@ -14,13 +14,15 @@ const vm = require('vm');
 
 const vendorJs = path.resolve(process.argv[2]);
 const workerfsJs = path.resolve(process.argv[3]);
-const sourcePath = process.argv[4];
-const patchPath = process.argv[5];
-const expected = Number(process.argv[6]);
+const xdeltaJs = path.resolve(process.argv[4]);
+const sourcePath = process.argv[5];
+const patchPath = process.argv[6];
+const expected = Number(process.argv[7]);
 
 const Module = require(vendorJs);
 globalThis.Module = Module;
 vm.runInThisContext(fs.readFileSync(workerfsJs, 'utf8'));
+vm.runInThisContext(fs.readFileSync(xdeltaJs, 'utf8'));
 
 globalThis.FileReaderSync = class {
   readAsArrayBuffer(blob) {
@@ -43,14 +45,8 @@ FS.mount(FS.filesystems.WORKERFS, {blobs: [
   {name: patchName, data: blobOf(fs.readFileSync(patchPath))},
 ]}, work);
 
-let status;
-try {
-  status = Module.callMain(
-      ['-d', '-J', '-q', '-s', work + '/source.bin', work + '/' + patchName]);
-} catch (err) {
-  if (err && typeof err.status === 'number') status = err.status;
-  else throw err;
-}
+const status = runXdelta(
+    ['-d', '-J', '-q', '-s', work + '/source.bin', work + '/' + patchName]);
 FS.unmount(work);
 
 if (status !== expected) {
