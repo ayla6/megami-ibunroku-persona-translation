@@ -9,7 +9,7 @@
 ;; GPU path: the overlay's writer hook RECORDS the row, and the resident
 ;; sf_sort hooks - hung on the two libgs background sorters - clear the
 ;; recorded cells immediately before the retail sorter walks that map,
-;; then re-emit each recorded row as one textured sprite per glyph at its
+;; then re-emit each recorded row as one sprite packet at its
 ;; pen offset, with u/v/clut/tpage read from the same cell table the
 ;; retail renderer uses. Pixels come from the font page in VRAM;
 ;; nothing composites on the CPU and no glyph bitmaps are stored.
@@ -129,7 +129,8 @@ SF_TABLE_SIZE      equ SF_ROWS * SF_ROW_REC
 .endif
 
 ;; per-frame GPU packet buffers (per overlay, double-buffered with the
-;; game's g_ot[2]; one 6-word sprite chunk per glyph)
+;; game's g_ot[2]; one packet per row: tag + shared draw mode + 4 words per
+;; visible glyph)
 SF_BUF_SIZE        equ 0x1200              ; complete visible rows only; overflow retains retail text
 SF_BUFS            equ 2
 
@@ -192,10 +193,11 @@ SF_TPAGE          equ 0x1E                ; the font page: VRAM halfword x 896, 
 
 ;; renderer internals (vwf/sf_font.asm + the overlay renderer)
 SF_OT_ENTRY        equ 0x00                ; libgs OT entry: (num<<24) | (addr & 0xFFFFFF)
-SF_CHUNK_SPRITE    equ 5                   ; words after the tag in one sprite chunk
+SF_PACKET_HEAD     equ 8                   ; a row packet's tag + one shared draw mode
+SF_SPRITE_BYTES    equ 16                  ; four GP0 words per glyph after the header
 SF_SPRT_CODE       equ 0x64                ; textured, opaque; transparency comes from the CLUT's STP
 
-.if SF_CHUNK_SPRITE != 5
-    .error "smallfont_defs: the renderer emits a fixed 6-word chunk (tag + 5)"
+.if SF_PACKET_HEAD + SF_SPRITE_BYTES != 24
+    .error "smallfont_defs: the capacity guard checks 24 bytes before a row's first sprite"
 .endif
 SF_DR_TPAGE        equ 0xE1000200          ; draw-mode word, low bits = the cell's tpage

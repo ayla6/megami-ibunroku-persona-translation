@@ -26,7 +26,7 @@
 ;;   * registers the shared state with the resident stubs under the
 ;;     overlay slot's own id word, and tags the record with that id.
 ;; The RENDERER (part 2, entered from the stubs) runs after the real
-;; sorter and chains one textured sprite per glyph onto the layer's
+;; sorter and chains one textured-sprite packet per row onto the layer's
 ;; own OT entry - u/v/clut/tpage copied from the map's cell table,
 ;; pixels straight from the font page in VRAM. A row whose blanks
 ;; someone rewrote, or that another overlay wrote, is dropped; a
@@ -558,7 +558,7 @@ sf_row_reserve:
     slt     t8, t8, t4
     beqz    t8, @@row_other
     nop
-    addiu   v1, v1, 24
+    addiu   v1, v1, SF_SPRITE_BYTES
 @@row_other:
     lw      t8, 0x58(sp)               ; right edge - base = ring width
     lw      t4, 0x18(sp)
@@ -577,7 +577,7 @@ sf_row_reserve:
     nop
     lw      t8, 0x08(sp)
     nop
-    addiu   t8, t8, 24
+    addiu   t8, t8, SF_SPRITE_BYTES
     sw      t8, 0x08(sp)
     b       @@row_count
     nop
@@ -617,7 +617,7 @@ sf_record_end:
 ;; stubs; a0/a1/a2 = GsBG*, GsOT*, pri. The state is the kit's one
 ;; own state block (sf_state_<ovl>, in the extension data below); the config is this
 ;; overlay's own (sf_cfg_<ovl>, naming the resident tables).
-;; Frame map: +00 walk ptr +04 first chunk +08 old entry value
+;; Frame map: +00 walk ptr +04 row packet start +08 old entry value
 ;;   +0C entry addr +10 map index +14 kit-live flag +18 row x base
 ;;   +1C row y base +20 advance table +24 map cell count +28 thunk / row y<<16
 ;;   +2C recorded condensed tier (reservation and emission)
@@ -952,7 +952,7 @@ sf_hook:
     bltz    v0, @@blank_invalid
     nop
     beqz    v1, @@blank_next             ; hidden rows leave capacity and the map untouched
-    move    t2, v1
+    addiu   t2, v1, SF_PACKET_HEAD       ; plus the row's tag and shared draw mode
     lw      t6, 0x00(sp)
     nop
     sltu    v0, t6, t2
@@ -1046,7 +1046,7 @@ sf_hook:
 @@emit_y_ready:
     sw      t2, 0x4C(sp)
     sll     t2, t2, 16                  ; y to the high half
-    sw      t2, 0x28(sp)                ; the row's y<<16 for every chunk
+    sw      t2, 0x28(sp)                ; the row's y<<16 for every sprite
     li      t8, SF_GLYPHS               ; a bank's cell count
     multu   t3, t8                      ; the row's first cell = bank * SF_GLYPHS
     sll     t1, t4, 3                   ; (delay) col * 8
@@ -1087,10 +1087,10 @@ sf_hook:
     bnez    t6, @@restore_cells
     addiu   a0, a0, 2
 
-    ;; ---- emit: one 6-word chunk per glyph ----
+    ;; ---- emit: one packet per row, one shared draw mode, 4 words/glyph ----
     sw      t5, 0x00(sp)                ; the record pointer (emit clobbers t5)
     li      t2, 0
-    sw      t2, 0x04(sp)                ; this row's first chunk tag (0 = none)
+    sw      t2, 0x04(sp)                ; this row's packet start (0 = none)
     lw      t3, 0x0C(sp)
     nop
     lw      t2, 0(t3)                   ; the OT entry's value before us
@@ -1126,7 +1126,12 @@ sf_hook:
     slt     t6, t2, s2                  ; signed screen coordinates, including scroll
     beqz    t6, @@row_end               ; no: the row ends here
     nop
-    addiu   t6, s3, 24
+    lw      t6, 0x04(sp)                ; is this row's packet already open?
+    nop
+    sltiu   t6, t6, 1                   ; 1 until the first sprite opens it
+    sll     t6, t6, 3                   ; then its 8-byte header is still owed
+    addiu   t6, t6, SF_SPRITE_BYTES
+    addu    t6, s3, t6
     sltu    t6, t0, t6
     bnez    t6, @@row_end               ; the buffer is full: stop the row
     nop
@@ -1142,21 +1147,27 @@ sf_hook:
     nop
     beqz    v0, @@have_first
     nop
-    li      t6, 0x00FFFFFF
-    addiu   t2, s3, 24
-    and     t6, t2, t6                  ; next = the chunk after this one
-    lui     t2, 0x0500
-    or      t6, t6, t2                  ; tag: 5 words then that next chunk
-    sw      t6, 0(s3)
-    lui     t6, 0xE100
-    ori     t6, t6, 0x0200
-    or      t6, t6, v1                  ; draw mode, this page
-    sw      t6, 4(s3)
+    ;; Open the row's packet on its first visible glyph: the tag is written
+    ;; once the row ends (its length is only known then), so reserve it and
+    ;; the one draw mode every glyph in this row shares. Every cell of the
+    ;; atlas is on the same texture page; the row's bank only changes CLUTs.
+    lw      t6, 0x04(sp)
+    nop
+    bnez    t6, @@packet_open
+    nop
+    move    t6, s3
+    sw      t6, 0x04(sp)                ; this row's packet start
+    lui     t2, 0xE100
+    ori     t2, t2, 0x0200
+    or      t2, t2, v1                  ; draw mode, this page
+    sw      t2, 4(t6)
+    addiu   s3, s3, SF_PACKET_HEAD
+@@packet_open:
     ;; the SPRT word: code<<24 | b<<16 | g<<8 | r. The code must be in
     ;; the high byte (the GPU command); the low 24 bits are the layer's
     ;; own text colour, so the row fades with the background. t5 (the
     ;; cell's CLUT), t4 (the advance), t7 (the bearing), a0/a1 (u/v) and
-    ;; t1 (pen) must survive; v1's tpage is spent on the word above.
+    ;; t1 (pen) must survive.
     lbu     t6, 0x12(s0)                ; bg->b
     lbu     t2, 0x11(s0)                ; bg->g
     lbu     v1, 0x10(s0)                ; bg->r
@@ -1166,27 +1177,21 @@ sf_hook:
     or      t6, t6, v1
     lui     t2, SF_SPRT_CODE << 8       ; the textured-sprite command byte
     or      t6, t6, t2
-    sw      t6, 8(s3)
+    sw      t6, 0(s3)
     lw      t6, 0x40(sp)                ; clipped x|y<<16
     nop
-    sw      t6, 12(s3)
+    sw      t6, 4(s3)
     lw      t2, 0x44(sp)                ; clipped texture delta: dx|dy<<8
     sll     t6, t5, 16
     sll     v0, a1, 8
     or      v0, v0, a0
     addu    v0, v0, t2
     or      t6, t6, v0
-    sw      t6, 16(s3)
+    sw      t6, 8(s3)
     lw      t6, 0x48(sp)                ; clipped w|h<<16
     nop
-    sw      t6, 20(s3)
-    addiu   s3, s3, 24
-    lw      t6, 0x04(sp)
-    nop
-    bnez    t6, @@have_first
-    nop
-    addiu   t6, s3, -24
-    sw      t6, 0x04(sp)                ; the row's first chunk tag
+    sw      t6, 12(s3)
+    addiu   s3, s3, SF_SPRITE_BYTES
 @@have_first:
     addu    t1, t1, t4                  ; x += advance, including blank glyphs
     b       @@glyph
@@ -1199,20 +1204,22 @@ sf_hook:
     nop
     beqz    t2, @@no_row                ; nothing was emitted
     nop
-    ;; the last chunk points back at the entry's old head, and the
-    ;; entry names this row's first chunk: prepend. The chunk's own
-    ;; length (5 words) must survive the link - the entry's value has
-    ;; length 0 (it is the root tag), so copy only its address.
+    ;; The tag's length is 1 draw mode + 4 sprite words each, now that the
+    ;; row's sprite count is known; its next pointer is the entry's old
+    ;; head (the entry's own value has length 0 - copy only its address).
+    subu    t4, s3, t2
+    addiu   t4, t4, -SF_PACKET_HEAD
+    srl     t4, t4, 2                   ; sprite words
+    addiu   t4, t4, 1                   ; words after the tag
+    sll     t4, t4, 24                  ; the tag's length byte
     lw      t3, 0x08(sp)
     li      t5, 0x00FFFFFF
     and     t3, t3, t5
-    lui     t4, SF_CHUNK_SPRITE << 8    ; the chunk's length: 5 words
     or      t3, t3, t4
-    addiu   t4, s3, -24
-    sw      t3, 0(t4)                   ; the last chunk -> the old head
+    sw      t3, 0(t2)                   ; tag -> the old head
     lw      t3, 0x0C(sp)
     and     t4, t2, t5
-    sw      t4, 0(t3)                   ; the entry -> this row's first chunk
+    sw      t4, 0(t3)                   ; the entry -> this row's packet
 @@no_row:
     lw      t5, 0x00(sp)
     nop

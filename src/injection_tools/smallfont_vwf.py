@@ -1287,20 +1287,28 @@ def verify():
             raise SystemExit(
                 f'smallfont_vwf: verify: the {ovl} renderer at {hb:#x} lost the '
                 f'ot->offset load for its OT entry (lw t4,8(s1)). See vwf/smallfont.asm.')
-        ok = any(rwords[i] == 0xAE6E0008 and 0x3C0A6400 in rwords[max(0, i - 8):i]
+        ok = any(rwords[i] == 0xAE6E0000 and 0x3C0A6400 in rwords[max(0, i - 8):i]
                  for i in range(len(rwords)))
         if not ok:
             raise SystemExit(
                 f'smallfont_vwf: verify: the {ovl} renderer at {hb:#x} lost the SPRT '
                 f'colour/command word (the 0x64000000 | b<<16 | g<<8 | r store). '
                 f'See vwf/smallfont.asm.')
-        ok = any(rwords[i] == 0xAD8B0000 and 0x3C0C0500 in rwords[max(0, i - 6):i]
+        # One packet per row starts with the tag and a shared draw mode. The
+        # tag's length is only known at the row's end: 1 draw mode + the
+        # sprite words walked so far, then the entry's old head.
+        ok = any(rwords[i] == 0xAD4B0000 and 0x000C6600 in rwords[max(0, i - 8):i]
+                 and 0xAD6C0000 in rwords[i:i + 4]
                  for i in range(len(rwords)))
         if not ok:
             raise SystemExit(
-                f'smallfont_vwf: verify: the {ovl} renderer at {hb:#x} lost the last '
-                f'chunk length (0x05000000) when linking to the OT head. '
+                f'smallfont_vwf: verify: the {ovl} renderer at {hb:#x} lost the row '
+                f'packet tag (variable length, linked to the entry head). '
                 f'See vwf/smallfont.asm.')
+        if not (0x3C0AE100 in rwords and 0x354A0200 in rwords and 0xADCA0004 in rwords):
+            raise SystemExit(
+                f'smallfont_vwf: verify: the {ovl} renderer at {hb:#x} lost the row '
+                f'packet\'s shared draw-mode word. See vwf/smallfont.asm.')
         blank_ok = False
         for i, word in enumerate(rwords):
             if word & 0xFFFF0000 != 0x118D0000:      # beq t4, t5, ...
@@ -1346,8 +1354,9 @@ def verify():
             raise SystemExit(
                 f'smallfont_vwf: verify: the {ovl} Latin selector at {variant:#x} lost '
                 f'the stage-3 compact run base ({compact_base:#x}). See smallfont_variants.assembly.')
-        if not all(w in rwords for w in (0x8FAE0040, 0x01205021, 0xAE6E000C,
-                                         0x8FAA0044, 0x8FAE0048, 0xAE6E0014)):
+        if not all(w in rwords for w in (0x8FAE0040, 0x01205021, 0xAE6E0004,
+                                         0xAE6E0008, 0x8FAA0044, 0x8FAE0048,
+                                         0xAE6E000C)):
             raise SystemExit(
                 f'smallfont_vwf: verify: the {ovl} renderer at {hb:#x} lost the '
                 f'viewport-cropped XY/UV/WH packet fields. See vwf/smallfont.asm.')

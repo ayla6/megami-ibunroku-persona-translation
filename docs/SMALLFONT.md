@@ -98,8 +98,11 @@ as in the Japanese original.
 
 The sorter reserves complete rows before temporarily marking their map cells
 empty. It restores the logical map before returning. A page clear or rewrite
-therefore retires the corresponding records. Sprites include libgs' signed
-framebuffer origin, and packet storage is separate for the two active OTs.
+therefore retires the corresponding records. Each claimed row becomes one
+packet: a tag, one draw mode shared by the row (every atlas cell is on the
+same page; the bank only changes CLUTs), and four GP0 words per visible glyph.
+Sprites include libgs' signed framebuffer origin, and packet storage is
+separate for the two active OTs.
 
 ## Placement and data safety
 

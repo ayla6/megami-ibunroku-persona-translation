@@ -433,16 +433,33 @@ class BuiltSmallfont(unittest.TestCase):
             return []
         self.assertGreaterEqual(end, base)
         self.assertLessEqual(end, base + self.buf_size)
-        return [c.read(p + 12) for p in range(base, end, 24)]
+        return [c.read(sprite + 4) for sprite, _mode in self.sprites(c)]
 
-    def packets(self, c):
+    def sprites(self, c):
+        """Walk row packets: tag, one shared draw mode, 4 words per sprite."""
         state = self.symbols['sf_state_adv']
         base = c.read(state + 0x20) + c.read(state + 8) * self.buf_size
         end = c.read(state + 0x0C)
         if end == 0:
             return []
-        return [(c.read(p + 12), c.read(p + 16), c.read(p + 20))
-                for p in range(base, end, 24)]
+        out = []
+        p = base
+        while p < end:
+            tag = c.read(p)
+            length = tag >> 24
+            self.assertGreaterEqual(length, 1)
+            self.assertEqual((length - 1) % 4, 0, 'a glyph costs four GP0 words')
+            mode = c.read(p + 4)
+            self.assertEqual(mode, 0xE1000200 | 0x1E, 'one draw mode per row packet')
+            for i in range((length - 1) // 4):
+                out.append((p + 8 + i * 16, mode))
+            p += (1 + length) * 4
+        self.assertEqual(p, end, 'each packet\'s tag must reach the next one')
+        return out
+
+    def packets(self, c):
+        return [(c.read(p + 4), c.read(p + 8), c.read(p + 12))
+                for p, _mode in self.sprites(c)]
 
     def test_horizontal_scroll_selects_the_same_ring_copy_in_both_passes(self):
         cases = ((0, [20, 24]), (4, [20, 20]), (24, [28, 32]),
@@ -797,17 +814,24 @@ class BuiltSmallfont(unittest.TestCase):
         self.assertEqual(bytes(c.mem[c.offset(ptr + 8):c.offset(ptr + 29)]), bytes([10] * 20 + [255]))
 
     def test_capacity_reserves_entire_row_before_suppressing_retail_cells(self):
-        c = self.machine(); self.layer(c, height=8)
+        c = self.machine(); self.layer(c, height=10)
         index = 0x80112000
         c.write(MAP + 12, index)
-        for row in range(7):
-            self.record(c, [10] * 30 + [255], 30, dst=index + row * 80,
-                        source=SOURCE + row * 32)
-        before = bytes(c.mem[c.offset(index):c.offset(index) + 7 * 80])
+        # A full 40-cell map row is the widest row that fits the ring:
+        # tag + draw mode + 16 B/glyph. Rows 2..9 are visible in the
+        # default 30..150 viewport.
+        for row in range(10):
+            self.record(c, [10] * 40 + [255], 40, dst=index + row * 80,
+                        source=SOURCE + row * 48)
+        before = bytes(c.mem[c.offset(index):c.offset(index) + 10 * 80])
         points = self.render(c)
-        self.assertEqual(len(points), (self.buf_size // (30 * 24)) * 30)
-        self.assertEqual(bytes(c.mem[c.offset(index):c.offset(index) + 7 * 80]), before)
-        self.assertEqual([c.read(index + 6 * 80 + i * 2, 2) for i in range(30)], [10] * 30)
+        row_bytes = 8 + 16 * 40
+        fit = min(8, self.buf_size // row_bytes)
+        self.assertLess(fit, 8, 'the fixture must still exhaust the buffer')
+        self.assertEqual(len(points), fit * 40)
+        self.assertEqual(bytes(c.mem[c.offset(index):c.offset(index) + 10 * 80]), before)
+        # Rows past the budget keep their complete retail fixed-cell row.
+        self.assertEqual([c.read(index + 9 * 80 + i * 2, 2) for i in range(40)], [10] * 40)
 
     def test_render_preserves_logical_map_for_page_lifetime(self):
         c = self.machine(); self.layer(c)
@@ -888,7 +912,8 @@ class BuiltSmallfont(unittest.TestCase):
         end = buffers + self.buf_size * 2
         c.write(end, 0x12345678)
         points = self.render(c)
-        self.assertEqual(len(points), (self.buf_size // (10 * 24)) * 10)
+        self.assertEqual(len(points),
+                         min(20, self.buf_size // (8 + 10 * 16)) * 10)
         self.assertEqual(c.read(end), 0x12345678)
 
     def test_tab_advances_to_next_row_relative_stop(self):

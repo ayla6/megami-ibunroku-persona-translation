@@ -147,10 +147,14 @@ caller's logical cell count and is not evidence that a retained tail is visible.
 These geometries remain unsupported for complete full-name display until a QA
 proof or a renderer that handles their copies is available. Cropped left/top pixels advance texture U/V
 equally; empty intersections emit nothing, but every glyph still advances the pen.
-Only visible glyphs reserve packet space. The blank word-space cell advances
-the pen but reserves and emits no GPU packet. Whole-row fallback retains retail
-text when capacity is unavailable; temporary suppression always restores the
-complete logical cell run. Row records and full-name scratch belong to the
+A claimed row is one GPU packet: an 8-byte header (the tag plus one draw mode
+shared by the row's glyphs, since every atlas cell uses the same page) and
+16 bytes per visible glyph (four GP0 words). Only visible glyphs reserve space.
+The blank word-space cell advances the pen but reserves and emits no sprite.
+The tag's length is written after the row ends: one draw-mode word plus four
+words for each sprite. Whole-row fallback retains retail text when capacity is
+unavailable; temporary suppression always restores the complete logical cell
+run. Row records and full-name scratch belong to the
 loaded overlay, with free slots reused before another live row is evicted.
 
 The small-font item and demon name row is retail's ten 8-px cells (80 px);
