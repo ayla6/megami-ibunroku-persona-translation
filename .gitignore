@@ -47,3 +47,4 @@ __pycache__/
 # the artifact, so the page serves the patches from its own origin.
 !/webpatcher/
 /webpatcher/patches
+/webpatcher/features.js

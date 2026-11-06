@@ -1,12 +1,13 @@
 name: Deploy web patcher
 
 # The site is the webpatcher/ directory together with the patches it serves.
-# There is no build step: the patches are mirrored from the latest release
-# into webpatcher/patches (git-ignored, so a fresh checkout only has it
-# after the mirror step) and go out inside the artifact. The page cannot
-# fetch release assets at runtime - github.com serves release downloads
-# without CORS headers, so a browser blocks those requests - but everything
-# under patches/ is same-origin and served by Pages like any other file.
+# There is no build step: the latest release's persona-patches.zip is
+# unpacked into webpatcher/patches (git-ignored, so a fresh checkout only
+# has it after the unpack step) and goes out inside the artifact. The page
+# cannot fetch release assets at runtime - github.com serves release
+# downloads without CORS headers, so a browser blocks those requests - but
+# everything under patches/ is same-origin and served by Pages like any
+# other file.
 on:
   push:
     branches: [main]
@@ -32,15 +33,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Mirror the release patches
+      - name: Generate the option wording
+        run: python3 tools/generate_features.py
+      - name: Unpack the release patch zip
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.event.release.tag_name }}
         run: |
-          mkdir -p webpatcher/patches
+          if [ -n "$(ls webpatcher/patches 2>/dev/null)" ]; then
+            echo 'webpatcher/patches already has files; leaving them in place'
+            exit 0
+          fi
+          mkdir -p webpatcher/patches "$RUNNER_TEMP/release"
           gh release download ${TAG:+"$TAG"} --repo "$GITHUB_REPOSITORY" \
-            --dir webpatcher/patches --clobber \
-            --pattern '*.xdelta' --pattern 'manifest.tsv' --pattern 'README.txt'
+            --dir "$RUNNER_TEMP/release" --clobber --pattern 'persona-patches.zip'
+          unzip -q "$RUNNER_TEMP/release/persona-patches.zip" -d webpatcher/patches
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload the Pages artifact

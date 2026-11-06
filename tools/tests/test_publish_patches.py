@@ -32,6 +32,9 @@ class LocalSyncTest(unittest.TestCase):
             self.assertTrue((site / 'patches').is_symlink())
             self.assertEqual((site / 'patches' / 'manifest.tsv').read_text(),
                              'release')
+            features = (site / 'features.js').read_text(encoding='utf-8')
+            self.assertIn('globalThis.FEATURES = ', features)
+            self.assertIn('"saves"', features)
 
 
 class PublishArgsTest(unittest.TestCase):
@@ -50,9 +53,8 @@ class PublishArgsTest(unittest.TestCase):
 
 
 class PublishArchiveTest(unittest.TestCase):
-    """The release has individual assets plus one zip of the same files;
-    build_patches.py --publish-release goes through the same publish()
-    path."""
+    """The release is one zip of the release files; build_patches.py
+    --publish-release goes through the same publish() path."""
 
     def setUp(self):
         sys.path.insert(0, str(ROOT / 'tools'))
@@ -131,16 +133,32 @@ class PublishArchiveTest(unittest.TestCase):
         for cmd in release_calls:
             self.assertEqual(cmd[cmd.index('--repo') + 1],
                              self.publish.GITHUB_REPO)
+        # the release carries the zip and nothing else: individual files
+        # go out inside it, and the Pages workflow unpacks them
+        for cmd in release_calls:
+            if 'upload' not in cmd and 'create' not in cmd:
+                continue
+            paths = [arg for arg in cmd if arg.endswith(('.xdelta', '.tsv',
+                                                         '.txt', '.zip'))]
+            self.assertEqual(paths, [str(Path(tmp) / 'a.zip')], cmd)
 
-    def test_completeness_reads_the_given_directory(self):
+    def test_completeness_counts_distinct_patch_files(self):
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp)
             self.assertFalse(self.publish.release_is_complete(output))
             manifest = output / 'manifest.tsv'
-            manifest.write_text('header\n' + 'row\n' * 32)
-            self.assertFalse(self.publish.release_is_complete(output))
-            manifest.write_text('header\n' + 'row\n' * 33)
+            header = 'patch\tchoices\tsource_sha256\ttarget_sha256\n'
+            manifest.write_text(header + '\n'.join(
+                f'p{i}.xdelta\t\t\ta{i}' for i in range(10)) + '\n')
+            self.assertFalse(self.publish.release_is_complete(output),
+                             'ten patch files are not a release')
+            manifest.write_text(header + '\n'.join(
+                f'p{i}.xdelta\t\t\ta{i}' for i in range(11)) + '\n')
             self.assertTrue(self.publish.release_is_complete(output))
+            # 257 steps across 10 files: duplicate names do not inflate it
+            manifest.write_text(header + '\n'.join(
+                f'p{i % 10}.xdelta\t\t\ta{i}' for i in range(257)))
+            self.assertFalse(self.publish.release_is_complete(output))
 
     def test_missing_release_repository_stops_before_the_archive(self):
         def failing_run(*cmd, capture=False):

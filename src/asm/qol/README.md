@@ -24,6 +24,8 @@ filename; a plain build uses the retail save flow and the regular translation fi
 | `60fps` | `QOL_60FPS` | 60 fps 3D dungeons and overworld (interpolated; wants an emulator CPU overclock to actually reach 60) |
 | `encounters` | `QOL_ENCOUNTERS` | half the random encounter rate |
 | `rewards` | `QOL_REWARDS` | EXP, Persona points and money after a battle x2 |
+| `run` | `QOL_RUN` | hold Cross to walk and turn at double speed in the 3D dungeons; the controller page lists it as its own RUN/CANCEL action on Cross in both control schemes |
+| `upright` | `QOL_UPRIGHT` | Upward Movement Orientation: Upper Right in the 2D rooms - pressing Up walks to the upper right instead of the retail upper left |
 | `battlespeed` | `QOL_BATTLESPEED` | summons and skill effects at double speed |
 | `debug` | `QOL_DEBUG` | battle debug menu: drops the party-leader name gate, so the hidden controller-2 button sequence works and Cancel in the command phase opens the debug page |
 | `mark` | `QOL_MARK` | Mark wears the Revelations design: the dialogue/status headshot, battle sheet and overworld walk sheet are swapped for the art in `src/assets/mark/black` (edit those PNGs to change it; see `src/assets/mark/README.md`). No code changes: the BST face slot and his B/P.BIN battle entry are rewritten in place and the ~207 MES.BIN scene entries carrying his walk sheet are re-encoded around the swapped page |
@@ -170,6 +172,52 @@ on the default control scheme; the bindings are whatever Config's control scheme
 stat and ailment edits, a summon, an item, and the BGM index stepped through its `0x43` values.
 The page answers zero, so the round carries on as though nothing had been ordered.
 
+## Running in dungeons (`--qol=run`)
+
+`qol/run_dng.asm`, plus `runtext.py` writing `build/runtext_dng.asm`. The retail walk block at
+`0x80068F64` inside `FieldWalk` advances the view nine times per tile and draws a frame after each
+advance. The hook keeps all nine advances - the tile, the collision checks, the step counter and the
+landing position are unchanged - and draws only some of the frames: a five-frame mask on one tile and
+a four-frame mask on the next, 4.5 of nine on average, exactly double speed. Every drawn frame still
+runs one `FieldFrame`, i.e. one 20 Hz tick, so the play clock and the animation counters keep their
+real rate. The mask alternates per run tile and returns to zero when the button is released.
+
+`FieldTurn`'s nine-frame heading swing gets the same treatment: its per-frame `FieldFrame` call at
+`0x80069084` goes through a wrapper that draws only the frames the shared 5/4 mask covers while Cross
+is held, so turning is as fast as walking. Every heading step still runs and the final snap to the
+exact quarter is unchanged; without Cross the wrapper draws all nine frames and resets the mask.
+
+The button is not a setting of its own. `runtext.py` appends one action to the controller page's own
+action-name table: the retail 19 pointers sit directly in front of `g_pad_layout_actions` with no room
+for a twentieth, so the table is copied into the DNG image extension (name at `0x800B5800`, table at
+`0x800B5810`, hook at `0x800B5860`, all below the base image's loaded end at `0x800B5BC4`) and
+`PadDrawLayout`'s table base load (`0x800906FC`/`0x80090700`) is repointed at the copy. The run action
+then replaces Cross in the 3D column of both field pad types: layout 0 entry 1 (`0x8009CB19`, CANCEL in
+retail) and layout 1 entry 1 (`0x8009CB2D`, UNUSED in retail). The walk hook waits on Cross in both
+types, so the page and the field always agree. Cross still cancels - cancel is edge-triggered while
+running reads the held pad. The 2D columns and the battle layouts keep their retail entries, because
+running only applies to the 3D view.
+
+`tools/tests/test_qol_run.py` executes the hooks for both pad types and checks the page bytes: the
+name table copy, the two changed layout entries (and only those), that Cross is the only button that
+runs, that Triangle and R2 do not run, and that FieldTurn's loop draws the 5/4 masks through its
+wrapper.
+
+## Upper Right movement in the 2D rooms (`--qol=upright`)
+
+`qol/upper_right_adv.asm`. The isometric room view has four walking directions and `AdvFieldRun`
+maps the d-pad to them. Retail is the PSP's **Upper Left** scheme: Up walks to the upper left, Right
+to the upper right, Down to the lower right, Left to the lower left. The patch keeps the same
+clockwise order but starts it at the upper right: Up walks to the upper right, Right to the lower
+right, Down to the lower left, Left to the upper left - the PSP's **Upper Right** setting. The disc
+has no setting row for this, so the patch is the choice.
+
+Only the four direction constants change, in place (`0x8007EB54`, `0x8007EB68`, `0x8007EB84`,
+`0x8007EBA0`). The branch order, and so which button wins when two are held, stays retail, and the
+scripted walk directions, triggers, exits and facing are untouched. `tools/tests/test_qol_upright.py`
+runs `AdvFieldRun`'s direction selection for each d-pad button and checks the stored walk direction,
+plus the bytes that changed.
+
 ## 1. Status (2026-10-09, evening): approach B implemented in both engines
 
 Game logic is untouched (original step / turn / pan constants, 20 Hz dungeon ticks, 15 Hz overworld ticks).
@@ -220,6 +268,9 @@ ticks only. A measured draw cost decides how many extra frames fit, so the game 
 - Placement rule for QoL blocks: never claim a fixed window behind an image. Place the block after the
   last blob that owns the overlay's extension (S2D: `S2D_BAR_HOOK_END`; DNG: behind `dng_glue_end`), and
   assert the bounds at assembly time (`.error`); an overlap must be a build error, never a crash in game.
+  `tools/tests/test_qol_write_guard.py` assembles the real `main.asm` for the base, every QoL option on
+  its own and all together in an isolated tree, then runs the same write guard the release uses; any
+  QoL block that covers another block's bytes fails the suite, not the release.
 - Test helpers (scratchpad, not in the repo): fps.py (presented frames vs vblanks), ticks.py (vblank
   stamps of real ticks, `dngq_vars+4` / `s2dq_vars+4`), qpatch.py / qpatch_s2d.py (live patch from build/).
 

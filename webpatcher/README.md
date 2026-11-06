@@ -14,14 +14,21 @@ produced the release patches) compiled to WebAssembly - see
 - `manifest.tsv` drives everything: the options grid is built from the
   `choices` column and each combination of checkboxes maps to its exact
   row. Nothing is hardcoded per release.
-- Every step is applied by xdelta3 with its own source and target window
-  checksums, so a wrong disc or damaged patch makes xdelta fail instead of
-  producing a download. The manifest's recorded output sizes are checked
-  too; no separate hash is computed in the page.
-- `FEATURES` at the top of `app.js` holds the wording shown for each
-  option, keyed by the manifest label: `name` is the title, `description`
-  the paragraph under it. Rewording is a site change, not a release.
-  `tools/tests/test_webpatcher.py` fails if a release choice has no entry.
+- Every step is verified before its result is used. The manifest's
+  `verify` column names how: `xdelta` steps carry the patch's own window
+  checksums (the patch was encoded from exactly the source it applies to);
+  `sha256` steps are applied over a variant the patch was not encoded from
+  (same layout, other options riding along), decode with `-n`, and are
+  verified by hashing the whole result against the manifest's
+  `target_sha256` - a check the release build performed for every such
+  step against every variant it can meet. Output sizes are checked too.
+- What each option is called and what it does lives in
+  `tools/release_options.json` - the single place option wording exists.
+  The release README is generated from it, and the Pages workflow turns
+  it into `features.js` (git-ignored, generated), which `app.js` loads
+  before anything renders; `app.js` itself never carries wording.
+  `tools/tests/test_webpatcher.py` fails if a release choice is missing
+  its name or description.
 - The manifest and patches come from `patches/` next to the page, served
   from the same origin. The public site gets that directory from the Pages
   workflow, which mirrors the latest release into it; release assets cannot
@@ -42,9 +49,9 @@ produced the release patches) compiled to WebAssembly - see
 - The chain is derived from the manifest itself: each patch's
   `source_sha256` equals the `target_sha256` of the patch before it, so
   the page walks the chain (for example `rev1-to-rev0` on Rev 1 discs,
-  then `rev0-to-base`, `base-to-mark`, `mark-to-saves-mark`, then the
-  final combination). A wrong or corrupt file fails with a clear message
-  instead of producing a download.
+  then `rev0-to-base`, `add-mark`, `add-saves`, then the option's add-
+  patch). A wrong or corrupt file fails with a clear message instead of
+  producing a download.
 - The source disc and patch files are mounted read-only through a small
   WORKERFS (`workerfs.js`) because the vendored wasm build exposes
   Emscripten's `FS` but not its workerfs library. A rebuild that includes
@@ -64,26 +71,26 @@ produced the release patches) compiled to WebAssembly - see
 ## Assembling a release site
 
 The public page serves the patches from its own origin: the Pages workflow
-downloads the latest release into `webpatcher/patches/` right before it
-uploads the artifact, so patch updates are just a new release. One script
-uploads it:
+downloads the latest release's `persona-patches.zip` and unpacks it into
+`webpatcher/patches/` right before it uploads the artifact, so patch
+updates are just a new release. One script uploads it:
 
     python tools/publish_patches.py
 
-It uploads `dist/patches/` as release assets (tag `patches-YYYYMMDD`;
-re-running the same day clobbers the assets) via the gh CLI, to the
-repository named by `RELEASE_REPO` in `app.js` - publishing must not depend
-on what `origin` points at. The files stay individual on purpose: the page
-reads `manifest.tsv` first and then only the patches along the chosen chain
-(usually a handful), so a zip would make it fetch and unpack everything in
-the browser. The same files are also uploaded as `persona-patches.zip` for
-people applying xdelta by hand.
+It uploads the release as one zip asset (tag `patches-YYYYMMDD`;
+re-running the same day clobbers the asset) via the gh CLI, to the
+repository named by `RELEASE_REPO` in `app.js` - publishing must not
+depend on what `origin` points at. The zip holds the patch files,
+`manifest.tsv` and `README.txt`: people applying xdelta by hand download
+it directly, and the Pages workflow unpacks it, so the page can still
+fetch `manifest.tsv` first and then only the patches along the chosen
+chain (usually a handful).
 
 The page itself is deployed by `.github/workflows/pages.yml`. The workflow
 runs on every push to `main`, on `release: published`, and manually; each
-run downloads the release's `manifest.tsv`, `README.txt` and `.xdelta`
-files into `webpatcher/patches/` (git-ignored, so a fresh checkout does not
-have it) and uploads `webpatcher/` as the Pages artifact - no build step.
+run downloads the release's zip, unpacks it into `webpatcher/patches/`
+(git-ignored, so a fresh checkout does not have it) and uploads
+`webpatcher/` as the Pages artifact - no build step.
 Serving the patches from the site is not cosmetic: a page at
 `<owner>.github.io` cannot fetch release assets, because github.com answers
 those downloads without `Access-Control-Allow-Origin`. Replacing the assets
@@ -97,13 +104,27 @@ MIME type, so the subpath project site works.
 `python tools/build_patches.py --publish-release` uploads the release after
 a finished build and the site redeploys from it.
 
-For local testing the page reads `webpatcher/patches/`, which
-`tools/publish_patches.py --no-release` keeps in sync with `dist/patches/`
-(a symlink works too):
+For local testing, generate the option wording once and sync the patches;
+`features.js` and `webpatcher/patches/` are both git-ignored (a symlink
+to dist/patches works for the patches too):
+
+    python tools/generate_features.py
+    python tools/publish_patches.py --no-release
+
+`localhost` is already a secure context for `crypto.subtle`, so this is
+enough on the machine itself:
 
     python -m http.server -d webpatcher 8000
 
-Then open <http://localhost:8000>.
+Then open <http://localhost:8000>. To test from another device (for
+example a phone, to exercise the low-RAM OPFS path), serve it over real
+HTTPS with tailscale:
+
+    tailscale serve --bg 8000
+
+and open the `https://<machine>.ts.net` URL it prints (run
+`tailscale serve status` to see it again). Both count as secure contexts,
+so `crypto.subtle` is available in both.
 
 ## Memory
 

@@ -1,0 +1,42 @@
+[
+  {
+    "label": "saves",
+    "name": "Save menu",
+    "description": "Merges the slot 1 and slot 2 menus into one, so that you don't have to worry about which one to select. Requires \"speed up on memory card access\" to not feel like a slog."
+  },
+  {
+    "label": "mark",
+    "name": "Black Mark",
+    "description": "Makes Masao Inaba black. It uses a custom sprite I made for him so that he's both black and still wears his original outfit. Doesn't change the script."
+  },
+  {
+    "label": "battlespeed",
+    "name": "Battle speedup",
+    "description": "Doubles the speed of summons and skill effects in battle."
+  },
+  {
+    "label": "60fps",
+    "name": "60 FPS",
+    "description": "Interpolates frames to get the dungeons to 60fps and the map to 30fps. Only does it when you're actively moving around. Needs overclocking."
+  },
+  {
+    "label": "rewards",
+    "name": "Double rewards",
+    "description": "Doubles the EXP, Persona points and money you get after battles."
+  },
+  {
+    "label": "encounters",
+    "name": "Half encounters",
+    "description": "Halves the rate of random encounters."
+  },
+  {
+    "label": "run",
+    "name": "Run in dungeons",
+    "description": "Hold Cross to walk and turn at double speed in the 3D dungeons. The controller page lists it as RUN/CANCEL on Cross in both control schemes."
+  },
+  {
+    "label": "upright",
+    "name": "Upper-right movement",
+    "description": "Forces Upward Movement Orientation to Upper Right: pressing Up walks to the upper right in the 2D rooms instead of the retail upper left."
+  }
+]

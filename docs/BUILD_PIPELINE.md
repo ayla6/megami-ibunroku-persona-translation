@@ -123,39 +123,93 @@ the ordinary build dependencies. The script defaults to `--no-port` and
 incremental asset preparation; `--port` explicitly refreshes translations
 first and rebuilds every variant patch.
 
-The five release choices are save UI, Mark artwork, battle speed, 60 fps,
-and double rewards plus half encounters together. Debug is not included.
-The 32 combinations produce 33 patches: Rev 1 to Rev 0, Rev 0 to base, and
-one incoming patch for each of the 31 non-base combinations. Because Mark's
-artwork is duplicated across 207 scene entries (~810 KB per delta) and the
-save UI costs ~210 KB, big choices are layered: the combinations containing
-them are patched from a variant that already includes them
-(`mark-to-mark-60fps.xdelta`), so their bytes are encoded once instead of
-sixteen times. Every patch name is SOURCE-to-TARGET, and `manifest.tsv`
-describes the whole graph: each row's `source_sha256` is the previous
-patch's `target_sha256`, so the chain from the base translation to any
-combination can be read straight from the manifest (the web patcher in
-`webpatcher/` walks it automatically). A patch against one variant never
-fits another; apply whole chains only.
+The seven release choices are save UI, Mark artwork, battle speed, 60 fps,
+double battle rewards, half random encounters, and running in dungeons.
+Rewards and encounters ship as separate options, so someone can take one
+without the other. Debug is not included. The release ships ten patch files
+instead of one per combination: `rev1-to-rev0.xdelta` and `rev0-to-base.xdelta`
+convert the retail disc to the base translation, and every option is an
+`add-<option>.xdelta` file that splices its own changes into whatever
+variant it is given. Options whose edits stay in place (Mark, battle
+speed, rewards, encounters, run) never move another option's offsets, so one
+file each serves every variant. Options that add bytes shift every offset
+after the insertion, so an option applied after them is encoded against
+the accumulated size-changers: `add-60fps.xdelta` for discs without the
+save menu and `add-60fps-saves.xdelta` for discs with it. `manifest.tsv`
+still describes the whole graph, one row per variant: each row's
+`source_sha256` is the previous step's `target_sha256`, so the chain from
+the base translation to any combination can be read straight from the
+manifest (the web patcher in `webpatcher/` walks it automatically). Each
+row's `verify` column names how the step is checked: `xdelta` for steps
+whose source is exactly the image the patch was encoded from, and `sha256`
+for steps applied over a decorated variant, which decode with `-n` and are
+certified by the whole-file SHA-256 recorded in the row.
+
+#### Why the graph looks like this (invariants other agents must keep)
+
+- **Solver order**: options apply one at a time, in-place options first
+  (CHOICES order), size-changers last. A size-changer's insertion shifts
+  every offset after it, so a patch encoded before the insertion reads the
+  wrong places on the other side of it - that is the whole reason for the
+  order and for anchor files. Compositions that do not hold stop the
+  build (see the portability proof below); they are never worked around.
+- **File layout**: one file per (option, subset of size-changers that can
+  precede it). In-place options always precede every size-changer, so
+  they need exactly one file each; a release's last size-changer needs
+  2^(m-1) anchor variants. Adding an in-place option costs one file;
+  adding a size-changer is the only thing that multiplies.
+- **One row per variant, walkable**: every variant has exactly one
+  incoming edge, and every row's `source_sha256` equals its parent row's
+  `target_sha256`. The web patcher's chain walker and the README's apply
+  order both lean on this; do not emit two incoming edges for one variant.
+- **Nothing ships unproven**: the build assembles and audits every
+  variant (verified against retail), then proves each `sha256` row by
+  decoding the published patch against the exact parent state and
+  comparing SHA-256 with the audited built disc. The proofs cover the
+  composition of patches; they do not evaluate in-game behavior - that is
+  what the audits and in-game QA are for.
+- **`SIZE_CHANGERS` is checked, not trusted**: the build measures each
+  solo variant against the base image and stops if the classification
+  disagrees. If an option starts (or stops) growing the image, fix the
+  constant and expect a full rebuild - the whole graph hangs off it.
+
+#### Adding a release option (checklist)
+
+1. Implement the patch and add it to `QOL_PATCHES` in
+   `src/injection_tools/build.py` (with its verify gates).
+2. Add it to `CHOICES` in `tools/build_patches.py`. If its build changes
+   the image size, also add it to `SIZE_CHANGERS` - a wrong guess stops
+   the build at the solo-size check.
+3. Add its wording to `tools/release_options.json` (label, name,
+   description - the single source of option wording: `CHOICES` derives
+   from it, the release README is generated from it, and the Pages
+   workflow builds the web patcher's `features.js` from it; tests enforce
+   coverage and generator output).
+4. Everything else derives: file names, manifest rows, proofs, the
+   webpatcher grid and chains. Update the hardcoded expectations in
+   `tools/tests/test_build_patches.py` if a count moved, and
+   `COMPLETE_RELEASE` in `tools/publish_patches.py`.
+5. Rebuild from scratch: the fingerprint changes, every variant is
+   re-assembled, audited and proven. The variant matrix is 2^n - adding
+   options doubles the first build's assembly+audit work.
 
 `--publish-release` (formerly `--publish-web`) uploads the `--output`
-directory (default `dist/patches`) as a GitHub release. The release keeps
-every file individual so the page can fetch `manifest.tsv` and only the
-patches along the chosen chain, and adds one `persona-patches.zip` with the
-same files for manual xdelta use. The upload targets the repository
-named by `RELEASE_REPO` in `webpatcher/app.js`, since `origin` is not
-GitHub.
+directory (default `dist/patches`) to a GitHub release as one
+`persona-patches.zip` holding the patch files, `manifest.tsv` and
+`README.txt`: manual xdelta users download the zip directly. The upload
+targets the repository named by `RELEASE_REPO` in `webpatcher/app.js`,
+since `origin` is not GitHub.
 
 The web patcher site itself deploys from this repository through
 `.github/workflows/pages.yml` on every push to `main`, on every published
 release, and on demand. Before uploading the artifact, the workflow
-downloads the release's `manifest.tsv`, `README.txt` and `.xdelta` files
-into `webpatcher/patches` (git-ignored), so the site serves the patches
-from its own origin: a page on `github.io` cannot fetch release assets,
-since github.com answers those downloads without CORS headers. No build
-step, second repository or `gh-pages` branch is involved. Enable it once
-under Settings -> Pages -> Build and deployment -> Source -> GitHub
-Actions; the project site is `https://<owner>.github.io/<repo>/`.
+downloads the release's zip and unpacks it into `webpatcher/patches`
+(git-ignored), so the site serves the patches from its own origin: a page
+on `github.io` cannot fetch release assets, since github.com answers those
+downloads without CORS headers. No build step, second repository or
+`gh-pages` branch is involved. Enable it once under Settings -> Pages ->
+Build and deployment -> Source -> GitHub Actions; the project site is
+`https://<owner>.github.io/<repo>/`.
 
 Common preparation runs once, and so do the variant-independent outputs: the
 save-UI armips inputs, the TALK and ending builders, and their inventory unit
@@ -207,35 +261,44 @@ what feeds the disc - `src/`, `translation/`, the extracted data, and the
 two scripts it runs - so unrelated churn in `tools/tests/` never
 invalidates a running release. The Rev 1 to Rev 0 conversion never depends
 on build inputs and is reused across any same-source run. A release is
-complete when its manifest lists all 33 patches.
+complete when its manifest lists all 129 steps across the 10 patch files.
 
 The run's scratch images live in a private workspace that is deleted on
 exit. It prefers the system temp directory (tmpfs on most Linux systems) when
-it can hold a few images, then `build/`; `PERSONA_BUILD_SCRATCH` names the
-parent directory explicitly. The retail image is staged there once, so the
-spinning disc is read once rather than once per variant, and the number of
-images allowed to wait for the delta pool is bounded by the available space.
-On a reflink filesystem (btrfs) image clones share their unchanged extents
-and cost almost no data blocks; elsewhere the bound reserves room for the
-staged original, the base image, the image being assembled and up to three
-reconstructed layer images. Builds sharing `build/` must not run together.
+it can hold every image the run keeps (the staged retail copy, the base
+translation and the parent states that later steps decode from), then
+`build/`; `PERSONA_BUILD_SCRATCH` names the parent directory explicitly. The
+retail image is staged there once, so the spinning disc is read once rather
+than once per variant, and the number of images allowed to wait for the
+delta pool is bounded by the available space. On a reflink filesystem
+(btrfs) image clones share their unchanged extents and cost almost no data
+blocks; elsewhere the bound reserves room for the staged original, the base
+image, the image being assembled and the kept parent images. Builds sharing
+`build/` must not run together.
 
 ### Browser patcher
 
 `webpatcher/` is a static page that applies a release in the browser: the
 disc revision is identified by applying `rev1-to-rev0` (or `rev0-to-base`)
 in xdelta's check-only mode, then the chain (`rev1-to-rev0` when needed,
-`rev0-to-base`, then the chosen `base-to-*`) is decoded by the real xdelta3
-3.2.2 compiled to WebAssembly (see `webpatcher/vendor/README.md`), and
-xdelta's own source and target checksums verify every step before the next
-applies. The page also generates a correct single-track `.cue` for
+`rev0-to-base`, then each chosen option's `add-*` in the manifest's order)
+is decoded by the real xdelta3 3.2.2 compiled to WebAssembly (see
+`webpatcher/vendor/README.md`). Every step is verified before the next
+applies, in the way its manifest row names: `xdelta` steps by xdelta's own
+source and target checksums, `sha256` steps by hashing the whole result
+with `crypto.subtle` and comparing with the manifest's `target_sha256`
+(after the release build proved the exact same pair against the audited
+built disc). The page also generates a correct single-track `.cue` for
 the patched image, and names both downloads from the release
 (`Persona-TL.bin`, `Persona-TL-saves-mark.bin`, ...) instead of reusing the
 file name the user picked. The name carries no revision: the Rev 1 step
 already converts the source to Rev 0, so the output is Rev 0 either way. Which options exist comes from the manifest; what each
-one is called and what it does is the `FEATURES` table in `app.js`, keyed
-by the manifest label, and the test suite fails if a release choice has no
-entry there. See `webpatcher/README.md` for assembly and hosting.
+one is called and what it does lives in `tools/release_options.json`,
+the single source of option wording. `app.js` reads the generated
+`features.js` (written by `tools/generate_features.py`, run by the Pages
+workflow) keyed by the manifest label, and the test suite fails if a
+release choice has no entry there. See `webpatcher/README.md` for
+assembly and hosting.
 
 ## Source plans
 

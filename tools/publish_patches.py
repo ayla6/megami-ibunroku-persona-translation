@@ -1,19 +1,18 @@
 """Upload the patch release the web patcher serves.
 
-The page itself is deployed by .github/workflows/pages.yml, which mirrors
-the latest release into webpatcher/patches before publishing the artifact,
-so the page reads the patches same-origin (release downloads carry no CORS
-headers, so a browser cannot fetch them directly). This script handles the
-release assets that mirror reads:
+The page itself is deployed by .github/workflows/pages.yml, which unpacks
+the latest release's patch zip into webpatcher/patches before publishing
+the artifact, so the page reads the patches same-origin (release downloads
+carry no CORS headers, so a browser cannot fetch them directly). This
+script handles the release asset that mirror unpacks:
 
-- upload the release directory (dist/patches/ by default) as release assets
-  (gh CLI, --no-release to skip): the tag defaults to patches-YYYYMMDD;
-  re-running the same day clobbers the existing release's assets. The files
-  stay individual because the page fetches manifest.tsv and then only the
-  patches along the chosen chain; a persona-patches.zip with the same files
-  is uploaded too, for people applying xdelta by hand. The upload targets
-  the repository named by webpatcher/app.js (RELEASE_REPO), not origin,
-  which is not GitHub.
+- upload one persona-patches.zip (gh CLI, --no-release to skip) holding
+  the manifest, the README and every patch: the tag defaults to
+  patches-YYYYMMDD; re-running the same day clobbers the existing
+  release's asset. Individual files stay in the zip so the page can fetch
+  only the patches along the chosen chain. The upload targets the
+  repository named by webpatcher/app.js (RELEASE_REPO), not origin, which
+  is not GitHub.
 
     python tools/publish_patches.py               # release upload
     python tools/publish_patches.py --no-release  # local copy only
@@ -24,9 +23,11 @@ A finished build can upload the release directly:
 """
 
 import argparse
+import csv
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 import time
 import zipfile
@@ -36,7 +37,10 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / 'webpatcher'
 DIST = ROOT / 'dist' / 'patches'
 ARCHIVE_NAME = 'persona-patches.zip'
-COMPLETE_RELEASE = 33  # 2 conversions + 31 combinations
+# One rev conversion step each, plus one add- file per option and per
+# size-changer anchor: the authoritative layout is
+# tools/build_patches.py.release_file_names().
+COMPLETE_RELEASE = 11
 
 
 def release_repo():
@@ -67,15 +71,22 @@ def release_is_complete(directory=None):
     manifest = directory / 'manifest.tsv'
     if not manifest.is_file():
         return False
-    rows = manifest.read_text(encoding='utf-8').splitlines()
-    return len([row for row in rows if row]) - 1 >= COMPLETE_RELEASE
+    with open(manifest, encoding='utf-8', newline='') as source:
+        names = {row['patch'] for row in csv.DictReader(source, delimiter='\t')
+                 if row.get('patch')}
+    return len(names) >= COMPLETE_RELEASE
 
 
 def sync_local_patches(directory=None):
-    """Refresh webpatcher/patches for local serving (git-ignored).
+    """Refresh webpatcher/features.js and webpatcher/patches for local
+    serving (both git-ignored).
 
-    A symlink to dist/patches is a valid setup: local serving then always
-    sees the current release, so there is nothing to copy."""
+    A symlink to dist/patches is a valid setup for the patches: local
+    serving then always sees the current release, so there is nothing to
+    copy."""
+    sys.path.insert(0, str(ROOT / 'tools'))
+    import generate_features
+    generate_features.generate(target=SITE / 'features.js')
     directory = Path(directory) if directory else DIST
     local = SITE / 'patches'
     local.mkdir(exist_ok=True)
@@ -140,8 +151,7 @@ def upload_release(tag, directory=None):
     require_release_repo()
     with tempfile.TemporaryDirectory() as tmp:
         archive = write_archive(Path(tmp) / ARCHIVE_NAME, directory)
-        assets = [str(path) for path in release_files(directory)]
-        assets.append(str(archive))
+        assets = [str(archive)]
         try:
             run('gh', 'release', 'view', '--repo', GITHUB_REPO, tag,
                 capture=True)
@@ -152,9 +162,9 @@ def upload_release(tag, directory=None):
         except subprocess.CalledProcessError:
             run('gh', 'release', 'create', '--repo', GITHUB_REPO, tag, *assets,
                 '--title', f'Persona translation patches ({time.strftime("%Y-%m-%d")})',
-                '--notes', 'Apply with the web patcher, or manually in the order'
-                           ' described in manifest.tsv and README.txt.'
-                           f' {ARCHIVE_NAME} bundles the same files for offline use.')
+                '--notes', 'One zip: the patch files, manifest.tsv (every'
+                           ' chain, with the hashes to verify each step) and'
+                           ' README.txt (apply order).')
             print(f'release {tag} created on {GITHUB_REPO}')
             return 'created'
 
@@ -191,8 +201,8 @@ def publish(tag=None, *, directory=None, release=True,
         if not release_is_complete(directory) and not allow_incomplete:
             raise SystemExit(
                 f'{directory / "manifest.tsv"} does not list a complete'
-                f' release ({COMPLETE_RELEASE} patches) - rerun the release'
-                ' build, or pass --allow-incomplete')
+                f' release ({COMPLETE_RELEASE} patch files) - rerun the'
+                ' release build, or pass --allow-incomplete')
         if upload_release(tag, directory) == 'updated':
             deploy_site()
     sync_local_patches(directory)

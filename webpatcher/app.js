@@ -2,11 +2,13 @@
 /* Persona translation web patcher - page logic.
  *
  * The release output (dist/patches/) is served next to this page as
- * patches/ (manifest.tsv + the .xdelta files): the Pages workflow mirrors
- * it from the latest release, and local testing copies or symlinks it. The
+ * patches/ (manifest.tsv + the .xdelta files): the Pages workflow unpacks
+ * it from the release zip, and local testing copies or symlinks it. The
  * manifest drives everything: which options exist, which patch file each
- * combination maps to, and the chain between them. xdelta checksums every
- * step while applying it. Nothing here is hardcoded per release.
+ * combination maps to, the chain between them, and how each step is
+ * verified (xdelta's own checksums, or the whole-file SHA-256 for steps
+ * applied over a variant the patch was not encoded from). Nothing here is
+ * hardcoded per release.
  */
 
 const PATCHES = 'patches/';
@@ -19,33 +21,13 @@ const OUTPUT_NAME = 'Persona-TL';
 /* Same cue convention as src/injection_tools/build_disc.py. */
 const CUE_BODY = '  TRACK 01 MODE2/2352\n    INDEX 01 00:00:00\n';
 
-/* What each manifest option is called and what it does, keyed by the
- * manifest's `choices` labels. An option with no entry still works; it just
- * shows its internal label. This block is JSON (tools/tests/test_webpatcher
- * reads it to prove every release choice is described), so keep the keys and
- * strings double-quoted. */
-const FEATURES = {
-  "saves": {
-    "name": "Save menu",
-    "description": "Merges the slot 1 and slot 2 menus into one, so that you don't have to worry about which one to select. Requires \"speed up on memory card access\" to not feel like a slog."
-  },
-  "mark": {
-    "name": "Black Mark",
-    "description": "Makes Masao Inaba black. It uses a custom sprite I made for him so that he's both black and still wears his original outfit. Doesn't change the script."
-  },
-  "battlespeed": {
-    "name": "Battle speedup",
-    "description": "Doubles the speed of summons and skill effects in battle."
-  },
-  "60fps": {
-    "name": "60 FPS",
-    "description": "Interpolates frames to get the dungeons to 60fps and the map to 30fps. Only does it when you're actively moving around. Needs overclocking."
-  },
-  "rewards-encounters": {
-    "name": "Easy mode",
-    "description": "Halves random encounters and doubles EXP, Persona points and money after battles."
-  }
-};
+/* What each manifest option is called and what it does: generated into
+ * features.js by tools/generate_features.py from tools/release_options.json
+ * (the single place option wording lives - the release README reads the
+ * same file). Edit the JSON, never this table; the Pages workflow and
+ * tools/publish_patches.py run the generator for you. An option missing
+ * from the JSON still works; it just shows its internal label. */
+const FEATURES = globalThis.FEATURES || {};
 
 const BASE_PATCH = 'rev0-to-base.xdelta';
 const REV1_PATCH = 'rev1-to-rev0.xdelta';
@@ -76,7 +58,9 @@ function status(message, isError) {
 
 const choiceKey = row => row.choices.split(',').sort().join(',');
 const stepOf = row => ({patch: row.patch,
-                        expectBytes: Number(row.target_bytes)});
+                        expectBytes: Number(row.target_bytes),
+                        verify: row.verify || 'xdelta',
+                        expectHash: row.target_sha256});
 
 /* Patches come from patches/ next to the page, which is the only way a
  * static page can read them: github.com serves release downloads without
@@ -127,7 +111,7 @@ async function loadManifest() {
   const lines = source.manifestText.split('\n').filter(line => line);
   const header = lines.shift().split('\t');
   for (const name of ['patch', 'choices', 'source_bytes', 'source_sha256',
-                      'target_bytes', 'target_sha256']) {
+                      'target_bytes', 'target_sha256', 'verify']) {
     if (!header.includes(name)) throw new Error('unrecognized release manifest');
   }
   state.rows = lines.map(line => {
@@ -376,7 +360,11 @@ window.addEventListener('pagehide', event => {
 
 function renderGrid() {
   const grid = $('choices');
-  grid.replaceChildren(...state.labels.map(label => {
+  // FEATURES order, so the checkboxes stay where they are regardless of how
+  // the manifest's patch names happen to sort; anything unlisted follows.
+  const shown = [...Object.keys(FEATURES).filter(label => state.labels.includes(label)),
+                ...state.labels.filter(label => !FEATURES[label])];
+  grid.replaceChildren(...shown.map(label => {
     const info = featureOf(label);
     const item = document.createElement('label');
     item.className = 'choice';

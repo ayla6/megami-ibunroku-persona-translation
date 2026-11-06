@@ -109,7 +109,7 @@ def _element_size(value, width):
     return width
 
 
-def _directive_size(token, rest, path):
+def _directive_size(token, rest, path, root=None):
     """(bytes written, all-zero?) for a directive, or None when silent."""
     if token in _SILENT:
         if token == '.align':
@@ -144,7 +144,7 @@ def _directive_size(token, rest, path):
         match = _INCBIN.match(rest.strip())
         if not match:
             raise ValueError(f'.incbin with no filename: {rest!r}')
-        name = resolve(match.group(1))
+        name = resolve(match.group(1), root)
         if not os.path.isfile(name):
             raise ValueError(f'.incbin file not found: {match.group(1)}')
         size = os.path.getsize(name)
@@ -234,7 +234,7 @@ def output_limits(equ, root=None):
     return limits
 
 
-def _size(token, rest, addr, path):
+def _size(token, rest, addr, path, root=None):
     if not token:
         return 0, True
     if not token.startswith('.'):
@@ -250,11 +250,15 @@ def _size(token, rest, addr, path):
         pad = (-addr) % align
         zero = len(args) < 2 or _int(args[1]) == 0
         return pad, zero
-    return _directive_size(token, rest, path)
+    return _directive_size(token, rest, path, root)
 
 
-def parse_listing(path):
-    """Parse an armips -temp listing into its sections and write intervals."""
+def parse_listing(path, root=None):
+    """Parse an armips -temp listing into its sections and write intervals.
+
+    Relative input/output paths in the listing are resolved against `root`,
+    the same tree the caller checks the outputs in (default: this repo)."""
+    root = root or ROOT
     sections, current, problems = [], None, []
     order = 0
     with open(path, encoding='utf-8-sig', errors='replace') as source:
@@ -267,13 +271,14 @@ def parse_listing(path):
             origin, line = match.group(3), int(match.group(4))
             opened = _OPEN.match(text)
             if opened:
-                current = Section(resolve(opened.group(2)), resolve(opened.group(1)),
+                current = Section(resolve(opened.group(2), root),
+                                  resolve(opened.group(1), root),
                                   int(opened.group(3), 0), origin, line, False)
                 sections.append(current)
                 continue
             created = _CREATE.match(text)
             if created:
-                current = Section(resolve(created.group(1)), None,
+                current = Section(resolve(created.group(1), root), None,
                                   int(created.group(2), 0), origin, line, True)
                 sections.append(current)
                 continue
@@ -285,7 +290,7 @@ def parse_listing(path):
             token = text.split()[0] if text else ''
             rest = text[len(token):].strip()
             try:
-                sized = _size(token, rest, address, origin)
+                sized = _size(token, rest, address, origin, root)
             except ValueError as error:
                 problems.append(f'{origin}:{line}: {error}')
                 continue
@@ -308,7 +313,7 @@ def parse_listing(path):
     return sections, problems
 
 
-def _decode_data(text):
+def _decode_data(text, root=None):
     """The bytes a data directive emits, or None when they are not literal.
 
     Used only to tell an intentional shared-suffix glyph (the next writer
@@ -359,7 +364,7 @@ def _decode_data(text):
         if not match:
             return None
         try:
-            name = resolve(match.group(1))
+            name = resolve(match.group(1), root)
             args = [v for v in _split_values(match.group(2)) if v]
             offset = _int(args[0]) if len(args) > 0 else 0
             size = _int(args[1]) if len(args) > 1 else os.path.getsize(name) - offset
@@ -453,7 +458,7 @@ def check_sections(sections, problems, equ=None, root=None):
 
         def data_of(index):
             if index not in encoded:
-                encoded[index] = _decode_data(ordered[index].text)
+                encoded[index] = _decode_data(ordered[index].text, root)
             return encoded[index]
 
         active, heap = set(), []
@@ -560,7 +565,7 @@ def check_sections(sections, problems, equ=None, root=None):
 
 def check_listing(path, root=None):
     root = root or ROOT
-    sections, problems = parse_listing(path)
+    sections, problems = parse_listing(path, root)
     equ = _equ_map(os.path.join(root, 'src', 'asm', 'common', 'addresses.inc')) \
         if os.path.isfile(os.path.join(root, 'src', 'asm', 'common', 'addresses.inc')) else {}
     failures, stats = check_sections(sections, problems, equ, root)

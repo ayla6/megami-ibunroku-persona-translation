@@ -32,12 +32,22 @@ You can also download it from releases and do it by hand with xdelta3:
 # Rev 1 only; skip for a Rev 0 disc.
 xdelta3 -d -s "Megami Ibunroku Persona (Japan) (Rev 1).bin" \
     rev1-to-rev0.xdelta persona-rev0.bin
-# Base translation, then options.
+# Base translation, then each option you want, in this order.
 xdelta3 -d -s persona-rev0.bin rev0-to-base.xdelta persona-base.bin
-xdelta3 -d -s persona-base.bin base-to-mark.xdelta persona-mark.bin
-xdelta3 -d -s persona-mark.bin mark-to-saves-mark.xdelta persona-saves-mark.bin
-xdelta3 -d -s persona-saves-mark.bin saves-mark-to-saves-mark-60fps-rewards-encounters.xdelta persona-saves-mark-60fps-rewards-encounters.bin
+xdelta3 -n -d -s persona-base.bin add-mark.xdelta persona-mark.bin
+xdelta3 -n -d -s persona-mark.bin add-battlespeed.xdelta persona-mark-battlespeed.bin
+xdelta3 -n -d -s persona-mark-battlespeed.bin add-rewards.xdelta persona-mark-battlespeed-rewards.bin
+xdelta3 -n -d -s persona-mark-battlespeed-rewards.bin add-encounters.xdelta persona-mark-battlespeed-rewards-encounters.bin
+xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters.bin add-run.xdelta persona-mark-battlespeed-rewards-encounters-run.bin
+xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run.bin add-saves.xdelta persona-mark-battlespeed-rewards-encounters-run-saves.bin
+xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-saves.bin add-60fps-saves.xdelta persona-mark-battlespeed-rewards-encounters-run-saves-60fps.bin
 ```
+
+If xdelta3 reports a checksum mismatch on an `add-` patch, retry with `-n`
+and compare your result's `sha256sum` with the `target_sha256` of the
+matching row in `manifest.tsv` (the release has verified that exact
+combination at build time). The webpatcher does all of this
+automatically.
 
 ## Extra patches
 
@@ -47,7 +57,10 @@ xdelta3 -d -s persona-saves-mark.bin saves-mark-to-saves-mark-60fps-rewards-enco
 | Black Mark | Makes Masao Inaba black. Uses a custom sprite so that he's both black and still wears his original outfit. Doesn't change the script. |
 | Battle speedup | Doubles the speed of summons and skill effects in battle. |
 | 60 FPS | Interpolates frames to get the dungeons to 60fps and the map to 30fps. Only does it when you're actively moving around. Needs overclocking. |
-| Easy mode | Halves random encounters and doubles EXP, Persona points and money after battles. |
+| Double rewards | Doubles the EXP, Persona points and money you get after battles. |
+| Half encounters | Halves the rate of random encounters. |
+| Run in dungeons | Hold Cross to walk and turn at double speed in the 3D dungeons. The controller page lists it as RUN/CANCEL on Cross in both control schemes. |
+| Upper-right movement | Forces Upward Movement Orientation to Upper Right: pressing Up walks to the upper right in the 2D rooms instead of the retail upper left. |
 
 On Black Mark: I edited it myself, since I don't like his outfit in Revelations,
 much less the fact that his overworld sprite is red instead of, y'know, black.

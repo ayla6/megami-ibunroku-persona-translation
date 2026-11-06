@@ -45,6 +45,11 @@ QOL_PATCHES = {
                                        'CPU overclock to actually reach 60)'),
     'encounters':  ('QOL_ENCOUNTERS',  'half the random encounter rate'),
     'rewards':     ('QOL_REWARDS',     'EXP, Persona points and money after a battle x2'),
+    'run':         ('QOL_RUN',         'hold Cross to walk and turn at double speed in the 3D '
+                                       'dungeons (the controller page lists it as RUN/CANCEL on Cross)'),
+    'upright':     ('QOL_UPRIGHT',     'Upward Movement Orientation: Upper Right in the 2D rooms - '
+                                       'pressing Up walks to the upper right instead of the retail '
+                                       'upper left'),
     'battlespeed': ('QOL_BATTLESPEED', 'summons and skill effects at double speed'),
     'debug':       ('QOL_DEBUG',       'battle debug menu: drop the party-leader name gate, so the hidden '
                                        'sequence works on controller 2 (Up Up Down Down Left Right Left Right '
@@ -306,6 +311,7 @@ def main(variants_override=None, after_variant=None, mark_builder=None,
     run(py, os.path.join("injection_tools", "fusionmsg.py"))
     run(py, os.path.join("injection_tools", "statmsg.py"))
     run(py, os.path.join("injection_tools", "cfgtext.py"))
+    run(py, os.path.join("injection_tools", "runtext.py"))
     run(py, os.path.join("injection_tools", "dngnames.py"))
     # canonical dng builder: boxes (the dngtext scan) + name fields from the
     # toolbelt rows - replaces the ja-keyed dngtext.py/dngmsg.py builders
