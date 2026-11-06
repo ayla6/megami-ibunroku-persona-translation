@@ -468,6 +468,10 @@ def main():
     parser.add_argument('--side-files', default=None,
                         help='directory holding the builder report files '
                              '(dng_spill.asm, draft tables); default: build/')
+    parser.add_argument('--no-text', action='store_true',
+                        help='stop after the structure and level-1 byte checks; '
+                             'the text read-back (levels 2 and 3) is identical for '
+                             'every QoL combination, so a release proves it once')
     args = parser.parse_args()
     image = args.image
     build = os.path.join(ROOT, 'build')
@@ -490,6 +494,17 @@ def main():
         return b''.join(disc.user(ext + n) for n in range((size + 2047) // SECTOR))[:size]
 
     _n, bad = level1(disc, build, entries, read_file, placed)
+    if args.no_text:
+        # Every release variant carries the same translated files; only the
+        # QoL code overlays differ. The release therefore runs the text
+        # read-back once (on the base translation) and uses this switch for
+        # the combinations, which still get the full structure and level-1
+        # checks above.
+        print('level 2/3: skipped (--no-text); text is identical across QoL variants')
+        if bad:
+            sys.exit(1)
+        print('disc-byte verification PASSED (structure and files)')
+        return
 
     # level 2: decode the DISC bytes back to the canonical rows
     for name in sorted(os.listdir(os.path.join(ROOT, 'data', 'psx', 'TALK'))):

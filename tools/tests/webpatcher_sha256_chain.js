@@ -1,11 +1,10 @@
 'use strict';
-/* Node harness for the worker's -n + whole-file SHA-256 verification path:
- * applies a decode chain the way worker.js applies verify=sha256 steps -
- * xdelta runs with -n (the patch's window checksums describe the encode
- * source, not the state it is applied over) and every step's output is
- * hashed with the native crypto.subtle and compared with the manifest's
- * target hash. Called by tools/tests/test_webpatcher.py with a synthetic
- * release chain.
+/* Node harness for a -n decode chain through the wasm: xdelta runs with -n
+ * (the patch's window checksums describe the encode source, not the
+ * decorated state it is applied over) and every step's output is hashed
+ * with the native crypto.subtle and compared with the expected target
+ * hash. Called by tools/tests/test_webpatcher.py with a synthetic release
+ * chain; the worker's choice of -n is covered by CanonicalSourceTest.
  *
  *   node webpatcher_sha256_chain.js <vendor/xdelta3.js> <workerfs.js>
  *       <xdelta.js> <work> <patch> <expectedSha> [...]

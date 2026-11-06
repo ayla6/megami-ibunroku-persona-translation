@@ -142,22 +142,32 @@ class PublishArchiveTest(unittest.TestCase):
                                                          '.txt', '.zip'))]
             self.assertEqual(paths, [str(Path(tmp) / 'a.zip')], cmd)
 
-    def test_completeness_counts_distinct_patch_files(self):
+    def test_completeness_requires_one_row_per_patch_file(self):
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp)
             self.assertFalse(self.publish.release_is_complete(output))
             manifest = output / 'manifest.tsv'
-            header = 'patch\tchoices\tsource_sha256\ttarget_sha256\n'
+            header = ('patch\tadds\tanchor\torder\tchoices\tverify\t'
+                      'source_sha256\ttarget_sha256\tproof_choices\t'
+                      'proof_sha256\n')
             manifest.write_text(header + '\n'.join(
-                f'p{i}.xdelta\t\t\ta{i}' for i in range(11)) + '\n')
+                f'p{i}.xdelta\t\t\t{i}\t\t\t\t\t\t' for i in range(11)) + '\n')
             self.assertFalse(self.publish.release_is_complete(output),
                              'eleven patch files are not a release')
             manifest.write_text(header + '\n'.join(
-                f'p{i}.xdelta\t\t\ta{i}' for i in range(12)) + '\n')
+                f'p{i}.xdelta\t\t\t{i}\t\t\t\t\t\t' for i in range(12)) + '\n')
             self.assertTrue(self.publish.release_is_complete(output))
-            # 513 steps across 11 files: duplicate names do not inflate it
+            # the per-combination manifest repeats patch names; it is not a
+            # complete release of this layout
             manifest.write_text(header + '\n'.join(
-                f'p{i % 11}.xdelta\t\t\ta{i}' for i in range(513)))
+                f'p{i % 11}.xdelta\t\t\t{i % 11}\t\t\t\t\t\t'
+                for i in range(513)) + '\n')
+            self.assertFalse(self.publish.release_is_complete(output))
+            # the old per-combination header is refused outright
+            manifest.write_text(
+                'patch\tchoices\tsource_sha256\ttarget_sha256\n'
+                + '\n'.join(f'p{i}.xdelta\t\t\ta{i}' for i in range(12))
+                + '\n')
             self.assertFalse(self.publish.release_is_complete(output))
 
     def test_missing_release_repository_stops_before_the_archive(self):

@@ -40,13 +40,26 @@ def disc(size, seed):
     return out
 
 
-def edit(buf, seed, count=16):
+def edits(seed, size, count=16):
+    """Positions and replacement bytes, so the same edits can be applied
+    over two different sources (canonical and decorated)."""
     rng = random.Random(seed)
-    out = bytearray(buf)
+    result = []
     for _ in range(count):
-        pos = rng.randrange(len(out) - 64)
-        out[pos:pos + 64] = bytes(rng.randrange(256) for _ in range(64))
+        pos = rng.randrange(size - 64)
+        result.append((pos, bytes(rng.randrange(256) for _ in range(64))))
+    return result
+
+
+def apply_edits(buf, changes):
+    out = bytearray(buf)
+    for pos, data in changes:
+        out[pos:pos + len(data)] = data
     return out
+
+
+def edit(buf, seed, count=16):
+    return apply_edits(buf, edits(seed, len(buf), count))
 
 
 def sha256(path):
@@ -124,11 +137,74 @@ class FeatureWordingTest(unittest.TestCase):
 
 
 @unittest.skipIf(shutil.which('node') is None, 'node not installed')
+class PlanGraphTest(unittest.TestCase):
+    """webpatcher/plan.js derives the chain from manifest rows alone: one
+    row per patch file, the most specific anchor wins, the canonical source
+    of a row is its `choices` minus `adds`, and the worker's -n decision
+    follows whether the applied options equal that source."""
+
+    def test_plan_and_canonical_decisions(self):
+        proc = subprocess.run(
+            ['node', str(TESTS / 'webpatcher_plan.js'),
+             str(ROOT / 'webpatcher' / 'plan.js')],
+            capture_output=True, text=True, timeout=120)
+        self.assertEqual(proc.returncode, 0, proc.stderr + proc.stdout)
+        self.assertIn('PLAN_OK', proc.stdout)
+
+
+@unittest.skipIf(shutil.which('node') is None, 'node not installed')
+class CanonicalSourceTest(unittest.TestCase):
+    """The worker applies a patch with its window checksums over its
+    canonical source, and with -n over a decorated one. plan.js makes that
+    call; this proves both sides with the real wasm codec: the decorated
+    source is refused without -n and decodes with it, keeping the
+    decorations and carrying the target's changes."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.xdelta = find_xdelta3()
+
+    def setUp(self):
+        if self.xdelta is None:
+            self.skipTest('xdelta3 not installed')
+
+    def test_decorated_source_needs_n_and_preserves_decorations(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            work = Path(tmp)
+            size = 8 << 20
+            # Random bytes, not the repeating disc() pattern: xdelta must
+            # copy each region from its one source position, so the only
+            # difference between the two decodes is the decoration itself.
+            base = random.Random(5).randbytes(size)
+            target_changes = edits(6, size, count=24)
+            decoration_changes = edits(7, size, count=24)
+            target = apply_edits(base, target_changes)
+            decorated = apply_edits(base, decoration_changes)
+            decorated_target = apply_edits(decorated, target_changes)
+            for name, data in (('canonical.bin', base), ('target.bin', target),
+                               ('decorated.bin', decorated),
+                               ('decorated-target.bin', decorated_target)):
+                (work / name).write_bytes(data)
+            subprocess.run([self.xdelta, '-e', '-A', '-a', '-s',
+                            str(work / 'canonical.bin'), str(work / 'target.bin'),
+                            str(work / 'add.xdelta')], check=True)
+            proc = subprocess.run(
+                ['node', str(TESTS / 'webpatcher_canonical_steps.js'),
+                 str(VENDOR / 'xdelta3.js'),
+                 str(ROOT / 'webpatcher' / 'workerfs.js'),
+                 str(ROOT / 'webpatcher' / 'xdelta.js'),
+                 str(ROOT / 'webpatcher' / 'plan.js'), str(work)],
+                capture_output=True, text=True, timeout=300)
+            self.assertEqual(proc.returncode, 0, proc.stderr + proc.stdout)
+            self.assertIn('CANONICAL_STEPS_OK', proc.stdout)
+
+
+@unittest.skipIf(shutil.which('node') is None, 'node not installed')
 class Sha256ChainTest(unittest.TestCase):
-    """The worker's verify=sha256 steps: decode with -n through the wasm,
-    hash natively with crypto.subtle, refuse a wrong hash. crypto.subtle
-    needs a secure context in browsers - the page is served from localhost
-    or real HTTPS (e.g. tailscale serve) - Node always has it."""
+    """A -n decode chain through the wasm, hashed natively with
+    crypto.subtle and refused when a hash is wrong. crypto.subtle needs a
+    secure context in browsers - the page is served from localhost or real
+    HTTPS (e.g. tailscale serve) - Node always has it."""
 
     @classmethod
     def setUpClass(cls):

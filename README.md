@@ -39,8 +39,10 @@ xdelta3 -n -d -s persona-mark.bin add-battlespeed.xdelta persona-mark-battlespee
 xdelta3 -n -d -s persona-mark-battlespeed.bin add-rewards.xdelta persona-mark-battlespeed-rewards.bin
 xdelta3 -n -d -s persona-mark-battlespeed-rewards.bin add-encounters.xdelta persona-mark-battlespeed-rewards-encounters.bin
 xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters.bin add-run.xdelta persona-mark-battlespeed-rewards-encounters-run.bin
-xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run.bin add-saves.xdelta persona-mark-battlespeed-rewards-encounters-run-saves.bin
-xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-saves.bin add-60fps-saves.xdelta persona-mark-battlespeed-rewards-encounters-run-saves-60fps.bin
+xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run.bin add-upright.xdelta persona-mark-battlespeed-rewards-encounters-run-upright.bin
+xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-upright.bin add-skipfmv.xdelta persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv.bin
+xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv.bin add-saves.xdelta persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv-saves.bin
+xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv-saves.bin add-60fps-saves.xdelta persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv-saves-60fps.bin
 ```
 
 If xdelta3 reports a checksum mismatch on an `add-` patch, retry with `-n`

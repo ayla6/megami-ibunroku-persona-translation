@@ -5,10 +5,9 @@
  * patches/ (manifest.tsv + the .xdelta files): the Pages workflow unpacks
  * it from the release zip, and local testing copies or symlinks it. The
  * manifest drives everything: which options exist, which patch file each
- * combination maps to, the chain between them, and how each step is
- * verified (xdelta's own checksums, or the whole-file SHA-256 for steps
- * applied over a variant the patch was not encoded from). Nothing here is
- * hardcoded per release.
+ * option needs for the current size-changer anchors, the chain order, and
+ * how each step is verified. plan.js derives that graph; this file only
+ * renders it and names the result. Nothing here is hardcoded per release.
  */
 
 const PATCHES = 'patches/';
@@ -29,16 +28,15 @@ const CUE_BODY = '  TRACK 01 MODE2/2352\n    INDEX 01 00:00:00\n';
  * from the JSON still works; it just shows its internal label. */
 const FEATURES = globalThis.FEATURES || {};
 
-const BASE_PATCH = 'rev0-to-base.xdelta';
-const REV1_PATCH = 'rev1-to-rev0.xdelta';
+const {BASE_PATCH, REV1_PATCH} = PatchPlan;
 const REV_LABEL = ['Rev 0', 'Rev 1'];
 
 const $ = id => document.getElementById(id);
 
 const state = {
   rows: [],
-  byChoices: new Map(),  // sorted-choice key -> manifest row
-  labels: [],            // option labels, in manifest order
+  graph: null,           // PatchPlan.index(rows)
+  labels: [],            // option labels, in apply order
   patches: null,         // {manifestText}
   source: null,
   rev: null,             // detected revision (0 or 1), null until checked
@@ -56,11 +54,13 @@ function status(message, isError) {
   element.className = isError ? 'error' : '';
 }
 
-const choiceKey = row => row.choices.split(',').sort().join(',');
-const stepOf = row => ({patch: row.patch,
-                        expectBytes: Number(row.target_bytes),
-                        verify: row.verify || 'xdelta',
-                        expectHash: row.target_sha256});
+const stepOf = (row, source) => ({patch: row.patch,
+                                  adds: row.adds || '',
+                                  source,
+                                  expectBytes: Number(row.target_bytes),
+                                  patchHash: row.patch_sha256,
+                                  proofChoices: row.proof_choices || '',
+                                  proofHash: row.proof_sha256 || ''});
 
 /* Patches come from patches/ next to the page, which is the only way a
  * static page can read them: github.com serves release downloads without
@@ -108,87 +108,29 @@ function prefetchBase() {
 async function loadManifest() {
   const source = await loadPatches();
   state.patches = source;
-  const lines = source.manifestText.split('\n').filter(line => line);
-  const header = lines.shift().split('\t');
-  for (const name of ['patch', 'choices', 'source_bytes', 'source_sha256',
-                      'target_bytes', 'target_sha256', 'verify']) {
-    if (!header.includes(name)) throw new Error('unrecognized release manifest');
-  }
-  state.rows = lines.map(line => {
-    const cells = line.split('\t');
-    const row = {};
-    header.forEach((name, index) => { row[name] = cells[index]; });
-    return row;
-  });
-  if (!state.rows.some(row => row.patch === BASE_PATCH)) {
-    throw new Error('release manifest is missing ' + BASE_PATCH);
-  }
-  state.byChoices.clear();
-  state.labels = [];
-  const seen = new Set();
-  for (const row of state.rows) {
-    if (!row.choices) continue;
-    state.byChoices.set(choiceKey(row), row);
-    for (const label of row.choices.split(',')) {
-      if (!seen.has(label)) { seen.add(label); state.labels.push(label); }
-    }
-  }
+  state.rows = PatchPlan.rowsFrom(source.manifestText);
+  state.graph = PatchPlan.index(state.rows);
+  state.labels = state.graph.labels;
 }
 
 const featureOf = label => FEATURES[label] || {name: label, description: ''};
 const displayName = label => featureOf(label).name;
 
-function selectedRow() {
-  const chosen = [...document.querySelectorAll('#choices input:checked')]
-      .map(box => box.value).sort();
-  if (!chosen.length) return null;
-  const row = state.byChoices.get(chosen.join(','));
-  if (!row) {
-    throw new Error(`this combination of options has no patch in the release`
-        + ` manifest (${chosen.map(displayName).join(', ')}) - is the release`
-        + ' complete?');
-  }
-  return row;
-}
-
-/* The chain to a combination, derived from the manifest alone: each
- * patch's source_sha256 is the target_sha256 of the one before it, so the
- * path from the base translation to any combination is walkable by those
- * recorded hashes - the builder's layer layout is never hardcoded here.
- * The hashes only identify rows; xdelta does the verification. */
-function chainFor(row) {
-  const steps = [row];
-  while (steps[0].patch !== BASE_PATCH) {
-    if (steps.length > state.rows.length) {
-      throw new Error('circular patch chain in the release manifest');
-    }
-    const parent = state.rows.find(
-        candidate => candidate.target_sha256 === steps[0].source_sha256);
-    if (!parent) {
-      throw new Error(`broken patch chain in the release manifest at ${steps[0].patch}`);
-    }
-    steps.unshift(parent);
-  }
-  return steps;
+function selectedLabels() {
+  return PatchPlan.ordered(state.graph, [...document.querySelectorAll(
+      '#choices input:checked')].map(box => box.value));
 }
 
 /* The chain: rev1 -> rev0 if the user has a Rev 1 disc (obligatory), then
- * the manifest's chain from rev0-to-base to the chosen combination. */
+ * rev0-to-base, then one add- patch per selected option in apply order.
+ * PatchPlan picks the file each option needs from `anchor`; nothing about
+ * the options themselves is hardcoded here. */
 function buildPlan(rev) {
-  const baseRow = state.rows.find(row => row.patch === BASE_PATCH);
-  const revRow = state.rows.find(row => row.patch === REV1_PATCH);
-  const variant = selectedRow();
-  const steps = [];
-  if (rev === 1) {
-    if (!revRow) throw new Error('release manifest is missing ' + REV1_PATCH);
-    steps.push(stepOf(revRow));
-  }
-  steps.push(...chainFor(variant || baseRow).map(stepOf));
-  const sourceRow = rev === 1 ? revRow : baseRow;
+  const plan = PatchPlan.plan(state.graph, rev, selectedLabels());
   return {
-    steps,
-    patchNames: steps.map(step => step.patch),
-    sourceExpect: {bytes: Number(sourceRow.source_bytes)},
+    steps: plan.steps.map(step => stepOf(step.row, step.source)),
+    patchNames: plan.patchNames,
+    sourceExpect: plan.sourceExpect,
   };
 }
 
@@ -525,8 +467,8 @@ function refreshMemoryNote(fellBack) {
   }
 }
 
-window.patcher = {loadManifest, FEATURES, buildPlan, apply, selectedRow, state,
-                  lowMemoryHint};  // tests
+window.patcher = {loadManifest, FEATURES, buildPlan, apply, selectedLabels,
+                  state, lowMemoryHint};  // tests
 
 async function init() {
   ScratchSpace.clean();  // a closed tab could not finish deleting its output
@@ -562,7 +504,7 @@ async function init() {
       }
       // Name the download from the selection this run applied, not from
       // whatever the boxes say by the time the worker finishes.
-      const row = selectedRow();
+      const labels = selectedLabels();
       const lowRam = $('low-ram').checked;
       let scratch = lowRam ? ScratchSpace.name(Date.now()) : null;
       if (lowRam) lock = await holdScratch(scratch);
@@ -579,7 +521,7 @@ async function init() {
       if (!keep) releaseScratch(lock);
       lock = null;  // showResult owns the lock from here
       refreshMemoryNote(lowRam && !done.scratchDir);
-      showResult(outputBase(row ? row.choices.split(',') : []), done, keep);
+      showResult(outputBase(labels), done, keep);
     } catch (err) {
       releaseScratch(lock);
       status(err.message, true);

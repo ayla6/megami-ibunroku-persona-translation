@@ -3,21 +3,21 @@
  *
  * Applies the release patch chain with the real xdelta3 codec (3.2.2, the
  * same version the release patches were produced with; see
- * build-xdelta3-wasm.sh). Every step is verified before its result is
- * used, in one of two ways named by the manifest row's `verify` column:
+ * build-xdelta3-wasm.sh). The manifest row names the canonical source it
+ * was encoded from; the page plans the steps, and this worker decides how
+ * each one is verified:
  *
- * - verify=xdelta: the patch carries xdelta's per-window checksums and was
- *   encoded from exactly the source it is applied to; xdelta's own verdict
- *   decides (a wrong disc or corrupt patch fails instead of downloading).
- * - verify=sha256: the step is applied over a variant the patch was not
- *   encoded from (the same layout with other options riding along), so
- *   those checksums describe another flavor of the target and the step
- *   decodes with -n. The release build has proven this exact (patch,
- *   source) pair by decoding it and comparing with the audited built disc;
- *   here the whole result is hashed and compared with the manifest's
- *   target_sha256, a strictly stronger check than the window checksums.
+ * - the applied options are exactly the row's canonical source: the patch
+ *   carries xdelta's per-window checksums for that source, so xdelta's own
+ *   verdict decides (a wrong disc or corrupt patch fails loudly).
+ * - the disc is decorated (other in-place options riding along): those
+ *   checksums describe another flavor of the target, so the step decodes
+ *   with -n. The release build has proven this exact patch over the
+ *   maximally decorated parent (manifest proof_choices/proof_sha256), and
+ *   in-place decorations never change the image size.
  *
- * Step output sizes are checked against the manifest too.
+ * Every patch file's SHA-256 is checked against the manifest before it is
+ * used, and every step's output size is checked too.
  *
  * The selected disc is identified by applying a release patch with xdelta's
  * check-only mode (-J, decodes and verifies, writes nothing): rev1-to-rev0
@@ -41,13 +41,13 @@ var Module = {
 };
 
 importScripts('vendor/xdelta3.js', 'workerfs.js', 'scratch.js', 'opfsfs.js',
-              'xdelta.js');
+              'xdelta.js', 'plan.js');
 
-/* The whole-file SHA-256 that certifies verify=sha256 steps (see the
- * manifest column). crypto.subtle does the hashing natively; this just
- * hands it the bytes: a MEMFS output is already one contiguous view, an
- * OPFS slot is read through its mounted filesystem into one preallocated
- * buffer first. Hex, because that is what the manifest records. */
+/* The whole-file SHA-256 that certifies a patch file against the manifest.
+ * crypto.subtle does the hashing natively; this just hands it the bytes: a
+ * MEMFS file is already one contiguous view, an OPFS slot is read through
+ * its mounted filesystem into one preallocated buffer first. Hex, because
+ * that is what the manifest records. */
 async function digestOf(FS, path) {
   const node = FS.lookupPath(path).node;
   let data = null;
@@ -159,38 +159,37 @@ self.onmessage = async event => {
     }
     const outDir = scratch ? out : work;
 
+    const patchHashes = new Map();
+    const applied = new Set();
     let from = sourcePath;
     for (let index = 0; index < msg.steps.length; index++) {
       const step = msg.steps[index];
       const to = `${outDir}/out${index % 2}.bin`;  // never the source of this step
-      postMessage({type: 'progress', message: 'Applying ' + step.patch});
-      const args = ['-d', '-f', '-q'];
-      const proven = step.verify === 'sha256';
-      if (proven) args.push('-n');  // its checksums describe the anchor source
+      let patchHash = patchHashes.get(step.patch);
+      if (!patchHash) {
+        patchHash = await digestOf(FS, input + '/' + step.patch);
+        patchHashes.set(step.patch, patchHash);
+      }
+      if (patchHash !== step.patchHash) {
+        throw new Error(`${step.patch} does not match the release manifest`
+            + ' - the release files are damaged or mixed from different'
+            + ' releases; reload the page and retry');
+      }
+      const canonical = PatchPlan.canonicalSource(step, applied);
+      postMessage({type: 'progress',
+                   message: 'Applying ' + step.patch
+                       + (canonical ? '' : ' (over your selected options)')});
+      const args = PatchPlan.decodeArgs(step, applied);
       args.push('-s', from, input + '/' + step.patch, to);
       const status = runXdelta(args);
       let size = -1;
-      if (status === 0 || proven) {
-        try { size = FS.stat(to).size; } catch (err) {}
-      }
-      if (size !== step.expectBytes) {
+      try { size = FS.stat(to).size; } catch (err) {}
+      if (status !== 0 || size !== step.expectBytes) {
         throw new Error(`${step.patch} did not apply - the selected disc does`
             + " not match the original image this release patches, or the"
             + ' release files are damaged');
       }
-      if (proven) {
-        // -n skips xdelta's window checksums on purpose; this hash is the
-        // step's actual certificate, recorded in the manifest by the build
-        // after it decoded this patch over this exact source and compared
-        // with the audited built disc
-        postMessage({type: 'progress', message: 'Verifying ' + step.patch});
-        const digest = await digestOf(FS, to);
-        if (digest !== step.expectHash) {
-          throw new Error(`${step.patch} produced a disc that does not match`
-              + ' the release manifest - the release files are damaged or'
-              + ' mixed from different releases; reload the page and retry');
-        }
-      }
+      if (step.adds) applied.add(step.adds);
       /* Drop the previous intermediate before the next step: only the
        * current input and the output being written exist at any time. */
       if (from !== sourcePath) FS.truncate(from, 0);

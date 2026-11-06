@@ -67,14 +67,24 @@ def run(*cmd, capture=False):
 
 
 def release_is_complete(directory=None):
+    """A complete release has one manifest row per patch file.
+
+    The old per-combination manifest repeats patch names; that is not a
+    complete release of this layout and must not be uploaded over it.
+    """
     directory = Path(directory) if directory else DIST
     manifest = directory / 'manifest.tsv'
     if not manifest.is_file():
         return False
     with open(manifest, encoding='utf-8', newline='') as source:
-        names = {row['patch'] for row in csv.DictReader(source, delimiter='\t')
-                 if row.get('patch')}
-    return len(names) >= COMPLETE_RELEASE
+        reader = csv.DictReader(source, delimiter='\t')
+        fields = set(reader.fieldnames or ())
+        rows = [row for row in reader if row.get('patch')]
+    if not {'adds', 'anchor', 'order', 'proof_choices', 'proof_sha256'} <= fields:
+        return False
+    names = {row['patch'] for row in rows}
+    return (len(names) == COMPLETE_RELEASE
+            and len(rows) == len(names))
 
 
 def sync_local_patches(directory=None):

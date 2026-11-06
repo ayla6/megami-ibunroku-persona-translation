@@ -121,30 +121,39 @@ choice run once during preparation.
 Redump Rev 0 and Rev 1 single-track BINs (or `--rev0` and `--rev1` paths), and
 the ordinary build dependencies. The script defaults to `--no-port` and
 incremental asset preparation; `--port` explicitly refreshes translations
-first and rebuilds every variant patch.
+first and rebuilds every variant patch. A release directory written by the
+old per-combination layout is refused: move it away before the first build
+of this layout.
 
 The nine release choices are save UI, Mark artwork, battle speed, 60 fps,
 double battle rewards, half random encounters, running in dungeons,
 Upper Right movement and Start-to-skip movies. Rewards and encounters ship
 as separate options, so someone can take one without the other. Debug is not
-included. The release ships twelve patch files instead of one per
-combination: `rev1-to-rev0.xdelta` and `rev0-to-base.xdelta` convert the
-retail disc to the base translation, and every option is an
-`add-<option>.xdelta` file that splices its own changes into whatever
-variant it is given. Options whose edits stay in place (Mark, battle
-speed, rewards, encounters, run, upright, skipfmv) never move another
-option's offsets, so one file each serves every variant. Options that add bytes shift every offset
-after the insertion, so an option applied after them is encoded against
-the accumulated size-changers: `add-60fps.xdelta` for discs without the
-save menu and `add-60fps-saves.xdelta` for discs with it. `manifest.tsv`
-still describes the whole graph, one row per variant: each row's
-`source_sha256` is the previous step's `target_sha256`, so the chain from
-the base translation to any combination can be read straight from the
-manifest (the web patcher in `webpatcher/` walks it automatically). Each
-row's `verify` column names how the step is checked: `xdelta` for steps
-whose source is exactly the image the patch was encoded from, and `sha256`
-for steps applied over a decorated variant, which decode with `-n` and are
-certified by the whole-file SHA-256 recorded in the row.
+included.
+
+The release ships twelve patch files and twelve manifest rows - one row
+per file, never one per combination. `rev1-to-rev0.xdelta` and
+`rev0-to-base.xdelta` convert the retail disc to the base translation;
+every option is an `add-<option>.xdelta`. Options whose edits stay in place
+(Mark, battle speed, rewards, encounters, run, upright, skipfmv) never
+move another option's offsets, so one file each serves every variant.
+Options that add bytes shift every offset after the insertion, so an
+option applied after them is encoded against the accumulated size-changers:
+`add-60fps.xdelta` for discs without the save menu and
+`add-60fps-saves.xdelta` for discs with it.
+
+A row names the option it adds (`adds`), the size-changers it was encoded
+against (`anchor`), its fixed apply position (`order`), and the canonical
+state it produces (`choices`). The web patcher in `webpatcher/` derives the
+chain from those four fields: selected options in `order`, picking the most
+specific `adds` row whose `anchor` is already applied. No combination list
+exists in the manifest or the page.
+
+The build assembles the canonical states - the base translation, each
+in-place option on its own, plus `saves`, `60fps` and `saves+60fps` - and
+four maximally decorated proof fixtures (all in-place options alone, with
+`saves`, with `60fps`, and with both). That is fifteen variant builds, not
+512.
 
 #### Why the graph looks like this (invariants other agents must keep)
 
@@ -159,16 +168,24 @@ certified by the whole-file SHA-256 recorded in the row.
   they need exactly one file each; a release's last size-changer needs
   2^(m-1) anchor variants. Adding an in-place option costs one file;
   adding a size-changer is the only thing that multiplies.
-- **One row per variant, walkable**: every variant has exactly one
-  incoming edge, and every row's `source_sha256` equals its parent row's
-  `target_sha256`. The web patcher's chain walker and the README's apply
-  order both lean on this; do not emit two incoming edges for one variant.
-- **Nothing ships unproven**: the build assembles and audits every
-  variant (verified against retail), then proves each `sha256` row by
-  decoding the published patch against the exact parent state and
-  comparing SHA-256 with the audited built disc. The proofs cover the
-  composition of patches; they do not evaluate in-game behavior - that is
-  what the audits and in-game QA are for.
+- **Assembly reuses the parent image**: a variant is written onto a
+  reflink clone of its parent's finished image, so `build_disc` rewrites
+  only the files the new option changes. The exception is a size-changer
+  added after another size-changer (`saves+60fps`): that variant is laid
+  out from retail in one pass so its bytes match a one-shot
+  `build.py --qol=...` build.
+- **Canonical rows carry hashes; decorated steps are proven**: each row
+  records the canonical `source_sha256`/`target_sha256`. The runtime uses
+  xdelta's own window checksums when the applied set is exactly the row's
+  canonical source; on a decorated disc it decodes with `-n` and checks the
+  output size, because in-place decorations never change the size. Every
+  patch file's SHA-256 (`patch_sha256`) is checked before use.
+- **Nothing ships unproven**: the build decodes each add- patch over its
+  maximally decorated parent (all in-place options plus the anchor) and
+  compares the result byte for byte with an independently assembled
+  decorated fixture. `proof_choices`/`proof_sha256` record that check. The
+  proofs cover the composition of patches; they do not evaluate in-game
+  behavior - that is what the audits and in-game QA are for.
 - **`SIZE_CHANGERS` is checked, not trusted**: the build measures each
   solo variant against the base image and stops if the classification
   disagrees. If an option starts (or stops) growing the image, fix the
@@ -190,9 +207,11 @@ certified by the whole-file SHA-256 recorded in the row.
    webpatcher grid and chains. Update the hardcoded expectations in
    `tools/tests/test_build_patches.py` if a count moved, and
    `COMPLETE_RELEASE` in `tools/publish_patches.py`.
-5. Rebuild from scratch: the fingerprint changes, every variant is
-   re-assembled, audited and proven. The variant matrix is 2^n - adding
-   options doubles the first build's assembly+audit work.
+5. Rebuild from scratch: the fingerprint changes, every canonical state
+   and proof fixture is re-assembled, audited and proven. Adding an
+   in-place option costs one canonical state and one fixture step; adding
+   a size-changer adds 2^(m-1) canonical anchors and their fixtures, the
+   only part that grows exponentially.
 
 `--publish-release` (formerly `--publish-web`) uploads the `--output`
 directory (default `dist/patches`) to a GitHub release as one
@@ -251,10 +270,11 @@ the build fingerprint that produced it.
 
 Reruns are incremental. A completed release rerun verifies its recorded
 patches and builds nothing. A missing or invalidated patch rebuilds only
-the variants it needs: an intermediate delta source is reconstructed by
-decoding its verified patches (`rev0-to-base`, then the layer chain), so a
-rebuilt combination still has its parent's exact bytes without rebuilding
-that parent.
+the canonical state it belongs to: a canonical image not assembled this
+run is reconstructed by decoding its verified patch (`rev0-to-base`, then
+the add- steps), so a rebuilt child still has its parent's exact bytes
+without rebuilding that parent. A missing proof row rebuilds just the
+decorated fixture the proof needs.
 Any input change (source, translation, game data) invalidates the affected
 build keys, and inputs that change mid-run abort the run rather than
 stamping unverified patches. The fingerprint deliberately watches only
@@ -262,7 +282,7 @@ what feeds the disc - `src/`, `translation/`, the extracted data, and the
 two scripts it runs - so unrelated churn in `tools/tests/` never
 invalidates a running release. The Rev 1 to Rev 0 conversion never depends
 on build inputs and is reused across any same-source run. A release is
-complete when its manifest lists all 513 steps across the 12 patch files.
+complete when its manifest lists all 12 steps across the 12 patch files.
 
 The run's scratch images live in a private workspace that is deleted on
 exit. It prefers the system temp directory (tmpfs on most Linux systems) when
@@ -284,12 +304,15 @@ disc revision is identified by applying `rev1-to-rev0` (or `rev0-to-base`)
 in xdelta's check-only mode, then the chain (`rev1-to-rev0` when needed,
 `rev0-to-base`, then each chosen option's `add-*` in the manifest's order)
 is decoded by the real xdelta3 3.2.2 compiled to WebAssembly (see
-`webpatcher/vendor/README.md`). Every step is verified before the next
-applies, in the way its manifest row names: `xdelta` steps by xdelta's own
-source and target checksums, `sha256` steps by hashing the whole result
-with `crypto.subtle` and comparing with the manifest's `target_sha256`
-(after the release build proved the exact same pair against the audited
-built disc). The page also generates a correct single-track `.cue` for
+`webpatcher/vendor/README.md`). `webpatcher/plan.js` derives the chain from
+the manifest's `adds`/`anchor`/`order`/`choices` columns alone, picking the
+most specific `add-` file whose anchor is already applied. Every step is
+checked before the next applies: the patch file's SHA-256 must match the
+manifest, xdelta's own window checksums run when the applied options are
+exactly the row's canonical source, and a decorated disc is decoded with
+`-n` (the release build proved that exact decode over the maximally
+decorated parent) with the output size checked. The page also generates a
+correct single-track `.cue` for
 the patched image, and names both downloads from the release
 (`Persona-TL.bin`, `Persona-TL-saves-mark.bin`, ...) instead of reusing the
 file name the user picked. The name carries no revision: the Rev 1 step

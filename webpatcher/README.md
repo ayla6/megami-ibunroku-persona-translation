@@ -11,17 +11,18 @@ produced the release patches) compiled to WebAssembly - see
 
 ## How it works
 
-- `manifest.tsv` drives everything: the options grid is built from the
-  `choices` column and each combination of checkboxes maps to its exact
-  row. Nothing is hardcoded per release.
-- Every step is verified before its result is used. The manifest's
-  `verify` column names how: `xdelta` steps carry the patch's own window
-  checksums (the patch was encoded from exactly the source it applies to);
-  `sha256` steps are applied over a variant the patch was not encoded from
-  (same layout, other options riding along), decode with `-n`, and are
-  verified by hashing the whole result against the manifest's
-  `target_sha256` - a check the release build performed for every such
-  step against every variant it can meet. Output sizes are checked too.
+- `manifest.tsv` drives everything: one row per patch file names the option
+  it adds (`adds`), the size-changers it was encoded against (`anchor`), its
+  fixed apply position (`order`) and the canonical state it produces
+  (`choices`). `plan.js` builds the options grid and turns a selection into
+  the ordered chain; no combination list exists anywhere.
+- Every step is checked before its result is used. The patch file's
+  SHA-256 must match the manifest, and the output size must match the row.
+  When the applied options are exactly the row's canonical source, xdelta's
+  own window checksums verify the step. A decorated disc (other in-place
+  options riding along) is decoded with `-n`; the release build proved that
+  exact decode over the maximally decorated parent and recorded it as
+  `proof_choices`/`proof_sha256`.
 - What each option is called and what it does lives in
   `tools/release_options.json` - the single place option wording exists.
   The release README is generated from it, and the Pages workflow turns
@@ -46,12 +47,11 @@ produced the release patches) compiled to WebAssembly - see
   as the page opens, before a disc is picked, and every patch fetched stays
   cached for the visit. Identifying a disc and then applying it - or applying
   again - downloads each file only once.
-- The chain is derived from the manifest itself: each patch's
-  `source_sha256` equals the `target_sha256` of the patch before it, so
-  the page walks the chain (for example `rev1-to-rev0` on Rev 1 discs,
-  then `rev0-to-base`, `add-mark`, `add-saves`, then the option's add-
-  patch). A wrong or corrupt file fails with a clear message instead of
-  producing a download.
+- The chain is derived from the manifest itself: selected options apply in
+  `order`, each picking the most specific `add-` row whose `anchor` is
+  already applied (for example `rev1-to-rev0` on Rev 1 discs, then
+  `rev0-to-base`, `add-mark`, `add-saves`, `add-60fps-saves`). A wrong or
+  corrupt file fails with a clear message instead of producing a download.
 - The source disc and patch files are mounted read-only through a small
   WORKERFS (`workerfs.js`) because the vendored wasm build exposes
   Emscripten's `FS` but not its workerfs library. A rebuild that includes

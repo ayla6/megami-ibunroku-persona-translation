@@ -14,38 +14,37 @@ it. With m size-changers the last one needs 2^(m-1) anchor files; in-place
 options always ride along for free, so growth stays linear where it
 matters.
 
-Checksums are split the same way. A step whose source is exactly the image
-the patch was encoded from verifies with xdelta's own per-window checksums
-(manifest `verify=xdelta`). Applied over a decorated variant - the same
-layout with extra in-place edits riding along - the recorded window
-checksums describe a flavor of the target the applier is not producing and
-would wrongly reject a correct decode, so those steps decode with `-n` and
-are certified instead by the SHA-256 of the whole result (manifest
-`verify=sha256`), which is recorded per row. Nothing ships unchecked: the
-build proves every sha256 row by decoding the patch against the exact
-source state an user can present and comparing the result, byte for byte,
-with the audited built disc; the web patcher re-hashes every such step
-while applying, and this README tells command line users to do the same.
+A patch file is encoded from one canonical state - the base translation,
+each in-place option on its own, or a size-changer anchor. When the
+applier's disc is exactly that state, xdelta's own per-window checksums
+verify the step. Applied over a decorated variant (extra in-place edits
+riding along) those checksums describe the canonical target, so the step
+decodes with `-n` and its output size is checked; the patch file's own
+SHA-256 is checked for integrity. Nothing ships unchecked: the build proves
+every add- patch by decoding it over the maximally decorated parent and
+comparing the result, byte for byte, with an independently assembled
+decorated disc. The manifest records that as `proof_choices` and
+`proof_sha256`, one row per patch file.
 
 Injection and assembly are the only sequential stage: they own the shared
-build/ tree. Every variant image is written onto a clone of the staged
-retail copy, exactly as `build.py --qol=...` writes it, so a release target
-is the same bytes as the build a developer can reproduce by hand. Every
-finished image is snapshotted (its placement record plus the builder's
-small report files) and the audit, the delta encode or portability proof,
-and publication run in a worker pool behind the assembly of the next
-variant. The audit reads the snapshot, never the live tree, and compares
-every image with retail - the same baseline an ordinary build uses.
+build/ tree. A variant is written onto a clone of its parent's finished
+image, so `build_disc` rewrites only the files the new option changes; a
+size-changer added after another size-changer is laid out from retail in
+one pass so its bytes match `build.py --qol=...`. Every finished image is
+snapshotted (its placement record plus the builder's small report files)
+and the audit and delta encode run in a worker pool behind the assembly of
+the next variant. The audit reads the snapshot, never the live tree, and
+compares the image with the one it was assembled on.
 
 Scratch images live in a private workspace on the fastest filesystem with
 room (`PERSONA_BUILD_SCRATCH` to override, the system temp directory by
-default, build/ beside the project otherwise). Images that serve as the
-source state of later proofs are kept as hardlinks - they cost no extra
-data blocks - and any other parent image is reconstructed by decoding its
-verified patch. Reruns rebuild only what changed: recorded patches are
-re-hashed and reused, and a missing intermediate image is reconstructed
-from the staged original. A Mark input edited mid-run stops the run by
-name, because every variant built so far would carry the old artwork.
+default, build/ beside the project otherwise). The canonical states and
+proof fixtures are kept for the run; they are reflink clones and share
+their unchanged extents. Reruns rebuild only what changed: recorded
+patches are re-hashed and reused, and a canonical image not built this run
+is reconstructed by decoding its verified patch. A Mark input edited
+mid-run stops the run by name, because every variant built so far would
+carry the old artwork.
 """
 import argparse
 import csv
@@ -73,7 +72,7 @@ from fileutil import clone_file, reflink
 CHOICES_SOURCE = Path(__file__).resolve().parent / 'release_options.json'
 # Option wording (name and description) lives in release_options.json - the
 # single source the release README and the web patcher grid are generated
-# from; a wrong label here fails the coverage check in combinations() and
+# from; a wrong label here fails the coverage check in check_choices() and
 # the wording test, never a release.
 with open(CHOICES_SOURCE, encoding='utf-8') as _release_options:
     RELEASE_OPTIONS = json.load(_release_options)
@@ -91,7 +90,6 @@ DEFAULT_REV1 = (ROOT / 'data/discs/Megami Ibunroku - Persona - Be Your True Mind
 SCRATCH_ENV = 'PERSONA_BUILD_SCRATCH'
 SCRATCH_NAME = 'persona-patch-work'
 VERIFY_XDELTA = 'xdelta'      # the patch's own per-window checksums decide
-VERIFY_SHA256 = 'sha256'      # decode with -n; the manifest's row hash decides
 
 
 def solver_order(labels):
@@ -117,34 +115,31 @@ class Edge:
     """How one variant is reached: add `file` to the variant `parent`.
 
     `anchor` is the set of size-changers the file was encoded against;
-    a step whose source is exactly the anchor verifies with xdelta's own
-    checksums, anything else (in-place options riding along) is proven
-    and checked by whole-file SHA-256 instead."""
+    in-place options among the parents ride along inside the copied
+    regions, and the release proves those decorated decodes separately."""
 
-    __slots__ = ('file', 'parent', 'anchor', 'verify')
+    __slots__ = ('file', 'parent', 'anchor')
 
-    def __init__(self, file, parent, anchor, verify):
+    def __init__(self, file, parent, anchor):
         self.file = file
         self.parent = parent          # parent state, in solver order
         self.anchor = anchor
-        self.verify = verify
 
     def __repr__(self):
         return (f'Edge({self.file}, parent={self.parent}, '
-                f'anchor={sorted(self.anchor)}, verify={self.verify})')
+                f'anchor={sorted(self.anchor)})')
 
 
 def release_edge(labels):
     """The edge to `labels`: its last option's add- file, anchored at the
     size-changers selected before it. In-place options among the parents
     ride along inside the copied regions, so the file serves the decorated
-    parent states too - those steps are the sha256-verified ones."""
+    parent states too."""
     ordered = solver_order(labels)
     last = ordered[-1]
     parent = tuple(ordered[:-1])
     anchor = frozenset(label for label in parent if label in SIZE_CHANGERS)
-    verify = VERIFY_XDELTA if frozenset(parent) == anchor else VERIFY_SHA256
-    return Edge(patch_file(last, anchor), parent, anchor, verify)
+    return Edge(patch_file(last, anchor), parent, anchor)
 
 
 def release_file_names():
@@ -170,16 +165,100 @@ def feature_names():
     return {item['label']: item['name'] for item in RELEASE_OPTIONS}
 
 
-def combinations():
-    """All release choices, and no debug."""
+def in_place_options():
+    """The release options whose edits never change the image size."""
+    return tuple(label for label in solver_order(CHOICE_ORDER)
+                 if label not in SIZE_CHANGERS)
+
+
+def canonical_states():
+    """Every state a patch file is encoded from or to, in build order.
+
+    The base translation, each in-place option on its own, and - for every
+    size-changer - every anchor state it can be added to. In-place options
+    compose over any of these without their own file, which is why they
+    appear once. This is the whole release graph: no per-combination
+    states."""
+    states = [()]
+    for option in in_place_options():
+        states.append((option,))
+    sized = tuple(label for label in solver_order(CHOICE_ORDER)
+                  if label in SIZE_CHANGERS)
+    for index, option in enumerate(sized):
+        preceding = sized[:index]
+        for bits in itertools.product((False, True), repeat=len(preceding)):
+            anchor = [label for label, on in zip(preceding, bits) if on]
+            states.append(tuple(solver_order([*anchor, option])))
+    return states
+
+
+def add_edges():
+    """(option, anchor) for every add- patch file a release can contain."""
+    sized = tuple(label for label in solver_order(CHOICE_ORDER)
+                  if label in SIZE_CHANGERS)
+    for index, option in enumerate(sized):
+        preceding = sized[:index]
+        for bits in itertools.product((False, True), repeat=len(preceding)):
+            yield option, frozenset(
+                label for label, on in zip(preceding, bits) if on)
+    for option in in_place_options():
+        yield option, frozenset()
+
+
+def proof_target(option, anchor):
+    """The decorated state a single add- patch is proven against: every
+    in-place option (so all of them ride along), the size-changer anchor,
+    and the option itself."""
+    labels = [*in_place_options(), *anchor]
+    if option not in labels:
+        labels.append(option)
+    return tuple(solver_order(labels))
+
+
+def proof_states():
+    """Every decorated state the build assembles as a proof fixture."""
+    states = []
+    for option, anchor in add_edges():
+        target = proof_target(option, anchor)
+        if target not in states:
+            states.append(target)
+    return states
+
+
+def release_selection(labels):
+    """The build.py QoL names for a release state."""
+    wanted = {label for label in labels}
+    selected = {item for label, group in CHOICES if label in wanted for item in group}
+    return [name for name in build.QOL_PATCHES if name in selected]
+
+
+def state_labels(selected):
+    """The inverse of release_selection, used by the build callback."""
+    chosen = {item for item in selected}
+    return tuple(label for label, group in CHOICES if chosen & set(group))
+
+
+def assembly_parent(labels):
+    """The state a variant is assembled on, or None for retail.
+
+    A size-changer added after another size-changer is laid out from
+    retail in one pass, so its bytes match a one-shot `build.py --qol=...`
+    build. Every other state composes on its parent image."""
+    ordered = solver_order(labels)
+    if not ordered:
+        return ()
+    parent = tuple(ordered[:-1])
+    if ordered[-1] in SIZE_CHANGERS and any(
+            label in SIZE_CHANGERS for label in parent):
+        return None
+    return parent
+
+
+def check_choices():
+    """Fail before any work when a QoL patch has no release choice."""
     covered = {item for _label, group in CHOICES for item in group}
     if covered | {'debug'} != set(build.QOL_PATCHES):
         raise ValueError('QoL patch list changed; review release choices before publishing')
-    for bits in itertools.product((False, True), repeat=len(CHOICES)):
-        labels = [label for (label, _group), enabled in zip(CHOICES, bits) if enabled]
-        selected = {item for (_label, group), enabled in zip(CHOICES, bits)
-                    if enabled for item in group}
-        yield labels, [name for name in build.QOL_PATCHES if name in selected]
 
 
 _HASH_CACHE = {}
@@ -261,15 +340,21 @@ def run_decode(tool, source, patch, output, *, skip_checksum=False):
     subprocess.run(command, check=True, env=env)
 
 
+MANIFEST_FIELDS = ('patch', 'adds', 'anchor', 'order', 'choices', 'verify',
+                   'source_bytes', 'source_sha256', 'target_bytes',
+                   'target_sha256', 'patch_sha256', 'proof_choices',
+                   'proof_sha256', 'build_key')
+
+
 def write_manifest(path, rows):
-    fields = ('patch', 'choices', 'verify', 'source_bytes', 'source_sha256',
-              'target_bytes', 'target_sha256', 'patch_sha256', 'build_key')
     temporary = None
     try:
         with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', newline='',
                                          dir=path.parent, delete=False) as out:
             temporary = Path(out.name)
-            writer = csv.DictWriter(out, fieldnames=fields, delimiter='\t', lineterminator='\n')
+            writer = csv.DictWriter(out, fieldnames=MANIFEST_FIELDS,
+                                    delimiter='\t', lineterminator='\n',
+                                    extrasaction='ignore')
             writer.writeheader()
             writer.writerows(rows)
         os.replace(temporary, path)
@@ -279,12 +364,19 @@ def write_manifest(path, rows):
 
 
 def read_manifest(path):
+    """Rows keyed by patch name, one per step.
+
+    Older releases (and the per-combination manifests) are not mistaken for
+    this layout: a duplicate patch name means the file was written by the
+    old graph, so rebuilding it in place would mix chains."""
     if not path.exists():
         return {}
     with open(path, encoding='utf-8', newline='') as source:
         reader = csv.DictReader(source, delimiter='\t')
-        required = {'patch', 'choices', 'source_bytes', 'source_sha256',
-                    'target_bytes', 'target_sha256', 'patch_sha256'}
+        required = {'patch', 'adds', 'anchor', 'order', 'choices', 'verify',
+                    'source_bytes', 'source_sha256', 'target_bytes',
+                    'target_sha256', 'patch_sha256', 'proof_choices',
+                    'proof_sha256'}
         if not reader.fieldnames or not required.issubset(reader.fieldnames):
             raise ValueError(f'{path}: unrecognized manifest; refusing to replace it')
         rows = {}
@@ -293,14 +385,18 @@ def read_manifest(path):
             if not name or Path(name).name != name:
                 raise ValueError(f'{path}: invalid patch name {name!r}')
             verify = row.get('verify') or VERIFY_XDELTA
-            if verify not in (VERIFY_XDELTA, VERIFY_SHA256):
-                raise ValueError(f'{path}: unknown verify mode {verify!r} for {name}')
-            key = (name, row['source_sha256'])
-            if key in rows:
-                raise ValueError(f'{path}: duplicate row for {name} source '
-                                 f'{row["source_sha256"][:12]}')
-            rows[key] = {key_: row[key_] for key_ in (*required, 'build_key')}
-            rows[key]['verify'] = verify
+            if verify != VERIFY_XDELTA:
+                raise ValueError(
+                    f'{path}: {name} was verified with {verify!r}; this layout'
+                    ' only names xdelta checksums - move the release directory'
+                    ' away and rerun')
+            if name in rows:
+                raise ValueError(
+                    f'{path}: more than one row for {name} - this is the old'
+                    ' per-combination manifest; move the release directory away'
+                    ' and rerun')
+            rows[name] = {key: row.get(key, '') for key in MANIFEST_FIELDS}
+            rows[name]['verify'] = verify
         return rows
 
 
@@ -320,7 +416,7 @@ def release_fingerprint(rev0, xdelta):
     if build.ARMIPS:
         paths.append(Path(build.ARMIPS))
     return build_step_cache.fingerprint(paths, context=(
-        *dependencies, pil_features.version_module('freetype2'), 'release-matrix-v4'))
+        *dependencies, pil_features.version_module('freetype2'), 'release-matrix-v5'))
 
 
 def scratch_root(required_bytes):
@@ -385,13 +481,28 @@ def workspace(required_bytes):
 
 
 def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3):
-    """Publish each verified patch and reuse unchanged results on later runs."""
+    """Publish each verified patch and reuse unchanged results on later runs.
+
+    There is one manifest row and one patch file per step, never one per
+    combination. The build assembles only the canonical states - the base
+    translation, each in-place option on its own, and every size-changer
+    anchor - plus a handful of maximally decorated proof fixtures. Add-
+    patches are encoded from canonical states only; every decorated
+    application is proven by decoding the published patch over the
+    maximally decorated parent and comparing it byte for byte with the
+    independently assembled decorated disc.
+    """
     rev0, rev1, output = Path(rev0).resolve(), Path(rev1).resolve(), Path(output).absolute()
     image_check.require(str(rev0))
     image_check.require_rev1(str(rev1))
-    variants = list(combinations())
-    edges = {frozenset(labels): release_edge(labels) for labels, _selected in variants
+    check_choices()
+    canonical = canonical_states()
+    canonical_set = set(canonical)
+    fixtures = proof_states()
+    fixture_set = set(fixtures)
+    edges = {frozenset(labels): release_edge(labels) for labels in canonical
              if labels}
+    add_patches = list(add_edges())
     help_text = subprocess.run([xdelta, '-h'], capture_output=True, text=True, check=False)
     help_text = (help_text.stdout + help_text.stderr).lower()
     disable_armor = 'disable armor' in help_text
@@ -400,22 +511,16 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3):
                            ' needs it to apply add- patches over decorated variants')
     output.mkdir(parents=True, exist_ok=True)
     image_bytes = rev0.stat().st_size
-    # Which images stay on scratch for the whole run: the staged retail
-    # copy, the base translation, and every state that a later step decodes
-    # from - sha256 proof sources, and the anchors the canonical patches
-    # are encoded from. The rest are assembled, used, and unlinked.
-    kept_labels = {edges[frozenset(labels)].parent for labels, _selected in variants
-                   if labels and edges[frozenset(labels)].verify == VERIFY_SHA256}
-    kept_labels |= {edges[frozenset(labels)].anchor for labels, _selected in variants
-                    if labels and edges[frozenset(labels)].verify == VERIFY_XDELTA}
-    kept_labels.discard(())
-    kept_states = {frozenset(labels) for labels in kept_labels}
-    kept_images = 2 + len(kept_labels)            # + original.bin + base.bin
-    with workspace((kept_images + workers + 3) * image_bytes) as work:
+    # Every assembled state is kept for the whole run: children are
+    # reflink clones of their parent, and the proof fixtures decode from the
+    # canonical images. The base translation plus each canonical state and
+    # fixture is ~15 images, all sharing their unchanged extents.
+    keep_images = len(canonical) + len(fixtures) + 2 + max(1, workers)
+    with workspace(keep_images * image_bytes) as work:
         manifest = output / 'manifest.tsv'
         records = read_manifest(manifest)
         expected_files = release_file_names()
-        foreign = sorted({name for name, _source in records} - expected_files)
+        foreign = sorted(set(records) - expected_files)
         if foreign:
             raise RuntimeError(
                 f'{manifest} holds patches outside the current release layout'
@@ -430,30 +535,20 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3):
         clone_file(rev0, original)
         base = work / 'base.bin'
         rev1_hash = sha256(rev1)
-        rev0_hash = sha256(original)
         initial_key = release_fingerprint(rev0, xdelta)
         current_key = initial_key
-        built_first = False
         touched = set()
         records_lock = threading.Lock()
+        image_lock = threading.RLock()
         tasks = ThreadPoolExecutor(max_workers=max(1, workers))
-        submitted = []
         futures = {}
         slots = itertools.count()
-        # Backpressure: finished images wait for the delta pool. A reflink
-        # filesystem shares their unchanged extents, so only the worker count
-        # matters; a plain filesystem must reserve real space for the staged
-        # original, the base image, the image being assembled, and the kept
-        # parent images.
-        if supports_reflink(work):
-            image_slots = max(1, workers) + 1
-        else:
-            free_images = shutil.disk_usage(work).free // max(1, image_bytes)
-            image_slots = max(1, min(max(1, workers) + 1, free_images - kept_images))
-        images_allowed = threading.Semaphore(image_slots)
+        built = {}          # labels -> image assembled or decoded this run
+        baselines = {}      # labels -> the image it was assembled on
+        fixture_hashes = {}
 
         def save_records():
-            rows = [records[key] for key in sorted(records)]
+            rows = [records[name] for name in sorted(records)]
             write_manifest(manifest, rows)
 
         def file_matches_row(name, row):
@@ -464,19 +559,158 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3):
                 raise RuntimeError(f'{path} was modified; refusing to replace your file')
             return True
 
-        def is_valid(name, source_hash, key=None):
-            row = records.get((name, source_hash))
-            if not row or row['source_sha256'] != source_hash:
-                return False
-            if not file_matches_row(name, row):
-                return False
-            if key is not None and row['build_key'] != key:
-                return False
-            return True
+        def anchor_text(anchor):
+            return ','.join(label for label in solver_order(CHOICE_ORDER)
+                            if label in anchor)
 
-        def decode_patch(row, source, dest):
-            run_decode(xdelta, source, output / row['patch'], dest,
-                       skip_checksum=(row['verify'] == VERIFY_SHA256))
+        def state_choices(labels):
+            return ','.join(solver_order(labels))
+
+        def canonical_row_ok(labels):
+            if not labels:
+                row = records.get(BASE_PATCH)
+                return bool(row and file_matches_row(BASE_PATCH, row)
+                            and row.get('build_key') == initial_key)
+            ordered = solver_order(labels)
+            edge = edges[frozenset(labels)]
+            row = records.get(edge.file)
+            if not row or not file_matches_row(edge.file, row):
+                return False
+            return (row.get('build_key') == initial_key
+                    and row.get('adds') == ordered[-1]
+                    and row.get('anchor') == anchor_text(edge.anchor)
+                    and row.get('choices') == state_choices(labels))
+
+        def proof_row_ok(option, anchor):
+            name = patch_file(option, anchor)
+            row = records.get(name)
+            if not row or not file_matches_row(name, row):
+                return False
+            return (row.get('build_key') == initial_key
+                    and row.get('proof_sha256')
+                    and row.get('proof_choices')
+                    == state_choices(proof_target(option, anchor)))
+
+        pending_canonical = [labels for labels in canonical
+                             if port or not canonical_row_ok(labels)]
+        wanted_fixtures = {proof_target(option, anchor)
+                           for option, anchor in add_patches
+                           if port or not proof_row_ok(option, anchor)}
+        # A fixture assembled on another fixture needs that parent too (the
+        # decorated sources are the expensive images; build them once).
+        growing = True
+        while growing:
+            growing = False
+            for state in list(wanted_fixtures):
+                parent = assembly_parent(state)
+                if (parent in fixture_set and parent not in wanted_fixtures
+                        and parent not in canonical_set):
+                    wanted_fixtures.add(parent)
+                    growing = True
+        build_states = list(pending_canonical)
+        for state in fixtures:
+            if (state in wanted_fixtures and state not in canonical_set
+                    and state not in build_states):
+                build_states.append(state)
+
+        def build_order(labels):
+            ordered = tuple(solver_order(labels)) if labels else ()
+            return (len(ordered), ordered)
+
+        build_states.sort(key=build_order)
+        index = {tuple(release_selection(labels)): labels for labels in build_states}
+        state_paths = {labels: work / f'state-{number}.bin'
+                       for number, labels in enumerate(build_states)}
+
+        def ensure_image(labels):
+            """The canonical image for a state, built this run or decoded
+            from its verified patch. Fixture images are only available from
+            this run's assembly; they are never published as a step."""
+            labels = tuple(solver_order(labels))
+            path = built.get(labels)
+            if path and Path(path).is_file():
+                return Path(path)
+            with image_lock:
+                path = built.get(labels)
+                if path and Path(path).is_file():
+                    return Path(path)
+                if not labels:
+                    row = records.get(BASE_PATCH)
+                    if not row or not file_matches_row(BASE_PATCH, row):
+                        raise RuntimeError(
+                            'cannot reconstruct the base translation: '
+                            f'{BASE_PATCH} is missing from the release')
+                    if not base.is_file():
+                        run_decode(xdelta, original, output / BASE_PATCH, base)
+                    built[labels] = base
+                    return base
+                edge = edges.get(frozenset(labels))
+                if edge is None:
+                    raise RuntimeError(
+                        f'cannot reconstruct {state_choices(labels)}: it is a'
+                        ' proof fixture that was not assembled this run')
+                row = records.get(edge.file)
+                if not row or not file_matches_row(edge.file, row):
+                    raise RuntimeError(
+                        f'cannot reconstruct {edge.file}: it is missing from the release')
+                source = ensure_image(edge.parent)
+                dest = state_paths.get(labels)
+                if dest is None:
+                    dest = work / ('image-%s.bin' % '-'.join(labels))
+                if not dest.is_file():
+                    run_decode(xdelta, source, output / edge.file, dest)
+                built[labels] = dest
+                return dest
+
+        def assembly_source(labels):
+            """The image this variant is written onto.
+
+            That is its parent's finished image, so `build_disc` writes only
+            the files the new option changes. A size-changer added after
+            another size-changer is laid out from retail in one pass, so its
+            bytes match `build.py --qol=...` (the one-shot layout). A
+            decorated state whose parent is only a prefix of the full
+            decoration is built from the base translation: in-place edits do
+            not move offsets, so its bytes are the same and the base image
+            already carries the translation."""
+            labels = tuple(solver_order(labels))
+            if not labels:
+                return original
+            parent = assembly_parent(labels)
+            if parent is None:
+                return original
+            if parent in canonical_set or parent in fixture_set or parent in built:
+                return ensure_image(parent)
+            return ensure_image(())
+
+        def snapshot_audit(image, slot):
+            placement = image.with_name(image.name + '.placement.tsv')
+            if not placement.is_file():
+                raise RuntimeError(
+                    f'{placement.name} is missing - build_disc did not write'
+                    ' the placement record this audit requires')
+            audit = work / f'audit-{slot}'
+            audit.mkdir()
+            shutil.copyfile(placement, audit / 'placement.tsv')
+            stable_placement = work / f'pend-{slot}.placement.tsv'
+            shutil.copyfile(placement, stable_placement)
+            for name in SIDE_FILES:
+                source = ROOT / 'build' / name
+                if source.is_file():
+                    shutil.copy2(source, audit / name)
+            return stable_placement, audit
+
+        def verify_image(image, placement=None, side_files=None, baseline=None,
+                         no_text=False):
+            command = [sys.executable, str(ROOT / 'tools/verify_disc.py'), str(image),
+                       '--original', str(baseline or original)]
+            if placement is not None:
+                command += ['--placement', str(placement)]
+            if side_files is not None:
+                command += ['--side-files', str(side_files)]
+            if no_text:
+                command.append('--no-text')
+            subprocess.run(command, cwd=ROOT, check=True)
 
         def publish(generated, path):
             """Atomically install the verified patch, across filesystems too."""
@@ -487,190 +721,198 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3):
             finally:
                 staged.unlink(missing_ok=True)
 
-        def record_row(name, choices, source, source_hash, target, target_hash,
-                       key, verify):
+        def record_row(name, source, target, metadata, key):
             with records_lock:
-                records[(name, source_hash)] = {
-                    'patch': name, 'choices': ','.join(choices), 'verify': verify,
+                records[name] = {
+                    'patch': name,
+                    'adds': metadata.get('adds', ''),
+                    'anchor': metadata.get('anchor', ''),
+                    'order': metadata.get('order', ''),
+                    'choices': metadata.get('choices', ''),
+                    'verify': VERIFY_XDELTA,
                     'source_bytes': str(source.stat().st_size),
-                    'source_sha256': source_hash,
+                    'source_sha256': sha256(source),
                     'target_bytes': str(target.stat().st_size),
-                    'target_sha256': target_hash,
-                    'patch_sha256': sha256(output / name), 'build_key': key}
-                touched.add((name, source_hash))
+                    'target_sha256': sha256(target),
+                    'patch_sha256': sha256(output / name),
+                    'proof_choices': metadata.get('proof_choices', ''),
+                    'proof_sha256': metadata.get('proof_sha256', ''),
+                    'build_key': key,
+                }
+                touched.add(name)
                 save_records()
 
-        def patch(source, target, name, choices, source_hash, key='', slot=0):
+        def patch(source, target, name, metadata, key=''):
             """Encode `name` from source to target, or reuse it if verified."""
-            slot_decoded = work / f'decoded-{slot}.bin'
-            slot_generated = work / f'new-{slot}.xdelta'
             path = output / name
             target_hash = sha256(target)
-            old = records.get((name, source_hash))
-            if old and file_matches_row(name, old) and old['target_sha256'] == target_hash:
+            source_hash = sha256(source)
+            old = records.get(name)
+            if (old and file_matches_row(name, old)
+                    and old.get('target_sha256') == target_hash
+                    and old.get('source_sha256') == source_hash):
                 print(f'patch: {name} unchanged; reusing verified patch', flush=True)
                 with records_lock:
-                    for (row_name, _source), row in records.items():
-                        if row_name == name:
-                            row['build_key'] = key
-                    touched.add((name, source_hash))
+                    row = records[name]
+                    row.update({'adds': metadata.get('adds', ''),
+                                'anchor': metadata.get('anchor', ''),
+                                'order': metadata.get('order', ''),
+                                'choices': metadata.get('choices', ''),
+                                'verify': VERIFY_XDELTA,
+                                'build_key': key})
+                    touched.add(name)
                     save_records()
                 return
             if path.exists():
                 if old:
                     if sha256(path) != old['patch_sha256']:
-                        raise RuntimeError(f'{path} was modified; refusing to replace your file')
+                        raise RuntimeError(
+                            f'{path} was modified; refusing to replace your file')
                 else:
+                    decoded = work / f'existing-{threading.get_ident()}.bin'
                     try:
-                        decode_patch({'patch': name, 'verify': VERIFY_XDELTA},
-                                     source, slot_decoded)
-                        if not same_bytes(target, slot_decoded):
-                            raise RuntimeError(f'{path} is not the expected patch; refusing to replace it')
+                        run_decode(xdelta, source, path, decoded)
+                        if not same_bytes(target, decoded):
+                            raise RuntimeError(
+                                f'{path} is not the expected patch; refusing to'
+                                ' replace it')
                     finally:
-                        slot_decoded.unlink(missing_ok=True)
-                    record_row(name, choices, source, source_hash, target,
-                               target_hash, key, VERIFY_XDELTA)
+                        decoded.unlink(missing_ok=True)
+                    record_row(name, source, target, metadata, key)
                     print(f'patch: {name} verified and reused', flush=True)
                     return
             print(f'patch: {name}', flush=True)
-            run_delta(xdelta, source, target, slot_generated, disable_armor=disable_armor)
-            if path.exists() and (not old or sha256(path) != old['patch_sha256']):
-                raise RuntimeError(f'{path} changed during generation; refusing to replace it')
-            publish(slot_generated, path)
-            record_row(name, choices, source, source_hash, target, target_hash,
-                       key, VERIFY_XDELTA)
-
-        patch(rev1, original, REV1_PATCH, [], rev1_hash)
-        index = {tuple(selected): labels for labels, selected in variants}
-        base_valid = not port and is_valid(BASE_PATCH, rev0_hash, initial_key)
-
-        # Manifest hashes of each variant's image; the chain walks these.
-        target_hashes = {}
-
-        def recorded_target_hash(labels):
-            cached = target_hashes.get(labels)
-            if cached is not None:
-                return cached
-            if not labels:
-                name, parent_hash = BASE_PATCH, rev0_hash
-            else:
-                edge = edges[frozenset(labels)]
-                name, parent_hash = edge.file, recorded_target_hash(edge.parent)
-            row = records.get((name, parent_hash))
-            if not row:
-                raise RuntimeError(f'{name} has no manifest row yet')
-            target_hashes[labels] = row['target_sha256']
-            return row['target_sha256']
-
-        # Each pending variant writes its image to its own path. A variant
-        # that later proofs decode from is kept as a hardlink, so it
-        # survives its pending target being consumed by the delta pool.
-        variant_images = itertools.count()
-
-        def pending_variant(selected):
-            return selected, str(work / f'image-{next(variant_images)}.bin')
-
-        pending = []
-        for labels, selected in variants:
-            if not selected:
-                if not base_valid:
-                    pending.append((selected, str(base)))
-                continue
-            edge = edges[frozenset(labels)]
-            if not base_valid or port:
-                pending.append(pending_variant(selected))
-                continue
+            generated = work / f'new-{threading.get_ident()}-{name}'
             try:
-                parent_hash = recorded_target_hash(edge.parent)
-            except RuntimeError:
-                pending.append(pending_variant(selected))
-                continue
-            if not is_valid(edge.file, parent_hash, initial_key):
-                pending.append(pending_variant(selected))
-            else:
-                print(f'patch: {edge.file} unchanged; skipping variant build'
-                      f' ({",".join(labels)})', flush=True)
-
-        def build_order(item):
-            """The base translation first, then one-option variants, then
-            everything else - a parent state is always shorter than the
-            variants that decode from it."""
-            labels = tuple(solver_order(index[tuple(item[0])]))
-            return (0 if not labels else 1 if len(labels) == 1 else 2,
-                    len(labels), labels)
-
-        pending.sort(key=build_order)
-        if base_valid:
-            print(f'patch: {BASE_PATCH} unchanged; reusing verified patch', flush=True)
-
-        # Delta-source images already materialized on scratch this run, by
-        # choice labels.
-        built_images = {}
-
-        def parent_image_path(labels):
-            return work / ('parent-%s.bin' % '-'.join(solver_order(labels)))
-
-        def ensure_image(labels, dest):
-            """Reconstruct a variant image - or the base translation when
-            `labels` is empty - by decoding its verified patch. Runs inside
-            delta-pool threads; every destination decodes through its own
-            scratch file. An existing destination is only reused after it
-            matches its recorded hash - a stale or wrongly named image file
-            fails loud instead of poisoning the chain."""
-            if not labels:
-                dest = base          # never duplicate the base translation
-                source, name = original, BASE_PATCH
-            else:
-                edge = edges[frozenset(labels)]
-                source = ensure_image(edge.parent, parent_image_path(edge.parent))
-                name = edge.file
-            key = (name, recorded_target_hash(edge.parent) if labels else rev0_hash)
-            row = records.get(key)
-            if dest.exists():
-                if row is None or sha256(dest) != row['target_sha256']:
-                    raise RuntimeError(
-                        f'{dest.name} does not match its recorded verification'
-                        ' - delete the scratch workspace and rerun')
-                built_images[frozenset(labels)] = dest
-                return dest
-            # thread-unique scratch: two proofs can reconstruct the same
-            # parent image concurrently, and os.replace would consume one
-            # caller's file out from under the other
-            scratch = dest.with_name(dest.stem + f'.dec-{threading.get_ident()}')
-            try:
-                if not row or not (output / name).is_file():
-                    raise RuntimeError(
-                        f'cannot reconstruct {dest.name}: {name} is missing'
-                        ' from the release')
-                decode_patch(row, source, scratch)
-                if sha256(scratch) != row['target_sha256']:
-                    raise RuntimeError(
-                        f'reconstructed {name} does not match its manifest')
-                os.replace(scratch, dest)
+                run_delta(xdelta, source, target, generated,
+                          disable_armor=disable_armor)
+                publish(generated, path)
             finally:
-                scratch.unlink(missing_ok=True)
-            built_images[frozenset(labels)] = dest
-            return dest
+                generated.unlink(missing_ok=True)
+            record_row(name, source, target, metadata, key)
 
-        def source_for(labels):
-            """(image path, sha256) the variant `labels` is applied to."""
-            path = built_images.get(frozenset(labels))
-            if path is not None and Path(path).exists():
-                return path, recorded_target_hash(labels)
-            return ensure_image(labels, base if not labels else
-                                parent_image_path(labels)), recorded_target_hash(labels)
+        # The Rev 1 conversion is independent of the build inputs; reuse it
+        # whenever its bytes still match the source disc.
+        revision_row = records.get(REV1_PATCH)
+        if (revision_row and file_matches_row(REV1_PATCH, revision_row)
+                and revision_row.get('source_sha256') == rev1_hash):
+            print(f'patch: {REV1_PATCH} unchanged; reusing verified patch', flush=True)
+            with records_lock:
+                row = records[REV1_PATCH]
+                row.update({'adds': '', 'anchor': '', 'order': '',
+                            'choices': '', 'proof_choices': '', 'proof_sha256': '',
+                            'build_key': ''})
+                touched.add(REV1_PATCH)
+                save_records()
+        else:
+            patch(rev1, original, REV1_PATCH,
+                  {'adds': '', 'anchor': '', 'order': '', 'choices': ''}, '')
+
+        built_first = False
+
+        def base_task(image, placement, audit, key):
+            try:
+                verify_image(image, placement, audit)
+                patch(original, image, BASE_PATCH,
+                      {'adds': '', 'anchor': '', 'order': '', 'choices': ''}, key)
+            finally:
+                placement.unlink(missing_ok=True)
+                shutil.rmtree(audit, ignore_errors=True)
+
+        def edge_task(labels, image, placement, audit, baseline, key):
+            ordered = solver_order(labels)
+            option = ordered[-1]
+            edge = edges[frozenset(labels)]
+            metadata = {
+                'adds': option,
+                'anchor': anchor_text(edge.anchor),
+                'order': str(solver_order(CHOICE_ORDER).index(option)),
+                'choices': state_choices(labels),
+            }
+            try:
+                verify_image(image, placement, audit, baseline=baseline,
+                             no_text=True)
+                source = ensure_image(edge.parent)
+                patch(source, image, edge.file, metadata, key)
+                if not edge.anchor and not edge.parent:
+                    # The whole graph hangs on which options grow the image:
+                    # verify the classification against the assembled solo
+                    # build, never trust the constant.
+                    grew = image.stat().st_size != source.stat().st_size
+                    if grew != (option in SIZE_CHANGERS):
+                        raise RuntimeError(
+                            f'{option} solo build {"grew" if grew else "kept"}'
+                            ' the image size but SIZE_CHANGERS says the'
+                            ' opposite - correct build_patches.py before'
+                            ' releasing')
+            finally:
+                cue = image.with_suffix('.cue')
+                if cue.exists():
+                    cue.unlink()
+                placement.unlink(missing_ok=True)
+                shutil.rmtree(audit, ignore_errors=True)
+
+        def fixture_task(image, placement, audit, baseline, labels):
+            try:
+                verify_image(image, placement, audit, baseline=baseline,
+                             no_text=True)
+                fixture_hashes[labels] = sha256(image)
+            finally:
+                placement.unlink(missing_ok=True)
+                shutil.rmtree(audit, ignore_errors=True)
+
+        def finished(selected, image):
+            nonlocal current_key, built_first
+            image = Path(image)
+            if not built_first:
+                current_key = release_fingerprint(rev0, xdelta)
+                if current_key != initial_key:
+                    raise RuntimeError('build inputs changed during preparation;'
+                                       ' rerun to rebuild affected variants')
+                built_first = True
+            labels = index[tuple(selected)]
+            built[labels] = image
+            slot = next(slots)
+            placement, audit = snapshot_audit(image, slot)
+            parent = assembly_parent(labels)
+            if labels in fixture_set and labels not in canonical_set:
+                baseline = baselines.get(labels, original)
+                futures[labels] = tasks.submit(
+                    fixture_task, image, placement, audit, baseline, labels)
+                return
+            if not labels:
+                futures[labels] = tasks.submit(
+                    base_task, image, placement, audit, current_key)
+                return
+            baseline = baselines.get(labels)
+            if baseline is None:
+                baseline = original if parent is None else ensure_image(parent)
+            futures[labels] = tasks.submit(
+                edge_task, labels, image, placement, audit, baseline, current_key)
+
+        def source_image_for(patches):
+            labels = index.get(tuple(patches))
+            if labels is None:
+                raise RuntimeError('release asked for an unknown variant')
+            source = assembly_source(labels)
+            baselines[labels] = Path(source)
+            return str(source)
 
         mark_cache = work / 'mark'
         mark_state = {}
-        # Everything mark.py writes, relative to build/ (and to its own cache).
         MARK_FILES = ('ADV/MES.BIN', 'ADV/BST.BIN', 'B/P.BIN')
 
         def mark_builder(py):
             # Mark's producer reads these original files, source code and art,
-            # not another variant. Generate and verify it once per run; restored
-            # copies are byte-identical (checked below), so their pixels cannot
-            # diverge from the verified artwork.
-            inputs = [ROOT / 'src/injection_tools', ROOT / 'src/assets/mark/black',
+            # not another variant. Generate and verify it once per run;
+            # restored copies are byte-identical (checked below), so their
+            # pixels cannot diverge from the verified artwork. mark.py's own
+            # source and the code it imports, not the whole tool directory:
+            # another contributor editing an unrelated generator must not
+            # abort a running release.
+            inputs = [ROOT / 'src/injection_tools/mark.py',
+                      ROOT / 'src/injection_tools/mescodec.py',
+                      ROOT / 'src/assets/mark/black',
                       ROOT / 'data/psx/ADV/MES.BIN', ROOT / 'data/psx/ADV/BST.BIN',
                       ROOT / 'data/psx/B/P.BIN', ROOT / 'data/psx/BTLP.BIN']
             current = build_step_cache.digests(inputs)
@@ -687,7 +929,8 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3):
                     (mark_cache / name).parent.mkdir(parents=True, exist_ok=True)
                     shutil.copyfile(ROOT / 'build' / name, mark_cache / name)
                 mark_state.update(inputs=current,
-                                  hashes={name: sha256(mark_cache / name) for name in MARK_FILES})
+                                  hashes={name: sha256(mark_cache / name)
+                                          for name in MARK_FILES})
                 return
             stale = [f'cache/{name}' for name in MARK_FILES
                      if sha256(mark_cache / name) != mark_state['hashes'][name]]
@@ -707,195 +950,114 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3):
         SIDE_FILES = ('dng_spill.asm', 'affinity_gated.tsv',
                       'descs_drafts.tsv', 'btl_board_drafts.tsv')
 
-        def snapshot_audit(image, slot):
-            """The audit reads the builder's placement record and its small
-            report files. Both are copied to a slot-private snapshot here,
-            on the assembly path, before the next variant rewrites the tree
-            they came from."""
-            placement = image.with_name(image.name + '.placement.tsv')
-            if not placement.is_file():
-                raise RuntimeError(
-                    f'{placement.name} is missing - build_disc did not write'
-                    ' the placement record this audit requires')
-            audit = work / f'audit-{slot}'
-            audit.mkdir()
-            shutil.copyfile(placement, audit / 'placement.tsv')
-            stable_placement = work / f'pend-{slot}.placement.tsv'
-            shutil.copyfile(placement, stable_placement)
-            for name in SIDE_FILES:
-                source = ROOT / 'build' / name
-                if source.is_file():
-                    shutil.copy2(source, audit / name)
-            return stable_placement, audit
-
-        def verify_image(image, placement=None, side_files=None, baseline=None):
-            command = [sys.executable, str(ROOT / 'tools/verify_disc.py'), str(image),
-                       '--original', str(baseline or original)]
-            if placement is not None:
-                command += ['--placement', str(placement)]
-            if side_files is not None:
-                command += ['--side-files', str(side_files)]
-            subprocess.run(command, cwd=ROOT, check=True)
-
-        def prove_portable(stable, edge, source, source_hash, labels, slot):
-            """Prove `edge.file` on a decorated source state: decode it with
-            the window checksums disabled and compare with the built disc.
-            This is the row's certificate - the web patcher and the README
-            rely on exactly this check having passed for every sha256 row."""
-            decoded = work / f'port-{slot}.bin'
-            try:
-                run_decode(xdelta, source, output / edge.file, decoded,
-                           skip_checksum=True)
-                target_hash = sha256(stable)
-                if sha256(decoded) == target_hash:
-                    record_row(edge.file, labels, source, source_hash, stable,
-                               target_hash, current_key, VERIFY_SHA256)
-                    print(f'patch: {edge.file} proven for {",".join(labels)}'
-                          ' (sha256 over the built disc)', flush=True)
-                    return
-                raise RuntimeError(
-                    f'{edge.file} decoded over {",".join(edge.parent)} does not'
-                    f' match the built {",".join(labels)} disc - '
-                    f'{edge.parent[-1] if edge.parent else edge.file} cannot ride'
-                    ' over that state; review the solver order in'
-                    ' build_patches.py (SIZE_CHANGERS)')
-            finally:
-                decoded.unlink(missing_ok=True)
-
-        def delta_task(labels, stable, placement, audit, slot, wait_for):
-            """Audit the finished image and publish or prove its patch off
-            the main assembly path. Everything here reads slot-private
-            snapshots - the placement record and the builder's report
-            files - so the tree has already moved on to the next variant
-            safely."""
-            edge = edges[frozenset(labels)]
-            try:
-                for key in wait_for:
-                    future = futures.get(key)
-                    if future is not None:
-                        # that variant's row must exist before this task
-                        # can reference it
-                        future.result()
-                source, source_hash = source_for(edge.parent)
-                # Built on retail like any other build, so retail is the
-                # audit baseline; the parent is only this step's source.
-                verify_image(stable, placement, audit)
-                if edge.verify == VERIFY_XDELTA:
-                    patch(source, stable, edge.file, labels, source_hash,
-                          current_key, slot=slot)
-                    if not edge.anchor and len(edge.parent) == 0:
-                        # the whole graph hangs on which options grow the
-                        # image: verify the classification against the
-                        # assembled solo build, never trust the constant
-                        option = solver_order(labels)[-1]
-                        grew = stable.stat().st_size != source.stat().st_size
-                        if grew != (option in SIZE_CHANGERS):
-                            raise RuntimeError(
-                                f'{option} solo build {"grew" if grew else "kept"}'
-                                ' the image size but SIZE_CHANGERS says the'
-                                ' opposite - correct build_patches.py before'
-                                ' releasing')
-                else:
-                    if is_valid(edge.file, source_hash, current_key):
-                        print(f'patch: {edge.file} unchanged; reusing proof for'
-                              f' {",".join(labels)}', flush=True)
-                    else:
-                        prove_portable(stable, edge, source, source_hash,
-                                       labels, slot)
-            finally:
-                images_allowed.release()
-                stable.unlink(missing_ok=True)
-                if placement is not None:
-                    placement.unlink(missing_ok=True)
-                shutil.rmtree(audit, ignore_errors=True)
-
-        def finished(selected, image):
-            nonlocal current_key, built_first
-            image = Path(image)
-            if not built_first:
-                current_key = release_fingerprint(rev0, xdelta)
-                if current_key != initial_key and len(pending) < len(variants):
-                    raise RuntimeError('build inputs changed during preparation; rerun to rebuild affected variants')
-                built_first = True
-            labels = index[tuple(selected)]
-            if not labels:
-                slot = next(slots)
-                audit_placement, audit = snapshot_audit(image, slot)
-                verify_image(image, audit_placement, audit)
-                built_images[frozenset()] = image
-                patch(original, image, BASE_PATCH, [], rev0_hash, current_key)
-                return
-            slot = next(slots)
-            audit_placement, audit = snapshot_audit(image, slot)
-            edge = edges[frozenset(labels)]
-            images_allowed.acquire()          # keep the scratch disk bounded
-            stable = image                    # every variant already has its own path
-            # This task may only touch rows and files published by: the
-            # variant it is applied to (its row feeds ensure_image and the
-            # recorded hashes), and - for a proof - the canonical variant
-            # that encodes this file. Both are strictly smaller variants,
-            # so they were submitted earlier and no wait can deadlock.
-            wait_for = []
-            if edge.parent:
-                wait_for.append(frozenset(edge.parent))
-            if edge.verify == VERIFY_SHA256:
-                wait_for.append(frozenset(edge.anchor) | {solver_order(labels)[-1]})
-            if frozenset(labels) in kept_states and frozenset(labels) not in built_images:
-                # keep this image as the source state for later steps: a
-                # hardlink costs no data blocks and survives stable.unlink()
-                keeper = parent_image_path(labels)
-                keeper.unlink(missing_ok=True)
-                try:
-                    os.link(image, keeper)
-                except OSError:
-                    clone_file(image, keeper)
-                built_images[frozenset(labels)] = keeper
-            cue = image.with_suffix('.cue')
-            if cue.exists():
-                cue.unlink()
-            futures[frozenset(labels)] = tasks.submit(
-                delta_task, labels, stable, audit_placement, audit,
-                slot, wait_for)
-            submitted.append(futures[frozenset(labels)])
-
-        def source_image_for(_patches):
-            """Write every variant onto the staged retail copy.
-
-            This is deliberately the same source an ordinary `build.py`
-            invocation uses, so the release target for a combination is the
-            exact image a developer gets from the same command."""
-            return str(original)
-
-        if pending:
+        if build_states:
             previous_argv, previous_image = sys.argv, build.ORIGINAL_IMAGE
             try:
                 sys.argv = ['build.py', '--incremental'] + ([] if port else ['--no-port'])
                 build.ORIGINAL_IMAGE = str(original)
-                build.main(variants_override=pending, after_variant=finished,
+                variants = [(release_selection(labels), str(state_paths[labels]))
+                            for labels in build_states]
+                build.main(variants_override=variants, after_variant=finished,
                            mark_builder=mark_builder,
                            source_image_for=source_image_for)
             finally:
                 sys.argv, build.ORIGINAL_IMAGE = previous_argv, previous_image
                 tasks.shutdown(wait=True)     # workers finish before scratch cleanup
-            for future in submitted:      # surface any worker failure here
+            for future in list(futures.values()):   # surface any worker failure here
                 future.result()
             if release_fingerprint(rev0, xdelta) != current_key:
-                for key in touched - {(REV1_PATCH, rev1_hash)}:
-                    records[key]['build_key'] = ''
+                for name in touched - {REV1_PATCH}:
+                    records[name]['build_key'] = ''
                 save_records()
-                raise RuntimeError('build inputs changed during release generation; rerun the build')
-        expected_rows = {(BASE_PATCH, rev0_hash), (REV1_PATCH, rev1_hash)} | {
-            (edges[frozenset(labels)].file,
-             recorded_target_hash(edges[frozenset(labels)].parent))
-            for labels, _selected in variants if labels}
+                raise RuntimeError('build inputs changed during release generation;'
+                                   ' rerun the build')
+        else:
+            tasks.shutdown(wait=True)
+
+        def decode_chain(labels, first, second):
+            """Decode the add- patches for `labels` over the base translation,
+            the same order and the same -n the browser uses for a decorated
+            chain. Returns the image path (one of the two scratch slots)."""
+            current = ensure_image(())
+            dest = first
+            applied = set()
+            for label in solver_order(labels):
+                anchor = frozenset(item for item in applied
+                                   if item in SIZE_CHANGERS)
+                name = patch_file(label, anchor)
+                row = records.get(name)
+                if not row or not file_matches_row(name, row):
+                    raise RuntimeError(
+                        f'cannot prove {name}: it is missing from the release')
+                run_decode(xdelta, current, output / name, dest,
+                           skip_checksum=True)
+                applied.add(label)
+                current = dest
+                dest = second if dest == first else first
+            return current
+
+        def prove(option, anchor):
+            """Certificate for one add- patch: decode it over the maximal
+            decorated parent and require the bytes of the independently
+            assembled decorated disc."""
+            name = patch_file(option, anchor)
+            target = proof_target(option, anchor)
+            expected = fixture_hashes.get(target)
+            if expected is None and target in canonical_set:
+                expected = sha256(ensure_image(target))
+            if expected is None:
+                raise RuntimeError(
+                    f'cannot prove {name}: the decorated fixture'
+                    f' ({state_choices(target)}) was not built')
+            parent = list(solver_order(target))
+            parent.remove(option)
+            first = work / f'proof-{option}-a.bin'
+            second = work / f'proof-{option}-b.bin'
+            decoded = work / f'proof-{option}-decoded.bin'
+            try:
+                source = decode_chain(parent, first, second)
+                run_decode(xdelta, source, output / name, decoded,
+                           skip_checksum=True)
+                got = sha256(decoded)
+                if got != expected:
+                    raise RuntimeError(
+                        f'{name} decoded over the decorated parent does not'
+                        f' match the built {state_choices(target)} disc - '
+                        'the patches do not compose in solver order; review'
+                        ' build_patches.py (SIZE_CHANGERS)')
+                with records_lock:
+                    row = records[name]
+                    row['proof_choices'] = state_choices(target)
+                    row['proof_sha256'] = expected
+                    touched.add(name)
+                    save_records()
+                print(f'patch: {name} proven over'
+                      f' {state_choices(parent)} (sha256 over the built disc)',
+                      flush=True)
+            finally:
+                first.unlink(missing_ok=True)
+                second.unlink(missing_ok=True)
+                decoded.unlink(missing_ok=True)
+
+        if build_states:
+            for option, anchor in add_patches:
+                if not proof_row_ok(option, anchor):
+                    prove(option, anchor)
+
+        expected_rows = {BASE_PATCH, REV1_PATCH} | {
+            edge.file for edge in edges.values()}
         missing = expected_rows - set(records)
         if missing:
             raise RuntimeError('not every release patch was created: '
-                               + ', '.join(sorted(name for name, _s in missing)))
+                               + ', '.join(sorted(missing)))
+        for option, anchor in add_patches:
+            if not proof_row_ok(option, anchor):
+                raise RuntimeError(
+                    f'{patch_file(option, anchor)} has no portability proof')
         stale_rows = set(records) - expected_rows
         if stale_rows:
-            for key in stale_rows:
-                del records[key]
+            for name in stale_rows:
+                del records[name]
             print(f'patch: pruned {len(stale_rows)} stale manifest rows', flush=True)
             save_records()
         stale_files = [path for path in output.glob('*.xdelta')
@@ -914,7 +1076,8 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3):
         features = feature_names()
         entries = [(REV1_PATCH, 'Rev 1 discs only (Rev 0 skips it)'),
                    (BASE_PATCH, 'the base translation')]
-        sized = solver_order(sorted(SIZE_CHANGERS, key=CHOICE_ORDER.index))
+        sized = tuple(label for label in solver_order(CHOICE_ORDER)
+                      if label in SIZE_CHANGERS)
         for option in solver_order(CHOICE_ORDER):
             if option not in SIZE_CHANGERS:
                 entries.append((patch_file(option, frozenset()),
@@ -924,10 +1087,12 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3):
             for bits in itertools.product((False, True), repeat=len(preceding)):
                 anchor = frozenset(s for s, on in zip(preceding, bits) if on)
                 if anchor:
-                    applied = ' + '.join(f'add-{a}' for a in CHOICE_ORDER if a in anchor)
+                    applied = ' + '.join(f'add-{a}' for a in CHOICE_ORDER
+                                         if a in anchor)
                     note = f'(with {applied} applied)'
                 elif preceding:
-                    skipped = ' + '.join(f'add-{a}' for a in CHOICE_ORDER if a in preceding)
+                    skipped = ' + '.join(f'add-{a}' for a in CHOICE_ORDER
+                                         if a in preceding)
                     note = f'(without {skipped})'
                 else:
                     note = ''
@@ -961,22 +1126,25 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3):
             'every offset after them - that is why they come in one file per\n'
             'disc layout, and why the order above is fixed.\n'
             '\n'
-            'If xdelta3 reports a checksum mismatch on an add- patch, your\n'
-            'source is a variant the patch was not encoded from. The release\n'
-            'has already proven that exact combination byte-for-byte (every\n'
-            'patch was decoded against every variant it can meet and compared\n'
-            'with the built discs), so retry with -n and check the hash:\n'
+            'Each patch is encoded from one canonical state. When your disc\n'
+            'has exactly that state, xdelta\'s own window checksums verify\n'
+            'the step. On a decorated disc (other in-place options already\n'
+            'applied) those checksums describe the canonical target, so pass\n'
+            '-n and check the output size instead:\n'
             '\n'
             '    xdelta3 -n -d -s your.bin <patch>.xdelta result.bin\n'
-            '    sha256sum result.bin\n'
             '\n'
-            'manifest.tsv has one row per step: source_sha256 is the hash your\n'
-            'input must have, target_sha256 the hash your output must have,\n'
-            'and verify says which check certifies the step - xdelta\'s own\n'
-            'window checksums, or the whole-file SHA-256 for steps applied\n'
-            'over a decorated variant. The web patcher does all of this\n'
-            'automatically. A release is complete when its manifest lists\n'
-            f'{len(expected_rows)} steps across {len(expected_files)} patch files.\n',
+            'The release has already proven every decorated step: it decoded\n'
+            'the patch over the maximally decorated parent and compared the\n'
+            'result byte for byte with the independently assembled decorated\n'
+            'disc. The manifest records that proof as proof_choices and\n'
+            'proof_sha256. The web patcher does all of this automatically.\n'
+            '\n'
+            'manifest.tsv has one row per patch file, not one per\n'
+            'combination: adds names the option, anchor the size-changers the\n'
+            'patch was encoded against, and order the fixed apply order.\n'
+            f'A release is complete when its manifest lists {len(expected_rows)}\n'
+            f'steps across {len(expected_files)} patch files.\n',
             encoding='utf-8')
     print(f'{len(expected_files)} verified patch files ({len(expected_rows)} steps)'
           f' available in {output}', flush=True)
