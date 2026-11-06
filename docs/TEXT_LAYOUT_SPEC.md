@@ -627,6 +627,26 @@ inline wait followed by more prose, an unsupported control, or an overfull
 page remains a gap rather than resetting the pen, changing timing, or
 shortening text. PSP line breaks after hyphens rejoin without a space.
 
+**S2D overworld 1-row objects.** The area labels are 8x1 text objects and the
+arrival banner is 15x1. A 1-row object owns a VRAM strip exactly `cols*16` px
+wide (128 px for a label, 240 px for the banner), so it never draws or uploads
+past that strip: the next strip begins there, and on the map labels it belongs
+to the neighbouring place. The VWF pen stops at the object's pixel width and
+a glyph that would cross it is skipped; the renderer clips at a glyph boundary
+and never wraps or rewinds. Wording is the slot's source name (PSP-US or a
+manual override), never a substring cut by the renderer.
+
+**Touched cells and the sprite map.** A narrow glyph touches cells
+`px>>4 .. (px+advance-1)>>4`: the sheet keeps one blank column after its ink
+(`LETTER_GAP`) and the drop shadow is one pixel right, so the last inked-and-
+shadowed column is `advance-1`. A 16px glyph may ink the full `advance-1` and
+shadow at `advance`, so its span ends one cell later. Every touched cell is
+cleared, composited, uploaded and given exactly one sprite record. Rounding
+`px+advance` up instead (the old `+2`) minted a phantom record past the last
+glyph; the sprite map draws every record, so that record sampled a VRAM cell
+the text never wrote - on a map label, the next place's strip. Records and
+cells match one for one at every draw.
+
 **Name inserts.** PSP-US wording determines which name is meant; translate the
 insert to the destination interpreter, never to match the Japanese row. The
 PSP's bare inserts have no member parameter. `<FF07>` selects the given name
