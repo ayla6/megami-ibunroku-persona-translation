@@ -116,6 +116,11 @@ NAME_INDENT = 12     # a name line sits under its title, indented
 BLOCK_GAP = 6        # extra space before each job title after the first
 CREDIT_PITCH = 14    # the centred pages' line pitch: credits lines must not touch
 
+# The staff roll is not part of the build: its layout is not usable yet, so
+# its pages ('n') keep their retail Japanese bytes. Flip this when the roll is
+# verified; the renderer below is unchanged.
+CREDITS_IN_BUILD = False
+
 
 def credits_layout(pix, w, h, lines):
     """A credits page, laid out the way the PSP-US roll lays it out: each job
@@ -175,6 +180,9 @@ def main():
     prev = os.path.join(ROOT, 'build', 'previews', 'endtext')
     os.makedirs(prev, exist_ok=True)
     for off, spec in pages.items():
+        if spec[0] == 'n' and not CREDITS_IN_BUILD:
+            print(f'{off:#x}: staff roll not in the build; retail page kept')
+            continue
         t = tim.parse(d, off)
         assert t['bpp'] == 4 and t['px_w'] == 320 and t['h'] == 240, hex(off)
         w, h = 320, 240
