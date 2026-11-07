@@ -106,6 +106,18 @@ S2D_SLOT_INIT = 0x8006EC2C
 S2D_STATUS = 0x8006F26C
 S2D_WIDTHS = 0x800BC224                      # sf_widths_s2d
 
+# S2D's Persona Data page (s2d/pdata.asm)
+S2D_PDATA_RACE_BLOCK = 0x8009FE90
+S2D_PDATA_RACE_CELLS = 0x8009FE98
+S2D_PDATA_LIST = 0x8009FF20
+S2D_PDATA_NAME_BLOCK = S2D_NAME_BLOCK        # shared with the status bar
+S2D_PDATA_NAME_CELLS = S2D_NAME_CELLS
+S2D_PDATA_BAR = 0x8009FEC8                   # retail's old ten-cell name block
+S2D_PDATA_TAIL = 0x800899F4
+S2D_PDATA_TAIL_END = 0x80089A64
+S2D_DEMON_BASE = 0x800417A0
+S2D_RACE_TABLE = 0x8009DA40
+
 ADV_FUSE_SITE_A = 0x8009FB40
 ADV_FUSE_SITE_B = 0x8009FE38
 ADV_FUSE_A = ADV_FUSE_SITE_A
@@ -562,6 +574,100 @@ class BarVWF(unittest.TestCase):
         self.assertEqual(struct.unpack_from('<I', body, 0x2C)[0], 0x3C18800C)  # la t8, sf_widths_s2d
         self.assertEqual(struct.unpack_from('<I', body, 0x30)[0], 0x2718C224)
         self.assertEqual(body[0xB8:], bytes(len(body) - 0xB8))        # the stale tail zeroed
+
+    def test_s2d_pdata_page(self):
+        """The Persona Data page: race and full demon name in VWF cells.
+
+        Same port as the ADV card page: retail's ten-cell name block becomes
+        the name-row helper, the list's name entry points at the shared
+        sixteen-cell status block, and PersonaDataDraw's tail keeps retail's
+        race write (now with the VWF face) after the helper call.
+        """
+        # the tail: one helper call, then retail's race write
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_TAIL), 0x02A02021)  # move a0,s5
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_TAIL + 4), jal(S2D_PDATA_BAR))
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_TAIL + 8), 0)       # nop
+        for off in range(12, 0x30, 4):
+            self.assertEqual(self.word(self.s2d, S2D_PDATA_TAIL + off), 0)
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_TAIL + 0x30), 0x3C04800A)  # lui a0,0x800A
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_TAIL + 0x34), 0x2484FE98)  # race cells
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_TAIL + 0x38), 0x34060080)  # ori a2,0x80
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_TAIL + 0x68), jal(S2D_WRITER))
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_TAIL + 0x6C), 0x00A22821)  # addu a1,a1,v0
+        # the epilogue and the next function survived
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_TAIL_END),
+                         self.word(self.retail_s2d, S2D_PDATA_TAIL_END))
+
+        # the cel list: retail's race entry, the shared name block, both marks
+        self.assertEqual(self.bar_rows(self.s2d, S2D_PDATA_LIST),
+                         (S2D_PDATA_RACE_BLOCK, 0, 0, MARK,
+                          S2D_PDATA_NAME_BLOCK, 0x40, 0x0C, MARK, 0xFFFFFFFF))
+        self.assertEqual(self.s2d[S2D_PDATA_RACE_BLOCK - OVERLAY_BASE:
+                                  S2D_PDATA_RACE_BLOCK - OVERLAY_BASE + 2],
+                         bytes([6, 1]))
+        self.assertEqual(S2D_PDATA_NAME_BLOCK, S2D_NAME_BLOCK)
+        self.assertEqual(S2D_PDATA_NAME_CELLS, S2D_NAME_CELLS)
+
+        # the helper fills retail's old name block exactly
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR), 0x27BDFFF8)  # addiu sp,-8
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 4), 0xAFBF0000)  # sw ra,(sp)
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x14), jal(0x800BD7E4))
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x1C), 0x3C04800C)  # lui a0,0x800C
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x20), 0x2484E880)  # S2D_BAR_NAME_CELLS
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x28), jal(0x800838E8))
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x40), 0x34060080)  # ori a2,0x80
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x44), 0x34070010)  # ori a3,16
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x50),
+                         0x08000000 | ((S2D_WRITER >> 2) & 0x03FFFFFF))  # j S2D_CELLS_ROW
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x54), 0)  # nop (delay)
+        self.assertEqual(S2D_PDATA_BAR + 0x58, S2D_PDATA_LIST)
+
+    def test_s2d_pdata_tail_runtime(self):
+        """The real Persona Data tail: the shared name block gets the full
+        demon name and the race row gets its six VWF cells."""
+        sys.path.insert(0, str(ROOT / 'src/injection_tools'))
+        import demons                                   # noqa: E402
+        import skills                                   # noqa: E402
+        import smallfont_variants                       # noqa: E402
+        editable = smallfont_variants.editable_codes()
+        regular, _compact = smallfont_variants.cell_codes()
+
+        def uv(code):
+            if code in editable:
+                return smallfont_variants.cell_uv(regular[editable.index(code)])
+            return ((code % 31) * 8, (code // 31) * 12)
+
+        ident = 90                                      # Yomotsu Shikome: 15 glyphs
+        codes = list(skills.encode_glyphs(ident, demons.record_en()[ident]))
+        self.assertGreater(len(codes), 10)              # the head alone would cut it
+
+        cpu = self.machine(self.s2d)
+        frame = STACK - 0x80
+        cpu.write(frame + 0x30, RETURN, 4)              # the tail's epilogue
+        cpu.r[REG['sp']] = frame
+        cpu.r[REG['s5']] = ident
+        cpu.r[REG['s0']] = ident * 0x38
+        cpu.start(S2D_PDATA_TAIL)
+        cpu.run(RETURN, limit=200000)
+
+        for i, code in enumerate(codes):
+            base = S2D_PDATA_NAME_CELLS + i * 8
+            u, v = uv(code)
+            self.assertEqual(cpu.read(base, 1), u)
+            self.assertEqual(cpu.read(base + 1, 1), v)
+            self.assertEqual(cpu.read(base + 3, 1), self.s2d_widths[code] & 0xF)
+        # the FF ended the row; the remaining cells stayed cleared
+        self.assertEqual(cpu.read(S2D_PDATA_NAME_CELLS + len(codes) * 8, 1), 0xFF)
+
+        race = cpu.read(S2D_DEMON_BASE + ident * 0x38 + 0xB, 1)
+        race_codes = self.s2d[S2D_RACE_TABLE - OVERLAY_BASE + (race - 1) * 6:
+                              S2D_RACE_TABLE - OVERLAY_BASE + (race - 1) * 6 + 6]
+        for i, code in enumerate(race_codes):
+            base = S2D_PDATA_RACE_CELLS + i * 8
+            u, v = uv(code)
+            self.assertEqual(cpu.read(base, 1), u)
+            self.assertEqual(cpu.read(base + 1, 1), v)
+            self.assertEqual(cpu.read(base + 3, 1), self.s2d_widths[code] & 0xF)
 
     # -------------------------------------------------------------
     # runtime: the writer and the advance hook on the R3000

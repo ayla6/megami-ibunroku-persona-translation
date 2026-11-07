@@ -103,6 +103,43 @@ demon-name block grows from ten cells to twenty in the image extension, so
 `demon_name_copy_dng` can place the full name. Retail's dx=0x40/dy=0xC
 placement of the name entry is unchanged.
 
+S2D's overworld Persona Data page (`s2d/pdata.asm`) is the same rewrite on
+its own copy of `PersonaDataDraw`. It keeps retail's six-cell race block and
+two-entry cel list, but its name entry points at the status bar's shared
+sixteen-cell block (the S2D image has no free sixteen-cell run), and both
+pages rewrite that block before their own slot renders. Retail's old
+ten-cell name block is the helper's 88-byte home; the full name comes from
+`demon_name_copy_s2d`, and both rows pass page bit 7 so the race codes map to
+the regular VWF Latin face. The overworld status page, the Analyze page's
+demon/card views and the dungeon/ADV copies therefore draw the same bar from
+the same code shape.
+
+The empty-slot rule under a skill row is retail's eight long-vowel marks
+(`*_SPELL_RULE_GLYPHS`, eight `0xCC` cells). With base `0xD7` those codes
+land inside the small-font atlas, so the recorder claims the row and the
+renderer advances it like any other row; a wrong table address makes the
+recorder claim a different run and draw its codes as Latin glyphs. A rule
+constant must therefore name an address the overlay's own retail code
+materialises (S2D's skill row builds `0x8009E5F4` at six sites), never a
+hand-picked neighbour.
+
+The same screen is linked into several overlays: ADV, DNG and S2D each carry
+a copy of `PersonaDataDraw`'s bar tail, `StatusPersonaNames`, `CellsWriteRow`
+and `DrawSpellName` (DNG's skill row is compiled with different defines).
+`tools/tests/test_overlay_clones.py` fingerprints those retail copies by
+instruction shape (data literals masked) and fails when a copy exists that
+is not a declared, rewritten patch site; a new clone is a build-visible
+decision instead of a screen that silently stays retail.
+
+The script VM (`MsgStep` cases 9-12: item, skill, demon, Persona inserts)
+is linked into ADV, DNG and S2D too, and each copy resolved only the
+record's ten-glyph head. All three now divert the case to a stub that
+copies the complete FF-terminated name into the overlay's scratch and
+enters the insert loop with `left = 0xFF`; `tools/tests/test_msg_name_inserts.py`
+executes each overlay's stubs on the R3000 and checks every translated row
+reaches the loop intact. S2D carries the identical VM, so a new overlay
+with the same cases is a stub to add, not a screen to leave truncated.
+
 `DrawSpellName` builds the full name with `skill_name_copy` into the
 overlay's name scratch and hands that to the recorder; the recorder's tiered
 row still occupies the caller's ten-cell (80 px) footprint. That is the rule

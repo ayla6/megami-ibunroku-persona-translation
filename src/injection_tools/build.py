@@ -377,7 +377,9 @@ def main(variants_override=None, after_variant=None, mark_builder=None,
             # clean build/ has none before the first assembly. One variant is
             # enough: every patch set carries the same translation code they
             # exercise, and a QoL patch that broke it would fail here.
-            for pattern in ('test_giftmsg_inventory.py', 'test_qol_saves.py'):
+            for pattern in ('test_giftmsg_inventory.py', 'test_qol_saves.py',
+                            'test_overlay_clones.py',
+                            'test_msg_name_inserts.py'):
                 run(py, "-m", "unittest", "discover", "-s", "tools/tests",
                     "-p", pattern)
             assembled_tests_run = True

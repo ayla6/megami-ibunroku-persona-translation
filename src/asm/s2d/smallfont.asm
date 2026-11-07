@@ -101,6 +101,15 @@ sf_table_s2d:
     .fill SF_TABLE_SIZE, 0
 sf_table_end_s2d:
 .endif
+;; --- MsgStep cases 9-12: full names instead of the ten-glyph record head ---
+.align 4
+sf_msg_name_s2d:
+    sf_msg_name_stubs sf_msg_item_s2d, sf_msg_skill_s2d, sf_msg_demon_s2d, \
+                      sf_msg_persona_s2d, sf_msg_tail_s2d, \
+                      item_name_copy_s2d, demon_name_copy_s2d, \
+                      sf_name_scratch_s2d, 0x800666D4
+sf_msg_name_end_s2d:
+
 .align 4
 sf_name_scratch_s2d:
     .fill SF_NAME_BYTES, 0

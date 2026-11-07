@@ -9,9 +9,9 @@ build retains the retail save/card flow and its single-card access pattern.
 | disc | `dist/Persona-TL.bin/.cue` | `dist/Persona-TL-QoL.bin/.cue` |
 | sources | translation only | translation + selected enhancements, minus exclusions |
 
-`--qol` selects the combined save/load UI by default; `--qol=saves` selects it
-explicitly (a space instead of `=` works too). A named selection such as
-`--qol=60fps` selects only the named patches.
+`--qol` selects the save/load UI by default;
+`--qol=saves` selects one explicitly (a space instead of `=` works too). A named
+selection such as `--qol=60fps` selects only the named patches.
 `--no-qol=saves` excludes it from a larger selection, for example `--qol=all --no-qol=saves`.
 Exclusions win regardless of order, and `all` works with either option.
 `--qol=list` lists patches. Each patch remains

@@ -37,12 +37,14 @@ REC = 0x801E0100
 
 SKILL_NAME_COPY = 0x80011FBC
 
+# The scratch address is this build's layout (the full-name block grows as
+# helpers are added), so it comes from the symbol file, not a typed address.
 ADV = dict(name='ADV', func=0x8007BA94, fill=0x80067CEC, hook=0x80067C00,
-           scratch=0x800BFB8C, rule=0x800B2F74)
+           rule=0x800B2F74)
 DNG = dict(name='DNG', func=0x8008A8A4, fill=0x80077918, hook=0x8007782C,
-           scratch=0x800B54D0, rule=0x8009BA64)
+           rule=0x8009BA64)
 S2D = dict(name='S2D', func=0x8007A908, fill=0x800674CC, hook=0x800673E0,
-           scratch=0x800BE614, rule=0x800AE5F4)
+           rule=0x8009E5F4)
 CASES = (ADV, DNG, S2D)
 
 
@@ -80,6 +82,9 @@ class DrawSpellName(unittest.TestCase):
             fields = line.split()
             if len(fields) == 2 and re.fullmatch(r'[0-9A-Fa-f]{8}', fields[0]):
                 cls.symbols[fields[1]] = int(fields[0], 16)
+        cls.cases = [dict(case,
+                          scratch=cls.symbols[f"sf_name_scratch_{case['name'].lower()}"])
+                     for case in CASES]
 
     def word(self, data, address):
         return struct.unpack_from('<I', data, address - OVERLAY_BASE)[0]
@@ -90,8 +95,53 @@ class DrawSpellName(unittest.TestCase):
     # -------------------------------------------------------------
     # assembled bytes
     # -------------------------------------------------------------
+    def test_each_rule_is_the_eight_long_vowel_marks(self):
+        # Rule base 0xD7 plus the eight long-vowel marks: the bytes the
+        # recorder reads must come from that run in the same overlay, not
+        # from whatever else happens to share the address's neighbourhood
+        # (S2D used to point at a cel descriptor).
+        for case in self.cases:
+            with self.subTest(overlay=case['name']):
+                data = self.retail[case['name']]
+                start = case['rule'] - OVERLAY_BASE
+                self.assertEqual(data[start:start + 8], b'\xcc' * 8)
+
+    def test_each_rule_address_is_one_retail_code_materialises(self):
+        # The other half of the same class: a table constant must be an
+        # address the retail overlay itself builds, not a hand-typed
+        # neighbour. S2D's rule used to name 0x800AE5F4, which no S2D
+        # instruction ever loads; the real table is built by six of them.
+        # Masking nothing here: the address must appear as a lui + addiu
+        # (or ori) pair in this overlay's own retail code.
+        for case in self.cases:
+            with self.subTest(overlay=case['name']):
+                data = self.retail[case['name']]
+                target = case['rule']
+                built = False
+                for off in range(0, len(data) - 8, 4):
+                    lui = struct.unpack_from('<I', data, off)[0]
+                    if lui >> 26 != 0x0F:                  # lui rt, hi
+                        continue
+                    nxt = struct.unpack_from('<I', data, off + 4)[0]
+                    op = nxt >> 26
+                    if op not in (9, 13):                  # addiu / ori rt, rt, lo
+                        continue
+                    if ((nxt >> 21) & 0x1F) != ((lui >> 16) & 0x1F):
+                        continue
+                    imm = nxt & 0xFFFF
+                    if op == 9 and imm >= 0x8000:
+                        imm -= 0x10000
+                    address = (((lui & 0xFFFF) << 16) + imm) & 0xFFFFFFFF
+                    if address == target:
+                        built = True
+                        break
+                self.assertTrue(
+                    built,
+                    f"{case['name']}: {target:#x} is not materialised by the "
+                    f"overlay's own retail code (invented address?)")
+
     def test_each_copy_uses_the_full_name_and_keeps_its_registers(self):
-        for case in CASES:
+        for case in self.cases:
             with self.subTest(overlay=case['name']):
                 data = self.built[case['name']]
                 f = case['func']
@@ -168,7 +218,7 @@ class DrawSpellName(unittest.TestCase):
     def test_runtime_full_name_reaches_the_recorder(self):
         ident, codes = self.long_skill()
         self.assertGreater(len(codes), 10)
-        for case in CASES:
+        for case in self.cases:
             with self.subTest(overlay=case['name']):
                 cpu = self.machine(case)
                 cpu.r[REG['a0']] = ident
@@ -198,7 +248,7 @@ class DrawSpellName(unittest.TestCase):
                 self.assertEqual(cpu.r[REG['sp']], STACK)
 
     def test_runtime_empty_slot_rule(self):
-        for case in CASES:
+        for case in self.cases:
             with self.subTest(overlay=case['name']):
                 # flag set: retail's eight-glyph rule, one cell right
                 cpu = self.machine(case)

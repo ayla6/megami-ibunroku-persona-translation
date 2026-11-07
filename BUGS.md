@@ -5,4 +5,4 @@
 - The item acquire animation has the item's name be in fixed-width. Needs to be changed to VWF.
 - Credits are untranslated.
 - Config text could be written fully instead of all CMPCTD.
-- My god this thing really has a trillion clones of the damn persona/demon status screen. System -> Analyze -> Demon -> the bar text isn't vwf and there's some garbage text in the empty skills, " a a c g", instead of yk the actual meant to be -------
+- Incosistency with what is VWF or not and where that happens. Stuff like idk ATK yk.

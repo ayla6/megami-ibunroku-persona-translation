@@ -327,6 +327,22 @@ S2D_KIND_LABELS    equ 0x8009DB24          ; g_kind_labels (same records as ADV/
 S2D_BAR_SLOT_INIT  equ 0x8006EC2C          ; status preview's slot 0x1E list pointer
 S2D_BAR_ADV_SITE   equ 0x80065744          ; SlotsRenderAll's per-cell pen advance
 S2D_STATUS_NAMES   equ 0x8006F26C          ; S2D StatusPersonaNames, rewritten in place (0xC0)
+;; --- the Persona Data page's race + demon-name bar (s2d/pdata.asm) ---
+;; The overworld menu's PersonaDataDraw copy keeps retail's six-cell race
+;; block and two-entry cel list. Retail's ten-cell name block
+;; (0x8009FEC8..0x8009FF20) becomes the name-row helper; the list's name
+;; entry points at the shared sixteen-cell status block instead.
+S2D_PDATA_RACE_BLOCK equ 0x8009FE90        ; retail header: cols 6, rows 1 (kept)
+S2D_PDATA_RACE_CELLS equ 0x8009FE98        ; the 6 race cells (kept)
+S2D_PDATA_CEL_LIST  equ 0x8009FF20         ; retail's two-entry cel list (28 bytes)
+S2D_PDATA_NAME_BLOCK equ S2D_BAR_NAME_BLOCK ; the shared 16-cell name block
+S2D_PDATA_NAME_CELLS equ S2D_BAR_NAME_CELLS
+S2D_PDATA_NAME_COLS equ 16
+S2D_PDATA_BAR       equ 0x8009FEC8         ; pdata_bar_s2d: the full name row (old 10-cell block)
+S2D_PDATA_BAR_END   equ 0x8009FF20
+S2D_PDATA_RACE_TABLE equ 0x8009DA40        ; 26 six-byte race labels (1-based)
+S2D_PDATA_TAIL      equ 0x800899F4         ; PersonaDataDraw's bar tail (0x70 bytes)
+S2D_PDATA_TAIL_END  equ 0x80089A64
 ;; ADV code/table positions follow the actual data/name sizes; see adv/smallfont.asm.
 ADV_SF_BUFS_ADDR equ 0x800E624C            ; 2 x 0x1200-byte buffers, after g_menu_cells
 ADV_SF_BUFS_LIMIT equ 0x800E864C           ; bg_map0's cell table starts here
@@ -526,7 +542,7 @@ S2D_SF_MAP_BASE equ 0x80103E4C             ; the text map's cell base (+0x20000 
 ;; DrawSpellName (s2d/draw_spell.asm), same rule as ADV's copy.
 S2D_DRAW_SPELL_NAME equ 0x8007A908         ; rewritten in place (0xBC bytes avail)
 S2D_TILEMAP_FILLRECT equ 0x800674CC        ; TileMapFillRect(dst, value, w, h, [sp]=stride)
-S2D_SPELL_RULE_GLYPHS equ 0x800AE5F4       ; the eight-glyph rule under an empty slot
+S2D_SPELL_RULE_GLYPHS equ 0x8009E5F4       ; the eight-glyph rule under an empty slot
 S2D_SF_ROW_ADDR equ 0x80083B24             ; S2D.BIN +0x1F760: a dead function (tools/deadfuncs.py)
 S2D_SF_ROW_SIZE equ 2420                   ; ... its span up to the next function
 S2D_SF_CFG_ADDR equ S2D_SF_ROW_ADDR        ; the config block: the run's first 0x20 bytes
