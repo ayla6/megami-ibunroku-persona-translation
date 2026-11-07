@@ -326,33 +326,57 @@ def same_line(ja, jp):
     return _covered(a, b) >= SAME_LINE or _covered(b, a) >= SAME_LINE
 
 
-def coordinate_join(rel):
-    """Is (entry, box) a real shared coordinate for this extract, or just
-    two independent running counters that happen to collide?
+def _entry_box_counts(rows):
+    c = collections.defaultdict(set)
+    for r in rows:
+        c[r['entry']].add(r['box'])
+    return {k: len(v) for k, v in c.items()}
 
-    It is real only when both sides enumerate every entry to the same box
-    count - then (entry, box) is a bijection and slot k of one is slot k
-    of the other. EBOOT is the counter case: `entry` is empty on both
-    sides and `box` is a global index, so the JP scan (14,202 boxes) and
-    the US scan (4,223) number unrelated rows and box 7715 means nothing
-    across them. Matching on it would show one unit's Japanese next to
-    another unit's English."""
+
+def coordinate_join(rel):
+    """Is (entry, box) a real shared coordinate for this extract AS A WHOLE?
+
+    The PSP keeps a script's slots across regions, so within one entry the
+    box index is the correspondence. This test asks the stricter question -
+    whether EVERY entry has the same box count on both sides - and is used
+    where the whole file must line up. `entry_join` is the per-entry form
+    the twin lookup needs: a build that dropped a box in one entry must not
+    disable the coordinate proof for every other entry.
+
+    EBOOT is the counter case: `entry` is empty on both sides and `box` is
+    a global index, so the JP scan (14,202 boxes) and the US scan (4,223)
+    number unrelated rows and box 7715 means nothing across them."""
     if rel not in _JOIN:
         jp = toolbelt.read_extracted('psp_jp', rel, optional=True)
         us = toolbelt.read_extracted('psp_us', rel, optional=True)
         if not jp or not us:
             _JOIN[rel] = False
         else:
-            def boxes(rows):
-                c = collections.defaultdict(set)
-                for r in rows:
-                    c[r['entry']].add(r['box'])
-                return {k: len(v) for k, v in c.items()}
-            _JOIN[rel] = boxes(jp) == boxes(us)
+            _JOIN[rel] = (_entry_box_counts(jp) == _entry_box_counts(us))
     return _JOIN[rel]
 
 
 _JOIN = {}
+
+
+def entry_join(rel, entry):
+    """Is (entry, box) a real shared coordinate for THIS entry?
+
+    True where the Japanese and US builds enumerate the entry to the same
+    box count: the two builds carry the same script, so equal counts mean
+    the slot index is the correspondence (the same per-entry rule the
+    aligner uses, align.jp_us_map). An entry whose count changed is not a
+    coordinate at all, and the twin lookup falls back to the proven pair
+    map."""
+    if rel not in _ENTRY_JOIN:
+        jp = toolbelt.read_extracted('psp_jp', rel, optional=True) or []
+        us = toolbelt.read_extracted('psp_us', rel, optional=True) or []
+        jb, ub = _entry_box_counts(jp), _entry_box_counts(us)
+        _ENTRY_JOIN[rel] = {k for k, n in jb.items() if ub.get(k) == n}
+    return entry in _ENTRY_JOIN[rel]
+
+
+_ENTRY_JOIN = {}
 
 
 PROVEN = frozenset(('read', 'anchor', 'grid', 'floor', 'box'))
@@ -984,7 +1008,7 @@ def us_twin(rel, row):
     here: it aligns each side to the PSX, and a shifted box can make two
     different JP boxes share one US partner; that is not a proof that
     either JP row's WORDS are that US row's words."""
-    if coordinate_join(rel):
+    if entry_join(rel, row['entry']):
         hit = _us_by_coord(rel).get((row['entry'], row['box']))
         if hit is not None:
             return hit

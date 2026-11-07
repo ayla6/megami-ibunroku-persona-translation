@@ -18,7 +18,7 @@ import toolbelt
 class BattleReadbackGate(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        names = ('BTLP.BIN', 'SLPS_005.00', 'persona.sym', 'btlevt_pairs.asm', 'btl_board_drafts.tsv')
+        names = ('BTLP.BIN', 'SLPS_005.00', 'persona.sym', 'btlevt_pairs.asm')
         if not all((ROOT / 'build' / n).exists() for n in names):
             raise unittest.SkipTest('requires assembled BTLP build')
         cls.files = {n: (ROOT / 'build' / n).read_bytes() for n in names}

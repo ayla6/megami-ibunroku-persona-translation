@@ -769,20 +769,13 @@ def level3(read_file, side_files=None):
             description_drafts = {line.split('\t', 1)[0]
                                   for line in source.read().splitlines()[1:] if line.strip()}
     description_draft_n = 0
-    import battle_board_text
-    board_draft_path = os.path.join(side_files, 'btl_board_drafts.tsv')
-    board_drafts = set()
+    board_unshipped = set()
     try:
-        expected_board_drafts = btlp.board_drafts(btlp.data(), tb.merged_rows('BTLP'))
-        with open(board_draft_path, encoding='utf-8') as source:
-            report = source.read().splitlines()
-        battle_board_text.verify_draft_report(report, expected_board_drafts)
-        battle_board_text.verify_retail_bytes(btlp.data(), read_file('BTLP.BIN'))
-        board_drafts = set(expected_board_drafts)
-    except (OSError, KeyError, ValueError) as error:
+        board_unshipped = btlp.board_unshipped(btlp.data(), tb.merged_rows('BTLP'))
+    except (KeyError, ValueError) as error:
         fails += 1
-        print(f'LEVEL 3 FAIL: battle-board draft ownership: {error}')
-    board_draft_n = 0
+        print(f'LEVEL 3 FAIL: battle-board ownership: {error}')
+    board_unshipped_n = 0
     # BTLP: the story-battle dialogue is always byte-pair packed on disc;
     # negotiation strings are packed when they start with the pack marker
     # (NEG_PACK_IDX) - everything else is placed as plain bytes
@@ -823,8 +816,8 @@ def level3(read_file, side_files=None):
             if rel == 'SLPS_005.00' and r['pos'] in description_drafts:
                 description_draft_n += 1
                 continue
-            if rel == 'BTLP' and r['pos'] in board_drafts:
-                board_draft_n += 1
+            if rel == 'BTLP' and r['pos'] in board_unshipped:
+                board_unshipped_n += 1
                 continue
             if r['pos'] in packed_pos:
                 packed_n += 1
@@ -881,8 +874,8 @@ def level3(read_file, side_files=None):
              f'records keep their Japanese' if gated_n or gated else '')
           + (f', {description_draft_n} human description draft(s) retained unshipped'
              if description_draft_n else '')
-          + (f', {board_draft_n} battle-board draft(s) retained unshipped'
-             if board_draft_n else ''))
+          + (f', {board_unshipped_n} battle-board row(s) kept Japanese '
+             f'(fit gate or no consumer)' if board_unshipped_n else ''))
 
 
 if __name__ == '__main__':

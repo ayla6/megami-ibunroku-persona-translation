@@ -1,17 +1,17 @@
 file	entry	psx_box	jp_box	kind
 E0	0	0	0	ok
 E0	0	1	1	ok
-E0	0	2	3	ok
-E0	0	3	4	ok
-E0	0	4	5	ok
-E0	0	5	6	ok
-E0	0	6	7	ok
-E0	0	7	8	ok
-E0	0	8	9	ok
-E0	0	9	10	ok
-E0	0	10	11	ok
-E0	0	11	12	ok
-E0	0	12		ok
+E0	0	2	2	ok
+E0	0	3	3	ok
+E0	0	4	4	ok
+E0	0	5	5	ok
+E0	0	6	6	ok
+E0	0	7	7	ok
+E0	0	8	8	ok
+E0	0	9	9	ok
+E0	0	10	10	ok
+E0	0	11	11	ok
+E0	0	12	12	ok
 E0	0	13	13	ok
 E0	0	14	14	ok
 E0	0	15	15	ok
@@ -185,8 +185,8 @@ E0	13	14	14	ok
 E0	13	15	15	ok
 E0	13	16	16	ok
 E0	13	17	17	ok
-E0	13	18	19	ok
-E0	13	19		ok
+E0	13	18	18	ok
+E0	13	19	19	ok
 E0	13	20	20	ok
 E0	13	21	21	ok
 E0	13	22	22	ok
@@ -259,37 +259,37 @@ E0	16	17	17	ok
 E0	16	18	18	ok
 E0	16	19	19	ok
 E0	16	20	20	ok
-E0	16	21		ok
-E0	16	22	21	ok
-E0	16	23		ok
-E0	16	24		ok
-E0	16	25		ok
-E0	16	26		ok
-E0	16	27		ok
-E0	16	28	22	ok
-E0	16	29		ok
-E0	16	30	23	ok
-E0	16	31	24	ok
-E0	16	32	25	ok
-E0	16	33	26	ok
-E0	16	34	27	ok
-E0	16	35	29	ok
-E0	16	36	30	ok
-E0	16	37		ok
-E0	16	38	31	ok
-E0	16	39	32	ok
-E0	16	40	33	ok
-E0	16	41	34	ok
-E0	16	42	35	ok
-E0	16	43	36	ok
-E0	16	44	37	ok
-E0	16	45	38	ok
-E0	16	46	39	ok
-E0	16	47	40	ok
-E0	16	48	41	ok
-E0	16	49	42	ok
-E0	16	50	43	ok
-E0	16	51	44	ok
+E0	16	21	21	ok
+E0	16	22	22	ok
+E0	16	23	23	ok
+E0	16	24	24	ok
+E0	16	25	25	ok
+E0	16	26	26	ok
+E0	16	27	27	ok
+E0	16	28	28	ok
+E0	16	29	29	ok
+E0	16	30	30	ok
+E0	16	31	31	ok
+E0	16	32	32	ok
+E0	16	33	33	ok
+E0	16	34	34	ok
+E0	16	35	35	ok
+E0	16	36	36	ok
+E0	16	37	37	ok
+E0	16	38	38	ok
+E0	16	39	39	ok
+E0	16	40	40	ok
+E0	16	41	41	ok
+E0	16	42	42	ok
+E0	16	43	43	ok
+E0	16	44	44	ok
+E0	16	45	45	ok
+E0	16	46	46	ok
+E0	16	47	47	ok
+E0	16	48	48	ok
+E0	16	49	49	ok
+E0	16	50	50	ok
+E0	16	51	51	ok
 E0	17	0	0	ok
 E0	17	1	1	ok
 E0	17	2	2	ok
@@ -531,10 +531,10 @@ E0	34	8	8	ok
 E0	35	0	0	ok
 E0	36	0	0	ok
 E0	36	1	1	ok
-E0	36	None		us_extra
 E0	36	2	3	ok
 E0	36	3	4	ok
 E0	36	4	5	ok
+E0	36	None		us_extra
 E0	37	0	0	ok
 E0	37	1	1	ok
 E0	37	2	2	ok
@@ -587,19 +587,16 @@ E0	41	23	23	ok
 E0	41	24	24	ok
 E0	42	0	0	ok
 E0	42	1	1	ok
-E0	42	None		us_extra
-E0	42	None		us_extra
-E0	42	2	2	ok
-E0	42	3	3	ok
-E0	42	4	4	ok
-E0	42	5	7	ok
+E0	42	2	3	ok
+E0	42	3	4	ok
+E0	42	4	5	ok
+E0	42	5	6	ok
 E0	42	6	8	ok
 E0	42	7	9	ok
 E0	42	8	10	ok
 E0	42	9	11	ok
 E0	42	10	12	ok
-E0	42	None		us_extra
-E0	42	11	14	ok
+E0	42	11	13	ok
 E0	42	12	15	ok
 E0	42	13	16	ok
 E0	42	14	17	ok
@@ -619,6 +616,9 @@ E0	42	27	30	ok
 E0	42	28	31	ok
 E0	42	29	32	ok
 E0	42	30	33	ok
+E0	42	None		us_extra
+E0	42	None		us_extra
+E0	42	None		us_extra
 E0	43	0	0	ok
 E0	43	1	1	ok
 E0	43	2	2	ok
@@ -702,13 +702,13 @@ E0	50	8	8	ok
 E0	50	9	9	ok
 E0	50	10	10	ok
 E0	50	11	12	ok
-E0	50	None		us_extra
 E0	50	12	13	ok
 E0	50	13	14	ok
 E0	50	14	15	ok
 E0	50	15	16	ok
 E0	50	16	17	ok
 E0	50	17	18	ok
+E0	50	None		us_extra
 E0	51	0	0	ok
 E0	51	1	1	ok
 E0	51	2	2	ok
@@ -721,8 +721,6 @@ E0	51	8	8	ok
 E0	51	9	9	ok
 E0	51	10	10	ok
 E0	51	11	11	ok
-E0	51	None		us_extra
-E0	51	None		us_extra
 E0	51	12	14	ok
 E0	51	13	15	ok
 E0	51	14	16	ok
@@ -731,6 +729,8 @@ E0	51	16	18	ok
 E0	51	17	19	ok
 E0	51	18	20	ok
 E0	51	19	21	ok
+E0	51	None		us_extra
+E0	51	None		us_extra
 E0	52	0	0	ok
 E0	52	1	1	ok
 E0	52	2	2	ok
@@ -822,8 +822,6 @@ E0	55	52	52	ok
 E0	55	53	53	ok
 E0	55	54	54	ok
 E0	55	55	55	ok
-E0	55	None		us_extra
-E0	55	None		us_extra
 E0	55	56	58	ok
 E0	55	57	59	ok
 E0	55	58	60	ok
@@ -834,6 +832,8 @@ E0	55	62	64	ok
 E0	55	63	65	ok
 E0	55	64	66	ok
 E0	55	65	67	ok
+E0	55	None		us_extra
+E0	55	None		us_extra
 E0	56	0	0	ok
 E0	56	1	1	ok
 E0	56	2	2	ok
@@ -852,12 +852,10 @@ E0	56	14	14	ok
 E0	56	15	15	ok
 E0	56	16	16	ok
 E0	56	17	17	ok
-E0	57	0	2	ok
+E0	57	0	1	ok
 E0	57	1	3	ok
-E0	57	None		us_extra
 E0	57	2	4	ok
 E0	57	3	5	ok
-E0	57	None		us_extra
 E0	57	4	6	ok
 E0	57	5	7	ok
 E0	57	6	8	ok
@@ -870,7 +868,7 @@ E0	57	12	14	ok
 E0	57	13	15	ok
 E0	57	14	16	ok
 E0	57	15	17	ok
-E0	57	16	18	us_missing
+E0	57	16	18	ok
 E0	57	17	19	ok
 E0	57	18	20	ok
 E0	57	19	21	ok
@@ -879,7 +877,6 @@ E0	57	21	23	ok
 E0	57	22	24	ok
 E0	57	23	25	ok
 E0	57	24	26	ok
-E0	57	None		us_extra
 E0	57	25	27	ok
 E0	57	26	28	ok
 E0	57	27	29	ok
@@ -893,6 +890,8 @@ E0	57	34	36	ok
 E0	57	35	37	ok
 E0	57	36	38	ok
 E0	57	37	39	ok
+E0	57	None		us_extra
+E0	57	None		us_extra
 E0	58	0	0	ok
 E0	58	1	1	ok
 E0	58	2	2	ok
@@ -1002,11 +1001,10 @@ E0	64	30	30	ok
 E0	64	31	31	ok
 E0	64	32	32	ok
 E0	64	33	33	ok
-E0	64	None		us_extra
 E0	64	34	34	ok
 E0	64	35	35	ok
 E0	64	36	36	ok
-E0	64	37	37	us_missing
+E0	64	37	37	ok
 E0	64	38	38	ok
 E0	64	39	39	ok
 E0	64	40	40	ok
@@ -1034,10 +1032,9 @@ E0	65	20	20	ok
 E0	65	21	21	ok
 E0	65	22	22	ok
 E0	65	23	23	ok
-E0	65	None		us_extra
 E0	65	24	24	ok
 E0	65	25	25	ok
-E0	65	26	26	us_missing
+E0	65	26	26	ok
 E0	65	27	27	ok
 E0	65	28	28	ok
 E0	65	29	29	ok
@@ -1167,8 +1164,6 @@ E0	69	36	36	ok
 E0	69	37	37	ok
 E0	69	38	38	ok
 E0	69	39	39	ok
-E0	70	None		us_extra
-E0	70	None		us_extra
 E0	70	0	2	ok
 E0	70	1	3	ok
 E0	70	2	4	ok
@@ -1205,6 +1200,8 @@ E0	70	32	34	ok
 E0	70	33	35	ok
 E0	70	34	36	ok
 E0	70	35	37	ok
+E0	70	None		us_extra
+E0	70	None		us_extra
 E0	71	0	0	ok
 E0	71	1	1	ok
 E0	71	2	2	ok
@@ -1232,7 +1229,6 @@ E0	75	11	11	ok
 E0	76	0	0	ok
 E0	76	1	1	ok
 E0	76	2	2	ok
-E0	77	None		us_extra
 E0	77	0		us_missing
 E0	77	1	1	ok
 E0	77	2	2	ok
@@ -1245,7 +1241,7 @@ E0	77	8	8	ok
 E0	77	9	9	ok
 E0	77	10	10	ok
 E0	77	11	11	ok
-E0	78	None		us_extra
+E0	77	None		us_extra
 E0	78	0		us_missing
 E0	78	1	1	ok
 E0	78	2	2	ok
@@ -1258,6 +1254,7 @@ E0	78	8	8	ok
 E0	78	9	9	ok
 E0	78	10	10	ok
 E0	78	11	11	ok
+E0	78	None		us_extra
 E0	79	0	0	ok
 E0	79	1	1	ok
 E0	79	2	2	ok
@@ -1313,15 +1310,14 @@ E0	87	15	15	ok
 E0	87	16	16	ok
 E0	88	0	0	ok
 E0	88	1	1	ok
-E0	88	2	3	ok
-E0	88	3	4	ok
-E0	88	4	5	ok
-E0	88	None		us_extra
-E0	88	5	6	ok
-E0	88	6	7	ok
-E0	88	7	8	ok
-E0	88	8	9	ok
-E0	88	9		us_missing
+E0	88	2	2	ok
+E0	88	3	3	ok
+E0	88	4	4	ok
+E0	88	5	5	ok
+E0	88	6	6	ok
+E0	88	7	7	ok
+E0	88	8	8	ok
+E0	88	9	9	ok
 E0	88	10	10	ok
 E0	88	11	11	ok
 E0	88	12	12	ok
@@ -1728,12 +1724,10 @@ E0	118	45	45	ok
 E0	118	46	46	ok
 E0	118	47	47	ok
 E0	118	48	48	ok
-E0	118	None		us_extra
 E0	118	49	49	ok
-E0	118	None		us_extra
 E0	118	50	50	ok
-E0	118	51	51	ok
-E0	118	52	52	ok
+E0	118	51	53	ok
+E0	118	52	54	ok
 E0	118	53	55	ok
 E0	118	54	56	ok
 E0	118	55	57	ok
@@ -1758,6 +1752,8 @@ E0	118	73	75	ok
 E0	118	74	76	ok
 E0	118	75	77	ok
 E0	118	76	78	ok
+E0	118	None		us_extra
+E0	118	None		us_extra
 E0	119	0	0	ok
 E0	119	1	1	ok
 E0	119	2	2	ok
@@ -1905,12 +1901,12 @@ E0	135	2	2	ok
 E0	135	3	3	ok
 E0	135	4	4	ok
 E0	135	5	5	ok
-E0	135	6		ok
-E0	135	7	6	ok
-E0	135	8	7	ok
-E0	135	9	8	ok
-E0	135	10	9	ok
-E0	135	11	10	ok
+E0	135	6	6	ok
+E0	135	7	7	ok
+E0	135	8	8	ok
+E0	135	9	9	ok
+E0	135	10	10	ok
+E0	135	11	11	ok
 E0	135	12	12	ok
 E0	135	13	13	ok
 E0	135	14	14	ok
@@ -2258,7 +2254,7 @@ E0	153	16	16	ok
 E0	153	17	17	ok
 E0	153	18	18	ok
 E0	153	19	19	ok
-E0	153	20	20	us_missing
+E0	153	20	20	ok
 E0	153	21	21	ok
 E0	153	22	22	ok
 E0	153	23	23	ok
@@ -2266,7 +2262,6 @@ E0	153	24	24	ok
 E0	153	25	25	ok
 E0	153	26	26	ok
 E0	153	27	27	ok
-E0	153	None		us_extra
 E0	153	28	28	ok
 E0	153	29	29	ok
 E0	153	30	30	ok
@@ -2298,7 +2293,6 @@ E0	156	8	8	ok
 E0	156	9	9	ok
 E0	156	10	10	ok
 E0	156	11	11	ok
-E0	157	None		us_extra
 E0	157	0		us_missing
 E0	157	1	1	ok
 E0	157	2	2	ok
@@ -2311,6 +2305,7 @@ E0	157	8	8	ok
 E0	157	9	9	ok
 E0	157	10	10	ok
 E0	157	11	11	ok
+E0	157	None		us_extra
 E0	158	0	0	ok
 E0	158	1	1	ok
 E0	158	2	2	ok
@@ -2387,7 +2382,7 @@ E0	161	8	8	ok
 E0	161	9	9	ok
 E0	161	10	10	ok
 E0	161	11	11	ok
-E0	161	12	12	us_missing
+E0	161	12	12	ok
 E0	161	13	13	ok
 E0	161	14	14	ok
 E0	161	15	15	ok
@@ -2397,7 +2392,6 @@ E0	161	18	18	ok
 E0	161	19	19	ok
 E0	161	20	20	ok
 E0	161	21	21	ok
-E0	161	None		us_extra
 E0	161	22	22	ok
 E0	161	23	23	ok
 E0	161	24	24	ok
@@ -2741,7 +2735,6 @@ E0	210	8	8	ok
 E0	210	9	9	ok
 E0	210	10	10	ok
 E0	210	11	11	ok
-E0	211	None		us_extra
 E0	211	0		us_missing
 E0	211	1	1	ok
 E0	211	2	2	ok
@@ -2754,6 +2747,7 @@ E0	211	8	8	ok
 E0	211	9	9	ok
 E0	211	10	10	ok
 E0	211	11	11	ok
+E0	211	None		us_extra
 E0	212	0	0	ok
 E0	212	1	1	ok
 E0	212	2	2	ok
@@ -2951,10 +2945,10 @@ E1	4	17	17	ok
 E1	4	18	18	ok
 E1	4	19	19	ok
 E1	4	20	20	ok
-E1	4	None		us_extra
 E1	4	21	22	ok
 E1	4	22	23	ok
 E1	4	23	24	ok
+E1	4	None		us_extra
 E1	5	0	0	ok
 E1	5	1	1	ok
 E1	5	2	2	ok
@@ -2972,11 +2966,11 @@ E1	5	13	13	ok
 E1	5	14	14	ok
 E1	5	15	15	ok
 E1	5	16	16	ok
-E1	5	None		us_extra
 E1	5	17	17	ok
 E1	5	18	19	ok
 E1	5	19	20	ok
 E1	5	20	21	ok
+E1	5	None		us_extra
 E1	6	0	0	ok
 E1	6	1	1	ok
 E1	6	2	2	ok
@@ -3046,11 +3040,11 @@ E1	9	16	16	ok
 E1	9	17	17	ok
 E1	9	18	18	ok
 E1	9	19	19	ok
-E1	9	None		us_extra
 E1	9	20	21	ok
 E1	9	21	22	ok
 E1	9	22	23	ok
 E1	9	23	24	ok
+E1	9	None		us_extra
 E1	10	0	0	ok
 E1	10	1	1	ok
 E1	10	2	2	ok
@@ -3073,8 +3067,8 @@ E1	10	18	18	ok
 E1	10	19	19	ok
 E1	10	20	20	ok
 E1	10	21	21	ok
-E1	10	None		us_extra
 E1	10	22	22	ok
+E1	10	None		us_extra
 E1	11	0	0	ok
 E1	11	1	1	ok
 E1	11	2	2	ok
@@ -3121,7 +3115,6 @@ E1	12	17	17	ok
 E1	12	18	18	ok
 E1	12	19	19	ok
 E1	12	20	20	ok
-E1	12	None		us_extra
 E1	12	21	21	ok
 E1	12	22	23	ok
 E1	12	23	24	ok
@@ -3133,6 +3126,7 @@ E1	12	28	29	ok
 E1	12	29	30	ok
 E1	12	30	31	ok
 E1	12	31	32	ok
+E1	12	None		us_extra
 E1	13	0	0	ok
 E1	13	1	1	ok
 E1	13	2	2	ok
@@ -4169,10 +4163,9 @@ E1	160	28	28	ok
 E1	160	29	29	ok
 E1	160	30	30	ok
 E1	160	31	31	ok
-E1	160	None		us_extra
 E1	160	32	32	ok
 E1	160	33	33	ok
-E1	160	34	34	us_missing
+E1	160	34	34	ok
 E1	160	35	35	ok
 E1	160	36	36	ok
 E1	160	37	37	ok
@@ -4846,37 +4839,37 @@ E2	48	17	17	ok
 E2	48	18	18	ok
 E2	48	19	19	ok
 E2	48	20	20	ok
-E2	48	21		ok
-E2	48	22	21	ok
-E2	48	23		ok
-E2	48	24		ok
-E2	48	25		ok
-E2	48	26		ok
-E2	48	27		ok
-E2	48	28	22	ok
-E2	48	29		ok
-E2	48	30	23	ok
-E2	48	31	24	ok
-E2	48	32	25	ok
-E2	48	33	26	ok
-E2	48	34	27	ok
-E2	48	35	29	ok
-E2	48	36	30	ok
-E2	48	37		ok
-E2	48	38	31	ok
-E2	48	39	32	ok
-E2	48	40	33	ok
-E2	48	41	34	ok
-E2	48	42	35	ok
-E2	48	43	36	ok
-E2	48	44	37	ok
-E2	48	45	38	ok
-E2	48	46	39	ok
-E2	48	47	40	ok
-E2	48	48	41	ok
-E2	48	49	42	ok
-E2	48	50	43	ok
-E2	48	51	44	ok
+E2	48	21	21	ok
+E2	48	22	22	ok
+E2	48	23	23	ok
+E2	48	24	24	ok
+E2	48	25	25	ok
+E2	48	26	26	ok
+E2	48	27	27	ok
+E2	48	28	28	ok
+E2	48	29	29	ok
+E2	48	30	30	ok
+E2	48	31	31	ok
+E2	48	32	32	ok
+E2	48	33	33	ok
+E2	48	34	34	ok
+E2	48	35	35	ok
+E2	48	36	36	ok
+E2	48	37	37	ok
+E2	48	38	38	ok
+E2	48	39	39	ok
+E2	48	40	40	ok
+E2	48	41	41	ok
+E2	48	42	42	ok
+E2	48	43	43	ok
+E2	48	44	44	ok
+E2	48	45	45	ok
+E2	48	46	46	ok
+E2	48	47	47	ok
+E2	48	48	48	ok
+E2	48	49	49	ok
+E2	48	50	50	ok
+E2	48	51	51	ok
 E2	49	0	0	ok
 E2	49	1	1	ok
 E2	49	2	2	ok
@@ -4949,7 +4942,6 @@ E2	54	8	8	ok
 E2	54	9	9	ok
 E2	54	10	10	ok
 E2	54	11	11	ok
-E2	55	None		us_extra
 E2	55	0		us_missing
 E2	55	1	1	ok
 E2	55	2	2	ok
@@ -4962,13 +4954,13 @@ E2	55	8	8	ok
 E2	55	9	9	ok
 E2	55	10	10	ok
 E2	55	11	11	ok
+E2	55	None		us_extra
 E2	56	0	0	ok
 E2	56	1	1	ok
 E2	56	2	2	ok
 E2	56	3	3	ok
 E2	56	4	4	ok
 E2	56	5	5	ok
-E2	57	None		us_extra
 E2	57	0		us_missing
 E2	57	1	1	ok
 E2	57	2	2	ok
@@ -4981,6 +4973,7 @@ E2	57	8	8	ok
 E2	57	9	9	ok
 E2	57	10	10	ok
 E2	57	11	11	ok
+E2	57	None		us_extra
 E2	58	0	0	ok
 E2	58	1	1	ok
 E2	58	2	2	ok
@@ -5217,37 +5210,37 @@ E2	107	16	16	ok
 E2	107	17	17	ok
 E2	107	18	18	ok
 E2	107	19	19	ok
-E2	107	20		ok
-E2	107	21	20	ok
-E2	107	22		ok
-E2	107	23		ok
-E2	107	24		ok
-E2	107	25		ok
-E2	107	26		ok
-E2	107	27	21	ok
-E2	107	28		ok
-E2	107	29	22	ok
-E2	107	30	23	ok
-E2	107	31	24	ok
-E2	107	32	25	ok
-E2	107	33	26	ok
-E2	107	34	28	ok
-E2	107	35	29	ok
-E2	107	36		ok
-E2	107	37	30	ok
-E2	107	38	31	ok
-E2	107	39	32	ok
-E2	107	40	33	ok
-E2	107	41	34	ok
-E2	107	42	35	ok
-E2	107	43	36	ok
-E2	107	44	37	ok
-E2	107	45	38	ok
-E2	107	46	39	ok
-E2	107	47	40	ok
-E2	107	48	41	ok
-E2	107	49	42	ok
-E2	107	50	43	ok
+E2	107	20	20	ok
+E2	107	21	21	ok
+E2	107	22	22	ok
+E2	107	23	23	ok
+E2	107	24	24	ok
+E2	107	25	25	ok
+E2	107	26	26	ok
+E2	107	27	27	ok
+E2	107	28	28	ok
+E2	107	29	29	ok
+E2	107	30	30	ok
+E2	107	31	31	ok
+E2	107	32	32	ok
+E2	107	33	33	ok
+E2	107	34	34	ok
+E2	107	35	35	ok
+E2	107	36	36	ok
+E2	107	37	37	ok
+E2	107	38	38	ok
+E2	107	39	39	ok
+E2	107	40	40	ok
+E2	107	41	41	ok
+E2	107	42	42	ok
+E2	107	43	43	ok
+E2	107	44	44	ok
+E2	107	45	45	ok
+E2	107	46	46	ok
+E2	107	47	47	ok
+E2	107	48	48	ok
+E2	107	49	49	ok
+E2	107	50	50	ok
 E2	108	0	0	ok
 E2	108	1	1	ok
 E2	108	2	2	ok
@@ -5265,37 +5258,37 @@ E2	108	13	13	ok
 E2	108	14	14	ok
 E2	108	15	15	ok
 E2	108	16	16	ok
-E2	108	17		ok
-E2	108	18	17	ok
-E2	108	19		ok
-E2	108	20		ok
-E2	108	21		ok
-E2	108	22		ok
-E2	108	23		ok
-E2	108	24	18	ok
-E2	108	25		ok
-E2	108	26	19	ok
-E2	108	27	20	ok
-E2	108	28	21	ok
-E2	108	29	22	ok
-E2	108	30	23	ok
-E2	108	31	25	ok
-E2	108	32	26	ok
-E2	108	33		ok
-E2	108	34	27	ok
-E2	108	35	28	ok
-E2	108	36	29	ok
-E2	108	37	30	ok
-E2	108	38	31	ok
-E2	108	39	32	ok
-E2	108	40	33	ok
-E2	108	41	34	ok
-E2	108	42	35	ok
-E2	108	43	36	ok
-E2	108	44	37	ok
-E2	108	45	38	ok
-E2	108	46	39	ok
-E2	108	47	40	ok
+E2	108	17	17	ok
+E2	108	18	18	ok
+E2	108	19	19	ok
+E2	108	20	20	ok
+E2	108	21	21	ok
+E2	108	22	22	ok
+E2	108	23	23	ok
+E2	108	24	24	ok
+E2	108	25	25	ok
+E2	108	26	26	ok
+E2	108	27	27	ok
+E2	108	28	28	ok
+E2	108	29	29	ok
+E2	108	30	30	ok
+E2	108	31	31	ok
+E2	108	32	32	ok
+E2	108	33	33	ok
+E2	108	34	34	ok
+E2	108	35	35	ok
+E2	108	36	36	ok
+E2	108	37	37	ok
+E2	108	38	38	ok
+E2	108	39	39	ok
+E2	108	40	40	ok
+E2	108	41	41	ok
+E2	108	42	42	ok
+E2	108	43	43	ok
+E2	108	44	44	ok
+E2	108	45	45	ok
+E2	108	46	46	ok
+E2	108	47	47	ok
 E2	109	0	0	ok
 E2	109	1	1	ok
 E2	109	2	2	ok
@@ -5865,37 +5858,37 @@ E2	185	17	17	ok
 E2	185	18	18	ok
 E2	185	19	19	ok
 E2	185	20	20	ok
-E2	185	21		ok
-E2	185	22	21	ok
-E2	185	23		ok
-E2	185	24		ok
-E2	185	25		ok
-E2	185	26		ok
-E2	185	27		ok
-E2	185	28	22	ok
-E2	185	29		ok
-E2	185	30	23	ok
-E2	185	31	24	ok
-E2	185	32	25	ok
-E2	185	33	26	ok
-E2	185	34	27	ok
-E2	185	35	29	ok
-E2	185	36	30	ok
-E2	185	37		ok
-E2	185	38	31	ok
-E2	185	39	32	ok
-E2	185	40	33	ok
-E2	185	41	34	ok
-E2	185	42	35	ok
-E2	185	43	36	ok
-E2	185	44	37	ok
-E2	185	45	38	ok
-E2	185	46	39	ok
-E2	185	47	40	ok
-E2	185	48	41	ok
-E2	185	49	42	ok
-E2	185	50	43	ok
-E2	185	51	44	ok
+E2	185	21	21	ok
+E2	185	22	22	ok
+E2	185	23	23	ok
+E2	185	24	24	ok
+E2	185	25	25	ok
+E2	185	26	26	ok
+E2	185	27	27	ok
+E2	185	28	28	ok
+E2	185	29	29	ok
+E2	185	30	30	ok
+E2	185	31	31	ok
+E2	185	32	32	ok
+E2	185	33	33	ok
+E2	185	34	34	ok
+E2	185	35	35	ok
+E2	185	36	36	ok
+E2	185	37	37	ok
+E2	185	38	38	ok
+E2	185	39	39	ok
+E2	185	40	40	ok
+E2	185	41	41	ok
+E2	185	42	42	ok
+E2	185	43	43	ok
+E2	185	44	44	ok
+E2	185	45	45	ok
+E2	185	46	46	ok
+E2	185	47	47	ok
+E2	185	48	48	ok
+E2	185	49	49	ok
+E2	185	50	50	ok
+E2	185	51	51	ok
 E2	186	0	0	ok
 E2	186	1	1	ok
 E2	186	2	2	ok
@@ -5908,7 +5901,6 @@ E2	186	8	8	ok
 E2	186	9	9	ok
 E2	186	10	10	ok
 E2	186	11	11	ok
-E2	187	None		us_extra
 E2	187	0		us_missing
 E2	187	1	1	ok
 E2	187	2	2	ok
@@ -5921,6 +5913,7 @@ E2	187	8	8	ok
 E2	187	9	9	ok
 E2	187	10	10	ok
 E2	187	11	11	ok
+E2	187	None		us_extra
 E2	188	0	0	ok
 E2	188	1	1	ok
 E2	188	2	2	ok
@@ -6047,41 +6040,40 @@ E2	195	13	13	ok
 E2	195	14	14	ok
 E2	195	15	15	ok
 E2	195	16	16	ok
-E2	195	17		ok
-E2	195	18	17	ok
-E2	195	19		ok
-E2	195	20		ok
-E2	195	21		ok
-E2	195	22		ok
-E2	195	23		ok
-E2	195	24	18	ok
-E2	195	25		ok
-E2	195	26	19	ok
-E2	195	27	20	ok
-E2	195	28	21	ok
-E2	195	29	22	ok
-E2	195	30	23	ok
-E2	195	31	25	ok
-E2	195	32	26	ok
-E2	195	33		ok
-E2	195	34	27	ok
-E2	195	35	28	ok
-E2	195	36	29	ok
-E2	195	37	30	ok
-E2	195	38	31	ok
-E2	195	39	32	ok
-E2	195	40	33	ok
-E2	195	41	34	ok
-E2	195	42	35	ok
-E2	195	43	36	ok
-E2	195	44	37	ok
-E2	195	45	38	ok
-E2	195	46	39	ok
-E2	195	47	40	ok
+E2	195	17	17	ok
+E2	195	18	18	ok
+E2	195	19	19	ok
+E2	195	20	20	ok
+E2	195	21	21	ok
+E2	195	22	22	ok
+E2	195	23	23	ok
+E2	195	24	24	ok
+E2	195	25	25	ok
+E2	195	26	26	ok
+E2	195	27	27	ok
+E2	195	28	28	ok
+E2	195	29	29	ok
+E2	195	30	30	ok
+E2	195	31	31	ok
+E2	195	32	32	ok
+E2	195	33	33	ok
+E2	195	34	34	ok
+E2	195	35	35	ok
+E2	195	36	36	ok
+E2	195	37	37	ok
+E2	195	38	38	ok
+E2	195	39	39	ok
+E2	195	40	40	ok
+E2	195	41	41	ok
+E2	195	42	42	ok
+E2	195	43	43	ok
+E2	195	44	44	ok
+E2	195	45	45	ok
+E2	195	46	46	ok
+E2	195	47	47	ok
 E2	196	0	0	ok
 E2	196	1	1	ok
 E2	196	2	2	ok
-E2	197	None		us_extra
 E2	197	0		us_missing
 E2	197	1	1	ok
 E2	197	2	2	ok
@@ -6094,6 +6086,7 @@ E2	197	8	8	ok
 E2	197	9	9	ok
 E2	197	10	10	ok
 E2	197	11	11	ok
+E2	197	None		us_extra
 E2	198	0	0	ok
 E2	198	1	1	ok
 E2	198	2	2	ok
@@ -6255,22 +6248,22 @@ E2	206	22	22	ok
 E2	206	23	23	ok
 E2	206	24	24	ok
 E2	206	25	25	ok
-E2	206	26		ok
-E2	206	27	26	ok
-E2	206	28		ok
-E2	206	29		ok
-E2	206	30		ok
-E2	206	31		ok
-E2	206	32		ok
-E2	206	33	27	ok
-E2	206	34		ok
-E2	206	35	28	ok
-E2	206	36	29	ok
-E2	206	37	30	ok
-E2	206	38	31	ok
-E2	206	39	32	ok
-E2	206	40	34	ok
-E2	206	41	40	ok
+E2	206	26	26	ok
+E2	206	27	27	ok
+E2	206	28	28	ok
+E2	206	29	29	ok
+E2	206	30	30	ok
+E2	206	31	31	ok
+E2	206	32	32	ok
+E2	206	33	33	ok
+E2	206	34	34	ok
+E2	206	35	35	ok
+E2	206	36	36	ok
+E2	206	37	37	ok
+E2	206	38	38	ok
+E2	206	39	39	ok
+E2	206	40	40	ok
+E2	206	41	41	ok
 E2	206	42	42	ok
 E2	206	43	43	ok
 E2	206	44	44	ok
@@ -6310,15 +6303,14 @@ E2	209	4	4	ok
 E2	209	5	5	ok
 E2	209	6	6	ok
 E2	209	7	7	ok
-E2	209	None		us_extra
 E2	209	8	8	ok
-E2	209	9	10	ok
-E2	210	0	0	us_missing
+E2	209	9	9	ok
+E2	209	None		us_extra
+E2	210	0	0	ok
 E2	210	1	1	ok
 E2	210	2	2	ok
 E2	210	3	3	ok
 E2	210	4	4	ok
-E2	210	None		us_extra
 E2	210	5	5	ok
 E2	210	6	6	ok
 E2	210	7	7	ok
@@ -6357,7 +6349,6 @@ E2	212	17	17	ok
 E2	212	18	18	ok
 E2	212	19	19	ok
 E2	212	20	20	ok
-E2	213	None		us_extra
 E2	213	0		us_missing
 E2	213	1	1	ok
 E2	213	2	2	ok
@@ -6370,6 +6361,7 @@ E2	213	8	8	ok
 E2	213	9	9	ok
 E2	213	10	10	ok
 E2	213	11	11	ok
+E2	213	None		us_extra
 E2	214	0	0	ok
 E2	214	1	1	ok
 E2	214	2	2	ok
@@ -6558,12 +6550,10 @@ E3	3	11	11	ok
 E3	3	12	12	ok
 E3	3	13	13	ok
 E3	3	14	14	ok
-E3	4	None		us_extra
-E3	4	None		us_extra
 E3	4	0	0	ok
 E3	4	1	1	ok
-E3	4	2	4	ok
-E3	4	3	5	ok
+E3	4	2	2	ok
+E3	4	3	4	ok
 E3	4	4	6	ok
 E3	4	5	7	ok
 E3	4	6	8	ok
@@ -6577,6 +6567,8 @@ E3	4	13	15	ok
 E3	4	14	16	ok
 E3	4	15	17	ok
 E3	4	16	18	ok
+E3	4	None		us_extra
+E3	4	None		us_extra
 E3	5	0	0	ok
 E3	5	1	1	ok
 E3	5	2	2	ok
@@ -6630,7 +6622,6 @@ E3	7	12	12	ok
 E3	7	13	13	ok
 E3	7	14	14	ok
 E3	7	15	15	ok
-E3	8	None		us_extra
 E3	8	0		us_missing
 E3	8	1	1	ok
 E3	8	2	2	ok
@@ -6643,6 +6634,7 @@ E3	8	8	8	ok
 E3	8	9	9	ok
 E3	8	10	10	ok
 E3	8	11	11	ok
+E3	8	None		us_extra
 E3	9	0	0	ok
 E3	9	1	1	ok
 E3	9	2	2	ok
@@ -6670,22 +6662,22 @@ E3	9	23	23	ok
 E3	9	24	24	ok
 E3	9	25	25	ok
 E3	9	26	26	ok
-E3	9	27		ok
-E3	9	28	27	ok
-E3	9	29		ok
-E3	9	30		ok
-E3	9	31		ok
-E3	9	32		ok
-E3	9	33		ok
-E3	9	34	28	ok
-E3	9	35		ok
-E3	9	36	29	ok
-E3	9	37	30	ok
-E3	9	38	31	ok
-E3	9	39	32	ok
-E3	9	40	33	ok
-E3	9	41	35	ok
-E3	9	42	41	ok
+E3	9	27	27	ok
+E3	9	28	28	ok
+E3	9	29	29	ok
+E3	9	30	30	ok
+E3	9	31	31	ok
+E3	9	32	32	ok
+E3	9	33	33	ok
+E3	9	34	34	ok
+E3	9	35	35	ok
+E3	9	36	36	ok
+E3	9	37	37	ok
+E3	9	38	38	ok
+E3	9	39	39	ok
+E3	9	40	40	ok
+E3	9	41	41	ok
+E3	9	42	42	ok
 E3	9	43	43	ok
 E3	9	44	44	ok
 E3	9	45	45	ok
@@ -6736,7 +6728,6 @@ E3	11	15	15	ok
 E3	11	16	16	ok
 E3	11	17	17	ok
 E3	11	18	18	ok
-E3	11	None		us_extra
 E3	11	19	20	ok
 E3	11	20	21	ok
 E3	11	21	22	ok
@@ -6750,9 +6741,10 @@ E3	11	28	29	ok
 E3	11	29	30	ok
 E3	11	30	31	ok
 E3	11	31	32	ok
-E3	11	32	33	us_missing
-E3	11	33	34	ok
+E3	11	32	33	ok
+E3	11	33	34	us_missing
 E3	11	34	35	ok
+E3	11	None		us_extra
 E3	12	0	0	ok
 E3	12	1	1	ok
 E3	12	2	2	ok
@@ -6970,7 +6962,6 @@ E3	45	8	8	ok
 E3	45	9	9	ok
 E3	45	10	10	ok
 E3	45	11	11	ok
-E3	46	None		us_extra
 E3	46	0		us_missing
 E3	46	1	1	ok
 E3	46	2	2	ok
@@ -6983,9 +6974,10 @@ E3	46	8	8	ok
 E3	46	9	9	ok
 E3	46	10	10	ok
 E3	46	11	11	ok
+E3	46	None		us_extra
 E3	47	0	0	ok
-E3	47	1	1	us_missing
-E3	47	2	2	ok
+E3	47	1	1	ok
+E3	47	2	2	us_missing
 E3	47	3	3	ok
 E3	48	0	0	ok
 E3	48	1	1	ok
@@ -7049,7 +7041,6 @@ E3	62	2	2	ok
 E3	63	0	0	ok
 E3	63	1	1	ok
 E3	63	2	2	ok
-E3	64	None		us_extra
 E3	64	0		us_missing
 E3	64	1	1	ok
 E3	64	2	2	ok
@@ -7062,6 +7053,7 @@ E3	64	8	8	ok
 E3	64	9	9	ok
 E3	64	10	10	ok
 E3	64	11	11	ok
+E3	64	None		us_extra
 E3	65	0	0	ok
 E3	65	1	1	ok
 E3	65	2	2	ok
@@ -7134,7 +7126,6 @@ E3	78	2	2	ok
 E3	79	0	0	ok
 E3	79	1	1	ok
 E3	79	2	2	ok
-E3	80	None		us_extra
 E3	80	0		us_missing
 E3	80	1	1	ok
 E3	80	2	2	ok
@@ -7147,6 +7138,7 @@ E3	80	8	8	ok
 E3	80	9	9	ok
 E3	80	10	10	ok
 E3	80	11	11	ok
+E3	80	None		us_extra
 E3	81	0	0	ok
 E3	81	1	1	ok
 E3	81	2	2	ok
@@ -7194,10 +7186,10 @@ E3	87	0	0	ok
 E3	87	1	1	ok
 E3	87	2	2	ok
 E3	87	3	3	ok
-E3	88	0	0	ok
+E3	88	0	0	us_missing
 E3	88	1	1	ok
 E3	88	2	2	ok
-E3	88	3	3	us_missing
+E3	88	3	3	ok
 E3	88	4	4	ok
 E3	88	5	5	ok
 E3	89	0	0	ok
@@ -7221,7 +7213,6 @@ E3	94	2	2	ok
 E3	95	0	0	ok
 E3	95	1	1	ok
 E3	95	2	2	ok
-E3	96	None		us_extra
 E3	96	0		us_missing
 E3	96	1	1	ok
 E3	96	2	2	ok
@@ -7234,6 +7225,7 @@ E3	96	8	8	ok
 E3	96	9	9	ok
 E3	96	10	10	ok
 E3	96	11	11	ok
+E3	96	None		us_extra
 E3	97	0	0	ok
 E3	97	1	1	ok
 E3	97	2	2	ok
@@ -7323,7 +7315,6 @@ E3	110	2	2	ok
 E3	111	0	0	ok
 E3	111	1	1	ok
 E3	111	2	2	ok
-E3	112	None		us_extra
 E3	112	0		us_missing
 E3	112	1	1	ok
 E3	112	2	2	ok
@@ -7336,6 +7327,7 @@ E3	112	8	8	ok
 E3	112	9	9	ok
 E3	112	10	10	ok
 E3	112	11	11	ok
+E3	112	None		us_extra
 E3	113	0	0	ok
 E3	113	1	1	ok
 E3	113	2	2	ok

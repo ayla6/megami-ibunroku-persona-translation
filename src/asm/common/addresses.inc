@@ -239,8 +239,6 @@ ADV_CELLS_CLEAR    equ 0x8008F5B4          ; CellsClear (retail, unchanged)
 ADV_KIND_LABELS    equ 0x800B24A4          ; g_kind_labels: 22 FF-padded 10-byte entries
 ADV_BAR_SLOT_INIT  equ 0x8006FB04          ; the status layout's list pointer (lui/addiu pair)
 ADV_BAR_ADV_SITE   equ 0x80065C64          ; SlotsRenderAll's per-cell pen advance (jal + nop)
-ADV_BAR_HINT_RD    equ 0x80073118          ; the two hint readers (four instructions each):
-ADV_BAR_HINT_RD2   equ 0x800734B8          ;   lui/addiu base+0 and base+2
 ADV_STATUS_NAMES   equ 0x80070144          ; StatusPersonaNames, rewritten in place (0xC0 bytes)
 ADV_FUSE_CLEAR1    equ 0x8009F900          ; fusion draw helper: kind/name clears
 ADV_FUSE_SITE_A    equ 0x8009FB40          ; name+kind write, built-def path (s3 = def)
@@ -358,6 +356,25 @@ BTLP_SF_END_ADDR equ 0x800F8BC4        ; end of that retail loaded sector
 BTLP_NAME_DATA_ADDR equ 0x800F8BC4    ; immutable data after the sprite bridge
 BTLP_NAME_DATA_END equ 0x800F9148     ; first sound-work buffer (entry.c)
 BTLP_IMAGE_LIMIT equ BTLP_NAME_DATA_END
+;; Translated battle-board source spans, read by the resident btl_owned_span
+;; (vwf/vwf_slps.asm). The directory lives in a spare zero run of the status
+;; board's scratch (0x800F7ED3..0x800F7FF8), outside every translated source
+;; pool: the resident VWF table area is full, and only the battle renderer
+;; calls this lookup. It holds one {base, span} entry per translated source
+;; pool, the three ANALYZE producer buffers, and the command-stage member
+;; boards' five Persona-name rows, then a zero terminator (0x64 bytes).
+BTL_BOARD_SPANS_ADDR equ 0x800F7F00
+BTL_BOARD_SPANS_SIZE equ 0x7C
+;; Board 23 (R1 enemy-kind list, btlp/board23_names.asm): the arcana label
+;; table is drawn in place, and the three full-name rows reuse the retail
+;; name pool (two rows) and arcana pool (third row).
+BTLP_BOARD23_TAG_TABLE equ 0x800E2060  ; 8-byte label slots, FF-terminated
+BTLP_BOARD23_TAG_TABLE_END equ 0x800E2140
+BTLP_BOARD23_NAMES_ADDR equ 0x800F7200 ; retail name pool, now two 16-cell rows
+BTLP_BOARD23_NAMES_END equ 0x800F7220
+BTLP_BOARD23_NAME_ROW_2 equ 0x800F7CA4 ; retail arcana pool, now the third row
+BTLP_BOARD23_NAME_END_2 equ 0x800F7CB4
+BTLP_BOARD23_NAME_STRIDE equ 16        ; ten head glyphs + up to five tail + FF
 BTLP_OFFER_NAME_BASE equ 0x800EB26D  ; first BtlOffer.name; three records
 BTLP_ENEMY_NAME_BASE equ 0x8005DB53  ; first enemy BtlActor.c.name; nine records
 BTLP_SKILL_DESC_A equ 0x800DD788       ; 7 x 12 bytes, ptr at +4, glyph count at +8
@@ -390,6 +407,12 @@ PERSONA_HDR_BUF_END equ 0x8002BCC4      ; PERSONA_HDR_BUF + 4 * PERSONA_HDR_STRI
 PERSONA_HDR_LIMIT equ 0x8002BD60        ; end of that dead run (asserted in asm)
 PERSONA_BIT_OFFSET equ 0               ; ownership bits 0..2
 BATTLE_LABEL_BUF equ 0x8002BCB4        ; PERSONA_HDR_BUF + 3 * PERSONA_HDR_STRIDE: static "Cost" label string (fixed-width, unowned)
+;; The command-stage member boards cannot use the four header slots (the skill
+;; header and PRS-CHG rewrite those); they get five 16-glyph buffers in the
+;; status board's own spare zero run in BTLP.  btlp/status_persona.asm writes
+;; them with persona_name_copy and points the five fixed descriptors at them.
+BTLP_STATUS_PERSONA_BUF equ 0x800F7F80
+BTLP_STATUS_PERSONA_END equ 0x800F7FD0
 SKILL_MENU_STRIDE equ 24               ; 23 glyphs + terminator; 7 slots fill the run exactly
 SKILL_MENU_BUF equ 0x8002C248          ; dead code run before the live function 0x8002C2F0
 SKILL_MENU_BUF_END equ 0x8002C2F0      ; = the live function entry (asserted in asm)

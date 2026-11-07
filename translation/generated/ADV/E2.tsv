@@ -439,7 +439,7 @@ id	pos	psp	en
 437	54:0x164c	E2:437	Customer: I went to the park and saw<FF03>a tree that wasn't there before.<FF03>You should go look.<FF02><FF01>
 438	54:0x1688	E2:438	Clerk: You can't go in there!<FF03>It's private!<FF02><FF01>
 439	54:0x16c4	E2:439	Customer: The TV and radio don't<FF03>work, and my parents are<FF03>hiding under their futons.<FF02><FF04>I guess in the end, you have to take<FF03>matters into your own hands.<FF02><FF01>
-440	55:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+440	55:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 441	55:0x5388	E2:441	Igor: Welcome to the Velvet Room...<FF02><FF01>
 442	55:0x53ac	E2:442	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 443	55:0x53c8	E2:443	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
@@ -457,10 +457,10 @@ id	pos	psp	en
 455	56:0x1290	E2:455	Mark: Man... talk about a sob story!<FF02><FF01>
 456	56:0x12b0	E2:456	Mark: Yo Nanjo,<FF03>why don't you work part-time to<FF03>pay Yamaoka's salary yourself!?<FF02><FF01>
 457	56:0x12e4	E2:457	Yukino:<FF03>Looks like Yuko isn't home yet.<FF02><FF01>
-458	57:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+458	57:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 459	57:0x5388	E2:459	Igor: Welcome to the Velvet Room...<FF02><FF01>
 460	57:0x53ac	E2:460	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
-461	57:0x53c8	E2:461	Igor:<FF03>Welcome to the Velvet Room...<FF03><FF0E><17><FF01>
+461	57:0x53c8	E2:443	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 462	57:0x53f4	E2:462	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 463	57:0x5414	E2:463	Igor: Alas, we cannot look<FF03>after any more Personas.<FF02><FF01>
 464	57:0x5438	E2:464	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
@@ -1396,7 +1396,7 @@ id	pos	psp	en
 1394	186:0x1680	E2:1394	Little girl:<FF03>Everyone's scared of the demons,<FF03>but I don't think we need to worry.<FF02><FF04>I just have this feeling that<FF03>they won't attack us.<FF02><FF01>
 1395	186:0x16d4	E2:1395	Clerk: Do you kids know my idiot son?<FF02><FF04>A cute girl<FF03>transferred into his class,<FF03>and he can't stand the sight of her.<FF02><FF04>Hm? Oh, yes, medicine... right.<FF02><FF01>
 1396	186:0x1750	E2:1396	Clerk: Hey, if you open that door,<FF03>all the frogs I keep will<FF03>come rushing out!<FF02><FF04>Hahah! You fell for it!<FF02><FF01>
-1397	187:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+1397	187:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1398	187:0x5388	E2:1398	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1399	187:0x53ac	E2:1399	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 1400	187:0x53c8	E2:1400	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
@@ -1568,7 +1568,7 @@ id	pos	psp	en
 1566	196:0x1150	E2:1566	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 1567	196:0x117c	E2:1567	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 1568	196:0x11a8	E2:1568	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-1569	197:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+1569	197:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1570	197:0x5388	E2:1570	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1571	197:0x53ac	E2:1571	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 1572	197:0x53c8	E2:1572	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
@@ -1796,13 +1796,13 @@ id	pos	psp	en
 1794	209:0x14e0	E2:1794	Ayase: Oooooh, this diaper has cute<FF03><FF06><03><FF06><00>little frogs on it! It's soooo cute!<FF02><FF01>
 1795	209:0x1518	E2:1795	Brown: Hey, you think this place<FF03>has love potions!?<FF02><FF01>
 1796	209:0x1538	E2:1796	Elly: Doesn't this place have any<FF03>normal drugs for everyday stuff?<FF02><FF01>
-1797	209:0x155c	E2:1798	Elly:<FF03>Does this store not stock any regular<FF03>medicine for everyday situations?<FF02><FF01>
-1798	209:0x1584	E2:1799	Reiji: What? Is it weird for me to<FF03>be looking at baby stuff?<FF02><FF01>
-1799	210:0x1594		Mannequin: Hi there.<FF02><FF01>
-1800	210:0x15a8	E2:1800	Mannequin: Hi there.<FF02><FF01>
-1801	210:0x15cc	E2:1801	Area woman: I would've preferred it if<FF03>this place stayed the way it was...<FF02><FF01>
-1802	210:0x1600	E2:1802	Mark: The real saleslady would<FF03>probably faint if she saw this.<FF02><FF01>
-1803	210:0x1630	E2:1803	Nanjo:<FF03>We could be shopping for a very long<FF03>time if we insist on the best...<FF02><FF04>But we should at least be<FF03>equipped with the minimum necessary.<FF02><FF01>
+1797	209:0x155c	E2:1797	Elly:<FF03>Does this store not stock any regular<FF03>medicine for everyday situations?<FF02><FF01>
+1798	209:0x1584	E2:1798	Reiji: What? Is it weird for me to<FF03>be looking at baby stuff?<FF02><FF01>
+1799	210:0x1594	E2:1800	Mannequin: Hi there.<FF02><FF01>
+1800	210:0x15a8	E2:1801	Area woman: I would've preferred it if<FF03>this place stayed the way it was...<FF02><FF01>
+1801	210:0x15cc	E2:1802	Maki: The way it was...<FF03>But no matter how nice it used to be,<FF03>it was still a fake.<FF02><FF01>
+1802	210:0x1600	E2:1803	Mark: The real saleslady would<FF03>probably faint if she saw this.<FF02><FF01>
+1803	210:0x1630	E2:1804	Nanjo:<FF03>We could be shopping for a very long<FF03>time if we insist on the best...<FF02><FF04>But we should at least be<FF03>equipped with the minimum necessary.<FF02><FF01>
 1804	210:0x1660	E2:1805	Ayase:<FF03>Don't they have any armor with,<FF03>like, animals and stuff on it?<FF02><FF01>
 1805	210:0x1688	E2:1806	Brown: What I need is some armor that<FF03>looks badass... They got that here?<FF02><FF01>
 1806	210:0x16ac	E2:1807	Elly: I guess I can't complain if<FF03>it's keeping us alive...<FF02><FF04>But this stuff really<FF03>isn't to my taste.<FF02><FF01>
@@ -1841,7 +1841,7 @@ id	pos	psp	en
 1839	212:0x195c	E2:1840	Elly: It's tough when people idolize<FF03>you. It's a lot to live up to.<FF02><FF01>
 1840	212:0x1990	E2:1841	Elly: It's difficult<FF03>being idolized that way...<FF03>You end up having to put on an act.<FF02><FF01>
 1841	212:0x19cc	E2:1842	Reiji: What's wrong?<FF03>Hope you're not tired,<FF03>'cause we got a long ways to go.<FF02><FF01>
-1842	213:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+1842	213:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1843	213:0x5388	E2:1844	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1844	213:0x53ac	E2:1845	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 1845	213:0x53c8	E2:1846	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>

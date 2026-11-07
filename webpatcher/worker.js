@@ -12,9 +12,9 @@
  *   verdict decides (a wrong disc or corrupt patch fails loudly).
  * - the disc is decorated (other in-place options riding along): those
  *   checksums describe another flavor of the target, so the step decodes
- *   with -n. The release build has proven this exact patch over the
- *   maximally decorated parent (manifest proof_choices/proof_sha256), and
- *   in-place decorations never change the image size.
+ *   with -n. The release build verified sampled chains applied exactly
+ *   like this one (manifest `verified`), and in-place decorations never
+ *   change the image size.
  *
  * Every patch file's SHA-256 is checked against the manifest before it is
  * used, and every step's output size is checked too.
@@ -177,8 +177,7 @@ self.onmessage = async event => {
       }
       const canonical = PatchPlan.canonicalSource(step, applied);
       postMessage({type: 'progress',
-                   message: 'Applying ' + step.patch
-                       + (canonical ? '' : ' (over your selected options)')});
+                   message: 'Applying ' + step.patch});
       const args = PatchPlan.decodeArgs(step, applied);
       args.push('-s', from, input + '/' + step.patch, to);
       const status = runXdelta(args);

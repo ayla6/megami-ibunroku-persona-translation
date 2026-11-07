@@ -13,6 +13,8 @@
 !/requirements.txt
 # GitHub Actions: the Pages workflow deploys the web patcher from this repo.
 !/.github/
+!/BUGS.md
+!/RELEASE_NOTES.md
 
 # patch source: assembly, injection, extraction, matching
 !/src/

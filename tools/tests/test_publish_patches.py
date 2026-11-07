@@ -147,20 +147,28 @@ class PublishArchiveTest(unittest.TestCase):
             output = Path(tmp)
             self.assertFalse(self.publish.release_is_complete(output))
             manifest = output / 'manifest.tsv'
-            header = ('patch\tadds\tanchor\torder\tchoices\tverify\t'
-                      'source_sha256\ttarget_sha256\tproof_choices\t'
-                      'proof_sha256\n')
+            fields = ('patch', 'adds', 'anchor', 'order', 'choices', 'verify',
+                      'source_bytes', 'source_sha256', 'target_bytes',
+                      'target_sha256', 'patch_sha256', 'verified')
+            header = '\t'.join(fields) + '\n'
+
+            def row(patch, order):
+                cells = dict.fromkeys(fields, '')
+                cells.update(patch=patch, order=str(order), verify='xdelta')
+                return '\t'.join(cells[name] for name in fields)
+
+            count = self.publish.complete_release_size()
             manifest.write_text(header + '\n'.join(
-                f'p{i}.xdelta\t\t\t{i}\t\t\t\t\t\t' for i in range(11)) + '\n')
+                row(f'p{i}.xdelta', i) for i in range(count - 1)) + '\n')
             self.assertFalse(self.publish.release_is_complete(output),
-                             'eleven patch files are not a release')
+                             'one patch file short is not a release')
             manifest.write_text(header + '\n'.join(
-                f'p{i}.xdelta\t\t\t{i}\t\t\t\t\t\t' for i in range(12)) + '\n')
+                row(f'p{i}.xdelta', i) for i in range(count)) + '\n')
             self.assertTrue(self.publish.release_is_complete(output))
             # the per-combination manifest repeats patch names; it is not a
             # complete release of this layout
             manifest.write_text(header + '\n'.join(
-                f'p{i % 11}.xdelta\t\t\t{i % 11}\t\t\t\t\t\t'
+                row(f'p{i % (count - 1)}.xdelta', i % (count - 1))
                 for i in range(513)) + '\n')
             self.assertFalse(self.publish.release_is_complete(output))
             # the old per-combination header is refused outright

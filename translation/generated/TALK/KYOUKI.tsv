@@ -715,317 +715,317 @@ id	pos	psp	en
 713	0xb513	KYOUKI:12	Threaten<FFF5>
 714	0xb518	KYOUKI:13	Threaten<FFF5>
 715	0xb51d	KYOUKI:14	You've had it rough.<FFF5>
-716	0xb536	KYOUKI:16	You found me out.<FFF5>
-717	0xb53c	KYOUKI:17	I'm not.<FFF5>
-718	0xb544	KYOUKI:18	I'm not lying!<FFF5>
-719	0xb54e	KYOUKI:19	I lied.<FFF5>
-720	0xb558	KYOUKI:20	I lied.<FFF5>
-721	0xb562	KYOUKI:21	Invite anyway<FFF5>
-722	0xb56b	KYOUKI:22	Ask about errands<FFF5>
-723	0xb577	KYOUKI:23	That's not true.<FFF5>
-724	0xb581	KYOUKI:24	You're right.<FFF5>
-725	0xb587	KYOUKI:25	You're right.<FFF5>
-726	0xb58d	KYOUKI:26	Quit<FFF5>
-727	0xb592	KYOUKI:27	Sing louder<FFF5>
-728	0xb59e	KYOUKI:28	Quit<FFF5>
-729	0xb5a3	KYOUKI:29	Sing more<FFF5>
-730	0xb5ad	KYOUKI:30	Sing more<FFF5>
-731	0xb5b7	KYOUKI:31	Heehee, you knew?<FFF5>
-732	0xb5c4	KYOUKI:32	That's rude!<FFF5>
-733	0xb5d2	KYOUKI:33	It's not a lie!<FFF5>
-734	0xb5dd	KYOUKI:34	I was lying.<FFF5>
-735	0xb5e7	KYOUKI:35	I was lying.<FFF5>
-736	0xb5f1	KYOUKI:36	No worries!<FFF5>
-737	0xb5fb	KYOUKI:37	I'm not confident...<FFF5>
-738	0xb609	KYOUKI:38	I'm not confident...<FFF5>
-739	0xb617	KYOUKI:39	I have!<FFF5>
-740	0xb61e	KYOUKI:40	I haven't!<FFF5>
-741	0xb625	KYOUKI:41	I haven't!<FFF5>
-742	0xb62c	KYOUKI:42	Hee hee hee...<FFF5>
-743	0xb635	KYOUKI:43	That's not true.<FFF5>
-744	0xb63f	KYOUKI:44	That's not true.<FFF5>
-745	0xb649	KYOUKI:45	Yep! That's right!<FFF5>
-746	0xb657	KYOUKI:46	Yep! That's right!<FFF5>
-747	0xb665	KYOUKI:47	You think?<FFF5>
-748	0xb66f	KYOUKI:48	Heehee... You knew?<FFF5>
-749	0xb67c	KYOUKI:49	That's rude!<FFF5>
-750	0xb68a	KYOUKI:50	It's not a lie!<FFF5>
-751	0xb695	KYOUKI:51	I was lying.<FFF5>
-752	0xb69f	KYOUKI:52	I was lying.<FFF5>
-753	0xb6a9	KYOUKI:53	Yeah!<FFF5>
-754	0xb6af	KYOUKI:54	I don't need it.<FFF5>
-755	0xb6b6	KYOUKI:55	I don't need it.<FFF5>
-756	0xb6bd	KYOUKI:56	I'm really strong.<FFF5>
-757	0xb6ca	KYOUKI:57	I'm really strong.<FFF5>
-758	0xb6d7	KYOUKI:58	Sorry, I'm weak...<FFF5>
-759	0xb6e3	KYOUKI:59	I have!<FFF5>
-760	0xb6ea	KYOUKI:60	I haven't!<FFF5>
-761	0xb6f1	KYOUKI:61	I haven't!<FFF5>
-762	0xb6f8	KYOUKI:62	Yep! That's right!<FFF5>
-763	0xb706	KYOUKI:63	Yep! That's right!<FFF5>
-764	0xb714	KYOUKI:64	You think?<FFF5>
-765	0xb71e	KYOUKI:65	Okay!<FFF5>
-766	0xb728	KYOUKI:66	Okay!<FFF5>
-767	0xb732	KYOUKI:67	What'll ya crush?<FFF5>
-768	0xb73e	KYOUKI:68	Show me.<FFF5>
-769	0xb746	KYOUKI:69	It's a joke.<FFF5>
-770	0xb754	KYOUKI:70	It's a joke.<FFF5>
-771	0xb762	KYOUKI:71	Good to know.<FFF5>
-772	0xb76a	KYOUKI:72	Whoa, seriously?<FFF5>
-773	0xb779	KYOUKI:73	Whoa, seriously?<FFF5>
-774	0xb788	KYOUKI:74	Wahahaha!<FFF5>
-775	0xb792	KYOUKI:75	*sigh*<FFF5>
-776	0xb79a	KYOUKI:76	Sorry...<FFF5>
-777	0xb7a3	KYOUKI:77	Don't mess with me!<FFF5>
-778	0xb7ad	KYOUKI:78	That's not the plan.<FFF5>
-779	0xb7b8	KYOUKI:79	Sorry you found out!<FFF5>
-780	0xb7c8	KYOUKI:80	Sorry you found out!<FFF5>
-781	0xb7d8	KYOUKI:81	Sure thing.<FFF5>
-782	0xb7e2	KYOUKI:82	Sure thing.<FFF5>
-783	0xb7ec	KYOUKI:83	Hold up!<FFF5>
-784	0xb7f4	KYOUKI:84	Well, yeah.<FFF5>
-785	0xb7fe	KYOUKI:85	Not with me...<FFF5>
-786	0xb80d	KYOUKI:86	I read books.<FFF5>
-787	0xb819	KYOUKI:87	I read books.<FFF5>
-788	0xb825	KYOUKI:88	What should I read?<FFF5>
-789	0xb834	KYOUKI:89	Nice. Good to know.<FFF5>
-790	0xb841	KYOUKI:90	You're behind.<FFF5>
-791	0xb84a	KYOUKI:91	You're behind.<FFF5>
-792	0xb853	KYOUKI:92	It's a new joke.<FFF5>
-793	0xb861	KYOUKI:93	It's a new joke.<FFF5>
-794	0xb86f	KYOUKI:94	It's nothing.<FFF5>
-795	0xb879	KYOUKI:95	I'm not crazy!<FFF5>
-796	0xb883	KYOUKI:96	Don't mess with me!<FFF5>
-797	0xb88e	KYOUKI:97	Don't mess with me!<FFF5>
-798	0xb899	KYOUKI:98	Wahahaha!<FFF5>
-799	0xb8a3	KYOUKI:99	The time is now...<FFF5>
-800	0xb8b0	KYOUKI:100	The time is now...<FFF5>
-801	0xb8bd	KYOUKI:101	Very well.<FFF5>
-802	0xb8c4	KYOUKI:102	Very well.<FFF5>
-803	0xb8cb	KYOUKI:103	Buy it.<FFF5>
-804	0xb8d0	KYOUKI:104	I have...<FFF5>
-805	0xb8d6	KYOUKI:105	I have...<FFF5>
-806	0xb8dc	KYOUKI:106	I haven't...<FFF5>
-807	0xb8e3	KYOUKI:107	Very well.<FFF5>
-808	0xb8ea	KYOUKI:108	Very well.<FFF5>
-809	0xb8f1	KYOUKI:109	I refuse!<FFF5>
-810	0xb8f8	KYOUKI:110	I don't know.<FFF5>
-811	0xb8ff	KYOUKI:111	I'm a student.<FFF5>
-812	0xb90b	KYOUKI:112	Don't worry.<FFF5>
-813	0xb913	KYOUKI:113	Ha...<FFF5>
-814	0xb918	KYOUKI:114	Ha...<FFF5>
-815	0xb91d	KYOUKI:115	Simple.<FFF5>
-816	0xb924	KYOUKI:116	I don't know.<FFF5>
-817	0xb92b	KYOUKI:117	I don't know.<FFF5>
-818	0xb932	KYOUKI:118	I can kill you.<FFF5>
-819	0xb93f	KYOUKI:119	I can kill you.<FFF5>
-820	0xb94c	KYOUKI:120	I know.<FFF5>
-821	0xb954	KYOUKI:121	You misheard.<FFF5>
-822	0xb962	KYOUKI:122	That's unforgivable!<FFF5>
-823	0xb971	KYOUKI:123	That's unforgivable!<FFF5>
-824	0xb980	KYOUKI:124	You've had it hard.<FFF5>
-825	0xb98f	KYOUKI:125	Hmph. Stupid.<FFF5>
-826	0xb99b	KYOUKI:126	Do it.<FFF5>
-827	0xb9a6	KYOUKI:127	I refuse!<FFF5>
-828	0xb9ad	KYOUKI:128	I refuse!<FFF5>
-829	0xb9b4	KYOUKI:129	Try it.<FFF5>
-830	0xb9bb	KYOUKI:130	Try it.<FFF5>
-831	0xb9c2	KYOUKI:131	I apologize.<FFF5>
-832	0xb9cb	KYOUKI:132	I know.<FFF5>
-833	0xb9d3	KYOUKI:133	You are a fool.<FFF5>
-834	0xb9df	KYOUKI:134	You are a fool.<FFF5>
-835	0xb9eb	KYOUKI:135	I'll tell you.<FFF5>
-836	0xb9f4	KYOUKI:136	You can't do it.<FFF5>
-837	0xba01	KYOUKI:137	You can't do it.<FFF5>
-838	0xba0e	KYOUKI:138	That's right.<FFF5>
-839	0xba14	KYOUKI:139	That's right.<FFF5>
-840	0xba1a	KYOUKI:140	It's a dance.<FFF5>
-841	0xba23	KYOUKI:141	That's cool!<FFF5>
-842	0xba2c	KYOUKI:142	Uh-oh.<FFF5>
-843	0xba33	KYOUKI:143	Uh-oh.<FFF5>
-844	0xba3a	KYOUKI:144	I think so.<FFF5>
-845	0xba42	KYOUKI:145	I think so.<FFF5>
-846	0xba4a	KYOUKI:146	I didn't mean that.<FFF5>
-847	0xba57	KYOUKI:147	It's in your head.<FFF5>
-848	0xba65	KYOUKI:148	What, punk!?<FFF5>
-849	0xba70	KYOUKI:149	What, punk!?<FFF5>
-850	0xba7b	KYOUKI:150	You've had it rough.<FFF5>
-851	0xba89	KYOUKI:151	This is stupid.<FFF5>
-852	0xba91	KYOUKI:152	You shouldn't ask.<FFF5>
-853	0xbaa0	KYOUKI:153	You shouldn't ask.<FFF5>
-854	0xbaaf	KYOUKI:154	I'm lookin' at you.<FFF5>
-855	0xbabc	KYOUKI:155	I have!<FFF5>
-856	0xbac3	KYOUKI:156	I have!<FFF5>
-857	0xbaca	KYOUKI:157	No...<FFF5>
-858	0xbad2	KYOUKI:158	Oh, well...<FFF5>
-859	0xbadd	KYOUKI:159	Uh, no.<FFF5>
-860	0xbae4	KYOUKI:160	I ain't a kid.<FFF5>
-861	0xbaef	KYOUKI:161	You got a problem!?<FFF5>
-862	0xbafb	KYOUKI:162	I ain't lying!<FFF5>
-863	0xbb07	KYOUKI:163	Wahaha, I lied.<FFF5>
-864	0xbb13	KYOUKI:164	Wahaha, I lied.<FFF5>
-865	0xbb1f	KYOUKI:165	I want it!<FFF5>
-866	0xbb28	KYOUKI:166	I don't need it.<FFF5>
-867	0xbb30	KYOUKI:167	I don't need it.<FFF5>
-868	0xbb38	KYOUKI:168	Thank you very much.<FFF5>
-869	0xbb44	KYOUKI:169	I'll pass.<FFF5>
-870	0xbb4d	KYOUKI:170	I'll pass.<FFF5>
-871	0xbb68	KYOUKI:172	I made it up.<FFF5>
-872	0xbb75	KYOUKI:173	That is correct.<FFF5>
-873	0xbb80	KYOUKI:174	It's new comedy.<FFF5>
-874	0xbb8e	KYOUKI:175	It's new comedy.<FFF5>
-875	0xbb9c	KYOUKI:176	Please.<FFF5>
-876	0xbba6	KYOUKI:177	I'll pass.<FFF5>
-877	0xbbaf	KYOUKI:178	You're not tonedeaf.<FFF5>
-878	0xbbb9	KYOUKI:179	You're right.<FFF5>
-879	0xbbc0	KYOUKI:180	You're right.<FFF5>
-880	0xbbc7	KYOUKI:181	Quit<FFF5>
-881	0xbbcc	KYOUKI:182	Keep singing<FFF5>
-882	0xbbd6	KYOUKI:183	Keep singing<FFF5>
-883	0xbbe0	KYOUKI:184	Yes.<FFF5>
-884	0xbbe8	KYOUKI:185	No.<FFF5>
-885	0xbbee	KYOUKI:186	I understand.<FFF5>
-886	0xbbf8	KYOUKI:187	That's unacceptable!<FFF5>
-887	0xbc05	KYOUKI:188	That's unacceptable!<FFF5>
-888	0xbc12	KYOUKI:189	Very well...<FFF5>
-889	0xbc1a	KYOUKI:190	I'll pass.<FFF5>
-890	0xbc23	KYOUKI:191	You found out.<FFF5>
-891	0xbc2f	KYOUKI:192	I'm in high school.<FFF5>
-892	0xbc3a	KYOUKI:193	It's not a lie!<FFF5>
-893	0xbc47	KYOUKI:194	I lied...<FFF5>
-894	0xbc55	KYOUKI:195	I lied...<FFF5>
-895	0xbc63	KYOUKI:196	Don't worry!<FFF5>
-896	0xbc70	KYOUKI:197	I have no evidence.<FFF5>
-897	0xbc7e	KYOUKI:198	I have no evidence.<FFF5>
-898	0xbc8c	KYOUKI:199	Okay.<FFF5>
-899	0xbc92	KYOUKI:200	What, no!<FFF5>
-900	0xbc9c	KYOUKI:201	What, no!<FFF5>
-901	0xbca6	KYOUKI:202	Go ahead.<FFF5>
-902	0xbcb1	KYOUKI:203	No, no, no!<FFF5>
-903	0xbcbb	KYOUKI:204	No, no, no!<FFF5>
-904	0xbcc5	KYOUKI:205	Kyahaha!<FFF5>
-905	0xbcd0	KYOUKI:206	Seriously!?<FFF5>
-906	0xbcdd	KYOUKI:207	Okay!<FFF5>
-907	0xbce3	KYOUKI:208	Okay!<FFF5>
-908	0xbce9	KYOUKI:209	What should I do?<FFF5>
-909	0xbcf5	KYOUKI:210	I'll jump in!<FFF5>
-910	0xbd00	KYOUKI:211	No, no, no!<FFF5>
-911	0xbd0a	KYOUKI:212	No, no, no!<FFF5>
-912	0xbd14	KYOUKI:213	I'm wayyy happy!<FFF5>
-913	0xbd21	KYOUKI:214	I'm wayyy happy!<FFF5>
-914	0xbd2e	KYOUKI:215	I faked my tears!<FFF5>
-915	0xbd3c	KYOUKI:216	Kyahahaha!<FFF5>
-916	0xbd45	KYOUKI:217	Hee hee hee...<FFF5>
-917	0xbd51	KYOUKI:218	Waaaaaah!<FFF5>
-918	0xbd5b	KYOUKI:219	Just kidding!<FFF5>
-919	0xbd66	KYOUKI:220	Just kidding!<FFF5>
-920	0xbd71	KYOUKI:221	I can do that too.<FFF5>
-921	0xbd7e	KYOUKI:222	I can do that too.<FFF5>
-922	0xbd8b	KYOUKI:223	I can't do that.<FFF5>
-923	0xbd97	KYOUKI:224	It's in your head.<FFF5>
-924	0xbda4	KYOUKI:225	I can't do that!<FFF5>
-925	0xbdb2	KYOUKI:226	I can't do that!<FFF5>
-926	0xbdc0	KYOUKI:227	Must be rough...<FFF5>
-927	0xbdcb	KYOUKI:228	It doesn't matter.<FFF5>
-928	0xbdd6	KYOUKI:229	Oh well.<FFF5>
-929	0xbddf	KYOUKI:230	Don't screw with me!<FFF5>
-930	0xbdeb	KYOUKI:231	Don't screw with me!<FFF5>
-931	0xbdf7	KYOUKI:232	It's fine.<FFF5>
-932	0xbdfd	KYOUKI:233	That's not good.<FFF5>
-933	0xbe04	KYOUKI:234	That's not good.<FFF5>
-934	0xbe0b	KYOUKI:235	Don't screw with me!<FFF5>
-935	0xbe17	KYOUKI:236	I quit.<FFF5>
-936	0xbe1d	KYOUKI:237	I quit.<FFF5>
-937	0xbe23	KYOUKI:238	We'll see.<FFF5>
-938	0xbe2a	KYOUKI:239	That's rude!<FFF5>
-939	0xbe34	KYOUKI:240	Heh...<FFF5>
-940	0xbe3a	KYOUKI:241	Hand something over.<FFF5>
-941	0xbe43	KYOUKI:242	We'll see.<FFF5>
-942	0xbe4a	KYOUKI:243	I don't need it.<FFF5>
-943	0xbe51	KYOUKI:244	Oh well.<FFF5>
-944	0xbe5a	KYOUKI:245	Don't screw with me!<FFF5>
-945	0xbe66	KYOUKI:246	Don't screw with me!<FFF5>
-946	0xbe72	KYOUKI:247	It's fine.<FFF5>
-947	0xbe78	KYOUKI:248	That's not good.<FFF5>
-948	0xbe7f	KYOUKI:249	That's not good.<FFF5>
-949	0xbe86	KYOUKI:250	Don't screw with me!<FFF5>
-950	0xbe92	KYOUKI:251	I quit.<FFF5>
-951	0xbe98	KYOUKI:252	I quit.<FFF5>
-952	0xbe9e	KYOUKI:253	You're not scary.<FFF5>
-953	0xbea6	KYOUKI:254	You're not scary.<FFF5>
-954	0xbeae	KYOUKI:255	......<FFF5>
-955	0xbeba	KYOUKI:256	Yeah...<FFF5>
-956	0xbec0	KYOUKI:257	Yeah...<FFF5>
-957	0xbec6	KYOUKI:258	Not true...<FFF5>
-958	0xbece	KYOUKI:259	Oh well.<FFF5>
-959	0xbed7	KYOUKI:260	Not true...<FFF5>
-960	0xbedd	KYOUKI:261	Nuh uh.<FFF5>
-961	0xbee3	KYOUKI:262	You don't scare me.<FFF5>
-962	0xbeeb	KYOUKI:263	You don't scare me.<FFF5>
-963	0xbef3	KYOUKI:264	Leave me alone...<FFF5>
-964	0xbefe	KYOUKI:265	Ooh!<FFF5>
-965	0xbf04	KYOUKI:266	Ooh!<FFF5>
-966	0xbf0a	KYOUKI:267	Leave me alone...<FFF5>
-967	0xbf15	KYOUKI:268	Fine.<FFF5>
-968	0xbf1c	KYOUKI:269	Can't hear you.<FFF5>
-969	0xbf25	KYOUKI:270	Can't hear you.<FFF5>
-970	0xbf2e	KYOUKI:271	You wanna die?<FFF5>
-971	0xbf39	KYOUKI:272	You wanna die?<FFF5>
-972	0xbf44	KYOUKI:273	Can't hear you.<FFF5>
-973	0xbf4d	KYOUKI:274	You wanna die?<FFF5>
-974	0xbf58	KYOUKI:275	Don't screw with me!<FFF5>
-975	0xbf61	KYOUKI:276	Don't screw with me!<FFF5>
-976	0xbf6a	KYOUKI:277	That's awesome!<FFF5>
-977	0xbf72	KYOUKI:278	So what?<FFF5>
-978	0xbf7b	KYOUKI:279	I'm not crazy.<FFF5>
-979	0xbf84	KYOUKI:280	Gaaaaaaaaah!<FFF5>
-980	0xbf96	KYOUKI:281	Gaaaaaaaaah!<FFF5>
-981	0xbfa8	KYOUKI:282	Ha...<FFF5>
-982	0xbfad	KYOUKI:283	It's killin' time.<FFF5>
-983	0xbfb5	KYOUKI:284	It's killin' time.<FFF5>
-984	0xbfbd	KYOUKI:285	Ha...<FFF5>
-985	0xbfc2	KYOUKI:286	Ha...<FFF5>
-986	0xbfc7	KYOUKI:287	Don't screw with me!<FFF5>
-987	0xbfcf	KYOUKI:288	Ooh!<FFF5>
-988	0xbfd5	KYOUKI:289	Ooh!<FFF5>
-989	0xbfdb	KYOUKI:290	Leave me alone!<FFF5>
-990	0xbfe6	KYOUKI:291	You'll disappear.<FFF5>
-991	0xbfee	KYOUKI:292	You'll disappear.<FFF5>
-992	0xbff6	KYOUKI:293	That's my concern.<FFF5>
-993	0xc003	KYOUKI:294	I can!<FFF5>
-994	0xc00a	KYOUKI:295	I can!<FFF5>
-995	0xc011	KYOUKI:296	I can't.<FFF5>
-996	0xc016	KYOUKI:297	Scouting.<FFF5>
-997	0xc01c	KYOUKI:298	Weapon testing.<FFF5>
-998	0xc023	KYOUKI:299	Dance practice.<FFF5>
-999	0xc037	KYOUKI:301	Shut up!<FFF5>
-1000	0xc03f	KYOUKI:302	I'm sorry.<FFF5>
-1001	0xc044	KYOUKI:303	I don't mind.<FFF5>
-1002	0xc04b	KYOUKI:304	That'd be bad.<FFF5>
-1003	0xc055	KYOUKI:305	You're dangerous.<FFF5>
-1004	0xc06e	KYOUKI:307	Nah.<FFF5>
-1005	0xc074	KYOUKI:308	Nah.<FFF5>
-1006	0xc07a	KYOUKI:309	It's a secret.<FFF5>
-1007	0xc082	KYOUKI:310	Not one bit.<FFF5>
-1008	0xc088	KYOUKI:311	Well, yeah.<FFF5>
-1009	0xc09a	KYOUKI:313	I have business.<FFF5>
-1010	0xc0a1	KYOUKI:314	I have business.<FFF5>
-1011	0xc0b6	KYOUKI:316	Go home!<FFF5>
-1012	0xc0c0	KYOUKI:317	Let's wreak havoc!<FFF5>
-1013	0xc0ce	KYOUKI:318	Wreak havoc alone.<FFF5>
-1014	0xc0d9	KYOUKI:319	Wreak havoc alone.<FFF5>
-1015	0xc0e4	KYOUKI:320	It's dangerous.<FFF5>
-1016	0xc0ed	KYOUKI:321	You knew that?<FFF5>
-1017	0xc0f8	KYOUKI:322	A spider...<FFF5>
-1018	0xc104	KYOUKI:323	Just a human.<FFF5>
-1019	0xc111	KYOUKI:324	I think so.<FFF5>
-1020	0xc119	KYOUKI:325	I don't think so.<FFF5>
-1021	0xc122	KYOUKI:326	I don't know.<FFF5>
-1022	0xc12d	KYOUKI:327	This.<FFF5>
-1023	0xc135	KYOUKI:328	That.<FFF5>
-1024	0xb52a	KYOUKI:15	So?<FFF5>
-1025	0xbb56	KYOUKI:171	Oh, behind you!<FFF5>
-1026	0xc02e	KYOUKI:300	Huh, where?<FFF5>
-1027	0xc062	KYOUKI:306	Want to come along?<FFF5>
-1028	0xc08d	KYOUKI:312	Wanna join me?<FFF5>
-1029	0xc0a8	KYOUKI:315	Why are you leaving?<FFF5>
+716	0xb52a	KYOUKI:15	So?<FFF5>
+717	0xb536	KYOUKI:16	You found me out.<FFF5>
+718	0xb53c	KYOUKI:17	I'm not.<FFF5>
+719	0xb544	KYOUKI:18	I'm not lying!<FFF5>
+720	0xb54e	KYOUKI:19	I lied.<FFF5>
+721	0xb558	KYOUKI:20	I lied.<FFF5>
+722	0xb562	KYOUKI:21	Invite anyway<FFF5>
+723	0xb56b	KYOUKI:22	Ask about errands<FFF5>
+724	0xb577	KYOUKI:23	That's not true.<FFF5>
+725	0xb581	KYOUKI:24	You're right.<FFF5>
+726	0xb587	KYOUKI:25	You're right.<FFF5>
+727	0xb58d	KYOUKI:26	Quit<FFF5>
+728	0xb592	KYOUKI:27	Sing louder<FFF5>
+729	0xb59e	KYOUKI:28	Quit<FFF5>
+730	0xb5a3	KYOUKI:29	Sing more<FFF5>
+731	0xb5ad	KYOUKI:30	Sing more<FFF5>
+732	0xb5b7	KYOUKI:31	Heehee, you knew?<FFF5>
+733	0xb5c4	KYOUKI:32	That's rude!<FFF5>
+734	0xb5d2	KYOUKI:33	It's not a lie!<FFF5>
+735	0xb5dd	KYOUKI:34	I was lying.<FFF5>
+736	0xb5e7	KYOUKI:35	I was lying.<FFF5>
+737	0xb5f1	KYOUKI:36	No worries!<FFF5>
+738	0xb5fb	KYOUKI:37	I'm not confident...<FFF5>
+739	0xb609	KYOUKI:38	I'm not confident...<FFF5>
+740	0xb617	KYOUKI:39	I have!<FFF5>
+741	0xb61e	KYOUKI:40	I haven't!<FFF5>
+742	0xb625	KYOUKI:41	I haven't!<FFF5>
+743	0xb62c	KYOUKI:42	Hee hee hee...<FFF5>
+744	0xb635	KYOUKI:43	That's not true.<FFF5>
+745	0xb63f	KYOUKI:44	That's not true.<FFF5>
+746	0xb649	KYOUKI:45	Yep! That's right!<FFF5>
+747	0xb657	KYOUKI:46	Yep! That's right!<FFF5>
+748	0xb665	KYOUKI:47	You think?<FFF5>
+749	0xb66f	KYOUKI:48	Heehee... You knew?<FFF5>
+750	0xb67c	KYOUKI:49	That's rude!<FFF5>
+751	0xb68a	KYOUKI:50	It's not a lie!<FFF5>
+752	0xb695	KYOUKI:51	I was lying.<FFF5>
+753	0xb69f	KYOUKI:52	I was lying.<FFF5>
+754	0xb6a9	KYOUKI:53	Yeah!<FFF5>
+755	0xb6af	KYOUKI:54	I don't need it.<FFF5>
+756	0xb6b6	KYOUKI:55	I don't need it.<FFF5>
+757	0xb6bd	KYOUKI:56	I'm really strong.<FFF5>
+758	0xb6ca	KYOUKI:57	I'm really strong.<FFF5>
+759	0xb6d7	KYOUKI:58	Sorry, I'm weak...<FFF5>
+760	0xb6e3	KYOUKI:59	I have!<FFF5>
+761	0xb6ea	KYOUKI:60	I haven't!<FFF5>
+762	0xb6f1	KYOUKI:61	I haven't!<FFF5>
+763	0xb6f8	KYOUKI:62	Yep! That's right!<FFF5>
+764	0xb706	KYOUKI:63	Yep! That's right!<FFF5>
+765	0xb714	KYOUKI:64	You think?<FFF5>
+766	0xb71e	KYOUKI:65	Okay!<FFF5>
+767	0xb728	KYOUKI:66	Okay!<FFF5>
+768	0xb732	KYOUKI:67	What'll ya crush?<FFF5>
+769	0xb73e	KYOUKI:68	Show me.<FFF5>
+770	0xb746	KYOUKI:69	It's a joke.<FFF5>
+771	0xb754	KYOUKI:70	It's a joke.<FFF5>
+772	0xb762	KYOUKI:71	Good to know.<FFF5>
+773	0xb76a	KYOUKI:72	Whoa, seriously?<FFF5>
+774	0xb779	KYOUKI:73	Whoa, seriously?<FFF5>
+775	0xb788	KYOUKI:74	Wahahaha!<FFF5>
+776	0xb792	KYOUKI:75	*sigh*<FFF5>
+777	0xb79a	KYOUKI:76	Sorry...<FFF5>
+778	0xb7a3	KYOUKI:77	Don't mess with me!<FFF5>
+779	0xb7ad	KYOUKI:78	That's not the plan.<FFF5>
+780	0xb7b8	KYOUKI:79	Sorry you found out!<FFF5>
+781	0xb7c8	KYOUKI:80	Sorry you found out!<FFF5>
+782	0xb7d8	KYOUKI:81	Sure thing.<FFF5>
+783	0xb7e2	KYOUKI:82	Sure thing.<FFF5>
+784	0xb7ec	KYOUKI:83	Hold up!<FFF5>
+785	0xb7f4	KYOUKI:84	Well, yeah.<FFF5>
+786	0xb7fe	KYOUKI:85	Not with me...<FFF5>
+787	0xb80d	KYOUKI:86	I read books.<FFF5>
+788	0xb819	KYOUKI:87	I read books.<FFF5>
+789	0xb825	KYOUKI:88	What should I read?<FFF5>
+790	0xb834	KYOUKI:89	Nice. Good to know.<FFF5>
+791	0xb841	KYOUKI:90	You're behind.<FFF5>
+792	0xb84a	KYOUKI:91	You're behind.<FFF5>
+793	0xb853	KYOUKI:92	It's a new joke.<FFF5>
+794	0xb861	KYOUKI:93	It's a new joke.<FFF5>
+795	0xb86f	KYOUKI:94	It's nothing.<FFF5>
+796	0xb879	KYOUKI:95	I'm not crazy!<FFF5>
+797	0xb883	KYOUKI:96	Don't mess with me!<FFF5>
+798	0xb88e	KYOUKI:97	Don't mess with me!<FFF5>
+799	0xb899	KYOUKI:98	Wahahaha!<FFF5>
+800	0xb8a3	KYOUKI:99	The time is now...<FFF5>
+801	0xb8b0	KYOUKI:100	The time is now...<FFF5>
+802	0xb8bd	KYOUKI:101	Very well.<FFF5>
+803	0xb8c4	KYOUKI:102	Very well.<FFF5>
+804	0xb8cb	KYOUKI:103	Buy it.<FFF5>
+805	0xb8d0	KYOUKI:104	I have...<FFF5>
+806	0xb8d6	KYOUKI:105	I have...<FFF5>
+807	0xb8dc	KYOUKI:106	I haven't...<FFF5>
+808	0xb8e3	KYOUKI:107	Very well.<FFF5>
+809	0xb8ea	KYOUKI:108	Very well.<FFF5>
+810	0xb8f1	KYOUKI:109	I refuse!<FFF5>
+811	0xb8f8	KYOUKI:110	I don't know.<FFF5>
+812	0xb8ff	KYOUKI:111	I'm a student.<FFF5>
+813	0xb90b	KYOUKI:112	Don't worry.<FFF5>
+814	0xb913	KYOUKI:113	Ha...<FFF5>
+815	0xb918	KYOUKI:114	Ha...<FFF5>
+816	0xb91d	KYOUKI:115	Simple.<FFF5>
+817	0xb924	KYOUKI:116	I don't know.<FFF5>
+818	0xb92b	KYOUKI:117	I don't know.<FFF5>
+819	0xb932	KYOUKI:118	I can kill you.<FFF5>
+820	0xb93f	KYOUKI:119	I can kill you.<FFF5>
+821	0xb94c	KYOUKI:120	I know.<FFF5>
+822	0xb954	KYOUKI:121	You misheard.<FFF5>
+823	0xb962	KYOUKI:122	That's unforgivable!<FFF5>
+824	0xb971	KYOUKI:123	That's unforgivable!<FFF5>
+825	0xb980	KYOUKI:124	You've had it hard.<FFF5>
+826	0xb98f	KYOUKI:125	Hmph. Stupid.<FFF5>
+827	0xb99b	KYOUKI:126	Do it.<FFF5>
+828	0xb9a6	KYOUKI:127	I refuse!<FFF5>
+829	0xb9ad	KYOUKI:128	I refuse!<FFF5>
+830	0xb9b4	KYOUKI:129	Try it.<FFF5>
+831	0xb9bb	KYOUKI:130	Try it.<FFF5>
+832	0xb9c2	KYOUKI:131	I apologize.<FFF5>
+833	0xb9cb	KYOUKI:132	I know.<FFF5>
+834	0xb9d3	KYOUKI:133	You are a fool.<FFF5>
+835	0xb9df	KYOUKI:134	You are a fool.<FFF5>
+836	0xb9eb	KYOUKI:135	I'll tell you.<FFF5>
+837	0xb9f4	KYOUKI:136	You can't do it.<FFF5>
+838	0xba01	KYOUKI:137	You can't do it.<FFF5>
+839	0xba0e	KYOUKI:138	That's right.<FFF5>
+840	0xba14	KYOUKI:139	That's right.<FFF5>
+841	0xba1a	KYOUKI:140	It's a dance.<FFF5>
+842	0xba23	KYOUKI:141	That's cool!<FFF5>
+843	0xba2c	KYOUKI:142	Uh-oh.<FFF5>
+844	0xba33	KYOUKI:143	Uh-oh.<FFF5>
+845	0xba3a	KYOUKI:144	I think so.<FFF5>
+846	0xba42	KYOUKI:145	I think so.<FFF5>
+847	0xba4a	KYOUKI:146	I didn't mean that.<FFF5>
+848	0xba57	KYOUKI:147	It's in your head.<FFF5>
+849	0xba65	KYOUKI:148	What, punk!?<FFF5>
+850	0xba70	KYOUKI:149	What, punk!?<FFF5>
+851	0xba7b	KYOUKI:150	You've had it rough.<FFF5>
+852	0xba89	KYOUKI:151	This is stupid.<FFF5>
+853	0xba91	KYOUKI:152	You shouldn't ask.<FFF5>
+854	0xbaa0	KYOUKI:153	You shouldn't ask.<FFF5>
+855	0xbaaf	KYOUKI:154	I'm lookin' at you.<FFF5>
+856	0xbabc	KYOUKI:155	I have!<FFF5>
+857	0xbac3	KYOUKI:156	I have!<FFF5>
+858	0xbaca	KYOUKI:157	No...<FFF5>
+859	0xbad2	KYOUKI:158	Oh, well...<FFF5>
+860	0xbadd	KYOUKI:159	Uh, no.<FFF5>
+861	0xbae4	KYOUKI:160	I ain't a kid.<FFF5>
+862	0xbaef	KYOUKI:161	You got a problem!?<FFF5>
+863	0xbafb	KYOUKI:162	I ain't lying!<FFF5>
+864	0xbb07	KYOUKI:163	Wahaha, I lied.<FFF5>
+865	0xbb13	KYOUKI:164	Wahaha, I lied.<FFF5>
+866	0xbb1f	KYOUKI:165	I want it!<FFF5>
+867	0xbb28	KYOUKI:166	I don't need it.<FFF5>
+868	0xbb30	KYOUKI:167	I don't need it.<FFF5>
+869	0xbb38	KYOUKI:168	Thank you very much.<FFF5>
+870	0xbb44	KYOUKI:169	I'll pass.<FFF5>
+871	0xbb4d	KYOUKI:170	I'll pass.<FFF5>
+872	0xbb56	KYOUKI:171	Oh, behind you!<FFF5>
+873	0xbb68	KYOUKI:172	I made it up.<FFF5>
+874	0xbb75	KYOUKI:173	That is correct.<FFF5>
+875	0xbb80	KYOUKI:174	It's new comedy.<FFF5>
+876	0xbb8e	KYOUKI:175	It's new comedy.<FFF5>
+877	0xbb9c	KYOUKI:176	Please.<FFF5>
+878	0xbba6	KYOUKI:177	I'll pass.<FFF5>
+879	0xbbaf	KYOUKI:178	You're not tonedeaf.<FFF5>
+880	0xbbb9	KYOUKI:179	You're right.<FFF5>
+881	0xbbc0	KYOUKI:180	You're right.<FFF5>
+882	0xbbc7	KYOUKI:181	Quit<FFF5>
+883	0xbbcc	KYOUKI:182	Keep singing<FFF5>
+884	0xbbd6	KYOUKI:183	Keep singing<FFF5>
+885	0xbbe0	KYOUKI:184	Yes.<FFF5>
+886	0xbbe8	KYOUKI:185	No.<FFF5>
+887	0xbbee	KYOUKI:186	I understand.<FFF5>
+888	0xbbf8	KYOUKI:187	That's unacceptable!<FFF5>
+889	0xbc05	KYOUKI:188	That's unacceptable!<FFF5>
+890	0xbc12	KYOUKI:189	Very well...<FFF5>
+891	0xbc1a	KYOUKI:190	I'll pass.<FFF5>
+892	0xbc23	KYOUKI:191	You found out.<FFF5>
+893	0xbc2f	KYOUKI:192	I'm in high school.<FFF5>
+894	0xbc3a	KYOUKI:193	It's not a lie!<FFF5>
+895	0xbc47	KYOUKI:194	I lied...<FFF5>
+896	0xbc55	KYOUKI:195	I lied...<FFF5>
+897	0xbc63	KYOUKI:196	Don't worry!<FFF5>
+898	0xbc70	KYOUKI:197	I have no evidence.<FFF5>
+899	0xbc7e	KYOUKI:198	I have no evidence.<FFF5>
+900	0xbc8c	KYOUKI:199	Okay.<FFF5>
+901	0xbc92	KYOUKI:200	What, no!<FFF5>
+902	0xbc9c	KYOUKI:201	What, no!<FFF5>
+903	0xbca6	KYOUKI:202	Go ahead.<FFF5>
+904	0xbcb1	KYOUKI:203	No, no, no!<FFF5>
+905	0xbcbb	KYOUKI:204	No, no, no!<FFF5>
+906	0xbcc5	KYOUKI:205	Kyahaha!<FFF5>
+907	0xbcd0	KYOUKI:206	Seriously!?<FFF5>
+908	0xbcdd	KYOUKI:207	Okay!<FFF5>
+909	0xbce3	KYOUKI:208	Okay!<FFF5>
+910	0xbce9	KYOUKI:209	What should I do?<FFF5>
+911	0xbcf5	KYOUKI:210	I'll jump in!<FFF5>
+912	0xbd00	KYOUKI:211	No, no, no!<FFF5>
+913	0xbd0a	KYOUKI:212	No, no, no!<FFF5>
+914	0xbd14	KYOUKI:213	I'm wayyy happy!<FFF5>
+915	0xbd21	KYOUKI:214	I'm wayyy happy!<FFF5>
+916	0xbd2e	KYOUKI:215	I faked my tears!<FFF5>
+917	0xbd3c	KYOUKI:216	Kyahahaha!<FFF5>
+918	0xbd45	KYOUKI:217	Hee hee hee...<FFF5>
+919	0xbd51	KYOUKI:218	Waaaaaah!<FFF5>
+920	0xbd5b	KYOUKI:219	Just kidding!<FFF5>
+921	0xbd66	KYOUKI:220	Just kidding!<FFF5>
+922	0xbd71	KYOUKI:221	I can do that too.<FFF5>
+923	0xbd7e	KYOUKI:222	I can do that too.<FFF5>
+924	0xbd8b	KYOUKI:223	I can't do that.<FFF5>
+925	0xbd97	KYOUKI:224	It's in your head.<FFF5>
+926	0xbda4	KYOUKI:225	I can't do that!<FFF5>
+927	0xbdb2	KYOUKI:226	I can't do that!<FFF5>
+928	0xbdc0	KYOUKI:227	Must be rough...<FFF5>
+929	0xbdcb	KYOUKI:228	It doesn't matter.<FFF5>
+930	0xbdd6	KYOUKI:229	Oh well.<FFF5>
+931	0xbddf	KYOUKI:230	Don't screw with me!<FFF5>
+932	0xbdeb	KYOUKI:231	Don't screw with me!<FFF5>
+933	0xbdf7	KYOUKI:232	It's fine.<FFF5>
+934	0xbdfd	KYOUKI:233	That's not good.<FFF5>
+935	0xbe04	KYOUKI:234	That's not good.<FFF5>
+936	0xbe0b	KYOUKI:235	Don't screw with me!<FFF5>
+937	0xbe17	KYOUKI:236	I quit.<FFF5>
+938	0xbe1d	KYOUKI:237	I quit.<FFF5>
+939	0xbe23	KYOUKI:238	We'll see.<FFF5>
+940	0xbe2a	KYOUKI:239	That's rude!<FFF5>
+941	0xbe34	KYOUKI:240	Heh...<FFF5>
+942	0xbe3a	KYOUKI:241	Hand something over.<FFF5>
+943	0xbe43	KYOUKI:242	We'll see.<FFF5>
+944	0xbe4a	KYOUKI:243	I don't need it.<FFF5>
+945	0xbe51	KYOUKI:244	Oh well.<FFF5>
+946	0xbe5a	KYOUKI:245	Don't screw with me!<FFF5>
+947	0xbe66	KYOUKI:246	Don't screw with me!<FFF5>
+948	0xbe72	KYOUKI:247	It's fine.<FFF5>
+949	0xbe78	KYOUKI:248	That's not good.<FFF5>
+950	0xbe7f	KYOUKI:249	That's not good.<FFF5>
+951	0xbe86	KYOUKI:250	Don't screw with me!<FFF5>
+952	0xbe92	KYOUKI:251	I quit.<FFF5>
+953	0xbe98	KYOUKI:252	I quit.<FFF5>
+954	0xbe9e	KYOUKI:253	You're not scary.<FFF5>
+955	0xbea6	KYOUKI:254	You're not scary.<FFF5>
+956	0xbeae	KYOUKI:255	......<FFF5>
+957	0xbeba	KYOUKI:256	Yeah...<FFF5>
+958	0xbec0	KYOUKI:257	Yeah...<FFF5>
+959	0xbec6	KYOUKI:258	Not true...<FFF5>
+960	0xbece	KYOUKI:259	Oh well.<FFF5>
+961	0xbed7	KYOUKI:260	Not true...<FFF5>
+962	0xbedd	KYOUKI:261	Nuh uh.<FFF5>
+963	0xbee3	KYOUKI:262	You don't scare me.<FFF5>
+964	0xbeeb	KYOUKI:263	You don't scare me.<FFF5>
+965	0xbef3	KYOUKI:264	Leave me alone...<FFF5>
+966	0xbefe	KYOUKI:265	Ooh!<FFF5>
+967	0xbf04	KYOUKI:266	Ooh!<FFF5>
+968	0xbf0a	KYOUKI:267	Leave me alone...<FFF5>
+969	0xbf15	KYOUKI:268	Fine.<FFF5>
+970	0xbf1c	KYOUKI:269	Can't hear you.<FFF5>
+971	0xbf25	KYOUKI:270	Can't hear you.<FFF5>
+972	0xbf2e	KYOUKI:271	You wanna die?<FFF5>
+973	0xbf39	KYOUKI:272	You wanna die?<FFF5>
+974	0xbf44	KYOUKI:273	Can't hear you.<FFF5>
+975	0xbf4d	KYOUKI:274	You wanna die?<FFF5>
+976	0xbf58	KYOUKI:275	Don't screw with me!<FFF5>
+977	0xbf61	KYOUKI:276	Don't screw with me!<FFF5>
+978	0xbf6a	KYOUKI:277	That's awesome!<FFF5>
+979	0xbf72	KYOUKI:278	So what?<FFF5>
+980	0xbf7b	KYOUKI:279	I'm not crazy.<FFF5>
+981	0xbf84	KYOUKI:280	Gaaaaaaaaah!<FFF5>
+982	0xbf96	KYOUKI:281	Gaaaaaaaaah!<FFF5>
+983	0xbfa8	KYOUKI:282	Ha...<FFF5>
+984	0xbfad	KYOUKI:283	It's killin' time.<FFF5>
+985	0xbfb5	KYOUKI:284	It's killin' time.<FFF5>
+986	0xbfbd	KYOUKI:285	Ha...<FFF5>
+987	0xbfc2	KYOUKI:286	Ha...<FFF5>
+988	0xbfc7	KYOUKI:287	Don't screw with me!<FFF5>
+989	0xbfcf	KYOUKI:288	Ooh!<FFF5>
+990	0xbfd5	KYOUKI:289	Ooh!<FFF5>
+991	0xbfdb	KYOUKI:290	Leave me alone!<FFF5>
+992	0xbfe6	KYOUKI:291	You'll disappear.<FFF5>
+993	0xbfee	KYOUKI:292	You'll disappear.<FFF5>
+994	0xbff6	KYOUKI:293	That's my concern.<FFF5>
+995	0xc003	KYOUKI:294	I can!<FFF5>
+996	0xc00a	KYOUKI:295	I can!<FFF5>
+997	0xc011	KYOUKI:296	I can't.<FFF5>
+998	0xc016	KYOUKI:297	Scouting.<FFF5>
+999	0xc01c	KYOUKI:298	Weapon testing.<FFF5>
+1000	0xc023	KYOUKI:299	Dance practice.<FFF5>
+1001	0xc02e	KYOUKI:300	Huh, where?<FFF5>
+1002	0xc037	KYOUKI:301	Shut up!<FFF5>
+1003	0xc03f	KYOUKI:302	I'm sorry.<FFF5>
+1004	0xc044	KYOUKI:303	I don't mind.<FFF5>
+1005	0xc04b	KYOUKI:304	That'd be bad.<FFF5>
+1006	0xc055	KYOUKI:305	You're dangerous.<FFF5>
+1007	0xc062	KYOUKI:306	Want to come along?<FFF5>
+1008	0xc06e	KYOUKI:307	Nah.<FFF5>
+1009	0xc074	KYOUKI:308	Nah.<FFF5>
+1010	0xc07a	KYOUKI:309	It's a secret.<FFF5>
+1011	0xc082	KYOUKI:310	Not one bit.<FFF5>
+1012	0xc088	KYOUKI:311	Well, yeah.<FFF5>
+1013	0xc08d	KYOUKI:312	Wanna join me?<FFF5>
+1014	0xc09a	KYOUKI:313	I have business.<FFF5>
+1015	0xc0a1	KYOUKI:314	I have business.<FFF5>
+1016	0xc0a8	KYOUKI:315	Why are you leaving?<FFF5>
+1017	0xc0b6	KYOUKI:316	Go home!<FFF5>
+1018	0xc0c0	KYOUKI:317	Let's wreak havoc!<FFF5>
+1019	0xc0ce	KYOUKI:318	Wreak havoc alone.<FFF5>
+1020	0xc0d9	KYOUKI:319	Wreak havoc alone.<FFF5>
+1021	0xc0e4	KYOUKI:320	It's dangerous.<FFF5>
+1022	0xc0ed	KYOUKI:321	You knew that?<FFF5>
+1023	0xc0f8	KYOUKI:322	A spider...<FFF5>
+1024	0xc104	KYOUKI:323	Just a human.<FFF5>
+1025	0xc111	KYOUKI:324	I think so.<FFF5>
+1026	0xc119	KYOUKI:325	I don't think so.<FFF5>
+1027	0xc122	KYOUKI:326	I don't know.<FFF5>
+1028	0xc12d	KYOUKI:327	This.<FFF5>
+1029	0xc135	KYOUKI:328	That.<FFF5>

@@ -715,317 +715,317 @@ id	pos	psp	en
 713	0xac03	BASKET:12	Intimidate<FFF5>
 714	0xac08	BASKET:13	Intimidate<FFF5>
 715	0xac0d	BASKET:14	Must be rough...<FFF5>
-716	0xac26	BASKET:16	That's impossible.<FFF5>
-717	0xac2e	BASKET:17	It could work...<FFF5>
-718	0xac38	BASKET:18	That's too bad.<FFF5>
-719	0xac42	BASKET:19	You can't do it.<FFF5>
-720	0xac4e	BASKET:20	You can't do it.<FFF5>
-721	0xac5a	BASKET:21	Come with us anyway.<FFF5>
-722	0xac63	BASKET:22	Cancel practice.<FFF5>
-723	0xac71	BASKET:23	That's not true.<FFF5>
-724	0xac7b	BASKET:24	You're right.<FFF5>
-725	0xac81	BASKET:25	You're right.<FFF5>
-726	0xac87	BASKET:26	Quit<FFF5>
-727	0xac8c	BASKET:27	Sing loudly<FFF5>
-728	0xac98	BASKET:28	Quit<FFF5>
-729	0xac9d	BASKET:29	Sing more<FFF5>
-730	0xaca7	BASKET:30	Sing more<FFF5>
-731	0xacb1	BASKET:31	That's impossible.<FFF5>
-732	0xacb9	BASKET:32	I'll cheer you on!<FFF5>
-733	0xacc7	BASKET:33	Aww, too bad...<FFF5>
-734	0xacd7	BASKET:34	That's impossible.<FFF5>
-735	0xace3	BASKET:35	That's impossible.<FFF5>
-736	0xacef	BASKET:36	Don't worry!<FFF5>
-737	0xacfb	BASKET:37	I'm not very sure...<FFF5>
-738	0xad09	BASKET:38	I'm not very sure...<FFF5>
-739	0xad17	BASKET:39	That's not true!<FFF5>
-740	0xad1f	BASKET:40	You knew?<FFF5>
-741	0xad29	BASKET:41	You knew?<FFF5>
-742	0xad33	BASKET:42	You!? A genius!?<FFF5>
-743	0xad42	BASKET:43	I love smart guys!<FFF5>
-744	0xad53	BASKET:44	I love smart guys!<FFF5>
-745	0xad64	BASKET:45	That's right!<FFF5>
-746	0xad72	BASKET:46	That's right!<FFF5>
-747	0xad80	BASKET:47	You sure?<FFF5>
-748	0xad8a	BASKET:48	It's not a lie!<FFF5>
-749	0xad95	BASKET:49	Thank you!<FFF5>
-750	0xad9d	BASKET:50	It's not a lie!<FFF5>
-751	0xada8	BASKET:51	I was lying...<FFF5>
-752	0xadb2	BASKET:52	I was lying...<FFF5>
-753	0xadbc	BASKET:53	Yeah!<FFF5>
-754	0xadc2	BASKET:54	That's not true.<FFF5>
-755	0xadcc	BASKET:55	That's not true.<FFF5>
-756	0xadd6	BASKET:56	It's barbaric...<FFF5>
-757	0xade7	BASKET:57	It's barbaric...<FFF5>
-758	0xadf8	BASKET:58	Sorry about that.<FFF5>
-759	0xae04	BASKET:59	That's not true!<FFF5>
-760	0xae0c	BASKET:60	You knew?<FFF5>
-761	0xae16	BASKET:61	You knew?<FFF5>
-762	0xae20	BASKET:62	That's not true!<FFF5>
-763	0xae2e	BASKET:63	That's not true!<FFF5>
-764	0xae4a	BASKET:65	Okay!<FFF5>
-765	0xae54	BASKET:66	Okay!<FFF5>
-766	0xae5e	BASKET:67	You'll crush what?<FFF5>
-767	0xae6a	BASKET:68	Show me.<FFF5>
-768	0xae72	BASKET:69	I was joking.<FFF5>
-769	0xae80	BASKET:70	I was joking.<FFF5>
-770	0xae8e	BASKET:71	Glad to hear that.<FFF5>
-771	0xae96	BASKET:72	Whoa... You serious?<FFF5>
-772	0xaea5	BASKET:73	Whoa... You serious?<FFF5>
-773	0xaeb4	BASKET:74	Hahahaha!<FFF5>
-774	0xaebe	BASKET:75	*sigh*<FFF5>
-775	0xaec6	BASKET:76	Sorry...<FFF5>
-776	0xaecf	BASKET:77	Don't mess with me!<FFF5>
-777	0xaed9	BASKET:78	Not at all.<FFF5>
-778	0xaee4	BASKET:79	You got me!<FFF5>
-779	0xaef4	BASKET:80	You got me!<FFF5>
-780	0xaf04	BASKET:81	Sure thing.<FFF5>
-781	0xaf0e	BASKET:82	Sure thing.<FFF5>
-782	0xaf18	BASKET:83	Screw that.<FFF5>
-783	0xaf20	BASKET:84	Well, yeah.<FFF5>
-784	0xaf2a	BASKET:85	I have nothing...<FFF5>
-785	0xaf39	BASKET:86	Okay!<FFF5>
-786	0xaf43	BASKET:87	Okay!<FFF5>
-787	0xaf4d	BASKET:88	Who you gonna beat?<FFF5>
-788	0xaf59	BASKET:89	Glad to hear that.<FFF5>
-789	0xaf66	BASKET:90	You're old-fashioned.<FFF5>
-790	0xaf6f	BASKET:91	You're old-fashioned.<FFF5>
-791	0xaf78	BASKET:92	It's a new gag.<FFF5>
-792	0xaf86	BASKET:93	It's a new gag.<FFF5>
-793	0xaf94	BASKET:94	Never mind.<FFF5>
-794	0xaf9e	BASKET:95	Never mind.<FFF5>
-795	0xafa8	BASKET:96	Cut the crap!<FFF5>
-796	0xafb3	BASKET:97	Cut the crap!<FFF5>
-797	0xafbe	BASKET:98	Hahahaha!<FFF5>
-798	0xafc8	BASKET:99	Now let's do this...<FFF5>
-799	0xafd5	BASKET:100	Now let's do this...<FFF5>
-800	0xafe2	BASKET:101	Very well.<FFF5>
-801	0xafe9	BASKET:102	Very well.<FFF5>
-802	0xaff0	BASKET:103	Buy it.<FFF5>
-803	0xaff5	BASKET:104	I do...<FFF5>
-804	0xaffb	BASKET:105	I do...<FFF5>
-805	0xb001	BASKET:106	I don't...<FFF5>
-806	0xb008	BASKET:107	Very well.<FFF5>
-807	0xb00f	BASKET:108	Very well.<FFF5>
-808	0xb016	BASKET:109	I refuse!<FFF5>
-809	0xb01d	BASKET:110	I don't know.<FFF5>
-810	0xb024	BASKET:111	I don't know.<FFF5>
-811	0xb030	BASKET:112	Quite regrettable.<FFF5>
-812	0xb03c	BASKET:113	You cannot do it.<FFF5>
-813	0xb04a	BASKET:114	You cannot do it.<FFF5>
-814	0xb058	BASKET:115	Simple...<FFF5>
-815	0xb05f	BASKET:116	I don't know...<FFF5>
-816	0xb067	BASKET:117	I don't know...<FFF5>
-817	0xb06f	BASKET:118	Ha...<FFF5>
-818	0xb076	BASKET:119	Ha...<FFF5>
-819	0xb07d	BASKET:120	I know.<FFF5>
-820	0xb085	BASKET:121	You're mistaken.<FFF5>
-821	0xb093	BASKET:122	You're right.<FFF5>
-822	0xb099	BASKET:123	You're right.<FFF5>
-823	0xb09f	BASKET:124	You've seen much.<FFF5>
-824	0xb0ae	BASKET:125	Hmph. How stupid...<FFF5>
-825	0xb0ba	BASKET:126	A fool...<FFF5>
-826	0xb0c1	BASKET:127	You're right.<FFF5>
-827	0xb0c7	BASKET:128	You're right.<FFF5>
-828	0xb0cd	BASKET:129	How ridiculous.<FFF5>
-829	0xb0d6	BASKET:130	How ridiculous.<FFF5>
-830	0xb0df	BASKET:131	You're right.<FFF5>
-831	0xb0e5	BASKET:132	I know.<FFF5>
-832	0xb0ed	BASKET:133	Haha... Irony?<FFF5>
-833	0xb0fb	BASKET:134	Haha... Irony?<FFF5>
-834	0xb109	BASKET:135	I'll tell you.<FFF5>
-835	0xb112	BASKET:136	You can't handle it.<FFF5>
-836	0xb11f	BASKET:137	You can't handle it.<FFF5>
-837	0xb12c	BASKET:138	That's right.<FFF5>
-838	0xb132	BASKET:139	That's right.<FFF5>
-839	0xb138	BASKET:140	It's a dance.<FFF5>
-840	0xb141	BASKET:141	That's cool!<FFF5>
-841	0xb14a	BASKET:142	Oh crap.<FFF5>
-842	0xb151	BASKET:143	Oh crap.<FFF5>
-843	0xb158	BASKET:144	Yeah.<FFF5>
-844	0xb160	BASKET:145	Yeah.<FFF5>
-845	0xb168	BASKET:146	Not at all.<FFF5>
-846	0xb175	BASKET:147	Hearin' things?<FFF5>
-847	0xb181	BASKET:148	What's that, punk!?<FFF5>
-848	0xb18c	BASKET:149	What's that, punk!?<FFF5>
-849	0xb197	BASKET:150	That's rough, man.<FFF5>
-850	0xb1a5	BASKET:151	This's stupid...<FFF5>
-851	0xb1ad	BASKET:152	Already taken.<FFF5>
-852	0xb1b8	BASKET:153	Already taken.<FFF5>
-853	0xb1c3	BASKET:154	I should practice.<FFF5>
-854	0xb1d3	BASKET:155	Yeah!<FFF5>
-855	0xb1da	BASKET:156	Yeah!<FFF5>
-856	0xb1e1	BASKET:157	Uh, no...<FFF5>
-857	0xb1e9	BASKET:158	I don't know...<FFF5>
-858	0xb1f1	BASKET:159	Oh, well...<FFF5>
-859	0xb1fc	BASKET:160	It's not a lie.<FFF5>
-860	0xb206	BASKET:161	Thanks.<FFF5>
-861	0xb20d	BASKET:162	It's not a lie!<FFF5>
-862	0xb219	BASKET:163	Hehe, I was lying.<FFF5>
-863	0xb225	BASKET:164	Hehe, I was lying.<FFF5>
-864	0xb231	BASKET:165	Maybe.<FFF5>
-865	0xb238	BASKET:166	Never seen it.<FFF5>
-866	0xb241	BASKET:167	Never seen it.<FFF5>
-867	0xb24a	BASKET:168	Thank you very much.<FFF5>
-868	0xb256	BASKET:169	I decline.<FFF5>
-869	0xb25f	BASKET:170	I decline.<FFF5>
-870	0xb268	BASKET:171	It IS true.<FFF5>
-871	0xb271	BASKET:172	Yes, I created it.<FFF5>
-872	0xb27e	BASKET:173	Yes.<FFF5>
-873	0xb289	BASKET:174	It's a funny story.<FFF5>
-874	0xb297	BASKET:175	It's a funny story.<FFF5>
-875	0xb2a5	BASKET:176	Please.<FFF5>
-876	0xb2af	BASKET:177	I decline.<FFF5>
-877	0xb2b8	BASKET:178	I'm not tone deaf.<FFF5>
-878	0xb2c2	BASKET:179	You're correct.<FFF5>
-879	0xb2ca	BASKET:180	You're correct.<FFF5>
-880	0xb2d2	BASKET:181	Quit<FFF5>
-881	0xb2d7	BASKET:182	Sing more<FFF5>
-882	0xb2e1	BASKET:183	Sing more<FFF5>
-883	0xb2eb	BASKET:184	Yes.<FFF5>
-884	0xb2f3	BASKET:185	No.<FFF5>
-885	0xb2f9	BASKET:186	That's traveling.<FFF5>
-886	0xb306	BASKET:187	Nothing, really.<FFF5>
-887	0xb311	BASKET:188	Nothing, really.<FFF5>
-888	0xb31c	BASKET:189	Oh realllly?<FFF5>
-889	0xb327	BASKET:190	I'm quite sane!<FFF5>
-890	0xb337	BASKET:191	That's impossible.<FFF5>
-891	0xb342	BASKET:192	Wonderful!<FFF5>
-892	0xb350	BASKET:193	Too bad...<FFF5>
-893	0xb35b	BASKET:194	That's impossible.<FFF5>
-894	0xb366	BASKET:195	That's impossible.<FFF5>
-895	0xb371	BASKET:196	That was a joke.<FFF5>
-896	0xb37a	BASKET:197	I'm serious.<FFF5>
-897	0xb383	BASKET:198	I'm serious.<FFF5>
-898	0xb38c	BASKET:199	Losing sucks...<FFF5>
-899	0xb398	BASKET:200	That's prejudice.<FFF5>
-900	0xb3a5	BASKET:201	That's prejudice.<FFF5>
-901	0xb3b2	BASKET:202	That's right.<FFF5>
-902	0xb3b9	BASKET:203	You're stupid.<FFF5>
-903	0xb3c7	BASKET:204	You're stupid.<FFF5>
-904	0xb3d5	BASKET:205	C'mon, it sucks.<FFF5>
-905	0xb3e4	BASKET:206	I hate it.<FFF5>
-906	0xb3ee	BASKET:207	I'm disappointed...<FFF5>
-907	0xb3f9	BASKET:208	I'm disappointed...<FFF5>
-908	0xb404	BASKET:209	Give up...<FFF5>
-909	0xb40f	BASKET:210	I'm super psyched!<FFF5>
-910	0xb41f	BASKET:211	What do I do now?<FFF5>
-911	0xb42c	BASKET:212	What do I do now?<FFF5>
-912	0xb439	BASKET:213	Thank you!<FFF5>
-913	0xb442	BASKET:214	Thank you!<FFF5>
-914	0xb44b	BASKET:215	I was fake crying!<FFF5>
-915	0xb459	BASKET:216	That makes me mad!<FFF5>
-916	0xb464	BASKET:217	I'm not a kid!<FFF5>
-917	0xb480	BASKET:219	You don't believe me?<FFF5>
-918	0xb48b	BASKET:220	You don't believe me?<FFF5>
-919	0xb496	BASKET:221	Losing sucks...<FFF5>
-920	0xb4a2	BASKET:222	Losing sucks...<FFF5>
-921	0xb4ae	BASKET:223	That's prejudice.<FFF5>
-922	0xb4bb	BASKET:224	That's right.<FFF5>
-923	0xb4c2	BASKET:225	You're stupid.<FFF5>
-924	0xb4d0	BASKET:226	You're stupid.<FFF5>
-925	0xb4de	BASKET:227	C'mon, it sucks.<FFF5>
-926	0xb4ed	BASKET:228	I hate it.<FFF5>
-927	0xb4f7	BASKET:229	I'll scare ya.<FFF5>
-928	0xb501	BASKET:230	We'll see.<FFF5>
-929	0xb508	BASKET:231	We'll see.<FFF5>
-930	0xb50f	BASKET:232	We'll see.<FFF5>
-931	0xb516	BASKET:233	I'm hating.<FFF5>
-932	0xb51e	BASKET:234	I'm hating.<FFF5>
-933	0xb526	BASKET:235	That's right.<FFF5>
-934	0xb52c	BASKET:236	Don't screw with me!<FFF5>
-935	0xb538	BASKET:237	Don't screw with me!<FFF5>
-936	0xb544	BASKET:238	We'll see.<FFF5>
-937	0xb54b	BASKET:239	You're rude.<FFF5>
-938	0xb555	BASKET:240	*chuckle*<FFF5>
-939	0xb55b	BASKET:241	I'm not pretending.<FFF5>
-940	0xb566	BASKET:242	Can ya wait 10 years?<FFF5>
-941	0xb573	BASKET:243	You don't get it.<FFF5>
-942	0xb57c	BASKET:244	What a kid.<FFF5>
-943	0xb583	BASKET:245	Makes no difference.<FFF5>
-944	0xb58f	BASKET:246	Makes no difference.<FFF5>
-945	0xb59b	BASKET:247	You piss me off.<FFF5>
-946	0xb5a4	BASKET:248	There's no reason.<FFF5>
-947	0xb5b0	BASKET:249	There's no reason.<FFF5>
-948	0xb5bc	BASKET:250	Haha, cut it out.<FFF5>
-949	0xb5c6	BASKET:251	No way.<FFF5>
-950	0xb5cc	BASKET:252	No way.<FFF5>
-951	0xb5d2	BASKET:253	Then gimme something.<FFF5>
-952	0xb5df	BASKET:254	Then gimme something.<FFF5>
-953	0xb5ec	BASKET:255	No way.<FFF5>
-954	0xb5f2	BASKET:256	I'll intercept it.<FFF5>
-955	0xb5fd	BASKET:257	I'll intercept it.<FFF5>
-956	0xb608	BASKET:258	Like you could do it.<FFF5>
-957	0xb613	BASKET:259	How un-demonlike.<FFF5>
-958	0xb61f	BASKET:260	I'm hatin'.<FFF5>
-959	0xb626	BASKET:261	I'm hatin'.<FFF5>
-960	0xb62d	BASKET:262	Then gimme something.<FFF5>
-961	0xb639	BASKET:263	Then gimme something.<FFF5>
-962	0xb645	BASKET:264	I can't hear you.<FFF5>
-963	0xb64e	BASKET:265	......<FFF5>
-964	0xb664	BASKET:266	......<FFF5>
-965	0xb67a	BASKET:267	Shut up!<FFF5>
-966	0xb684	BASKET:268	How hateable.<FFF5>
-967	0xb68e	BASKET:269	Just scram.<FFF5>
-968	0xb698	BASKET:270	Just scram.<FFF5>
-969	0xb6a2	BASKET:271	So you wanna die?<FFF5>
-970	0xb6ad	BASKET:272	So you wanna die?<FFF5>
-971	0xb6b8	BASKET:273	Can't hear you.<FFF5>
-972	0xb6c1	BASKET:274	Me.<FFF5>
-973	0xb6cc	BASKET:275	Can't hear you.<FFF5>
-974	0xb6d5	BASKET:276	Can't hear you.<FFF5>
-975	0xb6de	BASKET:277	I don't know!<FFF5>
-976	0xb6e8	BASKET:278	Shut up, damn it!<FFF5>
-977	0xb6f2	BASKET:279	I'm not crazy.<FFF5>
-978	0xb6fb	BASKET:280	Gaaaaaaah!<FFF5>
-979	0xb70d	BASKET:281	Gaaaaaaah!<FFF5>
-980	0xb71f	BASKET:282	Ha...<FFF5>
-981	0xb724	BASKET:283	Time to die...<FFF5>
-982	0xb730	BASKET:284	Time to die...<FFF5>
-983	0xb73c	BASKET:285	Ha...<FFF5>
-984	0xb741	BASKET:286	Ha...<FFF5>
-985	0xb746	BASKET:287	Quit buggin' me.<FFF5>
-986	0xb74f	BASKET:288	Quit buggin' me.<FFF5>
-987	0xb758	BASKET:289	Quit buggin' me.<FFF5>
-988	0xb761	BASKET:290	So what?<FFF5>
-989	0xb76a	BASKET:291	No.<FFF5>
-990	0xb772	BASKET:292	No.<FFF5>
-991	0xb77a	BASKET:293	So what.<FFF5>
-992	0xb785	BASKET:294	Time to die...<FFF5>
-993	0xb790	BASKET:295	Time to die...<FFF5>
-994	0xb79b	BASKET:296	Ha...<FFF5>
-995	0xb7a2	BASKET:297	A scout.<FFF5>
-996	0xb7a8	BASKET:298	A killer.<FFF5>
-997	0xb7af	BASKET:299	Dance practice.<FFF5>
-998	0xb7c3	BASKET:301	Shut up!<FFF5>
-999	0xb7cb	BASKET:302	Sorry.<FFF5>
-1000	0xb7d0	BASKET:303	I don't mind.<FFF5>
-1001	0xb7d7	BASKET:304	That'd be bad.<FFF5>
-1002	0xb7e1	BASKET:305	You're dangerous too.<FFF5>
-1003	0xb7fa	BASKET:307	Nah.<FFF5>
-1004	0xb800	BASKET:308	Nah.<FFF5>
-1005	0xb806	BASKET:309	It's a secret!<FFF5>
-1006	0xb80e	BASKET:310	Not a bit.<FFF5>
-1007	0xb814	BASKET:311	Well, yeah.<FFF5>
-1008	0xb826	BASKET:313	I've got business.<FFF5>
-1009	0xb82d	BASKET:314	I've got business.<FFF5>
-1010	0xb842	BASKET:316	Go home!<FFF5>
-1011	0xb84c	BASKET:317	Let's wreak havoc!<FFF5>
-1012	0xb85a	BASKET:318	Fine, go nuts alone.<FFF5>
-1013	0xb865	BASKET:319	Fine, go nuts alone.<FFF5>
-1014	0xb870	BASKET:320	It's dangerous!<FFF5>
-1015	0xb879	BASKET:321	Wow, you got it.<FFF5>
-1016	0xb884	BASKET:322	A spider...<FFF5>
-1017	0xb890	BASKET:323	Just a human.<FFF5>
-1018	0xb89d	BASKET:324	I do.<FFF5>
-1019	0xb8a5	BASKET:325	I don't.<FFF5>
-1020	0xb8ae	BASKET:326	I don't know.<FFF5>
-1021	0xb8b9	BASKET:327	The XXX<FFF5>
-1022	0xb8c1	BASKET:328	The OOOO<FFF5>
-1023	0xac1a	BASKET:15	So what?<FFF5>
-1024	0xae3c	BASKET:64	Don't come then!<FFF5>
-1025	0xb471	BASKET:218	You believed that?<FFF5>
-1026	0xb7ba	BASKET:300	Huh? Where?<FFF5>
-1027	0xb7ee	BASKET:306	Will you come too?<FFF5>
-1028	0xb819	BASKET:312	Care to join us?<FFF5>
-1029	0xb834	BASKET:315	Why ya going home?<FFF5>
+716	0xac1a	BASKET:15	So what?<FFF5>
+717	0xac26	BASKET:16	That's impossible.<FFF5>
+718	0xac2e	BASKET:17	It could work...<FFF5>
+719	0xac38	BASKET:18	That's too bad.<FFF5>
+720	0xac42	BASKET:19	You can't do it.<FFF5>
+721	0xac4e	BASKET:20	You can't do it.<FFF5>
+722	0xac5a	BASKET:21	Come with us anyway.<FFF5>
+723	0xac63	BASKET:22	Cancel practice.<FFF5>
+724	0xac71	BASKET:23	That's not true.<FFF5>
+725	0xac7b	BASKET:24	You're right.<FFF5>
+726	0xac81	BASKET:25	You're right.<FFF5>
+727	0xac87	BASKET:26	Quit<FFF5>
+728	0xac8c	BASKET:27	Sing loudly<FFF5>
+729	0xac98	BASKET:28	Quit<FFF5>
+730	0xac9d	BASKET:29	Sing more<FFF5>
+731	0xaca7	BASKET:30	Sing more<FFF5>
+732	0xacb1	BASKET:31	That's impossible.<FFF5>
+733	0xacb9	BASKET:32	I'll cheer you on!<FFF5>
+734	0xacc7	BASKET:33	Aww, too bad...<FFF5>
+735	0xacd7	BASKET:34	That's impossible.<FFF5>
+736	0xace3	BASKET:35	That's impossible.<FFF5>
+737	0xacef	BASKET:36	Don't worry!<FFF5>
+738	0xacfb	BASKET:37	I'm not very sure...<FFF5>
+739	0xad09	BASKET:38	I'm not very sure...<FFF5>
+740	0xad17	BASKET:39	That's not true!<FFF5>
+741	0xad1f	BASKET:40	You knew?<FFF5>
+742	0xad29	BASKET:41	You knew?<FFF5>
+743	0xad33	BASKET:42	You!? A genius!?<FFF5>
+744	0xad42	BASKET:43	I love smart guys!<FFF5>
+745	0xad53	BASKET:44	I love smart guys!<FFF5>
+746	0xad64	BASKET:45	That's right!<FFF5>
+747	0xad72	BASKET:46	That's right!<FFF5>
+748	0xad80	BASKET:47	You sure?<FFF5>
+749	0xad8a	BASKET:48	It's not a lie!<FFF5>
+750	0xad95	BASKET:49	Thank you!<FFF5>
+751	0xad9d	BASKET:50	It's not a lie!<FFF5>
+752	0xada8	BASKET:51	I was lying...<FFF5>
+753	0xadb2	BASKET:52	I was lying...<FFF5>
+754	0xadbc	BASKET:53	Yeah!<FFF5>
+755	0xadc2	BASKET:54	That's not true.<FFF5>
+756	0xadcc	BASKET:55	That's not true.<FFF5>
+757	0xadd6	BASKET:56	It's barbaric...<FFF5>
+758	0xade7	BASKET:57	It's barbaric...<FFF5>
+759	0xadf8	BASKET:58	Sorry about that.<FFF5>
+760	0xae04	BASKET:59	That's not true!<FFF5>
+761	0xae0c	BASKET:60	You knew?<FFF5>
+762	0xae16	BASKET:61	You knew?<FFF5>
+763	0xae20	BASKET:62	That's not true!<FFF5>
+764	0xae2e	BASKET:63	That's not true!<FFF5>
+765	0xae3c	BASKET:64	Don't come then!<FFF5>
+766	0xae4a	BASKET:65	Okay!<FFF5>
+767	0xae54	BASKET:66	Okay!<FFF5>
+768	0xae5e	BASKET:67	You'll crush what?<FFF5>
+769	0xae6a	BASKET:68	Show me.<FFF5>
+770	0xae72	BASKET:69	I was joking.<FFF5>
+771	0xae80	BASKET:70	I was joking.<FFF5>
+772	0xae8e	BASKET:71	Glad to hear that.<FFF5>
+773	0xae96	BASKET:72	Whoa... You serious?<FFF5>
+774	0xaea5	BASKET:73	Whoa... You serious?<FFF5>
+775	0xaeb4	BASKET:74	Hahahaha!<FFF5>
+776	0xaebe	BASKET:75	*sigh*<FFF5>
+777	0xaec6	BASKET:76	Sorry...<FFF5>
+778	0xaecf	BASKET:77	Don't mess with me!<FFF5>
+779	0xaed9	BASKET:78	Not at all.<FFF5>
+780	0xaee4	BASKET:79	You got me!<FFF5>
+781	0xaef4	BASKET:80	You got me!<FFF5>
+782	0xaf04	BASKET:81	Sure thing.<FFF5>
+783	0xaf0e	BASKET:82	Sure thing.<FFF5>
+784	0xaf18	BASKET:83	Screw that.<FFF5>
+785	0xaf20	BASKET:84	Well, yeah.<FFF5>
+786	0xaf2a	BASKET:85	I have nothing...<FFF5>
+787	0xaf39	BASKET:86	Okay!<FFF5>
+788	0xaf43	BASKET:87	Okay!<FFF5>
+789	0xaf4d	BASKET:88	Who you gonna beat?<FFF5>
+790	0xaf59	BASKET:89	Glad to hear that.<FFF5>
+791	0xaf66	BASKET:90	You're old-fashioned.<FFF5>
+792	0xaf6f	BASKET:91	You're old-fashioned.<FFF5>
+793	0xaf78	BASKET:92	It's a new gag.<FFF5>
+794	0xaf86	BASKET:93	It's a new gag.<FFF5>
+795	0xaf94	BASKET:94	Never mind.<FFF5>
+796	0xaf9e	BASKET:95	Never mind.<FFF5>
+797	0xafa8	BASKET:96	Cut the crap!<FFF5>
+798	0xafb3	BASKET:97	Cut the crap!<FFF5>
+799	0xafbe	BASKET:98	Hahahaha!<FFF5>
+800	0xafc8	BASKET:99	Now let's do this...<FFF5>
+801	0xafd5	BASKET:100	Now let's do this...<FFF5>
+802	0xafe2	BASKET:101	Very well.<FFF5>
+803	0xafe9	BASKET:102	Very well.<FFF5>
+804	0xaff0	BASKET:103	Buy it.<FFF5>
+805	0xaff5	BASKET:104	I do...<FFF5>
+806	0xaffb	BASKET:105	I do...<FFF5>
+807	0xb001	BASKET:106	I don't...<FFF5>
+808	0xb008	BASKET:107	Very well.<FFF5>
+809	0xb00f	BASKET:108	Very well.<FFF5>
+810	0xb016	BASKET:109	I refuse!<FFF5>
+811	0xb01d	BASKET:110	I don't know.<FFF5>
+812	0xb024	BASKET:111	I don't know.<FFF5>
+813	0xb030	BASKET:112	Quite regrettable.<FFF5>
+814	0xb03c	BASKET:113	You cannot do it.<FFF5>
+815	0xb04a	BASKET:114	You cannot do it.<FFF5>
+816	0xb058	BASKET:115	Simple...<FFF5>
+817	0xb05f	BASKET:116	I don't know...<FFF5>
+818	0xb067	BASKET:117	I don't know...<FFF5>
+819	0xb06f	BASKET:118	Ha...<FFF5>
+820	0xb076	BASKET:119	Ha...<FFF5>
+821	0xb07d	BASKET:120	I know.<FFF5>
+822	0xb085	BASKET:121	You're mistaken.<FFF5>
+823	0xb093	BASKET:122	You're right.<FFF5>
+824	0xb099	BASKET:123	You're right.<FFF5>
+825	0xb09f	BASKET:124	You've seen much.<FFF5>
+826	0xb0ae	BASKET:125	Hmph. How stupid...<FFF5>
+827	0xb0ba	BASKET:126	A fool...<FFF5>
+828	0xb0c1	BASKET:127	You're right.<FFF5>
+829	0xb0c7	BASKET:128	You're right.<FFF5>
+830	0xb0cd	BASKET:129	How ridiculous.<FFF5>
+831	0xb0d6	BASKET:130	How ridiculous.<FFF5>
+832	0xb0df	BASKET:131	You're right.<FFF5>
+833	0xb0e5	BASKET:132	I know.<FFF5>
+834	0xb0ed	BASKET:133	Haha... Irony?<FFF5>
+835	0xb0fb	BASKET:134	Haha... Irony?<FFF5>
+836	0xb109	BASKET:135	I'll tell you.<FFF5>
+837	0xb112	BASKET:136	You can't handle it.<FFF5>
+838	0xb11f	BASKET:137	You can't handle it.<FFF5>
+839	0xb12c	BASKET:138	That's right.<FFF5>
+840	0xb132	BASKET:139	That's right.<FFF5>
+841	0xb138	BASKET:140	It's a dance.<FFF5>
+842	0xb141	BASKET:141	That's cool!<FFF5>
+843	0xb14a	BASKET:142	Oh crap.<FFF5>
+844	0xb151	BASKET:143	Oh crap.<FFF5>
+845	0xb158	BASKET:144	Yeah.<FFF5>
+846	0xb160	BASKET:145	Yeah.<FFF5>
+847	0xb168	BASKET:146	Not at all.<FFF5>
+848	0xb175	BASKET:147	Hearin' things?<FFF5>
+849	0xb181	BASKET:148	What's that, punk!?<FFF5>
+850	0xb18c	BASKET:149	What's that, punk!?<FFF5>
+851	0xb197	BASKET:150	That's rough, man.<FFF5>
+852	0xb1a5	BASKET:151	This's stupid...<FFF5>
+853	0xb1ad	BASKET:152	Already taken.<FFF5>
+854	0xb1b8	BASKET:153	Already taken.<FFF5>
+855	0xb1c3	BASKET:154	I should practice.<FFF5>
+856	0xb1d3	BASKET:155	Yeah!<FFF5>
+857	0xb1da	BASKET:156	Yeah!<FFF5>
+858	0xb1e1	BASKET:157	Uh, no...<FFF5>
+859	0xb1e9	BASKET:158	I don't know...<FFF5>
+860	0xb1f1	BASKET:159	Oh, well...<FFF5>
+861	0xb1fc	BASKET:160	It's not a lie.<FFF5>
+862	0xb206	BASKET:161	Thanks.<FFF5>
+863	0xb20d	BASKET:162	It's not a lie!<FFF5>
+864	0xb219	BASKET:163	Hehe, I was lying.<FFF5>
+865	0xb225	BASKET:164	Hehe, I was lying.<FFF5>
+866	0xb231	BASKET:165	Maybe.<FFF5>
+867	0xb238	BASKET:166	Never seen it.<FFF5>
+868	0xb241	BASKET:167	Never seen it.<FFF5>
+869	0xb24a	BASKET:168	Thank you very much.<FFF5>
+870	0xb256	BASKET:169	I decline.<FFF5>
+871	0xb25f	BASKET:170	I decline.<FFF5>
+872	0xb268	BASKET:171	It IS true.<FFF5>
+873	0xb271	BASKET:172	Yes, I created it.<FFF5>
+874	0xb27e	BASKET:173	Yes.<FFF5>
+875	0xb289	BASKET:174	It's a funny story.<FFF5>
+876	0xb297	BASKET:175	It's a funny story.<FFF5>
+877	0xb2a5	BASKET:176	Please.<FFF5>
+878	0xb2af	BASKET:177	I decline.<FFF5>
+879	0xb2b8	BASKET:178	I'm not tone deaf.<FFF5>
+880	0xb2c2	BASKET:179	You're correct.<FFF5>
+881	0xb2ca	BASKET:180	You're correct.<FFF5>
+882	0xb2d2	BASKET:181	Quit<FFF5>
+883	0xb2d7	BASKET:182	Sing more<FFF5>
+884	0xb2e1	BASKET:183	Sing more<FFF5>
+885	0xb2eb	BASKET:184	Yes.<FFF5>
+886	0xb2f3	BASKET:185	No.<FFF5>
+887	0xb2f9	BASKET:186	That's traveling.<FFF5>
+888	0xb306	BASKET:187	Nothing, really.<FFF5>
+889	0xb311	BASKET:188	Nothing, really.<FFF5>
+890	0xb31c	BASKET:189	Oh realllly?<FFF5>
+891	0xb327	BASKET:190	I'm quite sane!<FFF5>
+892	0xb337	BASKET:191	That's impossible.<FFF5>
+893	0xb342	BASKET:192	Wonderful!<FFF5>
+894	0xb350	BASKET:193	Too bad...<FFF5>
+895	0xb35b	BASKET:194	That's impossible.<FFF5>
+896	0xb366	BASKET:195	That's impossible.<FFF5>
+897	0xb371	BASKET:196	That was a joke.<FFF5>
+898	0xb37a	BASKET:197	I'm serious.<FFF5>
+899	0xb383	BASKET:198	I'm serious.<FFF5>
+900	0xb38c	BASKET:199	Losing sucks...<FFF5>
+901	0xb398	BASKET:200	That's prejudice.<FFF5>
+902	0xb3a5	BASKET:201	That's prejudice.<FFF5>
+903	0xb3b2	BASKET:202	That's right.<FFF5>
+904	0xb3b9	BASKET:203	You're stupid.<FFF5>
+905	0xb3c7	BASKET:204	You're stupid.<FFF5>
+906	0xb3d5	BASKET:205	C'mon, it sucks.<FFF5>
+907	0xb3e4	BASKET:206	I hate it.<FFF5>
+908	0xb3ee	BASKET:207	I'm disappointed...<FFF5>
+909	0xb3f9	BASKET:208	I'm disappointed...<FFF5>
+910	0xb404	BASKET:209	Give up...<FFF5>
+911	0xb40f	BASKET:210	I'm super psyched!<FFF5>
+912	0xb41f	BASKET:211	What do I do now?<FFF5>
+913	0xb42c	BASKET:212	What do I do now?<FFF5>
+914	0xb439	BASKET:213	Thank you!<FFF5>
+915	0xb442	BASKET:214	Thank you!<FFF5>
+916	0xb44b	BASKET:215	I was fake crying!<FFF5>
+917	0xb459	BASKET:216	That makes me mad!<FFF5>
+918	0xb464	BASKET:217	I'm not a kid!<FFF5>
+919	0xb471	BASKET:218	You believed that?<FFF5>
+920	0xb480	BASKET:219	You don't believe me?<FFF5>
+921	0xb48b	BASKET:220	You don't believe me?<FFF5>
+922	0xb496	BASKET:221	Losing sucks...<FFF5>
+923	0xb4a2	BASKET:222	Losing sucks...<FFF5>
+924	0xb4ae	BASKET:223	That's prejudice.<FFF5>
+925	0xb4bb	BASKET:224	That's right.<FFF5>
+926	0xb4c2	BASKET:225	You're stupid.<FFF5>
+927	0xb4d0	BASKET:226	You're stupid.<FFF5>
+928	0xb4de	BASKET:227	C'mon, it sucks.<FFF5>
+929	0xb4ed	BASKET:228	I hate it.<FFF5>
+930	0xb4f7	BASKET:229	I'll scare ya.<FFF5>
+931	0xb501	BASKET:230	We'll see.<FFF5>
+932	0xb508	BASKET:231	We'll see.<FFF5>
+933	0xb50f	BASKET:232	We'll see.<FFF5>
+934	0xb516	BASKET:233	I'm hating.<FFF5>
+935	0xb51e	BASKET:234	I'm hating.<FFF5>
+936	0xb526	BASKET:235	That's right.<FFF5>
+937	0xb52c	BASKET:236	Don't screw with me!<FFF5>
+938	0xb538	BASKET:237	Don't screw with me!<FFF5>
+939	0xb544	BASKET:238	We'll see.<FFF5>
+940	0xb54b	BASKET:239	You're rude.<FFF5>
+941	0xb555	BASKET:240	*chuckle*<FFF5>
+942	0xb55b	BASKET:241	I'm not pretending.<FFF5>
+943	0xb566	BASKET:242	Can ya wait 10 years?<FFF5>
+944	0xb573	BASKET:243	You don't get it.<FFF5>
+945	0xb57c	BASKET:244	What a kid.<FFF5>
+946	0xb583	BASKET:245	Makes no difference.<FFF5>
+947	0xb58f	BASKET:246	Makes no difference.<FFF5>
+948	0xb59b	BASKET:247	You piss me off.<FFF5>
+949	0xb5a4	BASKET:248	There's no reason.<FFF5>
+950	0xb5b0	BASKET:249	There's no reason.<FFF5>
+951	0xb5bc	BASKET:250	Haha, cut it out.<FFF5>
+952	0xb5c6	BASKET:251	No way.<FFF5>
+953	0xb5cc	BASKET:252	No way.<FFF5>
+954	0xb5d2	BASKET:253	Then gimme something.<FFF5>
+955	0xb5df	BASKET:254	Then gimme something.<FFF5>
+956	0xb5ec	BASKET:255	No way.<FFF5>
+957	0xb5f2	BASKET:256	I'll intercept it.<FFF5>
+958	0xb5fd	BASKET:257	I'll intercept it.<FFF5>
+959	0xb608	BASKET:258	Like you could do it.<FFF5>
+960	0xb613	BASKET:259	How un-demonlike.<FFF5>
+961	0xb61f	BASKET:260	I'm hatin'.<FFF5>
+962	0xb626	BASKET:261	I'm hatin'.<FFF5>
+963	0xb62d	BASKET:262	Then gimme something.<FFF5>
+964	0xb639	BASKET:263	Then gimme something.<FFF5>
+965	0xb645	BASKET:264	I can't hear you.<FFF5>
+966	0xb64e	BASKET:265	......<FFF5>
+967	0xb664	BASKET:266	......<FFF5>
+968	0xb67a	BASKET:267	Shut up!<FFF5>
+969	0xb684	BASKET:268	How hateable.<FFF5>
+970	0xb68e	BASKET:269	Just scram.<FFF5>
+971	0xb698	BASKET:270	Just scram.<FFF5>
+972	0xb6a2	BASKET:271	So you wanna die?<FFF5>
+973	0xb6ad	BASKET:272	So you wanna die?<FFF5>
+974	0xb6b8	BASKET:273	Can't hear you.<FFF5>
+975	0xb6c1	BASKET:274	Me.<FFF5>
+976	0xb6cc	BASKET:275	Can't hear you.<FFF5>
+977	0xb6d5	BASKET:276	Can't hear you.<FFF5>
+978	0xb6de	BASKET:277	I don't know!<FFF5>
+979	0xb6e8	BASKET:278	Shut up, damn it!<FFF5>
+980	0xb6f2	BASKET:279	I'm not crazy.<FFF5>
+981	0xb6fb	BASKET:280	Gaaaaaaah!<FFF5>
+982	0xb70d	BASKET:281	Gaaaaaaah!<FFF5>
+983	0xb71f	BASKET:282	Ha...<FFF5>
+984	0xb724	BASKET:283	Time to die...<FFF5>
+985	0xb730	BASKET:284	Time to die...<FFF5>
+986	0xb73c	BASKET:285	Ha...<FFF5>
+987	0xb741	BASKET:286	Ha...<FFF5>
+988	0xb746	BASKET:287	Quit buggin' me.<FFF5>
+989	0xb74f	BASKET:288	Quit buggin' me.<FFF5>
+990	0xb758	BASKET:289	Quit buggin' me.<FFF5>
+991	0xb761	BASKET:290	So what?<FFF5>
+992	0xb76a	BASKET:291	No.<FFF5>
+993	0xb772	BASKET:292	No.<FFF5>
+994	0xb77a	BASKET:293	So what.<FFF5>
+995	0xb785	BASKET:294	Time to die...<FFF5>
+996	0xb790	BASKET:295	Time to die...<FFF5>
+997	0xb79b	BASKET:296	Ha...<FFF5>
+998	0xb7a2	BASKET:297	A scout.<FFF5>
+999	0xb7a8	BASKET:298	A killer.<FFF5>
+1000	0xb7af	BASKET:299	Dance practice.<FFF5>
+1001	0xb7ba	BASKET:300	Huh? Where?<FFF5>
+1002	0xb7c3	BASKET:301	Shut up!<FFF5>
+1003	0xb7cb	BASKET:302	Sorry.<FFF5>
+1004	0xb7d0	BASKET:303	I don't mind.<FFF5>
+1005	0xb7d7	BASKET:304	That'd be bad.<FFF5>
+1006	0xb7e1	BASKET:305	You're dangerous too.<FFF5>
+1007	0xb7ee	BASKET:306	Will you come too?<FFF5>
+1008	0xb7fa	BASKET:307	Nah.<FFF5>
+1009	0xb800	BASKET:308	Nah.<FFF5>
+1010	0xb806	BASKET:309	It's a secret!<FFF5>
+1011	0xb80e	BASKET:310	Not a bit.<FFF5>
+1012	0xb814	BASKET:311	Well, yeah.<FFF5>
+1013	0xb819	BASKET:312	Care to join us?<FFF5>
+1014	0xb826	BASKET:313	I've got business.<FFF5>
+1015	0xb82d	BASKET:314	I've got business.<FFF5>
+1016	0xb834	BASKET:315	Why ya going home?<FFF5>
+1017	0xb842	BASKET:316	Go home!<FFF5>
+1018	0xb84c	BASKET:317	Let's wreak havoc!<FFF5>
+1019	0xb85a	BASKET:318	Fine, go nuts alone.<FFF5>
+1020	0xb865	BASKET:319	Fine, go nuts alone.<FFF5>
+1021	0xb870	BASKET:320	It's dangerous!<FFF5>
+1022	0xb879	BASKET:321	Wow, you got it.<FFF5>
+1023	0xb884	BASKET:322	A spider...<FFF5>
+1024	0xb890	BASKET:323	Just a human.<FFF5>
+1025	0xb89d	BASKET:324	I do.<FFF5>
+1026	0xb8a5	BASKET:325	I don't.<FFF5>
+1027	0xb8ae	BASKET:326	I don't know.<FFF5>
+1028	0xb8b9	BASKET:327	The XXX<FFF5>
+1029	0xb8c1	BASKET:328	The OOOO<FFF5>

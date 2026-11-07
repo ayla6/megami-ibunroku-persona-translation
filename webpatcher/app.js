@@ -58,9 +58,7 @@ const stepOf = (row, source) => ({patch: row.patch,
                                   adds: row.adds || '',
                                   source,
                                   expectBytes: Number(row.target_bytes),
-                                  patchHash: row.patch_sha256,
-                                  proofChoices: row.proof_choices || '',
-                                  proofHash: row.proof_sha256 || ''});
+                                  patchHash: row.patch_sha256});
 
 /* Patches come from patches/ next to the page, which is the only way a
  * static page can read them: github.com serves release downloads without

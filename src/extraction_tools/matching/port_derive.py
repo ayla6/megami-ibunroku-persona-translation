@@ -448,6 +448,39 @@ def psx_params(text):
     return ''.join(out)
 
 
+_PSP_GIVEN_NAME = re.compile(r'<FF07>(?:<[0-9A-Fa-f]{2}>)?')
+
+
+def battle_name_inserts(text, ja):
+    """Spell a PSP given-name insert with the battle interpreter's slot.
+
+    `<FF07>` selects a party member's given name in the PSP dialogue
+    interpreter. The PSX battle interpreter has one character-name insert,
+    `<FFF9>` (BtlWindowType's CODE_INSERT6, filled from the actor's name),
+    and the Japanese line proves it is the slot this wording wants. Translate
+    before layout so the flow measures the name that will draw
+    (docs/TEXT_LAYOUT_SPEC.md, "Name inserts"). The PSP's bare insert has no
+    member parameter, and neither does `<FFF9>`, so an explicit dialogue
+    parameter is dropped with the code.
+
+    Only as many inserts as the Japanese carries are translated. A
+    family/nickname/full-name insert has no battle sibling: it is left as
+    written so codes_match still refuses to ship the given name in its
+    place."""
+    spare = len(re.findall(r'<FFF9>', ja or ''))
+    if not spare:
+        return text
+
+    def sub(m):
+        nonlocal spare
+        if not spare:
+            return m.group(0)
+        spare -= 1
+        return '<FFF9>'
+
+    return _PSP_GIVEN_NAME.sub(sub, text)
+
+
 def fit_codes(text, ja, strict=False):
     """Make the wording carry the Japanese line's control codes, no more.
 
@@ -525,6 +558,10 @@ def fit_codes(text, ja, strict=False):
     # re-places them at its own break points. Pairing them is how a newline
     # came back as the Japanese's insert code.
     REFLOW = ('03', 'F6')
+    # A destination-wise translation: only a Japanese line carrying the
+    # battle name slot enables it, and a dialogue row's own inserts pass
+    # through untouched.
+    text = battle_name_inserts(text, ja)
     ja_codes = [c for c, _s, _e in code_toks(ja or '') if c not in REFLOW]
     want = collections.Counter(ja_codes)
     toks = code_toks(text)
@@ -669,6 +706,15 @@ def codes_match(en, ja):
     # turn it into shippable battle text without a proven translation.
     if re.search(r'<FFF[0-9A-F]>', ja or '') and re.search(
             r'<FF(?:07|08|0F|10)>', en or ''):
+        return False
+    # The battle name insert prints the current actor's name, which no
+    # wording can spell: a name the player chose is data, not text. The
+    # deviation gate may forgive a dialogue name slot the PSP reorders or
+    # drops, but the battle's <FFF9> must appear exactly as often as the
+    # Japanese draws it - dropping it (or substituting another insert)
+    # would silently print the wrong line.
+    if len(re.findall(r'<FFF9>', en or '')) != \
+            len(re.findall(r'<FFF9>', ja or '')):
         return False
 
     # The terminator is the encoder's, and END codes are STRUCTURE, never a

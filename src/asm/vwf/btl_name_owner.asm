@@ -68,6 +68,7 @@ btl_name_lookup:
     b       @@range
     addiu   a1, a1, 28
 @@no:
+    move    v0, zero                     ; no producer range: owned span decides
     j       btl_owned_span              ; translated-producer buffer, else zero
     nop
 btl_name_lookup_end:

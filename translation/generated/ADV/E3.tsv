@@ -62,11 +62,11 @@ id	pos	psp	en
 60	3:0x1a4c	E3:60	Brown: WHOA! Has it gotten<FF03>even crazier here?<FF02><FF01>
 61	3:0x1a74	E3:61	Elly: That child is supposedly<FF03>a merchant of death from<FF03>the demon world.<FF02><FF01>
 62	3:0x1aa8	E3:62	Elly: Does that child care at all who<FF03>wins between us and the Queen?<FF02><FF01>
-63	4:0x18e8	E3:65	Yuko: Oh... such cute clothes...<FF03><FF06><03><FF06><00>so expensive, though...<FF02><FF01>
-64	4:0x191c	E3:66	Meek girl: Oh... such cute clothes...<FF03><FF06><03><FF06><00>so expensive, though...<FF02><FF01>
-65	4:0x1950	E3:67	Yuko: U-Um... Do you think<FF03>this place will buy uniforms...?<FF02><FF01>
-66	4:0x1974	E3:68	Meek girl: U-Um... Do you think<FF03>this place will buy uniforms...?<FF02><FF01>
-67	4:0x19a4	E3:69	<FF06><03>Yuko Himeno<FF03>Maki's friend. She works part-time to<FF03>support her family.<FF02><FF01>
+63	4:0x18e8	E3:63	Female student: Squee! Look, look!<FF03><FF06><03><FF06><00>This dress is soooo cute!<FF02><FF01>
+64	4:0x191c	E3:64	Female student: Squee! Look, look!<FF03><FF06><03><FF06><00>This skirt is soooo cheap!<FF02><FF01>
+65	4:0x1950	E3:65	Yuko: Oh... such cute clothes...<FF03>so expensive, though...<FF02><FF01>
+66	4:0x1974	E3:67	Yuko: U-Um... Do you think<FF03>this place will buy uniforms...?<FF02><FF01>
+67	4:0x19a4	E3:69	<FF06><03>Yuko Himeno<FF03>Maki's friend. She works part-time to<FF03>support her family.<FF06><00><FF02><FF01>
 68	4:0x19ec	E3:70	Clerk: Wel... come...<FF02><FF01>
 69	4:0x1a08	E3:71	Clerk: Wel... come...<FF02><FF01>
 70	4:0x1a24	E3:72	Yukino: All these clothes<FF03>have some practical use.<FF03>They're more like armor than clothes.<FF02><FF01>
@@ -132,7 +132,7 @@ id	pos	psp	en
 130	7:0x1930	E3:132	Brown: Don't worry.<FF03>I'll melt that Queen's icy<FF03>heart with my smoldering gaze.<FF02><FF01>
 131	7:0x1970	E3:133	Elly: One sees a glimpse of humanity's<FF03>true nature during extreme<FF03>conditions. Haha...<FF02><FF01>
 132	7:0x19a4	E3:134	Elly: One sees a glimpse of humanity's<FF03>true nature during extreme<FF03>conditions. Haha...<FF02><FF01>
-133	8:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+133	8:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 134	8:0x5388	E3:136	Igor: Welcome to the Velvet Room...<FF02><FF01>
 135	8:0x53ac	E3:137	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 136	8:0x53c8	E3:138	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
@@ -232,7 +232,7 @@ id	pos	psp	en
 230	11:0x22d0	E3:232	Female student:<FF03>Oww... I fell and landed on my butt.<FF03>Why's the hall so slippery!?<FF02><FF01>
 231	11:0x2308	E3:233	Wounded girl: Apparently something<FF03>happened at the cafeteria...<FF02><FF04>I'd go check it out if I hadn't hurt<FF03>myself when I fell. Owww...<FF02><FF01>
 232	11:0x2350	E3:234	Female student: Like, did you hear?<FF02><FF04>Y'know the market they're<FF03>holding next door that sells<FF03>those kickass clothes?<FF02><FF04>Apparently their stock is, like,<FF03>completely different now.<FF02><FF01>
-233	11:0x23b8	E3:235	<FF06><03>Minori Nashimoto<FF03>Ayase's chatty friend.<FF03>She loves to talk more than anything.<FF02><FF01>
+233	11:0x23b8	E3:235	<FF06><03>Minori Nashimoto<FF03>Ayase's chatty friend.<FF03>She loves to talk more than anything.<FF06><00><FF02><FF01>
 234	11:0x23f4	E3:236	Nanjo: I worry about Masao and Maki<FF03>out there. We must hurry and<FF03>defeat the Snow Queen.<FF02><FF01>
 235	11:0x2430	E3:237	Nanjo: Masao, Maki, wait for us.<FF03>Once we defeat the Snow Queen,<FF03>we'll come for you!<FF02><FF01>
 236	11:0x246c	E3:238	Nanjo: Yes? What is it?<FF03>Do you still require something of me?<FF02><FF01>
@@ -250,7 +250,7 @@ id	pos	psp	en
 248	11:0x26d4	E3:251	Elly: Thank goodness<FF03>the infirmary is still intact.<FF02><FF01>
 249	11:0x26f8	E3:252	Elly:<FF03>We must hurry and bring the school<FF03>back to normal so we can find Maki.<FF02><FF01>
 250	11:0x2728	E3:253	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
-251	11:0x2754		Will you inscribe your story on me?<FF03><FF0E><00><FF01>
+251	11:0x2754	E3:254	Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 252	11:0x27ac	E3:255	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
 253	12:0x1a7c	E3:256	Toro: No way...<FF03>All that's left is milk and cheese?<FF03>I can't even eat my sorrow away?<FF02><FF04>I'm lactose intolerant...<FF02><FF04>This is a conspiracy by someone who<FF03>knows! Yeah, that's gotta be it!<FF02><FF04>Everyone in the world is laughing at<FF03>my bad luck! *sob* Dammit...<FF02><FF01>
 254	12:0x1b20	E3:257	Toro: Huh? Huhhh?<FF03>Why was I sleeping here?<FF02><FF04>Oh... hi everyone. Don't look at me<FF03>like that, it's embarrassing...<FF02><FF01>
@@ -428,7 +428,7 @@ id	pos	psp	en
 426	41:0x14b4	E3:429	Reiho: Hee-ho! This is the 5th floor.<FF02><FF01>
 427	41:0x14d8	E3:430	Raiho: Hee-ho!<FF02><FF01>
 428	41:0x14f0	E3:431	Want me-ho to take you downstairs?<FF03><FF0E><00><FF01>
-429	41:0x150c	E3:432	Raiho: Hee-ho! Well then, hee-close<FF03>your eyes for a minute, ho...<FF02><FF01>
+429	41:0x150c	E3:432	Reiho: Tch.<FF02><FF01>
 430	41:0x151c	E3:433	Raiho: Hee-ho! Well then, hee-close<FF03>your eyes for a minute, ho...<FF02><FF01>
 431	41:0x154c	E3:434	Reiho: Tch.<FF02><FF01>
 432	41:0x155c	E3:435	Yukino: What kind of magic trick<FF03>is this snowman using?<FF02><FF01>
@@ -469,7 +469,7 @@ id	pos	psp	en
 467	45:0x38c0	E3:470	Trish: Boo to that!<FF03>You mangy, dirty bum!<FF03>Don't blame me if you wind up dead!<FF02><FF01>
 468	45:0x38f8	E3:471	Well, come again.<FF03>I'll be waiting! Bye-bye!<FF02><FF01>
 469	45:0x3924	E3:472	Trish: You called me out for no<FF03>reason!? Boo to that! Get outta here!<FF02><FF01>
-470	46:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+470	46:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 471	46:0x5388	E3:474	Igor: Welcome to the Velvet Room...<FF02><FF01>
 472	46:0x53ac	E3:475	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 473	46:0x53c8	E3:476	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
@@ -482,7 +482,7 @@ id	pos	psp	en
 480	46:0x57e0	E3:483	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF02><FF04>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
 481	46:0x5b78	E3:484	Igor: Pardon me for being nosy, but...<FF02><FF04>Personas have<FF03>eight levels of growth.<FF03>You should try to develop them fully.<FF02><FF04>I'm sure that there will be an ample<FF03>reward for doing so...<FF02><FF04>You might also be interested to<FF03>know about various factors in fusion.<FF02><FF04>For example, even when creating<FF03>the same Persona...<FF02><FF04>The combination of spell cards,<FF03>the affinities of the demons used...<FF02><FF04>The position of Terra and Luna, and<FF03>any essences added into the mix...<FF02><FF04>All of these factor into the resultant<FF03>Persona. And one more thing...<FF02><FF04>You may also add an item into<FF03>the fusion to trigger a change.<FF02><FF04>There are some items for which<FF03>the result is easily predictable...<FF02><FF04>But sometimes, even I will be unable to<FF03>guess at what may happen.<FF02><FF04>Should that come about,<FF03>I do hope that you'll pardon me.<FF02><FF04>But make no mistake,<FF03>I do believe it is worth trying...<FF02><FF04>I suggest gems for obtaining<FF03>a higher- or lower-ranked<FF03>fusion within an order.<FF02><FF04>As for the other items' effects,<FF03>you should experiment for yourself.<FF02><FF01>
 482	47:0x1150	E3:485	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
-483	47:0x117c		Will you inscribe your story on me?<FF03><FF0E><00><FF01>
+483	47:0x117c	E3:486	Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 484	47:0x11d4	E3:487	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
 485	48:0x19cc	E3:488	Elly: Wh... What...!?<FF02><FF01>
 486	48:0x19ec	E3:489	Brown: Oh, no... no no no...!<FF02><FF01>
@@ -546,7 +546,7 @@ id	pos	psp	en
 544	63:0x1150	E3:547	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 545	63:0x117c	E3:548	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 546	63:0x11a8	E3:549	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-547	64:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+547	64:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 548	64:0x5388	E3:551	Igor: Welcome to the Velvet Room...<FF02><FF01>
 549	64:0x53ac	E3:552	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 550	64:0x53c8	E3:553	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
@@ -630,7 +630,7 @@ id	pos	psp	en
 628	79:0x1150	E3:631	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 629	79:0x117c	E3:632	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 630	79:0x11a8	E3:633	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-631	80:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+631	80:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 632	80:0x5388	E3:635	Igor: Welcome to the Velvet Room...<FF02><FF01>
 633	80:0x53ac	E3:636	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 634	80:0x53c8	E3:637	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
@@ -689,9 +689,9 @@ id	pos	psp	en
 687	87:0x11fc	E3:690	Agastya Tree: Will you put<FF03>a temporary halt to your journey?<FF02><FF03><FF0E><00><FF01>
 688	87:0x1228	E3:691	Agastya Tree: Young ones...<FF03>I will remember the story of<FF03>your journey for you.<FF02><FF01>
 689	87:0x1258	E3:692	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-690	88:0x120c	E3:694	Yukino: Having no time limit is<FF03>even more ominous, in a way.<FF03>I think we should hurry on ahead.<FF02><FF01>
-691	88:0x1244	E3:695	Ayase: This tower is, like,<FF03>totally creepy, y'know?<FF03>Let's hurry and get through it.<FF02><FF01>
-692	88:0x1278		Nanjo: Gah, that Michiko woman<FF03>gets on my nerves! She's infuriating!<FF03>Truly infuriating!<FF02><FF01>
+690	88:0x120c	E3:693	Yukino: Having no time limit is<FF03>even more ominous, in a way.<FF03>I think we should hurry on ahead.<FF02><FF01>
+691	88:0x1244	E3:694	Ayase: This tower is, like,<FF03>totally creepy, y'know?<FF03>Let's hurry and get through it.<FF02><FF01>
+692	88:0x1278	E3:695	Nanjo: Gah, that Michiko woman<FF03>gets on my nerves! She's infuriating!<FF03>Truly infuriating!<FF02><FF01>
 693	88:0x12bc	E3:696	Brown: Hey, c'mon!<FF03>There's no time limit on this tower,<FF03>right? So let's take a break!<FF02><FF04>We can kick back a bit and<FF03>then get right to it!<FF02><FF01>
 694	88:0x1314	E3:697	Elly: Can we hurry ahead with<FF03>all possible haste?<FF03>I can't shake this feeling...<FF02><FF01>
 695	89:0x1150	E3:698	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
@@ -715,7 +715,7 @@ id	pos	psp	en
 713	95:0x1150	E3:716	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 714	95:0x117c	E3:717	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 715	95:0x11a8	E3:718	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-716	96:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+716	96:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 717	96:0x5388	E3:720	Igor: Welcome to the Velvet Room...<FF02><FF01>
 718	96:0x53ac	E3:721	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 719	96:0x53c8	E3:722	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
@@ -816,7 +816,7 @@ id	pos	psp	en
 814	111:0x1150	E3:817	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 815	111:0x117c	E3:818	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 816	111:0x11a8	E3:819	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-817	112:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+817	112:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 818	112:0x5388	E3:821	Igor: Welcome to the Velvet Room...<FF02><FF01>
 819	112:0x53ac	E3:822	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 820	112:0x53c8	E3:823	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>

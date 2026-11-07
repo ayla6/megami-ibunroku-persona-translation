@@ -798,15 +798,17 @@ def card_en(psx_raw, us_raw, name, nick, words):
     style = '03' if (len(us_raw) > 3 and us_raw[0] == 0xFF
                      and us_raw[1] in (0x18, 0x06) and us_raw[2] == 0x03) else '02'
     head = '<FF06><%s>' % style
-    # tail: PSP's own frame close + waits/end. Portrait cards close with
-    # FF18 0000 (maps to the PSX frame close <FF06><00>); every card ends
-    # FF02 FF01, same bytes both sides.
+    # tail: PSP's own frame close + waits/end. Both card kinds close with a
+    # four-byte frame code: portrait cards FF18 0000, plain-text cards
+    # FF06 0000. Either maps to the PSX frame close <FF06><00>; every card
+    # ends FF02 FF01, same bytes both sides.
     tail = ''
     i = len(us_raw)
     while i - 2 >= 0 and us_raw[i - 2] == 0xFF and us_raw[i - 1] in (0x01, 0x02):
         tail = '<FF%02X>' % us_raw[i - 1] + tail
         i -= 2
-    if i - 4 >= 0 and us_raw[i - 4:i] == bytes((0xFF, 0x18, 0x00, 0x00)):
+    if i - 4 >= 0 and us_raw[i - 4:i] in (bytes((0xFF, 0x18, 0x00, 0x00)),
+                                          bytes((0xFF, 0x06, 0x00, 0x00))):
         tail = '<FF06><00>' + tail
         i -= 4
     if '<FF01>' not in tail:
@@ -1271,6 +1273,15 @@ def align_idx():
         cols = strlib.tsv_cols(ALIGN)
         for row in strlib.tsv_rows(ALIGN, required=cols):
             r = [row[c] for c in cols]
+            # generated rows carrying a duplicate-wording repair append the
+            # donor as a tuple (same shape align_fix's extended rows use)
+            src = None
+            if (len(r) >= 9 and row['src_file']
+                    and row['src_entry'].isdigit() and row['src_box'].isdigit()):
+                src = (row['src_file'], int(row['src_entry']), int(row['src_box']))
+            r = r[:6]
+            if src is not None:
+                r += ['', src]
             if row['entry'].isdigit() and row['psx_box'] not in ('', 'None'):
                 _ALIGN_IDX.setdefault((row['file'], int(row['entry'])), {})[
                     int(row['psx_box'])] = r
@@ -1437,6 +1448,16 @@ def convert_entry(f, ei):
                 continue
             name, nick, words = card
             en = _clean(card_en(psx.box_bytes(k), us_raw, name, nick, words))
+            # A CARD SOURCE THAT IS STILL JAPANESE IS NOT A TRANSLATION, the
+            # same rule the dialogue path applies below: PSP-US left some
+            # profile cards untranslated, and building one here ships kana in
+            # an `en` cell (then trips the width check). The box stays a gap.
+            import port_derive
+            if port_derive.still_japanese(en):
+                out.append((k, ja, None, ''))
+                prev_lab = None
+                prev_ja = None
+                continue
             errs = []
             for ln in re.split(r'<FF0[234]>', en):
                 plain = re.sub(r'<[^>]+>', '', ln)
@@ -1639,23 +1660,37 @@ def _one(arg):
 
 def psp_lookup(f):
     """(entry, box) -> psp provenance pointer for one story file: the unit
-    in extracted_text/psp_us/pack/<E?>.tsv sharing the cross-side
-    (entry, box) coordinate (align.tsv where the boxes were re-paginated
-    apart). Generated rows carry the source they were derived from."""
+    in extracted_text/psp_us/pack/<E?>.tsv that supplied the English.
+
+    The pointer must name the same box the porter read, so it goes through
+    the same `align_idx()` table (generated align.tsv plus reviewed
+    align_fix overrides), including a cross-file source row. A box with no
+    binding keeps its own coordinate: provenance is the raw PSP-US slot
+    only when the porter fell back to the slot join."""
     import toolbelt
-    amap = {}
-    path = os.path.join(toolbelt.MAPPINGS, 'align.tsv')
-    if os.path.exists(path):
-        for line in open(path, encoding='utf-8').read().splitlines()[1:]:
-            c = line.split('\t')
-            if len(c) >= 6 and c[0].lower() == f.lower():
-                amap[(c[1], c[2])] = c[4]
     idx = {(r['entry'], r['box']): r['id']
            for r in toolbelt.read_extracted('psp_us', f'pack/{f}', optional=True)}
+    by_file = {}
+
+    def us_id(file, entry, box):
+        if file not in by_file:
+            by_file[file] = {
+                (r['entry'], r['box']): r['id']
+                for r in toolbelt.read_extracted(
+                    'psp_us', f'pack/{file}', optional=True)}
+        return by_file[file].get((str(entry), str(box)))
 
     def get(entry, box):
         e, b = str(entry), str(box)
-        rid = idx.get((e, amap.get((e, b), b)))
+        r = align_idx().get((f, int(e)), {}).get(int(b)) if b.isdigit() else None
+        if r is not None and r[5] == 'ok':
+            if len(r) > 7 and isinstance(r[7], tuple):
+                sf, se, sb = r[7]
+                rid = us_id(sf, se, sb)
+                return f'{sf}:{rid}' if rid is not None else f'{sf}:'
+            rid = idx.get((e, r[4]))
+            return f'{f}:{rid}' if rid is not None else ''
+        rid = idx.get((e, b))
         return f'{f}:{rid}' if rid is not None else ''
     return get
 

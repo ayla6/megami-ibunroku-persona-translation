@@ -3,6 +3,7 @@ from pathlib import Path
 import struct
 import sys
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / 'src/extraction_tools/matching'), str(ROOT / 'src/injection_tools')]
@@ -11,6 +12,7 @@ import port_derive
 import btlp
 import btlmsg
 import etext
+import items
 import toolbelt
 
 
@@ -89,6 +91,19 @@ class RewardNotice(unittest.TestCase):
                     pointer = struct.unpack_from('<I', data, address - btlp.B)[0]
                 self.assertEqual(data[pointer - btlp.B:pointer - btlp.B + len(expected)],
                                  expected, pos)
+
+    def test_name_digest_tracks_only_consumed_item_names(self):
+        """An unrelated SLPS_005.00 row cannot stale the notice plan."""
+        item_pos = hex(items.records()[0][0])
+        consumed = [{'pos': item_pos, 'en': 'Bitem', 'psp': 'EBOOT:1'}]
+        with patch.object(toolbelt, 'read_generated', return_value=consumed):
+            base = rn._name_digest()
+        unrelated = consumed + [{'pos': '0x1', 'en': 'Other', 'psp': ''}]
+        with patch.object(toolbelt, 'read_generated', return_value=unrelated):
+            self.assertEqual(rn._name_digest(), base)
+        changed = [{'pos': item_pos, 'en': 'Citem', 'psp': 'EBOOT:1'}]
+        with patch.object(toolbelt, 'read_generated', return_value=changed):
+            self.assertNotEqual(rn._name_digest(), base)
 
     def test_item_reader_is_serialized_with_slps_writers(self):
         import port

@@ -1,9 +1,9 @@
 kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
 meta	map:boot_btlmsg	fffeb222faa24d5466d83daa4072ee0e4858d93e								
 meta	map:btlneg	c72af019b544786c322280f0bd3385780858f900								
-meta	matches_sha1	074a6e55da4371a70ebd2b3783c36ddfdc85a24e								
+meta	matches_sha1	f69b6cde89bc6c1f9fc383cce712f8e29bf25c9e								
 meta	psx:BTLP	b2cba081ee71bd645969ec85ee11dc6ac18f2976								
-meta	rule_sha1	15aa6fc4cdac7a4d4fa488c014974698190b4997								
+meta	rule_sha1	575011112ececdaa6c3e98003f314fb65d96588e								
 meta	us:EBOOT	08e9592c6d19ae1a355f016b6664408be61089e4								
 meta	us:boot-bin	ffe2a970ebbcb974e5a022f572cbb5892d36f035								
 meta	version	1								
@@ -70,17 +70,53 @@ match			boot_btlmsg	0x6de58	boot	29aed4		exact
 match			consumer:notice	33	boot	2a5776		consumer		
 match			consumer:control	25	boot	2a58ec		consumer		
 match			consumer:control	27	boot	2a58a6		consumer		
+match			btlneg	0	boot	2a5e1c		exact		
+match			btlneg	1	boot	2a5dec		exact		
+match			btlneg	2	boot	2a5dc6		exact		
+match			btlneg	3	boot	2a5d7a		exact		
+match			btlneg	4	boot	2a5d38		exact		
+match			btlneg	5	boot	2a5d00		exact		
+match			btlneg	6	boot	2a5cc2		exact		
+match			btlneg	7	boot	2a5c88		exact		
+match			btlneg	8	boot	2a5c54		exact		
+match			btlneg	9	boot	2a5a08		exact		
+match			btlneg	10	boot	2a5bf4		exact		
+match			btlneg	11	boot	2a5bbe		exact		
+match			btlneg	12	boot	2a5b86		exact		
+match			btlneg	13	boot	2a5b4e		exact		
+match			btlneg	14	boot	2a5b0e		exact		
+match			btlneg	15	boot	2a5ad4		exact		
+match			btlneg	16	boot	2a5a9c		exact		
+match			btlneg	17	boot	2a5a6a		exact		
+match			btlneg	18	boot	2a5a34		exact		
+match			btlneg	19	boot	2a5c28		exact		
+match			btlneg	20	boot	2a59d2		exact		
+match			btlneg	21	boot	2a59a2		exact		
+match			btlneg	22	boot	2a596e		exact		
+match			btlneg	23	boot	2a5938		exact		
+match			btlneg	24	boot	2a5908		exact		
+match			btlneg	28	boot	2a5878		exact		
+match			btlneg	29	boot	2a5856		exact		
+match			btlneg	30	boot	2a5834		exact		
+match			btlneg	31	boot	2a57fa		exact		
+match			btlneg	32	boot	2a57b0		exact		
+match			btlneg	43	boot	2a943a		exact		
+match			btlneg	44	boot	2a940a		exact		
+match			btlneg	45	boot	2a93da		exact		
 match			btlneg	114				exact	none	
 match			btlneg	118				exact	none	
 match			btlneg	145				exact	none	
 match			btlneg	167				exact	none	
 match			btlneg	184				exact	none	
 match			btlneg	195				exact	none	
+match			btlneg	287	boot	2a95fe		exact		
 match			btlneg	295				exact	none	
 match			btlneg	296				exact	none	
 match			btlneg	297				exact	none	
 match			btlneg	299				exact	none	
 match			btlneg	301				exact	none	
+match			btlneg	321	boot	2741b2		exact		
+match			btlneg	323	boot	27469a		exact		
 match			btlneg	332				exact	none	
 match			btlneg	335				exact	none	
 match			btlneg	344				exact	none	

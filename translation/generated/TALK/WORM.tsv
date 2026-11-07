@@ -739,261 +739,261 @@ id	pos	psp	en
 737	0xaf48	WORM:52	The Crab and the Monkey<FFF5>
 738	0xaf52	WORM:53	The Grateful Crane<FFF5>
 739	0xaf5c	WORM:54	The Tortoise and the Hare<FFF5>
-740	0xaf72	WORM:56	Waaaaaaah!<FFF5>
-741	0xaf7d	WORM:57	I'm delicious!<FFF5>
-742	0xaf88	WORM:58	You!<FFF5>
-743	0xaf8e	WORM:59	Everyone!<FFF5>
-744	0xaf95	WORM:60	I'm not hungry.<FFF5>
-745	0xaf9d	WORM:61	Never thought about it.<FFF5>
-746	0xafa7	WORM:62	Something awesome!<FFF5>
-747	0xafb2	WORM:63	Something awesome!<FFF5>
-748	0xafbd	WORM:64	Hell no!<FFF5>
-749	0xafc7	WORM:65	Awww...<FFF5>
-750	0xafcf	WORM:66	Oh crap! Oh crap!<FFF5>
-751	0xafd7	WORM:67	I'm a human.<FFF5>
-752	0xafde	WORM:68	Nothing, actually.<FFF5>
-753	0xafe8	WORM:69	I'm a pickup artist.<FFF5>
-754	0xaff3	WORM:70	I wear them.<FFF5>
-755	0xaffa	WORM:71	I don't wear them.<FFF5>
-756	0xb002	WORM:72	Pun<FFF5>
-757	0xb00e	WORM:73	Stand-up<FFF5>
-758	0xb014	WORM:74	Dirty joke<FFF5>
-759	0xb01a	WORM:75	Okay.<FFF5>
-760	0xb022	WORM:76	NO. WAY.<FFF5>
-761	0xb02b	WORM:77	What should I do...?<FFF5>
-762	0xb034	WORM:78	Screw that!<FFF5>
-763	0xb03e	WORM:79	Screw that!<FFF5>
-764	0xb048	WORM:80	Awww...<FFF5>
-765	0xb050	WORM:81	Biker song<FFF5>
-766	0xb059	WORM:82	Nothing in particular.<FFF5>
-767	0xb062	WORM:83	Nothing in particular.<FFF5>
-768	0xb06b	WORM:84	I really love it.<FFF5>
-769	0xb074	WORM:85	Not really.<FFF5>
-770	0xb07e	WORM:86	Okay.<FFF5>
-771	0xb086	WORM:87	NO. WAY.<FFF5>
-772	0xb08f	WORM:88	What should I do...?<FFF5>
-773	0xb098	WORM:89	A stupid story?<FFF5>
-774	0xb0a3	WORM:90	A rags to riches story?<FFF5>
-775	0xb0ac	WORM:91	A pickup story?<FFF5>
-776	0xb0b7	WORM:92	That really surprised me.<FFF5>
-777	0xb0c1	WORM:93	I surprised you.<FFF5>
-778	0xb0cf	WORM:94	You have a ways to go.<FFF5>
-779	0xb0d8	WORM:95	Glad to hear it!<FFF5>
-780	0xb0e2	WORM:96	Awww...<FFF5>
-781	0xb0ea	WORM:97	Oh crap! Oh crap!<FFF5>
-782	0xb0f4	WORM:98	I'm not bullying you.<FFF5>
-783	0xb11a	WORM:101	Don't worry about it.<FFF5>
-784	0xb122	WORM:102	How should I know?<FFF5>
-785	0xb129	WORM:103	*smirk*<FFF5>
-786	0xb130	WORM:104	All right.<FFF5>
-787	0xb137	WORM:105	No thanks.<FFF5>
-788	0xb13e	WORM:106	No thanks.<FFF5>
-789	0xb145	WORM:107	You're a bird.<FFF5>
-790	0xb14b	WORM:108	You're a snake.<FFF5>
-791	0xb152	WORM:109	How should I know?<FFF5>
-792	0xb159	WORM:110	All right.<FFF5>
-793	0xb160	WORM:111	I refuse!<FFF5>
-794	0xb167	WORM:112	Now, what to do...?<FFF5>
-795	0xb172	WORM:113	I need you.<FFF5>
-796	0xb180	WORM:114	I need a friend.<FFF5>
-797	0xb18f	WORM:115	*smirk*<FFF5>
-798	0xb196	WORM:116	*smirk*<FFF5>
-799	0xb19d	WORM:117	Are you an idiot?<FFF5>
-800	0xb1ab	WORM:118	I'd be a strategist.<FFF5>
-801	0xb1b3	WORM:119	I'd be a general.<FFF5>
-802	0xb1bb	WORM:120	I'd be both.<FFF5>
-803	0xb1c3	WORM:121	I'll apologize.<FFF5>
-804	0xb1cc	WORM:122	No thanks.<FFF5>
-805	0xb1d3	WORM:123	Now, what to do...?<FFF5>
-806	0xb1de	WORM:124	That's right.<FFF5>
-807	0xb1e3	WORM:125	Don't worry about it.<FFF5>
-808	0xb1eb	WORM:126	Don't worry about it.<FFF5>
-809	0xb1f3	WORM:127	You're awesome!<FFF5>
-810	0xb1ff	WORM:128	You're awesome!<FFF5>
-811	0xb20b	WORM:129	I was being sarcastic.<FFF5>
-812	0xb216	WORM:130	It's impossible for you.<FFF5>
-813	0xb224	WORM:131	An idiot's an idiot.<FFF5>
-814	0xb230	WORM:132	Then I'll defeat you.<FFF5>
-815	0xb23f	WORM:133	All right.<FFF5>
-816	0xb246	WORM:134	All right.<FFF5>
-817	0xb24d	WORM:135	I refuse!<FFF5>
-818	0xb254	WORM:136	Well, all right.<FFF5>
-819	0xb25d	WORM:137	I ain't teaching nobody.<FFF5>
-820	0xb269	WORM:138	Then gimme something!<FFF5>
-821	0xb275	WORM:139	Hell no!<FFF5>
-822	0xb27d	WORM:140	You? Seriously?<FFF5>
-823	0xb28b	WORM:141	Then dance a bit.<FFF5>
-824	0xb298	WORM:142	Yeah, I like it.<FFF5>
-825	0xb2a3	WORM:143	Yeah, I like it.<FFF5>
-826	0xb2ae	WORM:144	I hate it.<FFF5>
-827	0xb2b5	WORM:145	I ain't joking here.<FFF5>
-828	0xb2bf	WORM:146	Like hell!<FFF5>
-829	0xb2cb	WORM:147	Mwahahahaha!<FFF5>
-830	0xb2d5	WORM:148	Yeah, I can see it.<FFF5>
-831	0xb2e0	WORM:149	There's nothin' there.<FFF5>
-832	0xb2ec	WORM:150	You have a green stripe!<FFF5>
-833	0xb2fc	WORM:151	I'm seriously stoked!<FFF5>
-834	0xb309	WORM:152	Whaddaya want!?<FFF5>
-835	0xb314	WORM:153	I ain't gonna bully you.<FFF5>
-836	0xb321	WORM:154	Mwahahahaha!<FFF5>
-837	0xb32b	WORM:155	What should I do...?<FFF5>
-838	0xb336	WORM:156	I thought so!<FFF5>
-839	0xb341	WORM:157	Whaddaya want!?<FFF5>
-840	0xb34c	WORM:158	Oh crap...<FFF5>
-841	0xb355	WORM:159	Mwahahahaha!<FFF5>
-842	0xb35f	WORM:160	Yeah, I wanna see.<FFF5>
-843	0xb36a	WORM:161	Yeah, I wanna see.<FFF5>
-844	0xb375	WORM:162	You're an idiot.<FFF5>
-845	0xb385	WORM:163	That'd help.<FFF5>
-846	0xb391	WORM:164	I don't want it.<FFF5>
-847	0xb399	WORM:165	Do you have any strength?<FFF5>
-848	0xb3a9	WORM:166	Well, all right.<FFF5>
-849	0xb3b2	WORM:167	Hell no!<FFF5>
-850	0xb3ba	WORM:168	What should I do...?<FFF5>
-851	0xb3c5	WORM:169	Story about being strong<FFF5>
-852	0xb3d6	WORM:170	Story about being smart<FFF5>
-853	0xb3e7	WORM:171	Story about being pretty<FFF5>
-854	0xb3f9	WORM:172	Yes.<FFF5>
-855	0xb401	WORM:173	Yes.<FFF5>
-856	0xb409	WORM:174	No!<FFF5>
-857	0xb411	WORM:175	I'm experienced at this.<FFF5>
-858	0xb41f	WORM:176	That's your weakness.<FFF5>
-859	0xb42f	WORM:177	I have nothing special.<FFF5>
-860	0xb43d	WORM:178	A mysterious story<FFF5>
-861	0xb44d	WORM:179	An EX-File<FFF5>
-862	0xb45f	WORM:180	An unknown world<FFF5>
-863	0xb46d	WORM:181	Because it's fun.<FFF5>
-864	0xb478	WORM:182	Because I want to sing.<FFF5>
-865	0xb484	WORM:183	I can't tell you.<FFF5>
-866	0xb490	WORM:184	Sorry.<FFF5>
-867	0xb49c	WORM:185	Pardon?<FFF5>
-868	0xb4ac	WORM:186	Oh my God!<FFF5>
-869	0xb4c0	WORM:187	National anthem<FFF5>
-870	0xb4c6	WORM:188	Biker song<FFF5>
-871	0xb4cf	WORM:189	Did you say something?<FFF5>
-872	0xb4dc	WORM:190	Did you say something?<FFF5>
-873	0xb4e9	WORM:191	I can't tell you.<FFF5>
-874	0xb4f5	WORM:192	Yes.<FFF5>
-875	0xb4fd	WORM:193	Yes.<FFF5>
-876	0xb505	WORM:194	No!<FFF5>
-877	0xb50d	WORM:195	I eat vegetables.<FFF5>
-878	0xb515	WORM:196	I eat rice.<FFF5>
-879	0xb51d	WORM:197	I eat meat.<FFF5>
-880	0xb525	WORM:198	I eat once a day.<FFF5>
-881	0xb52e	WORM:199	I eat twice a day.<FFF5>
-882	0xb537	WORM:200	I eat three times a day.<FFF5>
-883	0xb540	WORM:201	Oh, I'm so glad.<FFF5>
-884	0xb54a	WORM:202	That's not true...<FFF5>
-885	0xb553	WORM:203	I decline.<FFF5>
-886	0xb55c	WORM:204	That's right.<FFF5>
-887	0xb563	WORM:205	My mouth isn't foul.<FFF5>
-888	0xb572	WORM:206	I'm smart!<FFF5>
-889	0xb57e	WORM:207	My calves!<FFF5>
-890	0xb589	WORM:208	Are you serious...?<FFF5>
-891	0xb596	WORM:209	Well, okay...<FFF5>
-892	0xb59f	WORM:210	What!? No!<FFF5>
-893	0xb5a9	WORM:211	What should I do...?<FFF5>
-894	0xb5b6	WORM:212	Their face?<FFF5>
-895	0xb5bd	WORM:213	Their strength?<FFF5>
-896	0xb5c7	WORM:214	Their wealth?<FFF5>
-897	0xb5d4	WORM:215	Well, I'll try.<FFF5>
-898	0xb5e0	WORM:216	But I'll get all muscley.<FFF5>
-899	0xb5ee	WORM:217	Totally not.<FFF5>
-900	0xb5f4	WORM:218	I totally love you!<FFF5>
-901	0xb600	WORM:219	I totally love you!<FFF5>
-902	0xb60c	WORM:220	You serious about that?<FFF5>
-903	0xb61b	WORM:221	Gimme your card!<FFF5>
-904	0xb629	WORM:222	Gimme something!<FFF5>
-905	0xb636	WORM:223	I don't want anything!<FFF5>
-906	0xb642	WORM:224	Okay.<FFF5>
-907	0xb648	WORM:225	Alright, but...<FFF5>
-908	0xb651	WORM:226	Waaaaaah!<FFF5>
-909	0xb65b	WORM:227	Ahahahaha!<FFF5>
-910	0xb666	WORM:228	Hey!<FFF5>
-911	0xb66f	WORM:229	Are you straight...?<FFF5>
-912	0xb67b	WORM:230	I know.<FFF5>
-913	0xb684	WORM:231	I don't know.<FFF5>
-914	0xb68d	WORM:232	I don't care.<FFF5>
-915	0xb696	WORM:233	You're a Flight!<FFF5>
-916	0xb6a3	WORM:234	You're a <FFF0>!<FFF5>
-917	0xb6ae	WORM:235	You're a Jirae!<FFF5>
-918	0xb6bb	WORM:236	Well, all right!<FFF5>
-919	0xb6c4	WORM:237	No way.<FFF5>
-920	0xb6ca	WORM:238	Screw that!<FFF5>
-921	0xb6d6	WORM:239	That's how humans are.<FFF5>
-922	0xb6e3	WORM:240	That's how humans are.<FFF5>
-923	0xb6f0	WORM:241	I don't know.<FFF5>
-924	0xb6f8	WORM:242	You should eat veggies.<FFF5>
-925	0xb702	WORM:243	You should turn human.<FFF5>
-926	0xb70d	WORM:244	It's too late for you.<FFF5>
-927	0xb71a	WORM:245	*chuckle*<FFF5>
-928	0xb71e	WORM:246	*chuckle*<FFF5>
-929	0xb722	WORM:247	Who knows?<FFF5>
-930	0xb729	WORM:248	Their face<FFF5>
-931	0xb72e	WORM:249	Their head<FFF5>
-932	0xb733	WORM:250	It's too awful to say.<FFF5>
-933	0xb741	WORM:251	......<FFF5>
-934	0xb74b	WORM:252	Yukino Mayuzumi.<FFF5>
-935	0xb753	WORM:253	I'm not telling you.<FFF5>
-936	0xb75e	WORM:254	Sorry.<FFF5>
-937	0xb766	WORM:255	Get mad all you want.<FFF5>
-938	0xb772	WORM:256	......<FFF5>
-939	0xb77e	WORM:257	......<FFF5>
-940	0xb78a	WORM:258	It's Reiji.<FFF5>
-941	0xb791	WORM:259	I don't hear you.<FFF5>
-942	0xb79a	WORM:260	Sorry.<FFF5>
-943	0xb7a2	WORM:261	So what?<FFF5>
-944	0xb7ab	WORM:262	......<FFF5>
-945	0xb7b7	WORM:263	Leave me alone!<FFF5>
-946	0xb7c2	WORM:264	......<FFF5>
-947	0xb7ce	WORM:265	I'm not interested.<FFF5>
-948	0xb7db	WORM:266	So what?<FFF5>
-949	0xb7e4	WORM:267	I don't know.<FFF5>
-950	0xb7ec	WORM:268	You wanna die, I see.<FFF5>
-951	0xb7f7	WORM:269	What nonsense...<FFF5>
-952	0xb800	WORM:270	Screw that!<FFF5>
-953	0xb809	WORM:271	Idiots should burn...<FFF5>
-954	0xb815	WORM:272	I don't hear you.<FFF5>
-955	0xb81e	WORM:273	You can sleep forever.<FFF5>
-956	0xb829	WORM:274	I wanted to yell.<FFF5>
-957	0xb833	WORM:275	Leave me alone.<FFF5>
-958	0xb83c	WORM:276	I wanted to kill you.<FFF5>
-959	0xb846	WORM:277	I'm not telling.<FFF5>
-960	0xb84d	WORM:278	Keep doing magic<FFF5>
-961	0xb858	WORM:279	Shut up!<FFF5>
-962	0xb860	WORM:280	So what?<FFF5>
-963	0xb869	WORM:281	All right.<FFF5>
-964	0xb870	WORM:282	I can't hear you.<FFF5>
-965	0xb879	WORM:283	Leave me alone.<FFF5>
-966	0xb882	WORM:284	You ate it.<FFF5>
-967	0xb88e	WORM:285	It'll be out again soon.<FFF5>
-968	0xb89a	WORM:286	It's behind the earth.<FFF5>
-969	0xb8a8	WORM:287	A high school student.<FFF5>
-970	0xb8b0	WORM:288	Part of the workforce.<FFF5>
-971	0xb8b8	WORM:289	A Devil Summoner.<FFF5>
-972	0xb8c4	WORM:290	Say your name<FFF5>
-973	0xb8cb	WORM:291	Say your name<FFF5>
-974	0xb8d2	WORM:292	Don't answer<FFF5>
-975	0xb8d9	WORM:293	I'm bored.<FFF5>
-976	0xb8de	WORM:294	I'm bored.<FFF5>
-977	0xb8e3	WORM:295	It's not open.<FFF5>
-978	0xb8eb	WORM:296	Circle<FFF5>
-979	0xb8ef	WORM:297	Square<FFF5>
-980	0xb8f4	WORM:298	Triangle<FFF5>
-981	0xb8fa	WORM:299	The big one<FFF5>
-982	0xb902	WORM:300	The small one<FFF5>
-983	0xb90a	WORM:301	Open both<FFF5>
-984	0xb914	WORM:302	I'm doing fine.<FFF5>
-985	0xb91b	WORM:303	I'm not doing so good.<FFF5>
-986	0xb924	WORM:304	I'm done for...<FFF5>
-987	0xb92d	WORM:305	I knew that.<FFF5>
-988	0xb935	WORM:306	I didn't know that.<FFF5>
-989	0xb93e	WORM:307	It was an accident...<FFF5>
-990	0xb94a	WORM:308	Like<FFF5>
-991	0xb94f	WORM:309	Dislike<FFF5>
-992	0xb954	WORM:310	Neither<FFF5>
-993	0xb95d	WORM:311	Watermelon<FFF5>
-994	0xb962	WORM:312	Strawberry<FFF5>
-995	0xaf65	WORM:55	Don't eat me!<FFF5>
-996	0xb100	WORM:99	Yo, stupid!<FFF5>
-997	0xb10d	WORM:100	Yo, stupid!<FFF5>
+740	0xaf65	WORM:55	Don't eat me!<FFF5>
+741	0xaf72	WORM:56	Waaaaaaah!<FFF5>
+742	0xaf7d	WORM:57	I'm delicious!<FFF5>
+743	0xaf88	WORM:58	You!<FFF5>
+744	0xaf8e	WORM:59	Everyone!<FFF5>
+745	0xaf95	WORM:60	I'm not hungry.<FFF5>
+746	0xaf9d	WORM:61	Never thought about it.<FFF5>
+747	0xafa7	WORM:62	Something awesome!<FFF5>
+748	0xafb2	WORM:63	Something awesome!<FFF5>
+749	0xafbd	WORM:64	Hell no!<FFF5>
+750	0xafc7	WORM:65	Awww...<FFF5>
+751	0xafcf	WORM:66	Oh crap! Oh crap!<FFF5>
+752	0xafd7	WORM:67	I'm a human.<FFF5>
+753	0xafde	WORM:68	Nothing, actually.<FFF5>
+754	0xafe8	WORM:69	I'm a pickup artist.<FFF5>
+755	0xaff3	WORM:70	I wear them.<FFF5>
+756	0xaffa	WORM:71	I don't wear them.<FFF5>
+757	0xb002	WORM:72	Pun<FFF5>
+758	0xb00e	WORM:73	Stand-up<FFF5>
+759	0xb014	WORM:74	Dirty joke<FFF5>
+760	0xb01a	WORM:75	Okay.<FFF5>
+761	0xb022	WORM:76	NO. WAY.<FFF5>
+762	0xb02b	WORM:77	What should I do...?<FFF5>
+763	0xb034	WORM:78	Screw that!<FFF5>
+764	0xb03e	WORM:79	Screw that!<FFF5>
+765	0xb048	WORM:80	Awww...<FFF5>
+766	0xb050	WORM:81	Biker song<FFF5>
+767	0xb059	WORM:82	Nothing in particular.<FFF5>
+768	0xb062	WORM:83	Nothing in particular.<FFF5>
+769	0xb06b	WORM:84	I really love it.<FFF5>
+770	0xb074	WORM:85	Not really.<FFF5>
+771	0xb07e	WORM:86	Okay.<FFF5>
+772	0xb086	WORM:87	NO. WAY.<FFF5>
+773	0xb08f	WORM:88	What should I do...?<FFF5>
+774	0xb098	WORM:89	A stupid story?<FFF5>
+775	0xb0a3	WORM:90	A rags to riches story?<FFF5>
+776	0xb0ac	WORM:91	A pickup story?<FFF5>
+777	0xb0b7	WORM:92	That really surprised me.<FFF5>
+778	0xb0c1	WORM:93	I surprised you.<FFF5>
+779	0xb0cf	WORM:94	You have a ways to go.<FFF5>
+780	0xb0d8	WORM:95	Glad to hear it!<FFF5>
+781	0xb0e2	WORM:96	Awww...<FFF5>
+782	0xb0ea	WORM:97	Oh crap! Oh crap!<FFF5>
+783	0xb0f4	WORM:98	I'm not bullying you.<FFF5>
+784	0xb100	WORM:99	Yo, stupid!<FFF5>
+785	0xb10d	WORM:100	Yo, stupid!<FFF5>
+786	0xb11a	WORM:101	Don't worry about it.<FFF5>
+787	0xb122	WORM:102	How should I know?<FFF5>
+788	0xb129	WORM:103	*smirk*<FFF5>
+789	0xb130	WORM:104	All right.<FFF5>
+790	0xb137	WORM:105	No thanks.<FFF5>
+791	0xb13e	WORM:106	No thanks.<FFF5>
+792	0xb145	WORM:107	You're a bird.<FFF5>
+793	0xb14b	WORM:108	You're a snake.<FFF5>
+794	0xb152	WORM:109	How should I know?<FFF5>
+795	0xb159	WORM:110	All right.<FFF5>
+796	0xb160	WORM:111	I refuse!<FFF5>
+797	0xb167	WORM:112	Now, what to do...?<FFF5>
+798	0xb172	WORM:113	I need you.<FFF5>
+799	0xb180	WORM:114	I need a friend.<FFF5>
+800	0xb18f	WORM:115	*smirk*<FFF5>
+801	0xb196	WORM:116	*smirk*<FFF5>
+802	0xb19d	WORM:117	Are you an idiot?<FFF5>
+803	0xb1ab	WORM:118	I'd be a strategist.<FFF5>
+804	0xb1b3	WORM:119	I'd be a general.<FFF5>
+805	0xb1bb	WORM:120	I'd be both.<FFF5>
+806	0xb1c3	WORM:121	I'll apologize.<FFF5>
+807	0xb1cc	WORM:122	No thanks.<FFF5>
+808	0xb1d3	WORM:123	Now, what to do...?<FFF5>
+809	0xb1de	WORM:124	That's right.<FFF5>
+810	0xb1e3	WORM:125	Don't worry about it.<FFF5>
+811	0xb1eb	WORM:126	Don't worry about it.<FFF5>
+812	0xb1f3	WORM:127	You're awesome!<FFF5>
+813	0xb1ff	WORM:128	You're awesome!<FFF5>
+814	0xb20b	WORM:129	I was being sarcastic.<FFF5>
+815	0xb216	WORM:130	It's impossible for you.<FFF5>
+816	0xb224	WORM:131	An idiot's an idiot.<FFF5>
+817	0xb230	WORM:132	Then I'll defeat you.<FFF5>
+818	0xb23f	WORM:133	All right.<FFF5>
+819	0xb246	WORM:134	All right.<FFF5>
+820	0xb24d	WORM:135	I refuse!<FFF5>
+821	0xb254	WORM:136	Well, all right.<FFF5>
+822	0xb25d	WORM:137	I ain't teaching nobody.<FFF5>
+823	0xb269	WORM:138	Then gimme something!<FFF5>
+824	0xb275	WORM:139	Hell no!<FFF5>
+825	0xb27d	WORM:140	You? Seriously?<FFF5>
+826	0xb28b	WORM:141	Then dance a bit.<FFF5>
+827	0xb298	WORM:142	Yeah, I like it.<FFF5>
+828	0xb2a3	WORM:143	Yeah, I like it.<FFF5>
+829	0xb2ae	WORM:144	I hate it.<FFF5>
+830	0xb2b5	WORM:145	I ain't joking here.<FFF5>
+831	0xb2bf	WORM:146	Like hell!<FFF5>
+832	0xb2cb	WORM:147	Mwahahahaha!<FFF5>
+833	0xb2d5	WORM:148	Yeah, I can see it.<FFF5>
+834	0xb2e0	WORM:149	There's nothin' there.<FFF5>
+835	0xb2ec	WORM:150	You have a green stripe!<FFF5>
+836	0xb2fc	WORM:151	I'm seriously stoked!<FFF5>
+837	0xb309	WORM:152	Whaddaya want!?<FFF5>
+838	0xb314	WORM:153	I ain't gonna bully you.<FFF5>
+839	0xb321	WORM:154	Mwahahahaha!<FFF5>
+840	0xb32b	WORM:155	What should I do...?<FFF5>
+841	0xb336	WORM:156	I thought so!<FFF5>
+842	0xb341	WORM:157	Whaddaya want!?<FFF5>
+843	0xb34c	WORM:158	Oh crap...<FFF5>
+844	0xb355	WORM:159	Mwahahahaha!<FFF5>
+845	0xb35f	WORM:160	Yeah, I wanna see.<FFF5>
+846	0xb36a	WORM:161	Yeah, I wanna see.<FFF5>
+847	0xb375	WORM:162	You're an idiot.<FFF5>
+848	0xb385	WORM:163	That'd help.<FFF5>
+849	0xb391	WORM:164	I don't want it.<FFF5>
+850	0xb399	WORM:165	Do you have any strength?<FFF5>
+851	0xb3a9	WORM:166	Well, all right.<FFF5>
+852	0xb3b2	WORM:167	Hell no!<FFF5>
+853	0xb3ba	WORM:168	What should I do...?<FFF5>
+854	0xb3c5	WORM:169	Story about being strong<FFF5>
+855	0xb3d6	WORM:170	Story about being smart<FFF5>
+856	0xb3e7	WORM:171	Story about being pretty<FFF5>
+857	0xb3f9	WORM:172	Yes.<FFF5>
+858	0xb401	WORM:173	Yes.<FFF5>
+859	0xb409	WORM:174	No!<FFF5>
+860	0xb411	WORM:175	I'm experienced at this.<FFF5>
+861	0xb41f	WORM:176	That's your weakness.<FFF5>
+862	0xb42f	WORM:177	I have nothing special.<FFF5>
+863	0xb43d	WORM:178	A mysterious story<FFF5>
+864	0xb44d	WORM:179	An EX-File<FFF5>
+865	0xb45f	WORM:180	An unknown world<FFF5>
+866	0xb46d	WORM:181	Because it's fun.<FFF5>
+867	0xb478	WORM:182	Because I want to sing.<FFF5>
+868	0xb484	WORM:183	I can't tell you.<FFF5>
+869	0xb490	WORM:184	Sorry.<FFF5>
+870	0xb49c	WORM:185	Pardon?<FFF5>
+871	0xb4ac	WORM:186	Oh my God!<FFF5>
+872	0xb4c0	WORM:187	National anthem<FFF5>
+873	0xb4c6	WORM:188	Biker song<FFF5>
+874	0xb4cf	WORM:189	Did you say something?<FFF5>
+875	0xb4dc	WORM:190	Did you say something?<FFF5>
+876	0xb4e9	WORM:191	I can't tell you.<FFF5>
+877	0xb4f5	WORM:192	Yes.<FFF5>
+878	0xb4fd	WORM:193	Yes.<FFF5>
+879	0xb505	WORM:194	No!<FFF5>
+880	0xb50d	WORM:195	I eat vegetables.<FFF5>
+881	0xb515	WORM:196	I eat rice.<FFF5>
+882	0xb51d	WORM:197	I eat meat.<FFF5>
+883	0xb525	WORM:198	I eat once a day.<FFF5>
+884	0xb52e	WORM:199	I eat twice a day.<FFF5>
+885	0xb537	WORM:200	I eat three times a day.<FFF5>
+886	0xb540	WORM:201	Oh, I'm so glad.<FFF5>
+887	0xb54a	WORM:202	That's not true...<FFF5>
+888	0xb553	WORM:203	I decline.<FFF5>
+889	0xb55c	WORM:204	That's right.<FFF5>
+890	0xb563	WORM:205	My mouth isn't foul.<FFF5>
+891	0xb572	WORM:206	I'm smart!<FFF5>
+892	0xb57e	WORM:207	My calves!<FFF5>
+893	0xb589	WORM:208	Are you serious...?<FFF5>
+894	0xb596	WORM:209	Well, okay...<FFF5>
+895	0xb59f	WORM:210	What!? No!<FFF5>
+896	0xb5a9	WORM:211	What should I do...?<FFF5>
+897	0xb5b6	WORM:212	Their face?<FFF5>
+898	0xb5bd	WORM:213	Their strength?<FFF5>
+899	0xb5c7	WORM:214	Their wealth?<FFF5>
+900	0xb5d4	WORM:215	Well, I'll try.<FFF5>
+901	0xb5e0	WORM:216	But I'll get all muscley.<FFF5>
+902	0xb5ee	WORM:217	Totally not.<FFF5>
+903	0xb5f4	WORM:218	I totally love you!<FFF5>
+904	0xb600	WORM:219	I totally love you!<FFF5>
+905	0xb60c	WORM:220	You serious about that?<FFF5>
+906	0xb61b	WORM:221	Gimme your card!<FFF5>
+907	0xb629	WORM:222	Gimme something!<FFF5>
+908	0xb636	WORM:223	I don't want anything!<FFF5>
+909	0xb642	WORM:224	Okay.<FFF5>
+910	0xb648	WORM:225	Alright, but...<FFF5>
+911	0xb651	WORM:226	Waaaaaah!<FFF5>
+912	0xb65b	WORM:227	Ahahahaha!<FFF5>
+913	0xb666	WORM:228	Hey!<FFF5>
+914	0xb66f	WORM:229	Are you straight...?<FFF5>
+915	0xb67b	WORM:230	I know.<FFF5>
+916	0xb684	WORM:231	I don't know.<FFF5>
+917	0xb68d	WORM:232	I don't care.<FFF5>
+918	0xb696	WORM:233	You're a Flight!<FFF5>
+919	0xb6a3	WORM:234	You're a <FFF0>!<FFF5>
+920	0xb6ae	WORM:235	You're a Jirae!<FFF5>
+921	0xb6bb	WORM:236	Well, all right!<FFF5>
+922	0xb6c4	WORM:237	No way.<FFF5>
+923	0xb6ca	WORM:238	Screw that!<FFF5>
+924	0xb6d6	WORM:239	That's how humans are.<FFF5>
+925	0xb6e3	WORM:240	That's how humans are.<FFF5>
+926	0xb6f0	WORM:241	I don't know.<FFF5>
+927	0xb6f8	WORM:242	You should eat veggies.<FFF5>
+928	0xb702	WORM:243	You should turn human.<FFF5>
+929	0xb70d	WORM:244	It's too late for you.<FFF5>
+930	0xb71a	WORM:245	*chuckle*<FFF5>
+931	0xb71e	WORM:246	*chuckle*<FFF5>
+932	0xb722	WORM:247	Who knows?<FFF5>
+933	0xb729	WORM:248	Their face<FFF5>
+934	0xb72e	WORM:249	Their head<FFF5>
+935	0xb733	WORM:250	It's too awful to say.<FFF5>
+936	0xb741	WORM:251	......<FFF5>
+937	0xb74b	WORM:252	Yukino Mayuzumi.<FFF5>
+938	0xb753	WORM:253	I'm not telling you.<FFF5>
+939	0xb75e	WORM:254	Sorry.<FFF5>
+940	0xb766	WORM:255	Get mad all you want.<FFF5>
+941	0xb772	WORM:256	......<FFF5>
+942	0xb77e	WORM:257	......<FFF5>
+943	0xb78a	WORM:258	It's Reiji.<FFF5>
+944	0xb791	WORM:259	I don't hear you.<FFF5>
+945	0xb79a	WORM:260	Sorry.<FFF5>
+946	0xb7a2	WORM:261	So what?<FFF5>
+947	0xb7ab	WORM:262	......<FFF5>
+948	0xb7b7	WORM:263	Leave me alone!<FFF5>
+949	0xb7c2	WORM:264	......<FFF5>
+950	0xb7ce	WORM:265	I'm not interested.<FFF5>
+951	0xb7db	WORM:266	So what?<FFF5>
+952	0xb7e4	WORM:267	I don't know.<FFF5>
+953	0xb7ec	WORM:268	You wanna die, I see.<FFF5>
+954	0xb7f7	WORM:269	What nonsense...<FFF5>
+955	0xb800	WORM:270	Screw that!<FFF5>
+956	0xb809	WORM:271	Idiots should burn...<FFF5>
+957	0xb815	WORM:272	I don't hear you.<FFF5>
+958	0xb81e	WORM:273	You can sleep forever.<FFF5>
+959	0xb829	WORM:274	I wanted to yell.<FFF5>
+960	0xb833	WORM:275	Leave me alone.<FFF5>
+961	0xb83c	WORM:276	I wanted to kill you.<FFF5>
+962	0xb846	WORM:277	I'm not telling.<FFF5>
+963	0xb84d	WORM:278	Keep doing magic<FFF5>
+964	0xb858	WORM:279	Shut up!<FFF5>
+965	0xb860	WORM:280	So what?<FFF5>
+966	0xb869	WORM:281	All right.<FFF5>
+967	0xb870	WORM:282	I can't hear you.<FFF5>
+968	0xb879	WORM:283	Leave me alone.<FFF5>
+969	0xb882	WORM:284	You ate it.<FFF5>
+970	0xb88e	WORM:285	It'll be out again soon.<FFF5>
+971	0xb89a	WORM:286	It's behind the earth.<FFF5>
+972	0xb8a8	WORM:287	A high school student.<FFF5>
+973	0xb8b0	WORM:288	Part of the workforce.<FFF5>
+974	0xb8b8	WORM:289	A Devil Summoner.<FFF5>
+975	0xb8c4	WORM:290	Say your name<FFF5>
+976	0xb8cb	WORM:291	Say your name<FFF5>
+977	0xb8d2	WORM:292	Don't answer<FFF5>
+978	0xb8d9	WORM:293	I'm bored.<FFF5>
+979	0xb8de	WORM:294	I'm bored.<FFF5>
+980	0xb8e3	WORM:295	It's not open.<FFF5>
+981	0xb8eb	WORM:296	Circle<FFF5>
+982	0xb8ef	WORM:297	Square<FFF5>
+983	0xb8f4	WORM:298	Triangle<FFF5>
+984	0xb8fa	WORM:299	The big one<FFF5>
+985	0xb902	WORM:300	The small one<FFF5>
+986	0xb90a	WORM:301	Open both<FFF5>
+987	0xb914	WORM:302	I'm doing fine.<FFF5>
+988	0xb91b	WORM:303	I'm not doing so good.<FFF5>
+989	0xb924	WORM:304	I'm done for...<FFF5>
+990	0xb92d	WORM:305	I knew that.<FFF5>
+991	0xb935	WORM:306	I didn't know that.<FFF5>
+992	0xb93e	WORM:307	It was an accident...<FFF5>
+993	0xb94a	WORM:308	Like<FFF5>
+994	0xb94f	WORM:309	Dislike<FFF5>
+995	0xb954	WORM:310	Neither<FFF5>
+996	0xb95d	WORM:311	Watermelon<FFF5>
+997	0xb962	WORM:312	Strawberry<FFF5>

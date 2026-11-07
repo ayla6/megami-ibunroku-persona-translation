@@ -86,6 +86,19 @@ class EbootTwinPlan(unittest.TestCase):
 
     @unittest.skipUnless(plan.PLAN.exists() and (ROOT / 'data/psx/BTLP.BIN').exists(),
                          'requires source plan and BTLP.BIN')
+    def test_capture_ignores_ephemeral_filled_rows(self):
+        """generated/ must not shrink the captured decision domain."""
+        calls = {}
+        with patch.object(plan, 'begin_capture'), patch.object(plan, 'write'), \
+                patch.object(boot_btlmsg, 'main'), \
+                patch.object(port_btlneg, 'port',
+                             side_effect=lambda **kw: calls.setdefault('btlneg', kw)), \
+                patch.object(port_btlbanner, 'port',
+                             side_effect=lambda **kw: calls.setdefault('banner', kw)):
+            plan.capture()
+        self.assertEqual(calls['btlneg'], {'apply': False, 'force': True})
+        self.assertEqual(calls['banner'], {'apply': False})
+
     def test_missing_twin_decision_fails_the_port(self):
         metadata, matches = source_plan.read(plan.PLAN)
         matches = matches[1:]

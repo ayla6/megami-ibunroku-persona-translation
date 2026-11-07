@@ -116,8 +116,8 @@ const PatchPlan = (() => {
   }
 
   /* xdelta arguments for one step. `-n` only when the source carries
-   * decorations the patch was not encoded from; the release build proved
-   * that decorated decode over the maximally decorated parent. */
+   * decorations the patch was not encoded from; the release build verified
+   * sampled decorated chains byte for byte (manifest `verified`). */
   function decodeArgs(step, applied) {
     const args = ['-d', '-f', '-q'];
     if (!canonicalSource(step, applied)) args.push('-n');

@@ -139,14 +139,15 @@ test grants ownership. Outside every registered range the shared lookup keeps
 the original font and 8-px pitch, including party HUDs, fixed labels and card
 personality rows. Glyph content does not opt a literal or member name into VWF.
 The party marker name retains retail `x = 12 - n * 4` centring.
-Literal battle-board headings at the top of a text list, straddling its local
-origin and carrying equal nonempty space padding on both sides, are centred
-on that origin with `x = -(cell_count * 8 // 2)`. The builder discovers
-these from validated retail 8×12 text-list descriptors and the shared text-cell
-class, not wording or row addresses. Only x changes; padding, count, colours,
-transforms and unpadded/left-aligned or non-text rows remain untouched.
-`battle_text_layout.py` generates the positions with the font metrics and
-verifies their assembled halfwords; without `SF_VWF` they stay retail.
+Literal battle-board headings are the sole row at a text list's top y and
+straddle its local origin (`x < 0 < x + retail_cells * 8`); they are centred
+on that origin with `x = -(rendered_width_px // 2)`, measured on the translated
+wording. The builder discovers them from validated `BtlGfxTextList`
+descriptors, not wording or row addresses. A multi-column grid has no centred
+caption even when a middle column straddles the origin. Only x changes; count,
+colours, transforms, blank rows and non-text rows remain untouched.
+`battle_board_text.py` writes the positions, pointers and counts once and
+verifies their assembled bytes; without `SF_VWF` the rows stay retail.
 Skill names are stored in `SKILL_MAXLEN`-glyph (`SKILL_MENU_STRIDE`-byte, 24)
 slots and accepted by measured rendered width (120 px), not by a glyph
 count; the full-name copy helper prints the whole stored name and ends it with
@@ -361,6 +362,17 @@ placeholder is the retail `?` cell, not a proportional glyph. The builder checks
 storage and the status column; the suite binds the spans to the live board
 list, rejects any other static list that points into them, and drives the
 installed lookup over all 37 rows.
+
+Configuration and controller boards are separate `BtlGfxTextList`s. A list
+ships only when every visible row has English and every English row fits
+before the next row at the same y; a list that fails keeps all its Japanese.
+English is packed into the union of that list's source pools, deduplicated and
+longest-first; records another descriptor still reads are protected and
+records behind hidden (`count == 0`) rows are reusable. A value the code writes
+at runtime (`Normal`/`Easy`) pins its own record, and the shared descriptor's
+count covers the longer word while the shorter value is space-padded. The
+build fails rather than truncating.
+
 the total concurrent UI packet-buffer bound is not yet proved. The builder checks the
 full 8px quad bounds of both rows in every column against the 208px frame and
 checks that neighboring columns cannot overlap; unencodable or non-fitting
@@ -684,8 +696,14 @@ dispatch and party-name slots, not the reversed labels in the reference
 decompilation, establish the opcode meanings (test `DungeonNameCodes`).
 Translate before layout so the flow measures the text that will draw. If text
 changes after layout, reflow before measuring it again.
-Dialogue name opcodes are not battle opcodes: a battle row with an untranslated
-dialogue name opcode fails the code gate rather than copying a Japanese insert.
+Dialogue name opcodes are not battle opcodes. The PSX battle interpreter has
+one character-name insert, `<FFF9>` (the current actor's name), so a battle
+row's PSP-US `<FF07>` given-name insert is translated to `<FFF9>` when the
+Japanese line carries `<FFF9>`; the PSP's bare form has no member parameter,
+and the dialogue member parameter is dropped with the code. Only as many
+inserts as the Japanese carries are translated: a family, nickname or full
+name has no battle sibling and still fails the code gate, and the shipped
+`<FFF9>` count must equal the Japanese count.
 
 **Inserted records.** The message machine also prints whole records, not just
 the player's slots: `<FF09>` item, `<FF0A>` skill, `<FF0B>` demon, `<FF0C>`

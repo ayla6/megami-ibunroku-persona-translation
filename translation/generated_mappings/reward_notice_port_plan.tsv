@@ -1,9 +1,9 @@
 kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
-meta	generated:SLPS	1cffd022da087b783a9261844bf4398a4ac08d6d								
 meta	matches_sha1	f30a0459c68ea1449edc3bdb920f520db063dd2d								
+meta	names:SLPS	3cc5ae5a6e5c80115b26d17cd82652a8b061f5f9								
 meta	psx:BTLP	b2cba081ee71bd645969ec85ee11dc6ac18f2976								
 meta	psx:SLPS	cafb3ce55eeec214553b9bf6d56843d65a8137cf								
-meta	rule_sha1	b75a24d2b913b04d950f768e15a4ca30189f997a								
+meta	rule_sha1	d0486cf61764b5e49f785cbc0465e9f4b7f5c8d3								
 meta	us:EBOOT	08e9592c6d19ae1a355f016b6664408be61089e4								
 meta	us:pack	86d50612b907ee92ace1eeda1fd346674bbebf80								
 meta	version	1								

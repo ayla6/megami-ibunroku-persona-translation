@@ -72,7 +72,9 @@ class BattlePersonaOwnership(unittest.TestCase):
             c.r[REG['a0']] = label
             c.r[REG['sp']] = 0x801ff000; c.r[REG['ra']] = 0x8000fff0
             c.start(symbols['btl_name_lookup'])
-            for _ in range(200):
+            # The resident lookup walks the whole battle-owned span directory
+            # (15 entries), so the step budget must not bound its size.
+            for _ in range(1000):
                 if c.pc == 0x8000fff0: break
                 c.step()
             else: self.fail('name lookup did not return')

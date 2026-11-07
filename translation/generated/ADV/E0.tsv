@@ -586,16 +586,16 @@ id	pos	psp	en
 584	41:0x1e00	E0:585	What Gerda saw at the end of<FF03>her journey was the half-frozen Kay,<FF03>who had forgotten her completely.<FF02><FF04>Gerda's warm tears gently covered<FF03>him, melting his heart.<FF02><FF04>Upon regaining himself,<FF03>Kay burst into tears, washing away<FF03>the splinter of the mirror in his eye.<FF02><FF04>Hand in hand,<FF03>the two left Ice Castle...<FF02><FF04>And lived at home happily ever after.<FF02><FF01>
 585	42:0x1d34	E0:586	Ayase: Oh, hey <FF07><01>.<FF03>Elly went outside again.<FF02><FF04>I tried to stop her, but of course she<FF03>doesn't listen. Talk about trouble...<FF02><FF04>Is there really a passage that<FF03>leads outside of town?<FF02><FF01>
 586	42:0x1da8	E0:587	Ayase: Are you guys serious?<FF03>Like, what can the three of<FF03>you do, y'know?<FF02><FF01>
-587	42:0x1dd8	E0:590	Yuko: U-Um...<FF03>I think Yukino went inside the school.<FF02><FF04>She said she was going to look for<FF03>something to block up the hole...<FF02><FF01>
-588	42:0x1e10	E0:591	<FF06><03>Yuko Himeno<FF03>Maki's friend. She works part-time to<FF03>support her family.<FF06><00><FF02><FF01>
-589	42:0x1e58	E0:592	Ayase: Hey, if we block this thing up,<FF03>is that really gonna make us safe?<FF02><FF04>Huh?<FF03>We're not blocking it up anymore?<FF03>Uhh... Is that okay...?<FF02><FF01>
-590	42:0x1ea4	E0:593	Yuko: U-Umm... Be careful...<FF02><FF01>
+587	42:0x1dd8	E0:589	Yuko: U-Um...<FF03>I think Yukino went inside the school.<FF02><FF04>She said she was going to look for<FF03>something to block up the hole...<FF02><FF01>
+588	42:0x1e10	E0:590	<FF06><03>Yuko Himeno<FF03>Maki's friend. She works part-time to<FF03>support her family.<FF06><00><FF02><FF01>
+589	42:0x1e58	E0:591	Ayase: Hey, if we block this thing up,<FF03>is that really gonna make us safe?<FF02><FF04>Huh?<FF03>We're not blocking it up anymore?<FF03>Uhh... Is that okay...?<FF02><FF01>
+590	42:0x1ea4	E0:592	Yuko: U-Umm... Be careful...<FF02><FF01>
 591	42:0x1ec0	E0:594	Ayase:<FF03>Uh, you're going too, <FF07><01>?<FF02><FF01>
 592	42:0x1ee0	E0:595	Gonna go trash SEBEC, huh?<FF03><FF0E><1A><FF01>
 593	42:0x1ef8	E0:596	Ayase: It's like, impossible.<FF03>Don't do it!<FF02><FF01>
 594	42:0x1f10	E0:597	Ayase: Oh, so you're not?<FF03>Well, yeah, I mean, we gotta do<FF03>something about the school.<FF02><FF01>
 595	42:0x1f48	E0:598	Maki: Oh! Hey, <FF07><01>.<FF03>What're you guys up to?<FF02><FF01>
-596	42:0x1f70	E0:600	Yuko: Oh...<FF05><3C><00> Maki...?<FF02><FF01>
+596	42:0x1f70	E0:599	Yuko: Oh...<FF05><3C><00> Maki...?<FF02><FF01>
 597	42:0x1f90	E0:601	Ayase: Huh?<FF05><3C><00> Is...<FF05><3C><00> Is that you, Maki?<FF02><FF01>
 598	42:0x1fb8	E0:602	Maki: C'mon, of course it is.<FF03>Everyone knows good ol' Maki!<FF03>What's wrong, Yuka?<FF02><FF01>
 599	42:0x2000	E0:603	Ayase: Woah... Like, something's<FF03>seriously weird with her, <FF07><01>!<FF02><FF04>There's no way Maki would<FF03>be that cheerful!<FF02><FF01>
@@ -697,7 +697,7 @@ id	pos	psp	en
 695	50:0x1768	E0:699	Brown: Hey, hey,<FF03>think I should come with you guys?<FF02><FF04>Without me, you fools don't have<FF03>any star power, y'know?<FF02><FF04>You guys need me to whip you into<FF03>shape! How about it, <FF07><01>!?<FF02><FF01>
 696	50:0x17e0	E0:700	Mark: ...It's your call, <FF07><01>.<FF03><FF0E><07><FF01>
 697	50:0x17f8	E0:701	Are you certain that you want to<FF03>bring Hidehiko along?<FF02><FF03><FF0E><00><FF01>
-698	50:0x1808	E0:702	Brown: Great! I'm down--not like I<FF03>have a choice! Hahahahaha!<FF02><FF01>
+698	50:0x1808	E0:703	Brown: Great! I'm down--not like I<FF03>have a choice! Hahahahaha!<FF02><FF01>
 699	50:0x1844	E0:704	Nanjo: Then here's a firearm for you,<FF03>too, Hidehiko.<FF03>Don't be careless with it.<FF02><FF04>...What's that look for...?<FF02><FF01>
 700	50:0x1888	E0:705	Brown: Oh? Is that... Really?<FF03>You're sure you won't regret it?<FF02><FF04>Alright... Guess I'll head to<FF03>the school, then. Later, chumps!<FF02><FF01>
 701	50:0x18e8	E0:706	Maki: Hooray! Now that everyone's<FF03>together... Uh, where were we going?<FF02><FF01>
@@ -843,10 +843,10 @@ id	pos	psp	en
 841	56:0x1c78	E0:850	Take the elevator?<FF03><FF0E><00><FF01>
 842	56:0x1c94	E0:851	There's no need to use<FF03>the security card anymore.<FF02><FF01>
 843	56:0x1cbc	E0:852	Maki: C'mon, <FF07><01>! Let's go!<FF02><FF01>
-844	57:0x1cd4	E0:853	Stern-faced man: Who's there? More<FF03>children? How did you get in here!?<FF02><FF01>
-845	57:0x1d04	E0:854	Takeda: Who's there? More children?<FF03>How did you get in here!?<FF02><FF01>
-846	57:0x1d40	E0:856	Kandori: This is a disgrace, Takeda.<FF03>First that brat, and now this.<FF02><FF04>When did my company<FF03>become a nursery?<FF02><FF01>
-847	57:0x1da0	E0:857	Nanjo:<FF03>I see you haven't changed, Kandori.<FF03>You're like an ass in a lion's skin...<FF02><FF04>Pushing your luck, aren't you? Does<FF03>President Saeki know about this?<FF02><FF01>
+844	57:0x1cd4	E0:854	Takeda: Who's there? More children?<FF03>How did you get in here!?<FF02><FF01>
+845	57:0x1d04	E0:856	Kandori: This is a disgrace, Takeda.<FF03>First that brat, and now this.<FF02><FF04>When did my company<FF03>become a nursery?<FF02><FF01>
+846	57:0x1d40	E0:857	Nanjo:<FF03>I see you haven't changed, Kandori.<FF03>You're like an ass in a lion's skin...<FF02><FF04>Pushing your luck, aren't you? Does<FF03>President Saeki know about this?<FF02><FF01>
+847	57:0x1da0	E0:858	Kandori: My, my, the young<FF03>master of the Nanjo Group.<FF03>No, the old man knows nothing.<FF02><FF04>But this is preposterous...<FF02><FF04>Your mother would spank you if<FF03>she knew you had stooped to<FF03>breaking and entering.<FF02><FF04>Or is that your senile butler's job?<FF02><FF01>
 848	57:0x1e24	E0:859	Nanjo: Silence! You...<FF03>Don't think I'll easily forgive this!<FF02><FF01>
 849	57:0x1e4c	E0:860	Mark: Yo, quit grandstandin', man.<FF03>You're gonna pay for what you did!<FF02><FF01>
 850	57:0x1e80	E0:861	Maki: This guy's... Kandori...?<FF02><FF01>
@@ -859,15 +859,15 @@ id	pos	psp	en
 857	57:0x2044	E0:868	Mark: That prick! Where'd he go!?<FF02><FF01>
 858	57:0x2064	E0:869	Nanjo: There's no<FF03>sign that he used the door...<FF03>There must be another way out.<FF02><FF01>
 859	57:0x2090	E0:870	Maki: ...That's Kandori, huh...?<FF03>Where have I...?<FF02><FF01>
-860	57:0x20b4		Elly: Is something wrong, Maki?<FF03>You don't look well.<FF02><FF01>
-861	57:0x20e0	E0:871	Brown: Huh? Why the long face, Maki?<FF02><FF01>
-862	57:0x2110	E0:872	Ayase: What's wrong, Maki? You look<FF03>all intense and serious and stuff.<FF02><FF01>
-863	57:0x2134	E0:873	Mark: Hm? Wassup, Maki?<FF03>You look all down.<FF02><FF01>
-864	57:0x215c	E0:874	Mark: Hm? Wassup, Maki?<FF03>You look all down.<FF02><FF01>
-865	57:0x2190	E0:875	Nanjo: There must be another<FF03>way out. I'll keep watch.<FF03>Find the exit... quickly.<FF02><FF01>
-866	57:0x21c4	E0:876	Mark: Man, who'd have thought he<FF03>was another Persona-user?<FF02><FF01>
-867	57:0x21ec	E0:877	Mark: Man, who'd have thought he<FF03>was another Persona-user?<FF02><FF01>
-868	57:0x2220	E0:878	Elly: Kandori's Persona...<FF03>The faceless god...<FF03>the Crawling Chaos...<FF02><FF04>A bizarre and evil entity known by<FF03>countless names... It embodies malice.<FF02><FF01>
+860	57:0x20b4	E0:871	Elly: Is something wrong, Maki?<FF03>You don't look well.<FF02><FF01>
+861	57:0x20e0	E0:872	Brown: Huh? Why the long face, Maki?<FF02><FF01>
+862	57:0x2110	E0:873	Ayase: What's wrong, Maki? You look<FF03>all intense and serious and stuff.<FF02><FF01>
+863	57:0x2134	E0:874	Mark: Hm? Wassup, Maki?<FF03>You look all down.<FF02><FF01>
+864	57:0x215c	E0:875	Maki: Huh? O-Oh, I'm okay.<FF03>It's nothing.<FF03>C'mon, let's hurry after him!<FF02><FF01>
+865	57:0x2190	E0:876	Nanjo: There must be another<FF03>way out. I'll keep watch.<FF03>Find the exit... quickly.<FF02><FF01>
+866	57:0x21c4	E0:877	Mark: Man, who'd have thought he<FF03>was another Persona-user?<FF02><FF01>
+867	57:0x21ec	E0:878	Maki: It's nothing, really.<FF03>I just felt a little faint.<FF03>But thanks for worrying about me!<FF02><FF01>
+868	57:0x2220	E0:879	Elly: Kandori's Persona...<FF03>The faceless god...<FF03>the Crawling Chaos...<FF02><FF04>A bizarre and evil entity known by<FF03>countless names... It embodies malice.<FF02><FF01>
 869	57:0x2288	E0:880	Brown: No one told me the other<FF03>side could use Personas too!<FF03>Aren't we kinda in trouble now?<FF02><FF01>
 870	57:0x22c4	E0:881	Ayase: Get it together, <FF07><01>!<FF03>He got away!<FF02><FF01>
 871	57:0x22ec	E0:882	It's a switch. Press it?<FF03><FF0E><00><FF01>
@@ -990,10 +990,10 @@ id	pos	psp	en
 988	64:0x25f0	E0:999	Ayase: "Time strip"?<FF03>Is that what they're calling it now?<FF02><FF04>Awww, this sucks! Am I behind<FF03>the times on the latest trends?<FF02><FF01>
 989	64:0x2648	E0:1000	Female student: I think Maki<FF03>likes Yosuke. I'm jealous...<FF03>They'd make a cute couple.<FF02><FF01>
 990	64:0x2684	E0:1001	Nanjo: You there. How many days are<FF03>left until the sports festival?<FF02><FF01>
-991	64:0x26ac	E0:1003	Nanjo: ...So the date's the same.<FF03>Tell me, which year am I in?<FF02><FF01>
-992	64:0x26ec	E0:1004	Female student: What the...<FF03>You really DO have amnesia!<FF03>We're all second-year students.<FF02><FF04>Man,<FF03>I gotta tell the others about this!<FF02><FF01>
-993	64:0x2710	E0:1005	Female student: What the...<FF03>You really DO have amnesia!<FF03>We're all second-year students.<FF02><FF04>Man,<FF03>I gotta tell the others about this!<FF02><FF01>
-994	64:0x2750		Nanjo: Everything's the same as when<FF03>we left. Stranger and stranger...<FF02><FF01>
+991	64:0x26ac	E0:1002	Female student: Uch, you're<FF03>always so rude. The sports<FF03>festival is still a month off.<FF02><FF04>You have amnesia or<FF03>something, Nanjo?<FF02><FF01>
+992	64:0x26ec	E0:1003	Nanjo: ...So the date's the same.<FF03>Tell me, which year am I in?<FF02><FF01>
+993	64:0x2710	E0:1004	Female student: What the...<FF03>You really DO have amnesia!<FF03>We're all second-year students.<FF02><FF04>Man,<FF03>I gotta tell the others about this!<FF02><FF01>
+994	64:0x2750	E0:1005	Nanjo: Everything's the same as when<FF03>we left. Stranger and stranger...<FF02><FF01>
 995	64:0x2770	E0:1006	Restless boy: Ahaha... ahahaha...<FF03>It looked like you guys showed<FF03>up outta nowhere.<FF02><FF04>I must've been dreaming! Ahahahaha!<FF02><FF01>
 996	64:0x27b4	E0:1007	Mark: Hey... isn't this the school<FF03>gym? The one they tore<FF03>down six months ago?<FF02><FF01>
 997	64:0x27f0	E0:1008	Mark: H-Hey, Maki!<FF03>Could Yosuke be that guy who went<FF03>missing a couple months ago?<FF02><FF01>
@@ -1021,9 +1021,9 @@ id	pos	psp	en
 1019	65:0x1eac	E0:1030	Elly: What in the...? What's going on!?<FF02><FF01>
 1020	65:0x1ed4	E0:1031	Ayase: Eeeek! Oooh, I've had it!<FF03>What is WRONG with this place!?<FF02><FF01>
 1021	65:0x1efc	E0:1032	Maki:<FF03>Don't tell me it's that girl again...!<FF02><FF01>
-1022	65:0x1f18	E0:1034	Yosuke: There's no mistaking that<FF03>voice... It's that girl!<FF02><FF04>Did she say she removed the exits!?<FF03>If demons show up now,<FF03>we'll be slaughtered!<FF02><FF01>
-1023	65:0x1f84	E0:1035	Yosuke: There's no mistaking that<FF03>voice... It's that girl!<FF02><FF04>Did she say she removed the exits!?<FF03>If demons show up now,<FF03>we'll be slaughtered!<FF02><FF01>
-1024	65:0x1fc4		Dammit... I gotta go!<FF02><FF01>
+1022	65:0x1f18	E0:1033	Girl's voice: Ahahahaha!<FF03>I'm gonna bring down this dumb<FF03>school for sure this time!<FF02><FF04>I took away the exits! Now no one can<FF03>escape! Ahahahahahahaha...!<FF02><FF01>
+1023	65:0x1f84	E0:1034	Yosuke: There's no mistaking that<FF03>voice... It's that girl!<FF02><FF04>Did she say she removed the exits!?<FF03>If demons show up now,<FF03>we'll be slaughtered!<FF02><FF01>
+1024	65:0x1fc4	E0:1035	Dammit... I gotta go!<FF02><FF01>
 1025	65:0x1fdc	E0:1036	Maki: Wait, Yosuke!<FF03>Don't strain yourself!<FF02><FF04>Everyone... give me a hand.<FF03>We have to do something!<FF02><FF01>
 1026	65:0x2020	E0:1037	Mark: I'm not sure what's goin' on<FF03>here, but at this rate,<FF03>we can't get outside.<FF02><FF04>Let's do this, <FF07><01>!<FF02><FF01>
 1027	65:0x2054	E0:1038	Yosuke: Dammit!<FF03>If only I wasn't so banged up,<FF03>I could get Chisato back this time...<FF02><FF04>Huh? My wounds?<FF03>Oh... The last time that little girl<FF03>was here, she kicked my ass...<FF02><FF04>Man, talk about pathetic!<FF02><FF01>
@@ -1033,7 +1033,7 @@ id	pos	psp	en
 1031	65:0x2198	E0:1042	Brown: Oh man, you think there<FF03>really is a way to go back?<FF02><FF01>
 1032	65:0x21c4	E0:1043	Ayase: <FF07><01>!<FF03>You better find a way back!<FF02><FF01>
 1033	65:0x21e8	E0:1044	Elly: A girl who controls demons...<FF03>Sounds like a devil summoner to me.<FF02><FF01>
-1034	65:0x2238	E0:1045	<FF06><02>Yosuke Naito - A ladies' man who went<FF03>missing along with Chisato Kasai<FF03>two months ago.<FF02><FF01>
+1034	65:0x2238	E0:1045	<FF06><02>Yosuke Naito - A ladies' man who went<FF03>missing along with Chisato Kasai<FF03>two months ago.<FF06><00><FF02><FF01>
 1035	65:0x2280	E0:1046	Mark:<FF03>Hmm... So does that mean Chisato's<FF03>still with that brat in black?<FF02><FF01>
 1036	65:0x22b0	E0:1047	Yosuke: Ugh... I was with her, too...<FF05><50><00><FF03>Dammit!<FF02><FF01>
 1037	65:0x22d8	E0:1048	Reiji: Kandori's kid, maybe? I hate to<FF03>think of that bastard having kids...<FF02><FF01>
@@ -1216,7 +1216,7 @@ id	pos	psp	en
 1214	76:0x1150	E0:1227	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 1215	76:0x117c	E0:1228	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 1216	76:0x11a8	E0:1229	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-1217	77:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+1217	77:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1218	77:0x5388	E0:1231	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1219	77:0x53ac	E0:1232	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 1220	77:0x53c8	E0:1233	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
@@ -1228,7 +1228,7 @@ id	pos	psp	en
 1226	77:0x5614	E0:1239	Igor: It isn't enough merely to fuse<FF03>a new Persona in order to<FF03>make it your own...<FF02><FF04>There is rather more to<FF03>it than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of holding<FF03>up to three Personas.<FF02><FF04>A newly-fused Persona will be<FF03>entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas as<FF03>there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according to<FF03>the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
 1227	77:0x57e0	E0:1240	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF02><FF04>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
 1228	77:0x5b78	E0:1241	Igor: Pardon me for being nosy, but...<FF02><FF04>Personas have<FF03>eight levels of growth.<FF03>You should try to develop them fully.<FF02><FF04>I'm sure that there will be an ample<FF03>reward for doing so...<FF02><FF04>You might also be interested to<FF03>know about various factors in fusion.<FF02><FF04>For example, even when creating<FF03>the same Persona...<FF02><FF04>The combination of spell cards,<FF03>the affinities of the demons used...<FF02><FF04>The position of Terra and Luna, and<FF03>any essences added into the mix...<FF02><FF04>All of these factor into the resultant<FF03>Persona. And one more thing...<FF02><FF04>You may also add an item into<FF03>the fusion to trigger a change.<FF02><FF04>There are some items for which<FF03>the result is easily predictable...<FF02><FF04>But sometimes, even I will be unable to<FF03>guess at what may happen.<FF02><FF04>Should that come about,<FF03>I do hope that you'll pardon me.<FF02><FF04>But make no mistake,<FF03>I do believe it is worth trying...<FF02><FF04>I suggest gems for obtaining<FF03>a higher- or lower-ranked<FF03>fusion within an order.<FF02><FF04>As for the other items' effects,<FF03>you should experiment for yourself.<FF02><FF01>
-1229	78:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+1229	78:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1230	78:0x5388	E0:1243	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1231	78:0x53ac	E0:1244	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 1232	78:0x53c8	E0:1245	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
@@ -1298,11 +1298,11 @@ id	pos	psp	en
 1296	88:0x19e4	E0:1309	Mark: This place is just like<FF03>our town... All musty.<FF02><FF01>
 1297	88:0x1a0c	E0:1310	Elly: So this is the Expel Mirror...<FF03>It's so fantastically mysterious!<FF02><FF01>
 1298	88:0x1a40	E0:1311	Brown: This thing's the Expel Mirror?<FF03>Huh. Let's see if it reflects my face...<FF02><FF01>
-1299	88:0x1a7c	E0:1313	Ayase: So this is the Expel Mirror?<FF03>I wonder if I could get a look at<FF03>my face in it. My skin's been all dry...<FF02><FF01>
-1300	88:0x1abc	E0:1314	Reiji: The Expel Mirror has<FF03>a divine aura about it...<FF02><FF01>
-1301	88:0x1ae0	E0:1315	Here it is!<FF03>This must be the Expel Mirror!<FF02><FF01>
-1302	88:0x1b0c	E0:1316	Maki: Here it is!<FF03>This must be the Expel Mirror!<FF02><FF01>
-1303	88:0x1b34		Elly: Wh-What in the world...?<FF02><FF01>
+1299	88:0x1a7c	E0:1312	Ayase: So this is the Expel Mirror?<FF03>I wonder if I could get a look at<FF03>my face in it. My skin's been all dry...<FF02><FF01>
+1300	88:0x1abc	E0:1313	Reiji: So... this is that Expel Mirror.<FF02><FF01>
+1301	88:0x1ae0	E0:1314	The Expel Mirror has<FF03>a divine aura about it...<FF02><FF01>
+1302	88:0x1b0c	E0:1315	Maki: Here it is!<FF03>This must be the Expel Mirror!<FF02><FF01>
+1303	88:0x1b34	E0:1316	Elly: Wh-What in the world...?<FF02><FF01>
 1304	88:0x1b4c	E0:1317	Ayase: Yeeeek! What IS this!?<FF02><FF01>
 1305	88:0x1b60	E0:1318	Brown: Woah... what is that!?<FF02><FF01>
 1306	88:0x1b78	E0:1319	Reiji: ......! What the...!?<FF02><FF01>
@@ -1526,7 +1526,7 @@ id	pos	psp	en
 1524	101:0x220c	E0:1537	Ayase: Hey, so like,<FF03>what happened while I<FF03>was a human statue!?<FF02><FF01>
 1525	101:0x223c	E0:1538	Ayase: Wh-What!? I'm not crying!<FF02><FF01>
 1526	101:0x2264	E0:1539	Reiji: ...I have nothing to say.<FF02><FF01>
-1527	101:0x2280	E0:1540	Reiji: ...I have nothing to say.<FF02><FF01>
+1527	101:0x2280	E0:1540	Young men: Um, could you please<FF03>put us back to normal now...?<FF02><FF01>
 1528	101:0x22ac	E0:1541	Yosuke:<FF03>I'm sorry I was the cause of so<FF03>much trouble for everyone.<FF02><FF04>If I'd been a little more reliable,<FF03>this wouldn't have happened.<FF03>Sorry, guys.<FF02><FF01>
 1529	101:0x22e8	E0:1542	Chisato: ...The real Maki is<FF03>trapped inside the hospital.<FF02><FF04>Is it right for me to be so<FF03>blessed while Maki suffers...?<FF02><FF01>
 1530	101:0x2338	E0:1543	It's Maki's painting...<FF02><FF01>
@@ -1709,8 +1709,8 @@ id	pos	psp	en
 1707	118:0x2bec	E0:1720	Elly: I haven't thought about things<FF03>like this in a while,but it's true,<FF03>life can be fun.<FF02><FF01>
 1708	118:0x2c1c	E0:1721	Brown: I don't usually<FF03>think about this stuff...<FF03>But yeah, life is good sometimes.<FF02><FF01>
 1709	118:0x2c50	E0:1722	Ayase: It's been a while since I<FF03>thought about that kinda stuff,<FF03>but life's pretty good!<FF02><FF01>
-1710	118:0x2c80	E0:1724	Reiji: What a strange kid...<FF03>It's a tough question,<FF03>but life isn't so bad.<FF02><FF01>
-1711	118:0x2ca8	E0:1726	Reiji: What a strange kid...<FF03>It's a tough question,<FF03>but life isn't so bad.<FF02><FF01>
+1710	118:0x2c80	E0:1723	Nanjo: <FF07><01> is right.<FF03>There is sweetness in life.<FF02><FF01>
+1711	118:0x2ca8	E0:1724	Reiji: What a strange kid...<FF03>It's a tough question,<FF03>but life isn't so bad.<FF02><FF01>
 1712	118:0x2cdc	E0:1727	Mai: Okay... Then I'm going to stay<FF03>here. You can't have my compact.<FF03>I'm sorry.<FF02><FF01>
 1713	118:0x2d18	E0:1728	Mark: This is going nowhere...<FF03>We're begging you here!<FF03>Please let us borrow it!<FF02><FF01>
 1714	118:0x2d40	E0:1729	Mark: If you won't, I'm gonna have to<FF03>give you a spanking, got it?<FF02><FF01>
@@ -2237,14 +2237,14 @@ id	pos	psp	en
 2235	153:0x3054	E0:2250	Ayase: Look! The real Maki<FF03>has a compact too!<FF02><FF01>
 2236	153:0x3084	E0:2251	Nanjo: Let's see here...<FF03>The real Maki's compact and<FF03>the ideal Maki's compact...<FF02><FF04>The real one has a mirror. Hmm...<FF02><FF01>
 2237	153:0x30dc	E0:2252	Mark: Gimme that, Nanjo!<FF02><FF01>
-2238	153:0x30f0		Mark: Please!<FF03>Send us back into Maki's heart!<FF03>......<FF02><FF01>
-2239	153:0x3178	E0:2253	Nanjo: The compact couldn't possibly<FF03>have such powers in the real world.<FF02><FF04>If only the ideal Maki's compact<FF03>was complete, then maybe...<FF02><FF01>
-2240	153:0x31dc	E0:2254	Mark: Maki... Everyone<FF03>wants to see you, y'know?<FF03>There's no need to suffer alone.<FF02><FF04>Just call on us, please...<FF03>I'd go anywhere for you...<FF02><FF01>
-2241	153:0x3234	E0:2255	Nanjo:<FF03>The ideal Maki is the manifestation of<FF03>Maki wanting to change herself.<FF02><FF04>But if her ideal self denied<FF03>its own existence...<FF02><FF04>Maki... have you really lost hope?<FF03>If there's even a fragment left,<FF03>call out to us...<FF02><FF01>
-2242	153:0x32d0	E0:2256	Nanjo:<FF03>The ideal Maki is the manifestation of<FF03>Maki wanting to change herself.<FF02><FF04>But if her ideal self denied<FF03>its own existence...<FF02><FF04>Maki... have you really lost hope?<FF02><FF04>If there's even a fragment left,<FF03>call out to us...<FF02><FF01>
-2243	153:0x33d4	E0:2257	Reiji: Quit sticking your head in<FF03>a hole, Maki! It's the easy way out...<FF02><FF04>My mom was Kandori's<FF03>dad's old mistress.<FF03>She got thrown away like an old rag.<FF02><FF04>But even knowing that would<FF03>happen... She still gave birth to me.<FF02><FF04>Know why she did that?<FF02><FF04>She told me she couldn't neglect<FF03>her own child's life...<FF02><FF04>You have a mom too. No parent<FF03>alive doesn't love their child.<FF02><FF04>You're gonna see your mom again,<FF03>so hurry and wake up!<FF02><FF01>
-2244	153:0x3568	E0:2258	Brown: Rise and shine, Maki, and I'll<FF03>tell you the funniest story I know!<FF02><FF04>Y'know how they call me Brown?<FF03>It's a nickname I picked<FF03>up in middle school...<FF02><FF04>People think it's about<FF03>my brown hair... But really...<FF05><60><00><FF03>It's 'cause I crapped myself.<FF02><FF04>See? Isn't that funny?<FF03>Man, it was embarrassing...<FF02><FF04>I spent most of middle school as<FF03>the butt of every joke in the class...<FF02><FF04>I was sick of myself.<FF03>I came to Hermelin 'cause I<FF03>couldn't take the local schools.<FF02><FF04>So when I got to high school,<FF03>I did my best to act like Mr. Cool...<FF02><FF04>But I was lying to myself all this time.<FF03>No more, though. I realized how dumb<FF03>I was being from watching you...<FF02><FF04>So there it is. Now c'mon...<FF03>give us a smile...<FF02><FF01>
-2245	153:0x36ec	E0:2259	Ayase: Wakey wakey, Maki!<FF02><FF04>I still have your handkerchief.<FF03>Anything you wanna talk about,<FF03>I'll listen...<FF02><FF04>I get how you feel.<FF03>I used to think the same way...<FF02><FF04>I would like,<FF03>wish there would be no future...<FF02><FF04>I worry about the future a lot.<FF03>I think that's why I party so hard...<FF02><FF04>'Cause the future's too depressing to<FF03>think about, right?<FF02><FF04>So I made up my mind to live only for<FF03>now, and ran away from the future...<FF03>But it doesn't work like that.<FF02><FF04>It's my future. I have to come up with<FF03>it myself... So I've made my choice.<FF02><FF04>I'm gonna snag a great guy so I can<FF03>live on easy street! So, Maki...<FF02><FF04>I wanna hear your dreams for<FF03>the future, too.<FF03>Please, Maki... please...<FF02><FF01>
+2238	153:0x30f0	E0:2253	Mark: Please!<FF03>Send us back into Maki's heart!<FF03>......<FF02><FF01>
+2239	153:0x3178	E0:2254	Nanjo: The compact couldn't possibly<FF03>have such powers in the real world.<FF02><FF04>If only the ideal Maki's compact<FF03>was complete, then maybe...<FF02><FF01>
+2240	153:0x31dc	E0:2255	Mark: Maki... Everyone<FF03>wants to see you, y'know?<FF03>There's no need to suffer alone.<FF02><FF04>Just call on us, please...<FF03>I'd go anywhere for you...<FF02><FF01>
+2241	153:0x3234	E0:2256	Nanjo:<FF03>The ideal Maki is the manifestation of<FF03>Maki wanting to change herself.<FF02><FF04>But if her ideal self denied<FF03>its own existence...<FF02><FF04>Maki... have you really lost hope?<FF03>If there's even a fragment left,<FF03>call out to us...<FF02><FF01>
+2242	153:0x32d0	E0:2257	Reiji: Quit sticking your head in<FF03>a hole, Maki! It's the easy way out...<FF02><FF04>My mom was Kandori's<FF03>dad's old mistress.<FF03>She got thrown away like an old rag.<FF02><FF04>But even knowing that would<FF03>happen... She still gave birth to me.<FF02><FF04>Know why she did that?<FF02><FF04>She told me she couldn't neglect<FF03>her own child's life...<FF02><FF04>You have a mom too. No parent<FF03>alive doesn't love their child.<FF02><FF04>You're gonna see your mom again,<FF03>so hurry and wake up!<FF02><FF01>
+2243	153:0x33d4	E0:2258	Elly: Maki! Please wake up! Please...<FF02><FF04>You're not the only one who<FF03>suffers from having multiple<FF03>aspects of yourself...<FF02><FF04>Everyone says how<FF03>elegant and beautiful I am,<FF03>but it's not true at all.<FF02><FF04>I've always acted like someone I'm not.<FF03>I hate seeing boys talk to<FF03>other girls...<FF02><FF04>That's why I always wear a fake<FF03>smile. It was so stifling...<FF03>I'm no good, am I?<FF02><FF04>But I understand now.<FF02><FF04>What I really needed are friends I can<FF03>trust. The ones I have with me here...<FF02><FF04>I like someone now. You probably like<FF03>him too, Maki... Please wake up...<FF02><FF04>I wish I could talk to you again, about<FF03>things like him. Okay? So wake up...<FF02><FF01>
+2244	153:0x3568	E0:2259	Brown: Rise and shine, Maki, and I'll<FF03>tell you the funniest story I know!<FF02><FF04>Y'know how they call me Brown?<FF03>It's a nickname I picked<FF03>up in middle school...<FF02><FF04>People think it's about<FF03>my brown hair... But really...<FF05><60><00><FF03>It's 'cause I crapped myself.<FF02><FF04>See? Isn't that funny?<FF03>Man, it was embarrassing...<FF02><FF04>I spent most of middle school as<FF03>the butt of every joke in the class...<FF02><FF04>I was sick of myself.<FF03>I came to Hermelin 'cause I<FF03>couldn't take the local schools.<FF02><FF04>So when I got to high school,<FF03>I did my best to act like Mr. Cool...<FF02><FF04>But I was lying to myself all this time.<FF03>No more, though. I realized how dumb<FF03>I was being from watching you...<FF02><FF04>So there it is. Now c'mon...<FF03>give us a smile...<FF02><FF01>
+2245	153:0x36ec	E0:2260	Ayase: Wakey wakey, Maki!<FF02><FF04>I still have your handkerchief.<FF03>Anything you wanna talk about,<FF03>I'll listen...<FF02><FF04>I get how you feel.<FF03>I used to think the same way...<FF02><FF04>I would like,<FF03>wish there would be no future...<FF02><FF04>I worry about the future a lot.<FF03>I think that's why I party so hard...<FF02><FF04>'Cause the future's too depressing to<FF03>think about, right?<FF02><FF04>So I made up my mind to live only for<FF03>now, and ran away from the future...<FF03>But it doesn't work like that.<FF02><FF04>It's my future. I have to come up with<FF03>it myself... So I've made my choice.<FF02><FF04>I'm gonna snag a great guy so I can<FF03>live on easy street! So, Maki...<FF02><FF04>I wanna hear your dreams for<FF03>the future, too.<FF03>Please, Maki... please...<FF02><FF01>
 2246	153:0x382c	E0:2261	A shard of the Chaos Mirror<FF03>is on the floor.<FF02><FF01>
 2247	153:0x3844	E0:2262	Pick it up?<FF03><FF0E><00><FF01>
 2248	153:0x3854	E0:2263	Nanjo: <FF07><01>?<FF05><58><00><FF03>Is that a shard of Kandori's mirror!?<FF02><FF04>This size and shape...<FF03>I think it may fit Maki's compact!<FF02><FF01>
@@ -2276,7 +2276,7 @@ id	pos	psp	en
 2274	156:0x38c0	E0:2289	Trish: Boo to that!<FF03>You mangy, dirty bum!<FF03>Don't blame me if you wind up dead!<FF02><FF01>
 2275	156:0x38f8	E0:2290	Well, come again.<FF03>I'll be waiting! Bye-bye!<FF02><FF01>
 2276	156:0x3924	E0:2291	Trish: You called me out for no<FF03>reason!? Boo to that! Get outta here!<FF02><FF01>
-2277	157:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+2277	157:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 2278	157:0x5388	E0:2293	Igor: Welcome to the Velvet Room...<FF02><FF01>
 2279	157:0x53ac	E0:2294	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 2280	157:0x53c8	E0:2295	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
@@ -2364,16 +2364,16 @@ id	pos	psp	en
 2362	161:0x1bbc	E0:2377	Maki: Aki wants to make this world<FF03>go away... She went to where<FF03>the really bad me is.<FF02><FF01>
 2363	161:0x1bfc	E0:2378	Mark: There's ANOTHER one of her?<FF02><FF01>
 2364	161:0x1c18	E0:2379	Maki: The really bad me is called<FF03>Pandora... Aki broke Pandora's seal.<FF02><FF04>Pandora swallowed Aki, and now she's<FF03>trying to make this world go away.<FF02><FF04>But if she does that...<FF03>We'll... I'll... die...<FF02><FF01>
-2365	161:0x1c98		Reiji:<FF03>Then where can we find this Pandora?<FF02><FF01>
-2366	161:0x1cc0	E0:2380	Elly: Is that true!?<FF03>Then where is this Pandora!?<FF02><FF01>
-2367	161:0x1cfc	E0:2381	Elly: Is this true!?<FF03>Then where would one find Pandora?<FF02><FF01>
-2368	161:0x1d38	E0:2382	Brown: What!? Then how do<FF03>we get to Pandora!?<FF02><FF01>
-2369	161:0x1d68	E0:2383	Ayase: No way! Seriously!? Then,<FF03>uhh, where do we find Pandora!?<FF02><FF01>
-2370	161:0x1d90	E0:2384	Nanjo: The school...!<FF03>She must be beyond that<FF03>door we found in the library.<FF02><FF04>Am I correct?<FF02><FF01>
-2371	161:0x1dc0	E0:2385	Nanjo: The school...!<FF03>She must be beyond that<FF03>door we found in the library.<FF02><FF04>Am I correct?<FF02><FF01>
-2372	161:0x1e04	E0:2386	Nanjo: Energetic...<FF03>You mean the ideal Maki?<FF02><FF04>We have the three compacts,<FF03>don't we?<FF02><FF01>
-2373	161:0x1e48	E0:2387	Nanjo: Energetic...<FF03>You mean the ideal Maki?<FF02><FF04>We have the three compacts,<FF03>don't we?<FF02><FF01>
-2374	161:0x1e7c	E0:2388	Reiji: I remember you had<FF03>two of them, <FF07><01>.<FF03>Red and green... We're missing one.<FF02><FF01>
+2365	161:0x1c98	E0:2380	Reiji:<FF03>Then where can we find this Pandora?<FF02><FF01>
+2366	161:0x1cc0	E0:2381	Elly: Is that true!?<FF03>Then where is this Pandora!?<FF02><FF01>
+2367	161:0x1cfc	E0:2382	Elly: Is this true!?<FF03>Then where would one find Pandora?<FF02><FF01>
+2368	161:0x1d38	E0:2383	Brown: What!? Then how do<FF03>we get to Pandora!?<FF02><FF01>
+2369	161:0x1d68	E0:2384	Ayase: No way! Seriously!? Then,<FF03>uhh, where do we find Pandora!?<FF02><FF01>
+2370	161:0x1d90	E0:2385	Nanjo: The school...!<FF03>She must be beyond that<FF03>door we found in the library.<FF02><FF04>Am I correct?<FF02><FF01>
+2371	161:0x1dc0	E0:2386	Maki: Uh-huh.<FF03>But you'll need the three compacts...<FF03>and my energetic self's help.<FF02><FF01>
+2372	161:0x1e04	E0:2387	Nanjo: Energetic...<FF03>You mean the ideal Maki?<FF02><FF04>We have the three compacts,<FF03>don't we?<FF02><FF01>
+2373	161:0x1e48	E0:2388	Reiji: I remember you had<FF03>two of them, <FF07><01>.<FF03>Red and green... We're missing one.<FF02><FF01>
+2374	161:0x1e7c	E0:2389	Elly: <FF07><01>, aren't you<FF03>carrying two of them already?<FF02><FF04>One red and one green...<FF03>We only need one more.<FF02><FF01>
 2375	161:0x1ec8	E0:2390	Elly: You have two of them,<FF03>right <FF07><01>?<FF02><FF04>Red and green...<FF03>We just need one more.<FF02><FF01>
 2376	161:0x1f10	E0:2391	Brown: Didn't you have two already,<FF03><FF08><01>?<FF02><FF04>Red and green, huh...?<FF03>We're still missing one.<FF02><FF01>
 2377	161:0x1f48	E0:2392	Ayase: Hey <FF08><01>,<FF03>didn't you have them?<FF02><FF04>One red one and one green one?<FF03>So we're still missing one...<FF02><FF01>
@@ -2717,7 +2717,7 @@ id	pos	psp	en
 2715	210:0x38c0	E0:2730	Trish: Boo to that!<FF03>You mangy, dirty bum!<FF03>Don't blame me if you wind up dead!<FF02><FF01>
 2716	210:0x38f8	E0:2731	Well, come again.<FF03>I'll be waiting! Bye-bye!<FF02><FF01>
 2717	210:0x3924	E0:2732	Trish: You called me out for no<FF03>reason!? Boo to that! Get outta here!<FF02><FF01>
-2718	211:0x5324		Igor: Welcome to the Velvet Room...<FF02><FF01>
+2718	211:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 2719	211:0x5388	E0:2734	Igor: Welcome to the Velvet Room...<FF02><FF01>
 2720	211:0x53ac	E0:2735	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
 2721	211:0x53c8	E0:2736	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>

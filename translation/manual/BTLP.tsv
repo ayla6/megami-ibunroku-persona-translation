@@ -54,22 +54,22 @@ id	pos	psp	en	note
 117	0x6dcb4		・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・	same as JP; ja ・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・<FFFC>・
 132	0x7a2fc		Normal	machine-translated; ja ノーマル
 133	0x7a304		Easy	machine-translated; ja イージー
-134	0x7a30c		Control key list	machine-translated; ja そうさキー　いちらん
+134	0x7a30c		Controls	machine-translated; ja そうさキー　いちらん
 135	0x7a318		Current mode	machine-translated; ja げんざいのモード
 136	0x7a324		Confirm	machine-translated; ja けってい
 137	0x7a32c		Cancel	machine-translated; ja キャンセル
 138	0x7a334		Set shortcut	machine-translated; ja ショートカットけってい
 139	0x7a340		Cancel all	machine-translated; ja オールキャンセル
-140	0x7a34c		Player list	machine-translated; ja プレイヤーいちらん
-141	0x7a358		Online help ON/OFF	machine-translated; ja オンラインヘルプＯＮ／ＯＦＦ
+140	0x7a34c		Party list	machine-translated; ja プレイヤーいちらん
+141	0x7a358		Description toggle	freeform translation, put description first because it's more eyecatching; ja オンラインヘルプＯＮ／ＯＦＦ
 142	0x7a368		Enemy list	machine-translated; ja てきいちらん
-143	0x7a370		Control key list	machine-translated; ja そうさキーいちらん
+143	0x7a370		Controls	machine-translated; ja そうさキーいちらん
 144	0x7a37c		Battle config	machine-translated; ja バトルコンフィグ
 145	0x7a388		Toggle status display	machine-translated; ja ステータスひょうじきりかえ
 146	0x7b9b8		Battle config settings	machine-translated; ja バトルコンフィグせってい
 147	0x7b9c8		Remember cursor position	machine-translated; ja カーソルいちきおく
-148	0x7b9d4		Personal auto settings	machine-translated; ja パーソナルオートせってい
-149	0x7b9e4		Confirm final command	machine-translated; ja コマンドさいしゅうかくにん
+148	0x7b9d4		Personal Auto settings	machine-translated; ja パーソナルオートせってい
+149	0x7b9e4		Confirm on final command	machine-translated; ja コマンドさいしゅうかくにん
 150	0x7b9f4		Battle message speed	machine-translated; ja バトルメッセージスピード
 151	0x7ba04		Battle window animation	machine-translated; ja バトルウィンドウアニメ
 152	0x7ba10		On	machine-translated; ja する
@@ -80,7 +80,7 @@ id	pos	psp	en	note
 157	0x7a84c		Sword	machine-translated; ja けん
 158	0x7a850		Gun	machine-translated; ja じゅう
 159	0x7a854		Free	machine-translated; ja フリー
-160	0x7a858		Personal auto settings	machine-translated; ja パーソナルオートせってい
+160	0x7a858		Personal Auto settings	machine-translated; ja パーソナルオートせってい
 161	0x795f4		Take that!	machine-translated; ja それっ
 162	0x795fe		Waaaaah!	machine-translated; ja うわぁぁぁぁ
 163	0x79608		So scary!	machine-translated; ja こわぃぃぃぃ

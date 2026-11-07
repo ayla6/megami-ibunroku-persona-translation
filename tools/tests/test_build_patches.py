@@ -1,4 +1,4 @@
-"""Release graph, canonical states, proofs, round trips and safe publication."""
+"""Release graph, canonical states, sampled chains, round trips, publication."""
 import csv
 import hashlib
 import os
@@ -89,7 +89,7 @@ def variant_bytes(labels):
     In-place options overwrite a fixed slot (the image keeps its size);
     size-changers insert, shifting every later slot. The layout is a pure
     function of the selected set, so an add- patch copies riding-along
-    markers through exactly the property the release proofs rely on.
+    markers through exactly the property the release chains rely on.
     """
     rng = random.Random(7)
     seed = bytes(rng.randrange(256) for _ in range(4096))
@@ -112,58 +112,102 @@ def variant_bytes(labels):
 
 
 class ReleaseGraph(unittest.TestCase):
-    def test_release_graph_is_canonical_states_plus_fixtures(self):
+    def test_release_graph_is_only_canonical_states(self):
         canonical = release.canonical_states()
-        self.assertEqual(len(canonical), 11)
+        anchors = release.size_changer_states()
+        self.assertEqual(anchors, [(), ('saves',), ('60fps',),
+                                   ('saves', '60fps')])
+        self.assertEqual(len(canonical), 32)
         self.assertEqual(canonical[0], ())
+        self.assertEqual({tuple(labels) for labels in canonical[:4]},
+                         set(anchors))
         for option in release.in_place_options():
-            self.assertIn((option,), canonical)
-        self.assertIn(('saves',), canonical)
-        self.assertIn(('60fps',), canonical)
-        self.assertIn(('saves', '60fps'), canonical)
+            for anchor in anchors:
+                self.assertIn(tuple(release.solver_order([*anchor, option])),
+                              canonical)
         self.assertEqual(len({tuple(release.release_selection(labels))
-                              for labels in canonical}), 11)
+                              for labels in canonical}), 32)
 
-        all_in_place = tuple(release.in_place_options())
-        fixtures = release.proof_states()
-        self.assertEqual(len(fixtures), 4)
-        self.assertIn(all_in_place, fixtures)
-        self.assertIn(tuple(release.solver_order([*all_in_place, 'saves'])),
-                      fixtures)
-        self.assertIn(tuple(release.solver_order([*all_in_place, '60fps'])),
-                      fixtures)
-        self.assertIn(tuple(release.solver_order([*all_in_place, 'saves', '60fps'])),
-                      fixtures)
+        expected = {'rev0-to-base.xdelta', 'rev1-to-rev0.xdelta',
+                    'add-saves.xdelta', 'add-60fps.xdelta',
+                    'add-60fps-saves.xdelta'}
+        for option in release.in_place_options():
+            for anchor in anchors:
+                expected.add(release.patch_file(option, frozenset(anchor)))
+        self.assertEqual(len(release.release_file_names()), 33)
+        self.assertEqual(release.release_file_names(), expected)
 
-        self.assertEqual(len(release.release_file_names()), 12)
-        self.assertEqual(
-            release.release_file_names(),
-            {'add-mark.xdelta', 'add-battlespeed.xdelta',
-             'add-rewards.xdelta', 'add-encounters.xdelta', 'add-run.xdelta',
-             'add-upright.xdelta', 'add-skipfmv.xdelta',
-             'add-saves.xdelta', 'add-60fps.xdelta', 'add-60fps-saves.xdelta',
-             'rev0-to-base.xdelta', 'rev1-to-rev0.xdelta'})
+    def test_samples_start_with_the_expected_popular_sets(self):
+        picks = release.sample_selections(3, 0)
+        self.assertEqual(picks[:2],
+                         [tuple(release.solver_order(labels))
+                          for labels in release.SAMPLE_POPULAR])
+        self.assertEqual(len(picks), 5, 'two popular sets plus three random')
+        canonical = set(release.canonical_states())
+        self.assertEqual(len(set(picks)), len(picks), 'no duplicate samples')
+        for labels in picks[2:]:
+            self.assertNotIn(frozenset(labels), canonical,
+                             'random samples exercise decorated chains')
+            self.assertTrue(labels)
+        self.assertEqual(picks, release.sample_selections(3, 0),
+                         'the same seed samples the same combinations')
+        self.assertNotEqual(picks[2:], release.sample_selections(3, 1)[2:],
+                            'a new seed samples new combinations')
 
     def test_assembly_parent_keeps_the_one_shot_size_changer_layout(self):
         self.assertEqual(release.assembly_parent(()), ())
         self.assertEqual(release.assembly_parent(('mark',)), ())
         self.assertEqual(release.assembly_parent(('saves',)), ())
+        self.assertEqual(release.assembly_parent(('60fps',)), ())
         self.assertIsNone(release.assembly_parent(('saves', '60fps')))
+        # An in-place state is written on its size-changer layout, so its
+        # patch carries only that option's edits.
+        self.assertEqual(release.assembly_parent(('mark', 'saves')),
+                         ('saves',))
+        self.assertEqual(release.assembly_parent(('saves', 'mark')), ('saves',))
+        self.assertEqual(
+            release.assembly_parent(('mark', '60fps', 'saves')),
+            ('saves', '60fps'))
         all_in_place = tuple(release.in_place_options())
         self.assertEqual(release.assembly_parent((*all_in_place, 'saves')),
-                         all_in_place)
-        self.assertIsNone(release.assembly_parent(
-            (*all_in_place, 'saves', '60fps')))
+                         ('saves',))
+        self.assertEqual(release.assembly_parent(
+            (*all_in_place, 'saves', '60fps')), ('saves', '60fps'))
 
     def test_add_edges_cover_every_option_and_anchor(self):
         edges = {(option, tuple(sorted(anchor)))
                  for option, anchor in release.add_edges()}
+        anchors = {tuple(sorted(anchor))
+                   for anchor in release.size_changer_states()}
         for option in release.in_place_options():
-            self.assertIn((option, ()), edges)
+            for anchor in anchors:
+                self.assertIn((option, anchor), edges)
         self.assertIn(('saves', ()), edges)
         self.assertIn(('60fps', ()), edges)
         self.assertIn(('60fps', ('saves',)), edges)
-        self.assertEqual(len(edges), 10)
+        self.assertEqual(len(edges), 31)
+
+    def test_every_add_edge_is_encoded_from_a_canonical_state(self):
+        canonical = set(release.canonical_states())
+        files = release.release_file_names()
+        for labels in canonical:
+            if not labels:
+                continue
+            edge = release.release_edge(labels)
+            self.assertIn(edge.parent, canonical, labels)
+            self.assertIn(edge.file, files, labels)
+            anchor = release.assembly_parent(labels)
+            if anchor is not None:
+                self.assertEqual(edge.parent, anchor, labels)
+            else:
+                # A second size-changer is laid out from retail in one pass,
+                # but its patch is still encoded from the earlier layout.
+                ordered = release.solver_order(labels)
+                self.assertEqual(
+                    edge.parent,
+                    tuple(label for label in ordered[:-1]
+                          if label in release.SIZE_CHANGERS),
+                    labels)
 
     def test_xdelta_selection_prefers_explicit_then_bundled_then_path(self):
         with tempfile.TemporaryDirectory() as tmp, \
@@ -184,19 +228,19 @@ class ReleaseGraph(unittest.TestCase):
 
 @unittest.skipUnless(shutil.which('xdelta3'), 'xdelta3 not installed')
 class ReleaseBuild(unittest.TestCase):
-    """A full release against a synthetic disc: canonical states and proof
-    fixtures are assembled, patches are encoded, every decorated step is
-    proven, and reruns rebuild only what changed."""
+    """A release against a synthetic disc: canonical states are assembled,
+    patches are encoded, the sampled selections are rebuilt from retail and
+    the published chains must reproduce them byte for byte, and reruns
+    rebuild only what changed."""
+
+    samples = (('mark', 'battlespeed'),
+               ('mark', 'encounters', 'run', 'saves'))
 
     def setUp(self):
         self.tool = shutil.which('xdelta3')
         self.canonical = release.canonical_states()
-        self.fixtures = release.proof_states()
-        self.known = set(self.canonical) | set(self.fixtures)
-        self.by_selection = {tuple(release.release_selection(labels)): labels
-                             for labels in self.known}
 
-    def run_release(self, root, rev0, rev1, out, corrupt=None):
+    def run_release(self, root, rev0, rev1, out, corrupt=None, samples=None):
         verified = []
 
         def run(cmd, **kwargs):
@@ -208,18 +252,21 @@ class ReleaseBuild(unittest.TestCase):
         actual_run = subprocess.run
         built = set()
 
-        def fake_build(variants_override, after_variant, mark_builder,
+        def fake_build(variants_override, after_variant=None, mark_builder=None,
                        source_image_for=None):
             for selected, path in variants_override:
-                labels = self.by_selection[tuple(selected)]
+                labels = tuple(release.solver_order(
+                    release.state_labels(selected)))
                 if source_image_for is not None:
                     source = Path(source_image_for(selected))
                     self.assertTrue(source.is_file())
                     parent = release.assembly_parent(labels)
-                    if not labels or parent is None:
+                    if labels not in self.canonical:
+                        # sample builds are one-shot from retail
                         expected = rev0.read_bytes()
-                    elif (parent in self.canonical or parent in self.fixtures
-                          or parent in built):
+                    elif not labels or parent is None:
+                        expected = rev0.read_bytes()
+                    elif parent in self.canonical or parent in built:
                         expected = variant_bytes(parent)
                     else:
                         expected = variant_bytes(())
@@ -229,13 +276,17 @@ class ReleaseBuild(unittest.TestCase):
                 if corrupt is not None and labels == corrupt:
                     data = data[:-1] + bytes([data[-1] ^ 0xFF])
                 Path(path).write_bytes(data)
-                Path(path + '.placement.tsv').write_text(
+                Path(str(path) + '.placement.tsv').write_text(
                     'path\textent\tsize\tsha256\n')
                 built.add(labels)
-                after_variant(selected, path)
+                if after_variant is not None:
+                    after_variant(selected, path)
 
         with patch.object(release, 'ROOT', root), \
                 patch.object(release, 'scratch_root', scratch_in(root)), \
+                patch.object(release, 'sample_selections',
+                             return_value=list(self.samples if samples is None
+                                               else samples)), \
                 patch.object(release, 'release_fingerprint',
                              return_value='test-key'), \
                 patch.object(release.image_check, 'require'), \
@@ -253,31 +304,33 @@ class ReleaseBuild(unittest.TestCase):
             rev0.write_bytes(b'retail revision zero' * 100)
             rev1.write_bytes(b'retail revision one' * 100)
             verified, builder = self.run_release(root, rev0, rev1, out)
-            # one audit per assembled state: 11 canonical + 4 fixtures
-            self.assertEqual(len(verified), 15)
-            self.assertEqual(len(list(out.glob('*.xdelta'))), 12)
+            self.assertEqual(len(verified), 32 + len(self.samples),
+                             'an audit per canonical state and per sample disc')
+            self.assertEqual(builder.call_count, 2,
+                             'one canonical batch plus one sample batch')
+            self.assertEqual(len(list(out.glob('*.xdelta'))), 33)
             self.assertFalse(list(out.glob('*.bin')))
             readme = (out / 'README.txt').read_text(encoding='utf-8')
             for name in release.release_file_names():
                 self.assertIn(name, readme)
             for item in release.RELEASE_OPTIONS:
                 self.assertIn(item['name'], readme)
-            self.assertIn('12 steps across 12 patch files', ' '.join(readme.split()))
+            self.assertIn('33 steps across 33 patch files', ' '.join(readme.split()))
+            self.assertIn('SAMPLING', readme)
 
             with (out / 'manifest.tsv').open() as f:
                 rows = list(csv.DictReader(f, delimiter='\t'))
-            self.assertEqual(len(rows), 12)
+            self.assertEqual(len(rows), 33)
             by_name = {row['patch']: row for row in rows}
-            self.assertEqual(len(by_name), 12, 'one row per patch file')
+            self.assertEqual(len(by_name), 33, 'one row per patch file')
             self.assertEqual(by_name['rev1-to-rev0.xdelta']['source_sha256'],
                              release.sha256(rev1))
             base = by_name['rev0-to-base.xdelta']
             self.assertEqual(base['source_sha256'], release.sha256(rev0))
-            targets = {row['target_sha256'] for row in rows}
-            for name, row in by_name.items():
-                if name != 'rev1-to-rev0.xdelta':
-                    self.assertIn(row['source_sha256'], targets,
-                                  f'{name} must delta from a canonical state')
+            self.assertTrue(base['target_sha256'])
+            # An add- row's source is whatever the player's earlier options
+            # made it, so whole-image hashes would describe a disc that was
+            # never built: only the patch file's hash and its sizes are real.
             for option, anchor in release.add_edges():
                 row = by_name[release.patch_file(option, anchor)]
                 self.assertEqual(row['adds'], option)
@@ -286,35 +339,19 @@ class ReleaseBuild(unittest.TestCase):
                     if label in anchor))
                 self.assertEqual(row['order'],
                                  str(release.solver_order(release.CHOICE_ORDER).index(option)))
-                self.assertTrue(row['proof_sha256'], row['patch'])
-                self.assertEqual(row['proof_choices'], ','.join(
-                    release.solver_order(release.proof_target(option, anchor))))
-
-            def chain(labels):
-                """The rows a browser applies, derived from adds/anchor/order."""
-                applied = set()
-                steps = [release.BASE_PATCH]
-                for label in release.solver_order(labels):
-                    anchor = frozenset(item for item in applied
-                                       if item in release.SIZE_CHANGERS)
-                    steps.append(release.patch_file(label, anchor))
-                    applied.add(label)
-                return steps
-
-            for labels in (('mark',), ('saves', 'mark'),
-                           ('mark', 'encounters', '60fps'),
-                           ('mark', 'battlespeed', 'rewards', 'saves', '60fps')):
-                decoded = root / 'chain.bin'
-                source = rev0
-                for step in chain(labels):
-                    command = [self.tool, '-d', '-f', '-q', '-n']
-                    if step == release.BASE_PATCH:
-                        command.remove('-n')
-                    command += ['-s', str(source), str(out / step), str(decoded)]
-                    subprocess.run(command, check=True)
-                    source = decoded
-                self.assertEqual(decoded.read_bytes(), variant_bytes(labels),
-                                 f'chain to {labels}')
+                self.assertEqual(row['source_sha256'], '')
+                self.assertEqual(row['target_sha256'], '')
+                self.assertTrue(row['patch_sha256'])
+                self.assertTrue(row['target_bytes'])
+            for labels in self.samples:
+                for name in [release.BASE_PATCH] + [
+                        release.patch_file(label, frozenset(
+                            item for item in release.solver_order(labels)[:index]
+                            if item in release.SIZE_CHANGERS))
+                        for index, label in enumerate(release.solver_order(labels))]:
+                    self.assertIn(','.join(release.solver_order(labels)),
+                                  by_name[name]['verified'].split(';'),
+                                  f'{name} must record the sample that used it')
 
             conversion = out / 'rev1-to-rev0.xdelta'
             stamp = conversion.stat().st_mtime_ns
@@ -323,44 +360,48 @@ class ReleaseBuild(unittest.TestCase):
                              'unchanged release must not rebuild')
             self.assertEqual(conversion.stat().st_mtime_ns, stamp)
 
-            _, builder = self.run_release(root, rev0, rev1, out)
-            self.assertEqual(builder.call_count, 0)
-
-            all_in_place = tuple(release.in_place_options())
             (out / 'add-60fps.xdelta').unlink()
             _, builder = self.run_release(root, rev0, rev1, out)
-            self.assertEqual(builder.call_count, 1)
+            self.assertEqual(builder.call_count, 1,
+                             'no sample needs 60fps; only its state rebuilds')
             self.assertEqual(
-                [self.by_selection[tuple(v[0])]
-                 for v in builder.call_args.kwargs['variants_override']],
-                [('60fps',), all_in_place,
-                 tuple(release.solver_order([*all_in_place, '60fps']))])
+                [release.state_labels(selected)
+                 for selected, _path in builder.call_args.kwargs['variants_override']],
+                [('60fps',)])
             self.assertEqual(conversion.stat().st_mtime_ns, stamp)
 
             (out / 'add-saves.xdelta').unlink()
             _, builder = self.run_release(root, rev0, rev1, out)
-            self.assertEqual(builder.call_count, 1)
+            self.assertEqual(builder.call_count, 2,
+                             'the canonical state plus the sample that uses it')
+            canonical_call, sample_call = builder.call_args_list
             self.assertEqual(
-                [self.by_selection[tuple(v[0])]
-                 for v in builder.call_args.kwargs['variants_override']],
-                [('saves',), all_in_place,
-                 tuple(release.solver_order([*all_in_place, 'saves']))])
-            paths = [path for _, path in builder.call_args.kwargs['variants_override']]
+                [release.state_labels(selected)
+                 for selected, _path in
+                 canonical_call.kwargs['variants_override']],
+                [('saves',)])
+            self.assertEqual(
+                [tuple(release.solver_order(release.state_labels(selected)))
+                 for selected, _path in
+                 sample_call.kwargs['variants_override']],
+                [tuple(release.solver_order(self.samples[1]))])
+            paths = [path for _, path in
+                     canonical_call.kwargs['variants_override']]
             self.assertEqual(len(paths), len(set(paths)),
                              'each variant must write its own scratch image')
             self.assertEqual(conversion.stat().st_mtime_ns, stamp)
 
-    def test_failed_portability_proof_stops_the_release(self):
+    def test_sampled_chain_mismatch_stops_the_release(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             rev0, rev1, out = root / 'zero.bin', root / 'one.bin', root / 'release'
             rev0.write_bytes(b'retail revision zero' * 100)
             rev1.write_bytes(b'retail revision one' * 100)
-            # A decorated fixture whose bytes the patch chain cannot produce:
-            # nothing else in the build would notice.
-            with self.assertRaisesRegex(RuntimeError, 'decorated parent'):
+            # The disc built for a sampled selection does not match what the
+            # published chain produces: the sample comparison must catch it.
+            with self.assertRaisesRegex(RuntimeError, 'reproduce the built disc'):
                 self.run_release(root, rev0, rev1, out,
-                                 corrupt=tuple(release.proof_states())[0])
+                                 corrupt=tuple(self.samples[0]))
 
     def test_existing_unrelated_output_is_preserved(self):
         with tempfile.TemporaryDirectory() as tmp:

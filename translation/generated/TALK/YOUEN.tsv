@@ -759,304 +759,304 @@ id	pos	psp	en
 757	0x88cb	YOUEN:41	Heheh, that's right.<FFF5>
 758	0x88d6	YOUEN:42	I don't want it.<FFF5>
 759	0x88dd	YOUEN:43	I don't want it.<FFF5>
-760	0x88f1	YOUEN:45	Ooh, you found out?<FFF5>
-761	0x8900	YOUEN:46	Ooh, you found out?<FFF5>
-762	0x890f	YOUEN:47	That's not true.<FFF5>
-763	0x8919	YOUEN:48	That's not true.<FFF5>
-764	0x8923	YOUEN:49	You think so too?<FFF5>
-765	0x8950	YOUEN:52	Wooooow!<FFF5>
-766	0x895a	YOUEN:53	Heeheehee.<FFF5>
-767	0x8962	YOUEN:54	Heeheehee.<FFF5>
-768	0x896a	YOUEN:55	It's been hard for me.<FFF5>
-769	0x8976	YOUEN:56	Mm-hmm!<FFF5>
-770	0x897c	YOUEN:57	Mm-hmm!<FFF5>
-771	0x8982	YOUEN:58	That's not it.<FFF5>
-772	0x8988	YOUEN:59	Heheh, that's right.<FFF5>
-773	0x8993	YOUEN:60	I don't want it.<FFF5>
-774	0x899a	YOUEN:61	I don't want it.<FFF5>
-775	0x89a1	YOUEN:62	What did you say!?<FFF5>
-776	0x89ad	YOUEN:63	What did you say!?<FFF5>
-777	0x89b9	YOUEN:64	Heeheehee.<FFF5>
-778	0x89ce	YOUEN:66	Ooh, you found out?<FFF5>
-779	0x89dd	YOUEN:67	Ooh, you found out?<FFF5>
-780	0x8a0a	YOUEN:70	Wooooow!<FFF5>
-781	0x8a14	YOUEN:71	Mwahahaha, okay!<FFF5>
-782	0x8a24	YOUEN:72	Mwahahaha, okay!<FFF5>
-783	0x8a34	YOUEN:73	Eh, never mind...<FFF5>
-784	0x8a3f	YOUEN:74	Sorry...<FFF5>
-785	0x8a47	YOUEN:75	That's a lie!<FFF5>
-786	0x8a4f	YOUEN:76	That's a lie!<FFF5>
-787	0x8a57	YOUEN:77	You'll say yes?<FFF5>
-788	0x8a63	YOUEN:78	No worries.<FFF5>
-789	0x8a6d	YOUEN:79	No worries.<FFF5>
-790	0x8a77	YOUEN:80	Nothing...<FFF5>
-791	0x8a83	YOUEN:81	Nothing...<FFF5>
-792	0x8a8f	YOUEN:82	It's just a joke!<FFF5>
-793	0x8aa1	YOUEN:83	Explain in detail<FFF5>
-794	0x8aad	YOUEN:84	Make it laugh again<FFF5>
-795	0x8abc	YOUEN:85	Make it laugh again<FFF5>
-796	0x8acb	YOUEN:86	I wanted you to smile.<FFF5>
-797	0x8ada	YOUEN:87	I wanted you to smile.<FFF5>
-798	0x8ae9	YOUEN:88	I was ordered to.<FFF5>
-799	0x8af6	YOUEN:89	Heeheehee!<FFF5>
-800	0x8b01	YOUEN:90	Heeheehee!<FFF5>
-801	0x8b0c	YOUEN:91	What should I do?<FFF5>
-802	0x8b15	YOUEN:92	I do.<FFF5>
-803	0x8b1a	YOUEN:93	I can't tell you...<FFF5>
-804	0x8b27	YOUEN:94	I can't tell you...<FFF5>
-805	0x8b34	YOUEN:95	Roger that!<FFF5>
-806	0x8b40	YOUEN:96	Roger that!<FFF5>
-807	0x8b4c	YOUEN:97	NO. WAY!<FFF5>
-808	0x8b57	YOUEN:98	That's pretty cute.<FFF5>
-809	0x8b64	YOUEN:99	That's pretty cute.<FFF5>
-810	0x8b71	YOUEN:100	So lame...<FFF5>
-811	0x8b7c	YOUEN:101	Never mind...<FFF5>
-812	0x8b88	YOUEN:102	Never mind...<FFF5>
-813	0x8b94	YOUEN:103	I was gonna surprise you.<FFF5>
-814	0x8ba2	YOUEN:104	Mwahahahaha!<FFF5>
-815	0x8bac	YOUEN:105	Mwahahahaha!<FFF5>
-816	0x8bb6	YOUEN:106	Don't joke with me!<FFF5>
-817	0x8bc0	YOUEN:107	Roger that.<FFF5>
-818	0x8bca	YOUEN:108	Heeheehee.<FFF5>
-819	0x8bd3	YOUEN:109	Heeheehee.<FFF5>
-820	0x8bdc	YOUEN:110	All right.<FFF5>
-821	0x8be3	YOUEN:111	All right.<FFF5>
-822	0x8bea	YOUEN:112	I refuse!<FFF5>
-823	0x8bf1	YOUEN:113	You ask too much!<FFF5>
-824	0x8bfb	YOUEN:114	Something else okay?<FFF5>
-825	0x8c06	YOUEN:115	Something else okay?<FFF5>
-826	0x8c11	YOUEN:116	Don't get excited.<FFF5>
-827	0x8c36	YOUEN:119	Hmhm...<FFF5>
-828	0x8c3b	YOUEN:120	Hmhm...<FFF5>
-829	0x8c40	YOUEN:121	It's been hard for me.<FFF5>
-830	0x8c4c	YOUEN:122	Of course.<FFF5>
-831	0x8c53	YOUEN:123	Of course.<FFF5>
-832	0x8c5a	YOUEN:124	Hmhm...<FFF5>
-833	0x8c5f	YOUEN:125	That's right.<FFF5>
-834	0x8c64	YOUEN:126	I don't want it!<FFF5>
-835	0x8c6b	YOUEN:127	I don't want it!<FFF5>
-836	0x8c72	YOUEN:128	Never heard of it.<FFF5>
-837	0x8c79	YOUEN:129	Torment<FFF5>
-838	0x8c7f	YOUEN:130	Torment<FFF5>
-839	0x8c85	YOUEN:131	I taught myself.<FFF5>
-840	0x8c8c	YOUEN:132	I learned at school.<FFF5>
-841	0x8c93	YOUEN:133	Console it<FFF5>
-842	0x8c9a	YOUEN:134	Yell again<FFF5>
-843	0x8ca3	YOUEN:135	Yell again<FFF5>
-844	0x8cac	YOUEN:136	I know.<FFF5>
-845	0x8cb4	YOUEN:137	Will you be quiet!?<FFF5>
-846	0x8cc4	YOUEN:138	You're right.<FFF5>
-847	0x8cca	YOUEN:139	Hmph. I refuse.<FFF5>
-848	0x8cd3	YOUEN:140	Of course.<FFF5>
-849	0x8cda	YOUEN:141	You're a fool!<FFF5>
-850	0x8ce8	YOUEN:142	Well, all right.<FFF5>
-851	0x8cf1	YOUEN:143	Well, all right.<FFF5>
-852	0x8cfa	YOUEN:144	Don't joke with me.<FFF5>
-853	0x8d00	YOUEN:145	Gotta use the john!<FFF5>
-854	0x8d0e	YOUEN:146	That ain't it.<FFF5>
-855	0x8d15	YOUEN:147	Keep dancing<FFF5>
-856	0x8d1e	YOUEN:148	Stop<FFF5>
-857	0x8d23	YOUEN:149	I'm doing nothing.<FFF5>
-858	0x8d2e	YOUEN:150	I'm gonna bully you!<FFF5>
-859	0x8d39	YOUEN:151	I'm gonna bully you!<FFF5>
-860	0x8d44	YOUEN:152	It's my power.<FFF5>
-861	0x8d4c	YOUEN:153	It's my power.<FFF5>
-862	0x8d54	YOUEN:154	At school.<FFF5>
-863	0x8d60	YOUEN:155	Console it<FFF5>
-864	0x8d67	YOUEN:156	Taunt even further<FFF5>
-865	0x8d70	YOUEN:157	Taunt even further<FFF5>
-866	0x8d79	YOUEN:158	'Cause you're pretty.<FFF5>
-867	0x8d86	YOUEN:159	Don't get me wrong.<FFF5>
-868	0x8d91	YOUEN:160	Don't get me wrong.<FFF5>
-869	0x8d9c	YOUEN:161	'Cause you're pretty.<FFF5>
-870	0x8db7	YOUEN:163	Oh yeah!<FFF5>
-871	0x8dc8	YOUEN:164	That's so dumb.<FFF5>
-872	0x8dd3	YOUEN:165	That's so dumb.<FFF5>
-873	0x8dde	YOUEN:166	That ain't true.<FFF5>
-874	0x8de9	YOUEN:167	That ain't true.<FFF5>
-875	0x8e00	YOUEN:169	Yeah, I'm serious.<FFF5>
-876	0x8e0c	YOUEN:170	Yeah, I'm serious.<FFF5>
-877	0x8e18	YOUEN:171	Maybe not.<FFF5>
-878	0x8e30	YOUEN:173	I don't want it.<FFF5>
-879	0x8e38	YOUEN:174	I don't want it.<FFF5>
-880	0x8e40	YOUEN:175	That's rude.<FFF5>
-881	0x8e4c	YOUEN:176	That's rude.<FFF5>
-882	0x8e58	YOUEN:177	*chuckle*<FFF5>
-883	0x8e5f	YOUEN:178	Stop<FFF5>
-884	0x8e64	YOUEN:179	Stop<FFF5>
-885	0x8e69	YOUEN:180	Continue<FFF5>
-886	0x8e6f	YOUEN:181	Continue<FFF5>
-887	0x8e75	YOUEN:182	Yes.<FFF5>
-888	0x8e7d	YOUEN:183	No.<FFF5>
-889	0x8e83	YOUEN:184	I'll guide you.<FFF5>
-890	0x8e8e	YOUEN:185	I'll guide you.<FFF5>
-891	0x8e99	YOUEN:186	That's a secret.<FFF5>
-892	0x8ea4	YOUEN:187	Then I'll be Carrie.<FFF5>
-893	0x8eb3	YOUEN:188	I'm doing Corin's!<FFF5>
-894	0x8ec0	YOUEN:189	I'm doing Corin's!<FFF5>
-895	0x8ecd	YOUEN:190	I won't lose!<FFF5>
-896	0x8ed9	YOUEN:191	I won't lose!<FFF5>
-897	0x8ee5	YOUEN:192	What should I do...?<FFF5>
-898	0x8ef0	YOUEN:193	Stop<FFF5>
-899	0x8ef5	YOUEN:194	Keep singing<FFF5>
-900	0x8efd	YOUEN:195	Keep singing<FFF5>
-901	0x8f05	YOUEN:196	Yes, I see it.<FFF5>
-902	0x8f11	YOUEN:197	I can't see it.<FFF5>
-903	0x8f1a	YOUEN:198	I know.<FFF5>
-904	0x8f23	YOUEN:199	I don't know.<FFF5>
-905	0x8f2c	YOUEN:200	Keep soothing<FFF5>
-906	0x8f34	YOUEN:201	Act serious<FFF5>
-907	0x8f3c	YOUEN:202	It's not that great...<FFF5>
-908	0x8f46	YOUEN:203	It's not that great...<FFF5>
-909	0x8f50	YOUEN:204	It's been hard for me.<FFF5>
-910	0x8f5e	YOUEN:205	Yes.<FFF5>
-911	0x8f66	YOUEN:206	Yes.<FFF5>
-912	0x8f6e	YOUEN:207	Who knows...?<FFF5>
-913	0x8f78	YOUEN:208	Yes.<FFF5>
-914	0x8f80	YOUEN:209	No.<FFF5>
-915	0x8f86	YOUEN:210	No.<FFF5>
-916	0x8f8c	YOUEN:211	O-kay!<FFF5>
-917	0x8f92	YOUEN:212	I understand!<FFF5>
-918	0x8f9d	YOUEN:213	I know.<FFF5>
-919	0x8fa6	YOUEN:214	I don't know.<FFF5>
-920	0x8faf	YOUEN:215	Ahahahaha!<FFF5>
-921	0x8fba	YOUEN:216	It's okay.<FFF5>
-922	0x8fc5	YOUEN:217	I'm totally happy!<FFF5>
-923	0x8fd2	YOUEN:218	I'm totally happy!<FFF5>
-924	0x8fdf	YOUEN:219	Whaaat!? No!<FFF5>
-925	0x8fe9	YOUEN:220	What should I do?<FFF5>
-926	0x8ff5	YOUEN:221	Whaaat!? No!<FFF5>
-927	0x8fff	YOUEN:222	Whaaat!? No!<FFF5>
-928	0x9009	YOUEN:223	Mistress!<FFF5>
-929	0x9013	YOUEN:224	Seriously...?<FFF5>
-930	0x9020	YOUEN:225	Seriously...?<FFF5>
-931	0x902d	YOUEN:226	I'm fine.<FFF5>
-932	0x9036	YOUEN:227	It totally hurts.<FFF5>
-933	0x903f	YOUEN:228	It totally hurts.<FFF5>
-934	0x9048	YOUEN:229	You figured it out.<FFF5>
-935	0x9052	YOUEN:230	But that's mean...<FFF5>
-936	0x905e	YOUEN:231	But that's mean...<FFF5>
-937	0x906a	YOUEN:232	Keep crying<FFF5>
-938	0x9072	YOUEN:233	Stop<FFF5>
-939	0x9077	YOUEN:234	I won't do anything.<FFF5>
-940	0x9082	YOUEN:235	I'm gonna bully you.<FFF5>
-941	0x908c	YOUEN:236	I'm gonna bully you.<FFF5>
-942	0x9096	YOUEN:237	I taught myself.<FFF5>
-943	0x90a2	YOUEN:238	I taught myself.<FFF5>
-944	0x90ae	YOUEN:239	I learned at school.<FFF5>
-945	0x90b8	YOUEN:240	Console it<FFF5>
-946	0x90bf	YOUEN:241	Keep threatening<FFF5>
-947	0x90c7	YOUEN:242	Keep threatening<FFF5>
-948	0x90cf	YOUEN:243	Who knows?<FFF5>
-949	0x90d6	YOUEN:244	Who knows?<FFF5>
-950	0x90dd	YOUEN:245	I don't know.<FFF5>
-951	0x90e5	YOUEN:246	Because I'm curious.<FFF5>
-952	0x90ee	YOUEN:247	Because I hate you.<FFF5>
-953	0x90f8	YOUEN:248	Because I hate you.<FFF5>
-954	0x9102	YOUEN:249	Hell no!<FFF5>
-955	0x910e	YOUEN:250	I stopped.<FFF5>
-956	0x9113	YOUEN:251	I stopped.<FFF5>
-957	0x9118	YOUEN:252	Stop it...<FFF5>
-958	0x9120	YOUEN:253	Stop it...<FFF5>
-959	0x9128	YOUEN:254	It's been hard for me.<FFF5>
-960	0x9133	YOUEN:255	I'm serious.<FFF5>
-961	0x913b	YOUEN:256	I'm serious.<FFF5>
-962	0x9143	YOUEN:257	Who knows?<FFF5>
-963	0x914a	YOUEN:258	You're right.<FFF5>
-964	0x914f	YOUEN:259	I don't want it.<FFF5>
-965	0x9156	YOUEN:260	I don't want it.<FFF5>
-966	0x915d	YOUEN:261	Who knows?<FFF5>
-967	0x9164	YOUEN:262	Who knows?<FFF5>
-968	0x916b	YOUEN:263	I don't know.<FFF5>
-969	0x9173	YOUEN:264	Because I'm curious.<FFF5>
-970	0x917c	YOUEN:265	Because I hate you.<FFF5>
-971	0x9186	YOUEN:266	Because I hate you.<FFF5>
-972	0x9190	YOUEN:267	Hell no!<FFF5>
-973	0x919c	YOUEN:268	I stopped.<FFF5>
-974	0x91a1	YOUEN:269	I stopped.<FFF5>
-975	0x91a6	YOUEN:270	......<FFF5>
-976	0x91b2	YOUEN:271	Nothing special.<FFF5>
-977	0x91bb	YOUEN:272	Nothing special.<FFF5>
-978	0x91c4	YOUEN:273	......<FFF5>
-979	0x91ea	YOUEN:276	......<FFF5>
-980	0x91f6	YOUEN:277	What do you want?<FFF5>
-981	0x9201	YOUEN:278	What do you want?<FFF5>
-982	0x920c	YOUEN:279	......<FFF5>
-983	0x9218	YOUEN:280	I don't hear it.<FFF5>
-984	0x9221	YOUEN:281	I don't hear it.<FFF5>
-985	0x922a	YOUEN:282	......<FFF5>
-986	0x9236	YOUEN:283	Why not!?<FFF5>
-987	0x9241	YOUEN:284	Why not!?<FFF5>
-988	0x924c	YOUEN:285	......<FFF5>
-989	0x9258	YOUEN:286	What do you want?<FFF5>
-990	0x9264	YOUEN:287	What do you want?<FFF5>
-991	0x9270	YOUEN:288	I won't do anything.<FFF5>
-992	0x927b	YOUEN:289	I'll bully you.<FFF5>
-993	0x9283	YOUEN:290	I'll bully you.<FFF5>
-994	0x928b	YOUEN:291	Leave me alone.<FFF5>
-995	0x9294	YOUEN:292	Leave me alone.<FFF5>
-996	0x929d	YOUEN:293	Shut up. Get lost.<FFF5>
-997	0x92a9	YOUEN:294	Console it<FFF5>
-998	0x92b0	YOUEN:295	Keep threatening<FFF5>
-999	0x92b8	YOUEN:296	Keep threatening<FFF5>
-1000	0x92c0	YOUEN:297	I'm a fool.<FFF5>
-1001	0x92ca	YOUEN:298	You wanna die, huh!?<FFF5>
-1002	0x92d7	YOUEN:299	Calm down<FFF5>
-1003	0x92dd	YOUEN:300	Smirk<FFF5>
-1004	0x92e6	YOUEN:301	Smirk<FFF5>
-1005	0x92ef	YOUEN:302	Roar again<FFF5>
-1006	0x92fa	YOUEN:303	Act serious<FFF5>
-1007	0x9302	YOUEN:304	Act serious<FFF5>
-1008	0x930a	YOUEN:305	Were you surprised?<FFF5>
-1009	0x9311	YOUEN:306	It's not a spell.<FFF5>
-1010	0x931c	YOUEN:307	It's not a spell.<FFF5>
-1011	0x9327	YOUEN:308	I dunno about that.<FFF5>
-1012	0x9330	YOUEN:309	I dunno about that.<FFF5>
-1013	0x9339	YOUEN:310	Heh...<FFF5>
-1014	0x933e	YOUEN:311	So what?<FFF5>
-1015	0x9347	YOUEN:312	So what?<FFF5>
-1016	0x9350	YOUEN:313	I'm Reiji.<FFF5>
-1017	0x935a	YOUEN:314	Hunting demons.<FFF5>
-1018	0x9363	YOUEN:315	Waiting for you.<FFF5>
-1019	0x936e	YOUEN:316	Having an adventure.<FFF5>
-1020	0x9377	YOUEN:317	Yes.<FFF5>
-1021	0x937b	YOUEN:318	No.<FFF5>
-1022	0x9380	YOUEN:319	You're in MY way.<FFF5>
-1023	0x938c	YOUEN:320	Don't go in.<FFF5>
-1024	0x9393	YOUEN:321	Like I give a damn!<FFF5>
-1025	0x93bb	YOUEN:324	I'm doing okay.<FFF5>
-1026	0x93c1	YOUEN:325	I could be better.<FFF5>
-1027	0x93cb	YOUEN:326	I'm about to puke.<FFF5>
-1028	0x93d6	YOUEN:327	We got business.<FFF5>
-1029	0x93dd	YOUEN:328	Get outta here.<FFF5>
-1030	0x93e2	YOUEN:329	Hey, don't leave!<FFF5>
-1031	0x93ee	YOUEN:330	We got business.<FFF5>
-1032	0x93f5	YOUEN:331	Get outta here.<FFF5>
-1033	0x93fa	YOUEN:332	You need something?<FFF5>
-1034	0x9407	YOUEN:333	My door's open.<FFF5>
-1035	0x940f	YOUEN:334	Don't come near me.<FFF5>
-1036	0x9415	YOUEN:335	I want to, but...<FFF5>
-1037	0x9422	YOUEN:336	Calm it down<FFF5>
-1038	0x942c	YOUEN:337	Scare it<FFF5>
-1039	0x9434	YOUEN:338	Make it laugh<FFF5>
-1040	0x943b	YOUEN:339	Of course.<FFF5>
-1041	0x9441	YOUEN:340	I don't measure up.<FFF5>
-1042	0x944e	YOUEN:341	Don't joke with me.<FFF5>
-1043	0x9455	YOUEN:342	Do nothing<FFF5>
-1044	0x945d	YOUEN:343	Adore it<FFF5>
-1045	0x9465	KOSIKI:337	It's a secret.<FFF5>
-1046	0x88e4	YOUEN:44	No, that's not it!<FFF5>
-1047	0x8932	YOUEN:50	You think so too?<FFF5>
-1048	0x8941	YOUEN:51	Is that a joke?<FFF5>
-1049	0x89c1	YOUEN:65	No, that's not it!<FFF5>
-1050	0x89ec	YOUEN:68	Is that a joke?<FFF5>
-1051	0x89fb	YOUEN:69	Is that a joke?<FFF5>
-1052	0x8c1c	YOUEN:117	Hmph. Are you happy?<FFF5>
-1053	0x8c29	YOUEN:118	Hmph. Are you happy?<FFF5>
-1054	0x8da9	YOUEN:162	Whaddaya want!?<FFF5>
-1055	0x8df4	YOUEN:168	Could you tell?<FFF5>
-1056	0x8e24	YOUEN:172	Could you tell?<FFF5>
-1057	0x91d0	YOUEN:274	Why not?<FFF5>
-1058	0x91dd	YOUEN:275	Why not?<FFF5>
-1059	0x93a1	YOUEN:322	How about the sky?<FFF5>
-1060	0x93ae	YOUEN:323	How about the sky?<FFF5>
+760	0x88e4	YOUEN:44	No, that's not it!<FFF5>
+761	0x88f1	YOUEN:45	Ooh, you found out?<FFF5>
+762	0x8900	YOUEN:46	Ooh, you found out?<FFF5>
+763	0x890f	YOUEN:47	That's not true.<FFF5>
+764	0x8919	YOUEN:48	That's not true.<FFF5>
+765	0x8923	YOUEN:49	You think so too?<FFF5>
+766	0x8932	YOUEN:50	You think so too?<FFF5>
+767	0x8941	YOUEN:51	Is that a joke?<FFF5>
+768	0x8950	YOUEN:52	Wooooow!<FFF5>
+769	0x895a	YOUEN:53	Heeheehee.<FFF5>
+770	0x8962	YOUEN:54	Heeheehee.<FFF5>
+771	0x896a	YOUEN:55	It's been hard for me.<FFF5>
+772	0x8976	YOUEN:56	Mm-hmm!<FFF5>
+773	0x897c	YOUEN:57	Mm-hmm!<FFF5>
+774	0x8982	YOUEN:58	That's not it.<FFF5>
+775	0x8988	YOUEN:59	Heheh, that's right.<FFF5>
+776	0x8993	YOUEN:60	I don't want it.<FFF5>
+777	0x899a	YOUEN:61	I don't want it.<FFF5>
+778	0x89a1	YOUEN:62	What did you say!?<FFF5>
+779	0x89ad	YOUEN:63	What did you say!?<FFF5>
+780	0x89b9	YOUEN:64	Heeheehee.<FFF5>
+781	0x89c1	YOUEN:65	No, that's not it!<FFF5>
+782	0x89ce	YOUEN:66	Ooh, you found out?<FFF5>
+783	0x89dd	YOUEN:67	Ooh, you found out?<FFF5>
+784	0x89ec	YOUEN:68	Is that a joke?<FFF5>
+785	0x89fb	YOUEN:69	Is that a joke?<FFF5>
+786	0x8a0a	YOUEN:70	Wooooow!<FFF5>
+787	0x8a14	YOUEN:71	Mwahahaha, okay!<FFF5>
+788	0x8a24	YOUEN:72	Mwahahaha, okay!<FFF5>
+789	0x8a34	YOUEN:73	Eh, never mind...<FFF5>
+790	0x8a3f	YOUEN:74	Sorry...<FFF5>
+791	0x8a47	YOUEN:75	That's a lie!<FFF5>
+792	0x8a4f	YOUEN:76	That's a lie!<FFF5>
+793	0x8a57	YOUEN:77	You'll say yes?<FFF5>
+794	0x8a63	YOUEN:78	No worries.<FFF5>
+795	0x8a6d	YOUEN:79	No worries.<FFF5>
+796	0x8a77	YOUEN:80	Nothing...<FFF5>
+797	0x8a83	YOUEN:81	Nothing...<FFF5>
+798	0x8a8f	YOUEN:82	It's just a joke!<FFF5>
+799	0x8aa1	YOUEN:83	Explain in detail<FFF5>
+800	0x8aad	YOUEN:84	Make it laugh again<FFF5>
+801	0x8abc	YOUEN:85	Make it laugh again<FFF5>
+802	0x8acb	YOUEN:86	I wanted you to smile.<FFF5>
+803	0x8ada	YOUEN:87	I wanted you to smile.<FFF5>
+804	0x8ae9	YOUEN:88	I was ordered to.<FFF5>
+805	0x8af6	YOUEN:89	Heeheehee!<FFF5>
+806	0x8b01	YOUEN:90	Heeheehee!<FFF5>
+807	0x8b0c	YOUEN:91	What should I do?<FFF5>
+808	0x8b15	YOUEN:92	I do.<FFF5>
+809	0x8b1a	YOUEN:93	I can't tell you...<FFF5>
+810	0x8b27	YOUEN:94	I can't tell you...<FFF5>
+811	0x8b34	YOUEN:95	Roger that!<FFF5>
+812	0x8b40	YOUEN:96	Roger that!<FFF5>
+813	0x8b4c	YOUEN:97	NO. WAY!<FFF5>
+814	0x8b57	YOUEN:98	That's pretty cute.<FFF5>
+815	0x8b64	YOUEN:99	That's pretty cute.<FFF5>
+816	0x8b71	YOUEN:100	So lame...<FFF5>
+817	0x8b7c	YOUEN:101	Never mind...<FFF5>
+818	0x8b88	YOUEN:102	Never mind...<FFF5>
+819	0x8b94	YOUEN:103	I was gonna surprise you.<FFF5>
+820	0x8ba2	YOUEN:104	Mwahahahaha!<FFF5>
+821	0x8bac	YOUEN:105	Mwahahahaha!<FFF5>
+822	0x8bb6	YOUEN:106	Don't joke with me!<FFF5>
+823	0x8bc0	YOUEN:107	Roger that.<FFF5>
+824	0x8bca	YOUEN:108	Heeheehee.<FFF5>
+825	0x8bd3	YOUEN:109	Heeheehee.<FFF5>
+826	0x8bdc	YOUEN:110	All right.<FFF5>
+827	0x8be3	YOUEN:111	All right.<FFF5>
+828	0x8bea	YOUEN:112	I refuse!<FFF5>
+829	0x8bf1	YOUEN:113	You ask too much!<FFF5>
+830	0x8bfb	YOUEN:114	Something else okay?<FFF5>
+831	0x8c06	YOUEN:115	Something else okay?<FFF5>
+832	0x8c11	YOUEN:116	Don't get excited.<FFF5>
+833	0x8c1c	YOUEN:117	Hmph. Are you happy?<FFF5>
+834	0x8c29	YOUEN:118	Hmph. Are you happy?<FFF5>
+835	0x8c36	YOUEN:119	Hmhm...<FFF5>
+836	0x8c3b	YOUEN:120	Hmhm...<FFF5>
+837	0x8c40	YOUEN:121	It's been hard for me.<FFF5>
+838	0x8c4c	YOUEN:122	Of course.<FFF5>
+839	0x8c53	YOUEN:123	Of course.<FFF5>
+840	0x8c5a	YOUEN:124	Hmhm...<FFF5>
+841	0x8c5f	YOUEN:125	That's right.<FFF5>
+842	0x8c64	YOUEN:126	I don't want it!<FFF5>
+843	0x8c6b	YOUEN:127	I don't want it!<FFF5>
+844	0x8c72	YOUEN:128	Never heard of it.<FFF5>
+845	0x8c79	YOUEN:129	Torment<FFF5>
+846	0x8c7f	YOUEN:130	Torment<FFF5>
+847	0x8c85	YOUEN:131	I taught myself.<FFF5>
+848	0x8c8c	YOUEN:132	I learned at school.<FFF5>
+849	0x8c93	YOUEN:133	Console it<FFF5>
+850	0x8c9a	YOUEN:134	Yell again<FFF5>
+851	0x8ca3	YOUEN:135	Yell again<FFF5>
+852	0x8cac	YOUEN:136	I know.<FFF5>
+853	0x8cb4	YOUEN:137	Will you be quiet!?<FFF5>
+854	0x8cc4	YOUEN:138	You're right.<FFF5>
+855	0x8cca	YOUEN:139	Hmph. I refuse.<FFF5>
+856	0x8cd3	YOUEN:140	Of course.<FFF5>
+857	0x8cda	YOUEN:141	You're a fool!<FFF5>
+858	0x8ce8	YOUEN:142	Well, all right.<FFF5>
+859	0x8cf1	YOUEN:143	Well, all right.<FFF5>
+860	0x8cfa	YOUEN:144	Don't joke with me.<FFF5>
+861	0x8d00	YOUEN:145	Gotta use the john!<FFF5>
+862	0x8d0e	YOUEN:146	That ain't it.<FFF5>
+863	0x8d15	YOUEN:147	Keep dancing<FFF5>
+864	0x8d1e	YOUEN:148	Stop<FFF5>
+865	0x8d23	YOUEN:149	I'm doing nothing.<FFF5>
+866	0x8d2e	YOUEN:150	I'm gonna bully you!<FFF5>
+867	0x8d39	YOUEN:151	I'm gonna bully you!<FFF5>
+868	0x8d44	YOUEN:152	It's my power.<FFF5>
+869	0x8d4c	YOUEN:153	It's my power.<FFF5>
+870	0x8d54	YOUEN:154	At school.<FFF5>
+871	0x8d60	YOUEN:155	Console it<FFF5>
+872	0x8d67	YOUEN:156	Taunt even further<FFF5>
+873	0x8d70	YOUEN:157	Taunt even further<FFF5>
+874	0x8d79	YOUEN:158	'Cause you're pretty.<FFF5>
+875	0x8d86	YOUEN:159	Don't get me wrong.<FFF5>
+876	0x8d91	YOUEN:160	Don't get me wrong.<FFF5>
+877	0x8d9c	YOUEN:161	'Cause you're pretty.<FFF5>
+878	0x8da9	YOUEN:162	Whaddaya want!?<FFF5>
+879	0x8db7	YOUEN:163	Oh yeah!<FFF5>
+880	0x8dc8	YOUEN:164	That's so dumb.<FFF5>
+881	0x8dd3	YOUEN:165	That's so dumb.<FFF5>
+882	0x8dde	YOUEN:166	That ain't true.<FFF5>
+883	0x8de9	YOUEN:167	That ain't true.<FFF5>
+884	0x8df4	YOUEN:168	Could you tell?<FFF5>
+885	0x8e00	YOUEN:169	Yeah, I'm serious.<FFF5>
+886	0x8e0c	YOUEN:170	Yeah, I'm serious.<FFF5>
+887	0x8e18	YOUEN:171	Maybe not.<FFF5>
+888	0x8e24	YOUEN:172	Could you tell?<FFF5>
+889	0x8e30	YOUEN:173	I don't want it.<FFF5>
+890	0x8e38	YOUEN:174	I don't want it.<FFF5>
+891	0x8e40	YOUEN:175	That's rude.<FFF5>
+892	0x8e4c	YOUEN:176	That's rude.<FFF5>
+893	0x8e58	YOUEN:177	*chuckle*<FFF5>
+894	0x8e5f	YOUEN:178	Stop<FFF5>
+895	0x8e64	YOUEN:179	Stop<FFF5>
+896	0x8e69	YOUEN:180	Continue<FFF5>
+897	0x8e6f	YOUEN:181	Continue<FFF5>
+898	0x8e75	YOUEN:182	Yes.<FFF5>
+899	0x8e7d	YOUEN:183	No.<FFF5>
+900	0x8e83	YOUEN:184	I'll guide you.<FFF5>
+901	0x8e8e	YOUEN:185	I'll guide you.<FFF5>
+902	0x8e99	YOUEN:186	That's a secret.<FFF5>
+903	0x8ea4	YOUEN:187	Then I'll be Carrie.<FFF5>
+904	0x8eb3	YOUEN:188	I'm doing Corin's!<FFF5>
+905	0x8ec0	YOUEN:189	I'm doing Corin's!<FFF5>
+906	0x8ecd	YOUEN:190	I won't lose!<FFF5>
+907	0x8ed9	YOUEN:191	I won't lose!<FFF5>
+908	0x8ee5	YOUEN:192	What should I do...?<FFF5>
+909	0x8ef0	YOUEN:193	Stop<FFF5>
+910	0x8ef5	YOUEN:194	Keep singing<FFF5>
+911	0x8efd	YOUEN:195	Keep singing<FFF5>
+912	0x8f05	YOUEN:196	Yes, I see it.<FFF5>
+913	0x8f11	YOUEN:197	I can't see it.<FFF5>
+914	0x8f1a	YOUEN:198	I know.<FFF5>
+915	0x8f23	YOUEN:199	I don't know.<FFF5>
+916	0x8f2c	YOUEN:200	Keep soothing<FFF5>
+917	0x8f34	YOUEN:201	Act serious<FFF5>
+918	0x8f3c	YOUEN:202	It's not that great...<FFF5>
+919	0x8f46	YOUEN:203	It's not that great...<FFF5>
+920	0x8f50	YOUEN:204	It's been hard for me.<FFF5>
+921	0x8f5e	YOUEN:205	Yes.<FFF5>
+922	0x8f66	YOUEN:206	Yes.<FFF5>
+923	0x8f6e	YOUEN:207	Who knows...?<FFF5>
+924	0x8f78	YOUEN:208	Yes.<FFF5>
+925	0x8f80	YOUEN:209	No.<FFF5>
+926	0x8f86	YOUEN:210	No.<FFF5>
+927	0x8f8c	YOUEN:211	O-kay!<FFF5>
+928	0x8f92	YOUEN:212	I understand!<FFF5>
+929	0x8f9d	YOUEN:213	I know.<FFF5>
+930	0x8fa6	YOUEN:214	I don't know.<FFF5>
+931	0x8faf	YOUEN:215	Ahahahaha!<FFF5>
+932	0x8fba	YOUEN:216	It's okay.<FFF5>
+933	0x8fc5	YOUEN:217	I'm totally happy!<FFF5>
+934	0x8fd2	YOUEN:218	I'm totally happy!<FFF5>
+935	0x8fdf	YOUEN:219	Whaaat!? No!<FFF5>
+936	0x8fe9	YOUEN:220	What should I do?<FFF5>
+937	0x8ff5	YOUEN:221	Whaaat!? No!<FFF5>
+938	0x8fff	YOUEN:222	Whaaat!? No!<FFF5>
+939	0x9009	YOUEN:223	Mistress!<FFF5>
+940	0x9013	YOUEN:224	Seriously...?<FFF5>
+941	0x9020	YOUEN:225	Seriously...?<FFF5>
+942	0x902d	YOUEN:226	I'm fine.<FFF5>
+943	0x9036	YOUEN:227	It totally hurts.<FFF5>
+944	0x903f	YOUEN:228	It totally hurts.<FFF5>
+945	0x9048	YOUEN:229	You figured it out.<FFF5>
+946	0x9052	YOUEN:230	But that's mean...<FFF5>
+947	0x905e	YOUEN:231	But that's mean...<FFF5>
+948	0x906a	YOUEN:232	Keep crying<FFF5>
+949	0x9072	YOUEN:233	Stop<FFF5>
+950	0x9077	YOUEN:234	I won't do anything.<FFF5>
+951	0x9082	YOUEN:235	I'm gonna bully you.<FFF5>
+952	0x908c	YOUEN:236	I'm gonna bully you.<FFF5>
+953	0x9096	YOUEN:237	I taught myself.<FFF5>
+954	0x90a2	YOUEN:238	I taught myself.<FFF5>
+955	0x90ae	YOUEN:239	I learned at school.<FFF5>
+956	0x90b8	YOUEN:240	Console it<FFF5>
+957	0x90bf	YOUEN:241	Keep threatening<FFF5>
+958	0x90c7	YOUEN:242	Keep threatening<FFF5>
+959	0x90cf	YOUEN:243	Who knows?<FFF5>
+960	0x90d6	YOUEN:244	Who knows?<FFF5>
+961	0x90dd	YOUEN:245	I don't know.<FFF5>
+962	0x90e5	YOUEN:246	Because I'm curious.<FFF5>
+963	0x90ee	YOUEN:247	Because I hate you.<FFF5>
+964	0x90f8	YOUEN:248	Because I hate you.<FFF5>
+965	0x9102	YOUEN:249	Hell no!<FFF5>
+966	0x910e	YOUEN:250	I stopped.<FFF5>
+967	0x9113	YOUEN:251	I stopped.<FFF5>
+968	0x9118	YOUEN:252	Stop it...<FFF5>
+969	0x9120	YOUEN:253	Stop it...<FFF5>
+970	0x9128	YOUEN:254	It's been hard for me.<FFF5>
+971	0x9133	YOUEN:255	I'm serious.<FFF5>
+972	0x913b	YOUEN:256	I'm serious.<FFF5>
+973	0x9143	YOUEN:257	Who knows?<FFF5>
+974	0x914a	YOUEN:258	You're right.<FFF5>
+975	0x914f	YOUEN:259	I don't want it.<FFF5>
+976	0x9156	YOUEN:260	I don't want it.<FFF5>
+977	0x915d	YOUEN:261	Who knows?<FFF5>
+978	0x9164	YOUEN:262	Who knows?<FFF5>
+979	0x916b	YOUEN:263	I don't know.<FFF5>
+980	0x9173	YOUEN:264	Because I'm curious.<FFF5>
+981	0x917c	YOUEN:265	Because I hate you.<FFF5>
+982	0x9186	YOUEN:266	Because I hate you.<FFF5>
+983	0x9190	YOUEN:267	Hell no!<FFF5>
+984	0x919c	YOUEN:268	I stopped.<FFF5>
+985	0x91a1	YOUEN:269	I stopped.<FFF5>
+986	0x91a6	YOUEN:270	......<FFF5>
+987	0x91b2	YOUEN:271	Nothing special.<FFF5>
+988	0x91bb	YOUEN:272	Nothing special.<FFF5>
+989	0x91c4	YOUEN:273	......<FFF5>
+990	0x91d0	YOUEN:274	Why not?<FFF5>
+991	0x91dd	YOUEN:275	Why not?<FFF5>
+992	0x91ea	YOUEN:276	......<FFF5>
+993	0x91f6	YOUEN:277	What do you want?<FFF5>
+994	0x9201	YOUEN:278	What do you want?<FFF5>
+995	0x920c	YOUEN:279	......<FFF5>
+996	0x9218	YOUEN:280	I don't hear it.<FFF5>
+997	0x9221	YOUEN:281	I don't hear it.<FFF5>
+998	0x922a	YOUEN:282	......<FFF5>
+999	0x9236	YOUEN:283	Why not!?<FFF5>
+1000	0x9241	YOUEN:284	Why not!?<FFF5>
+1001	0x924c	YOUEN:285	......<FFF5>
+1002	0x9258	YOUEN:286	What do you want?<FFF5>
+1003	0x9264	YOUEN:287	What do you want?<FFF5>
+1004	0x9270	YOUEN:288	I won't do anything.<FFF5>
+1005	0x927b	YOUEN:289	I'll bully you.<FFF5>
+1006	0x9283	YOUEN:290	I'll bully you.<FFF5>
+1007	0x928b	YOUEN:291	Leave me alone.<FFF5>
+1008	0x9294	YOUEN:292	Leave me alone.<FFF5>
+1009	0x929d	YOUEN:293	Shut up. Get lost.<FFF5>
+1010	0x92a9	YOUEN:294	Console it<FFF5>
+1011	0x92b0	YOUEN:295	Keep threatening<FFF5>
+1012	0x92b8	YOUEN:296	Keep threatening<FFF5>
+1013	0x92c0	YOUEN:297	I'm a fool.<FFF5>
+1014	0x92ca	YOUEN:298	You wanna die, huh!?<FFF5>
+1015	0x92d7	YOUEN:299	Calm down<FFF5>
+1016	0x92dd	YOUEN:300	Smirk<FFF5>
+1017	0x92e6	YOUEN:301	Smirk<FFF5>
+1018	0x92ef	YOUEN:302	Roar again<FFF5>
+1019	0x92fa	YOUEN:303	Act serious<FFF5>
+1020	0x9302	YOUEN:304	Act serious<FFF5>
+1021	0x930a	YOUEN:305	Were you surprised?<FFF5>
+1022	0x9311	YOUEN:306	It's not a spell.<FFF5>
+1023	0x931c	YOUEN:307	It's not a spell.<FFF5>
+1024	0x9327	YOUEN:308	I dunno about that.<FFF5>
+1025	0x9330	YOUEN:309	I dunno about that.<FFF5>
+1026	0x9339	YOUEN:310	Heh...<FFF5>
+1027	0x933e	YOUEN:311	So what?<FFF5>
+1028	0x9347	YOUEN:312	So what?<FFF5>
+1029	0x9350	YOUEN:313	I'm Reiji.<FFF5>
+1030	0x935a	YOUEN:314	Hunting demons.<FFF5>
+1031	0x9363	YOUEN:315	Waiting for you.<FFF5>
+1032	0x936e	YOUEN:316	Having an adventure.<FFF5>
+1033	0x9377	YOUEN:317	Yes.<FFF5>
+1034	0x937b	YOUEN:318	No.<FFF5>
+1035	0x9380	YOUEN:319	You're in MY way.<FFF5>
+1036	0x938c	YOUEN:320	Don't go in.<FFF5>
+1037	0x9393	YOUEN:321	Like I give a damn!<FFF5>
+1038	0x93a1	YOUEN:322	How about the sky?<FFF5>
+1039	0x93ae	YOUEN:323	How about the sky?<FFF5>
+1040	0x93bb	YOUEN:324	I'm doing okay.<FFF5>
+1041	0x93c1	YOUEN:325	I could be better.<FFF5>
+1042	0x93cb	YOUEN:326	I'm about to puke.<FFF5>
+1043	0x93d6	YOUEN:327	We got business.<FFF5>
+1044	0x93dd	YOUEN:328	Get outta here.<FFF5>
+1045	0x93e2	YOUEN:329	Hey, don't leave!<FFF5>
+1046	0x93ee	YOUEN:330	We got business.<FFF5>
+1047	0x93f5	YOUEN:331	Get outta here.<FFF5>
+1048	0x93fa	YOUEN:332	You need something?<FFF5>
+1049	0x9407	YOUEN:333	My door's open.<FFF5>
+1050	0x940f	YOUEN:334	Don't come near me.<FFF5>
+1051	0x9415	YOUEN:335	I want to, but...<FFF5>
+1052	0x9422	YOUEN:336	Calm it down<FFF5>
+1053	0x942c	YOUEN:337	Scare it<FFF5>
+1054	0x9434	YOUEN:338	Make it laugh<FFF5>
+1055	0x943b	YOUEN:339	Of course.<FFF5>
+1056	0x9441	YOUEN:340	I don't measure up.<FFF5>
+1057	0x944e	YOUEN:341	Don't joke with me.<FFF5>
+1058	0x9455	YOUEN:342	Do nothing<FFF5>
+1059	0x945d	YOUEN:343	Adore it<FFF5>
+1060	0x9465	KOSIKI:337	It's a secret.<FFF5>

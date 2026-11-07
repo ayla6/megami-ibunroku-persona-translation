@@ -721,264 +721,264 @@ id	pos	psp	en
 719	0x8e03	TOILET:42	Of course!<FFF5>
 720	0x8e0b	TOILET:43	It might be a lie.<FFF5>
 721	0x8e12	TOILET:44	It might be a lie.<FFF5>
-722	0x8e26	TOILET:46	Heeheehee.<FFF5>
-723	0x8e2f	TOILET:47	Heeheehee.<FFF5>
-724	0x8e38	TOILET:48	I do.<FFF5>
-725	0x8e3d	TOILET:49	I do.<FFF5>
-726	0x8e42	TOILET:50	I haven't.<FFF5>
-727	0x8e47	TOILET:51	Aren't you a toilet?<FFF5>
-728	0x8e52	TOILET:52	Aren't you a toilet?<FFF5>
-729	0x8e5d	TOILET:53	You're right.<FFF5>
-730	0x8e63	TOILET:54	Roger that.<FFF5>
-731	0x8e6f	TOILET:55	Awwww...<FFF5>
-732	0x8e77	TOILET:56	I'll be a toilet too!<FFF5>
-733	0x8e86	TOILET:57	Awwww...<FFF5>
-734	0x8e8e	TOILET:58	Awwww...<FFF5>
-735	0x8e96	TOILET:59	It'll be okay!<FFF5>
-736	0x8ea3	TOILET:60	No worries!<FFF5>
-737	0x8eaf	TOILET:61	No worries!<FFF5>
-738	0x8ebb	TOILET:62	Explain in detail<FFF5>
-739	0x8ec7	TOILET:63	Make it laugh again<FFF5>
-740	0x8ed6	TOILET:64	You think so?<FFF5>
-741	0x8edd	TOILET:65	That's not true.<FFF5>
-742	0x8ee8	TOILET:66	Don't joke with me!<FFF5>
-743	0x8ef2	TOILET:67	Don't joke with me!<FFF5>
-744	0x8efc	TOILET:68	Mwahahahaha!<FFF5>
-745	0x8f06	TOILET:69	I do.<FFF5>
-746	0x8f0b	TOILET:70	I can't tell you.<FFF5>
-747	0x8f16	TOILET:71	I can't tell you.<FFF5>
-748	0x8f21	TOILET:72	O-kaaay!<FFF5>
-749	0x8f2d	TOILET:73	NO. WAY.<FFF5>
-750	0x8f36	TOILET:74	NO. WAY.<FFF5>
-751	0x8f3f	TOILET:75	You're cute.<FFF5>
-752	0x8f4a	TOILET:76	So lame.<FFF5>
-753	0x8f53	TOILET:77	So lame.<FFF5>
-754	0x8f5c	TOILET:78	It's nothin'.<FFF5>
-755	0x8f68	TOILET:79	It's nothin'.<FFF5>
-756	0x8f74	TOILET:80	I was gonna surprise you.<FFF5>
-757	0x8f80	TOILET:81	Yep, I'm dumb!<FFF5>
-758	0x8f8b	TOILET:82	Yep, I'm dumb!<FFF5>
-759	0x8fa4	TOILET:84	Calm down<FFF5>
-760	0x8faa	TOILET:85	Smirk<FFF5>
-761	0x8fb3	TOILET:86	Smirk<FFF5>
-762	0x8fbc	TOILET:87	All right.<FFF5>
-763	0x8fc3	TOILET:88	All right.<FFF5>
-764	0x8fca	TOILET:89	Heh... I refuse.<FFF5>
-765	0x8fdf	TOILET:91	Here, some deodorant.<FFF5>
-766	0x8fee	TOILET:92	Don't joke with me.<FFF5>
-767	0x8ff5	TOILET:93	All right.<FFF5>
-768	0x8ffc	TOILET:94	Of course.<FFF5>
-769	0x9003	TOILET:95	The fruit of my labor.<FFF5>
-770	0x900f	TOILET:96	Of course.<FFF5>
-771	0x9016	TOILET:97	I'm lying.<FFF5>
-772	0x901d	TOILET:98	I'm lying.<FFF5>
-773	0x9024	TOILET:99	You're right.<FFF5>
-774	0x902a	TOILET:100	Don't get me wrong.<FFF5>
-775	0x9034	TOILET:101	Don't get me wrong.<FFF5>
-776	0x903e	TOILET:102	I won't do anythying!<FFF5>
-777	0x9047	TOILET:103	I'll do something bad.<FFF5>
-778	0x9054	TOILET:104	I'll do something bad.<FFF5>
-779	0x9061	TOILET:105	I know.<FFF5>
-780	0x9069	TOILET:106	But I can't beat you.<FFF5>
-781	0x9076	TOILET:107	But I can't beat you.<FFF5>
-782	0x9083	TOILET:108	Console it<FFF5>
-783	0x908a	TOILET:109	Console it<FFF5>
-784	0x9091	TOILET:110	Keep threatening<FFF5>
-785	0x909a	TOILET:111	That's right...<FFF5>
-786	0x90a1	TOILET:112	Aren't you a toilet?<FFF5>
-787	0x90ae	TOILET:113	Aren't you a toilet?<FFF5>
-788	0x90bb	TOILET:114	I guess I will...<FFF5>
-789	0x90c4	TOILET:115	None of your business.<FFF5>
-790	0x90d3	TOILET:116	I know.<FFF5>
-791	0x90db	TOILET:117	But you're an idiot.<FFF5>
-792	0x90e8	TOILET:118	All right!<FFF5>
-793	0x90f1	TOILET:119	I ain't telling.<FFF5>
-794	0x90fd	TOILET:120	I'll relieve myself!<FFF5>
-795	0x910b	TOILET:121	It's a dance!<FFF5>
-796	0x9119	TOILET:122	Keep dancing<FFF5>
-797	0x9122	TOILET:123	Keep dancing<FFF5>
-798	0x912b	TOILET:124	Stop<FFF5>
-799	0x9130	TOILET:125	I'm doing nothing.<FFF5>
-800	0x913b	TOILET:126	I'm gonna bully you!<FFF5>
-801	0x9146	TOILET:127	I'm gonna bully you!<FFF5>
-802	0x9151	TOILET:128	Well, yeah.<FFF5>
-803	0x9157	TOILET:129	But I can't beat you.<FFF5>
-804	0x9163	TOILET:130	But I can't beat you.<FFF5>
-805	0x916f	TOILET:131	Oh crap...<FFF5>
-806	0x9178	TOILET:132	Oh crap...<FFF5>
-807	0x9181	TOILET:133	Hey, hey!<FFF5>
-808	0x918d	TOILET:134	It's rare.<FFF5>
-809	0x9194	TOILET:135	It's rare.<FFF5>
-810	0x919b	TOILET:136	It ain't rare.<FFF5>
-811	0x91a5	TOILET:137	'Cause you're pretty.<FFF5>
-812	0x91c0	TOILET:139	Oh yeah!<FFF5>
-813	0x91d1	TOILET:140	That's so dumb.<FFF5>
-814	0x91dc	TOILET:141	That's so dumb.<FFF5>
-815	0x91e7	TOILET:142	It's for real.<FFF5>
-816	0x91f3	TOILET:143	It might be a lie.<FFF5>
-817	0x91fa	TOILET:144	It might be a lie.<FFF5>
-818	0x9201	TOILET:145	Yes.<FFF5>
-819	0x9209	TOILET:146	No.<FFF5>
-820	0x920f	TOILET:147	No.<FFF5>
-821	0x9215	TOILET:148	Stop<FFF5>
-822	0x921a	TOILET:149	Stop<FFF5>
-823	0x921f	TOILET:150	Continue<FFF5>
-824	0x9225	TOILET:151	Please do so.<FFF5>
-825	0x922f	TOILET:152	I'll pass.<FFF5>
-826	0x923d	TOILET:153	I'll guide you.<FFF5>
-827	0x9248	TOILET:154	I'll guide you.<FFF5>
-828	0x9253	TOILET:155	That's a secret.<FFF5>
-829	0x925e	TOILET:156	Okay!<FFF5>
-830	0x9266	TOILET:157	Okay!<FFF5>
-831	0x926e	TOILET:158	I decline.<FFF5>
-832	0x9277	TOILET:159	You say something?<FFF5>
-833	0x9284	TOILET:160	I didn't mean that...<FFF5>
-834	0x9290	TOILET:161	Stop<FFF5>
-835	0x9295	TOILET:162	Keep singing<FFF5>
-836	0x929d	TOILET:163	Keep singing<FFF5>
-837	0x92a5	TOILET:164	You're a child too.<FFF5>
-838	0x92af	TOILET:165	You're right.<FFF5>
-839	0x92b7	TOILET:166	I'm sorry...<FFF5>
-840	0x92c1	TOILET:167	You wanna die?<FFF5>
-841	0x92ce	TOILET:168	You wanna die?<FFF5>
-842	0x92db	TOILET:169	Keep soothing<FFF5>
-843	0x92e3	TOILET:170	Act serious<FFF5>
-844	0x92eb	TOILET:171	It's only natural.<FFF5>
-845	0x92f4	TOILET:172	Who knows...?<FFF5>
-846	0x9302	TOILET:173	Who knows...?<FFF5>
-847	0x9310	TOILET:174	You are correct.<FFF5>
-848	0x931a	TOILET:175	No, thank you.<FFF5>
-849	0x9322	TOILET:176	No, thank you.<FFF5>
-850	0x932a	TOILET:177	O-kay!<FFF5>
-851	0x9330	TOILET:178	None of your business!<FFF5>
-852	0x933f	TOILET:179	I'm soooorry.<FFF5>
-853	0x934b	TOILET:180	You wanna die?<FFF5>
-854	0x9359	TOILET:181	You wanna die?<FFF5>
-855	0x9367	TOILET:182	Hey!<FFF5>
-856	0x9372	TOILET:183	Bleaaaaah!<FFF5>
-857	0x937c	TOILET:184	Well, all right...<FFF5>
-858	0x9385	TOILET:185	Whaaat!? No!<FFF5>
-859	0x938f	TOILET:186	Get closer<FFF5>
-860	0x9395	TOILET:187	Be cautious<FFF5>
-861	0x939d	TOILET:188	Be cautious<FFF5>
-862	0x93a5	TOILET:189	I like you too!<FFF5>
-863	0x93ce	TOILET:192	You're right!<FFF5>
-864	0x93d7	TOILET:193	You're right!<FFF5>
-865	0x93e0	TOILET:194	But it hurts...<FFF5>
-866	0x93ed	TOILET:195	You figured it out!<FFF5>
-867	0x93f8	TOILET:196	Waaaaaaaah!<FFF5>
-868	0x9402	TOILET:197	Waaaaaaaah!<FFF5>
-869	0x940c	TOILET:198	Keep crying<FFF5>
-870	0x9414	TOILET:199	Stop<FFF5>
-871	0x9419	TOILET:200	I won't do anything.<FFF5>
-872	0x9425	TOILET:201	I'll torment you.<FFF5>
-873	0x942f	TOILET:202	I'll torment you.<FFF5>
-874	0x9439	TOILET:203	You think so?<FFF5>
-875	0x9440	TOILET:204	But I can't beat you.<FFF5>
-876	0x944d	TOILET:205	But I can't beat you.<FFF5>
-877	0x945a	TOILET:206	Console it<FFF5>
-878	0x9461	TOILET:207	Console it<FFF5>
-879	0x9468	TOILET:208	Keep threatening<FFF5>
-880	0x9470	TOILET:209	I'll apologize...<FFF5>
-881	0x9478	TOILET:210	So you wanna die?<FFF5>
-882	0x9484	TOILET:211	So you wanna die?<FFF5>
-883	0x9490	TOILET:212	To see you cry.<FFF5>
-884	0x949f	TOILET:213	Because I hate you.<FFF5>
-885	0x94aa	TOILET:214	Because I hate you.<FFF5>
-886	0x94b5	TOILET:215	Hell no!<FFF5>
-887	0x94c1	TOILET:216	I stopped.<FFF5>
-888	0x94c6	TOILET:217	I stopped.<FFF5>
-889	0x94cb	TOILET:218	Stop it...<FFF5>
-890	0x94d3	TOILET:219	A lot has happened...<FFF5>
-891	0x94e1	TOILET:220	I'm serious.<FFF5>
-892	0x94e9	TOILET:221	Who knows?<FFF5>
-893	0x94f0	TOILET:222	Who knows?<FFF5>
-894	0x94f7	TOILET:223	Yeah, that's right.<FFF5>
-895	0x9501	TOILET:224	I don't want it.<FFF5>
-896	0x9508	TOILET:225	I don't want it.<FFF5>
-897	0x950f	TOILET:226	I'll apologize...<FFF5>
-898	0x9517	TOILET:227	So you wanna die?<FFF5>
-899	0x9523	TOILET:228	So you wanna die?<FFF5>
-900	0x952f	TOILET:229	To see you cry.<FFF5>
-901	0x953e	TOILET:230	Because I hate you.<FFF5>
-902	0x9549	TOILET:231	Because I hate you.<FFF5>
-903	0x9554	TOILET:232	Hell no!<FFF5>
-904	0x9560	TOILET:233	I stopped.<FFF5>
-905	0x9565	TOILET:234	I stopped.<FFF5>
-906	0x956a	TOILET:235	I don't need a toilet.<FFF5>
-907	0x9577	TOILET:236	Who knows?<FFF5>
-908	0x957e	TOILET:237	......<FFF5>
-909	0x9594	TOILET:238	......<FFF5>
-910	0x95aa	TOILET:239	Then let's talk.<FFF5>
-911	0x95b6	TOILET:240	I don't need a toilet.<FFF5>
-912	0x95c3	TOILET:241	Then let's talk.<FFF5>
-913	0x95cf	TOILET:242	I don't need a toilet.<FFF5>
-914	0x95dc	TOILET:243	Wanna talk, then?<FFF5>
-915	0x95e5	TOILET:244	......<FFF5>
-916	0x95fb	TOILET:245	......<FFF5>
-917	0x9611	TOILET:246	Wanna talk, then?<FFF5>
-918	0x961a	TOILET:247	I don't need a toilet.<FFF5>
-919	0x9627	TOILET:248	Wanna talk, then?<FFF5>
-920	0x9630	TOILET:249	I won't do anything.<FFF5>
-921	0x9639	TOILET:250	I'll kill you.<FFF5>
-922	0x963f	TOILET:251	I'll kill you.<FFF5>
-923	0x9645	TOILET:252	Yeah.<FFF5>
-924	0x9649	TOILET:253	But I can't beat you.<FFF5>
-925	0x9655	TOILET:254	But I can't beat you.<FFF5>
-926	0x9661	TOILET:255	Console it<FFF5>
-927	0x9668	TOILET:256	Console it<FFF5>
-928	0x966f	TOILET:257	Keep threatening<FFF5>
-929	0x9679	TOILET:258	I'm an idiot.<FFF5>
-930	0x967f	TOILET:259	I'm an idiot.<FFF5>
-931	0x9685	TOILET:260	You wanna die, huh!?<FFF5>
-932	0x9692	TOILET:261	Calm down<FFF5>
-933	0x9698	TOILET:262	Smirk<FFF5>
-934	0x96a1	TOILET:263	Smirk<FFF5>
-935	0x96aa	TOILET:264	Roar again<FFF5>
-936	0x96b5	TOILET:265	Act serious<FFF5>
-937	0x96bd	TOILET:266	Act serious<FFF5>
-938	0x96c5	TOILET:267	Were you surprised?<FFF5>
-939	0x96ce	TOILET:268	It's not a spell.<FFF5>
-940	0x96d9	TOILET:269	It's not a spell.<FFF5>
-941	0x96e4	TOILET:270	I dunno about that.<FFF5>
-942	0x96ed	TOILET:271	Heh...<FFF5>
-943	0x96f2	TOILET:272	All right.<FFF5>
-944	0x96f9	TOILET:273	Don't joke with me!<FFF5>
-945	0x9702	TOILET:274	Hunting demons.<FFF5>
-946	0x970b	TOILET:275	Waiting for you.<FFF5>
-947	0x9718	TOILET:276	Something nice.<FFF5>
-948	0x971e	TOILET:277	Say<FFF5>
-949	0x9723	TOILET:278	Don't say<FFF5>
-950	0x972a	TOILET:279	Don't say<FFF5>
-951	0x9731	TOILET:280	Yell<FFF5>
-952	0x9738	TOILET:281	Don't go in<FFF5>
-953	0x973f	TOILET:282	Like I give a damn!<FFF5>
-954	0x974d	TOILET:283	Like I give a damn!<FFF5>
-955	0x9768	TOILET:285	You're right.<FFF5>
-956	0x976e	TOILET:286	You think so?<FFF5>
-957	0x9776	TOILET:287	I don't care.<FFF5>
-958	0x977e	TOILET:288	We got business.<FFF5>
-959	0x9785	TOILET:289	Get out of here.<FFF5>
-960	0x978a	TOILET:290	Don't leave!<FFF5>
-961	0x9793	TOILET:291	We got business.<FFF5>
-962	0x979a	TOILET:292	Get out of here.<FFF5>
-963	0x979f	TOILET:293	You need something?<FFF5>
-964	0x97ac	TOILET:294	Nod<FFF5>
-965	0x97b2	TOILET:295	Shake your head<FFF5>
-966	0x97bb	TOILET:296	Spread your arms<FFF5>
-967	0x97c4	TOILET:297	Yes.<FFF5>
-968	0x97c8	TOILET:298	No.<FFF5>
-969	0x97cd	TOILET:299	I dunno about that.<FFF5>
-970	0x97d3	TOILET:300	Of course.<FFF5>
-971	0x97d9	TOILET:301	We're not a match.<FFF5>
-972	0x97e4	TOILET:302	Don't joke with me.<FFF5>
-973	0x97eb	TOILET:303	Snort<FFF5>
-974	0x97f3	TOILET:304	Act serious<FFF5>
-975	0x97fb	EBOOT:2acb4e	Joke<FFF5>
-976	0x8f96	TOILET:83	You callin' me dumb!?<FFF5>
-977	0x8fd2	TOILET:90	Quiet or I'll do it!<FFF5>
-978	0x91b2	TOILET:138	Whaddaya want!?<FFF5>
-979	0x93b2	TOILET:190	Are you serious?<FFF5>
-980	0x93c0	TOILET:191	Are you serious?<FFF5>
-981	0x975b	TOILET:284	How about the sky?<FFF5>
-982	0x8e19	TOILET:45	What did you say!?<FFF5>
+722	0x8e19	TOILET:45	What did you say!?<FFF5>
+723	0x8e26	TOILET:46	Heeheehee.<FFF5>
+724	0x8e2f	TOILET:47	Heeheehee.<FFF5>
+725	0x8e38	TOILET:48	I do.<FFF5>
+726	0x8e3d	TOILET:49	I do.<FFF5>
+727	0x8e42	TOILET:50	I haven't.<FFF5>
+728	0x8e47	TOILET:51	Aren't you a toilet?<FFF5>
+729	0x8e52	TOILET:52	Aren't you a toilet?<FFF5>
+730	0x8e5d	TOILET:53	You're right.<FFF5>
+731	0x8e63	TOILET:54	Roger that.<FFF5>
+732	0x8e6f	TOILET:55	Awwww...<FFF5>
+733	0x8e77	TOILET:56	I'll be a toilet too!<FFF5>
+734	0x8e86	TOILET:57	Awwww...<FFF5>
+735	0x8e8e	TOILET:58	Awwww...<FFF5>
+736	0x8e96	TOILET:59	It'll be okay!<FFF5>
+737	0x8ea3	TOILET:60	No worries!<FFF5>
+738	0x8eaf	TOILET:61	No worries!<FFF5>
+739	0x8ebb	TOILET:62	Explain in detail<FFF5>
+740	0x8ec7	TOILET:63	Make it laugh again<FFF5>
+741	0x8ed6	TOILET:64	You think so?<FFF5>
+742	0x8edd	TOILET:65	That's not true.<FFF5>
+743	0x8ee8	TOILET:66	Don't joke with me!<FFF5>
+744	0x8ef2	TOILET:67	Don't joke with me!<FFF5>
+745	0x8efc	TOILET:68	Mwahahahaha!<FFF5>
+746	0x8f06	TOILET:69	I do.<FFF5>
+747	0x8f0b	TOILET:70	I can't tell you.<FFF5>
+748	0x8f16	TOILET:71	I can't tell you.<FFF5>
+749	0x8f21	TOILET:72	O-kaaay!<FFF5>
+750	0x8f2d	TOILET:73	NO. WAY.<FFF5>
+751	0x8f36	TOILET:74	NO. WAY.<FFF5>
+752	0x8f3f	TOILET:75	You're cute.<FFF5>
+753	0x8f4a	TOILET:76	So lame.<FFF5>
+754	0x8f53	TOILET:77	So lame.<FFF5>
+755	0x8f5c	TOILET:78	It's nothin'.<FFF5>
+756	0x8f68	TOILET:79	It's nothin'.<FFF5>
+757	0x8f74	TOILET:80	I was gonna surprise you.<FFF5>
+758	0x8f80	TOILET:81	Yep, I'm dumb!<FFF5>
+759	0x8f8b	TOILET:82	Yep, I'm dumb!<FFF5>
+760	0x8f96	TOILET:83	You callin' me dumb!?<FFF5>
+761	0x8fa4	TOILET:84	Calm down<FFF5>
+762	0x8faa	TOILET:85	Smirk<FFF5>
+763	0x8fb3	TOILET:86	Smirk<FFF5>
+764	0x8fbc	TOILET:87	All right.<FFF5>
+765	0x8fc3	TOILET:88	All right.<FFF5>
+766	0x8fca	TOILET:89	Heh... I refuse.<FFF5>
+767	0x8fd2	TOILET:90	Quiet or I'll do it!<FFF5>
+768	0x8fdf	TOILET:91	Here, some deodorant.<FFF5>
+769	0x8fee	TOILET:92	Don't joke with me.<FFF5>
+770	0x8ff5	TOILET:93	All right.<FFF5>
+771	0x8ffc	TOILET:94	Of course.<FFF5>
+772	0x9003	TOILET:95	The fruit of my labor.<FFF5>
+773	0x900f	TOILET:96	Of course.<FFF5>
+774	0x9016	TOILET:97	I'm lying.<FFF5>
+775	0x901d	TOILET:98	I'm lying.<FFF5>
+776	0x9024	TOILET:99	You're right.<FFF5>
+777	0x902a	TOILET:100	Don't get me wrong.<FFF5>
+778	0x9034	TOILET:101	Don't get me wrong.<FFF5>
+779	0x903e	TOILET:102	I won't do anythying!<FFF5>
+780	0x9047	TOILET:103	I'll do something bad.<FFF5>
+781	0x9054	TOILET:104	I'll do something bad.<FFF5>
+782	0x9061	TOILET:105	I know.<FFF5>
+783	0x9069	TOILET:106	But I can't beat you.<FFF5>
+784	0x9076	TOILET:107	But I can't beat you.<FFF5>
+785	0x9083	TOILET:108	Console it<FFF5>
+786	0x908a	TOILET:109	Console it<FFF5>
+787	0x9091	TOILET:110	Keep threatening<FFF5>
+788	0x909a	TOILET:111	That's right...<FFF5>
+789	0x90a1	TOILET:112	Aren't you a toilet?<FFF5>
+790	0x90ae	TOILET:113	Aren't you a toilet?<FFF5>
+791	0x90bb	TOILET:114	I guess I will...<FFF5>
+792	0x90c4	TOILET:115	None of your business.<FFF5>
+793	0x90d3	TOILET:116	I know.<FFF5>
+794	0x90db	TOILET:117	But you're an idiot.<FFF5>
+795	0x90e8	TOILET:118	All right!<FFF5>
+796	0x90f1	TOILET:119	I ain't telling.<FFF5>
+797	0x90fd	TOILET:120	I'll relieve myself!<FFF5>
+798	0x910b	TOILET:121	It's a dance!<FFF5>
+799	0x9119	TOILET:122	Keep dancing<FFF5>
+800	0x9122	TOILET:123	Keep dancing<FFF5>
+801	0x912b	TOILET:124	Stop<FFF5>
+802	0x9130	TOILET:125	I'm doing nothing.<FFF5>
+803	0x913b	TOILET:126	I'm gonna bully you!<FFF5>
+804	0x9146	TOILET:127	I'm gonna bully you!<FFF5>
+805	0x9151	TOILET:128	Well, yeah.<FFF5>
+806	0x9157	TOILET:129	But I can't beat you.<FFF5>
+807	0x9163	TOILET:130	But I can't beat you.<FFF5>
+808	0x916f	TOILET:131	Oh crap...<FFF5>
+809	0x9178	TOILET:132	Oh crap...<FFF5>
+810	0x9181	TOILET:133	Hey, hey!<FFF5>
+811	0x918d	TOILET:134	It's rare.<FFF5>
+812	0x9194	TOILET:135	It's rare.<FFF5>
+813	0x919b	TOILET:136	It ain't rare.<FFF5>
+814	0x91a5	TOILET:137	'Cause you're pretty.<FFF5>
+815	0x91b2	TOILET:138	Whaddaya want!?<FFF5>
+816	0x91c0	TOILET:139	Oh yeah!<FFF5>
+817	0x91d1	TOILET:140	That's so dumb.<FFF5>
+818	0x91dc	TOILET:141	That's so dumb.<FFF5>
+819	0x91e7	TOILET:142	It's for real.<FFF5>
+820	0x91f3	TOILET:143	It might be a lie.<FFF5>
+821	0x91fa	TOILET:144	It might be a lie.<FFF5>
+822	0x9201	TOILET:145	Yes.<FFF5>
+823	0x9209	TOILET:146	No.<FFF5>
+824	0x920f	TOILET:147	No.<FFF5>
+825	0x9215	TOILET:148	Stop<FFF5>
+826	0x921a	TOILET:149	Stop<FFF5>
+827	0x921f	TOILET:150	Continue<FFF5>
+828	0x9225	TOILET:151	Please do so.<FFF5>
+829	0x922f	TOILET:152	I'll pass.<FFF5>
+830	0x923d	TOILET:153	I'll guide you.<FFF5>
+831	0x9248	TOILET:154	I'll guide you.<FFF5>
+832	0x9253	TOILET:155	That's a secret.<FFF5>
+833	0x925e	TOILET:156	Okay!<FFF5>
+834	0x9266	TOILET:157	Okay!<FFF5>
+835	0x926e	TOILET:158	I decline.<FFF5>
+836	0x9277	TOILET:159	You say something?<FFF5>
+837	0x9284	TOILET:160	I didn't mean that...<FFF5>
+838	0x9290	TOILET:161	Stop<FFF5>
+839	0x9295	TOILET:162	Keep singing<FFF5>
+840	0x929d	TOILET:163	Keep singing<FFF5>
+841	0x92a5	TOILET:164	You're a child too.<FFF5>
+842	0x92af	TOILET:165	You're right.<FFF5>
+843	0x92b7	TOILET:166	I'm sorry...<FFF5>
+844	0x92c1	TOILET:167	You wanna die?<FFF5>
+845	0x92ce	TOILET:168	You wanna die?<FFF5>
+846	0x92db	TOILET:169	Keep soothing<FFF5>
+847	0x92e3	TOILET:170	Act serious<FFF5>
+848	0x92eb	TOILET:171	It's only natural.<FFF5>
+849	0x92f4	TOILET:172	Who knows...?<FFF5>
+850	0x9302	TOILET:173	Who knows...?<FFF5>
+851	0x9310	TOILET:174	You are correct.<FFF5>
+852	0x931a	TOILET:175	No, thank you.<FFF5>
+853	0x9322	TOILET:176	No, thank you.<FFF5>
+854	0x932a	TOILET:177	O-kay!<FFF5>
+855	0x9330	TOILET:178	None of your business!<FFF5>
+856	0x933f	TOILET:179	I'm soooorry.<FFF5>
+857	0x934b	TOILET:180	You wanna die?<FFF5>
+858	0x9359	TOILET:181	You wanna die?<FFF5>
+859	0x9367	TOILET:182	Hey!<FFF5>
+860	0x9372	TOILET:183	Bleaaaaah!<FFF5>
+861	0x937c	TOILET:184	Well, all right...<FFF5>
+862	0x9385	TOILET:185	Whaaat!? No!<FFF5>
+863	0x938f	TOILET:186	Get closer<FFF5>
+864	0x9395	TOILET:187	Be cautious<FFF5>
+865	0x939d	TOILET:188	Be cautious<FFF5>
+866	0x93a5	TOILET:189	I like you too!<FFF5>
+867	0x93b2	TOILET:190	Are you serious?<FFF5>
+868	0x93c0	TOILET:191	Are you serious?<FFF5>
+869	0x93ce	TOILET:192	You're right!<FFF5>
+870	0x93d7	TOILET:193	You're right!<FFF5>
+871	0x93e0	TOILET:194	But it hurts...<FFF5>
+872	0x93ed	TOILET:195	You figured it out!<FFF5>
+873	0x93f8	TOILET:196	Waaaaaaaah!<FFF5>
+874	0x9402	TOILET:197	Waaaaaaaah!<FFF5>
+875	0x940c	TOILET:198	Keep crying<FFF5>
+876	0x9414	TOILET:199	Stop<FFF5>
+877	0x9419	TOILET:200	I won't do anything.<FFF5>
+878	0x9425	TOILET:201	I'll torment you.<FFF5>
+879	0x942f	TOILET:202	I'll torment you.<FFF5>
+880	0x9439	TOILET:203	You think so?<FFF5>
+881	0x9440	TOILET:204	But I can't beat you.<FFF5>
+882	0x944d	TOILET:205	But I can't beat you.<FFF5>
+883	0x945a	TOILET:206	Console it<FFF5>
+884	0x9461	TOILET:207	Console it<FFF5>
+885	0x9468	TOILET:208	Keep threatening<FFF5>
+886	0x9470	TOILET:209	I'll apologize...<FFF5>
+887	0x9478	TOILET:210	So you wanna die?<FFF5>
+888	0x9484	TOILET:211	So you wanna die?<FFF5>
+889	0x9490	TOILET:212	To see you cry.<FFF5>
+890	0x949f	TOILET:213	Because I hate you.<FFF5>
+891	0x94aa	TOILET:214	Because I hate you.<FFF5>
+892	0x94b5	TOILET:215	Hell no!<FFF5>
+893	0x94c1	TOILET:216	I stopped.<FFF5>
+894	0x94c6	TOILET:217	I stopped.<FFF5>
+895	0x94cb	TOILET:218	Stop it...<FFF5>
+896	0x94d3	TOILET:219	A lot has happened...<FFF5>
+897	0x94e1	TOILET:220	I'm serious.<FFF5>
+898	0x94e9	TOILET:221	Who knows?<FFF5>
+899	0x94f0	TOILET:222	Who knows?<FFF5>
+900	0x94f7	TOILET:223	Yeah, that's right.<FFF5>
+901	0x9501	TOILET:224	I don't want it.<FFF5>
+902	0x9508	TOILET:225	I don't want it.<FFF5>
+903	0x950f	TOILET:226	I'll apologize...<FFF5>
+904	0x9517	TOILET:227	So you wanna die?<FFF5>
+905	0x9523	TOILET:228	So you wanna die?<FFF5>
+906	0x952f	TOILET:229	To see you cry.<FFF5>
+907	0x953e	TOILET:230	Because I hate you.<FFF5>
+908	0x9549	TOILET:231	Because I hate you.<FFF5>
+909	0x9554	TOILET:232	Hell no!<FFF5>
+910	0x9560	TOILET:233	I stopped.<FFF5>
+911	0x9565	TOILET:234	I stopped.<FFF5>
+912	0x956a	TOILET:235	I don't need a toilet.<FFF5>
+913	0x9577	TOILET:236	Who knows?<FFF5>
+914	0x957e	TOILET:237	......<FFF5>
+915	0x9594	TOILET:238	......<FFF5>
+916	0x95aa	TOILET:239	Then let's talk.<FFF5>
+917	0x95b6	TOILET:240	I don't need a toilet.<FFF5>
+918	0x95c3	TOILET:241	Then let's talk.<FFF5>
+919	0x95cf	TOILET:242	I don't need a toilet.<FFF5>
+920	0x95dc	TOILET:243	Wanna talk, then?<FFF5>
+921	0x95e5	TOILET:244	......<FFF5>
+922	0x95fb	TOILET:245	......<FFF5>
+923	0x9611	TOILET:246	Wanna talk, then?<FFF5>
+924	0x961a	TOILET:247	I don't need a toilet.<FFF5>
+925	0x9627	TOILET:248	Wanna talk, then?<FFF5>
+926	0x9630	TOILET:249	I won't do anything.<FFF5>
+927	0x9639	TOILET:250	I'll kill you.<FFF5>
+928	0x963f	TOILET:251	I'll kill you.<FFF5>
+929	0x9645	TOILET:252	Yeah.<FFF5>
+930	0x9649	TOILET:253	But I can't beat you.<FFF5>
+931	0x9655	TOILET:254	But I can't beat you.<FFF5>
+932	0x9661	TOILET:255	Console it<FFF5>
+933	0x9668	TOILET:256	Console it<FFF5>
+934	0x966f	TOILET:257	Keep threatening<FFF5>
+935	0x9679	TOILET:258	I'm an idiot.<FFF5>
+936	0x967f	TOILET:259	I'm an idiot.<FFF5>
+937	0x9685	TOILET:260	You wanna die, huh!?<FFF5>
+938	0x9692	TOILET:261	Calm down<FFF5>
+939	0x9698	TOILET:262	Smirk<FFF5>
+940	0x96a1	TOILET:263	Smirk<FFF5>
+941	0x96aa	TOILET:264	Roar again<FFF5>
+942	0x96b5	TOILET:265	Act serious<FFF5>
+943	0x96bd	TOILET:266	Act serious<FFF5>
+944	0x96c5	TOILET:267	Were you surprised?<FFF5>
+945	0x96ce	TOILET:268	It's not a spell.<FFF5>
+946	0x96d9	TOILET:269	It's not a spell.<FFF5>
+947	0x96e4	TOILET:270	I dunno about that.<FFF5>
+948	0x96ed	TOILET:271	Heh...<FFF5>
+949	0x96f2	TOILET:272	All right.<FFF5>
+950	0x96f9	TOILET:273	Don't joke with me!<FFF5>
+951	0x9702	TOILET:274	Hunting demons.<FFF5>
+952	0x970b	TOILET:275	Waiting for you.<FFF5>
+953	0x9718	TOILET:276	Something nice.<FFF5>
+954	0x971e	TOILET:277	Say<FFF5>
+955	0x9723	TOILET:278	Don't say<FFF5>
+956	0x972a	TOILET:279	Don't say<FFF5>
+957	0x9731	TOILET:280	Yell<FFF5>
+958	0x9738	TOILET:281	Don't go in<FFF5>
+959	0x973f	TOILET:282	Like I give a damn!<FFF5>
+960	0x974d	TOILET:283	Like I give a damn!<FFF5>
+961	0x975b	TOILET:284	How about the sky?<FFF5>
+962	0x9768	TOILET:285	You're right.<FFF5>
+963	0x976e	TOILET:286	You think so?<FFF5>
+964	0x9776	TOILET:287	I don't care.<FFF5>
+965	0x977e	TOILET:288	We got business.<FFF5>
+966	0x9785	TOILET:289	Get out of here.<FFF5>
+967	0x978a	TOILET:290	Don't leave!<FFF5>
+968	0x9793	TOILET:291	We got business.<FFF5>
+969	0x979a	TOILET:292	Get out of here.<FFF5>
+970	0x979f	TOILET:293	You need something?<FFF5>
+971	0x97ac	TOILET:294	Nod<FFF5>
+972	0x97b2	TOILET:295	Shake your head<FFF5>
+973	0x97bb	TOILET:296	Spread your arms<FFF5>
+974	0x97c4	TOILET:297	Yes.<FFF5>
+975	0x97c8	TOILET:298	No.<FFF5>
+976	0x97cd	TOILET:299	I dunno about that.<FFF5>
+977	0x97d3	TOILET:300	Of course.<FFF5>
+978	0x97d9	TOILET:301	We're not a match.<FFF5>
+979	0x97e4	TOILET:302	Don't joke with me.<FFF5>
+980	0x97eb	TOILET:303	Snort<FFF5>
+981	0x97f3	TOILET:304	Act serious<FFF5>
+982	0x97fb	EBOOT:2acb4e	Joke<FFF5>

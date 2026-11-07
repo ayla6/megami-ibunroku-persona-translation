@@ -763,301 +763,301 @@ id	pos	psp	en
 761	0xba7a	KOROU:44	Less than straw.<FFF5>
 762	0xba82	KOROU:45	Hee hee!<FFF5>
 763	0xba8a	KOROU:46	Hee hee!<FFF5>
-764	0xbaac	KOROU:49	I want your card.<FFF5>
-765	0xbabb	KOROU:50	I won't do anything.<FFF5>
-766	0xbac3	KOROU:51	I won't do anything.<FFF5>
-767	0xbacb	KOROU:52	Thanks for the meal.<FFF5>
-768	0xbad3	KOROU:53	I'm not lying.<FFF5>
-769	0xbadc	KOROU:54	I'm not lying.<FFF5>
-770	0xbae5	KOROU:55	I have time.<FFF5>
-771	0xbaeb	KOROU:56	I don't have time.<FFF5>
-772	0xbaf4	KOROU:57	Give me time!<FFF5>
-773	0xbb00	KOROU:58	It's fun.<FFF5>
-774	0xbb0c	KOROU:59	I have no plans.<FFF5>
-775	0xbb18	KOROU:60	What a funny face.<FFF5>
-776	0xbb24	KOROU:61	You want more?<FFF5>
-777	0xbb30	KOROU:62	I don't have candy.<FFF5>
-778	0xbb3c	KOROU:63	Heart.<FFF5>
-779	0xbb40	KOROU:64	The lottery.<FFF5>
-780	0xbb46	KOROU:65	My memory.<FFF5>
-781	0xbb4d	KOROU:66	Okay! I'll stop.<FFF5>
-782	0xbb58	KOROU:67	It's all on you!<FFF5>
-783	0xbb64	KOROU:68	That's rude.<FFF5>
-784	0xbb72	KOROU:69	You do.<FFF5>
-785	0xbb77	KOROU:70	You do.<FFF5>
-786	0xbb7c	KOROU:71	That was a lie.<FFF5>
-787	0xbb86	KOROU:72	That's my business.<FFF5>
-788	0xbb93	KOROU:73	Too late.<FFF5>
-789	0xbb9d	KOROU:74	You're still young.<FFF5>
-790	0xbba7	KOROU:75	Apologize<FFF5>
-791	0xbbac	KOROU:76	Flirt more<FFF5>
-792	0xbbb5	KOROU:77	Flirt more<FFF5>
-793	0xbbbe	KOROU:78	I have good eyes.<FFF5>
-794	0xbbc5	KOROU:79	Gender is pointless.<FFF5>
-795	0xbbd4	KOROU:80	It's not about age.<FFF5>
-796	0xbbe3	KOROU:81	Really, Ms.Kawasaki?<FFF5>
-797	0xbbf1	KOROU:82	Really, Ms.Kawasaki?<FFF5>
-798	0xbbff	KOROU:83	I'm not a tabloid.<FFF5>
-799	0xbc0c	KOROU:84	Make it blue.<FFF5>
-800	0xbc13	KOROU:85	Make it red.<FFF5>
-801	0xbc1a	KOROU:86	Make it green.<FFF5>
-802	0xbc21	KOROU:87	No way.<FFF5>
-803	0xbc2a	KOROU:88	A salt and battery.<FFF5>
-804	0xbc35	KOROU:89	Whine and cheese.<FFF5>
-805	0xbc40	KOROU:90	'Course I do.<FFF5>
-806	0xbc4b	KOROU:91	'Course I do.<FFF5>
-807	0xbc56	KOROU:92	Never did.<FFF5>
-808	0xbc62	KOROU:93	It's a good bath.<FFF5>
-809	0xbc6a	KOROU:94	It's good for you.<FFF5>
-810	0xbc78	KOROU:95	That's not true.<FFF5>
-811	0xbc83	KOROU:96	No need to know.<FFF5>
-812	0xbc92	KOROU:97	No need to know.<FFF5>
-813	0xbca1	KOROU:98	I'm just spiritless.<FFF5>
-814	0xbcb0	KOROU:99	I'll kill you!<FFF5>
-815	0xbcb8	KOROU:100	I'll kill you!<FFF5>
-816	0xbcc0	KOROU:101	I don't need hairs.<FFF5>
-817	0xbccd	KOROU:102	I'll yank 'em out!<FFF5>
-818	0xbcdb	KOROU:103	I'll yank 'em out!<FFF5>
-819	0xbce9	KOROU:104	Soup, maybe?<FFF5>
-820	0xbcf2	KOROU:105	I'll cool them.<FFF5>
-821	0xbcfc	KOROU:106	I'll rub them.<FFF5>
-822	0xbd04	KOROU:107	Unfortunately, no.<FFF5>
-823	0xbd0f	KOROU:108	Then don't buy it.<FFF5>
-824	0xbd19	KOROU:109	If only Yamaoka...<FFF5>
-825	0xbd25	KOROU:110	I have a kotatsu.<FFF5>
-826	0xbd2d	KOROU:111	I have a cat.<FFF5>
-827	0xbd34	KOROU:112	I have a cat.<FFF5>
-828	0xbd3b	KOROU:113	I have dentures.<FFF5>
-829	0xbd45	KOROU:114	I can't eat this.<FFF5>
-830	0xbd4f	KOROU:115	I can't eat this.<FFF5>
-831	0xbd59	KOROU:116	It's delicious.<FFF5>
-832	0xbd64	KOROU:117	You're right.<FFF5>
-833	0xbd6a	KOROU:118	You too.<FFF5>
-834	0xbd72	KOROU:119	I refuse.<FFF5>
-835	0xbd77	KOROU:120	Age matters not.<FFF5>
-836	0xbd82	KOROU:121	So you're invalid...<FFF5>
-837	0xbd90	KOROU:122	So you're invalid...<FFF5>
-838	0xbd9e	KOROU:123	No.<FFF5>
-839	0xbda4	KOROU:124	That's right.<FFF5>
-840	0xbda9	KOROU:125	Clear skies.<FFF5>
-841	0xbdb0	KOROU:126	Cloudy skies.<FFF5>
-842	0xbdb6	KOROU:127	Rain.<FFF5>
-843	0xbdbb	KOROU:128	Apologize<FFF5>
-844	0xbdc0	KOROU:129	Apologize<FFF5>
-845	0xbdc5	KOROU:130	Another roar<FFF5>
-846	0xbdce	KOROU:131	How amusing.<FFF5>
-847	0xbdd5	KOROU:132	How amusing.<FFF5>
-848	0xbddc	KOROU:133	How boring.<FFF5>
-849	0xbde5	KOROU:134	No.<FFF5>
-850	0xbdeb	KOROU:135	You found me out.<FFF5>
-851	0xbdf5	KOROU:136	You found me out.<FFF5>
-852	0xbdff	KOROU:137	I'm honored.<FFF5>
-853	0xbe07	KOROU:138	You can't do it.<FFF5>
-854	0xbe17	KOROU:139	Need spare change?<FFF5>
-855	0xbe20	KOROU:140	What a fool...<FFF5>
-856	0xbe29	KOROU:141	What a fool...<FFF5>
-857	0xbe32	KOROU:142	I am humbled.<FFF5>
-858	0xbe3b	KOROU:143	Oh yeah.<FFF5>
-859	0xbe4a	KOROU:144	I'm not like you.<FFF5>
-860	0xbe56	KOROU:145	I'm not like you.<FFF5>
-861	0xbe62	KOROU:146	Learn<FFF5>
-862	0xbe68	KOROU:147	Refuse<FFF5>
-863	0xbe6d	KOROU:148	Ignore<FFF5>
-864	0xbe77	KOROU:149	Listen to stories.<FFF5>
-865	0xbe84	KOROU:150	Listen to stories.<FFF5>
-866	0xbe91	KOROU:151	Ignore<FFF5>
-867	0xbe99	KOROU:152	Hey, hey, hey!<FFF5>
-868	0xbea3	KOROU:153	Hey, hey, hey!<FFF5>
-869	0xbead	KOROU:154	I'll rip you.<FFF5>
-870	0xbeb3	KOROU:155	I'll test you!<FFF5>
-871	0xbebe	KOROU:156	Damn, you found out!<FFF5>
-872	0xbecd	KOROU:157	Damn, you found out!<FFF5>
-873	0xbedc	KOROU:158	I'll torment you.<FFF5>
-874	0xbee5	KOROU:159	I'll spare you.<FFF5>
-875	0xbef3	KOROU:160	It's a joke.<FFF5>
-876	0xbefb	KOROU:161	Yeah, exactly.<FFF5>
-877	0xbf06	KOROU:162	That's not it.<FFF5>
-878	0xbf10	KOROU:163	That's not it.<FFF5>
-879	0xbf1a	KOROU:164	Gaze harder<FFF5>
-880	0xbf24	KOROU:165	I'll scratch ya.<FFF5>
-881	0xbf2d	KOROU:166	I'll scratch ya.<FFF5>
-882	0xbf36	KOROU:167	That's not true.<FFF5>
-883	0xbf40	KOROU:168	That's not true.<FFF5>
-884	0xbf4a	KOROU:169	Well, yeah.<FFF5>
-885	0xbf52	KOROU:170	One.<FFF5>
-886	0xbf58	KOROU:171	Two.<FFF5>
-887	0xbf5e	KOROU:172	Three and a third.<FFF5>
-888	0xbf6b	KOROU:173	I'm fine with that!<FFF5>
-889	0xbf77	KOROU:174	I'm just embellishing!<FFF5>
-890	0xbf85	KOROU:175	I'm just embellishing!<FFF5>
-891	0xbf93	KOROU:176	Just this one.<FFF5>
-892	0xbf9a	KOROU:177	51,670,000,000.<FFF5>
-893	0xbfaa	KOROU:178	24/7.<FFF5>
-894	0xbfb5	KOROU:179	I'll call for help.<FFF5>
-895	0xbfc1	KOROU:180	I'll perform CPR.<FFF5>
-896	0xbfcf	KOROU:181	How 'bout an elbow?<FFF5>
-897	0xbfdb	KOROU:182	Curiosity.<FFF5>
-898	0xbfe8	KOROU:183	Respect.<FFF5>
-899	0xbff3	KOROU:184	No reason.<FFF5>
-900	0xc002	KOROU:185	Really?<FFF5>
-901	0xc00f	KOROU:186	Lying is wrong.<FFF5>
-902	0xc01c	KOROU:187	Wow, incredible!<FFF5>
-903	0xc02b	KOROU:188	Thank you so much.<FFF5>
-904	0xc037	KOROU:189	Thank you so much.<FFF5>
-905	0xc043	KOROU:190	When will that be?<FFF5>
-906	0xc04f	KOROU:191	Another song<FFF5>
-907	0xc056	KOROU:192	The same song<FFF5>
-908	0xc05d	KOROU:193	A made-up song<FFF5>
-909	0xc066	KOROU:194	Boast<FFF5>
-910	0xc083	KOROU:197	You look too young.<FFF5>
-911	0xc090	KOROU:198	You look too young.<FFF5>
-912	0xc09d	KOROU:199	You're not happy?<FFF5>
-913	0xc0ab	KOROU:200	No need to be upset.<FFF5>
-914	0xc0b6	KOROU:201	You're not happy?<FFF5>
-915	0xc0c3	KOROU:202	You're not happy?<FFF5>
-916	0xc0d0	KOROU:203	I'll treasure it.<FFF5>
-917	0xc0da	KOROU:204	I'm not pure.<FFF5>
-918	0xc0ea	KOROU:205	Are angels good?<FFF5>
-919	0xc0fb	KOROU:206	Work.<FFF5>
-920	0xc101	KOROU:207	Materials.<FFF5>
-921	0xc107	KOROU:208	Company.<FFF5>
-922	0xc10f	KOROU:209	Few demons are free.<FFF5>
-923	0xc11f	KOROU:210	You have no choice.<FFF5>
-924	0xc12e	KOROU:211	You have no choice.<FFF5>
-925	0xc13d	KOROU:212	That's not true.<FFF5>
-926	0xc149	KOROU:213	That's not true.<FFF5>
-927	0xc155	KOROU:214	I won't lose.<FFF5>
-928	0xc162	KOROU:215	It's way fun.<FFF5>
-929	0xc16b	KOROU:216	Is that fun?<FFF5>
-930	0xc174	KOROU:217	It's boring!<FFF5>
-931	0xc17d	KOROU:218	Your breath smells!<FFF5>
-932	0xc189	KOROU:219	I'm sorry.<FFF5>
-933	0xc193	KOROU:220	It'll be nice out.<FFF5>
-934	0xc1a3	KOROU:221	That's not true.<FFF5>
-935	0xc1af	KOROU:222	That's not true.<FFF5>
-936	0xc1bb	KOROU:223	It's buried.<FFF5>
-937	0xc1c7	KOROU:224	It's healthy.<FFF5>
-938	0xc1d5	KOROU:225	You don't like tans?<FFF5>
-939	0xc1e4	KOROU:226	I'm hiding freckles.<FFF5>
-940	0xc1f3	KOROU:227	That's not true!<FFF5>
-941	0xc1ff	KOROU:228	Okay.<FFF5>
-942	0xc205	KOROU:229	Too old fashioned.<FFF5>
-943	0xc210	KOROU:230	You're right.<FFF5>
-944	0xc216	KOROU:231	It's not love?<FFF5>
-945	0xc220	KOROU:232	You're in love.<FFF5>
-946	0xc22c	KOROU:233	Okay.<FFF5>
-947	0xc24c	KOROU:236	Okay.<FFF5>
-948	0xc252	KOROU:237	What, no!<FFF5>
-949	0xc25c	KOROU:238	What, no!<FFF5>
-950	0xc266	KOROU:239	There's bagels!<FFF5>
-951	0xc272	KOROU:240	There's ochazuke!<FFF5>
-952	0xc281	KOROU:241	Use a microwave.<FFF5>
-953	0xc291	KOROU:242	Because I'm cute?<FFF5>
-954	0xc29d	KOROU:243	Because I'm small?<FFF5>
-955	0xc2a8	KOROU:244	Because I'm small?<FFF5>
-956	0xc2b3	KOROU:245	Hey, you wanna die?<FFF5>
-957	0xc2c1	KOROU:246	Hey, you wanna die?<FFF5>
-958	0xc2cf	KOROU:247	I'm sorry.<FFF5>
-959	0xc2d9	KOROU:248	You shouldn't exist.<FFF5>
-960	0xc2e8	KOROU:249	You shouldn't exist.<FFF5>
-961	0xc2f7	KOROU:250	That was a lie.<FFF5>
-962	0xc301	KOROU:251	Bully more<FFF5>
-963	0xc30c	KOROU:252	Take the bullying<FFF5>
-964	0xc314	KOROU:253	Take the bullying<FFF5>
-965	0xc31c	KOROU:254	Bully more<FFF5>
-966	0xc327	KOROU:255	Bully more<FFF5>
-967	0xc332	KOROU:256	Take the bullying<FFF5>
-968	0xc33a	KOROU:257	There is...<FFF5>
-969	0xc343	KOROU:258	I won't marry.<FFF5>
-970	0xc350	KOROU:259	That's my business.<FFF5>
-971	0xc35e	KOROU:260	...I'm fine.<FFF5>
-972	0xc36e	KOROU:261	I'll do that.<FFF5>
-973	0xc375	KOROU:262	I can't ignore it.<FFF5>
-974	0xc382	KOROU:263	Hehehe...<FFF5>
-975	0xc389	KOROU:264	Don't screw with me!<FFF5>
-976	0xc395	KOROU:265	Now, where to go?<FFF5>
-977	0xc3a4	KOROU:266	You don't like sake?<FFF5>
-978	0xc3b0	KOROU:267	Pickles aren't good?<FFF5>
-979	0xc3bd	KOROU:268	You don't like stew?<FFF5>
-980	0xc3c9	KOROU:269	...Cut it out.<FFF5>
-981	0xc3d1	KOROU:270	Don't screw with me!<FFF5>
-982	0xc3dd	KOROU:271	Yeah.<FFF5>
-983	0xc3e1	KOROU:272	No.<FFF5>
-984	0xc3e7	KOROU:273	The weather is...<FFF5>
-985	0xc3f5	KOROU:274	No way.<FFF5>
-986	0xc3fb	KOROU:275	......<FFF5>
-987	0xc403	KOROU:276	......<FFF5>
-988	0xc40b	KOROU:277	Kitchen refuse?<FFF5>
-989	0xc416	KOROU:278	Kitchen refuse?<FFF5>
-990	0xc421	KOROU:279	Garbage?<FFF5>
-991	0xc42f	KOROU:280	Me.<FFF5>
-992	0xc437	KOROU:281	Taunt me and die.<FFF5>
-993	0xc445	KOROU:282	Keep talking.<FFF5>
-994	0xc44e	KOROU:283	Can't hear ya.<FFF5>
-995	0xc457	KOROU:284	Just like a rat.<FFF5>
-996	0xc464	KOROU:285	Just like a rat.<FFF5>
-997	0xc471	KOROU:286	That's right.<FFF5>
-998	0xc476	KOROU:287	I'll reuse it.<FFF5>
-999	0xc484	KOROU:288	I'll reuse it.<FFF5>
-1000	0xc492	KOROU:289	Lone wolf kick<FFF5>
-1001	0xc49e	KOROU:290	Lone wolf punch<FFF5>
-1002	0xc4aa	KOROU:291	Lone wolf suplex<FFF5>
-1003	0xc4b9	KOROU:292	More threats<FFF5>
-1004	0xc4c1	KOROU:293	Don't apologize<FFF5>
-1005	0xc4c8	KOROU:294	Don't apologize<FFF5>
-1006	0xc4cf	KOROU:295	You're evil.<FFF5>
-1007	0xc4dd	KOROU:296	It's irrelevant.<FFF5>
-1008	0xc4ec	KOROU:297	It's irrelevant.<FFF5>
-1009	0xc4fb	KOROU:298	Yeah, that's right.<FFF5>
-1010	0xc504	KOROU:299	Yeah, that's right.<FFF5>
-1011	0xc50d	KOROU:300	Listen to me yell!<FFF5>
-1012	0xc51b	KOROU:301	So what?<FFF5>
-1013	0xc526	KOROU:302	Nope.<FFF5>
-1014	0xc52b	KOROU:303	I don't know.<FFF5>
-1015	0xc533	KOROU:304	Think about it.<FFF5>
-1016	0xc53e	KOROU:305	Think about it.<FFF5>
-1017	0xc549	KOROU:306	It's meaningless.<FFF5>
-1018	0xc556	KOROU:307	Don't tell<FFF5>
-1019	0xc55d	KOROU:308	Don't tell<FFF5>
-1020	0xc564	KOROU:309	Continue the trick<FFF5>
-1021	0xc56f	KOROU:310	Yell<FFF5>
-1022	0xc574	KOROU:311	Ignore<FFF5>
-1023	0xc57c	KOROU:312	Continue the trick<FFF5>
-1024	0xc587	KOROU:313	Can't hear ya.<FFF5>
-1025	0xc590	KOROU:314	If I have time.<FFF5>
-1026	0xc59b	KOROU:315	If I have time.<FFF5>
-1027	0xc5a6	KOROU:316	Talk with demons.<FFF5>
-1028	0xc5b2	KOROU:317	Demon hunting.<FFF5>
-1029	0xc5bb	KOROU:318	A stroll.<FFF5>
-1030	0xc5c1	KOROU:319	Stay calm<FFF5>
-1031	0xc5c7	KOROU:320	Get angry<FFF5>
-1032	0xc5cc	KOROU:321	Ignore and continue<FFF5>
-1033	0xc5d7	KOROU:322	You're just shy.<FFF5>
-1034	0xc5e3	KOROU:323	It's being eaten.<FFF5>
-1035	0xc5ee	KOROU:324	Due to the sun...<FFF5>
-1036	0xc5fd	KOROU:325	Dried squid<FFF5>
-1037	0xc602	KOROU:326	Rice crackers<FFF5>
-1038	0xc608	KOROU:327	Bekkouame<FFF5>
-1039	0xc610	KOROU:328	Be humble<FFF5>
-1040	0xc61a	KOROU:329	Be humble<FFF5>
-1041	0xc624	KOROU:330	Ignore<FFF5>
-1042	0xc62c	KOROU:331	I'm lonely.<FFF5>
-1043	0xc632	KOROU:332	I feel good.<FFF5>
-1044	0xc639	KOROU:333	This is strange.<FFF5>
-1045	0xc647	KOROU:334	The latest games.<FFF5>
-1046	0xc656	KOROU:335	Just a college girl.<FFF5>
-1047	0xc669	KOROU:336	Refuse<FFF5>
-1048	0xc66e	KOROU:337	Refute<FFF5>
-1049	0xc676	KOROU:338	Apologize<FFF5>
-1050	0xc67b	KOROU:339	Ignore<FFF5>
-1051	0xc683	KOROU:340	Give me a card.<FFF5>
-1052	0xc68d	KOROU:341	Give me something.<FFF5>
-1053	0xc694	KOROU:342	Let's negotiate.<FFF5>
-1054	0xc69d	KOROU:343	<FFFA>.<FFF5>
-1055	0xc6a1	KOROU:344	Human.<FFF5>
-1056	0xc232	KOROU:234	I hate pie.<FFF5>
-1057	0xc23f	KOROU:235	I hate pie.<FFF5>
-1058	0xba92	KOROU:47	What'd you say!?<FFF5>
-1059	0xba9f	KOROU:48	What'd you say!?<FFF5>
-1060	0xc076	KOROU:196	Recommend a CD<FFF5>
-1061	0xc06e	KOROU:195	Be modest<FFF5>
+764	0xba92	KOROU:47	What'd you say!?<FFF5>
+765	0xba9f	KOROU:48	What'd you say!?<FFF5>
+766	0xbaac	KOROU:49	I want your card.<FFF5>
+767	0xbabb	KOROU:50	I won't do anything.<FFF5>
+768	0xbac3	KOROU:51	I won't do anything.<FFF5>
+769	0xbacb	KOROU:52	Thanks for the meal.<FFF5>
+770	0xbad3	KOROU:53	I'm not lying.<FFF5>
+771	0xbadc	KOROU:54	I'm not lying.<FFF5>
+772	0xbae5	KOROU:55	I have time.<FFF5>
+773	0xbaeb	KOROU:56	I don't have time.<FFF5>
+774	0xbaf4	KOROU:57	Give me time!<FFF5>
+775	0xbb00	KOROU:58	It's fun.<FFF5>
+776	0xbb0c	KOROU:59	I have no plans.<FFF5>
+777	0xbb18	KOROU:60	What a funny face.<FFF5>
+778	0xbb24	KOROU:61	You want more?<FFF5>
+779	0xbb30	KOROU:62	I don't have candy.<FFF5>
+780	0xbb3c	KOROU:63	Heart.<FFF5>
+781	0xbb40	KOROU:64	The lottery.<FFF5>
+782	0xbb46	KOROU:65	My memory.<FFF5>
+783	0xbb4d	KOROU:66	Okay! I'll stop.<FFF5>
+784	0xbb58	KOROU:67	It's all on you!<FFF5>
+785	0xbb64	KOROU:68	That's rude.<FFF5>
+786	0xbb72	KOROU:69	You do.<FFF5>
+787	0xbb77	KOROU:70	You do.<FFF5>
+788	0xbb7c	KOROU:71	That was a lie.<FFF5>
+789	0xbb86	KOROU:72	That's my business.<FFF5>
+790	0xbb93	KOROU:73	Too late.<FFF5>
+791	0xbb9d	KOROU:74	You're still young.<FFF5>
+792	0xbba7	KOROU:75	Apologize<FFF5>
+793	0xbbac	KOROU:76	Flirt more<FFF5>
+794	0xbbb5	KOROU:77	Flirt more<FFF5>
+795	0xbbbe	KOROU:78	I have good eyes.<FFF5>
+796	0xbbc5	KOROU:79	Gender is pointless.<FFF5>
+797	0xbbd4	KOROU:80	It's not about age.<FFF5>
+798	0xbbe3	KOROU:81	Really, Ms.Kawasaki?<FFF5>
+799	0xbbf1	KOROU:82	Really, Ms.Kawasaki?<FFF5>
+800	0xbbff	KOROU:83	I'm not a tabloid.<FFF5>
+801	0xbc0c	KOROU:84	Make it blue.<FFF5>
+802	0xbc13	KOROU:85	Make it red.<FFF5>
+803	0xbc1a	KOROU:86	Make it green.<FFF5>
+804	0xbc21	KOROU:87	No way.<FFF5>
+805	0xbc2a	KOROU:88	A salt and battery.<FFF5>
+806	0xbc35	KOROU:89	Whine and cheese.<FFF5>
+807	0xbc40	KOROU:90	'Course I do.<FFF5>
+808	0xbc4b	KOROU:91	'Course I do.<FFF5>
+809	0xbc56	KOROU:92	Never did.<FFF5>
+810	0xbc62	KOROU:93	It's a good bath.<FFF5>
+811	0xbc6a	KOROU:94	It's good for you.<FFF5>
+812	0xbc78	KOROU:95	That's not true.<FFF5>
+813	0xbc83	KOROU:96	No need to know.<FFF5>
+814	0xbc92	KOROU:97	No need to know.<FFF5>
+815	0xbca1	KOROU:98	I'm just spiritless.<FFF5>
+816	0xbcb0	KOROU:99	I'll kill you!<FFF5>
+817	0xbcb8	KOROU:100	I'll kill you!<FFF5>
+818	0xbcc0	KOROU:101	I don't need hairs.<FFF5>
+819	0xbccd	KOROU:102	I'll yank 'em out!<FFF5>
+820	0xbcdb	KOROU:103	I'll yank 'em out!<FFF5>
+821	0xbce9	KOROU:104	Soup, maybe?<FFF5>
+822	0xbcf2	KOROU:105	I'll cool them.<FFF5>
+823	0xbcfc	KOROU:106	I'll rub them.<FFF5>
+824	0xbd04	KOROU:107	Unfortunately, no.<FFF5>
+825	0xbd0f	KOROU:108	Then don't buy it.<FFF5>
+826	0xbd19	KOROU:109	If only Yamaoka...<FFF5>
+827	0xbd25	KOROU:110	I have a kotatsu.<FFF5>
+828	0xbd2d	KOROU:111	I have a cat.<FFF5>
+829	0xbd34	KOROU:112	I have a cat.<FFF5>
+830	0xbd3b	KOROU:113	I have dentures.<FFF5>
+831	0xbd45	KOROU:114	I can't eat this.<FFF5>
+832	0xbd4f	KOROU:115	I can't eat this.<FFF5>
+833	0xbd59	KOROU:116	It's delicious.<FFF5>
+834	0xbd64	KOROU:117	You're right.<FFF5>
+835	0xbd6a	KOROU:118	You too.<FFF5>
+836	0xbd72	KOROU:119	I refuse.<FFF5>
+837	0xbd77	KOROU:120	Age matters not.<FFF5>
+838	0xbd82	KOROU:121	So you're invalid...<FFF5>
+839	0xbd90	KOROU:122	So you're invalid...<FFF5>
+840	0xbd9e	KOROU:123	No.<FFF5>
+841	0xbda4	KOROU:124	That's right.<FFF5>
+842	0xbda9	KOROU:125	Clear skies.<FFF5>
+843	0xbdb0	KOROU:126	Cloudy skies.<FFF5>
+844	0xbdb6	KOROU:127	Rain.<FFF5>
+845	0xbdbb	KOROU:128	Apologize<FFF5>
+846	0xbdc0	KOROU:129	Apologize<FFF5>
+847	0xbdc5	KOROU:130	Another roar<FFF5>
+848	0xbdce	KOROU:131	How amusing.<FFF5>
+849	0xbdd5	KOROU:132	How amusing.<FFF5>
+850	0xbddc	KOROU:133	How boring.<FFF5>
+851	0xbde5	KOROU:134	No.<FFF5>
+852	0xbdeb	KOROU:135	You found me out.<FFF5>
+853	0xbdf5	KOROU:136	You found me out.<FFF5>
+854	0xbdff	KOROU:137	I'm honored.<FFF5>
+855	0xbe07	KOROU:138	You can't do it.<FFF5>
+856	0xbe17	KOROU:139	Need spare change?<FFF5>
+857	0xbe20	KOROU:140	What a fool...<FFF5>
+858	0xbe29	KOROU:141	What a fool...<FFF5>
+859	0xbe32	KOROU:142	I am humbled.<FFF5>
+860	0xbe3b	KOROU:143	Oh yeah.<FFF5>
+861	0xbe4a	KOROU:144	I'm not like you.<FFF5>
+862	0xbe56	KOROU:145	I'm not like you.<FFF5>
+863	0xbe62	KOROU:146	Learn<FFF5>
+864	0xbe68	KOROU:147	Refuse<FFF5>
+865	0xbe6d	KOROU:148	Ignore<FFF5>
+866	0xbe77	KOROU:149	Listen to stories.<FFF5>
+867	0xbe84	KOROU:150	Listen to stories.<FFF5>
+868	0xbe91	KOROU:151	Ignore<FFF5>
+869	0xbe99	KOROU:152	Hey, hey, hey!<FFF5>
+870	0xbea3	KOROU:153	Hey, hey, hey!<FFF5>
+871	0xbead	KOROU:154	I'll rip you.<FFF5>
+872	0xbeb3	KOROU:155	I'll test you!<FFF5>
+873	0xbebe	KOROU:156	Damn, you found out!<FFF5>
+874	0xbecd	KOROU:157	Damn, you found out!<FFF5>
+875	0xbedc	KOROU:158	I'll torment you.<FFF5>
+876	0xbee5	KOROU:159	I'll spare you.<FFF5>
+877	0xbef3	KOROU:160	It's a joke.<FFF5>
+878	0xbefb	KOROU:161	Yeah, exactly.<FFF5>
+879	0xbf06	KOROU:162	That's not it.<FFF5>
+880	0xbf10	KOROU:163	That's not it.<FFF5>
+881	0xbf1a	KOROU:164	Gaze harder<FFF5>
+882	0xbf24	KOROU:165	I'll scratch ya.<FFF5>
+883	0xbf2d	KOROU:166	I'll scratch ya.<FFF5>
+884	0xbf36	KOROU:167	That's not true.<FFF5>
+885	0xbf40	KOROU:168	That's not true.<FFF5>
+886	0xbf4a	KOROU:169	Well, yeah.<FFF5>
+887	0xbf52	KOROU:170	One.<FFF5>
+888	0xbf58	KOROU:171	Two.<FFF5>
+889	0xbf5e	KOROU:172	Three and a third.<FFF5>
+890	0xbf6b	KOROU:173	I'm fine with that!<FFF5>
+891	0xbf77	KOROU:174	I'm just embellishing!<FFF5>
+892	0xbf85	KOROU:175	I'm just embellishing!<FFF5>
+893	0xbf93	KOROU:176	Just this one.<FFF5>
+894	0xbf9a	KOROU:177	51,670,000,000.<FFF5>
+895	0xbfaa	KOROU:178	24/7.<FFF5>
+896	0xbfb5	KOROU:179	I'll call for help.<FFF5>
+897	0xbfc1	KOROU:180	I'll perform CPR.<FFF5>
+898	0xbfcf	KOROU:181	How 'bout an elbow?<FFF5>
+899	0xbfdb	KOROU:182	Curiosity.<FFF5>
+900	0xbfe8	KOROU:183	Respect.<FFF5>
+901	0xbff3	KOROU:184	No reason.<FFF5>
+902	0xc002	KOROU:185	Really?<FFF5>
+903	0xc00f	KOROU:186	Lying is wrong.<FFF5>
+904	0xc01c	KOROU:187	Wow, incredible!<FFF5>
+905	0xc02b	KOROU:188	Thank you so much.<FFF5>
+906	0xc037	KOROU:189	Thank you so much.<FFF5>
+907	0xc043	KOROU:190	When will that be?<FFF5>
+908	0xc04f	KOROU:191	Another song<FFF5>
+909	0xc056	KOROU:192	The same song<FFF5>
+910	0xc05d	KOROU:193	A made-up song<FFF5>
+911	0xc066	KOROU:194	Boast<FFF5>
+912	0xc06e	KOROU:195	Be modest<FFF5>
+913	0xc076	KOROU:196	Recommend a CD<FFF5>
+914	0xc083	KOROU:197	You look too young.<FFF5>
+915	0xc090	KOROU:198	You look too young.<FFF5>
+916	0xc09d	KOROU:199	You're not happy?<FFF5>
+917	0xc0ab	KOROU:200	No need to be upset.<FFF5>
+918	0xc0b6	KOROU:201	You're not happy?<FFF5>
+919	0xc0c3	KOROU:202	You're not happy?<FFF5>
+920	0xc0d0	KOROU:203	I'll treasure it.<FFF5>
+921	0xc0da	KOROU:204	I'm not pure.<FFF5>
+922	0xc0ea	KOROU:205	Are angels good?<FFF5>
+923	0xc0fb	KOROU:206	Work.<FFF5>
+924	0xc101	KOROU:207	Materials.<FFF5>
+925	0xc107	KOROU:208	Company.<FFF5>
+926	0xc10f	KOROU:209	Few demons are free.<FFF5>
+927	0xc11f	KOROU:210	You have no choice.<FFF5>
+928	0xc12e	KOROU:211	You have no choice.<FFF5>
+929	0xc13d	KOROU:212	That's not true.<FFF5>
+930	0xc149	KOROU:213	That's not true.<FFF5>
+931	0xc155	KOROU:214	I won't lose.<FFF5>
+932	0xc162	KOROU:215	It's way fun.<FFF5>
+933	0xc16b	KOROU:216	Is that fun?<FFF5>
+934	0xc174	KOROU:217	It's boring!<FFF5>
+935	0xc17d	KOROU:218	Your breath smells!<FFF5>
+936	0xc189	KOROU:219	I'm sorry.<FFF5>
+937	0xc193	KOROU:220	It'll be nice out.<FFF5>
+938	0xc1a3	KOROU:221	That's not true.<FFF5>
+939	0xc1af	KOROU:222	That's not true.<FFF5>
+940	0xc1bb	KOROU:223	It's buried.<FFF5>
+941	0xc1c7	KOROU:224	It's healthy.<FFF5>
+942	0xc1d5	KOROU:225	You don't like tans?<FFF5>
+943	0xc1e4	KOROU:226	I'm hiding freckles.<FFF5>
+944	0xc1f3	KOROU:227	That's not true!<FFF5>
+945	0xc1ff	KOROU:228	Okay.<FFF5>
+946	0xc205	KOROU:229	Too old fashioned.<FFF5>
+947	0xc210	KOROU:230	You're right.<FFF5>
+948	0xc216	KOROU:231	It's not love?<FFF5>
+949	0xc220	KOROU:232	You're in love.<FFF5>
+950	0xc22c	KOROU:233	Okay.<FFF5>
+951	0xc232	KOROU:234	I hate pie.<FFF5>
+952	0xc23f	KOROU:235	I hate pie.<FFF5>
+953	0xc24c	KOROU:236	Okay.<FFF5>
+954	0xc252	KOROU:237	What, no!<FFF5>
+955	0xc25c	KOROU:238	What, no!<FFF5>
+956	0xc266	KOROU:239	There's bagels!<FFF5>
+957	0xc272	KOROU:240	There's ochazuke!<FFF5>
+958	0xc281	KOROU:241	Use a microwave.<FFF5>
+959	0xc291	KOROU:242	Because I'm cute?<FFF5>
+960	0xc29d	KOROU:243	Because I'm small?<FFF5>
+961	0xc2a8	KOROU:244	Because I'm small?<FFF5>
+962	0xc2b3	KOROU:245	Hey, you wanna die?<FFF5>
+963	0xc2c1	KOROU:246	Hey, you wanna die?<FFF5>
+964	0xc2cf	KOROU:247	I'm sorry.<FFF5>
+965	0xc2d9	KOROU:248	You shouldn't exist.<FFF5>
+966	0xc2e8	KOROU:249	You shouldn't exist.<FFF5>
+967	0xc2f7	KOROU:250	That was a lie.<FFF5>
+968	0xc301	KOROU:251	Bully more<FFF5>
+969	0xc30c	KOROU:252	Take the bullying<FFF5>
+970	0xc314	KOROU:253	Take the bullying<FFF5>
+971	0xc31c	KOROU:254	Bully more<FFF5>
+972	0xc327	KOROU:255	Bully more<FFF5>
+973	0xc332	KOROU:256	Take the bullying<FFF5>
+974	0xc33a	KOROU:257	There is...<FFF5>
+975	0xc343	KOROU:258	I won't marry.<FFF5>
+976	0xc350	KOROU:259	That's my business.<FFF5>
+977	0xc35e	KOROU:260	...I'm fine.<FFF5>
+978	0xc36e	KOROU:261	I'll do that.<FFF5>
+979	0xc375	KOROU:262	I can't ignore it.<FFF5>
+980	0xc382	KOROU:263	Hehehe...<FFF5>
+981	0xc389	KOROU:264	Don't screw with me!<FFF5>
+982	0xc395	KOROU:265	Now, where to go?<FFF5>
+983	0xc3a4	KOROU:266	You don't like sake?<FFF5>
+984	0xc3b0	KOROU:267	Pickles aren't good?<FFF5>
+985	0xc3bd	KOROU:268	You don't like stew?<FFF5>
+986	0xc3c9	KOROU:269	...Cut it out.<FFF5>
+987	0xc3d1	KOROU:270	Don't screw with me!<FFF5>
+988	0xc3dd	KOROU:271	Yeah.<FFF5>
+989	0xc3e1	KOROU:272	No.<FFF5>
+990	0xc3e7	KOROU:273	The weather is...<FFF5>
+991	0xc3f5	KOROU:274	No way.<FFF5>
+992	0xc3fb	KOROU:275	......<FFF5>
+993	0xc403	KOROU:276	......<FFF5>
+994	0xc40b	KOROU:277	Kitchen refuse?<FFF5>
+995	0xc416	KOROU:278	Kitchen refuse?<FFF5>
+996	0xc421	KOROU:279	Garbage?<FFF5>
+997	0xc42f	KOROU:280	Me.<FFF5>
+998	0xc437	KOROU:281	Taunt me and die.<FFF5>
+999	0xc445	KOROU:282	Keep talking.<FFF5>
+1000	0xc44e	KOROU:283	Can't hear ya.<FFF5>
+1001	0xc457	KOROU:284	Just like a rat.<FFF5>
+1002	0xc464	KOROU:285	Just like a rat.<FFF5>
+1003	0xc471	KOROU:286	That's right.<FFF5>
+1004	0xc476	KOROU:287	I'll reuse it.<FFF5>
+1005	0xc484	KOROU:288	I'll reuse it.<FFF5>
+1006	0xc492	KOROU:289	Lone wolf kick<FFF5>
+1007	0xc49e	KOROU:290	Lone wolf punch<FFF5>
+1008	0xc4aa	KOROU:291	Lone wolf suplex<FFF5>
+1009	0xc4b9	KOROU:292	More threats<FFF5>
+1010	0xc4c1	KOROU:293	Don't apologize<FFF5>
+1011	0xc4c8	KOROU:294	Don't apologize<FFF5>
+1012	0xc4cf	KOROU:295	You're evil.<FFF5>
+1013	0xc4dd	KOROU:296	It's irrelevant.<FFF5>
+1014	0xc4ec	KOROU:297	It's irrelevant.<FFF5>
+1015	0xc4fb	KOROU:298	Yeah, that's right.<FFF5>
+1016	0xc504	KOROU:299	Yeah, that's right.<FFF5>
+1017	0xc50d	KOROU:300	Listen to me yell!<FFF5>
+1018	0xc51b	KOROU:301	So what?<FFF5>
+1019	0xc526	KOROU:302	Nope.<FFF5>
+1020	0xc52b	KOROU:303	I don't know.<FFF5>
+1021	0xc533	KOROU:304	Think about it.<FFF5>
+1022	0xc53e	KOROU:305	Think about it.<FFF5>
+1023	0xc549	KOROU:306	It's meaningless.<FFF5>
+1024	0xc556	KOROU:307	Don't tell<FFF5>
+1025	0xc55d	KOROU:308	Don't tell<FFF5>
+1026	0xc564	KOROU:309	Continue the trick<FFF5>
+1027	0xc56f	KOROU:310	Yell<FFF5>
+1028	0xc574	KOROU:311	Ignore<FFF5>
+1029	0xc57c	KOROU:312	Continue the trick<FFF5>
+1030	0xc587	KOROU:313	Can't hear ya.<FFF5>
+1031	0xc590	KOROU:314	If I have time.<FFF5>
+1032	0xc59b	KOROU:315	If I have time.<FFF5>
+1033	0xc5a6	KOROU:316	Talk with demons.<FFF5>
+1034	0xc5b2	KOROU:317	Demon hunting.<FFF5>
+1035	0xc5bb	KOROU:318	A stroll.<FFF5>
+1036	0xc5c1	KOROU:319	Stay calm<FFF5>
+1037	0xc5c7	KOROU:320	Get angry<FFF5>
+1038	0xc5cc	KOROU:321	Ignore and continue<FFF5>
+1039	0xc5d7	KOROU:322	You're just shy.<FFF5>
+1040	0xc5e3	KOROU:323	It's being eaten.<FFF5>
+1041	0xc5ee	KOROU:324	Due to the sun...<FFF5>
+1042	0xc5fd	KOROU:325	Dried squid<FFF5>
+1043	0xc602	KOROU:326	Rice crackers<FFF5>
+1044	0xc608	KOROU:327	Bekkouame<FFF5>
+1045	0xc610	KOROU:328	Be humble<FFF5>
+1046	0xc61a	KOROU:329	Be humble<FFF5>
+1047	0xc624	KOROU:330	Ignore<FFF5>
+1048	0xc62c	KOROU:331	I'm lonely.<FFF5>
+1049	0xc632	KOROU:332	I feel good.<FFF5>
+1050	0xc639	KOROU:333	This is strange.<FFF5>
+1051	0xc647	KOROU:334	The latest games.<FFF5>
+1052	0xc656	KOROU:335	Just a college girl.<FFF5>
+1053	0xc669	KOROU:336	Refuse<FFF5>
+1054	0xc66e	KOROU:337	Refute<FFF5>
+1055	0xc676	KOROU:338	Apologize<FFF5>
+1056	0xc67b	KOROU:339	Ignore<FFF5>
+1057	0xc683	KOROU:340	Give me a card.<FFF5>
+1058	0xc68d	KOROU:341	Give me something.<FFF5>
+1059	0xc694	KOROU:342	Let's negotiate.<FFF5>
+1060	0xc69d	KOROU:343	<FFFA>.<FFF5>
+1061	0xc6a1	KOROU:344	Human.<FFF5>

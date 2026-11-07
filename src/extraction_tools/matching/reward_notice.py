@@ -221,12 +221,28 @@ def _pack_digest(region):
     return h.hexdigest()
 
 
+def _name_digest():
+    """Digest exactly the item-name evidence `_derive_live` reads.
+
+    The rest of SLPS_005.00 (dialogue, descriptions, other surfaces) does not
+    feed a notice decision, and generated/ is rebuilt before this plan runs.
+    Hashing the whole generated table made an unrelated row change invalidate
+    the plan even though every consumed name was identical."""
+    gen = {r['pos']: r for r in toolbelt.read_generated('SLPS_005.00')}
+    h = hashlib.sha1()
+    for offset, _ja, _psp in items.records():
+        row = gen.get(hex(offset), {})
+        for field in ('en', 'psp'):
+            h.update((row.get(field) or '').encode('utf-8') + b'\0')
+    return h.hexdigest()
+
+
 def inputs():
     root = Path(toolbelt.ROOT)
     return {
         'psx:BTLP': _digest(root / 'data/psx/BTLP.BIN'),
         'psx:SLPS': _digest(root / 'data/psx/SLPS_005.00'),
-        'generated:SLPS': _digest(root / 'translation/generated/SLPS_005.00.tsv'),
+        'names:SLPS': _name_digest(),
         'us:EBOOT': _digest(root / 'data/extracted_text/psp_us/EBOOT.tsv'),
         'us:pack': _pack_digest('psp_us'),
     }

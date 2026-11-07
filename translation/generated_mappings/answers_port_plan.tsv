@@ -1,7 +1,7 @@
 kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
 meta	matches_sha1	8e70aa4b7ecc3b62a40fe9fea709fc7392e01d68								
 meta	psx:TALK	0366bb3aa19d15ec3ed70f26493942523c659cfd								
-meta	rule_sha1	2ce933821f98ceea96759625ca1d2c87ff3a9472								
+meta	rule_sha1	199e205fd458b8bcb9b33f56007c69e685f6b865								
 meta	us:EBOOT	08e9592c6d19ae1a355f016b6664408be61089e4								
 meta	us:TALK	a28ce06b254fe7e87e48e4858af9622192e5fbda								
 meta	version	1								

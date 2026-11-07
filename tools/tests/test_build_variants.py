@@ -101,7 +101,9 @@ class Variants(unittest.TestCase):
         self.assertEqual(sum('matching/port.py' in c for c in commands), 1)
         self.assertEqual(sum('dngpacks.py' in c and 'build' in c for c in commands), 1)
         self.assertEqual(sum('name_tails.py' in c and 'build' in c for c in commands), 1)
-        # shared (variant-independent) outputs are generated and tested once
+        # Shared (variant-independent) outputs are generated once. The tests
+        # that execute assembled files run once too, but only after the first
+        # variant exists (a clean build/ has no ADV.BIN or SLPS_005.00).
         for marker in ('save_ui.py', 'talktl.py',
                        "'injection_tools/talk.py', 'build'",
                        "'injection_tools/etctalk.py'", 'endtext.py',

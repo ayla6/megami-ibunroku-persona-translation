@@ -712,330 +712,330 @@ id	pos	psp	en
 710	0xb5f8	SINSI:4	I'm not lying.<FFF5>
 711	0xb602	SINSI:5	How'd you know?<FFF5>
 712	0xb60f	SINSI:6	I understand.<FFF5>
-713	0xb632	SINSI:9	Exactly!<FFF5>
-714	0xb63b	SINSI:10	I didn't mean that.<FFF5>
-715	0xb646	SINSI:11	I didn't mean that.<FFF5>
-716	0xb651	SINSI:12	How rude!<FFF5>
-717	0xb65a	SINSI:13	How rude!<FFF5>
-718	0xb663	SINSI:14	Smirk<FFF5>
-719	0xb66b	SINSI:15	More threats<FFF5>
-720	0xb674	SINSI:16	Be nice<FFF5>
-721	0xb67c	SINSI:17	Be nice<FFF5>
-722	0xb684	SINSI:18	I have a lot.<FFF5>
-723	0xb68e	SINSI:19	Don't be nitpicky.<FFF5>
-724	0xb69a	SINSI:20	Don't be nitpicky.<FFF5>
-725	0xb6a6	SINSI:21	I'm not lying.<FFF5>
-726	0xb6b0	SINSI:22	I'm not lying.<FFF5>
-727	0xb6ba	SINSI:23	How'd you know?<FFF5>
-728	0xb6c7	SINSI:24	It's okay then.<FFF5>
-729	0xb6d2	SINSI:25	It's okay then.<FFF5>
-730	0xb6dd	SINSI:26	It's not a trick.<FFF5>
-731	0xb6e9	SINSI:27	I understand.<FFF5>
-732	0xb6f1	SINSI:28	I understand.<FFF5>
-733	0xb6f9	SINSI:29	What the heck!?<FFF5>
-734	0xb702	SINSI:30	It's just a song...<FFF5>
-735	0xb70e	SINSI:31	Serves you right!<FFF5>
-736	0xb717	SINSI:32	Sing more<FFF5>
-737	0xb721	SINSI:33	Sing more<FFF5>
-738	0xb72b	SINSI:34	Quit<FFF5>
-739	0xb730	SINSI:35	I have a lot.<FFF5>
-740	0xb73b	SINSI:36	Don't be nitpicky.<FFF5>
-741	0xb747	SINSI:37	Don't be nitpicky.<FFF5>
-742	0xb753	SINSI:38	I'm not lying.<FFF5>
-743	0xb75c	SINSI:39	I'm not lying.<FFF5>
-744	0xb765	SINSI:40	Hee hee, you knew.<FFF5>
-745	0xb773	SINSI:41	I know!<FFF5>
-746	0xb77b	SINSI:42	I don't know...<FFF5>
-747	0xb785	SINSI:43	I don't know...<FFF5>
-748	0xb78f	SINSI:44	*sniff* No...<FFF5>
-749	0xb7a8	SINSI:46	That's not true.<FFF5>
-750	0xb7b2	SINSI:47	Hehehe...<FFF5>
-751	0xb7ba	SINSI:48	Huh? Not true...<FFF5>
-752	0xb7c4	SINSI:49	That's it.<FFF5>
-753	0xb7ca	SINSI:50	I have a lot.<FFF5>
-754	0xb7d5	SINSI:51	Don't be nitpicky.<FFF5>
-755	0xb7e1	SINSI:52	Don't be nitpicky.<FFF5>
-756	0xb7ed	SINSI:53	I'm not lying.<FFF5>
-757	0xb7f6	SINSI:54	I'm not lying.<FFF5>
-758	0xb7ff	SINSI:55	Hee hee, you knew.<FFF5>
-759	0xb80d	SINSI:56	I understand!<FFF5>
-760	0xb815	SINSI:57	I don't get it...<FFF5>
-761	0xb81f	SINSI:58	I don't know...<FFF5>
-762	0xb829	SINSI:59	Thank goodness...<FFF5>
-763	0xb83e	SINSI:61	*sniff* No...<FFF5>
-764	0xb857	SINSI:63	Huh? Not true...<FFF5>
-765	0xb861	SINSI:64	That's it.<FFF5>
-766	0xb867	SINSI:65	That's right!<FFF5>
-767	0xb885	SINSI:68	I'll introduce you.<FFF5>
-768	0xb890	SINSI:69	I'll introduce you.<FFF5>
-769	0xb8aa	SINSI:71	I'll stop!<FFF5>
-770	0xb8b2	SINSI:72	Just say okay, man.<FFF5>
-771	0xb8be	SINSI:73	Just say okay, man.<FFF5>
-772	0xb8ca	SINSI:74	No worries.<FFF5>
-773	0xb8d4	SINSI:75	C'mover here.<FFF5>
-774	0xb8e1	SINSI:76	Explain<FFF5>
-775	0xb8e9	SINSI:77	Explain<FFF5>
-776	0xb8f1	SINSI:78	Make him laugh again<FFF5>
-777	0xb900	SINSI:79	It's just a joke.<FFF5>
-778	0xb90c	SINSI:80	It's a real spell.<FFF5>
-779	0xb91d	SINSI:81	It's a real spell.<FFF5>
-780	0xb92e	SINSI:82	Could I be on Idol?<FFF5>
-781	0xb93d	SINSI:83	I prefer a model.<FFF5>
-782	0xb948	SINSI:84	I prefer a model.<FFF5>
-783	0xb953	SINSI:85	Once in a while...<FFF5>
-784	0xb960	SINSI:86	Never heard of it...<FFF5>
-785	0xb96c	SINSI:87	What kind of rumor?<FFF5>
-786	0xb97d	SINSI:88	Forget it!<FFF5>
-787	0xb985	SINSI:89	Forget it!<FFF5>
-788	0xb98d	SINSI:90	Tell me!<FFF5>
-789	0xb997	SINSI:91	Whoa, really?<FFF5>
-790	0xb9a2	SINSI:92	Whoa, really?<FFF5>
-791	0xb9ad	SINSI:93	There's no point.<FFF5>
-792	0xb9b8	SINSI:94	I've got reasons...<FFF5>
-793	0xb9c4	SINSI:95	I've got reasons...<FFF5>
-794	0xb9d0	SINSI:96	Apologize<FFF5>
-795	0xb9d5	SINSI:97	Play it off<FFF5>
-796	0xb9db	SINSI:98	Play it off<FFF5>
-797	0xb9ef	SINSI:100	Hyahahahaha!<FFF5>
-798	0xb9f8	SINSI:101	Hyahahahaha!<FFF5>
-799	0xba01	SINSI:102	I have.<FFF5>
-800	0xba05	SINSI:103	I do.<FFF5>
-801	0xba09	SINSI:104	I don't know.<FFF5>
-802	0xba10	SINSI:105	Of course.<FFF5>
-803	0xba17	SINSI:106	No.<FFF5>
-804	0xba1d	SINSI:107	No.<FFF5>
-805	0xba23	SINSI:108	Don't get me wrong!<FFF5>
-806	0xba48	SINSI:111	There is.<FFF5>
-807	0xba4f	SINSI:112	Don't be so boring.<FFF5>
-808	0xba5c	SINSI:113	Don't be so boring.<FFF5>
-809	0xba69	SINSI:114	It makes sense.<FFF5>
-810	0xba73	SINSI:115	It makes sense.<FFF5>
-811	0xba7d	SINSI:116	You understand now?<FFF5>
-812	0xba8a	SINSI:117	You're right.<FFF5>
-813	0xba90	SINSI:118	I don't get it.<FFF5>
-814	0xba9e	SINSI:119	I don't get it.<FFF5>
-815	0xbaac	SINSI:120	That's right.<FFF5>
-816	0xbab1	SINSI:121	Don't worry.<FFF5>
-817	0xbab9	SINSI:122	Don't worry.<FFF5>
-818	0xbac1	SINSI:123	You bastard!<FFF5>
-819	0xbad0	SINSI:124	You bastard!<FFF5>
-820	0xbadf	SINSI:125	Hmph... Heh.<FFF5>
-821	0xbaea	SINSI:126	Shut up!<FFF5>
-822	0xbaf3	SINSI:127	You're right.<FFF5>
-823	0xbafd	SINSI:128	You're right.<FFF5>
-824	0xbb07	SINSI:129	Very well.<FFF5>
-825	0xbb19	SINSI:131	Why you! It's rude!<FFF5>
-826	0xbb2a	SINSI:132	Why you! It's rude!<FFF5>
-827	0xbb3b	SINSI:133	Heh...<FFF5>
-828	0xbb42	SINSI:134	I know.<FFF5>
-829	0xbb4a	SINSI:135	What!?<FFF5>
-830	0xbb52	SINSI:136	What!?<FFF5>
-831	0xbb5a	SINSI:137	Yeah, that's right.<FFF5>
-832	0xbb64	SINSI:138	That dance was old.<FFF5>
-833	0xbb72	SINSI:139	It's a dance!<FFF5>
-834	0xbb7c	SINSI:140	It's a dance!<FFF5>
-835	0xbb86	SINSI:141	It's cool, man.<FFF5>
-836	0xbb94	SINSI:142	Keep dancing<FFF5>
-837	0xbb9d	SINSI:143	Fall to the ground<FFF5>
-838	0xbba9	SINSI:144	Fall to the ground<FFF5>
-839	0xbbb5	SINSI:145	That's right.<FFF5>
-840	0xbbbf	SINSI:146	Uh, no.<FFF5>
-841	0xbbc6	SINSI:147	Uh, no.<FFF5>
-842	0xbbcd	SINSI:148	What the hell!?<FFF5>
-843	0xbbd8	SINSI:149	Huh, punk!?<FFF5>
-844	0xbbe3	SINSI:150	Wahahaha!<FFF5>
-845	0xbbed	SINSI:151	Huh, punk!?<FFF5>
-846	0xbbf8	SINSI:152	You think so?<FFF5>
-847	0xbc01	SINSI:153	You think so?<FFF5>
-848	0xbc0a	SINSI:154	Keep staring<FFF5>
-849	0xbc14	SINSI:155	Keep staring<FFF5>
-850	0xbc1e	SINSI:156	Look the other way<FFF5>
-851	0xbc28	SINSI:157	'the hell!?<FFF5>
-852	0xbc30	SINSI:158	That's not true.<FFF5>
-853	0xbc46	SINSI:160	There isn't...<FFF5>
-854	0xbc54	SINSI:161	Serious, there is.<FFF5>
-855	0xbc5f	SINSI:162	No such thing.<FFF5>
-856	0xbc6a	SINSI:163	No such thing.<FFF5>
-857	0xbc75	SINSI:164	It's not a lie!<FFF5>
-858	0xbc7f	SINSI:165	It's not a lie!<FFF5>
-859	0xbc89	SINSI:166	Ya got me.<FFF5>
-860	0xbc96	SINSI:167	I getchya.<FFF5>
-861	0xbc9c	SINSI:168	How should I know?<FFF5>
-862	0xbca5	SINSI:169	How should I know?<FFF5>
-863	0xbcba	SINSI:171	I'll pass.<FFF5>
-864	0xbcc3	SINSI:172	You're scared, huh?<FFF5>
-865	0xbccc	SINSI:173	You're scared, huh?<FFF5>
-866	0xbcd5	SINSI:174	I know.<FFF5>
-867	0xbce2	SINSI:175	I like scary things.<FFF5>
-868	0xbcef	SINSI:176	I like scary things.<FFF5>
-869	0xbcfc	SINSI:177	I have dreams.<FFF5>
-870	0xbd0d	SINSI:178	I have a good voice.<FFF5>
-871	0xbd1b	SINSI:179	I have a good voice.<FFF5>
-872	0xbd29	SINSI:180	The song is good.<FFF5>
-873	0xbd39	SINSI:181	Yes, I see.<FFF5>
-874	0xbd4b	SINSI:182	Yes, I see.<FFF5>
-875	0xbd6c	SINSI:184	Sing more<FFF5>
-876	0xbd74	SINSI:185	Sing more<FFF5>
-877	0xbd7c	SINSI:186	Quit<FFF5>
-878	0xbd81	SINSI:187	I know.<FFF5>
-879	0xbd8e	SINSI:188	Oh!<FFF5>
-880	0xbd96	SINSI:189	Yes, strictly.<FFF5>
-881	0xbd9f	SINSI:190	I had freedom.<FFF5>
-882	0xbdb1	SINSI:191	Can I have an item?<FFF5>
-883	0xbdbf	SINSI:192	Can I have an item?<FFF5>
-884	0xbdcd	SINSI:193	You seem tired.<FFF5>
-885	0xbdd9	SINSI:194	So many.<FFF5>
-886	0xbde8	SINSI:195	I haven't a clue.<FFF5>
-887	0xbdf5	SINSI:196	I haven't a clue.<FFF5>
-888	0xbe02	SINSI:197	I'm not lying.<FFF5>
-889	0xbe0d	SINSI:198	I'm not lying.<FFF5>
-890	0xbe18	SINSI:199	Exactly.<FFF5>
-891	0xbe21	SINSI:200	I understand.<FFF5>
-892	0xbe29	SINSI:201	I don't understand.<FFF5>
-893	0xbe33	SINSI:202	I don't understand.<FFF5>
-894	0xbe3d	SINSI:203	Tell me!<FFF5>
-895	0xbe45	SINSI:204	I so don't need it.<FFF5>
-896	0xbe4f	SINSI:205	They were tough.<FFF5>
-897	0xbe59	SINSI:206	I was spoiled.<FFF5>
-898	0xbe65	SINSI:207	I didn't hear that.<FFF5>
-899	0xbe70	SINSI:208	I didn't hear that.<FFF5>
-900	0xbe7b	SINSI:209	Huh? What'd you say?<FFF5>
-901	0xbe8c	SINSI:210	That's right.<FFF5>
-902	0xbe93	SINSI:211	Never mind!<FFF5>
-903	0xbea0	SINSI:212	Never mind!<FFF5>
-904	0xbead	SINSI:213	Sorry...<FFF5>
-905	0xbeb8	SINSI:214	Hey!<FFF5>
-906	0xbec1	SINSI:215	Hey!<FFF5>
-907	0xbeca	SINSI:216	What an old man...<FFF5>
-908	0xbed6	SINSI:217	What an old man...<FFF5>
-909	0xbee2	SINSI:218	Sorry...<FFF5>
-910	0xbeed	SINSI:219	Okay.<FFF5>
-911	0xbef3	SINSI:220	Okay.<FFF5>
-912	0xbef9	SINSI:221	That's gross!<FFF5>
-913	0xbf05	SINSI:222	I'm so sure.<FFF5>
-914	0xbf20	SINSI:224	Hahahaha!<FFF5>
-915	0xbf29	SINSI:225	Waaaaaaaaa!<FFF5>
-916	0xbf33	SINSI:226	Waaaaaaaaa!<FFF5>
-917	0xbf3d	SINSI:227	That's true, but...!<FFF5>
-918	0xbf47	SINSI:228	That's not true...<FFF5>
-919	0xbf50	SINSI:229	That's not true...<FFF5>
-920	0xbf59	SINSI:230	Hey!<FFF5>
-921	0xbf62	SINSI:231	Hey!<FFF5>
-922	0xbf6b	SINSI:232	Kyahahaha!<FFF5>
-923	0xbf76	SINSI:233	That doesn't matter!<FFF5>
-924	0xbf81	SINSI:234	Yeah, huh.<FFF5>
-925	0xbf89	SINSI:235	Yeah, huh.<FFF5>
-926	0xbf91	SINSI:236	Yes, strictly.<FFF5>
-927	0xbf9a	SINSI:237	I was treated well.<FFF5>
-928	0xbfa6	SINSI:238	Is that an apology?<FFF5>
-929	0xbfb4	SINSI:239	Oh well.<FFF5>
-930	0xbfbd	SINSI:240	Don't screw with me!<FFF5>
-931	0xbfc9	SINSI:241	.........<FFF5>
-932	0xbfd5	SINSI:242	.........<FFF5>
-933	0xbfe1	SINSI:243	It's a lot.<FFF5>
-934	0xbfea	SINSI:244	Don't be so anal.<FFF5>
-935	0xbff6	SINSI:245	Don't be so anal.<FFF5>
-936	0xc002	SINSI:246	I'm not lying.<FFF5>
-937	0xc00b	SINSI:247	I'm not lying.<FFF5>
-938	0xc014	SINSI:248	How'd you know?<FFF5>
-939	0xc01f	SINSI:249	Yeah, I get it.<FFF5>
-940	0xc029	SINSI:250	I don't know.<FFF5>
-941	0xc031	SINSI:251	I don't know.<FFF5>
-942	0xc039	SINSI:252	Yes, strictly.<FFF5>
-943	0xc042	SINSI:253	I was treated well.<FFF5>
-944	0xc04e	SINSI:254	Is that an apology?<FFF5>
-945	0xc05c	SINSI:255	Oh well.<FFF5>
-946	0xc065	SINSI:256	Don't screw with me!<FFF5>
-947	0xc071	SINSI:257	.........<FFF5>
-948	0xc07d	SINSI:258	.........<FFF5>
-949	0xc089	SINSI:259	Keep ignoring him<FFF5>
-950	0xc094	SINSI:260	Cling to him<FFF5>
-951	0xc09b	SINSI:261	Cling to him<FFF5>
-952	0xc0a2	SINSI:262	You bet.<FFF5>
-953	0xc0aa	SINSI:263	Probably not.<FFF5>
-954	0xc0b3	SINSI:264	Hehehe...<FFF5>
-955	0xc0b8	SINSI:265	.........<FFF5>
-956	0xc0c4	SINSI:266	.........<FFF5>
-957	0xc0d0	SINSI:267	.........<FFF5>
-958	0xc0dc	SINSI:268	Wrong, dumbass!<FFF5>
-959	0xc0ea	SINSI:269	Wrong, dumbass!<FFF5>
-960	0xc0f8	SINSI:270	Manners.<FFF5>
-961	0xc0ff	SINSI:271	Quit buggin' me!<FFF5>
-962	0xc10a	SINSI:272	Ha...<FFF5>
-963	0xc10f	SINSI:273	.........<FFF5>
-964	0xc11b	SINSI:274	.........<FFF5>
-965	0xc127	SINSI:275	Well excuse me!<FFF5>
-966	0xc134	SINSI:276	That's not it!<FFF5>
-967	0xc13d	SINSI:277	That's not it!<FFF5>
-968	0xc146	SINSI:278	You wanna die!?<FFF5>
-969	0xc153	SINSI:279	You wanna die!?<FFF5>
-970	0xc160	SINSI:280	Ha...<FFF5>
-971	0xc165	SINSI:281	So what?<FFF5>
-972	0xc16e	SINSI:282	I'll let it go.<FFF5>
-973	0xc179	SINSI:283	I'll let it go.<FFF5>
-974	0xc184	SINSI:284	There's no point.<FFF5>
-975	0xc18f	SINSI:285	That's my business.<FFF5>
-976	0xc19c	SINSI:286	That's my business.<FFF5>
-977	0xc1a9	SINSI:287	Raaaaaaaarrrr!<FFF5>
-978	0xc1bf	SINSI:288	.........<FFF5>
-979	0xc1cb	SINSI:289	.........<FFF5>
-980	0xc1d7	SINSI:290	Ha...<FFF5>
-981	0xc1dc	SINSI:291	So what?<FFF5>
-982	0xc1e5	SINSI:292	So what?<FFF5>
-983	0xc1ee	SINSI:293	Ha... You wanna die?<FFF5>
-984	0xc1fb	SINSI:294	Ha... You wanna die?<FFF5>
-985	0xc208	SINSI:295	I'm dangerous.<FFF5>
-986	0xc212	SINSI:296	Tell him<FFF5>
-987	0xc218	SINSI:297	Tell him<FFF5>
-988	0xc21e	SINSI:298	Don't tell him<FFF5>
-989	0xc225	SINSI:299	World peace.<FFF5>
-990	0xc22f	SINSI:300	Demon genocide.<FFF5>
-991	0xc239	SINSI:301	Saving the princess.<FFF5>
-992	0xc245	SINSI:302	You look annoying.<FFF5>
-993	0xc252	SINSI:303	You're too cool.<FFF5>
-994	0xc25c	SINSI:304	You're too cool.<FFF5>
-995	0xc266	SINSI:305	Happy-go-lucky.<FFF5>
-996	0xc270	SINSI:306	I'm right.<FFF5>
-997	0xc276	SINSI:307	I mess up sometimes.<FFF5>
-998	0xc281	SINSI:308	I mess up sometimes.<FFF5>
-999	0xc28c	SINSI:309	Totally wrong.<FFF5>
-1000	0xc298	SINSI:310	Y'know, that time...<FFF5>
-1001	0xc2a4	SINSI:311	I don't remember...<FFF5>
-1002	0xc2ac	SINSI:312	Are you flirting?<FFF5>
-1003	0xc2ba	SINSI:313	Are you flirting?<FFF5>
-1004	0xc2c8	SINSI:314	An idler.<FFF5>
-1005	0xc2ce	SINSI:315	A fool.<FFF5>
-1006	0xc2d6	SINSI:316	Just a student.<FFF5>
-1007	0xc2e0	SINSI:317	I'm scared, but...<FFF5>
-1008	0xc2e8	SINSI:318	I'm not scared.<FFF5>
-1009	0xc2ef	SINSI:319	I'm having fun.<FFF5>
-1010	0xc2f8	SINSI:320	Of course!<FFF5>
-1011	0xc300	SINSI:321	It's boring...<FFF5>
-1012	0xc30b	SINSI:322	Could be dangerous.<FFF5>
-1013	0xc317	SINSI:323	Could be dangerous.<FFF5>
-1014	0xc323	SINSI:324	I wanna try.<FFF5>
-1015	0xc32c	SINSI:325	Is that so?<FFF5>
-1016	0xc337	SINSI:326	I don't plan on it.<FFF5>
-1017	0xc343	SINSI:327	No!<FFF5>
-1018	0xc34a	SINSI:328	No!<FFF5>
-1019	0xc351	SINSI:329	I think so.<FFF5>
-1020	0xc35a	SINSI:330	I don't care.<FFF5>
-1021	0xc362	SINSI:331	Sure.<FFF5>
-1022	0xc367	SINSI:332	No!<FFF5>
-1023	0xc36e	SINSI:333	No!<FFF5>
-1024	0xb616	SINSI:7	...I don't get it?<FFF5>
-1025	0xb624	SINSI:8	...I don't get it?<FFF5>
-1026	0xb831	SINSI:60	Hehe, I lied!<FFF5>
-1027	0xb86f	SINSI:66	Er, never mind.<FFF5>
-1028	0xb87a	SINSI:67	Er, never mind!<FFF5>
-1029	0xb89b	SINSI:70	Don't be picky!<FFF5>
-1030	0xb9e1	SINSI:99	Look! A UFO!<FFF5>
-1031	0xba2e	SINSI:109	Hmph, you're happy?<FFF5>
-1032	0xba3b	SINSI:110	Hmph, you're happy?<FFF5>
-1033	0xbb0e	SINSI:130	Hmph, I refuse!<FFF5>
-1034	0xbc3b	SINSI:159	Yeah, there is!<FFF5>
-1035	0xbcae	SINSI:170	That makes me happy!<FFF5>
-1036	0xbd5d	SINSI:183	Were you talking?<FFF5>
-1037	0xbf10	SINSI:223	Huhhh? You think?<FFF5>
-1038	0xb79b	SINSI:45	What!?<FFF5>
-1039	0xb84a	SINSI:62	What!?<FFF5>
+713	0xb616	SINSI:7	...I don't get it?<FFF5>
+714	0xb624	SINSI:8	...I don't get it?<FFF5>
+715	0xb632	SINSI:9	Exactly!<FFF5>
+716	0xb63b	SINSI:10	I didn't mean that.<FFF5>
+717	0xb646	SINSI:11	I didn't mean that.<FFF5>
+718	0xb651	SINSI:12	How rude!<FFF5>
+719	0xb65a	SINSI:13	How rude!<FFF5>
+720	0xb663	SINSI:14	Smirk<FFF5>
+721	0xb66b	SINSI:15	More threats<FFF5>
+722	0xb674	SINSI:16	Be nice<FFF5>
+723	0xb67c	SINSI:17	Be nice<FFF5>
+724	0xb684	SINSI:18	I have a lot.<FFF5>
+725	0xb68e	SINSI:19	Don't be nitpicky.<FFF5>
+726	0xb69a	SINSI:20	Don't be nitpicky.<FFF5>
+727	0xb6a6	SINSI:21	I'm not lying.<FFF5>
+728	0xb6b0	SINSI:22	I'm not lying.<FFF5>
+729	0xb6ba	SINSI:23	How'd you know?<FFF5>
+730	0xb6c7	SINSI:24	It's okay then.<FFF5>
+731	0xb6d2	SINSI:25	It's okay then.<FFF5>
+732	0xb6dd	SINSI:26	It's not a trick.<FFF5>
+733	0xb6e9	SINSI:27	I understand.<FFF5>
+734	0xb6f1	SINSI:28	I understand.<FFF5>
+735	0xb6f9	SINSI:29	What the heck!?<FFF5>
+736	0xb702	SINSI:30	It's just a song...<FFF5>
+737	0xb70e	SINSI:31	Serves you right!<FFF5>
+738	0xb717	SINSI:32	Sing more<FFF5>
+739	0xb721	SINSI:33	Sing more<FFF5>
+740	0xb72b	SINSI:34	Quit<FFF5>
+741	0xb730	SINSI:35	I have a lot.<FFF5>
+742	0xb73b	SINSI:36	Don't be nitpicky.<FFF5>
+743	0xb747	SINSI:37	Don't be nitpicky.<FFF5>
+744	0xb753	SINSI:38	I'm not lying.<FFF5>
+745	0xb75c	SINSI:39	I'm not lying.<FFF5>
+746	0xb765	SINSI:40	Hee hee, you knew.<FFF5>
+747	0xb773	SINSI:41	I know!<FFF5>
+748	0xb77b	SINSI:42	I don't know...<FFF5>
+749	0xb785	SINSI:43	I don't know...<FFF5>
+750	0xb78f	SINSI:44	*sniff* No...<FFF5>
+751	0xb79b	SINSI:45	What!?<FFF5>
+752	0xb7a8	SINSI:46	That's not true.<FFF5>
+753	0xb7b2	SINSI:47	Hehehe...<FFF5>
+754	0xb7ba	SINSI:48	Huh? Not true...<FFF5>
+755	0xb7c4	SINSI:49	That's it.<FFF5>
+756	0xb7ca	SINSI:50	I have a lot.<FFF5>
+757	0xb7d5	SINSI:51	Don't be nitpicky.<FFF5>
+758	0xb7e1	SINSI:52	Don't be nitpicky.<FFF5>
+759	0xb7ed	SINSI:53	I'm not lying.<FFF5>
+760	0xb7f6	SINSI:54	I'm not lying.<FFF5>
+761	0xb7ff	SINSI:55	Hee hee, you knew.<FFF5>
+762	0xb80d	SINSI:56	I understand!<FFF5>
+763	0xb815	SINSI:57	I don't get it...<FFF5>
+764	0xb81f	SINSI:58	I don't know...<FFF5>
+765	0xb829	SINSI:59	Thank goodness...<FFF5>
+766	0xb831	SINSI:60	Hehe, I lied!<FFF5>
+767	0xb83e	SINSI:61	*sniff* No...<FFF5>
+768	0xb84a	SINSI:62	What!?<FFF5>
+769	0xb857	SINSI:63	Huh? Not true...<FFF5>
+770	0xb861	SINSI:64	That's it.<FFF5>
+771	0xb867	SINSI:65	That's right!<FFF5>
+772	0xb86f	SINSI:66	Er, never mind.<FFF5>
+773	0xb87a	SINSI:67	Er, never mind!<FFF5>
+774	0xb885	SINSI:68	I'll introduce you.<FFF5>
+775	0xb890	SINSI:69	I'll introduce you.<FFF5>
+776	0xb89b	SINSI:70	Don't be picky!<FFF5>
+777	0xb8aa	SINSI:71	I'll stop!<FFF5>
+778	0xb8b2	SINSI:72	Just say okay, man.<FFF5>
+779	0xb8be	SINSI:73	Just say okay, man.<FFF5>
+780	0xb8ca	SINSI:74	No worries.<FFF5>
+781	0xb8d4	SINSI:75	C'mover here.<FFF5>
+782	0xb8e1	SINSI:76	Explain<FFF5>
+783	0xb8e9	SINSI:77	Explain<FFF5>
+784	0xb8f1	SINSI:78	Make him laugh again<FFF5>
+785	0xb900	SINSI:79	It's just a joke.<FFF5>
+786	0xb90c	SINSI:80	It's a real spell.<FFF5>
+787	0xb91d	SINSI:81	It's a real spell.<FFF5>
+788	0xb92e	SINSI:82	Could I be on Idol?<FFF5>
+789	0xb93d	SINSI:83	I prefer a model.<FFF5>
+790	0xb948	SINSI:84	I prefer a model.<FFF5>
+791	0xb953	SINSI:85	Once in a while...<FFF5>
+792	0xb960	SINSI:86	Never heard of it...<FFF5>
+793	0xb96c	SINSI:87	What kind of rumor?<FFF5>
+794	0xb97d	SINSI:88	Forget it!<FFF5>
+795	0xb985	SINSI:89	Forget it!<FFF5>
+796	0xb98d	SINSI:90	Tell me!<FFF5>
+797	0xb997	SINSI:91	Whoa, really?<FFF5>
+798	0xb9a2	SINSI:92	Whoa, really?<FFF5>
+799	0xb9ad	SINSI:93	There's no point.<FFF5>
+800	0xb9b8	SINSI:94	I've got reasons...<FFF5>
+801	0xb9c4	SINSI:95	I've got reasons...<FFF5>
+802	0xb9d0	SINSI:96	Apologize<FFF5>
+803	0xb9d5	SINSI:97	Play it off<FFF5>
+804	0xb9db	SINSI:98	Play it off<FFF5>
+805	0xb9e1	SINSI:99	Look! A UFO!<FFF5>
+806	0xb9ef	SINSI:100	Hyahahahaha!<FFF5>
+807	0xb9f8	SINSI:101	Hyahahahaha!<FFF5>
+808	0xba01	SINSI:102	I have.<FFF5>
+809	0xba05	SINSI:103	I do.<FFF5>
+810	0xba09	SINSI:104	I don't know.<FFF5>
+811	0xba10	SINSI:105	Of course.<FFF5>
+812	0xba17	SINSI:106	No.<FFF5>
+813	0xba1d	SINSI:107	No.<FFF5>
+814	0xba23	SINSI:108	Don't get me wrong!<FFF5>
+815	0xba2e	SINSI:109	Hmph, you're happy?<FFF5>
+816	0xba3b	SINSI:110	Hmph, you're happy?<FFF5>
+817	0xba48	SINSI:111	There is.<FFF5>
+818	0xba4f	SINSI:112	Don't be so boring.<FFF5>
+819	0xba5c	SINSI:113	Don't be so boring.<FFF5>
+820	0xba69	SINSI:114	It makes sense.<FFF5>
+821	0xba73	SINSI:115	It makes sense.<FFF5>
+822	0xba7d	SINSI:116	You understand now?<FFF5>
+823	0xba8a	SINSI:117	You're right.<FFF5>
+824	0xba90	SINSI:118	I don't get it.<FFF5>
+825	0xba9e	SINSI:119	I don't get it.<FFF5>
+826	0xbaac	SINSI:120	That's right.<FFF5>
+827	0xbab1	SINSI:121	Don't worry.<FFF5>
+828	0xbab9	SINSI:122	Don't worry.<FFF5>
+829	0xbac1	SINSI:123	You bastard!<FFF5>
+830	0xbad0	SINSI:124	You bastard!<FFF5>
+831	0xbadf	SINSI:125	Hmph... Heh.<FFF5>
+832	0xbaea	SINSI:126	Shut up!<FFF5>
+833	0xbaf3	SINSI:127	You're right.<FFF5>
+834	0xbafd	SINSI:128	You're right.<FFF5>
+835	0xbb07	SINSI:129	Very well.<FFF5>
+836	0xbb0e	SINSI:130	Hmph, I refuse!<FFF5>
+837	0xbb19	SINSI:131	Why you! It's rude!<FFF5>
+838	0xbb2a	SINSI:132	Why you! It's rude!<FFF5>
+839	0xbb3b	SINSI:133	Heh...<FFF5>
+840	0xbb42	SINSI:134	I know.<FFF5>
+841	0xbb4a	SINSI:135	What!?<FFF5>
+842	0xbb52	SINSI:136	What!?<FFF5>
+843	0xbb5a	SINSI:137	Yeah, that's right.<FFF5>
+844	0xbb64	SINSI:138	That dance was old.<FFF5>
+845	0xbb72	SINSI:139	It's a dance!<FFF5>
+846	0xbb7c	SINSI:140	It's a dance!<FFF5>
+847	0xbb86	SINSI:141	It's cool, man.<FFF5>
+848	0xbb94	SINSI:142	Keep dancing<FFF5>
+849	0xbb9d	SINSI:143	Fall to the ground<FFF5>
+850	0xbba9	SINSI:144	Fall to the ground<FFF5>
+851	0xbbb5	SINSI:145	That's right.<FFF5>
+852	0xbbbf	SINSI:146	Uh, no.<FFF5>
+853	0xbbc6	SINSI:147	Uh, no.<FFF5>
+854	0xbbcd	SINSI:148	What the hell!?<FFF5>
+855	0xbbd8	SINSI:149	Huh, punk!?<FFF5>
+856	0xbbe3	SINSI:150	Wahahaha!<FFF5>
+857	0xbbed	SINSI:151	Huh, punk!?<FFF5>
+858	0xbbf8	SINSI:152	You think so?<FFF5>
+859	0xbc01	SINSI:153	You think so?<FFF5>
+860	0xbc0a	SINSI:154	Keep staring<FFF5>
+861	0xbc14	SINSI:155	Keep staring<FFF5>
+862	0xbc1e	SINSI:156	Look the other way<FFF5>
+863	0xbc28	SINSI:157	'the hell!?<FFF5>
+864	0xbc30	SINSI:158	That's not true.<FFF5>
+865	0xbc3b	SINSI:159	Yeah, there is!<FFF5>
+866	0xbc46	SINSI:160	There isn't...<FFF5>
+867	0xbc54	SINSI:161	Serious, there is.<FFF5>
+868	0xbc5f	SINSI:162	No such thing.<FFF5>
+869	0xbc6a	SINSI:163	No such thing.<FFF5>
+870	0xbc75	SINSI:164	It's not a lie!<FFF5>
+871	0xbc7f	SINSI:165	It's not a lie!<FFF5>
+872	0xbc89	SINSI:166	Ya got me.<FFF5>
+873	0xbc96	SINSI:167	I getchya.<FFF5>
+874	0xbc9c	SINSI:168	How should I know?<FFF5>
+875	0xbca5	SINSI:169	How should I know?<FFF5>
+876	0xbcae	SINSI:170	That makes me happy!<FFF5>
+877	0xbcba	SINSI:171	I'll pass.<FFF5>
+878	0xbcc3	SINSI:172	You're scared, huh?<FFF5>
+879	0xbccc	SINSI:173	You're scared, huh?<FFF5>
+880	0xbcd5	SINSI:174	I know.<FFF5>
+881	0xbce2	SINSI:175	I like scary things.<FFF5>
+882	0xbcef	SINSI:176	I like scary things.<FFF5>
+883	0xbcfc	SINSI:177	I have dreams.<FFF5>
+884	0xbd0d	SINSI:178	I have a good voice.<FFF5>
+885	0xbd1b	SINSI:179	I have a good voice.<FFF5>
+886	0xbd29	SINSI:180	The song is good.<FFF5>
+887	0xbd39	SINSI:181	Yes, I see.<FFF5>
+888	0xbd4b	SINSI:182	Yes, I see.<FFF5>
+889	0xbd5d	SINSI:183	Were you talking?<FFF5>
+890	0xbd6c	SINSI:184	Sing more<FFF5>
+891	0xbd74	SINSI:185	Sing more<FFF5>
+892	0xbd7c	SINSI:186	Quit<FFF5>
+893	0xbd81	SINSI:187	I know.<FFF5>
+894	0xbd8e	SINSI:188	Oh!<FFF5>
+895	0xbd96	SINSI:189	Yes, strictly.<FFF5>
+896	0xbd9f	SINSI:190	I had freedom.<FFF5>
+897	0xbdb1	SINSI:191	Can I have an item?<FFF5>
+898	0xbdbf	SINSI:192	Can I have an item?<FFF5>
+899	0xbdcd	SINSI:193	You seem tired.<FFF5>
+900	0xbdd9	SINSI:194	So many.<FFF5>
+901	0xbde8	SINSI:195	I haven't a clue.<FFF5>
+902	0xbdf5	SINSI:196	I haven't a clue.<FFF5>
+903	0xbe02	SINSI:197	I'm not lying.<FFF5>
+904	0xbe0d	SINSI:198	I'm not lying.<FFF5>
+905	0xbe18	SINSI:199	Exactly.<FFF5>
+906	0xbe21	SINSI:200	I understand.<FFF5>
+907	0xbe29	SINSI:201	I don't understand.<FFF5>
+908	0xbe33	SINSI:202	I don't understand.<FFF5>
+909	0xbe3d	SINSI:203	Tell me!<FFF5>
+910	0xbe45	SINSI:204	I so don't need it.<FFF5>
+911	0xbe4f	SINSI:205	They were tough.<FFF5>
+912	0xbe59	SINSI:206	I was spoiled.<FFF5>
+913	0xbe65	SINSI:207	I didn't hear that.<FFF5>
+914	0xbe70	SINSI:208	I didn't hear that.<FFF5>
+915	0xbe7b	SINSI:209	Huh? What'd you say?<FFF5>
+916	0xbe8c	SINSI:210	That's right.<FFF5>
+917	0xbe93	SINSI:211	Never mind!<FFF5>
+918	0xbea0	SINSI:212	Never mind!<FFF5>
+919	0xbead	SINSI:213	Sorry...<FFF5>
+920	0xbeb8	SINSI:214	Hey!<FFF5>
+921	0xbec1	SINSI:215	Hey!<FFF5>
+922	0xbeca	SINSI:216	What an old man...<FFF5>
+923	0xbed6	SINSI:217	What an old man...<FFF5>
+924	0xbee2	SINSI:218	Sorry...<FFF5>
+925	0xbeed	SINSI:219	Okay.<FFF5>
+926	0xbef3	SINSI:220	Okay.<FFF5>
+927	0xbef9	SINSI:221	That's gross!<FFF5>
+928	0xbf05	SINSI:222	I'm so sure.<FFF5>
+929	0xbf10	SINSI:223	Huhhh? You think?<FFF5>
+930	0xbf20	SINSI:224	Hahahaha!<FFF5>
+931	0xbf29	SINSI:225	Waaaaaaaaa!<FFF5>
+932	0xbf33	SINSI:226	Waaaaaaaaa!<FFF5>
+933	0xbf3d	SINSI:227	That's true, but...!<FFF5>
+934	0xbf47	SINSI:228	That's not true...<FFF5>
+935	0xbf50	SINSI:229	That's not true...<FFF5>
+936	0xbf59	SINSI:230	Hey!<FFF5>
+937	0xbf62	SINSI:231	Hey!<FFF5>
+938	0xbf6b	SINSI:232	Kyahahaha!<FFF5>
+939	0xbf76	SINSI:233	That doesn't matter!<FFF5>
+940	0xbf81	SINSI:234	Yeah, huh.<FFF5>
+941	0xbf89	SINSI:235	Yeah, huh.<FFF5>
+942	0xbf91	SINSI:236	Yes, strictly.<FFF5>
+943	0xbf9a	SINSI:237	I was treated well.<FFF5>
+944	0xbfa6	SINSI:238	Is that an apology?<FFF5>
+945	0xbfb4	SINSI:239	Oh well.<FFF5>
+946	0xbfbd	SINSI:240	Don't screw with me!<FFF5>
+947	0xbfc9	SINSI:241	.........<FFF5>
+948	0xbfd5	SINSI:242	.........<FFF5>
+949	0xbfe1	SINSI:243	It's a lot.<FFF5>
+950	0xbfea	SINSI:244	Don't be so anal.<FFF5>
+951	0xbff6	SINSI:245	Don't be so anal.<FFF5>
+952	0xc002	SINSI:246	I'm not lying.<FFF5>
+953	0xc00b	SINSI:247	I'm not lying.<FFF5>
+954	0xc014	SINSI:248	How'd you know?<FFF5>
+955	0xc01f	SINSI:249	Yeah, I get it.<FFF5>
+956	0xc029	SINSI:250	I don't know.<FFF5>
+957	0xc031	SINSI:251	I don't know.<FFF5>
+958	0xc039	SINSI:252	Yes, strictly.<FFF5>
+959	0xc042	SINSI:253	I was treated well.<FFF5>
+960	0xc04e	SINSI:254	Is that an apology?<FFF5>
+961	0xc05c	SINSI:255	Oh well.<FFF5>
+962	0xc065	SINSI:256	Don't screw with me!<FFF5>
+963	0xc071	SINSI:257	.........<FFF5>
+964	0xc07d	SINSI:258	.........<FFF5>
+965	0xc089	SINSI:259	Keep ignoring him<FFF5>
+966	0xc094	SINSI:260	Cling to him<FFF5>
+967	0xc09b	SINSI:261	Cling to him<FFF5>
+968	0xc0a2	SINSI:262	You bet.<FFF5>
+969	0xc0aa	SINSI:263	Probably not.<FFF5>
+970	0xc0b3	SINSI:264	Hehehe...<FFF5>
+971	0xc0b8	SINSI:265	.........<FFF5>
+972	0xc0c4	SINSI:266	.........<FFF5>
+973	0xc0d0	SINSI:267	.........<FFF5>
+974	0xc0dc	SINSI:268	Wrong, dumbass!<FFF5>
+975	0xc0ea	SINSI:269	Wrong, dumbass!<FFF5>
+976	0xc0f8	SINSI:270	Manners.<FFF5>
+977	0xc0ff	SINSI:271	Quit buggin' me!<FFF5>
+978	0xc10a	SINSI:272	Ha...<FFF5>
+979	0xc10f	SINSI:273	.........<FFF5>
+980	0xc11b	SINSI:274	.........<FFF5>
+981	0xc127	SINSI:275	Well excuse me!<FFF5>
+982	0xc134	SINSI:276	That's not it!<FFF5>
+983	0xc13d	SINSI:277	That's not it!<FFF5>
+984	0xc146	SINSI:278	You wanna die!?<FFF5>
+985	0xc153	SINSI:279	You wanna die!?<FFF5>
+986	0xc160	SINSI:280	Ha...<FFF5>
+987	0xc165	SINSI:281	So what?<FFF5>
+988	0xc16e	SINSI:282	I'll let it go.<FFF5>
+989	0xc179	SINSI:283	I'll let it go.<FFF5>
+990	0xc184	SINSI:284	There's no point.<FFF5>
+991	0xc18f	SINSI:285	That's my business.<FFF5>
+992	0xc19c	SINSI:286	That's my business.<FFF5>
+993	0xc1a9	SINSI:287	Raaaaaaaarrrr!<FFF5>
+994	0xc1bf	SINSI:288	.........<FFF5>
+995	0xc1cb	SINSI:289	.........<FFF5>
+996	0xc1d7	SINSI:290	Ha...<FFF5>
+997	0xc1dc	SINSI:291	So what?<FFF5>
+998	0xc1e5	SINSI:292	So what?<FFF5>
+999	0xc1ee	SINSI:293	Ha... You wanna die?<FFF5>
+1000	0xc1fb	SINSI:294	Ha... You wanna die?<FFF5>
+1001	0xc208	SINSI:295	I'm dangerous.<FFF5>
+1002	0xc212	SINSI:296	Tell him<FFF5>
+1003	0xc218	SINSI:297	Tell him<FFF5>
+1004	0xc21e	SINSI:298	Don't tell him<FFF5>
+1005	0xc225	SINSI:299	World peace.<FFF5>
+1006	0xc22f	SINSI:300	Demon genocide.<FFF5>
+1007	0xc239	SINSI:301	Saving the princess.<FFF5>
+1008	0xc245	SINSI:302	You look annoying.<FFF5>
+1009	0xc252	SINSI:303	You're too cool.<FFF5>
+1010	0xc25c	SINSI:304	You're too cool.<FFF5>
+1011	0xc266	SINSI:305	Happy-go-lucky.<FFF5>
+1012	0xc270	SINSI:306	I'm right.<FFF5>
+1013	0xc276	SINSI:307	I mess up sometimes.<FFF5>
+1014	0xc281	SINSI:308	I mess up sometimes.<FFF5>
+1015	0xc28c	SINSI:309	Totally wrong.<FFF5>
+1016	0xc298	SINSI:310	Y'know, that time...<FFF5>
+1017	0xc2a4	SINSI:311	I don't remember...<FFF5>
+1018	0xc2ac	SINSI:312	Are you flirting?<FFF5>
+1019	0xc2ba	SINSI:313	Are you flirting?<FFF5>
+1020	0xc2c8	SINSI:314	An idler.<FFF5>
+1021	0xc2ce	SINSI:315	A fool.<FFF5>
+1022	0xc2d6	SINSI:316	Just a student.<FFF5>
+1023	0xc2e0	SINSI:317	I'm scared, but...<FFF5>
+1024	0xc2e8	SINSI:318	I'm not scared.<FFF5>
+1025	0xc2ef	SINSI:319	I'm having fun.<FFF5>
+1026	0xc2f8	SINSI:320	Of course!<FFF5>
+1027	0xc300	SINSI:321	It's boring...<FFF5>
+1028	0xc30b	SINSI:322	Could be dangerous.<FFF5>
+1029	0xc317	SINSI:323	Could be dangerous.<FFF5>
+1030	0xc323	SINSI:324	I wanna try.<FFF5>
+1031	0xc32c	SINSI:325	Is that so?<FFF5>
+1032	0xc337	SINSI:326	I don't plan on it.<FFF5>
+1033	0xc343	SINSI:327	No!<FFF5>
+1034	0xc34a	SINSI:328	No!<FFF5>
+1035	0xc351	SINSI:329	I think so.<FFF5>
+1036	0xc35a	SINSI:330	I don't care.<FFF5>
+1037	0xc362	SINSI:331	Sure.<FFF5>
+1038	0xc367	SINSI:332	No!<FFF5>
+1039	0xc36e	SINSI:333	No!<FFF5>

@@ -54,19 +54,35 @@ board pools. `battle_board_text.scan()` verifies pool boundaries, alignment,
 glyphs and board descriptor pointers, and extracts shared strings only once;
 changing the original Japanese source positions or aliasing fails closed. Some
 pool strings are named by initial descriptors, and the code directly assigns
-an alternate mode string at runtime. The tactics board is also reached during
-ordinary battle. Three additional physical pool entries have no currently proven
-consumer. Other fixed-slot descriptor groups are retained as source candidates:
-their descriptors point to the records, but screen reachability is not yet
-established. They are not claimed to be unused or displayed in normal play.
+an alternate mode string at runtime.
 
-These rows are currently **draft-only**: BTLP's battle-object small-font VWF,
-text storage and simultaneous primitive budgets are not yet established. A
-filled manual or generated board row is preserved verbatim, listed in
-`build/btl_board_drafts.tsv`, and reported as unshipped by the disc verifier;
-the original Japanese bytes and board descriptors remain on disc. The builder
-and verifier check the report against the actual rows rather than pretending
-the draft was displayed. No game text or name is authored by this extractor.
+`scan_lists()` discovers the `BtlGfxTextList` heads structurally, never from
+wording or a fixed table address. A row with `count == 0` is a structural row
+whose text pointer the renderer never reads, and a deliberate blank is an
+all-zero run or a leading `FF`; neither is missing text. Nine source lists are
+discovered: taunts, tactics, No. 1-4, control keys, personal auto, equipment
+labels, gems, config and debug.
+
+With `SF_VWF` on, `plan()` translates a list only when every visible text row
+has English and every English row fits before the next row at the same y. A
+list that fails the gate keeps all its Japanese and its translated rows are
+reported; no row is shortened. Eight lists ship. The debug list is deferred
+because `there isn't enough memory.` (128 px) and `In the name of the moon`
+(114 px) exceed the 96 px column pitch. Three further translated rows have no
+proven consumer and stay Japanese: Set shortcut, Toggle status display and
+Remember cursor position. `verify_disc.py` reports every unshipped row as kept
+Japanese instead of treating it as missing.
+
+English is deduplicated and packed longest-first into the union of the source
+pools used by the shipped lists. A record another descriptor still reads is
+protected; records behind hidden (`count == 0`) rows are reusable. Over-capacity
+is a build error, never a truncation. The `Normal`/`Easy` mode values share one
+descriptor, so its static count covers the longer word and the shorter value is
+space-padded inside its own retail record. Descriptors receive the new pointer
+and count. The ownership directory at `BTL_BOARD_SPANS_ADDR` lists every arena
+pool plus the three ANALYZE buffers for the resident `btl_owned_span` lookup;
+it lives in the overlay because the resident VWF table area is full. No game
+text or name is authored by this extractor.
 
 ## Text layout
 

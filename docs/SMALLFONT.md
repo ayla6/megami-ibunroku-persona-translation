@@ -119,6 +119,31 @@ same page; the bank only changes CLUTs), and four GP0 words per visible glyph.
 Sprites include libgs' signed framebuffer origin, and packet storage is
 separate for the two active OTs.
 
+## Battle configuration and controller boards
+
+BTLP draws its config, control-key, tactics and flavour boards as
+`BtlGfxTextList` records through `BtlDrawObjText`, not through the ADV/DNG/S2D
+tilemap path. `battle_board_text.py` discovers the lists structurally
+(`scan_lists`) and translates one only when every visible row has English and
+fits before the next row at the same y; otherwise the whole list keeps its
+Japanese (`plan()['deferred']`). Rows behind `count == 0` descriptors and
+deliberate blank runs are structural, not missing text.
+
+English is deduplicated and packed longest-first into the union of the shipped
+lists' source pools. Records another descriptor still reads are protected, and
+records behind hidden rows are reusable; over-capacity is a build error. A
+runtime-assigned value (`Normal`/`Easy`) keeps its own retail record, and the
+shared descriptor's count covers the longer word with the shorter value
+space-padded. A sole top row that straddles the list origin is centred with
+`x = -(rendered_width // 2)`.
+
+The resident `btl_owned_span` lookup reads the ownership directory at
+`BTL_BOARD_SPANS_ADDR`. It lives in the overlay beside the pools it names
+because the resident VWF table area is full; the directory lists every arena
+pool plus the ANALYZE name/spell/trait buffers. Rows without a consumer
+(`Set shortcut`, `Toggle status display`, `Remember cursor position`) and the
+deferred debug list stay Japanese and `verify_disc.py` reports them.
+
 ## Placement and data safety
 
 - ADV's packed extension is bounded by `ADV_SF_EXTENSION_END`; DNG/S2D's

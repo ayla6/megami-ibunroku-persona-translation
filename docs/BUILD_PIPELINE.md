@@ -131,16 +131,22 @@ Upper Right movement and Start-to-skip movies. Rewards and encounters ship
 as separate options, so someone can take one without the other. Debug is not
 included.
 
-The release ships twelve patch files and twelve manifest rows - one row
-per file, never one per combination. `rev1-to-rev0.xdelta` and
+The release ships thirty-three patch files and thirty-three manifest rows -
+one row per file, never one per combination. `rev1-to-rev0.xdelta` and
 `rev0-to-base.xdelta` convert the retail disc to the base translation;
-every option is an `add-<option>.xdelta`. Options whose edits stay in place
-(Mark, battle speed, rewards, encounters, run, upright, skipfmv) never
-move another option's offsets, so one file each serves every variant.
-Options that add bytes shift every offset after the insertion, so an
-option applied after them is encoded against the accumulated size-changers:
-`add-60fps.xdelta` for discs without the save menu and
-`add-60fps-saves.xdelta` for discs with it.
+every option is an `add-<option>.xdelta`.
+
+Size-changing options come first in solver order: an insertion shifts every
+offset after it, so an option applied after one is encoded against the
+accumulated size-changers (`add-60fps.xdelta` without the save menu,
+`add-60fps-saves.xdelta` with it). In-place options come last and are
+encoded from the undecorated size-changer layout, one file per layout, so
+each of Mark, battle speed, rewards, encounters, run, upright and skipfmv
+has `add-<option>.xdelta`, `add-<option>-saves.xdelta`,
+`add-<option>-60fps.xdelta` and `add-<option>-saves-60fps.xdelta`. Because
+their patches keep the image size, they compose over one another by
+same-offset copies: stacking two in-place options never moves the second
+patch's bytes.
 
 A row names the option it adds (`adds`), the size-changers it was encoded
 against (`anchor`), its fixed apply position (`order`), and the canonical
@@ -149,43 +155,55 @@ chain from those four fields: selected options in `order`, picking the most
 specific `adds` row whose `anchor` is already applied. No combination list
 exists in the manifest or the page.
 
-The build assembles the canonical states - the base translation, each
-in-place option on its own, plus `saves`, `60fps` and `saves+60fps` - and
-four maximally decorated proof fixtures (all in-place options alone, with
-`saves`, with `60fps`, and with both). That is fifteen variant builds, not
-512.
+The build assembles the canonical states - the base translation, the four
+size-changer layouts (none, `saves`, `60fps`, `saves+60fps`), and each
+in-place option on each of those layouts - and then a sample of real
+selections (the two expected-popular combinations and `--sample` seeded
+random ones), each built once from retail for the byte-for-byte comparison.
+That is thirty-two canonical builds plus five sample builds by default,
+not 512.
 
 #### Why the graph looks like this (invariants other agents must keep)
 
-- **Solver order**: options apply one at a time, in-place options first
-  (CHOICES order), size-changers last. A size-changer's insertion shifts
-  every offset after it, so a patch encoded before the insertion reads the
-  wrong places on the other side of it - that is the whole reason for the
-  order and for anchor files. Compositions that do not hold stop the
-  build (see the portability proof below); they are never worked around.
+- **Solver order**: size-changers first (CHOICES order), then in-place
+  options. A size-changer's insertion shifts every offset after it, so a
+  patch encoded before the insertion reads the wrong places on the other
+  side of it - that is the whole reason for the order and for anchor
+  files. In-place patches are the same size on both sides, so their
+  copies are same-offset and can be applied over earlier in-place edits.
+  Compositions that do not hold stop the build (see the sampling check
+  below); they are never worked around.
 - **File layout**: one file per (option, subset of size-changers that can
-  precede it). In-place options always precede every size-changer, so
-  they need exactly one file each; a release's last size-changer needs
-  2^(m-1) anchor variants. Adding an in-place option costs one file;
-  adding a size-changer is the only thing that multiplies.
+  precede it). With m size-changers, each in-place option needs 2^m files
+  (one per layout), and a size-changer needs one file per subset of the
+  size-changers before it. Adding an in-place option costs 2^m files;
+  adding a size-changer is the only thing that multiplies, doubling every
+  in-place option's rows.
 - **Assembly reuses the parent image**: a variant is written onto a
   reflink clone of its parent's finished image, so `build_disc` rewrites
-  only the files the new option changes. The exception is a size-changer
-  added after another size-changer (`saves+60fps`): that variant is laid
-  out from retail in one pass so its bytes match a one-shot
-  `build.py --qol=...` build.
-- **Canonical rows carry hashes; decorated steps are proven**: each row
-  records the canonical `source_sha256`/`target_sha256`. The runtime uses
+  only the files the new option changes. An in-place state is written on
+  its size-changer layout, so its patch carries exactly that one option's
+  edits. The exception is a size-changer added after another size-changer
+  (`saves+60fps`): that variant is laid out from retail in one pass so
+  its bytes match a one-shot `build.py --qol=...` build.
+- **Hashes only where they describe a real disc**: the revision
+  conversions and the base translation record whole-image
+  `source_sha256`/`target_sha256`, because their inputs are exactly a
+  retail or translated disc. An add- row's source is whatever the player's
+  earlier options made it, so its hash columns stay empty; there is no one
+  canonical hash for a decorated disc. The runtime checks each patch
+  file's SHA-256 (`patch_sha256`) and every step's output size, and uses
   xdelta's own window checksums when the applied set is exactly the row's
-  canonical source; on a decorated disc it decodes with `-n` and checks the
-  output size, because in-place decorations never change the size. Every
-  patch file's SHA-256 (`patch_sha256`) is checked before use.
-- **Nothing ships unproven**: the build decodes each add- patch over its
-  maximally decorated parent (all in-place options plus the anchor) and
-  compares the result byte for byte with an independently assembled
-  decorated fixture. `proof_choices`/`proof_sha256` record that check. The
-  proofs cover the composition of patches; they do not evaluate in-game
-  behavior - that is what the audits and in-game QA are for.
+  canonical source. On a decorated disc it decodes with `-n`, because
+  in-place decorations never change the size.
+- **The chain is verified by sampling**: each sampled selection is built
+  as a real one-shot disc from retail, the published chain is applied
+  exactly the way the web patcher applies it, and the result must match
+  that disc byte for byte. The manifest's `verified` column records the
+  selections that exercised each row; rows no sample exercised are named
+  in the build summary. That is the residual risk sampling accepts, and
+  it covers patch composition, not in-game behavior (that is the audits
+  and in-game QA).
 - **`SIZE_CHANGERS` is checked, not trusted**: the build measures each
   solo variant against the base image and stops if the classification
   disagrees. If an option starts (or stops) growing the image, fix the
@@ -203,15 +221,16 @@ four maximally decorated proof fixtures (all in-place options alone, with
    from it, the release README is generated from it, and the Pages
    workflow builds the web patcher's `features.js` from it; tests enforce
    coverage and generator output).
-4. Everything else derives: file names, manifest rows, proofs, the
-   webpatcher grid and chains. Update the hardcoded expectations in
-   `tools/tests/test_build_patches.py` if a count moved, and
-   `COMPLETE_RELEASE` in `tools/publish_patches.py`.
+4. Everything else derives: file names, manifest rows, the release
+   completeness count, the webpatcher grid and chains. Update the
+   hardcoded expectations in `tools/tests/test_build_patches.py` if a
+   count moved.
 5. Rebuild from scratch: the fingerprint changes, every canonical state
-   and proof fixture is re-assembled, audited and proven. Adding an
-   in-place option costs one canonical state and one fixture step; adding
-   a size-changer adds 2^(m-1) canonical anchors and their fixtures, the
-   only part that grows exponentially.
+   is re-assembled and audited, and the sampled selections are rebuilt
+   and their chains compared. Adding an in-place option costs 2^m
+   canonical states; adding a size-changer adds 2^(m-1) canonical anchors
+   and doubles every in-place option's rows, the only part that grows
+   exponentially.
 
 `--publish-release` (formerly `--publish-web`) uploads the `--output`
 directory (default `dist/patches`) to a GitHub release as one
@@ -265,16 +284,19 @@ window is reconstructed and its checksum verified, but no decoded image is
 written or read back, which removes two full disc-image passes per patch.
 The patch is then published to `dist/patches/` immediately - there is no
 staging directory, and each patch is verified before its file appears.
-The manifest records SHA-256 hashes of each input, output and patch plus
-the build fingerprint that produced it.
+The manifest records each patch file's SHA-256, the source/output sizes,
+the whole-image hashes of the revision conversions and the base translation
+(the only rows whose inputs are a real disc), the sampled selections that
+exercised each row, and the build fingerprint that produced it.
 
 Reruns are incremental. A completed release rerun verifies its recorded
 patches and builds nothing. A missing or invalidated patch rebuilds only
 the canonical state it belongs to: a canonical image not assembled this
 run is reconstructed by decoding its verified patch (`rev0-to-base`, then
 the add- steps), so a rebuilt child still has its parent's exact bytes
-without rebuilding that parent. A missing proof row rebuilds just the
-decorated fixture the proof needs.
+without rebuilding that parent. A rebuilt row clears its `verified`
+selections, so only the samples that use it are rebuilt and compared
+again.
 Any input change (source, translation, game data) invalidates the affected
 build keys, and inputs that change mid-run abort the run rather than
 stamping unverified patches. The fingerprint deliberately watches only
@@ -282,7 +304,7 @@ what feeds the disc - `src/`, `translation/`, the extracted data, and the
 two scripts it runs - so unrelated churn in `tools/tests/` never
 invalidates a running release. The Rev 1 to Rev 0 conversion never depends
 on build inputs and is reused across any same-source run. A release is
-complete when its manifest lists all 12 steps across the 12 patch files.
+complete when its manifest lists all 33 steps across the 33 patch files.
 
 The run's scratch images live in a private workspace that is deleted on
 exit. It prefers the system temp directory (tmpfs on most Linux systems) when
@@ -345,6 +367,14 @@ python src/extraction_tools/matching/reward_notice.py
 
 A plan freezes the correspondences a two-region pass found; discovering new
 ones requires a fresh capture with PSP-JP.
+
+A plan must stay valid across a from-zero `port.py` run, where `generated/` is
+empty and porters run in wave order rather than capture order. The EBOOT twin
+capture therefore ignores rows already in `generated/` and records the full
+decision domain (replay applies the subset its tables leave open). The
+reward-notice plan digests only the item-name rows it reads from
+`generated/SLPS_005.00.tsv`, not the whole table, so an unrelated row change
+does not stale it.
 
 The batch command and release patch builder share common preparation within
 one process; each variant still receives the ordinary assembly and QA checks.

@@ -1,6 +1,6 @@
 kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
-meta	matches_sha1	47cb38ea594efd143043d139edba97a61d727013								
-meta	matching_inputs_sha1	9654add1a63bb23823ff34a4c10b6091347fbc8a								
+meta	matches_sha1	84cb0ec5c0e9ebb3365275b4b530a5e22e439c35								
+meta	matching_inputs_sha1	1eae320450f35734e3c50149994c638d1ec35ed4								
 meta	psx:E0	76d06de35a00e2bc0f42087b8b30fa1088f811d0								
 meta	psx:E1	2cbf2a9a21f57f04e119a311bfab6f168d319750								
 meta	psx:E2	fc5d4a8106a6a0a8851e8ccfcb8eb6ab89c82616								
@@ -17,22 +17,7 @@ match			E0	42:5	arbitrate			same
 match			E0	42:11	arbitrate			same		
 match			E0	42:18	arbitrate			same		
 match			E0	42:20	arbitrate			same		
-match			E0	57:2	arbitrate			same		
-match			E0	57:3	arbitrate			same		
-match			E0	57:20	arbitrate			same		
-match			E0	57:23	arbitrate			same		
-match			E0	64:34	arbitrate			same		
-match			E0	64:35	arbitrate			same		
-match			E0	101:12	arbitrate			same		
-match			E0	118:49	arbitrate			same		
-match			E0	153:24	arbitrate			same		
-match			E0	153:25	arbitrate			same		
-match			E0	161:18	arbitrate			same		
-match			E0	161:20	arbitrate			same		
-match			E0	161:21	arbitrate			same		
 match			E0	216:13	arbitrate			same		
-match			E1	11:14	arbitrate			same		
-match			E1	86:19	arbitrate			same		
 match			E2	1:0	arbitrate			same		
 match			E2	1:2	arbitrate			same		
 match			E2	1:3	arbitrate			same		
@@ -54,7 +39,6 @@ match			E2	181:12	arbitrate			same
 match			E2	181:14	arbitrate			same		
 match			E2	181:15	arbitrate			same		
 match			E2	181:17	arbitrate			same		
-match			E2	210:2	arbitrate			same		
 match			E3	4:3	arbitrate			same		
 match			E3	2:0x1370	slot			none		
 match			E3	11:0x2770	slot			none		

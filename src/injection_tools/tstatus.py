@@ -187,8 +187,12 @@ def psp_labels():
                     key = (r[0], int(r[1]), int(r[2]))
                 except ValueError:
                     continue
+                # a duplicate-wording repair takes its label from the donor
+                sf, se, sb = r[0], int(r[1]), int(r[4])
+                if len(r) >= 9 and r[6] and r[7].isdigit() and r[8].isdigit():
+                    sf, se, sb = r[6], int(r[7]), int(r[8])
                 try:
-                    rows[key] = _dec(_load(r[0], 'us').entries[int(r[1])].box_bytes(int(r[4])))
+                    rows[key] = _dec(_load(sf, 'us').entries[se].box_bytes(sb))
                 except Exception:
                     continue
         fx = os.path.join(toolbelt.SOURCE_MAPPINGS, 'align_fix.tsv')

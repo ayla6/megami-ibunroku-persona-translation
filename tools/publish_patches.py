@@ -37,10 +37,15 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / 'webpatcher'
 DIST = ROOT / 'dist' / 'patches'
 ARCHIVE_NAME = 'persona-patches.zip'
-# One rev conversion step each, plus one add- file per option and per
-# size-changer anchor: the authoritative layout is
-# tools/build_patches.py.release_file_names().
-COMPLETE_RELEASE = 12
+def complete_release_size():
+    """How many patch files a complete release has.
+
+    The count is derived from the release graph, never typed: one rev
+    conversion per original revision, one file per in-place option, and one
+    file per size-changer anchor."""
+    sys.path.insert(0, str(ROOT / 'tools'))
+    import build_patches
+    return len(build_patches.release_file_names())
 
 
 def release_repo():
@@ -80,10 +85,13 @@ def release_is_complete(directory=None):
         reader = csv.DictReader(source, delimiter='\t')
         fields = set(reader.fieldnames or ())
         rows = [row for row in reader if row.get('patch')]
-    if not {'adds', 'anchor', 'order', 'proof_choices', 'proof_sha256'} <= fields:
+    # One row per patch file, with the graph columns a chain needs. The
+    # `verified` column records the sampled selections that exercised each
+    # step; it is part of the layout even when a particular step has none.
+    if not {'adds', 'anchor', 'order', 'choices', 'verified'} <= fields:
         return False
     names = {row['patch'] for row in rows}
-    return (len(names) == COMPLETE_RELEASE
+    return (len(names) == complete_release_size()
             and len(rows) == len(names))
 
 
@@ -211,8 +219,8 @@ def publish(tag=None, *, directory=None, release=True,
         if not release_is_complete(directory) and not allow_incomplete:
             raise SystemExit(
                 f'{directory / "manifest.tsv"} does not list a complete'
-                f' release ({COMPLETE_RELEASE} patch files) - rerun the'
-                ' release build, or pass --allow-incomplete')
+                f' release ({complete_release_size()} patch files) - rerun'
+                ' the release build, or pass --allow-incomplete')
         if upload_release(tag, directory) == 'updated':
             deploy_site()
     sync_local_patches(directory)

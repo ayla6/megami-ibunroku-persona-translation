@@ -355,17 +355,15 @@ def main(variants_override=None, after_variant=None, mark_builder=None,
     run(py, os.path.join("injection_tools", "write_guard.py"), "check", "--listing", subs_listing)
     run(py, os.path.join("injection_tools", "fmv_subgen.py"), "pack")
     # Variant-independent outputs: shared by every assembled patch set, so
-    # generate and check them once instead of once per variant. `save_ui` is
-    # armips input (main.asm includes its generated asm unconditionally); the
-    # TALK/ending builders and their unit tests read only the translation and
-    # retail data. Nothing here depends on a QoL choice.
+    # generate them once instead of once per variant. `save_ui` is armips
+    # input (main.asm includes its generated asm unconditionally); the
+    # TALK/ending builders read only the translation and retail data.
     run(py, os.path.join("injection_tools", "save_ui.py"))
     run(py, os.path.join("injection_tools", "talktl.py"), "qa")
     run(py, os.path.join("injection_tools", "talk.py"), "build")
     run(py, os.path.join("injection_tools", "etctalk.py"), "build")
     run(py, os.path.join("injection_tools", "endtext.py"))
-    run(py, "-m", "unittest", "discover", "-s", "tools/tests", "-p", "test_giftmsg_inventory.py")
-    run(py, "-m", "unittest", "discover", "-s", "tools/tests", "-p", "test_qol_saves.py")
+    assembled_tests_run = False
     for patches, disc_path in variants:
         options = {'make_disc': '--no-disc' not in sys.argv}
         if mark_builder is not None:
@@ -373,6 +371,16 @@ def main(variants_override=None, after_variant=None, mark_builder=None,
         if source_image_for is not None:
             options['source_image'] = source_image_for(patches)
         assemble_variant(py, patches, disc_path, **options)
+        if not assembled_tests_run:
+            # These tests execute assembled outputs (ADV.BIN, SLPS_005.00,
+            # OPEN.EXE, the symbol file), so they need a variant on disk. A
+            # clean build/ has none before the first assembly. One variant is
+            # enough: every patch set carries the same translation code they
+            # exercise, and a QoL patch that broke it would fail here.
+            for pattern in ('test_giftmsg_inventory.py', 'test_qol_saves.py'):
+                run(py, "-m", "unittest", "discover", "-s", "tools/tests",
+                    "-p", pattern)
+            assembled_tests_run = True
         if after_variant is not None:
             after_variant(patches, disc_path)
 

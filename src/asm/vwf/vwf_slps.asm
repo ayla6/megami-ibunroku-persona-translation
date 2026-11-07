@@ -178,18 +178,13 @@ vwf_font_width:                         ; u8 pen advance
 ;; lives elsewhere. The trait value line is translated, so it is owned; its
 ;; unanalysed placeholder is a non-text cell and keeps the retail 8 px `?`.
 ;; Checked only when the range directory above has no match; the entries are
-;; {base, span} with a zero base terminating the list.
-.align 4
-btl_owned_spans:
-    .word ANALYZE_NAME_BUF
-    .halfword ANALYZE_NAME_END - ANALYZE_NAME_BUF, 0
-    .word ANALYZE_SPELL_BUF
-    .halfword ANALYZE_SPELL_END - ANALYZE_SPELL_BUF, 0
-    .word ANALYZE_TRAIT_BUF
-    .halfword ANALYZE_TRAIT_END - ANALYZE_TRAIT_BUF, 0
-    .word 0
+;; {base, span} with a zero base terminating the list. The directory itself
+;; lives in BTLP (BTL_BOARD_SPANS_ADDR, addresses.inc) because this resident
+;; area ends at the next function and only the battle renderer calls the
+;; lookup: btlp.py writes the three ANALYZE buffers and the translated
+;; battle-board source pools into that overlay-resident run.
 btl_owned_span:
-    la      v1, btl_owned_spans
+    la      v1, BTL_BOARD_SPANS_ADDR
 @@loop:
     lw      a1, 0(v1)
     nop                                  ; R3000 load delay: a1 retires here

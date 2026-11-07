@@ -187,6 +187,7 @@ id	pos	psp	en
 185	0x332a8	EBOOT:2734c4	Arachne
 186	0x332e0	EBOOT:27351c	Iwate
 187	0x33318	EBOOT:273574	Siren
+188	0x33350	EBOOT:2735cc	Yomotsu Shikome
 189	0x33388	EBOOT:273624	Yaksa
 190	0x333c0	EBOOT:27367c	Purski
 191	0x333f8	EBOOT:2736d4	Yaksini
@@ -259,6 +260,7 @@ id	pos	psp	en
 258	0x342a0	EBOOT:274ddc	Nemesis
 259	0x342d8	EBOOT:274e34	Nemesis
 260	0x34310	EBOOT:274e8c	Nemesis
+261	0x34348	EBOOT:274ee4	Yog-Sothoth Jr.
 262	0x34380	EBOOT:274f3c	Hypnos
 263	0x343b8	EBOOT:274f94	Hypnos
 264	0x343f0	EBOOT:274fec	Hypnos
@@ -301,6 +303,7 @@ id	pos	psp	en
 301	0x34d2c	EBOOT:26a640	Dis-Sick
 302	0x34d4c	EBOOT:26a680	Slick Drop
 303	0x34d6c	EBOOT:26a6c0	Turtle Candy
+304	0x34d8c	EBOOT:26a700	Silver Prayer Wheel
 305	0x34dac	EBOOT:26a740	Magical Guard
 306	0x34dcc	EBOOT:26a780	Physical Guard
 307	0x34dec	EBOOT:26a7c0	Skull Pendulum
@@ -339,9 +342,11 @@ id	pos	psp	en
 340	0x3520c	EBOOT:26b000	Magnadyne Stone
 341	0x3522c	EBOOT:26b040	Mamagna Stone
 342	0x3524c	EBOOT:26b080	Mamagnara Stone
+343	0x3526c	EBOOT:26b0c0	Evil Quake Tablet
 344	0x3528c	EBOOT:26b100	Freidyne Stone
 345	0x352ac	EBOOT:26b140	Megido Stone
 346	0x352cc	EBOOT:26b180	Megidola Stone
+347	0x352ec	EBOOT:26b1c0	Scorching Tablet
 348	0x3530c	EBOOT:26b200	Zandyne Stone
 349	0x3532c	EBOOT:26b240	Mazan Stone
 350	0x3534c	EBOOT:26b280	Mazanma Stone
@@ -354,15 +359,23 @@ id	pos	psp	en
 357	0x3542c	EBOOT:26b440	Mazio Stone
 358	0x3544c	EBOOT:26b480	Mazionga Stone
 359	0x3546c	EBOOT:26b4c0	Flash Tablet
+360	0x3548c	EBOOT:26b500	Dark Wave Tablet
 361	0x354ac	EBOOT:26b540	Doggerel Tablet
+362	0x354cc	EBOOT:26b580	Ebon Rope Tablet
 363	0x354ec	EBOOT:26b5c0	Petra Stone
 364	0x3550c	EBOOT:26b600	Para Stone
 365	0x3552c	EBOOT:26b640	Poisma Stone
 366	0x3554c	EBOOT:26b680	Nerve Stone
+367	0x3556c	EBOOT:26b6c0	Falsehood Tablet
+368	0x3558c	EBOOT:26b700	Light Wave Tablet
+369	0x355ac	EBOOT:26b740	Holy Writ Tablet
+370	0x355cc	EBOOT:26b780	Quarter Moon Tablet
+371	0x355ec	EBOOT:26b7c0	Half Moon Tablet
 372	0x3560c	EBOOT:26b800	Posumudi Stone
 373	0x3562c	EBOOT:26b840	Paraladi Stone
 374	0x3564c	EBOOT:26b880	Petradi Stone
 375	0x3566c	EBOOT:26b8c0	Nervundi Stone
+376	0x3568c	EBOOT:26b900	Full Moon Tablet
 377	0x356ac	EBOOT:26b940	Verity Tablet
 378	0x356cc	EBOOT:26b980	Alexandrite
 379	0x356ec	EBOOT:26b9c0	Diamond
@@ -403,6 +416,7 @@ id	pos	psp	en
 414	0x35b4c	EBOOT:26c280	Blue Compact
 415	0x35b6c	EBOOT:26c2c0	Avatar
 416	0x35b8c	EBOOT:26c300	Rosetta Stone
+417	0x35bac	EBOOT:26c340	Masamune's Eyepatch
 418	0x35bcc	EBOOT:26c380	Dragon Scale
 419	0x35bec	EBOOT:26c3c0	Blue Tablet
 420	0x35c0c	EBOOT:26c400	Avenir
@@ -410,10 +424,16 @@ id	pos	psp	en
 422	0x35c4c	EBOOT:26c480	Present
 423	0x35c6c	EBOOT:26c4c0	White Tablet
 424	0x35c8c	EBOOT:26c500	Daily Meal
+425	0x35cac	EBOOT:26c540	Prosecutor's Diary
+426	0x35ccc	EBOOT:26c580	Judgement Contract
 427	0x35cec	EBOOT:26c5c0	Flame Shawl
 428	0x35d0c	EBOOT:26c600	Dordona's Oar
 429	0x35d2c	EBOOT:26c640	Stuffed Deer
+430	0x35d4c	EBOOT:26c680	Suitengu Talisman
+431	0x35d6c	EBOOT:26c6c0	Black Garter Belt
+432	0x35d8c	EBOOT:26c700	Kolkata Souvenir
 433	0x35dac	EBOOT:26c740	Bisonskin Drums
+434	0x35dcc	EBOOT:26c780	Emperor Wu's Peach
 435	0x35dec	EBOOT:26c7c0	Raven Feather
 436	0x35e0c	EBOOT:26c800	Olive Necklace
 437	0x35e2c	EBOOT:26c840	General Piece
@@ -423,12 +443,14 @@ id	pos	psp	en
 441	0x35eac	EBOOT:26c940	Gottabe Shoes
 442	0x35ecc	EBOOT:26c980	Karura
 443	0x35eec	EBOOT:26c9c0	Crimson Tablet
+444	0x35f0c	EBOOT:26ca00	Tora Stomachband
 445	0x35f2c	EBOOT:26ca40	Kaminari-Okoshi
 446	0x35f4c	EBOOT:26ca80	Enma Notebook
 447	0x35f6c	EBOOT:26cac0	Black Tablet
 448	0x35f8c	EBOOT:26cb00	Amber Glasses
 449	0x35fac	EBOOT:26cb40	Morning Star
 450	0x35fcc	EBOOT:26cb80	Pagan Idol
+451	0x35fec	EBOOT:26cbc0	Babylonian Coffin
 452	0x3600c	EBOOT:26cc00	Faceless Mask
 453	0x3602c	EBOOT:26cc40	Nibel Crystal
 454	0x3604c	EBOOT:26cc80	Fomor Lineage
@@ -437,9 +459,11 @@ id	pos	psp	en
 457	0x360ac	EBOOT:26cd40	Athame Knife
 458	0x360cc	EBOOT:26cd80	Mail Breaker
 459	0x360ec	EBOOT:26cdc0	Luna Blade
+460	0x3610c	EBOOT:26ce00	Fuuma's Wakizashi
 461	0x3612c	EBOOT:26ce40	Kris Naga
 462	0x3614c	EBOOT:26ce80	Phurba Dagger
 463	0x3616c	EBOOT:26cec0	Lone Sword
+464	0x3618c	EBOOT:26cf00	Futsu-no-Mitama
 465	0x361ac	EBOOT:26cf40	Kusanagi's Sword
 466	0x361cc	EBOOT:26cf80	Spiegel Blade
 467	0x361ec	EBOOT:26cfc0	Mop
@@ -474,6 +498,8 @@ id	pos	psp	en
 496	0x3658c	EBOOT:26d700	Bardiche
 497	0x365ac	EBOOT:26d740	Houtoufu
 498	0x365cc	EBOOT:26d780	Raydog
+499	0x365ec	EBOOT:26d7c0	Kabutsuchi Kyouko
+500	0x3660c	EBOOT:26d800	Gouma Daisetsudan
 501	0x3662c	EBOOT:26d840	Mandau Spoon
 502	0x3664c	EBOOT:26d880	Gokufu Tennou
 503	0x3666c	EBOOT:26d8c0	Gymnast's Rope
@@ -496,6 +522,7 @@ id	pos	psp	en
 520	0x3688c	EBOOT:26dd00	Twin Bird
 521	0x368ac	EBOOT:26dd40	Oniguruma
 522	0x368cc	EBOOT:26dd80	Enkeller
+523	0x368ec	EBOOT:26ddc0	Wu Huo Shen Yan Shan
 524	0x3690c	EBOOT:26de00	Justice Coin
 525	0x3692c	EBOOT:26de40	Senko Rinda
 526	0x3694c	EBOOT:26de80	Infinity
@@ -519,7 +546,10 @@ id	pos	psp	en
 544	0x36b8c	EBOOT:26e300	Adamantium Claw
 545	0x36bac	EBOOT:26e340	Bagh Nakh
 546	0x36bcc	EBOOT:26e380	Damascus Hand
+547	0x36bec	EBOOT:26e3c0	Stroke of Darkness
 548	0x36c0c	EBOOT:26e400	Knuckle Barong
+549	0x36c2c	EBOOT:26e440	Yuuma Ankoku Sho
+550	0x36c4c	EBOOT:26e480	Shinsa Bakunetsu Sho
 551	0x36c6c	EBOOT:26e4c0	Tokarev
 552	0x36c8c	EBOOT:26e500	Glock 26
 553	0x36cac	EBOOT:26e540	M380 Revolver
@@ -540,8 +570,10 @@ id	pos	psp	en
 568	0x36e8c	EBOOT:26e900	Phantom Killer
 569	0x36eac	EBOOT:26e940	M134 Vulcan
 570	0x36ecc	EBOOT:26e980	Avenger
+571	0x36eec	EBOOT:26e9c0	Gettou Soutenhou
 572	0x36f0c	EBOOT:26ea00	Crazy Chain
 573	0x36f2c	EBOOT:26ea40	Hell Rain
+574	0x36f4c	EBOOT:26ea80	Kokonoe Raijinhou
 575	0x36f6c	EBOOT:26eac0	Randall Custom
 576	0x36f8c	EBOOT:26eb00	Mossberg M500
 577	0x36fac	EBOOT:26eb40	SPAS-12
@@ -615,9 +647,13 @@ id	pos	psp	en
 645	0x3782c	EBOOT:26fc40	Dark Guard
 646	0x3784c	EBOOT:26fc80	Platinum Queen
 647	0x3786c	EBOOT:26fcc0	Jamming Guard
+648	0x3788c	EBOOT:26fd00	Hamagari Gauntlet
 649	0x378ac	EBOOT:26fd40	Parade Guard
+650	0x378cc	EBOOT:26fd80	Shishiou Gauntlet
 651	0x378ec	EBOOT:26fdc0	Demon Gauntlet
+652	0x3790c	EBOOT:26fe00	Daybreak Gauntlet
 653	0x3792c	EBOOT:26fe40	Raime Gauntlet
+654	0x3794c	EBOOT:26fe80	Seiryuu Gauntlet
 655	0x3796c	EBOOT:26fec0	Jagd Guard
 656	0x3798c	EBOOT:26ff00	Sturm Guard
 657	0x379ac	EBOOT:26ff40	Caesar Guard
@@ -631,6 +667,7 @@ id	pos	psp	en
 665	0x37aac	EBOOT:270140	Parade Boots
 666	0x37acc	EBOOT:270180	Slime Shoes
 667	0x37aec	EBOOT:2701c0	Ghost Geta
+668	0x37b0c	EBOOT:270200	Daybreak Greaves
 669	0x37b2c	EBOOT:270240	Vidar's Shoes
 670	0x37b4c	EBOOT:270280	Byakko Greaves
 671	0x37b6c	EBOOT:2702c0	Jagd Leg
@@ -920,330 +957,293 @@ id	pos	psp	en
 955	0x3df30	EBOOT:2c06ec	A few.<FF03>Not a one.
 956	0x3df38	EBOOT:2c06ec	 I like the old way.<FF03>I like the new way.
 957	0x3df4c	EBOOT:2c06ec	Sure, put me down.<FF03>Don't you dare.
-958	0x39904	EBOOT:27ba6e	Light Fire DMG (1 foe)
-959	0x3991c	EBOOT:27ba38	Medium Fire DMG (1 foe)
-960	0x39934	EBOOT:27871e	Heavy Fire DMG (area)
-961	0x3994c	EBOOT:2786e4	Light Fire DMG (all foes)
-962	0x39964	EBOOT:2786a6	Medium Fire DMG (all foes)
-963	0x3997c	EBOOT:27866a	Heavy Fire DMG (all foes)
-964	0x39994	EBOOT:27b9f6	Light Ice DMG+Freeze (1 foe)
-965	0x399b4	EBOOT:27b9b4	Medium Ice DMG+Freeze (1 foe)
-966	0x399d4	EBOOT:27864e	Heavy Ice DMG+Freeze (area)
-967	0x399f4	EBOOT:2785e4	Light Ice DMG+Freeze (all foes)
-968	0x39a14	EBOOT:27859a	Medium Ice DMG+Freeze (all foes)
-969	0x39a34	EBOOT:278576	Heavy Ice DMG+Freeze (all foes)
-970	0x39a54	EBOOT:27b97e	Light Wind DMG (1 foe)
-971	0x39a6c	EBOOT:27b946	Medium Wind DMG (1 foe)
-972	0x39a84	EBOOT:27851e	Heavy Wind DMG (area)
-973	0x39a9c	EBOOT:2784e4	Light Wind DMG (all foes)
-974	0x39ab4	EBOOT:2784a6	Medium Wind DMG (all foes)
-975	0x39acc	EBOOT:27846c	Heavy Wind DMG (all foes)
-976	0x39ae4	EBOOT:27b910	Light Earth DMG (1 foe)
-977	0x39afc	EBOOT:27b8d6	Medium Earth DMG (1 foe)
-978	0x39b14	EBOOT:278438	Heavy Earth DMG (area)
-979	0x39b2c	EBOOT:2783fa	Light Earth DMG (all foes)
-980	0x39b44	EBOOT:2783bc	Medium Earth DMG (all foes)
-981	0x39b5c	EBOOT:27837e	Heavy Earth DMG (all foes)
-982	0x39b74	EBOOT:27b89c	Light Nuclear DMG (1 foe)
-983	0x39b8c	EBOOT:27b85e	Medium Nuclear DMG (1 foe)
-984	0x39ba4	EBOOT:278344	Heavy Nuclear DMG (1 foe)
-985	0x39bbc	EBOOT:278302	Light Nuclear DMG (all foes)
-986	0x39bd4	EBOOT:2782c0	Medium Nuclear DMG (all foes)
-987	0x39bec	EBOOT:278280	Heavy Nuclear DMG (all foes)
-988	0x39c04	EBOOT:27b828	Light Blast DMG (1 foe)
-989	0x39c1c	EBOOT:27b7ee	Medium Blast DMG (1 foe)
-990	0x39c34	EBOOT:27824c	Heavy Blast DMG (area)
-991	0x39c4c	EBOOT:27820e	Light Blast DMG (all foes)
-992	0x39c64	EBOOT:2781d0	Medium Blast DMG (all foes)
-993	0x39c7c	EBOOT:278194	Heavy Blast DMG (all foes)
-994	0x39c94	EBOOT:27b7b4	Light Gravity DMG (1 foe)
-995	0x39cac	EBOOT:27b778	Medium Gravity DMG (1 foe)
-996	0x39cc4	EBOOT:27815c	Heavy Gravity DMG (area)
-997	0x39cdc	EBOOT:27811a	Light Gravity DMG (all foes)
-998	0x39cf4	EBOOT:2780d8	Medium Gravity DMG (all foes)
-999	0x39d0c	EBOOT:278096	Heavy Gravity DMG (all foes)
-1000	0x39d24	EBOOT:27b736	Light Elec DMG+Shock (1 foe)
-1001	0x39d44	EBOOT:27b6f2	Medium Elec DMG+Shock (1 foe)
-1002	0x39d64	EBOOT:27807c	Heavy Elec DMG+Shock (area)
-1003	0x39d84	EBOOT:278010	Light Elec DMG+Shock (all foes)
-1004	0x39da4	EBOOT:277fc6	Medium Elec DMG+Shock (all foes)
-1005	0x39dc4	EBOOT:277fa4	Heavy Elec DMG+Shock (all foes)
-1006	0x39de4	EBOOT:27b6a6	Light Death DMG each turn (1 foe)
-1007	0x39e68	EBOOT:27aa1e	Inflicts Sleep (area)
-1008	0x39e80	EBOOT:27a9ac	Inflicts Bind (area)
-1009	0x39e98	EBOOT:27a9e4	Inflicts Panic (area)
-1010	0x39eb0	EBOOT:27ab0e	Inflicts Happy (area)
-1011	0x39ec8	EBOOT:27a938	Inflicts Charm (area)
-1012	0x39ee0	EBOOT:27aa96	Inflicts Mute (area)
-1013	0x39ef8	EBOOT:27b41e	Inflicts Blind (area)
-1014	0x39f10	EBOOT:27aad0	Inflicts Unlucky (area)
-1015	0x39f50	EBOOT:27b312	Gives Cloak (1 ally)
-1016	0x39f64	EBOOT:27b2d8	Gives Puppet (1 ally)
-1017	0x39f78	EBOOT:27b29c	Gives Counter (1 ally)
-1018	0x39fe0	EBOOT:27ac00	Insta Death kill (1 foe)
-1019	0x39ff4	EBOOT:27ac36	Inflict Stone (1 foe)
-1020	0x3a008	EBOOT:27ac72	Inflict Paralyze (1 foe)
-1021	0x3a01c	EBOOT:27a064	Light Tech DMG+Poison (1 foe)
-1022	0x3a030	EBOOT:279fdc	Light Tech DMG+Sick (1 foe)
-1023	0x3a04c	EBOOT:27b146	Light Expel DMG each turn (1 foe)
-1024	0x3a0d0	EBOOT:27b028	Lowers Attack (all foes)
-1025	0x3a0e4	EBOOT:27aff2	Lowers Defense (all foes)
-1026	0x3a0f8	EBOOT:27afbc	Lowers Hit rate (all foes)
-1027	0x3a10c	EBOOT:27af72	Removes stat penalties (all allies)
-1028	0x3a124	EBOOT:27af3c	Raises Attack (all allies)
-1029	0x3a138	EBOOT:27af02	Raises Defense (all allies)
-1030	0x3a14c	EBOOT:27aec8	Raises Hit Rate (all allies)
-1031	0x3a160	EBOOT:27ae94	Raises Magic (all allies)
-1032	0x3a174	EBOOT:27ae54	Removes stat bonuses (all foes)
-1033	0x3a1cc	EBOOT:278ea8	Restores a little HP (1 ally)
-1034	0x3a1e0	EBOOT:278e6c	Restores moderate HP (1 ally)
-1035	0x3a1f0	EBOOT:278e36	Restores full HP (1 ally)
-1036	0x3a204	EBOOT:27ae10	Restores a little HP (all allies)
-1037	0x3a218	EBOOT:27adca	Restores moderate HP (all allies)
-1038	0x3a228	EBOOT:277cb8	Restores full HP (all allies)
-1039	0x3a23c	EBOOT:278cc4	Cures ailments (1 ally)
-1040	0x3a254	EBOOT:278c72	Cures 1 degree of ailments (all allies)
-1041	0x3a270	EBOOT:278d2a	Cures Poison (1 ally)
-1042	0x3a288	EBOOT:278d66	Cures Paralyze (1 ally)
-1043	0x3a2a0	EBOOT:278da6	Cures Stone (1 ally)
-1044	0x3a2b8	EBOOT:278cf4	Cures Sick (1 ally)
-1045	0x3a2d0	EBOOT:278e18	Revives 1 ally
-1046	0x3a2e8	EBOOT:278de0	Revives 1 ally with full HP
-1047	0x3a304	EBOOT:27ad82	Sacrifice life to fully heal party
-1048	0x3a324	EBOOT:278b78	Shows a map of the area
-1049	0x3a35c	EBOOT:2774b8	Wards off weak foes
-1050	0x3a368	EBOOT:278afe	Temporarily nulls damage floors
-1051	0x3a39c	EBOOT:27ac72	Inflict Paralyze (1 foe)
-1052	0x3a3b0	EBOOT:27ac36	Inflict Stone (1 foe)
-1053	0x3a3c4	EBOOT:27ac00	Insta Death kill (1 foe)
-1054	0x3a3d8	EBOOT:27abc2	Inflicts Guilt (1 foe)
-1055	0x3a3f0	EBOOT:27ab86	Inflicts Fear (1 foe)
-1056	0x3a408	EBOOT:27a938	Inflicts Charm (area)
-1057	0x3a420	EBOOT:27ab0e	Inflicts Happy (area)
-1058	0x3a438	EBOOT:27aad0	Inflicts Unlucky (area)
-1059	0x3a450	EBOOT:27aa96	Inflicts Mute (area)
-1060	0x3a468	EBOOT:27aa5a	Inflicts Guilt (area)
-1061	0x3a480	EBOOT:27aa1e	Inflicts Sleep (area)
-1062	0x3a498	EBOOT:27a9e4	Inflicts Panic (area)
-1063	0x3a4b0	EBOOT:27a9ac	Inflicts Bind (area)
-1064	0x3a4c8	EBOOT:27a972	Inflicts Fear (area)
-1065	0x3a4e0	EBOOT:27a938	Inflicts Charm (area)
-1066	0x3a4f8	EBOOT:27a90c	Lowers LV+Paralyze (1 male foe)
-1067	0x3a50c	EBOOT:27a8c8	Lowers LV+Paralyze (1 female foe)
-1068	0x3a520	EBOOT:27a884	Lowers LV+Paralyze (1 human foe)
-1069	0x3a538	EBOOT:27a83c	Lowers experience (1 foe)
-1070	0x3a54c	EBOOT:27a808	Medium Fire DMG (area)
-1071	0x3a560	EBOOT:27a53c	Medium Ice DMG+Freeze (area)
-1072	0x3a57c	EBOOT:27a7ac	Medium Nerve DMG+Poison (area)
-1073	0x3a598	EBOOT:27a768	Medium Nerve DMG+Blind (area)
-1074	0x3a5b4	EBOOT:27a6f2	Party absorbs 50% Ice spells, 3 turns
-1075	0x3a61c	EBOOT:27a598	Medium Fire DMG (area)
-1076	0x3a638	EBOOT:27a5cc	Medium Fire DMG (area)
-1077	0x3a654	EBOOT:27a57c	Medium Ice DMG+Freeze (area)
-1078	0x3a670	EBOOT:27a7ec	Medium Ice DMG+Freeze (area)
-1079	0x3a68c	EBOOT:27a4ae	Medium Wind DMG (area)
-1080	0x3a6a8	EBOOT:27a4e4	Medium Wind DMG (area)
-1081	0x3a6c4	EBOOT:27a43e	Medium Earth DMG (area)
-1082	0x3a6e0	EBOOT:27a476	Medium Earth DMG (area)
-1083	0x3a6fc	EBOOT:27a3d0	Medium Blast DMG (area)
-1084	0x3a718	EBOOT:27a406	Medium Blast DMG (area)
-1085	0x3a734	EBOOT:27a376	Medium Elec DMG+Shock (area)
-1086	0x3a750	EBOOT:27a3b6	Medium Elec DMG+Shock (area)
-1087	0x3a76c	EBOOT:27a2e8	Heavy Curse DMG (area)
-1088	0x3a788	EBOOT:27a31c	Heavy Curse DMG (area)
-1089	0x3a7a4	EBOOT:27a278	Heavy Miracle DMG (area)
-1090	0x3a7c0	EBOOT:27a2b0	Heavy Miracle DMG (area)
-1091	0x3a7dc	EBOOT:27a246	Summons multiple demons
-1092	0x3a7ec	EBOOT:27a1fc	Prevents escape from battle, 3 turns
-1093	0x3a80c	EBOOT:277dde	Inflicts Poison (1 foe)
-1094	0x3a828	EBOOT:277e1e	Inflicts Paralyze (1 foe)
-1095	0x3a844	EBOOT:277da4	Inflicts Sick (1 foe)
-1096	0x3a860	EBOOT:277e62	Inflicts Stone (1 foe)
-1097	0x3a88c	EBOOT:277dde	Inflicts Poison (1 foe)
-1098	0x3a8a8	EBOOT:277e1e	Inflicts Paralyze (1 foe)
-1099	0x3a8c4	EBOOT:277da4	Inflicts Sick (1 foe)
-1100	0x3a8e0	EBOOT:277e62	Inflicts Stone (1 foe)
-1101	0x3a95c	EBOOT:279e4e	Medium Rush DMG (1 foe)
-1102	0x3a998	EBOOT:279d78	Heavy Rush DMG (1 foe)
-1103	0x3a9ac	EBOOT:279dac	Heavy Rush DMG (1 foe)
-1104	0x3aa24	EBOOT:279bd8	Medium Fist DMG (area)
-1105	0x3aa38	EBOOT:279c0c	Light Fist DMG (1 foe)
-1106	0x3aa50	EBOOT:279c40	Light Fist DMG (1 foe)
-1107	0x3aa68	EBOOT:279b3c	Medium Tech DMG (area)
-1108	0x3aa7c	EBOOT:279b70	Light Tech DMG (1 foe)
-1109	0x3aa94	EBOOT:279ba4	Light Tech DMG (1 foe)
-1110	0x3aaac	EBOOT:279a96	Heavy Sword DMG (area)
-1111	0x3aac4	EBOOT:279acc	Heavy Sword DMG (1 foe)
-1112	0x3aae0	EBOOT:279b02	Medium Sword DMG (1 foe)
-1113	0x3aafc	EBOOT:2799de	Heavy Two-Hand DMG (area)
-1114	0x3ab14	EBOOT:279a1a	Heavy Two-Hand DMG (1 foe)
-1115	0x3ab30	EBOOT:279a58	Medium Two-Hand DMG (1 foe)
-1116	0x3ab4c	EBOOT:27993a	Heavy Spear DMG (area)
-1117	0x3ab60	EBOOT:279970	Heavy Spear DMG (1 foe)
-1118	0x3ab78	EBOOT:2799a6	Medium Spear DMG (area)
-1119	0x3ab90	EBOOT:27989e	Heavy Axe DMG (1 foe)
-1120	0x3aba4	EBOOT:2798d2	Heavy Axe DMG (1 foe)
-1121	0x3abbc	EBOOT:279906	Heavy Axe DMG (1 foe)
-1122	0x3abd4	EBOOT:279802	Medium Whip DMG (area)
-1123	0x3abe8	EBOOT:279838	Medium Whip DMG (area)
-1124	0x3ac00	EBOOT:27986c	Light Whip DMG (area)
-1125	0x3ac18	EBOOT:27975a	Heavy Thrown DMG (area)
-1126	0x3ac30	EBOOT:279792	Medium Thrown DMG (area)
-1127	0x3ac4c	EBOOT:2797cc	Light Thrown DMG (area)
-1128	0x3ac64	EBOOT:2796b6	Heavy Arrow DMG (area)
-1129	0x3ac7c	EBOOT:2796ec	Medium Arrow DMG (area)
-1130	0x3ac98	EBOOT:279722	Medium Arrow DMG (area)
-1131	0x3acb0	EBOOT:27967a	Light Handgun DMG (1 foe)
-1132	0x3acc4	EBOOT:279638	Light Machine Gun DMG (1 foe)
-1133	0x3acd8	EBOOT:2795f8	Light Machine Gun DMG (area)
-1134	0x3acec	EBOOT:2795be	Light Shotgun DMG (area)
-1135	0x3ad04	EBOOT:279588	Light Rifle DMG (1 foe)
-1136	0x3ad48	EBOOT:2794da	Random DMG (area)
-1137	0x3adbc	EBOOT:2793aa	Insta kill; user dies (1 foe)
-1138	0x3add4	EBOOT:27938a	Split into two
-1139	0x3ade8	EBOOT:279354	1 DMG each turn (1 foe)
-1140	0x3ae04	EBOOT:278ace	Increase Strength by 1
-1141	0x3ae1c	EBOOT:278aa0	Increase Vitality by 1
-1142	0x3ae4c	EBOOT:278a42	Increase Agility by 1
-1143	0x3ae64	EBOOT:278a1a	Increase Luck by 1
-1144	0x3ae7c	EBOOT:2789e6	Increase maximum HP by 5
-1145	0x3ae90	EBOOT:2789b2	Increase maximum SP by 5
-1146	0x3aea4	EBOOT:278966	Restores HP/Increase max HP (1 ally)
-1147	0x3aeb8	EBOOT:27891c	Restores a little HP and SP (1 ally)
-1148	0x3aec8	EBOOT:2788e0	Cures all but severe ailments
-1149	0x3aee4	EBOOT:2788ac	Cures all ailments but KO
-1150	0x3af0c	EBOOT:278820	Reduce HP to 1 (all foes)
-1151	0x3af20	EBOOT:2787fa	Sucks in all foes
-1152	0x3af30	EBOOT:2787c8	Blows all foes backwards
-1153	0x3af40	EBOOT:27878c	Restores a little SP (1 ally)
-1154	0x3af4c	EBOOT:278752	Play 1 game of Code Breaker
-1155	0x3af64	EBOOT:277ab6	A beautiful gem
-1156	0x3af78	EBOOT:277ab6	A beautiful gem
-1157	0x3af88	EBOOT:277ab6	A beautiful gem
-1158	0x3af98	EBOOT:277ab6	A beautiful gem
-1159	0x3afa8	EBOOT:277ab6	A beautiful gem
-1160	0x3afb8	EBOOT:277ab6	A beautiful gem
-1161	0x3afc8	EBOOT:277ab6	A beautiful gem
-1162	0x3afd8	EBOOT:277ab6	A beautiful gem
-1163	0x3afe8	EBOOT:277ab6	A beautiful gem
-1164	0x3aff8	EBOOT:277ab6	A beautiful gem
-1165	0x3b008	EBOOT:277ab6	A beautiful gem
-1166	0x3b018	EBOOT:277ab6	A beautiful gem
-1167	0x3b028	EBOOT:277ab6	A beautiful gem
-1168	0x3b03c	EBOOT:277ab6	A beautiful gem
-1169	0x3b04c	EBOOT:277ab6	A beautiful gem
-1170	0x3b058	EBOOT:277ab6	A beautiful gem
-1171	0x3b068	EBOOT:277a7e	Some apple pie Ayase baked
-1172	0x3b07c	EBOOT:277a46	Some appIe pie Ayase baked
-1173	0x3b090	EBOOT:277a0e	Some aqqIe pie Ayase baked
-1174	0x3b0a4	EBOOT:2779ca	The drama club's Snow Queen mask
-1175	0x3b0c0	EBOOT:27798a	A fragment of the Demon Mirror
-1176	0x3b0d8	EBOOT:27793a	The key to the cell in the Dream World
-1177	0x3b0ec	EBOOT:27790e	The food of the gods
-1178	0x3b120	EBOOT:277888	The last piece of apple pie
-1179	0x3b134	EBOOT:277850	The last piece of appIe pie
-1180	0x3b148	EBOOT:277818	The last piece of aqqIe pie
-1181	0x3b15c	EBOOT:2777d2	Opens the secret factory entrance
-1182	0x3b178	EBOOT:2777b2	Maki's compact
-1183	0x3b18c	EBOOT:277784	Opens the police cells
-1184	0x3b1a4	EBOOT:277748	If you use it at the ruins...
-1185	0x3b1bc	EBOOT:277704	Nullifies a certain demon's power
-1186	0x3b1d4	EBOOT:2776c8	The mysterious girl's compact
-1187	0x3b1ec	EBOOT:277694	The "real" Maki's compact
-1188	0x3b204	EBOOT:27764e	A fragment of the Mirror of Chaos
-1189	0x3b220	EBOOT:277618	The "ideal" Maki's compact
-1190	0x3b238	EBOOT:2775dc	The "awakened" Maki's compact
-1191	0x3b250	EBOOT:27759e	A special item used in fusion
-1192	0x39dfc	EBOOT:27b65c	Medium Death DMG each turn (area)
-1193	0x39e14	EBOOT:277f2e	Heavy Death DMG each turn (all foes)
-1194	0x39e2c	EBOOT:27b60a	Death DMG/Insta Angel kill (1 foe)
-1195	0x39e40	EBOOT:27b5ba	Death DMG/Insta Angel kill (area)
-1196	0x39e54	EBOOT:277ed6	Death DMG/Insta Angel kill (all foes)
-1197	0x39f8c	EBOOT:27b246	Gives Fury/Cures ailments (1 ally)
-1198	0x39fa8	EBOOT:27b1ea	Gives Berserk/Cures ailments (1 ally)
-1199	0x39fc4	EBOOT:27b192	Gives Beast/Cures ailments (1 ally)
-1200	0x3a064	EBOOT:27b0fc	Medium Expel DMG each turn (area)
-1201	0x3a07c	EBOOT:277d4a	Heavy Expel DMG each turn (all foes)
-1202	0x3a094	EBOOT:27b0aa	Expel DMG/Insta Grave kill (1 foe)
-1203	0x3a0a8	EBOOT:27b05a	Expel DMG/Insta Grave kill (area)
-1204	0x3a0bc	EBOOT:277cf4	Expel DMG/Insta Grave kill (all foes)
-1205	0x3a1a4	EBOOT:278bea	Reflects 25% magic DMG, 1 turn
-1206	0x3a1b8	EBOOT:278ba8	Reflects 25% phys DMG, 1 turn
-1207	0x3a18c	EBOOT:278c30	Removes LV decrease (all allies)
-1208	0x3ae34	EBOOT:278a70	Increase Dexterity by 1
-1209	0x3a340	EBOOT:27ad06	Insta escape from the dungeon
-1210	0x3a350	EBOOT:27ad48	Insta escape from a battle
-1211	0x3a5ec	EBOOT:27a650	Party reflects 25% spell DMG, 2 turns
-1212	0x3a604	EBOOT:27a600	Party reflects 25% phys DMG, 2 turns
-1213	0x3a7fc	EBOOT:27a1c6	Light Rush DMG (1 foe)
-1214	0x3a87c	EBOOT:27a082	Light Tech DMG (1 foe)
-1215	0x3a8fc	EBOOT:279f34	Light Tech DMG+Poison (area)
-1216	0x3a918	EBOOT:279eee	Light Tech DMG+Paralyze (area)
-1217	0x3a934	EBOOT:279ebc	Light Tech DMG (area)
-1218	0x3a948	EBOOT:279e86	Light Tech DMG (1 foe)
-1219	0x3a970	EBOOT:279e16	Medium Rush DMG (1 foe)
-1220	0x3a984	EBOOT:279de0	Medium Rush DMG (1 foe)
-1221	0x3a9c0	EBOOT:279d44	Light Rush DMG (1 foe)
-1222	0x3a9d0	EBOOT:279d10	Light Rush DMG (1 foe)
-1223	0x3a9e8	EBOOT:279cdc	Light Rush DMG (1 foe)
-1224	0x3a9fc	EBOOT:279ca8	Light Rush DMG (1 foe)
-1225	0x3aa10	EBOOT:279c74	Light Rush DMG (1 foe)
-1226	0x3ad14	EBOOT:27954e	Special Phys DMG (1 foe)
-1227	0x3ad2c	EBOOT:279506	Special Phys DMG+Charge (1 foe)
-1228	0x3ad80	EBOOT:279436	Special Phys DMG; user dies (area)
-1229	0x3ada0	EBOOT:2793ec	Heavy special Phys DMG (all foes)
-1230	0x39f28	EBOOT:27b398	No HP recovery for 3 turns (1 foe)
-1231	0x39f3c	EBOOT:27b34c	No Persona change for 3 turns (1 foe)
-1232	0x33350	EBOOT:2735cc	Yomotsu Shikome
-1233	0x34348	EBOOT:274ee4	Yog-Sothoth Jr.
-1234	0x34d8c	EBOOT:26a700	Silver Prayer Wheel
-1235	0x3526c	EBOOT:26b0c0	Evil Quake Tablet
-1236	0x352ec	EBOOT:26b1c0	Scorching Tablet
-1237	0x3548c	EBOOT:26b500	Dark Wave Tablet
-1238	0x354cc	EBOOT:26b580	Ebon Rope Tablet
-1239	0x3556c	EBOOT:26b6c0	Falsehood Tablet
-1240	0x3558c	EBOOT:26b700	Light Wave Tablet
-1241	0x355ac	EBOOT:26b740	Holy Writ Tablet
-1242	0x355cc	EBOOT:26b780	Quarter Moon Tablet
-1243	0x355ec	EBOOT:26b7c0	Half Moon Tablet
-1244	0x3568c	EBOOT:26b900	Full Moon Tablet
-1245	0x35bac	EBOOT:26c340	Masamune's Eyepatch
-1246	0x35cac	EBOOT:26c540	Prosecutor's Diary
-1247	0x35ccc	EBOOT:26c580	Judgement Contract
-1248	0x35d4c	EBOOT:26c680	Suitengu Talisman
-1249	0x35d6c	EBOOT:26c6c0	Black Garter Belt
-1250	0x35d8c	EBOOT:26c700	Kolkata Souvenir
-1251	0x35dcc	EBOOT:26c780	Emperor Wu's Peach
-1252	0x35f0c	EBOOT:26ca00	Tora Stomachband
-1253	0x35fec	EBOOT:26cbc0	Babylonian Coffin
-1254	0x3610c	EBOOT:26ce00	Fuuma's Wakizashi
-1255	0x3618c	EBOOT:26cf00	Futsu-no-Mitama
-1256	0x365ec	EBOOT:26d7c0	Kabutsuchi Kyouko
-1257	0x3660c	EBOOT:26d800	Gouma Daisetsudan
-1258	0x368ec	EBOOT:26ddc0	Wu Huo Shen Yan Shan
-1259	0x36bec	EBOOT:26e3c0	Stroke of Darkness
-1260	0x36c2c	EBOOT:26e440	Yuuma Ankoku Sho
-1261	0x36c4c	EBOOT:26e480	Shinsa Bakunetsu Sho
-1262	0x36eec	EBOOT:26e9c0	Gettou Soutenhou
-1263	0x36f4c	EBOOT:26ea80	Kokonoe Raijinhou
-1264	0x3788c	EBOOT:26fd00	Hamagari Gauntlet
-1265	0x378cc	EBOOT:26fd80	Shishiou Gauntlet
-1266	0x3790c	EBOOT:26fe00	Daybreak Gauntlet
-1267	0x3794c	EBOOT:26fe80	Seiryuu Gauntlet
-1268	0x37b0c	EBOOT:270200	Daybreak Greaves
-1269	0x39854	EBOOT:28374c	Sonomura
-1270	0x3985e	EBOOT:28374c	Maki
-1271	0x39868	EBOOT:28376a	Uesugi
-1272	0x39872	EBOOT:28376a	Hidehiko
-1273	0x3987c	EBOOT:28378c	Nanjo
-1274	0x39886	EBOOT:28378c	Kei
-1275	0x39890	EBOOT:2837aa	Inaba
-1276	0x3989a	EBOOT:2837aa	Masao
-1277	0x398a4	EBOOT:2837ca	Kirishima
-1278	0x398ae	EBOOT:2837ca	Eriko
-1279	0x398b8	EBOOT:2837ec	Ayase
-1280	0x398c2	EBOOT:2837ec	Yuka
-1281	0x398cc	EBOOT:28380a	Mayuzumi
-1282	0x398d6	EBOOT:28380a	Yukino
-1283	0x398e0	EBOOT:28382c	Kido
-1284	0x398ea	EBOOT:28382c	Reiji
+958	0x39854	EBOOT:28374c	Sonomura
+959	0x3985e	EBOOT:28374c	Maki
+960	0x39868	EBOOT:28376a	Uesugi
+961	0x39872	EBOOT:28376a	Hidehiko
+962	0x3987c	EBOOT:28378c	Nanjo
+963	0x39886	EBOOT:28378c	Kei
+964	0x39890	EBOOT:2837aa	Inaba
+965	0x3989a	EBOOT:2837aa	Masao
+966	0x398a4	EBOOT:2837ca	Kirishima
+967	0x398ae	EBOOT:2837ca	Eriko
+968	0x398b8	EBOOT:2837ec	Ayase
+969	0x398c2	EBOOT:2837ec	Yuka
+970	0x398cc	EBOOT:28380a	Mayuzumi
+971	0x398d6	EBOOT:28380a	Yukino
+972	0x398e0	EBOOT:28382c	Kido
+973	0x398ea	EBOOT:28382c	Reiji
+974	0x39904	EBOOT:27ba6e	Light Fire DMG (1 foe)
+975	0x3991c	EBOOT:27ba38	Medium Fire DMG (1 foe)
+976	0x39934	EBOOT:27871e	Heavy Fire DMG (area)
+977	0x3994c	EBOOT:2786e4	Light Fire DMG (all foes)
+978	0x39964	EBOOT:2786a6	Medium Fire DMG (all foes)
+979	0x3997c	EBOOT:27866a	Heavy Fire DMG (all foes)
+980	0x39994	EBOOT:27b9f6	Light Ice DMG+Freeze (1 foe)
+981	0x399b4	EBOOT:27b9b4	Medium Ice DMG+Freeze (1 foe)
+982	0x399d4	EBOOT:27864e	Heavy Ice DMG+Freeze (area)
+983	0x399f4	EBOOT:2785e4	Light Ice DMG+Freeze (all foes)
+984	0x39a14	EBOOT:27859a	Medium Ice DMG+Freeze (all foes)
+985	0x39a34	EBOOT:278576	Heavy Ice DMG+Freeze (all foes)
+986	0x39a54	EBOOT:27b97e	Light Wind DMG (1 foe)
+987	0x39a6c	EBOOT:27b946	Medium Wind DMG (1 foe)
+988	0x39a84	EBOOT:27851e	Heavy Wind DMG (area)
+989	0x39a9c	EBOOT:2784e4	Light Wind DMG (all foes)
+990	0x39ab4	EBOOT:2784a6	Medium Wind DMG (all foes)
+991	0x39acc	EBOOT:27846c	Heavy Wind DMG (all foes)
+992	0x39ae4	EBOOT:27b910	Light Earth DMG (1 foe)
+993	0x39afc	EBOOT:27b8d6	Medium Earth DMG (1 foe)
+994	0x39b14	EBOOT:278438	Heavy Earth DMG (area)
+995	0x39b2c	EBOOT:2783fa	Light Earth DMG (all foes)
+996	0x39b44	EBOOT:2783bc	Medium Earth DMG (all foes)
+997	0x39b5c	EBOOT:27837e	Heavy Earth DMG (all foes)
+998	0x39b74	EBOOT:27b89c	Light Nuclear DMG (1 foe)
+999	0x39b8c	EBOOT:27b85e	Medium Nuclear DMG (1 foe)
+1000	0x39ba4	EBOOT:278344	Heavy Nuclear DMG (1 foe)
+1001	0x39bbc	EBOOT:278302	Light Nuclear DMG (all foes)
+1002	0x39bd4	EBOOT:2782c0	Medium Nuclear DMG (all foes)
+1003	0x39bec	EBOOT:278280	Heavy Nuclear DMG (all foes)
+1004	0x39c04	EBOOT:27b828	Light Blast DMG (1 foe)
+1005	0x39c1c	EBOOT:27b7ee	Medium Blast DMG (1 foe)
+1006	0x39c34	EBOOT:27824c	Heavy Blast DMG (area)
+1007	0x39c4c	EBOOT:27820e	Light Blast DMG (all foes)
+1008	0x39c64	EBOOT:2781d0	Medium Blast DMG (all foes)
+1009	0x39c7c	EBOOT:278194	Heavy Blast DMG (all foes)
+1010	0x39c94	EBOOT:27b7b4	Light Gravity DMG (1 foe)
+1011	0x39cac	EBOOT:27b778	Medium Gravity DMG (1 foe)
+1012	0x39cc4	EBOOT:27815c	Heavy Gravity DMG (area)
+1013	0x39cdc	EBOOT:27811a	Light Gravity DMG (all foes)
+1014	0x39cf4	EBOOT:2780d8	Medium Gravity DMG (all foes)
+1015	0x39d0c	EBOOT:278096	Heavy Gravity DMG (all foes)
+1016	0x39d24	EBOOT:27b736	Light Elec DMG+Shock (1 foe)
+1017	0x39d44	EBOOT:27b6f2	Medium Elec DMG+Shock (1 foe)
+1018	0x39d64	EBOOT:27807c	Heavy Elec DMG+Shock (area)
+1019	0x39d84	EBOOT:278010	Light Elec DMG+Shock (all foes)
+1020	0x39da4	EBOOT:277fc6	Medium Elec DMG+Shock (all foes)
+1021	0x39dc4	EBOOT:277fa4	Heavy Elec DMG+Shock (all foes)
+1022	0x39de4	EBOOT:27b6a6	Light Death DMG each turn (1 foe)
+1023	0x39dfc	EBOOT:27b65c	Medium Death DMG each turn (area)
+1024	0x39e14	EBOOT:277f2e	Heavy Death DMG each turn (all foes)
+1025	0x39e2c	EBOOT:27b60a	Death DMG/Insta Angel kill (1 foe)
+1026	0x39e40	EBOOT:27b5ba	Death DMG/Insta Angel kill (area)
+1027	0x39e54	EBOOT:277ed6	Death DMG/Insta Angel kill (all foes)
+1028	0x39e68	EBOOT:27aa1e	Inflicts Sleep (area)
+1029	0x39e80	EBOOT:27a9ac	Inflicts Bind (area)
+1030	0x39e98	EBOOT:27a9e4	Inflicts Panic (area)
+1031	0x39eb0	EBOOT:27ab0e	Inflicts Happy (area)
+1032	0x39ec8	EBOOT:27a938	Inflicts Charm (area)
+1033	0x39ee0	EBOOT:27aa96	Inflicts Mute (area)
+1034	0x39ef8	EBOOT:27b41e	Inflicts Blind (area)
+1035	0x39f10	EBOOT:27aad0	Inflicts Unlucky (area)
+1036	0x39f28	EBOOT:27b398	No HP recovery for 3 turns (1 foe)
+1037	0x39f3c	EBOOT:27b34c	No Persona change for 3 turns (1 foe)
+1038	0x39f50	EBOOT:27b312	Gives Cloak (1 ally)
+1039	0x39f64	EBOOT:27b2d8	Gives Puppet (1 ally)
+1040	0x39f78	EBOOT:27b29c	Gives Counter (1 ally)
+1041	0x39f8c	EBOOT:27b246	Gives Fury/Cures ailments (1 ally)
+1042	0x39fa8	EBOOT:27b1ea	Gives Berserk/Cures ailments (1 ally)
+1043	0x39fc4	EBOOT:27b192	Gives Beast/Cures ailments (1 ally)
+1044	0x39fe0	EBOOT:27ac00	Insta Death kill (1 foe)
+1045	0x39ff4	EBOOT:27ac36	Inflict Stone (1 foe)
+1046	0x3a008	EBOOT:27ac72	Inflict Paralyze (1 foe)
+1047	0x3a01c	EBOOT:27a064	Light Tech DMG+Poison (1 foe)
+1048	0x3a030	EBOOT:279fdc	Light Tech DMG+Sick (1 foe)
+1049	0x3a04c	EBOOT:27b146	Light Expel DMG each turn (1 foe)
+1050	0x3a064	EBOOT:27b0fc	Medium Expel DMG each turn (area)
+1051	0x3a07c	EBOOT:277d4a	Heavy Expel DMG each turn (all foes)
+1052	0x3a094	EBOOT:27b0aa	Expel DMG/Insta Grave kill (1 foe)
+1053	0x3a0a8	EBOOT:27b05a	Expel DMG/Insta Grave kill (area)
+1054	0x3a0bc	EBOOT:277cf4	Expel DMG/Insta Grave kill (all foes)
+1055	0x3a0d0	EBOOT:27b028	Lowers Attack (all foes)
+1056	0x3a0e4	EBOOT:27aff2	Lowers Defense (all foes)
+1057	0x3a0f8	EBOOT:27afbc	Lowers Hit rate (all foes)
+1058	0x3a10c	EBOOT:27af72	Removes stat penalties (all allies)
+1059	0x3a124	EBOOT:27af3c	Raises Attack (all allies)
+1060	0x3a138	EBOOT:27af02	Raises Defense (all allies)
+1061	0x3a14c	EBOOT:27aec8	Raises Hit Rate (all allies)
+1062	0x3a160	EBOOT:27ae94	Raises Magic (all allies)
+1063	0x3a174	EBOOT:27ae54	Removes stat bonuses (all foes)
+1064	0x3a18c	EBOOT:278c30	Removes LV decrease (all allies)
+1065	0x3a1a4	EBOOT:278bea	Reflects 25% magic DMG, 1 turn
+1066	0x3a1b8	EBOOT:278ba8	Reflects 25% phys DMG, 1 turn
+1067	0x3a1cc	EBOOT:278ea8	Restores a little HP (1 ally)
+1068	0x3a1e0	EBOOT:278e6c	Restores moderate HP (1 ally)
+1069	0x3a1f0	EBOOT:278e36	Restores full HP (1 ally)
+1070	0x3a204	EBOOT:27ae10	Restores a little HP (all allies)
+1071	0x3a218	EBOOT:27adca	Restores moderate HP (all allies)
+1072	0x3a228	EBOOT:277cb8	Restores full HP (all allies)
+1073	0x3a23c	EBOOT:278cc4	Cures ailments (1 ally)
+1074	0x3a254	EBOOT:278c72	Cures 1 degree of ailments (all allies)
+1075	0x3a270	EBOOT:278d2a	Cures Poison (1 ally)
+1076	0x3a288	EBOOT:278d66	Cures Paralyze (1 ally)
+1077	0x3a2a0	EBOOT:278da6	Cures Stone (1 ally)
+1078	0x3a2b8	EBOOT:278cf4	Cures Sick (1 ally)
+1079	0x3a2d0	EBOOT:278e18	Revives 1 ally
+1080	0x3a2e8	EBOOT:278de0	Revives 1 ally with full HP
+1081	0x3a304	EBOOT:27ad82	Sacrifice life to fully heal party
+1082	0x3a324	EBOOT:278b78	Shows a map of the area
+1083	0x3a340	EBOOT:27ad06	Insta escape from the dungeon
+1084	0x3a350	EBOOT:27ad48	Insta escape from a battle
+1085	0x3a35c	EBOOT:2774b8	Wards off weak foes
+1086	0x3a368	EBOOT:278afe	Temporarily nulls damage floors
+1087	0x3a39c	EBOOT:27ac72	Inflict Paralyze (1 foe)
+1088	0x3a3b0	EBOOT:27ac36	Inflict Stone (1 foe)
+1089	0x3a3c4	EBOOT:27ac00	Insta Death kill (1 foe)
+1090	0x3a3d8	EBOOT:27abc2	Inflicts Guilt (1 foe)
+1091	0x3a3f0	EBOOT:27ab86	Inflicts Fear (1 foe)
+1092	0x3a408	EBOOT:27a938	Inflicts Charm (area)
+1093	0x3a420	EBOOT:27ab0e	Inflicts Happy (area)
+1094	0x3a438	EBOOT:27aad0	Inflicts Unlucky (area)
+1095	0x3a450	EBOOT:27aa96	Inflicts Mute (area)
+1096	0x3a468	EBOOT:27aa5a	Inflicts Guilt (area)
+1097	0x3a480	EBOOT:27aa1e	Inflicts Sleep (area)
+1098	0x3a498	EBOOT:27a9e4	Inflicts Panic (area)
+1099	0x3a4b0	EBOOT:27a9ac	Inflicts Bind (area)
+1100	0x3a4c8	EBOOT:27a972	Inflicts Fear (area)
+1101	0x3a4e0	EBOOT:27a938	Inflicts Charm (area)
+1102	0x3a4f8	EBOOT:27a90c	Lowers LV+Paralyze (1 male foe)
+1103	0x3a50c	EBOOT:27a8c8	Lowers LV+Paralyze (1 female foe)
+1104	0x3a520	EBOOT:27a884	Lowers LV+Paralyze (1 human foe)
+1105	0x3a538	EBOOT:27a83c	Lowers experience (1 foe)
+1106	0x3a54c	EBOOT:27a808	Medium Fire DMG (area)
+1107	0x3a560	EBOOT:27a53c	Medium Ice DMG+Freeze (area)
+1108	0x3a57c	EBOOT:27a7ac	Medium Nerve DMG+Poison (area)
+1109	0x3a598	EBOOT:27a768	Medium Nerve DMG+Blind (area)
+1110	0x3a5b4	EBOOT:27a6f2	Party absorbs 50% Ice spells, 3 turns
+1111	0x3a5ec	EBOOT:27a650	Party reflects 25% spell DMG, 2 turns
+1112	0x3a604	EBOOT:27a600	Party reflects 25% phys DMG, 2 turns
+1113	0x3a61c	EBOOT:27a598	Medium Fire DMG (area)
+1114	0x3a638	EBOOT:27a5cc	Medium Fire DMG (area)
+1115	0x3a654	EBOOT:27a57c	Medium Ice DMG+Freeze (area)
+1116	0x3a670	EBOOT:27a7ec	Medium Ice DMG+Freeze (area)
+1117	0x3a68c	EBOOT:27a4ae	Medium Wind DMG (area)
+1118	0x3a6a8	EBOOT:27a4e4	Medium Wind DMG (area)
+1119	0x3a6c4	EBOOT:27a43e	Medium Earth DMG (area)
+1120	0x3a6e0	EBOOT:27a476	Medium Earth DMG (area)
+1121	0x3a6fc	EBOOT:27a3d0	Medium Blast DMG (area)
+1122	0x3a718	EBOOT:27a406	Medium Blast DMG (area)
+1123	0x3a734	EBOOT:27a376	Medium Elec DMG+Shock (area)
+1124	0x3a750	EBOOT:27a3b6	Medium Elec DMG+Shock (area)
+1125	0x3a76c	EBOOT:27a2e8	Heavy Curse DMG (area)
+1126	0x3a788	EBOOT:27a31c	Heavy Curse DMG (area)
+1127	0x3a7a4	EBOOT:27a278	Heavy Miracle DMG (area)
+1128	0x3a7c0	EBOOT:27a2b0	Heavy Miracle DMG (area)
+1129	0x3a7dc	EBOOT:27a246	Summons multiple demons
+1130	0x3a7ec	EBOOT:27a1fc	Prevents escape from battle, 3 turns
+1131	0x3a7fc	EBOOT:27a1c6	Light Rush DMG (1 foe)
+1132	0x3a80c	EBOOT:277dde	Inflicts Poison (1 foe)
+1133	0x3a828	EBOOT:277e1e	Inflicts Paralyze (1 foe)
+1134	0x3a844	EBOOT:277da4	Inflicts Sick (1 foe)
+1135	0x3a860	EBOOT:277e62	Inflicts Stone (1 foe)
+1136	0x3a87c	EBOOT:27a082	Light Tech DMG (1 foe)
+1137	0x3a88c	EBOOT:277dde	Inflicts Poison (1 foe)
+1138	0x3a8a8	EBOOT:277e1e	Inflicts Paralyze (1 foe)
+1139	0x3a8c4	EBOOT:277da4	Inflicts Sick (1 foe)
+1140	0x3a8e0	EBOOT:277e62	Inflicts Stone (1 foe)
+1141	0x3a8fc	EBOOT:279f34	Light Tech DMG+Poison (area)
+1142	0x3a918	EBOOT:279eee	Light Tech DMG+Paralyze (area)
+1143	0x3a934	EBOOT:279ebc	Light Tech DMG (area)
+1144	0x3a948	EBOOT:279e86	Light Tech DMG (1 foe)
+1145	0x3a95c	EBOOT:279e4e	Medium Rush DMG (1 foe)
+1146	0x3a970	EBOOT:279e16	Medium Rush DMG (1 foe)
+1147	0x3a984	EBOOT:279de0	Medium Rush DMG (1 foe)
+1148	0x3a998	EBOOT:279d78	Heavy Rush DMG (1 foe)
+1149	0x3a9ac	EBOOT:279dac	Heavy Rush DMG (1 foe)
+1150	0x3a9c0	EBOOT:279d44	Light Rush DMG (1 foe)
+1151	0x3a9d0	EBOOT:279d10	Light Rush DMG (1 foe)
+1152	0x3a9e8	EBOOT:279cdc	Light Rush DMG (1 foe)
+1153	0x3a9fc	EBOOT:279ca8	Light Rush DMG (1 foe)
+1154	0x3aa10	EBOOT:279c74	Light Rush DMG (1 foe)
+1155	0x3aa24	EBOOT:279bd8	Medium Fist DMG (area)
+1156	0x3aa38	EBOOT:279c0c	Light Fist DMG (1 foe)
+1157	0x3aa50	EBOOT:279c40	Light Fist DMG (1 foe)
+1158	0x3aa68	EBOOT:279b3c	Medium Tech DMG (area)
+1159	0x3aa7c	EBOOT:279b70	Light Tech DMG (1 foe)
+1160	0x3aa94	EBOOT:279ba4	Light Tech DMG (1 foe)
+1161	0x3aaac	EBOOT:279a96	Heavy Sword DMG (area)
+1162	0x3aac4	EBOOT:279acc	Heavy Sword DMG (1 foe)
+1163	0x3aae0	EBOOT:279b02	Medium Sword DMG (1 foe)
+1164	0x3aafc	EBOOT:2799de	Heavy Two-Hand DMG (area)
+1165	0x3ab14	EBOOT:279a1a	Heavy Two-Hand DMG (1 foe)
+1166	0x3ab30	EBOOT:279a58	Medium Two-Hand DMG (1 foe)
+1167	0x3ab4c	EBOOT:27993a	Heavy Spear DMG (area)
+1168	0x3ab60	EBOOT:279970	Heavy Spear DMG (1 foe)
+1169	0x3ab78	EBOOT:2799a6	Medium Spear DMG (area)
+1170	0x3ab90	EBOOT:27989e	Heavy Axe DMG (1 foe)
+1171	0x3aba4	EBOOT:2798d2	Heavy Axe DMG (1 foe)
+1172	0x3abbc	EBOOT:279906	Heavy Axe DMG (1 foe)
+1173	0x3abd4	EBOOT:279802	Medium Whip DMG (area)
+1174	0x3abe8	EBOOT:279838	Medium Whip DMG (area)
+1175	0x3ac00	EBOOT:27986c	Light Whip DMG (area)
+1176	0x3ac18	EBOOT:27975a	Heavy Thrown DMG (area)
+1177	0x3ac30	EBOOT:279792	Medium Thrown DMG (area)
+1178	0x3ac4c	EBOOT:2797cc	Light Thrown DMG (area)
+1179	0x3ac64	EBOOT:2796b6	Heavy Arrow DMG (area)
+1180	0x3ac7c	EBOOT:2796ec	Medium Arrow DMG (area)
+1181	0x3ac98	EBOOT:279722	Medium Arrow DMG (area)
+1182	0x3acb0	EBOOT:27967a	Light Handgun DMG (1 foe)
+1183	0x3acc4	EBOOT:279638	Light Machine Gun DMG (1 foe)
+1184	0x3acd8	EBOOT:2795f8	Light Machine Gun DMG (area)
+1185	0x3acec	EBOOT:2795be	Light Shotgun DMG (area)
+1186	0x3ad04	EBOOT:279588	Light Rifle DMG (1 foe)
+1187	0x3ad14	EBOOT:27954e	Special Phys DMG (1 foe)
+1188	0x3ad2c	EBOOT:279506	Special Phys DMG+Charge (1 foe)
+1189	0x3ad48	EBOOT:2794da	Random DMG (area)
+1190	0x3ad80	EBOOT:279436	Special Phys DMG; user dies (area)
+1191	0x3ada0	EBOOT:2793ec	Heavy special Phys DMG (all foes)
+1192	0x3adbc	EBOOT:2793aa	Insta kill; user dies (1 foe)
+1193	0x3add4	EBOOT:27938a	Split into two
+1194	0x3ade8	EBOOT:279354	1 DMG each turn (1 foe)
+1195	0x3ae04	EBOOT:278ace	Increase Strength by 1
+1196	0x3ae1c	EBOOT:278aa0	Increase Vitality by 1
+1197	0x3ae34	EBOOT:278a70	Increase Dexterity by 1
+1198	0x3ae4c	EBOOT:278a42	Increase Agility by 1
+1199	0x3ae64	EBOOT:278a1a	Increase Luck by 1
+1200	0x3ae7c	EBOOT:2789e6	Increase maximum HP by 5
+1201	0x3ae90	EBOOT:2789b2	Increase maximum SP by 5
+1202	0x3aea4	EBOOT:278966	Restores HP/Increase max HP (1 ally)
+1203	0x3aeb8	EBOOT:27891c	Restores a little HP and SP (1 ally)
+1204	0x3aec8	EBOOT:2788e0	Cures all but severe ailments
+1205	0x3aee4	EBOOT:2788ac	Cures all ailments but KO
+1206	0x3af0c	EBOOT:278820	Reduce HP to 1 (all foes)
+1207	0x3af20	EBOOT:2787fa	Sucks in all foes
+1208	0x3af30	EBOOT:2787c8	Blows all foes backwards
+1209	0x3af40	EBOOT:27878c	Restores a little SP (1 ally)
+1210	0x3af4c	EBOOT:278752	Play 1 game of Code Breaker
+1211	0x3af64	EBOOT:277ab6	A beautiful gem
+1212	0x3af78	EBOOT:277ab6	A beautiful gem
+1213	0x3af88	EBOOT:277ab6	A beautiful gem
+1214	0x3af98	EBOOT:277ab6	A beautiful gem
+1215	0x3afa8	EBOOT:277ab6	A beautiful gem
+1216	0x3afb8	EBOOT:277ab6	A beautiful gem
+1217	0x3afc8	EBOOT:277ab6	A beautiful gem
+1218	0x3afd8	EBOOT:277ab6	A beautiful gem
+1219	0x3afe8	EBOOT:277ab6	A beautiful gem
+1220	0x3aff8	EBOOT:277ab6	A beautiful gem
+1221	0x3b008	EBOOT:277ab6	A beautiful gem
+1222	0x3b018	EBOOT:277ab6	A beautiful gem
+1223	0x3b028	EBOOT:277ab6	A beautiful gem
+1224	0x3b03c	EBOOT:277ab6	A beautiful gem
+1225	0x3b04c	EBOOT:277ab6	A beautiful gem
+1226	0x3b058	EBOOT:277ab6	A beautiful gem
+1227	0x3b068	EBOOT:277a7e	Some apple pie Ayase baked
+1228	0x3b07c	EBOOT:277a46	Some appIe pie Ayase baked
+1229	0x3b090	EBOOT:277a0e	Some aqqIe pie Ayase baked
+1230	0x3b0a4	EBOOT:2779ca	The drama club's Snow Queen mask
+1231	0x3b0c0	EBOOT:27798a	A fragment of the Demon Mirror
+1232	0x3b0d8	EBOOT:27793a	The key to the cell in the Dream World
+1233	0x3b0ec	EBOOT:27790e	The food of the gods
+1234	0x3b120	EBOOT:277888	The last piece of apple pie
+1235	0x3b134	EBOOT:277850	The last piece of appIe pie
+1236	0x3b148	EBOOT:277818	The last piece of aqqIe pie
+1237	0x3b15c	EBOOT:2777d2	Opens the secret factory entrance
+1238	0x3b178	EBOOT:2777b2	Maki's compact
+1239	0x3b18c	EBOOT:277784	Opens the police cells
+1240	0x3b1a4	EBOOT:277748	If you use it at the ruins...
+1241	0x3b1bc	EBOOT:277704	Nullifies a certain demon's power
+1242	0x3b1d4	EBOOT:2776c8	The mysterious girl's compact
+1243	0x3b1ec	EBOOT:277694	The "real" Maki's compact
+1244	0x3b204	EBOOT:27764e	A fragment of the Mirror of Chaos
+1245	0x3b220	EBOOT:277618	The "ideal" Maki's compact
+1246	0x3b238	EBOOT:2775dc	The "awakened" Maki's compact
+1247	0x3b250	EBOOT:27759e	A special item used in fusion

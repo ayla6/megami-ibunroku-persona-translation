@@ -20,9 +20,9 @@ produced the release patches) compiled to WebAssembly - see
   SHA-256 must match the manifest, and the output size must match the row.
   When the applied options are exactly the row's canonical source, xdelta's
   own window checksums verify the step. A decorated disc (other in-place
-  options riding along) is decoded with `-n`; the release build proved that
-  exact decode over the maximally decorated parent and recorded it as
-  `proof_choices`/`proof_sha256`.
+  options riding along) is decoded with `-n`; the release build verified
+  the chains by sampling real built discs and recorded the selections that
+  exercised each row in `verified`.
 - What each option is called and what it does lives in
   `tools/release_options.json` - the single place option wording exists.
   The release README is generated from it, and the Pages workflow turns
@@ -50,8 +50,10 @@ produced the release patches) compiled to WebAssembly - see
 - The chain is derived from the manifest itself: selected options apply in
   `order`, each picking the most specific `add-` row whose `anchor` is
   already applied (for example `rev1-to-rev0` on Rev 1 discs, then
-  `rev0-to-base`, `add-mark`, `add-saves`, `add-60fps-saves`). A wrong or
-  corrupt file fails with a clear message instead of producing a download.
+  `rev0-to-base`, `add-saves`, `add-60fps-saves`, `add-mark-saves-60fps`).
+  Size-changers come first; in-place options are encoded per size-changer
+  layout. A wrong or corrupt file fails with a clear message instead of
+  producing a download.
 - The source disc and patch files are mounted read-only through a small
   WORKERFS (`workerfs.js`) because the vendored wasm build exposes
   Emscripten's `FS` but not its workerfs library. A rebuild that includes

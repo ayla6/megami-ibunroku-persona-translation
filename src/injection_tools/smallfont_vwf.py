@@ -118,7 +118,7 @@ def text_bits():
     8 px path. Built from the same encoders the writers use (toolbelt's
     small-font table), never from a hand-kept code list."""
     codes = {toolbelt.smallfont_char(c) for c in
-             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .-:/,'"}
+             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .-:/,'!"}
     if None in codes:
         raise SystemExit('smallfont_vwf: a text character has no small-font code')
     bits = bytearray(CODES // 8)

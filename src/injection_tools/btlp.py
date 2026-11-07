@@ -865,6 +865,8 @@ def neg_build(d, rows_by_pos, body):
                 toolbelt.fail(f'CONTACT demon {ident}: name exceeds scratch')
             if len(glyphs) + 7 + 1 > 24:
                 toolbelt.fail(f'ANALYZE demon {ident}: name exceeds row storage')
+            if len(glyphs) > 15:
+                toolbelt.fail(f'Board 23 demon {ident}: name exceeds its 16-cell row')
             pen = right = 0
             for glyph in glyphs:
                 metric = widths[glyph]
@@ -1353,31 +1355,44 @@ def dump():
     print(f'btlp: {len(rows)} rows -> {toolbelt.gen_path(REL)}')
 
 
-def board_drafts(d, rows):
-    """Positions of full user/source wording not yet rendered by BTLP boards."""
+def board_unshipped(d, rows):
+    """Battle-board rows whose English is not written to the disc.
+
+    With the small-font VWF gate off the object rows keep their retail
+    Japanese, so every translated board row is unshipped.
+    """
     import battle_board_text
-    positions = {hex(off) for off, _ja in battle_board_text.scan(d)}
-    return sorted((r['pos'] for r in rows
-                   if r['pos'] in positions and (r.get('en') or '').strip()),
-                  key=lambda pos: int(pos, 16))
+    if not features.on('SF_VWF'):
+        by_pos = {r['pos']: r for r in rows}
+        return {hex(off) for off, _ja in battle_board_text.scan(d)
+                if (by_pos.get(hex(off)) or {}).get('en', '').strip()}
+    return {hex(pos) for pos in battle_board_text.plan(d, rows)['unshipped']}
 
 
 def build():
     d = data()
     rows = toolbelt.merged_rows(REL)
-    drafts = board_drafts(d, rows)
-    draft_path = os.path.join(ROOT, 'build', 'btl_board_drafts.tsv')
-    with open(draft_path, 'w', encoding='utf-8', newline=NL) as output:
-        output.write('pos\n' + ''.join(pos + NL for pos in drafts))
-    if drafts:
-        print(f'btlp: {len(drafts)} battle-board draft(s) retained unshipped; '
-              'small-font VWF and text storage are not yet implemented')
     by_pos = {r['pos']: r for r in rows}
     body = []
     evt_build(d, by_pos, body)
     msg_build(d, by_pos, body)
     neg_build(d, by_pos, body)
     ban_build(d, by_pos, body)
+    board = None
+    if features.on('SF_VWF'):
+        import battle_board_text
+        board_body, board = battle_board_text.build(d, by_pos)
+        body.extend(board_body)
+        print(f'btlp: {len(board["translated"])} battle-board lists translated '
+              f'({len(board["strings"])} strings, '
+              f'{sum(len(s) for _a, s in board["strings"])} bytes); '
+              f'{len(board["deferred"])} row(s) deferred by the fit gate, '
+              f'{len(board["unshipped"])} row(s) unshipped')
+    else:
+        import battle_board_text
+        kept = sum(1 for off, _ja in battle_board_text.scan(d)
+                   if (by_pos.get(hex(off)) or {}).get('en', '').strip())
+        print(f'btlp: SF_VWF is off; {kept} battle-board row(s) keep Japanese')
     toolbelt.write_asm(os.path.join(OUT := os.path.join(ROOT, 'build'), 'btlp.asm'),
                        'btlp', '\n'.join(body) + '\n')
     print(f'btlp -> {OUT}/btlp.asm')
@@ -1407,14 +1422,13 @@ def verify():
         toolbelt.fail('btlp verify: unpacker or pair table is outside its reserved tail')
     stock = data()
     verify_highlight_ownership(stock, built)
-    import battle_board_text
-    expected_drafts = board_drafts(stock, toolbelt.merged_rows(REL))
-    draft_path = root / 'build/btl_board_drafts.tsv'
-    try:
-        battle_board_text.verify_retail_bytes(stock, built)
-        battle_board_text.verify_draft_report(draft_path.read_text(encoding='utf-8').splitlines(), expected_drafts)
-    except (OSError, ValueError) as error:
-        toolbelt.fail(f'btlp verify: {error}')
+    if features.on('SF_VWF'):
+        import battle_board_text
+        try:
+            battle_board_text.verify(stock, built,
+                                     {r['pos']: r for r in toolbelt.merged_rows(REL)})
+        except ValueError as error:
+            toolbelt.fail(f'btlp verify: {error}')
     plan = evt_plan(stock, {r['pos']: r for r in toolbelt.merged_rows(REL)})
     expected_pairs = bytes(x for pair in plan['pairs'] for x in pair)
     if len(plan['packed']) != len(plan['msgs']):

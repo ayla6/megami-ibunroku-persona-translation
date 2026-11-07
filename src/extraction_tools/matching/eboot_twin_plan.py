@@ -226,7 +226,8 @@ def write(path=PLAN):
     print(f'EBOOT twin plan: {len(matches)} decisions -> {path}')
 
 
-if __name__ == '__main__':
+def capture():
+    """Record the boot-string decisions from the two-region match."""
     # port_btlneg imports this module by name; share the capture state.
     sys.modules.setdefault('eboot_twin_plan', sys.modules[__name__])
     import boot_btlmsg
@@ -234,6 +235,14 @@ if __name__ == '__main__':
     import port_btlbanner
     begin_capture()
     boot_btlmsg.main()
-    port_btlneg.port(apply=False)
+    # generated/ is ephemeral and port.py runs port_btlneg before boot_btlmsg:
+    # a capture that honours rows already in generated/ would omit decisions
+    # the from-zero replay still asks for. Capture the full domain instead;
+    # replay applies the subset its current tables leave open.
+    port_btlneg.port(apply=False, force=True)
     port_btlbanner.port(apply=False)
     write()
+
+
+if __name__ == '__main__':
+    capture()

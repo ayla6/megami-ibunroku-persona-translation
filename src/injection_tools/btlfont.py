@@ -35,9 +35,11 @@ REF = smallfont_vwf.unpack_page(_src[_t['at']:_t['at'] + 128 * 256])
 def art_mapping():
     """Pack letters and punctuation into encoder-derived spare kana runs,
     preserving every fixed-cell Latin glyph at its original address."""
+    import smallfont_lc
     import smallfont_variants as variants
     import toolbelt
-    lower = [toolbelt.smallfont_char(c) for c in "abcdefghijklmnopqrstuvwxyz.'"]
+    lower = [toolbelt.smallfont_char(c)
+             for c in "abcdefghijklmnopqrstuvwxyz" + ''.join(smallfont_lc.PUNCT)]
     upper = [toolbelt.smallfont_char(c) for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
     low_min, low_end = min(lower), max(lower) + 1
     up_min, up_end = min(upper), max(upper) + 1

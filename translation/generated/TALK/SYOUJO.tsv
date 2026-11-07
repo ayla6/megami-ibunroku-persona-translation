@@ -721,264 +721,264 @@ id	pos	psp	en
 719	0x8591	SYOUJO:42	Of course!<FFF5>
 720	0x8599	SYOUJO:43	It might be a lie.<FFF5>
 721	0x85a0	SYOUJO:44	It might be a lie.<FFF5>
-722	0x85b4	SYOUJO:46	Heeheehee.<FFF5>
-723	0x85bd	SYOUJO:47	Heeheehee.<FFF5>
-724	0x85c6	SYOUJO:48	I do.<FFF5>
-725	0x85cb	SYOUJO:49	I do.<FFF5>
-726	0x85d0	SYOUJO:50	I haven't.<FFF5>
-727	0x85d5	SYOUJO:51	Act disgusted<FFF5>
-728	0x85db	SYOUJO:52	Act disgusted<FFF5>
-729	0x85e1	SYOUJO:53	Nod<FFF5>
-730	0x85e7	SYOUJO:54	Roger that.<FFF5>
-731	0x85f3	SYOUJO:55	Awwww...<FFF5>
-732	0x8609	SYOUJO:57	Awwww...<FFF5>
-733	0x8611	SYOUJO:58	Awwww...<FFF5>
-734	0x8619	SYOUJO:59	It'll be okay!<FFF5>
-735	0x8626	SYOUJO:60	No worries!<FFF5>
-736	0x8632	SYOUJO:61	No worries!<FFF5>
-737	0x863e	SYOUJO:62	Explain in detail<FFF5>
-738	0x864a	SYOUJO:63	Make it laugh again<FFF5>
-739	0x8659	SYOUJO:64	You think so?<FFF5>
-740	0x8660	SYOUJO:65	That's not true.<FFF5>
-741	0x866a	SYOUJO:66	Don't joke with me!<FFF5>
-742	0x8674	SYOUJO:67	Don't joke with me!<FFF5>
-743	0x867e	SYOUJO:68	Mwahahahaha!<FFF5>
-744	0x8688	SYOUJO:69	I do.<FFF5>
-745	0x868d	SYOUJO:70	I can't tell you.<FFF5>
-746	0x8698	SYOUJO:71	I can't tell you.<FFF5>
-747	0x86a3	SYOUJO:72	O-kaaay!<FFF5>
-748	0x86af	SYOUJO:73	NO. WAY.<FFF5>
-749	0x86b8	SYOUJO:74	NO. WAY.<FFF5>
-750	0x86c1	SYOUJO:75	You're cute.<FFF5>
-751	0x86cc	SYOUJO:76	So lame.<FFF5>
-752	0x86d5	SYOUJO:77	So lame.<FFF5>
-753	0x86de	SYOUJO:78	Lie<FFF5>
-754	0x86e4	SYOUJO:79	Lie<FFF5>
-755	0x86ea	SYOUJO:80	Explain in detail<FFF5>
-756	0x86f6	SYOUJO:81	Yep, I'm an idiot!<FFF5>
-757	0x8701	SYOUJO:82	Yep, I'm an idiot!<FFF5>
-758	0x871a	SYOUJO:84	Calm down<FFF5>
-759	0x8720	SYOUJO:85	Smirk<FFF5>
-760	0x8729	SYOUJO:86	Smirk<FFF5>
-761	0x8732	SYOUJO:87	All right.<FFF5>
-762	0x8739	SYOUJO:88	All right.<FFF5>
-763	0x8740	SYOUJO:89	Heh... I refuse.<FFF5>
-764	0x8748	SYOUJO:90	What'd you say!?<FFF5>
-765	0x8755	SYOUJO:91	I'll give you this.<FFF5>
-766	0x8762	SYOUJO:92	Don't joke with me.<FFF5>
-767	0x8769	SYOUJO:93	All right.<FFF5>
-768	0x8770	SYOUJO:94	Of course.<FFF5>
-769	0x8777	SYOUJO:95	The fruit of my labor.<FFF5>
-770	0x8783	SYOUJO:96	Of course.<FFF5>
-771	0x878a	SYOUJO:97	I'm lying.<FFF5>
-772	0x8791	SYOUJO:98	I'm lying.<FFF5>
-773	0x8798	SYOUJO:99	You're right.<FFF5>
-774	0x879e	SYOUJO:100	Don't get me wrong.<FFF5>
-775	0x87a8	SYOUJO:101	Don't get me wrong.<FFF5>
-776	0x87b2	SYOUJO:102	I won't do anythying!<FFF5>
-777	0x87bb	SYOUJO:103	I'll do something bad.<FFF5>
-778	0x87c8	SYOUJO:104	I'll do something bad.<FFF5>
-779	0x87d5	SYOUJO:105	I know.<FFF5>
-780	0x87dd	SYOUJO:106	But I can't beat you.<FFF5>
-781	0x87ea	SYOUJO:107	But I can't beat you.<FFF5>
-782	0x87f7	SYOUJO:108	Console it<FFF5>
-783	0x87fe	SYOUJO:109	Console it<FFF5>
-784	0x8805	SYOUJO:110	Keep threatening<FFF5>
-785	0x880e	SYOUJO:111	That's right...<FFF5>
-786	0x8815	SYOUJO:112	You were a woman?<FFF5>
-787	0x8826	SYOUJO:113	You were a woman?<FFF5>
-788	0x8837	SYOUJO:114	I guess I will...<FFF5>
-789	0x8840	SYOUJO:115	None of your business.<FFF5>
-790	0x884f	SYOUJO:116	I know.<FFF5>
-791	0x8857	SYOUJO:117	But you're an idiot.<FFF5>
-792	0x8864	SYOUJO:118	All right!<FFF5>
-793	0x886d	SYOUJO:119	I ain't telling.<FFF5>
-794	0x8886	SYOUJO:121	That ain't it!<FFF5>
-795	0x888f	SYOUJO:122	Keep dancing<FFF5>
-796	0x8898	SYOUJO:123	Keep dancing<FFF5>
-797	0x88a1	SYOUJO:124	Stop<FFF5>
-798	0x88a6	SYOUJO:125	I'm doing nothing.<FFF5>
-799	0x88b1	SYOUJO:126	I'm gonna bully you!<FFF5>
-800	0x88bc	SYOUJO:127	I'm gonna bully you!<FFF5>
-801	0x88c7	SYOUJO:128	Well, yeah.<FFF5>
-802	0x88cd	SYOUJO:129	But I can't beat you.<FFF5>
-803	0x88d9	SYOUJO:130	But I can't beat you.<FFF5>
-804	0x88e5	SYOUJO:131	Oh crap...<FFF5>
-805	0x88ee	SYOUJO:132	Oh crap...<FFF5>
-806	0x88f7	SYOUJO:133	Hey, hey!<FFF5>
-807	0x8903	SYOUJO:134	It's rare.<FFF5>
-808	0x890a	SYOUJO:135	It's rare.<FFF5>
-809	0x8911	SYOUJO:136	It ain't rare.<FFF5>
-810	0x891b	SYOUJO:137	'Cause you're pretty.<FFF5>
-811	0x8936	SYOUJO:139	Oh yeah!<FFF5>
-812	0x8947	SYOUJO:140	That's so dumb.<FFF5>
-813	0x8952	SYOUJO:141	That's so dumb.<FFF5>
-814	0x895d	SYOUJO:142	It's for real.<FFF5>
-815	0x8969	SYOUJO:143	I'm lyyyyying!<FFF5>
-816	0x8973	SYOUJO:144	I'm lyyyyying!<FFF5>
-817	0x897d	SYOUJO:145	Yes.<FFF5>
-818	0x8985	SYOUJO:146	No.<FFF5>
-819	0x898b	SYOUJO:147	No.<FFF5>
-820	0x8991	SYOUJO:148	Stop<FFF5>
-821	0x8996	SYOUJO:149	Stop<FFF5>
-822	0x899b	SYOUJO:150	Continue<FFF5>
-823	0x89a1	SYOUJO:151	Please do so.<FFF5>
-824	0x89ab	SYOUJO:152	I'll pass.<FFF5>
-825	0x89b9	SYOUJO:153	I'll guide you.<FFF5>
-826	0x89c4	SYOUJO:154	I'll guide you.<FFF5>
-827	0x89cf	SYOUJO:155	That's a secret.<FFF5>
-828	0x89da	SYOUJO:156	Okay!<FFF5>
-829	0x89e2	SYOUJO:157	Okay!<FFF5>
-830	0x89ea	SYOUJO:158	I decline.<FFF5>
-831	0x89f3	SYOUJO:159	You say something?<FFF5>
-832	0x8a00	SYOUJO:160	I didn't mean that...<FFF5>
-833	0x8a0c	SYOUJO:161	Stop<FFF5>
-834	0x8a11	SYOUJO:162	Keep singing<FFF5>
-835	0x8a19	SYOUJO:163	Keep singing<FFF5>
-836	0x8a21	SYOUJO:164	You're a child too.<FFF5>
-837	0x8a2b	SYOUJO:165	You're right.<FFF5>
-838	0x8a33	SYOUJO:166	I'm sorry...<FFF5>
-839	0x8a3d	SYOUJO:167	You wanna die?<FFF5>
-840	0x8a4a	SYOUJO:168	You wanna die?<FFF5>
-841	0x8a57	SYOUJO:169	Keep soothing<FFF5>
-842	0x8a5f	SYOUJO:170	Act serious<FFF5>
-843	0x8a67	SYOUJO:171	It's only natural.<FFF5>
-844	0x8a70	SYOUJO:172	Who knows...?<FFF5>
-845	0x8a7e	SYOUJO:173	Who knows...?<FFF5>
-846	0x8a8c	SYOUJO:174	You are correct.<FFF5>
-847	0x8a96	SYOUJO:175	No, thank you.<FFF5>
-848	0x8a9e	SYOUJO:176	No, thank you.<FFF5>
-849	0x8aa6	SYOUJO:177	O-kay!<FFF5>
-850	0x8aac	SYOUJO:178	None of your business!<FFF5>
-851	0x8abb	SYOUJO:179	I'm soooorry.<FFF5>
-852	0x8ac7	SYOUJO:180	You wanna die?<FFF5>
-853	0x8ad5	SYOUJO:181	You wanna die?<FFF5>
-854	0x8ae3	SYOUJO:182	Hey!<FFF5>
-855	0x8aee	SYOUJO:183	Bleaaaaah!<FFF5>
-856	0x8af8	SYOUJO:184	Well, all right...<FFF5>
-857	0x8b01	SYOUJO:185	Whaaat!? No!<FFF5>
-858	0x8b0b	SYOUJO:186	Get closer<FFF5>
-859	0x8b11	SYOUJO:187	Be cautious<FFF5>
-860	0x8b19	SYOUJO:188	Be cautious<FFF5>
-861	0x8b21	SYOUJO:189	I like you too!<FFF5>
-862	0x8b4a	SYOUJO:192	You're right!<FFF5>
-863	0x8b53	SYOUJO:193	You're right!<FFF5>
-864	0x8b5c	SYOUJO:194	But it hurts...<FFF5>
-865	0x8b69	SYOUJO:195	You figured it out!<FFF5>
-866	0x8b74	SYOUJO:196	Waaaaaaaah!<FFF5>
-867	0x8b7e	SYOUJO:197	Waaaaaaaah!<FFF5>
-868	0x8b88	SYOUJO:198	Keep crying<FFF5>
-869	0x8b90	SYOUJO:199	Stop<FFF5>
-870	0x8b95	SYOUJO:200	I won't do anything.<FFF5>
-871	0x8ba1	SYOUJO:201	I'll torment you.<FFF5>
-872	0x8bab	SYOUJO:202	I'll torment you.<FFF5>
-873	0x8bb5	SYOUJO:203	You think so?<FFF5>
-874	0x8bbc	SYOUJO:204	But I can't beat you.<FFF5>
-875	0x8bc9	SYOUJO:205	But I can't beat you.<FFF5>
-876	0x8bd6	SYOUJO:206	Console it<FFF5>
-877	0x8bdd	SYOUJO:207	Console it<FFF5>
-878	0x8be4	SYOUJO:208	Keep threatening<FFF5>
-879	0x8bed	SYOUJO:209	I'll apologize...<FFF5>
-880	0x8bf5	SYOUJO:210	So you wanna die?<FFF5>
-881	0x8c01	SYOUJO:211	So you wanna die?<FFF5>
-882	0x8c0d	SYOUJO:212	To see you cry.<FFF5>
-883	0x8c1c	SYOUJO:213	Because I hate you.<FFF5>
-884	0x8c27	SYOUJO:214	Because I hate you.<FFF5>
-885	0x8c32	SYOUJO:215	Hell no!<FFF5>
-886	0x8c3e	SYOUJO:216	I stopped.<FFF5>
-887	0x8c43	SYOUJO:217	I stopped.<FFF5>
-888	0x8c48	SYOUJO:218	Stop it...<FFF5>
-889	0x8c50	SYOUJO:219	A lot has happened...<FFF5>
-890	0x8c5e	SYOUJO:220	I'm serious.<FFF5>
-891	0x8c66	SYOUJO:221	Who knows?<FFF5>
-892	0x8c6d	SYOUJO:222	Who knows?<FFF5>
-893	0x8c74	SYOUJO:223	Yeah, that's right.<FFF5>
-894	0x8c7e	SYOUJO:224	I don't want it.<FFF5>
-895	0x8c85	SYOUJO:225	I don't want it.<FFF5>
-896	0x8c8c	SYOUJO:226	I'll apologize...<FFF5>
-897	0x8c94	SYOUJO:227	So you wanna die?<FFF5>
-898	0x8ca0	SYOUJO:228	So you wanna die?<FFF5>
-899	0x8cac	SYOUJO:229	To see you cry.<FFF5>
-900	0x8cbb	SYOUJO:230	Because I hate you.<FFF5>
-901	0x8cc6	SYOUJO:231	Because I hate you.<FFF5>
-902	0x8cd1	SYOUJO:232	Hell no!<FFF5>
-903	0x8cdd	SYOUJO:233	I stopped.<FFF5>
-904	0x8ce2	SYOUJO:234	I stopped.<FFF5>
-905	0x8ce7	SYOUJO:235	Keep ignoring<FFF5>
-906	0x8cf2	SYOUJO:236	Talk to it<FFF5>
-907	0x8cfa	SYOUJO:237	Keep ignoring<FFF5>
-908	0x8d05	SYOUJO:238	Keep ignoring<FFF5>
-909	0x8d10	SYOUJO:239	Talk to it<FFF5>
-910	0x8d18	SYOUJO:240	Keep ignoring<FFF5>
-911	0x8d23	SYOUJO:241	Talk to it<FFF5>
-912	0x8d2b	SYOUJO:242	Keep ignoring<FFF5>
-913	0x8d36	SYOUJO:243	Talk to it<FFF5>
-914	0x8d3e	SYOUJO:244	Keep ignoring<FFF5>
-915	0x8d49	SYOUJO:245	Keep ignoring<FFF5>
-916	0x8d54	SYOUJO:246	Talk to it<FFF5>
-917	0x8d5c	SYOUJO:247	Keep ignoring<FFF5>
-918	0x8d67	SYOUJO:248	Talk to it<FFF5>
-919	0x8d6f	SYOUJO:249	I won't do anything.<FFF5>
-920	0x8d78	SYOUJO:250	I'll kill you.<FFF5>
-921	0x8d7e	SYOUJO:251	I'll kill you.<FFF5>
-922	0x8d84	SYOUJO:252	Yeah.<FFF5>
-923	0x8d88	SYOUJO:253	But I can't beat you.<FFF5>
-924	0x8d94	SYOUJO:254	But I can't beat you.<FFF5>
-925	0x8da0	SYOUJO:255	Console it<FFF5>
-926	0x8da7	SYOUJO:256	Console it<FFF5>
-927	0x8dae	SYOUJO:257	Keep threatening<FFF5>
-928	0x8db7	SYOUJO:258	I'm an idiot.<FFF5>
-929	0x8dbd	SYOUJO:259	I'm an idiot.<FFF5>
-930	0x8dc3	SYOUJO:260	You wanna die, huh!?<FFF5>
-931	0x8dd0	SYOUJO:261	Calm down<FFF5>
-932	0x8dd6	SYOUJO:262	Smirk<FFF5>
-933	0x8ddf	SYOUJO:263	Smirk<FFF5>
-934	0x8de8	SYOUJO:264	Roar again<FFF5>
-935	0x8df3	SYOUJO:265	Act serious<FFF5>
-936	0x8dfb	SYOUJO:266	Act serious<FFF5>
-937	0x8e03	SYOUJO:267	Were you surprised? It's not a spell.<FFF5>
-938	0x8e0f	SYOUJO:268	It's not a spell.<FFF5>
-939	0x8e1a	SYOUJO:269	It's not a spell.<FFF5>
-940	0x8e25	SYOUJO:270	I dunno about that.<FFF5>
-941	0x8e2e	SYOUJO:271	Heh...<FFF5>
-942	0x8e33	SYOUJO:272	All right.<FFF5>
-943	0x8e3a	SYOUJO:273	Don't joke with me!<FFF5>
-944	0x8e43	SYOUJO:274	Hunting demons.<FFF5>
-945	0x8e4c	SYOUJO:275	Waiting for you.<FFF5>
-946	0x8e59	SYOUJO:276	Something nice.<FFF5>
-947	0x8e5f	SYOUJO:277	Say<FFF5>
-948	0x8e64	SYOUJO:278	Don't say<FFF5>
-949	0x8e6b	SYOUJO:279	Don't say<FFF5>
-950	0x8e72	SYOUJO:280	Yell<FFF5>
-951	0x8e79	SYOUJO:281	Don't go in<FFF5>
-952	0x8e80	SYOUJO:282	Like I give a damn!<FFF5>
-953	0x8e8e	SYOUJO:283	Like I give a damn!<FFF5>
-954	0x8ea9	SYOUJO:285	You're right.<FFF5>
-955	0x8eaf	SYOUJO:286	You think so?<FFF5>
-956	0x8eb7	SYOUJO:287	I don't care.<FFF5>
-957	0x8ebf	SYOUJO:288	We got business.<FFF5>
-958	0x8ec6	SYOUJO:289	Get out of here.<FFF5>
-959	0x8ecb	SYOUJO:290	Don't leave!<FFF5>
-960	0x8ed4	SYOUJO:291	We got business.<FFF5>
-961	0x8edb	SYOUJO:292	Get out of here.<FFF5>
-962	0x8ee0	SYOUJO:293	You need something?<FFF5>
-963	0x8eed	SYOUJO:294	Nod<FFF5>
-964	0x8ef3	SYOUJO:295	Shake your head<FFF5>
-965	0x8efc	SYOUJO:296	Spread your arms<FFF5>
-966	0x8f05	SYOUJO:297	Yes.<FFF5>
-967	0x8f09	SYOUJO:298	No.<FFF5>
-968	0x8f0e	SYOUJO:299	I dunno about that.<FFF5>
-969	0x8f14	SYOUJO:300	Of course.<FFF5>
-970	0x8f1a	SYOUJO:301	We're not a match.<FFF5>
-971	0x8f25	SYOUJO:302	Don't joke with me.<FFF5>
-972	0x8f2c	SYOUJO:303	Snort<FFF5>
-973	0x8f34	SYOUJO:304	Act serious<FFF5>
-974	0x8f3c	EBOOT:2acb4e	Joke<FFF5>
-975	0x85fb	SYOUJO:56	You're quite rude!<FFF5>
-976	0x870c	SYOUJO:83	You callin' me dumb!?<FFF5>
-977	0x8879	SYOUJO:120	Well, thanks!<FFF5>
-978	0x8928	SYOUJO:138	Whaddaya want!?<FFF5>
-979	0x8b2e	SYOUJO:190	Are you serious?<FFF5>
-980	0x8b3c	SYOUJO:191	Are you serious?<FFF5>
-981	0x8e9c	SYOUJO:284	How about the sky?<FFF5>
-982	0x85a7	SYOUJO:45	What did you say!?<FFF5>
+722	0x85a7	SYOUJO:45	What did you say!?<FFF5>
+723	0x85b4	SYOUJO:46	Heeheehee.<FFF5>
+724	0x85bd	SYOUJO:47	Heeheehee.<FFF5>
+725	0x85c6	SYOUJO:48	I do.<FFF5>
+726	0x85cb	SYOUJO:49	I do.<FFF5>
+727	0x85d0	SYOUJO:50	I haven't.<FFF5>
+728	0x85d5	SYOUJO:51	Act disgusted<FFF5>
+729	0x85db	SYOUJO:52	Act disgusted<FFF5>
+730	0x85e1	SYOUJO:53	Nod<FFF5>
+731	0x85e7	SYOUJO:54	Roger that.<FFF5>
+732	0x85f3	SYOUJO:55	Awwww...<FFF5>
+733	0x85fb	SYOUJO:56	You're quite rude!<FFF5>
+734	0x8609	SYOUJO:57	Awwww...<FFF5>
+735	0x8611	SYOUJO:58	Awwww...<FFF5>
+736	0x8619	SYOUJO:59	It'll be okay!<FFF5>
+737	0x8626	SYOUJO:60	No worries!<FFF5>
+738	0x8632	SYOUJO:61	No worries!<FFF5>
+739	0x863e	SYOUJO:62	Explain in detail<FFF5>
+740	0x864a	SYOUJO:63	Make it laugh again<FFF5>
+741	0x8659	SYOUJO:64	You think so?<FFF5>
+742	0x8660	SYOUJO:65	That's not true.<FFF5>
+743	0x866a	SYOUJO:66	Don't joke with me!<FFF5>
+744	0x8674	SYOUJO:67	Don't joke with me!<FFF5>
+745	0x867e	SYOUJO:68	Mwahahahaha!<FFF5>
+746	0x8688	SYOUJO:69	I do.<FFF5>
+747	0x868d	SYOUJO:70	I can't tell you.<FFF5>
+748	0x8698	SYOUJO:71	I can't tell you.<FFF5>
+749	0x86a3	SYOUJO:72	O-kaaay!<FFF5>
+750	0x86af	SYOUJO:73	NO. WAY.<FFF5>
+751	0x86b8	SYOUJO:74	NO. WAY.<FFF5>
+752	0x86c1	SYOUJO:75	You're cute.<FFF5>
+753	0x86cc	SYOUJO:76	So lame.<FFF5>
+754	0x86d5	SYOUJO:77	So lame.<FFF5>
+755	0x86de	SYOUJO:78	Lie<FFF5>
+756	0x86e4	SYOUJO:79	Lie<FFF5>
+757	0x86ea	SYOUJO:80	Explain in detail<FFF5>
+758	0x86f6	SYOUJO:81	Yep, I'm an idiot!<FFF5>
+759	0x8701	SYOUJO:82	Yep, I'm an idiot!<FFF5>
+760	0x870c	SYOUJO:83	You callin' me dumb!?<FFF5>
+761	0x871a	SYOUJO:84	Calm down<FFF5>
+762	0x8720	SYOUJO:85	Smirk<FFF5>
+763	0x8729	SYOUJO:86	Smirk<FFF5>
+764	0x8732	SYOUJO:87	All right.<FFF5>
+765	0x8739	SYOUJO:88	All right.<FFF5>
+766	0x8740	SYOUJO:89	Heh... I refuse.<FFF5>
+767	0x8748	SYOUJO:90	What'd you say!?<FFF5>
+768	0x8755	SYOUJO:91	I'll give you this.<FFF5>
+769	0x8762	SYOUJO:92	Don't joke with me.<FFF5>
+770	0x8769	SYOUJO:93	All right.<FFF5>
+771	0x8770	SYOUJO:94	Of course.<FFF5>
+772	0x8777	SYOUJO:95	The fruit of my labor.<FFF5>
+773	0x8783	SYOUJO:96	Of course.<FFF5>
+774	0x878a	SYOUJO:97	I'm lying.<FFF5>
+775	0x8791	SYOUJO:98	I'm lying.<FFF5>
+776	0x8798	SYOUJO:99	You're right.<FFF5>
+777	0x879e	SYOUJO:100	Don't get me wrong.<FFF5>
+778	0x87a8	SYOUJO:101	Don't get me wrong.<FFF5>
+779	0x87b2	SYOUJO:102	I won't do anythying!<FFF5>
+780	0x87bb	SYOUJO:103	I'll do something bad.<FFF5>
+781	0x87c8	SYOUJO:104	I'll do something bad.<FFF5>
+782	0x87d5	SYOUJO:105	I know.<FFF5>
+783	0x87dd	SYOUJO:106	But I can't beat you.<FFF5>
+784	0x87ea	SYOUJO:107	But I can't beat you.<FFF5>
+785	0x87f7	SYOUJO:108	Console it<FFF5>
+786	0x87fe	SYOUJO:109	Console it<FFF5>
+787	0x8805	SYOUJO:110	Keep threatening<FFF5>
+788	0x880e	SYOUJO:111	That's right...<FFF5>
+789	0x8815	SYOUJO:112	You were a woman?<FFF5>
+790	0x8826	SYOUJO:113	You were a woman?<FFF5>
+791	0x8837	SYOUJO:114	I guess I will...<FFF5>
+792	0x8840	SYOUJO:115	None of your business.<FFF5>
+793	0x884f	SYOUJO:116	I know.<FFF5>
+794	0x8857	SYOUJO:117	But you're an idiot.<FFF5>
+795	0x8864	SYOUJO:118	All right!<FFF5>
+796	0x886d	SYOUJO:119	I ain't telling.<FFF5>
+797	0x8879	SYOUJO:120	Well, thanks!<FFF5>
+798	0x8886	SYOUJO:121	That ain't it!<FFF5>
+799	0x888f	SYOUJO:122	Keep dancing<FFF5>
+800	0x8898	SYOUJO:123	Keep dancing<FFF5>
+801	0x88a1	SYOUJO:124	Stop<FFF5>
+802	0x88a6	SYOUJO:125	I'm doing nothing.<FFF5>
+803	0x88b1	SYOUJO:126	I'm gonna bully you!<FFF5>
+804	0x88bc	SYOUJO:127	I'm gonna bully you!<FFF5>
+805	0x88c7	SYOUJO:128	Well, yeah.<FFF5>
+806	0x88cd	SYOUJO:129	But I can't beat you.<FFF5>
+807	0x88d9	SYOUJO:130	But I can't beat you.<FFF5>
+808	0x88e5	SYOUJO:131	Oh crap...<FFF5>
+809	0x88ee	SYOUJO:132	Oh crap...<FFF5>
+810	0x88f7	SYOUJO:133	Hey, hey!<FFF5>
+811	0x8903	SYOUJO:134	It's rare.<FFF5>
+812	0x890a	SYOUJO:135	It's rare.<FFF5>
+813	0x8911	SYOUJO:136	It ain't rare.<FFF5>
+814	0x891b	SYOUJO:137	'Cause you're pretty.<FFF5>
+815	0x8928	SYOUJO:138	Whaddaya want!?<FFF5>
+816	0x8936	SYOUJO:139	Oh yeah!<FFF5>
+817	0x8947	SYOUJO:140	That's so dumb.<FFF5>
+818	0x8952	SYOUJO:141	That's so dumb.<FFF5>
+819	0x895d	SYOUJO:142	It's for real.<FFF5>
+820	0x8969	SYOUJO:143	I'm lyyyyying!<FFF5>
+821	0x8973	SYOUJO:144	I'm lyyyyying!<FFF5>
+822	0x897d	SYOUJO:145	Yes.<FFF5>
+823	0x8985	SYOUJO:146	No.<FFF5>
+824	0x898b	SYOUJO:147	No.<FFF5>
+825	0x8991	SYOUJO:148	Stop<FFF5>
+826	0x8996	SYOUJO:149	Stop<FFF5>
+827	0x899b	SYOUJO:150	Continue<FFF5>
+828	0x89a1	SYOUJO:151	Please do so.<FFF5>
+829	0x89ab	SYOUJO:152	I'll pass.<FFF5>
+830	0x89b9	SYOUJO:153	I'll guide you.<FFF5>
+831	0x89c4	SYOUJO:154	I'll guide you.<FFF5>
+832	0x89cf	SYOUJO:155	That's a secret.<FFF5>
+833	0x89da	SYOUJO:156	Okay!<FFF5>
+834	0x89e2	SYOUJO:157	Okay!<FFF5>
+835	0x89ea	SYOUJO:158	I decline.<FFF5>
+836	0x89f3	SYOUJO:159	You say something?<FFF5>
+837	0x8a00	SYOUJO:160	I didn't mean that...<FFF5>
+838	0x8a0c	SYOUJO:161	Stop<FFF5>
+839	0x8a11	SYOUJO:162	Keep singing<FFF5>
+840	0x8a19	SYOUJO:163	Keep singing<FFF5>
+841	0x8a21	SYOUJO:164	You're a child too.<FFF5>
+842	0x8a2b	SYOUJO:165	You're right.<FFF5>
+843	0x8a33	SYOUJO:166	I'm sorry...<FFF5>
+844	0x8a3d	SYOUJO:167	You wanna die?<FFF5>
+845	0x8a4a	SYOUJO:168	You wanna die?<FFF5>
+846	0x8a57	SYOUJO:169	Keep soothing<FFF5>
+847	0x8a5f	SYOUJO:170	Act serious<FFF5>
+848	0x8a67	SYOUJO:171	It's only natural.<FFF5>
+849	0x8a70	SYOUJO:172	Who knows...?<FFF5>
+850	0x8a7e	SYOUJO:173	Who knows...?<FFF5>
+851	0x8a8c	SYOUJO:174	You are correct.<FFF5>
+852	0x8a96	SYOUJO:175	No, thank you.<FFF5>
+853	0x8a9e	SYOUJO:176	No, thank you.<FFF5>
+854	0x8aa6	SYOUJO:177	O-kay!<FFF5>
+855	0x8aac	SYOUJO:178	None of your business!<FFF5>
+856	0x8abb	SYOUJO:179	I'm soooorry.<FFF5>
+857	0x8ac7	SYOUJO:180	You wanna die?<FFF5>
+858	0x8ad5	SYOUJO:181	You wanna die?<FFF5>
+859	0x8ae3	SYOUJO:182	Hey!<FFF5>
+860	0x8aee	SYOUJO:183	Bleaaaaah!<FFF5>
+861	0x8af8	SYOUJO:184	Well, all right...<FFF5>
+862	0x8b01	SYOUJO:185	Whaaat!? No!<FFF5>
+863	0x8b0b	SYOUJO:186	Get closer<FFF5>
+864	0x8b11	SYOUJO:187	Be cautious<FFF5>
+865	0x8b19	SYOUJO:188	Be cautious<FFF5>
+866	0x8b21	SYOUJO:189	I like you too!<FFF5>
+867	0x8b2e	SYOUJO:190	Are you serious?<FFF5>
+868	0x8b3c	SYOUJO:191	Are you serious?<FFF5>
+869	0x8b4a	SYOUJO:192	You're right!<FFF5>
+870	0x8b53	SYOUJO:193	You're right!<FFF5>
+871	0x8b5c	SYOUJO:194	But it hurts...<FFF5>
+872	0x8b69	SYOUJO:195	You figured it out!<FFF5>
+873	0x8b74	SYOUJO:196	Waaaaaaaah!<FFF5>
+874	0x8b7e	SYOUJO:197	Waaaaaaaah!<FFF5>
+875	0x8b88	SYOUJO:198	Keep crying<FFF5>
+876	0x8b90	SYOUJO:199	Stop<FFF5>
+877	0x8b95	SYOUJO:200	I won't do anything.<FFF5>
+878	0x8ba1	SYOUJO:201	I'll torment you.<FFF5>
+879	0x8bab	SYOUJO:202	I'll torment you.<FFF5>
+880	0x8bb5	SYOUJO:203	You think so?<FFF5>
+881	0x8bbc	SYOUJO:204	But I can't beat you.<FFF5>
+882	0x8bc9	SYOUJO:205	But I can't beat you.<FFF5>
+883	0x8bd6	SYOUJO:206	Console it<FFF5>
+884	0x8bdd	SYOUJO:207	Console it<FFF5>
+885	0x8be4	SYOUJO:208	Keep threatening<FFF5>
+886	0x8bed	SYOUJO:209	I'll apologize...<FFF5>
+887	0x8bf5	SYOUJO:210	So you wanna die?<FFF5>
+888	0x8c01	SYOUJO:211	So you wanna die?<FFF5>
+889	0x8c0d	SYOUJO:212	To see you cry.<FFF5>
+890	0x8c1c	SYOUJO:213	Because I hate you.<FFF5>
+891	0x8c27	SYOUJO:214	Because I hate you.<FFF5>
+892	0x8c32	SYOUJO:215	Hell no!<FFF5>
+893	0x8c3e	SYOUJO:216	I stopped.<FFF5>
+894	0x8c43	SYOUJO:217	I stopped.<FFF5>
+895	0x8c48	SYOUJO:218	Stop it...<FFF5>
+896	0x8c50	SYOUJO:219	A lot has happened...<FFF5>
+897	0x8c5e	SYOUJO:220	I'm serious.<FFF5>
+898	0x8c66	SYOUJO:221	Who knows?<FFF5>
+899	0x8c6d	SYOUJO:222	Who knows?<FFF5>
+900	0x8c74	SYOUJO:223	Yeah, that's right.<FFF5>
+901	0x8c7e	SYOUJO:224	I don't want it.<FFF5>
+902	0x8c85	SYOUJO:225	I don't want it.<FFF5>
+903	0x8c8c	SYOUJO:226	I'll apologize...<FFF5>
+904	0x8c94	SYOUJO:227	So you wanna die?<FFF5>
+905	0x8ca0	SYOUJO:228	So you wanna die?<FFF5>
+906	0x8cac	SYOUJO:229	To see you cry.<FFF5>
+907	0x8cbb	SYOUJO:230	Because I hate you.<FFF5>
+908	0x8cc6	SYOUJO:231	Because I hate you.<FFF5>
+909	0x8cd1	SYOUJO:232	Hell no!<FFF5>
+910	0x8cdd	SYOUJO:233	I stopped.<FFF5>
+911	0x8ce2	SYOUJO:234	I stopped.<FFF5>
+912	0x8ce7	SYOUJO:235	Keep ignoring<FFF5>
+913	0x8cf2	SYOUJO:236	Talk to it<FFF5>
+914	0x8cfa	SYOUJO:237	Keep ignoring<FFF5>
+915	0x8d05	SYOUJO:238	Keep ignoring<FFF5>
+916	0x8d10	SYOUJO:239	Talk to it<FFF5>
+917	0x8d18	SYOUJO:240	Keep ignoring<FFF5>
+918	0x8d23	SYOUJO:241	Talk to it<FFF5>
+919	0x8d2b	SYOUJO:242	Keep ignoring<FFF5>
+920	0x8d36	SYOUJO:243	Talk to it<FFF5>
+921	0x8d3e	SYOUJO:244	Keep ignoring<FFF5>
+922	0x8d49	SYOUJO:245	Keep ignoring<FFF5>
+923	0x8d54	SYOUJO:246	Talk to it<FFF5>
+924	0x8d5c	SYOUJO:247	Keep ignoring<FFF5>
+925	0x8d67	SYOUJO:248	Talk to it<FFF5>
+926	0x8d6f	SYOUJO:249	I won't do anything.<FFF5>
+927	0x8d78	SYOUJO:250	I'll kill you.<FFF5>
+928	0x8d7e	SYOUJO:251	I'll kill you.<FFF5>
+929	0x8d84	SYOUJO:252	Yeah.<FFF5>
+930	0x8d88	SYOUJO:253	But I can't beat you.<FFF5>
+931	0x8d94	SYOUJO:254	But I can't beat you.<FFF5>
+932	0x8da0	SYOUJO:255	Console it<FFF5>
+933	0x8da7	SYOUJO:256	Console it<FFF5>
+934	0x8dae	SYOUJO:257	Keep threatening<FFF5>
+935	0x8db7	SYOUJO:258	I'm an idiot.<FFF5>
+936	0x8dbd	SYOUJO:259	I'm an idiot.<FFF5>
+937	0x8dc3	SYOUJO:260	You wanna die, huh!?<FFF5>
+938	0x8dd0	SYOUJO:261	Calm down<FFF5>
+939	0x8dd6	SYOUJO:262	Smirk<FFF5>
+940	0x8ddf	SYOUJO:263	Smirk<FFF5>
+941	0x8de8	SYOUJO:264	Roar again<FFF5>
+942	0x8df3	SYOUJO:265	Act serious<FFF5>
+943	0x8dfb	SYOUJO:266	Act serious<FFF5>
+944	0x8e03	SYOUJO:267	Were you surprised? It's not a spell.<FFF5>
+945	0x8e0f	SYOUJO:268	It's not a spell.<FFF5>
+946	0x8e1a	SYOUJO:269	It's not a spell.<FFF5>
+947	0x8e25	SYOUJO:270	I dunno about that.<FFF5>
+948	0x8e2e	SYOUJO:271	Heh...<FFF5>
+949	0x8e33	SYOUJO:272	All right.<FFF5>
+950	0x8e3a	SYOUJO:273	Don't joke with me!<FFF5>
+951	0x8e43	SYOUJO:274	Hunting demons.<FFF5>
+952	0x8e4c	SYOUJO:275	Waiting for you.<FFF5>
+953	0x8e59	SYOUJO:276	Something nice.<FFF5>
+954	0x8e5f	SYOUJO:277	Say<FFF5>
+955	0x8e64	SYOUJO:278	Don't say<FFF5>
+956	0x8e6b	SYOUJO:279	Don't say<FFF5>
+957	0x8e72	SYOUJO:280	Yell<FFF5>
+958	0x8e79	SYOUJO:281	Don't go in<FFF5>
+959	0x8e80	SYOUJO:282	Like I give a damn!<FFF5>
+960	0x8e8e	SYOUJO:283	Like I give a damn!<FFF5>
+961	0x8e9c	SYOUJO:284	How about the sky?<FFF5>
+962	0x8ea9	SYOUJO:285	You're right.<FFF5>
+963	0x8eaf	SYOUJO:286	You think so?<FFF5>
+964	0x8eb7	SYOUJO:287	I don't care.<FFF5>
+965	0x8ebf	SYOUJO:288	We got business.<FFF5>
+966	0x8ec6	SYOUJO:289	Get out of here.<FFF5>
+967	0x8ecb	SYOUJO:290	Don't leave!<FFF5>
+968	0x8ed4	SYOUJO:291	We got business.<FFF5>
+969	0x8edb	SYOUJO:292	Get out of here.<FFF5>
+970	0x8ee0	SYOUJO:293	You need something?<FFF5>
+971	0x8eed	SYOUJO:294	Nod<FFF5>
+972	0x8ef3	SYOUJO:295	Shake your head<FFF5>
+973	0x8efc	SYOUJO:296	Spread your arms<FFF5>
+974	0x8f05	SYOUJO:297	Yes.<FFF5>
+975	0x8f09	SYOUJO:298	No.<FFF5>
+976	0x8f0e	SYOUJO:299	I dunno about that.<FFF5>
+977	0x8f14	SYOUJO:300	Of course.<FFF5>
+978	0x8f1a	SYOUJO:301	We're not a match.<FFF5>
+979	0x8f25	SYOUJO:302	Don't joke with me.<FFF5>
+980	0x8f2c	SYOUJO:303	Snort<FFF5>
+981	0x8f34	SYOUJO:304	Act serious<FFF5>
+982	0x8f3c	EBOOT:2acb4e	Joke<FFF5>

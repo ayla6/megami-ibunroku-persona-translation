@@ -709,340 +709,340 @@ id	pos	psp	en
 707	0x9608	pack/talk/HIHO:0x16b90	I'm all excited, hee-ho!<FFF5>
 708	0x961a	pack/talk/HIHO:0x16bc8	I'm all excited, hee-ho!<FFF5>
 709	0x9e24	HIHO:0	Look who's talking.<FFF5>
-710	0x9e3b	HIHO:2	I'm serious.<FFF5>
-711	0x9e42	HIHO:3	You understand?<FFF5>
-712	0x9e49	HIHO:4	You understand?<FFF5>
-713	0x9e50	HIHO:5	That's right.<FFF5>
-714	0x9e57	HIHO:6	That's right.<FFF5>
-715	0x9e5e	HIHO:7	That's not it.<FFF5>
-716	0x9e63	HIHO:8	I won't do anything.<FFF5>
-717	0x9e6c	HIHO:9	Heh heh heh...<FFF5>
-718	0x9e74	HIHO:10	Heh heh heh...<FFF5>
-719	0x9e7c	HIHO:11	What!?<FFF5>
-720	0x9e84	HIHO:12	What!?<FFF5>
-721	0x9e8c	HIHO:13	That's right.<FFF5>
-722	0x9e94	HIHO:14	Comfort<FFF5>
-723	0x9e9b	HIHO:15	Comfort<FFF5>
-724	0x9ea2	HIHO:16	Taunt more<FFF5>
-725	0x9eab	HIHO:17	Look who's talking.<FFF5>
-726	0x9ec2	HIHO:19	I'm serious.<FFF5>
-727	0x9ec9	HIHO:20	You understand?<FFF5>
-728	0x9ed0	HIHO:21	You understand?<FFF5>
-729	0x9ed7	HIHO:22	We're friends already.<FFF5>
-730	0x9ee1	HIHO:23	We're friends already.<FFF5>
-731	0x9eeb	HIHO:24	That'll do.<FFF5>
-732	0x9ef4	HIHO:25	You misunderstood...<FFF5>
-733	0x9f00	HIHO:26	That's right.<FFF5>
-734	0x9f05	HIHO:27	Quit<FFF5>
-735	0x9f0a	HIHO:28	Quit<FFF5>
-736	0x9f0f	HIHO:29	Sing more<FFF5>
-737	0x9f17	HIHO:30	Quit<FFF5>
-738	0x9f1c	HIHO:31	Quit<FFF5>
-739	0x9f21	HIHO:32	Sing more<FFF5>
-740	0x9f29	HIHO:33	You're young too!<FFF5>
-741	0x9f36	HIHO:34	Hehe, well, yes.<FFF5>
-742	0x9f41	HIHO:35	I'm serious.<FFF5>
-743	0x9f49	HIHO:36	You understand?<FFF5>
-744	0x9f51	HIHO:37	You understand?<FFF5>
-745	0x9f59	HIHO:38	That's right.<FFF5>
-746	0x9f61	HIHO:39	That's right.<FFF5>
-747	0x9f69	HIHO:40	Yeah! It's different!<FFF5>
-748	0x9f8e	HIHO:43	That's not true.<FFF5>
-749	0x9f98	HIHO:44	You think so?<FFF5>
-750	0x9fa5	HIHO:45	You think so?<FFF5>
-751	0x9fb2	HIHO:46	What are you saying?<FFF5>
-752	0x9fbd	HIHO:47	What are you saying?<FFF5>
-753	0x9fc8	HIHO:48	Yeah, huh.<FFF5>
-754	0x9fce	HIHO:49	You're young too!<FFF5>
-755	0x9fdb	HIHO:50	Hehe, well, yes.<FFF5>
-756	0x9fe6	HIHO:51	I'm serious.<FFF5>
-757	0x9fee	HIHO:52	You understand?<FFF5>
-758	0x9ff6	HIHO:53	You understand?<FFF5>
-759	0x9ffe	HIHO:54	Exactly.<FFF5>
-760	0xa006	HIHO:55	Exactly.<FFF5>
-761	0xa00e	HIHO:56	Yeah! It's different.<FFF5>
-762	0xa019	HIHO:57	I'm not weak!<FFF5>
-763	0xa026	HIHO:58	Thank you.<FFF5>
-764	0xa047	HIHO:61	What are you saying?<FFF5>
-765	0xa052	HIHO:62	What are you saying?<FFF5>
-766	0xa05d	HIHO:63	Yes, huh.<FFF5>
-767	0xa063	HIHO:64	Okay!<FFF5>
-768	0xa06d	HIHO:65	Okay!<FFF5>
-769	0xa077	HIHO:66	Never mind.<FFF5>
-770	0xa080	HIHO:67	Sorry, man...<FFF5>
-771	0xa088	HIHO:68	Sorry, man...<FFF5>
-772	0xa090	HIHO:69	Shut up!<FFF5>
-773	0xa09a	HIHO:70	It was a joke.<FFF5>
-774	0xa0a5	HIHO:71	C'mon, man!<FFF5>
-775	0xa0ae	HIHO:72	C'mon, man!<FFF5>
-776	0xa0b7	HIHO:73	C'mon, man!<FFF5>
-777	0xa0c0	HIHO:74	Don't sweat it.<FFF5>
-778	0xa0ca	HIHO:75	Gimme details.<FFF5>
-779	0xa0d6	HIHO:76	Gimme details.<FFF5>
-780	0xa0e2	HIHO:77	Do it again.<FFF5>
-781	0xa0f0	HIHO:78	I wanted a smile...<FFF5>
-782	0xa0ff	HIHO:79	Just following orders.<FFF5>
-783	0xa10e	HIHO:80	What to do...?<FFF5>
-784	0xa117	HIHO:81	What to do...?<FFF5>
-785	0xa120	HIHO:82	No way, Jose.<FFF5>
-786	0xa129	HIHO:83	I get it.<FFF5>
-787	0xa12f	HIHO:84	You're just a demon!<FFF5>
-788	0xa13b	HIHO:85	You're just a demon!<FFF5>
-789	0xa147	HIHO:86	C'mon, man!<FFF5>
-790	0xa150	HIHO:87	Sure thing.<FFF5>
-791	0xa15a	HIHO:88	Sure thing.<FFF5>
-792	0xa164	HIHO:89	Ya think?<FFF5>
-793	0xa16c	HIHO:90	You may be right.<FFF5>
-794	0xa173	HIHO:91	It's a new joke.<FFF5>
-795	0xa180	HIHO:92	It's a new joke.<FFF5>
-796	0xa18d	HIHO:93	Never mind.<FFF5>
-797	0xa197	HIHO:94	Sorry 'bout that.<FFF5>
-798	0xa19d	HIHO:95	Wow, that's rude!<FFF5>
-799	0xa1ab	HIHO:96	That's right.<FFF5>
-800	0xa1b0	HIHO:97	Color me surprised.<FFF5>
-801	0xa1bf	HIHO:98	Color me surprised.<FFF5>
-802	0xa1ce	HIHO:99	You may have it.<FFF5>
-803	0xa1d6	HIHO:100	You may have it.<FFF5>
-804	0xa1de	HIHO:101	You may not have it.<FFF5>
-805	0xa1e3	HIHO:102	Don't be so indulgent!<FFF5>
-806	0xa1ef	HIHO:103	Try again later.<FFF5>
-807	0xa1fa	HIHO:104	What!?<FFF5>
-808	0xa202	HIHO:105	What!?<FFF5>
-809	0xa20a	HIHO:106	Ha... Happy now?<FFF5>
-810	0xa218	HIHO:107	How hypocritical!<FFF5>
-811	0xa227	HIHO:108	Hmph...<FFF5>
-812	0xa22e	HIHO:109	It's the truth.<FFF5>
-813	0xa250	HIHO:112	Now you have it.<FFF5>
-814	0xa258	HIHO:113	Now you have it.<FFF5>
-815	0xa260	HIHO:114	That's not it.<FFF5>
-816	0xa266	HIHO:115	I'll do nothing, but...<FFF5>
-817	0xa271	HIHO:116	Don't worry.<FFF5>
-818	0xa279	HIHO:117	Don't worry.<FFF5>
-819	0xa281	HIHO:118	Fool! Inexcusable!<FFF5>
-820	0xa290	HIHO:119	Fool! Inexcusable!<FFF5>
-821	0xa29f	HIHO:120	I understand.<FFF5>
-822	0xa2a7	HIHO:121	I apologize.<FFF5>
-823	0xa2af	HIHO:122	I apologize.<FFF5>
-824	0xa2b7	HIHO:123	Roar again<FFF5>
-825	0xa2c2	HIHO:124	You may be right.<FFF5>
-826	0xa2c8	HIHO:125	Silence.<FFF5>
-827	0xa2ce	HIHO:126	I apologize.<FFF5>
-828	0xa2d6	HIHO:127	I apologize.<FFF5>
-829	0xa2de	HIHO:128	I hate liars.<FFF5>
-830	0xa2ea	HIHO:129	I'm not number one.<FFF5>
-831	0xa2f5	HIHO:130	You are the fool.<FFF5>
-832	0xa300	HIHO:131	You are the fool.<FFF5>
-833	0xa30b	HIHO:132	Oh well.<FFF5>
-834	0xa314	HIHO:133	Don't mess with me!<FFF5>
-835	0xa31c	HIHO:134	Thanks!<FFF5>
-836	0xa323	HIHO:135	It's a dance!<FFF5>
-837	0xa330	HIHO:136	It's a dance!<FFF5>
-838	0xa33d	HIHO:137	Keep dancing<FFF5>
-839	0xa346	HIHO:138	Quit<FFF5>
-840	0xa34b	HIHO:139	Quit<FFF5>
-841	0xa350	HIHO:140	I won't do anything.<FFF5>
-842	0xa35a	HIHO:141	What should I do?<FFF5>
-843	0xa363	HIHO:142	What should I do?<FFF5>
-844	0xa36c	HIHO:143	What, punk!?<FFF5>
-845	0xa377	HIHO:144	What, punk!?<FFF5>
-846	0xa382	HIHO:145	Hahahaha!<FFF5>
-847	0xa38a	HIHO:146	I got it.<FFF5>
-848	0xa391	HIHO:147	I got it.<FFF5>
-849	0xa398	HIHO:148	Raaaaaoooorrr!<FFF5>
-850	0xa3a3	HIHO:149	'Cause it's cool.<FFF5>
-851	0xa3ad	HIHO:150	'Cause it's cool.<FFF5>
-852	0xa3b7	HIHO:151	Don't get me wrong.<FFF5>
-853	0xa3c1	HIHO:152	Sorry.<FFF5>
-854	0xa3c8	HIHO:153	Sorry.<FFF5>
-855	0xa3cf	HIHO:154	What, punk!?<FFF5>
-856	0xa3da	HIHO:155	Yeah.<FFF5>
-857	0xa3de	HIHO:156	Uh, no.<FFF5>
-858	0xa3e5	HIHO:157	Uh, no.<FFF5>
-859	0xa3ec	HIHO:158	Look who's talking.<FFF5>
-860	0xa403	HIHO:160	I ain't lyin'.<FFF5>
-861	0xa40d	HIHO:161	You got me.<FFF5>
-862	0xa413	HIHO:162	You got me.<FFF5>
-863	0xa419	HIHO:163	Yeah, that's right.<FFF5>
-864	0xa423	HIHO:164	Yeah, that's right.<FFF5>
-865	0xa42d	HIHO:165	Uh, no.<FFF5>
-866	0xa434	HIHO:166	That's correct.<FFF5>
-867	0xa43c	HIHO:167	I'm not scared.<FFF5>
-868	0xa447	HIHO:168	I'm not scared.<FFF5>
-869	0xa452	HIHO:169	Then, let's not.<FFF5>
-870	0xa45e	HIHO:170	Then, let's not.<FFF5>
-871	0xa46a	HIHO:171	Will you listen?<FFF5>
-872	0xa477	HIHO:172	Yes<FFF5>
-873	0xa47f	HIHO:173	No<FFF5>
-874	0xa485	HIHO:174	Yes<FFF5>
-875	0xa48d	HIHO:175	Yes<FFF5>
-876	0xa495	HIHO:176	No<FFF5>
-877	0xa49b	HIHO:177	That's not true.<FFF5>
-878	0xa4a7	HIHO:178	Exactly.<FFF5>
-879	0xa4b1	HIHO:179	I will stop.<FFF5>
-880	0xa4b8	HIHO:180	I will stop.<FFF5>
-881	0xa4bf	HIHO:181	Sing more<FFF5>
-882	0xa4c7	HIHO:182	Yes, I do.<FFF5>
-883	0xa4cf	HIHO:183	Yes, I do.<FFF5>
-884	0xa4d7	HIHO:184	No, I don't.<FFF5>
-885	0xa4e0	HIHO:185	Fishing...?<FFF5>
-886	0xa4ef	HIHO:186	Fishing...?<FFF5>
-887	0xa4fe	HIHO:187	How rude!<FFF5>
-888	0xa523	HIHO:190	Did you have fun?<FFF5>
-889	0xa52e	HIHO:191	It's not enough.<FFF5>
-890	0xa537	HIHO:192	Hehehe...<FFF5>
-891	0xa53e	HIHO:193	It's not a lie.<FFF5>
-892	0xa54a	HIHO:194	You understand?<FFF5>
-893	0xa553	HIHO:195	You understand?<FFF5>
-894	0xa55c	HIHO:196	Yes<FFF5>
-895	0xa564	HIHO:197	Yes<FFF5>
-896	0xa56c	HIHO:198	No<FFF5>
-897	0xa572	HIHO:199	Okay.<FFF5>
-898	0xa578	HIHO:200	What!? No!<FFF5>
-899	0xa581	HIHO:201	Fishing...?<FFF5>
-900	0xa590	HIHO:202	Fishing...?<FFF5>
-901	0xa59f	HIHO:203	How rude!<FFF5>
-902	0xa5aa	HIHO:204	Hahaha...<FFF5>
-903	0xa5b4	HIHO:205	A plain face, maybe.<FFF5>
-904	0xa5c0	HIHO:206	Sure.<FFF5>
-905	0xa5c6	HIHO:207	Sure.<FFF5>
-906	0xa5cc	HIHO:208	Never mind.<FFF5>
-907	0xa5d5	HIHO:209	Go closer<FFF5>
-908	0xa5db	HIHO:210	Go closer<FFF5>
-909	0xa5e1	HIHO:211	Stay on guard<FFF5>
-910	0xa5e9	HIHO:212	Later is fine.<FFF5>
-911	0xa5f5	HIHO:213	Later is fine.<FFF5>
-912	0xa601	HIHO:214	What? No!<FFF5>
-913	0xa60b	HIHO:215	Seriously...?<FFF5>
-914	0xa616	HIHO:216	Put a sock in it!<FFF5>
-915	0xa620	HIHO:217	Put a sock in it!<FFF5>
-916	0xa62a	HIHO:218	You found out?<FFF5>
-917	0xa634	HIHO:219	You found out?<FFF5>
-918	0xa63e	HIHO:220	Eeeeeeek!<FFF5>
-919	0xa648	HIHO:221	Eeeeeeek!<FFF5>
-920	0xa652	HIHO:222	Okay!<FFF5>
-921	0xa658	HIHO:223	Okay!<FFF5>
-922	0xa65e	HIHO:224	Never mind.<FFF5>
-923	0xa667	HIHO:225	What should I do?<FFF5>
-924	0xa672	HIHO:226	What should I do?<FFF5>
-925	0xa67d	HIHO:227	You got a problem!?<FFF5>
-926	0xa689	HIHO:228	You got a problem!?<FFF5>
-927	0xa695	HIHO:229	Ahahaha!<FFF5>
-928	0xa6a0	HIHO:230	Okay!<FFF5>
-929	0xa6a6	HIHO:231	Okay!<FFF5>
-930	0xa6ac	HIHO:232	That's way happy!<FFF5>
-931	0xa6bc	HIHO:233	The Philippines...?<FFF5>
-932	0xa6cb	HIHO:234	The Philippines...?<FFF5>
-933	0xa6da	HIHO:235	Quit toying with me!<FFF5>
-934	0xa6e6	HIHO:236	Quit toying with me!<FFF5>
-935	0xa6f2	HIHO:237	Because you're cute.<FFF5>
-936	0xa6fb	HIHO:238	Because you're cute.<FFF5>
-937	0xa704	HIHO:239	Because I hate you.<FFF5>
-938	0xa70e	HIHO:240	Don't laugh like that!<FFF5>
-939	0xa71f	HIHO:241	Forget about it.<FFF5>
-940	0xa724	HIHO:242	You're young too!<FFF5>
-941	0xa731	HIHO:243	Haha... Cut it out.<FFF5>
-942	0xa73b	HIHO:244	It's not a lie.<FFF5>
-943	0xa744	HIHO:245	So you get it.<FFF5>
-944	0xa74c	HIHO:246	We'll see.<FFF5>
-945	0xa753	HIHO:247	That's right.<FFF5>
-946	0xa75b	HIHO:248	That's right.<FFF5>
-947	0xa763	HIHO:249	Nuh-uh.<FFF5>
-948	0xa769	HIHO:250	Physics...?<FFF5>
-949	0xa778	HIHO:251	Physics...?<FFF5>
-950	0xa787	HIHO:252	Don't screw with me!<FFF5>
-951	0xa793	HIHO:253	Don't screw with me!<FFF5>
-952	0xa79f	HIHO:254	Because you're cute.<FFF5>
-953	0xa7a8	HIHO:255	Because you're cute.<FFF5>
-954	0xa7b1	HIHO:256	Because I hate you.<FFF5>
-955	0xa7bb	HIHO:257	Don't laugh like that!<FFF5>
-956	0xa7cc	HIHO:258	Forget about it.<FFF5>
-957	0xa7d1	HIHO:259	Hehe...<FFF5>
-958	0xa7db	HIHO:260	Hehe...<FFF5>
-959	0xa7e5	HIHO:261	We'll see.<FFF5>
-960	0xa7ec	HIHO:262	Nice weather...<FFF5>
-961	0xa7f6	HIHO:263	Nice weather...<FFF5>
-962	0xa800	HIHO:264	Can't I ignore you?<FFF5>
-963	0xa80d	HIHO:265	Nice weather...<FFF5>
-964	0xa817	HIHO:266	Nice weather...<FFF5>
-965	0xa821	HIHO:267	La la tra la-la...<FFF5>
-966	0xa82c	HIHO:268	Leave me alone.<FFF5>
-967	0xa835	HIHO:269	Leave me alone.<FFF5>
-968	0xa83e	HIHO:270	......<FFF5>
-969	0xa852	HIHO:271	......<FFF5>
-970	0xa866	HIHO:272	......<FFF5>
-971	0xa87a	HIHO:273	Can't I ignore you?<FFF5>
-972	0xa888	HIHO:274	......<FFF5>
-973	0xa89c	HIHO:275	......<FFF5>
-974	0xa8b0	HIHO:276	Ba da ba, oh yeah.<FFF5>
-975	0xa8bc	HIHO:277	Leave me alone.<FFF5>
-976	0xa8c5	HIHO:278	...<FFF5>
-977	0xa8d9	HIHO:279	......<FFF5>
-978	0xa8ed	HIHO:280	You wanna die!?<FFF5>
-979	0xa8fa	HIHO:281	You wanna die!?<FFF5>
-980	0xa907	HIHO:282	Hmph...<FFF5>
-981	0xa910	HIHO:283	Fine.<FFF5>
-982	0xa917	HIHO:284	Fine.<FFF5>
-983	0xa91e	HIHO:285	So what?<FFF5>
-984	0xa927	HIHO:286	Sorry.<FFF5>
-985	0xa92d	HIHO:287	I apologize.<FFF5>
-986	0xa938	HIHO:288	Leave me alone.<FFF5>
-987	0xa941	HIHO:289	Can't I yell!?<FFF5>
-988	0xa94d	HIHO:290	Raaaaaaarrrrr!<FFF5>
-989	0xa959	HIHO:291	Leave me alone.<FFF5>
-990	0xa962	HIHO:292	Leave me alone.<FFF5>
-991	0xa96b	HIHO:293	Ha. Surprised?<FFF5>
-992	0xa977	HIHO:294	Ha. Surprised?<FFF5>
-993	0xa983	HIHO:295	It's not magic!<FFF5>
-994	0xa98f	HIHO:296	I can't hear you.<FFF5>
-995	0xa998	HIHO:297	I won't do that.<FFF5>
-996	0xa9a3	HIHO:298	I won't do that.<FFF5>
-997	0xa9ae	HIHO:299	Fine.<FFF5>
-998	0xa9b5	HIHO:300	I can't hear you.<FFF5>
-999	0xa9be	HIHO:301	Sword hunting.<FFF5>
-1000	0xa9c5	HIHO:302	Treasure hunting.<FFF5>
-1001	0xa9cc	HIHO:303	Ambushing.<FFF5>
-1002	0xa9d4	HIHO:304	I challenge you!<FFF5>
-1003	0xa9dd	HIHO:305	I'm not doing that.<FFF5>
-1004	0xa9e8	HIHO:306	I'm not doing that.<FFF5>
-1005	0xa9f3	HIHO:307	You're in my way!<FFF5>
-1006	0xaa01	HIHO:308	I got it.<FFF5>
-1007	0xaa07	HIHO:309	I don't mind burns.<FFF5>
-1008	0xaa14	HIHO:310	You're a scary demon.<FFF5>
-1009	0xaa24	HIHO:311	Who are you?<FFF5>
-1010	0xaa2e	HIHO:312	Gimme an autograph.<FFF5>
-1011	0xaa37	HIHO:313	Gimme an autograph.<FFF5>
-1012	0xaa40	HIHO:314	I hate you.<FFF5>
-1013	0xaa48	HIHO:315	We've got business.<FFF5>
-1014	0xaa4f	HIHO:316	Go home.<FFF5>
-1015	0xaa57	HIHO:317	Stay here.<FFF5>
-1016	0xaa61	HIHO:318	Stay here.<FFF5>
-1017	0xaa6b	HIHO:319	We've got business.<FFF5>
-1018	0xaa72	HIHO:320	Go home.<FFF5>
-1019	0xaa7a	HIHO:321	Go home.<FFF5>
-1020	0xaa82	HIHO:322	Do we have business?<FFF5>
-1021	0xaa8f	HIHO:323	You're welcome!<FFF5>
-1022	0xaa9a	HIHO:324	Stay away!<FFF5>
-1023	0xaaa2	HIHO:325	Stay away!<FFF5>
-1024	0xaaaa	HIHO:326	If you could come...<FFF5>
-1025	0xaab8	HIHO:327	Quiet!<FFF5>
-1026	0xaac2	HIHO:328	Shut up!<FFF5>
-1027	0xaac9	HIHO:329	Laugh!<FFF5>
-1028	0xaad0	HIHO:330	Of course!<FFF5>
-1029	0xaad6	HIHO:331	You're not my type.<FFF5>
-1030	0xaae3	HIHO:332	You're not my type.<FFF5>
-1031	0xaaf0	HIHO:333	We're a perfect pair.<FFF5>
-1032	0xaafd	HIHO:334	Bully<FFF5>
-1033	0xab03	HIHO:335	Flirt<FFF5>
-1034	0xab0a	HIHO:336	Flirt<FFF5>
-1035	0xab11	KOSIKI:337	It's a secret.<FFF5>
-1036	0x9f74	HIHO:41	Huh? What do you mean?<FFF5>
-1037	0x9f82	HIHO:42	Right, it's a lie!<FFF5>
-1038	0xa02d	HIHO:59	Huh? What do you mean?<FFF5>
-1039	0xa03b	HIHO:60	Right, it's a lie!<FFF5>
-1040	0xa236	HIHO:110	Hmph, you understand?<FFF5>
-1041	0xa243	HIHO:111	Hmph, you understand?<FFF5>
-1042	0xa509	HIHO:188	Shall we continue?<FFF5>
-1043	0xa516	HIHO:189	Shall we continue?<FFF5>
-1044	0x9e30	HIHO:1	Er... Thanks...<FFF5>
-1045	0x9eb7	HIHO:18	Er... Thanks...<FFF5>
-1046	0xa3f8	HIHO:159	Er... Thanks...<FFF5>
+710	0x9e30	HIHO:1	Er... Thanks...<FFF5>
+711	0x9e3b	HIHO:2	I'm serious.<FFF5>
+712	0x9e42	HIHO:3	You understand?<FFF5>
+713	0x9e49	HIHO:4	You understand?<FFF5>
+714	0x9e50	HIHO:5	That's right.<FFF5>
+715	0x9e57	HIHO:6	That's right.<FFF5>
+716	0x9e5e	HIHO:7	That's not it.<FFF5>
+717	0x9e63	HIHO:8	I won't do anything.<FFF5>
+718	0x9e6c	HIHO:9	Heh heh heh...<FFF5>
+719	0x9e74	HIHO:10	Heh heh heh...<FFF5>
+720	0x9e7c	HIHO:11	What!?<FFF5>
+721	0x9e84	HIHO:12	What!?<FFF5>
+722	0x9e8c	HIHO:13	That's right.<FFF5>
+723	0x9e94	HIHO:14	Comfort<FFF5>
+724	0x9e9b	HIHO:15	Comfort<FFF5>
+725	0x9ea2	HIHO:16	Taunt more<FFF5>
+726	0x9eab	HIHO:17	Look who's talking.<FFF5>
+727	0x9eb7	HIHO:18	Er... Thanks...<FFF5>
+728	0x9ec2	HIHO:19	I'm serious.<FFF5>
+729	0x9ec9	HIHO:20	You understand?<FFF5>
+730	0x9ed0	HIHO:21	You understand?<FFF5>
+731	0x9ed7	HIHO:22	We're friends already.<FFF5>
+732	0x9ee1	HIHO:23	We're friends already.<FFF5>
+733	0x9eeb	HIHO:24	That'll do.<FFF5>
+734	0x9ef4	HIHO:25	You misunderstood...<FFF5>
+735	0x9f00	HIHO:26	That's right.<FFF5>
+736	0x9f05	HIHO:27	Quit<FFF5>
+737	0x9f0a	HIHO:28	Quit<FFF5>
+738	0x9f0f	HIHO:29	Sing more<FFF5>
+739	0x9f17	HIHO:30	Quit<FFF5>
+740	0x9f1c	HIHO:31	Quit<FFF5>
+741	0x9f21	HIHO:32	Sing more<FFF5>
+742	0x9f29	HIHO:33	You're young too!<FFF5>
+743	0x9f36	HIHO:34	Hehe, well, yes.<FFF5>
+744	0x9f41	HIHO:35	I'm serious.<FFF5>
+745	0x9f49	HIHO:36	You understand?<FFF5>
+746	0x9f51	HIHO:37	You understand?<FFF5>
+747	0x9f59	HIHO:38	That's right.<FFF5>
+748	0x9f61	HIHO:39	That's right.<FFF5>
+749	0x9f69	HIHO:40	Yeah! It's different!<FFF5>
+750	0x9f74	HIHO:41	Huh? What do you mean?<FFF5>
+751	0x9f82	HIHO:42	Right, it's a lie!<FFF5>
+752	0x9f8e	HIHO:43	That's not true.<FFF5>
+753	0x9f98	HIHO:44	You think so?<FFF5>
+754	0x9fa5	HIHO:45	You think so?<FFF5>
+755	0x9fb2	HIHO:46	What are you saying?<FFF5>
+756	0x9fbd	HIHO:47	What are you saying?<FFF5>
+757	0x9fc8	HIHO:48	Yeah, huh.<FFF5>
+758	0x9fce	HIHO:49	You're young too!<FFF5>
+759	0x9fdb	HIHO:50	Hehe, well, yes.<FFF5>
+760	0x9fe6	HIHO:51	I'm serious.<FFF5>
+761	0x9fee	HIHO:52	You understand?<FFF5>
+762	0x9ff6	HIHO:53	You understand?<FFF5>
+763	0x9ffe	HIHO:54	Exactly.<FFF5>
+764	0xa006	HIHO:55	Exactly.<FFF5>
+765	0xa00e	HIHO:56	Yeah! It's different.<FFF5>
+766	0xa019	HIHO:57	I'm not weak!<FFF5>
+767	0xa026	HIHO:58	Thank you.<FFF5>
+768	0xa02d	HIHO:59	Huh? What do you mean?<FFF5>
+769	0xa03b	HIHO:60	Right, it's a lie!<FFF5>
+770	0xa047	HIHO:61	What are you saying?<FFF5>
+771	0xa052	HIHO:62	What are you saying?<FFF5>
+772	0xa05d	HIHO:63	Yes, huh.<FFF5>
+773	0xa063	HIHO:64	Okay!<FFF5>
+774	0xa06d	HIHO:65	Okay!<FFF5>
+775	0xa077	HIHO:66	Never mind.<FFF5>
+776	0xa080	HIHO:67	Sorry, man...<FFF5>
+777	0xa088	HIHO:68	Sorry, man...<FFF5>
+778	0xa090	HIHO:69	Shut up!<FFF5>
+779	0xa09a	HIHO:70	It was a joke.<FFF5>
+780	0xa0a5	HIHO:71	C'mon, man!<FFF5>
+781	0xa0ae	HIHO:72	C'mon, man!<FFF5>
+782	0xa0b7	HIHO:73	C'mon, man!<FFF5>
+783	0xa0c0	HIHO:74	Don't sweat it.<FFF5>
+784	0xa0ca	HIHO:75	Gimme details.<FFF5>
+785	0xa0d6	HIHO:76	Gimme details.<FFF5>
+786	0xa0e2	HIHO:77	Do it again.<FFF5>
+787	0xa0f0	HIHO:78	I wanted a smile...<FFF5>
+788	0xa0ff	HIHO:79	Just following orders.<FFF5>
+789	0xa10e	HIHO:80	What to do...?<FFF5>
+790	0xa117	HIHO:81	What to do...?<FFF5>
+791	0xa120	HIHO:82	No way, Jose.<FFF5>
+792	0xa129	HIHO:83	I get it.<FFF5>
+793	0xa12f	HIHO:84	You're just a demon!<FFF5>
+794	0xa13b	HIHO:85	You're just a demon!<FFF5>
+795	0xa147	HIHO:86	C'mon, man!<FFF5>
+796	0xa150	HIHO:87	Sure thing.<FFF5>
+797	0xa15a	HIHO:88	Sure thing.<FFF5>
+798	0xa164	HIHO:89	Ya think?<FFF5>
+799	0xa16c	HIHO:90	You may be right.<FFF5>
+800	0xa173	HIHO:91	It's a new joke.<FFF5>
+801	0xa180	HIHO:92	It's a new joke.<FFF5>
+802	0xa18d	HIHO:93	Never mind.<FFF5>
+803	0xa197	HIHO:94	Sorry 'bout that.<FFF5>
+804	0xa19d	HIHO:95	Wow, that's rude!<FFF5>
+805	0xa1ab	HIHO:96	That's right.<FFF5>
+806	0xa1b0	HIHO:97	Color me surprised.<FFF5>
+807	0xa1bf	HIHO:98	Color me surprised.<FFF5>
+808	0xa1ce	HIHO:99	You may have it.<FFF5>
+809	0xa1d6	HIHO:100	You may have it.<FFF5>
+810	0xa1de	HIHO:101	You may not have it.<FFF5>
+811	0xa1e3	HIHO:102	Don't be so indulgent!<FFF5>
+812	0xa1ef	HIHO:103	Try again later.<FFF5>
+813	0xa1fa	HIHO:104	What!?<FFF5>
+814	0xa202	HIHO:105	What!?<FFF5>
+815	0xa20a	HIHO:106	Ha... Happy now?<FFF5>
+816	0xa218	HIHO:107	How hypocritical!<FFF5>
+817	0xa227	HIHO:108	Hmph...<FFF5>
+818	0xa22e	HIHO:109	It's the truth.<FFF5>
+819	0xa236	HIHO:110	Hmph, you understand?<FFF5>
+820	0xa243	HIHO:111	Hmph, you understand?<FFF5>
+821	0xa250	HIHO:112	Now you have it.<FFF5>
+822	0xa258	HIHO:113	Now you have it.<FFF5>
+823	0xa260	HIHO:114	That's not it.<FFF5>
+824	0xa266	HIHO:115	I'll do nothing, but...<FFF5>
+825	0xa271	HIHO:116	Don't worry.<FFF5>
+826	0xa279	HIHO:117	Don't worry.<FFF5>
+827	0xa281	HIHO:118	Fool! Inexcusable!<FFF5>
+828	0xa290	HIHO:119	Fool! Inexcusable!<FFF5>
+829	0xa29f	HIHO:120	I understand.<FFF5>
+830	0xa2a7	HIHO:121	I apologize.<FFF5>
+831	0xa2af	HIHO:122	I apologize.<FFF5>
+832	0xa2b7	HIHO:123	Roar again<FFF5>
+833	0xa2c2	HIHO:124	You may be right.<FFF5>
+834	0xa2c8	HIHO:125	Silence.<FFF5>
+835	0xa2ce	HIHO:126	I apologize.<FFF5>
+836	0xa2d6	HIHO:127	I apologize.<FFF5>
+837	0xa2de	HIHO:128	I hate liars.<FFF5>
+838	0xa2ea	HIHO:129	I'm not number one.<FFF5>
+839	0xa2f5	HIHO:130	You are the fool.<FFF5>
+840	0xa300	HIHO:131	You are the fool.<FFF5>
+841	0xa30b	HIHO:132	Oh well.<FFF5>
+842	0xa314	HIHO:133	Don't mess with me!<FFF5>
+843	0xa31c	HIHO:134	Thanks!<FFF5>
+844	0xa323	HIHO:135	It's a dance!<FFF5>
+845	0xa330	HIHO:136	It's a dance!<FFF5>
+846	0xa33d	HIHO:137	Keep dancing<FFF5>
+847	0xa346	HIHO:138	Quit<FFF5>
+848	0xa34b	HIHO:139	Quit<FFF5>
+849	0xa350	HIHO:140	I won't do anything.<FFF5>
+850	0xa35a	HIHO:141	What should I do?<FFF5>
+851	0xa363	HIHO:142	What should I do?<FFF5>
+852	0xa36c	HIHO:143	What, punk!?<FFF5>
+853	0xa377	HIHO:144	What, punk!?<FFF5>
+854	0xa382	HIHO:145	Hahahaha!<FFF5>
+855	0xa38a	HIHO:146	I got it.<FFF5>
+856	0xa391	HIHO:147	I got it.<FFF5>
+857	0xa398	HIHO:148	Raaaaaoooorrr!<FFF5>
+858	0xa3a3	HIHO:149	'Cause it's cool.<FFF5>
+859	0xa3ad	HIHO:150	'Cause it's cool.<FFF5>
+860	0xa3b7	HIHO:151	Don't get me wrong.<FFF5>
+861	0xa3c1	HIHO:152	Sorry.<FFF5>
+862	0xa3c8	HIHO:153	Sorry.<FFF5>
+863	0xa3cf	HIHO:154	What, punk!?<FFF5>
+864	0xa3da	HIHO:155	Yeah.<FFF5>
+865	0xa3de	HIHO:156	Uh, no.<FFF5>
+866	0xa3e5	HIHO:157	Uh, no.<FFF5>
+867	0xa3ec	HIHO:158	Look who's talking.<FFF5>
+868	0xa3f8	HIHO:159	Er... Thanks...<FFF5>
+869	0xa403	HIHO:160	I ain't lyin'.<FFF5>
+870	0xa40d	HIHO:161	You got me.<FFF5>
+871	0xa413	HIHO:162	You got me.<FFF5>
+872	0xa419	HIHO:163	Yeah, that's right.<FFF5>
+873	0xa423	HIHO:164	Yeah, that's right.<FFF5>
+874	0xa42d	HIHO:165	Uh, no.<FFF5>
+875	0xa434	HIHO:166	That's correct.<FFF5>
+876	0xa43c	HIHO:167	I'm not scared.<FFF5>
+877	0xa447	HIHO:168	I'm not scared.<FFF5>
+878	0xa452	HIHO:169	Then, let's not.<FFF5>
+879	0xa45e	HIHO:170	Then, let's not.<FFF5>
+880	0xa46a	HIHO:171	Will you listen?<FFF5>
+881	0xa477	HIHO:172	Yes<FFF5>
+882	0xa47f	HIHO:173	No<FFF5>
+883	0xa485	HIHO:174	Yes<FFF5>
+884	0xa48d	HIHO:175	Yes<FFF5>
+885	0xa495	HIHO:176	No<FFF5>
+886	0xa49b	HIHO:177	That's not true.<FFF5>
+887	0xa4a7	HIHO:178	Exactly.<FFF5>
+888	0xa4b1	HIHO:179	I will stop.<FFF5>
+889	0xa4b8	HIHO:180	I will stop.<FFF5>
+890	0xa4bf	HIHO:181	Sing more<FFF5>
+891	0xa4c7	HIHO:182	Yes, I do.<FFF5>
+892	0xa4cf	HIHO:183	Yes, I do.<FFF5>
+893	0xa4d7	HIHO:184	No, I don't.<FFF5>
+894	0xa4e0	HIHO:185	Fishing...?<FFF5>
+895	0xa4ef	HIHO:186	Fishing...?<FFF5>
+896	0xa4fe	HIHO:187	How rude!<FFF5>
+897	0xa509	HIHO:188	Shall we continue?<FFF5>
+898	0xa516	HIHO:189	Shall we continue?<FFF5>
+899	0xa523	HIHO:190	Did you have fun?<FFF5>
+900	0xa52e	HIHO:191	It's not enough.<FFF5>
+901	0xa537	HIHO:192	Hehehe...<FFF5>
+902	0xa53e	HIHO:193	It's not a lie.<FFF5>
+903	0xa54a	HIHO:194	You understand?<FFF5>
+904	0xa553	HIHO:195	You understand?<FFF5>
+905	0xa55c	HIHO:196	Yes<FFF5>
+906	0xa564	HIHO:197	Yes<FFF5>
+907	0xa56c	HIHO:198	No<FFF5>
+908	0xa572	HIHO:199	Okay.<FFF5>
+909	0xa578	HIHO:200	What!? No!<FFF5>
+910	0xa581	HIHO:201	Fishing...?<FFF5>
+911	0xa590	HIHO:202	Fishing...?<FFF5>
+912	0xa59f	HIHO:203	How rude!<FFF5>
+913	0xa5aa	HIHO:204	Hahaha...<FFF5>
+914	0xa5b4	HIHO:205	A plain face, maybe.<FFF5>
+915	0xa5c0	HIHO:206	Sure.<FFF5>
+916	0xa5c6	HIHO:207	Sure.<FFF5>
+917	0xa5cc	HIHO:208	Never mind.<FFF5>
+918	0xa5d5	HIHO:209	Go closer<FFF5>
+919	0xa5db	HIHO:210	Go closer<FFF5>
+920	0xa5e1	HIHO:211	Stay on guard<FFF5>
+921	0xa5e9	HIHO:212	Later is fine.<FFF5>
+922	0xa5f5	HIHO:213	Later is fine.<FFF5>
+923	0xa601	HIHO:214	What? No!<FFF5>
+924	0xa60b	HIHO:215	Seriously...?<FFF5>
+925	0xa616	HIHO:216	Put a sock in it!<FFF5>
+926	0xa620	HIHO:217	Put a sock in it!<FFF5>
+927	0xa62a	HIHO:218	You found out?<FFF5>
+928	0xa634	HIHO:219	You found out?<FFF5>
+929	0xa63e	HIHO:220	Eeeeeeek!<FFF5>
+930	0xa648	HIHO:221	Eeeeeeek!<FFF5>
+931	0xa652	HIHO:222	Okay!<FFF5>
+932	0xa658	HIHO:223	Okay!<FFF5>
+933	0xa65e	HIHO:224	Never mind.<FFF5>
+934	0xa667	HIHO:225	What should I do?<FFF5>
+935	0xa672	HIHO:226	What should I do?<FFF5>
+936	0xa67d	HIHO:227	You got a problem!?<FFF5>
+937	0xa689	HIHO:228	You got a problem!?<FFF5>
+938	0xa695	HIHO:229	Ahahaha!<FFF5>
+939	0xa6a0	HIHO:230	Okay!<FFF5>
+940	0xa6a6	HIHO:231	Okay!<FFF5>
+941	0xa6ac	HIHO:232	That's way happy!<FFF5>
+942	0xa6bc	HIHO:233	The Philippines...?<FFF5>
+943	0xa6cb	HIHO:234	The Philippines...?<FFF5>
+944	0xa6da	HIHO:235	Quit toying with me!<FFF5>
+945	0xa6e6	HIHO:236	Quit toying with me!<FFF5>
+946	0xa6f2	HIHO:237	Because you're cute.<FFF5>
+947	0xa6fb	HIHO:238	Because you're cute.<FFF5>
+948	0xa704	HIHO:239	Because I hate you.<FFF5>
+949	0xa70e	HIHO:240	Don't laugh like that!<FFF5>
+950	0xa71f	HIHO:241	Forget about it.<FFF5>
+951	0xa724	HIHO:242	You're young too!<FFF5>
+952	0xa731	HIHO:243	Haha... Cut it out.<FFF5>
+953	0xa73b	HIHO:244	It's not a lie.<FFF5>
+954	0xa744	HIHO:245	So you get it.<FFF5>
+955	0xa74c	HIHO:246	We'll see.<FFF5>
+956	0xa753	HIHO:247	That's right.<FFF5>
+957	0xa75b	HIHO:248	That's right.<FFF5>
+958	0xa763	HIHO:249	Nuh-uh.<FFF5>
+959	0xa769	HIHO:250	Physics...?<FFF5>
+960	0xa778	HIHO:251	Physics...?<FFF5>
+961	0xa787	HIHO:252	Don't screw with me!<FFF5>
+962	0xa793	HIHO:253	Don't screw with me!<FFF5>
+963	0xa79f	HIHO:254	Because you're cute.<FFF5>
+964	0xa7a8	HIHO:255	Because you're cute.<FFF5>
+965	0xa7b1	HIHO:256	Because I hate you.<FFF5>
+966	0xa7bb	HIHO:257	Don't laugh like that!<FFF5>
+967	0xa7cc	HIHO:258	Forget about it.<FFF5>
+968	0xa7d1	HIHO:259	Hehe...<FFF5>
+969	0xa7db	HIHO:260	Hehe...<FFF5>
+970	0xa7e5	HIHO:261	We'll see.<FFF5>
+971	0xa7ec	HIHO:262	Nice weather...<FFF5>
+972	0xa7f6	HIHO:263	Nice weather...<FFF5>
+973	0xa800	HIHO:264	Can't I ignore you?<FFF5>
+974	0xa80d	HIHO:265	Nice weather...<FFF5>
+975	0xa817	HIHO:266	Nice weather...<FFF5>
+976	0xa821	HIHO:267	La la tra la-la...<FFF5>
+977	0xa82c	HIHO:268	Leave me alone.<FFF5>
+978	0xa835	HIHO:269	Leave me alone.<FFF5>
+979	0xa83e	HIHO:270	......<FFF5>
+980	0xa852	HIHO:271	......<FFF5>
+981	0xa866	HIHO:272	......<FFF5>
+982	0xa87a	HIHO:273	Can't I ignore you?<FFF5>
+983	0xa888	HIHO:274	......<FFF5>
+984	0xa89c	HIHO:275	......<FFF5>
+985	0xa8b0	HIHO:276	Ba da ba, oh yeah.<FFF5>
+986	0xa8bc	HIHO:277	Leave me alone.<FFF5>
+987	0xa8c5	HIHO:278	...<FFF5>
+988	0xa8d9	HIHO:279	......<FFF5>
+989	0xa8ed	HIHO:280	You wanna die!?<FFF5>
+990	0xa8fa	HIHO:281	You wanna die!?<FFF5>
+991	0xa907	HIHO:282	Hmph...<FFF5>
+992	0xa910	HIHO:283	Fine.<FFF5>
+993	0xa917	HIHO:284	Fine.<FFF5>
+994	0xa91e	HIHO:285	So what?<FFF5>
+995	0xa927	HIHO:286	Sorry.<FFF5>
+996	0xa92d	HIHO:287	I apologize.<FFF5>
+997	0xa938	HIHO:288	Leave me alone.<FFF5>
+998	0xa941	HIHO:289	Can't I yell!?<FFF5>
+999	0xa94d	HIHO:290	Raaaaaaarrrrr!<FFF5>
+1000	0xa959	HIHO:291	Leave me alone.<FFF5>
+1001	0xa962	HIHO:292	Leave me alone.<FFF5>
+1002	0xa96b	HIHO:293	Ha. Surprised?<FFF5>
+1003	0xa977	HIHO:294	Ha. Surprised?<FFF5>
+1004	0xa983	HIHO:295	It's not magic!<FFF5>
+1005	0xa98f	HIHO:296	I can't hear you.<FFF5>
+1006	0xa998	HIHO:297	I won't do that.<FFF5>
+1007	0xa9a3	HIHO:298	I won't do that.<FFF5>
+1008	0xa9ae	HIHO:299	Fine.<FFF5>
+1009	0xa9b5	HIHO:300	I can't hear you.<FFF5>
+1010	0xa9be	HIHO:301	Sword hunting.<FFF5>
+1011	0xa9c5	HIHO:302	Treasure hunting.<FFF5>
+1012	0xa9cc	HIHO:303	Ambushing.<FFF5>
+1013	0xa9d4	HIHO:304	I challenge you!<FFF5>
+1014	0xa9dd	HIHO:305	I'm not doing that.<FFF5>
+1015	0xa9e8	HIHO:306	I'm not doing that.<FFF5>
+1016	0xa9f3	HIHO:307	You're in my way!<FFF5>
+1017	0xaa01	HIHO:308	I got it.<FFF5>
+1018	0xaa07	HIHO:309	I don't mind burns.<FFF5>
+1019	0xaa14	HIHO:310	You're a scary demon.<FFF5>
+1020	0xaa24	HIHO:311	Who are you?<FFF5>
+1021	0xaa2e	HIHO:312	Gimme an autograph.<FFF5>
+1022	0xaa37	HIHO:313	Gimme an autograph.<FFF5>
+1023	0xaa40	HIHO:314	I hate you.<FFF5>
+1024	0xaa48	HIHO:315	We've got business.<FFF5>
+1025	0xaa4f	HIHO:316	Go home.<FFF5>
+1026	0xaa57	HIHO:317	Stay here.<FFF5>
+1027	0xaa61	HIHO:318	Stay here.<FFF5>
+1028	0xaa6b	HIHO:319	We've got business.<FFF5>
+1029	0xaa72	HIHO:320	Go home.<FFF5>
+1030	0xaa7a	HIHO:321	Go home.<FFF5>
+1031	0xaa82	HIHO:322	Do we have business?<FFF5>
+1032	0xaa8f	HIHO:323	You're welcome!<FFF5>
+1033	0xaa9a	HIHO:324	Stay away!<FFF5>
+1034	0xaaa2	HIHO:325	Stay away!<FFF5>
+1035	0xaaaa	HIHO:326	If you could come...<FFF5>
+1036	0xaab8	HIHO:327	Quiet!<FFF5>
+1037	0xaac2	HIHO:328	Shut up!<FFF5>
+1038	0xaac9	HIHO:329	Laugh!<FFF5>
+1039	0xaad0	HIHO:330	Of course!<FFF5>
+1040	0xaad6	HIHO:331	You're not my type.<FFF5>
+1041	0xaae3	HIHO:332	You're not my type.<FFF5>
+1042	0xaaf0	HIHO:333	We're a perfect pair.<FFF5>
+1043	0xaafd	HIHO:334	Bully<FFF5>
+1044	0xab03	HIHO:335	Flirt<FFF5>
+1045	0xab0a	HIHO:336	Flirt<FFF5>
+1046	0xab11	KOSIKI:337	It's a secret.<FFF5>

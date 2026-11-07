@@ -37,9 +37,9 @@ class MappingTests(unittest.TestCase):
 
     def content(self, name):
         examples = {
-            'align.tsv': ('E0', '0', '0', '0', '0', 'ok'),
+            'align.tsv': ('E0', '0', '0', '0', '0', 'ok', '', '', ''),
             'map_jp_psx.tsv': ('E0', '0', '0', '0', 'ok'),
-            'map_us_jp.tsv': ('E0', '0', '0', '0', 'ok'),
+            'map_us_jp.tsv': ('E0', '0', '0', '0', 'ok', '', '', ''),
             'psp_pairs.tsv': ('EBOOT', '0x10', '0x20', 'read'),
             'labels.tsv': ('Source label',),
         }

@@ -199,12 +199,16 @@ class AnalyzeOwnership(unittest.TestCase):
 
     def test_no_other_static_list_points_into_a_span(self):
         image, end = self.image, B + len(self.image)
+        # The board ownership directory is a {base, span} table, not a
+        # BtlGfxTextList; its words can accidentally look like one.
+        dir_lo = toolbelt.asm_equ('BTL_BOARD_SPANS_ADDR')
+        dir_hi = dir_lo + toolbelt.asm_equ('BTL_BOARD_SPANS_SIZE')
         lists = []
         for off in range(0, len(image) - 8, 4):
             count, rows = struct.unpack_from('<II', image, off)
             if not 1 <= count <= 400 or not B <= rows < end - 12 * count:
                 continue
-            if (rows - B) % 4:
+            if (rows - B) % 4 or dir_lo <= B + off < dir_hi:
                 continue
             lists.append((B + off, count, rows))
         self.assertTrue(lists)
@@ -231,7 +235,10 @@ class AnalyzeOwnership(unittest.TestCase):
         c.r[REG['sp']] = 0x801ff000
         c.r[REG['ra']] = 0x8000fff0
         c.start(self.sym['btl_name_lookup'])
-        for _ in range(200):
+        # The resident lookup walks every producer range and every entry of
+        # the battle-owned span directory (15 entries), so a fixed small
+        # step budget would just measure the directory's size.
+        for _ in range(1000):
             if c.pc == 0x8000fff0:
                 self.assertEqual(c.r[REG['a0']], text)
                 return c.r[REG['v0']]
@@ -246,8 +253,17 @@ class AnalyzeOwnership(unittest.TestCase):
 
     def test_span_end_is_not_owned(self):
         # A pointer at the end of a span belongs to whatever follows (another
-        # list or the untranslated block), so the bound is half-open.
-        for _name, lo, hi in self.spans:
+        # list or the untranslated block), so the bound is half-open. Every
+        # entry in the built directory holds the same contract, including the
+        # board 23 label table and its three full-name rows.
+        spans = [(name, lo, hi) for name, lo, hi in self.spans]
+        addr = toolbelt.asm_equ('BTL_BOARD_SPANS_ADDR')
+        size = toolbelt.asm_equ('BTL_BOARD_SPANS_SIZE')
+        for i in range(0, size - 4, 8):
+            base, span, _pad = struct.unpack_from('<IHH', self.image,
+                                                  addr - B + i)
+            spans.append((hex(base), base, base + span))
+        for _name, lo, hi in spans:
             self.assertEqual(self._lookup(hi), 0, hex(hi))
             self.assertEqual(self._lookup(lo), 1, hex(lo))
             self.assertEqual(self._lookup(lo + (hi - lo) // 2), 1, hex(lo))

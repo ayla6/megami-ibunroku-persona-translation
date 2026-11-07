@@ -19,9 +19,11 @@ sys.path.insert(0, str(ROOT / 'src' / 'injection_tools'))
 import toolbelt
 
 HEADERS = {
-    'align.tsv': ('file', 'entry', 'psx_box', 'jp_box', 'us_box', 'kind'),
+    'align.tsv': ('file', 'entry', 'psx_box', 'jp_box', 'us_box', 'kind',
+                  'src_file', 'src_entry', 'src_box'),
     'map_jp_psx.tsv': ('file', 'entry', 'psx_box', 'jp_box', 'kind'),
-    'map_us_jp.tsv': ('file', 'entry', 'jp_box', 'us_box', 'kind'),
+    'map_us_jp.tsv': ('file', 'entry', 'jp_box', 'us_box', 'kind',
+                      'src_file', 'src_entry', 'src_box'),
     'psp_pairs.tsv': ('file', 'us_pos', 'jp_pos', 'how'),
     'labels.tsv': ('label',),
 }
@@ -56,7 +58,7 @@ def validate(path, name):
                 key = (row['file'], int(row['us_pos'], 16))
             elif name != 'labels.tsv':
                 for column in header:
-                    if column == 'entry' or column.endswith('_box'):
+                    if column in ('entry', 'src_entry') or column.endswith('_box'):
                         value = row[column]
                         # align.py spells an unmatched PSX side as None.
                         if value not in ('', 'None') and not value.isdecimal():

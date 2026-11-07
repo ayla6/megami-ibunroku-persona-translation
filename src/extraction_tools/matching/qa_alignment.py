@@ -15,8 +15,11 @@ repair_alignment.py) or accepts the pair in src/extraction_tools/matching/accept
 
 Usage: python src/extraction_tools/matching/qa_alignment.py
 """
+import collections
 import csv
+import difflib
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
@@ -24,10 +27,9 @@ sys.path.insert(0, os.path.join(ROOT, 'src', 'injection_tools'))
 sys.path.insert(0, os.path.join(ROOT, 'src', 'extraction_tools', 'psp'))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import toolbelt  # noqa: E402
-import toolbelt  # noqa: E402
 import etext  # noqa: E402
 from text import load_psp  # noqa: E402
-from port_story import psx_entries, usp_entries  # noqa: E402
+from port_story import psx_entries  # noqa: E402
 
 ALIGN = os.path.join(toolbelt.MAPPINGS, 'align.tsv')
 FIX = os.path.join(toolbelt.SOURCE_MAPPINGS, 'align_fix.tsv')
@@ -46,13 +48,38 @@ def box_counts(f):
     return bad
 
 
+def generated_rows(f):
+    """(entry, box, en) for the generated ADV table.
+
+    Generated rows are keyed by `pos` ('entry:offset'), not by box index;
+    resolve the offset against the PSX entry so the natural align.tsv key
+    (file, entry, psx_box) can be used.
+    """
+    psx = psx_entries(f)
+    out = []
+    path = os.path.join(GEN, f + '.tsv')
+    if not os.path.exists(path):
+        return out
+    for r in csv.reader(open(path, encoding='utf-8'), delimiter='\t'):
+        if not r or r[0] == 'id' or len(r) < 4:
+            continue
+        try:
+            entry_s, off_s = r[1].split(':', 1)
+            ei, off = int(entry_s), int(off_s, 16)
+        except ValueError:
+            continue
+        if ei >= len(psx):
+            continue
+        k = next((i for i, (s, _e) in enumerate(psx[ei].boxes) if s == off), None)
+        if k is not None:
+            out.append((ei, k, r[3]))
+    return out
+
+
 def divergent_ja():
     """Second detector: one English text serving visibly different Japanese
     (the 47/2 bug signature: a shifted pair reuses the neighbor's US box).
     Legit shared text has identical JA; anything else is suspect."""
-    import re
-    import collections
-
     def en_norm(s):
         s = re.sub(r'<FF[0-9A-F]{2}>|<[0-9A-F]{2}>|<[0-9A-F]{4}>', ' ', s)
         return re.sub(r'\s+', ' ', s).strip().lower()
@@ -63,14 +90,13 @@ def divergent_ja():
 
     groups = collections.defaultdict(lambda: collections.defaultdict(list))
     for f in ('E0', 'E1', 'E2', 'E3'):
-        for r in csv.reader(open(os.path.join(GEN, f + '.tsv'), encoding='utf-8'), delimiter='\t'):
-            if not r or not r[0].isdigit() or len(r) < 4:
-                continue
-            en = en_norm(r[3])
+        psx = psx_entries(f)
+        for ei, k, en in generated_rows(f):
+            en = en_norm(en)
             if len(en) > 15:
-                groups[en][ja_norm(r[2])].append((f, r[0], r[1]))
+                ja = etext.decode(psx[ei].box_bytes(k))
+                groups[en][ja_norm(ja)].append((f, ei, k))
     n = 0
-    import difflib
     for en, jas in sorted(groups.items()):
         if len(jas) < 2:
             continue
@@ -102,15 +128,15 @@ def main():
     suspect = 0
     for f in ('E0', 'E1', 'E2', 'E3'):
         bad = box_counts(f)
-        gen = {}
-        for r in csv.reader(open(os.path.join(GEN, f + '.tsv'), encoding='utf-8'), delimiter='\t'):
-            if r and r[0].isdigit() and len(r) > 3:
-                gen[(int(r[0]), int(r[1]))] = r[3]
+        gen = {(ei, k): en for ei, k, en in generated_rows(f)}
         psx = psx_entries(f)
         for ei in sorted(bad):
-            for (gentry, k), en in gen.items():
+            for k in range(len(psx[ei].boxes)):
+                en = gen.get((ei, k))
+                if not en:
+                    continue
                 key = (f, ei, k)
-                if gentry != ei or key in fixed:
+                if key in fixed:
                     continue
                 r = pairs.get(key)
                 if not r or r[5] != 'ok':
