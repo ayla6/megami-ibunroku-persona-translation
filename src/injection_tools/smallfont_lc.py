@@ -20,7 +20,7 @@ LC_CODES = [etext.char2g[chr(0xFF41 + i)] & 0xFF for i in range(26)]
 KANA = ''.join(etext.glyph[c] for c in LC_CODES)   # the hiragana whose small-font cells are redrawn
 assert len(set(LC_CODES)) == 26 and max(LC_CODES) < 0xD9
 # punctuation the page lacks as a single-byte glyph, drawn over more rare hiragana (cell rows 0-2 like a..z)
-PUNCT = {"'": 'ゎ', '.': 'ぽ'}
+PUNCT = {"'": 'ゎ', '.': 'ぽ', ',': 'ぁ'}
 PUNCT_CODES = {c: etext.char2g[k] for c, k in PUNCT.items()}
 assert not set(PUNCT_CODES.values()) & set(LC_CODES)
 
@@ -55,6 +55,7 @@ G = {
     'z': (4, ['11111', '...1.', '..1..', '.1...', '11111']),
     "'": (2, ['..11.', '...1.', '..1..']),
     '.': (7, ['.11..', '.11..']),
+    ',': (8, ['.11..', '.11..', '..1..']),
 }
 
 

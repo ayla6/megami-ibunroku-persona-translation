@@ -118,7 +118,7 @@ def text_bits():
     8 px path. Built from the same encoders the writers use (toolbelt's
     small-font table), never from a hand-kept code list."""
     codes = {toolbelt.smallfont_char(c) for c in
-             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .-:/'"}
+             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .-:/,'"}
     if None in codes:
         raise SystemExit('smallfont_vwf: a text character has no small-font code')
     bits = bytearray(CODES // 8)
@@ -126,10 +126,14 @@ def text_bits():
         bits[c >> 3] |= 1 << (c & 7)
     return bytes(bits)
 
-# ',' and '%' are drawn in the page as the Japanese punctuation that already
-# sits in the atlas (、/ ％): no new glyph art, and every screen that reads the
-# page shows them. The tables' whitelist is extended in skills.encode.
-PUNCT_FALLBACK = {',': '、', '%': '％', '(': '（', ')': '）', '!': '！', '<': '＜'}
+# '%' and the rest are drawn in the page as the Japanese punctuation that
+# already sits in the atlas (％/（/）/！/＜) - but ONLY on the full-width
+# pages: the battle page owns its own art at those codes (cells 0xCD+ are
+# battle icons), so a fallback character that reaches a battle screen draws
+# that icon instead (the affinity comma drew '(' there). Any character the
+# tables actually use must be a real smallfont_lc glyph (like , . ') - these
+# fallbacks are for ADV/DNG/S2D-only text.
+PUNCT_FALLBACK = {'%': '％', '(': '（', ')': '）', '!': '！', '<': '＜'}
 
 
 def disc_page():

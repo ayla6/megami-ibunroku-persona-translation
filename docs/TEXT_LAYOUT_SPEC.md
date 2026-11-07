@@ -47,7 +47,12 @@ their own UI/palette data and receive only the original-font text band; they
 must not receive a whole-page overwrite. Battle retains the original fixed-cell
 Latin face at its retail coordinates. Its proportional Latin art occupies a
 separate encoder-derived kana-cell run in the same short page; only registered
-VWF name rows remap their texture coordinates into that run. Small-font names retain their
+VWF name rows remap their texture coordinates into that run. The battle short
+page owns its own art from cell 0xCD up (battle icons), so the full-width
+punctuation fallbacks (`smallfont_vwf.PUNCT_FALLBACK`) are ADV/DNG/S2D-only:
+a character the tables print on every page must be a redrawn `smallfont_lc`
+glyph (`,` `.` `'`), whose cell lives in the rows the battle copy carries
+from retail. Small-font names retain their
 complete encoded wording; the retail caller's cell count limits only its
 logical map write, not the VWF name. Dungeon FF0A skill-name inserts use the
 existing dialogue VWF printer with a scratch buffer of `SKILL_MAXLEN + 1`

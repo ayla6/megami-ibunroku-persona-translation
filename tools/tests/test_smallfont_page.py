@@ -71,12 +71,16 @@ class PageImport(unittest.TestCase):
         with patch.object(sf, 'repair_shadows', return_value=0):
             page, _, _ = sf.thin_page_indices()
         codes = smallfont_variants.editable_codes()
+        # smallfont_lc redraws punctuation into kana cells the sheet does not
+        # claim; those cells change with the page, and nothing else may.
+        import smallfont_lc
+        extra = set(smallfont_lc.PUNCT_CODES.values()) - set(codes)
         changed = [code for code in range(sf.GLYPH_CODES)
                    if page[(code // 31) * 12 * self.width + (code % 31) * 8:
                            (code // 31) * 12 * self.width + (code % 31) * 8 + 8]
                    != self.disc[(code // 31) * 12 * self.width + (code % 31) * 8:
                                 (code // 31) * 12 * self.width + (code % 31) * 8 + 8]]
-        self.assertEqual(sorted(changed), codes)
+        self.assertEqual(sorted(changed), sorted(set(codes) | extra))
         first = smallfont_variants.cell_uv(codes[0])
         self.assertEqual(page[first[1] * self.width + first[0]], 5)
 
