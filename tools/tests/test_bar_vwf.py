@@ -42,13 +42,13 @@ ADV_ADVANCE_SITE = 0x80065C64
 ADV_HOOK = 0x800BD1F4
 ADV_HOOK_END = 0x800BD224
 ADV_LIST = 0x800BD224                         # between the hook and sf_state_adv
-ADV_ARCANA_BLOCK = 0x800B20A8
-ADV_CELLS = 0x800B20B0
-ADV_NAME_BLOCK = 0x800B2100
-ADV_NAME_CELLS = 0x800B2108
-ADV_HINTS = 0x800BFBA0
-ADV_HINT_RD = (0x80073118, 0x80073128)
-ADV_HINT_RD2 = (0x800734B8, 0x800734C8)
+ADV_ARCANA_BLOCK = 0x800B20B4
+ADV_CELLS = 0x800B20BC
+ADV_NAME_BLOCK = 0x800B210C
+ADV_NAME_CELLS = 0x800B2114
+ADV_MENU_TOP_DEF = 0x800BFBA4                # the 1x1 slot-0x20 block, moved to the tail
+ADV_MENU_TOP_LIST = 0x800B2198               # slot 0x20's list, retail home
+ADV_MARK_POS = 0x800B209C                    # g_fm_mark_pos, retail home
 ADV_SLOT_INIT = 0x8006FB08
 ADV_STATUS = 0x80070144
 ADV_WIDTHS = 0x800BD264                      # sf_widths_adv
@@ -198,17 +198,26 @@ class BarVWF(unittest.TestCase):
                          bytes([16, 1]))
         self.assertEqual(ADV_NAME_BLOCK, ADV_CELLS + 10 * 8)
         self.assertEqual(ADV_NAME_CELLS, ADV_NAME_BLOCK + 8)
-        self.assertEqual(ADV_NAME_CELLS + 16 * 8, 0x800B2188)
+        self.assertEqual(ADV_NAME_CELLS + 16 * 8, 0x800B2194)
         for cells in (ADV_CELLS, ADV_NAME_CELLS):
             self.assertEqual(self.adv[cells - OVERLAY_BASE:cells - OVERLAY_BASE + 8],
                              bytes.fromhex('00001E000000FF01'))
-        # the hints moved out verbatim; the readers rebase onto them
-        self.assertEqual(self.adv[ADV_HINTS - OVERLAY_BASE:ADV_HINTS - OVERLAY_BASE + 24],
-                         self.retail_adv[0x800B209C - OVERLAY_BASE:0x800B209C - OVERLAY_BASE + 24])
-        for pair in ADV_HINT_RD + ADV_HINT_RD2:
-            self.assertEqual(self.word(self.adv, pair) & 0xFFFF, 0x800C)
-            self.assertEqual(self.half(self.adv, pair + 4),
-                             0xFFA0 if pair in (ADV_HINT_RD[0], ADV_HINT_RD2[0]) else 0xFFA2)
+        # g_fm_mark_pos (the five member-marker positions) keeps its retail
+        # home and bytes; the two readers retail put there keep naming it,
+        # so every status-screen marker site reads the intact table
+        self.assertEqual(self.adv[ADV_MARK_POS - OVERLAY_BASE:0x800B20B4 - OVERLAY_BASE],
+                         self.retail_adv[ADV_MARK_POS - OVERLAY_BASE:0x800B20B4 - OVERLAY_BASE])
+        for site in (0x80073118, 0x800734B8):
+            self.assertEqual(self.word(self.adv, site), 0x3C01800B)      # lui at,0x800B
+            self.assertEqual(self.word(self.adv, site + 4), 0x2421209C)  # addiu at,at,0x209C
+            self.assertEqual(self.word(self.adv, site + 0x10), 0x3C01800B)
+            self.assertEqual(self.word(self.adv, site + 0x14), 0x2421209E)
+        # the grown name cells cover the 1x1 slot-0x20 block retail kept at
+        # 0x800B2188: its 0x10 bytes move to the image tail and its list word
+        # is repointed; the list itself stays at 0x800B2198
+        self.assertEqual(self.word(self.adv, ADV_MENU_TOP_LIST), ADV_MENU_TOP_DEF)
+        self.assertEqual(self.adv[ADV_MENU_TOP_DEF - OVERLAY_BASE:ADV_MENU_TOP_DEF - OVERLAY_BASE + 0x10],
+                         self.retail_adv[0x800B2188 - OVERLAY_BASE:0x800B2188 - OVERLAY_BASE + 0x10])
         # the slot layout points slot 0x1E at the list (lui 0x800B + ori 0xD224)
         self.assertEqual(self.word(self.adv, ADV_SLOT_INIT - 4), 0x3C04800B)
         self.assertEqual(self.word(self.adv, ADV_SLOT_INIT), 0x3484D224)
@@ -223,9 +232,9 @@ class BarVWF(unittest.TestCase):
         span = struct.unpack(f'<{(0xC0) // 4}I',
                              self.adv[ADV_STATUS - OVERLAY_BASE:ADV_STATUS + 0xC0 - OVERLAY_BASE])
         self.assertNotIn(0x24A50001, span)                              # no addiu a1,a1,1
-        # the fusion clears moved to the new bases, count 16
-        self.assertEqual(self.word(self.adv, 0x8009F904), 0x248420B0)
-        self.assertEqual(self.word(self.adv, 0x8009F958), 0x24842108)   # ADV_BAR_NAME_CELLS
+        # the fusion clears keep retail's bases, count 16
+        self.assertEqual(self.word(self.adv, 0x8009F904), 0x248420BC)   # retail ADV_BAR_CELLS
+        self.assertEqual(self.word(self.adv, 0x8009F958), 0x24842114)   # ADV_BAR_NAME_CELLS
         self.assertEqual(self.word(self.adv, 0x8009F960), 0x34050010)   # ori a1,16
         # the status clears/writes the name cells past the block header (+0x58)
         self.assertEqual(span.count(0x26040058), 2)                     # addiu a0,s0,0x58
@@ -247,7 +256,7 @@ class BarVWF(unittest.TestCase):
         # destination in t0 and turns a0 into the glyph column, so retail's
         # reload of the arcana base is load-bearing. The index is kind*10
         # against ADV_KIND_LABELS-10, and the delay slot rebases onto
-        # ADV_BAR_CELLS (0x800B249A - 0x3EA == 0x800B20B0).
+        # ADV_BAR_CELLS (0x800B249A - 0x3DE == 0x800B20BC).
         for site, kind_load in ((ADV_FUSE_A, 0x92620014),   # lbu v0,0x14(s3)
                                 (ADV_FUSE_B, 0x92820025)):  # lbu v0,0x25(s4)
             self.assertEqual(self.word(self.adv, site + 0x24), kind_load)
@@ -255,8 +264,8 @@ class BarVWF(unittest.TestCase):
             self.assertEqual(self.word(self.adv, site + 0x38), 0x3C02800B)  # lui v0,0x800B
             self.assertEqual(self.word(self.adv, site + 0x3C), 0x2442249A)  # addiu v0,ADV_KIND_LABELS-10
             self.assertEqual(self.word(self.adv, site + 0x44), jal(ADV_WRITER))
-            self.assertEqual(self.word(self.adv, site + 0x48), 0x2444FC16)  # addiu a0,v0,-0x3EA
-        self.assertEqual((ADV_KIND_LABELS - 10 - 0x3EA) & 0xFFFFFFFF, ADV_CELLS)
+            self.assertEqual(self.word(self.adv, site + 0x48), 0x2444FC22)  # addiu a0,v0,-0x3DE
+        self.assertEqual((ADV_KIND_LABELS - 10 - 0x3DE) & 0xFFFFFFFF, ADV_CELLS)
 
     def test_adv_pdata_page(self):
         """The Velvet Room card page: race and full demon name in VWF cells.
@@ -297,7 +306,7 @@ class BarVWF(unittest.TestCase):
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 4), 0xAFBF0000)  # sw ra,(sp)
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x14), jal(0x800BDA88))
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x1C), 0x3C04800B)  # lui a0,0x800B
-        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x20), 0x24842108)  # ADV_BAR_NAME_CELLS
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x20), 0x24842114)  # ADV_BAR_NAME_CELLS
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x28), jal(ADV_CELLS_CLEAR))
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x40), 0x34060080)  # ori a2,0x80
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x44), 0x34070010)  # ori a3,16

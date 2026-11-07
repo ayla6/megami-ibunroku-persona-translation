@@ -56,12 +56,12 @@ pdata_bar_adv:
     jal     demon_name_copy_adv
     nop
     lui     a0, 0x800B
-    addiu   a0, a0, 0x2108              ; ADV_PDATA_NAME_CELLS
+    addiu   a0, a0, 0x2114              ; ADV_PDATA_NAME_CELLS
     ori     a1, zero, ADV_PDATA_NAME_COLS
     jal     ADV_CELLS_CLEAR
     nop
     lui     a0, 0x800B
-    addiu   a0, a0, 0x2108              ; ADV_PDATA_NAME_CELLS
+    addiu   a0, a0, 0x2114              ; ADV_PDATA_NAME_CELLS
     lui     a1, 0x800C
     addiu   a1, a1, -0x474              ; sf_name_scratch_adv
     ori     a2, zero, 0x80              ; page 0 + bit 7: the VWF Latin face

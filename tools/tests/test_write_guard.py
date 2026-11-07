@@ -1,6 +1,7 @@
 """The write guard must fail closed on every overwrite class, and pass padding."""
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import struct
 import sys
 import unittest
 
@@ -169,6 +170,90 @@ class WriteGuard(unittest.TestCase):
         path = self.listing(['@0x80000000 .byte 0x22'])
         failures = self.check(path)
         self.assertTrue(any('t_size' in item for item in failures))
+
+    # --- the retail-move audit -------------------------------------------
+    # The status screen's misplaced member markers were a half-done move:
+    # adv/bar.asm copied g_fm_mark_pos elsewhere, rebased two readers, and
+    # left the other marker readers on the original address while the bar
+    # data overwrote its tail.
+
+    TABLE = bytes.fromhex(
+        '00000000 10009c00 70009c00 1000c000 7000c000 d000c000')
+
+    @staticmethod
+    def reader(target):
+        """lui/addiu a table base, index it, load the halfword."""
+        return struct.pack('<4I', 0x3C018000, 0x24210000 | target,
+                           0x00220821, 0x84270000)
+
+    def move_fixture(self):
+        retail = bytearray(0x800)
+        retail[0x40:0x40 + len(self.TABLE)] = self.TABLE
+        retail[0x100:0x110] = self.reader(0x40)
+        retail[0x120:0x130] = self.reader(0x40)
+        retail[0x300:0x304] = struct.pack('<I', 0x80000040)
+        return retail
+
+    def assembled(self, original, built):
+        """A listing that names every byte that differs, as armips would."""
+        self.input.write_bytes(bytes(original))
+        self.output.write_bytes(bytes(built))
+        body, i = [], 0
+        while i < len(built):
+            if i < len(original) and original[i] == built[i]:
+                i += 1
+                continue
+            j = i
+            while j < len(built) and (
+                    j >= len(original) or original[j] != built[j]):
+                j += 1
+            body.append(f'@{0x80000000 + i:#x} .byte ' +
+                        ','.join(str(byte) for byte in built[i:j]))
+            i = j
+        return self.listing(body)
+
+    def test_half_done_move_fails(self):
+        retail = self.move_fixture()
+        built = bytearray(retail)
+        built[0x400:0x400 + len(self.TABLE)] = retail[0x40:0x40 + len(self.TABLE)]
+        built[0x4C:0x58] = bytes(12)                 # the old home's tail
+        built[0x120:0x130] = self.reader(0x400)      # one reader retargeted
+        failures = self.check(self.assembled(retail, built))
+        self.assertTrue(any('moved 0x80000040..' in item
+                            for item in failures), failures)
+        self.assertTrue(any('0x80000100' in item for item in failures), failures)
+        self.assertTrue(any('0x80000300' in item for item in failures), failures)
+
+    def test_complete_move_passes(self):
+        retail = self.move_fixture()
+        built = bytearray(retail)
+        built[0x400:0x400 + len(self.TABLE)] = retail[0x40:0x40 + len(self.TABLE)]
+        built[0x4C:0x58] = bytes(12)
+        built[0x100:0x110] = self.reader(0x400)
+        built[0x120:0x130] = self.reader(0x400)
+        built[0x300:0x304] = struct.pack('<I', 0x80000400)
+        self.assertEqual(self.check(self.assembled(retail, built)), [])
+
+    def test_in_place_rewrite_is_not_a_move(self):
+        # translations replace retail text/tables where they stand: every
+        # reader keeps naming the same address, so nothing is half-moved
+        retail = self.move_fixture()
+        built = bytearray(retail)
+        built[0x4C:0x58] = bytes(12)
+        self.assertEqual(self.check(self.assembled(retail, built)), [])
+
+    def test_zero_padding_copy_is_not_a_move(self):
+        # a vector of zeros in retail is common padding, not a table: a
+        # consistent-looking "move" of it must not be reported even when one
+        # of its readers was retargeted and the padding was overwritten
+        retail = bytearray(0x800)
+        retail[0x140:0x150] = self.reader(0x600)
+        retail[0x160:0x170] = self.reader(0x600)
+        built = bytearray(retail)
+        built[0x500:0x600] = retail[0x600:0x700]     # identical zeros
+        built[0x140:0x150] = self.reader(0x500)      # one reader retargeted
+        built[0x600:0x608] = b'\x01\x02\x03\x04\x05\x06\x07\x08'
+        self.assertEqual(self.check(self.assembled(retail, built)), [])
 
 
 if __name__ == '__main__':

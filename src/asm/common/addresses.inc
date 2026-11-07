@@ -211,17 +211,27 @@ ADV_SF_CENTER_END equ 0x800AAE5C
 ;; names are persona_name_copy'd straight into the name cells, so the writer
 ;; reads the full name in place; the retail 10-byte record head never reaches
 ;; the bar.
+;;
+;; The rows keep retail's own homes: the arcana block at 0x800B20B4 and the
+;; name header at 0x800B210C, whose cells grow from ten to sixteen over the
+;; retail cel list at 0x800B2164 (the list moves to the sysmsg gap at
+;; ADV_BAR_LIST) and over the 1x1 slot-0x20 block at 0x800B2188 (moved to the
+;; image tail at ADV_MENU_TOP_DEF). g_fm_mark_pos at 0x800B209C - the status
+;; screen's five member-marker positions - is retail data read by every
+;; marker site and is never written by the bar.
 SF_BAR_MARK        equ 0x5342              ; the cel-entry pad halfword that marks a VWF row
 ;; The list lives in the 28-byte gap between the advance hook and sf_state_adv.
-ADV_BAR_LIST       equ 0x800BD224          ; two entries {block, dx, dy, z, mark} + FF (0x1C)
-;; The old hint span now holds both headers and all 26 cells, ending exactly
-;; at the next retail structure (g_menu_top_def, 0x800B2188).
-ADV_BAR_ARCANA_BLOCK equ 0x800B20A8        ; header: cols 10, rows 1, attr 0, w 8, h 12
-ADV_BAR_CELLS      equ 0x800B20B0          ; the 10 arcana cells (ends 0x800B2100)
-ADV_BAR_NAME_BLOCK equ 0x800B2100          ; header: cols 16, rows 1
-ADV_BAR_NAME_CELLS equ 0x800B2108          ; the 16 name cells (ends 0x800B2188)
-ADV_BAR_HINTS      equ 0x800BFBA0          ; the six (x,y) hints, moved out of the bar span
-                                           ; (the image ends at 0x5B7F8 of the 0x5B800 sector budget)
+ADV_BAR_LIST       equ 0x800BD224          ; two entries {block, dx, dy, z, mark} + FF (0x1C),
+                                           ; the retail list retargeted here (its old home is
+                                           ; covered by the grown name cells)
+ADV_BAR_ARCANA_BLOCK equ 0x800B20B4        ; retail header: cols 10, rows 1, w 8, h 12
+ADV_BAR_CELLS      equ 0x800B20BC          ; retail: the 10 arcana cells (ends 0x800B210C)
+ADV_BAR_NAME_BLOCK equ 0x800B210C          ; retail name header, rewritten to cols 16
+ADV_BAR_NAME_CELLS equ 0x800B2114          ; the 16 name cells (ends 0x800B2194)
+ADV_MENU_TOP_DEF   equ 0x800BFBA4          ; the 1x1 slot-0x20 block, moved off the name cells
+ADV_MENU_TOP_DEF_END equ 0x800BFBB4
+ADV_MENU_TOP_LIST  equ 0x800B2198          ; slot 0x20's cel list (retail home); its block word
+                                           ; is repointed at ADV_MENU_TOP_DEF
 ADV_BAR_HOOK       equ 0x800BD1F4          ; sf_cell_adv, 48 bytes (sysmsg's ceiling moved for it)
 ADV_BAR_HOOK_END   equ 0x800BD224
 ADV_CELLS_ROW      equ 0x8008F730          ; CellsWriteRow, rewritten in place (cells_row.asm)

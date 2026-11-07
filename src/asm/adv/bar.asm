@@ -10,8 +10,12 @@
 ;;     retail's 10, at the retail name entry's dx=0x58, dy=4): the name is
 ;;     its own cel-entry line, 88 px right of the arcana and 4 px (half a
 ;;     character) lower, exactly like retail Japanese;
-;;   * moves the six screen-position hints out of the span they sat in
-;;     (to 0x800BFBA0) and rebases their two readers;
+;;   * keeps the rows in retail's own homes: the arcana block at 0x800B20B4,
+;;     the name header at 0x800B210C, whose cells grow from ten to sixteen
+;;     over the retail cel list (moved to ADV_BAR_LIST) and over the 1x1
+;;     slot-0x20 block at 0x800B2188 (moved to the image tail). The retail
+;;     table at 0x800B209C is g_fm_mark_pos - the five member-marker
+;;     positions every marker site reads - and is never written;
 ;;   * hangs sf_cell_adv on the slot renderer's per-cell pen advance, which
 ;;     applies each cell's stored advance while the entry's pad halfword
 ;;     marks the row (adv/cells_row.asm stores it);
@@ -62,11 +66,13 @@ sf_cell_adv:
 
 .endarea
 
-;; --- the bar data: retail's two cel entries in the old span ---
-;; The span 0x800B2098..0x800B2188 held the hint table and the retail pair
-;; of 10-cell blocks. The hints moved to ADV_BAR_HINTS and the list to the
-;; hook/state gap, leaving room for both blocks and the expanded 16-cell
-;; name. Retail's name entry (dx=0x58, dy=4) is reproduced verbatim.
+;; --- the bar data: retail's two homes, one grown name row ---
+;; The arcana stays at retail's block; the name header stays at retail's
+;; header and its cells grow to sixteen over the retail cel list (0x800B2164,
+;; moved to the hook/state gap) and over the 1x1 slot-0x20 block at
+;; 0x800B2188 (moved to the image tail). The table at 0x800B209C is
+;; g_fm_mark_pos and stays untouched. Retail's name entry (dx=0x58, dy=4) is
+;; reproduced verbatim.
 .org ADV_BAR_LIST
     .word   ADV_BAR_ARCANA_BLOCK    ; entry 1: the 10 arcana cells
     .halfword 0                     ; dx: the arcana starts at the slot's own x
@@ -122,30 +128,17 @@ sf_cell_adv:
     .byte   0x00, 0x00, 0x1E, 0x00, 0x00, 0x00, 0xFF, 0x01
     .byte   0x00, 0x00, 0x1E, 0x00, 0x00, 0x00, 0xFF, 0x01
 
-;; --- the hints, verbatim from their retail home ---
-;; The retail table's base+0 slot is blank; the five real (x,y) entries
-;; follow. The readers index base + idx*4, so the blank entry leads.
-.org ADV_BAR_HINTS
-    .word   0x00000000
-    .halfword 0x0010, 0x009C
-    .halfword 0x0070, 0x009C
-    .halfword 0x0010, 0x00C0
-    .halfword 0x0070, 0x00C0
-    .halfword 0x00D0, 0x00C0
-    .halfword 0x010A, 0x0000
-
-;; --- the two hint readers: base 0x800B209C -> 0x800BFBA0 ---
-.macro bar_hint_reader, site
-.org site
-    lui     at, 0x800C
-    addiu   at, at, -0x60           ; 0x800C0000 - 0x60 = ADV_BAR_HINTS
-.org site+0x10
-    lui     at, 0x800C
-    addiu   at, at, -0x5E           ; ADV_BAR_HINTS + 2
-.endmacro
-
-bar_hint_reader ADV_BAR_HINT_RD
-bar_hint_reader ADV_BAR_HINT_RD2
+;; --- the slot-0x20 block retail kept at 0x800B2188, moved to the image tail ---
+;; The grown name cells cover 0x800B2188..0x800B2194; this block's 0x10 bytes
+;; (a 1x1 header and its one cell) are the only live data there. Its list at
+;; 0x800B2198 stays where retail put it and only its block word moves.
+.org ADV_MENU_TOP_LIST
+    .word   ADV_MENU_TOP_DEF
+.org ADV_MENU_TOP_DEF
+    .byte   1, 1                    ; cols, rows
+    .halfword 0x0100                ; attr: retail's own
+    .halfword 0x0060, 0x0090        ; w, h
+    .byte   0x00, 0x68, 0x15, 0x00, 0x00, 0x00, 0xE6, 0x01   ; the retail cell
 
 ;; --- the status layout points slot 0x1E at the new list ---
 ;; The list is at 0x800BD224, across the 0x800B/0x800C halfword boundary, so
@@ -173,7 +166,7 @@ bar_hint_reader ADV_BAR_HINT_RD2
     move    s2, a0                      ; the Persona*
     sw      s0, 0x10(sp)
     lui     s0, 0x800B
-    addiu   s0, s0, 0x20B0              ; ADV_BAR_CELLS
+    addiu   s0, s0, 0x20BC              ; ADV_BAR_CELLS (retail's arcana cells)
 
     ;; arcana: the retail clear+write pair
     move    a0, s0
@@ -236,13 +229,10 @@ status_names_end:
 ;; retail writes used.
 ;; -------------------------------------------------------------
 
-;; the helper's two clears: the new bases, the name clear now 16
+;; the helper's two clears: retail's bases already name the arcana cells and
+;; the (grown) name cells; only the name clear's count changes to 16
 ;; (retail: lui/addiu 0x800B:0x20BC at +0x00/+0x04, lui/addiu 0x800B:0x2114
 ;; at +0x54/+0x58, count ori 10 at +0x60)
-.org ADV_FUSE_CLEAR1 + 4
-    addiu   a0, a0, 0x20B0              ; ADV_BAR_CELLS (was 0x20BC)
-.org ADV_FUSE_CLEAR1 + 0x58
-    addiu   a0, a0, 0x2108              ; ADV_BAR_NAME_CELLS (was 0x2114)
 .org ADV_FUSE_CLEAR1 + 0x60
     ori     a1, zero, 16                ; the name clear covers all 16 cells (was 10)
 
@@ -254,7 +244,7 @@ status_names_end:
     jal     persona_name_copy_at        ; the def's own name field, v1 below
     addiu   v1, s3, 8                   ; (delay) persona_name_copy_at reads v1
     lui     a0, 0x800B
-    addiu   a0, a0, 0x2108              ; ADV_BAR_NAME_CELLS
+    addiu   a0, a0, 0x2114              ; ADV_BAR_NAME_CELLS
     ori     a2, zero, 0x80              ; page 0 + bit 7: the VWF Latin face
     ori     a3, zero, 16
     jal     ADV_CELLS_ROW
@@ -274,7 +264,7 @@ status_names_end:
     addiu   v0, v0, 0x249A              ; ADV_KIND_LABELS - 10
     addu    a1, a1, v0                  ; (kind-1)*10 + ADV_KIND_LABELS
     jal     ADV_CELLS_ROW               ; a2 = 0x80 survives the row writer
-    addiu   a0, v0, -0x3EA              ; (delay) ADV_BAR_CELLS = v0 - 0x3EA
+    addiu   a0, v0, -0x3DE              ; (delay) ADV_BAR_CELLS = v0 - 0x3DE
 
 .endarea
 
@@ -286,7 +276,7 @@ status_names_end:
     jal     persona_name_copy_at        ; the built record's name field, v1 below
     addiu   v1, s4, 0x19                ; (delay) persona_name_copy_at reads v1
     lui     a0, 0x800B
-    addiu   a0, a0, 0x2108              ; ADV_BAR_NAME_CELLS
+    addiu   a0, a0, 0x2114              ; ADV_BAR_NAME_CELLS
     ori     a2, zero, 0x80              ; page 0 + bit 7: the VWF Latin face
     ori     a3, zero, 16
     jal     ADV_CELLS_ROW
@@ -303,6 +293,6 @@ status_names_end:
     addiu   v0, v0, 0x249A              ; ADV_KIND_LABELS - 10
     addu    a1, a1, v0                  ; (kind-1)*10 + ADV_KIND_LABELS
     jal     ADV_CELLS_ROW               ; a2 = 0x80 survives the row writer
-    addiu   a0, v0, -0x3EA              ; (delay) ADV_BAR_CELLS = v0 - 0x3EA
+    addiu   a0, v0, -0x3DE              ; (delay) ADV_BAR_CELLS = v0 - 0x3DE
 
 .endarea

@@ -3,7 +3,7 @@
 armips' `-temp LISTING` records every emitted line as
 ``ADDRESS STATEMENT ; /source/file line N`` inside the surrounding
 ``.open``/``.create`` section.  That log is a complete account of what the
-assembler wrote and where, so it can prove the three properties no ad-hoc
+assembler wrote and where, so it can prove the properties no ad-hoc
 ``.error`` guard can prove for every output at once:
 
   * every output lives in ``build/`` (never in the retail dump or dist/);
@@ -12,7 +12,11 @@ assembler wrote and where, so it can prove the three properties no ad-hoc
     covered by the data placed inside it);
   * every write stays inside the output image's declared memory limit, and
     every byte of the built file that differs from its input is a byte the
-    listing says was written.
+    listing says was written;
+  * a retail block that the patch moves to a new address has every retail
+    reader retargeted too.  Moving data but leaving some readers on the old
+    home is how a patch clobbers data that is not its own: the old home now
+    holds whatever was placed there, while the leftover readers still use it.
 
 Limits come from ``addresses.inc``: an ``X_OUTPUT`` equ pairs with
 ``X_IMAGE_LIMIT``.  An output without a limit may not grow past its retail
@@ -27,6 +31,7 @@ import argparse
 import heapq
 import os
 import re
+import struct
 import sys
 
 TOOL = 'write_guard.py'
@@ -384,6 +389,189 @@ def _psx_exe(path):
         return False
 
 
+# --- retail-move audit -----------------------------------------------------
+# A patch may replace a retail block in place: translations do that all the
+# time, and every reader keeps reading the same address. What it must not do
+# is copy a retail block to a new address and retarget only some of its
+# readers: the readers left behind then see whatever the patch put in the old
+# home. That is the class behind the status screen's misplaced member markers:
+# adv/bar.asm copied g_fm_mark_pos (0x800B209C) to a "hint" block, rebased two
+# readers and left the rest on the original address while the new bar data
+# overwrote its tail.
+#
+# The audit only judges moves. It walks each retail image's absolute-address
+# readers (lui/addiu|ori pairs followed by a load, and aligned pointer words).
+# When a reader's built form computes a different address, the old bytes must
+# have been copied there verbatim; if they were, the old block is a moved
+# block and every other reader of it must have been retargeted. A block
+# rewritten in place has no retargeted reader, so it is never reported.
+_RETAIL_LOADS = {0x20: 4, 0x21: 2, 0x24: 1, 0x25: 2, 0x23: 4,
+                 0x28: 1, 0x29: 2, 0x31: 4, 0x39: 4}
+_RETAIL_INDEX_WINDOW = 0x20      # bytes a scaled base access may reach
+_RETAIL_COPY_MIN = 0x10          # a moved block copies at least this much ...
+_RETAIL_COPY_CAP = 0x1000        # ... and is compared no further
+
+
+def _word_table(data):
+    return struct.unpack_from(f'<{len(data) // 4}I', data, 0)
+
+
+def _pair_at(words, i):
+    """If words[i] starts a lui/addiu|ori pair, return (addiu_index, address)."""
+    if i >= len(words) or words[i] >> 26 != 0x0F:
+        return None
+    rt = (words[i] >> 16) & 31
+    high = (words[i] & 0xFFFF) << 16
+    for j in range(i + 1, min(i + 9, len(words))):
+        word = words[j]
+        op = word >> 26
+        if op not in (0x09, 0x0D) or ((word >> 21) & 31) != rt:
+            continue
+        low = word & 0xFFFF
+        if op == 0x09:
+            address = (high + (low - 0x10000 if low & 0x8000 else low)) & 0xFFFFFFFF
+        else:
+            address = (high | low) & 0xFFFFFFFF
+        return j, address
+    return None
+
+
+def _retail_readers(original, base, start=0):
+    """(read_lo, read_hi, pair_index, addiu_index, kind) for retail reads."""
+    words = _word_table(original)
+    readers = []
+    for i in range(start, len(words)):
+        pair = _pair_at(words, i)
+        if pair is None:
+            continue
+        j, address = pair
+        if not base <= address < base + len(original):
+            continue
+        rt = (words[i] >> 16) & 31
+        uses = []
+        for k in range(j + 1, min(j + 9, len(words))):
+            word = words[k]
+            op = word >> 26
+            rs = (word >> 21) & 31
+            rt2 = (word >> 16) & 31
+            imm = word & 0xFFFF
+            offset = imm - 0x10000 if imm & 0x8000 else imm
+            width = _RETAIL_LOADS.get(op)
+            if width is not None and rs == rt:
+                low = (address + offset) & 0xFFFFFFFF
+                uses.append((low, (low + width) & 0xFFFFFFFF, 'load'))
+                continue
+            if op == 0x09 and rs == rt:
+                for m in range(k + 1, min(k + 5, len(words))):
+                    load = words[m]
+                    qop = load >> 26
+                    if _RETAIL_LOADS.get(qop) and ((load >> 21) & 31) == rt2:
+                        qimm = load & 0xFFFF
+                        qoff = qimm - 0x10000 if qimm & 0x8000 else qimm
+                        low = (address + offset + qoff) & 0xFFFFFFFF
+                        uses.append((low, (low + _RETAIL_LOADS[qop]) & 0xFFFFFFFF,
+                                     'load'))
+                        break
+            elif op == 0 and (word & 63) == 0x21 and (rs == rt or rt2 == rt):
+                # scaled base: the final address depends on a runtime index
+                uses.append((address, (address + _RETAIL_INDEX_WINDOW) & 0xFFFFFFFF,
+                             'index'))
+        for low, high, kind in uses:
+            readers.append((low, high, i, j, kind))
+    return readers
+
+
+def _retail_pointers(original, base, start=0):
+    """(value, word_index) for aligned retail words that hold image addresses."""
+    words = _word_table(original)
+    return [(value, i) for i, value in enumerate(words)
+            if i >= start and base <= value < base + len(original)]
+
+
+def _copied_prefix(original, data, old, new, base):
+    old_off, new_off = old - base, new - base
+    if not (0 <= old_off < len(original) and 0 <= new_off < len(data)):
+        return 0
+    limit = min(_RETAIL_COPY_CAP, len(original) - old_off, len(data) - new_off)
+    length = 0
+    while length < limit and original[old_off + length] == data[new_off + length]:
+        length += 1
+    return length
+
+
+def _remember_move(moves, original, data, old, new, base):
+    if not (base <= old < base + len(original) and
+            base <= new < base + len(data)):
+        return
+    length = _copied_prefix(original, data, old, new, base)
+    if length < _RETAIL_COPY_MIN:
+        return
+    old_off = old - base
+    source = original[old_off:old_off + length]
+    if len(set(source)) < 2:                 # padding is not a moved block
+        return
+    if all(source[k] == data[old_off + k] for k in range(length)):
+        return                               # the old home still holds it
+    if length > moves.get((old, new), 0):
+        moves[(old, new)] = length
+
+
+def retail_move_failures(section, data, original, exe=False, limit=6):
+    """Fail a half-done move: copied retail block, readers left behind."""
+    if not original or not data or section.base == 0:
+        return [], 0
+    start = 0x200 if exe else 0
+    words = _word_table(original)
+    built_words = _word_table(data)
+    readers = _retail_readers(original, section.base, start)
+    pointers = _retail_pointers(original, section.base, start)
+
+    moves = {}
+    for _, _, i, _, _ in readers:
+        pair = _pair_at(words, i)
+        built = _pair_at(built_words, i) if i < len(built_words) else None
+        if pair is None or built is None or pair[1] == built[1]:
+            continue
+        _remember_move(moves, original, data, pair[1], built[1], section.base)
+    for value, i in pointers:
+        if (i + 1) * 4 > len(data):
+            continue
+        new = built_words[i]
+        if new != value:
+            _remember_move(moves, original, data, value, new, section.base)
+
+    name = os.path.basename(section.out)
+    failures = []
+    for (old, new), length in sorted(moves.items()):
+        low, high = old, old + length
+        still, moved = set(), set()
+        for low_read, high_read, i, _, _ in readers:
+            if high_read <= low or low_read >= high:
+                continue
+            built = _pair_at(built_words, i) if i < len(built_words) else None
+            site = section.base + i * 4
+            if built is not None and (built[1] == old or low <= built[1] < high):
+                still.add(site)
+            else:
+                moved.add(site)
+        for value, i in pointers:
+            if not low <= value < high:
+                continue
+            site = section.base + i * 4
+            if (i + 1) * 4 <= len(data) and built_words[i] == value:
+                still.add(site)
+            else:
+                moved.add(site)
+        if still and moved:
+            examples = ', '.join(f'{site:#x}' for site in sorted(still)[:limit])
+            failures.append(
+                f'{section.path}:{section.line}: {name} moved {low:#x}..{high:#x} '
+                f'to {new:#x}, but {len(still)} retail reader(s) still read the '
+                f'old home (e.g. {examples}); retarget every reader or replace '
+                f'the block in place')
+    return failures, len(moves)
+
+
 def _intervals(writes):
     """Merge write intervals, returning sorted disjoint (start, end) pairs."""
     spans = sorted((w.addr, w.end) for w in writes if w.size > 0)
@@ -403,7 +591,7 @@ def check_sections(sections, problems, equ=None, root=None):
         os.path.join(root, 'src', 'asm', 'common', 'addresses.inc')), root)
     build_root = os.path.normpath(os.path.join(root, 'build'))
     seen, failures = {}, []
-    lost = checked = 0
+    lost = checked = moves = 0
 
     for section in sections:
         out = section.out
@@ -560,7 +748,13 @@ def check_sections(sections, problems, equ=None, root=None):
             failures.append(f'{section.path}:{section.line}: {len(unaccounted)} byte(s) '
                             f'of {out} changed outside the write log ({first})')
 
-    return failures, {'sections': len(sections), 'writes': checked, 'lost': lost}
+        if original and data != original:
+            move_failures, moved = retail_move_failures(section, data, original, exe)
+            failures.extend(move_failures)
+            moves += moved
+
+    return failures, {'sections': len(sections), 'writes': checked, 'lost': lost,
+                      'moves': moves}
 
 
 def check_listing(path, root=None):
@@ -587,11 +781,13 @@ def main(argv=None):
         print(f'{TOOL}: FAIL {failure}')
     if problems or failures:
         print(f'{TOOL}: {stats["sections"]} output(s), {stats["writes"]} write(s), '
-              f'{stats["lost"]} lost, {len(failures)} failure(s)')
+              f'{stats["lost"]} lost, {stats["moves"]} move(s), '
+              f'{len(failures)} failure(s)')
         return 1
     if not args.quiet:
         print(f'{TOOL}: {stats["sections"]} output(s), {stats["writes"]} write(s), '
-              f'no lost writes, every changed byte accounted for')
+              f'no lost writes, {stats["moves"]} move(s), every changed byte '
+              f'accounted for')
     return 0
 
 
