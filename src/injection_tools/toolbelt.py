@@ -637,8 +637,9 @@ def merge(rel, gen_rows, man_rows):
 #   * a code's parameter is never missing - <FF0E>'s parameter is a SPACE in
 #     the script, and an edge-blank rule can eat it, after which the encoder
 #     reads the next byte as the parameter ('[charset] non-ASCII bytes: 01');
-#   * a box ends with its dismissal wait - '<FF02><FF01>' - because that wait
-#     is the press that closes the box.
+#   * a box ends with the dismissal the script wrote - '<FF02><FF01>' for a
+#     press, or just '<FF01>' behind a timed '<FF05>' pause. Never add a
+#     wait the script did not write.
 _PARAM_LEN = {'05': 2, '06': 1, '09': 2, '0A': 1, '0E': 1}
 # Name insert fixup for the current table format, not a proven conversion
 # between PSP and every destination interpreter. The PSP spells them with NO parameter ("My last
@@ -689,6 +690,7 @@ def fix_textbox(en):
     # ... and only the ADV family's box ends with <FF02><FF01>: the TALK
     # engine's end is <FFEF>/<FFF5> with its own waits (<FFFC>/<FFF6>), and
     # imposing an <FF02> there loses the whole unit at build time.
+    import vwf_wrap
     if '<FF0E>' in s:
         # A choice row ends '<FF0E><param><FF01>'; a trailing wait prevents
         # the options from arming.
@@ -699,11 +701,12 @@ def fix_textbox(en):
         # the option block's gate counts the question, never the nameplate
         # (vwf_wrap.prompt_label_line; spec 3.9). This is the one place a row is
         # written, so a row is laid out at the moment it is ported.
-        import vwf_wrap
         return vwf_wrap.choice_breaks(s, brk='<FFF6>' if '<FFF6>' in s else '<FF03>')
     if s.rstrip().endswith('<FF01>') and ('<FF03>' in s or '<FFF6>' in s):
         s = re.sub(r'(?:<FF03>)+\s*$', '', s)
-        s = re.sub(r'(?:<FF02>)*(<FF01>)\s*$', lambda m: '<FF02>' + m.group(1), s)
+        # The dismissal wait is the script's: a box that waits for a press
+        # already carries its '<FF02>', and one closed by a timed '<FF05>'
+        # pause carries none. Never add one here.
         s = re.sub(r'(?:<FF03>)+(?=<FF02><FF01>)', '', s)
     return s
 

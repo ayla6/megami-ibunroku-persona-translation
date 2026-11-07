@@ -1051,13 +1051,24 @@ def paginate(en, line='<FF03>', page='<FF04>', wait='<FF02>', per=3):
     Returns (text, invented, nonsent): invented = advances added, nonsent =
     of those, cuts not at a sentence end (the caller reports that loudly).
     """
+    # THE BOX'S TAIL IS THE SCRIPT'S, NOT OURS. Pagination protects the
+    # dismissal tail - the wait the script wrote (if any) and the end code -
+    # from being counted as text, then puts it back exactly as written. It
+    # never invents a wait: a box closed by a timed '<FF05>' pause has no
+    # press in the source, so it gets none here.
+    m = re.search(r'((?:' + re.escape(wait) + r')*)(<FF01>|<FFEF>|<FFF5>)\s*$',
+                  en)
+    tail_wait = m.group(1) if m else ''
+    tail_end = m.group(2) if m else ''
+    if m:
+        en = en[:m.start()]
     out = []
     invented = nonsent = 0
     first = True
     for box in en.split(page):
-        # THE BOX TAIL IS NOT TEXT: '<FF02><FF01>' is the dismissal press and
-        # must not be counted as a 4th chunk (that invented a scroll for a
-        # 3-line box). It comes back at the end of the last box.
+        # THE BOX TAIL IS NOT TEXT: the dismissal '<FF02><FF01>' must not be
+        # counted as a 4th chunk (that invented a scroll for a 3-line box).
+        # The handler lifted it above; clean any stray copy here.
         body = re.sub(r'(?:' + re.escape(wait) + r')*(<FF01>|<FFEF>|<FFF5>)'
                       + r'\s*$', r'\1', box)
         body = body.replace(wait, line)
@@ -1116,9 +1127,9 @@ def paginate(en, line='<FF03>', page='<FF04>', wait='<FF02>', per=3):
         return ''.join(out)
     s = _fix_params(s)
 
-    # A BOX ENDS WITH ITS DISMISSAL WAIT: '<FF02><FF01>' is what makes the box
-    # WAIT for the press that closes it. Pagination must preserve the tail
-    # wait when splitting and re-placing page waits.
+    # A BOX ENDS WITH THE DISMISSAL THE SCRIPT WROTE: '<FF02><FF01>' for a
+    # press, or just '<FF01>' behind a timed '<FF05>' pause. The tail was
+    # lifted above and goes back verbatim; pagination never invents a wait.
     s = re.sub(r'(?:' + re.escape(line) + r')+\s*$', '', s)
     if '<FF0E>' in s:
         # A CHOICE ROW ENDS WITH ITS OPTION BLOCK: '<FF0E><param><FF01>' - the
@@ -1133,15 +1144,17 @@ def paginate(en, line='<FF03>', page='<FF04>', wait='<FF02>', per=3):
         head = re.sub(r'(?:' + re.escape(line) + r')+\s*$', '', head)
         head = re.sub(r'(?:' + re.escape(wait) + r')+\s*$', '', head)
         s = head + (wait if kept else '') + line + '<FF0E>' + rest
-    else:
-        s = re.sub(r'(?:' + re.escape(wait) + r')*(<FF01>|<FFEF>|<FFF5>)\s*$',
-                   lambda m: wait + m.group(1), s)
     # ... and no empty line in front of the DISMISSAL wait. It must be that
     # wait exactly: a line code before a SCROLL wait is what moves the pen to
     # the next line; without it, the scroll appends text to the line above
     # instead of redrawing.
     # (no line code belongs in front of a wait at all: the wait carries the
     # break, '<FF02><FF03>' - see the scroll note above)
+    if tail_end:
+        # The script's own tail goes back verbatim. A choice row's option
+        # block arms on FF01 alone; a wait before it would stop the options
+        # from arming, so that branch never keeps one.
+        s = s.rstrip() + ('' if '<FF0E>' in s else tail_wait) + tail_end
 
     # A CHOICE OPTION STARTS ITS OWN LINE (the QA gate holds exactly this
     # rule): run it LAST, on the finished text, so the result is a fixed point.
@@ -1160,6 +1173,10 @@ def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1):
     draws for the same speech. Nothing is re-flowed and no scroll is invented.
     """
     ends = ('<FF01>', '<FFEF>', '<FFF5>')
+    # The script's own dismissal tail (a wait, if it wrote one, then the end
+    # code) is kept verbatim; re-adding a wait here would invent an input.
+    mterm = re.search(r'((?:' + re.escape(wait) + r')*)(<FF01>|<FFEF>|<FFF5>)\s*$', s)
+    tail_wait = (wait if mterm and mterm.group(1) else '')
     tail = ''
     for e in ends:                      # the row's end code stays at the very end
         if s.rstrip().endswith(e):
@@ -1215,9 +1232,9 @@ def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1):
         out.append(body)
     res = (wait + page).join(out)
     # A CHOICE ROW ENDS WITH ITS OPTION BLOCK: no dismissal wait after it (the
-    # wait would stop the options arming). The box's own
-    # wait belongs to a text box, not to the block.
-    res += (tail if block else (wait + tail if tail else ''))
+    # wait would stop the options arming). A text box keeps the tail the
+    # script wrote - a press wait, or just the end code behind a timed pause.
+    res += (tail if block else tail_wait + tail)
     return res.replace('\x01CHOICE\x01', block) if block else res
 
 

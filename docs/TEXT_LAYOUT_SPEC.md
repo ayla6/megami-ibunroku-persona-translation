@@ -597,9 +597,13 @@ one click. That is the whole model; "four clicks in one box" is a bug.
    reflow, so the waits are re-placed by our own line count (section 3.2).
    A card always keeps its name line: the PSP puts the name (and nickname) on
    a line of its own before the description.
-4. **A box ends with its dismissal wait.** `<FF02><FF01>` is what makes the box
-   WAIT for the press that closes it. Pagination leaves exactly one dismissal
-   wait in front of the end code, and never an empty intermediate scroll.
+4. **A box ends with the dismissal the script wrote, once.** The source's
+   tail - the wait before the end code, if it wrote one, then `<FF01>` - is
+   kept verbatim. `<FF02>` makes the box WAIT for the press that closes it,
+   and only the script decides that: a box it writes as
+   `...<FF05><xx><xx><FF01>` closes when the timed pause runs out and gets no
+   `<FF02>`. Pagination never invents a dismissal wait, and never leaves an
+   empty intermediate scroll.
 5. **A scroll is `<FF02><FF03>` - wait FIRST, then the line.** That is the
    engine's own order (the PSX corpus spells it 1,796 times against 17 of the
    reverse) and it is what moves the pen to the new last line. `<FF03><FF02>`

@@ -53,9 +53,9 @@ id	pos	psp	en
 51	2:0x1150	E0:51	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 52	2:0x117c	E0:52	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 53	2:0x11a8	E0:53	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-54	3:0x15fc	E0:54	So you guys had the same dream...<FF05><80><00><FF05><50><00><FF02><FF01>
-55	3:0x1620	E0:55	<FF05><20><00> Indeed. It's rather extraordinary.<FF05><80><00><FF05><50><00><FF02><FF01>
-56	3:0x163c	E0:56	Think he's seeing it now too?<FF05><80><00><FF05><50><00><FF02><FF01>
+54	3:0x15fc	E0:54	So you guys had the same dream...<FF05><80><00><FF05><50><00><FF01>
+55	3:0x1620	E0:55	<FF05><20><00> Indeed. It's rather extraordinary.<FF05><80><00><FF05><50><00><FF01>
+56	3:0x163c	E0:56	Think he's seeing it now too?<FF05><80><00><FF05><50><00><FF01>
 57	3:0x1668	E0:57	Teacher in nurse's uniform:<FF03>Oh, <FF07><01>, you've come around.<FF02><FF04>Ahaha, welcome to the infirmary. You<FF03>sure look cute when you're asleep.<FF02><FF01>
 58	3:0x16a8	E0:58	<FF06><03>Natsumi Yoshino<FF03>St. Hermelin High's nurse. She doesn't<FF03>seem to be a very good cook.<FF06><00><FF02><FF01>
 59	3:0x16ec	E0:59	Worried teacher: <FF07><01>!<FF03>Are you all right!?<FF02><FF01>
