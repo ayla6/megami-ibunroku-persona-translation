@@ -710,6 +710,7 @@ class SavePatch(unittest.TestCase):
         import build
         self.assertEqual(build.qol_patches([]), [])
         self.assertEqual(build.qol_patches(['--qol']), ['saves'])
+        self.assertNotIn('credits', build.QOL_PATCHES)   # base game, not a QoL patch
         self.assertEqual(build.qol_patches(['--qol=60fps']), ['60fps'])
         self.assertEqual(build.qol_patches(['--qol=saves,60fps']), ['saves', '60fps'])
         self.assertEqual(build.qol_patches(['--no-qol=saves']), [])
@@ -717,7 +718,8 @@ class SavePatch(unittest.TestCase):
                          [name for name in build.QOL_PATCHES if name != 'saves'])
         self.assertEqual(build.qol_patches(['--no-qol', 'saves', '--qol', '60fps']), ['60fps'])
         self.assertEqual(build.qol_patches(['--qol=saves,saves']), ['saves'])
-        for args in (['--no-qol'], ['--no-qol=typo'], ['--qol=typo']):
+        for args in (['--no-qol'], ['--no-qol=typo'], ['--qol=typo'],
+                     ['--qol=credits']):
             with self.assertRaises(SystemExit):
                 build.qol_patches(args)
 

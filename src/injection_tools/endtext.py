@@ -113,18 +113,25 @@ def bbox(pix, w, h):
 
 TITLE_MARK = '■'     # the PSP credits' job-title marker (drawn as a square)
 NAME_INDENT = 12     # a name line sits under its title, indented
-BLOCK_GAP = 6        # extra space before each job title after the first
-CREDIT_PITCH = 14    # the centred pages' line pitch: credits lines must not touch
+BLOCK_GAP = 8        # extra space before each job title after the first
+CREDIT_PITCH = 18    # the credits roll's line pitch: 16-row cells, two rows between
+GLYPH_ROWS = 16      # rows a glyph cell occupies (put draws 16)
 
 
 def credits_layout(pix, w, h, lines):
     """A credits page, laid out the way the PSP-US roll lays it out: each job
     title (its line carries the PSP's marker) with its names indented below,
     every word the PSP's. The block starts where the page's old ink did, so
-    the page keeps its place in the roll. Returns [(x, y, text)] and
-    [(x, y)] marker squares; raises ValueError when it leaves the page."""
+    the page keeps its place in the roll; a block taller than the room below
+    that point moves up just enough to fit. Returns [(x, y, text)] and
+    [(x, y)] marker squares; raises ValueError when it cannot fit at all."""
     rows, cols = bbox(pix, w, h)
-    top, left = rows[0], cols[0]
+    left = cols[0]
+    titles = sum(1 for s in lines if s.startswith(TITLE_MARK))
+    height = (len(lines) - 1) * CREDIT_PITCH + max(titles - 1, 0) * BLOCK_GAP + GLYPH_ROWS
+    if height > h:
+        raise ValueError(f'{len(lines)} credit lines need {height}px')
+    top = min(rows[0], h - height)
     out, marks, y = [], [], top
     for i, s in enumerate(lines):
         if s.startswith(TITLE_MARK):
@@ -137,7 +144,7 @@ def credits_layout(pix, w, h, lines):
             out.append((left + NAME_INDENT, y, s))
         y += CREDIT_PITCH
     for x, yy, s in out:
-        if x + text_width(s) > w or yy + 16 > h:
+        if x + text_width(s) > w or yy + GLYPH_ROWS > h:
             raise ValueError(f'{s!r} leaves the page')
     return out, marks
 
