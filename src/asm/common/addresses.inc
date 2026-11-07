@@ -575,25 +575,6 @@ OPEN_EXE_FILENAME equ "../../data/psx/EXE/OPEN.EXE"
 OPEN_EXE_OUTPUT equ "../../build/EXE/OPEN.EXE"
 OPEN_EXE_ADDR equ 0x80080000 - PSX_EXE_HEADER_SIZE
 OPEN_EXE_IMAGE_LIMIT equ 0x80180000      ; OPEN.BIN is loaded here
-;; Base game: the title's Select hook and credits dispatch (credits/open.asm,
-;; credits/slps.asm). The whole run is an unreferenced OPEN.EXE function; the
-;; next one starts at 0x8008B5C0. The resident title switch jumps here for
-;; every press while the title (and therefore OPEN.EXE) is live: the sentinel
-;; starts ending 5, a retail choice gets retail's bounds test and rejoins the
-;; untouched lookup at 0x80011558.
-CREDITS_KEY_ADDR equ 0x8008B53C
-CREDITS_KEY_END equ CREDITS_KEY_ADDR + 0x40
-CREDITS_DISPATCH_ADDR equ CREDITS_KEY_END
-CREDITS_DISPATCH_END equ CREDITS_DISPATCH_ADDR + 0x44   ; fills the dead function
-.if CREDITS_DISPATCH_END > 0x8008B5C0
-    .error "credits: the Select hook and dispatch overrun the dead OPEN.EXE function"
-.endif
-CREDITS_TITLE_CHOICE equ 0x801F15B8       ; g_title_choice (u8)
-CREDITS_CARD_SCAN   equ 0x800B359C        ; g_card_scan
-CREDITS_SENTINEL    equ 0xFE              ; Select's value in g_title_choice
-CREDITS_MOVIE_ID    equ 0x801F15C2        ; g_movie_id (u16)
-CREDITS_MOVIE_NEXT  equ 0x801F15C4        ; g_movie_next_state
-CREDITS_ENDING      equ 0x35              ; END.EXE ending 5
 
 ;; --- EXE/MOVIE.EXE - Movie player EXE, t_addr 0x80080000 ---
 MOVIE_EXE_FILENAME equ "../../data/psx/EXE/MOVIE.EXE"

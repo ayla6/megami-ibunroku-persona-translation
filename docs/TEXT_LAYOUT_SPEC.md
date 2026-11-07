@@ -21,7 +21,6 @@ Read it top to bottom: glyphs -> lines -> boxes -> labels -> gates.
 | what a family's box can hold | `src/extraction_tools/matching/port_caps.py` |
 | which ADV messages have a one-row viewport, and how wide | `src/injection_tools/sysmsg.py` (`display_size`) |
 | which words a description abbreviates | `src/extraction_tools/matching/port_descs.py` (`house_style`) |
-| the staff roll's line pitch and block placement | `src/injection_tools/endtext.py` (`credits_layout`) |
 | build-time proof (bytes on the disc) | `src/injection_tools/tstatus.py qa`, `tools/verify_disc.py` |
 | looking at all of it | `tools/textvis/` (page + `serve.py`) |
 
@@ -737,14 +736,6 @@ wait at the original `<FFF5>` end. Interior PSP waits/pages without a proven
 battle equivalent fail closed; authored battle timing is never discarded. Page and
 line advance are **presentation**: they are excluded from the code comparison
 against the Japanese. Only the end codes are structural (exactly one).
-
-**Staff roll.** `endtext.py` lays each credits page in the page's own ink box,
-using the PSP-US wording verbatim. One line advances by `CREDIT_PITCH` = 18
-rows and a glyph cell occupies `GLYPH_ROWS` = 16 rows, so cells never touch.
-Each job-title block after the first is separated by `BLOCK_GAP` = 8 rows. A
-block keeps the page's old ink top when its full height fits there and moves
-up only as far as needed; a block that cannot fit the page fails the build.
-Pitch, gap and cell height are the owner's constants, never per-page values.
 
 ---
 

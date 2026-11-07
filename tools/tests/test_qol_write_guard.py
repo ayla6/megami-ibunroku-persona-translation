@@ -31,8 +31,7 @@ ADDRESSES = ROOT / 'src/asm/common/addresses.inc'
 # main.asm reads these generated includes and binaries; without a prepared
 # build tree there is nothing to assemble, so the test skips instead of
 # reporting a half-built tree as a translation bug.
-REQUIRED = ('features.inc', 's2d.asm', 'slps.asm', 'btlp.asm', 'affinity.asm',
-            'end_credits.asm')
+REQUIRED = ('features.inc', 's2d.asm', 'slps.asm', 'btlp.asm', 'affinity.asm')
 
 
 class QolWriteGuard(unittest.TestCase):
