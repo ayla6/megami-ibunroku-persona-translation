@@ -531,7 +531,7 @@ async function init() {
   try {
     await loadManifest();
     renderGrid();
-    status(`Patches loaded from ${PATCHES} - ${state.labels.length} options`);
+    status(`Hello :D - there are ${state.labels.length} options`);
   } catch (err) {
     status(err.message, true);
   }
