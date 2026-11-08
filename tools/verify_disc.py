@@ -313,10 +313,14 @@ def audit_structure(disc, original, build, placed=None):
     try:
         names = [n.decode('ascii') for n in _read_file(
             disc, *entries['FNAME.DAT'][:2]).split(b'\0') if n]
-        fsect = _read_file(disc, *entries['FSECT.DAT'][:2])
-        fsize = _read_file(disc, *entries['FSIZE.DAT'][:2])
+        # ISO file records carry whole-sector lengths, so a table's record
+        # may include zero padding past its live entries. The name count
+        # defines the table length; FSIZE.DAT itself already speaks sectors.
+        count = len(names)
+        fsect = _read_file(disc, *entries['FSECT.DAT'][:2])[:4 * count]
+        fsize = _read_file(disc, *entries['FSIZE.DAT'][:2])[:4 * count]
         if not names or len(fsect) % 4 or len(fsize) % 4 or \
-                len(fsect) != len(fsize) or len(names) != len(fsect) // 4:
+                len(fsect) != len(fsize) or len(fsect) // 4 != count:
             table_problems.append(f'{len(names)} names, {len(fsect) // 4} FSECT, '
                                   f'{len(fsize) // 4} FSIZE entries')
         seen = set()
@@ -447,7 +451,10 @@ def level1(disc, build, entries, read_file, placed=None):
                 data = open(local, 'rb').read()
                 got = read_file(rel)
                 n += 1
-                if data != got:
+                # ISO records carry whole-sector lengths; the build file
+                # itself is exact. Pad the build bytes with the zero fill the
+                # disc writer adds, then compare the recorded extent.
+                if data.ljust(len(got), b'\0') != got:
                     bad += 1
                     print(f'MISMATCH {rel}: build {len(data)}B vs disc {len(got)}B')
         print(f'level 1: {n} built files on the disc, {bad} byte mismatches')

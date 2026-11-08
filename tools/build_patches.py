@@ -7,34 +7,39 @@ retail disc to the base translation; every option is then an
 `add-<option>.xdelta` file that splices its own changes into whatever
 variant it is given.
 
-Size-changers come first, because an insertion shifts every offset after
-it: an option applied after one is encoded against the accumulated
-size-changers (`add-60fps.xdelta` without the save menu,
-`add-60fps-saves.xdelta` with it). In-place options come last and are
-encoded from the undecorated size-changer layout (`add-mark.xdelta`,
-`add-mark-saves.xdelta`, ...): their patches are the same size on both
-sides, so a copy is an ordinary same-offset copy that preserves whatever
-earlier in-place edits the disc carries. This ordering is what makes the
-graph compose: a shifted copy only ever runs against an undecorated
-source, so it can never carry a canonical byte over a decorated one. With
-m size-changers each in-place option needs 2^m files; growth stays linear
-in the options and exponential only in the size-changers.
+In-place options come first, one file each, encoded from the base
+translation (`add-mark.xdelta`, `add-battlespeed.xdelta`, ...). Their
+patches keep every offset and the image size, so a same-offset copy
+carries whatever earlier in-place edits the disc already has; one file
+serves every in-place combination.
+
+Size-changers come last. A size-changer is assembled one-shot from the
+retail disc, exactly like `build.py --qol=...`: building it on top of the
+base translation would extend the image instead of using retail's free
+space (`saves` alone is about 2 MB larger that way) and would not match
+the disc the option really produces. Each size-changer is then encoded
+from the size-changer layout that precedes it (`add-60fps.xdelta` without
+the save menu, `add-60fps-saves.xdelta` with it), so applying it rewrites
+the source layout into the canonical one-shot layout while its same-offset
+copies carry the in-place edits along. With m size-changers there are 2^m
+size-changer layouts and one file per (size-changer, subset of earlier
+size-changers); in-place options never multiply.
 
 A patch file is encoded from one canonical state - the base translation,
-a size-changer anchor, or that anchor plus one in-place option. When the
-applier's disc is exactly that state, xdelta's own per-window checksums
-verify the step. Applied over a decorated variant (extra in-place edits
-riding along) those checksums describe the canonical target, so the step
-decodes with `-n` and its output size is checked; the patch file's own
-SHA-256 is checked for integrity. A decorated disc never matches one
-canonical hash, so the release claims no per-combination checksums and
-proves nothing exhaustively: it is verified by SAMPLING. The popular
-combinations and a seeded set of random ones are built as real one-shot
-discs, the chain is applied exactly the way the web patcher applies it,
-and the result must match the built disc byte for byte. Every add- row
-records the selections that exercised it in the manifest's `verified`
-column; rows no sample exercised are named in the build summary - that
-residual risk is what sampling accepts.
+a size-changer layout, or the base translation plus one in-place option.
+When the applier's disc is exactly that state, xdelta's own per-window
+checksums verify the step. Applied over a decorated variant (extra
+in-place edits riding along) those checksums describe the canonical
+target, so the step decodes with `-n` and its output size is checked; the
+patch file's own SHA-256 is checked for integrity. A decorated disc never
+matches one canonical hash, so the release claims no per-combination
+checksums and proves nothing exhaustively: it is verified by SAMPLING.
+The popular combinations and a seeded set of random ones are built as
+real one-shot discs, the chain is applied exactly the way the web patcher
+applies it, and the result must match the built disc byte for byte. Every
+add- row records the selections that exercised it in the manifest's
+`verified` column; rows no sample exercised are named in the build
+summary - that residual risk is what sampling accepts.
 
 Injection and assembly are the only sequential stage: they own the shared
 build/ tree. A variant is written onto a clone of its parent's finished
@@ -93,10 +98,10 @@ with open(CHOICES_SOURCE, encoding='utf-8') as _release_options:
     RELEASE_OPTIONS = json.load(_release_options)
 CHOICES = tuple((item['label'], (item['label'],)) for item in RELEASE_OPTIONS)
 CHOICE_ORDER = [label for label, _group in CHOICES]
-# Options whose build appends bytes. Everything after an insertion shifts,
-# so options applied later are encoded against the accumulated size-changers:
-# a size-changer against the layout before it, an in-place option against
-# every size-changer layout. The build verifies this classification against
+# Options whose one-shot build changes the image layout (size or placement).
+# They are applied last, and each one is encoded against the size-changer
+# layout built before it. In-place options never change a file's allocation,
+# so one patch each is enough. The build verifies this classification against
 # the solo images it assembles.
 SIZE_CHANGERS = frozenset(('saves', '60fps'))
 REV1_PATCH = 'rev1-to-rev0.xdelta'
@@ -111,19 +116,22 @@ VERIFY_XDELTA = 'xdelta'      # the patch's own per-window checksums decide
 def solver_order(labels):
     """The release applies one option at a time, in this order.
 
-    Size-changers first (an insertion shifts every offset after it), then
-    in-place options (their patches are the same size on both sides), each
-    group in CHOICES order. The whole release graph hangs off this order:
-    a variant is always reached by adding its last option to the variant
-    without it, and a patch is encoded from the size-changer layout that
+    In-place options first (their patches keep every offset), then
+    size-changers (each is encoded against the layout built before it),
+    each group in CHOICES order. The whole release graph hangs off this
+    order: a variant is always reached by adding its last option to the
+    variant without it, and a patch is encoded from the layout that
     precedes its option."""
-    return sorted(labels, key=lambda label: (label not in SIZE_CHANGERS,
+    return sorted(labels, key=lambda label: (label in SIZE_CHANGERS,
                                              CHOICE_ORDER.index(label)))
 
 
 def patch_file(option, anchor):
     """The file that adds `option` on top of `anchor` (a frozenset of the
-    size-changers already applied, never including `option` itself)."""
+    size-changers already applied, never including `option` itself).
+
+    In-place options always have an empty anchor: one file each, encoded
+    from the base translation."""
     suffix = ''.join('-' + label for label in CHOICE_ORDER if label in anchor)
     return f'add-{option}{suffix}.xdelta'
 
@@ -166,10 +174,12 @@ def size_changer_states():
 
 
 def release_edge(labels):
-    """The edge to `labels`: its last option's add- file, encoded from the
-    size-changer layout that precedes the option. In-place options after it
-    ride along inside same-offset copies, so the file serves the decorated
-    parent states too."""
+    """The edge to `labels`: its last option's add- file.
+
+    An in-place option is encoded from the base translation (empty anchor),
+    so the one file serves every in-place combination. A size-changer is
+    encoded from the size-changer layout that precedes it. Earlier
+    in-place edits ride along inside same-offset copies either way."""
     ordered = solver_order(labels)
     last = ordered[-1]
     anchor = frozenset(label for label in ordered[:-1]
@@ -202,21 +212,23 @@ def in_place_options():
 def canonical_states():
     """Every state a patch file is encoded from or to, in build order.
 
-    The base translation, every size-changer layout, and - on each of
-    those layouts - each in-place option on its own. In-place options
-    compose over one another by same-offset copies, so they do not need a
-    file per combination; the size-changer layout is what each one is
-    anchored on."""
+    The base translation, every size-changer layout, and each in-place
+    option on its own. In-place options are encoded from the base
+    translation and compose over one another by same-offset copies, so
+    they need neither a layout anchor nor a file per combination."""
     anchors = size_changer_states()
     states = list(anchors)
     for option in in_place_options():
-        for anchor in anchors:
-            states.append(tuple(solver_order([*anchor, option])))
+        states.append(tuple(solver_order([option])))
     return states
 
 
 def add_edges():
-    """(option, anchor) for every add- patch file a release can contain."""
+    """(option, anchor) for every add- patch file a release can contain.
+
+    An in-place option has one file, encoded from the base translation
+    (empty anchor). A size-changer has one file per subset of the
+    size-changers that precede it."""
     sized = tuple(label for label in solver_order(CHOICE_ORDER)
                   if label in SIZE_CHANGERS)
     for index, option in enumerate(sized):
@@ -224,10 +236,8 @@ def add_edges():
         for bits in itertools.product((False, True), repeat=len(preceding)):
             yield option, frozenset(
                 label for label, on in zip(preceding, bits) if on)
-    anchors = size_changer_states()
     for option in in_place_options():
-        for anchor in anchors:
-            yield option, frozenset(anchor)
+        yield option, frozenset()
 
 
 SAMPLE_POPULAR = (
@@ -277,20 +287,18 @@ def state_labels(selected):
 def assembly_parent(labels):
     """The state a variant is assembled on, or None for retail.
 
-    A size-changer added after another size-changer is laid out from
-    retail in one pass, so its bytes match a one-shot `build.py --qol=...`
-    build. Every other state composes on the size-changer layout that
-    precedes it: an in-place state is that layout plus its single option,
-    and a lone size-changer is base plus that option."""
+    A size-changer is laid out from retail in one pass so its bytes match
+    a one-shot `build.py --qol=...` build; building it on the base
+    translation would extend the image instead of using retail's free
+    space. An in-place option is written onto the base translation, so its
+    patch carries exactly that option's edits and composes over any other
+    in-place edits."""
     ordered = solver_order(labels)
     if not ordered:
         return ()
-    if ordered[-1] in SIZE_CHANGERS:
-        parent = tuple(ordered[:-1])
-        if any(label in SIZE_CHANGERS for label in parent):
-            return None
-        return parent
-    return tuple(label for label in ordered if label in SIZE_CHANGERS)
+    if any(label in SIZE_CHANGERS for label in ordered):
+        return None
+    return ()
 
 
 def check_choices():
@@ -365,6 +373,33 @@ def run_delta(tool, source, target, output, *, disable_armor):
     output.unlink(missing_ok=True)      # scratch; xdelta3 refuses to overwrite
     subprocess.run([tool, '-e', '-A', *flags, '-s', str(source), str(target), str(output)],
                    check=True, env=env)
+    subprocess.run([tool, '-d', '-J', '-s', str(source), str(output)],
+                   check=True, env=env)
+
+
+def run_sizedelta(tool, source, target, output):
+    """Encode a size-changer from its preimage map, then verify the windows.
+
+    xdelta's matcher may copy a same-content decoy (a zero run in another
+    file) instead of the decorated preimage, which silently drops earlier
+    in-place edits. `sizedelta` writes every COPY itself; this wrapper keeps
+    the same `-J` verification every other patch gets."""
+    import sizedelta
+    with open(source, 'rb') as handle:
+        handle.seek(16 * 2352 + 24)
+        pvd = handle.read(6)
+    if pvd[1:6] != b'CD001':
+        # A synthetic or non-ISO image (the unit-test fixture) has no file
+        # map to be faithful to; the matcher is the only encoder that can
+        # still express its bytes.
+        run_delta(tool, source, target, output, disable_armor=True)
+        return
+    output.unlink(missing_ok=True)
+    windows, spans = sizedelta.build(source, target, output)
+    print(f'patch: sizedelta {output.name}: {windows} windows, {spans} spans',
+          flush=True)
+    env = dict(os.environ)
+    env.pop('XDELTA', None)
     subprocess.run([tool, '-d', '-J', '-s', str(source), str(output)],
                    check=True, env=env)
 
@@ -449,12 +484,13 @@ def release_fingerprint(rev0, xdelta):
                           if d.metadata.get('Name'))
     paths = [ROOT / 'src', ROOT / 'translation', ROOT / 'data/psx',
              ROOT / 'data/cache', ROOT / 'data/extracted_text',
-             ROOT / 'tools/build_patches.py', ROOT / 'tools/verify_disc.py',
+             ROOT / 'tools/build_patches.py', ROOT / 'tools/sizedelta.py',
+             ROOT / 'tools/verify_disc.py',
              rev0, Path(xdelta), Path(sys.executable)]
     if build.ARMIPS:
         paths.append(Path(build.ARMIPS))
     return build_step_cache.fingerprint(paths, context=(
-        *dependencies, pil_features.version_module('freetype2'), 'release-matrix-v5'))
+        *dependencies, pil_features.version_module('freetype2'), 'release-matrix-v7'))
 
 
 def scratch_root(required_bytes):
@@ -524,10 +560,11 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
 
     There is one manifest row and one patch file per step, never one per
     combination. The build assembles only the canonical states - the base
-    translation, every size-changer layout, and each in-place option on
-    every layout - and encodes the add- patches from them. A decorated disc
-    (other in-place options riding along) never matches a single canonical
-    hash, so the release does not claim per-combination checksums: each step
+    translation, every size-changer layout (one-shot from retail, as
+    `build.py --qol=...` builds it), and each in-place option on its own -
+    and encodes the add- patches from them. A decorated disc (other
+    in-place options riding along) never matches a single canonical hash,
+    so the release does not claim per-combination checksums: each step
     carries the patch file's own SHA-256, the output size, and xdelta's
     checksums verify any step applied from its exact canonical state; the
     rest decode with -n.
@@ -555,10 +592,11 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                            ' needs it to apply add- patches over decorated variants')
     output.mkdir(parents=True, exist_ok=True)
     image_bytes = rev0.stat().st_size
-    # The canonical states stay for the whole run: children are reflink
-    # clones of their parent, and the sample chains decode from the base
-    # image. That is ~32 images plus the two chain slots, all sharing their
-    # unchanged extents; sample discs are compared and deleted immediately.
+    # The canonical states stay for the whole run: in-place children are
+    # reflink clones of the base image, and the sample chains decode from
+    # the base image. That is ~11 images plus the two chain slots, all
+    # sharing their unchanged extents; sample discs are compared and deleted
+    # immediately.
     keep_images = len(canonical) + 3 + max(1, workers)
     with workspace(keep_images * image_bytes) as work:
         manifest = output / 'manifest.tsv'
@@ -679,12 +717,11 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
         def assembly_source(labels):
             """The image this variant is written onto.
 
-            That is its parent's finished image, so `build_disc` writes only
-            the files the new option changes. A size-changer added after
-            another size-changer is laid out from retail in one pass, so its
-            bytes match `build.py --qol=...` (the one-shot layout). An
-            in-place state is written on its size-changer layout, so the
-            patch for it is exactly that one option's edits."""
+            A size-changer is laid out from retail in one pass, so its
+            bytes match `build.py --qol=...` (the one-shot layout, which
+            uses retail's free space). An in-place option is written on
+            the base translation, so its patch carries exactly that
+            option's edits and composes over the others."""
             labels = tuple(solver_order(labels))
             if not labels:
                 return original
@@ -839,8 +876,11 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
             print(f'patch: {name}', flush=True)
             generated = work / f'new-{threading.get_ident()}-{name}'
             try:
-                run_delta(xdelta, source, target, generated,
-                          disable_armor=disable_armor)
+                if metadata.get('adds') in SIZE_CHANGERS:
+                    run_sizedelta(xdelta, source, target, generated)
+                else:
+                    run_delta(xdelta, source, target, generated,
+                              disable_armor=disable_armor)
                 publish(generated, path)
             finally:
                 generated.unlink(missing_ok=True)
@@ -1205,12 +1245,11 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
             '\n'
             '    xdelta3 -d -s your.bin <patch>.xdelta result.bin\n'
             '\n'
-            'Size-changing options come first: an insertion shifts every\n'
-            'offset after it, so each such patch is encoded against the\n'
-            'layout built before it, and the order above is fixed. In-place\n'
-            'options come last, one file per size-changing layout; their\n'
-            'patches keep the image size, so they compose over one another\n'
-            'by same-offset copies.\n'
+            'In-place options come first, one file per option, each encoded\n'
+            'from the base translation: their patches keep every offset, so\n'
+            'they compose over one another by same-offset copies. Size-\n'
+            'changing options come last: each one is encoded against the\n'
+            'layout built before it, and the order above is fixed.\n'
             '\n'
             'Each patch is encoded from one canonical state. When your disc\n'
             'has exactly that state, xdelta\'s own window checksums verify\n'

@@ -131,22 +131,30 @@ Upper Right movement and Start-to-skip movies. Rewards and encounters ship
 as separate options, so someone can take one without the other. Debug is not
 included.
 
-The release ships thirty-three patch files and thirty-three manifest rows -
-one row per file, never one per combination. `rev1-to-rev0.xdelta` and
+The release ships twelve patch files and twelve manifest rows - one row per
+file, never one per combination. `rev1-to-rev0.xdelta` and
 `rev0-to-base.xdelta` convert the retail disc to the base translation;
 every option is an `add-<option>.xdelta`.
 
-Size-changing options come first in solver order: an insertion shifts every
-offset after it, so an option applied after one is encoded against the
-accumulated size-changers (`add-60fps.xdelta` without the save menu,
-`add-60fps-saves.xdelta` with it). In-place options come last and are
-encoded from the undecorated size-changer layout, one file per layout, so
-each of Mark, battle speed, rewards, encounters, run, upright and skipfmv
-has `add-<option>.xdelta`, `add-<option>-saves.xdelta`,
-`add-<option>-60fps.xdelta` and `add-<option>-saves-60fps.xdelta`. Because
-their patches keep the image size, they compose over one another by
-same-offset copies: stacking two in-place options never moves the second
-patch's bytes.
+In-place options come first in solver order, one file each, encoded from the
+base translation: Mark, battle speed, rewards, encounters, run, upright and
+skipfmv are `add-<option>.xdelta`. Their patches keep every offset and the
+image size, so they compose over one another by same-offset copies.
+
+Size-changing options come last: the save menu is `add-saves.xdelta`, 60 fps
+is `add-60fps.xdelta` without the save menu or `add-60fps-saves.xdelta` with
+it. A size-changer is assembled one-shot from retail, exactly like
+`build.py --qol=...`; building it on the base translation would extend the
+image instead of using retail's free space (`saves` alone is about 2 MB
+larger that way) and would not produce the disc the option really builds.
+Applying it rewrites the source layout into the canonical one-shot layout,
+and its same-offset copies carry the earlier in-place edits along. These
+three patches are emitted by `tools/sizedelta.py`, not by xdelta's matcher:
+the writer copies each target byte from its true preimage (the same file
+and offset in the source layout) and writes literals everywhere else. A
+matcher is free to use a same-content decoy - a zero run in one file for a
+different file - which silently dropped skipfmv's edits in `EXE/MOVIE.EXE`
+when `add-saves` was encoded with xdelta3.
 
 A row names the option it adds (`adds`), the size-changers it was encoded
 against (`anchor`), its fixed apply position (`order`), and the canonical
@@ -156,36 +164,47 @@ specific `adds` row whose `anchor` is already applied. No combination list
 exists in the manifest or the page.
 
 The build assembles the canonical states - the base translation, the four
-size-changer layouts (none, `saves`, `60fps`, `saves+60fps`), and each
-in-place option on each of those layouts - and then a sample of real
-selections (the two expected-popular combinations and `--sample` seeded
-random ones), each built once from retail for the byte-for-byte comparison.
-That is thirty-two canonical builds plus five sample builds by default,
-not 512.
+size-changer layouts (none, `saves`, `60fps`, `saves+60fps`, each laid out
+one-shot from retail), and each in-place option on its own - and then a
+sample of real selections (the two expected-popular combinations and
+`--sample` seeded random ones), each built once from retail for the
+byte-for-byte comparison. That is eleven canonical builds plus five sample
+builds by default, not 512.
 
 #### Why the graph looks like this (invariants other agents must keep)
 
-- **Solver order**: size-changers first (CHOICES order), then in-place
-  options. A size-changer's insertion shifts every offset after it, so a
-  patch encoded before the insertion reads the wrong places on the other
-  side of it - that is the whole reason for the order and for anchor
-  files. In-place patches are the same size on both sides, so their
-  copies are same-offset and can be applied over earlier in-place edits.
-  Compositions that do not hold stop the build (see the sampling check
-  below); they are never worked around.
-- **File layout**: one file per (option, subset of size-changers that can
-  precede it). With m size-changers, each in-place option needs 2^m files
-  (one per layout), and a size-changer needs one file per subset of the
-  size-changers before it. Adding an in-place option costs 2^m files;
-  adding a size-changer is the only thing that multiplies, doubling every
-  in-place option's rows.
-- **Assembly reuses the parent image**: a variant is written onto a
-  reflink clone of its parent's finished image, so `build_disc` rewrites
-  only the files the new option changes. An in-place state is written on
-  its size-changer layout, so its patch carries exactly that one option's
-  edits. The exception is a size-changer added after another size-changer
-  (`saves+60fps`): that variant is laid out from retail in one pass so
-  its bytes match a one-shot `build.py --qol=...` build.
+- **Solver order**: in-place options first (CHOICES order), then
+  size-changers. In-place patches keep every offset and the image size, so
+  their copies are same-offset and compose over earlier in-place edits;
+  one file per option is enough. A size-changer's insertion shifts every
+  offset after it, so it must come after the in-place edits that should
+  ride along, and each size-changer is encoded against the layout built
+  before it - that is the whole reason for the order and for anchor
+  files. Compositions that do not hold stop the build (see the sampling
+  check below); they are never worked around.
+- **ISO record sizes are whole sectors**: `build_disc` records the same
+  allocation length in each ISO file record that `FSIZE.DAT` stores, and
+  normalizes every record even when the file itself did not change. The
+  game resolves files through `FSECT.DAT`/`FSIZE.DAT`; the ISO byte count is
+  only metadata. An in-place option keeps the file's sector allocation, so
+  the directory sector - and its EDC/ECC - is byte-identical regardless of
+  which in-place options are selected. Without this, a size-changer's
+  literal EDC (which no delta can recompute) would describe the canonical
+  build but not a decorated chain, and the sampled comparison would be off
+  by that checksum even though every data byte matched.
+- **File layout**: one file per in-place option, plus one file per
+  (size-changer, subset of earlier size-changers). With m size-changers
+  that is 2^m size-changer layouts and one file per size-changer per
+  subset; in-place options never multiply. Adding an in-place option
+  costs one file; adding a size-changer doubles its own anchor rows.
+- **Size-changers are assembled from retail**: a size-changer variant is
+  laid out from retail in one pass, so its bytes match a one-shot
+  `build.py --qol=...` build. The base translation has already used its
+  own free space, so building the option on top of it would extend the
+  image and produce a disc the option never builds. In-place variants are
+  written onto a reflink clone of the base translation (their patches keep
+  the layout), so `build_disc` rewrites only the files the option
+  changes.
 - **Hashes only where they describe a real disc**: the revision
   conversions and the base translation record whole-image
   `source_sha256`/`target_sha256`, because their inputs are exactly a
@@ -227,10 +246,10 @@ not 512.
    count moved.
 5. Rebuild from scratch: the fingerprint changes, every canonical state
    is re-assembled and audited, and the sampled selections are rebuilt
-   and their chains compared. Adding an in-place option costs 2^m
-   canonical states; adding a size-changer adds 2^(m-1) canonical anchors
-   and doubles every in-place option's rows, the only part that grows
-   exponentially.
+   and their chains compared. Adding an in-place option costs one
+   canonical state and one file; adding a size-changer adds 2^(m-1)
+   canonical layouts and doubles its own anchor rows, the only part that
+   grows exponentially.
 
 `--publish-release` (formerly `--publish-web`) uploads the `--output`
 directory (default `dist/patches`) to a GitHub release as one
@@ -304,7 +323,7 @@ what feeds the disc - `src/`, `translation/`, the extracted data, and the
 two scripts it runs - so unrelated churn in `tools/tests/` never
 invalidates a running release. The Rev 1 to Rev 0 conversion never depends
 on build inputs and is reused across any same-source run. A release is
-complete when its manifest lists all 33 steps across the 33 patch files.
+complete when its manifest lists all 12 steps across the 12 patch files.
 
 The run's scratch images live in a private workspace that is deleted on
 exit. It prefers the system temp directory (tmpfs on most Linux systems) when

@@ -117,24 +117,22 @@ class ReleaseGraph(unittest.TestCase):
         anchors = release.size_changer_states()
         self.assertEqual(anchors, [(), ('saves',), ('60fps',),
                                    ('saves', '60fps')])
-        self.assertEqual(len(canonical), 32)
+        self.assertEqual(len(canonical), 11)
         self.assertEqual(canonical[0], ())
         self.assertEqual({tuple(labels) for labels in canonical[:4]},
                          set(anchors))
         for option in release.in_place_options():
-            for anchor in anchors:
-                self.assertIn(tuple(release.solver_order([*anchor, option])),
-                              canonical)
+            self.assertIn(tuple(release.solver_order([option])), canonical)
+            self.assertEqual(tuple(release.solver_order([option])), (option,))
         self.assertEqual(len({tuple(release.release_selection(labels))
-                              for labels in canonical}), 32)
+                              for labels in canonical}), 11)
 
         expected = {'rev0-to-base.xdelta', 'rev1-to-rev0.xdelta',
                     'add-saves.xdelta', 'add-60fps.xdelta',
                     'add-60fps-saves.xdelta'}
         for option in release.in_place_options():
-            for anchor in anchors:
-                expected.add(release.patch_file(option, frozenset(anchor)))
-        self.assertEqual(len(release.release_file_names()), 33)
+            expected.add(release.patch_file(option, frozenset()))
+        self.assertEqual(len(release.release_file_names()), 12)
         self.assertEqual(release.release_file_names(), expected)
 
     def test_samples_start_with_the_expected_popular_sets(self):
@@ -156,36 +154,26 @@ class ReleaseGraph(unittest.TestCase):
 
     def test_assembly_parent_keeps_the_one_shot_size_changer_layout(self):
         self.assertEqual(release.assembly_parent(()), ())
-        self.assertEqual(release.assembly_parent(('mark',)), ())
-        self.assertEqual(release.assembly_parent(('saves',)), ())
-        self.assertEqual(release.assembly_parent(('60fps',)), ())
+        for option in release.in_place_options():
+            self.assertEqual(release.assembly_parent((option,)), ())
+        # Every size-changer is laid out from retail in one pass, so it
+        # matches a one-shot build.py --qol=... disc.
+        self.assertIsNone(release.assembly_parent(('saves',)))
+        self.assertIsNone(release.assembly_parent(('60fps',)))
         self.assertIsNone(release.assembly_parent(('saves', '60fps')))
-        # An in-place state is written on its size-changer layout, so its
-        # patch carries only that option's edits.
-        self.assertEqual(release.assembly_parent(('mark', 'saves')),
-                         ('saves',))
-        self.assertEqual(release.assembly_parent(('saves', 'mark')), ('saves',))
-        self.assertEqual(
-            release.assembly_parent(('mark', '60fps', 'saves')),
-            ('saves', '60fps'))
-        all_in_place = tuple(release.in_place_options())
-        self.assertEqual(release.assembly_parent((*all_in_place, 'saves')),
-                         ('saves',))
-        self.assertEqual(release.assembly_parent(
-            (*all_in_place, 'saves', '60fps')), ('saves', '60fps'))
+        self.assertIsNone(release.assembly_parent(('mark', 'saves')))
+        self.assertIsNone(release.assembly_parent(('saves', 'mark')))
 
     def test_add_edges_cover_every_option_and_anchor(self):
         edges = {(option, tuple(sorted(anchor)))
                  for option, anchor in release.add_edges()}
-        anchors = {tuple(sorted(anchor))
-                   for anchor in release.size_changer_states()}
         for option in release.in_place_options():
-            for anchor in anchors:
-                self.assertIn((option, anchor), edges)
+            self.assertIn((option, ()), edges)
+            self.assertNotIn((option, ('saves',)), edges)
         self.assertIn(('saves', ()), edges)
         self.assertIn(('60fps', ()), edges)
         self.assertIn(('60fps', ('saves',)), edges)
-        self.assertEqual(len(edges), 31)
+        self.assertEqual(len(edges), 10)
 
     def test_every_add_edge_is_encoded_from_a_canonical_state(self):
         canonical = set(release.canonical_states())
@@ -304,25 +292,25 @@ class ReleaseBuild(unittest.TestCase):
             rev0.write_bytes(b'retail revision zero' * 100)
             rev1.write_bytes(b'retail revision one' * 100)
             verified, builder = self.run_release(root, rev0, rev1, out)
-            self.assertEqual(len(verified), 32 + len(self.samples),
+            self.assertEqual(len(verified), 11 + len(self.samples),
                              'an audit per canonical state and per sample disc')
             self.assertEqual(builder.call_count, 2,
                              'one canonical batch plus one sample batch')
-            self.assertEqual(len(list(out.glob('*.xdelta'))), 33)
+            self.assertEqual(len(list(out.glob('*.xdelta'))), 12)
             self.assertFalse(list(out.glob('*.bin')))
             readme = (out / 'README.txt').read_text(encoding='utf-8')
             for name in release.release_file_names():
                 self.assertIn(name, readme)
             for item in release.RELEASE_OPTIONS:
                 self.assertIn(item['name'], readme)
-            self.assertIn('33 steps across 33 patch files', ' '.join(readme.split()))
+            self.assertIn('12 steps across 12 patch files', ' '.join(readme.split()))
             self.assertIn('SAMPLING', readme)
 
             with (out / 'manifest.tsv').open() as f:
                 rows = list(csv.DictReader(f, delimiter='\t'))
-            self.assertEqual(len(rows), 33)
+            self.assertEqual(len(rows), 12)
             by_name = {row['patch']: row for row in rows}
-            self.assertEqual(len(by_name), 33, 'one row per patch file')
+            self.assertEqual(len(by_name), 12, 'one row per patch file')
             self.assertEqual(by_name['rev1-to-rev0.xdelta']['source_sha256'],
                              release.sha256(rev1))
             base = by_name['rev0-to-base.xdelta']

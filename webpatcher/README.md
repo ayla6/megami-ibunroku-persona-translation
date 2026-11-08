@@ -50,10 +50,10 @@ produced the release patches) compiled to WebAssembly - see
 - The chain is derived from the manifest itself: selected options apply in
   `order`, each picking the most specific `add-` row whose `anchor` is
   already applied (for example `rev1-to-rev0` on Rev 1 discs, then
-  `rev0-to-base`, `add-saves`, `add-60fps-saves`, `add-mark-saves-60fps`).
-  Size-changers come first; in-place options are encoded per size-changer
-  layout. A wrong or corrupt file fails with a clear message instead of
-  producing a download.
+  `rev0-to-base`, `add-mark`, `add-saves`, `add-60fps-saves`). In-place
+  options come first, one file each; size-changers come last, each encoded
+  against the layout built before it. A wrong or corrupt file fails with a
+  clear message instead of producing a download.
 - The source disc and patch files are mounted read-only through a small
   WORKERFS (`workerfs.js`) because the vendored wasm build exposes
   Emscripten's `FS` but not its workerfs library. A rebuild that includes

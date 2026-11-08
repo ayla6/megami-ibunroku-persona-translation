@@ -4,8 +4,9 @@ For every file in build/ that differs from the original disc file:
   - if it fits in the sectors the original occupied, it is written in place;
   - otherwise it is appended after the end of the volume and its ISO9660
     directory record is pointed at the new extent.
-Directory records get the new size, the PVD gets the new volume size, every
-written sector gets fresh EDC/ECC, and a matching .cue is written. With a
+Directory records get the file's whole-sector length (the same allocation
+size FSIZE.DAT stores), the PVD gets the new volume size, every written
+sector gets fresh EDC/ECC, and a matching .cue is written. With a
 placement path, a TSV of every written file (path, extent, size, SHA-256)
 is written there, so the finished image can be audited without the tree
 that produced it.
@@ -37,6 +38,18 @@ POSTGAP = 150
 CD_PATH_CACHE_BASE = 0x800569F4
 CD_PATH_CACHE_STRIDE = 44
 RESIDENT_SCRATCH_START = toolbelt.asm_equ('BTLEVT_BUF_ADDR')
+
+
+def record_size(length):
+    """The whole-sector length recorded in an ISO file record.
+
+    FSIZE.DAT has always stored whole sectors; the ISO directory now records
+    the same value instead of the exact byte count. An in-place QoL option
+    changes bytes inside an existing extent but never its allocation, so the
+    directory sector - and its EDC/ECC - stays identical across every
+    combination and a composed chain matches the one-shot build byte for
+    byte. The game reads FSIZE.DAT, not the ISO record, for file lengths."""
+    return (length + 2047) // 2048 * 2048
 
 
 def check_path_cache(disc, pvd):
@@ -174,6 +187,16 @@ def build_to(src, out, build, placement=None):
             ext, size, _, _ = entries[path]
             return b"".join(disc.user(ext + n) for n in range((size + 2047) // 2048))[:size]
 
+        # Normalize every file record to its whole-sector length. The game
+        # reads FSIZE.DAT, so the exact byte count in the ISO tree is only
+        # metadata; recording the allocation length makes directory sectors,
+        # and their EDC/ECC, independent of which in-place options are on.
+        for path, (ext, size, rec_lba, rec_off) in list(entries.items()):
+            aligned = record_size(size)
+            if aligned != size:
+                disc.set_record(rec_lba, rec_off, ext, aligned)
+                entries[path] = (ext, aligned, rec_lba, rec_off)
+
         fnames = [n.decode("ascii") for n in read_file("FNAME.DAT").split(b"\x00") if n]
         fsect = bytearray(read_file("FSECT.DAT"))
         fsize = bytearray(read_file("FSIZE.DAT"))
@@ -192,20 +215,24 @@ def build_to(src, out, build, placement=None):
                     continue          # not a disc file (symbols, temp output, ...)
                 ext, size, rec_lba, rec_off = entries[disc_path]
                 data = open(local, "rb").read()
-                orig = b"".join(disc.user(ext + n) for n in range((size + 2047) // 2048))[:size]
-                if data == orig:
+                old_sectors = (size + 2047) // 2048
+                sectors = (len(data) + 2047) // 2048
+                orig = b"".join(disc.user(ext + n) for n in range(old_sectors))
+                padded = data.ljust(sectors * 2048, b"\x00")
+                if sectors == old_sectors and padded == orig:
                     continue
                 changed += 1
-                if (len(data) + 2047) // 2048 <= (size + 2047) // 2048:
+                if sectors <= old_sectors:
                     disc.write_file(ext, data)
                     where = f"in place @ {ext}"
                 else:
                     ext = append_at
                     append_at += disc.write_file(ext, data)
                     where = f"relocated -> {ext}"
-                disc.set_record(rec_lba, rec_off, ext, len(data))
-                placed.append((disc_path, ext, len(data),
-                               hashlib.sha256(data).hexdigest()))
+                aligned = record_size(len(data))
+                disc.set_record(rec_lba, rec_off, ext, aligned)
+                placed.append((disc_path, ext, aligned,
+                               hashlib.sha256(padded).hexdigest()))
                 if disc_path in game_index:
                     i = game_index[disc_path]
                     struct.pack_into("<I", fsect, i * 4, ext)
@@ -215,8 +242,9 @@ def build_to(src, out, build, placement=None):
 
         if tables_dirty:
             for name, table in (("FSECT.DAT", fsect), ("FSIZE.DAT", fsize)):
-                ext, size, _, _ = entries[name]
+                ext, size, rec_lba, rec_off = entries[name]
                 disc.write_file(ext, bytes(table))
+                disc.set_record(rec_lba, rec_off, ext, record_size(len(table)))
             print("updated game file tables FSECT.DAT / FSIZE.DAT")
 
         if append_at > orig_end:
