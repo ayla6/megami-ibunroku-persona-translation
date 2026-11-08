@@ -11,8 +11,13 @@ is on disk right now. A saved draft is the human's override and goes to
 translation/manual/ with the row's psp and note kept.
 
   GET  /rows?q=&fam=&limit=   [rel, id, pos, text, state, note] per row
-  GET  /row?rel=&pos=         one row: manual, generated, PSP-US, PSX-JA
-  POST /save {rel,pos,en}     the human's manual override (Ctrl+S in the page)
+  GET  /row?rel=&pos=         one row: manual, generated, PSP-US, PSX-JA,
+                              and the choice grid when the row is an <FF0E>
+                              option table entry (a queued over-limit row
+                              starts from the draft in its note)
+  POST /save {rel,pos,en}     the human's manual override (Ctrl+S in the page);
+                              a choice row is laid out first, so the save
+                              cannot write a grid the build would refuse
   GET  /psp?q=&region=&limit= search the PSP-US and PSP-JP extracts
   GET  /psp/unit?region=&rel=&id=  one PSP unit, its neighbours, its twin
   GET  /font                  the build's VWF font + the retail FONT.BIN and
@@ -45,6 +50,7 @@ _orig = {"stamp": None, "data": None}
 _cache = {"stamp": None, "rows": []}
 _psp = {}
 _align = {"key": None, "map": {}}
+_choices = {"stamp": None, "map": {}}
 
 
 def tb():
@@ -147,6 +153,14 @@ def rows():
             man_en = (m.get("en") or "") if m else ""
             en = man_en if man_en.strip() else gen_en
             if not en.strip():
+                # A queue row whose note parks an over-limit draft IS that
+                # draft, so the list shows the wording the human has to
+                # shorten instead of an empty cell (row_detail starts the
+                # editor from the same draft).
+                note = (m.get("note") or "") if m else ""
+                if note.startswith("over limit"):
+                    en = note.partition(";")[2].strip()
+            if not en.strip():
                 if ja is None:
                     ja = tb_.psx_text_of(rel)
                 en = ja_text(ja, pos)
@@ -194,7 +208,12 @@ def slim(toolbelt, r, with_note=False):
 
 def row_detail(rel, pos):
     """Everything the page may read about one row, and the draft it starts
-    with: manual's en, else generated's en, else the PSX Japanese."""
+    with: manual's en, else generated's en, else the PSX Japanese.
+
+    A manual row whose note parks an over-limit draft starts from that draft,
+    not from the Japanese: the note's wording is the PSP text the human has to
+    shorten, and retyping it before editing is work the viewer can spare them.
+    The row keeps its `queue` state (manual en is still empty)."""
     tb_ = tb()
     gen = next((r for r in tb_.read_generated(rel, optional=True)
                 if r["pos"] == pos), None)
@@ -203,15 +222,67 @@ def row_detail(rel, pos):
     ja = ja_text(tb_.psx_text_of(rel), pos)
     man_en = (man or {}).get("en", "")
     gen_en = (gen or {}).get("en", "")
+    note = (man or {}).get("note", "") or ""
     if man_en.strip():
         initial, state = man_en, "manual"
     elif gen_en.strip():
         initial, state = gen_en, "generated"
     else:
-        initial, state = ja, ("queue" if man else "empty")
+        draft = note.partition(";")[2].strip()
+        over = note.startswith("over limit") and bool(draft)
+        initial = draft if over else ja
+        state = "queue" if man else "empty"
     return {"rel": rel, "pos": pos, "ja": ja, "state": state,
             "initial": initial, "gen": slim(tb_, gen),
-            "man": slim(tb_, man, with_note=True)}
+            "man": slim(tb_, man, with_note=True),
+            "choice": choice_grid(rel, pos)}
+
+
+def choice_grid(rel, pos):
+    """The dialogue-choice shape at <pos>, or None for an ordinary row.
+
+    The choice table owns rows/cols/width (choices.py reads it from the
+    disc); the page only needs the shape so it can draw `<FF0E>` option cells
+    as the grid the build will produce and gate the same 239 px / two-row
+    limits choices.layout applies."""
+    if rel != "SLPS_005.00":
+        return None
+    path = os.path.join(ROOT, "data", "psx", "SLPS_005.00")
+    if not os.path.exists(path):
+        return None
+    stamp = (os.stat(path).st_mtime_ns, os.stat(path).st_size)
+    if _choices["stamp"] != stamp:
+        sys.path.insert(0, os.path.join(ROOT, "src", "injection_tools"))
+        import choices
+        orig = choices.original()
+        _choices["rows"] = {hex(r["ptr"] - choices.BASE): r for r in orig}
+        _choices["map"] = {
+            hex(r["ptr"] - choices.BASE):
+                {"rows": r["params"][0], "cols": r["params"][1],
+                 "width": r["params"][2]}
+            for r in orig}
+        _choices["stamp"] = stamp
+    return _choices["map"].get(pos)
+
+
+def validate_choice(rel, pos, en):
+    """The choice grid's own owner checks a human's draft before it is saved.
+
+    choices.layout is what the build runs; calling it here means the Save
+    button refuses a grid the build would refuse (wrong cell count) or one
+    still over the box limit, with the same message the porter would emit -
+    instead of writing a row that stops the next build."""
+    if not choice_grid(rel, pos):
+        return
+    import choices
+    row = _choices["rows"][pos]
+    try:
+        choices.layout(row, en)
+    except choices.OverLimit as exc:
+        raise ValueError(f"{exc} - shorten the choice wording until the "
+                         f"grid fits the box") from None
+    except AssertionError as exc:
+        raise ValueError(f"{pos}: {exc}") from None
 
 
 def valid_rel(rel):
@@ -403,6 +474,7 @@ def save_manual(rel, pos, en):
         row = {"id": str(n), "pos": pos, "psp": (gen or {}).get("psp", ""),
                "en": "", "note": ""}
         rows_.append(row)
+    validate_choice(rel, pos, en)
     row["en"] = en
     tb_._write(tb_.man_path(rel), tb_.MAN_COLS, rows_)
     return row_detail(rel, pos)

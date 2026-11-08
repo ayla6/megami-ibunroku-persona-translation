@@ -1,4 +1,6 @@
 id	pos	psp	en	note
+0	0x3dd60	EBOOT:2c06ec	Stop hiding.|Yes, it's safe here.<FF03>True, but...|I don't really know.	over limit 248px/239px; Stop hiding.|Yes, it's safe here.<FF03>That's true, but...|I don't really know.
+1	0x3dd84	EBOOT:2c06ec	For myself.|Just 'cause.<FF03>For everyone.|That's how it went.	over limit 262px/239px; For myself.|Just 'cause.<FF03>For everyone's sake.|That's how it went.
 25	0x3a5d0	EBOOT:27a6a2	Absorbs Fire magic and restores HP	machine-translated; JP: 火炎魔法を吸収してＨＰ回復<FF01> | US: Party absorbs 50% Fire spells, 3 turns
 28	0x3aefc	EBOOT:278854	Recovers HP every turn	machine-translated; JP: 毎ターンＨＰ回復<FF01> | US: Restores a little HP each turn (all allies)
 29	0x3ad64	EBOOT:2794ac	Affinity-changing attack (all foes)	machine-translated; JP: 敵全　攻撃相性が変わる謎の攻撃<FF01> | US: Special Phys damage+Affinity change (area)

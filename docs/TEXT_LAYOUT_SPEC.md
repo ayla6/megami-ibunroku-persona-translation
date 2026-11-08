@@ -651,6 +651,21 @@ one click. That is the whole model; "four clicks in one box" is a bug.
    a choice row is joinable like any other, and the joined row ends with the
    block (`...?<FF02><FF03><FF0E><01><FF01>`): a dismissal wait after the
    block stops the options arming.
+11. **A choice list is at most two option rows, and four options are only
+   ever a 2x2 grid.** The message box is three 16 px rows tall - ADV's
+   room setup sets `g_bg_layers[4].h = 0x30` - and the prompt's arming line
+   is the first of them, so the list can use at most two. The option cursor
+   agrees: `MsgStep` puts row *n* at `row * 16 + 0xB4` in a window that ends
+   at `0xA4 + 0x30`, and once the buffer is full it scrolls the layer 4 px
+   at a time, so a third or fourth option row pushes the first option out of
+   view. A 2x2 grid is therefore the only shape that shows four options at
+   once. When the verbatim PSP wording fits no legal column stop (column 2
+   is at `(width + 1) * 16`, clear of column 1 by 4 px, and the whole row
+   stays inside 239 px), the row must NOT fall back to a taller
+   single-column list: `choices.py sync-boot` measures it at the row's only
+   write, routes the full PSP draft to manual as `over limit Npx/239px;
+   <draft>`, and leaves the Japanese on the disc. A human shortens the draft
+   into `en`; the grid then fits.
 
 **S2D overworld portrait dialogue.** The generic 15x3 text object treats
 `<FF02>` as a wait in place and `<FF04>` as a page advance. For complete
@@ -854,6 +869,13 @@ poisoned-register rule to the held-START renderer.
   box; the rule checks are listed under the box.
 - Rows can be filtered by family, by text, and "3+ words only" hides the one-
   and two-word cells that are not textboxes.
+- A **dialogue-choice row** (`SLPS_005.00`'s `<FF0E>` table) is drawn as the
+  grid the build produces: `|` separates the cells of a row, `<FF03>` its
+  rows, and the checks under the box are `choices.layout`'s own (a 2x2 grid
+  must fit 239 px and the box's two option rows). The Save button runs the
+  same layout, so a draft the build would refuse cannot be written. A queued
+  over-limit row opens with the PSP draft parked in its note already in the
+  editor, not with the Japanese.
 - The list is the WHOLE table: rows append as you scroll (400 at a time), so
   every row is a real, clickable element.
 - The canvas never collapses: it sits in its own scroll container with a

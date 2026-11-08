@@ -938,8 +938,6 @@ id	pos	psp	en
 936	0x3dd1c	EBOOT:2c06ec	Don't open it<FF03>Open it
 937	0x3dd2c	EBOOT:2c06ec	Don't listen<FF03>Listen
 938	0x3dd38	EBOOT:2c06ec	 Create Persona|Leave<FF03>Take on Persona|Talk
-939	0x3dd60	EBOOT:2c06ec	Stop hiding.|Yes, it's safe here.<FF03>That's true, but...|I don't really know.
-940	0x3dd84	EBOOT:2c06ec	For myself.|Just 'cause.<FF03>For everyone's sake.|That's how it went.
 941	0x3dda4	EBOOT:2c06ec	 I don't really know.<FF03>To find my reason.
 942	0x3ddc0	EBOOT:2c06ec	 Press the red button<FF03>Press the blue button
 943	0x3dddc	EBOOT:2c06ec	Heal us, please.<FF03>Just dropping by.

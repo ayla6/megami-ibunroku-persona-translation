@@ -15,8 +15,12 @@ The strings are drawn by the dialogue text interpreter, so English goes through 
 
 CHOICES.tsv `en` syntax: rows joined by <FF03>; cells of a 2-column row joined by `|`
 (e.g. `Start Game|Quit<FF03>Check Coins|Rules`). Column 1 is padded with VWF spaces (4 px) up to the
-column 2 pixel start; if column 1 is too wide the build fails. Single-column menus: the underline
-width byte is raised if an option is wider than width_chars * 16 px. Empty `en` = left Japanese.
+column 2 pixel start. Single-column menus: the underline width byte is raised if an option is wider
+than width_chars * 16 px. Empty `en` = left Japanese.
+The box shows three 16 px rows and the prompt's arming line is the first, so the list may use two;
+four options must therefore stay a 2x2 grid. Wording that fits no 2-column width is routed to manual
+as an over-limit draft (full PSP wording in the note) instead of falling back to a taller list that
+would scroll its first option out of view.
 The strings are repacked into the freed original slots and unreferenced SLPS functions (pointer table is
 rewritten), so English may be longer than the Japanese.
 
@@ -60,6 +64,20 @@ ROOT = etext.ROOT
 TABLE = 0x8004D760
 COUNT = 32
 BASE = 0x80010000 - 0x800
+# The box the choice list is drawn into. roomsetup.c sets
+# g_bg_layers[4].h = 0x30 (three 16 px rows), and the prompt's arming line is
+# the first of them, so the list itself may occupy at most two rows. A 2x2
+# grid is therefore the only shape that carries four options; a taller
+# single-column list scrolls the first option out of the box.
+BOX_ROWS = 3
+OPTION_ROWS = BOX_ROWS - 1
+BOX_PX = 239          # a line may use 239 so the engine's own wrap never skips
+
+
+class OverLimit(Exception):
+    """PSP wording that cannot be drawn whole in the box the engine owns."""
+
+
 # Unreferenced SLPS functions (tools/deadfuncs.py), not used by the VWF (0x80015510 is vwf_name_map). NOT the SLPS_FREE_START..END
 # area of common/addresses.inc: that one holds runtime variables (e.g. the CD flag at 0x80055C34).
 # (0x80011FBC, 0x800120A4) now holds skill_name_copy (common/addresses.inc SKILL_CODE_ADDR)
@@ -145,11 +163,12 @@ def layout(r, en):
 
     Column geometry (width byte, and in one case rows/cols) lives in our
     patched table, so verbatim PSP wording is fitted geometrically, never
-    reworded. If no 2-column width fits (idx13: 252 px in a 239 px box), the
-    entry falls back to a single-column list, preserving option order (and
-    hence branch indices). PSP itself uses tall single-column menus
-    (its BOOT menu table has rows=3/rows=4 entries), so this mirrors PSP
-    rather than the PS1 Japanese grid.
+    reworded. A 2-column entry whose wording fits no width can fall back to a
+    single-column list only while that list still fits the two option rows
+    the box has (BOX_ROWS minus the prompt's arming line). A four-option block
+    has no such fallback: the only shape that shows all four at once is the
+    2x2 grid, so wording that cannot fit it raises OverLimit and its PSP draft
+    goes to manual (toolbelt.route_over), Japanese staying on disc.
     """
     rows_p, cols_p, width_p, _ = r['params']
     lines = en.split('<FF03>')
@@ -159,8 +178,8 @@ def layout(r, en):
     if cols_p == 2:
         # Column 2 starts at (width+1)*16 px; pick the nearest width fitting
         # *verbatim* PSP wording: every row needs col1 + 4 px before col2,
-        # and the whole row must stay inside the 240 px box (engine wraps
-        # at 240, cf. vwf).
+        # and the whole row must stay inside the box (engine wraps at 240,
+        # cf. vwf).
         widths = []
         for ln in lines:
             c1, c2 = ln.split('|')
@@ -168,7 +187,7 @@ def layout(r, en):
         cands = sorted(range(0, 15), key=lambda w: (abs(w - width_p), w))
         for w in cands:
             x2 = (w + 1) * 16
-            if all(x2 >= w1 + 4 and x2 + w2 <= 239 for w1, w2 in widths):
+            if all(x2 >= w1 + 4 and x2 + w2 <= BOX_PX for w1, w2 in widths):
                 width_new = w
                 break
         else:
@@ -181,7 +200,14 @@ def layout(r, en):
                 out.append(c1 + ' ' * pad + c2)
             assert width_new <= 14
             return '<FF03>'.join(out), rows_p, cols_p, width_new
-        # fall through to single-column
+        # No 2-column width fits. The nearest legal column starts are the
+        # 16 px stops after col1 + 4 px; report the narrowest line the grid
+        # would need so the manual note says why it cannot ship.
+        rows_n = rows_p * cols_p
+        if rows_n > OPTION_ROWS:
+            need = max(-(-(w1 + 4) // 16) * 16 + w2 for w1, w2 in widths)
+            raise OverLimit(toolbelt.note_over(need, BOX_PX, 'px'))
+        # A short 1x2 grid can still become a two-row single column.
     if cols_p == 2:
         rows_n, cols_n = rows_p * cols_p, 1
     else:
@@ -191,7 +217,9 @@ def layout(r, en):
     for c in cells:
         width_new = max(width_new, -(-vwf_wrap.text_width(c) // 16))
     assert width_new <= 14, f"{r['idx']}: needs {width_new} cells"
-    assert rows_n <= 4, f"{r['idx']}: {rows_n} rows do not fit the 4-line box"
+    assert rows_n <= OPTION_ROWS, (
+        f"{r['idx']}: {rows_n} option rows do not fit the "
+        f"{OPTION_ROWS}-row option block")
     return '<FF03>'.join(out), rows_n, cols_n, width_new
 
 
@@ -220,7 +248,12 @@ def build():
         en = tsv.get(r['idx'], '').strip()
         if not etext.has_text(en):
             continue
-        text, rn, cn, w = layout(r, en)
+        try:
+            text, rn, cn, w = layout(r, en)
+        except OverLimit as e:
+            raise SystemExit(
+                f"choices: {r['idx']} ({hex(r['ptr'])}): {e} - shorten the "
+                f"choice wording; the box cannot show all its options")
         b = etext.encode(text)
         for ch in re.sub(r'<[^>]*>', '', text):
             assert 0x20 <= ord(ch) <= 0x7E, f"{r['idx']}: non-ASCII {ch!r}"
@@ -273,8 +306,12 @@ def sync_boot():
 
     Run after `python src/extraction_tools/psp/boot.py extract`. Every row becomes source
     `us-boot`; rows whose map is incomplete stay TODO (Japanese in build).
-    Manual CHOICES.tsv is never touched: the build merges generated text with
-    manual overrides (manual wins when its `en` cell is non-empty).
+    A row whose verbatim PSP wording cannot be drawn whole (no 2-column width
+    fits and the list would need more option rows than the box has) is not
+    written to generated: its full draft goes to manual through
+    toolbelt.route_over, exactly like every other over-limit porter, and the
+    Japanese ships until a human shortens it. Manual rows are never touched
+    beyond that: the build merges generated text with manual overrides.
     """
     import toolbelt
     opts = {}
@@ -285,6 +322,7 @@ def sync_boot():
                 opts[len(opts)] = text
     orig = {r['idx']: r for r in original()}
     rows = {}
+    over = {}
     for idx in range(COUNT):
         cells = []
         for oi in BOOT_MAP.get(idx, []):
@@ -296,16 +334,30 @@ def sync_boot():
             if len(cells) == rows_p * cols_p and cells:
                 text = '<FF03>'.join('|'.join(cells[r * cols_p:(r + 1) * cols_p])
                                      for r in range(rows_p))
+                # Lay the row out now, at its only write: a wording that does
+                # not fit the box is a manual draft, never a broken generated
+                # row the build would have to notice later.
+                try:
+                    layout(orig[idx], text)
+                except OverLimit as e:
+                    over[idx] = (text, str(e))
+                    continue
                 rows[idx] = text
                 continue
         rows[idx] = ''
-    import toolbelt
-    orig = {r['idx']: r for r in original()}
     auto = [{'pos': hex(orig[idx]['ptr'] - BASE), 'en': text,
              'psp': 'EBOOT:2c06ec'}
             for idx, text in rows.items() if text]
     n = toolbelt.upsert_generated('SLPS_005.00', auto)
+    routed = []
+    for idx, (text, reason) in over.items():
+        pos = hex(orig[idx]['ptr'] - BASE)
+        if toolbelt.route_over('SLPS_005.00', pos, 'EBOOT:2c06ec', text, reason):
+            routed.append(idx)
     print(f'choices: {n} rows -> {toolbelt.gen_path("SLPS_005.00")}')
+    if routed:
+        print(f'choices: {len(routed)} over limit -> manual: '
+              + ', '.join(f'idx{i}' for i in sorted(routed)))
     n = sum(1 for v in rows.values() if v)
     print(f'choices: {n}/{COUNT} rows from the BOOT table')
 

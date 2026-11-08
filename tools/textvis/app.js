@@ -270,6 +270,65 @@ function storedBoxes(en){
   return out.length ? out : [{visible: [], scrolled: []}];
 }
 
+// ---- choice grids (ADV <FF0E> option blocks) ----
+// The TSV spells a choice as grid rows joined by <FF03>, with `|` between the
+// cells of a two-column row. choices.layout puts column 2 at the nearest 16 px
+// stop that clears column 1 by 4 px and keeps the whole row inside 239 px.
+// Four options are only ever a 2x2 grid: the message box is three 16 px rows
+// and the prompt's arming line is the first, leaving two for the options.
+const CHOICE_PX=239, CHOICE_OPTION_ROWS=2;
+function choiceCells(text){
+  return text.replace(/<FF01>|<FFEF>|<FFF5>/g,'').split('<FF03>')
+             .map(l=>l.split('|'));
+}
+function choiceFit(cells, wantWidth){
+  const rows=cells.length, cols=Math.max(...cells.map(r=>r.length));
+  const out={rows, cols, width:null, x2:0, need:0,
+             widths:cells.map(r=>r.map(c=>textWidth(c)))};
+  if(cols===2){
+    const cands=[]; for(let w=0;w<15;w++) cands.push(w);
+    cands.sort((a,b)=>Math.abs(a-wantWidth)-Math.abs(b-wantWidth)||a-b);
+    for(const w of cands){
+      const x2=(w+1)*16;
+      if(out.widths.every(([w1,w2])=>x2>=w1+4 && x2+w2<=CHOICE_PX)){
+        out.width=w; out.x2=x2;
+        return out;
+      }
+    }
+    for(const [w1,w2] of out.widths)
+      out.need=Math.max(out.need, Math.ceil((w1+4)/16)*16+w2);
+    // no legal stop: still draw the columns far enough apart to read
+    out.x2=Math.max(...out.widths.map(([w1])=>Math.ceil((w1+4)/16)*16));
+    return out;
+  }
+  out.need=Math.max(0,...out.widths.map(([w1])=>w1));
+  return out;
+}
+function choiceViolations(fit, meta, cells){
+  const v=[];
+  const shapeOk = fit.rows===meta.rows && fit.cols===meta.cols &&
+                  cells.every(r=>r.length===meta.cols);
+  if(fit.rows!==meta.rows || fit.cols!==meta.cols)
+    v.push(`grid is ${fit.rows}x${fit.cols}, the table is ${meta.rows}x${meta.cols}`);
+  // choices.layout asserts this exact shape (rows of <FF03>, cells of |), so
+  // a missing or extra cell is a build failure, not just a drawing oddity.
+  cells.forEach((r,i)=>{
+    if(r.length!==meta.cols)
+      v.push(`row ${i+1} has ${r.length} cell(s), expected ${meta.cols}`);
+  });
+  if(shapeOk){
+    if(fit.cols===2 && fit.width===null)
+      v.push(`no 2-column stop fits: needs ${fit.need}px/${CHOICE_PX}px`);
+    if(fit.rows>CHOICE_OPTION_ROWS)
+      v.push(`${fit.rows} option rows; the box shows ${CHOICE_OPTION_ROWS}`);
+    if(fit.cols===1){
+      const wide=fit.widths.flat().filter(w=>w>224);
+      if(wide.length) v.push(`option is ${Math.max(...wide)}px (224px max)`);
+    }
+  }
+  return v;
+}
+
 // ---- drawing the real font ----
 const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
 function drawOrig(ch,x,y,z,color){
@@ -307,11 +366,65 @@ function drawLine(line,x,y,z,color,shadow){
   }
   return px-x;
 }
+function renderChoice(text, z, shadow, guides){
+  // The choice row is only the option block: the prompt (and its arming
+  // <FF03><FF0E>) is the row above, drawn here as the box's first line so the
+  // options start where the engine's cursor does (row*16 + 0xB4).
+  const meta=CUR.choice;
+  const cells=choiceCells(text);
+  const fit=choiceFit(cells, meta.width||0);
+  const PADX=4, PADY=6, ROWS=3;
+  const shown=Math.max(ROWS, 1+fit.rows);
+  const W=(BOX+16)*z, H=(shown*16+PADY*2)*z;
+  cv.width=W; cv.height=H; cv.style.width=W+'px'; cv.style.height=H+'px';
+  const wrap=document.getElementById('cvwrap');
+  if(wrap && wrap.style) wrap.style.minHeight=(H+2)+'px';
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#0b1a10'; ctx.fillRect(0,0,W,H);
+  if(guides){
+    ctx.fillStyle='rgba(255,255,255,.06)';
+    for(let r=0;r<shown;r++) ctx.fillRect(0,(PADY+r*16)*z,W,1);
+    ctx.fillStyle='rgba(255,255,255,.12)';
+    ctx.fillRect((PADX+BOX)*z,0,1,(ROWS*16+PADY*2)*z);
+    // the box's bottom edge: anything below is the engine's scroll
+    ctx.fillStyle='rgba(255,255,255,.18)';
+    ctx.fillRect(0,(PADY+ROWS*16)*z,W,1);
+  }
+  drawLine('prompt', PADX*z, PADY*z, z, 'rgba(232,193,90,.30)', false);
+  const rows=[];
+  fit.widths.forEach((ws,i)=>{
+    const y=(PADY+(1+i)*16)*z;
+    ws.forEach((w,c)=>{
+      const cell=cells[i][c];
+      const dx=c===0?0:(c===1?fit.x2:fit.x2+(c-1)*80);
+      drawLine(drawText(cell), (PADX+dx)*z, y, z,
+               i<CHOICE_OPTION_ROWS?'#dfe7df':'rgba(223,231,223,.42)', shadow);
+      // a cell's number is where its glyphs END: column 2 starts at the grid
+      // stop, so its own width alone never proves the row fits the box.
+      const end=c===0?w:fit.x2+w;
+      const cap=fit.cols===1?224:CHOICE_PX;
+      rows.push([`${i+1}.${c+1}`, end, cell, end>cap]);
+    });
+  });
+  const tb=document.getElementById('lines'); tb.innerHTML='';
+  for(const [tag,w,l,over] of rows){
+    tb.insertAdjacentHTML('beforeend',
+      `<tr><td class="w">${tag}</td>`+
+      `<td class="w ${over?'warn':''}">${Math.round(w)}</td>`+
+      `<td>${esc(l)}</td></tr>`);
+  }
+  const viol=choiceViolations(fit, meta, cells);
+  document.getElementById('stat').innerHTML=
+    `<span class="${viol.length?'warn':'ok'}">${viol.length?viol.join(' · '):'choice grid fits'}</span>`+
+    ` · ${fit.rows} option row(s) · ${fit.cols} column(s)`+
+    (fit.width!==null?` · col2 at ${fit.x2}px`:'');
+}
 function render(){
   const text=document.getElementById('src').value;
   const z=Math.max(1, Math.round(+document.getElementById('zoom').value));
   const shadow=document.getElementById('shadow').checked;
   const guides=document.getElementById('guides').checked;
+  if(CUR && CUR.choice){ renderChoice(text, z, shadow, guides); return; }
   // a picked ROW is drawn as stored from the draft (every box, its own lines);
   // typed text with no row is laid out by the flow so you can watch the rules
   // decide. Editing a row never drops the row: the page follows the draft.
