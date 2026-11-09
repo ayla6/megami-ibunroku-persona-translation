@@ -11,7 +11,8 @@ translation of the same game.
 
 The main script is automatically ported from the PSP game, but there were
 a tiny few amount of lines that are missing from the PSP version,
-those were machine translated.
+the less mechanical of those were translated by someone who chose to be credited as Rei,
+others were machine translated.
 You can find out what was or wasn't translated with an
 LLM in [translation/manual](translation/manual),
 or better yet, by going [here](https://github.com/search?q=repo%3Aayla6%2Fmegami-ibunroku-persona-translation+machine-translated+language%3ATSV&type=code&l=TSV).
@@ -26,7 +27,7 @@ included in this repository.
 
 You can just use the webpatcher at [ayla6.github.io/megami-ibunroku-persona-translation](https://ayla6.github.io/megami-ibunroku-persona-translation)
 
-You can also download it from releases and do it by hand with xdelta3:
+You can also download it from releases and do it by hand with xdelta3, but it's torture:
 
 ```sh
 # Rev 1 only; skip for a Rev 0 disc.
@@ -44,12 +45,6 @@ xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-upright.bin add
 xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv.bin add-saves.xdelta persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv-saves.bin
 xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv-saves.bin add-60fps-saves.xdelta persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv-saves-60fps.bin
 ```
-
-If xdelta3 reports a checksum mismatch on an `add-` patch, retry with `-n`
-and compare your result's `sha256sum` with the `target_sha256` of the
-matching row in `manifest.tsv` (the release has verified that exact
-combination at build time). The webpatcher does all of this
-automatically.
 
 ## Extra patches
 

@@ -83,6 +83,14 @@ def boxes(d):
         k = seg.rfind(b'\xff\x21\x00\x00')
         if k >= 0:
             seg, start = seg[k + 4:], start + k + 4
+        # A text block starts on a 4-byte boundary: the bytes between the
+        # previous FF01 and that boundary are alignment padding, not text.
+        # Keeping them gave the box a phantom full-width indent, and the box
+        # head the script points at (FF55 target) then differed from the spill
+        # fingerprint, so the runtime kept the Japanese.
+        pad = (-start) & 3
+        if pad and not any(seg[:pad]):
+            seg, start = seg[pad:], start + pad
         if b'\xff\x02' not in seg or len(seg) > 400:
             continue
         try:

@@ -115,7 +115,7 @@ def main():
         pos = hex(a - descs.B)
         if i not in slots:
             continue
-        en = house_style(bank_text(bank, slots[i]))
+        en = vwf_wrap.one_line(house_style(bank_text(bank, slots[i])))
         if not ok_map.get(('descs', pos), True):
             blocked += 1
             continue

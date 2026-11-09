@@ -561,6 +561,8 @@ def msg_script(text):
     text = re.sub(r'(?:<FF02>|<FF05><[0-9A-Fa-f]{2}><[0-9A-Fa-f]{2}>)(?=(?:<FF01>)?\s*$)', '', text)
     if re.search(r'<FF0[245]>', text):
         raise ValueError('unsupported nonterminal or malformed PSP wait/page in battle message')
+    if re.search(r'<FFF6>|<FF03>', text):
+        raise ValueError('line break in a one-row battle message; re-port its source')
     return text
 
 
@@ -584,7 +586,6 @@ def msg_build(d, rows_by_pos, body):
         if not t:
             new[i] = orig
             continue
-        translated += 1
         try:
             t = msg_script(t)
             b = etext.encode(t, end=END)
@@ -592,18 +593,13 @@ def msg_build(d, rows_by_pos, body):
             toolbelt.fail(f'msg {i} {t!r}: {ex}')
         if codes(b) != codes(orig):
             pass        # a code difference is not a rendering problem
-        # A BOX'S WIDTH IS ITS WIDEST LINE, never the sum of its lines. This
-        # family breaks a message with <FF03> (row) and <FF02> (page) and the
-        # battle engine with <FFF6>, so a two-line message legitimately prices
-        # wider than one line's 239 and a whole-string total refuses wording
-        # the box draws fine. (The evt family has always priced per line -
-        # evt_plan - and this is the same rule.)
-        segs = re.split(r'<FF0[23]>|<FFF6>', t)
-        for li, seg in enumerate(segs):
-            cap = 240 if li == len(segs) - 1 else 239
-            w = vwf_wrap.text_width(seg)
-            if w > cap:
-                toolbelt.fail(f'msg {i} line {seg!r} is {w} px wide (max {cap})')
+        w = vwf_wrap.text_width(t)
+        if w > 240:
+            print(f'btlp: msg {i}: {w}px/240px; Japanese ships '
+                  '(one-row message exceeds its viewport)')
+            new[i] = orig
+            continue
+        translated += 1
         new[i] = b
     fixed = {i for i, (a, e) in enumerate(msgs) if a not in rf}
     free = [list(MSG_ZONE)]
@@ -905,9 +901,9 @@ def neg_build(d, rows_by_pos, body):
         full_code_at = None
         for z in merged:
             at = (z[0] + 3) & ~3
-            if at + 640 <= z[1]:
+            if at + 660 <= z[1]:
                 full_code_at = at
-                z[0] = at + 640
+                z[0] = at + 660
                 break
         if full_code_at is None:
             toolbelt.fail('battle names: no bounded home for complete-name helpers')
@@ -939,10 +935,16 @@ def neg_build(d, rows_by_pos, body):
                     f'.definelabel OFFER_NAME_BANK, {bank_at:#x}\n'
                     f'.definelabel ANALYZE_NAME_CODE, {analyze_at:#x}\n'
                     '.include "btlp/offer_name.asm"')
+        # The 660-byte complete-name block: btl_name_copy (364), the item
+        # helper (216), then the offer gate (80 bytes).
         body.append(f'.definelabel BTL_FULL_NAME_CODE, {full_code_at:#x}\n'
-                    f'.org {full_code_at + 320:#x}\n'
-                    '.area 320\n'
+                    f'.org {full_code_at + 364:#x}\n'
+                    '.area 216\n'
                     '.include "../../build/item_name_copy_btlp.asm"\n'
+                    '.endarea\n'
+                    f'.org {full_code_at + 580:#x}\n'
+                    '.area 80\n'
+                    '.include "vwf/vwf_offer_gate.asm"\n'
                     '.endarea\n'
                     '.include "btlp/full_names.asm"\n'
                     '.include "../../build/name_data_btlp.asm"')

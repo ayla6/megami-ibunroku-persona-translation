@@ -17,17 +17,17 @@
   {
     "label": "60fps",
     "name": "60 FPS",
-    "description": "Interpolates frames to get the dungeons to 60fps and the map to 30fps. Only does it when you're actively moving around. Needs overclocking."
+    "description": "Interpolates frames to get the dungeons to 60fps and the map to 30fps. Only does it when you're actively moving around. Needs overclocking (to like 190-200% to be completely smooth)."
   },
   {
     "label": "rewards",
     "name": "Double rewards",
-    "description": "Doubles the EXP, Persona points and money you get after battles."
+    "description": "Doubles the EXP, Persona points and money you get after battles. Like everything else in this section, this is an option. In this case, if you want an easier game. This is not the intended original experience of the game! (need this disclaimer apparently, or some get mad)"
   },
   {
     "label": "encounters",
-    "name": "Half encounters",
-    "description": "Halves the rate of random encounters."
+    "name": "Halve encounters",
+    "description": "Halves the rate of random encounters. Like everything else in this section, this is an option. In this case, if you want an easier game. This is not the intended original experience of the game! (need this disclaimer apparently, or some get mad)"
   },
   {
     "label": "run",

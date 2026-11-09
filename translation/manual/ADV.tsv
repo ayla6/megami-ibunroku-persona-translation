@@ -7,7 +7,7 @@ id	pos	psp	en	note
 6	0x56ddf	EBOOT:2d4caa	Your level is too low to handle this!	very annoying having to do this, if you have a better suggestion, please suggest! over limit 368px/240px; It seems that your level is too low to create this Persona…<FF01>
 7	0x56df2	EBOOT:2d4b02	You wish to delete this Persona?	very annoying having to do this, if you have a better suggestion, please suggest! over limit 342px/240px; Are you certain that you wish to delete this Persona?<FF01>
 8	0x56e06		Quitting the game.<FF03>Proceed?<FF01>	by Rei; ja ?RQQLK　　ゲームを終了します<FF03>よろしいですか？<FF01>
-9	0x56e2a		Please turn off the power.<FF03>(Press any button to return to the game.)<FF01>	by Rei; ja 電源を切って下さい<FF03>（何かボタンを押すと<FF03>　ゲームに戻ります）<FF01>
+9	0x56e2a		Please turn off the power.<FF03>(Press any button to<FF03>return to the game.)<FF01>	by Rei; ja 電源を切って下さい<FF03>（何かボタンを押すと<FF03>　ゲームに戻ります）<FF01>
 10	0x56e5b		No memory card inserted.<FF03>Cannot save.<FF02><FF01>	by Rei; ja メモリーカードが<FF03>セットされていません<FF03>セーブが出来ません<FF02><FF01>
 11	0x56e87		Select the memory card slot to use.<FF01>	by Rei; ja 使用するメモリーカードの<FF03>スロットを選んで下さい<FF01>
 12	0x56eab		Memory card is damaged.<FF03>Cannot save.<FF02><FF01>	by Rei; ja メモリーカードが壊れています<FF03>このメモリーカードには<FF03>セーブ出来ません<FF02><FF01>

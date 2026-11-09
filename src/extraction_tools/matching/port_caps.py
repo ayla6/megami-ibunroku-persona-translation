@@ -279,7 +279,9 @@ def _btl_caps():
     for a, _e in btlp.evt_messages(d):
         out[a - btlp.B] = (None, None, None)   # packed + relocated
     for a, _e in btlp.msg_messages(d):
-        out[a - btlp.B] = (None, None, None)   # re-packed into the zone
+        # BtlOpenMessage opens a one-row battle message viewport. The
+        # re-packed storage is not a width limit, but its visible row is.
+        out[a - btlp.B] = (PEN_MAX, 'px', 1)
     for i, (a, _q) in enumerate(btlp.neg_strings(d)):
         out[a - btlp.B] = ((btlp.NEG_BUF, 'B', None)
                            if i in btlp.NEG_PACK_IDX else (None, None, None))

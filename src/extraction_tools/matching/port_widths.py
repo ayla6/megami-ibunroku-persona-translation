@@ -1,4 +1,4 @@
-"""Port-side insert widths: the widest record each message-machine code prints.
+"""Port-side insert widths: the widest record each insert code prints.
 
   python src/extraction_tools/matching/port_widths.py
 
@@ -10,6 +10,15 @@ print - that width is a fact about the PORTED wording, so the port derives it
 here and writes translation/generated/insert_widths.tsv. The layout engine
 (injection_tools/vwf_wrap.py) reads that table when it prices an insert
 token; nothing on the build side scans the name records.
+
+The battle window's <FFF2> (record), <FFF3> (offer), and <FFF4> (item) inserts are the same
+kind of value: btlp/full_names.asm resolves their record to the complete
+ported name (head + tail bank) before the copy, so their bound is the widest
+demon / item name, not the retail 10-glyph copy cap. The table carries them
+beside the message codes; `vwf_wrap.battle_insert_widths` overrides the
+decomp cap for exactly the codes this table measures. The other battle codes
+carry a fixed field (hero / party slot, Persona head, arcana cell) or a
+decimal and keep the decomp cap.
 
 Runs inside port.py's phase 1: boot_tables has written the name rows, the
 font advances are fresh, and no porter has laid text out yet. Arcana are
@@ -40,6 +49,13 @@ ARCANA_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .'/-:"
 # its width is the larger of the two families.
 CODE_FAMILY = {'FF09': 'item', 'FF0A': 'skill', 'FF0B': 'demon',
                'FF0C': 'persona+demon', 'FF13': 'arcana'}
+
+# The battle codes whose patched copy resolves a whole ported name
+# (btlp/full_names.asm -> btl_name_copy): <FFF2> is a direct demon-table
+# record, <FFF3> is BtlOffer.name (the
+# demon the offer is of, head + OFFER_NAME_BANK tail), <FFF4> is the item
+# record (head + item tail bank). No other battle code reaches a tail bank.
+BATTLE_CODE_FAMILY = {'FFF2': 'demon', 'FFF3': 'demon', 'FFF4': 'item'}
 
 
 def family_names():
@@ -85,9 +101,11 @@ def widths():
         widest[family] = max((sum(vwf_wrap.char_width(c) for c in t), t)
                              for t in texts)
     widest['persona+demon'] = max(widest['persona'], widest['demon'])
+    codes = dict(CODE_FAMILY)
+    codes.update(BATTLE_CODE_FAMILY)
     return {code: {'family': family, 'px': widest[family][0],
                    'longest': widest[family][1]}
-            for code, family in CODE_FAMILY.items()}
+            for code, family in codes.items()}
 
 
 def main():

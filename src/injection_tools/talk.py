@@ -195,6 +195,22 @@ def _qa(ja, en):
     return check(ja, en)
 
 
+def _answer_qa(ja, en):
+    """Answers occupy one row of the choice list, not a dialogue box."""
+    import re
+    import vwf_wrap
+    from talktl import ANS_W, check, lines_of
+    errors = check(ja, en, False, ANS_W, 1)
+    if '<FFFB><FFF7>' in en:
+        errors.append('page break in a one-row answer')
+    for line in lines_of(etext.spell(en)):
+        width = vwf_wrap.text_width(re.sub(r'<FFFD>.', '', line))
+        if width > ANS_W:
+            errors.append(f'{width} px (max {ANS_W})')
+            break
+    return errors
+
+
 def cmd_dump():
     """The canonical work list: every unit position without a translation
     gets a manual gap row (toolbelt route_gaps); filled rows (human or
@@ -311,7 +327,7 @@ def cmd_build(outdir):
                 text = gen.get(pos, '')
             if not text:
                 continue
-            errs = _qa(ja, text)
+            errs = _answer_qa(ja, text)
             if errs:
                 if human:
                     raise SystemExit(f'{name} answer {ja!r} ({pos}): '

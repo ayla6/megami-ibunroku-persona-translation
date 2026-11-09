@@ -6,9 +6,14 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / 'src/injection_tools'), str(ROOT / 'tools/tests')]
+sys.path.insert(0, str(ROOT / 'src/extraction_tools/matching'))
 from mips_cpu import CPU, REG
 import btlp
 import etext
+import toolbelt
+import port_caps
+import port_derive
+import vwf_wrap
 
 INTERPRETER = 0x8007C9E0
 INDICATOR = 0x8007FA44
@@ -76,7 +81,9 @@ class RetailBattleMessage(unittest.TestCase):
             with self.subTest(script=script):
                 with self.assertRaises(ValueError):
                     btlp.msg_script(script)
-        self.assertEqual(btlp.msg_script('A<FFF6>B<FF02>'), 'A<FFF6>B')
+        for script in ('A<FFF6>B<FF02>', 'A<FF03>B'):
+            with self.subTest(script=script), self.assertRaises(ValueError):
+                btlp.msg_script(script)
         self.assertEqual(btlp.msg_script('A<FFFC>B'), 'A<FFFC>B')
 
     def test_terminal_psp_timed_wait_is_not_printed(self):
@@ -88,6 +95,26 @@ class RetailBattleMessage(unittest.TestCase):
         self.assertEqual(p, SRC + 1)
         self.execute_token(c, p, 0, events)
         self.assertEqual(events, [('glyph', 5)])
+
+    def test_one_row_port_keeps_words_and_reports_overflow(self):
+        pos = '0x6dd20'
+        ja = toolbelt.psx_text_of('BTLP')[pos]
+        source = toolbelt.psp_wording('EBOOT:29b1b8')
+        text, reason = port_derive.derive(source, ja, 'BTLP', pos)
+        self.assertEqual(port_caps.dest_cap('BTLP', pos), (240, 'px', 1))
+        self.assertNotIn('<FFF6>', text)
+        self.assertIn('<FFF9>', text)
+        self.assertGreater(vwf_wrap.text_width(text), 240)
+        self.assertTrue(reason)
+
+    def test_all_filled_battle_messages_fit_one_row(self):
+        rows = {r['pos']: r for r in toolbelt.merged_rows('BTLP')}
+        for start, _end in btlp.msg_messages(btlp.data()):
+            pos = hex(start - btlp.B)
+            text = (rows.get(pos, {}).get('en') or '').strip()
+            if text:
+                with self.subTest(pos=pos):
+                    self.assertLessEqual(vwf_wrap.text_width(btlp.msg_script(text)), 240)
 
 
 if __name__ == '__main__':

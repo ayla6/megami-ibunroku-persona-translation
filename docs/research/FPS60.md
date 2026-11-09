@@ -37,8 +37,7 @@ Result: step 28 vsyncs, turn 28 vsyncs (original 24-27), ~56 fps while moving.
 ## Performance
 Unlocked VSync(1) at stock CPU: 51-57 fps in the Joy Street school corridor (not a locked 60).
 `VSync(2)` (30 fps) holds 29.9 fps. PC samples while unlocked sit in GTE render code (SLPS 0x8003A9xx),
-i.e. CPU-bound; DuckStation CPU overclock should give a locked 60 (the MCP set_setting for overclock
-did not stick, so this was not verified).
+i.e. CPU-bound; DuckStation CPU overclock should give a locked 60 (not verified).
 
 ## Approaches
 A. Rescale every loop (count x3, delta /3) + other timers in the frame function. Simple per site,

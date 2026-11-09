@@ -4,7 +4,7 @@ A save state carries resident code and tables in RAM, so after a rebuild an old 
 still has the previous SLPS code, FONT.BIN glyphs, file-location table (FSECT/FSIZE) and
 the ADV/E?.BIN sector tables. Run this after build.py; it writes one .bin per chunk to
 build/livepatch/ plus manifest.txt (address, file). Apply each with the emulator's
-write_memory (or the DuckStation MCP write_memory path=...) right after load_state.
+write_memory right after load_state.
 
   python tools/live_patch.py <patched disc .bin>
 Chunks: resident SLPS code changes (tools/ramdiff), FONT.BIN, E0..E3 FSECT/FSIZE entries

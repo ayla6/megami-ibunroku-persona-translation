@@ -6,4 +6,4 @@ id	pos	psp	en
 4	0x1df60	d0e:1e1fc	An invisible wall blocks your way,<FF03>forcing you back...<FF02>
 5	0x1dfbc	d0e:1e1fc	An invisible wall blocks your way,<FF03>forcing you back...<FF02>
 6	0x1de84	d0e:1e520	Man's voice: The Queen is resting now.<FF02><FF04>Man's voice: Her orders are<FF03>not to let anyone through.<FF03>Come back some other time.<FF02>
-7	0x1ded3	d0e:1e61a	Mark:<FF03>This Queen seems pretty arrogant.<FF02>
+8	0x1ded4	d0e:1e61a	Mark:<FF03>This Queen seems pretty arrogant.<FF02>

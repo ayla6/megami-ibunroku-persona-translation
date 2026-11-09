@@ -141,17 +141,37 @@ def _cdef(src, name):
     return int(m.group(1), 0) if m else None
 
 
+def btl_insert_slots():
+    """{code byte: slot} from windowtype.c: the slot each <FFFx> points at.
+
+    The code names are NOT the slot numbers: CODE_INSERT2 (0xF0) reads
+    slot 2, but BtlSetInsert's case 6 is what fills slot 2. Read the
+    `g_btl_insert[n].cell` the case body names, never the case number."""
+    with open(os.path.join(DECOMP_BTLP, 'windowtype.c'), encoding='utf-8') as f:
+        win = f.read()
+    opcodes = {int(m.group(1)): int(m.group(2), 0) for m in re.finditer(
+        r'#define\s+CODE_INSERT(\d)\s+(0x[0-9A-Fa-f]+)', win)}
+    slots = {}
+    for m in re.finditer(r'case\s+CODE_INSERT(\d)\s*:(.*?)(?=\n\s*case\s|\n\s*default|\Z)',
+                         win, re.S):
+        dest = re.search(r'g_btl_insert\[(\d+)\]\.cell', m.group(2))
+        if dest and int(m.group(1)) in opcodes:
+            slots[opcodes[int(m.group(1))]] = int(dest.group(1))
+    return slots
+
+
 def btl_insert_caps():
     """{code byte: glyphs} the battle window's insert codes can occupy.
 
-    windowtype.c maps a code to the slot it points at (CODE_INSERTn 0xXX);
-    insert.c maps a slot to what fills it (case n: a decimal value, or a
-    name copy capped at INSERT_SHORT/INSERT_LONG); number.c says how many
-    digits a value prints (DECIMAL_TOP) and the value may carry a minus,
-    so the slot holds that many glyphs. The slot's own cell array is the
-    hard bound, and a copy can never exceed it."""
-    with open(os.path.join(DECOMP_BTLP, 'windowtype.c'), encoding='utf-8') as f:
-        win = f.read()
+    windowtype.c maps a code to the slot it points at; insert.c's case n
+    is what fills a slot - and the case numbers are not the slot numbers
+    (case 2 writes slot[3], case 3 slot[4], case 4 slot[6], case 6
+    slot[2]), so the destination is read from each case body. A body holds
+    a decimal value or a name copy capped at INSERT_SHORT/INSERT_LONG;
+    number.c says how many digits a value prints (DECIMAL_TOP) and the
+    value may carry a minus, so the slot holds that many glyphs. The
+    slot's own cell array is the hard bound, and a copy can never exceed
+    it."""
     with open(os.path.join(DECOMP_BTLP, 'insert.c'), encoding='utf-8') as f:
         ins = f.read()
     with open(os.path.join(DECOMP_BTLP, 'number.c'), encoding='utf-8') as f:
@@ -161,22 +181,25 @@ def btl_insert_caps():
     m = re.search(r'u_char\s+cell\[(0x[0-9A-Fa-f]+|\d+)\]', ins)
     cell = int(m.group(1), 0) if m else None
     digits = len(str(_cdef(num, 'DECIMAL_TOP')))   # 1000000000 -> 10 places
-    slot = {int(m.group(1)): int(m.group(2), 0) for m in re.finditer(
-        r'#define\s+CODE_INSERT(\d)\s+(0x[0-9A-Fa-f]+)', win)}
+    code_of_slot = {slot: code for code, slot in btl_insert_slots().items()}
     caps = {}
     for m in re.finditer(r'case\s+(\d)\s*:(.*?)(?=\n\s*case\s|\n\s*default|\Z)',
                          ins, re.S):
-        n, body = int(m.group(1)), m.group(2)
+        body = m.group(2)
+        dest = re.search(r'slot\[(\d+)\]\.cell', body)
+        code = code_of_slot.get(int(dest.group(1))) if dest else None
+        if code is None:
+            continue
         if 'BtlFormatDecimal' in body:
-            caps[n] = digits + 1                   # the digits plus a minus
+            caps[code] = digits + 1                # the digits plus a minus
         else:
             c = re.search(r'BtlStrCopy(?:Esc)?\([^,]+,[^,]+,\s*'
                           r'(INSERT_SHORT|INSERT_LONG)\)', body)
             if c:
-                caps[n] = short if c.group(1) == 'INSERT_SHORT' else long
+                caps[code] = short if c.group(1) == 'INSERT_SHORT' else long
     if cell:
-        caps = {n: min(c, (cell - 1) // 2) for n, c in caps.items()}
-    return {slot[n]: c for n, c in caps.items() if n in slot}
+        caps = {code: min(c, (cell - 1) // 2) for code, c in caps.items()}
+    return caps
 
 
 def btl_name_insert_codes():
@@ -204,6 +227,37 @@ _NAME_GLYPH = max(char_width(chr(c)) for c in range(0x20, 0x7F))
 BTL_INSERT_WIDTHS = {'<FF%02X>' % code: cap * _NAME_GLYPH
                      for code, cap in btl_insert_caps().items()}
 BTL_NAME_INSERT_CODES = btl_name_insert_codes()
+
+
+@functools.lru_cache(maxsize=1)
+def battle_insert_widths():
+    """{token: px} for the battle window's <FFFx> inserts - the ONE pricing.
+
+    Two kinds of value reach a slot:
+
+    * a FIXED FIELD or a decimal, exactly as retail's copy left it (the
+      hero / a party member's 10-byte name slot,
+      an arcana cell, BtlFormatDecimal's digits). The decomp's copy cap
+      bounds those, and `btl_insert_caps` reads it.
+
+    * a COMPLETE ported name: btlp/full_names.asm replaces the copy with
+      `btl_name_copy`, which resolves an item record (head + item tail
+      bank), a direct battle Persona record and an offer's demon name
+      (head + OFFER_NAME_BANK tail)
+      before encoding, so those codes print the whole name, not the retail
+      cap. The bound is then the widest name of that family in the ported
+      tables - a fact about the wording, so the PORT derives it
+      (port_widths.py writes insert_widths.tsv) and this only reads the
+      table.
+
+    Overriding by token keeps both in one place: a code the port measures
+    is priced from the table, every other code from the decomp."""
+    widths = dict(BTL_INSERT_WIDTHS)
+    table = insert_widths()
+    for token in widths:
+        if token in table:
+            widths[token] = table[token]
+    return widths
 
 
 # --- message-machine name inserts ------------------------------------
@@ -245,14 +299,14 @@ def text_width(s):
         w += NAME_WIDTHS[m.group(1)]
         return ''
     s = NAME_TOKEN_RE.sub(_name, s)
+    battle = battle_insert_widths()
     return (w
             + sum(char_width(c) for part in TOKEN.split(s)
                   if not TOKEN.fullmatch(part) for c in part)
             # an insert token is not zero: the window draws the name (or
             # value) the game fills it with, and the flow must leave the
-            # room that copy takes (BTL_INSERT_WIDTHS, INSERT_WIDTHS)
-            + sum(BTL_INSERT_WIDTHS[t] for t in TOKEN.findall(s)
-                  if t in BTL_INSERT_WIDTHS)
+            # room that copy takes (battle_insert_widths, INSERT_WIDTHS)
+            + sum(battle[t] for t in TOKEN.findall(s) if t in battle)
             + sum(insert_widths()[t] for t in TOKEN.findall(s)
                   if t in INSERT_CODES))
 
@@ -867,7 +921,7 @@ def clean_edges(en):
     # insertion tokens come from the same decomp-derived set used to price
     # their width, rather than a second hand-maintained list.
     keep = ('<FF05>',) + NAME_CODES
-    battle_inserts = frozenset(BTL_INSERT_WIDTHS)
+    battle_inserts = frozenset(battle_insert_widths())
     out, i = [], 0
     while i < len(toks):
         kind, text = toks[i]

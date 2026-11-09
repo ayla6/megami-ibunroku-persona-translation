@@ -94,6 +94,8 @@ def build():
         if not t:
             new.append(bytes(d[a - B:e - B]))   # gap or un-adopted draft: JA ships
             continue
+        if re.search(r'<FF(?:03|04|F6)>', t, re.IGNORECASE):
+            toolbelt.fail(f'descs: {pos}: line/page move in a one-row description')
         try:
             b = etext.encode(t, end=END)
         except ValueError as ex:

@@ -789,14 +789,30 @@ def derive(text, ja, rel, pos=''):
         # draws the PSP's nameplate: drop it with its name and break, which
         # are UI structure, not wording.
         _label, text = label_head(text)
-    raw = fit_codes(text, ja, strict=port_caps.is_fixed_field(rel, pos))
+    strict = port_caps.is_fixed_field(rel, pos)
+    battle_message = False
+    if rel == 'BTLP' and pos:
+        import btlp
+        off = int(pos, 16)
+        if btlp.MSG_ZONE[0] - btlp.B <= off < btlp.MSG_ZONE[1] - btlp.B:
+            # One visible line, but still a battle message rather than a
+            # fixed name field: preserve its terminal wait for msg_script.
+            strict = False
+            battle_message = True
+    raw = fit_codes(text, ja, strict=strict)
     laid = lay_out(raw, rel, ja, pos)
     if HOLES.search(ink_of(laid or raw)):   # ink: <FFFD> params are the
                                             # engine's own glyphs, not wording
         return laid or raw, JAPANESE_REMNANT
     if not laid:
         return raw, unlayable_note(raw) or 'does not fit the box'
-    if not codes_match(laid, ja):
+    checked = laid
+    if battle_message:
+        try:
+            checked = btlp.msg_script(laid)
+        except ValueError as ex:
+            return laid, str(ex)
+    if not codes_match(checked, ja):
         return laid, 'codes differ from the Japanese'
     # ONE MESSAGE IN, ONE MESSAGE OUT. Both directions ship wrong text, and
     # both are the same mismatch, so it is checked here - where every porter,
@@ -816,13 +832,13 @@ def derive(text, ja, rel, pos=''):
     # THE DESTINATION'S OWN CHECK COMES FIRST: a row its builder refuses is
     # a row that does not ship, whatever this side thinks of it. Its words are already
     # the gate's own (which code, which line), never a bare verdict.
-    why = '; '.join(dest_check(rel, ja, laid)) or \
-        port_caps.dest_note(laid, rel, pos, ja)
+    why = '; '.join(dest_check(rel, ja, checked)) or \
+        port_caps.dest_note(checked, rel, pos, ja)
     if not why:
         # the gate's own words - which line, how many px, which budget -
         # never a bare verdict. A draft that says only 'does not fit' is
         # unauditable.
-        gate = box_gate(rel, ja, laid)
+        gate = box_gate(rel, ja, checked)
         if gate:
             why = '; '.join(gate)
     return laid, why

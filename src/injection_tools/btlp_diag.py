@@ -1,7 +1,6 @@
 """Post-mortem / live diagnosis of glitched BTLP text (negotiation box, answer windows, command windows).
 
-  python tools/btlp_diag.py                      read the running DuckStation (MCP server, port 2346); pauses it, dumps RAM, resumes
-  python tools/btlp_diag.py ram.bin              analyse a RAM dump (2 MB, e.g. from the MCP dump_ram tool)
+  python tools/btlp_diag.py ram.bin              analyse a RAM dump (2 MB)
   python tools/btlp_diag.py watch [seconds]      live monitor: break at the end of every frame's LoadImage flush while text is
                                                  being queued and report the peak queue/ring use (catches a glitch in the act)
 
@@ -184,7 +183,7 @@ def main():
     path = os.path.join(os.environ.get('TEMP', '.'), 'btlp_diag_ram.bin')
     call('dump_ram', path=path)
     analyse(Ram(open(path, 'rb').read()))
-    print('\n(emulation left paused; use the MCP continue tool or the emulator to resume)')
+    print('\n(emulation left paused; resume it in the emulator)')
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
-meta	matches_sha1	a13a359f019e1f4528acacc7dc780c9c3a93032c								
+meta	matches_sha1	2f032c90530e4c4a2ca003c13bff1fed53fd501c								
 meta	psx:D00/D00	e79b512df35d0c2c3624265a41b6f4e45acfc73a								
 meta	psx:D00/D01	07f5f259dc347fa21b45dcae01e039ae54a2910d								
 meta	psx:D00/D02	166dbac77e9f292a1599aa8dac0d3e59e919856a								
@@ -68,7 +68,7 @@ match			D00/D00	0x22f7c	d00	0x23894		anchored
 match			D00/D00	0x22fcc	d00	0x23914		anchored		
 match			D00/D00	0x23024	d00	0x239d4		anchored		
 match			D00/D00	0x230bc	d00	0x239d4		anchored		
-match			D00/D00	0x230cd	d00	0x23afa		anchored		
+match			D00/D00	0x230d0	d00	0x23afa		anchored		
 match			D00/D00	0x23130	d00	0x23ba4		anchored		
 match			D00/D00	0x230bc	d00	0x23acc		anchored		
 match			D00/D00	0x23024	d00	0x239d4		anchored		
@@ -80,17 +80,17 @@ match			D00/D02	0x10328	d02	0x107b4		anchored
 match			D00/D02	0x103d0	d02	0x108b4		similarity		
 match			D00/D03	0xfea0	d03	0x10334		similarity		
 match			D00/D05	0x23a74	d01	0x23de4		anchored		
-match			D00/D06	0xc9da	d06	0xce0c		similarity		
+match			D00/D06	0xc9dc	d06	0xce0c		similarity		
 match			D00/D06	0xca64	d06	0xced0		similarity		
-match			D00/D06	0xca99	d06	0xcf1e		similarity		
+match			D00/D06	0xca9c	d06	0xcf1e		similarity		
 match			D00/D06	0xcaec	d06	0xcf8a		similarity		
 match			D00/D07	0xaab0	d07	0xae10		similarity		
 match			D00/D07	0xab24	d07	0xae10		similarity		
 match			D01/D08	0x153a4	d08	0x15a5c		similarity		
-match			D01/D08	0x153c5	d08	0x15d92		similarity		
+match			D01/D08	0x153c8	d08	0x15d92		similarity		
 match			D01/D08	0x15400	d08	0x15e12		similarity		
 match			D01/D08	0x15458	d08	0x15f9e		similarity		
-match			D01/D08	0x15466	d08	0x15d22		similarity		
+match			D01/D08	0x15468	d08	0x15d22		similarity		
 match			D01/D0A	0x248c4	d0a	0x252e4		anchored		
 match			D01/D0A	0x24964	d0a	0x252e4		anchored		
 match			D01/D0A	0x248c4	d0a	0x252e4		anchored		
@@ -105,17 +105,17 @@ match			D01/D0E	0x1de04	d0e	0x1e1fc		anchored
 match			D01/D0E	0x1df60	d0e	0x1e1fc		anchored		
 match			D01/D0E	0x1dfbc	d0e	0x1e1fc		anchored		
 match			D01/D0E	0x1de84	d0e	0x1e520		anchored		
-match			D01/D0E	0x1ded3	d0e	0x1e61a		anchored		
+match			D01/D0E	0x1ded4	d0e	0x1e61a		anchored		
 match			D02/D11	0xc7cc	d11	0xcce4		anchored		
 match			D02/D13	0xbde0	d13	0xc1f0		anchored		
-match			D02/D13	0xbdf7	d13	0xc236		similarity		
-match			D02/D13	0xbe49	d13	0xc354		similarity		
+match			D02/D13	0xbdf8	d13	0xc236		similarity		
+match			D02/D13	0xbe4c	d13	0xc354		similarity		
 match			D02/D13	0xbe94	d13	0xc420		similarity		
-match			D02/D13	0xbebb	d13	0xc486		similarity		
+match			D02/D13	0xbebc	d13	0xc486		similarity		
 match			D02/D13	0xbeec	d13	0xc4fc		similarity		
 match			D02/D14	0xc3e8	d14	0xc964		anchored		
 match			D02/D14	0xc2e4	d14	0xc774		similarity		
-match			D02/D14	0xc31e	d14	0xc84a		similarity		
+match			D02/D14	0xc320	d14	0xc84a		similarity		
 match			D02/D14	0xc380	d07	0xae10		similarity		
 match			D02/D16	0x98f0	d16	0x9d04		anchored		
 match			D02/D16	0x98f0	d00	0x23ba4		anchored		

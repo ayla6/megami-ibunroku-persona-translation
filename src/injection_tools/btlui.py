@@ -283,6 +283,8 @@ def verify(battle_path=None, resident_path=None):
         return 0x0c000000 | ((at >> 2) & 0x03ffffff)
     def jump(at):
         return 0x08000000 | ((at >> 2) & 0x03ffffff)
+    def bnez_pc(rs, target, pc):
+        return 0x14000000 | (rs << 21) | (((target - (pc + 4)) >> 2) & 0xffff)
     # beqz t0, offer_name_ret - the window exit moved into the resident tail.
     window_exit = 0x11000000 | (
         (symbols['offer_name_ret'] - (symbols['offer_maybe_name'] + 8)) >> 2)
@@ -296,10 +298,35 @@ def verify(battle_path=None, resident_path=None):
     # store, so offer_name_ret is shared and masks with t4-1.
     name_ret_words = (0x258dffff, 0x002d0825, 0x03e00008, 0)
     finish_words = (0x34010000, 0x03e00008, 0x02891023)
-    gate_words = (0x3c08800d, 0x250887ec, 0x022c5023, 0x01484023,
-                  0x2d080040, 0x11000003, 0x914b0000,
-                  jump(symbols['offer_lookup']), 0, 0x3c088003,
-                  0x2508bc84, jump(symbols['offer_maybe_name']), 0x01484023)
+    # The gate covers the personality bank, the stock-name bank, then the
+    # offer name scratch (whose own length check lives in offer_maybe_name).
+    gate = symbols['offer_gate']
+    personality_size = (toolbelt.asm_equ('BTLP_PERSONALITY_BANK_END')
+                        - toolbelt.asm_equ('BTLP_PERSONALITY_BANK'))
+    stock_size = toolbelt.asm_equ('BTLP_STOCK_FULL_SIZE')
+    def lui_t0(value):
+        return 0x3c080000 | (((value + 0x8000) >> 16) & 0xffff)
+    def addiu_t0(value):
+        return 0x25080000 | (value & 0xffff)
+    gate_words = (0x022c5023,                          # subu t2,s1,t4
+                  lui_t0(toolbelt.asm_equ('BTLP_PERSONALITY_BANK')),
+                  addiu_t0(toolbelt.asm_equ('BTLP_PERSONALITY_BANK')),
+                  0x01484823,                          # subu t1,t2,t0
+                  0x2d290000 | personality_size,
+                  bnez_pc(9, gate + 68, gate + 20),
+                  0x914b0000,                          # lbu t3,0(t2)
+                  lui_t0(toolbelt.asm_equ('BTLP_STOCK_FULL_ADDR')),
+                  addiu_t0(toolbelt.asm_equ('BTLP_STOCK_FULL_ADDR')),
+                  0x01484823,
+                  0x2d290000 | stock_size,
+                  bnez_pc(9, gate + 68, gate + 44),
+                  0x914b0000,
+                  lui_t0(toolbelt.asm_equ('PERSONA_HDR_BUF')),
+                  addiu_t0(toolbelt.asm_equ('PERSONA_HDR_BUF')),
+                  jump(symbols['offer_maybe_name']),
+                  0x01484023,                          # subu t0,t2,t0
+                  jump(symbols['offer_lookup']),
+                  0)
     stub_words = (0x340c0000, jump(symbols['offer_gate']), 0x001410c0,
                   0x340c0001, 0x340e00ff, jump(symbols['offer_gate']), 0x26940001)
     checks = (

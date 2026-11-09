@@ -1,2 +1,2 @@
 id	pos	psp	en	note
-5	0x1df06	d0e:0x1e504	The door is tightly closed.<FF02><FF01>	PSP-US; ja 扉は開かない…… (PSP: 扉は固く閉ざされている at 0x1e504)
+5	0x1df08	d0e:0x1e504	The door is tightly closed.<FF02><FF01>	PSP-US; ja 扉は開かない…… (PSP: 扉は固く閉ざされている at 0x1e504)

@@ -435,6 +435,19 @@ leaves a 251 px line (`vwf_wrap.BATTLE_BOX_WIDTH`). The VWF engine still draws
 the original 15-cell grid there (240 px), so battle text - negotiation lines
 and the player's answers (`talktl.ANS_W`, no cursor indent) - is laid out at
 239 px until the engine draws a 16th cell per battle row.
+Each negotiation answer occupies one of those rows: its porter checks a
+one-line budget, and the builder rejects line and page moves and measures
+inserts against the battle window's runtime widths rather than a dialogue
+page's multi-line allowance.
+
+The BTLP message family opened by `BtlOpenMessage` has one visible row, not
+a dialogue box. Its porter treats each message as a one-line destination:
+source line moves become word gaps, then the complete wording (including
+worst-case insert widths) must fit 240 px. An over-width PSP draft is routed
+to manual and Japanese ships until the user supplies wording that fits. The
+builder rejects line moves in filled rows and checks their width, preserving
+human wording and shipping Japanese if it cannot fit; it never silently puts
+the remainder on an invisible second row.
 
 The **description bank** - the skill/item one-line help - is PSP-US wording in
 a 239 px line. Its porter applies three token abbreviations before measuring,
@@ -442,6 +455,8 @@ so a re-port produces them: `damage` -> `DMG` (the amount; the hazard in
 "damage floors" stays prose), a trailing ` status` after the status' own name,
 and `Instant` -> `Insta`. Wording still wider than the line is routed to manual
 as a draft; no other word is shortened automatically.
+The porter converts source line moves to word gaps before measuring; the
+description builder rejects rows that still contain a line or page move.
 
 **A one-row message viewport has no second line.** Some ADV system messages
 (the Velvet Room's yes/no prompts, the coin-shop notices, ...) are drawn by
@@ -738,6 +753,23 @@ reads that table. The current maxima are 140 px (item), 127 px (skill),
 larger of Persona and demon, since ADV and the DNG field script read it
 differently. Regenerate the table with its owner (a port run); never widen a
 line by hand because an insert "might" be long.
+
+**Battle inserts.** BTLP's seven `<FFFx>` slots follow the same two rules.
+The code→slot map and each slot's fill are read from the decomp
+(`windowtype.c`, `insert.c`), and the fill's own 0x18-byte cell is the hard
+bound. The case numbers in `insert.c` are not slot numbers: case 2 fills
+slot 3, case 3 slot 4, case 4 slot 6 and case 6 slot 2, so a code's cap is
+read from the slot its case body writes, never from the case number. A code
+whose value is a fixed field keeps the retail copy cap: `<FFF8>` decimal
+(11 glyphs), `<FFFA>` the hero's 8-character entry, `<FFF9>` a party
+member's 10-byte name slot (8 English glyphs through `partynames`), and
+`<FFF0>` an arcana cell (10). `<FFF2>` (a direct battle Persona record),
+`<FFF3>` (BtlOffer.name) and `<FFF4>` (the item record) are different:
+`btlp/full_names.asm` replaces the copy with `btl_name_copy`, which resolves
+the record to its complete ported name (head + its tail bank) before
+encoding. The first two are priced at the widest demon-table name and the
+last at the widest item name from `insert_widths.tsv` (112 / 140 px today), not the retail
+10-glyph cap; `vwf_wrap.battle_insert_widths()` is the one pricing.
 The gift speech row carries its own layout (three lines a page, laid once
 through the shared flow with these widths priced); `giftmsg.py` encodes the
 row verbatim and fails the build if a page outgrows the contract. The same

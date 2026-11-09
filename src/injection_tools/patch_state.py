@@ -1,4 +1,4 @@
-"""Bring an OLD DuckStation save state in line with the current build (needs the DuckStation MCP server, port 2346).
+"""Bring an OLD DuckStation save state in line with the current build.
 
   python tools/patch_state.py <slot>            load the slot, write the changed bytes of the resident main EXE
                                                 (item names, choices, VWF code ...) and, if the ADV overlay is resident,
@@ -9,8 +9,8 @@
 
 Why: a save state keeps the resident SLPS tables, the loaded overlay and VRAM of the build it was made on. A fresh boot of
 the rebuilt disc needs none of this. The spans are the differences original -> build, merged when closer than 48 bytes
-(about 20 writes). The MCP server answers HTTP 400 after ~100 requests per session, so the session is re-initialised
-every 20 writes.  Run `python tools/build.py` first (the disc can stay as it is; this reads build/).
+(about 20 writes). The session is re-initialised every 20 writes.  Run `python tools/build.py` first (the
+disc can stay as it is; this reads build/).
 """
 import json
 import os

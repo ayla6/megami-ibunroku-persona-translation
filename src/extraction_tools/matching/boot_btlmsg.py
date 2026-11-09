@@ -9,6 +9,7 @@ import toolbelt  # noqa: E402
 import btlmsg  # noqa: E402
 import etext  # noqa: E402
 import port_derive  # noqa: E402
+import vwf_wrap  # noqa: E402
 import reward_notice  # noqa: E402
 import eboot_twin_plan  # noqa: E402
 
@@ -16,6 +17,12 @@ MAP = os.path.join(toolbelt.SOURCE_MAPPINGS, 'boot_btlmsg.tsv')
 JP_CACHE = os.path.join(ROOT, 'data', 'cache', 'boot_strings_jp.tsv')
 US_CACHE = os.path.join(ROOT, 'data', 'cache', 'boot_strings_us.tsv')
 OUT = os.path.join(ROOT, 'translation', 'generated', 'BTLP.BIN', 'BTLMSG.tsv')
+
+
+def rejection_reason(text, reason):
+    """Use the canonical manual-queue reason for an over-wide message."""
+    width = vwf_wrap.text_width(text)
+    return toolbelt.note_over(width, 240, 'px') if width > 240 else reason
 
 
 def text_by_offset(path):
@@ -32,6 +39,7 @@ def main():
     source = btlmsg.data()
     messages = btlmsg.messages(source)
     rows = []
+    rejected = []
     for item in csv.DictReader(open(MAP, encoding='utf-8'), delimiter='\t'):
         idx = int(item['psx_idx'])
         start, end = messages[idx]
@@ -48,7 +56,8 @@ def main():
         ja = btlmsg.dec(source, start, end)
         en, why = port_derive.derive(us[off], ja, 'BTLP', hex(start - btlmsg.B))
         if why:
-            raise SystemExit(f'boot_btlmsg: {hex(start - btlmsg.B)}: {why}')
+            rejected.append((hex(start - btlmsg.B), f'EBOOT:{off:x}', en, rejection_reason(en, why)))
+            continue
         rows.append({'pos': hex(start - btlmsg.B), 'en': en,
                      'psp': f'EBOOT:{off:x}'})
     occupied = {r['pos'] for r in rows}
@@ -60,7 +69,8 @@ def main():
             continue                       # human wording always wins
         en, why = port_derive.derive(source_row['text'], ja, 'BTLP', pos)
         if why:
-            continue                       # preserve source as a gap, never shorten
+            rejected.append((pos, f"EBOOT:{int(source_row['pos'], 16):x}", en, rejection_reason(en, why)))
+            continue
         rows.append({'pos': pos, 'en': en,
                      'psp': f"EBOOT:{int(source_row['pos'], 16):x}"})
         occupied.add(pos)
@@ -84,9 +94,12 @@ def main():
             continue
         en, why = port_derive.derive(text, ja, 'BTLP', pos)
         if why:
-            continue                       # preserve source as a gap, never shorten
+            rejected.append((pos, f'EBOOT:{off:x}', en, rejection_reason(en, why)))
+            continue
         rows.append({'pos': pos, 'en': en, 'psp': f'EBOOT:{off:x}'})
         occupied.add(pos)
+    for pos, psp, draft, why in rejected:
+        toolbelt.route_over('BTLP', pos, psp, draft, why)
     n = toolbelt.upsert_generated('BTLP', rows)
     print(f'BOOT -> BTLP: {n} verified string port(s) -> '
           f'{toolbelt.gen_path("BTLP")}')

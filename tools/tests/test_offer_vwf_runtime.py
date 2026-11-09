@@ -15,6 +15,7 @@ import personality_source
 import smallfont_vwf
 import name_tails
 import items
+import etext
 import toolbelt
 
 BASE = 0x800643c4
@@ -116,6 +117,53 @@ class OfferVwf(unittest.TestCase):
             self.tail(c)
             self.assertEqual(c.r[REG['s4']], 24 + (self.battle_widths[code] & 15))
 
+    def test_stock_menu_copies_complete_source_name(self):
+        c = self.machine()
+        dest = toolbelt.asm_equ('BTLP_STOCK_FULL_ADDR')
+        record_base, id_cell, rows = 0x800417a0, 0x801f0000, 0x801f0100
+        row = 0x801f0200
+        for ident, name in name_tails.demon_rows():
+            encoded = items.encode(name)
+            head = encoded[:10]
+            if len(head) < 10:
+                head += b'\xff' + bytes(10 - len(head) - 1)
+            c.write(id_cell, ident, 1)
+            c.load(record_base + ident * 0x38, head)
+            c.load(dest, bytes(22))
+            c.r[REG['t0']] = dest
+            c.r[REG['t1']] = id_cell
+            c.r[REG['t2']] = rows
+            c.r[REG['t4']] = record_base
+            c.r[REG['t5']] = 0xff
+            c.r[REG['a2']] = row
+            c.r[REG['a3']] = 11
+            c.start(0x80067d30)
+            c.run(0x80067dbc, limit=10000)
+            actual = bytes(c.read(dest + i, 1) for i in range(len(encoded) + 1))
+            self.assertEqual(actual, encoded + b'\xff', (ident, name))
+            self.assertEqual(c.r[REG['t0']], dest)
+            self.assertEqual((c.r[REG['t1']], c.r[REG['t2']], c.r[REG['a2']]),
+                             (id_cell, rows, row))
+
+    def test_direct_record_battle_insert_copies_complete_names(self):
+        c = self.machine()
+        dest = 0x801f1000
+        base = toolbelt.asm_equ('DEMON_NAME_BASE')
+        stride = toolbelt.asm_equ('DEMON_NAME_STRIDE')
+        for ident, name in name_tails.demon_rows():
+            with self.subTest(ident=ident):
+                expected = etext.encode(name, end=None) + b'\xff'
+                c.load(dest, b'\xa5' * 24)
+                c.r[REG['a0']] = dest
+                c.r[REG['a1']] = base + ident * stride
+                c.r[REG['a2']] = 10
+                c.r[REG['ra']] = RETURN
+                c.start(0x8007a86c)
+                c.run(RETURN, limit=10000)
+                actual = bytes(c.read(dest + i, 1) for i in range(len(expected)))
+                self.assertEqual(actual, expected)
+                self.assertEqual(c.read(dest + 23, 1), 0xa5)
+
     def test_quad_text_samples_the_proportional_atlas_only_for_gated_rows(self):
         """The position phase records the art mode in at; the eight U/V loads
         remap the gated ranges and nothing else."""
@@ -134,6 +182,9 @@ class OfferVwf(unittest.TestCase):
                  (0x80078748, 'a0', 'a0', 0x80078750),
                  (0x80078780, 'v0', 'v0', 0x80078788))
         rows = ((pointer, True),                        # personality bank
+                (toolbelt.asm_equ('BTLP_STOCK_FULL_ADDR'), True),   # stock names
+                (toolbelt.asm_equ('BTLP_STOCK_FULL_END') - 1, True),
+                (toolbelt.asm_equ('BTLP_STOCK_FULL_END'), False),
                 (toolbelt.asm_equ('PERSONA_HDR_BUF'), True),   # offer name scratch
                 (toolbelt.asm_equ('PERSONA_HDR_BUF') + 20, False),
                 (0x800ca000, False))                    # any other effect row
@@ -193,10 +244,13 @@ class OfferVwf(unittest.TestCase):
         c = self.machine()
         code = self.codes[0][0]
         base = toolbelt.asm_equ('PERSONA_HDR_BUF')
-        # The gate covers the personality bank and the name scratch's first
-        # DEMON_NAME_MAXLEN bytes. The check inspects the PREVIOUS glyph, so
-        # s1 runs one past the written byte.
+        # The gate covers the personality bank, the stock-name bank, then the
+        # name scratch's first DEMON_NAME_MAXLEN bytes. The check inspects the
+        # PREVIOUS glyph, so s1 runs one past the written byte.
         for pointer, gated in ((BANK, True), (BANK + 63, True), (BANK + 64, False),
+                               (toolbelt.asm_equ('BTLP_STOCK_FULL_ADDR'), True),
+                               (toolbelt.asm_equ('BTLP_STOCK_FULL_END') - 1, True),
+                               (toolbelt.asm_equ('BTLP_STOCK_FULL_END'), False),
                                (base, True), (base + 19, True),
                                (base + 20, False), (0x800ca000, False)):
             c.write(pointer, code, 1)

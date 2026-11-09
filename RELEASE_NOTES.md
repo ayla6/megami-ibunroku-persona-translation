@@ -1,3 +1,11 @@
+# Nov 9th 2026
+- Fixed two sets of choices to fit properly on screen.
+- Fixed some line breaks in areas where they aren't allowed.
+- Fixed repeated demon negotiation choices because the game rejected their addresses.
+- Fixed potential issues I'm too dumb to explain.
+- Fixed truncated Persona names during negotiation.
+- Fixed truncated demon names in the screen you get when you have to replace a demon's card. Also made it VWF.
+
 # Nov 7th 2026
 - Fixed multiple misplaced translation lines. I'm so sorry I let that slip.
 - Extended the limit of the name and surname of the player to 8 characters each.

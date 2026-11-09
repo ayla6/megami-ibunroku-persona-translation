@@ -1,7 +1,7 @@
 ;; Resolve complete source names before encoding the insertion, never repair
 ;; an already-written insert. The stack scratch is private to this call.
 .org BTL_FULL_NAME_CODE
-.area 320
+.area 364
 btl_name_copy:
     addiu   sp, sp, -0x38
     sw      ra, 0x34(sp)
@@ -33,7 +33,7 @@ btl_name_copy:
     li      t0, BTLP_ENEMY_NAME_BASE
     subu    t1, a1, t0
     sltiu   t2, t1, 9 * 0xEC
-    beqz    t2, @@original
+    beqz    t2, @@record
     li      t2, 0xEC
 @@stride:
     divu    t1, t2
@@ -42,6 +42,23 @@ btl_name_copy:
     mfhi    t1
     bnez    t1, @@original
     nop
+    lbu     v1, -1(a1)                  ; offer/actor's source record id
+    b       @@head_setup
+    nop
+@@record:
+    li      t0, DEMON_NAME_BASE + DEMON_NAME_STRIDE
+    subu    t1, a1, t0
+    sltiu   t2, t1, DEMON_NAME_COUNT * DEMON_NAME_STRIDE
+    beqz    t2, @@original
+    li      t2, DEMON_NAME_STRIDE
+    divu    t1, t2
+    nop
+    nop
+    mfhi    t0
+    bnez    t0, @@original
+    mflo    v1
+    addiu   v1, v1, 1                   ; record id indexes OFFER_NAME_BANK
+@@head_setup:
     move    t0, a1
     addiu   t3, sp, 0x10
     move    a1, zero
@@ -56,9 +73,6 @@ btl_name_copy:
     sltiu   t1, a1, 10
     bnez    t1, @@head
     nop
-    lw      t0, 0x2C(sp)
-    nop
-    lbu     v1, -1(t0)
     la      t0, OFFER_NAME_BANK
     jal     offer_tail
     nop

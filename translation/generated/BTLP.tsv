@@ -206,7 +206,7 @@ id	pos	psp	en
 204	0x65788	EBOOT:2a7f2c	...Are you an idiot?<FFFC><FFF6>You'd better remember how<FFF6>many cards you can carry!
 205	0x657c4	EBOOT:2a86ca	Wuuuut?<FFFC>You got too many cardz...<FFF6>Thro one of 'em away.
 206	0x657ec	EBOOT:2a862e	Hey!<FFF6><FFFC>You can't have more than 12 cards.<FFFC><FFF6>Throw away the ones you don't need.
-207	0x65820	EBOOT:2a85d4	Augh...<FFFC><FFF3> has no place...<FFF6>even as a card…
+207	0x65820	EBOOT:2a85d4	Augh...<FFFC><FFF3><FFF6>has no place... even as a card…
 208	0x6584c	EBOOT:2a853c	Ugh, I don't believe this!<FFFC>If you want<FFF6>me, throw someone else's card away.
 209	0x65884	EBOOT:2a848a	You have too many cards...<FFF6><FFFC>if you don't hurry and throw<FFF6>some away, I'll do it for you!
 210	0x658b4	EBOOT:2a83ee	*ring* *ring* Too many-any<FFF6>cardddddds!<FFFC>Which one<FFF6>willyouthrow away-way-way?
@@ -431,7 +431,7 @@ id	pos	psp	en
 429	0x646b4	EBOOT:2a5878	＞ <FFF3> used a life stone.
 430	0x646cc	EBOOT:2a5856	＞ <FFF9> was healed!
 431	0x646e0	EBOOT:2a5834	＞ <FFF9> took damage.
-432	0x646fc	EBOOT:2a57fa	＞ But <FFF9><FFF6>didn't have enough.
+432	0x646fc	EBOOT:2a57fa	＞ But <FFF9> didn't have enough.
 433	0x6471c	EBOOT:2a57b0	＞ But <FFF9> didn't<FFF6>have any life stones.
 434	0x64a78	EBOOT:2a943a	＞ <FFFA> persuaded the demon.
 435	0x64a90	EBOOT:2a940a	＞ <FFFA> taunted the demon.
@@ -483,7 +483,6 @@ id	pos	psp	en
 481	0x6dce0	EBOOT:29b26e	You couldn't escape!<FF05><3C><00>
 482	0x6dd00	EBOOT:29b220	Distribute <FFF8> points.
 483	0x6dd14	EBOOT:29b1fe	<FFF9> was revived.
-484	0x6dd20	EBOOT:29b1b8	<FFF9><FFF6>and friends were annihilated…
 485	0x6dd34	EBOOT:29b18e	Preemptive strike!<FF02>
 486	0x6dd44	EBOOT:29b15e	Ambushed from behind!<FF02>
 487	0x6dd70	EBOOT:29b0f4	Enter battle<FF02>

@@ -12,6 +12,16 @@ import toolbelt
 
 
 class DescriptionDrafts(unittest.TestCase):
+    def test_description_never_ships_a_line_or_page_move(self):
+        start, _end = descs.strings(descs.data())[0]
+        pos = hex(start - descs.B)
+        for code in ('<FF03>', '<FF04>', '<FFF6>'):
+            rows = descs.read_rows()
+            rows[pos] = {'pos': pos, 'en': f'First{code}second', 'psp': '', 'id': 'test'}
+            with self.subTest(code=code), patch.object(descs, 'read_rows', return_value=rows):
+                with self.assertRaisesRegex(SystemExit, 'one-row description'):
+                    descs.build()
+
     def test_overwide_human_line_is_kept_but_not_silently_shipped(self):
         source = descs.data()
         start, end = descs.strings(source)[0]

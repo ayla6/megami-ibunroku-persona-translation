@@ -1,6 +1,6 @@
 id	pos	psp	en	note
 4	0x488c8	EBOOT:28bac0	Police Station	over limit 134px/128px; Mikage Police Station
-19	0x47338		Yukino: <FF07><01>What is it with you and<FF03>all this floundering around?<FF02><FF04>There's a time and place for that,<FF03>and this is neither!<FF03>Come on, get it together...<FF02><FF01>	by Rei; ja ゆきの：<FF0F><01>！<FF03>アンタ　本当にフラフラすんのが好きなんだね<FF02><FF04>でもね　時と場所を選びな！<FF03>ったく…<FF02>
+19	0x47338		Yukino: <FF07><01>What is it with you<FF03>and all this floundering around?<FF02><FF04>There's a time and place for that,<FF03>and this is neither!<FF03>Come on, get it together...<FF02><FF01>	by Rei; ja ゆきの：<FF0F><01>！<FF03>アンタ　本当にフラフラすんのが好きなんだね<FF02><FF04>でもね　時と場所を選びな！<FF03>ったく…<FF02>
 21	0x4746c		Maki: ...Wasn't this place<FF03>a castle...?<FF02><FF01>	PSP-US; ja 麻希：…ここ<FF05>で　<FF03>お城じゃなかった…？ (PSP merged this box into its longer Maki line; wording from that line)
 22	0x47504		Nanjo: ...<FF02><FF01>	PSP-US; Nanjo ellipsis (ADV E0 116:0x25bc) but halved; ja 南条：…<FF02>
 26	0x4789c		Nanjo: ...<FF02><FF01>	PSP-US; Nanjo ellipsis (ADV E0 116:0x25bc) but halved; ja 南条：…<FF02>

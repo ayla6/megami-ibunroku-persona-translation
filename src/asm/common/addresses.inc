@@ -364,6 +364,20 @@ BTLP_ADDR equ OVERLAY_SLOT_ADDR
 ;; text interpreter 0x8007C9E0 calls the glyph function 0x8007C754(struct, ptr) -> ptr here
 BTLP_TEXT_EMIT_JAL_ADDR equ 0x8007CCD4
 BTLP_TEXT_EMIT2_JAL_ADDR equ 0x8007CF80
+;; negotiation choice box (btlp/choice_answer_bound.asm): the two instructions
+;; that build the retail 0x801CFFFF answer-pointer limit; replaced with the
+;; loaded file's own answer-pool end (header word 2) so translated answers that
+;; sit past 64 KB are not all replaced by directory entry 0.
+BTLP_CHOICE_BOUND_LOAD equ 0x8007E2D4       ; lui v1,0x801c
+BTLP_CHOICE_BOUND_ADD equ 0x8007E300        ; ori v1,v1,0xffff
+;; demon reaction lines (btlp/demonline_bound.asm): the same 64 KB assumption,
+;; here a window test on the resolved script; replaced with the loaded pack's
+;; own text length (header word 2, 0x801C0008).
+BTLP_DEMONLINE_BOUND_LUI  equ 0x800686DC    ; lui v0,0x7fe4
+BTLP_DEMONLINE_BOUND_LOAD equ 0x800686E0    ; addu v0,s0,v0
+BTLP_DEMONLINE_BOUND_SUB  equ 0x800686E4    ; ori v1,zero,0xffff
+BTLP_DEMONLINE_BOUND_SLTU equ 0x800686E8    ; sltu v0,v1,v0
+BTLP_DEMONLINE_BOUND_BEQ  equ 0x800686EC    ; beqz v0,0x800686FC
 ;; battle skill menu (btlp/skill_menu.asm): 7 small-font text descriptors per set (x, y, ptr, count ...),
 ;; filled by three copy loops; English names use the SKILL_MENU_STRIDE buffer in SLPS (SKILL_MENU_BUF)
 BTLP_SF_WIDTH_ADDR equ 0x800F8960      ; after QOL_REWARDS, inside the last loaded BTLP sector
@@ -392,6 +406,25 @@ BTLP_BOARD23_NAME_ROW_2 equ 0x800F7CA4 ; retail arcana pool, now the third row
 BTLP_BOARD23_NAME_END_2 equ 0x800F7CB4
 BTLP_BOARD23_NAME_STRIDE equ 16        ; ten head glyphs + up to five tail + FF
 BTLP_OFFER_NAME_BASE equ 0x800EB26D  ; first BtlOffer.name; three records
+DEMON_NAME_COUNT equ 194
+;; CONTACT offer personality bank is 64 bytes at 0x800C87EC (btlui.py). The
+;; stock-list names get their own 21-byte slots in resident battle scratch:
+;; the dialogue unpack buffer is free while the stock menu is open (both
+;; callers run BtlSeqClear immediately before BtlTalkStockMenu). The offer
+;; gate owns the personality bank and this bank as two VWF ranges.
+BTLP_PERSONALITY_BANK equ 0x800C87EC
+BTLP_PERSONALITY_BANK_END equ 0x800C882C ; eight [glyphs][0xFF] labels
+BTLP_STOCK_FULL_ADDR equ 0x80057400      ; == BTLEVT_BUF_ADDR; tools read it literally
+BTLP_STOCK_FULL_STRIDE equ 21
+BTLP_STOCK_ROWS equ 12
+BTLP_STOCK_FULL_SIZE equ 252             ; 12 * 21
+BTLP_STOCK_FULL_END equ 0x800574FC
+.if BTLP_STOCK_FULL_ADDR != BTLEVT_BUF_ADDR
+    .error "stock name bank must start at the free dialogue buffer"
+.endif
+.if BTLP_STOCK_FULL_END != BTLP_STOCK_FULL_ADDR + BTLP_STOCK_FULL_SIZE
+    .error "stock name bank extent disagrees with its size"
+.endif
 BTLP_ENEMY_NAME_BASE equ 0x8005DB53  ; first enemy BtlActor.c.name; nine records
 BTLP_SKILL_DESC_A equ 0x800DD788       ; 7 x 12 bytes, ptr at +4, glyph count at +8
 BTLP_SKILL_DESC_B equ 0x800DDD68       ; second set, same buffer

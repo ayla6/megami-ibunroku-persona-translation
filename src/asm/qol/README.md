@@ -274,7 +274,7 @@ ticks only. A measured draw cost decides how many extra frames fit, so the game 
   the rules below.
 - Measured overworld at BMarket (stock CPU): a draw tick costs ~2.1 vblanks, 1.5 of them in the world
   object sort 0x8008B968 (52 GsSortObject4 objects), so the overworld stays at 15 fps there. Setting the
-  CPU overclock through the MCP API did not change that time (2x, 4x); with the overclock set in the
+  raising the CPU overclock did not change that time (2x, 4x); with the overclock set in the
   DuckStation UI (181%) the user gets a smooth 30 fps there (see the recommended setting below).
 - Space: DNG reserves 0x5C0 bytes at the next 16-byte boundary after
   `dng_glue_end`, bounded by `DNG_SPILL_ADDR`; its placement follows dialogue
@@ -315,8 +315,8 @@ Result reported by the user: the 3D dungeons run at 60 fps with no lag spikes (a
 and the overworld at a smooth 30 fps. Verified live: with 181% the dungeon turn is a full 60 fps and the
 logic ticks stay exactly 3 vblanks apart, so the game speed is the original. Without overclock the patch
 still never slows the game down; it only draws fewer extra frames (dungeon ~45-60, overworld 15 at heavy
-spots like BMarket). The overclock must be set in the DuckStation UI: changing it through the MCP API did
-not affect timing in our tests. Real hardware cannot overclock, so expect the stock-speed results there.
+spots like BMarket). The overclock must be set in the DuckStation UI. Real hardware cannot overclock, so
+expect the stock-speed results there.
 
 ## 2. Engine facts
 
@@ -422,9 +422,7 @@ User save states (on the translation disc; for the QoL disc make new ones from a
 Checks: fps (DuckStation OSD), step/turn duration vs the original disc, door/stairs/menu/fade speed,
 in-game play time vs a stopwatch, encounters after the story allows them, entering/leaving rooms.
 
-Measuring from a script: DuckStation MCP over HTTP at `http://127.0.0.1:2346/mcp` (not `localhost`:
-that costs 2 s per call); `get_status` gives `frame_number` (vblanks) and `internal_frame_number`
-(presented frames), so fps = d(internal)/dt. A breakpoint on 0x80025C98 + `ra`/`a0` shows who calls
+Measuring: fps from the DuckStation OSD. A breakpoint on 0x80025C98 + `ra`/`a0` shows who calls
 VSync with what.
 
 ## 5. Next steps
