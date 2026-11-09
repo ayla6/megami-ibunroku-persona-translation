@@ -442,19 +442,14 @@ def _measure(text, unit, tail=2):
     return widest(text)[0]
 
 
-def _extra_codes(text, ja):
-    """True when `text` carries a control code the Japanese does not (a
-    fixed field cannot show one: its Japanese is already what its build
-    writes). Layout codes and the terminator are not the wording's."""
-    if not (ja or '').strip():
-        return False
-    import collections
+def _extra_codes(text, rel):
+    """True when a fixed destination cannot interpret a source control."""
     import boot_pairs
     import port_derive
-    want = collections.Counter(boot_pairs.skeleton(ja)[0])
-    have = collections.Counter(boot_pairs.skeleton(text)[0])
-    return any(have[c] > want[c] for c in have
-               if c not in port_derive.REFLOW_CODES and c != 0xFF01)
+    if rel in ('ADV', 'BTLP'):
+        return not port_derive.codes_match(text, interpreter='battle' if rel == 'BTLP' else 'dialogue')
+    return any(c not in port_derive.REFLOW_CODES and c != 0xFF01
+               for c in boot_pairs.skeleton(text)[0])
 
 
 def dest_line_px(rel, pos):
@@ -486,10 +481,10 @@ def dest_note(text, rel, pos, ja=''):
         # port_caps speaks in full notes ('<reason>; <draft>'); every caller
         # composes the draft itself, so only the reason travels on.
         return note(fam, text).split(';', 1)[0]
-    if is_fixed_field(rel, pos) and _extra_codes(text, ja):
+    if is_fixed_field(rel, pos) and _extra_codes(text, rel):
         # a one-line field/slot has no interpreter to run a control code:
         # the Japanese carries exactly the codes its own build can show
-        return 'codes differ from the Japanese'
+        return 'unsupported destination control codes'
     cap, unit, lines = dest_cap(rel, pos)
     if lines == 1:
         # the destination draws one row: a line/page move is the space it

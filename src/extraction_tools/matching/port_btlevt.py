@@ -8,9 +8,9 @@ correspondence. The wording then comes from the parallel PSP-US units
 (extracted_text/psp_us/EBOOT.tsv), bridged JP<->US by Needleman-Wunsch on
 box skeletons (align.nw - the merge/split handler).
 
-The en keeps the PSX skeleton (btlevt's QA: exactly the Japanese control
-codes, newlines free): words from PSP-US, breaks at the PSP box
-boundaries, lines re-wrapped to <= 239px / 4 lines per page (three
+The English keeps PSP-US wording and runtime controls at their source
+positions, translated to the battle interpreter. Lines are re-wrapped to
+<= 239px / 4 lines per page (three
 visible plus the fourth scroll line).
 
   python src/extraction_tools/matching/port_btlevt.py [--apply]
@@ -446,132 +446,22 @@ def us_flow(uunits, lo, hi, expect):
     return speaker, segs
 
 
-def ja_shape(ja):
-    """(speaker | '<FFF9>' | '', break slots, inline codes, other codes) of
-    the PSX message: breaks = FFFC pauses and <FFFB><FFF7> pages in order,
-    inline = FFF8/FFF9 content codes, other = anything else (kept verbatim
-    so the build's code-multiset QA passes)."""
-    codes = [int(c, 16) for c in CODE_RE.findall(ja)]
-    breaks, inline, other = [], [], []
-    i = 0
-    while i < len(codes):
-        c = codes[i]
-        if c == 0xFB and i + 1 < len(codes) and codes[i + 1] == 0xF7:
-            breaks.append('page')
-            i += 2
-        elif c == 0xFC:
-            breaks.append('pause')
-            i += 1
-        elif c in (0xF8, 0xF9):
-            inline.append(c)
-            i += 1
-        else:
-            if c != 0xF6:
-                other.append(c)
-            i += 1
-    speaker = ''
-    if ja.startswith('<FFF9>'):
-        speaker = '<FFF9>'
-    elif '\uff1a' in ja:
-        pre = ja.split('\uff1a', 1)[0]
-        if not CODE_RE.search(pre) and len(pre) <= 14:
-            speaker = pre
-    return speaker, breaks, inline, other
-
-
-def compose(ja, usegs, speaker_us):
-    """-> en or None (cannot compose without inventing wording)."""
-    sp_ja, breaks, inline, other = ja_shape(ja)
-    if speaker_us and sp_ja != '<FFF9>':
-        head = speaker_us + ': '
-    elif sp_ja == '<FFF9>':
-        head = '<FFF9>: '
-    else:
-        head = ''
-    # body flow: a PSP box boundary is either the end or a PAGE, and the
-    # PSX spells that same structure '<FFFB><FFF7>'. So a boundary takes the
-    # Japanese's PAGE slot - with the pauses that precede it, which belong
-    # to the text before the page.
-    # When the Japanese has no page for a boundary, the PSP paginated where
-    # the PSX only paused - the boundary is a beat then.
-    flow = []
-    for n, seg in enumerate(usegs):
-        body = seg
-        if n == 0 and sp_ja == '<FFF9>' and '<FF03>' in body:
-            body = body.split('<FF03>', 1)[1]     # FFF9 renders the name
-        body = body.replace('<FF03>', ' ')
-        # A PSP <FF05> BEAT IS THE SAME PAUSE the Japanese spells <FFFC>
-        # (windowtype.c CODE_WAIT: thirty frames). It takes the Japanese's
-        # next pause slot AT ITS OWN POSITION, in order - the beats are
-        # where this localisation chose to pause, so the English must pause
-        # there, not collect the slots at the end of the line (0x6bb2c had
-        # all six pauses after the last word, three seconds of silence).
-        # A slot that is a PAGE is a box boundary, not a beat: the beat is
-        # dropped and the page is placed at the boundary below.
-        def beat(_m):
-            if breaks and breaks[0] == 'pause':
-                breaks.pop(0)
-                return '<FFFC>'
-            return ''
-        body = re.sub(r'<FF05>(?:<[0-9A-Fa-f]{2,4}>|[^<])?', beat, body)
-        flow.append(body)
-        left = len(usegs) - 1 - n                 # boundaries still to come
-        if not left:
-            continue
-        take = []
-        if breaks.count('page') >= left:
-            while breaks:                         # up to and including it
-                take.append(breaks.pop(0))
-                if take[-1] == 'page':
-                    break
-        elif breaks:
-            take.append(breaks.pop(0))
-        flow.extend('PAGEBREAK' if k == 'page' else 'PAUSE' for k in take)
-    for kind in breaks:                            # leftover slots: end
-        flow.append('PAGEBREAK' if kind == 'page' else 'PAUSE')
-    # build the en with the slots at their flow positions
-    out = head
-    for item in flow:
-        if item == 'PAGEBREAK':
-            out = out.rstrip() + '<FFFB><FFF7>'
-        elif item == 'PAUSE':
-            out = out.rstrip() + '<FFFC>'
-        else:
-            out += ('' if not out or out.endswith((' ', '<FFFB><FFF7>', '<FFFC>')) else ' ') + item
-    out = re.sub(r' +', ' ', out).strip()
-    # inline FFF8/FFF9 (rare): the JA places them; park at a sentence end
-    for c in inline:
-        if c == 0xF9 and out.startswith('<FFF9>'):
-            continue
-        want = '<FF%02X>' % c
-        if want in out:
-            continue
-        m = None
-        for mm in re.finditer(r'[.!?](?= |<FFFB><FFF7>|<FFFC>|$)', out):
-            m = mm
-        out = out[:m.end()] + want + out[m.end():] if m else out + want
-    for c in other:                                # unknown JA codes ride on
-        out += '<FF%02X>' % c
-    # THE FAMILY SPELLING, one function for every porter (fit_codes): the
-    # PSP's own codes (its <FF05> pause with frame params) are the dialogue
-    # family's spelling and the battle interpreter has no such code - they
-    # take the Japanese's own spelling in their place.
-    import port_derive
-    return port_derive.fit_codes(out, ja)
+def compose(usegs, speaker_us):
+    """Compose PSP boxes and translate controls at their source positions."""
+    head = speaker_us + ': ' if speaker_us else ''
+    # PSP prose line breaks reflect its font geometry. The shared wrapper
+    # places our own lines; keeping both creates empty and duplicate rows.
+    body = '<FF02><FF04>'.join(s.replace('<FF03>', ' ') for s in usegs)
+    return port_derive.translate_codes(head + body,
+                                       interpreter='battle')
 
 
 def rewrap(en):
     """FFF6 lines <= 239px. -> (text, worst page line count): over the
-    page budget (4 lines: three visible plus the fourth scroll line) when
-    the skeleton has no page slot for it - the draft then goes to manual
-    as an over-limit row (codes must match the Japanese, so pages cannot
-    be added). Pages (<FFFB><FFF7>) are the skeleton and never move; the
-    lines inside one are laid out by the shared flow engine
-    (vwf_wrap.flow_lines), measured with the codes stripped like every
-    BTLP width check."""
-    def width(s):
-        return vwf_wrap.text_width(re.sub(r'<[^>]*>', '', s))
-
+    page budget (4 lines: three visible plus the fourth scroll line), the
+    draft goes to manual as an over-limit row. Authored PSP pages
+    (<FFFB><FFF7>) stay at their source boundaries. The shared flow engine
+    prices runtime inserts at their full measured width."""
     import port_story
     out_pages, worst = [], 0
     for page in en.split('<FFFB><FFF7>'):
@@ -586,7 +476,7 @@ def rewrap(en):
             joined = rest
         items.extend(('w', w) for w in joined.split(' ') if w)
         lines = [v for k, v in vwf_wrap.flow_lines(
-            items, vwf_wrap.BOX_WIDTH, width, '<FFF6>', tail=0) if k == 't']
+            items, vwf_wrap.BOX_WIDTH, vwf_wrap.text_width, '<FFF6>', tail=0) if k == 't']
         worst = max(worst, len(lines))
         out_pages.append('<FFF6>'.join(lines))
     return '<FFFB><FFF7>'.join(out_pages), worst
@@ -661,13 +551,14 @@ def main():
             gaps.append((off, ja))
             continue
         if segs and src['cut'] == 'leading':
-            segs = [segs[0].split('<FF05>', 1)[0]]
+            leading, sep, _tail = segs[0].partition('<FF05>')
+            segs = [leading + sep]
         elif segs and src['cut'] == 'tail' and '<FF05>' in segs[0]:
             segs = [segs[0].split('<FF05>', 1)[1]] + segs[1:]
         # the nameplate is never dropped (TEXT_LAYOUT_SPEC §4.1): when the
         # span's boxes carry no label but the Japanese run names a speaker,
         # the English still prints it - the name comes from the data map.
-        en = compose(ja, segs, speaker_us or src['speaker'])
+        en = compose(segs, speaker_us or src['speaker'])
         if not en:
             gaps.append((off, ja))
             continue
@@ -675,12 +566,8 @@ def main():
         if worst > 4:
             over.append((off, en, toolbelt.note_over(worst, 4, 'lines')))
             continue
-        # THE FAMILY'S CODE RULE, the same gate every porter applies
-        # (port_derive.codes_match): the wording carries the Japanese line's
-        # control codes, exactly. A porter that skips it ships extra pauses
-        # and half a page skeleton (a bare <FFFB> is a key hold).
-        if not port_derive.codes_match(en, ja):
-            over.append((off, en, 'codes differ from the Japanese'))
+        if not port_derive.codes_match(en, interpreter='battle'):
+            over.append((off, en, 'unsupported destination control codes'))
             continue
         cand[hex(off)] = (en, f'EBOOT:{uunits[hull[0]][0]:x}')
 

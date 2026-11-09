@@ -81,7 +81,7 @@ def inputs():
 def rule_digest():
     h = hashlib.sha1()
     for path in (HERE / 'port_answers.py', HERE / 'match_jp.py',
-                 HERE / 'port_derive.py', HERE / 'port_common.py',
+                 HERE / 'port_derive.py', HERE / 'port_codes.py', HERE / 'port_common.py',
                  HERE / 'answers_port_plan.py',
                  ROOT / 'src/injection_tools/talktl.py',
                  ROOT / 'src/injection_tools/talk.py',

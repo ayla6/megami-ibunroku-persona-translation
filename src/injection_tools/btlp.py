@@ -1207,8 +1207,8 @@ def promote():
         if not etext.has_text(w):
             continue
         import match_jp
-        raw = port_derive.fit_codes(
-            w, ja, strict=port_caps.is_fixed_field(REL, pos))
+        raw = port_derive.translate_codes(
+            w, ja, strict=port_caps.is_fixed_field(REL, pos), interpreter='battle')
         t = laid(port_derive.lay_out(raw, REL, ja, pos))
         if not etext.has_text(t):
             draft = raw

@@ -1,12 +1,13 @@
 """Port PSP-US story text into PSX event boxes (etext-compatible en strings).
 
 Golden rule: the PSP-US box owns the words and pagination; the PSX-JA box
-is the alignment key (which box maps where), a layout heuristic (text-run
-lengths apportion words). Name insert kinds belong to the PSP wording.
+is the alignment key (which box maps where). It supplies no runtime codes
+or positions in the English stream. Name insert kinds belong to PSP wording.
 No JA wording enters en.
   - PSP FF1B first line -> 'Label: ' prefix (verbatim). Later identical FF1B
     lines are dropped; differing ones are flagged.
-  - PSP FF18/FF19 (+1 param, +0044 after 0200/0300), FF1A (flag) are dropped;
+  - PSP FF18/FF19 formatting (+1 param, +0044 after 0200/0300) is dropped;
+    FF11 retains its position; FF1A variables use port_codes.ADV_VARIABLES;
     FF02 waits / FF04 pages ride verbatim; FF03 lines merge into width flow.
   - PSP FF05 pauses ride verbatim with US durations; PSP FF07/08/0F name
     markers retain their PSP kind and gain the protagonist parameter;
@@ -53,7 +54,6 @@ ALIGN = os.path.join(toolbelt.MAPPINGS, 'align.tsv')
 
 # PSP param rules (empirical, JP/US agreement)
 DROP1 = {0x05, 0x06, 0x18, 0x19, 0x1A}
-DROP0 = {0x07, 0x08, 0x11}
 # Brackets, caption marks and bullets are visible glyphs in US_MAP, not
 # invisible icons. They pass through the same decoder as every other glyph.
 # PSX param sizes in DECODED chars
@@ -176,9 +176,11 @@ def us_parts(raw, ja=None):
             # plate inside PSP's own quotes can never open a gap
             # ('"' + plate + 'Persona' + '"' + '?' -> '"Persona"?', never
             # '"Persona "?'). Real spaces still split below.
-            if op in (0x02, 0x03, 0x04, 0x05, 0x07, 0x08, 0x0E, 0x0F, 0x1B):
+            if op in (0x01, 0x02, 0x03, 0x04, 0x05, 0x07, 0x08, 0x0E, 0x0F, 0x11, 0x1A, 0x1B):
                 flush()
-            if op in (0x02, 0x03, 0x04):
+            if op == 0x01:
+                words.append(US_BRK + 'FF01')
+            elif op in (0x02, 0x03, 0x04):
                 # PSP pagination/lineation: kept verbatim (JA breaks are
                 # dropped instead). Rides the word stream as a sentinel.
                 structural = False
@@ -213,6 +215,19 @@ def us_parts(raw, ja=None):
                 # surrounding words keep PSP order ("awake, <name>!", not
                 # "<name>awake,!").
                 words.append('%sNAME%02X' % (US_BRK, op))
+            elif op == 0x11:
+                words.append(US_BRK + 'INSERT<FF11>')
+            elif op == 0x1A:
+                if i + 1 < n and raw[i] != 0xFF:
+                    param = struct.unpack_from('>H', raw, i)[0]
+                    i += 2
+                    from port_codes import adv_variable
+                    try:
+                        words.append(US_BRK + 'INSERT' + adv_variable(param))
+                    except ValueError as ex:
+                        flags.append(str(ex))
+                else:
+                    flags.append('unmapped-variable')
             elif op == 0x0E:
                 # PSP choice prompt: kept as a position marker with PSP's
                 # own value byte (FF0E LO 00; LO matches JA in all but 3
@@ -229,10 +244,8 @@ def us_parts(raw, ja=None):
                         second = struct.unpack_from('>H', raw, i)[0]
                         if second == 0x0044:
                             i += 2
-            elif op == 0x1A:
-                flags.append('FF1A-present')
-            elif op in DROP0:
-                pass
+            else:
+                flags.append('unsupported-psp-control:FF%02X' % op)
             continue
         u = struct.unpack_from('>H', raw, i)[0]
         i += 2
@@ -356,49 +369,13 @@ def label_words(label):
 sent_end = vwf_wrap.sent_end
 
 
-def _slot_bounds(toks, nwords):
-    """Word-count cut points for the real JA text slots: the PSX text slots
-    are the distribution anchors, so the words are shared out proportionally
-    to the JA slot lengths. One source of truth - reflow places the words
-    and _ja_turn_words places the page turns from the same cut points, so a
-    page turn always lands where the JA's own slot edge falls."""
-    slots = [len(val) for kind, val in toks
-             if kind == 't' and val.strip('　 ')]
-    total_ja = sum(slots) or 1
-    bounds = []
-    acc = 0.0
-    for L in slots:
-        acc += L / total_ja * nwords
-        bounds.append(int(round(acc)))
-    return bounds
+def reflow(first_label, items):
+    """Lay out the PSP stream in source order, without a Japanese skeleton.
 
-
-def _ja_turn_words(toks, nwords):
-    """Word indices where the JA turns to a fresh window (<FF04>). A turn
-    fires before the word at its index, so the slots before it fill the
-    earlier box: the words reflow into the JA's boxes."""
-    bounds = _slot_bounds(toks, nwords)
-    out = []
-    ns = 0
-    for kind, val in toks:
-        if kind == 't' and val.strip('　 '):
-            ns += 1
-        elif kind == 'c' and val == '<FF04>':
-            w = bounds[ns - 1] if ns else 0
-            if 0 < w < nwords:      # never a box with no words of its own
-                out.append(w)
-    return out
-
-
-def reflow(first_label, items, toks):
-    """Distribute US words across the PSX text slots proportionally to the JA
-    slot lengths. items = [('w', word)] words, [('b', label_or_None)] forced
-    breaks (mid-box speaker changes) and [('u', code)] PSP structure breaks
-    (FF02/FF03/FF04 ride the word stream as US_BRK sentinels). PSP owns
-    pagination: PSP internal waits/pages fire verbatim at PSP positions;
-    JA waits/pages never render; trailing PSP breaks set dismissal
-    timing; over-wide lines re-split by width.
-    Returns (en, used, flags)."""
+    Code translation precedes this function. Only prose line breaks and
+    width-based wrapping are presentation; inline controls stay between the
+    source words that surround them. Returns (en, used, flags).
+    """
     flags = []
     # normalize PSP break sentinels to ('u', code) items (they are not words)
     norm = []
@@ -408,30 +385,7 @@ def reflow(first_label, items, toks):
         else:
             norm.append(it)
     items = norm
-    slots = []
-    for kind, val in toks:
-        if kind == 't' and val.strip('　 '):
-            slots.append([len(val), []])
-    # whitespace-only slots (padding around headers) take no words
-    real = [it[1] for it in items if it[0] == 'w']
-    bounds = _slot_bounds(toks, len(real))
-    # assign real words; breaks ride with the following word
-    ri = 0
-    for i, s in enumerate(slots):
-        lo = bounds[i - 1] if i else 0
-        s[1] = real[lo:bounds[i]]
-        ri = bounds[i]
-    used = bounds[-1] if bounds else 0
-    # rebuild ordered stream with breaks attached
-    # map real-word index -> [(kind, val)] breaks firing before that word
-    after = {}
-    nreal = 0
-    for it in items:
-        if it[0] == 'w':
-            nreal += 1
-        else:
-            after.setdefault(nreal, []).append(it)
-    si = 0
+    used = sum(it[0] == 'w' for it in items)
     parts = []
     flow_items = []
     tail = 'empty'
@@ -447,12 +401,6 @@ def reflow(first_label, items, toks):
         dirty = True
     # (wrapping policy lives in vwf_wrap.flow_lines; the item stream
     # below only positions words, breaks and inline codes.)
-    deferred = []  # JA terminal codes (FF01): appended after trailing PSP
-    # breaks so waits/pages keep PSP order (wait-then-end, not end-wait)
-    # rebuild the word stream with positioned breaks attached: convert the
-    # slot words plus the positioned fires (after-map) into one flow item
-    # list, then run the shared flow.
-    emitted = 0  # real words placed
     glue = False  # dropped PSP FF03 after a hyphen fragment: the next word
     # rejoins spaceless (PSP hyphen wraps, same rule as port_talk)
     # parts tail state for conditional header breaks (casino sections):
@@ -501,93 +449,35 @@ def reflow(first_label, items, toks):
             code = '<FF%s><01>' % av[4:6]
             flow_items.append(('s', code))
             dirty = True
+        elif av.startswith('INSERT'):
+            flow_items.append(('s', av[len('INSERT'):]))
+            dirty = True
         elif av.startswith('FF05'):
             flow_items.append(('g', '<FF05><%s><%s>' % (av[4:6], av[6:8])))
             dirty = True
         elif av.startswith('FF0E'):
             flow_items.append(('b', '<FF0E><%s>' % av[4:6]))
             dirty = False
+        elif av == 'FF01':
+            flow_items.append(('b', '<FF01>'))
         else:
             raise SystemExit('port_story: unexpected stream code %r' % av)
-    si = 0
-    for kind, val in toks:
-        if kind == 'h':
-            # fixed header rendering with forced break (casino sections)
-            if dirty or tail == 'other':
-                flow_items.append(('b', '<FF03>', 0))
-                tail = 'break'
-            flow_items.append(('h', val))
-            dirty = False
-            tail = 'other'
-            glue = False
-            continue
-        if kind == 't' and val.strip('　 '):
-            w = slots[si][1]
-            import os as _os2
-            if _os2.environ.get('PSP_DEBUG'):
-                print('DEBUG slot', si, repr(val[:20]), 'words:', w)
-            si += 1
-            # wrap slot words at BOX_WIDTH (label shares the first line)
-            for word in w:
-                if emitted in after:
-                    for ak, av in after[emitted]:
-                        fire(ak, av)
-                if glue and flow_items and flow_items[-1][0] == 'w':
-                    # suspended compound ("higher- or lower-ranked"): a
-                    # conjunction continues the branch, so keep the space.
-                    if flow_items[-1][1].endswith('-') and word.strip(
-                            ',.!?;:\'"').lower() in (
-                                'or', 'and', 'nor', 'but', 'yet'):
-                        glue = False
-                        flow_items.append(('w', word))
-                    else:
-                        flow_items[-1] = ('w', flow_items[-1][1] + word)
-                        glue = False
+    for kind, val in items:
+        if kind == 'w':
+            if glue and flow_items and flow_items[-1][0] == 'w':
+                if val.strip(',.!?;:\'"').lower() in ('or', 'and', 'nor', 'but', 'yet'):
+                    flow_items.append(('w', val))
                 else:
-                    flow_items.append(('w', word))
-                dirty = True
-                emitted += 1
-            # no per-slot flush: line carries across slots (pauses/inserts
-            # don't break lines); explicit breaks and wraps handle ends
-        else:
-            # PSP owns pagination: PSP internal waits/pages ride the word
-            # stream verbatim (fired by the caller through fire()); JA
-            # waits/pages never render (a JA beat landing mid-sentence
-            # reads as a hang in English). JA pauses are dropped too.
-            # JA non-terminal codes ride through glued at their proportional
-            # slots; JA padding text never emits.
-            if kind == 't' or val == '<FF03>':
-                pass
-            elif val in ('<FF02>', '<FF04>'):
-                pass
-            elif val.startswith('<FF05>'):
-                pass
-            elif kind == 'c' and val[:5] in ('<FF07', '<FF08', '<FF0F'):
-                # Only PSP markers supply English name inserts.
-                pass
+                    flow_items[-1] = ('w', flow_items[-1][1] + val)
+                glue = False
             else:
-                if val == '<FF01>':
-                    # terminal code: the line is flushed with the rest at
-                    # the end and flows straight through (glued, as
-                    # before); the code itself goes last.
-                    deferred.append(val)
-                elif val.startswith('<FF0E>'):
-                    # JA choice prompt: dropped, PSP owns all choices (its
-                    # FF0E rides the word stream with PSP's own value).
-                    pass
-                else:
-                    flow_items.append(('G', val))
-                    tail = 'other'
-                    dirty = True
-                    glue = False
-    # trailing breaks (speaker change at the very end)
-    if emitted in after:
-        for ak, av in after[emitted]:
-            fire(ak, av)
+                flow_items.append(('w', val))
+            dirty = True
+        else:
+            fire(kind, val)
     for k, v in vwf_wrap.flow_lines(flow_items, vwf_wrap.BOX_WIDTH,
                                     vwf_wrap.text_width, '<FF03>'):
         parts.append(v)
-    parts.extend(deferred)
     # THE choice rule (vwf_wrap.choice_breaks): the options start on their
     # own line - every assembly point goes through it, no copy of the rule
     en = vwf_wrap.choice_breaks(''.join(parts), brk='<FF03>')
@@ -1580,9 +1470,6 @@ def convert_entry(f, ei):
             first_lab = None
         # Keep dot-words even when the skeleton has FF05 pauses: the PSP
         # draws both, and its wording is ported verbatim.
-        # Keep PSX text slots as distribution anchors, but render all header
-        # words from PSP-US; no fixed/hand-authored English labels.
-        tracks = list(toks)
         # flatten segments into items with breaks
         items = []
         # EN mid-box restatements keep their speaker name iff the JA box
@@ -1602,11 +1489,8 @@ def convert_entry(f, ei):
                     items.append(('u', x[len(US_BRK):]))
                 else:
                     items.append(('w', x))
-        # header slots keep fixed rendering (handled in reflow's build loop)
-        toks2 = list(tracks)
-
         def finish(items_in):
-            e2, used2, rf2 = reflow(first_lab, items_in, toks2)
+            e2, used2, rf2 = reflow(first_lab, items_in)
             flags.extend(rf2)
             if not e2.endswith('<FF01>'):
                 e2 += '<FF01>' if '<FF01>' not in e2 else ''
@@ -1637,6 +1521,11 @@ def convert_entry(f, ei):
             return e2
 
         en = finish(items)
+        if any('variable' in flag for flag in flags):
+            out.append((k, ja, None, '; '.join(flags)))
+            prev_lab = None
+            prev_ja = None
+            continue
         # A FREE JOIN, DOWN TO THE PSX'S OWN COUNT AND NO FURTHER: the PSX draws
         # this box as 1 + its own <FF04> pages, the PSP's boxes are kept unless
         # the pair fits three lines (the count stays in
@@ -1891,17 +1780,13 @@ def cmd_bulk(apply=False, jobs=None):
     if apply:
         n = store_generated(ported_all)
         print(f'wrote {n} clean PSP-derived English rows under translation/generated/ADV/')
-        # deviation audit: every EN/JA code difference must be a known
-        # PSP-deliberate class (added/dropped names, PSP-valued choices);
-        # anything else is porter corruption, reported loudly (the build QA
-        # gate fails the build on it, so it can never slip through quiet).
+        # Informational source differences, not a Japanese code-inventory
+        # gate. Source controls are translated before writing the row.
         all_devs = {}
-        n_unexplained = 0
         for f, ei, k, ja, en in ported_all:
             devs, ok = tstatus.classify_deviations(ja, en)
             if not ok:
-                n_unexplained += 1
-                print(f'DEVIATION-UNEXPLAINED {f}/{ei}/{k}: {en[:100]!r}')
+                all_devs[(f, ei, k)] = [('source-controls', ja, en)]
             elif devs:
                 all_devs[(f, ei, k)] = devs
         with open(os.path.join(auto_dir, 'psp_deviations.tsv'), 'w', encoding='utf-8', newline='\n') as o:
@@ -1909,8 +1794,7 @@ def cmd_bulk(apply=False, jobs=None):
             for (f, ei, k), devs in sorted(all_devs.items()):
                 for kind, jt, et in devs:
                     o.write(f'{f}\t{ei}\t{k}\t{kind}\t{jt}\t{et}\n')
-        print(f'wrote {len(all_devs)} rows with PSP-deliberate deviations'
-              + (f' [{n_unexplained} UNEXPLAINED]' if n_unexplained else ''))
+        print(f'wrote {len(all_devs)} rows with PSP-source control differences')
         stale = os.path.join(auto_dir, 'name_inserts.tsv')
         if os.path.exists(stale):
             os.remove(stale)

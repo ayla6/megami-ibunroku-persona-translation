@@ -877,7 +877,8 @@ def wrap(text, width=BOX_WIDTH):
 
 
 PARAM_LEN = {'05': 2, '06': 1, '07': 1, '08': 1, '0E': 1, '0F': 1,
-             '10': 1, '11': 0, '12': 0}   # control codes and their parameter bytes
+             '10': 1, '11': 0, '12': 0,
+             'F1': 1, 'FD': 1, 'FE': 1, 'FF': 1}   # interpreter operand bytes
 
 
 def atoms(en):
@@ -920,7 +921,7 @@ def clean_edges(en):
     # Names, numeric inserts and pauses can occupy visible space. Battle
     # insertion tokens come from the same decomp-derived set used to price
     # their width, rather than a second hand-maintained list.
-    keep = ('<FF05>',) + NAME_CODES
+    keep = ('<FF05>', '<FF11>', '<FF12>') + NAME_CODES + INSERT_CODES
     battle_inserts = frozenset(battle_insert_widths())
     out, i = [], 0
     while i < len(toks):

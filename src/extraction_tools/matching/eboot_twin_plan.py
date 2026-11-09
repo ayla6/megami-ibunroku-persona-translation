@@ -79,7 +79,7 @@ def rule_digest():
     h = hashlib.sha1()
     for path in (HERE / 'eboot_twin_plan.py', HERE / 'match_jp.py', HERE / 'align.py',
                  HERE / 'notice_consumer.py', HERE / 'control_consumer.py',
-                 HERE / 'boot_btlmsg.py', HERE / 'port_btlneg.py',
+                 HERE / 'boot_btlmsg.py', HERE / 'port_btlneg.py', HERE / 'port_codes.py',
                  HERE / 'port_btlbanner.py', HERE / 'psp_pairs_extra.tsv',
                  HERE / 'psx_jp_extra.tsv',
                  Path(toolbelt.MAPPINGS) / 'psp_pairs.tsv'):

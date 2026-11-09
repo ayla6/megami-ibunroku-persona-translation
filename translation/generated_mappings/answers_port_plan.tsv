@@ -1,7 +1,7 @@
 kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
-meta	matches_sha1	8e70aa4b7ecc3b62a40fe9fea709fc7392e01d68								
+meta	matches_sha1	2a10c1bf797a7fc746b1617f8aec47bbb0fe3ad9								
 meta	psx:TALK	0366bb3aa19d15ec3ed70f26493942523c659cfd								
-meta	rule_sha1	001f0fb9843d630f14cc68c22bfbbd772fe807c5								
+meta	rule_sha1	96a6ffa1d525aef0b8c692e6a9f1710883e06523								
 meta	us:EBOOT	08e9592c6d19ae1a355f016b6664408be61089e4								
 meta	us:TALK	a28ce06b254fe7e87e48e4858af9622192e5fbda								
 meta	version	1								
@@ -1641,7 +1641,7 @@ match			ANSWERS	283				answer	miss
 match			ANSWERS	285				answer	miss	
 match			ANSWERS	290				answer	miss	
 match			ANSWERS	295				answer	miss	
-match			ANSWERS	296	boot	2acb4e		answer	psp-us-boot	
+match			ANSWERS	296				answer	miss	
 match			ANSWERS	298				answer	miss	
 match			ANSWERS	299				answer	miss	
 match			ANSWERS	308				answer	miss	
@@ -1684,7 +1684,7 @@ match			ANSWERS	383				answer	miss
 match			ANSWERS	387				answer	miss	
 match			ANSWERS	391				answer	miss	
 match			ANSWERS	392				answer	miss	
-match			ANSWERS	402	boot	2aca36		answer	psp-us-boot	
+match			ANSWERS	402				answer	miss	
 match			ANSWERS	403				answer	miss	
 match			ANSWERS	404				answer	miss	
 match			ANSWERS	408				answer	miss	

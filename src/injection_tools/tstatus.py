@@ -6,7 +6,7 @@
   python tools/tstatus.py next [N]     print the next N untranslated boxes (default 25) in work order
 
 QA errors (build.py fails on these):
-  codes     control codes with parameters differ from the Japanese (order, count or value)
+  codes     a control operand is truncated
   width     a line is wider than 239 px (the engine would wrap it mid-word:
             such a row is re-laid-out or never ships) or a page (between
             FF02/FF04) carries more than vwf_wrap.PAGE_LINES lines - the
@@ -269,22 +269,12 @@ def check(ja, en, want_label='glossary', alt_label=None, line_px=None):
     except ValueError as ex:
         return [('encode', str(ex))]
     bj = etext.encode(ja)
-    # Pause codes (0x05) are US-authoritative: the English keeps the PSP-US
-    # pauses verbatim and never imports JA pause positions, so they are
-    # excluded from the code-sequence comparison (every other param code
-    # must still match the Japanese skeleton exactly). The card frame close
-    # <FF06><00> is likewise presentation-only (PSP portrait flow): the
-    # frame head (02/03 layout select) still must match exactly.
-    seq_j = [(o, p) for o, p in code_seq(bj)
-             if o != 0x05 and not (o == 0x06 and p == bytes([0]))]
-    seq_e = [(o, p) for o, p in code_seq(be)
-             if o != 0x05 and not (o == 0x06 and p == bytes([0]))]
-    # Name insert kinds and counts belong to the English wording, not the
-    # Japanese sentence. Their parameters are validated independently below.
-    seq_j = [x for x in seq_j if x[0] not in (0x07, 0x08, 0x0F)]
-    seq_e = [x for x in seq_e if x[0] not in (0x07, 0x08, 0x0F)]
-    if seq_e != seq_j:
-        errs.append(('codes', f'ja {[(hex(o), p.hex()) for o, p in seq_j][:6]} en {[(hex(o), p.hex()) for o, p in seq_e][:6]}'))
+    # PSP-US owns runtime controls, including their counts and positions.
+    # Validate operand storage, not equality to the Japanese script: that
+    # equality used to force porters to import/move unrelated JA controls.
+    for op, params in code_seq(be):
+        if len(params) != PARAM_LEN[op]:
+            errs.append(('codes', f'truncated operand for FF{op:02X}'))
     # A name insert takes a member id. The PSP spells some with none ("My last
     # name is <FF0F>.") and the PSX would read the next character as the id:
     # toolbelt.fix_textbox (the porters' and the repair tool's rule) gives those

@@ -78,7 +78,7 @@ class InstructionLayout(unittest.TestCase):
         raw = b''.join(reverse[c].to_bytes(2, 'big') for c in text) + b'\xff\x01'
         segments, flags = port_story.us_parts(raw)
         self.assertFalse(flags)
-        self.assertEqual(segments, [(None, [text])])
+        self.assertEqual(segments, [(None, [text, port_story.US_BRK + 'FF01'])])
 
     def test_structural_caption_breaks_survive_shared_layout(self):
         for heading in ('【○ button】', '＞Before starting＞', '＜During play＞'):

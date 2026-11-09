@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+import re
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -14,6 +15,10 @@ sys.path[:0] = [str(ROOT / 'src/extraction_tools/matching'),
 import btlevt_port_plan as plan
 import port_btlevt
 import source_plan
+import btlevt
+import etext
+import toolbelt
+import vwf_wrap
 
 
 def run_port():
@@ -41,6 +46,47 @@ def no_jp_read(read):
 class BattleSourcePlan(unittest.TestCase):
     def tearDown(self):
         os.environ.pop(plan.REPLAY_ENV, None)
+
+    @unittest.skipUnless((ROOT / 'data/psp_jp').exists()
+                         and (ROOT / 'data/psp_us').exists()
+                         and (ROOT / 'data/psx/BTLP.BIN').exists(),
+                         'requires both PSP regions and BTLP.BIN')
+    def test_every_ported_battle_message_keeps_source_controls_and_words(self):
+        data = btlevt.data()
+        psx = [(a - btlevt.B, etext.decode(data[a - btlevt.B:e - btlevt.B - 2]))
+               for a, e in btlevt.messages(data)]
+        units = port_btlevt.us_units()
+        sources, _ = port_btlevt.plan_sources(psx, port_btlevt.jp_units(), units)
+        rows = {r['pos']: r['en'] for r in toolbelt.read_generated('BTLP')}
+
+        def content(text):
+            # Layout is allowed to place line breaks and change word gaps,
+            # but semantic control order and all visible characters survive.
+            text = re.sub(r'<FFF6>', '', text)
+            return re.sub(r'\s+', '', text)
+
+        checked = 0
+        for src in sources:
+            if src['kind'] != 'ok':
+                continue
+            speaker, segs = port_btlevt.us_flow(units, src['lo'], src['hi'], src['speaker'])
+            if src['cut'] == 'leading':
+                leading, sep, _ = segs[0].partition('<FF05>')
+                segs = [leading + sep]
+            elif src['cut'] == 'tail' and '<FF05>' in segs[0]:
+                segs = [segs[0].split('<FF05>', 1)[1]] + segs[1:]
+            source = port_btlevt.compose(segs, speaker or src['speaker'])
+            actual = rows[hex(src['off'])]
+            with self.subTest(pos=hex(src['off'])):
+                self.assertEqual(content(actual), content(source))
+                pages = actual.split('<FFFB><FFF7>')
+                for page in pages:
+                    lines = page.split('<FFF6>')
+                    self.assertLessEqual(len(lines), 4)
+                    for line in lines:
+                        self.assertLessEqual(vwf_wrap.text_width(line), 240)
+            checked += 1
+        self.assertGreaterEqual(checked, 90)
 
     @unittest.skipUnless(plan.PLAN.exists() and (ROOT / 'data/psp_jp').exists()
                          and (ROOT / 'data/psp_us').exists()

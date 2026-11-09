@@ -38,7 +38,7 @@ def digest(data):
 
 def matching_inputs_digest():
     paths = [HERE / 'port_btlevt.py', HERE / 'match_jp.py', HERE / 'align.py',
-             HERE / 'port_derive.py', Path(toolbelt.MAPPINGS) / 'psp_pairs.tsv',
+             HERE / 'port_derive.py', HERE / 'port_codes.py', Path(toolbelt.MAPPINGS) / 'psp_pairs.tsv',
              Path(toolbelt.SOURCE_MAPPINGS) / 'accept.tsv',
              ROOT / 'src/extraction_tools/psp/eboot.py',
              ROOT / 'src/extraction_tools/psp/text.py']

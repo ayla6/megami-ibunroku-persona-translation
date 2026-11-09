@@ -48,10 +48,10 @@ id	pos	psp	en
 46	3:0x1a98	E1:46	Yukino:<FF03>You can stay here if you want.<FF02><FF04>We won't force you to come, not when<FF03>we don't know what we're up against.<FF02><FF01>
 47	3:0x1adc	E1:47	Ayase: Uh, no, I meant... It's just...<FF02><FF01>
 48	3:0x1af8	E1:48	Yukino: I'll do whatever it<FF03>takes to save Ms. Saeko.<FF02><FF04>I used to be a lousy delinquent.<FF03>Even my parents gave up on me...<FF03>but not her.<FF02><FF04>She never gave up on me. Ever.<FF03>Now it's my turn to help her, and my...<FF03>expertise can be put to a good cause.<FF02><FF01>
-49	3:0x1b8c	E1:49	Ayase: Hey, Yukino...<FF02><FF04>You're not planning on leaving me<FF03>here all alone, are you...?<FF02><FF04>'Cause I'm going with you! I feel much<FF03><FF06><03><FF06><00>safer around you and <FF07><01>.<FF02><FF01>
+49	3:0x1b8c	E1:49	Ayase: Hey, Yukino...<FF02><FF04>You're not planning on leaving me<FF03>here all alone, are you...?<FF02><FF04>'Cause I'm going with you! I feel much<FF03>safer around you and <FF07><01>.<FF02><FF01>
 50	3:0x1c08	E1:50	Yukino: Haha, sure...<FF03>whatever floats your boat.<FF02><FF04>If we get stuck in a bad situation,<FF03>I'm sure you'll help lighten the mood.<FF02><FF01>
 51	3:0x1c48	E1:51	Yukino: Hey! Holy crap, Yuka,<FF03>where did you get a gun!?<FF02><FF01>
-52	3:0x1c78	E1:52	Ayase: Kei gave it to me.<FF03>Him and Masao went to the police<FF03>station for some weapons.<FF02><FF04>But Kei got hurt,<FF03>so they came back to school.<FF02><FF04>He handed me some guns and<FF03>said to hold on to them while<FF03>he went to the nurse...<FF02><FF04>So I kept one for myself!<FF03><FF06><03><FF06><00>Hehehe... I always wanted to try<FF03>shooting one of these things!<FF02><FF01>
+52	3:0x1c78	E1:52	Ayase: Kei gave it to me.<FF03>Him and Masao went to the police<FF03>station for some weapons.<FF02><FF04>But Kei got hurt,<FF03>so they came back to school.<FF02><FF04>He handed me some guns and<FF03>said to hold on to them while<FF03>he went to the nurse...<FF02><FF04>So I kept one for myself!<FF03>Hehehe... I always wanted to try<FF03>shooting one of these things!<FF02><FF01>
 53	3:0x1d40	E1:53	Yukino: ......<FF02><FF01>
 54	3:0x1d50	E1:54	Ayase: Gah! The wind's picking up!<FF03>Brrrr, it's cooooold... My ears hurt!<FF03>C'mon, let's go inside, quick!<FF02><FF01>
 55	3:0x1d94	E1:55	Yukino: Yeah, standing here<FF03>won't do anyone any good.<FF02><FF04>Y'think the three of us can<FF03>handle the demons and get<FF03>those Mirror Shards...?<FF02><FF04>I dunno, maybe we should grab<FF03>a couple more people, like Yuka said.<FF02><FF01>
@@ -185,7 +185,7 @@ id	pos	psp	en
 183	10:0x1bc4	E1:186	Yukino:<FF03>Who the hell built snowmen here!?<FF02><FF01>
 184	10:0x1bec	E1:187	Yukino: My toes are getting numb.<FF02><FF04>Stupid Drama Club!<FF03>Why'd the Snow Queen have to<FF03>be their traditional play?<FF02><FF04>Why not A Midsummer Night's Dream?<FF03>I hate the cold...<FF02><FF01>
 185	10:0x1c54	E1:188	Ayase:<FF03>Whoa... that door looks like demons<FF03>could come out of it any minute.<FF02><FF01>
-186	10:0x1c7c	E1:189	<FF06><03><FF06><00>Ayase: Omigosh! Look at those dolls!<FF03><FF06><03><FF06><00><FF06><03><FF06><00>They're, like, sooooo cute!<FF02><FF01>
+186	10:0x1c7c	E1:189	Ayase: Omigosh! Look at those dolls!<FF03>They're, like, sooooo cute!<FF02><FF01>
 187	10:0x1cc4	E1:190	Ayase: We're not done here yet?<FF02><FF01>
 188	10:0x1cdc	E1:191	Nanjo: As the saying goes,<FF03>"Discretion is the better<FF03>part of valor."<FF02><FF01>
 189	10:0x1cf8	E1:192	Nanjo: As the saying goes,<FF03>"Discretion is the better<FF03>part of valor."<FF02><FF01>
@@ -209,7 +209,7 @@ id	pos	psp	en
 207	11:0x20f8	E1:211	Tadashi: I see myself in your eyes...<FF02><FF04>Uh... could you excuse us, please?<FF02><FF01>
 208	11:0x2134	E1:212	<FF06><02>Tadashi<FF03>A lazy member of the Fencing Club<FF03>who quarrels with Tamaki every day.<FF06><00><FF02><FF01>
 209	11:0x2170	E1:213	Tamaki: Tadashi is such a jerk!<FF02><FF04>I TOLD him those sports<FF03>drinks were for everyone,<FF03>and he drank them all!<FF02><FF01>
-210	11:0x21d0	E1:214	Tamaki: I had a wonderful dream, and<FF03>it made me realize my true feelings.<FF02><FF04>Starting today...<FF03><FF06><03><FF06><00>I'll always be with Tadashi!<FF02><FF01>
+210	11:0x21d0	E1:214	Tamaki: I had a wonderful dream, and<FF03>it made me realize my true feelings.<FF02><FF04>Starting today...<FF03>I'll always be with Tadashi!<FF02><FF01>
 211	11:0x2224	E1:215	Tamaki:<FF03>I'm happy just being by his side!<FF02><FF01>
 212	11:0x2248	E1:216	<FF06><03>Tamaki - A transfer student<FF03>who joined the Fencing Club.<FF03>She's always arguing with Tadashi.<FF06><00><FF02><FF01>
 213	11:0x2280	E1:217	Yukino: There they go again.<FF03>Don't those two ever get tired of<FF03>fighting with each other?<FF02><FF01>
@@ -1146,7 +1146,7 @@ id	pos	psp	en
 1144	146:0x1150	E1:1152	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 1145	146:0x117c	E1:1153	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 1146	146:0x11a8	E1:1154	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-1147	147:0x1378	E1:1155	<FF06><03><FF06><00>Ayase: We did it!<FF02><FF01>
+1147	147:0x1378	E1:1155	Ayase: We did it!<FF02><FF01>
 1148	147:0x1394	E1:1156	Yukino: Ms. Saeko!<FF02><FF01>
 1149	147:0x13ac	E1:1157	Yukino: You okay? You must've<FF03>been so cold... Are you hurt?<FF02><FF01>
 1150	147:0x13d8	E1:1158	Ms. Saeko: I'm all right, thank you.<FF03>But... where is Tomomi?<FF02><FF01>
@@ -1542,7 +1542,7 @@ id	pos	psp	en
 1540	205:0x2598	E1:1548	Ayase: Hah! That cueball? As if!<FF02><FF01>
 1541	205:0x25b4	E1:1549	Ms. Saeko:<FF03>Oh, he's not really all that bad.<FF02><FF04>But anyway!<FF03>You should stop chitchatting and<FF03>get going before it's too late!<FF02><FF01>
 1542	205:0x2618	E1:1550	Yukino: Right!<FF02><FF01>
-1543	205:0x2630	E1:1551	Brown: C'mon, what's there to worry<FF03>about? I'll be with them!<FF02><FF04><FF06><03>C'mon, honey... Don't spoil that<FF03><FF06><00>pretty face with tears.<FF03>Mwahahahaha!<FF02><FF01>
+1543	205:0x2630	E1:1551	Brown: C'mon, what's there to worry<FF03>about? I'll be with them!<FF02><FF04>C'mon, honey... Don't spoil that<FF03>pretty face with tears.<FF03>Mwahahahaha!<FF02><FF01>
 1544	205:0x26a4	E1:1552	Elly:<FF03>The school's returned to normal...<FF02><FF04>But that's only the beginning.<FF02><FF04>Our true battle comes later. First,<FF03>we must restore peace to our city.<FF02><FF04>We're still young... there's a lot of<FF03>life yet to fight through.<FF03>I'll rise to the challenge!<FF02><FF01>
 1545	205:0x2754	E1:1553	Nanjo: Where there's a will,<FF03>there's a way... That's how I<FF03>feel with friends like these.<FF02><FF04>Rest assured, Ms. Saeko,<FF03>we'll find Masao and Maki!<FF02><FF04>Let's go, <FF07><01>!<FF02><FF01>
 1546	205:0x27c8	E1:1554	Ayase: Y'know, up to now, I've just<FF03>been doing whatever I feel like...<FF02><FF04>But when I see Yukino and<FF03>the others try so hard,<FF03>I feel like I can do way better.<FF02><FF04>I dunno how exactly, but that can<FF03>wait until after we save the town.<FF02><FF04>Catch you later, Ms. Saeko!<FF02><FF01>

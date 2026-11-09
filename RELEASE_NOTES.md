@@ -7,6 +7,7 @@
 - Fixed truncated Persona names during negotiation.
 - Fixed truncated demon names in the screen you get when you have to replace a demon's card. Also made it VWF.
 - Item acquire text is now VWF.
+- Fixed "You have \[Number\] coins." and similar texts, they previously said "\[Number\]" because of bad porting practices.
 
 # Nov 7th 2026
 - Fixed multiple misplaced translation lines. I'm so sorry I let that slip.

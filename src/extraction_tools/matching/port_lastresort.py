@@ -49,7 +49,10 @@ family_at = port_caps.family_at
 dest_note = port_caps.dest_note
 dest_owned = port_caps.dest_owned
 widest = port_caps.widest
-fit_codes = port_derive.fit_codes
+def translate_codes(text, ja, strict=False, *, rel=''):
+    return port_derive.translate_codes(text, ja, strict=strict,
+        interpreter=('battle' if rel == 'BTLP' or rel.startswith('TALK/')
+                     else 'message' if rel == 'ADV' and strict else 'dialogue'))
 lay_out = port_derive.lay_out
 codes_match = port_derive.codes_match
 box_gate = port_derive.box_gate
@@ -229,7 +232,7 @@ def place(crel, crow, tier, jp_ptr, ja='', pos='', rel=''):
     # wholesale between builds and no text match will ever find it.
     fptr, ftext, _ffam = family_wording(ja, pos)
     if ftext.strip():
-        raw = fit_codes(ftext, ja, strict=is_fixed_field(rel, pos))
+        raw = translate_codes(ftext, ja, strict=is_fixed_field(rel, pos), rel=rel)
         ftext = lay_out(raw, rel, ja, pos)
         if not ftext.strip():
             return fptr, '', (unlayable_note(raw)
@@ -239,7 +242,7 @@ def place(crel, crow, tier, jp_ptr, ja='', pos='', rel=''):
     if not is_textbox(rel) and widest(ja)[1] <= 1:
         same = same_psx_text(ja)
         if same:
-            raw = fit_codes(same, ja, strict=True)
+            raw = translate_codes(same, ja, strict=True, rel=rel)
             same = lay_out(raw, rel, ja, pos)
             if same.strip() and codes_match(same, ja):
                 return keep('', same)
@@ -261,7 +264,7 @@ def place(crel, crow, tier, jp_ptr, ja='', pos='', rel=''):
                 hit = picks[0][1]
         if hit:
             fptr, ftext = hit
-            raw = fit_codes(ftext, ja, strict=is_fixed_field(rel, pos))
+            raw = translate_codes(ftext, ja, strict=is_fixed_field(rel, pos), rel=rel)
             ftext = lay_out(raw, rel, ja, pos)
             if ftext.strip():
                 return keep(fptr, ftext)

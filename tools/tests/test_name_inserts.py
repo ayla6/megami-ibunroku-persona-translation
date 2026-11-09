@@ -15,8 +15,7 @@ import tstatus
 
 class NameInserts(unittest.TestCase):
     def test_story_uses_psp_marker_even_when_japanese_differs(self):
-        toks = [('t', '日本語'), ('c', '<FF0F><00>'), ('c', '<FF01>')]
-        en, _, _ = port_story.reflow('', [('w', 'Hello'), ('u', 'NAME07')], toks)
+        en, _, _ = port_story.reflow('', [('w', 'Hello'), ('u', 'NAME07')])
         self.assertIn('<FF07><01>', en)
         self.assertNotIn('<FF0F>', en)
 
@@ -41,45 +40,45 @@ class NameInserts(unittest.TestCase):
         self.assertNotIn('codes', [kind for kind, _ in tstatus.check(ja, en)])
 
     def test_battle_fitting_does_not_replace_one_insert_with_another(self):
-        en = port_derive.fit_codes('Hello <FFF8>', 'こんにちは<FFF9>')
+        en = port_derive.translate_codes('Hello <FFF8>', interpreter='battle')
         self.assertIn('<FFF8>', en)
         self.assertNotIn('<FFF9>', en)
 
     def test_battle_translates_given_name_to_its_own_slot(self):
         ja = '<FFF9>が復活した'
-        en = port_derive.fit_codes('<FF07> was revived.', ja)
+        en = port_derive.translate_codes('<FF07> was revived.', interpreter='battle')
         self.assertIn('<FFF9>', en)
         self.assertNotIn('<FF07>', en)
         self.assertTrue(port_derive.codes_match(en, ja))
 
     def test_battle_drops_the_dialogue_member_parameter(self):
         ja = '<FFF9>が復活した'
-        en = port_derive.fit_codes('<FF07><01> was revived.', ja)
+        en = port_derive.translate_codes('<FF07><01> was revived.', interpreter='battle')
         self.assertEqual(en, '<FFF9> was revived.')
         self.assertTrue(port_derive.codes_match(en, ja))
 
     def test_battle_refuses_a_name_kind_it_has_no_slot_for(self):
         ja = '<FFF9>が復活した'
         for kind in ('<FF08>', '<FF0F>', '<FF10>'):
-            en = port_derive.fit_codes(f'{kind} was revived.', ja)
+            en = port_derive.translate_codes(f'{kind} was revived.', interpreter='battle')
             self.assertNotIn('<FFF9>', en, kind)
             self.assertFalse(port_derive.codes_match(en, ja), kind)
 
-    def test_battle_requires_the_japanese_name_insert(self):
+    def test_battle_does_not_invent_a_japanese_name_insert(self):
         ja = '<FFF9>が復活した'
-        en = port_derive.fit_codes('was revived.', ja)
-        self.assertFalse(port_derive.codes_match(en, ja))
+        en = port_derive.translate_codes('was revived.', interpreter='battle')
+        self.assertEqual(en, 'was revived.')
+        self.assertTrue(port_derive.codes_match(en, ja))
 
-    def test_battle_only_translates_as_many_inserts_as_the_japanese_has(self):
+    def test_battle_translates_every_psp_insert_independent_of_japanese(self):
         ja = '<FFF9>が復活した'
-        en = port_derive.fit_codes('<FF07> and <FF07> were revived.', ja)
-        self.assertEqual(en.count('<FFF9>'), 1)
-        self.assertEqual(en.count('<FF07>'), 1)
-        self.assertFalse(port_derive.codes_match(en, ja))
+        en = port_derive.translate_codes('<FF07> and <FF07> were revived.', interpreter='battle')
+        self.assertEqual(en, '<FFF9> and <FFF9> were revived.')
+        self.assertTrue(port_derive.codes_match(en, ja))
 
     def test_dialogue_keeps_the_psp_given_name(self):
         ja = '名前は<FF0F>だ'
-        en = port_derive.fit_codes('<FF07>', ja)
+        en = port_derive.translate_codes('<FF07>', ja)
         self.assertEqual(en, '<FF07>')
 
 

@@ -43,7 +43,6 @@ MAP = os.path.join(toolbelt.SOURCE_MAPPINGS, 'btlneg_map.tsv')
 MAN = os.path.join(ROOT, 'translation', 'manual', 'strings', 'BTLNEG.tsv')
 GEN = os.path.join(ROOT, 'translation', 'generated', 'BTLP.BIN', 'BTLNEG.tsv')
 BOX_W = vwf_wrap.BOX_WIDTH
-BREAK_RX = r'(?:<FF02>|<FF03>|<FF04>)+'
 
 
 def load_boot():
@@ -79,20 +78,9 @@ def load_map():
             lo, hi = r['src'].split('-')
             rev.append((int(lo, 16), int(hi, 16), int(r['idx']), keys))
         elif kind == 'exseg':
-            ex.setdefault(int(r['idx']), {'src': r['src'], 'keys': keys,
-                                          'strip': r['strip'] == '1',
-                                          'segs': []})
-            parts, words = [], []
-            for p, w in zip(r['parts'].split(','), r['words'].split(',')):
-                parts.append(int(p))
-                if w == '-':
-                    words.append((None, None))
-                else:
-                    a, b = w.split('-')
-                    words.append((int(a) if a else None,
-                                  int(b) if b else None))
-            ex[int(r['idx'])]['segs'].append(
-                (parts, words, r['pre'], r['post']))
+            # The source span remains useful; legacy per-word segmentation
+            # and injected control suffixes are not a source of script text.
+            ex.setdefault(int(r['idx']), {'src': r['src'], 'keys': keys})
     for v in ex.values():
         v['src'] = [int(x, 16) for x in v['src'].split(',')]
     return auto, blob, rev, ex
@@ -129,16 +117,10 @@ def speaker_of(boot, addrs):
     return speaker, texts
 
 
-def split_parts(t):
-    t = t.replace('<FF01>', '<FF03>')
-    return [p for p in
-            (x.strip().replace(' ,', ',').replace('  ', ' ')
-             for x in re.split(BREAK_RX, t)) if p]
-
-
-def concat_parts(boot, addrs):
+def source_message(boot, addrs):
     speaker, texts = speaker_of(boot, addrs)
-    return speaker, split_parts(''.join(texts))
+    body = '<FF02><FF04>'.join(re.sub(r'<FF01>\s*$', '', t) for t in texts)
+    return speaker, body
 
 
 def label_prefix(speaker):
@@ -149,64 +131,6 @@ def label_prefix(speaker):
     return speaker + ': ' if speaker else ''
 
 
-def ja_codes(ja):
-    return sorted(re.findall(r'<FF[0-9A-F]{2}>', ja))
-
-
-def en_codes(en):
-    return sorted('<FF%02X>' % c for c in
-                  btlmsg.codes(etext.encode(en, end=None)))
-
-
-def assemble(parts, need_f6):
-    """The PSP parts into the JA skeleton's need_f6+1 lines. The count is the
-    skeleton's (its control codes must match it, so it is not ours to choose);
-    the break points are the flow engine's - vwf_wrap.fill_lines, the same one
-    every textbox uses, so a line comes out as square as the words allow and
-    nothing anywhere else decides a break."""
-    return vwf_wrap.fill_lines(' '.join(parts).split(' '), need_f6 + 1,
-                               BOX_W, width)
-
-
-def balance_marks(segs, want):
-    """Append JA's FFFB/FFF7 expressive marks BOOT lacks (to the last
-    segment; humans reposition while shortening the draft). `want` is the
-    JA code list."""
-    need_b = want.count('<FFFB>')
-    need_7 = want.count('<FFF7>')
-    have_b = sum(s.count('<FFFB>') for s in segs)
-    have_7 = sum(s.count('<FFF7>') for s in segs)
-    while have_b < need_b and have_7 < need_7:
-        segs[-1] = segs[-1] + '<FFFB><FFF7>'
-        have_b += 1
-        have_7 += 1
-    while have_b < need_b:
-        segs[-1] = segs[-1] + '<FFFB>'
-        have_b += 1
-    while have_7 < need_7:
-        segs[-1] = segs[-1] + '<FFF7>'
-        have_7 += 1
-    return segs
-
-
-def balance_fffc(segs, need):
-    have = sum(s.count('<FFFC>') for s in segs)
-    for i in range(len(segs)):
-        if have >= need:
-            break
-        segs[i] = segs[i] + '<FFFC>'
-        have += 1
-    if have > need:
-        out = []
-        for s in segs:
-            while have > need and '<FFFC>' in s:
-                s = s.replace('<FFFC>', '', 1)
-                have -= 1
-            out.append(s)
-        segs = out
-    return segs
-
-
 # how many messages a row holds: port_derive's rule, its one home (the
 # derivation refuses a composition whose count differs from the Japanese's)
 _messages = port_derive.messages
@@ -214,7 +138,7 @@ _messages = port_derive.messages
 
 def emit(idx, en, src, man, ok, fail, srcs=()):
     if not (en or '').strip():
-        fail.append((idx, 'no boot text', ''))   # gap: manual queue holds it
+        fail.append((idx, 'no boot text', '', tuple(srcs)))
         return
     ja = man[str(idx)][2]
     # THE derivation, on the first pass (port_derive): the codes in the
@@ -224,14 +148,30 @@ def emit(idx, en, src, man, ok, fail, srcs=()):
     # the reason, never a bespoke gate.
     laid, why = port_derive.derive(en, ja, 'BTLP', '')
     if why:
-        fail.append((idx, why, laid[:100]))
+        fail.append((idx, why, laid, tuple(srcs)))
         return
     try:
         b = etext.encode(laid, end=None) + b'\xff\xf5'
     except ValueError:
-        fail.append((idx, 'encode', laid[:80]))
+        fail.append((idx, 'encode', laid, tuple(srcs)))
         return
     ok.append((idx, laid, src, tuple(srcs)))
+
+
+def route_failures(fail, ok, msgs, manual_en):
+    """Queue each unsuccessful candidate once with its full PSP draft."""
+    succeeded = {i for i, _en, _note, _srcs in ok}
+    routed = 0
+    seen = set()
+    for i, reason, draft, srcs in fail:
+        pos = hex(msgs[i][0] - btlmsg.B)
+        if i in succeeded or pos in manual_en or i in seen:
+            continue
+        seen.add(i)
+        psp = ','.join(f'EBOOT:{a:x}' for a in srcs)
+        toolbelt.route_over('BTLP', pos, psp, draft, reason)
+        routed += 1
+    return routed
 
 
 def port(apply, force=False):
@@ -285,15 +225,14 @@ def _port(apply, force=False):
             skip.append(idx)
             continue
         if not all(k in man[sidx][2] for k in keys):
-            fail.append((idx, 'ja-keys', man[sidx][2][:60]))
+            fail.append((idx, 'source mapping does not match destination', '', tuple(addrs)))
             continue
-        speaker, parts = concat_parts(boot, addrs)
-        segs = assemble(parts, ja_codes(man[sidx][2]).count('<FFF6>'))
-        segs = balance_fffc(segs, ja_codes(man[sidx][2]).count('<FFFC>'))
-        segs = balance_marks(segs, ja_codes(man[sidx][2]))
+        speaker, body = source_message(boot, addrs)
+        # Keep source controls with their source words. The shared derivation
+        # translates their interpreter spelling and owns width-based layout.
         src = 'psp-boot %s%s' % (
             ','.join('0x%x' % a for a in addrs), ' (tone-match)' if tone else '')
-        emit(idx, label_prefix(speaker) + pre + '<FFF6>'.join(segs), src,
+        emit(idx, label_prefix(speaker) + pre + body, src,
              man, ok, fail, srcs=addrs)
 
     for idx, ba, ii, keys in blob:
@@ -303,7 +242,7 @@ def _port(apply, force=False):
             skip.append(idx)
             continue
         if not all(k in man[sidx][2] for k in keys):
-            fail.append((idx, 'ja-keys', man[sidx][2][:60]))
+            fail.append((idx, 'source mapping does not match destination', '', (ba,)))
             continue
         emit(idx, blobs[ba][ii], 'psp-boot blob 0x%x item %d' % (ba, ii),
              man, ok, fail, srcs=(ba,))
@@ -320,7 +259,7 @@ def _port(apply, force=False):
                 skip.append(idx)
                 continue
             if keys[len(keys) - 1 - k] not in man[sidx][2]:
-                fail.append((idx, 'ja-keys', man[sidx][2][:60]))
+                fail.append((idx, 'source mapping does not match destination', '', (a,)))
                 continue
             kk, t = amap[a]
             lab, body = port_derive.label_head((t or kk.strip()).strip(),
@@ -346,29 +285,11 @@ def _port(apply, force=False):
             skip.append(idx)
             continue
         if not all(k in man[sidx][2] for k in spec['keys']):
-            fail.append((idx, 'ja-keys', man[sidx][2][:60]))
+            fail.append((idx, 'source mapping does not match destination', '', tuple(spec['src'])))
             continue
-        speaker, texts = speaker_of(boot, spec['src'])
-        text = ''.join(texts)
-        if spec['strip']:
-            text = text.replace('<FFFC>', '')
-        parts = split_parts(text)
-        segs = []
-        for chunk_ps, chunk_ws, pre, post in spec['segs']:
-            words = []
-            for pi, (w0, w1) in zip(chunk_ps, chunk_ws):
-                if pi >= len(parts):
-                    words.append('PART-MISSING')
-                else:
-                    words.extend(parts[pi].split(' ')[w0:w1])
-            seg = ' '.join(words)
-            if pre and seg.startswith('…'):
-                seg = pre + seg.lstrip('… ')
-            elif pre:
-                seg = pre + seg
-            segs.append(seg + post)
-        emit(idx, label_prefix(speaker) + '<FFF6>'.join(segs),
-             'psp-boot explicit-reassembly', man, ok, fail, srcs=spec['src'])
+        speaker, body = source_message(boot, spec['src'])
+        emit(idx, label_prefix(speaker) + body,
+             'psp-boot source-span', man, ok, fail, srcs=spec['src'])
 
     # The source proof reads immutable PSP executables/canonical extracts and
     # shares this porter's existing emit/upsert; it never rewrites a row later.
@@ -422,7 +343,7 @@ def _port(apply, force=False):
           % (len(ok), len(fail), len(skip)))
     for f in fail:
         print('FAIL', f[0], f[1], repr(f[2])[:110])
-    if apply and (ok or src_of):
+    if apply and (ok or src_of or fail):
         import toolbelt  # noqa: E402
         rows, over = [], 0
         for i, en, note, srcs in ok:
@@ -436,22 +357,10 @@ def _port(apply, force=False):
                 if psp:
                     row['psp'] = psp
                 rows.append(row)
-        # A STORED ROW THAT FAILS TODAY'S RULE IS WITHDRAWN, not left to
-        # ship: generated is only as right as the last run that wrote it, and
-        # a row whose line holds a different number of messages than its own
-        # Japanese cannot be shown correctly (emit says why). It leaves
-        # generated with the reason and its draft in the manual queue.
-        for i in sorted(gen, key=int):
-            cur = gen[i][3]
-            if _messages(gen[i][2]) == _messages(cur):
-                continue
-            pos = hex(msgs[int(i)][0] - btlmsg.B)
-            toolbelt.route_over('BTLP', pos, '',
-                                cur, f'source mismatch: the row holds '
-                                f'{_messages(gen[i][2])} message(s), the '
-                                f'stored line {_messages(cur)}')
-            toolbelt.unport('BTLP', pos)
-            print(f'withdrawn {i}: {cur[:70]!r}')
+        # Route failures with their complete draft and source. A later
+        # successful source for the same position wins; human-owned wording
+        # is never overwritten or withdrawn by a forced refresh.
+        over += route_failures(fail, ok, msgs, manual_en)
         n = toolbelt.upsert_generated('BTLP', rows)
         # provenance-only refresh: an already-filled row that carries no psp
         # pointer yet gets its source (generated rows state where they

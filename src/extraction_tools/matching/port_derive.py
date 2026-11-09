@@ -3,14 +3,13 @@
 One place decides it, every porter calls it on the first pass (nothing
 waits for a sweep to fix it up later):
 
-  fit_codes    the wording carries the Japanese line's control codes, in
-               the DESTINATION family's spelling (the battle interpreter
+  translate_codes  the PSP controls in the DESTINATION family's spelling (the battle interpreter
                cannot read a dialogue code - persona-decomp btlp/
                windowtype.c BtlWindowType is the authority)
   lay_out      the box's own layout (port_story.layout_box: labels, the
                flow, the pagination) - a fixed one-line field is not
                re-broken
-  codes_match  the codes the destination requires, exactly
+  codes_match  the controls are supported by the destination interpreter
   box_gate     what the box cannot SHOW (its builder's width/line check)
   renorm_generated  generated/ is DERIVED data: every shipped row
                re-derives from its `psp` source through this, every run
@@ -448,65 +447,23 @@ def psx_params(text):
     return ''.join(out)
 
 
-_PSP_GIVEN_NAME = re.compile(r'<FF07>(?:<[0-9A-Fa-f]{2}>)?')
+def translate_codes(text, ja='', strict=False, *, interpreter='dialogue'):
+    """Translate PSP controls in place; never fit a Japanese code inventory.
 
-
-def battle_name_inserts(text, ja):
-    """Spell a PSP given-name insert with the battle interpreter's slot.
-
-    `<FF07>` selects a party member's given name in the PSP dialogue
-    interpreter. The PSX battle interpreter has one character-name insert,
-    `<FFF9>` (BtlWindowType's CODE_INSERT6, filled from the actor's name),
-    and the Japanese line proves it is the slot this wording wants. Translate
-    before layout so the flow measures the name that will draw
-    (docs/TEXT_LAYOUT_SPEC.md, "Name inserts"). The PSP's bare insert has no
-    member parameter, and neither does `<FFF9>`, so an explicit dialogue
-    parameter is dropped with the code.
-
-    Only as many inserts as the Japanese carries are translated. A
-    family/nickname/full-name insert has no battle sibling: it is left as
-    written so codes_match still refuses to ship the given name in its
-    place."""
-    spare = len(re.findall(r'<FFF9>', ja or ''))
-    if not spare:
-        return text
-
-    def sub(m):
-        nonlocal spare
-        if not spare:
-            return m.group(0)
-        spare -= 1
-        return '<FFF9>'
-
-    return _PSP_GIVEN_NAME.sub(sub, text)
-
-
-def fit_codes(text, ja, strict=False):
-    """Make the wording carry the Japanese line's control codes, no more.
-
-    The wording comes from the PSP, the codes from the Japanese (descs.py:
-    'control codes as in the Japanese'). Two things a PSP line carries that
-    a PSX slot does not:
-
-      * a page break the PSP added because its line runs longer - that is
-        layout, not wording, and the slot has no such code;
-      * the terminator. The PSX extract does not show one and the encoder
-        appends its own (btlp's `ff f5`), so a second is a code the
-        Japanese does not have.
-
-    Codes the Japanese DOES have are kept, and so is every code that
-    carries meaning (a name slot `<FFF8>`, a portrait `<FF1B>`, an EXP
-    value) - only layout and terminator codes in EXCESS of the Japanese
-    are dropped.
-
-    `strict` is for a fixed one-line field (a name/skill table): the slot
-    is not a textbox, so a PSP-only UI marker such as `<FF0C>` cannot be
-    shown there. Keep exactly the code tokens the Japanese carries and
-    drop every other one."""
+    `ja` is used only for existing button/head-furniture rules. `interpreter`
+    comes from the destination family. Plain record fields (`strict`) remove
+    textbox presentation, not semantic inserts.
+    """
     # PSP-ONLY NAMEPLATE HEAD (the two builds agree on the shape): the marker
     # is UI decoration like the box-head '>', never wording - one rule, the
     # function above, spells it as the dialogue family's nameplate.
-    text = nameplate(text)
+    text = nameplate(text, 'label' if interpreter in ('battle', 'battle-message') else 'ff1b')
+    if interpreter in ('battle', 'battle-message'):
+        # PSP nameplates are presentation, not battle opcodes. Convert the
+        # source name and its terminating line break together, before the
+        # dialogue-to-battle translation turns FF03 into FFF6.
+        text = re.sub(r'<FF1B>([^<]*)<FF03>',
+                      lambda m: m.group(1).strip() + ': ', text)
     from port_controls import adapt_buttons
     text = adapt_buttons(text, ja)
     # A '>' the Japanese does not carry is PSP box furniture (most were
@@ -523,104 +480,19 @@ def fit_codes(text, ja, strict=False):
     # not wording: drop the span codes and their id params and keep the
     # name the span carries. Real inserts (<FFFA>, <FFF8>) are the same
     # code on all three sides and pass through untouched.
-    text = re.sub(r'<FF(18|19|1A)>(?:<[0-9A-F]{2,4}>)*(.*?)(?:<[0-9A-F]{2,4}>)*<FF\1>',
-                  r'\2', text)
-    # A CONTROL CODE IS ONE CODE. Only parameterized codes
-    # (codec.E_PARAM_UNITS) consume following units, and only that many.
-    # A bare <FFFB> is a KEY HOLD (windowtype.c CODE_HOLD), not a pause.
-    import codec
-    CODE_TOK = re.compile(r'<FF([0-9A-F]{2})>')
-
-    def code_toks(t):
-        """(code, start, end) per control code, `end` past its own
-        parameters. A unit is one <XXXX> or the two <XX> bytes psx_params
-        spells it as."""
-        out, i = [], 0
-        while True:
-            m = CODE_TOK.search(t, i)
-            if not m:
-                return out
-            c = int(m.group(1), 16)
-            j = m.end()
-            for _ in range(codec.E_PARAM_UNITS.get(c, 0)):
-                p = re.match(r'<[0-9A-Fa-f]{4}>', t[j:])
-                if p:
-                    j += p.end()
-                    continue
-                p = re.match(r'<[0-9A-Fa-f]{2}><[0-9A-Fa-f]{2}>', t[j:])
-                if p:
-                    j += p.end()
-            out.append((m.group(1), m.start(), j))
-            i = j
-
-    # LINE BREAKS are reflow output (FF03 the dialogue engines, FF F6 the
-    # battle one): they never take part in code pairing - the layout
-    # re-places them at its own break points. Pairing them is how a newline
-    # came back as the Japanese's insert code.
-    REFLOW = ('03', 'F6')
-    # A destination-wise translation: only a Japanese line carrying the
-    # battle name slot enables it, and a dialogue row's own inserts pass
-    # through untouched.
-    text = battle_name_inserts(text, ja)
-    ja_codes = [c for c, _s, _e in code_toks(ja or '') if c not in REFLOW]
-    want = collections.Counter(ja_codes)
-    toks = code_toks(text)
-    used, keep = collections.Counter(), set()
-    for c, start, _end in toks:          # pass 1: codes the Japanese has
-        if used[c] < want[c]:
-            used[c] += 1
-            keep.add(start)
-    spare = list(ja_codes)               # pass 2: its unused codes, in order
-    for c in list(used.elements()):
-        spare.remove(c)
-    # pair by KIND, never by raw position: the wording's END code takes the
-    # Japanese's END code (FF01 -> FF EF), its pause takes the Japanese's
-    # pause - otherwise a beat's insert lands where an ending was.
-    # FF F7 is a 12-frame pause and FF FB is a KEY HOLD (windowtype.c:
-    # CODE_PAUSE / CODE_HOLD) - the two halves of the page skeleton. They
-    # are never a substitute for a dropped pause: a bare FF FB would stop
-    # the box for a button mid-sentence.
-    KIND = {'01': 'end', 'EF': 'end', 'F5': 'end',
-            '02': 'wait', '05': 'wait', 'FC': 'wait',
-            'F7': 'hold', 'FB': 'hold',
-            '18': 'ins', '19': 'ins', '1A': 'ins', '07': 'ins', '08': 'ins',
-            '0F': 'ins', 'F0': 'ins', 'F2': 'ins', 'F3': 'ins', 'F4': 'ins',
-            'F8': 'ins', 'F9': 'ins', 'FA': 'ins',
-            '0E': 'choice', 'F1': 'choice',
-            '06': 'attr', 'FE': 'attr'}
-
-    def take_spare(kind):
-        for c in spare:
-            if KIND.get(c, c) == kind:
-                spare.remove(c)
-                return '<FF%s>' % c
-        return ''
-    out, i = [], 0
-    # The family translation only applies when the DESTINATION is the
-    # battle family (the Japanese carries its codes): for a dialogue
-    # destination the wording's codes are that family's own and pass
-    # through untouched - no special treatment for any box.
-    battle = bool(re.search(r'<FFF[0-9A-F]>', ja or ''))
-    # A NAMEPLATE IS STRUCTURE BOTH BUILDS NEED (see fit_codes' head: the PSP
-    # spells it ￥N+name, the PSX <FF1B>name<FF03>), so it is never paired
-    # against the Japanese and never dropped: the PSX's box DOES draw a name
-    # there while its Japanese line carries none. The textbox pipeline turns
-    # the kept code into 'Name: ', separate from the body wording.
-    STRUCT = ('1B',)
-    for c, start, end in toks:
-        out.append(text[i:start])
-        if not battle or c in REFLOW or c in STRUCT or KIND.get(c) == 'ins':
-            out.append(text[start:end])  # own family / structure / reflow
-        elif start in keep:
-            out.append(text[start:end])
-        else:
-            repl = take_spare(KIND.get(c, c))
-            # a dropped code keeps its word gap: 'death<FF05>warmed' must
-            # never run together into 'deathwarmed'
-            out.append(repl or ' ')
-        i = end
-    out.append(text[i:])
-    text = re.sub(r'  +', ' ', ''.join(out))
+    # Consume only a formatting instruction's own parameter, never a run of
+    # arbitrary following controls. FF1A is a runtime variable, not a span.
+    text = re.sub(r'<FF(?:18|19)>(?:<(?!FF)[0-9A-Fa-f]{4}>|<[0-9A-Fa-f]{2}><[0-9A-Fa-f]{2}>)?',
+                  '', text)
+    # Translate by destination interpreter, never by the Japanese row's
+    # inventory of spare codes. Same source control, same translation at
+    # every occurrence, even when the Japanese used fewer (or none).
+    if interpreter in ('battle', 'battle-message') and not strict:
+        from port_codes import battle
+        text = battle(text, message=interpreter == 'battle-message')
+    elif not strict:
+        from port_codes import dialogue
+        text = dialogue(text)
     # ... is not automatically an ellipsis - a dot run has its own uses and
     # those are ported as written. But a run that TRAILS OFF is one, and
     # the game prints an ellipsis for it: the Japanese has '…' exactly
@@ -636,108 +508,63 @@ def fit_codes(text, ja, strict=False):
     # and it also breaks bpe: the unpacker stops at the first one and the
     # round trip then loses whatever follows.
     text = re.sub(r'(<FFF5>|<FFEF>)(?:\s*(?:<FFF5>|<FFEF>))+', r'\1', text)
-    import boot_pairs
-    want = collections.Counter(boot_pairs.skeleton(ja)[0])
-    have = collections.Counter(boot_pairs.skeleton(text)[0])
-    # REFLOW_CODES are reflow output and belong to NO comparison - the rule
-    # codes_match already enforces. Counting them here made every pass drop
-    # one break the layout had just placed and leave its space behind, so a
-    # row grew a space per pass.
-    over = {c: have[c] - want[c] for c in have
-            if have[c] > want[c] and c not in REFLOW_CODES}
     tok = re.compile(r'<([0-9A-Fa-f]{4})>')
-
-    def sub(m):
-        c = int(m.group(1), 16)
-        if c in STRIPPABLE and over.get(c, 0) > 0:
-            # A SPEAKER's break is structural, not layout: `<FF1B>Name<FF03>`
-            # is the nameplate and the break that ends it. Dropping that one
-            # fuses the name onto the line. Keep it and drop a later one.
-            head = m.string[:m.start()]
-            if re.search(r'<FF1B>[^<]*$', head):
-                return m.group(0)
-            over[c] -= 1
-            # A layout code that separates WORDS still separates them when
-            # it is gone: dropping a newline must not produce 'seems to
-            # beclosed'. A newline or page break is a space to the reader
-            # whatever the box does, so that is what it becomes.
-            if c in LAYOUT_BREAK:
-                a = m.string[m.start() - 1:m.start()]
-                b = m.string[m.end():m.end() + 1]
-                if a and b and not a.isspace() and not b.isspace():
-                    return ' '
-            return ''
-        return m.group(0)
-    out = tok.sub(sub, text)
+    out = text
     if strict:
-        allowed = {c.upper() for c in re.findall(r'<([0-9A-Fa-f]{4})>', ja)}
-
+        # In a standalone message/record, the caller owns choice UI rather
+        # than the row's text interpreter. Consume the PSP choice marker's
+        # operand with it; do not leave a raw operand masquerading as text.
+        out = re.sub(r'<FF0E>(?:<[0-9A-Fa-f]{4}>|<[0-9A-Fa-f]{2}><[0-9A-Fa-f]{2}>|<[0-9A-Fa-f]{2}>|[ 　])?', '', out)
         def strict_sub(m):
-            if m.group(1).upper() in allowed:
-                return m.group(0)
             c = int(m.group(1), 16)
+            if c == 0xFF01 and interpreter == 'message':
+                return m.group(0)
             if c in LAYOUT_BREAK:
                 a = m.string[m.start() - 1:m.start()]
                 b = m.string[m.end():m.end() + 1]
                 if a and b and not a.isspace() and not b.isspace():
                     return ' '
-            return ''
+            # A plain record has no textbox UI. Drop presentation, but never
+            # erase an unknown semantic control just to match Japanese.
+            return '' if c in STRIPPABLE or c in (0xFF04, 0xFF0C) else m.group(0)
         out = tok.sub(strict_sub, out)
     return psx_params(out)
 
 
-def codes_match(en, ja):
-    """Does this wording carry the Japanese line's control codes - exactly?
+def codes_match(en, ja='', *, interpreter=None):
+    """Validate interpreter support, not equality to Japanese code counts.
 
-    The rule every family builder enforces (btlp.py fails loud on 'control
-    codes differ from the Japanese'). The multiset is what counts, not the
-    order: btlp's own `codes()` sorts. Two things are excluded because
-    they are not the wording's to carry: the TERMINATOR (the encoder
-    appends its own) and LINE BREAKS (reflow output - see REFLOW_CODES).
-
-    A difference the port is ALLOWED to make is not a mismatch: the QA's
-    own deviation gate (tstatus.classify_deviations - name slots the PSP
-    reorders or drops, a choice the PSP adds, the card close) is the one
-    place that decides, and both the porter and the QA read it."""
+    Legacy callers may use `ja` to identify the interpreter; its code
+    positions, counts and values never constrain the translated stream.
+    """
     import boot_pairs
 
     # Dialogue name opcodes have no meaning in the battle interpreter. Keep
     # the source token for diagnosis, but do not let a deviation exemption
     # turn it into shippable battle text without a proven translation.
-    if re.search(r'<FFF[0-9A-F]>', ja or '') and re.search(
+    battle = interpreter == 'battle' if interpreter else bool(re.search(r'<FFF[0-9A-F]>', ja or ''))
+    if battle and re.search(
             r'<FF(?:07|08|0F|10)>', en or ''):
         return False
-    # The battle name insert prints the current actor's name, which no
-    # wording can spell: a name the player chose is data, not text. The
-    # deviation gate may forgive a dialogue name slot the PSP reorders or
-    # drops, but the battle's <FFF9> must appear exactly as often as the
-    # Japanese draws it - dropping it (or substituting another insert)
-    # would silently print the wrong line.
-    if len(re.findall(r'<FFF9>', en or '')) != \
-            len(re.findall(r'<FFF9>', ja or '')):
-        return False
-
     # The terminator is the encoder's, and END codes are STRUCTURE, never a
     # deviation: a string holds exactly one, because the unpacker stops at
     # the first and drops the rest of the box (a second end code is how a
-    # mispaired source showed up as 'shipping'). So exactly one each, and
-    # the codes that remain must be the Japanese line's.
+    # mispaired source showed up as 'shipping'). This is storage validity,
+    # independent of the Japanese row's terminator count.
     ENDS = (0xFF01, 0xFFEF, 0xFFF5)
 
     def tail(c):
         c = [x for x in c if x not in REFLOW_CODES]
         return [x for x in c if x in ENDS], c
-    (_ea, a), (_eb, b) = tail(boot_pairs.skeleton(en)[0]), tail(boot_pairs.skeleton(ja)[0])
+    _ea, a = tail(boot_pairs.skeleton(en)[0])
     # A string carries AT MOST one end code: a second one stops the
     # unpacker mid-string and drops the rest of the box. How many the
     # wording carries is the encoder's business, not the row's - the
     # encoder appends its own - so it takes no part in the comparison.
     if len(_ea) > 1:
         return False
-    if sorted(x for x in a if x not in ENDS) == sorted(x for x in b if x not in ENDS):
-        return True
-    import tstatus
-    return bool(tstatus.classify_deviations(ja, en)[1])
+    supported = ({0xFF01} | set(range(0xFFEB, 0x10000))) if battle else (set(range(0xFF01, 0xFF14)) | {0xFF1B})
+    return all(c in supported for c in a)
 
 
 def enc_len(text):
@@ -799,7 +626,13 @@ def derive(text, ja, rel, pos=''):
             # fixed name field: preserve its terminal wait for msg_script.
             strict = False
             battle_message = True
-    raw = fit_codes(text, ja, strict=strict)
+    interpreter = ('battle-message' if battle_message else
+                   'battle' if rel == 'BTLP' or rel.startswith('TALK/')
+                   else 'message' if rel == 'ADV' and strict else 'dialogue')
+    try:
+        raw = translate_codes(text, ja, strict=strict, interpreter=interpreter)
+    except ValueError as ex:
+        return text, str(ex)
     laid = lay_out(raw, rel, ja, pos)
     if HOLES.search(ink_of(laid or raw)):   # ink: <FFFD> params are the
                                             # engine's own glyphs, not wording
@@ -812,8 +645,8 @@ def derive(text, ja, rel, pos=''):
             checked = btlp.msg_script(laid)
         except ValueError as ex:
             return laid, str(ex)
-    if not codes_match(checked, ja):
-        return laid, 'codes differ from the Japanese'
+    if not codes_match(checked, interpreter='battle' if battle_message else interpreter):
+        return laid, 'unsupported destination control codes'
     # ONE MESSAGE IN, ONE MESSAGE OUT. Both directions ship wrong text, and
     # both are the same mismatch, so it is checked here - where every porter,
     # the leftover net and the renorm all pass - and not in any one of them:

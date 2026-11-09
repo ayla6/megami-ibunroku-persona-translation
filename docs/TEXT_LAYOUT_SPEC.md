@@ -17,7 +17,8 @@ Read it top to bottom: glyphs -> lines -> boxes -> labels -> gates.
 | which glyph a character prints as, and its advance | `src/injection_tools/make_vwf_font.py` -> `src/asm/font/vwf_*.bin` |
 | where a line breaks | `src/injection_tools/vwf_wrap.py` (`flow_layout` / `flow_lines`) |
 | how many boxes, and where a scroll is | `src/extraction_tools/matching/port_story.py` (`paginate`) |
-| code pairing, labels, gates | `src/extraction_tools/matching/port_derive.py` (`fit_codes`, `codes_match`, `derive`) |
+| interpreter code translation | `src/extraction_tools/matching/port_codes.py` |
+| labels, destination support, gates | `src/extraction_tools/matching/port_derive.py` (`translate_codes`, `codes_match`, `derive`) |
 | what a family's box can hold | `src/extraction_tools/matching/port_caps.py` |
 | which ADV messages have a one-row viewport, and how wide | `src/injection_tools/sysmsg.py` (`display_size`) |
 | which words a description abbreviates | `src/extraction_tools/matching/port_descs.py` (`house_style`) |
@@ -27,6 +28,26 @@ Read it top to bottom: glyphs -> lines -> boxes -> labels -> gates.
 Nothing else decides a break, a box or a glyph. A porter that hand-places a
 line is a bug; a table that stores a fixed break is a bug unless the source
 broke there.
+
+### Source control order
+
+PSP-US supplies the text **and runtime controls in their source order**.
+Translate a control only when the destination interpreter spells it
+differently, using an explicit interpreter translation. Never distribute
+English over Japanese text slots, relocate an insert to a Japanese code
+position, trim source controls to Japanese occurrence counts, substitute an
+unused Japanese opcode, or append Japanese controls to satisfy a multiset.
+Japanese alignment identifies the destination row; it does not author the
+translated message. Unknown translations are reported, never guessed from
+the target row. Destination-code validation checks interpreter support, not
+equality to Japanese counts.
+
+This does not change our layout behavior: prose reflow, pagination, box
+merging, choice gates and structural headings retain their existing rules.
+Runtime inserts and pauses remain anchored between their PSP source words.
+Spacing around visible numeric/record inserts is wording, not code padding.
+ADV keeps PSP FF11 in place and translates PSP FF1A operand 8200 to FF12
+there; unsupported variable operands require a proven implementation.
 
 ---
 
@@ -740,12 +761,12 @@ Translate before layout so the flow measures the text that will draw. If text
 changes after layout, reflow before measuring it again.
 Dialogue name opcodes are not battle opcodes. The PSX battle interpreter has
 one character-name insert, `<FFF9>` (the current actor's name), so a battle
-row's PSP-US `<FF07>` given-name insert is translated to `<FFF9>` when the
-Japanese line carries `<FFF9>`; the PSP's bare form has no member parameter,
+row's PSP-US `<FF07>` given-name insert is translated to `<FFF9>` for the
+battle interpreter; the PSP's bare form has no member parameter,
 and the dialogue member parameter is dropped with the code. Only as many
-inserts as the Japanese carries are translated: a family, nickname or full
-name has no battle sibling and still fails the code gate, and the shipped
-`<FFF9>` count must equal the Japanese count.
+inserts as the PSP carries are translated, at those source positions. A
+family, nickname or full name has no proven battle sibling and fails the
+destination-support gate rather than borrowing a Japanese opcode.
 
 **Inserted records.** The message machine also prints whole records, not just
 the player's slots: `<FF09>` item, `<FF0A>` skill, `<FF0B>` demon, `<FF0C>`
