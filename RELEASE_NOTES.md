@@ -1,4 +1,5 @@
 # Nov 9th 2026
+- There are less MTL lines now. The ones that remain are basically only very short that are basically impossible to translate as anything else.
 - Fixed two sets of choices to fit properly on screen. One of them was a very important one.
 - Fixed some line breaks in areas where they aren't allowed.
 - Fixed repeated demon negotiation choices because the game rejected their addresses.
