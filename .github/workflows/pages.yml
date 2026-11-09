@@ -9,8 +9,6 @@ name: Deploy web patcher
 # everything under patches/ is same-origin and served by Pages like any
 # other file.
 on:
-  push:
-    branches: [main]
   release:
     types: [published]
   workflow_dispatch:
