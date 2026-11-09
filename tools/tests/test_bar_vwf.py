@@ -292,8 +292,10 @@ class BarVWF(unittest.TestCase):
         self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL), 0x02A02021)  # move a0,s5
         self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 4), jal(ADV_PDATA_BAR))
         self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 8), 0)       # nop
-        for off in range(12, 0x30, 4):
-            self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + off), 0)
+        # Former dead instructions now hold the pickup clamp. The ordinary
+        # Persona-data path jumps over it to the unchanged race-row writer.
+        self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 12),
+                         0x08000000 | (((ADV_PDATA_TAIL + 0x30) >> 2) & 0x03ffffff))
         self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 0x30), 0x3C04800C)  # lui a0,0x800C
         self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 0x34), 0x2484A088)  # addiu a0,-0x5F78
         self.assertEqual(self.word(self.adv, ADV_PDATA_TAIL + 0x38), 0x34060080)  # ori a2,0x80

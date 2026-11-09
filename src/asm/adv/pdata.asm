@@ -90,7 +90,18 @@ pdata_bar_adv_end:
     move    a0, s5
     jal     pdata_bar_adv
     nop
-    .fill   0x30 - 12, 0                ; retail's old name writes; now dead
+    ;; Retail's former name writes are dead after the helper above. Normal
+    ;; execution skips the pickup's clamp entry in this reclaimed span.
+    j       ADV_PDATA_TAIL + 0x30
+chest_clamp_entry:
+    subu    t0, t0, s3                  ; delay slot / entry: glyph count * 8
+    ori     t1, zero, 288
+    subu    t1, t1, t0
+    slt     t2, t1, a3
+    beqz    t2, chest_clamp_lower
+    nop
+    j       chest_clamp_lower
+    move    a3, t1
 
     ;; race: retail's six cells, written with the VWF Latin face
     lui     a0, 0x800C

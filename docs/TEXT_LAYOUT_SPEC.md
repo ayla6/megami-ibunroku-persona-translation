@@ -196,6 +196,14 @@ wording never changes. If no tier fits, the porter refuses the name
 (`over limit Npx/80px`, reporting natural width), queues its draft in manual,
 and leaves Japanese on disc.
 
+The ADV field item-pickup animation uses the same regular proportional
+sprite face as the Persona bar, with up to 20 cells for the complete item
+name. Its quantity and multiplication-sign sprites remain unchanged. The
+animation's horizontal origin is clamped only when necessary so the complete
+name's conservative 8-px-per-glyph footprint stays on the 320-px screen;
+the actor-relative position remains unchanged otherwise. The item name is
+copied from the source record and its derived tail, never shortened.
+
 Font style and row spacing are independent of wording. Structurally identified
 Char.name producers and statically addressed 3/4/5-cell captions mark their rows
 fixed-cell (a3 bit 14); they retain the original font and 8-px pitch. The

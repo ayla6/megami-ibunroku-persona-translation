@@ -3,7 +3,6 @@
 - "See explanations" in the slot machine is 1 character to the right. I don't think there's anything else that does this. The red bar when selected treats it as one character to the right and gets to a wrong place. Annoying and bizarre, but again bigger priorities.
 - The red selection thing in some choices thing is too short?
 - Map subtitles don't allow for a name as long as Convenience Store.
-- The item acquire animation has the item's name be in fixed-width. Needs to be changed to VWF.
 - Credits are untranslated.
 - Config text could be written fully instead of all CMPCTD.
 - Incosistency with what is VWF or not and where that happens. Stuff like idk ATK yk.
