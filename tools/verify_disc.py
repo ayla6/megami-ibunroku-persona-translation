@@ -136,11 +136,13 @@ def global_check(what, want, hay):
         print(f'BACK-CHECK FAIL {what}: {len(want)}B text not found')
 
 
-def check(what, want, got):
+def check(what, want, got, *, end=None):
     global fails, checks
     checks += 1
     try:                     # normalize param bytes vs rendered glyphs
-        want = etext.decode(etext.encode(want, end=None))
+        # Compare the bytes the family's writer actually emits. ADV event
+        # boxes append FF01 when the row omits it; TALK supplies its own end.
+        want = etext.decode(etext.encode(want, end=end))
         got = etext.decode(etext.encode(got, end=None))
     except ValueError:
         pass
@@ -561,7 +563,7 @@ def main():
             if pos in rows and ei < len(built.entries) and k < len(built.entries[ei].boxes):
                 s, x = built.entries[ei].boxes[k]
                 check(f'{rel} {ei}/{k}', rows[pos],
-                      etext.decode(built.entries[ei].body[s:x]))
+                      etext.decode(built.entries[ei].body[s:x]), end=b'\xff\x01')
 
     # dng packs: in place when the row fits, otherwise the spill hook ships
     # the full text (build/dng_spill.asm) - boxes hold arbitrary text

@@ -301,7 +301,12 @@ silently wrong.
 Every xdelta is decoded in check-only mode (`xdelta3 -d -J`): every target
 window is reconstructed and its checksum verified, but no decoded image is
 written or read back, which removes two full disc-image passes per patch.
-The patch is then published to `dist/patches/` immediately - there is no
+The Rev 1 conversion is completed first, followed by the base translation:
+its disc audit and `rev0-to-base.xdelta` publication finish before any option
+variant is assembled. On resume, an existing base patch is decoded and its
+source and target hashes are checked before any option work. Option patch
+audits and encoding may then run concurrently with later option assemblies.
+Each patch is published to `dist/patches/` immediately - there is no
 staging directory, and each patch is verified before its file appears.
 The manifest records each patch file's SHA-256, the source/output sizes,
 the whole-image hashes of the revision conversions and the base translation

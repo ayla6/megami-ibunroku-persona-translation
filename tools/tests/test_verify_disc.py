@@ -20,6 +20,15 @@ RAW = 2352
 
 
 class TranslationTables(unittest.TestCase):
+    def test_adv_backcheck_compares_the_encoder_added_terminator(self):
+        with patch.object(verify_disc, 'fails', 0), patch.object(verify_disc, 'checks', 0):
+            verify_disc.check('ADV', 'Text<FF02>', 'Text<FF02><FF01>', end=b'\xff\x01')
+            self.assertEqual(verify_disc.fails, 0)
+            verify_disc.check('ADV', 'Text<FF02>', 'Different<FF02><FF01>', end=b'\xff\x01')
+            self.assertEqual(verify_disc.fails, 1)
+            verify_disc.check('TALK', 'Text<FFF5>', 'Text<FFEF>')
+            self.assertEqual(verify_disc.fails, 2)
+
     def test_support_inputs_excluded_but_unknown_tables_still_checked(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

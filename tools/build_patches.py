@@ -963,8 +963,10 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
             placement, audit = snapshot_audit(image, slot)
             parent = assembly_parent(labels)
             if not labels:
-                futures[labels] = tasks.submit(
-                    base_task, image, placement, audit, current_key)
+                # Every option patch depends on the base patch being present,
+                # not merely on the assembled base image. Finish its audit
+                # and publication before build.main starts the next variant.
+                base_task(image, placement, audit, current_key)
                 return
             baseline = baselines.get(labels)
             if baseline is None:
@@ -1031,6 +1033,17 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
 
         SIDE_FILES = ('dng_spill.asm', 'affinity_gated.tsv',
                       'descs_drafts.tsv', 'btl_board_drafts.tsv')
+
+        if () not in build_states:
+            # A resumed release may reuse an already published base, but it
+            # must be reconstructed and checked before any option is built.
+            row = records[BASE_PATCH]
+            if row.get('source_sha256') != sha256(original):
+                raise RuntimeError('the recorded base patch does not match the Rev 0 disc')
+            image = ensure_image(())
+            if sha256(image) != row.get('target_sha256'):
+                raise RuntimeError('the reconstructed base translation does not match its manifest')
+            print(f'patch: {BASE_PATCH} unchanged; verified before option patches', flush=True)
 
         if build_states:
             previous_argv, previous_image = sys.argv, build.ORIGINAL_IMAGE

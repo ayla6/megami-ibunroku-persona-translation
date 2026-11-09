@@ -245,6 +245,14 @@ class ReleaseBuild(unittest.TestCase):
             for selected, path in variants_override:
                 labels = tuple(release.solver_order(
                     release.state_labels(selected)))
+                self.assertTrue((out / release.REV1_PATCH).is_file(),
+                                'revision conversion must precede every translation build')
+                if labels:
+                    self.assertTrue((out / release.BASE_PATCH).is_file(),
+                                    'base patch must be published before any option build')
+                    self.assertIn(release.BASE_PATCH,
+                                  release.read_manifest(out / 'manifest.tsv'),
+                                  'the verified base must be recorded before any option build')
                 if source_image_for is not None:
                     source = Path(source_image_for(selected))
                     self.assertTrue(source.is_file())
@@ -348,6 +356,16 @@ class ReleaseBuild(unittest.TestCase):
                              'unchanged release must not rebuild')
             self.assertEqual(conversion.stat().st_mtime_ns, stamp)
 
+            # A partial/interrupted release may have option patches but no
+            # base. It must regenerate and publish the base first, before
+            # reconstructing parents or assembling any option/sample.
+            (out / release.BASE_PATCH).unlink()
+            _, builder = self.run_release(root, rev0, rev1, out)
+            self.assertTrue((out / release.BASE_PATCH).is_file())
+            first_build = builder.call_args_list[0].kwargs['variants_override']
+            self.assertEqual(release.state_labels(first_build[0][0]), ())
+            self.assertEqual(conversion.stat().st_mtime_ns, stamp)
+
             (out / 'add-60fps.xdelta').unlink()
             _, builder = self.run_release(root, rev0, rev1, out)
             self.assertEqual(builder.call_count, 1,
@@ -390,6 +408,41 @@ class ReleaseBuild(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'reproduce the built disc'):
                 self.run_release(root, rev0, rev1, out,
                                  corrupt=tuple(self.samples[0]))
+
+    def test_base_audit_failure_stops_before_option_assembly(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            rev0, rev1, out = root / 'zero.bin', root / 'one.bin', root / 'release'
+            rev0.write_bytes(b'retail revision zero' * 100)
+            rev1.write_bytes(b'retail revision one' * 100)
+            assembled = []
+            actual_run = subprocess.run
+
+            def run(cmd, **kwargs):
+                if len(cmd) > 1 and str(cmd[1]).endswith('verify_disc.py'):
+                    raise RuntimeError('base audit failed')
+                return actual_run(cmd, **kwargs)
+
+            def fake_build(variants_override, after_variant=None, **_kwargs):
+                for selected, path in variants_override:
+                    assembled.append(tuple(selected))
+                    Path(path).write_bytes(variant_bytes(()))
+                    Path(str(path) + '.placement.tsv').write_text('path\textent\tsize\tsha256\n')
+                    after_variant(selected, path)
+
+            with patch.object(release, 'ROOT', root), \
+                    patch.object(release, 'scratch_root', scratch_in(root)), \
+                    patch.object(release, 'release_fingerprint', return_value='test-key'), \
+                    patch.object(release.image_check, 'require'), \
+                    patch.object(release.image_check, 'require_rev1'), \
+                    patch.object(release.build, 'main', side_effect=fake_build), \
+                    patch.object(release.subprocess, 'run', side_effect=run):
+                with self.assertRaisesRegex(RuntimeError, 'base audit failed'):
+                    release.build_release(rev0, rev1, out, self.tool)
+            self.assertEqual(assembled, [()])
+            self.assertTrue((out / release.REV1_PATCH).is_file())
+            self.assertFalse((out / release.BASE_PATCH).exists())
+            self.assertFalse(list(out.glob('add-*.xdelta')))
 
     def test_existing_unrelated_output_is_preserved(self):
         with tempfile.TemporaryDirectory() as tmp:
