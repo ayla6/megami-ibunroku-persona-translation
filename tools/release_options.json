@@ -22,12 +22,12 @@
   {
     "label": "rewards",
     "name": "Double rewards",
-    "description": "Doubles the EXP, Persona points and money you get after battles. Like everything else in this section, this is an option. In this case, if you want an easier game. This is not the intended original experience of the game! (need this disclaimer apparently, or some get mad)"
+    "description": "Doubles the EXP, Persona points and money you get after battles. Like everything else in this section, this is an option. In this case, if you want an easier game. This is not the intended original experience of the game!"
   },
   {
     "label": "encounters",
     "name": "Halve encounters",
-    "description": "Halves the rate of random encounters. Like everything else in this section, this is an option. In this case, if you want an easier game. This is not the intended original experience of the game! (need this disclaimer apparently, or some get mad)"
+    "description": "Halves the rate of random encounters. Like everything else in this section, this is an option. In this case, if you want an easier game. This is not the intended original experience of the game!"
   },
   {
     "label": "run",
