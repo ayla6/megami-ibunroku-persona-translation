@@ -65,10 +65,12 @@ produced the release patches) compiled to WebAssembly - see
   convention as `src/injection_tools/build_disc.py`) because retail cue
   sheets are often wrong for single-track images.
 - Downloads are named from the release, not from the file the user picked:
-  `Persona-TL.bin` for the base translation, with the chosen manifest labels
-  appended (for example `Persona-TL-saves-mark.bin`). A dump name or hash
-  never leaks into the output name, and there is no source-revision suffix:
-  a Rev 1 disc is converted to Rev 0 before the translation is applied.
+  the manifest's release stamp comes first (`2026-11-10`, or `2026-11-10-2`
+  for a second release that day), then the chosen labels (for example
+  `Persona-TL-2026-11-10-2-saves-mark.bin`). A manifest without a stamp
+  keeps the old unstamped name. A dump name or hash never leaks into the
+  output name, and there is no source-revision suffix: a Rev 1 disc is
+  converted to Rev 0 before the translation is applied.
 
 ## Assembling a release site
 
@@ -79,10 +81,11 @@ updates are just a new release. One script uploads it:
 
     python tools/publish_patches.py
 
-It uploads the release as one zip asset (tag `patches-YYYYMMDD`;
-re-running the same day clobbers the asset) via the gh CLI, to the
-repository named by `RELEASE_REPO` in `app.js` - publishing must not
-depend on what `origin` points at. The zip holds the patch files,
+It uploads the release as one zip asset (tag `patches-YYYY-MM-DD`,
+becoming `-2`, `-3`, ... for another release that day) via the gh CLI, to
+the repository named by `RELEASE_REPO` in `app.js` - publishing must not
+depend on what `origin` points at. The tag is written into the manifest's
+`release` column before upload, which is what stamps result filenames. The zip holds the patch files,
 `manifest.tsv` and `README.txt`: people applying xdelta by hand download
 it directly, and the Pages workflow unpacks it, so the page can still
 fetch `manifest.tsv` first and then only the patches along the chosen

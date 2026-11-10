@@ -131,6 +131,16 @@ assert.deepStrictEqual(rev1.patchNames,
 assert.deepStrictEqual(rev1.sourceExpect, {bytes: 100},
                        'Rev 1 is identified and converted before the base');
 
+/* Result filenames carry the release stamp from the manifest; the release
+ * prefix is presentation only, and older manifests without a stamp keep
+ * their old names. */
+assert.strictEqual(Plan.releaseStamp([{release: 'patches-2026-11-10'}]),
+                   '2026-11-10');
+assert.strictEqual(Plan.releaseStamp([{release: 'patches-2026-11-10-2'}]),
+                   '2026-11-10-2');
+assert.strictEqual(Plan.releaseStamp([{release: 'other-tag'}]), 'other-tag');
+assert.strictEqual(Plan.releaseStamp([{}]), '');
+
 assert.throws(() => Plan.rowsFrom('patch\tchoices\nbase.xdelta\t\n'),
               /unrecognized release manifest/);
 assert.throws(() => Plan.rowsFrom(''), /manifest is empty/);

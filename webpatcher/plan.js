@@ -124,6 +124,16 @@ const PatchPlan = (() => {
     return args;
   }
 
+  /* The release stamp every result is named from. The manifest carries the
+   * release tag in its release column; strip the release prefix so a tag
+   * like patches-2026-11-10-2 becomes 2026-11-10-2. Older manifests have no
+   * stamp, and keep their previous unstamped output names. */
+  function releaseStamp(rows) {
+    const row = rows.find(item => (item.release || '').trim());
+    const tag = row ? row.release.trim() : '';
+    return tag.replace(/^patches-/, '').replace(/[^A-Za-z0-9._-]+/g, '-');
+  }
+
   function plan(index, rev, labels) {
     const steps = [];
     let bytes;
@@ -146,7 +156,8 @@ const PatchPlan = (() => {
   }
 
   return { rowsFrom, index, anchors, sourceOf, ordered, chain,
-           canonicalSource, decodeArgs, plan, BASE_PATCH, REV1_PATCH };
+           canonicalSource, decodeArgs, releaseStamp, plan,
+           BASE_PATCH, REV1_PATCH };
 })();
 
 if (typeof module !== 'undefined' && module.exports) module.exports = PatchPlan;

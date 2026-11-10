@@ -13,9 +13,10 @@
 const PATCHES = 'patches/';
 const RELEASE_REPO = 'ayla6/megami-ibunroku-persona-translation';  // 'owner/repo'; tools/publish_patches.py uploads here too
 /* The downloaded image is named from the release, never from the file the
- * user picked (which may be a dump name, a hash, or just wrong). A Rev 1
- * source is converted to Rev 0 on the way in, so the result carries no
- * source-revision suffix. */
+ * user picked (which may be a dump name, a hash, or just wrong). The
+ * manifest's release stamp names the release, so results from two releases
+ * never share a filename. A Rev 1 source is converted to Rev 0 on the way
+ * in, so the result carries no source-revision suffix. */
 const OUTPUT_NAME = 'Persona-TL';
 /* Same cue convention as src/injection_tools/build_disc.py. */
 const CUE_BODY = '  TRACK 01 MODE2/2352\n    INDEX 01 00:00:00\n';
@@ -163,7 +164,8 @@ async function apply(source, rev, scratchName, useScratch) {
 }
 
 function outputBase(labels) {
-  return [OUTPUT_NAME, ...labels].join('-');
+  const stamp = PatchPlan.releaseStamp(state.rows);
+  return [OUTPUT_NAME, ...(stamp ? [stamp] : []), ...labels].join('-');
 }
 
 function downloadLink(url, name, isDisc) {

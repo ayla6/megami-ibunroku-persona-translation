@@ -254,9 +254,12 @@ builds by default, not 512.
 `--publish-release` (formerly `--publish-web`) uploads the `--output`
 directory (default `dist/patches`) to a GitHub release as one
 `persona-patches.zip` holding the patch files, `manifest.tsv` and
-`README.txt`: manual xdelta users download the zip directly. The upload
-targets the repository named by `RELEASE_REPO` in `webpatcher/app.js`,
-since `origin` is not GitHub.
+`README.txt`: manual xdelta users download the zip directly. The release
+tag is `patches-YYYY-MM-DD`; a second release that day becomes `-2`, then
+`-3`, so releases are never silently clobbered. The tag is written into
+the manifest's `release` column and therefore into the web patcher's
+result filenames. The upload targets the repository named by
+`RELEASE_REPO` in `webpatcher/app.js`, since `origin` is not GitHub.
 
 The web patcher site itself deploys from this repository through
 `.github/workflows/pages.yml` on every push to `main`, on every published
@@ -360,9 +363,11 @@ exactly the row's canonical source, and a decorated disc is decoded with
 decorated parent) with the output size checked. The page also generates a
 correct single-track `.cue` for
 the patched image, and names both downloads from the release
-(`Persona-TL.bin`, `Persona-TL-saves-mark.bin`, ...) instead of reusing the
-file name the user picked. The name carries no revision: the Rev 1 step
-already converts the source to Rev 0, so the output is Rev 0 either way. Which options exist comes from the manifest; what each
+(`Persona-TL-2026-11-10.bin`, `Persona-TL-2026-11-10-2-saves-mark.bin`,
+...): the manifest's release stamp names the release, then the chosen
+labels follow, instead of reusing the file name the user picked. The name
+carries no revision: the Rev 1 step already converts the source to Rev 0,
+so the output is Rev 0 either way. Which options exist comes from the manifest; what each
 one is called and what it does lives in `tools/release_options.json`,
 the single source of option wording. `app.js` reads the generated
 `features.js` (written by `tools/generate_features.py`, run by the Pages

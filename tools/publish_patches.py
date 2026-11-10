@@ -8,11 +8,12 @@ script handles the release asset that mirror unpacks:
 
 - upload one persona-patches.zip (gh CLI, --no-release to skip) holding
   the manifest, the README and every patch: the tag defaults to
-  patches-YYYYMMDD; re-running the same day clobbers the existing
-  release's asset. Individual files stay in the zip so the page can fetch
-  only the patches along the chosen chain. The upload targets the
-  repository named by webpatcher/app.js (RELEASE_REPO), not origin, which
-  is not GitHub.
+  patches-YYYY-MM-DD, with -2, -3, ... appended when that day already has
+  releases. The stamp is written into the manifest's release column before
+  upload, and the web patcher uses it in the result filenames. Individual
+  files stay in the zip so the page can fetch only the patches along the
+  chosen chain. The upload targets the repository named by
+  webpatcher/app.js (RELEASE_REPO), not origin, which is not GitHub.
 
     python tools/publish_patches.py               # release upload
     python tools/publish_patches.py --no-release  # local copy only
@@ -24,6 +25,8 @@ A finished build can upload the release directly:
 
 import argparse
 import csv
+import json
+import os
 import re
 import shutil
 import subprocess
@@ -37,6 +40,82 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / 'webpatcher'
 DIST = ROOT / 'dist' / 'patches'
 ARCHIVE_NAME = 'persona-patches.zip'
+RELEASE_PREFIX = 'patches-'
+
+
+def release_date(now=None):
+    """The day part of a default release tag, in local time."""
+    return (now or time.localtime()).strftime('%Y-%m-%d')
+
+
+def next_release_tag(existing=(), today=None):
+    """The first free patches-YYYY-MM-DD[-N] tag for a day.
+
+    A second release on the same day becomes -2, then -3, so the result
+    filenames stamped by the web patcher stay distinct."""
+    base = RELEASE_PREFIX + (today or release_date())
+    if base not in existing:
+        return base
+    number = 2
+    while f'{base}-{number}' in existing:
+        number += 1
+    return f'{base}-{number}'
+
+
+def existing_release_tags():
+    """Tags already on the release repository, so a same-day upload gets
+    its own release instead of clobbering the previous one."""
+    try:
+        output = run('gh', 'release', 'list', '--repo', GITHUB_REPO,
+                     '--limit', '1000', '--json', 'tagName', capture=True)
+    except subprocess.CalledProcessError:
+        raise SystemExit(
+            f'cannot list releases on {GITHUB_REPO} with gh - create that'
+            ' GitHub repository and push main first, then run this again'
+        ) from None
+    try:
+        return {item['tagName'] for item in json.loads(output or '[]')}
+    except (KeyError, TypeError, ValueError):
+        raise SystemExit('gh returned an unrecognized release list') from None
+
+
+def stamp_manifest(tag, directory=None):
+    """Write the release tag into the manifest's release column.
+
+    The tag is only known when publishing, after the release was built, so
+    this is the one place that stamps it. Older manifests gain the column;
+    every existing column and row is preserved."""
+    directory = Path(directory) if directory else DIST
+    manifest = directory / 'manifest.tsv'
+    if not manifest.is_file():
+        raise SystemExit(f'{manifest} does not exist - build the release first')
+    with open(manifest, encoding='utf-8', newline='') as source:
+        reader = csv.DictReader(source, delimiter='\t')
+        fields = list(reader.fieldnames or ())
+        if not fields:
+            raise SystemExit(f'{manifest} has no header')
+        rows = list(reader)
+    if 'release' not in fields:
+        fields.append('release')
+    for row in rows:
+        row['release'] = tag
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(
+                mode='w', encoding='utf-8', newline='', dir=manifest.parent,
+                delete=False) as out:
+            temporary = Path(out.name)
+            writer = csv.DictWriter(out, fieldnames=fields, delimiter='\t',
+                                    lineterminator='\n', extrasaction='ignore')
+            writer.writeheader()
+            writer.writerows(rows)
+        os.replace(temporary, manifest)
+    finally:
+        if temporary is not None and temporary.exists():
+            temporary.unlink()
+    return tag
+
+
 def complete_release_size():
     """How many patch files a complete release has.
 
@@ -178,11 +257,13 @@ def upload_release(tag, directory=None):
             print(f'release {tag} assets updated on {GITHUB_REPO}')
             return 'updated'
         except subprocess.CalledProcessError:
+            label = tag.removeprefix(RELEASE_PREFIX)
             run('gh', 'release', 'create', '--repo', GITHUB_REPO, tag, *assets,
-                '--title', f'Persona translation patches ({time.strftime("%Y-%m-%d")})',
+                '--title', f'Persona translation patches ({label})',
                 '--notes', 'One zip: the patch files, manifest.tsv (every'
                            ' chain, with the hashes to verify each step) and'
-                           ' README.txt (apply order).')
+                           ' README.txt (apply order). The manifest release'
+                           f' column is {tag}.')
             print(f'release {tag} created on {GITHUB_REPO}')
             return 'created'
 
@@ -214,13 +295,17 @@ def publish(tag=None, *, directory=None, release=True,
     mirror the release it serves.
     """
     directory = Path(directory) if directory else DIST
-    tag = tag or f'patches-{time.strftime("%Y%m%d")}'
+    if tag is None:
+        tag = next_release_tag(
+            existing_release_tags() if release else ())
     if release:
         if not release_is_complete(directory) and not allow_incomplete:
             raise SystemExit(
                 f'{directory / "manifest.tsv"} does not list a complete'
                 f' release ({complete_release_size()} patch files) - rerun'
                 ' the release build, or pass --allow-incomplete')
+    stamp_manifest(tag, directory)
+    if release:
         if upload_release(tag, directory) == 'updated':
             deploy_site()
     sync_local_patches(directory)
@@ -238,7 +323,8 @@ def parse_args(argv=None):
     parser.add_argument('--allow-incomplete', action='store_true',
                         help='upload the release even if it is not complete')
     parser.add_argument('--tag', default=None,
-                        help='release tag (default: patches-YYYYMMDD)')
+                        help='release tag (default: patches-YYYY-MM-DD,'
+                             ' then -2, -3, ... for another release that day)')
     return parser.parse_args(argv)
 
 

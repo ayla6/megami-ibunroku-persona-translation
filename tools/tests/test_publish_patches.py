@@ -2,6 +2,7 @@
 upload target and the local webpatcher/patches copy. The site itself is
 deployed by .github/workflows/pages.yml, not by this script."""
 
+import csv
 import subprocess
 import sys
 import tempfile
@@ -82,6 +83,8 @@ class PublishArchiveTest(unittest.TestCase):
         # default dist/patches.
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp)
+            (output / 'manifest.tsv').write_text(
+                'patch\tadds\nadd-a.xdelta\ta\n', encoding='utf-8')
             with patch.object(self.publish, 'release_is_complete',
                               return_value=True) as complete, \
                     patch.object(self.publish, 'upload_release') as upload, \
@@ -93,11 +96,62 @@ class PublishArchiveTest(unittest.TestCase):
         upload.assert_called_once_with('patches-test', output)
         sync.assert_called_once_with(output)
 
+    def test_same_day_releases_get_distinct_tags(self):
+        self.assertEqual(self.publish.next_release_tag(
+            (), today='2026-11-10'), 'patches-2026-11-10')
+        self.assertEqual(self.publish.next_release_tag(
+            {'patches-2026-11-10'}, today='2026-11-10'),
+            'patches-2026-11-10-2')
+        self.assertEqual(self.publish.next_release_tag(
+            {'patches-2026-11-10', 'patches-2026-11-10-2'},
+            today='2026-11-10'), 'patches-2026-11-10-3')
+        self.assertEqual(self.publish.next_release_tag(
+            {'patches-2026-11-09'}, today='2026-11-10'),
+            'patches-2026-11-10')
+
+    def test_stamp_manifest_adds_the_release_column(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp)
+            manifest = output / 'manifest.tsv'
+            manifest.write_text('patch\tadds\nadd-a.xdelta\ta\n',
+                                encoding='utf-8')
+            self.publish.stamp_manifest('patches-2026-11-10-2', output)
+            with open(manifest, encoding='utf-8', newline='') as source:
+                rows = list(csv.DictReader(source, delimiter='\t'))
+            self.assertEqual([row['patch'] for row in rows], ['add-a.xdelta'])
+            self.assertEqual(rows[0]['adds'], 'a')
+            self.assertEqual(rows[0]['release'], 'patches-2026-11-10-2')
+
+    def test_publish_stamps_a_new_release_before_upload(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp)
+            manifest = output / 'manifest.tsv'
+            manifest.write_text('patch\tadds\nadd-a.xdelta\ta\n',
+                                encoding='utf-8')
+            with patch.object(self.publish, 'release_is_complete',
+                              return_value=True), \
+                    patch.object(self.publish, 'existing_release_tags',
+                                 return_value={'patches-2026-11-10'}), \
+                    patch.object(self.publish, 'next_release_tag',
+                                 return_value='patches-2026-11-10-2') as \
+                    choose, \
+                    patch.object(self.publish, 'upload_release',
+                                 return_value='created') as upload, \
+                    patch.object(self.publish, 'sync_local_patches'):
+                tag = self.publish.publish(directory=output)
+            self.assertEqual(tag, 'patches-2026-11-10-2')
+            choose.assert_called_once_with({'patches-2026-11-10'})
+            upload.assert_called_once_with('patches-2026-11-10-2', output)
+            self.assertIn('\tpatches-2026-11-10-2',
+                          manifest.read_text(encoding='utf-8'))
+
     def test_replacing_an_existing_release_redeploys_the_site(self):
         # A new release fires the workflow's release trigger; clobbering an
         # existing one fires nothing, so publish() dispatches the workflow.
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp)
+            (output / 'manifest.tsv').write_text(
+                'patch\tadds\nadd-a.xdelta\ta\n', encoding='utf-8')
             for uploaded, expected in (('updated', 1), ('created', 0)):
                 with patch.object(self.publish, 'release_is_complete',
                                   return_value=True), \

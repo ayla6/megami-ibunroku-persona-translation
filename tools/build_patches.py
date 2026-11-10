@@ -416,7 +416,8 @@ def run_decode(tool, source, patch, output, *, skip_checksum=False):
 
 MANIFEST_FIELDS = ('patch', 'adds', 'anchor', 'order', 'choices', 'verify',
                    'source_bytes', 'source_sha256', 'target_bytes',
-                   'target_sha256', 'patch_sha256', 'verified', 'build_key')
+                   'target_sha256', 'patch_sha256', 'verified', 'build_key',
+                   'release')
 
 
 def write_manifest(path, rows):
