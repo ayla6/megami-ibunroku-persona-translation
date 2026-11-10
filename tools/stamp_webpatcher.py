@@ -17,7 +17,8 @@ def stamp(page, manifest):
     text = page.read_text(encoding='utf-8')
     if '$VERSION' not in text:
         raise ValueError('page has no $VERSION placeholder')
-    page.write_text(text.replace('$VERSION', html.escape(releases[0], quote=True)),
+    version = releases[0].removeprefix('patches-')
+    page.write_text(text.replace('$VERSION', html.escape(version, quote=True)),
                     encoding='utf-8')
     return releases[0]
 

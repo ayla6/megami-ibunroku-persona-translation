@@ -87,7 +87,8 @@ the repository named by `RELEASE_REPO` in `app.js` - publishing must not
 depend on what `origin` points at. The tag is written into the manifest's
 `release` column before upload, which is what stamps result filenames. The zip holds the patch files,
 The Pages workflow replaces `$VERSION` in `index.html` with the release in
-the deployed `manifest.tsv`, so the page identifies the patch set it serves.
+the deployed `manifest.tsv` (without the `patches-` prefix), so the page
+identifies the patch set it serves.
 
 `manifest.tsv` and `README.txt`: people applying xdelta by hand download
 it directly, and the Pages workflow unpacks it, so the page can still

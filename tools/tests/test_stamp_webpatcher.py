@@ -18,7 +18,17 @@ class StampWebpatcher(unittest.TestCase):
             manifest.write_text('patch\trelease\na\tpatches-&test\nb\tpatches-&test\n')
             self.assertEqual(stamp_webpatcher.stamp(page, manifest), 'patches-&test')
             self.assertEqual(page.read_text(),
-                             '<title>patches-&amp;test</title><h1>patches-&amp;test</h1>')
+                             '<title>&amp;test</title><h1>&amp;test</h1>')
+
+    def test_display_version_omits_release_tag_prefix(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            page = Path(tmp) / 'index.html'
+            manifest = Path(tmp) / 'manifest.tsv'
+            page.write_text('<h1>Persona 1 Translation Patcher (beta $VERSION)</h1>')
+            manifest.write_text('patch\trelease\na\tpatches-2026-11-10-2\n')
+            stamp_webpatcher.stamp(page, manifest)
+            self.assertEqual(page.read_text(),
+                             '<h1>Persona 1 Translation Patcher (beta 2026-11-10-2)</h1>')
 
     def test_rejects_missing_or_inconsistent_release_without_writing(self):
         for content in ('patch\na\n', 'patch\trelease\na\t\n',
