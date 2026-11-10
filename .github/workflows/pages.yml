@@ -1,7 +1,7 @@
 name: Deploy web patcher
 
-# The site is the webpatcher/ directory together with the patches it serves.
-# There is no build step: the latest release's persona-patches.zip is
+# The site is webpatcher/ together with the selected release's patch ZIP.
+# There is no build step: persona-patches.zip is
 # unpacked into webpatcher/patches (git-ignored, so a fresh checkout only
 # has it after the unpack step) and goes out inside the artifact. The page
 # cannot fetch release assets at runtime - github.com serves release
@@ -12,9 +12,15 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to deploy (empty selects the latest release)'
+        required: false
+        type: string
 
 permissions:
   contents: read
+  actions: write
   pages: write
   id-token: write
 
@@ -23,7 +29,19 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # A release run uses a tag ref, which the github-pages environment may
+  # reject. Dispatch a separate run on main and carry the release tag as data.
+  dispatch-release:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch deployment on main
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref main -f "tag=$TAG"
   deploy:
+    if: github.event_name == 'workflow_dispatch'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -36,7 +54,7 @@ jobs:
       - name: Unpack the release patch zip
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.event.release.tag_name }}
+          TAG: ${{ inputs.tag }}
         run: |
           if [ -n "$(ls webpatcher/patches 2>/dev/null)" ]; then
             echo 'webpatcher/patches already has files; leaving them in place'

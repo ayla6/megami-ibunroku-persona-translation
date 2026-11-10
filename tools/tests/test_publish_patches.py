@@ -161,6 +161,16 @@ class PublishArchiveTest(unittest.TestCase):
                         patch.object(self.publish, 'sync_local_patches'):
                     self.publish.publish(tag='patches-test', directory=output)
                 self.assertEqual(deploy.call_count, expected, uploaded)
+                if expected:
+                    deploy.assert_called_once_with('patches-test')
+
+    def test_site_dispatch_targets_main_and_the_uploaded_tag(self):
+        with patch.object(self.publish, 'run') as run:
+            self.publish.deploy_site('patches-test')
+        run.assert_called_once_with('gh', 'workflow', 'run', 'pages.yml',
+                                    '--repo', self.publish.GITHUB_REPO,
+                                    '--ref', 'main', '-f', 'tag=patches-test',
+                                    capture=True)
 
     def test_release_upload_targets_the_repository_the_page_reads(self):
         calls = []

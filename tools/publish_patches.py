@@ -267,7 +267,7 @@ def upload_release(tag, directory=None):
             return 'created'
 
 
-def deploy_site():
+def deploy_site(tag):
     """Redeploy the Pages site so its mirror picks up a replaced release.
 
     A new release deploys the site through the workflow's
@@ -277,7 +277,7 @@ def deploy_site():
     """
     try:
         run('gh', 'workflow', 'run', 'pages.yml', '--repo', GITHUB_REPO,
-            '--ref', 'main', capture=True)
+            '--ref', 'main', '-f', f'tag={tag}', capture=True)
         print(f'Pages deploy triggered on {GITHUB_REPO}')
     except subprocess.CalledProcessError:
         print('warning: could not trigger the Pages deploy - run'
@@ -306,7 +306,7 @@ def publish(tag=None, *, directory=None, release=True,
     stamp_manifest(tag, directory)
     if release:
         if upload_release(tag, directory) == 'updated':
-            deploy_site()
+            deploy_site(tag)
     sync_local_patches(directory)
     owner, project = GITHUB_REPO.split('/')
     print(f'site: https://{owner}.github.io/{project}/'
