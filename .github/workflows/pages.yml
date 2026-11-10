@@ -64,6 +64,8 @@ jobs:
           gh release download ${TAG:+"$TAG"} --repo "$GITHUB_REPOSITORY" \
             --dir "$RUNNER_TEMP/release" --clobber --pattern 'persona-patches.zip'
           unzip -q "$RUNNER_TEMP/release/persona-patches.zip" -d webpatcher/patches
+      - name: Stamp the page with the patch release
+        run: python3 tools/stamp_webpatcher.py webpatcher/index.html webpatcher/patches/manifest.tsv
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload the Pages artifact
