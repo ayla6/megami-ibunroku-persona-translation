@@ -1,3 +1,8 @@
+# Nov 10th 2026
+- Fixed crash on analyse. It was because of problems with the memory mapping, it was touching things it shouldn't
+- Fixed text spilling into the wrong places, such as the "Can't" from "Can't talk right now..." getting into "Flatter" and becoming "FlattCan't". Also because of problems with the memory mapping.
+- Fixed missing sprites for Mark in the black Mark patch. Including his full body one at the ending.
+
 # Nov 9th 2026
 - There are less MTL lines now. The ones that remain are basically only very short that are basically impossible to translate as anything else.
 - Fixed two sets of choices to fit properly on screen. One of them was a very important one.

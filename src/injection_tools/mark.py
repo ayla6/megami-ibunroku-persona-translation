@@ -21,13 +21,13 @@ user edits the exported PNGs, and this patch installs them behind
   B/P.BIN       the battle sprite sheets. A party member's entry starts with
                 a 12-byte header and an 8bpp 128x250 TIM at +0x0C; the
                 sectors each entry occupies are listed by the table
-                g_btl_member_file in BTLP.BIN. Mark is member 5 (confirmed
-                against the rendered sheets). The patch reads the table,
-                swaps that entry's palette and pixels in place, and leaves
+                 g_btl_member_file in BTLP.BIN. Mark is member 5; entry 15
+                 supplies his gun-action sheet. The patch reads the table,
+                 swaps both entries' palettes and pixels in place, and leaves
                 the model data after the TIM untouched.
 
   python src/injection_tools/mark.py export <tree> <outdir> [--suffix S]
-          regenerate the reference PNGs (headshot, battle sheet and walk
+          regenerate the reference PNGs (headshot, battle sheets and walk
           sheets) from an extracted disc tree, e.g. data/psx or the
           Revelations tree. Files are written as <name><suffix>.png - the
           plain names in src/assets/mark/black are the user's edits and are
@@ -63,6 +63,7 @@ from PIL import Image
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import mescodec  # noqa: E402
+import tim as timcodec  # noqa: E402
 
 # The scene entry / member that ships each walk sheet (established by
 # rendering the pages and identifying them), and Mark's BST.BIN face slot.
@@ -70,15 +71,19 @@ import mescodec  # noqa: E402
 MES_SHEETS = [
     # (art file name, MES entry, MES member)
     ('walk.png',   11, 1),         # Mark, byte-identical in every scene that carries it
+    ('walk_variant.png', 187, 3),   # alternate scene sheet
     ('mother.png', 18, 4),         # Mark's mother, Rosa Candida boutique only
 ]
 BST_FACE = 2
+# The portrait TIM immediately following Mark's mapped ending text page.
+ENDING_PORTRAIT = 0xA7804
 
 # The battle sprite sheet lives in the party member's own entry in B/P.BIN.
 # The entry starts with three words (TIM address, model start, model end) and
 # the TIM begins right after them. The sector offsets are read from
 # g_btl_member_file in BTLP.BIN, not typed in.
 BATTLE_MEMBER = 5                      # Mark, confirmed against the sheets
+BATTLE_GUN_MEMBER = BATTLE_MEMBER + 10  # battle's gun-action reload
 BATTLE_TIM_HEADER = 0x0C
 BATTLE_SPANS = 20                      # 20 entries plus the end offset
 BATTLE_SPAN_MIN = 5
@@ -133,6 +138,37 @@ def page_image(blob, tim):
         r, g, b = (v & 31) << 3, ((v >> 5) & 31) << 3, ((v >> 10) & 31) << 3
         px[i % w, i // w] = (0, 0, 0, 0) if c == 0 else (r | r >> 5, g | g >> 5, b | b >> 5, 255)
     return im
+
+
+def ending_image(blob):
+    """Export the ending portrait's full-colour PS1 pixels as RGB."""
+    t = timcodec.parse(blob, ENDING_PORTRAIT)
+    if t['bpp'] != 16 or (t['px_w'], t['h']) != (149, 208):
+        raise SystemExit('mark: unexpected ending portrait TIM')
+    raw = blob[t['at']:t['end']]
+    values = struct.unpack('<%dH' % (t['px_w'] * t['h']), raw)
+    rgb = bytearray()
+    for v in values:
+        for shift in (0, 5, 10):
+            c = (v >> shift) & 31
+            rgb.append((c << 3) | (c >> 2))
+    return Image.frombytes('RGB', (t['px_w'], t['h']), bytes(rgb))
+
+
+def ending_swap(blob, art):
+    """Replace portrait colours, preserving each retail PS1 high bit."""
+    t = timcodec.parse(blob, ENDING_PORTRAIT)
+    if t['bpp'] != 16 or art.size != (t['px_w'], t['h']):
+        raise SystemExit('mark: ending portrait dimensions or format mismatch')
+    values = struct.unpack('<%dH' % (t['px_w'] * t['h']), blob[t['at']:t['end']])
+    out = bytearray(blob)
+    converted = []
+    for original, (r, g, b, a) in zip(values, pixels(art.convert('RGBA'))):
+        if a != 255:
+            raise SystemExit('mark: ending portrait must be fully opaque')
+        converted.append((original & 0x8000) | rgb15(r, g, b))
+    struct.pack_into('<%dH' % len(converted), out, t['at'], *converted)
+    return bytes(out)
 
 
 # A CLUT halfword of 0x0000 is see-through; an opaque entry sets bit 15
@@ -268,40 +304,40 @@ def battle_member_sectors(btlp, sectors):
     return found[0]
 
 
-def battle_entry_offset(pbin, btlp):
+def battle_entry_offset(pbin, btlp, member=BATTLE_MEMBER):
     sectors = len(pbin) // 2048
     table = battle_member_sectors(btlp, sectors)
-    return table[BATTLE_MEMBER] * 2048
+    return table[member] * 2048
 
 
-def battle_tim(pbin, btlp):
-    """Mark's TIM inside his B/P.BIN entry."""
-    off = battle_entry_offset(pbin, btlp) + BATTLE_TIM_HEADER
+def battle_tim(pbin, btlp, member=BATTLE_MEMBER):
+    """A party member's TIM inside their B/P.BIN entry."""
+    off = battle_entry_offset(pbin, btlp, member) + BATTLE_TIM_HEADER
     # The disc reuses the top half of the TIM's magic word for the palette
     # length; memberload zeroes it before the upload. Only the low half is
     # the TIM magic here.
     if (off + 8 > len(pbin)
             or struct.unpack_from('<H', pbin, off)[0] != 0x10):
-        raise SystemExit(f'mark: battle member {BATTLE_MEMBER} has no TIM at '
+        raise SystemExit(f'mark: battle member {member} has no TIM at '
                          f'entry + {BATTLE_TIM_HEADER:#x}')
     tim = parse_tim(pbin, off)
     if tim['bpp'] != 8:
-        raise SystemExit(f'mark: battle member {BATTLE_MEMBER} TIM is '
+        raise SystemExit(f'mark: battle member {member} TIM is '
                          f'{tim["bpp"]}bpp, expected 8bpp')
     return tim
 
 
-def battle_image(pbin, btlp):
-    return page_image(pbin, battle_tim(pbin, btlp))
+def battle_image(pbin, btlp, member=BATTLE_MEMBER):
+    return page_image(pbin, battle_tim(pbin, btlp, member))
 
 
-def battle_swap(pbin, btlp, art):
-    """Mark's battle sheet rebuilt in place (same entry, same TIM size)."""
-    tim = battle_tim(pbin, btlp)
+def battle_swap(pbin, btlp, art, member=BATTLE_MEMBER, name='battle.png'):
+    """Rebuild a battle sheet in place (same entry, same TIM size)."""
+    tim = battle_tim(pbin, btlp, member)
     if (tim['px_w'], tim['h']) != art.size:
-        raise SystemExit(f'mark: battle member {BATTLE_MEMBER}: expected '
+        raise SystemExit(f'mark: battle member {member}: expected '
                          f'8bpp {tim["px_w"]}x{tim["h"]}, PNG is {art.size}')
-    pal, pix = rgba_to_page(art, clut_rgb15(pbin, tim), name='battle.png')
+    pal, pix = rgba_to_page(art, clut_rgb15(pbin, tim), name=name)
     if len(pix) != tim['pix_len']:
         raise SystemExit('mark: battle sheet pixel length mismatch')
     return build_tim(pbin, tim, pal, pix)
@@ -518,7 +554,7 @@ def mes_swap(mes, sheet_hashes, arts):
 def load_art(dirpath):
     """The user's edits. A missing file is a hard error naming it: the patch
     must never quietly ship unedited art."""
-    names = ['headshot.png', 'battle.png'] + [name for name, _, _ in MES_SHEETS]
+    names = ['headshot.png', 'battle.png', 'battle_gun.png', 'ending.png'] + [name for name, _, _ in MES_SHEETS]
     for name in names:
         if not os.path.exists(src_path(dirpath, name)):
             raise SystemExit(f'mark: {dirpath}/{name} is missing - that plain '
@@ -534,7 +570,7 @@ def load_art(dirpath):
                   file=sys.stderr)
         return im
 
-    return (load('headshot.png'), load('battle.png'),
+    return (load('headshot.png'), load('battle.png'), load('battle_gun.png'), load('ending.png'),
             {name: load(name) for name, _, _ in MES_SHEETS})
 
 
@@ -549,7 +585,7 @@ def sheet_targets(mes, arts):
 
 
 def cmd_export(tree, outdir, suffix=''):
-    names = ['headshot.png', 'battle.png'] + [name for name, _, _ in MES_SHEETS]
+    names = ['headshot.png', 'battle.png', 'battle_gun.png', 'ending.png'] + [name for name, _, _ in MES_SHEETS]
     paths = [os.path.join(outdir, os.path.splitext(name)[0] + suffix + '.png')
              for name in names]
     existing = [path for path in paths if os.path.exists(path)]
@@ -559,16 +595,20 @@ def cmd_export(tree, outdir, suffix=''):
     bst = open(os.path.join(tree, 'ADV', 'BST.BIN'), 'rb').read()
     pbin = open(os.path.join(tree, 'B', 'P.BIN'), 'rb').read()
     btlp = open(os.path.join(tree, 'BTLP.BIN'), 'rb').read()
+    ending = open(os.path.join(tree, 'EXE', 'END.BIN'), 'rb').read()
     os.makedirs(outdir, exist_ok=True)
     tim = parse_tim(bst, bst_face_slot(BST_FACE) + 8)
     page_image(bst, tim).save(os.path.join(outdir, 'headshot%s.png' % suffix))
     battle_image(pbin, btlp).save(os.path.join(outdir, 'battle%s.png' % suffix))
+    battle_image(pbin, btlp, BATTLE_GUN_MEMBER).save(
+        os.path.join(outdir, 'battle_gun%s.png' % suffix))
+    ending_image(ending).save(os.path.join(outdir, 'ending%s.png' % suffix))
     for name, entry, member in MES_SHEETS:
         blob = mes_blob(mes, entry)
         tim = mes_members(blob)[member][1]
         page_image(blob, tim).save(os.path.join(outdir, '%s%s.png' % (os.path.splitext(name)[0], suffix)))
-    print(f'mark export: BST face {BST_FACE}, B/P.BIN member {BATTLE_MEMBER} '
-          f'and {len(MES_SHEETS)} walk sheets -> {outdir}/{{headshot,battle'
+    print(f'mark export: BST face {BST_FACE}, B/P.BIN members {BATTLE_MEMBER} and {BATTLE_GUN_MEMBER} '
+          f'and {len(MES_SHEETS)} walk sheets -> {outdir}/{{headshot,battle,battle_gun,ending'
           + ''.join(',' + os.path.splitext(n)[0] for n, _, _ in MES_SHEETS)
           + '}' + suffix + '.png')
 
@@ -578,7 +618,7 @@ def cmd_build(artdir):
     bst = open(src_path('data', 'psx', 'ADV', 'BST.BIN'), 'rb').read()
     pbin = open(src_path('data', 'psx', 'B', 'P.BIN'), 'rb').read()
     btlp = open(src_path('data', 'psx', 'BTLP.BIN'), 'rb').read()
-    head, battle, arts = load_art(artdir)
+    head, battle, battle_gun, ending_art, arts = load_art(artdir)
     # the sheets' identity comes from the original disc: whether the build
     # starts from the originals or from an earlier patched copy, the pages
     # to replace are the ones that match what the disc shipped
@@ -586,13 +626,18 @@ def cmd_build(artdir):
 
     bst2 = bst_swap(bst, head)
     pbin2 = battle_swap(pbin, btlp, battle)
+    pbin2 = battle_swap(pbin2, btlp, battle_gun, BATTLE_GUN_MEMBER, 'battle_gun.png')
     mes2, changed = mes_swap(mes, targets, arts)
+    ending_path = src_path('build', 'EXE', 'END.BIN')
+    ending = open(ending_path, 'rb').read()
+    ending2 = ending_swap(ending, ending_art)
     os.makedirs(src_path('build', 'ADV'), exist_ok=True)
     os.makedirs(src_path('build', 'B'), exist_ok=True)
     open(src_path('build', 'ADV', 'MES.BIN'), 'wb').write(mes2)
     open(src_path('build', 'ADV', 'BST.BIN'), 'wb').write(bst2)
     open(src_path('build', 'B', 'P.BIN'), 'wb').write(pbin2)
-    print(f'mark build: BST face {BST_FACE} and battle member {BATTLE_MEMBER} '
+    open(ending_path, 'wb').write(ending2)
+    print(f'mark build: BST face {BST_FACE} and battle members {BATTLE_MEMBER}, {BATTLE_GUN_MEMBER} '
           f'swapped; {len(changed)} MES entries re-encoded '
           f'(MES.BIN {len(mes)} -> {len(mes2)} bytes)')
 
@@ -607,11 +652,23 @@ def cmd_retail():
         if os.path.exists(p):
             os.remove(p)
             removed = True
+    # END.BIN also contains translated text: restore just the retail portrait,
+    # leaving every translated page intact when switching build variants.
+    ending_path = src_path('build', 'EXE', 'END.BIN')
+    if os.path.exists(ending_path):
+        with open(src_path('data', 'psx', 'EXE', 'END.BIN'), 'rb') as source:
+            original = source.read()
+        with open(ending_path, 'rb') as source:
+            current = bytearray(source.read())
+        t = timcodec.parse(original, ENDING_PORTRAIT)
+        current[t['at']:t['end']] = original[t['at']:t['end']]
+        with open(ending_path, 'wb') as output:
+            output.write(current)
     print('mark retail: build/ADV swap files ' + ('removed' if removed else 'absent'))
 
 
 def cmd_verify(artdir):
-    head, battle, arts = load_art(artdir)
+    head, battle, battle_gun, ending_art, arts = load_art(artdir)
     ok = True
     bst = open(src_path('build', 'ADV', 'BST.BIN'), 'rb').read()
     tim = parse_tim(bst, bst_face_slot(BST_FACE) + 8)
@@ -621,15 +678,22 @@ def cmd_verify(artdir):
     print('BST face', 'ok' if not bad else 'MISMATCH')
     ok &= not bad
 
+    ending = open(src_path('build', 'EXE', 'END.BIN'), 'rb').read()
+    expected = ending_swap(ending, ending_art)
+    t = timcodec.parse(ending, ENDING_PORTRAIT)
+    ending_ok = ending[t['at']:t['end']] == expected[t['at']:t['end']]
+    print('ending portrait', 'ok' if ending_ok else 'MISMATCH')
+    ok &= ending_ok
+
     pbin = open(src_path('build', 'B', 'P.BIN'), 'rb').read()
     btlp = open(src_path('data', 'psx', 'BTLP.BIN'), 'rb').read()
-    tim = battle_tim(pbin, btlp)
-    bad = page_shows_art(page_pixels(pbin, tim), clut_rgb15(pbin, tim), battle)
-    if bad:
-        print(f'battle member {BATTLE_MEMBER}: pixels {bad} do not show the '
-              f'sheet')
-    print(f'battle member {BATTLE_MEMBER}', 'ok' if not bad else 'MISMATCH')
-    ok &= not bad
+    for member, art in ((BATTLE_MEMBER, battle), (BATTLE_GUN_MEMBER, battle_gun)):
+        tim = battle_tim(pbin, btlp, member)
+        bad = page_shows_art(page_pixels(pbin, tim), clut_rgb15(pbin, tim), art)
+        if bad:
+            print(f'battle member {member}: pixels {bad} do not show the sheet')
+        print(f'battle member {member}', 'ok' if not bad else 'MISMATCH')
+        ok &= not bad
 
     orig = open(src_path('data', 'psx', 'ADV', 'MES.BIN'), 'rb').read()
     targets = sheet_targets(orig, arts)

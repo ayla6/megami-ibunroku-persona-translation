@@ -985,7 +985,7 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
 
         mark_cache = work / 'mark'
         mark_state = {}
-        MARK_FILES = ('ADV/MES.BIN', 'ADV/BST.BIN', 'B/P.BIN')
+        MARK_FILES = ('ADV/MES.BIN', 'ADV/BST.BIN', 'B/P.BIN', 'EXE/END.BIN')
 
         def mark_builder(py):
             # Mark's producer reads these original files, source code and art,

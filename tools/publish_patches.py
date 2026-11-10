@@ -45,8 +45,7 @@ RELEASE_PREFIX = 'patches-'
 
 def release_date(now=None):
     """The day part of a default release tag, in local time."""
-    return (now or time.localtime()).strftime('%Y-%m-%d')
-
+    return time.strftime('%Y-%m-%d', now or time.localtime())
 
 def next_release_tag(existing=(), today=None):
     """The first free patches-YYYY-MM-DD[-N] tag for a day.
