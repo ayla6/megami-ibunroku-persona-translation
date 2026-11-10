@@ -24,11 +24,14 @@ class StampWebpatcher(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             page = Path(tmp) / 'index.html'
             manifest = Path(tmp) / 'manifest.tsv'
-            page.write_text('<h1>Persona 1 Translation Patcher (beta $VERSION)</h1>')
+            page.write_text('<h1>Persona 1 Translation Patcher (beta '
+                            '<a href="$RELEASE_URL">$VERSION</a>)</h1>')
             manifest.write_text('patch\trelease\na\tpatches-2026-11-10-2\n')
             stamp_webpatcher.stamp(page, manifest)
             self.assertEqual(page.read_text(),
-                             '<h1>Persona 1 Translation Patcher (beta 2026-11-10-2)</h1>')
+                             '<h1>Persona 1 Translation Patcher (beta '
+                             '<a href="https://github.com/ayla6/megami-ibunroku-persona-translation/'
+                             'releases/tag/patches-2026-11-10-2">2026-11-10-2</a>)</h1>')
 
     def test_rejects_missing_or_inconsistent_release_without_writing(self):
         for content in ('patch\na\n', 'patch\trelease\na\t\n',

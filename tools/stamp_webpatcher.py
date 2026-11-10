@@ -3,6 +3,7 @@ import csv
 import html
 from pathlib import Path
 import sys
+from urllib.parse import quote
 
 
 def stamp(page, manifest):
@@ -18,7 +19,10 @@ def stamp(page, manifest):
     if '$VERSION' not in text:
         raise ValueError('page has no $VERSION placeholder')
     version = releases[0].removeprefix('patches-')
-    page.write_text(text.replace('$VERSION', html.escape(version, quote=True)),
+    release_url = ('https://github.com/ayla6/megami-ibunroku-persona-translation'
+                   '/releases/tag/' + quote(releases[0], safe=''))
+    page.write_text(text.replace('$VERSION', html.escape(version, quote=True))
+                    .replace('$RELEASE_URL', html.escape(release_url, quote=True)),
                     encoding='utf-8')
     return releases[0]
 
