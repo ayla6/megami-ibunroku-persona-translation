@@ -188,6 +188,7 @@ class PublishArchiveTest(unittest.TestCase):
                              return_value=[]), \
                 patch.object(self.publish, 'write_archive',
                              return_value=Path(tmp) / 'a.zip'), \
+                patch.object(self.publish, 'release_description', return_value='notes'), \
                 patch.object(self.publish, 'run', side_effect=fake_run):
             self.publish.upload_release('patches-test')
         repo_view = [cmd for cmd in calls if cmd[:2] == ('gh', 'repo')]
@@ -205,6 +206,33 @@ class PublishArchiveTest(unittest.TestCase):
             paths = [arg for arg in cmd if arg.endswith(('.xdelta', '.tsv',
                                                          '.txt', '.zip'))]
             self.assertEqual(paths, [str(Path(tmp) / 'a.zip')], cmd)
+
+    def test_release_description_selects_exact_version_and_current_bugs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            notes, bugs = Path(tmp) / 'notes.md', Path(tmp) / 'bugs.md'
+            notes.write_text('# 2026-11-10-3\n- Current notes.\n\n'
+                             '# 2026-11-10-2\n- Older notes.\n')
+            bugs.write_text('# Known bugs\n- A current bug.\n')
+            description = self.publish.release_description('patches-2026-11-10-3', notes, bugs)
+            self.assertEqual(description, '# 2026-11-10-3\n- Current notes.\n\n'
+                                          '# Known bugs\n- A current bug.\n')
+            with self.assertRaisesRegex(ValueError, 'expected one heading'):
+                self.publish.release_description('patches-2026-11-10-4', notes, bugs)
+
+    def test_existing_release_updates_description_after_upload(self):
+        calls = []
+        def fake_run(*cmd, capture=False):
+            calls.append(cmd)
+            return ''
+        with tempfile.TemporaryDirectory() as tmp, \
+                patch.object(self.publish.shutil, 'which', return_value='/usr/bin/gh'), \
+                patch.object(self.publish, 'require_release_repo'), \
+                patch.object(self.publish, 'release_description', return_value='notes and bugs'), \
+                patch.object(self.publish, 'write_archive', return_value=Path(tmp) / 'a.zip'), \
+                patch.object(self.publish, 'run', side_effect=fake_run):
+            self.assertEqual(self.publish.upload_release('patches-test'), 'updated')
+        self.assertEqual([cmd[2] for cmd in calls], ['view', 'upload', 'edit'])
+        self.assertEqual(calls[-1][-2:], ('--notes', 'notes and bugs'))
 
     def test_completeness_requires_one_row_per_patch_file(self):
         with tempfile.TemporaryDirectory() as tmp:

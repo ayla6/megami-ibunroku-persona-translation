@@ -14,6 +14,9 @@ script handles the release asset that mirror unpacks:
   files stay in the zip so the page can fetch only the patches along the
   chosen chain. The upload targets the repository named by
   webpatcher/app.js (RELEASE_REPO), not origin, which is not GitHub.
+- use the exact tag's section of RELEASE_NOTES.md and the current BUGS.md
+  as the release description. Missing or duplicate release headings fail
+  publication rather than silently publishing the wrong notes.
 
     python tools/publish_patches.py               # release upload
     python tools/publish_patches.py --no-release  # local copy only
@@ -41,6 +44,8 @@ SITE = ROOT / 'webpatcher'
 DIST = ROOT / 'dist' / 'patches'
 ARCHIVE_NAME = 'persona-patches.zip'
 RELEASE_PREFIX = 'patches-'
+RELEASE_NOTES = ROOT / 'RELEASE_NOTES.md'
+BUGS = ROOT / 'BUGS.md'
 
 
 def release_date(now=None):
@@ -239,32 +244,52 @@ def require_release_repo():
             ' from it), then run this again') from None
 
 
+def release_description(tag, notes_path=None, bugs_path=None):
+    """The exact release's notes followed by the current bugs file."""
+    notes_path = Path(notes_path) if notes_path is not None else RELEASE_NOTES
+    bugs_path = Path(bugs_path) if bugs_path is not None else BUGS
+    version = tag.removeprefix(RELEASE_PREFIX)
+    notes = notes_path.read_text(encoding='utf-8')
+    headings = list(re.finditer(r'^#\s+(.+?)\s*$', notes, re.MULTILINE))
+    matches = [i for i, heading in enumerate(headings) if heading.group(1) == version]
+    if len(matches) != 1:
+        raise ValueError(f'{notes_path}: expected one heading for {version!r}, found {len(matches)}')
+    index = matches[0]
+    end = headings[index + 1].start() if index + 1 < len(headings) else len(notes)
+    section = notes[headings[index].start():end].strip()
+    bugs = bugs_path.read_text(encoding='utf-8').strip()
+    return section + ('\n\n' + bugs if bugs else '') + '\n'
+
+
 def upload_release(tag, directory=None):
     directory = Path(directory) if directory else DIST
     if not shutil.which('gh'):
         raise SystemExit('gh is required to upload the release - install it'
                          ' from https://cli.github.com or pass --no-release')
     require_release_repo()
+    try:
+        description = release_description(tag)
+    except (OSError, ValueError) as error:
+        raise SystemExit(f'release description: {error}') from error
     with tempfile.TemporaryDirectory() as tmp:
         archive = write_archive(Path(tmp) / ARCHIVE_NAME, directory)
         assets = [str(archive)]
         try:
             run('gh', 'release', 'view', '--repo', GITHUB_REPO, tag,
                 capture=True)
-            run('gh', 'release', 'upload', '--repo', GITHUB_REPO,
-                tag, '--clobber', *assets)
-            print(f'release {tag} assets updated on {GITHUB_REPO}')
-            return 'updated'
         except subprocess.CalledProcessError:
             label = tag.removeprefix(RELEASE_PREFIX)
             run('gh', 'release', 'create', '--repo', GITHUB_REPO, tag, *assets,
                 '--title', f'Persona translation patches ({label})',
-                '--notes', 'One zip: the patch files, manifest.tsv (every'
-                           ' chain, with the hashes to verify each step) and'
-                           ' README.txt (apply order). The manifest release'
-                           f' column is {tag}.')
+                 '--notes', description)
             print(f'release {tag} created on {GITHUB_REPO}')
             return 'created'
+        run('gh', 'release', 'upload', '--repo', GITHUB_REPO,
+            tag, '--clobber', *assets)
+        run('gh', 'release', 'edit', '--repo', GITHUB_REPO, tag,
+            '--notes', description)
+        print(f'release {tag} assets and description updated on {GITHUB_REPO}')
+        return 'updated'
 
 
 def deploy_site(tag):
