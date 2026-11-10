@@ -30,54 +30,46 @@ btl_name_copy:
 btl_name_encode:
     lbu     v1, 0(a1)
     li      v0, 0xFF
-    beq     v1, v0, @@end
+    beq     v1, v0, btl_name_encode_end
     addiu   a1, a1, 1
-    blez    a2, @@end                   ; a2 = characters left (counts down; the original counted a3 up)
+    blez    a2, btl_name_encode_end     ; a2 = characters left
     addiu   a2, a2, -1
 .if SF_VWF
-    sltiu   t0, v1, 215
-    beqz    t0, @@not_sym
-    la      t0, btl_name_compact_map
-    addu    t0, t0, v1
-    lbu     t0, 0(t0)
+    j       btl_compact_lookup
     nop
-    beqz    t0, @@not_sym
-    nop
-    b       @@single
-    move    v1, t0
 .else
     la      t0, @@sym
 @@sym_loop:
     lbu     t1, 1(t0)
     lbu     v0, 0(t0)
-    beqz    t1, @@not_sym
+    beqz    t1, btl_name_encode_raw
     addiu   t0, t0, 2
     bne     v0, v1, @@sym_loop
     nop
-    b       @@single
+    b       btl_name_encode_single
     move    v1, t1
 .endif
-@@not_sym:
+btl_name_encode_raw:
     andi    v0, v1, 0x80
     bnez    v0, @@prefix                ; >= 0x80: prefix 0x80
     li      t0, 0x80
     addiu   t0, v1, -0x23
     sltiu   v0, t0, 35
-    beqz    v0, @@single
+    beqz    v0, btl_name_encode_single
     lui     at, hi(vwf_name_lc - 0x23)
     addu    at, at, v1
     lbu     v0, lo(vwf_name_lc - 0x23)(at)
     nop
-    beqz    v0, @@single                ; not a lowercase code: single byte
+    beqz    v0, btl_name_encode_single  ; not a lowercase code: single byte
     li      t0, 0x87
 @@prefix:
     sb      t0, 0(a0)
     addiu   a0, a0, 1
-@@single:
+btl_name_encode_single:
     sb      v1, 0(a0)
     b       btl_name_encode
     addiu   a0, a0, 1
-@@end:                                  ; v0 = 0xFF on both paths
+btl_name_encode_end:                    ; v0 = 0xFF on both paths
     jr      ra
     sb      v0, 0(a0)
 .if SF_VWF == 0

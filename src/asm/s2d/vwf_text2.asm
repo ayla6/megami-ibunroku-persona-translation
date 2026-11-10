@@ -12,8 +12,10 @@
 ;;   * the glyph function 0x8009AF6C (one call site, 0x8009BA0C) is replaced by s2d_txt_put: 15x3 objects go through the
 ;;     shared engine (vwf_dialog_emit with a private config); 8x1 area labels and the 15x1 arrival banner go through a
 ;;     dedicated 1-row VWF path (greedy pen, CLIP on overflow - no wrap / no rewind).
-;;     Labels draw up to 224 px (14 cells), the banner up to the screen width; glyphs past
-;;     the limit are skipped.
+;;     A 1-row object draws only inside its own cols*16 px strip (labels 8 cells = 128 px, the banner 15 cells = 240 px);
+;;     a glyph that would cross it is skipped, so text never reaches the neighbouring strip.
+;;     At every string start the object's whole strip is rebuilt: each cell is blanked, uploaded and given its sprite
+;;     record, so a shorter string cannot inherit ink or a record from a longer text drawn earlier in the same object.
 ;;   * s2d_txt_activate (engine callback): uploads the composed cell and creates / reuses the cell's sprite record.
 ;;   * the message window's background plate (the banner band, func_800937FC): s2d_plate_w
 ;;     supplies the pen extent s2d_txt_put keeps per object, plus 8px margin either side,
@@ -25,6 +27,7 @@
 
 S2D_TXT_PUT_ORIG        equ 0x8009AF6C
 S2D_TXT_UPLOAD          equ 0x80098EC8          ; (src, x, y, w, stack+0x10 = h): queue a LoadImage
+S2D_TXT_FLUSH           equ 0x80099050          ; drain the LoadImage queue (newest entry first)
 S2D_TXT_ATTR            equ 0x8002DF60          ; (a0, a1) -> sprite attribute halfword
 S2D_MSG_STEPS           equ 0x800B1604          ; script steps the message window took before it stopped
                                                 ; (decomp D_800B0EE4; retail's plate width factor)
@@ -144,10 +147,8 @@ s2d_txt_put:
     li      t1, -1
     sh      t1, 6(t0)
     sw      t0, 0x10(sp)                  ; stash slot (draw clobbers t-regs)
-    move    s2, zero                      ; pen 0
-    la      t2, vwf_dlg_state
-    j       @@pen
-    sh      t1, DLG_INIT(t2)              ; fresh object: clear touched cells
+    j       @@restart
+    nop
 @@hit:
     lh      t2, 0x12(s4)
     nop
@@ -157,10 +158,50 @@ s2d_txt_put:
     li      t1, -1
     sh      t1, 6(t0)
     sw      t0, 0x10(sp)
-    move    s2, zero
+@@restart:
+    ;; A new string owns the object's whole 1-row strip. Blank and re-upload
+    ;; every cell and give each one its sprite record, so a shorter string
+    ;; cannot inherit ink or a record from a longer text drawn earlier in
+    ;; the same object. The blanks are flushed here, before the first glyph
+    ;; is composited: the queue drains newest-first, so a glyph upload must
+    ;; not be followed by a stale blank for the same cell.
+    sw      a1, 0x18(sp)                  ; the rebuild calls out: a1 is caller-saved
+    move    s0, zero                      ; strip cell
+    lh      s1, 0x1D8(s4)                 ; cols: exactly the strip's cells
+    sh      zero, 6(s4)                   ; sprite records: none yet
+@@strip:
+    li      t0, RING_CELLS
+    divu    s0, t0
+    nop
+    nop
+    mfhi    t0                            ; ring slot = cell mod RING_CELLS
+    sll     t0, t0, 7                     ; * CELL_BYTES
+    la      t1, vwf_dlg_ring
+    addu    t0, t1, t0
+    move    t2, t0
+    addiu   t3, t0, CELL_BYTES
+@@strip_clear:
+    sw      zero, 0(t2)
+    addiu   t2, t2, 4
+    bne     t2, t3, @@strip_clear
+    nop
+    la      t1, s2d_txt_cfg
+    sw      t0, S2DT_ENTRY(t1)            ; upload source = the blanked cell
+    move    a0, s0                        ; P = the cell (1-row: linear)
+    jal     s2d_txt_activate              ; queue the blank + create its record
+    nop
+    addiu   s0, s0, 1
+    sltu    t0, s0, s1
+    bnez    t0, @@strip
+    nop
+    jal     S2D_TXT_FLUSH                 ; blanks reach VRAM before any glyph
+    nop
+    lw      a1, 0x18(sp)                  ; the glyph the interpreter handed us
+    move    s2, zero                      ; pen 0
     la      t2, vwf_dlg_state
+    li      t1, -1
     j       @@pen
-    sh      t1, DLG_INIT(t2)
+    sh      t1, DLG_INIT(t2)              ; fresh string: clear cells as entered
 @@cont:
     lhu     s2, 4(t0)                     ; pen persists per object
     lhu     t1, 6(t0)                     ; cleared cells persist with it
@@ -210,17 +251,25 @@ s2d_txt_put:
     li      s3, 16
     li      a1, 1
 @@limit:
-    lh      t4, 0x1D8(s4)                   ; s2 already holds this object's
-    li      t5, 320                     ; banner limit (screen width)
-    li      t6, 8
-    bne     t4, t6, @@lim
+    lh      t5, 0x1D8(s4)               ; the object's own strip: cols 16px cells
     nop
-    li      t5, 224 ; label limit: 14 cells
-@@lim:
+    sll     t5, t5, 4                   ; (labels 8 = 128 px, banner 15 = 240 px)
     addu    t7, s2, s3
-    sltu    t7, t5, t7                  ; LIMIT < pen+adv: clipped
-    bnez    t7, @@skip
+    sltu    t6, t5, t7                  ; LIMIT < pen+adv: clipped
+    bnez    t6, @@skip
     nop
+    addiu   t6, t7, 2                   ; last cell this glyph touches
+    srl     t6, t6, 4                   ; (the compositor ring holds 12 cells;
+    sltiu   t6, t6, RING_CELLS          ; a 15-cell banner wraps past it)
+    bnez    t6, @@draw
+    nop
+    sw      a0, 0x00(sp)                ; drain the uploads queued so far, or
+    sw      a1, 0x04(sp)                ; this glyph would overwrite the ring
+    jal     S2D_TXT_FLUSH               ; slots their entries point at (the
+    nop                                 ; queue drains newest-first)
+    lw      a0, 0x00(sp)
+    lw      a1, 0x04(sp)
+@@draw:
     jal     vwf_dialog_draw
     move    s0, zero                    ; line 0 (delay slot)
 @@skip:
@@ -342,6 +391,19 @@ s2d_txt_activate:
     move    s3, a0                      ; P
     la      s0, s2d_txt_cfg
     lw      s1, S2DT_STRUCT(s0)         ; text object
+    sw      zero, S2DT_COUNT(s0)        ; the handoff is consumed even if rejected
+    lh      t0, 0x1D8(s1)               ; the object owns exactly cols*rows cells:
+    lh      t1, 0x1DA(s1)               ; an out-of-grid P would upload past its
+    nop                                 ; VRAM strip and mint a sprite record
+    mult    t0, t1                      ; there (a map label's next strip, or a
+    nop                                 ; row the 1-row object does not have)
+    mflo    t0
+    sltu    t1, s3, t0
+    bnez    t1, @@inside
+    nop
+    j       @@done
+    nop
+@@inside:
     li      t0, 15
     divu    s3, t0
     mflo    t1                          ; row
@@ -357,7 +419,6 @@ s2d_txt_activate:
     li      t3, 16
     jal     S2D_TXT_UPLOAD
     sw      t3, 0x10(sp)
-    sw      zero, S2DT_COUNT(s0)
     li      t0, 15
     divu    s3, t0
     mflo    t1
@@ -481,6 +542,13 @@ s2d_name_cap:
     jr      ra
     nop
 
+.endarea
+
+;; Engine config and the per-object pen table. They are runtime state, not
+;; code, and the code window is only S2D_GLUE_SIZE bytes; they live in the
+;; free run after the name spill (the compositor ring that used to sit here
+;; is resident scratch now), inside the established extension boundary.
+.org 0x800BBB70
 .align 4
 s2d_txt_cfg:                            ; engine config (vwf_dialog.asm): state, activate, upload count*, upload queue*
     .word 0, s2d_txt_activate, s2d_txt_cfg + S2DT_COUNT, s2d_txt_cfg + S2DT_ENTRY
@@ -489,7 +557,6 @@ s2d_txt_cfg:                            ; engine config (vwf_dialog.asm): state,
     .fill 12, 0                         ; S2DT_ENTRY
     .word 0                             ; S2DT_NEXT (pen-table victim)
     .fill S2DT_NPENS * 8, 0             ; S2DT_PENS: (obj, pen, cleared cells)
-.endarea
 
 ;; Keep the established S2D extension boundary; the shared compositor ring
 ;; is resident runtime scratch, not S2D memory reused by other overlays.

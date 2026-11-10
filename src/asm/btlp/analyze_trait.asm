@@ -10,7 +10,7 @@
 ;; pool tail in battle.
 ;;
 ;; The 28-byte retail slot ends at g_btl_slot_owner, so the whole 47-cell
-;; line moves into the zeroed free run in the loaded BTLP image. The
+;; line reuses the mutually exclusive story-dialogue unpack buffer. The
 ;; descriptor's pointer and count follow it (btlui.py also moves its x).
 ;;
 ;; The append hook replaces the producer's `lw a1,(s0)` immediately after
@@ -21,17 +21,12 @@
 ;; continuing at 0x800ADA9C. a0/a1/a2/s0/sp are preserved for it.
 ;; =============================================================
 
-.org ANALYZE_TRAIT_BUF
-.area ANALYZE_TRAIT_END - ANALYZE_TRAIT_BUF
-    .fill ANALYZE_TRAIT_END - ANALYZE_TRAIT_BUF, 0
-.endarea
-
 .org BTLP_TRAIT_CODE_ADDR
-.area BTLP_TRAIT_POOL_ADDR - BTLP_TRAIT_CODE_ADDR
+.area 52
 
 ;; a3 = the trait row buffer, s0 = the actor, a1 already loaded by the
 ;; hook's delay slot. The 25-byte head is already in the buffer. The pool
-;; index is keyed by the same record index the producer copied; 0xFFFF
+;; index is keyed by the same record index the producer copied; 0xFF
 ;; means the record's own slot holds the whole line, so terminate at 25.
 ;;
 ;; The index is bounds-checked: retail indexes g_resist_labels[] with no
@@ -42,52 +37,19 @@ btl_trait_tail:
     lbu     t0, 0x5C(s0)                ; Char.resist = affinity record index
     addiu   t2, a3, 25                  ; (load delay) the record's slot is the head
     sltiu   t3, t0, 120
-    beqz    t3, @@terminate
-    sll     t3, t0, 1                   ; (delay slot) 2 * record index
-    la      t1, BTLP_TRAIT_POOL_ADDR
-    addu    t1, t1, t3                  ; &index[k]
-    lhu     t0, 0(t1)                   ; tail offset, 0xFFFF = none
-    ori     at, zero, 0xFFFF
-    beq     t0, at, @@terminate
-    addiu   t1, t1, 120 * 2             ; (delay slot) text base + 2k
-    subu    t1, t1, t3                  ; text base
-    addu    t1, t1, t0
-@@copy:
-    lbu     t3, 0(t1)
-    addiu   t1, t1, 1
-    sb      t3, 0(t2)
+    beqz    t3, @@out_of_range
     ori     at, zero, 0xFF
-    bne     t3, at, @@copy               ; the pool tail carries its own FF
-    addiu   t2, t2, 1
-@@resume:
-    jal     0x800AE43C                   ; the call the hook displaced
-    ori     a2, zero, 3
-    j       0x800ADA9C
+    la      t3, BTLP_TRAIT_POOL_ADDR
+    addu    t1, t3, t0                  ; &index[k]
+    j       btl_trait_tail_continue
+    lbu     t0, 0(t1)                   ; tail offset, 0xFF = none
+@@out_of_range:
+    j       btl_trait_terminate
     nop
-;; The no-tail and out-of-range paths end the line at cell 25, then rejoin
-;; the displaced call. This block must NOT fall into the pool below.
-@@terminate:
-    ori     t3, zero, 0xFF
-    sb      t3, 0(t2)
-    j       @@resume
-    nop
-.if . > BTLP_TRAIT_POOL_ADDR
-    .error "btl_trait_tail overlaps its pool"
-.endif
 .endarea
 
-.org BTLP_TRAIT_POOL_ADDR
-.area BTLP_TRAIT_POOL_END - BTLP_TRAIT_POOL_ADDR
-    ;; 120 x u16 tail offsets + FF-terminated text, exactly the copy the field
-    ;; overlays use. Tails share suffixes, so the blob is one entry per distinct
-    ;; ending. It must end BEFORE 0x800F85B0: the battle runtime keeps a heap
-    ;; pointer there (the words around it are live BTLP state), so the retail
-    ;; zero padding past that word is not free.
-    .incbin "../../build/affinity_pool.bin"
-.if . > BTLP_TRAIT_POOL_END
-    .error "affinity pool runs past 0x800F85B0, a live BTLP pointer word"
-.endif
-.endarea
+;; btlp.py emits the compact 120-byte index and shared tails into its
+;; reserved immutable pool, rejecting offsets that do not fit a byte.
 
 ;; Move the retail trait buffer to the full-line buffer.
 .org 0x800AD980
@@ -98,8 +60,8 @@ btl_trait_tail:
 ;; retail two-instruction shape (`lui at`, then the store through it); only
 ;; the buffer base and displacement change.
 .org 0x800ADFDC
-    lui     at, 0x8010
-    sb      v0, (ANALYZE_TRAIT_BUF + 3) - 0x80100000(at)
+    lui     at, 0x8005
+    sb      v0, (ANALYZE_TRAIT_BUF + 3) - 0x80050000(at)
 
 ;; Continue into the pool after the record's 25-cell head.
 .org 0x800ADA90

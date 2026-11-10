@@ -54,11 +54,7 @@ QOL_PATCHES = {
                                        'the Philemon scenes among them; the opening quote and the Atlus '
                                        'logo already skip)'),
     'battlespeed': ('QOL_BATTLESPEED', 'summons and skill effects at double speed'),
-    'debug':       ('QOL_DEBUG',       'battle debug menu: drop the party-leader name gate, so the hidden '
-                                       'sequence works on controller 2 (Up Up Down Down Left Right Left Right '
-                                       'Cross Circle in a battle) and holding Cancel in the command phase opens '
-                                       'the debug page. The translation build types Latin names only, so the '
-                                       'retail kana name the gate wants cannot be entered'),
+    'debug':       ('QOL_DEBUG',       'battle debug menu: press Start on either controller in battle'),
     'mark':        ('QOL_MARK',        'Mark wears the Revelations design: headshot, battle sheet and '
                                        'overworld walk sheet swapped for the art in src/assets/mark/black '
                                        '(edit those PNGs to change it)'),

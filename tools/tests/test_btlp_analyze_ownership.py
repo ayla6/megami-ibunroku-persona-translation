@@ -197,12 +197,34 @@ class AnalyzeOwnership(unittest.TestCase):
         at = c.offset(buf + 25, 1)
         self.assertEqual(bytes(c.mem[at:at + 1]), b'\xff')
 
+    def test_every_trait_index_uses_the_exact_shared_tail(self):
+        pool = (ROOT / 'build' / 'affinity_pool.bin').read_bytes()
+        offsets = struct.unpack_from('<120H', pool)
+        for index, offset in enumerate(offsets):
+            with self.subTest(index=index):
+                c, buf = self._trait_run(index)
+                expected = b'\xff' if offset == 0xffff else pool[240 + offset:pool.index(b'\xff', 240 + offset) + 1]
+                at = c.offset(buf + 25, len(expected))
+                self.assertEqual(bytes(c.mem[at:at + len(expected)]), expected)
+
+    def test_trait_allocations_do_not_overlap_species_graphics(self):
+        graphics = range(0x800F83BC, 0x800F86DC)
+        for start, size in ((toolbelt.asm_equ('ANALYZE_TRAIT_BUF'), 47),
+                            (self.sym['btl_trait_tail'], 48),
+                            (self.sym['btl_trait_tail_continue'], 68),
+                            (self.sym['BTLP_TRAIT_POOL_ADDR'],
+                             len((ROOT / 'build' / 'affinity_pool.bin').read_bytes()) - 120)):
+            self.assertFalse(any(a in graphics for a in range(start, start + size)), hex(start))
+
     def test_no_other_static_list_points_into_a_span(self):
         image, end = self.image, B + len(self.image)
         # The board ownership directory is a {base, span} table, not a
         # BtlGfxTextList; its words can accidentally look like one.
-        dir_lo = toolbelt.asm_equ('BTL_BOARD_SPANS_ADDR')
-        dir_hi = dir_lo + toolbelt.asm_equ('BTL_BOARD_SPANS_SIZE')
+        dir_lo = self.sym['BTL_BOARD_SPANS_ADDR']
+        dir_hi = dir_lo
+        while struct.unpack_from('<I', image, dir_hi - B)[0]:
+            dir_hi += 4
+        dir_hi += 4
         lists = []
         for off in range(0, len(image) - 8, 4):
             count, rows = struct.unpack_from('<II', image, off)
@@ -251,18 +273,46 @@ class AnalyzeOwnership(unittest.TestCase):
             want = 1 if text in owned else 0
             self.assertEqual(self._lookup(text), want, (k, hex(text)))
 
+    def test_debug_board_rows_use_the_installed_vwf_path(self):
+        import battle_board_text
+        rows = {r['pos']: r for r in toolbelt.merged_rows('BTLP')}
+        stock = (ROOT / 'data/psx/BTLP.BIN').read_bytes()
+        plan = battle_board_text.plan(stock, rows)
+        board = next(entry for entry in plan['lists'] if entry['at'] == 0x7a228)
+        self.assertTrue(board['translate'], board['reason'])
+        for row in board['entries']:
+            if row['n'] and row['kind'] == 'text':
+                address = struct.unpack_from('<I', self.image, row['desc'] + 4)[0]
+                self.assertEqual(self._lookup(address), 1, hex(address))
+
+    def test_stock_number_initialization_cannot_erase_directory(self):
+        from mips_cpu import CPU, REG
+        c = CPU()
+        c.load(B, self.image)
+        c.load(0x80010000, self.full[0x800:])
+        c.load(0x800f7ed8, b'\xa5' * (0x800f7ff8 - 0x800f7ed8))
+        text = struct.unpack_from('<I', self.image, 0x7a174 + 4)[0]
+        c.r[REG['a0']] = text
+        c.r[REG['sp']] = 0x801ff000
+        c.r[REG['ra']] = 0x8000fff0
+        c.start(self.sym['btl_name_lookup'])
+        c.run(0x8000fff0, limit=1000)
+        self.assertEqual(c.r[REG['v0']], 1)
+
     def test_span_end_is_not_owned(self):
         # A pointer at the end of a span belongs to whatever follows (another
         # list or the untranslated block), so the bound is half-open. Every
         # entry in the built directory holds the same contract, including the
         # board 23 label table and its three full-name rows.
         spans = [(name, lo, hi) for name, lo, hi in self.spans]
-        addr = toolbelt.asm_equ('BTL_BOARD_SPANS_ADDR')
-        size = toolbelt.asm_equ('BTL_BOARD_SPANS_SIZE')
-        for i in range(0, size - 4, 8):
-            base, span, _pad = struct.unpack_from('<IHH', self.image,
-                                                  addr - B + i)
+        addr = self.sym['BTL_BOARD_SPANS_ADDR']
+        while True:
+            word = struct.unpack_from('<I', self.image, addr - B)[0]
+            if not word:
+                break
+            base, span = 0x80000000 | (word & 0xffffff), word >> 24
             spans.append((hex(base), base, base + span))
+            addr += 4
         for _name, lo, hi in spans:
             self.assertEqual(self._lookup(hi), 0, hex(hi))
             self.assertEqual(self._lookup(lo), 1, hex(lo))

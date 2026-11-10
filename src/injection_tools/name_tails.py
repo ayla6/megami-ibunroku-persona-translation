@@ -81,19 +81,11 @@ def build_battle_data():
         if tail:
             bits[(ident - 1) // 8] |= 1 << ((ident - 1) % 8)
             bank.extend(bytes([len(tail)]) + tail)
-    metrics_map = bytearray(215)
-    for character in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .'-/:":
-        glyph = items.glyph(character)
-        encoded = etext.encode(character, end=None)
-        if len(encoded) != 1 or encoded[0] == 255:
-            toolbelt.fail(f'battle insert character is not compact: {character!r}')
-        metrics_map[glyph] = encoded[0]
     def byte_lines(blob):
         return '\n'.join('    .byte ' + ', '.join(f'0x{x:02x}' for x in blob[i:i + 16])
                          for i in range(0, len(blob), 16))
     data = (' .org BTLP_NAME_DATA_ADDR\nitem_tail_bank_btlp:\n' + byte_lines(bank)
             + '\nitem_tail_bits_btlp:\n' + byte_lines(bits)
-            + '\nbtl_name_compact_map:\n' + byte_lines(metrics_map)
             + '\nbtl_result_item_english:\n' + byte_lines(english)
             + '\nbtl_name_data_end:\n.if . > BTLP_NAME_DATA_END\n'
               '    .error "battle name data reaches sound-work buffer"\n.endif\n')

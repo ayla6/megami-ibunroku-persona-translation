@@ -85,21 +85,18 @@ class BattleBoardText(unittest.TestCase):
         self.assertEqual(found, [0x79740, 0x79e44, 0x7a014, 0x7a228, 0x7a49c,
                                  0x7a964, 0x7b100, 0x7b7e0, 0x7baf0])
 
-    def test_fit_gate_defers_only_the_overflowing_list(self):
+    def test_fit_gate_accepts_the_current_debug_wording(self):
         translated = [entry['at'] for entry in self.plan['translated']]
         deferred = [entry for entry in self.plan['lists'] if not entry['translate']]
-        self.assertEqual(len(translated), 8)
-        self.assertEqual([entry['at'] for entry in deferred], [0x7a228])
-        self.assertIn('px before a', deferred[0]['reason'])
-        self.assertEqual(self.plan['deferred'],
-                         sorted(entry['text'] for entry in deferred[0]['entries']
-                                if entry['n'] > 0 and entry['kind'] == 'text'))
+        self.assertIn(0x7a228, translated)
+        self.assertEqual(deferred, [])
+        self.assertEqual(self.plan['deferred'], [])
 
     def test_packing_dedupes_and_never_overwrites_a_live_record(self):
         strings = self.plan['strings']
         bodies = [body for _at, body in strings]
         self.assertEqual(len(bodies), len(set(bodies)))
-        self.assertEqual(len(strings), 71)
+        self.assertEqual(len(strings), 83)
         spans = boards.record_spans(self.stock)
         directory = [(lo, hi) for lo, span in self.plan['directory']
                      for hi in (lo + span,)]
@@ -154,15 +151,16 @@ class BattleBoardText(unittest.TestCase):
 
     def test_directory_matches_its_declared_size(self):
         at, table = self.plan['table']
-        self.assertEqual(at, toolbelt.asm_equ('BTL_BOARD_SPANS_ADDR') - boards.BASE)
-        self.assertEqual(len(table), toolbelt.asm_equ('BTL_BOARD_SPANS_SIZE'))
+        self.assertEqual(at % 4, 0)
+        self.assertEqual(len(table), 4 * (len(self.plan['directory']) + 1))
         self.assertEqual(struct.unpack_from('<I', table, len(table) - 4)[0], 0)
-        entries = [struct.unpack_from('<IHH', table, i)
-                   for i in range(0, len(table) - 4, 8)]
+        entries = [(0x80000000 | (word & 0xffffff), word >> 24, 0)
+                   for i in range(0, len(table) - 4, 4)
+                   for word in (struct.unpack_from('<I', table, i)[0],)]
         # Every translated source pool, the three ANALYZE buffers, the five
         # command-stage Persona rows, and board 23's arcana label table plus
         # its three full-name rows (btlp/board23_names.asm).
-        self.assertEqual(len(entries), 15)
+        self.assertEqual(len(entries), len(self.plan['directory']))
         self.assertEqual(entries, sorted(entries))
         bases = {base for base, _span, _pad in entries}
         for name in ('ANALYZE_NAME_BUF', 'ANALYZE_SPELL_BUF',
@@ -171,8 +169,8 @@ class BattleBoardText(unittest.TestCase):
                      'BTLP_BOARD23_NAME_ROW_2'):
             self.assertIn(toolbelt.asm_equ(name), bases)
         for base, span, _pad in entries:
-            self.assertTrue(0x800643c4 <= base < 0x800643c4 + len(self.stock))
-            self.assertTrue(0 < span < 0x10000)
+            self.assertTrue(0x80000000 <= base < 0x80200000)
+            self.assertTrue(0 < span <= 0xff)
 
     def test_build_then_verify_round_trip_and_corruption(self):
         body, result = boards.build(self.stock, self.rows)

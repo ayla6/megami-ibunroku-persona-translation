@@ -370,11 +370,15 @@ the producer-range directory has no match. The header uses the same
 source-derived tails after its race prefix; its existing 24-byte row holds the
 complete name and terminator. The affinity value line is the record's own
 25-cell head plus, when the English is longer, exactly the pool tail the field
-kit already appends (`build/affinity_pool.bin`). That pool holds 120 u16
-tail offsets plus one copy of each distinct `FF`-terminated ending: a tail
-that ends another tail reuses its suffix, so the blob fits beside the code.
-It must end below `0x800F85B0`, the first word the battle runtime writes in
-that run (a heap pointer), so no live BTLP state is overwritten. The battle
+kit already appends (`build/affinity_pool.bin`). The battle copy packs the
+120 offsets into bytes (0xFF means no tail), followed by the same shared
+`FF`-terminated endings. The builder refuses offsets that do not fit and
+checks the pool ends before the sound-work buffer. The code uses reclaimed
+command-string space and an unreferenced resident function; the displayed row
+uses the story-dialogue unpack buffer, which is not active on the main ANALYZE
+board. None of these occupy the live species-graphics pointer array at
+`0x800F83BC..0x800F86DC`. See `docs/research/battle-memory-investigation.md`.
+The battle
 producer finishes
 the line in a 47-cell buffer and the row descriptor follows that buffer and
 its cell bound; the drawer stops at the line's FF, so the unanalysed three-cell
@@ -401,6 +405,14 @@ records behind hidden (`count == 0`) rows are reusable. A value the code writes
 at runtime (`Normal`/`Easy`) pins its own record, and the shared descriptor's
 count covers the longer word while the shorter value is space-padded. The
 build fails rather than truncating.
+
+The same rule applies to the battle debug board whether or not `--qol=debug`
+is enabled: its complete, fitting translated rows use the battle small-font
+VWF bridge and proportional artwork, while blank cells remain retail. The
+ownership directory uses four-byte entries (an 8-bit span and 24-bit RAM
+offset) and is allocated in reclaimed immutable board text, not in the live
+Persona stock-number records. The builder checks entry bounds, protects other
+readers and refuses to build if the directory cannot fit.
 
 the total concurrent UI packet-buffer bound is not yet proved. The builder checks the
 full 8px quad bounds of both rows in every column against the 208px frame and
@@ -722,14 +734,23 @@ page remains a gap rather than resetting the pen, changing timing, or
 shortening text. PSP line breaks after hyphens rejoin without a space.
 
 **S2D overworld 1-row objects.** The area labels are 8x1 text objects and the
-arrival banner is 15x1. The label path stops its pen at 224 px (14 cells) and
-the banner path at the screen width (320 px); a glyph that would cross the cap
-is skipped, and the renderer never wraps or rewinds. The clip is presentation
-only: the wording is never cut.
+arrival banner is 15x1. Each one-row object draws only inside its own
+`cols*16` px strip - 128 px for a label, 240 px for the banner. A glyph whose
+pen would cross that strip is skipped, and the path never wraps or rewinds;
+the clip is presentation only, so the wording is never cut.
 
-An 8x1 label owns a 128 px VRAM strip, narrower than the renderer's pen cap,
-so map wording is kept within that strip by the wording itself; a label wider
-than 128 px draws into the neighbouring label's strip.
+Every string start rebuilds the object's whole strip: each cell is blanked,
+uploaded and given its sprite record before the first glyph is composited.
+A shorter string therefore cannot inherit ink or a sprite record from a longer
+text drawn earlier in the same object, and no record ever exists outside the
+object's `cols*rows` grid. This matters because labels 0 and 1 sit at VRAM
+x `0x280` / `0x2A0` on the same rows: a record for a ninth cell of label 0
+would sample label 1's strip.
+
+The compositor ring holds 12 cells while a banner strip holds 15, so the path
+drains the upload queue before compositing a glyph that reaches past the ring
+(the queue drains newest-first; a queued entry left in a reused slot would
+carry the next cell's pixels).
 
 **S2D location slot: banner name and map label.** A location slot feeds two
 consumers, and the builder gives them separate strings. The slot's own row is

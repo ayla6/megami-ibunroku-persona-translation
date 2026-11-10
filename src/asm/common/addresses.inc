@@ -386,15 +386,9 @@ BTLP_SF_END_ADDR equ 0x800F8BC4        ; end of that retail loaded sector
 BTLP_NAME_DATA_ADDR equ 0x800F8BC4    ; immutable data after the sprite bridge
 BTLP_NAME_DATA_END equ 0x800F9148     ; first sound-work buffer (entry.c)
 BTLP_IMAGE_LIMIT equ BTLP_NAME_DATA_END
-;; Translated battle-board source spans, read by the resident btl_owned_span
-;; (vwf/vwf_slps.asm). The directory lives in a spare zero run of the status
-;; board's scratch (0x800F7ED3..0x800F7FF8), outside every translated source
-;; pool: the resident VWF table area is full, and only the battle renderer
-;; calls this lookup. It holds one {base, span} entry per translated source
-;; pool, the three ANALYZE producer buffers, and the command-stage member
-;; boards' five Persona-name rows, then a zero terminator (0x64 bytes).
-BTL_BOARD_SPANS_ADDR equ 0x800F7F00
-BTL_BOARD_SPANS_SIZE equ 0x7C
+;; The battle-board ownership directory is allocated by battle_board_text.py
+;; in reclaimed, immutable source text, never the live stock-number array
+;; at 0x800F7ED8..0x800F7FF8.
 ;; Board 23 (R1 enemy-kind list, btlp/board23_names.asm): the arcana label
 ;; table is drawn in place, and the three full-name rows reuse the retail
 ;; name pool (two rows) and arcana pool (third row).
@@ -700,13 +694,12 @@ ANALYZE_SPELL_BUF equ 0x800F8780        ; six 11-byte spell rows (skills.py)
 ANALYZE_SPELL_END equ 0x800F87C2
 ;; The affinity line is the record's 25-cell head plus the pool tail that
 ;; completes it (smallfont_vwf.write_pool): the retail 28-byte slot ends at
-;; g_btl_slot_owner, so the whole 47-cell line lives in the free run below.
-ANALYZE_TRAIT_BUF equ 0x800F83C0        ; affinity line: head + pool tail (47 cells)
-ANALYZE_TRAIT_END equ 0x800F83EF
-BTLP_TRAIT_CODE_ADDR equ 0x800F83F0     ; btl_trait_tail (btlp/analyze_trait.asm)
-BTLP_TRAIT_POOL_ADDR equ 0x800F8460     ; build/affinity_pool.bin: 120 x u16 + suffix-shared text
-BTLP_TRAIT_POOL_END equ 0x800F85B0      ; first word the battle runtime WRITES here (heap pointer)
-                                        ; 0x800F8680 is only the end of the retail zero run - not free
+;; g_btl_slot_owner. The main ANALYZE board and story-dialogue unpacking are
+;; exclusive; reuse the upper part of the resident dialogue buffer, outside
+;; the CONTACT stock-name range and all name-owner ranges.
+ANALYZE_TRAIT_BUF equ 0x80057700
+ANALYZE_TRAIT_END equ 0x8005772F        ; 47 cells
+;; Trait code/pool addresses are allocated by btlp.py from reclaimed strings.
 
 ;; --- full-length item/demon names (tools/slps.py + items.py/demons.py,
 ;;     slps_005.00/item_names.asm) ---

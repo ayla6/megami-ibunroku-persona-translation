@@ -1,6 +1,9 @@
 ;; BTLP 16 px string renderer: queue the finished cells (lives in the BTLP code fragment, see vwf/vwf_btlp_str16.asm)
 ;; btlp_str16_flush(a0 = descriptor, a1 = last touched cell): one BTLP_LQUEUE(src, x, y, 4, 16) per cell 0..a1 from the
-;; glyph-ring slots filled by btlp_str16_activate, and the glyph counter advances by STR16_MAX_CELLS
+;; glyph-ring slots filled by btlp_str16_activate. Reserve only the cells
+;; actually queued: reserving 15 for each of the six CONTACT strings consumes
+;; all 90 slots even for short labels, leaving other producers to overwrite
+;; the GPU packet area immediately following the ring.
 btlp_str16_flush:
     addiu   sp, sp, -0x30
     sw      ra, 0x2C(sp)
@@ -13,7 +16,8 @@ btlp_str16_flush:
     lui     t2, 0x800F
     lw      t0, -0x41BC(t2)             ; glyph counter
     addiu   t3, t2, -0x41B8             ; ring base
-    addiu   t4, t0, STR16_MAX_CELLS
+    addiu   t4, s0, 1
+    addu    t4, t0, t4
     sw      t4, -0x41BC(t2)             ; reserve the whole string's slots
     sll     t0, t0, 7
     addu    s2, t3, t0                  ; slot 0 of this string

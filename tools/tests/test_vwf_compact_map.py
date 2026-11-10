@@ -7,11 +7,41 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / 'src/injection_tools'), str(ROOT / 'tools/tests')]
 import fusionmsg
+import items
 import skills
 import toolbelt
 from mips_cpu import CPU, REG
 
 class CompactMap(unittest.TestCase):
+    def test_battle_compact_lookup_matches_the_previous_direct_map(self):
+        import struct
+        resident = (ROOT / 'build/SLPS_005.00').read_bytes()
+        battle = (ROOT / 'build/BTLP.BIN').read_bytes()
+        symbols = {fields[1]: int(fields[0], 16)
+                   for line in (ROOT / 'build/persona.sym').read_text().splitlines()
+                   if len(fields := line.split()) == 2
+                   and re.fullmatch(r'[0-9A-Fa-f]{8}', fields[0])}
+        expected = {items.glyph(ch): ord(ch) + 0x68
+                    for ch in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .'-/:"}
+        base, size = struct.unpack_from('<II', resident, 0x18)
+        for code in range(256):
+            cpu = CPU()
+            cpu.load(base, resident[0x800:0x800 + size])
+            cpu.load(0x800643c4, battle)
+            cpu.r[REG['v1']] = code
+            cpu.start(symbols['btl_compact_lookup'])
+            for _ in range(100):
+                if cpu.pc in (symbols['btl_name_encode_raw'], symbols['btl_name_encode_single']):
+                    break
+                cpu.step()
+            else:
+                self.fail(f'battle compact lookup did not return for {code:#x}')
+            if code in expected:
+                self.assertEqual(cpu.pc, symbols['btl_name_encode_single'], hex(code))
+                self.assertEqual(cpu.r[REG['v1']], expected[code], hex(code))
+            else:
+                self.assertEqual(cpu.pc, symbols['btl_name_encode_raw'], hex(code))
+
     def test_all_byte_codes_reconstruct_the_source_table(self):
         table = bytearray(fusionmsg.MAP_LEN)
         for code in range(32, 127):

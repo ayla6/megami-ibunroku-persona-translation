@@ -28,6 +28,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import csv
 import heapq
 import os
 import re
@@ -592,6 +593,29 @@ def check_sections(sections, problems, equ=None, root=None):
     build_root = os.path.normpath(os.path.join(root, 'build'))
     seen, failures = {}, []
     lost = checked = moves = 0
+    manifest = os.path.join(root, 'src', 'injection_tools', 'runtime-memory-map.tsv')
+    regions = []
+    if not os.path.exists(manifest) and os.path.abspath(root) == os.path.abspath(ROOT):
+        failures.append(f'{manifest}: runtime memory map is missing')
+    if os.path.exists(manifest):
+        try:
+            with open(manifest, encoding='utf-8', newline='') as source:
+                reader = csv.DictReader(source, delimiter='\t')
+                required = {'image', 'space', 'start', 'end', 'owner', 'protection', 'evidence'}
+                if set(reader.fieldnames or ()) != required:
+                    raise ValueError('unexpected TSV columns')
+                mapping = list(reader)
+            if not mapping:
+                raise ValueError('no protected regions')
+            for region in mapping:
+                if region['space'] != 'cpu-ram' or region['protection'] != 'no-assembly-writes':
+                    raise ValueError('unsupported memory space or protection')
+                start, end = int(region['start'], 0), int(region['end'], 0)
+                if start >= end or not region['owner'] or not region['evidence']:
+                    raise ValueError('invalid protected region')
+                regions.append((region['image'], start, end, region['owner']))
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            failures.append(f'{manifest}: invalid runtime memory map: {error}')
 
     for section in sections:
         out = section.out
@@ -628,6 +652,11 @@ def check_sections(sections, problems, equ=None, root=None):
         max_end = section.base
         for write in section.writes:
             checked += 1
+            for image, start, end, owner in regions:
+                if os.path.basename(out) == image and write.size and write.addr < end and start < write.end:
+                    failures.append(f'{write.path}:{write.line}: write '
+                                    f'{write.addr:#x}..{write.end:#x} overlaps '
+                                    f'live {owner} {start:#x}..{end:#x}')
             if write.addr < section.base:
                 failures.append(f'{write.path}:{write.line}: write {write.addr:#x} '
                                 f'is below {out} base {section.base:#x}')

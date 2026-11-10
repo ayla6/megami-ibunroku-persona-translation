@@ -12,7 +12,7 @@ small-font object renderer.  This module:
   * packs the English into the physical source spans of the translated lists,
     deduplicating repeated wording, protects every record another descriptor
     still reads, and repoints the descriptors;
-  * writes the ownership directory (BTL_BOARD_SPANS_ADDR) into the battle
+  * allocates the ownership directory in reclaimed immutable battle text
     overlay, because the resident VWF table area is full and only the battle
     renderer calls btl_owned_span.
 
@@ -312,11 +312,6 @@ def plan(data, rows):
     spans = record_spans(data)
     inventory = {off for off in spans}
     ranges = _pool_ranges()
-    table_at = _file_offset(toolbelt.asm_equ('BTL_BOARD_SPANS_ADDR'))
-    table_size = toolbelt.asm_equ('BTL_BOARD_SPANS_SIZE')
-    if not 0 <= table_at < len(data):
-        raise ValueError('battle board: ownership directory is outside BTLP')
-    table_span = (table_at, table_at + table_size)
 
     lists = []
     for at, count, entries in source_lists(data):
@@ -395,9 +390,6 @@ def plan(data, rows):
     if None in arena_pools:
         raise ValueError('battle board: a translated row is outside every source pool')
     arena = _merge(arena_pools)
-    if any(start < table_span[1] and table_span[0] < end
-           for start, end in arena):
-        raise ValueError('battle board: ownership directory overlaps a translated pool')
 
     # A record inside the arena that another descriptor still reads must keep
     # its bytes.  Hidden rows (count 0) never read their pointer; those records
@@ -415,7 +407,7 @@ def plan(data, rows):
                  if start <= off < end and off in referenced and off not in shipped]
 
     pinned_spans = [(source, source + len(body)) for source, body in pinned.items()]
-    free = _subtract(arena, [table_span, *pinned_spans, *protected])
+    free = _subtract(arena, [*pinned_spans, *protected])
     free = [(start, end) for start, end in free if end > start]
 
     placed = {_english(rows, source): (source, body)
@@ -480,13 +472,18 @@ def plan(data, rows):
     directory.sort()
     table = bytearray()
     for base, span in directory:
-        if not 0 < span < 0x10000:
+        if not 0 < span <= 0xff or base & 0xff000000 != 0x80000000:
             raise ValueError(f'battle board: span {base:#x}+{span} does not fit its entry')
-        table += struct.pack('<IHH', base, span, 0)
+        table += struct.pack('<I', (span << 24) | (base & 0xffffff))
     table += struct.pack('<I', 0)
-    if len(table) != table_size:
-        raise ValueError(f'battle board: directory is {len(table)} bytes, '
-                         f'not BTL_BOARD_SPANS_SIZE {table_size}')
+    table_at = None
+    for start, end in free:
+        aligned = (start + 3) & ~3
+        if aligned + len(table) <= end:
+            table_at = aligned
+            break
+    if table_at is None:
+        raise ValueError(f'battle board: no reclaimed immutable space for {len(table)}-byte directory')
 
     unshipped = sorted(off for off in inventory
                        if _english(rows, off) and off not in shipped)
@@ -523,6 +520,7 @@ def build(data, rows):
         body.append(f'.org {BASE + desc + 8:#x}')
         body.append(f'    .byte {count}')
     addr, table = result['table']
+    body.append(f'.definelabel BTL_BOARD_SPANS_ADDR, {BASE + addr:#x}')
     body.append(f'.org {BASE + addr:#x}')
     body.append('    .byte ' + ', '.join(f'0x{x:02X}' for x in table))
     return body, result

@@ -353,22 +353,12 @@ def verify(battle_path=None, resident_path=None):
             raise SystemExit(f'btlui verify: offer code mismatch at {at:#x}')
 
     # ---- the ANALYZE trait line: record head + pool tail ----
-    # The retail 28-byte slot ends at g_btl_slot_owner; the full 47-cell line
-    # and its append code/pool live in the zeroed run of the retail image,
-    # which is only free up to 0x800F85B0 - the battle runtime keeps a heap
-    # pointer there and writes it, so the zero padding beyond that word is not
-    # a home. Verify the stock bytes there were free, then the moved producers,
-    # the descriptor and the installed append hook.
-    stock = open(os.path.join(ROOT, 'data', 'psx', 'BTLP.BIN'), 'rb').read()
+    # The former zero run is a live graphics-pointer array, not spare memory.
     trait = toolbelt.asm_equ('ANALYZE_TRAIT_BUF')
     trait_end = toolbelt.asm_equ('ANALYZE_TRAIT_END')
-    code = toolbelt.asm_equ('BTLP_TRAIT_CODE_ADDR')
-    pool = toolbelt.asm_equ('BTLP_TRAIT_POOL_ADDR')
-    free_end = toolbelt.asm_equ('BTLP_TRAIT_POOL_END')
-    if any(stock[trait - B:free_end - B]):
-        raise SystemExit('btlui verify: trait line would overwrite retail BTLP data')
-    if (trait_end - trait, code, pool, free_end) != (47, trait + 0x30, trait + 0xa0, trait + 0x1f0):
-        raise SystemExit('btlui verify: trait layout constants moved')
+    pool = symbols['BTLP_TRAIT_POOL_ADDR']
+    if trait_end - trait != 47:
+        raise SystemExit('btlui verify: trait row capacity changed')
     def la(reg, address):
         return (0x3c000000 | reg << 16 | ((address + 0x8000) >> 16) & 0xffff,
                 0x24000000 | reg << 21 | reg << 16 | (address & 0xffff))
@@ -380,7 +370,7 @@ def verify(battle_path=None, resident_path=None):
             raise SystemExit(f'btlui verify: trait producer hook differs at {at:#x}')
     # The FF after the three `?` cells keeps the retail two-instruction
     # shape; the next store in the same block still reuses `at`.
-    ff = (0x3c018010, 0xa0220000 | (trait + 3) & 0xffff,
+    ff = (0x3c018005, 0xa0220000 | (trait + 3) & 0xffff,
           0x3c018010, 0xa0220000 | -0x781e & 0xffff)
     if struct.unpack_from('<IIII', battle, 0x800ADFDC - B) != ff:
         raise SystemExit('btlui verify: trait placeholder terminator differs')
@@ -388,7 +378,9 @@ def verify(battle_path=None, resident_path=None):
     if row != (0xFFA8 - 0x10000, 36, trait, trait_end - trait, 0x20, 12, 0):
         raise SystemExit(f'btlui verify: trait descriptor {row}')
     pool_bytes = open(os.path.join(ROOT, 'build', 'affinity_pool.bin'), 'rb').read()
-    if battle[pool - B:pool - B + len(pool_bytes)] != pool_bytes:
+    offsets = struct.unpack_from('<120H', pool_bytes)
+    compact = bytes(0xff if x == 0xffff else x for x in offsets) + pool_bytes[240:]
+    if battle[pool - B:pool - B + len(compact)] != compact:
         raise SystemExit('btlui verify: battle affinity pool differs from the canonical one')
     print('btlui verify: 8 PSP personalities, both art modes, all offer hooks and the '
           'complete ANALYZE trait line intact')

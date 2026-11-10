@@ -114,7 +114,7 @@ id	pos	psp	en	note
 190	0x7a110		Persona change	machine-translated; ja ペルソナチェンジ
 191	0x7a12e		I'd like to cut in	machine-translated; ja できればきりたい
 192	0x7a138		Doping mode	machine-translated; ja ドーピングモード
-193	0x7a142		In the name of the moon	machine-translated; ja つきにかわって
+193	0x7a142		In name of the moon	machine-translated; ja つきにかわって
 194	0x7a14c		Various settings	machine-translated; ja かくしゅせってい
 195	0x7b68c		Alexandrite	machine-translated; ja アレキサンドライト
 196	0x7b696		Diamond	machine-translated; ja ダイアモンド
@@ -138,8 +138,8 @@ id	pos	psp	en	note
 214	0x7b048		Body:	machine-translated; ja からだ：
 215	0x7b04d		Hand:	machine-translated; ja て：
 216	0x7b052		Feet:	machine-translated; ja あし：
-217	0x7a0e8		Sorry, but	machine-translated; ja すまんが
-218	0x7a0f2		there isn't enough memory.	machine-translated; ja メモリがたらんのだ
+217	0x7a0e8		Sorry, there's	machine-translated; ja すまんが
+218	0x7a0f2		not enough memory.	machine-translated; ja メモリがたらんのだ
 219	0x7a11a		Sorry, Misaki-chan	machine-translated; ja みさきちゃんゴメン
 220	0x7a124		Sorry, Eisuke	machine-translated; ja いーすけスマン
 221	0x7a156		Sorry, Sakai-kun	machine-translated; ja さかいくんゴメン

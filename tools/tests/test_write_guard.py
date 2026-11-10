@@ -55,6 +55,31 @@ class WriteGuard(unittest.TestCase):
         path = self.listing(['@0x80000004 .byte 0x11,0x22'])
         self.assertEqual(self.check(path), [])
 
+    def test_runtime_map_rejects_any_overlapping_write(self):
+        directory = self.root / 'src' / 'injection_tools'
+        directory.mkdir(parents=True)
+        manifest = directory / 'runtime-memory-map.tsv'
+        manifest.write_text('image\tspace\tstart\tend\towner\tprotection\tevidence\n'
+                            'out.bin\tcpu-ram\t0x80000005\t0x80000008\t'
+                            'live array\tno-assembly-writes\ttest fixture\n')
+        data = bytearray(16)
+        data[4:6] = b'\x11\x22'
+        self.write_output(data)
+        path = self.listing(['@0x80000004 .byte 0x11,0x22'])
+        self.assertTrue(any('overlaps live live array' in item for item in self.check(path)))
+        data[5] = 0
+        self.write_output(data)
+        path = self.listing(['@0x80000004 .byte 0x11'])
+        self.assertEqual(self.check(path), [])
+
+    def test_invalid_runtime_map_fails_closed(self):
+        directory = self.root / 'src' / 'injection_tools'
+        directory.mkdir(parents=True)
+        (directory / 'runtime-memory-map.tsv').write_text('broken\n')
+        self.write_output(bytes(16))
+        self.assertTrue(any('invalid runtime memory map' in item
+                            for item in self.check(self.listing([]))))
+
     def test_relative_listing_paths_use_the_given_root(self):
         # armips writes the source's relative paths (../../build/...) into
         # the listing. They belong to the tree that was assembled, not to

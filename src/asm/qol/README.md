@@ -28,7 +28,7 @@ filename; a plain build uses the retail save flow and the regular translation fi
 | `upright` | `QOL_UPRIGHT` | Upward Movement Orientation: Upper Right in the 2D rooms - pressing Up walks to the upper right instead of the retail upper left |
 | `skipfmv` | `QOL_SKIPFMV` | press Start to skip the movie that is playing (the story FMVs, Philemon's scenes among them; the opening quote and the Atlus logo already skip) |
 | `battlespeed` | `QOL_BATTLESPEED` | summons and skill effects at double speed |
-| `debug` | `QOL_DEBUG` | battle debug menu: drops the party-leader name gate, so the hidden controller-2 button sequence works and Cancel in the command phase opens the debug page |
+| `debug` | `QOL_DEBUG` | battle debug menu: press Start on either controller to open the debug page |
 | `mark` | `QOL_MARK` | Mark wears the Revelations design: the dialogue/status headshot, battle sheet and overworld walk sheet are swapped for the art in `src/assets/mark/black` (edit those PNGs to change it; see `src/assets/mark/README.md`). No code changes: the BST face slot and his B/P.BIN battle entry are rewritten in place and the ~207 MES.BIN scene entries carrying his walk sheet are re-encoded around the swapped page |
 
 `build/` is shared and holds whichever variant was built last (armips rewrites every overlay from
@@ -159,19 +159,15 @@ watches controller 2 for a ten-press sequence. Reaching the end of that sequence
 flag `g_btl_debug_hud`; `BtlOrdersMenu` then opens `BtlDebugMenu` (decomp `src/btlp/debugmenu.c`)
 instead of the orders menu, as long as Cancel is held.
 
-The translation build's name entry is ABC-only (`name/abc_only.asm`), so the kana name the first
-gate wants can never be typed on a translated disc - and only the hero's typed nickname reaches
-the battle. This patch nops that one branch (`0x8008F098`, `beqz a2, 0x8008F134` in this
-project's BTLP.BIN), which leaves the pad sequence as the only key. Nothing else changes: the pad
-table at `0x800CF100`, its step counter and `g_btl_debug_hud` are untouched, so the flag stays
-zero until the sequence is entered.
-
-In battle, on **controller 2**: Up Up Down Down Left Right Left Right Cross Circle, one fresh
-press each (a wrong press restarts the count). `g_btl_debug_hud` is then on, and holding
-**Cancel** in the command phase opens the fifteen-row debug page instead of the orders menu (Cross
-on the default control scheme; the bindings are whatever Config's control scheme says):
-stat and ailment edits, a summon, an item, and the BGM index stepped through its `0x43` values.
-The page answers zero, so the round carries on as though nothing had been ordered.
+The translation build cannot type the kana name the retail gate wants. With this option,
+a fresh **Start** press on either controller opens the debug page. The hook runs at the
+end of `BtlDrawFrame`, guards against recursion and a closing battle, saves `g_btl_step`,
+sets the page's initial step, and restores the battle step on return. It does not enable
+the separate debug HUD. The page includes stat and ailment editors and a BGM selector;
+Cancel leaves it. The Start hook has instruction-level tests but still needs in-game QA,
+particularly when opened during other battle screens. The debug board's fitting
+translated rows use the same battle small-font VWF bridge as other boards, in
+both normal and debug-enabled builds.
 
 ## Running in dungeons (`--qol=run`)
 
@@ -264,7 +260,8 @@ ticks only. A measured draw cost decides how many extra frames fit, so the game 
   motion. Word jump threshold also lowered 0x1000 -> 480. Verified with Up held: drawn root positions
   560 480 400 320 240 160 | 720 640 560 ... (80 per frame, no backward frame).
 - Placement: the extension behind the S2D image holds the VWF glue at
-  `S2D_GLUE_ADDR` (0x800BB200), the name spill at 0x800BB8F0, the small-font
+  `S2D_GLUE_ADDR` (0x800BB200), the name spill at 0x800BB8F0, the 1-row VWF
+  config and pen table at 0x800BBB70 (after the spill), the small-font
   data window at `S2D_SF_DATA_ADDR` (0x800BC200), the full-name block at
   `S2D_ITEM_DATA_ADDR` (0x800BD200), and the status bar's fixed slots from
   `S2D_BAR_LIST` (0x800BE800) to `S2D_BAR_HOOK_END` (0x800BE930).
@@ -374,8 +371,9 @@ VSync semantics (read from the code, important):
   0x8008EC28 passes 0x1000 (instant).
 - Measured: 14.9 fps idle and walking; uncapped ~42 fps at stock CPU (needs more overclock than the
   dungeon for 60); 30 fps holds.
-- Free space: S2D glue area 0x800BB200..0x800BB8E8 (used up to 0x800BB7A8), then the name spill
-  (0x800BB8F0..0x800BB9C5), the small-font / full-name block from 0x800BC200 to `sf_extension_end_s2d`
+- Free space: S2D glue area 0x800BB200..0x800BB8E8 (code ends at 0x800BB890), then the name spill
+  (0x800BB8F0..0x800BBB70), the 1-row VWF config and pen table (0x800BBB70..0x800BBC54), the
+  small-font / full-name block from 0x800BC200 to `sf_extension_end_s2d`
   (0x800BE62C), and the status bar slots from `S2D_BAR_LIST` (0x800BE800) to `S2D_BAR_HOOK_END`
   (0x800BE930). The QoL block starts after those (0x800BE930..0x800BEF04); nothing else may claim a
   fixed window in this range.

@@ -7,3 +7,4 @@
 - Config text could be written fully instead of all CMPCTD.
 - Incosistency with what is VWF or not and where that happens. Stuff like idk ATK yk.
 - Debug menu patch is only for the battle debug menu and the text is completely broken because it's not actually receiving the translation.
+- Game crashes if you analyse Nacht Kobold

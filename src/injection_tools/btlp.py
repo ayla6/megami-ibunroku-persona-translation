@@ -544,7 +544,7 @@ MSG_ZONE = (0x800D1D4C, 0x800D222C)
 MSG_OUT = os.path.join(ROOT, 'build', 'btlmsg.asm')
 MSG_OUT_SLPS = os.path.join(ROOT, 'build', 'btlmsg_slps.asm')
 MSG_SPILL = [(0x8002E048, 0x8002E0C0), (0x80030A6C, 0x80030AD4),
-             (0x800182B4, 0x8001831C)]   # dead SLPS functions (deadfuncs.py),
+             (0x800182F8, 0x8001831C)]   # dead SLPS functions (deadfuncs.py),
                                         # unreferenced by any disc binary
 MSG_ALIGN = 2
 
@@ -814,12 +814,13 @@ def neg_build(d, rows_by_pos, body):
     code = {i for i in new if any(k == 'addiu' for k, _ in rf.get(strings[i][0], []))}
 
     def put(zones, b):
-        for z in zones:
-            if z[1] - z[0] >= len(b):
-                p = z[0]
-                z[0] += len(b)
-                return p
-        return None
+        fits = [z for z in zones if z[1] - z[0] >= len(b)]
+        if not fits:
+            return None
+        z = min(fits, key=lambda span: span[1] - span[0])
+        p = z[0]
+        z[0] += len(b)
+        return p
 
     if struct.unpack_from('<II', d, 0x8007D654 - B) != (0x3c01800f, 0xac30bb0c):
         toolbelt.fail('neg: second-window read-pointer writer changed')
@@ -907,6 +908,13 @@ def neg_build(d, rows_by_pos, body):
                 break
         if full_code_at is None:
             toolbelt.fail('battle names: no bounded home for complete-name helpers')
+        # Both the affinity helper and its immutable pool belong in reclaimed
+        # source strings, not BTLP's runtime species-graphics pointer array.
+        source_pool = open(os.path.join(ROOT, 'build', 'affinity_pool.bin'), 'rb').read()
+        offsets = struct.unpack_from('<120H', source_pool)
+        if any(offset != 0xffff and offset >= 0xff for offset in offsets):
+            toolbelt.fail('ANALYZE: affinity tail offsets exceed compact byte index')
+        pool = bytes(0xff if offset == 0xffff else offset for offset in offsets) + source_pool[240:]
 
     pairs_at = put(merged, pair_blob) if pair_blob else 0
     if pair_blob and pairs_at is None:
@@ -930,6 +938,12 @@ def neg_build(d, rows_by_pos, body):
     for a, q in NEG_SPILL:
         body.append(f'.org {a:#x}\n    .fill {q - a}, 0')
     if features.on('SF_VWF'):
+        body.append('.include "btlp/compact_lookup.asm"\n'
+                    '.org btl_name_data_end\n'
+                    'BTLP_TRAIT_POOL_ADDR:\n    .byte '
+                    + ', '.join(f'0x{x:02X}' for x in pool)
+                    + '\n.if . > BTLP_NAME_DATA_END\n'
+                      '    .error "battle affinity pool reaches sound-work buffer"\n.endif')
         body.append(f'.org {bank_at:#x}\n    .byte ' + ', '.join(f'0x{x:02X}' for x in bank))
         body.append(f'.definelabel OFFER_NAME_CODE, {code_at:#x}\n'
                     f'.definelabel OFFER_NAME_BANK, {bank_at:#x}\n'
@@ -1488,16 +1502,18 @@ def verify():
             if tail:
                 tails[(ident - 1) // 8] |= 1 << ((ident - 1) % 8)
                 bank.extend(bytes([len(tail)]) + tail)
-        compact = bytearray(215)
-        for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .'-/:":
-            compact[items.glyph(char)] = etext.encode(char, end=None)[0]
-        expected_data = bytes(bank + tails + compact + english)
+        expected_data = bytes(bank + tails + english)
         start = _equ('BTLP_NAME_DATA_ADDR')
         end = symbols['btl_name_data_end']
         if (symbols['item_tail_bank_btlp'] != start or end != start + len(expected_data)
                 or end > _equ('BTLP_NAME_DATA_END')
                 or image_bytes(start, len(expected_data)) != expected_data):
             toolbelt.fail('btlp verify: full-name data differs or reaches sound work memory')
+        pool = Path(ROOT, 'build', 'affinity_pool.bin').read_bytes()
+        offsets = struct.unpack_from('<120H', pool)
+        compact_pool = bytes(0xff if x == 0xffff else x for x in offsets) + pool[240:]
+        if end + len(compact_pool) > _equ('BTLP_NAME_DATA_END') or image_bytes(end, len(compact_pool)) != compact_pool:
+            toolbelt.fail('btlp verify: affinity pool differs or reaches sound work memory')
         def jump(address, label):
             expected = 0x08000000 | ((symbols[label] >> 2) & 0x03ffffff)
             if struct.unpack('<I', image_bytes(address, 4))[0] != expected:

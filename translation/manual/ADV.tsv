@@ -9,7 +9,7 @@ id	pos	psp	en	note
 8	0x56e06		Quitting the game.<FF03>Proceed?<FF01>	by Rei; ja ?RQQLK　　ゲームを終了します<FF03>よろしいですか？<FF01>
 9	0x56e2a		Please turn off the power.<FF03>(Press any button to<FF03>return to the game.)<FF01>	by Rei; ja 電源を切って下さい<FF03>（何かボタンを押すと<FF03>　ゲームに戻ります）<FF01>
 10	0x56e5b		No memory card inserted.<FF03>Cannot save.<FF02><FF01>	by Rei; ja メモリーカードが<FF03>セットされていません<FF03>セーブが出来ません<FF02><FF01>
-11	0x56e87		Select the memory card slot to use.<FF01>	by Rei; ja 使用するメモリーカードの<FF03>スロットを選んで下さい<FF01>
+11	0x56e87		Select the memory card slot<FF03>to use.<FF01>	by Rei; ja 使用するメモリーカードの<FF03>スロットを選んで下さい<FF01>
 12	0x56eab		Memory card is damaged.<FF03>Cannot save.<FF02><FF01>	by Rei; ja メモリーカードが壊れています<FF03>このメモリーカードには<FF03>セーブ出来ません<FF02><FF01>
 13	0x56ee0		Memory card is full.<FF03>Cannot save.<FF02><FF01>	by Rei; ja メモリーカードに<FF03>空き容量がありません<FF03>セーブが出来ません<FF02><FF01>
 14	0x56f0d		Game saved.<FF02><FF01>	by Rei; ja セーブは無事完了しました<FF02><FF01>

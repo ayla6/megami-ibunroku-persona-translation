@@ -539,16 +539,12 @@ def write_pool(widths):
         start = toolbelt.asm_equ(f'{ovl}_SF_DATA_ADDR') + st_end + len(widths)
         left = toolbelt.asm_equ(f'{ovl}_ITEM_DATA_ADDR') - start
         room = left if room is None else min(room, left)
-    # BTLP's copy sits between the trait buffer code and the first BTLP
-    # variable the battle runtime writes (0x800F85B0, a heap pointer); the
-    # text must end before that word, never merely before the next .org.
-    btlp_room = (toolbelt.asm_equ('BTLP_TRAIT_POOL_END')
-                 - toolbelt.asm_equ('BTLP_TRAIT_POOL_ADDR'))
-    room = btlp_room if room is None else min(room, btlp_room)
+    # BTLP converts this to its compact byte index and checks its separately
+    # allocated overlay footprint in btlp.py and the assembler.
     if len(out) > room:
         raise SystemExit(
             f'smallfont_vwf: the affinity pool is {len(out)} bytes but only '
-            f'{room} fit before the next owned block or live BTLP word - '
+            f'{room} fit before the next owned field-overlay block - '
             f'raise the owned data window in addresses.inc')
     open(POOL_OUT, 'wb').write(out)
     print(f'wrote {POOL_OUT} ({len(out)} bytes: {POOL_INDEX} index + {len(text)} text, '

@@ -36,9 +36,10 @@ line continues in the VWF kit's pool (`affinity_pool.bin`, 120 u16 offsets
 plus FF-terminated tails, `smallfont_vwf.write_pool`); the recorder
 appends that tail when it draws the row, so wording is never shortened to
 fit the slot. Tails that end another tail share its suffix, so the blob
-stores one copy per distinct ending, not one per record. In BTLP the pool
-must end below `0x800F85B0`: the battle runtime writes a live heap pointer
-there, so the zero words above it are not spare data. The whole drawn row
+stores one copy per distinct ending, not one per record. BTLP stores a
+byte-indexed copy below its sound-work buffer, with a build-time bound; its
+helper and displayed row are outside the live species-graphics pointer array.
+See `docs/research/battle-memory-investigation.md`. The whole drawn row
 is capped at 47 glyphs (`SF_POOL_LINE_MAX`). With `SF_VWF` off those rows are not written and keep
 their Japanese; `affinity.py` lists them in `build/affinity_gated.tsv`, and
 `verify_disc.py` reports them as pool-carried rather than missing. Type and
@@ -175,11 +176,11 @@ space-padded. A sole top row that straddles the list origin is centred with
 `x = -(rendered_width // 2)`.
 
 The resident `btl_owned_span` lookup reads the ownership directory at
-`BTL_BOARD_SPANS_ADDR`. It lives in the overlay beside the pools it names
-because the resident VWF table area is full; the directory lists every arena
-pool plus the ANALYZE name/spell/trait buffers. Rows without a consumer
-(`Set shortcut`, `Toggle status display`, `Remember cursor position`) and the
-deferred debug list stay Japanese and `verify_disc.py` reports them.
+`BTL_BOARD_SPANS_ADDR`. The builder places its compact entries in reclaimed,
+immutable board text; it lists every arena pool plus the ANALYZE
+name/spell/trait buffers. The debug board's fitting English is included in the
+same producer-owned VWF path. Rows without a consumer stay Japanese and
+`verify_disc.py` reports them.
 
 ## Placement and data safety
 
