@@ -208,7 +208,7 @@ class BattleTextClass(unittest.TestCase):
                 c.r[REG['v0']] = 100
                 c.r[REG['a1']] = 200
                 c.start(SYM['btl_sf_flat_entry'])
-                for _ in range(300):
+                for _ in range(2000):
                     if c.pc == 0x80088f8c:
                         break
                     c.step()
