@@ -6,6 +6,5 @@
 - Credits are untranslated.
 - Config text could be written fully instead of all CMPCTD.
 - Incosistency with what is VWF or not and where that happens. Stuff like idk ATK yk.
-- Debug menu patch is only for the battle debug menu and the text is completely broken because it's not actually receiving the translation.
 - Need to be sure we aren't writing in any other wrong areas of memory. We have better tools now.
 - Workflow run on release is having issues.
