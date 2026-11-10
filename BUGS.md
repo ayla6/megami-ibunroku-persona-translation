@@ -7,4 +7,3 @@
 - Config text could be written fully instead of all CMPCTD.
 - Incosistency with what is VWF or not and where that happens. Stuff like idk ATK yk.
 - Need to be sure we aren't writing in any other wrong areas of memory. We have better tools now.
-- Workflow run on release is having issues.

@@ -1,9 +1,9 @@
 kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
 meta	map:boot_btlmsg	fffeb222faa24d5466d83daa4072ee0e4858d93e								
-meta	map:btlneg	c72af019b544786c322280f0bd3385780858f900								
-meta	matches_sha1	dd446c8b58a52b200959f2f72e9c3b332f37b1a5								
+meta	map:btlneg	90a11cc6ef4b87f4b81243980be2183585ce63f9								
+meta	matches_sha1	e6e64e60c5298c5a8e6779e3ad925cabed760685								
 meta	psx:BTLP	b2cba081ee71bd645969ec85ee11dc6ac18f2976								
-meta	rule_sha1	155dc67210ad0f7d647cbafd2dfad7b64030e94d								
+meta	rule_sha1	1be70ff5c3ed9e7887071cb861c8befa7e834d90								
 meta	us:EBOOT	08e9592c6d19ae1a355f016b6664408be61089e4								
 meta	us:boot-bin	ffe2a970ebbcb974e5a022f572cbb5892d36f035								
 meta	version	1								
@@ -66,6 +66,8 @@ match			boot_btlmsg	0x6de24	boot	29af42		exact
 match			boot_btlmsg	0x6de38	boot	29af10		exact		
 match			boot_btlmsg	0x6de48	boot	29aef2		exact		
 match			boot_btlmsg	0x6de58	boot	29aed4		exact		
+match			btlneg-sequential	34:0	boot	2a568c		exact		
+match			btlneg-sequential	34:1				exact	none	
 match			consumer:notice	33	boot	2a5776		consumer		
 match			consumer:control	25	boot	2a58ec		consumer		
 match			consumer:control	27	boot	2a58a6		consumer		

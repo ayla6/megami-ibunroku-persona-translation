@@ -89,7 +89,7 @@ class SourceControls(unittest.TestCase):
                   (2, '', 'Next <FFF8> value.<FF01>')]
         speaker, text = port_btlneg.source_message(source, [1, 2])
         self.assertEqual(speaker, '')
-        self.assertEqual(text, 'Before<FFFC> after<FF02><FF04>Next <FFF8> value.')
+        self.assertEqual(text, 'Before<FFFC> after<FF01>Next <FFF8> value.')
 
     def test_battle_operands_travel_with_their_translated_instruction(self):
         self.assertEqual(port_codes.battle('A<FF06><0300>B<FF0E><0100>C'),

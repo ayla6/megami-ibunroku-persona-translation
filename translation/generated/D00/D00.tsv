@@ -5,4 +5,4 @@ id	pos	psp	en
 3	0x22fcc	d00:23914	It's locked. It doesn't seem as<FF03>though you can enter.<FF02>
 4	0x23024	d00:239d4	The door is locked. Could that<FF03>girl have been an illusion...?<FF02>
 5	0x230bc	d00:23acc	The door is locked.<FF02>
-7	0x230d0	d00:23afa	The door was locked again<FF03>before you knew it...<FF02>
+6	0x230d0	d00:23afa	The door was locked again<FF03>before you knew it...<FF02>

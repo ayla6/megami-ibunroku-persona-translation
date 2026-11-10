@@ -709,6 +709,35 @@ def neg_seq_indices(strings, refs):
     return {i for i, (address, _) in enumerate(strings)
             if any(kind == 'word' and any(lo <= where < hi for lo, hi in NEG_SEQ_POINTER_RANGES)
                    for kind, where in refs.get(address, ()))}
+
+
+def neg_interior_offsets(original, translated):
+    """Map each retail sequential-message start to its translated start."""
+    def starts(data):
+        result = []
+        for match in re.finditer(b'\xff\xef', data):
+            pos = match.end()
+            while pos < len(data) and data[pos] == 0:
+                pos += 1
+            if pos < len(data):
+                result.append(pos)
+        return result
+    old, new = starts(original), starts(translated)
+    if len(old) != len(new):
+        raise ValueError('sequential negotiation message count changed')
+    return dict(zip(old, new))
+
+
+def neg_pack(strings):
+    """Train on unique messages; duplicate text is stored only once."""
+    ordered = dict(sorted(strings.items(), key=lambda item: (-len(item[1]), item[0])))
+    representatives = {}
+    for key, data in ordered.items():
+        representatives.setdefault(data, key)
+    packed, pairs = bpe.pack({key: data for data, key in representatives.items()})
+    return {key: packed[representatives[data]] for key, data in ordered.items()}, pairs
+
+
 NEG_STUB = """
 ;; unpacker front for negotiation strings (jumped to from btl_unpack when the string is below the story-battle zone):
 ;; a string of the negotiation zone starting with the marker byte 0 is byte-pair packed with the table at PAIRS
@@ -767,8 +796,8 @@ def neg_build(d, rows_by_pos, body):
         orig = bytes(d[a - B:q - B])
         try:
             b = etext.encode(t, end=END)
-        except ValueError:
-            toolbelt.fail(f'neg {i} {t!r}: not encodable in the text charset')
+        except ValueError as error:
+            toolbelt.fail(f'neg {i} {t!r}: {error}')
         # a code difference is not a rendering problem - the Japanese
         # carries pauses and params the English does not need. Only what
         # the engine cannot SHOW is a problem (the buffer check below).
@@ -783,11 +812,14 @@ def neg_build(d, rows_by_pos, body):
         if codes(b, (0xF6, 0x05)) != codes(orig, (0xF6, 0x05)):
             pass
         if any(neg_width(ln) > vwf_wrap.BOX_WIDTH + 1
-               for ln in re.split(r'<FFF6>|<FFFB><FFF7>', t)):
+               for ln in re.split(r'<FFF6>|<FFFB><FFF7>|<FFEF>', t)):
             toolbelt.fail(f'neg {i} {t!r}: over-wide, the box would wrap it '
                           f'mid-word (never shipped as-is)')
         new[i] = b
     seq = neg_seq_indices(strings, rf)
+    for i, (a, q) in enumerate(strings):
+        if i in new and b'\xff\xef' in d[a - B:q - B]:
+            seq.add(i)  # independently addressed messages must stay plain
     packed_indices = NEG_PACK_IDX - seq
     for i, b in new.items():
         if i in packed_indices and len(b) > NEG_BUF:
@@ -796,7 +828,7 @@ def neg_build(d, rows_by_pos, body):
             toolbelt.fail(f'neg {i}: exceeds the second-window unpack buffer')
     if not new:
         return 0
-    packed, pairs = bpe.pack({i: b for i, b in new.items() if i in packed_indices})
+    packed, pairs = neg_pack({i: b for i, b in new.items() if i in packed_indices})
     for i in packed:
         new[i] = bytes((0,)) + packed[i]
     pair_blob = bytes(x for pr in pairs for x in pr)
@@ -811,6 +843,7 @@ def neg_build(d, rows_by_pos, body):
     shared = {}
     spill = [list(z) for z in NEG_SPILL]
     spilled = set()
+    extension_used = 0
     code = {i for i in new if any(k == 'addiu' for k, _ in rf.get(strings[i][0], []))}
 
     def put(zones, b):
@@ -921,17 +954,30 @@ def neg_build(d, rows_by_pos, body):
         toolbelt.fail('neg: no room for the pair table')
     for i in sorted(new, key=lambda i: (i not in code, -len(new[i]))):
         b = new[i]
-        if b in shared:
-            place[i] = shared[b]
+        host = next((value for value in shared if value.endswith(b)), None)
+        if host is not None:
+            base = shared[host]
+            delta = len(host) - len(b)
+            place[i] = (base[0], base[1] + delta) if isinstance(base, tuple) else base + delta
             continue
         p = put(merged, b)
         if p is None and i not in code:
             p = put(spill, b)
             spilled.add(b)
+        if p is None and i not in code and features.on('SF_VWF'):
+            # Follow the patch-owned affinity pool, itself bounded below the
+            # first sound-work buffer. Assembly checks the final end below.
+            p = ('BTLP_TRAIT_POOL_ADDR', len(pool) + extension_used)
+            extension_used += len(b)
         if p is None:
             toolbelt.fail(f'neg: out of space at {i} ({len(b)} bytes); '
                           f'free {[(hex(a), e - a) for a, e in merged + spill]}')
         place[i] = shared[b] = p
+
+    def address(value, delta=0):
+        if isinstance(value, tuple):
+            return f'{value[0]} + {value[1] + delta:#x}'
+        return f'{value + delta:#x}'
     for i in new:
         a, q = strings[i]
         body.append(f'.org {a:#x}\n    .fill {q - a}, 0')
@@ -963,16 +1009,36 @@ def neg_build(d, rows_by_pos, body):
                     '.include "btlp/full_names.asm"\n'
                     '.include "../../build/name_data_btlp.asm"')
     for b, p in shared.items():
-        body.append(f'.org {p:#x}\n    .byte ' + ', '.join(f'0x{x:02X}' for x in b))
+        body.append(f'.org {address(p)}\n    .byte ' + ', '.join(f'0x{x:02X}' for x in b))
+    if extension_used:
+        body.append(f'.if BTLP_TRAIT_POOL_ADDR + {len(pool) + extension_used:#x} > BTLP_NAME_DATA_END\n'
+                    '    .error "battle negotiation text reaches sound-work buffer"\n.endif')
     if pair_blob:
         body.append(f'.org {pairs_at:#x}\n    .byte ' + ', '.join(f'0x{x:02X}' for x in pair_blob))
     body.append(NEG_STUB.replace('PAIRS', f'{pairs_at:#x}').strip())
     for i in new:
         for kind, w in rf.get(strings[i][0], []):
             if kind == 'word':
-                body.append(f'.org {w:#x}\n    .word {place[i]:#x}')
+                body.append(f'.org {w:#x}\n    .word {address(place[i])}')
             else:
+                if isinstance(place[i], tuple):
+                    toolbelt.fail(f'neg {i}: code reference cannot reach extension')
                 body.append(f'.org {w:#x}\n    .halfword {place[i] & 0xFFFF:#x}')
+        a, q = strings[i]
+        original = bytes(d[a - B:q - B])
+        try:
+            offsets = neg_interior_offsets(original, new[i])
+        except ValueError as error:
+            toolbelt.fail(f'neg {i}: {error}')
+        for old_offset, new_offset in offsets.items():
+            for kind, where in rf.get(a + old_offset, ()):
+                target = address(place[i], new_offset)
+                if kind == 'word':
+                    body.append(f'.org {where:#x}\n    .word {target}')
+                else:
+                    if isinstance(place[i], tuple):
+                        toolbelt.fail(f'neg {i}: code reference cannot reach extension')
+                    body.append(f'.org {where:#x}\n    .halfword {(place[i] + new_offset) & 0xffff:#x}')
     print(f'btlp neg: {len(new)}/{len(strings)} translated, '
           f'{sum(len(b) for b in shared)} bytes placed')
     return len(new)

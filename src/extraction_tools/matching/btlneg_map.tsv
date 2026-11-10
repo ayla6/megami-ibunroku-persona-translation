@@ -228,9 +228,9 @@ idx	kind	src	keys	strategy	prefix	tone	seg	parts	words	pre	post	strip
 42	exseg	0x2a4ece,0x2a4f00,0x2a4f10					2	1	-		<FFFB><FFF7>	1
 42	exseg	0x2a4ece,0x2a4f00,0x2a4f10					3	2	-	>	<FFFB><FFF7>	1
 42	exseg	0x2a4ece,0x2a4f00,0x2a4f10					4	3	-	>		1
-243	exseg	0x2aaf7e,0x2afffa	開かずのトイレ;ドアが開かない				0	0,1	-,-		<FFFC>	
-243	exseg	0x2aaf7e,0x2afffa					1	2	-			
-243	exseg	0x2aaf7e,0x2afffa					2	3	-			
+243	exseg	0x2aaf7e,0x2aaffa	開かずのトイレ;ドアが開かない				0	0,1	-,-		<FFFC>	
+243	exseg	0x2aaf7e,0x2aaffa					1	2	-			
+243	exseg	0x2aaf7e,0x2aaffa					2	3	-			
 290	exseg	0x2a9472	しあわせ;パワーだ				0	0	-			
 290	exseg	0x2a9472					1	1	-		<FFFC>	
 279	blob	0x2accd0:4	…									

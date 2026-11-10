@@ -71,7 +71,7 @@ class BattleInsertPricing(unittest.TestCase):
             text = (row.get('en') or '').strip()
             if not text:
                 continue
-            for line in re.split(r'<FFF6>|<FFFB><FFF7>|<FF03>|<FF04>', text):
+            for line in re.split(r'<FFF6>|<FFFB><FFF7>|<FF03>|<FF04>|<FFEF>', text):
                 with self.subTest(pos=row['pos'], line=line):
                     self.assertLessEqual(vwf_wrap.text_width(line), 239)
 

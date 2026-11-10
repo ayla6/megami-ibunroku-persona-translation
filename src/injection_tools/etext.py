@@ -181,9 +181,19 @@ def decode(b, params=None):
 
 
 _TOKEN = re.compile(r'<(FF[0-9A-F]{2}|G[0-9A-F]{3}|[0-9A-F]{2})>')
+_MISSING_PLACEHOLDER = re.compile(r'(?<![A-Za-z])(?:PART[\s-]+MISSING|MISSING[\s-]+TEXT)(?![A-Za-z])')
+
+
+def has_missing_placeholder(s):
+    """Whether visible text contains an unresolved internal diagnostic."""
+    return bool(_MISSING_PLACEHOLDER.search(_TOKEN.sub(' ', s)))
 
 
 def encode(s, end=bytes([0xFF, 0x01])):
+    # Internal diagnostics must never be encoded as dialogue. Ignore layout
+    # tokens when checking so line/box breaks cannot conceal a placeholder.
+    if has_missing_placeholder(s):
+        raise ValueError('unresolved missing-text placeholder in translation')
     out = bytearray()
     pos = 0
     arguments = 0

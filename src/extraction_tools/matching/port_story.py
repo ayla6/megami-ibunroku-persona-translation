@@ -819,7 +819,7 @@ def code_words(part):
     return toks
 
 
-def layout_box(en, brk=None, head=None):
+def layout_box(en, brk=None, head=None, preserve_lines=False):
     """THE textbox layout - the one entry every producer calls (boot_btlmsg,
     port_lastresort, any family that has a box in hand). Nothing about a box's
     layout is decided anywhere else: the label rule at EVERY box head
@@ -895,9 +895,11 @@ def layout_box(en, brk=None, head=None):
         chunks = _re.split(r'<FF03>|<FFF6>', part)
         for i, chunk in enumerate(chunks):
             items.extend(('w', w) for w in code_words(chunk) if w)
-            if i < len(chunks) - 1 and is_heading(chunk):
+            if i < len(chunks) - 1 and (preserve_lines or is_heading(chunk)):
                 items.append(('b', brk))
-    out = ''.join(v for _k, v in _v.flow_lines(items, _v.BOX_WIDTH, newline=brk))
+    out = ''.join(v for _k, v in _v.flow_lines(
+        items, _v.BOX_WIDTH, newline=brk,
+        tail=0 if preserve_lines and brk == '<FFF6>' else 1))
     out = _v.clean_edges(out)
     out = _v.choice_breaks(out, brk=brk)
     if brk == '<FFF6>':

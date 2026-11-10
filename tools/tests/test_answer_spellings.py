@@ -6,11 +6,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / 'src/extraction_tools/matching'),
                 str(ROOT / 'src/injection_tools'), str(ROOT / 'src/extraction_tools/psp')]
-from port_answers import (SlotSpellings, _no_punct, answer_punct_key,
+from port_answers import (SlotSpellings, _no_punct, answer_punct_key, derive_boot_answer,
                           spelling_key)
 
 
 class AnswerSpellings(unittest.TestCase):
+    def test_field_source_gets_answer_terminator(self):
+        en, why = derive_boot_answer(' Example<FF01>', '例<FFF5>')
+        self.assertEqual((en, why), ('Example<FFF5>', ''))
+
     def test_width_punctuation_and_small_kana(self):
         self.assertEqual(spelling_key('はあ、どうも…<FFF5>'),
                          spelling_key('はぁ,どうも…<FFF5>'))

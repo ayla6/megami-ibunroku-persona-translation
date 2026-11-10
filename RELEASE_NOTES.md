@@ -1,3 +1,6 @@
+# 2026-11-10-3
+- Fixed missing line and fixed the porting of another two.
+
 # 2026-11-10-2
 - Fixed missing sprites for Mark in the black Mark patch. Including his full body one at the ending.
 

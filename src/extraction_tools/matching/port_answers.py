@@ -95,6 +95,15 @@ def answer_punct_key(text):
     return ENDCUT.sub('', text).strip().rstrip('.!')
 
 
+def derive_boot_answer(source, japanese):
+    """Derive an EBOOT answer using the destination answer terminator."""
+    import port_derive
+    en, why = port_derive.derive(source, japanese, 'TALK', '')
+    if not why:
+        en = re.sub(r'<FF01>\s*$', '<FFF5>', en)
+    return en, why
+
+
 class SlotSpellings:
     """Kana/kanji spelling equivalences learned from the game's own slots.
 
@@ -531,7 +540,7 @@ def _collect_live(apply=False):
     for idx, ja in missed:
         jp_row = twins.get(idx)
         us_row = match_jp.us_twin('EBOOT', jp_row) if jp_row else None
-        en, why = (port_derive.derive(us_row['text'], ja, 'TALK', '')
+        en, why = (derive_boot_answer(us_row['text'], ja)
                    if us_row and (us_row.get('text') or '').strip()
                    else ('', 'no source'))
         if why or talktl.check(ja, en, False, talktl.ANS_W, 1):
@@ -676,7 +685,7 @@ def _collect_replay(apply=False):
             continue
         ut = answers_port_plan.us_text(row)
         if kind == 'psp-us-boot':
-            en, why = port_derive.derive(ut, ja, 'TALK', '')
+            en, why = derive_boot_answer(ut, ja)
             if why or talktl.check(ja, en, False, talktl.ANS_W, 1):
                 raise answers_port_plan.PlanError(
                     f'answers plan boot source no longer derives id {idx}; recapture')

@@ -837,6 +837,15 @@ wait at the original `<FFF5>` end. Interior PSP waits/pages without a proven
 battle equivalent fail closed; authored battle timing is never discarded. Page and
 line advance are **presentation**: they are excluded from the code comparison
 against the Japanese. Only the end codes are structural (exactly one).
+When a TALK answer's proven source is an EBOOT field string, its terminal
+`<FF01>` is represented by the destination answer's `<FFF5>`; the wording
+and any interior controls are not changed by this terminator conversion.
+For negotiation source spans, separate EBOOT text units can be fragments of
+one sentence. Concatenate those fragments in source order without inventing
+breaks or waits. Recover an intervening box terminator from the original PSP
+bytes even if it was omitted from a text-only extract, and preserve source
+line breaks while wrapping any line that exceeds the destination width.
+Distinct messages must not be merged into a single textbox.
 
 ---
 

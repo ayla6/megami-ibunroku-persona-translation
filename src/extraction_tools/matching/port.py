@@ -12,6 +12,7 @@ step is port_lastresort, scoped to rows no family porter claimed; it is the
 last-resort net, not a second owner. This file is the single entry the build calls.
 """
 import os
+import csv
 import subprocess
 import sys
 
@@ -23,6 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 sys.path.insert(0, os.path.join(HERE, '..', '..', 'injection_tools'))
 import toolbelt   # noqa: E402
+import etext      # noqa: E402
 
 PY = sys.executable
 INJ = os.path.join(HERE, '..', '..', 'injection_tools')
@@ -45,9 +47,12 @@ PLANS = {
 }
 
 
-def plan_args(name, args):
+def plan_args(name, args, jp_available=None):
+    if jp_available is None:
+        jp_available = os.path.exists(os.path.join(
+            ROOT, 'data', 'psp_jp', 'PSP_GAME', 'SYSDIR', 'BOOT.BIN'))
     plans = PLANS.get(name)
-    if plans and all(os.path.exists(os.path.join(toolbelt.MAPPINGS, p))
+    if not jp_available and plans and all(os.path.exists(os.path.join(toolbelt.MAPPINGS, p))
                      for p in plans):
         return tuple(args) + ('--without-psp-jp',)
     return args
@@ -62,8 +67,8 @@ def run(*cmd):
     print('+', ' '.join(cmd), flush=True)
     r = subprocess.run([PY] + list(cmd), check=False)
     if r.returncode:
-        FAILED.append((os.path.basename(cmd[-1]), r.returncode))
-        print(f'port: STEP FAILED {os.path.basename(cmd[-1])} '
+        FAILED.append((os.path.basename(cmd[0]), r.returncode))
+        print(f'port: STEP FAILED {os.path.basename(cmd[0])} '
               f'(exit {r.returncode})', flush=True)
 
 
@@ -102,6 +107,21 @@ def waves(porters):
         else:
             out.append([step])
     return out
+
+
+def validate_generated(root):
+    """Reject diagnostic text in every generated translation column."""
+    failures = []
+    for path in sorted(root.rglob('*.tsv')):
+        with path.open(encoding='utf-8', newline='') as source:
+            reader = csv.DictReader(source, delimiter='\t')
+            if 'en' not in (reader.fieldnames or ()):
+                continue
+            for line, row in enumerate(reader, 2):
+                if etext.has_missing_placeholder(row.get('en') or ''):
+                    failures.append(f'{path}:{line}')
+    if failures:
+        raise ValueError('unresolved missing-text placeholders: ' + ', '.join(failures))
 
 
 def port_all():
@@ -188,6 +208,11 @@ def main():
         raise SystemExit(f'port: {len(FAILED)} step(s) failed - generated/ '
                          f'is not complete derived data: '
                          + ', '.join(f'{n} ({c})' for n, c in FAILED))
+    from pathlib import Path
+    try:
+        validate_generated(Path(ROOT) / 'translation' / 'generated')
+    except ValueError as error:
+        raise SystemExit(f'port: {error}') from error
 
 
 if __name__ == '__main__':

@@ -117,9 +117,28 @@ def speaker_of(boot, addrs):
     return speaker, texts
 
 
-def source_message(boot, addrs):
+def source_message(boot, addrs, raw=None):
     speaker, texts = speaker_of(boot, addrs)
-    body = '<FF02><FF04>'.join(re.sub(r'<FF01>\s*$', '', t) for t in texts)
+    if not texts or any(not text.strip() for text in texts):
+        raise ValueError('missing or empty PSP source in negotiation span')
+    # EBOOT spans can split a sentence around an independently stored word.
+    # Their boundaries are not page turns: preserve the source bytes and
+    # its authored controls rather than inserting a wait at every fragment.
+    body = ''
+    for i, text in enumerate(texts):
+        if i and raw is not None:
+            start, end = addrs[i - 1], addrs[i]
+            if end <= start:
+                raise ValueError('negotiation source span is not in source order')
+            if any(raw[at:at + 2] == b'\xff\x01'
+                   for at in range(start, end - 1, 2)) and not body.endswith('<FF01>'):
+                body += '<FF01>'
+        # A new line's head marker is not part of the preceding fragment's
+        # word, even if the source stored neither surrounding space.
+        if body and not body[-1].isspace() and text.startswith(('＞', '>')):
+            body += ' '
+        body += text
+    body = re.sub(r'<FF01>\s*$', '', body)
     return speaker, body
 
 
@@ -136,17 +155,71 @@ def label_prefix(speaker):
 _messages = port_derive.messages
 
 
-def emit(idx, en, src, man, ok, fail, srcs=()):
+def sequential_source(idx, ja, srcs, raw):
+    """Align independently terminated source messages to sequential PSX text.
+
+    Exact JP/US twins establish any known pairing; if precisely one target and
+    one source remain, the one-to-one correspondence establishes the other.
+    Ambiguous or missing sources remain a gap, never a merged message.
+    """
+    parts = re.split(r'<FFEF>', ja)
+    starts = [srcs[0]] if srcs else []
+    for left, right in zip(srcs, srcs[1:]):
+        if any(raw[at:at + 2] == b'\xff\x01' for at in range(left, right - 1, 2)):
+            starts.append(right)
+    if len(parts) != len(starts) or len(parts) < 2 or any(not p.strip() for p in parts):
+        raise ValueError('multiple PSP messages require destination alignment')
+    units = dict(toolbelt.read_eboot('psp_us'))
+    if len(set(starts)) != len(starts) or any(not units.get(pos, '').strip() for pos in starts):
+        raise ValueError('multiple PSP messages lack complete extracted source units')
+    keys = [(f'{idx}:{i}', part) for i, part in enumerate(parts)]
+    proved = eboot_twin_plan.exact_us('btlneg-sequential', keys)
+    selected = {}
+    for i, (key, _) in enumerate(keys):
+        offset = proved.get(key)
+        if offset in starts:
+            selected[i] = offset
+    if len(set(selected.values())) != len(selected):
+        raise ValueError('multiple PSP messages have conflicting source matches')
+    missing = [i for i in range(len(parts)) if i not in selected]
+    remaining = [offset for offset in starts if offset not in selected.values()]
+    if len(missing) == len(remaining) == 1 and selected:
+        selected[missing[0]] = remaining[0]
+    if len(selected) != len(parts):
+        raise ValueError('multiple PSP messages require destination alignment')
+    output = []
+    for i, part in enumerate(parts):
+        text, why = port_derive.derive(units[selected[i]], part, 'BTLP', '',
+                                       preserve_lines=True)
+        if why:
+            raise ValueError(why)
+        output.append(text)
+    return '<FFEF>'.join(output)
+
+
+def emit(idx, en, src, man, ok, fail, srcs=(), raw_boot=None):
     if not (en or '').strip():
         fail.append((idx, 'no boot text', '', tuple(srcs)))
         return
+    # One packed string cannot contain two independently terminated PSP
+    # messages. Never let layout silently drop the first terminator and
+    # combine their wording; their destination order needs separate proof.
     ja = man[str(idx)][2]
     # THE derivation, on the first pass (port_derive): the codes in the
     # battle family's spelling, the box's own layout and label rule, the
     # destination's own cap (the neg buffer) and the approved name/choice
     # deviations. No special cases here - what cannot ship is a draft with
     # the reason, never a bespoke gate.
-    laid, why = port_derive.derive(en, ja, 'BTLP', '')
+    if re.search(r'<FF01>\s*\S', en):
+        try:
+            if raw_boot is None:
+                raise ValueError('multiple PSP messages require destination alignment')
+            laid, why = sequential_source(idx, ja, srcs, raw_boot), ''
+        except ValueError as error:
+            fail.append((idx, str(error), en, tuple(srcs)))
+            return
+    else:
+        laid, why = port_derive.derive(en, ja, 'BTLP', '', preserve_lines=True)
     if why:
         fail.append((idx, why, laid, tuple(srcs)))
         return
@@ -187,6 +260,8 @@ def port(apply, force=False):
 
 def _port(apply, force=False):
     boot = load_boot()
+    from tables import us_boot
+    raw_boot = us_boot()
     auto, blob, rev, ex = load_map()
     import toolbelt
     d = btlmsg.data()
@@ -213,10 +288,13 @@ def _port(apply, force=False):
     ok, fail, skip = [], [], []
     src_of = {}                    # idx -> its PSP source offsets (provenance)
 
+    manual_en = {r['pos'] for r in toolbelt.read_manual('BTLP', optional=True)
+                 if (r.get('en') or '').strip()}
+
     def filled(sidx):
-        # --force re-derives even filled rows (generated is ephemeral; a
-        # human's manual row is untouched and still wins at build time)
-        return not force and sidx in gen and gen[sidx][3].strip()
+        # Generated rows are derived data, not an obstacle to re-porting.
+        # Only the user's manual wording takes precedence.
+        return hex(msgs[int(sidx)][0] - btlmsg.B) in manual_en
 
     for idx, addrs, keys, pre, tone in auto:
         sidx = str(idx)
@@ -227,13 +305,13 @@ def _port(apply, force=False):
         if not all(k in man[sidx][2] for k in keys):
             fail.append((idx, 'source mapping does not match destination', '', tuple(addrs)))
             continue
-        speaker, body = source_message(boot, addrs)
+        speaker, body = source_message(boot, addrs, raw_boot)
         # Keep source controls with their source words. The shared derivation
         # translates their interpreter spelling and owns width-based layout.
         src = 'psp-boot %s%s' % (
             ','.join('0x%x' % a for a in addrs), ' (tone-match)' if tone else '')
         emit(idx, label_prefix(speaker) + pre + body, src,
-             man, ok, fail, srcs=addrs)
+             man, ok, fail, srcs=addrs, raw_boot=raw_boot)
 
     for idx, ba, ii, keys in blob:
         sidx = str(idx)
@@ -280,23 +358,29 @@ def _port(apply, force=False):
 
     for idx, spec in ex.items():
         sidx = str(idx)
-        src_of[idx] = tuple(spec['src'])
-        if filled(sidx):
+        addrs = spec['src']
+        src_of[idx] = tuple(addrs)
+        pos = hex(msgs[idx][0] - btlmsg.B)
+        # Mapped source spans are derived on every pass, not treated as
+        # human-owned just because generated text already exists.
+        if pos in manual_en:
             skip.append(idx)
             continue
         if not all(k in man[sidx][2] for k in spec['keys']):
-            fail.append((idx, 'source mapping does not match destination', '', tuple(spec['src'])))
-            continue
-        speaker, body = source_message(boot, spec['src'])
+            raise ValueError(f'BTLNEG {idx}: source mapping does not match destination')
+        if any(addr not in amap or not (amap[addr][1] or '').strip() for addr in addrs):
+            raise ValueError(f'BTLNEG {idx}: missing or ambiguous PSP source')
+        speaker, body = source_message(boot, addrs, raw_boot)
+        before = len(fail)
         emit(idx, label_prefix(speaker) + body,
-             'psp-boot source-span', man, ok, fail, srcs=spec['src'])
+             'psp-boot source-span', man, ok, fail, srcs=addrs, raw_boot=raw_boot)
+        if len(fail) != before and fail[-1][1] != 'multiple PSP messages require destination alignment':
+            raise ValueError(f'BTLNEG {idx}: mapped source cannot be ported: {fail[-1][1]}')
 
     # The source proof reads immutable PSP executables/canonical extracts and
     # shares this porter's existing emit/upsert; it never rewrites a row later.
     # Existing mapped slots and human wording retain their ownership, including
     # during a forced refresh.
-    manual_en = {r['pos'] for r in toolbelt.read_manual('BTLP', optional=True)
-                 if (r.get('en') or '').strip()}
     claimed = {i for i, _en, _src, _srcs in ok} | set(src_of)
     if eboot_twin_plan.replaying():
         consumer_proofs = (eboot_twin_plan.consumer_us('notice', list(ja.items()))
@@ -343,6 +427,11 @@ def _port(apply, force=False):
           % (len(ok), len(fail), len(skip)))
     for f in fail:
         print('FAIL', f[0], f[1], repr(f[2])[:110])
+    stale = [idx for idx, reason, *_ in fail if str(idx) in gen
+             and reason != 'multiple PSP messages require destination alignment']
+    if stale:
+        raise ValueError('BTLNEG: generated rows could not be rederived: '
+                         + ', '.join(map(str, sorted(set(stale)))))
     if apply and (ok or src_of or fail):
         import toolbelt  # noqa: E402
         rows, over = [], 0
