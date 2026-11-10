@@ -585,6 +585,37 @@ def _intervals(writes):
     return merged
 
 
+def protected_regions(root=None):
+    """Read the reviewed runtime map as (image, start, end, owner) rows.
+
+    The real tree must have a valid map; an isolated mirror without one has no
+    reviewed regions (the QoL assembly tests use such a mirror).
+    """
+    root = root or ROOT
+    manifest = os.path.join(root, 'src', 'injection_tools', 'runtime-memory-map.tsv')
+    if not os.path.exists(manifest):
+        if os.path.abspath(root) == os.path.abspath(ROOT):
+            raise FileNotFoundError(manifest)
+        return []
+    with open(manifest, encoding='utf-8', newline='') as source:
+        reader = csv.DictReader(source, delimiter='\t')
+        required = {'image', 'space', 'start', 'end', 'owner', 'protection', 'evidence'}
+        if set(reader.fieldnames or ()) != required:
+            raise ValueError('unexpected TSV columns')
+        mapping = list(reader)
+    if not mapping:
+        raise ValueError('no protected regions')
+    regions = []
+    for region in mapping:
+        if region['space'] != 'cpu-ram' or region['protection'] != 'no-assembly-writes':
+            raise ValueError('unsupported memory space or protection')
+        start, end = int(region['start'], 0), int(region['end'], 0)
+        if start >= end or not region['owner'] or not region['evidence']:
+            raise ValueError('invalid protected region')
+        regions.append((region['image'], start, end, region['owner']))
+    return regions
+
+
 def check_sections(sections, problems, equ=None, root=None):
     """Apply every guard rule to parsed sections; return (failures, stats)."""
     root = root or ROOT
@@ -594,28 +625,14 @@ def check_sections(sections, problems, equ=None, root=None):
     seen, failures = {}, []
     lost = checked = moves = 0
     manifest = os.path.join(root, 'src', 'injection_tools', 'runtime-memory-map.tsv')
-    regions = []
-    if not os.path.exists(manifest) and os.path.abspath(root) == os.path.abspath(ROOT):
+    try:
+        regions = protected_regions(root)
+    except FileNotFoundError:
         failures.append(f'{manifest}: runtime memory map is missing')
-    if os.path.exists(manifest):
-        try:
-            with open(manifest, encoding='utf-8', newline='') as source:
-                reader = csv.DictReader(source, delimiter='\t')
-                required = {'image', 'space', 'start', 'end', 'owner', 'protection', 'evidence'}
-                if set(reader.fieldnames or ()) != required:
-                    raise ValueError('unexpected TSV columns')
-                mapping = list(reader)
-            if not mapping:
-                raise ValueError('no protected regions')
-            for region in mapping:
-                if region['space'] != 'cpu-ram' or region['protection'] != 'no-assembly-writes':
-                    raise ValueError('unsupported memory space or protection')
-                start, end = int(region['start'], 0), int(region['end'], 0)
-                if start >= end or not region['owner'] or not region['evidence']:
-                    raise ValueError('invalid protected region')
-                regions.append((region['image'], start, end, region['owner']))
-        except (OSError, ValueError, KeyError, TypeError) as error:
-            failures.append(f'{manifest}: invalid runtime memory map: {error}')
+        regions = []
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        failures.append(f'{manifest}: invalid runtime memory map: {error}')
+        regions = []
 
     for section in sections:
         out = section.out

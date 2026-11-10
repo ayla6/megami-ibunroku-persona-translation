@@ -27,6 +27,23 @@ a protected range.
 | Enemy species graphics pointers | RAM | `0x800F83BC..0x800F86DC` (200 pointers); **not free**, even where currently zero | rev-0 indexed store at `0x80081B74..0x80081B84`; reads at `0x800846F8..0x80084704` and `0x80084800..0x80084810`; rev-1 `g_btl_species_gfx` has size `0x320` |
 | Battle script pack | RAM | scratch base `0x801C0000`; extent depends on loaded pack | `references/persona-decomp/src/btlp/message.c`; base also needs rev-0 verification for any new allocation |
 | Persona stock-number rows | RAM | `0x800F7ED8..0x800F7FF8`, 12 records of 0x18 bytes | rev-0 indexed stores at `0x800776F4..0x80077818`; reference `src/btlp/stocklist.c` |
+| Battle effect work pointers | RAM | `0x800D26E0..0x800D26F4`, five u32 slots | 5-slot fill at `0x800ABA94..0x800ABAB0`; teardown loop at `0x800ABB3C..0x800ABB5C` also stops at five |
+| Battle overlay zero-fill tail | RAM | `0x800EA192..0x800F88F8`; retail EOF | every byte is zero; rev-0 reads/writes it, e.g. `0x80084D74 lh 0x800F885E`, `0x8008138C sh 0x800F8892` |
+| Dungeon overlay zero-fill tail | RAM | `0x8009D5CC..0x800A1124`; retail EOF | every byte is zero; rev-0 fills/reads it, e.g. `0x8006A014 sw 0x8009D5E4`, `0x80076788 sw 0x800A0760` |
+| Main executable zero-fill tail | RAM | `0x80055C0D..0x80056000`; retail EOF | every byte is zero; direct accesses include `0x80011940 sw 0x80055C14`, `0x800119C8 lw 0x80055C14` |
+| Open-menu executable zero-fill tail | RAM | `0x800B3564..0x800B3800`; retail EOF | every byte is zero; direct accesses include `0x80081354 sw 0x800B3594`, `0x800813C0 sb 0x800B3598` |
+| Personality affinity tables | RAM | ADV `0x800B245C..0x800B2476`, DNG `0x8009AF4C..0x8009AF66`, S2D `0x8009DADC..0x8009DAF6` | 26 one-byte rows immediately after each generated 26x6 race table; readers `0x80098EE4`/`0x800A22CC` (ADV), `0x800997C8` (DNG), `0x800898C4` (S2D) index with the 1-based race |
+| Name-entry field cells and lengths | RAM | cells `0x800682A0..0x800682D0` (three 16-byte rows), lengths `0x800682D0..0x800682D3` | field index at `0x8006829B` advances modulo 3 at `0x80064F68..0x80064FC0`; `lbu`/`sb` sites index cells by 16 and lengths by 1 |
+
+A retail image's trailing zero run is live BSS-style storage, not free
+space. The guard protects `[last nonzero byte + 1, file end)` for
+SLPS_005.00, BTLP.BIN, DNG.BIN and OPEN.EXE because rev-0 code demonstrably
+reads or writes those tails. The scan found no direct rev-0 access to the
+MOVIE.EXE zero tail,
+and the 2–5 byte tails of ADV.BIN, S2D.BIN and NAME.BIN have no known owner,
+so those are left unprotected. The BTLP row bans assembled data in the tail;
+the patch's runtime staging at `0x800EBE44..0x800EEB48` is code-driven and
+remains allowed.
 
 The former ANALYZE trait buffer, hook, and pool at `0x800F83C0..0x800F859E`
 overlapped the species graphics pointer array. In the live pre-ANALYZE battle,
