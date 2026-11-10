@@ -1,9 +1,11 @@
-# Nov 10th 2026
-- Fixed crash on analyse. It was because of problems with the memory mapping, it was touching things it shouldn't
-- Fixed text spilling into the wrong places, such as the "Can't" from "Can't talk right now..." getting into "Flatter" and becoming "FlattCan't". Also because of problems with the memory mapping.
+# 2026-11-10-2
 - Fixed missing sprites for Mark in the black Mark patch. Including his full body one at the ending.
 
-# Nov 9th 2026
+# 2026-11-10
+- Fixed crash on analyse. It was because of problems with the memory mapping, it was touching things it shouldn't
+- Fixed text spilling into the wrong places, such as the "Can't" from "Can't talk right now..." getting into "Flatter" and becoming "FlattCan't". Also because of problems with the memory mapping.
+
+# 2026-11-09
 - There are less MTL lines now. The ones that remain are basically only very short that are basically impossible to translate as anything else.
 - Fixed two sets of choices to fit properly on screen. One of them was a very important one.
 - Fixed some line breaks in areas where they aren't allowed.
@@ -14,7 +16,7 @@
 - Item acquire text is now VWF.
 - Fixed "You have \[Number\] coins." and similar texts, they previously said "\[Number\]" because of bad porting practices.
 
-# Nov 7th 2026
+# 2026-11-07
 - Fixed multiple misplaced translation lines. I'm so sorry I let that slip.
 - Extended the limit of the name and surname of the player to 8 characters each.
 - Fixed the L1 L2 R1 R2 screens in the battle. They're now translated and VWF.
