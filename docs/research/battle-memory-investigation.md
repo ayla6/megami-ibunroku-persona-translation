@@ -10,10 +10,12 @@ its addresses below are leads, not validated rev-0 allocations.
 ranges. `write_guard.py` checks every assembled write against those ranges
 for the named image, including zero fills, and fails on overlap. This only
 guards mapped ranges at assembly time; it cannot observe arbitrary runtime CPU
-stores, DMA, GPU transfers, SPU RAM, or unlisted owners. Use
-`python src/injection_tools/runtime_map.py` to list candidate indexed rev-0
-RAM references. Its hits are leads, not inferred sizes or proof of ownership;
-confirm extent, lifetime and active overlay before adding a protected range.
+stores, DMA, GPU transfers, SPU RAM, or unlisted owners. The repeatable review
+process is [MEMORY_AUDIT.md](../MEMORY_AUDIT.md). It inventories assembled
+runs with `memory_audit.py` and cross-checks them against indexed rev-0 RAM
+references from `runtime_map.py`. Its hits are leads, not inferred sizes or
+proof of ownership; confirm extent, lifetime and active overlay before adding
+a protected range.
 
 ## Rev-0 patch facts
 

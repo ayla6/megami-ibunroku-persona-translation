@@ -11,6 +11,8 @@ game files described in [DATA.md](DATA.md); none of them are tracked.
   plus its browser patcher (`../webpatcher/`).
 - [DATA.md](DATA.md) — which game files and images the tools expect under
   `data/`, and what is tracked versus local-only.
+- [MEMORY_AUDIT.md](MEMORY_AUDIT.md) — how assembled allocations are compared
+  with live retail RAM, how leads are resolved, and which ranges are protected.
 
 ## Text system
 

@@ -21,6 +21,13 @@ class RuntimeMap(unittest.TestCase):
             self.skipTest('requires extracted rev-0 BTLP')
         hits = list(runtime_map.candidates(runtime_map.DEFAULT.read_bytes()))
         self.assertIn((0x80081b84, 0x800f83bc, 'sw', 2), hits)
+        self.assertIn((0x8007773c, 0x800f7ed8, 'sw', 4), hits)
+
+    def test_register_replacement_is_not_an_indexed_base(self):
+        # A load replaces the LUI result before the later ADDIU/ADDU.
+        code = struct.pack('<5I', 0x3c02800d, 0x9042d50c, 0x24420001,
+                           0x00551021, 0x94420006)
+        self.assertEqual(list(runtime_map.candidates(code)), [])
 
 
 if __name__ == '__main__':
