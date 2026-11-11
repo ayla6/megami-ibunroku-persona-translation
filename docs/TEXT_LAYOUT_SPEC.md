@@ -748,9 +748,10 @@ x `0x280` / `0x2A0` on the same rows: a record for a ninth cell of label 0
 would sample label 1's strip.
 
 The compositor ring holds 12 cells while a banner strip holds 15, so the path
-drains the upload queue before compositing a glyph that reaches past the ring
-(the queue drains newest-first; a queued entry left in a reused slot would
-carry the next cell's pixels).
+drains the upload queue and waits for GPU completion before reusing ring cells,
+both around the initial strip rebuild and before a glyph reaches past the ring.
+The queue drains newest-first and LoadImage can retain its source until DMA
+completes; draining the queue alone does not make the source safe to overwrite.
 
 **S2D location slot: banner name and map label.** A location slot feeds two
 consumers, and the builder gives them separate strings. The slot's own row is

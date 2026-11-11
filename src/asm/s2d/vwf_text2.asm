@@ -166,6 +166,10 @@ s2d_txt_put:
     ;; is composited: the queue drains newest-first, so a glyph upload must
     ;; not be followed by a stale blank for the same cell.
     sw      a1, 0x18(sp)                  ; the rebuild calls out: a1 is caller-saved
+    jal     S2D_TXT_FLUSH                 ; retire earlier users of the ring
+    nop
+    jal     GPU_DRAW_SYNC                 ; LoadImage may defer reading its source
+    move    a0, zero
     move    s0, zero                      ; strip cell
     lh      s1, 0x1D8(s4)                 ; cols: exactly the strip's cells
     sh      zero, 6(s4)                   ; sprite records: none yet
@@ -196,6 +200,8 @@ s2d_txt_put:
     nop
     jal     S2D_TXT_FLUSH                 ; blanks reach VRAM before any glyph
     nop
+    jal     GPU_DRAW_SYNC                 ; wait before reusing blank sources
+    move    a0, zero
     lw      a1, 0x18(sp)                  ; the glyph the interpreter handed us
     move    s2, zero                      ; pen 0
     la      t2, vwf_dlg_state
@@ -267,6 +273,8 @@ s2d_txt_put:
     sw      a1, 0x04(sp)                ; this glyph would overwrite the ring
     jal     S2D_TXT_FLUSH               ; slots their entries point at (the
     nop                                 ; queue drains newest-first)
+    jal     GPU_DRAW_SYNC                 ; wait for DMA before ring reuse
+    move    a0, zero
     lw      a0, 0x00(sp)
     lw      a1, 0x04(sp)
 @@draw:

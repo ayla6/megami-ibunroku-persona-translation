@@ -53,6 +53,12 @@ class Vram:
                    for r in range(rows) for i in range(words))
 
     def hook(self, cpu):
+        if cpu.pc == 0x8002B5E8:  # synchronous model has no pending transfers
+            ret = cpu.r[REG['ra']]
+            for name in VOLATILE:
+                cpu.r[REG[name]] = 0
+            cpu.pc, cpu.next_pc = ret, ret + 4
+            return True
         if cpu.pc != LOAD_IMAGE:
             return False
         rect = cpu.r[REG['a0']]
@@ -79,6 +85,38 @@ class Vram:
                 line += [b[0] & 0xF, b[0] >> 4, b[1] & 0xF, b[1] >> 4]
             out.append(line)
         return out
+
+
+class DeferredVram(Vram):
+    """LoadImage queues pointers; DrawSync completes the pending DMA reads."""
+    def __init__(self):
+        super().__init__()
+        self.pending = []
+
+    def complete(self, cpu):
+        for x, y, w, h, src in self.pending:
+            off = cpu.offset(src, w * 2 * h)
+            data = bytes(cpu.mem[off:off + w * 2 * h])
+            self.log.append((x, y, w, h, data))
+            for row in range(h):
+                for i in range(w):
+                    self.words[x + i, y + row] = data[(row * w + i) * 2:(row * w + i) * 2 + 2]
+        self.pending.clear()
+
+    def hook(self, cpu):
+        if cpu.pc == LOAD_IMAGE:
+            rect = cpu.r[REG['a0']]
+            self.pending.append((*[cpu.read(rect + 2 * i, 2) for i in range(4)],
+                                 cpu.r[REG['a1']]))
+        elif cpu.pc == 0x8002B5E8:
+            self.complete(cpu)
+        else:
+            return False
+        ret = cpu.r[REG['ra']]
+        for name in VOLATILE:
+            cpu.r[REG[name]] = 0
+        cpu.pc, cpu.next_pc = ret, ret + 4
+        return True
 
 
 class S2DOneRowStrip(unittest.TestCase):
@@ -259,6 +297,15 @@ class S2DOneRowStrip(unittest.TestCase):
     # -------------------------------------------------------------
     # the arrival banner: 15 cells, longer than the compositor ring
     # -------------------------------------------------------------
+
+    def test_banner_blank_uploads_do_not_alias_deferred_glyphs(self):
+        c, v = self.machine(), DeferredVram()
+        widest, small = self.codes(c)
+        self.text_object(c, BANNER_OBJ, 15, 0x1C0, 0x100)
+        codes = [widest, small] * 8
+        self.draw(c, v, BANNER_OBJ, codes)
+        v.complete(c)
+        self.assertEqual(v.nibbles(0x1C0, 0x100, 240), self.reference(c, codes, 240))
 
     def test_banner_strip_is_rebuilt_and_stays_inside_15_cells(self):
         c = self.machine()
