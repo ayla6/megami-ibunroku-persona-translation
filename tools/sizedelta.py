@@ -73,11 +73,11 @@ class Image:
         self.size = int(self.array.shape[0])
         if self.size % SECTOR:
             raise ValueError(f'{path}: not a whole number of sectors')
-        self.user = self.array.reshape(self.size // SECTOR, SECTOR)[
-            :, USER_OFFSET:USER_OFFSET + USER].reshape(-1)
+        self.sectors = self.array.reshape(self.size // SECTOR, SECTOR)
 
     def user_bytes(self, lba, size):
-        return self.user[lba * USER:lba * USER + size].tobytes()
+        count = (size + USER - 1) // USER
+        return self.sectors[lba:lba + count, USER_OFFSET:USER_OFFSET + USER].tobytes()[:size]
 
     def entries(self, lba, size):
         data = self.user_bytes(lba, size)
@@ -227,27 +227,34 @@ def build_window(source, target, start, end, slice_start):
     else:
         source_bytes = source.array[
             slice_start:min(slice_start + length, source.size)].tobytes()
-        index = 0
+        # Find runs in native code. Most windows are entirely unchanged;
+        # avoid allocating a comparison array for that common case.
+        import numpy as np
+        count = len(source_bytes)
+        if source_bytes == target_bytes[:count]:
+            runs = [(0, count, True)] if count else []
+        else:
+            equal = (np.frombuffer(source_bytes, dtype=np.uint8) ==
+                     np.frombuffer(target_bytes, dtype=np.uint8, count=count))
+            boundaries = np.flatnonzero(equal[1:] != equal[:-1]) + 1
+            starts = np.concatenate(([0], boundaries))
+            ends = np.concatenate((boundaries, [count]))
+            runs = zip(starts, ends, equal[starts])
         literal_start = None
-        while index < len(source_bytes):
-            if target_bytes[index] == source_bytes[index]:
+        for start_run, end_run, matches in runs:
+            start_run, end_run = int(start_run), int(end_run)
+            if matches:
                 if literal_start is not None:
                     emit_literals(data, instructions,
-                                  target_bytes[literal_start:index])
+                                  target_bytes[literal_start:start_run])
                     literal_start = None
-                run_end = index + 1
-                while (run_end < len(source_bytes)
-                       and target_bytes[run_end] == source_bytes[run_end]):
-                    run_end += 1
-                if run_end - index >= 4:
-                    emit_copy(instructions, addresses, index, run_end - index)
+                if end_run - start_run >= 4:
+                    emit_copy(instructions, addresses, start_run, end_run - start_run)
                 else:
-                    literal_start = index
-                index = run_end
+                    literal_start = start_run
             else:
                 if literal_start is None:
-                    literal_start = index
-                index += 1
+                    literal_start = start_run
         if literal_start is not None:
             emit_literals(data, instructions, target_bytes[literal_start:length])
         elif len(source_bytes) < length:

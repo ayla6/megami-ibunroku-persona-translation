@@ -398,21 +398,6 @@ def encode(blob):
 
     i = 0
     while i < n:
-        best_len, best_dist = 0, 0
-        if i + 2 < n - 2:
-            j = prev[i]
-            hops = 0
-            cap = min(33, n - i)
-            while 0 <= j and i - j <= 0x400 and hops < 16:
-                hops += 1
-                l = 3
-                while l < cap and blob[j + l] == blob[i + l]:
-                    l += 1
-                if l > best_len:
-                    best_len, best_dist = l, i - j
-                j = prev[j]
-        if best_len == 33 and best_dist == 1:
-            best_len = 32              # (33, 1) would encode as 7F FF
         z = 0
         while z < 0xFF + 0x20 and blob[i + z:i + z + 1] == b'\x00':
             z += 1
@@ -424,14 +409,32 @@ def encode(blob):
             emit = ('Z', z)
         elif r >= 3:
             emit = ('R', r)
-        elif best_len >= 4:
-            emit = ('B', best_len, best_dist)
-        elif z == 1 and i + 3 < n:
-            k = 0
-            while k < 32 and i + 2 * k + 1 < n and blob[i + 2 * k:i + 2 * k + 1] == b'\x00':
-                k += 1
-            if k >= 2:
-                emit = ('P', k)
+        else:
+            # Zero/fill tokens always win above, so matching them could not
+            # affect the chosen output. Search only when a copy can win.
+            best_len, best_dist = 0, 0
+            if i + 2 < n - 2:
+                j = prev[i]
+                hops = 0
+                cap = min(33, n - i)
+                while 0 <= j and i - j <= 0x400 and hops < 16:
+                    hops += 1
+                    l = 3
+                    while l < cap and blob[j + l] == blob[i + l]:
+                        l += 1
+                    if l > best_len:
+                        best_len, best_dist = l, i - j
+                    j = prev[j]
+            if best_len == 33 and best_dist == 1:
+                best_len = 32          # (33, 1) would encode as 7F FF
+            if best_len >= 4:
+                emit = ('B', best_len, best_dist)
+            elif z == 1 and i + 3 < n:
+                k = 0
+                while k < 32 and i + 2 * k + 1 < n and blob[i + 2 * k:i + 2 * k + 1] == b'\x00':
+                    k += 1
+                if k >= 2:
+                    emit = ('P', k)
         if emit is None:
             lit.append(blob[i])
             i += 1

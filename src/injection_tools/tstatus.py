@@ -42,7 +42,7 @@ STRUCT = {0x01, 0x02, 0x03, 0x04}
 TOKEN = re.compile(r'<(?:FF[0-9A-F]{2}|G[0-9A-F]{3}|[0-9A-F]{2})>')
 
 
-def rows(include_auto=True):
+def rows(include_auto=True, reviewed=None):
     """Yield all source boxes, merging sparse manual rows over PSP-generated ports."""
     auto = etext.auto_event_text() if include_auto else {}
     for n in etext.FILES:
@@ -63,6 +63,8 @@ def rows(include_auto=True):
                 local = manual.get((entry.index, box))
                 if local and local[0] == ja and etext.has_text(local[1]):
                     en = local[1]
+                    if reviewed is not None:
+                        reviewed.add(key)
                 else:
                     port = auto.get(key)
                     if port and port[0] == ja:
@@ -392,6 +394,11 @@ def match_with_deviations(ja, en, devs):
         se = seq_nopause(en)
     except ValueError:
         return False
+    return _match_deviation_sequences(sj, se, devs)
+
+
+def _match_deviation_sequences(sj, se, devs):
+    """Match already parsed sequences without re-encoding either box."""
     rj = [x for x in sj if x[0] not in NAME_OPS]
     nj = sorted(x for x in sj if x[0] in NAME_OPS)
     re_ = [x for x in se if x[0] not in NAME_OPS]
@@ -501,7 +508,7 @@ def classify_deviations(ja, en):
     if not ok:
         return [], False
     # self-check through the same gate QA uses; never record silently wrong.
-    if not match_with_deviations(ja, en, devs):
+    if not _match_deviation_sequences(sj, se, devs):
         return [], False
     return devs, True
 
@@ -529,13 +536,14 @@ def cmd_qa(limit=40):
     load_glossary()
     pl = psp_labels()
     counts, shown, total = collections.Counter(), 0, 0
-    for n, e, k, ja, en in rows():
+    reviewed = set()
+    for n, e, k, ja, en in rows(reviewed=reviewed):
         if etext.is_todo(en):
             continue
         total += 1
         key = (n, int(e), int(k))
         alt = pl.get(key) if key in ported_set() else None
-        skip_label = key in reviewed_set()
+        skip_label = key in reviewed
         # deviations are classified live through the same gate the porter
         # uses (classify_deviations) - one code path, so the QA exemptions
         # can never drift from what the port actually placed

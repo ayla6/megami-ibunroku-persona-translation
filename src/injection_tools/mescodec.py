@@ -21,16 +21,23 @@ def decode(data, limit=0x3F900):
         if c < 0x80:
             n = ((c >> 2) & 0x1F) + 2
             dist = 0x400 - (((c & 3) << 8) | data[src]); src += 1
-            for _ in range(n):
-                out.append(out[-dist])
+            # Overlapping copies repeat the existing distance-byte prefix.
+            # Index first to retain the scalar decoder's invalid-distance error.
+            out[-dist]
+            prefix = out[-dist:]
+            out.extend((prefix * ((n + dist - 1) // dist))[:n])
         else:
             k = c & 0xE0
             if k == 0x80:
                 n = (c & 0x1F) + 1
                 out += data[src:src + n]; src += n
             elif k == 0xA0:
-                for _ in range((c & 0x1F) + 1):
-                    out.append(0); out.append(data[src]); src += 1
+                n = (c & 0x1F) + 1
+                data[src + n - 1]  # truncated tokens must still fail
+                pairs = bytearray(n * 2)
+                pairs[1::2] = data[src:src + n]
+                out.extend(pairs)
+                src += n
             elif k == 0xC0:
                 n = (c & 0x1F) + 2
                 out += bytes([data[src]]) * n; src += 1
