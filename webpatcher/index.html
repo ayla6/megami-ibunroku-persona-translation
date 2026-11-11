@@ -32,7 +32,9 @@
     background: linear-gradient(to bottom, #002a00aa, #007a00ff) padding-box;
   }
   #content { max-width: 42rem; margin: 2rem auto; padding: 0 1rem; }
-  .version { white-space: nowrap; }
+  .heading h1, .version, .version summary { display: inline; }
+  .version summary { color: #ff0; cursor: pointer; text-decoration: underline; white-space: nowrap; font-size: 2em; font-weight: bold; }
+  .version pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; background: #000b; padding: 1rem; }
   fieldset { margin: 1rem 0; }
   #choices .choice { display: flex; align-items: flex-start; gap: 0.5rem; margin: 0.9rem 0; }
   .choice-text { flex: 1; }
@@ -50,7 +52,7 @@
 </head>
 <body>
 <div id="content">
-<h1>Persona 1 Translation Patcher <a href="$RELEASE_URL" class="version">(beta $VERSION)</a></h1>
+<div class="heading"><h1>Persona 1 Translation Patcher</h1> <details class="version"><summary>(beta $VERSION)</summary><pre>$RELEASE_NOTES</pre></details></div>
 <p>
 <a href="https://github.com/ayla6/megami-ibunroku-persona-translation">source - ayla6/megami-ibunroku-persona-translation</a>, based on <a href="https://github.com/Redeted/megami-ibunroku-persona-ps1-translation">Redeted's work</a>
 </p>

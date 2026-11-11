@@ -27,16 +27,19 @@ import contextlib
 import functools
 import hashlib
 import http.server
+import io
 import os
 import shutil
 import subprocess
 import sys
 import time
 from pathlib import Path
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 import publish_patches  # noqa: E402  (sync_local_patches + completeness rules)
+import stamp_webpatcher  # noqa: E402
 
 SITE = ROOT / 'webpatcher'
 
@@ -125,6 +128,19 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         '.js': 'text/javascript',
     }
 
+    def __init__(self, *args, page=None, **kwargs):
+        self.page = page
+        super().__init__(*args, **kwargs)
+
+    def send_head(self):
+        if self.page is not None and urlsplit(self.path).path in ('/', '/index.html'):
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html; charset=utf-8')
+            self.send_header('Content-Length', str(len(self.page)))
+            self.end_headers()
+            return io.BytesIO(self.page)
+        return super().send_head()
+
     def end_headers(self):
         self.send_header('Cache-Control', 'no-cache')
         super().end_headers()
@@ -165,12 +181,17 @@ def main(argv=None):
             raise SystemExit('the synced copy does not match its manifest:\n  '
                              + '\n  '.join(problems))
 
-    handler = functools.partial(Handler, directory=str(SITE))
+    try:
+        release, page = stamp_webpatcher.render(SITE / 'index.html',
+                                                local / 'manifest.tsv', local=True)
+    except (OSError, ValueError) as error:
+        raise SystemExit(f'web patcher version: {error}') from error
+    handler = functools.partial(Handler, directory=str(SITE), page=page.encode('utf-8'))
     server = http.server.ThreadingHTTPServer(('127.0.0.1', args.port), handler)
     url = f'http://127.0.0.1:{args.port}'
     print(f'webpatcher: serving {SITE.name}/ at {url} '
           f'({len(list(local.glob("*.xdelta")))} patches, '
-          'options from tools/release_options.json)')
+          f'options from tools/release_options.json, version {release})')
     published = None if args.no_tailscale else tailscale_publish(args.port)
     if published:
         print(f'webpatcher: tailnet URL {published} (Ctrl-C withdraws it)')

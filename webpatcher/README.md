@@ -85,15 +85,20 @@ It uploads the release as one zip asset (tag `patches-YYYY-MM-DD`,
 becoming `-2`, `-3`, ... for another release that day) via the gh CLI, to
 the repository named by `RELEASE_REPO` in `app.js` - publishing must not
 depend on what `origin` points at. The tag is written into the manifest's
-`release` column before upload, which is what stamps result filenames. The zip holds the patch files,
-The Pages workflow replaces `$VERSION` in `index.html` with the release in
-the deployed `manifest.tsv` (without the `patches-` prefix), so the page
-identifies the patch set it serves.
-
+`release` column before upload, which is what stamps result filenames. The
+Pages workflow replaces `$VERSION` in `index.html` with the release in the
+deployed `manifest.tsv` (without the `patches-` prefix), and embeds the
+checkout's `RELEASE_NOTES.md` as escaped text. Clicking the version expands
+those notes without leaving the page. The zip holds the patch files,
 `manifest.tsv` and `README.txt`: people applying xdelta by hand download
 it directly, and the Pages workflow unpacks it, so the page can still
 fetch `manifest.tsv` first and then only the patches along the chosen
 chain (usually a handful).
+
+`python tools/serve_webpatcher.py --no-tailscale` serves the same stamped
+page locally without modifying the HTML template. If the local manifest has
+not yet been stamped by the publisher, its version is shown as `local`.
+Restart the server after editing the page, release notes, or manifest.
 
 The page itself is deployed by `.github/workflows/pages.yml`. The workflow
 runs on every push to `main`, on `release: published`, and manually; each
