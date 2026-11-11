@@ -151,9 +151,14 @@ drawn whole instead of being cut to its ten-glyph record head.
 
 The sorter reserves complete rows before temporarily marking their map cells
 empty. It restores the logical map before returning. A page clear or rewrite
-therefore retires the corresponding records. Each claimed row becomes one
-packet: a tag, one draw mode shared by the row (every atlas cell is on the
-same page; the bank only changes CLUTs), and four GP0 words per visible glyph.
+therefore retires the corresponding records. Each claimed row becomes a chain
+of packets: one draw mode shared by the row (every atlas cell is on the same
+page; the bank only changes CLUTs), then packets of at most `SF_NODE_SPRITES`
+(3) sprites, four GP0 words each, so no linked-list node exceeds the GPU's
+16-word command FIFO.
+The two packet buffers follow the active libgs framebuffer. All ordering
+tables sorted within that frame share its cursor; an ordering-table change
+does not reset it or overwrite packets still linked by another table.
 Sprites include libgs' signed framebuffer origin, and packet storage is
 separate for the two active OTs.
 

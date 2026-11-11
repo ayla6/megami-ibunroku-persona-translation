@@ -9,10 +9,9 @@ sf_tab_advance:
     nop
     mflo    t4
     addiu   t4, t4, 1
-    multu   t4, t8
-    nop
-    nop
-    mflo    t2
+    sll     t2, t4, 5                   ; quotient * 40, without a new HI/LO
+    sll     t4, t4, 3                   ; operation immediately after mflo
+    addu    t2, t2, t4
     jr      t6
     addu    t2, t2, t1
 ;; Renderer adapter; t3 remains the glyph cursor and t8 the atlas bank.

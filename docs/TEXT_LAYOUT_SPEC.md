@@ -190,15 +190,24 @@ caller's logical cell count and is not evidence that a retained tail is visible.
 These geometries remain unsupported for complete full-name display until a QA
 proof or a renderer that handles their copies is available. Cropped left/top pixels advance texture U/V
 equally; empty intersections emit nothing, but every glyph still advances the pen.
-A claimed row is one GPU packet: an 8-byte header (the tag plus one draw mode
-shared by the row's glyphs, since every atlas cell uses the same page) and
-16 bytes per visible glyph (four GP0 words). Only visible glyphs reserve space.
-The blank word-space cell advances the pen but reserves and emits no sprite.
-The tag's length is written after the row ends: one draw-mode word plus four
-words for each sprite. Whole-row fallback retains retail text when capacity is
+A claimed row is a chain of GPU packets in pen order: a draw-mode packet (the
+tag plus one draw mode shared by the row's glyphs, since every atlas cell uses
+the same page), then sprite packets of at most three visible glyphs, 16 bytes
+(four GP0 words) each. No linked-list node may exceed the GPU's 16-word command
+FIFO: DuckStation and PCSX tolerate longer nodes, hardware and accurate
+emulators stall on them. A full sprite packet's tag names the next one; the
+last tag is written when the row ends and names the entry's previous head.
+Only visible glyphs reserve space: 16 bytes each, 2 more each for the sprite
+packets' tags, and 16 per row for the draw-mode packet and the emit guard. The
+blank word-space cell advances the pen but reserves and emits no sprite.
+Whole-row fallback retains retail text when capacity is
 unavailable; temporary suppression always restores the complete logical cell
 run. Row records and full-name scratch belong to the
 loaded overlay, with free slots reused before another live row is evicted.
+Packet storage follows the active libgs framebuffer, not the ordering-table
+address: multiple ordering tables sorted in one frame share one advancing
+cursor. Switching tables must never reuse a packet still linked by an earlier
+table, which can create a GPU DMA cycle and freeze the game.
 
 The small-font item and demon name row is retail's ten 8-px cells (80 px);
 the count column and every following field start after them. A full name is
@@ -746,6 +755,11 @@ text drawn earlier in the same object, and no record ever exists outside the
 object's `cols*rows` grid. This matters because labels 0 and 1 sit at VRAM
 x `0x280` / `0x2A0` on the same rows: a record for a ninth cell of label 0
 would sample label 1's strip.
+The text-window quad renderer clamps a cell's right texture coordinate to
+255 when its 16-pixel span ends at the texture page boundary. The GPU stores
+coordinates in bytes; wrapping that endpoint to zero would sample the page
+backwards across the quad, even when the cell itself is blank. Other cells
+retain their original coordinates and all quad positions remain unchanged.
 
 The compositor ring holds 12 cells while a banner strip holds 15, so the path
 drains the upload queue and waits for GPU completion before reusing ring cells,

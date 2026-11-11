@@ -56,6 +56,15 @@ SPACE_ADVANCE           equ 4                   ; blank advance (font/vwf_width.
 .org 0x8009BA0C
     jal     s2d_txt_put
 
+;; The right edge of a cell at U=240 is 256, which wraps to zero in the
+;; 8-bit GPU packet and samples almost the entire page across one quad.
+.org 0x8009AC4C
+    j       s2d_uv_right_top
+    nop
+.org 0x8009AC84
+    j       s2d_uv_right_bottom
+    nop
+
 ;; --- name inserts: the text object keeps the slot's real length, not 5 ---
 ;; S2dCopyChars (0x8009AEE0) copies the hero's family / given slot into the
 ;; text object's cell array. Its fixed cap of five cut every compact name
@@ -565,6 +574,29 @@ s2d_txt_cfg:                            ; engine config (vwf_dialog.asm): state,
     .fill 12, 0                         ; S2DT_ENTRY
     .word 0                             ; S2DT_NEXT (pen-table victim)
     .fill S2DT_NPENS * 8, 0             ; S2DT_PENS: (obj, pen, cleared cells)
+
+;; Preserve the normal exclusive endpoint except at the texture page edge.
+;; Both callers have loaded the cell's U into v0.
+s2d_uv_right_top:
+    addiu   v0, v0, 16
+    sltiu   at, v0, 256
+    bnez    at, @@store
+    nop
+    addiu   v0, zero, 255
+@@store:
+    sb      v0, 0x38(s1)
+    j       0x8009AC54
+    nop
+s2d_uv_right_bottom:
+    addiu   v0, v0, 16
+    sltiu   at, v0, 256
+    bnez    at, @@store
+    nop
+    addiu   v0, zero, 255
+@@store:
+    sb      v0, 0x48(s1)
+    j       0x8009AC8C
+    nop
 
 ;; Keep the established S2D extension boundary; the shared compositor ring
 ;; is resident runtime scratch, not S2D memory reused by other overlays.

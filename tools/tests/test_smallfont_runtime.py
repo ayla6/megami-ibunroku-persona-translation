@@ -128,6 +128,34 @@ class BuiltSmallfont(unittest.TestCase):
     def table(self, c):
         return c.read(self.symbols['sf_cfg_adv'] + 8)
 
+    def test_smallfont_record_and_tab_avoid_r3000_hilo_restart_hazards(self):
+        # R3000 requires two instructions after MFHI/MFLO before another
+        # multiply or divide, so an interrupt can restart the pipeline safely.
+        c = self.machine()
+        for ovl in ('adv', 'dng', 's2d'):
+            if ovl != 'adv':
+                c.load(OVERLAY, (ROOT / 'build' / (ovl.upper() + '.BIN')).read_bytes())
+            start = self.symbols['sf_record_' + ovl]
+            end = self.symbols['sf_record_end_' + ovl]
+            for pc in range(start, end - 8, 4):
+                word = c.read(pc)
+                if word >> 26 == 0 and word & 63 in (0x10, 0x12):
+                    for next_pc in (pc + 4, pc + 8):
+                        next_word = c.read(next_pc)
+                        self.assertFalse(next_word >> 26 == 0 and
+                                         next_word & 63 in (0x18, 0x19, 0x1A, 0x1B),
+                                         f'{ovl}: HI/LO hazard at {pc:#x} -> {next_pc:#x}')
+        start = self.symbols['sf_tab_advance']
+        end = self.symbols['sf_tab_emit']
+        for pc in range(start, end - 8, 4):
+            word = c.read(pc)
+            if word >> 26 == 0 and word & 63 in (0x10, 0x12):
+                for next_pc in (pc + 4, pc + 8):
+                    next_word = c.read(next_pc)
+                    self.assertFalse(next_word >> 26 == 0 and
+                                     next_word & 63 in (0x18, 0x19, 0x1A, 0x1B),
+                                     f'tab: HI/LO hazard at {pc:#x} -> {next_pc:#x}')
+
     def record(self, c, codes, count, bank=0, dst=INDEX, source=SOURCE, entry=None, slots=None):
         cfg = self.symbols['sf_cfg_adv']
         c.load(source, bytes(codes))
@@ -436,7 +464,8 @@ class BuiltSmallfont(unittest.TestCase):
         return [c.read(sprite + 4) for sprite, _mode in self.sprites(c)]
 
     def sprites(self, c):
-        """Walk row packets: tag, one shared draw mode, 4 words per sprite."""
+        """Walk a call's packets: one draw-mode packet, then packets of up
+        to three sprites chained in pen and row order."""
         state = self.symbols['sf_state_adv']
         base = c.read(state + 0x20) + c.read(state + 8) * self.buf_size
         end = c.read(state + 0x0C)
@@ -444,15 +473,22 @@ class BuiltSmallfont(unittest.TestCase):
             return []
         out = []
         p = base
+        mode = chained = None
         while p < end:
             tag = c.read(p)
             length = tag >> 24
-            self.assertGreaterEqual(length, 1)
-            self.assertEqual((length - 1) % 4, 0, 'a glyph costs four GP0 words')
-            mode = c.read(p + 4)
-            self.assertEqual(mode, 0xE1000200 | 0x1E, 'one draw mode per row packet')
-            for i in range((length - 1) // 4):
-                out.append((p + 8 + i * 16, mode))
+            if c.read(p + 4) >> 24 == 0xE1:
+                mode = c.read(p + 4)
+                self.assertEqual(mode, 0xE1000200 | 0x1E, 'one draw mode per call')
+                self.assertEqual(length, 1)
+            else:
+                self.assertEqual(chained, p & 0xFFFFFF, 'a call\'s packets chain in pen and row order')
+                self.assertIn(length, (4, 8, 12),
+                              'a glyph costs four GP0 words; a packet fits the GPU FIFO')
+                for i in range(length // 4):
+                    self.assertEqual(c.read(p + 4 + i * 16) >> 24, 0x64)
+                    out.append((p + 4 + i * 16, mode))
+            chained = tag & 0xFFFFFF
             p += (1 + length) * 4
         self.assertEqual(p, end, 'each packet\'s tag must reach the next one')
         return out
@@ -752,6 +788,49 @@ class BuiltSmallfont(unittest.TestCase):
                 self.assertEqual(sorted(p >> 16 for p in points), [30, 30, 42, 42])
                 self.assertEqual(sorted(p & 0xFFFF for p in points), [20, 20, 24, 24])
 
+    def test_multiple_ots_in_one_frame_do_not_create_dma_cycles(self):
+        c = self.machine(); self.layer(c)
+        self.record(c, [10, 11, 12, 255], 3)
+        second_ot, second_org = OT + 0x20, ORG + 0x100
+        c.write(second_ot + 4, second_org)
+        c.write(second_ot + 8, 0)
+        c.write(second_org, 0xFFFFFF)
+        self.render(c, ot=OT)
+        self.render(c, ot=second_ot)
+        self.render(c, ot=OT)
+        head = c.read(ORG) & 0xFFFFFF
+        seen = set()
+        while head != 0xFFFFFF:
+            self.assertNotIn(head, seen, 'GPU linked list contains a cycle')
+            seen.add(head)
+            head = c.read(0x80000000 | head) & 0xFFFFFF
+
+    def test_multiple_visible_rows_form_a_complete_gpu_command_chain(self):
+        c = self.machine(); self.layer(c, height=5)
+        for row in range(5):
+            self.record(c, [10 + i for i in range(14)] + [255], 14,
+                        dst=INDEX + row * 80, source=SOURCE + row * 32)
+        self.render(c)
+        head = c.read(ORG) & 0xFFFFFF
+        visited = set()
+        sprites = 0
+        while head != 0xFFFFFF:
+            self.assertNotIn(head, visited, 'GPU linked list contains a cycle')
+            visited.add(head)
+            addr = 0x80000000 | head
+            tag = c.read(addr)
+            words = tag >> 24
+            if c.read(addr + 4) == 0xE100021E:
+                self.assertEqual(words, 1)
+            else:
+                self.assertIn(words, (4, 8, 12), 'a packet must fit the GPU FIFO')
+                for i in range(words // 4):
+                    self.assertEqual(c.read(addr + 4 + i * 16) >> 24, 0x64)
+                    self.assertEqual(c.read(addr + 16 + i * 16), 0x000C0008)
+                    sprites += 1
+            head = tag & 0xFFFFFF
+        self.assertEqual((len(visited), sprites), (1 + 24, 70))
+
     def test_alternating_frame_ots_preserve_two_live_packet_buffers(self):
         c = self.machine(); self.layer(c)
         self.record(c, [10, 11, 255], 2)
@@ -762,6 +841,7 @@ class BuiltSmallfont(unittest.TestCase):
         previous_base = previous_bytes = None
         for frame in range(8):
             ot = (OT, second_ot)[frame % 2]
+            c.write(0x800642E8, frame % 2, 2)
             c.write((ORG, second_org)[frame % 2], 0xFFFFFF)
             points = self.render(c, ot=ot)
             self.assertEqual(points, [(30 << 16) | 20, (30 << 16) | 24])
@@ -779,6 +859,7 @@ class BuiltSmallfont(unittest.TestCase):
         c.write(second_ot + 4, second_org)
         c.write(second_ot + 8, 0)
         for frame, (dx, dy) in enumerate(((0, 0), (0, 240), (-8, 240), (16, -12))):
+            c.write(0x800642E8, frame % 2, 2)
             c.write(0x8005E63C, dx, 2)
             c.write(0x8005E640, dy, 2)
             c.write((ORG, second_org)[frame % 2], 0xFFFFFF)
@@ -817,16 +898,17 @@ class BuiltSmallfont(unittest.TestCase):
         c = self.machine(); self.layer(c, height=10)
         index = 0x80112000
         c.write(MAP + 12, index)
-        # A full 40-cell map row is the widest row that fits the ring:
-        # tag + draw mode + 16 B/glyph. Rows 2..9 are visible in the
-        # default 30..150 viewport.
+        # A full 40-cell map row is the widest row that fits the ring. The
+        # pre-pass reserves 16 B/glyph plus n + ceil(n/2) for the sprite
+        # packets' tags, and 24 B per call for the draw mode and the guard.
+        # Rows 2..9 are visible in the default 30..150 viewport.
         for row in range(10):
             self.record(c, [10] * 40 + [255], 40, dst=index + row * 80,
                         source=SOURCE + row * 48)
         before = bytes(c.mem[c.offset(index):c.offset(index) + 10 * 80])
         points = self.render(c)
-        row_bytes = 8 + 16 * 40
-        fit = min(8, self.buf_size // row_bytes)
+        row_bytes = 16 * 40 + 40 + 20
+        fit = min(8, (self.buf_size - 24) // row_bytes)
         self.assertLess(fit, 8, 'the fixture must still exhaust the buffer')
         self.assertEqual(len(points), fit * 40)
         self.assertEqual(bytes(c.mem[c.offset(index):c.offset(index) + 10 * 80]), before)
@@ -848,6 +930,7 @@ class BuiltSmallfont(unittest.TestCase):
         second_ot = OT + 0x20
         c.write(second_ot + 4, ORG + 0x100)
         c.write(ORG + 0x100, 0xFFFFFF)
+        c.write(0x800642E8, 1, 2)
         self.assertEqual(self.render(c, ot=second_ot), [])
 
     def test_overwritten_row_cannot_revive_after_later_zero_clear(self):
@@ -913,7 +996,7 @@ class BuiltSmallfont(unittest.TestCase):
         c.write(end, 0x12345678)
         points = self.render(c)
         self.assertEqual(len(points),
-                         min(20, self.buf_size // (8 + 10 * 16)) * 10)
+                         min(20, (self.buf_size - 24) // (16 * 10 + 10 + 5)) * 10)
         self.assertEqual(c.read(end), 0x12345678)
 
     def test_tab_advances_to_next_row_relative_stop(self):

@@ -131,14 +131,21 @@ sf_cell_adv:
 ;; --- the slot-0x20 block retail kept at 0x800B2188, moved to the image tail ---
 ;; The grown name cells cover 0x800B2188..0x800B2194; this block's 0x10 bytes
 ;; (a 1x1 header and its one cell) are the only live data there. Its list at
-;; 0x800B2198 stays where retail put it and only its block word moves.
+;; 0x800B2198 stays where retail put it and only its block word moves. The
+;; block follows the small-font extension, wherever that ends, and both stay
+;; inside the image.
 .org ADV_MENU_TOP_LIST
-    .word   ADV_MENU_TOP_DEF
-.org ADV_MENU_TOP_DEF
+    .word   adv_menu_top_def
+.org sf_extension_end_adv
+adv_menu_top_def:
     .byte   1, 1                    ; cols, rows
     .halfword 0x0100                ; attr: retail's own
     .halfword 0x0060, 0x0090        ; w, h
     .byte   0x00, 0x68, 0x15, 0x00, 0x00, 0x00, 0xE6, 0x01   ; the retail cell
+adv_menu_top_def_end:
+.if adv_menu_top_def_end > ADV_IMAGE_LIMIT
+    .error "adv/bar: the slot-0x20 block runs past the ADV image limit"
+.endif
 
 ;; --- the status layout points slot 0x1E at the new list ---
 ;; The list is at 0x800BD224, across the 0x800B/0x800C halfword boundary, so

@@ -1186,11 +1186,12 @@ def verify():
                 f'complete glyph codes independently of the caller pixel budget.')
         # the CLUT banks: the record keeps the GLYPH (so the width table is
         # indexed by it) and the row's bank, and the walk divides once per
-        # row - li t3,SF_GLYPHS / divu v0,t3 / multu bank,SF_GLYPHS /
+        # row - save the absolute index / divide / subtract the remainder /
         # sltiu glyph,SF_GLYPHS for every later glyph.
         for word, what in ((0x340B00D7, 'li t3,SF_GLYPHS (the bank width)'),
                            (0x004B001B, 'divu v0,t3 (the row bank)'),
-                           (0x018B0019, 'multu bank,SF_GLYPHS (the bank base)'),
+                           (0x0040C821, 'save the absolute cell index'),
+                           (0x0322C823, 'subtract the glyph to get the bank base'),
                            (0x2C4B00D7, 'sltiu glyph,SF_GLYPHS (same bank)')):
             if word not in rec_words:
                 raise SystemExit(
@@ -1294,18 +1295,24 @@ def verify():
                 f'smallfont_vwf: verify: the {ovl} renderer at {hb:#x} lost the SPRT '
                 f'colour/command word (the 0x64000000 | b<<16 | g<<8 | r store). '
                 f'See vwf/smallfont.asm.')
-        # One packet per row starts with the tag and a shared draw mode. The
-        # tag's length is only known at the row's end: 1 draw mode + the
-        # sprite words walked so far, then the entry's old head.
-        ok = any(rwords[i] == 0xAD4B0000 and 0x000C6600 in rwords[max(0, i - 8):i]
+        # A row is a run of short packets: no linked-list node may exceed
+        # the GPU's 16-word FIFO. The first is the shared draw mode; a full
+        # sprite packet's tag names the next one, and the last tag (its
+        # length only known at the row's end) names the entry's old head.
+        ok = any(rwords[i] == 0xADCB0000 and 0x000C6580 in rwords[max(0, i - 8):i]
                  and 0xAD6C0000 in rwords[i:i + 4]
                  for i in range(len(rwords)))
         if not ok:
             raise SystemExit(
-                f'smallfont_vwf: verify: the {ovl} renderer at {hb:#x} lost the row '
-                f'packet tag (variable length, linked to the entry head). '
+                f'smallfont_vwf: verify: the {ovl} renderer at {hb:#x} lost the row\'s '
+                f'last packet tag (variable length, linked to the entry head). '
                 f'See vwf/smallfont.asm.')
-        if not (0x3C0AE100 in rwords and 0x354A0200 in rwords and 0xADCA0004 in rwords):
+        if not (0x3C0E8C00 in rwords and 0x254A0034 in rwords and 0xAE6EFFCC in rwords):
+            raise SystemExit(
+                f'smallfont_vwf: verify: the {ovl} renderer at {hb:#x} lost the '
+                f'three-sprite packet bound (a longer node overflows the GPU FIFO '
+                f'on hardware). See vwf/smallfont.asm.')
+        if not (0x3C0AE100 in rwords and 0x354A0200 in rwords and 0xAE6A0004 in rwords):
             raise SystemExit(
                 f'smallfont_vwf: verify: the {ovl} renderer at {hb:#x} lost the row '
                 f'packet\'s shared draw-mode word. See vwf/smallfont.asm.')

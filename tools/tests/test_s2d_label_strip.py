@@ -261,6 +261,21 @@ class S2DOneRowStrip(unittest.TestCase):
     # the map label: 8 cells, beside another label's strip
     # -------------------------------------------------------------
 
+    def test_quad_uv_right_edge_never_wraps_texture_page(self):
+        # Execute the installed draw hooks, including their return to retail.
+        # All cell-aligned U values retain their usual endpoint except 240,
+        # whose exclusive endpoint cannot be represented by the GPU packet.
+        for hook, resume, offset in ((0x8009AC4C, 0x8009AC54, 0x38),
+                                     (0x8009AC84, 0x8009AC8C, 0x48)):
+            for u in range(0, 256, 16):
+                with self.subTest(hook=hex(hook), u=u):
+                    c = self.machine()
+                    c.r[REG['s1']] = LABEL_OBJ
+                    c.r[REG['v0']] = u
+                    c.start(hook)
+                    c.run(resume, limit=100)
+                    self.assertEqual(c.read(LABEL_OBJ + offset, 1), min(u + 16, 255))
+
     def test_label_strip_is_rebuilt_for_a_shorter_string(self):
         c = self.machine()
         v = Vram()

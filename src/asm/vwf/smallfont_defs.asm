@@ -9,7 +9,7 @@
 ;; GPU path: the overlay's writer hook RECORDS the row, and the resident
 ;; sf_sort hooks - hung on the two libgs background sorters - clear the
 ;; recorded cells immediately before the retail sorter walks that map,
-;; then re-emit each recorded row as one sprite packet at its
+;; then re-emit each recorded row as short sprite packets at its
 ;; pen offset, with u/v/clut/tpage read from the same cell table the
 ;; retail renderer uses. Pixels come from the font page in VRAM;
 ;; nothing composites on the CPU and no glyph bitmaps are stored.
@@ -81,8 +81,8 @@ SF_CFG_END         equ 0x20
 ;; stale id or cursor behind. The resident registration words hold the
 ;; live overlay's renderer entry (sf_hook_bg / sf_hook_fastbg).
 SF_ST_ID           equ 0x00                ; the overlay slot id at registration
-SF_ST_LAST_OT      equ 0x04                ; the ot the current buffer belongs to
-SF_ST_CUR_BUF      equ 0x08                ; 0/1 - toggles when the ot changes
+SF_ST_LAST_OT      equ 0x04                ; active framebuffer + 1; zero = uninitialized
+SF_ST_CUR_BUF      equ 0x08                ; active framebuffer (0/1)
 SF_ST_BUF_PTR      equ 0x0C                ; absolute write cursor; 0 = start
 SF_ST_DIAG_HN      equ 0x10                ; diag: hook entries
 SF_ST_DIAG_HA      equ 0x14                ; diag: last call's bg / ot / pri
@@ -129,8 +129,8 @@ SF_TABLE_SIZE      equ SF_ROWS * SF_ROW_REC
 .endif
 
 ;; per-frame GPU packet buffers (per overlay, double-buffered with the
-;; game's g_ot[2]; one packet per row: tag + shared draw mode + 4 words per
-;; visible glyph)
+;; game's g_ot[2]; a sorter call's rows are one draw-mode packet chained to
+;; packets of SF_NODE_SPRITES glyphs, 4 words per visible glyph)
 SF_BUF_SIZE        equ 0x1200              ; complete visible rows only; overflow retains retail text
 SF_BUFS            equ 2
 
@@ -193,11 +193,25 @@ SF_TPAGE          equ 0x1E                ; the font page: VRAM halfword x 896, 
 
 ;; renderer internals (vwf/sf_font.asm + the overlay renderer)
 SF_OT_ENTRY        equ 0x00                ; libgs OT entry: (num<<24) | (addr & 0xFFFFFF)
-SF_PACKET_HEAD     equ 8                   ; a row packet's tag + one shared draw mode
+SF_PACKET_HEAD     equ 8                   ; a call's draw-mode packet: tag + one shared mode
 SF_SPRITE_BYTES    equ 16                  ; four GP0 words per glyph after the header
+;; The GPU's command FIFO holds 16 words and linked-list DMA does not pause
+;; inside a node, so no packet may carry more than that after its tag (libgpu's
+;; own primitives stop at 15, DR_ENV). A sprite packet is a tag and SF_NODE_SPRITES
+;; sprites.
+SF_NODE_SPRITES    equ 3
+SF_CALL_OVERHEAD   equ 24                  ; reserved per call: the draw-mode packet, a
+                                           ; small run's tag rounding, and the emit guard's
+                                           ; 28-byte check before its last 16-byte sprite
 SF_SPRT_CODE       equ 0x64                ; textured, opaque; transparency comes from the CLUT's STP
 
 .if SF_PACKET_HEAD + SF_SPRITE_BYTES != 24
-    .error "smallfont_defs: the capacity guard checks 24 bytes before a row's first sprite"
+    .error "smallfont_defs: the packet layout assumes an 8-byte head and 16-byte sprites"
+.endif
+.if SF_NODE_SPRITES * (SF_SPRITE_BYTES / 4) > 12
+    .error "smallfont_defs: a row packet must fit the GPU's 16-word FIFO"
+.endif
+.if SF_NODE_SPRITES < 2
+    .error "smallfont_defs: the pre-pass reserves 2 bytes per sprite for later tags (4 per SF_NODE_SPRITES)"
 .endif
 SF_DR_TPAGE        equ 0xE1000200          ; draw-mode word, low bits = the cell's tpage

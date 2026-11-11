@@ -216,7 +216,7 @@ ADV_SF_CENTER_END equ 0x800AAE5C
 ;; name header at 0x800B210C, whose cells grow from ten to sixteen over the
 ;; retail cel list at 0x800B2164 (the list moves to the sysmsg gap at
 ;; ADV_BAR_LIST) and over the 1x1 slot-0x20 block at 0x800B2188 (moved to the
-;; image tail at ADV_MENU_TOP_DEF). g_fm_mark_pos at 0x800B209C - the status
+;; image tail after the small-font extension, adv/bar.asm). g_fm_mark_pos at 0x800B209C - the status
 ;; screen's five member-marker positions - is retail data read by every
 ;; marker site and is never written by the bar.
 SF_BAR_MARK        equ 0x5342              ; the cel-entry pad halfword that marks a VWF row
@@ -228,10 +228,8 @@ ADV_BAR_ARCANA_BLOCK equ 0x800B20B4        ; retail header: cols 10, rows 1, w 8
 ADV_BAR_CELLS      equ 0x800B20BC          ; retail: the 10 arcana cells (ends 0x800B210C)
 ADV_BAR_NAME_BLOCK equ 0x800B210C          ; retail name header, rewritten to cols 16
 ADV_BAR_NAME_CELLS equ 0x800B2114          ; the 16 name cells (ends 0x800B2194)
-ADV_MENU_TOP_DEF   equ 0x800BFBA4          ; the 1x1 slot-0x20 block, moved off the name cells
-ADV_MENU_TOP_DEF_END equ 0x800BFBB4
 ADV_MENU_TOP_LIST  equ 0x800B2198          ; slot 0x20's cel list (retail home); its block word
-                                           ; is repointed at ADV_MENU_TOP_DEF
+                                           ; is repointed at the image tail (adv/bar.asm)
 ADV_BAR_HOOK       equ 0x800BD1F4          ; sf_cell_adv, 48 bytes (sysmsg's ceiling moved for it)
 ADV_BAR_HOOK_END   equ 0x800BD224
 ADV_CELLS_ROW      equ 0x8008F730          ; CellsWriteRow, rewritten in place (cells_row.asm)

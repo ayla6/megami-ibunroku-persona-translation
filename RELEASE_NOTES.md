@@ -1,3 +1,9 @@
+# 2026-11-11-2
+- Fixed the game freezing on real hardware and accurate emulators when a menu with VWF small text (like the item list) is drawn. The text was sent to the GPU in chunks too big for it, which only some emulators (like DuckStation) tolerated.
+- Fixed another possible freeze with VWF small text when a screen draws it in more than one layer, where new text could overwrite text the GPU was still about to draw.
+- Fixed two spots in the VWF small text code that could miscalculate on real hardware if an interrupt landed at the wrong moment.
+- Fixed some place names on the map looking squashed, with a compressed extra copy of the label drawn beside them.
+
 # 2026-11-11
 - Fixed the text in the location tooltip repeating itself at the edge of the screen.
 

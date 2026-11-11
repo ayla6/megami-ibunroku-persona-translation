@@ -26,7 +26,8 @@
 ;;   * registers the shared state with the resident stubs under the
 ;;     overlay slot's own id word, and tags the record with that id.
 ;; The RENDERER (part 2, entered from the stubs) runs after the real
-;; sorter and chains one textured-sprite packet per row onto the layer's
+;; sorter and chains the rows' textured sprites, in GPU-FIFO-sized
+;; packets (SF_NODE_SPRITES per linked-list node), onto the layer's
 ;; own OT entry - u/v/clut/tpage copied from the map's cell table,
 ;; pixels straight from the font page in VRAM. A row whose blanks
 ;; someone rewrote, or that another overlay wrote, is dropped; a
@@ -330,15 +331,15 @@ sf_record:
     ;; bank, because a run that crosses one mixes CLUTs in a row.
     bnez    t7, @@same_bank
     nop
+    move    t9, v0                      ; retain the absolute cell index
     divu    v0, t3
     nop
     nop
     mflo    t4                          ; the row's bank
     mfhi    v0                          ; the glyph
-    multu   t4, t3
-    nop                                 ; the multiplier's result latency
+    subu    t9, t9, v0                  ; bank start = index - remainder
     b       @@bank_ok
-    mflo    t9                          ; the bank's first cell
+    nop
 @@same_bank:
     subu    v0, v0, t9                  ; the glyph within the row's bank
     sltiu   t3, v0, SF_GLYPHS
@@ -617,9 +618,10 @@ sf_record_end:
 ;; stubs; a0/a1/a2 = GsBG*, GsOT*, pri. The state is the kit's one
 ;; own state block (sf_state_<ovl>, in the extension data below); the config is this
 ;; overlay's own (sf_cfg_<ovl>, naming the resident tables).
-;; Frame map: +00 walk ptr +04 row packet start +08 old entry value
+;; Frame map: +00 walk ptr / budget +04 first packet +08 reserve scratch
 ;;   +0C entry addr +10 map index +14 kit-live flag +18 row x base
-;;   +1C row y base +20 advance table +24 map cell count +28 thunk / row y<<16
+;;   +1C row y base +20 advance table +24 map cell count / open packet's tag
+;;   +28 thunk / old entry value
 ;;   +2C recorded condensed tier (reservation and emission)
 ;;   +30..+3C viewport bounds +40..+4C clipped glyph geometry
 ;;   +50 map height +54 normalized y scroll +5C..+6C s3/s2/s1/s0/ra
@@ -800,14 +802,16 @@ sf_hook:
     sw      t3, 0x0C(sp)                ; itself chains this layer's packets
 
     ;; ---- select and bound this frame's packet storage ----
-    lw      t1, SF_ST_LAST_OT(t9)
+    ;; GsGetActiveBuff reads this resident halfword. Several ordering tables
+    ;; can be sorted into the same frame: changing OT is not a frame boundary
+    ;; and must not reuse a packet that is still linked from an earlier OT.
+    lui     t1, 0x8006
+    lhu     t1, 0x42E8(t1)
+    lw      t0, SF_ST_LAST_OT(t9)
+    addiu   t2, t1, 1                   ; zero state means uninitialized
+    beq     t0, t2, @@same_ot
     nop
-    beq     t1, s1, @@same_ot
-    nop
-    sw      s1, SF_ST_LAST_OT(t9)
-    lw      t1, SF_ST_CUR_BUF(t9)
-    nop
-    xori    t1, t1, 1
+    sw      t2, SF_ST_LAST_OT(t9)
     sw      t1, SF_ST_CUR_BUF(t9)
     sw      zero, SF_ST_BUF_PTR(t9)
 @@same_ot:
@@ -828,6 +832,7 @@ sf_hook:
 
     sw      t0, 0x04(sp)                ; retain buffer end across the retail sorter
     subu    t6, t0, s3
+    addiu   t6, t6, -SF_CALL_OVERHEAD   ; the draw-mode packet and the emit guard
     sw      t6, 0x00(sp)                ; bytes available for complete row reservations
     la      t2, sf_cfg                  ; buffer selection uses temporary registers
 
@@ -952,10 +957,14 @@ sf_hook:
     bltz    v0, @@blank_invalid
     nop
     beqz    v1, @@blank_next             ; hidden rows leave capacity and the map untouched
-    addiu   t2, v1, SF_PACKET_HEAD       ; plus the row's tag and shared draw mode
+    srl     t2, v1, 4                    ; (delay) the packets' tags: 4 B per
+    addiu   t4, v1, SF_SPRITE_BYTES      ; SF_NODE_SPRITES sprites, reserved as
+    srl     t4, t4, 5                    ; n + ceil(n / 2) bytes per row of n
+    addu    t2, t2, t4
+    addu    t2, t2, v1                   ; plus 16 B per sprite
     lw      t6, 0x00(sp)
     nop
-    sltu    v0, t6, t2
+    slt     v0, t6, t2                  ; signed: the call margin may exceed the room
     bnez    v0, @@blank_next            ; leave the complete retail row visible
     subu    t6, t6, t2
     sw      t6, 0x00(sp)
@@ -1001,7 +1010,11 @@ sf_hook:
     nop
 
     lw      t0, 0x04(sp)                ; buffer end; s3 is callee-saved
+    lw      t3, 0x0C(sp)
+    sw      zero, 0x04(sp)              ; this call's first packet (0 = none)
+    lw      t2, 0(t3)                   ; the OT entry's value before us
     nop
+    sw      t2, 0x28(sp)                ; (sf_row_reserve spends +08)
 
     ;; ---- what the pre-pass kept for us ----
     lw      a2, 0x14(s0)                ; bg->map
@@ -1045,8 +1058,6 @@ sf_hook:
     addu    t2, t2, t8
 @@emit_y_ready:
     sw      t2, 0x4C(sp)
-    sll     t2, t2, 16                  ; y to the high half
-    sw      t2, 0x28(sp)                ; the row's y<<16 for every sprite
     li      t8, SF_GLYPHS               ; a bank's cell count
     multu   t3, t8                      ; the row's first cell = bank * SF_GLYPHS
     sll     t1, t4, 3                   ; (delay) col * 8
@@ -1087,15 +1098,13 @@ sf_hook:
     bnez    t6, @@restore_cells
     addiu   a0, a0, 2
 
-    ;; ---- emit: one packet per row, one shared draw mode, 4 words/glyph ----
+    ;; ---- emit: 4 words/glyph, SF_NODE_SPRITES glyphs per packet ----
+    ;; A linked-list node longer than the GPU's 16-word command FIFO is
+    ;; drawn only by emulators that ignore the FIFO: hardware drops the
+    ;; overflow and the command stream never recovers. The call's rows are
+    ;; therefore one run of short packets chained in pen and row order: the
+    ;; one draw mode every glyph shares, then SF_NODE_SPRITES sprites each.
     sw      t5, 0x00(sp)                ; the record pointer (emit clobbers t5)
-    li      t2, 0
-    sw      t2, 0x04(sp)                ; this row's packet start (0 = none)
-    lw      t3, 0x0C(sp)
-    nop
-    lw      t2, 0(t3)                   ; the OT entry's value before us
-    nop
-    sw      t2, 0x08(sp)
     addiu   t3, t5, SF_REC_CODES        ; the record's codes
 @@glyph:
     lbu     v0, 0(t3)
@@ -1126,13 +1135,8 @@ sf_hook:
     slt     t6, t2, s2                  ; signed screen coordinates, including scroll
     beqz    t6, @@row_end               ; no: the row ends here
     nop
-    lw      t6, 0x04(sp)                ; is this row's packet already open?
-    nop
-    sltiu   t6, t6, 1                   ; 1 until the first sprite opens it
-    sll     t6, t6, 3                   ; then its 8-byte header is still owed
-    addiu   t6, t6, SF_SPRITE_BYTES
-    addu    t6, s3, t6
-    sltu    t6, t0, t6
+    addiu   t6, s3, SF_PACKET_HEAD + 4 + SF_SPRITE_BYTES  ; a sprite and the
+    sltu    t6, t0, t6                  ; most header any sprite can owe before it
     bnez    t6, @@row_end               ; the buffer is full: stop the row
     nop
     addu    v1, v1, a2
@@ -1147,21 +1151,34 @@ sf_hook:
     nop
     beqz    v0, @@have_first
     nop
-    ;; Open the row's packet on its first visible glyph: the tag is written
-    ;; once the row ends (its length is only known then), so reserve it and
-    ;; the one draw mode every glyph in this row shares. Every cell of the
-    ;; atlas is on the same texture page; the row's bank only changes CLUTs.
+    ;; Open the run on the call's first visible glyph with the one draw mode
+    ;; every glyph shares: every cell of the atlas is on the same texture
+    ;; page, and a row's bank only changes CLUTs. A sprite packet's tag is
+    ;; written when it closes; a full one names the packet that follows it.
+    ;; Both tags add the length byte less KSEG0's bit to a buffer address.
     lw      t6, 0x04(sp)
-    nop
-    bnez    t6, @@packet_open
-    nop
-    move    t6, s3
-    sw      t6, 0x04(sp)                ; this row's packet start
+    lw      t2, 0x24(sp)                ; the open sprite packet's tag
+    bnez    t6, @@row_open
+    lui     t6, 0x8000 | (SF_NODE_SPRITES * SF_SPRITE_BYTES / 4 << 8)
+    sw      s3, 0x04(sp)                ; this call's first packet
+    lui     t2, 0x8100
+    addiu   t2, t2, SF_PACKET_HEAD
+    addu    t2, t2, s3
+    sw      t2, 0(s3)                   ; one word, then the first sprite packet
     lui     t2, 0xE100
     ori     t2, t2, 0x0200
     or      t2, t2, v1                  ; draw mode, this page
-    sw      t2, 4(t6)
+    sw      t2, 4(s3)
+    b       @@new_packet
     addiu   s3, s3, SF_PACKET_HEAD
+@@row_open:
+    addiu   t2, t2, 4 + SF_NODE_SPRITES * SF_SPRITE_BYTES
+    bne     s3, t2, @@packet_open
+    addu    t6, t6, s3                  ; (delay) a full packet's tag -> here
+    sw      t6, -(4 + SF_NODE_SPRITES * SF_SPRITE_BYTES)(s3)
+@@new_packet:
+    sw      s3, 0x24(sp)
+    addiu   s3, s3, 4
 @@packet_open:
     ;; the SPRT word: code<<24 | b<<16 | g<<8 | r. The code must be in
     ;; the high byte (the GPU command); the low 24 bits are the layer's
@@ -1200,33 +1217,32 @@ sf_hook:
     b       @@have_first
     li      t4, 1
 @@row_end:
-    lw      t2, 0x04(sp)
-    nop
-    beqz    t2, @@no_row                ; nothing was emitted
-    nop
-    ;; The tag's length is 1 draw mode + 4 sprite words each, now that the
-    ;; row's sprite count is known; its next pointer is the entry's old
-    ;; head (the entry's own value has length 0 - copy only its address).
-    subu    t4, s3, t2
-    addiu   t4, t4, -SF_PACKET_HEAD
-    srl     t4, t4, 2                   ; sprite words
-    addiu   t4, t4, 1                   ; words after the tag
-    sll     t4, t4, 24                  ; the tag's length byte
-    lw      t3, 0x08(sp)
-    li      t5, 0x00FFFFFF
-    and     t3, t3, t5
-    or      t3, t3, t4
-    sw      t3, 0(t2)                   ; tag -> the old head
-    lw      t3, 0x0C(sp)
-    and     t4, t2, t5
-    sw      t4, 0(t3)                   ; the entry -> this row's packet
-@@no_row:
     lw      t5, 0x00(sp)
     nop
 @@rec_next:
     addiu   a3, a3, -1
     bnez    a3, @@rec
     addiu   t5, t5, SF_ROW_REC
+    lw      t2, 0x04(sp)
+    nop
+    beqz    t2, @@no_run                ; nothing was emitted
+    nop
+    ;; Close the run's last packet (never empty: a packet opens only for a
+    ;; sprite). Its next pointer is the entry's old head (the entry's own
+    ;; value has length 0 - copy only its address).
+    lw      t6, 0x24(sp)
+    lw      t3, 0x28(sp)
+    subu    t4, s3, t6
+    addiu   t4, t4, -4                  ; bytes after the tag
+    sll     t4, t4, 22                  ; words << 24: the tag's length byte
+    li      t5, 0x00FFFFFF
+    and     t3, t3, t5
+    or      t3, t3, t4
+    sw      t3, 0(t6)                   ; last tag -> the old head
+    lw      t3, 0x0C(sp)
+    and     t4, t2, t5
+    sw      t4, 0(t3)                   ; the entry -> the run's draw mode
+@@no_run:
     sw      s3, SF_ST_BUF_PTR(t9)       ; the frame's cursor, for the next layer
 @@out:
     lw      ra, 0x6C(sp)

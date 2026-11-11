@@ -46,7 +46,6 @@ ADV_ARCANA_BLOCK = 0x800B20B4
 ADV_CELLS = 0x800B20BC
 ADV_NAME_BLOCK = 0x800B210C
 ADV_NAME_CELLS = 0x800B2114
-ADV_MENU_TOP_DEF = 0x800BFBA4                # the 1x1 slot-0x20 block, moved to the tail
 ADV_MENU_TOP_LIST = 0x800B2198               # slot 0x20's list, retail home
 ADV_MARK_POS = 0x800B209C                    # g_fm_mark_pos, retail home
 ADV_SLOT_INIT = 0x8006FB08
@@ -227,8 +226,9 @@ class BarVWF(unittest.TestCase):
         # the grown name cells cover the 1x1 slot-0x20 block retail kept at
         # 0x800B2188: its 0x10 bytes move to the image tail and its list word
         # is repointed; the list itself stays at 0x800B2198
-        self.assertEqual(self.word(self.adv, ADV_MENU_TOP_LIST), ADV_MENU_TOP_DEF)
-        self.assertEqual(self.adv[ADV_MENU_TOP_DEF - OVERLAY_BASE:ADV_MENU_TOP_DEF - OVERLAY_BASE + 0x10],
+        top_def = self.word(self.adv, ADV_MENU_TOP_LIST)
+        self.assertLessEqual(top_def + 0x10 - OVERLAY_BASE, len(self.adv))
+        self.assertEqual(self.adv[top_def - OVERLAY_BASE:top_def - OVERLAY_BASE + 0x10],
                          self.retail_adv[0x800B2188 - OVERLAY_BASE:0x800B2188 - OVERLAY_BASE + 0x10])
         # the slot layout points slot 0x1E at the list (lui 0x800B + ori 0xD224)
         self.assertEqual(self.word(self.adv, ADV_SLOT_INIT - 4), 0x3C04800B)
