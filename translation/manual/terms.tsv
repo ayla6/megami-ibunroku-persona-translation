@@ -139,14 +139,14 @@ cfgtext	0x800b9748	AUTOMAP
 cfgtext	0x800b9754	DEVIL ANALYZE	
 cfgtext	0x800b9764	OK/TALK/OPEN	
 cfgtext	0x800b9774	PLAYER LIST	
-cfgtext	0x800b9780	ONLINE HELP	
+cfgtext	0x800b9780	DESCRIPTION	
 cfgtext	0x800b978c	ENEMIES	
 cfgtext	0x800b9794	CONTROLS	
 cfgtext	0x800b97a0	BATTLE CFG	
 cfgtext	0x800b97ac	SIDESTEP R	
 cfgtext	0x800b97b8	SIDESTEP L	
-cfgtext	0x800b97c4	 AREA NAME	
-cfgtext	0x800b97d0	 NO WIN	
+cfgtext	0x800b97c4	AREA NAME	
+cfgtext	0x800b97d0	NO WIN	
 cfgtext	0x800b97d8	ANGLE	
 cfgtext	0x800b97e0	FULL MAP	
 cfgtext	0x800b9cf8	SETTINGS	
