@@ -1,3 +1,6 @@
+# 2026-11-11
+- Fixed the text in the location tooltip repeating itself at the edge of the screen.
+
 # 2026-11-10-3
 - Fixed missing line and fixed the porting of another two.
 
