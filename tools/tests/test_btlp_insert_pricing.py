@@ -67,13 +67,16 @@ class BattleInsertPricing(unittest.TestCase):
     def test_shipped_battle_rows_fit_with_the_new_pricing(self):
         import re
         import toolbelt
+        checked = 0
         for row in toolbelt.merged_rows('BTLP'):
             text = (row.get('en') or '').strip()
             if not text:
                 continue
+            checked += 1
             for line in re.split(r'<FFF6>|<FFFB><FFF7>|<FF03>|<FF04>|<FFEF>', text):
                 with self.subTest(pos=row['pos'], line=line):
                     self.assertLessEqual(vwf_wrap.text_width(line), 239)
+        self.assertGreater(checked, 0, 'no translated battle rows were checked')
 
 
 if __name__ == '__main__':

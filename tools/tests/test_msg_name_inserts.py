@@ -108,7 +108,7 @@ class MessageNameInserts(unittest.TestCase):
             if match:
                 cls.sym[match[2]] = int(match[1], 16)
         if 'sf_msg_item_s2d' not in cls.sym:
-            raise unittest.SkipTest('build predates the message-name stubs')
+            raise AssertionError('assembled symbols missing message-name stubs')
         cls.overlays = {'adv': paths[0].read_bytes(), 'dng': paths[1].read_bytes(),
                         's2d': paths[2].read_bytes()}
         cls.exe = paths[3].read_bytes()

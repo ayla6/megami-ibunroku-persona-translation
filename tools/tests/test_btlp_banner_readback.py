@@ -32,7 +32,9 @@ class BannerReadback(unittest.TestCase):
         self.fail(f'banner pointer {address:#x} is not in an assembled owner')
 
     def test_every_pointer_reads_exact_canonical_wording_and_terminator(self):
-        for index, original, japanese in btlp.ban_records(self.original):
+        records = list(btlp.ban_records(self.original))
+        self.assertTrue(records, 'no action banner records were found')
+        for index, original, japanese in records:
             with self.subTest(index=index, japanese=japanese):
                 row = self.rows.get(hex(original - btlp.B), {})
                 text = (row.get('en') or '').strip()

@@ -136,7 +136,7 @@ class S2DOneRowStrip(unittest.TestCase):
                     'vwf_font_index', 'vwf_font_width', 'vwf_dlg_ring')
         missing = [name for name in required if name not in cls.sym]
         if missing:
-            raise unittest.SkipTest('build predates the 1-row path: ' + ', '.join(missing))
+            raise AssertionError('assembled symbols missing the 1-row path: ' + ', '.join(missing))
 
     # -------------------------------------------------------------
     # machine and object setup
@@ -306,6 +306,20 @@ class S2DOneRowStrip(unittest.TestCase):
         self.draw(c, v, BANNER_OBJ, codes)
         v.complete(c)
         self.assertEqual(v.nibbles(0x1C0, 0x100, 240), self.reference(c, codes, 240))
+
+    def test_deferred_banner_ring_wrap_and_restart(self):
+        c, v = self.machine(), DeferredVram()
+        widest, small = self.codes(c)
+        self.text_object(c, BANNER_OBJ, 15, 0x1C0, 0x100)
+        long_codes = [widest] * 30
+        self.draw(c, v, BANNER_OBJ, long_codes)
+        v.complete(c)
+        self.assertEqual(v.nibbles(0x1C0, 0x100, 240), self.reference(c, long_codes, 240))
+        self.recreate(c, BANNER_OBJ)
+        short_codes = [small] * 4
+        self.draw(c, v, BANNER_OBJ, short_codes)
+        v.complete(c)
+        self.assertEqual(v.nibbles(0x1C0, 0x100, 240), self.reference(c, short_codes, 240))
 
     def test_banner_strip_is_rebuilt_and_stays_inside_15_cells(self):
         c = self.machine()

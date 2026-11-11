@@ -79,7 +79,9 @@ class RewardNotice(unittest.TestCase):
         data = built.read_bytes()
         references = btlmsg.refs(btlmsg.data())
         generated = {r['pos']: r for r in toolbelt.merged_rows('BTLP')}
-        for pos, _ja, _source in rn.derive():
+        notices = rn.derive()
+        self.assertTrue(notices, 'no reward notices were derived')
+        for pos, _ja, _source in notices:
             expected = etext.encode(btlp.msg_script(generated[pos]['en']), end=btlp.END)
             found = references.get(btlp.B + int(pos, 16), [])
             self.assertTrue(found, pos)

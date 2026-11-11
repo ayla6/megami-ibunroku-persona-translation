@@ -63,7 +63,9 @@ class Manifest(unittest.TestCase):
             self.assertTrue(owner.strip())
 
     def test_reviewed_images_exist_in_the_retail_tree(self):
-        for image, _start, _end, _owner in rows():
+        reviewed = rows()
+        self.assertTrue(reviewed, 'no protected regions to check')
+        for image, _start, _end, _owner in reviewed:
             matches = list(PSX.rglob(image))
             self.assertEqual(len(matches), 1, f'{image}: expected one retail image')
 

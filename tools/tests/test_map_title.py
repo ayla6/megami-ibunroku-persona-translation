@@ -52,7 +52,7 @@ class BuiltMapTitle(unittest.TestCase):
             if m:
                 cls.sym[m[2]] = int(m[1], 16)
         if 'dng_title_idx' not in cls.sym:
-            raise unittest.SkipTest('build predates map-title hook')
+            raise AssertionError('assembled symbols missing map-title hook')
         idx, blob = cls.sym['dng_title_idx'], cls.sym['dng_title_blob']
         count, rem = divmod(blob - idx, 24)
         if rem or not count:

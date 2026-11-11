@@ -452,9 +452,17 @@ class SavePatch(unittest.TestCase):
         cpu.load(0x801E0000, font)
         panels = [bytearray(160 * 192), bytearray(160 * 192)]
         uploads = []
+        pending = []
+        syncs = []
 
         def intercept(c):
             if c.pc == 0x8008A834:
+                self.assertEqual(c.r[4], 0, 'DrawSync must wait for completion')
+                syncs.append(len(uploads))
+                for x, y, w, h, source in pending:
+                    raw = bytes(c.mem[c.offset(source):c.offset(source) + w * h * 2])
+                    panels[(x - 832) // 80][(y - 256) * 160:(y - 256 + h) * 160] = raw
+                pending.clear()
                 c.start(c.r[31])
                 return True
             if c.pc != 0x8008AA5C:
@@ -466,8 +474,7 @@ class SavePatch(unittest.TestCase):
                 self.assertEqual(w, 80)
                 self.assertTrue(256 <= y < 448)
                 self.assertLess(c.r[5] + w * h * 2, 0x801E0000)
-                raw = bytes(c.mem[c.offset(c.r[5]):c.offset(c.r[5]) + w * h * 2])
-                panels[(x - 832) // 80][(y - 256) * 160:(y - 256 + h) * 160] = raw
+                pending.append((x, y, w, h, c.r[5]))
             else:
                 self.assertIn((x, y, w, h), ((288, 480, 32, 1), (320, 480, 16, 1)))
             c.start(c.r[31])
@@ -476,6 +483,8 @@ class SavePatch(unittest.TestCase):
         cpu.start(self.address('qol_o_upload'))
         cpu.run(0x80001000, intercept=intercept)
         self.assertEqual(len(uploads), 34)
+        self.assertEqual(syncs, [34], 'all uploads must complete before return')
+        self.assertFalse(pending)
         pixels, _ = save_ui.panel_pixels()
         for col in range(2):
             expected = bytes(pixels[y * 320 + col * 160 + x] for y in range(192) for x in range(160))

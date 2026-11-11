@@ -45,7 +45,7 @@ class BuiltPauseTitle(unittest.TestCase):
                     'dng_title_idx', 'dng_title_blob', 'vwf_font_index', 'vwf_font_width')
         missing = [name for name in required if name not in cls.sym]
         if missing:
-            raise unittest.SkipTest('build predates pause-title hook: ' + ', '.join(missing))
+            raise AssertionError('assembled symbols missing pause-title hook: ' + ', '.join(missing))
         count, rem = divmod(cls.sym['dng_title_blob'] - cls.sym['dng_title_idx'], 24)
         if rem or not count:
             raise AssertionError('invalid title table bounds')

@@ -88,7 +88,7 @@ class TitleReadbackGate(unittest.TestCase):
         cls.sym = {m[2]: int(m[1],16) for line in cls.symtext.splitlines()
                    if (m := re.fullmatch(r'([0-9a-fA-F]{8}) (\w+)', line))}
         if 'dng_field_title_pixels' not in cls.sym:
-            raise unittest.SkipTest('requires assembled field-title hook')
+            raise AssertionError('assembled symbols missing field-title hook')
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()

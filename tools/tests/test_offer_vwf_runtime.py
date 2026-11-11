@@ -34,6 +34,9 @@ class OfferVwf(unittest.TestCase):
             [p.read_bytes() for p in paths]
         cls.retail = btlmsg.data()
         cls.names = personality_source.read()
+        cls.demon_rows = name_tails.demon_rows()
+        if not cls.names or not cls.demon_rows:
+            raise AssertionError('source-derived offer names must not be empty')
         cls.codes = [bytes(smallfont_vwf.char_code(c) for c in name) for name in cls.names]
 
     def machine(self, retail=False):
@@ -122,7 +125,7 @@ class OfferVwf(unittest.TestCase):
         dest = toolbelt.asm_equ('BTLP_STOCK_FULL_ADDR')
         record_base, id_cell, rows = 0x800417a0, 0x801f0000, 0x801f0100
         row = 0x801f0200
-        for ident, name in name_tails.demon_rows():
+        for ident, name in self.demon_rows:
             encoded = items.encode(name)
             head = encoded[:10]
             if len(head) < 10:
@@ -150,7 +153,7 @@ class OfferVwf(unittest.TestCase):
         dest = 0x801f1000
         base = toolbelt.asm_equ('DEMON_NAME_BASE')
         stride = toolbelt.asm_equ('DEMON_NAME_STRIDE')
-        for ident, name in name_tails.demon_rows():
+        for ident, name in self.demon_rows:
             with self.subTest(ident=ident):
                 expected = etext.encode(name, end=None) + b'\xff'
                 c.load(dest, b'\xa5' * 24)
@@ -208,7 +211,7 @@ class OfferVwf(unittest.TestCase):
     def test_complete_source_demon_names_reach_offer_row(self):
         c = self.machine()
         offer, scratch = 0x800eb23c, 0x8002bc84
-        for ident, name in name_tails.demon_rows():
+        for ident, name in self.demon_rows:
             encoded = items.encode(name)
             c.load(scratch, bytes(48))
             c.write(offer + 0x30, ident, 1)
@@ -225,7 +228,7 @@ class OfferVwf(unittest.TestCase):
         race = 17
         prefix = btlui.sf(btlui.psp_races()[race - 1]) + b'\xcb'
         self.assertEqual(c.read(0x800dea58, 1), 24)
-        for ident, name in name_tails.demon_rows():
+        for ident, name in self.demon_rows:
             encoded = items.encode(name)
             c.load(actor, bytes(0x200))
             c.write(actor + 0x3e, ident, 1)

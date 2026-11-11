@@ -66,7 +66,7 @@ class DungeonFieldInserts(unittest.TestCase):
             if match:
                 cls.sym[match[2]] = int(match[1], 16)
         if 'dng_item_name' not in cls.sym:
-            raise unittest.SkipTest('build predates the field-script name stubs')
+            raise AssertionError('assembled symbols missing field-script name stubs')
         cls.rows = {'item': name_tails.item_rows(),
                     'demon': name_tails.demon_rows()}
 

@@ -61,7 +61,9 @@ class PickupName(unittest.TestCase):
                          self.retail[0x800b5a28 - BASE:0x800b5a44 - BASE])
         regular = dict(zip(smallfont_variants.editable_codes(),
                            smallfont_variants.cell_codes()[0]))
-        for ident, name in name_tails.item_rows():
+        item_rows = name_tails.item_rows()
+        self.assertTrue(item_rows, 'no source-derived item names')
+        for ident, name in item_rows:
             with self.subTest(ident=ident):
                 glyphs = items.encode(name)
                 self.assertLessEqual(len(glyphs), COUNT)

@@ -26,6 +26,10 @@ LIST_STRIDE = 21
 class BattleFullNames(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        cls.item_rows = name_tails.item_rows()
+        cls.demon_rows = name_tails.demon_rows()
+        if not cls.item_rows or not cls.demon_rows:
+            raise AssertionError('source-derived item and demon names must not be empty')
         cls.symbols = {}
         for line in (ROOT / 'build/persona.sym').read_text().splitlines():
             match = re.fullmatch(r'([0-9A-Fa-f]{8}) (\w+)', line)
@@ -58,13 +62,13 @@ class BattleFullNames(unittest.TestCase):
 
     def test_every_item_record(self):
         c = self.machine()
-        for ident, text in name_tails.item_rows():
+        for ident, text in self.item_rows:
             with self.subTest(ident=ident):
                 self.assertEqual(self.copy(c, ITEM_NAME + ident * 32), etext.encode(text, end=None))
 
     def test_every_offer_name(self):
         c = self.machine()
-        for ident, text in name_tails.demon_rows():
+        for ident, text in self.demon_rows:
             with self.subTest(ident=ident):
                 head = items.encode(text)[:10]
                 c.write(OFFER_NAME - 1, ident, 1)
@@ -73,7 +77,7 @@ class BattleFullNames(unittest.TestCase):
 
     def test_every_enemy_actor_name(self):
         c = self.machine()
-        for ident, text in name_tails.demon_rows():
+        for ident, text in self.demon_rows:
             with self.subTest(ident=ident):
                 src = ENEMY_NAME + (ident % 9) * 0xEC
                 head = items.encode(text)[:10]
@@ -116,7 +120,7 @@ class BattleFullNames(unittest.TestCase):
         descriptor = 0x800DF7AC - 0x800643C4
         self.assertEqual(struct.unpack_from('<I', self.overlay, descriptor)[0], 0x8002BC84)
         self.assertEqual(self.overlay[descriptor + 4], 20)
-        for ident, text in name_tails.item_rows():
+        for ident, text in self.item_rows:
             with self.subTest(ident=ident):
                 c.write(0x800F7EB8, ident, 2)
                 c.r[REG['sp']] = STACK
@@ -134,7 +138,7 @@ class BattleFullNames(unittest.TestCase):
 
     def test_item_list_row_writer(self):
         c = self.machine()
-        for ident, text in name_tails.item_rows():
+        for ident, text in self.item_rows:
             if ident >= 0x56:
                 continue
             slot = ident % 12

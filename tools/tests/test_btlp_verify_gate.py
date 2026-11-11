@@ -26,7 +26,7 @@ class BattleReadbackGate(unittest.TestCase):
         cls.symbols = {m[2]: int(m[1], 16) for line in cls.files['persona.sym'].decode().splitlines()
                        if (m := re.fullmatch(r'([0-9a-fA-F]{8}) (\w+)', line))}
         if 'btlevt_pairs_end' not in cls.symbols:
-            raise unittest.SkipTest('requires the battle unpacker ownership symbols')
+            raise AssertionError('assembled symbols missing battle unpacker ownership')
         with contextlib.redirect_stdout(io.StringIO()):
             cls.plan = btlp.evt_plan(btlp.data(), {r['pos']: r for r in toolbelt.merged_rows('BTLP')})
 
