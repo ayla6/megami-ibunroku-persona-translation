@@ -1,0 +1,44 @@
+name: Bug Report
+description: Report a bug.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the fields below so it can be reproduced.
+  - type: textarea
+    id: patches-version
+    attributes:
+      label: Which patches and version are you using?
+      description: List every patch you have applied and the version of the game/build you are running.
+      placeholder: |
+        Version: 1.0.3
+        Patches: patch-a, patch-b
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: How do you get to this bug?
+      description: Give step-by-step instructions to reproduce it. Also tell us what you expected to happen.
+      placeholder: |
+        1. Go to ...
+        2. Do ...
+        3. See the bug
+    validations:
+      required: true
+  - type: upload
+    id: save-file
+    attributes:
+      label: Memory card or save state
+      description: Upload a memory card or save state that gets to the bug, or shows the state of it. If the file type isn't accepted, zip it first.
+    validations:
+      required: false
+  - type: upload
+    id: screenshot
+    attributes:
+      label: Screenshot of the bug
+      description: Add a screenshot showing the bug.
+    validations:
+      required: false
