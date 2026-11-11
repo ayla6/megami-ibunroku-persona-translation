@@ -13,8 +13,8 @@ body:
       label: Which patches and version are you using?
       description: List every patch you have applied and the version of the game/build you are running.
       placeholder: |
-        Version: 1.0.3
-        Patches: patch-a, patch-b
+        Version: 2026-10-11
+        Patches: saves, battlespeed, 60fps
     validations:
       required: true
   - type: textarea
