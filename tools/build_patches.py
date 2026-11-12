@@ -104,6 +104,18 @@ CHOICE_ORDER = [label for label, _group in CHOICES]
 # so one patch each is enough. The build verifies this classification against
 # the solo images it assembles.
 SIZE_CHANGERS = frozenset(('saves', '60fps'))
+# An in-place option that edits bytes another in-place option also edits: its
+# patch is encoded twice, from the base translation and from the base plus the
+# partner, because only the second states what the two do together (`western`
+# moves the run action's entry on the controller page, which `run` writes).
+# The partner must come
+# first in CHOICE_ORDER, and a patch applied over it is encoded against the
+# partner's canonical state, as a size-changer is against the layout before it.
+PARTNERS = {'run': 'western'}
+for _option, _partner in PARTNERS.items():
+    if (_option in SIZE_CHANGERS or _partner in SIZE_CHANGERS
+            or CHOICE_ORDER.index(_partner) > CHOICE_ORDER.index(_option)):
+        raise ValueError(f'PARTNERS: {_partner} must be an in-place option listed before {_option}')
 REV1_PATCH = 'rev1-to-rev0.xdelta'
 BASE_PATCH = 'rev0-to-base.xdelta'
 DEFAULT_REV1 = (ROOT / 'data/discs/Megami Ibunroku - Persona - Be Your True Mind (Japan) (Rev 1)' /
@@ -126,12 +138,20 @@ def solver_order(labels):
                                              CHOICE_ORDER.index(label)))
 
 
+def anchor_of(option, applied):
+    """The labels among `applied` that `option`'s patch file is encoded
+    against: the size-changers before it and its partner (PARTNERS)."""
+    return frozenset(label for label in applied
+                     if label in SIZE_CHANGERS or label == PARTNERS.get(option))
+
+
 def patch_file(option, anchor):
     """The file that adds `option` on top of `anchor` (a frozenset of the
-    size-changers already applied, never including `option` itself).
+    size-changers and partner already applied, never including `option`
+    itself).
 
-    In-place options always have an empty anchor: one file each, encoded
-    from the base translation."""
+    An in-place option without a partner has an empty anchor: one file,
+    encoded from the base translation."""
     suffix = ''.join('-' + label for label in CHOICE_ORDER if label in anchor)
     return f'add-{option}{suffix}.xdelta'
 
@@ -141,7 +161,7 @@ class Edge:
 
     `source` is the canonical state the patch was encoded from, which is
     also the "parent" used to reconstruct the target by decoding. `anchor`
-    is the size-changer subset in that source; a decorated chain applies
+    is the size-changer subset (and partner) in that source; a decorated chain applies
     the file over its own parent state (the source plus any earlier
     in-place options) with `-n`."""
 
@@ -177,13 +197,13 @@ def release_edge(labels):
     """The edge to `labels`: its last option's add- file.
 
     An in-place option is encoded from the base translation (empty anchor),
-    so the one file serves every in-place combination. A size-changer is
-    encoded from the size-changer layout that precedes it. Earlier
-    in-place edits ride along inside same-offset copies either way."""
+    so the one file serves every in-place combination; with its partner
+    applied it has a second file, encoded from the partner's state. A
+    size-changer is encoded from the size-changer layout that precedes it.
+    Earlier in-place edits ride along inside same-offset copies either way."""
     ordered = solver_order(labels)
     last = ordered[-1]
-    anchor = frozenset(label for label in ordered[:-1]
-                       if label in SIZE_CHANGERS)
+    anchor = anchor_of(last, ordered[:-1])
     source = tuple(solver_order(anchor))
     return Edge(patch_file(last, anchor), source, anchor)
 
@@ -212,14 +232,17 @@ def in_place_options():
 def canonical_states():
     """Every state a patch file is encoded from or to, in build order.
 
-    The base translation, every size-changer layout, and each in-place
-    option on its own. In-place options are encoded from the base
-    translation and compose over one another by same-offset copies, so
-    they need neither a layout anchor nor a file per combination."""
+    The base translation, every size-changer layout, each in-place option
+    on its own, and each option with its partner. In-place options are
+    encoded from the base translation and compose over one another by
+    same-offset copies, so they need neither a layout anchor nor a file per
+    combination; only a partnered pair edits the same bytes."""
     anchors = size_changer_states()
     states = list(anchors)
     for option in in_place_options():
         states.append(tuple(solver_order([option])))
+    for option, partner in PARTNERS.items():
+        states.append(tuple(solver_order([partner, option])))
     return states
 
 
@@ -227,8 +250,8 @@ def add_edges():
     """(option, anchor) for every add- patch file a release can contain.
 
     An in-place option has one file, encoded from the base translation
-    (empty anchor). A size-changer has one file per subset of the
-    size-changers that precede it."""
+    (empty anchor), and a second one over its partner. A size-changer has one
+    file per subset of the size-changers that precede it."""
     sized = tuple(label for label in solver_order(CHOICE_ORDER)
                   if label in SIZE_CHANGERS)
     for index, option in enumerate(sized):
@@ -238,12 +261,15 @@ def add_edges():
                 label for label, on in zip(preceding, bits) if on)
     for option in in_place_options():
         yield option, frozenset()
+        if option in PARTNERS:
+            yield option, frozenset((PARTNERS[option],))
 
 
 SAMPLE_POPULAR = (
     ('saves', 'mark', 'battlespeed', '60fps', 'run', 'skipfmv'),
     ('saves', 'mark', 'battlespeed', '60fps', 'run', 'skipfmv',
      'encounters', 'rewards'),
+    ('saves', 'mark', 'battlespeed', '60fps', 'western', 'run', 'skipfmv'),
 )
 
 
@@ -1079,9 +1105,7 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
             dest = first
             applied = set()
             for label in solver_order(labels):
-                anchor = frozenset(item for item in applied
-                                   if item in SIZE_CHANGERS)
-                name = patch_file(label, anchor)
+                name = patch_file(label, anchor_of(label, applied))
                 row = records.get(name)
                 if not row or not file_matches_row(name, row):
                     raise RuntimeError(
@@ -1112,8 +1136,7 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
             def chain_names(labels):
                 ordered = solver_order(labels)
                 return [BASE_PATCH] + [
-                    patch_file(label, frozenset(item for item in ordered[:index]
-                                                if item in SIZE_CHANGERS))
+                    patch_file(label, anchor_of(label, ordered[:index]))
                     for index, label in enumerate(ordered)]
 
             def covered(selection, names):
@@ -1282,8 +1305,9 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
             'risk this accepts; report anything broken.\n'
             '\n'
             'manifest.tsv has one row per patch file, not one per\n'
-            'combination: adds names the option, anchor the size-changers the\n'
-            'patch was encoded against, and order the fixed apply order.\n'
+            'combination: adds names the option, anchor the size-changers (and\n'
+            'partner option) the patch was encoded against, and order the\n'
+            'fixed apply order.\n'
             f'A release is complete when its manifest lists {len(expected_rows)}\n'
             f'steps across {len(expected_files)} patch files.\n',
             encoding='utf-8')

@@ -125,13 +125,13 @@ first and rebuilds every variant patch. A release directory written by the
 old per-combination layout is refused: move it away before the first build
 of this layout.
 
-The nine release choices are save UI, Mark artwork, battle speed, 60 fps,
-double battle rewards, half random encounters, running in dungeons,
-Upper Right movement and Start-to-skip movies. Rewards and encounters ship
+The ten release choices are save UI, Mark artwork, battle speed, 60 fps,
+double battle rewards, half random encounters, Western controls, running in
+dungeons, Upper Right movement and Start-to-skip movies. Rewards and encounters ship
 as separate options, so someone can take one without the other. Debug is not
 included.
 
-The release ships twelve patch files and twelve manifest rows - one row per
+The release ships fourteen patch files and fourteen manifest rows - one row per
 file, never one per combination. `rev1-to-rev0.xdelta` and
 `rev0-to-base.xdelta` convert the retail disc to the base translation;
 every option is an `add-<option>.xdelta`.
@@ -139,7 +139,13 @@ every option is an `add-<option>.xdelta`.
 In-place options come first in solver order, one file each, encoded from the
 base translation: Mark, battle speed, rewards, encounters, run, upright and
 skipfmv are `add-<option>.xdelta`. Their patches keep every offset and the
-image size, so they compose over one another by same-offset copies.
+image size, so they compose over one another by same-offset copies. The one
+exception is a partnered pair that edits the same bytes (`PARTNERS` in
+`tools/build_patches.py`: `run` writes the controller-page entry that
+`western` moves): `run` has a second file, `add-run-western.xdelta`, encoded
+from the `western` state and used when `western` is applied. The partner must
+be listed first in `tools/release_options.json`, whose order is the apply
+order.
 
 Size-changing options come last: the save menu is `add-saves.xdelta`, 60 fps
 is `add-60fps.xdelta` without the save menu or `add-60fps-saves.xdelta` with
@@ -165,10 +171,11 @@ exists in the manifest or the page.
 
 The build assembles the canonical states - the base translation, the four
 size-changer layouts (none, `saves`, `60fps`, `saves+60fps`, each laid out
-one-shot from retail), and each in-place option on its own - and then a
-sample of real selections (the two expected-popular combinations and
+one-shot from retail), each in-place option on its own, and the
+`western`+`run` pair - and then a
+sample of real selections (the three expected-popular combinations and
 `--sample` seeded random ones), each built once from retail for the
-byte-for-byte comparison. That is eleven canonical builds plus five sample
+byte-for-byte comparison. That is thirteen canonical builds plus six sample
 builds by default, not 512.
 
 #### Why the graph looks like this (invariants other agents must keep)
@@ -331,7 +338,7 @@ what feeds the disc - `src/`, `translation/`, the extracted data, and the
 two scripts it runs - so unrelated churn in `tools/tests/` never
 invalidates a running release. The Rev 1 to Rev 0 conversion never depends
 on build inputs and is reused across any same-source run. A release is
-complete when its manifest lists all 12 steps across the 12 patch files.
+complete when its manifest lists all 14 steps across the 14 patch files.
 
 The run's scratch images live in a private workspace that is deleted on
 exit. It prefers the system temp directory (tmpfs on most Linux systems) when

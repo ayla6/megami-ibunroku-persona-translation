@@ -1,4 +1,5 @@
 # 2026-11-12
+- Added a Western controls patch: Circle to Cross, Triangle to Square and vice-versa. Like a lame western PlayStation release.
 - Doubles text speed to match the fact that Japanese text has about half as many characters as its English equivalent. The game is like a lot faster because of that. This is the more accurate to the original game way to do it btw.
 
 # 2026-11-11-2

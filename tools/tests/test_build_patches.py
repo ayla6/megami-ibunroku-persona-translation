@@ -101,7 +101,10 @@ def variant_bytes(labels):
     shift = 0
     for label in release.CHOICE_ORDER:
         if label in set(labels):
-            marker = f'[{label}]'.encode()
+            # run writes where western does, so alone it differs from run
+            # applied over western: the case a partner file exists for
+            marker = (b'[run+western]' if label == 'run' and 'western' in labels
+                      else f'[{label}]'.encode())
             at = 8192 * (release.CHOICE_ORDER.index(label) + 1) + shift
             if label in release.SIZE_CHANGERS:
                 body[at:at] = marker
@@ -117,7 +120,7 @@ class ReleaseGraph(unittest.TestCase):
         anchors = release.size_changer_states()
         self.assertEqual(anchors, [(), ('saves',), ('60fps',),
                                    ('saves', '60fps')])
-        self.assertEqual(len(canonical), 11)
+        self.assertEqual(len(canonical), 13)
         self.assertEqual(canonical[0], ())
         self.assertEqual({tuple(labels) for labels in canonical[:4]},
                          set(anchors))
@@ -125,31 +128,33 @@ class ReleaseGraph(unittest.TestCase):
             self.assertIn(tuple(release.solver_order([option])), canonical)
             self.assertEqual(tuple(release.solver_order([option])), (option,))
         self.assertEqual(len({tuple(release.release_selection(labels))
-                              for labels in canonical}), 11)
+                              for labels in canonical}), 13)
 
         expected = {'rev0-to-base.xdelta', 'rev1-to-rev0.xdelta',
                     'add-saves.xdelta', 'add-60fps.xdelta',
                     'add-60fps-saves.xdelta'}
         for option in release.in_place_options():
             expected.add(release.patch_file(option, frozenset()))
-        self.assertEqual(len(release.release_file_names()), 12)
+        # a partnered option has a second file over its partner
+        expected.add('add-run-western.xdelta')
+        self.assertEqual(len(release.release_file_names()), 14)
         self.assertEqual(release.release_file_names(), expected)
 
     def test_samples_start_with_the_expected_popular_sets(self):
         picks = release.sample_selections(3, 0)
-        self.assertEqual(picks[:2],
+        self.assertEqual(picks[:len(release.SAMPLE_POPULAR)],
                          [tuple(release.solver_order(labels))
                           for labels in release.SAMPLE_POPULAR])
-        self.assertEqual(len(picks), 5, 'two popular sets plus three random')
+        self.assertEqual(len(picks), 6, 'three popular sets plus three random')
         canonical = set(release.canonical_states())
         self.assertEqual(len(set(picks)), len(picks), 'no duplicate samples')
-        for labels in picks[2:]:
+        for labels in picks[3:]:
             self.assertNotIn(frozenset(labels), canonical,
                              'random samples exercise decorated chains')
             self.assertTrue(labels)
         self.assertEqual(picks, release.sample_selections(3, 0),
                          'the same seed samples the same combinations')
-        self.assertNotEqual(picks[2:], release.sample_selections(3, 1)[2:],
+        self.assertNotEqual(picks[3:], release.sample_selections(3, 1)[3:],
                             'a new seed samples new combinations')
 
     def test_assembly_parent_keeps_the_one_shot_size_changer_layout(self):
@@ -173,7 +178,9 @@ class ReleaseGraph(unittest.TestCase):
         self.assertIn(('saves', ()), edges)
         self.assertIn(('60fps', ()), edges)
         self.assertIn(('60fps', ('saves',)), edges)
-        self.assertEqual(len(edges), 10)
+        self.assertIn(('run', ()), edges)
+        self.assertIn(('run', ('western',)), edges)
+        self.assertEqual(len(edges), 12)
 
     def test_every_add_edge_is_encoded_from_a_canonical_state(self):
         canonical = set(release.canonical_states())
@@ -185,7 +192,11 @@ class ReleaseGraph(unittest.TestCase):
             self.assertIn(edge.parent, canonical, labels)
             self.assertIn(edge.file, files, labels)
             anchor = release.assembly_parent(labels)
-            if anchor is not None:
+            ordered = release.solver_order(labels)
+            if ordered[-1] in release.PARTNERS and ordered[:-1] == [release.PARTNERS[ordered[-1]]]:
+                # the pair is assembled on the base, encoded over the partner
+                self.assertEqual(edge.parent, tuple(ordered[:-1]), labels)
+            elif anchor is not None:
                 self.assertEqual(edge.parent, anchor, labels)
             else:
                 # A second size-changer is laid out from retail in one pass,
@@ -222,7 +233,7 @@ class ReleaseBuild(unittest.TestCase):
     rebuild only what changed."""
 
     samples = (('mark', 'battlespeed'),
-               ('mark', 'encounters', 'run', 'saves'))
+               ('mark', 'encounters', 'western', 'run', 'saves'))
 
     def setUp(self):
         self.tool = shutil.which('xdelta3')
@@ -300,25 +311,25 @@ class ReleaseBuild(unittest.TestCase):
             rev0.write_bytes(b'retail revision zero' * 100)
             rev1.write_bytes(b'retail revision one' * 100)
             verified, builder = self.run_release(root, rev0, rev1, out)
-            self.assertEqual(len(verified), 11 + len(self.samples),
+            self.assertEqual(len(verified), 13 + len(self.samples),
                              'an audit per canonical state and per sample disc')
             self.assertEqual(builder.call_count, 2,
                              'one canonical batch plus one sample batch')
-            self.assertEqual(len(list(out.glob('*.xdelta'))), 12)
+            self.assertEqual(len(list(out.glob('*.xdelta'))), 14)
             self.assertFalse(list(out.glob('*.bin')))
             readme = (out / 'README.txt').read_text(encoding='utf-8')
             for name in release.release_file_names():
                 self.assertIn(name, readme)
             for item in release.RELEASE_OPTIONS:
                 self.assertIn(item['name'], readme)
-            self.assertIn('12 steps across 12 patch files', ' '.join(readme.split()))
+            self.assertIn('14 steps across 14 patch files', ' '.join(readme.split()))
             self.assertIn('SAMPLING', readme)
 
             with (out / 'manifest.tsv').open() as f:
                 rows = list(csv.DictReader(f, delimiter='\t'))
-            self.assertEqual(len(rows), 12)
+            self.assertEqual(len(rows), 14)
             by_name = {row['patch']: row for row in rows}
-            self.assertEqual(len(by_name), 12, 'one row per patch file')
+            self.assertEqual(len(by_name), 14, 'one row per patch file')
             self.assertEqual(by_name['rev1-to-rev0.xdelta']['source_sha256'],
                              release.sha256(rev1))
             base = by_name['rev0-to-base.xdelta']
@@ -341,9 +352,8 @@ class ReleaseBuild(unittest.TestCase):
                 self.assertTrue(row['target_bytes'])
             for labels in self.samples:
                 for name in [release.BASE_PATCH] + [
-                        release.patch_file(label, frozenset(
-                            item for item in release.solver_order(labels)[:index]
-                            if item in release.SIZE_CHANGERS))
+                        release.patch_file(label, release.anchor_of(
+                            label, release.solver_order(labels)[:index]))
                         for index, label in enumerate(release.solver_order(labels))]:
                     self.assertIn(','.join(release.solver_order(labels)),
                                   by_name[name]['verified'].split(';'),

@@ -47,6 +47,9 @@ QOL_PATCHES = {
     'rewards':     ('QOL_REWARDS',     'EXP, Persona points and money after a battle x2'),
     'run':         ('QOL_RUN',         'hold Cross to walk and turn at double speed in the 3D '
                                        'dungeons (the controller page lists it as RUN/CANCEL on Cross)'),
+    'western':     ('QOL_WESTERN',     'Western controls for controller TYPE 1: Cross confirms and Circle '
+                                       'cancels, Triangle and Square swapped, as in the American release '
+                                       '(the run button follows Cancel, so it moves to Circle)'),
     'upright':     ('QOL_UPRIGHT',     'Upward Movement Orientation: Upper Right in the 2D rooms - '
                                        'pressing Up walks to the upper right instead of the retail '
                                        'upper left'),
@@ -197,6 +200,8 @@ def assemble_variant(py, patches, disc_path, make_disc=True, mark_builder=None,
     print(f"build.py: QoL patches: {', '.join(patches) or 'none'} -> {os.path.relpath(disc_path, ROOT)}")
     # Clear the previous variant before assembly; assembly recreates MES.BIN.
     run(py, os.path.join('injection_tools', 'mark.py'), 'retail')
+    if 'western' in patches:
+        run(py, os.path.join('injection_tools', 'western_indicator.py'), 'build')
     qol = [x for name in patches for x in ('-definelabel', QOL_PATCHES[name][0], '1')]
     listing = os.path.join(ROOT, 'build', 'armips-main.lst')
     # -erroronwarning: every armips warning (load delay, branch delay slot,

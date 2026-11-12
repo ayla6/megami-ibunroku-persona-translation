@@ -40,6 +40,7 @@ xdelta3 -n -d -s persona-mark.bin add-battlespeed.xdelta persona-mark-battlespee
 xdelta3 -n -d -s persona-mark-battlespeed.bin add-rewards.xdelta persona-mark-battlespeed-rewards.bin
 xdelta3 -n -d -s persona-mark-battlespeed-rewards.bin add-encounters.xdelta persona-mark-battlespeed-rewards-encounters.bin
 xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters.bin add-run.xdelta persona-mark-battlespeed-rewards-encounters-run.bin
+# (with Western controls applied first, use add-run-western.xdelta instead)
 xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run.bin add-upright.xdelta persona-mark-battlespeed-rewards-encounters-run-upright.bin
 xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-upright.bin add-skipfmv.xdelta persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv.bin
 xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv.bin add-saves.xdelta persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv-saves.bin
@@ -56,6 +57,7 @@ xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv
 | 60 FPS | Interpolates frames to get the dungeons to 60fps and the map to 30fps. Only does it when you're actively moving around. Needs overclocking. |
 | Double rewards | Doubles the EXP, Persona points and money you get after battles. |
 | Half encounters | Halves the rate of random encounters. |
+| Western controls | Swaps Circle and Cross, and Triangle and Square, in control scheme TYPE 1 (Cross confirms, Circle cancels), like the American release. TYPE 2 is untouched. With running in dungeons, you hold Circle (the cancel button) to run. |
 | Run in dungeons | Hold Cross to walk and turn at double speed in the 3D dungeons. The controller page lists it as RUN/CANCEL on Cross in both control schemes. |
 | Upper-right movement | Forces Upward Movement Orientation to Upper Right: pressing Up walks to the upper right in the 2D rooms instead of the retail upper left. |
 | Skip movies | Press Start to skip the movie that is playing. This covers the story FMVs, Philemon's scenes among them; the opening quote and the Atlus logo already skip on Start. |

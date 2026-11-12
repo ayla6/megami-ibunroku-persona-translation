@@ -24,6 +24,7 @@ filename; a plain build uses the retail save flow and the regular translation fi
 | `60fps` | `QOL_60FPS` | 60 fps 3D dungeons and overworld (interpolated; wants an emulator CPU overclock to actually reach 60) |
 | `encounters` | `QOL_ENCOUNTERS` | half the random encounter rate |
 | `rewards` | `QOL_REWARDS` | EXP, Persona points and money after a battle x2 |
+| `western` | `QOL_WESTERN` | Western controls for controller TYPE 1: PadRead swaps Circle/Cross and Triangle/Square (every screen reads the pad through it) the controller page's labels, the title's own button tests and the battle Controls page's icons and the choice menus' corner icon (indicator.png, converted at build) follow; run moves to Circle (the cancel button) |
 | `run` | `QOL_RUN` | hold Cross to walk and turn at double speed in the 3D dungeons; the controller page lists it as its own RUN/CANCEL action on Cross in both control schemes |
 | `upright` | `QOL_UPRIGHT` | Upward Movement Orientation: Upper Right in the 2D rooms - pressing Up walks to the upper right instead of the retail upper left |
 | `skipfmv` | `QOL_SKIPFMV` | press Start to skip the movie that is playing (the story FMVs, Philemon's scenes among them; the opening quote and the Atlus logo already skip) |

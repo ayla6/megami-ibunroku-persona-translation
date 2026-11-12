@@ -1,5 +1,10 @@
 [
   {
+    "label": "western",
+    "name": "Western controls",
+    "description": "Swaps Circle and Cross, and Triangle and Square and vice-versa. Like a western PlayStation game."
+  },
+  {
     "label": "saves",
     "name": "Save menu",
     "description": "Merges the slot 1 and slot 2 menus into one, so that you don't have to worry about which one to select. Requires \"speed up on memory card access\" to not feel like a slog."

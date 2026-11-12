@@ -20,8 +20,10 @@
 ;; types show it on Cross - the button the game also uses to cancel, which is
 ;; fine because cancel is edge-triggered while running only reads the held
 ;; pad. Cross is free in TYPE 2 and already CANCEL in TYPE 1, so the page
-;; names it RUN/CANCEL in both. The walk and turn hooks wait for Cross
-;; regardless of pad type. The page's 19-pointer name table sits directly in front of the
+;; names it RUN/CANCEL in both. The walk and turn hooks wait for the game's
+;; Cross regardless of pad type; with the western controls
+;; (qol/western_pad.asm) that is the Circle button in TYPE 1, and the page
+;; entry moves with it. The page's 19-pointer name table sits directly in front of the
 ;; layout table with no room for a 20th, so runtext.py copies it into the
 ;; image extension with the run pointer appended and this file repoints
 ;; PadDrawLayout's table base at the copy. Wording comes from
@@ -63,7 +65,11 @@
 ;; retail names because running only applies to the 3D view). Cross reads
 ;; "CANCEL" in TYPE 1 and "UNUSED" in TYPE 2; the page names it RUN/CANCEL
 ;; in both.
+.ifdef QOL_WESTERN
+.org DNG_PAD_LAYOUTS + DNG_PAD_CIRCLE   ; TYPE 1's cancel button is Circle now
+.else
 .org DNG_PAD_LAYOUTS + DNG_PAD_CROSS
+.endif
     .byte   DNG_PAD_RUN_INDEX
 .org DNG_PAD_LAYOUTS + DNG_PAD_LAYOUT_ENTRIES + DNG_PAD_CROSS
     .byte   DNG_PAD_RUN_INDEX

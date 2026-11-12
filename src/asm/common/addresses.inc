@@ -565,10 +565,20 @@ DNG_PAD_NAME_COUNT equ 19
 DNG_PAD_RUN_INDEX  equ 19                  ; the run action's index in that table
 DNG_PAD_LAYOUTS    equ 0x8009CB18          ; g_pad_layout_actions: four layouts x 20 buttons
 DNG_PAD_LAYOUT_ENTRIES equ 20              ; entries per layout (3D column 0..9, 2D column 10..19)
-DNG_PAD_CROSS      equ 1                   ; 3D column: circle, cross, triangle, square...
+DNG_PAD_CIRCLE     equ 0                   ; the 3D column's buttons run circle, cross, triangle, square...
+DNG_PAD_CROSS      equ 1
 DNG_PAD_DRAW_ADDR  equ 0x80090650          ; PadDrawLayout
 DNG_PAD_DRAW_LUI   equ 0x800906FC          ; lui at,0x800A - the name table's high half
 DNG_PAD_DRAW_ADDIU equ 0x80090700          ; addiu at,at,-0x3534 - its low half
+;; --- QoL western controls (qol/western_pad.asm, qol/western_layout.asm) ---
+WESTERN_PAD_READ_NOR equ 0x8002515C        ; PadRead: nor v0,zero,v0 (the held buttons, active high)
+WESTERN_PAD_CODE   equ 0x80028F2C          ; dead libgte function (tools/deadfuncs.py with transitive deadness: only the
+WESTERN_PAD_CODE_END equ 0x80028F8C        ; dead 0x800316DC called it; 1000 bytes to 0x80029314): 96 bytes taken
+BTLP_INDICATOR_ICON equ 0x800E2408   ; MES blob: choice-menu corner icon (frame 1 = the cancel key)
+BTLP_CONTROLS_ICONS equ 0x800DE7E0      ; the Controls page's TYPE 1 icon descriptors: eight, 8 bytes each
+PAD_TYPE_ADDR      equ 0x801F2AC7          ; the saved controller type: 0 = TYPE 1, 1 = TYPE 2
+ADV_PAD_LAYOUTS    equ 0x800B983C          ; g_pad_layout_actions in each overlay that carries the page
+S2D_PAD_LAYOUTS    equ 0x8009F6A8
 
 ;; --- S2D.BIN - Overlay #6: 2D map ---
 S2D_FILENAME equ "../../data/psx/S2D.BIN"
