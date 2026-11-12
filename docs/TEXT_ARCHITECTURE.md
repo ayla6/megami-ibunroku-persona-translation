@@ -46,6 +46,24 @@ Verified against `data/psx/ADV/E0.BIN`; the community notes in
   target is a box start or a gap. A pointer into the middle of a resized
   box is a hard error, not a guess.
 
+## Print speed
+
+English needs about twice the glyphs of the Japanese line, so each
+interpreter prints glyphs in batches and keeps the retail wait between
+batches. Every interpreter keeps its scripted pauses unchanged. A key
+prompt, choice or pause ends the batch, so one press satisfies one prompt.
+
+| Interpreter | Text | Batch | Notes |
+|---|---|---|---|
+| `MsgStep` (ADV / DNG / S2D) | event and E-file dialogue, menus | 2 per call at 30 fps (ADV, S2D), 3 at 20 fps (DNG) | `delay` reloads from `speed` after each glyph; [`vwf/msg_pace.asm`](../src/asm/vwf/msg_pace.asm) |
+| `FieldRunScript` (DNG) | dungeon script boxes (D0x) | 3 on Fast, 2 on Normal / Slow | the batch shares the setting's frames; [`dng/script_pace.asm`](../src/asm/dng/script_pace.asm) |
+| text objects (S2D, 0x8009B2F4) | overworld comments, banner, area labels | 2 per call | a finished delay reads again in the same call; [`s2d/text_pace.asm`](../src/asm/s2d/text_pace.asm) |
+
+At Fast, `MsgStep` and the script boxes both print one glyph per vsync, so a
+dungeon's 20 fps frame no longer makes its text slower than ADV's.
+`tools/tests/test_text_pace.py` runs each patched interpreter and counts
+glyphs per call.
+
 ## Battle configuration and controller boards
 
 The canonical `BTLP` extract and manual worklist include the physical,

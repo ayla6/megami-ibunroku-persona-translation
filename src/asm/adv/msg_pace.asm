@@ -1,0 +1,3 @@
+;; ADV.BIN - MsgStep prints up to ADV_MSG_PACE glyphs per call (vwf/msg_pace.asm)
+msg_pace ADV_MSG_TOP, ADV_MSG_TOP_END, ADV_MSG_RECT, ADV_MSG_SLOTS, ADV_MSG_NEXT, \
+         ADV_MSG_DONE, ADV_MSG_TEXT_TAIL, ADV_MSG_SUB_TAIL, ADV_MSG_INSERT_TAIL, ADV_MSG_PACE

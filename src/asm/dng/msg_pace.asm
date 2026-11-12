@@ -1,0 +1,3 @@
+;; DNG.BIN - MsgStep prints up to DNG_MSG_PACE glyphs per call (vwf/msg_pace.asm)
+msg_pace DNG_MSG_TOP, DNG_MSG_TOP_END, DNG_MSG_RECT, DNG_MSG_SLOTS, DNG_MSG_NEXT, \
+         DNG_MSG_DONE, DNG_MSG_TEXT_TAIL, DNG_MSG_SUB_TAIL, DNG_MSG_INSERT_TAIL, DNG_MSG_PACE

@@ -171,6 +171,19 @@ ADV_IMAGE_LIMIT equ ADV_SF_EXTENSION_END
 ADV_EOF_ADDR equ ADV_ADDR + 0x58D04          ; end of the retail overlay image (past the live CD-buffer table)
 ;; dialogue text interpreter (0x800669AC) - runtime-verified
 ADV_TEXT_STATE equ 0x800E1E4C              ; +0xA u16 pos (cell 0-59), +0xC read ptr
+;; MsgStep pacing (vwf/msg_pace.asm): the prologue run it reuses, the clut
+;; RECT and slot table that run handled, the step labels and the three glyph
+;; tails. Glyphs per call = the frame's vsyncs (ADV and S2D 30 fps: 2).
+ADV_MSG_TOP equ 0x800669C8
+ADV_MSG_TOP_END equ 0x80066A20
+ADV_MSG_RECT equ 0x800643C8
+ADV_MSG_SLOTS equ 0x800EB14C
+ADV_MSG_NEXT equ 0x80066C50
+ADV_MSG_DONE equ 0x800678C8
+ADV_MSG_TEXT_TAIL equ 0x8006786C
+ADV_MSG_SUB_TAIL equ 0x8006788C
+ADV_MSG_INSERT_TAIL equ 0x80066E30
+ADV_MSG_PACE equ 2
 ADV_CELL_ACTIVATE equ 0x80067908           ; void(u16 pos)
 ADV_UPLOAD_COUNT equ 0x800BC714            ; LoadImage queue count
 ADV_UPLOAD_QUEUE equ 0x800BC748            ; LoadImage queue entries
@@ -493,6 +506,17 @@ DNG_FIELD_TITLE_LIMIT equ 0x800B0C00    ; below the shared title index/blob
 DNG_FIELD_TITLE_ENTRY equ 0x8006E700     ; FieldLoadWallCluts entry
 DNG_FIELD_TITLE_WIDTH equ 160            ; ten 16px cells in the held-pause strip
 DNG_TEXT_STATE equ 0x800E1E4C
+;; MsgStep pacing (vwf/msg_pace.asm); the dungeon frame is 3 vsyncs (20 fps)
+DNG_MSG_TOP equ 0x8007683C
+DNG_MSG_TOP_END equ 0x80076894
+DNG_MSG_RECT equ 0x8006459C
+DNG_MSG_SLOTS equ 0x800EB14C
+DNG_MSG_NEXT equ 0x80076AB0
+DNG_MSG_DONE equ 0x800774F4
+DNG_MSG_TEXT_TAIL equ 0x80077498
+DNG_MSG_SUB_TAIL equ 0x800774B8
+DNG_MSG_INSERT_TAIL equ 0x80076C60
+DNG_MSG_PACE equ 3
 DNG_CELL_ACTIVATE equ 0x80077534
 DNG_UPLOAD_COUNT equ 0x800A072C
 DNG_UPLOAD_QUEUE equ 0x800A0760
@@ -554,6 +578,17 @@ S2D_IMAGE_LIMIT equ S2D_ITEM_DATA_END
 ;; dialogue text interpreter: copy of ADV's (main path at ADV-0x820).
 ;; Statically derived (jal targets consistent with base) - not yet run.
 S2D_TEXT_STATE equ 0x80101E4C
+;; MsgStep pacing (vwf/msg_pace.asm)
+S2D_MSG_TOP equ 0x800663DC
+S2D_MSG_TOP_END equ 0x80066434
+S2D_MSG_RECT equ 0x800643C8
+S2D_MSG_SLOTS equ 0x8010B14C
+S2D_MSG_NEXT equ 0x80066664
+S2D_MSG_DONE equ 0x800670A8
+S2D_MSG_TEXT_TAIL equ 0x8006704C
+S2D_MSG_SUB_TAIL equ 0x8006706C
+S2D_MSG_INSERT_TAIL equ 0x80066814
+S2D_MSG_PACE equ 2
 ;; extension of S2D.BIN behind its last sector (RAM 0x800BA3C4..): English overworld boxes (tools/s2dscript.py SPILL = ..0x800BB200), then VWF glue code
 S2D_GLUE_ADDR equ 0x800BB200
 S2D_GLUE_SIZE equ 0x800BB8E8 - S2D_GLUE_ADDR

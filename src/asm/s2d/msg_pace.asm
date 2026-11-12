@@ -1,0 +1,3 @@
+;; S2D.BIN - MsgStep prints up to S2D_MSG_PACE glyphs per call (vwf/msg_pace.asm)
+msg_pace S2D_MSG_TOP, S2D_MSG_TOP_END, S2D_MSG_RECT, S2D_MSG_SLOTS, S2D_MSG_NEXT, \
+         S2D_MSG_DONE, S2D_MSG_TEXT_TAIL, S2D_MSG_SUB_TAIL, S2D_MSG_INSERT_TAIL, S2D_MSG_PACE

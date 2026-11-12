@@ -1,3 +1,6 @@
+# 2026-11-12
+- Doubles text speed to match the fact that Japanese text has about half as many characters as its English equivalent. The game is like a lot faster because of that. This is the more accurate to the original game way to do it btw.
+
 # 2026-11-11-2
 - Fixed the game freezing on real hardware and accurate emulators when a menu with VWF small text (like the item list) is drawn. The text was sent to the GPU in chunks too big for it, which only some emulators (like DuckStation) tolerated.
 - Fixed another possible freeze with VWF small text when a screen draws it in more than one layer, where new text could overwrite text the GPU was still about to draw.
