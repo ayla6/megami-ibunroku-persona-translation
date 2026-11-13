@@ -108,25 +108,37 @@ CHOICE_ORDER = [label for label, _group in CHOICES]
 # so one patch each is enough. The build verifies this classification against
 # the solo images it assembles.
 SIZE_CHANGERS = frozenset(('saves', '60fps'))
-# An in-place option that edits bytes another in-place option also edits: its
-# patch is encoded twice, from the base translation and from the base plus the
-# partner, because only the second states what the two do together (`western`
-# moves the run action's entry on the controller page, which `run` writes).
-# The partner must come
-# first in CHOICE_ORDER, and a patch applied over it is encoded against the
-# partner's canonical state, as a size-changer is against the layout before it.
-PARTNERS = {'run': 'western'}
+# An option whose edits share a disc sector with an in-place option applied
+# before it: its patch is encoded twice, without and with the partner, because
+# only the second states what the two do together. Sharing a sector is enough:
+# each raw sector's EDC/ECC is a literal of the patch that last wrote it, so a
+# patch encoded without the partner's bytes rewrites that sector's checksums
+# for a disc without them. `western` moves the run action's entry on the
+# controller page, which `run` writes; `range` replaces BtlDrawObjects' debug
+# grid between fast-forward's hooks and shares BtlLoadDebugGrid's sector with
+# them; `saves` hooks the title menus whose button masks `western` swaps. The
+# partner is an in-place option that comes first in solver order, and a patch
+# applied over it is encoded against the state with it, as a size-changer is
+# against the layout before it.
+PARTNERS = {'run': 'western', 'range': 'battlespeed', 'saves': 'western'}
 for _option, _partner in PARTNERS.items():
-    if (_option in SIZE_CHANGERS or _partner in SIZE_CHANGERS
-            or CHOICE_ORDER.index(_partner) > CHOICE_ORDER.index(_option)):
-        raise ValueError(f'PARTNERS: {_partner} must be an in-place option listed before {_option}')
+    if (_partner in SIZE_CHANGERS
+            or (_option not in SIZE_CHANGERS
+                and CHOICE_ORDER.index(_partner) > CHOICE_ORDER.index(_option))):
+        raise ValueError(f'PARTNERS: {_partner} must be an in-place option applied before {_option}')
 REV1_PATCH = 'rev1-to-rev0.xdelta'
 BASE_PATCH = 'rev0-to-base.xdelta'
 DEFAULT_REV1 = (ROOT / 'data/discs/Megami Ibunroku - Persona - Be Your True Mind (Japan) (Rev 1)' /
                 'Megami Ibunroku - Persona - Be Your True Mind (Japan) (Rev 1).bin')
 SCRATCH_ENV = 'PERSONA_BUILD_SCRATCH'
 SCRATCH_NAME = 'persona-patch-work'
-VERIFY_XDELTA = 'xdelta'      # the patch's own per-window checksums decide
+VERIFY_XDELTA = 'xdelta'
+# Option states that may wait for their audit and encode at once while the
+# next one is assembled: each is a whole image in the workspace.
+IN_FLIGHT = 2
+# Masked encodings tried before an in-place patch falls back to the
+# preimage map (each try is a few seconds; see masked_delta).
+MASKED_TRIES = 12      # the patch's own per-window checksums decide
 
 
 def solver_order(labels):
@@ -245,8 +257,12 @@ def canonical_states():
     states = list(anchors)
     for option in in_place_options():
         states.append(tuple(solver_order([option])))
-    for option, partner in PARTNERS.items():
-        states.append(tuple(solver_order([partner, option])))
+    for option, anchor in add_edges():
+        if PARTNERS.get(option) in anchor:
+            states.append(tuple(solver_order([*anchor, option])))
+    for option, anchor in add_edges():
+        if tuple(solver_order(anchor)) not in states:
+            raise ValueError(f'add-{option} over {sorted(anchor)}: its source state is not built')
     return states
 
 
@@ -255,14 +271,17 @@ def add_edges():
 
     An in-place option has one file, encoded from the base translation
     (empty anchor), and a second one over its partner. A size-changer has one
-    file per subset of the size-changers that precede it."""
+    file per subset of the size-changers that precede it, and with a partner
+    one more per subset with the partner in it."""
     sized = tuple(label for label in solver_order(CHOICE_ORDER)
                   if label in SIZE_CHANGERS)
     for index, option in enumerate(sized):
         preceding = sized[:index]
         for bits in itertools.product((False, True), repeat=len(preceding)):
-            yield option, frozenset(
-                label for label, on in zip(preceding, bits) if on)
+            anchor = frozenset(label for label, on in zip(preceding, bits) if on)
+            yield option, anchor
+            if option in PARTNERS:
+                yield option, anchor | {PARTNERS[option]}
     for option in in_place_options():
         yield option, frozenset()
         if option in PARTNERS:
@@ -348,6 +367,117 @@ def _signature(path):
             status.st_mtime_ns, status.st_ctime_ns)
 
 
+def changed_sectors(base, variant):
+    """{(path, file sector)} where a variant's files differ from the base's:
+    the 2 KB sectors of each file that an option writes, independent of where
+    the file sits on the disc (a size-changer relocates files)."""
+    out = set()
+    for name, data in variant.items():
+        old = base.get(name, b'')
+        for k in range(0, max(len(data), len(old)), 2048):
+            if data[k:k + 2048] != old[k:k + 2048]:
+                out.add((name, k // 2048))
+    return out
+
+
+def image_changes(base, variant):
+    """changed_sectors for two raw images, read one file at a time."""
+    sys.path.insert(0, str(ROOT / 'tools'))
+    import verify_disc
+    old_disc, new_disc = verify_disc.Disc(base), verify_disc.Disc(variant)
+    try:
+        old_files = {name: (ext, size) for name, ext, size, _record
+                     in old_disc.walk_records()[0]}
+        out = set()
+        for name, ext, size, _record in new_disc.walk_records()[0]:
+            data = verify_disc._read_file(new_disc, ext, size)
+            old = (verify_disc._read_file(old_disc, *old_files[name])
+                   if name in old_files else b'')
+            out |= changed_sectors({name: old}, {name: data})
+        return out
+    finally:
+        old_disc.f.close()
+        new_disc.f.close()
+
+
+def unpartnered_overlaps(changes):
+    """[(a, b, shared sectors)] for options that write the same file sector
+    without a PARTNERS entry between them. Each raw sector's EDC/ECC is a
+    literal of the patch that last wrote it, so two patches that each write
+    a sector only compose when the later one is encoded over the earlier
+    (PARTNERS); size-changers are already encoded over each other."""
+    out = []
+    labels = solver_order(changes)
+    for i, a in enumerate(labels):
+        for b in labels[i + 1:]:
+            if a in SIZE_CHANGERS and b in SIZE_CHANGERS:
+                continue
+            if PARTNERS.get(a) == b or PARTNERS.get(b) == a:
+                continue
+            shared = changes[a] & changes[b]
+            if shared:
+                out.append((a, b, sorted(shared)))
+    return out
+
+
+def chain_mismatch(applied, built, limit=8):
+    """Where an applied chain and its one-shot disc differ, by file: the
+    file sectors that differ, so a failed sample says which options'
+    patches overlap instead of only that they do."""
+    found = {}
+    for name, sector in sorted(image_changes(built, applied)):
+        found.setdefault(name, []).append(sector)
+    lines = []
+    for name, sectors in sorted(found.items()):
+        shown = ', '.join(f'+{n * 2048:#x}' for n in sectors[:limit])
+        more = f' (+{len(sectors) - limit} more)' if len(sectors) > limit else ''
+        lines.append(f'  {name}: {len(sectors)} sector(s) at {shown}{more}')
+    lines += system_mismatch(applied, built, limit)
+    return '\n'.join(lines)
+
+
+def system_mismatch(applied, built, limit=8):
+    """The raw sectors outside every file that differ: the system area, the
+    volume descriptors, directory sectors and anything past the files, each
+    with the part of the 2352-byte sector that differs (header, data or
+    EDC/ECC)."""
+    sys.path.insert(0, str(ROOT / 'tools'))
+    import verify_disc
+    disc = verify_disc.Disc(built)
+    try:
+        files, dirs, _extents = disc.walk_records()
+    finally:
+        disc.f.close()
+    in_files = set()
+    for _name, ext, size, _record in files:
+        in_files.update(range(ext, ext + max(1, -(-size // 2048))))
+    dirs = set(dirs)
+    found = []
+    with open(applied, 'rb') as a, open(built, 'rb') as b:
+        lba = 0
+        while True:
+            x, y = a.read(2352), b.read(2352)
+            if not x and not y:
+                break
+            if x != y and lba not in in_files:
+                parts = []
+                if x[:24] != y[:24]:
+                    parts.append('header')
+                if x[24:2072] != y[24:2072]:
+                    parts.append('data')
+                if x[2072:] != y[2072:]:
+                    parts.append('EDC/ECC')
+                kind = ('directory' if lba in dirs else 'volume descriptor'
+                        if 16 <= lba < 32 else 'system area' if lba < 16
+                        else 'outside every file')
+                found.append(f'{lba} ({kind}: {"/".join(parts) or "length"})')
+            lba += 1
+    if not found:
+        return []
+    more = f' (+{len(found) - limit} more)' if len(found) > limit else ''
+    return [f'  {len(found)} sector(s) outside files: ' + ', '.join(found[:limit]) + more]
+
+
 def sha256(path):
     """SHA-256 of a file, remembered for the rest of this run.
 
@@ -408,7 +538,7 @@ def run_delta(tool, source, target, output, *, disable_armor):
 
 
 def run_sizedelta(tool, source, target, output):
-    """Encode a size-changer from its preimage map, then verify the windows.
+    """Encode an add- patch from its preimage map, then verify the windows.
 
     xdelta's matcher may copy a same-content decoy (a zero run in another
     file) instead of the decorated preimage, which silently drops earlier
@@ -442,6 +572,153 @@ def run_decode(tool, source, patch, output, *, skip_checksum=False):
     command = [tool, '-d', *(['-n'] if skip_checksum else []),
                '-s', str(source), str(patch), str(output)]
     subprocess.run(command, check=True, env=env)
+
+
+def decode_digest(tool, source, patch, *, skip_checksum=False):
+    """(SHA-256, size) of what `patch` decodes to over `source`, hashed
+    from xdelta's output stream: the image is never written."""
+    env = dict(os.environ)
+    env.pop('XDELTA', None)
+    command = [tool, '-d', '-c', *(['-n'] if skip_checksum else []),
+               '-s', str(source), str(patch)]
+    digest, size = hashlib.sha256(), 0
+    with subprocess.Popen(command, stdout=subprocess.PIPE, env=env) as process:
+        for chunk in iter(lambda: process.stdout.read(4 << 20), b''):
+            digest.update(chunk)
+            size += len(chunk)
+    if process.returncode:
+        raise subprocess.CalledProcessError(process.returncode, command)
+    return digest.hexdigest(), size
+
+
+def inject_diff(decoded, parent, dest, block=4096):
+    """Make `dest` hold `decoded`'s bytes as a reflink clone of `parent`
+    with only the blocks that differ written: on a filesystem that clones,
+    the new image costs the differing blocks instead of a whole disc. Where
+    it cannot clone, `dest` is a plain copy rewritten the same way."""
+    clone_file(parent, dest)
+    size = decoded.stat().st_size
+    with open(decoded, 'rb') as new, open(dest, 'r+b') as out:
+        position = 0
+        while True:
+            chunk = new.read(block * 256)
+            if not chunk:
+                break
+            old = out.read(len(chunk))
+            if old != chunk:
+                for k in range(0, len(chunk), block):
+                    if chunk[k:k + block] != old[k:k + block]:
+                        out.seek(position + k)
+                        out.write(chunk[k:k + block])
+                out.seek(position + len(chunk))
+            position += len(chunk)
+        out.truncate(size)
+
+
+def decoy_free(tool, source, target, patch, scratch, unit=2352):
+    """Whether an in-place patch copies only from bytes no other option can
+    change.
+
+    D is the set of raw sectors where `target` differs from `source`. The
+    patch is decoded over `source` with every sector outside D replaced by
+    random bytes: it must give those random bytes back where they are (a
+    same-position copy) and exactly `target`'s sectors inside D (built from
+    D's own bytes and the patch's data). A copy that reads any byte outside
+    D, or moves one, cannot reproduce independent random bytes - so a patch
+    that passes is correct over any disc whose sectors in D are the source's,
+    which the sector-overlap check guarantees for every chain."""
+    import numpy as np
+    size = source.stat().st_size
+    if target.stat().st_size != size:
+        return False
+    src = np.memmap(source, dtype=np.uint8, mode='r')
+    tgt = np.memmap(target, dtype=np.uint8, mode='r')
+    rng = np.random.default_rng(int.from_bytes(os.urandom(8), 'little'))
+    perturbed = scratch / f'decoy-{threading.get_ident()}.bin'
+    expected = hashlib.sha256()
+    step = unit * 4096
+    try:
+        with open(perturbed, 'wb') as out:
+            for start in range(0, size, step):
+                end = min(start + step, size)
+                old = np.array(src[start:end])
+                new = np.asarray(tgt[start:end])
+                noise = rng.integers(0, 256, end - start, dtype=np.uint8)
+                for k in range(0, end - start, unit):
+                    if not np.array_equal(old[k:k + unit], new[k:k + unit]):
+                        noise[k:k + unit] = old[k:k + unit]
+                out.write(noise.tobytes())
+                for k in range(0, end - start, unit):
+                    if not np.array_equal(old[k:k + unit], new[k:k + unit]):
+                        noise[k:k + unit] = new[k:k + unit]
+                expected.update(noise.tobytes())
+        digest, decoded = decode_digest(tool, perturbed, patch, skip_checksum=True)
+        return decoded == size and digest == expected.hexdigest()
+    except subprocess.CalledProcessError:
+        return False
+    finally:
+        perturbed.unlink(missing_ok=True)
+
+
+def masked_delta(tool, source, target, output, scratch, unit=2352):
+    """xdelta3 over copies of `source` and `target` whose sectors outside D
+    (where the two differ) hold the same random bytes.
+
+    Outside D the matcher can then only copy the random bytes back from
+    their own position, while inside D it keeps all its matching (Mark's
+    walk sheet repeats in every scene that carries it). The window
+    checksums would describe the random bytes, so the patch has none (-n),
+    and no source hash (-A). The masked target is streamed into xdelta, which
+    needs armor off (-a: armor wants a seekable target), so only the masked
+    source takes an image of scratch. A copy that runs on into the random bytes by a
+    coincidence is possible, so the caller decodes the real source and runs
+    decoy_free before trusting the result."""
+    import numpy as np
+    size = source.stat().st_size
+    src = np.memmap(source, dtype=np.uint8, mode='r')
+    tgt = np.memmap(target, dtype=np.uint8, mode='r')
+    rng = np.random.default_rng(int.from_bytes(os.urandom(8), 'little'))
+    masked_source = scratch / f'masked-source-{threading.get_ident()}.bin'
+    step = unit * 4096
+    env = dict(os.environ)
+    env.pop('XDELTA', None)
+    output.unlink(missing_ok=True)
+
+    def blocks(fill_source):
+        """The masked source (fill_source) or target, a block at a time, with
+        the same random bytes outside D in both."""
+        noise_rng = np.random.default_rng(seed)
+        for start in range(0, size, step):
+            end = min(start + step, size)
+            old = np.array(src[start:end])
+            new = np.array(tgt[start:end])
+            block = noise_rng.integers(0, 256, end - start, dtype=np.uint8)
+            for k in range(0, end - start, unit):
+                if not np.array_equal(old[k:k + unit], new[k:k + unit]):
+                    block[k:k + unit] = (old if fill_source else new)[k:k + unit]
+            yield block.tobytes()
+
+    seed = int(rng.integers(0, 2 ** 63))
+    try:
+        # Only the source must be a file (xdelta seeks in it); the target is
+        # streamed in, so one image of scratch is enough.
+        with open(masked_source, 'wb') as out_source:
+            for block in blocks(True):
+                out_source.write(block)
+        with open(output, 'wb') as out_patch:
+            process = subprocess.Popen(
+                [tool, '-e', '-A', '-a', '-n', '-s', str(masked_source)],
+                stdin=subprocess.PIPE, stdout=out_patch, env=env)
+            try:
+                for block in blocks(False):
+                    process.stdin.write(block)
+            finally:
+                process.stdin.close()
+                process.wait()
+        if process.returncode:
+            raise subprocess.CalledProcessError(process.returncode, process.args)
+    finally:
+        masked_source.unlink(missing_ok=True)
 
 
 MANIFEST_FIELDS = ('patch', 'adds', 'anchor', 'order', 'choices', 'verify',
@@ -524,6 +801,45 @@ def release_fingerprint(rev0, xdelta):
         *dependencies, pil_features.version_module('freetype2'), 'release-matrix-v7'))
 
 
+def available_bytes(path):
+    """Bytes this user can still write at `path`: the filesystem's free
+    space, or the user's quota headroom there when that is smaller (a tmpfs
+    mounted with usrquota allows each user less than it has free)."""
+    status = os.statvfs(path)
+    free = status.f_bavail * status.f_frsize
+    if sys.platform.startswith('linux'):
+        import ctypes
+
+        class Quota(ctypes.Structure):       # struct if_dqblk
+            _fields_ = [('bhardlimit', ctypes.c_uint64),
+                        ('bsoftlimit', ctypes.c_uint64),
+                        ('curspace', ctypes.c_uint64),
+                        ('ihardlimit', ctypes.c_uint64),
+                        ('isoftlimit', ctypes.c_uint64),
+                        ('curinodes', ctypes.c_uint64),
+                        ('btime', ctypes.c_uint64),
+                        ('itime', ctypes.c_uint64),
+                        ('valid', ctypes.c_uint32)]
+
+        QUOTACTL_FD = 443                    # the generic syscall table's number
+        Q_GETQUOTA_USER = (0x800007 << 8) | 0
+        try:
+            libc = ctypes.CDLL(None, use_errno=True)
+            descriptor = os.open(path, os.O_RDONLY)
+            try:
+                quota = Quota()
+                result = libc.syscall(QUOTACTL_FD, descriptor,
+                                      ctypes.c_uint(Q_GETQUOTA_USER),
+                                      os.getuid(), ctypes.byref(quota))
+            finally:
+                os.close(descriptor)
+            if result == 0 and quota.bhardlimit:
+                free = min(free, quota.bhardlimit * 1024 - quota.curspace)
+        except OSError:
+            pass
+    return max(0, free)
+
+
 def scratch_root(required_bytes):
     """Pick the filesystem this run keeps its private disc images on.
 
@@ -541,7 +857,7 @@ def scratch_root(required_bytes):
         root = None
         for candidate in (Path(tempfile.gettempdir()), ROOT / 'build'):
             try:
-                if shutil.disk_usage(candidate).free >= required_bytes:
+                if available_bytes(candidate) >= required_bytes:
                     root = candidate
                     break
             except OSError:
@@ -562,6 +878,29 @@ def supports_reflink(root):
     finally:
         probe.unlink(missing_ok=True)
         copy.unlink(missing_ok=True)
+
+
+@contextmanager
+def chain_slots(work, image_bytes):
+    """Where a sample's two decode slots go.
+
+    Every step of a decoded chain writes a whole image that is read once and
+    thrown away, so the slots are the release's largest write volume. They
+    go to a private directory in the system temp directory when it has room
+    for both (with an image's worth to spare), else into the workspace."""
+    temp = Path(tempfile.gettempdir())
+    try:
+        roomy = available_bytes(temp) >= 3 * image_bytes
+    except OSError:
+        roomy = False
+    if not roomy or work.parent == temp:
+        yield work
+        return
+    slots = Path(tempfile.mkdtemp(prefix='persona-chain-', dir=temp))
+    try:
+        yield slots
+    finally:
+        shutil.rmtree(slots, ignore_errors=True)
 
 
 @contextmanager
@@ -623,12 +962,16 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                            ' needs it to apply add- patches over decorated variants')
     output.mkdir(parents=True, exist_ok=True)
     image_bytes = rev0.stat().st_size
-    # The canonical states stay for the whole run: in-place children are
-    # reflink clones of the base image, and the sample chains decode from
-    # the base image. That is ~11 images plus the two chain slots, all
-    # sharing their unchanged extents; sample discs are compared and deleted
-    # immediately.
-    keep_images = len(canonical) + 3 + max(1, workers)
+    # Kept for the whole run: the staged retail image, the base translation
+    # (the sample chains decode from it) and every state another patch is
+    # encoded from. Every other state is deleted once its audit and encode
+    # are done; at most IN_FLIGHT of them wait for that while the next one
+    # is assembled, and the sample check holds one disc and two chain slots;
+    # one masked encoding or decoy test (one image) runs at a time. The
+    # staged retail image is a free clone where the workspace can clone and
+    # is read in place where it cannot, so it is not counted.
+    parents = {edge.parent for edge in edges.values()} - {()}
+    keep_images = 1 + len(parents) + max(IN_FLIGHT + 1, 3) + 1
     with workspace(keep_images * image_bytes) as work:
         manifest = output / 'manifest.tsv'
         records = read_manifest(manifest)
@@ -639,13 +982,16 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                 f'{manifest} holds patches outside the current release layout'
                 f' (for example {foreign[0]}) - move the old release directory'
                 ' away and rerun; mixing layouts would corrupt the chains')
-        # Stage the retail image once: every variant is written onto a clone
-        # of this scratch copy, so the spinning disc is read once rather than
-        # once per variant and each image is the ordinary build's output. The
-        # hash is taken here, not from the original, so the bytes the release
-        # is built from are the bytes that were staged.
+        # Stage the retail image once where it costs nothing - a reflink
+        # clone in the workspace, which every variant is then written onto.
+        # A workspace that cannot clone (a tmpfs) would hold a whole private
+        # copy of it, so there the variants are written from the retail
+        # image in place. The hash is taken from whichever path is used, so
+        # the bytes the release is built from are the bytes that were hashed.
         original = work / 'original.bin'
-        clone_file(rev0, original)
+        if not reflink(rev0, original):
+            original.unlink(missing_ok=True)
+            original = rev0
         base = work / 'base.bin'
         rev1_hash = sha256(rev1)
         initial_key = release_fingerprint(rev0, xdelta)
@@ -654,6 +1000,9 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
         records_lock = threading.Lock()
         image_lock = threading.RLock()
         tasks = ThreadPoolExecutor(max_workers=max(1, workers))
+        room = threading.BoundedSemaphore(IN_FLIGHT)
+        decoy_lock = threading.Lock()     # one perturbed image at a time
+        solo_changes = {}   # option -> file sectors its solo build changes
         futures = {}
         slots = itertools.count()
         built = {}          # labels -> image assembled or decoded this run
@@ -741,7 +1090,16 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                 if dest is None:
                     dest = work / ('image-%s.bin' % '-'.join(labels))
                 if not dest.is_file():
-                    run_decode(xdelta, source, output / edge.file, dest)
+                    # Decoded in the temp directory when it has room, then
+                    # only the blocks that differ from the parent are written
+                    # into a clone of it in the workspace.
+                    with chain_slots(work, image_bytes) as slots:
+                        if slots == work:
+                            run_decode(xdelta, source, output / edge.file, dest)
+                        else:
+                            decoded = slots / dest.name
+                            run_decode(xdelta, source, output / edge.file, decoded)
+                            inject_diff(decoded, source, dest)
                 built[labels] = dest
                 return dest
 
@@ -907,8 +1265,36 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
             print(f'patch: {name}', flush=True)
             generated = work / f'new-{threading.get_ident()}-{name}'
             try:
-                if metadata.get('adds') in SIZE_CHANGERS:
+                # Every add- patch is applied over discs it was not encoded
+                # from, so none may copy a byte that another option can
+                # change: an in-place patch from xdelta's matcher once took
+                # an ECC byte of a sector range and battlespeed share from a
+                # decoy that western or mark changes. A size-changer moves
+                # files, so it is always written from its preimage map. An
+                # in-place patch keeps xdelta's matching (Mark's repeated
+                # walk sheets) when the decoy test proves it safe, and is
+                # written from the preimage map otherwise.
+                adds = metadata.get('adds')
+                if adds in SIZE_CHANGERS:
                     run_sizedelta(xdelta, source, target, generated)
+                elif adds:
+                    want = (sha256(target), target.stat().st_size)
+                    safe = False
+                    with decoy_lock, chain_slots(work, image_bytes) as slots:
+                        for _attempt in range(MASKED_TRIES):
+                            masked_delta(xdelta, source, target, generated, slots)
+                            safe = (decode_digest(xdelta, source, generated,
+                                                  skip_checksum=True) == want
+                                    and decoy_free(xdelta, source, target,
+                                                   generated, slots))
+                            if safe:
+                                break
+                    if not safe:
+                        print(f'patch: {name}: no masked encoding was decoy-free'
+                              f' in {MASKED_TRIES} tries; writing it from the'
+                              ' preimage map', flush=True)
+                        generated.unlink(missing_ok=True)
+                        run_sizedelta(xdelta, source, target, generated)
                 else:
                     run_delta(xdelta, source, target, generated,
                               disable_armor=disable_armor)
@@ -959,6 +1345,8 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
             try:
                 verify_image(image, placement, audit, baseline=baseline,
                              no_text=True)
+                if len(ordered) == 1:
+                    solo_changes[option] = image_changes(ensure_image(()), image)
                 source = ensure_image(edge.parent)
                 patch(source, image, edge.file, metadata, key)
                 if not edge.anchor and not edge.parent:
@@ -978,6 +1366,12 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                     cue.unlink()
                 placement.unlink(missing_ok=True)
                 shutil.rmtree(audit, ignore_errors=True)
+                if tuple(ordered) not in parents:
+                    # Nothing is encoded from this state: its image is done.
+                    with image_lock:
+                        built.pop(tuple(ordered), None)
+                    image.unlink(missing_ok=True)
+                room.release()
 
         def finished(selected, image):
             nonlocal current_key, built_first
@@ -1002,8 +1396,14 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
             baseline = baselines.get(labels)
             if baseline is None:
                 baseline = original if parent is None else ensure_image(parent)
-            futures[labels] = tasks.submit(
-                edge_task, labels, image, placement, audit, baseline, current_key)
+            room.acquire()      # the next build waits while IN_FLIGHT images do
+            try:
+                futures[labels] = tasks.submit(
+                    edge_task, labels, image, placement, audit, baseline,
+                    current_key)
+            except BaseException:
+                room.release()
+                raise
 
         def source_image_for(patches):
             labels = index.get(tuple(patches))
@@ -1100,15 +1500,34 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
         else:
             tasks.shutdown(wait=True)
 
-        def decode_chain(labels, first, second):
+        # Every pair of options that writes the same file sector must be
+        # partnered, or some chain with both rewrites one's checksums for a
+        # disc without the other's bytes. Checked on every option's solo
+        # build, so it does not depend on which selections the samples pick.
+        changes = {label: (solo_changes[label] if label in solo_changes
+                           else image_changes(ensure_image(()),
+                                              ensure_image((label,))))
+                   for label in CHOICE_ORDER}
+        overlaps = unpartnered_overlaps(changes)
+        if overlaps:
+            raise RuntimeError(
+                'options write the same disc sectors without a PARTNERS entry'
+                ' in build_patches.py:\n' + '\n'.join(
+                    f'  {a} + {b}: ' + ', '.join(f'{name} +{n * 2048:#x}'
+                                                for name, n in shared[:6])
+                    for a, b, shared in overlaps))
+
+        def decode_chain(labels, first, second, digest_only=False):
             """Decode the add- patches for `labels` over the base translation,
             the same order and the same strict/-n rule the browser uses for a
             decorated chain. Returns the image path (one of the two scratch
-            slots)."""
+            slots), or with `digest_only` the (SHA-256, size) of the last step's
+            output, hashed as it streams out of xdelta and never written."""
             current = ensure_image(())
             dest = first
             applied = set()
-            for label in solver_order(labels):
+            ordered = solver_order(labels)
+            for index, label in enumerate(ordered):
                 name = patch_file(label, anchor_of(label, applied))
                 row = records.get(name)
                 if not row or not file_matches_row(name, row):
@@ -1116,6 +1535,9 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                         f'cannot verify {name}: it is missing from the release')
                 canonical = (applied == {item for item in row['choices'].split(',')
                                          if item} - {label})
+                if digest_only and index == len(ordered) - 1:
+                    return decode_digest(xdelta, current, output / name,
+                                         skip_checksum=not canonical)
                 run_decode(xdelta, current, output / name, dest,
                            skip_checksum=not canonical)
                 applied.add(label)
@@ -1155,9 +1577,7 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                 if covered(selection, names):
                     print(f'patch: sample {selection} already verified', flush=True)
                     continue
-                image = work / f'sample-{number}.bin'
-                image.unlink(missing_ok=True)
-                pending.append((number, labels, selection, names, image))
+                pending.append((number, labels, selection, names))
             def audit_sample(selected, path):
                 """Audit the disc while the build tree that produced it is
                 still live: the sample must be a proper build, not just
@@ -1166,53 +1586,77 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                 verify_image(path, path.with_name(path.name + '.placement.tsv'),
                              baseline=original, no_text=True)
 
-            if pending:
-                previous_argv, previous_image = sys.argv, build.ORIGINAL_IMAGE
-                try:
-                    sys.argv = ['build.py', '--incremental', '--no-port']
-                    build.ORIGINAL_IMAGE = str(original)
-                    build.main(variants_override=[
-                                   (release_selection(labels), str(image))
-                                   for _number, labels, _selection, _names, image
-                                   in pending],
-                               after_variant=audit_sample,
-                               mark_builder=mark_builder,
-                               source_image_for=lambda patches: str(original))
-                finally:
-                    sys.argv, build.ORIGINAL_IMAGE = previous_argv, previous_image
-                # A sample built from inputs the patches were not encoded
-                # from cannot match them; that is not a composition failure.
-                if release_fingerprint(rev0, xdelta) != current_key:
-                    raise RuntimeError('build inputs changed while the samples'
-                                       ' were built; rerun the build')
             used = {}
-            for number, labels, selection, names, image in pending:
-                print(f'patch: checking sample {selection}', flush=True)
-                built_bytes = image.stat().st_size
-                first = work / f'sample-{number}-a.bin'
-                second = work / f'sample-{number}-b.bin'
-                try:
-                    applied = decode_chain(labels, first, second)
-                    if applied.stat().st_size != built_bytes:
-                        raise RuntimeError(
-                            f'the sampled chain for {selection} produces '
-                            f'{applied.stat().st_size} bytes, the built disc '
-                            f'is {built_bytes}')
-                    if sha256(applied) != sha256(image):
-                        raise RuntimeError(
-                            f'the sampled chain for {selection} does not '
-                            'reproduce the built disc byte for byte - the '
-                            'patches do not compose; review build_patches.py '
-                            '(SIZE_CHANGERS, solver order)')
-                finally:
-                    first.unlink(missing_ok=True)
-                    second.unlink(missing_ok=True)
-                    image.unlink(missing_ok=True)
-                    image.with_suffix('.cue').unlink(missing_ok=True)
-                for name in names:
-                    used.setdefault(name, []).append(selection)
-                print(f'patch: sample {selection} verified byte for byte',
-                      flush=True)
+            if pending:
+                # Each sample is checked as soon as it is built and deleted, so
+                # one sample and the two chain slots are all that exist at once:
+                # in the temp directory when it has room for them.
+                with chain_slots(work, image_bytes) as slots:
+                    images = {str(slots / f'sample-{number}.bin'):
+                              (number, labels, selection, names)
+                              for number, labels, selection, names in pending}
+
+                    def check_sample(selected, path):
+                        audit_sample(selected, path)
+                        image = Path(path)
+                        number, labels, selection, names = images[str(path)]
+                        print(f'patch: checking sample {selection}', flush=True)
+                        built_bytes = image.stat().st_size
+                        first = slots / f'sample-{number}-a.bin'
+                        second = slots / f'sample-{number}-b.bin'
+                        try:
+                            digest, size = decode_chain(labels, first, second,
+                                                        digest_only=True)
+                            if (size, digest) != (built_bytes, sha256(image)):
+                                # A sample built from inputs the patches were not
+                                # encoded from cannot match them; that is not a
+                                # composition failure.
+                                if release_fingerprint(rev0, xdelta) != current_key:
+                                    raise RuntimeError(
+                                        'build inputs changed while the samples'
+                                        ' were built; rerun the build')
+                            if size != built_bytes:
+                                raise RuntimeError(
+                                    f'the sampled chain for {selection} produces '
+                                    f'{size} bytes, the built disc is {built_bytes}')
+                            if digest != sha256(image):
+                                # Only a failure writes the chain's image, to name
+                                # what differs.
+                                applied = decode_chain(labels, first, second)
+                                raise RuntimeError(
+                                    f'the sampled chain for {selection} does not '
+                                    'reproduce the built disc byte for byte - the '
+                                    'patches do not compose; review build_patches.py '
+                                    '(SIZE_CHANGERS, solver order, PARTNERS). Differing '
+                                    'sectors:\n' + chain_mismatch(applied, image))
+                        finally:
+                            first.unlink(missing_ok=True)
+                            second.unlink(missing_ok=True)
+                            image.unlink(missing_ok=True)
+                            image.with_suffix('.cue').unlink(missing_ok=True)
+                            image.with_name(image.name + '.placement.tsv').unlink(
+                                missing_ok=True)
+                        for name in names:
+                            used.setdefault(name, []).append(selection)
+                        print(f'patch: sample {selection} verified byte for byte',
+                              flush=True)
+
+                    previous_argv, previous_image = sys.argv, build.ORIGINAL_IMAGE
+                    try:
+                        sys.argv = ['build.py', '--incremental', '--no-port']
+                        build.ORIGINAL_IMAGE = str(original)
+                        build.main(variants_override=[
+                                       (release_selection(labels), path)
+                                       for path, (_number, labels, _selection, _names)
+                                       in images.items()],
+                                   after_variant=check_sample,
+                                   mark_builder=mark_builder,
+                                   source_image_for=lambda patches: str(original))
+                    finally:
+                        sys.argv, build.ORIGINAL_IMAGE = previous_argv, previous_image
+                    if release_fingerprint(rev0, xdelta) != current_key:
+                        raise RuntimeError('build inputs changed while the samples'
+                                           ' were built; rerun the build')
             with records_lock:
                 for name, selections in used.items():
                     row = records[name]

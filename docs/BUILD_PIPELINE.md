@@ -139,13 +139,28 @@ every option is an `add-<option>.xdelta`.
 In-place options come first in solver order, one file each, encoded from the
 base translation: Mark, battle speed, rewards, encounters, run, upright and
 skipfmv are `add-<option>.xdelta`. Their patches keep every offset and the
-image size, so they compose over one another by same-offset copies. The one
-exception is a partnered pair that edits the same bytes (`PARTNERS` in
-`tools/build_patches.py`: `run` writes the controller-page entry that
-`western` moves): `run` has a second file, `add-run-western.xdelta`, encoded
-from the `western` state and used when `western` is applied. The partner must
-be listed first in `tools/release_options.json`, whose order is the apply
-order.
+image size, so they compose over one another by same-offset copies, as long
+as no two of them write the same 2 KB disc sector: each raw sector's EDC/ECC
+is a literal of the patch that last wrote it, so a patch encoded without
+another option's bytes rewrites that sector's checksums for a disc without
+them. Options that share a sector are partners (`PARTNERS` in
+`tools/build_patches.py`), and the later one has a second file encoded from
+the partner's state, used when the partner is applied:
+
+- `add-run-western.xdelta`: `run` writes the controller-page entry that
+  `western` moves;
+- `add-range-battlespeed.xdelta`: `range` replaces BtlDrawObjects' debug grid
+  between fast-forward's hooks;
+- `add-saves-western.xdelta`: `saves` hooks the title menus whose button masks
+  `western` swaps. A size-changer can have an in-place partner; its partnered
+  file is encoded from the partner's state to the one-shot layout with both.
+
+The partner is an in-place option applied first (listed first in
+`tools/release_options.json`, whose order is the apply order). The release
+build compares every option's solo disc with the base translation file by
+file and stops when two options that are not partners change the same file
+sector, so a new overlap is caught on the first build rather than only by
+the sample that happens to combine them.
 
 Size-changing options come last: the save menu is `add-saves.xdelta`, 60 fps
 is `add-60fps.xdelta` without the save menu or `add-60fps-saves.xdelta` with
@@ -154,13 +169,34 @@ it. A size-changer is assembled one-shot from retail, exactly like
 image instead of using retail's free space (`saves` alone is about 2 MB
 larger that way) and would not produce the disc the option really builds.
 Applying it rewrites the source layout into the canonical one-shot layout,
-and its same-offset copies carry the earlier in-place edits along. These
-three patches are emitted by `tools/sizedelta.py`, not by xdelta's matcher:
-the writer copies each target byte from its true preimage (the same file
-and offset in the source layout) and writes literals everywhere else. A
-matcher is free to use a same-content decoy - a zero run in one file for a
-different file - which silently dropped skipfmv's edits in `EXE/MOVIE.EXE`
-when `add-saves` was encoded with xdelta3.
+and its same-offset copies carry the earlier in-place edits along.
+
+Every `add-` patch is applied over discs it was not encoded from, so none
+may copy a byte that another option can change. xdelta's matcher is free to
+use a same-content decoy - a zero run in one file for a different file -
+which silently dropped skipfmv's edits in `EXE/MOVIE.EXE` when `add-saves`
+was encoded with plain xdelta3, and wrote a wrong ECC byte into a BTLP.BIN
+sector `range` and `battlespeed` share when `add-range-battlespeed` was (a
+decoy that `western` or `mark` changes). Plain xdelta3 encodes only the two
+conversions (`rev1-to-rev0`, `rev0-to-base`), which are only ever applied to
+the exact disc they were encoded from.
+
+- A size-changer moves files, so it is written by `tools/sizedelta.py`: each
+  target byte is copied from its true preimage (the same file and offset in
+  the source layout) and every other byte is a literal.
+- An in-place patch is encoded by `masked_delta`: xdelta3 over copies of the
+  source and target whose sectors outside D (the sectors the option changes)
+  hold the same random bytes. Outside D the matcher can only copy the random
+  bytes back from their own position; inside D it keeps all its matching, so
+  `add-mark.xdelta` stays under 1 MB. Such a patch has no window checksums
+  or source hash (they would describe the random bytes). A copy can still
+  run on into the random bytes by coincidence, so each encoding must decode
+  the real source to the target exactly and pass `decoy_free`: decoded over
+  the source with every sector outside D replaced by fresh random bytes, it
+  must give those bytes back in place and the target's sectors inside D. A
+  patch that passes is correct over any disc whose sectors in D are the
+  source's, which the sector-overlap check guarantees for every chain. After
+  `MASKED_TRIES` failed encodings the patch falls back to `sizedelta`.
 
 A row names the option it adds (`adds`), the size-changers it was encoded
 against (`anchor`), its fixed apply position (`order`), and the canonical
@@ -171,11 +207,11 @@ exists in the manifest or the page.
 
 The build assembles the canonical states - the base translation, the four
 size-changer layouts (none, `saves`, `60fps`, `saves+60fps`, each laid out
-one-shot from retail), each in-place option on its own, and the
-`western`+`run` pair - and then a
+one-shot from retail), each in-place option on its own, and each partnered
+pair (`western`+`run`, `battlespeed`+`range`, `western`+`saves`) - and then a
 sample of real selections (the three expected-popular combinations and
 `--sample` seeded random ones), each built once from retail for the
-byte-for-byte comparison. That is thirteen canonical builds plus six sample
+byte-for-byte comparison. That is sixteen canonical builds plus six sample
 builds by default, not 512.
 
 #### Why the graph looks like this (invariants other agents must keep)
@@ -338,20 +374,34 @@ what feeds the disc - `src/`, `translation/`, the extracted data, and the
 two scripts it runs - so unrelated churn in `tools/tests/` never
 invalidates a running release. The Rev 1 to Rev 0 conversion never depends
 on build inputs and is reused across any same-source run. A release is
-complete when its manifest lists all 14 steps across the 14 patch files.
+complete when its manifest lists all 17 steps across the 17 patch files.
 
 The run's scratch images live in a private workspace that is deleted on
 exit. It prefers the system temp directory (tmpfs on most Linux systems) when
-it can hold every image the run keeps (the staged retail copy, the base
-translation and the parent states that later steps decode from), then
-`build/`; `PERSONA_BUILD_SCRATCH` names the parent directory explicitly. The
-retail image is staged there once, so the spinning disc is read once rather
-than once per variant, and the number of images allowed to wait for the
-delta pool is bounded by the available space. On a reflink filesystem
-(btrfs) image clones share their unchanged extents and cost almost no data
-blocks; elsewhere the bound reserves room for the staged original, the base
-image, the image being assembled and the kept parent images. Builds sharing
-`build/` must not run together.
+it can hold the run's peak, then `build/`. Only the staged retail copy, the
+base translation and the states another patch is encoded from (the partners
+and the size-changer layouts) are kept for the whole run; every other option
+state is deleted once its audit and encode are done, the next build waits
+while `IN_FLIGHT` of them are still in progress, and the sample check holds
+one disc and two chain slots - about eight images in all.
+`PERSONA_BUILD_SCRATCH` names the parent directory explicitly. The retail
+image is staged there once, so the source disc is read once rather than once
+per variant. On a reflink filesystem (btrfs) image clones share their
+unchanged extents and cost almost no data blocks. Builds sharing `build/`
+must not run together.
+
+The sample check never needs the workspace. Each sample is checked as soon
+as `build.main` has built it (the after-variant hook): audited, its chain
+decoded through two slots that hold a whole image per step, compared, and
+deleted, so one sample disc and the two slots are all that exist at once.
+They go to a private directory in the system temp directory when it has
+room for the three (even when the workspace itself did not fit there), and
+to the workspace otherwise. The last step of each chain is hashed as it
+streams out of xdelta and is never written; only a failed sample decodes it
+to a file, to name the sectors that differ. A state rebuilt from an already-published patch is
+decoded into the temp directory the same way, and only the 4 KB blocks that
+differ from its parent are written, into a reflink clone of the parent in
+the workspace.
 
 ### Browser patcher
 

@@ -35,6 +35,41 @@ class ReleaseIO(unittest.TestCase):
             path.write_bytes(b'other')
             self.assertNotEqual(release.sha256(path), first)
 
+    def test_inject_diff_reproduces_the_decoded_image(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            parent = root / 'parent.bin'
+            parent.write_bytes(bytes(range(256)) * 200)          # 51200 bytes
+            for name, data in (
+                    ('changed', bytearray(parent.read_bytes())),
+                    ('shorter', parent.read_bytes()[:30000]),
+                    ('longer', parent.read_bytes() + b'tail' * 3000)):
+                data = bytearray(data)
+                if name == 'changed':
+                    data[5000] ^= 0xFF
+                    data[-1] ^= 0xFF
+                decoded = root / f'{name}.decoded'
+                decoded.write_bytes(bytes(data))
+                dest = root / f'{name}.bin'
+                release.inject_diff(decoded, parent, dest)
+                self.assertEqual(dest.read_bytes(), bytes(data), name)
+            self.assertEqual(parent.read_bytes(), bytes(range(256)) * 200,
+                             'the parent is never written')
+
+    def test_chain_slots_use_temp_only_with_room(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            temp, work = Path(tmp) / 'temp', Path(tmp) / 'disk' / 'work'
+            temp.mkdir()
+            work.mkdir(parents=True)
+            usage = shutil.disk_usage(tmp)
+            with patch.object(release.tempfile, 'gettempdir', return_value=str(temp)):
+                with release.chain_slots(work, 1) as slots:
+                    self.assertEqual(slots.parent, temp)
+                    self.assertTrue(slots.is_dir())
+                self.assertFalse(slots.exists(), 'the private slot directory is removed')
+                with release.chain_slots(work, usage.free) as slots:
+                    self.assertEqual(slots, work, 'no room for both slots: the workspace')
+
     def test_scratch_root_honors_the_environment(self):
         with tempfile.TemporaryDirectory() as tmp, \
                 patch.dict(os.environ, {release.SCRATCH_ENV: tmp}):
@@ -120,7 +155,7 @@ class ReleaseGraph(unittest.TestCase):
         anchors = release.size_changer_states()
         self.assertEqual(anchors, [(), ('saves',), ('60fps',),
                                    ('saves', '60fps')])
-        self.assertEqual(len(canonical), 14)
+        self.assertEqual(len(canonical), 16)
         self.assertEqual(canonical[0], ())
         self.assertEqual({tuple(labels) for labels in canonical[:4]},
                          set(anchors))
@@ -128,7 +163,7 @@ class ReleaseGraph(unittest.TestCase):
             self.assertIn(tuple(release.solver_order([option])), canonical)
             self.assertEqual(tuple(release.solver_order([option])), (option,))
         self.assertEqual(len({tuple(release.release_selection(labels))
-                              for labels in canonical}), 14)
+                              for labels in canonical}), 16)
 
         expected = {'rev0-to-base.xdelta', 'rev1-to-rev0.xdelta',
                     'add-saves.xdelta', 'add-60fps.xdelta',
@@ -136,8 +171,9 @@ class ReleaseGraph(unittest.TestCase):
         for option in release.in_place_options():
             expected.add(release.patch_file(option, frozenset()))
         # a partnered option has a second file over its partner
-        expected.add('add-run-western.xdelta')
-        self.assertEqual(len(release.release_file_names()), 15)
+        expected |= {'add-run-western.xdelta', 'add-range-battlespeed.xdelta',
+                     'add-saves-western.xdelta'}
+        self.assertEqual(len(release.release_file_names()), 17)
         self.assertEqual(release.release_file_names(), expected)
 
     def test_samples_start_with_the_expected_popular_sets(self):
@@ -180,7 +216,31 @@ class ReleaseGraph(unittest.TestCase):
         self.assertIn(('60fps', ('saves',)), edges)
         self.assertIn(('run', ()), edges)
         self.assertIn(('run', ('western',)), edges)
-        self.assertEqual(len(edges), 13)
+        self.assertIn(('range', ('battlespeed',)), edges)
+        self.assertIn(('saves', ('western',)), edges)
+        self.assertNotIn(('60fps', ('western',)), edges)
+        self.assertEqual(len(edges), 15)
+
+    def test_options_sharing_a_sector_must_be_partners(self):
+        base = {'BTLP.BIN': bytes(4096), 'OPEN.EXE': bytes(4096)}
+        def edit(name, offset):
+            data = bytearray(base[name])
+            data[offset] = 1
+            return {**base, name: bytes(data)}
+        changes = {
+            'battlespeed': release.changed_sectors(base, edit('BTLP.BIN', 10)),
+            'range': release.changed_sectors(base, edit('BTLP.BIN', 20)),
+            'western': release.changed_sectors(base, edit('OPEN.EXE', 2048)),
+            'saves': release.changed_sectors(base, edit('OPEN.EXE', 3000)),
+            'mark': release.changed_sectors(base, edit('BTLP.BIN', 2048)),
+            '60fps': release.changed_sectors(base, edit('OPEN.EXE', 2100)),
+        }
+        self.assertEqual(changes['range'], {('BTLP.BIN', 0)})
+        # range/battlespeed and saves/western are partners; mark sits in its
+        # own sector; 60fps and saves are both size-changers. 60fps shares
+        # western's sector without being its partner.
+        self.assertEqual(release.unpartnered_overlaps(changes),
+                         [('western', '60fps', [('OPEN.EXE', 1)])])
 
     def test_every_add_edge_is_encoded_from_a_canonical_state(self):
         canonical = set(release.canonical_states())
@@ -311,25 +371,25 @@ class ReleaseBuild(unittest.TestCase):
             rev0.write_bytes(b'retail revision zero' * 100)
             rev1.write_bytes(b'retail revision one' * 100)
             verified, builder = self.run_release(root, rev0, rev1, out)
-            self.assertEqual(len(verified), 14 + len(self.samples),
+            self.assertEqual(len(verified), 16 + len(self.samples),
                              'an audit per canonical state and per sample disc')
             self.assertEqual(builder.call_count, 2,
                              'one canonical batch plus one sample batch')
-            self.assertEqual(len(list(out.glob('*.xdelta'))), 15)
+            self.assertEqual(len(list(out.glob('*.xdelta'))), 17)
             self.assertFalse(list(out.glob('*.bin')))
             readme = (out / 'README.txt').read_text(encoding='utf-8')
             for name in release.release_file_names():
                 self.assertIn(name, readme)
             for item in release.RELEASE_OPTIONS:
                 self.assertIn(item['name'], readme)
-            self.assertIn('15 steps across 15 patch files', ' '.join(readme.split()))
+            self.assertIn('17 steps across 17 patch files', ' '.join(readme.split()))
             self.assertIn('SAMPLING', readme)
 
             with (out / 'manifest.tsv').open() as f:
                 rows = list(csv.DictReader(f, delimiter='\t'))
-            self.assertEqual(len(rows), 15)
+            self.assertEqual(len(rows), 17)
             by_name = {row['patch']: row for row in rows}
-            self.assertEqual(len(by_name), 15, 'one row per patch file')
+            self.assertEqual(len(by_name), 17, 'one row per patch file')
             self.assertEqual(by_name['rev1-to-rev0.xdelta']['source_sha256'],
                              release.sha256(rev1))
             base = by_name['rev0-to-base.xdelta']
@@ -386,16 +446,17 @@ class ReleaseBuild(unittest.TestCase):
                 [('60fps',)])
             self.assertEqual(conversion.stat().st_mtime_ns, stamp)
 
-            (out / 'add-saves.xdelta').unlink()
+            # The second sample has western, so its saves is the partnered file.
+            (out / 'add-saves-western.xdelta').unlink()
             _, builder = self.run_release(root, rev0, rev1, out)
             self.assertEqual(builder.call_count, 2,
                              'the canonical state plus the sample that uses it')
             canonical_call, sample_call = builder.call_args_list
             self.assertEqual(
-                [release.state_labels(selected)
+                [tuple(release.solver_order(release.state_labels(selected)))
                  for selected, _path in
                  canonical_call.kwargs['variants_override']],
-                [('saves',)])
+                [('western', 'saves')])
             self.assertEqual(
                 [tuple(release.solver_order(release.state_labels(selected)))
                  for selected, _path in
