@@ -3,7 +3,7 @@ meta	map:boot_btlmsg	fffeb222faa24d5466d83daa4072ee0e4858d93e
 meta	map:btlneg	90a11cc6ef4b87f4b81243980be2183585ce63f9								
 meta	matches_sha1	e6e64e60c5298c5a8e6779e3ad925cabed760685								
 meta	psx:BTLP	b2cba081ee71bd645969ec85ee11dc6ac18f2976								
-meta	rule_sha1	1be70ff5c3ed9e7887071cb861c8befa7e834d90								
+meta	rule_sha1	bb4660a9e55aefffcc95864d478e153b9f036e02								
 meta	us:EBOOT	08e9592c6d19ae1a355f016b6664408be61089e4								
 meta	us:boot-bin	ffe2a970ebbcb974e5a022f572cbb5892d36f035								
 meta	version	1								
