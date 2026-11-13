@@ -814,6 +814,9 @@ one click. That is the whole model; "four clicks in one box" is a bug.
    write, routes the full PSP draft to manual as `over limit Npx/239px;
    <draft>`, and leaves the Japanese on the disc. A human shortens the draft
    into `en`; the grid then fits.
+   Column 1 is padded with whole 4 px VWF spaces rounded UP to the stop, so
+   column 2 never starts before it (at most 3 px past it); rounding to the
+   nearest space put rows whose shortfall was 14.5 and 13.5 spaces 4 px apart.
 
 **S2D overworld portrait dialogue.** The generic 15x3 text object treats
 `<FF02>` as a wait in place and `<FF04>` as a page advance. For complete
