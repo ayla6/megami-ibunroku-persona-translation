@@ -9,6 +9,7 @@
 ;; --- SLPS_005.00: the resident card code -------------------
 .ifndef QOL_SAVES_INC
 .definelabel QOL_SAVES_INC, 1
+.definelabel QOL_CARD_POLL, 0x80013344          ; CardPollPorts(want0, want1) -> 1<<chan removed, 4<<chan new card
 .definelabel QOL_CARD_LOAD, 0x800135C4          ; CardLoad(chan) -> 0 ready, 1 error, 2 no card, 4 unformatted
 .definelabel QOL_CARD_SCAN, 0x800139A0          ; CardScanSaves(chan, kind, out) -> bits 0-6 present, 8-14 bad sum
 .definelabel QOL_CARD_SAVE, 0x80013E2C          ; CardSave(chan, slot, kind)

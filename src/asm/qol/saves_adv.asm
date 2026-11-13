@@ -132,6 +132,20 @@ qol_initial_fade:
     addiu   sp, sp, 0x28
     jr      t9
     nop
+;; qol_step_cursor's frame is live. A card came or went: let the poll's
+;; own _card_info finish (the title's rebuild waits the same 30 frames),
+;; bring both ports up, then rescan and redraw the list.
+qol_poll_change:
+    beqz    v0, qol_poll_ret
+    nop
+    jal     QOL_VSYNC
+    ori     a0, zero, 30
+    jal     QOL_CARD_LOAD
+    move    a0, zero
+    jal     QOL_CARD_LOAD
+    ori     a0, zero, 1
+    j       qol_poll_rescan
+    nop
     .endarea
 
 ;; SaveTopStep picks the first card that answered and goes straight to
@@ -214,6 +228,11 @@ qol_stamp_number:
     ori     v1, zero, 2
     j       0x80014284
     nop
+qol_poll_ret:
+    lw      ra, 0x14(sp)
+    nop
+    jr      ra
+    addiu   sp, sp, 0x18
     .endarea
 
 ;; SaveSlotsOpen: a 40-cell window, and both layers get the width the
@@ -313,10 +332,14 @@ qol_step_cursor:
     sw      t1, 0x2D0(t0)           ; unk2D0.cur = lo = hi = the card
     sw      t1, 0x2D4(t0)
     sw      t1, 0x2D8(t0)
-    lw      ra, 0x14(sp)
+    ;; Retail only re-checked the card on confirm, after its card-choice
+    ;; screen; without that screen the list would keep its first scan.
+    ;; Poll both ports every frame like the title's load list does.
+    ori     a0, zero, 0x81
+    jal     QOL_CARD_POLL
+    ori     a1, zero, 0x81
+    j       qol_poll_change
     nop
-    jr      ra
-    addiu   sp, sp, 0x18
 
 qol_save_row:
     ori     t0, zero, QOL_ROWS_PER_CARD
@@ -405,6 +428,12 @@ qol_card_ready:
     lw      ra, 0x14(sp)
     ori     a0, zero, QOL_CARD_READY_FRAMES
     j       0x8008BC04             ; RenderFrames: no menu dispatch or card reads
+    addiu   sp, sp, 0x18
+qol_poll_rescan:
+    jal     qol_adv_scan
+    nop
+    lw      ra, 0x14(sp)
+    j       qol_adv_draw           ; SaveSlotsDraw returns to SaveSlotStep
     addiu   sp, sp, 0x18
     .endarea
 
