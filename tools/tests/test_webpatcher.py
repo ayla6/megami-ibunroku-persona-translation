@@ -112,7 +112,7 @@ class FeatureWordingTest(unittest.TestCase):
                          'release_options.json must list exactly the'
                          ' release choices, in CHOICES order')
         for item in options:
-            self.assertEqual(sorted(item), ['description', 'label', 'name'],
+            self.assertEqual(sorted(set(item) - {'qol'}), ['description', 'label', 'name'],
                              item['label'])
             self.assertTrue(item['name'].strip(), item['label'])
             self.assertTrue(item['description'].strip(), item['label'])

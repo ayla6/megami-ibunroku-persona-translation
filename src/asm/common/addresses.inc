@@ -677,6 +677,19 @@ DBG_END_HOOK_END    equ 0x8008B5C0
 DBG_END_VSYNC       equ 0x8008CA8C
 DBG_END_CAVE        equ 0x80083D60
 DBG_END_CAVE_END    equ 0x80083EF4
+;; --qol=fastforward (qol/fastforward_btlp.asm): equ's live here, armips takes none inside .ifdef
+FF_RATE      equ 3                      ; battle ticks per shown frame while fast-forwarding (odd)
+FF_START     equ 0x0800                 ; the toggle: START
+FF_ON        equ 0                      ; ff_vars: u8 fast-forward wanted
+FF_CNT       equ 1                      ; u8 tick within the group (0 = shown)
+FF_HIDE      equ 2                      ; u8 this tick draws nothing
+FF_SHOW      equ 3                      ; u8 this tick waits for the vblank and shows a frame
+FF_ICON_X    equ 296                    ; ">>": two 9x12 triangles at the top right
+FF_ICON_Y    equ 10
+FF_ICON_RGB  equ 0x20F0F0F0             ; POLY_F3, light grey
+.if FF_RATE < 3 || (FF_RATE & 1) == 0
+    .error "FF_RATE must be odd and at least 3"
+.endif
 
 ;; --- EXE/MOVIE.EXE - Movie player EXE, t_addr 0x80080000 ---
 MOVIE_EXE_FILENAME equ "../../data/psx/EXE/MOVIE.EXE"

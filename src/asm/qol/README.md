@@ -29,6 +29,7 @@ filename; a plain build uses the retail save flow and the regular translation fi
 | `upright` | `QOL_UPRIGHT` | Upward Movement Orientation: Upper Right in the 2D rooms - pressing Up walks to the upper right instead of the retail upper left |
 | `skipfmv` | `QOL_SKIPFMV` | press Start to skip the movie that is playing (the story FMVs, Philemon's scenes among them; the opening quote and the Atlus logo already skip) |
 | `battlespeed` | `QOL_BATTLESPEED` | summons and skill effects at double speed |
+| `fastforward` | `QOL_FASTFORWARD` | Start while a battle turn plays out fast-forwards it: 3 battle ticks per shown frame, ">>" at the top right; it ends at the command menu and at the results window. The release carries it in the `battlespeed` patch (`release_options.json` `qol`) |
 | `debug` | `QOL_DEBUG` | battle debug menu: press Start on either controller to open the debug page; on the title menu L1/L2/R1/R2/Select start endings 0-4, holding R1 fast-forwards an ending and Start skips its movies |
 | `mark` | `QOL_MARK` | Mark wears the Revelations design: the dialogue/status headshot, battle sheet and overworld walk sheet are swapped for the art in `src/assets/mark/black` (edit those PNGs to change it; see `src/assets/mark/README.md`). No code changes: the BST face slot and his B/P.BIN battle entry are rewritten in place and the ~207 MES.BIN scene entries carrying his walk sheet are re-encoded around the swapped page |
 
@@ -151,6 +152,20 @@ For UI/code iteration, `python src/injection_tools/build.py --no-port` skips PSP
 extraction/matching and worklist trimming. It still regenerates all text/graphics from the current
 tables, assembles every patched image, checks placement, and packages the disc; it does not rely
 on stale generated S2D or TALK binaries. Use the normal build when re-porting source wording.
+
+## The battle fast-forward (`--qol=fastforward`)
+
+`qol/fastforward_btlp.asm` (its header has the full mechanism). BtlDrawFrame is rewritten compactly in
+place, and the ticks run in groups of `FF_RATE` (3, odd). Tick 0 of a group waits for the vblank and
+shows the frame the group before drew. The middle ticks are hidden: BtlDrawObjects' per-object handler
+call (0x80082A9C) and its arena / floor-mesh tail (0x80082E6C) are skipped, and the ordering table goes
+to the GPU with an empty drawing area. The last tick draws normally. Hidden ticks still run all battle
+logic and BtlDrawObjects' state work (position hand-down, colour fades): the handlers only build
+primitives (decomp `src/btlp/obj*.c`). The extra code also uses the dead `BtlFrontPost` (0x80065D88).
+With `battlespeed` the rewrite has no half-rate second VSync and main.asm leaves
+`battle_speed_btlp.asm` out; alone it keeps that wait. Start at the command menu stays the game's,
+so `--qol=debug`'s page still opens there. `tools/tests/test_qol_fastforward.py` runs the frame tick by
+tick on the R3000 model.
 
 ## The battle debug menu (`--qol=debug`)
 

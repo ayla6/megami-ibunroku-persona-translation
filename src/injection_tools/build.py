@@ -57,6 +57,9 @@ QOL_PATCHES = {
                                        'the Philemon scenes among them; the opening quote and the Atlus '
                                        'logo already skip)'),
     'battlespeed': ('QOL_BATTLESPEED', 'summons and skill effects at double speed'),
+    'fastforward': ('QOL_FASTFORWARD', 'press Start while a battle turn plays out to fast-forward it '
+                                       '(3 ticks per shown frame, ">>" at the top right); it ends at '
+                                       'the command menu'),
     'debug':       ('QOL_DEBUG',       'battle debug menu: press Start on either controller in battle; '
                                        'on the title L1/L2/R1/R2/Select start endings 0-4, R1 held '
                                        'fast-forwards an ending and Start skips its movies'),

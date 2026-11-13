@@ -214,6 +214,18 @@ The remaining near leads are unproven, not safe. Review one when its screen or
 transition is touched. The inventory is a snapshot of one build and must be
 regenerated after allocation changes.
 
+## Unclaimed: the BIOS kernel pool tail
+
+`0x8000EA00..0x8000FFF0` (about 5.6 KB) is RAM no patch uses yet, kept in
+reserve for when the resident EXE runs out of room. The BIOS kernel takes its
+control blocks from the pool at `0x8000E000..0x8000FFFF` only at boot, sized by
+SYSTEM.CNF (`TCB = 4`, `EVENT = 16`: about 0x500 bytes, measured as
+`0x8000E000..0x8000E59F` with Sony's BIOS). The tail is free under that BIOS.
+OpenBIOS, Unirom and cheat cartridges are unchecked. Code placed there needs a
+boot stub that copies it in before the original entry point (`0x80011930`),
+because the PS-EXE loader cannot load below the executable's own `t_addr`.
+The ancestor translation (Redeted's) ships its full-name renderer this way.
+
 ## Known blind spots
 
 This process cannot see:

@@ -150,7 +150,9 @@ western_layout ADV_PAD_LAYOUTS, 0         ; QoL (--qol=western): the controller 
 .ifdef QOL_REWARDS
 .include "qol/rewards_btlp.asm"         ; QoL (--qol=rewards): EXP / P.P. / money after a battle x2
 .endif
-.ifdef QOL_BATTLESPEED
+.ifdef QOL_FASTFORWARD
+.include "qol/fastforward_btlp.asm"     ; QoL (--qol=fastforward): START fast-forwards a turn; its BtlDrawFrame rewrite also covers battlespeed
+.elseifdef QOL_BATTLESPEED
 .include "qol/battle_speed_btlp.asm"    ; QoL (--qol=battlespeed): summons / skill effects at double speed
 .endif
 .ifdef QOL_DEBUG

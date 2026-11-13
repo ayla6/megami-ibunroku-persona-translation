@@ -96,7 +96,11 @@ CHOICES_SOURCE = Path(__file__).resolve().parent / 'release_options.json'
 # the wording test, never a release.
 with open(CHOICES_SOURCE, encoding='utf-8') as _release_options:
     RELEASE_OPTIONS = json.load(_release_options)
-CHOICES = tuple((item['label'], (item['label'],)) for item in RELEASE_OPTIONS)
+# A release option is one patch file; `qol` lists the build.py patches it
+# carries when that is more than its own label (`battlespeed` brings the
+# START fast-forward along with the faster animations).
+CHOICES = tuple((item['label'], tuple(item.get('qol', (item['label'],))))
+                for item in RELEASE_OPTIONS)
 CHOICE_ORDER = [label for label, _group in CHOICES]
 # Options whose one-shot build changes the image layout (size or placement).
 # They are applied last, and each one is encoded against the size-changer
