@@ -1176,6 +1176,11 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                                source_image_for=lambda patches: str(original))
                 finally:
                     sys.argv, build.ORIGINAL_IMAGE = previous_argv, previous_image
+                # A sample built from inputs the patches were not encoded
+                # from cannot match them; that is not a composition failure.
+                if release_fingerprint(rev0, xdelta) != current_key:
+                    raise RuntimeError('build inputs changed while the samples'
+                                       ' were built; rerun the build')
             used = {}
             for number, labels, selection, names, image in pending:
                 print(f'patch: checking sample {selection}', flush=True)
