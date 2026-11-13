@@ -31,6 +31,7 @@ CLI (run from persona-tl/):
   python tools/etext.py build [outdir]        apply the `en` column -> build/ADV/E?.BIN + build/event_tables.asm
 """
 import json
+import functools
 import os
 import re
 import struct
@@ -189,7 +190,12 @@ def has_missing_placeholder(s):
     return bool(_MISSING_PLACEHOLDER.search(_TOKEN.sub(' ', s)))
 
 
+@functools.lru_cache(maxsize=None)
 def encode(s, end=bytes([0xFF, 0x01])):
+    # Cached: the tables it reads (char2g, the font's spelling) are built once
+    # at import, so a string always encodes the same way in one process, and
+    # the QA and build passes encode the same rows several times. A string
+    # that raises is not cached and raises again.
     # Internal diagnostics must never be encoded as dialogue. Ignore layout
     # tokens when checking so line/box breaks cannot conceal a placeholder.
     if has_missing_placeholder(s):

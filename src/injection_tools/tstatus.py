@@ -561,10 +561,10 @@ def cmd_qa(limit=40):
     return fatal
 
 
-def stats():
+def stats(boxes=None):
     per = collections.OrderedDict()
     uniq, uniq_done = {}, set()
-    for n, e, k, ja, en in rows():
+    for n, e, k, ja, en in (rows() if boxes is None else boxes):
         d = per.setdefault(n, collections.OrderedDict()).setdefault(e, [0, 0])
         d[0] += 1
         d[1] += 1 if etext.has_text(en) else 0
@@ -574,10 +574,13 @@ def stats():
     return per, uniq
 
 
-def cmd_next(count=25, quiet=False):
+def cmd_next(count=25, quiet=False, boxes=None):
+    # One pass over the rows when the caller has none: rows() parses every
+    # event file again each time it is called.
+    boxes = list(rows()) if boxes is None else boxes
     seen, out = set(), []
-    done_ja = {ja for n, e, k, ja, en in rows() if etext.has_text(en)}
-    for n, e, k, ja, en in rows():
+    done_ja = {ja for n, e, k, ja, en in boxes if etext.has_text(en)}
+    for n, e, k, ja, en in boxes:
         if etext.has_text(en) or ja in done_ja or ja in seen:
             continue
         seen.add(ja)
@@ -608,7 +611,8 @@ def talk_stats():
 
 def cmd_status():
     load_glossary()
-    per, uniq = stats()
+    boxes = list(rows())
+    per, uniq = stats(boxes)
     tot_boxes = sum(v[0] for f in per.values() for v in f.values())
     done_boxes = sum(v[1] for f in per.values() for v in f.values())
     tu, du = len(uniq), sum(1 for v in uniq.values() if v)
@@ -632,7 +636,7 @@ def cmd_status():
         print('Partially completed entries:')
         for n, e, v in part:
             print(f'  {n} entry {e}: {v[1]}/{v[0]}')
-    nxt = cmd_next(1, quiet=True)
+    nxt = cmd_next(1, quiet=True, boxes=boxes)
     if nxt:
         n, e, k, _ = nxt[0]
         print(f'Next untranslated box: {n}/{e}/{k} (run `python src/injection_tools/tstatus.py next 40` for a batch)')

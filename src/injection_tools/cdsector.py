@@ -91,17 +91,18 @@ def make_form1(lba, subheader, user_data):
     return bytes(buf)
 
 
-def _ecc_pq_many(buf, major_count, minor_count, major_mult, minor_inc, out_off):
-    """Vectorized ECC block over every row of the (n, 2352) sector array."""
+def _ecc_pq_many(cols, major_count, minor_count, major_mult, minor_inc, out_off):
+    """Vectorized ECC block over every sector of the (2352, n) column array
+    (one byte position per row, so each step reads a contiguous row)."""
     size = major_count * minor_count
-    data = buf[:, 12:12 + size]
-    rows = _np.zeros(buf.shape[0], dtype=_np.uint8)
+    data = cols[12:12 + size]
+    zero = _np.zeros(cols.shape[1], dtype=_np.uint8)
     for major in range(major_count):
         index = (major >> 1) * major_mult + (major & 1)
-        a = rows
-        b = rows
+        a = zero
+        b = zero
         for _ in range(minor_count):
-            t = data[:, index]
+            t = data[index]
             index += minor_inc
             if index >= size:
                 index -= size
@@ -109,8 +110,8 @@ def _ecc_pq_many(buf, major_count, minor_count, major_mult, minor_inc, out_off):
             b = b ^ t
             a = _ecc_f_u8[a]
         a = _ecc_b_u8[_ecc_f_u8[a] ^ b]
-        buf[:, out_off + major] = a
-        buf[:, out_off + major + major_count] = a ^ b
+        cols[out_off + major] = a
+        cols[out_off + major + major_count] = a ^ b
 
 
 def _bcd_u8(n):
@@ -135,15 +136,20 @@ def _make_form1_many_numpy(entries):
         assert len(data) <= 2048
         user[row, :len(data)] = _np.frombuffer(data, dtype=_np.uint8)
     buf[:, 24:2072] = user
+    # The EDC and ECC walk byte positions across all sectors at once; on the
+    # transposed array each position is one contiguous row instead of a
+    # 2352-byte stride, which halves the time.
+    cols = _np.ascontiguousarray(buf.T)
     value = _np.zeros(n, dtype=_np.uint32)
     for pos in range(16, 2072):
-        value = (value >> 8) ^ _edc_u32[(value ^ buf[:, pos]) & 0xFF]
-    buf[:, 2072:2076] = value.astype('<u4').view(_np.uint8).reshape(n, 4)
-    header = buf[:, 12:16].copy()
-    buf[:, 12:16] = 0                       # Mode 2: ECC ignores the header
-    _ecc_pq_many(buf, 86, 24, 2, 86, 2076)
-    _ecc_pq_many(buf, 52, 43, 86, 88, 2076 + 172)
-    buf[:, 12:16] = header
+        value = (value >> 8) ^ _edc_u32[(value ^ cols[pos]) & 0xFF]
+    cols[2072:2076] = value.astype('<u4').view(_np.uint8).reshape(n, 4).T
+    header = cols[12:16].copy()
+    cols[12:16] = 0                         # Mode 2: ECC ignores the header
+    _ecc_pq_many(cols, 86, 24, 2, 86, 2076)
+    _ecc_pq_many(cols, 52, 43, 86, 88, 2076 + 172)
+    cols[12:16] = header
+    buf = _np.ascontiguousarray(cols.T)
     return [buf[row].tobytes() for row in range(n)]
 
 
