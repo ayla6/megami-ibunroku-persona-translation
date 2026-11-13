@@ -64,8 +64,7 @@ class DebugEndings(unittest.TestCase):
     def setUpClass(cls):
         if not (ROOT / 'external_tools/armips/armips').exists():
             raise unittest.SkipTest('requires armips')
-        Path('/tmp/opencode').mkdir(exist_ok=True)
-        cls.tmp = tempfile.TemporaryDirectory(prefix='dbgend-', dir='/tmp/opencode')
+        cls.tmp = tempfile.TemporaryDirectory(prefix='dbgend-')
         work = Path(cls.tmp.name)
         cls.open, cls.open_sym = assemble('OPEN.EXE', 'debug_open.asm', work)
         cls.end, cls.end_sym = assemble('END.EXE', 'debug_end.asm', work)

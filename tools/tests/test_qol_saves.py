@@ -18,7 +18,7 @@ import save_ui
 class SavePatch(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.tmp = tempfile.TemporaryDirectory(prefix='saves-', dir='/tmp/opencode')
+        cls.tmp = tempfile.TemporaryDirectory(prefix='saves-')
         out = Path(cls.tmp.name)
         blob = ROOT / 'build/movie_subs_open.bin'
         blob_end = 0x80160000 + blob.stat().st_size if blob.exists() else 0x80170000

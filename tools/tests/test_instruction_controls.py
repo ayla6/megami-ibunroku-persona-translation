@@ -59,7 +59,7 @@ class Controls(unittest.TestCase):
     def test_writer_accepts_symbolic_button_separator(self):
         import toolbelt
         import tempfile
-        with tempfile.TemporaryDirectory(dir='/tmp/opencode') as directory:
+        with tempfile.TemporaryDirectory() as directory:
             with patch.object(toolbelt, 'GENERATED', directory), \
                     patch.object(toolbelt, 'route_gaps'):
                 toolbelt.upsert_generated('instruction-test', [

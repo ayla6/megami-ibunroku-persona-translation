@@ -133,8 +133,7 @@ class FastForward(unittest.TestCase):
     def setUpClass(cls):
         if not (ROOT / 'external_tools/armips/armips').exists():
             raise unittest.SkipTest('requires armips')
-        Path('/tmp/opencode').mkdir(exist_ok=True)
-        cls.tmp = tempfile.TemporaryDirectory(prefix='ff-', dir='/tmp/opencode')
+        cls.tmp = tempfile.TemporaryDirectory(prefix='ff-')
         work = Path(cls.tmp.name)
         cls.alone, cls.sym = assemble(work)
         cls.with_speed, _ = assemble(work, 'QOL_BATTLESPEED')

@@ -65,7 +65,7 @@ class RunPatch(unittest.TestCase):
         # the run name and PadDrawLayout's copy of the action-name pointers.
         subprocess.run([sys.executable, str(ROOT / 'src/injection_tools/runtext.py')],
                        check=True, capture_output=True)
-        cls.tmp = tempfile.TemporaryDirectory(prefix='run-', dir='/tmp/opencode')
+        cls.tmp = tempfile.TemporaryDirectory(prefix='run-')
         work = Path(cls.tmp.name)
         source = work / 'fixture.asm'
         source.write_text(

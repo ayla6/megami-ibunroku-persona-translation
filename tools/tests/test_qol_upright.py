@@ -40,7 +40,7 @@ class UpperRightPatch(unittest.TestCase):
         armips = ROOT / 'external_tools/armips/armips'
         if not armips.exists():
             raise unittest.SkipTest('requires armips')
-        cls.tmp = tempfile.TemporaryDirectory(prefix='upright-', dir='/tmp/opencode')
+        cls.tmp = tempfile.TemporaryDirectory(prefix='upright-')
         work = Path(cls.tmp.name)
         source = work / 'fixture.asm'
         source.write_text(

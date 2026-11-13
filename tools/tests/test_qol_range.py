@@ -113,8 +113,7 @@ class Range(unittest.TestCase):
     def setUpClass(cls):
         if not (ROOT / 'external_tools/armips/armips').exists():
             raise unittest.SkipTest('requires armips')
-        Path('/tmp/opencode').mkdir(exist_ok=True)
-        with tempfile.TemporaryDirectory(prefix='range-', dir='/tmp/opencode') as work:
+        with tempfile.TemporaryDirectory(prefix='range-') as work:
             cls.image, cls.sym = assemble(Path(work))
 
     def battle(self, lit=(), fighters=(), state=1):
