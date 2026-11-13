@@ -2,13 +2,13 @@ id	pos	psp	en
 0	0x2014	pack/talk/SLIME:0x2030	You do know I'm the weakest demon<FFF6>around... But you still want me!?<FFF5>
 1	0x2045	pack/talk/SLIME:0x20b8	You're just using me to practice<FFF6>negotiating! Cruel, cruel humans!<FFF5>
 2	0x2078	pack/talk/SLIME:0x2140	Do ya need me? Do ya really need me?<FFF6>You DO need me!?<FFF5>
-3	0x20ae	pack/talk/SLIME:0x21b0	I'm the weakest demon EVER... But you<FFF6>can get stronger! I'm soooo jealous!<FFF5>
+3	0x20ae	pack/talk/SLIME:0x21b0	I'm the weakest demon EVER...<FFF6>But you can get stronger!<FFF6>I'm soooo jealous!<FFF5>
 4	0x20e5	pack/talk/SLIME:0x2248	Hey!<FFF6>Just because I'm sword-fodder to<FFF6>you doesn't mean you can yell at me!<FFF5>
 5	0x2112	pack/talk/SLIME:0x22e0	I'm the weakest demon, you know...<FFF6>Don't do anything scary...<FFF5>
 6	0x2139	pack/talk/SLIME:0x2360	What kinda weirdos invite<FFF6>the weakest guy around to<FFF6>their party?<FFF5>
 7	0x215b	pack/talk/SLIME:0x23e8	You're just using me to practice<FFF6>negotiating! Ohh, the humanity!<FFF5>
 8	0x2192	pack/talk/SLIME:0x2470	I've got a bad feeling about this...<FFF6>Ya know, I'm gonna pass...<FFF5>
-9	0x21b2	pack/talk/SLIME:0x24f0	If you sing, I might collapse like<FFF6>a week-old flan! Stop! Stoooop it!<FFF5>
+9	0x21b2	pack/talk/SLIME:0x24f0	If you sing,<FFF6>I might collapse like a week-old flan!<FFF6>Stop! Stoooop it!<FFF5>
 10	0x21d9	pack/talk/SLIME:0x2580	Please don't... I don't wanna take<FFF6>my ears in for repairs...<FFF5>
 11	0x21f8	pack/talk/SLIME:0x2600	What a great song!<FFF6>It made me all happy!<FFF5>
 12	0x2214	pack/talk/SLIME:0x2658	Hey... I really am the lowest,<FFF6>weakest worst demon ever...<FFF6>But you're okay with that!?<FFF5>
@@ -31,12 +31,12 @@ id	pos	psp	en
 29	0x252a	pack/talk/SLIME:0x3068	That was lame! I was hoping for<FFF6>a good belly laugh too!<FFF5>
 30	0x2544	pack/talk/SLIME:0x30d8	I... couldn't tell what was<FFF6>funny about that...<FFF5>
 31	0x256b	pack/talk/SLIME:0x3138	That was hilarious!<FFF6>Your jokes are awesome!<FFF5>
-32	0x258a	pack/talk/SLIME:0x3190	I wanna hear what happens next. It'll<FFF6>help me understand this crazy world!<FFF5>
+32	0x258a	pack/talk/SLIME:0x3190	I wanna hear what happens next.<FFF6>It'll help me understand<FFF6>this crazy world!<FFF5>
 33	0x25b0	pack/talk/SLIME:0x3228	Hey, I'm not so nice a demon that I'll<FFF6>sit here and make small talk with you!<FFF5>
 34	0x25d3	pack/talk/SLIME:0x32c8	Wow, knowing is half the battle!<FFF6>I'm so happy!<FFF5>
 35	0x25f2	pack/talk/SLIME:0x3328	You make no sense!<FFF6>But that's why I like ya!<FFF5>
 36	0x2615	pack/talk/SLIME:0x3388	I bet you think I'm some kinda brute!<FFF6>You're underestimating me, huh!?<FFF5>
-37	0x2646	pack/talk/SLIME:0x3418	Dude,<FFF6>you shouldn't do things like that<FFF6>just because I'm total weaksauce...<FFF5>
+37	0x2646	pack/talk/SLIME:0x3418	Dude, you shouldn't do things<FFF6>like that just because I'm<FFF6>total weaksauce...<FFF5>
 38	0x266e	pack/talk/SLIME:0x34b0	You've got the look of someone<FFF6>who's gonna live a long life!<FFF5>
 39	0x268d	pack/talk/SLIME:0x3530	All I want is to be an average demon!<FFF6>Not great, just average! That's all!<FFF5>
 40	0x26bc	pack/talk/SLIME:0x35c8	You're so considerate!<FFF6>Brings a tear to my eye!<FFF5>
@@ -52,7 +52,7 @@ id	pos	psp	en
 50	0x2867	pack/talk/SLIME:0x3ae0	You're good! Can I join in?<FFF5>
 51	0x2888	pack/talk/SLIME:0x3b18	A weird dance like that won't put<FFF6>me in a good mood at all!<FFF5>
 52	0x28b4	pack/talk/SLIME:0x3b90	Man, you're good! Really good!<FFF6>You're like... too good!<FFF5>
-53	0x28d8	pack/talk/SLIME:0x3c00	I'm the weakest demon EVER... But you<FFF6>can get stronger! I'm soooo jealous!<FFF5>
+53	0x28d8	pack/talk/SLIME:0x3c00	I'm the weakest demon EVER...<FFF6>But you can get stronger!<FFF6>I'm soooo jealous!<FFF5>
 54	0x290e	pack/talk/SLIME:0x3c98	Hey!<FFF6>Just because I'm sword-fodder to<FFF6>you doesn't mean you can yell at me!<FFF5>
 55	0x293a	pack/talk/SLIME:0x3d30	I'm the weakest demon, you know...<FFF6>Don't do anything scary...<FFF5>
 56	0x2961	pack/talk/SLIME:0x3db0	Whaddaya want from me?<FFF6>I'm just a slime...<FFF5>
@@ -65,7 +65,7 @@ id	pos	psp	en
 63	0x2aa9	pack/talk/SLIME:0x41b0	D-Don't tell me<FFF6>those kinds of stories...<FFF5>
 64	0x2ac6	pack/talk/SLIME:0x4208	You're scared of a story like that?<FFF6>What a wimpy kid. Grow up!<FFF5>
 65	0x2af4	pack/talk/SLIME:0x4288	You have a great voice!<FFF6>I wanna sing with you!<FFF5>
-66	0x2b19	pack/talk/SLIME:0x42e8	If you sing, I might collapse like<FFF6>a week-old flan! Stop! Stoooop it!<FFF5>
+66	0x2b19	pack/talk/SLIME:0x42e8	If you sing,<FFF6>I might collapse like a week-old flan!<FFF6>Stop! Stoooop it!<FFF5>
 67	0x2b40	pack/talk/SLIME:0x4378	What a great song!<FFF6>It made me all happy!<FFF5>
 68	0x2b5c	pack/talk/SLIME:0x43d0	I may be a slime now,<FFF6>but I used to be a super cool demon!<FFF6>Did ya know that?<FFF5>
 69	0x2b99	pack/talk/SLIME:0x4470	I bet you think I'm some kinda kid.<FFF6>But I'm a slime, okay!?<FFF5>
@@ -79,8 +79,8 @@ id	pos	psp	en
 77	0x2cf8	pack/talk/SLIME:0x48c0	Are you... interested in me?<FFF6>Hey, maybe that's a good sign!<FFF5>
 78	0x2d29	pack/talk/SLIME:0x4938	I'm a slime and you're a human...<FFF6>Talk about incompatable!<FFF5>
 79	0x2d58	pack/talk/SLIME:0x49b0	I'm so happy! You should be<FFF6>a slime in your next life!<FFF6>Yeah, that'd be awesome!<FFF5>
-80	0x2d8a	pack/talk/SLIME:0x4a50	You're human, so you've still got<FFF6>a chance! You can't give up!<FFF5>
-81	0x2dbb	pack/talk/SLIME:0x4ad0	Dude,<FFF6>crying about it won't solve anything!<FFF5>
+80	0x2d8a	pack/talk/SLIME:0x4a50	You're human,<FFF6>so you've still got a chance!<FFF6>You can't give up!<FFF5>
+81	0x2dbb	pack/talk/SLIME:0x4ad0	Dude, crying about it<FFF6>won't solve anything!<FFF5>
 82	0x2dd8	pack/talk/SLIME:0x4b28	I'm worried about you...<FFF6>But I won't do anything...<FFF5>
 83	0x2dfd	pack/talk/SLIME:0x4b90	I'm a weak slime,<FFF6>but you're a puny human!<FFF5>
 84	0x2e21	pack/talk/SLIME:0x4be8	Does it make ya feel big to<FFF6>say that to weaklings like me!?<FFF6>What a coward!<FFF5>
@@ -103,7 +103,7 @@ id	pos	psp	en
 101	0x310f	pack/talk/SLIME:0x54e0	I'm a weak slime,<FFF6>but you're a puny human!<FFF5>
 102	0x3133	pack/talk/SLIME:0x5538	Does it make ya feel big to<FFF6>say that to weaklings like me!?<FFF6>What a coward!<FFF5>
 103	0x3160	pack/talk/SLIME:0x55d0	You having fun threatening me...?<FFF6>What a nasty human...<FFF5>
-104	0x318f	pack/talk/SLIME:0x5640	Will you just shuddup!? I'm<FFF6>a worthless slime, so leave me alone!<FFF5>
+104	0x318f	pack/talk/SLIME:0x5640	Will you just shuddup!?<FFF6>I'm a worthless slime,<FFF6>so leave me alone!<FFF5>
 105	0x31bf	pack/talk/SLIME:0x56c8	What do you want me to say?<FFF6>I can't figure it out...<FFF5>
 106	0x31e0	pack/talk/SLIME:0x5738	Are you like me? I can't yell myself,<FFF6>so you'll need to do it for me!<FFF5>
 107	0x3217	pack/talk/SLIME:0x57c8	You're amazing...<FFF6>Maybe you could turn me<FFF6>back into the demon I once was...<FFF5>
@@ -123,16 +123,16 @@ id	pos	psp	en
 121	0x343b	pack/talk/SLIME:0x5eb8	If you want my help,<FFF6>then gimme something!<FFF1><FFF5>
 122	0x345d	pack/talk/SLIME:0x5f10	Leave me alone...<FFF6>I just wanna find out how to<FFF6>turn back into the demon I once was...<FFF5>
 123	0x3491	pack/talk/SLIME:0x5fc0	You're dangerous...<FFF6>I don't think you'd take very<FFF6>good care of my spell card...<FFF5>
-124	0x34c5	pack/talk/SLIME:0x6060	You need... ME!?...I'm like...<FFF6>totally thrilled!<FFF5>
+124	0x34c5	pack/talk/SLIME:0x6060	You need... ME!?<FFF6>...I'm like... totally thrilled!<FFF5>
 125	0x34e8	pack/talk/SLIME:0x60c8	Sure, I'll negotiate with ya!<FFF6>To kick it off, give me something!<FFF1><FFF5>
-126	0x351d	pack/talk/SLIME:0x6150	Come on, what's the use in makin'<FFF6>fun of me? Just negotiate straight!<FFF5>
+126	0x351d	pack/talk/SLIME:0x6150	Come on,<FFF6>what's the use in makin' fun of me?<FFF6>Just negotiate straight!<FFF5>
 127	0x3551	pack/talk/SLIME:0x61e0	You're interested in me after all?<FFF6>Well, how about you give<FFF6>me something then!<FFF1><FFF5>
 128	0x3585	pack/talk/SLIME:0x6280	That really chaps my hide!<FFF6>Gimme somethin'!<FFF1><FFF5>
-129	0x35a2	pack/talk/SLIME:0x62e0	I'm pissed! You need to make up for<FFF6>this! Give me something NOW!<FFF1><FFF5>
+129	0x35a2	pack/talk/SLIME:0x62e0	I'm pissed!<FFF6>You need to make up for this!<FFF6>Give me something NOW!<FFF1><FFF5>
 130	0x35d8	pack/talk/SLIME:0x6368	What're you gonna accomplish by<FFF6>making fun of me...?<FFF6>I've got a bad feeling...<FFF5>
 131	0x3607	pack/talk/SLIME:0x6408	I hate you...<FFF6>I don't wanna do this anymore,<FFF6>but I still want something...<FFF1><FFF5>
 132	0x363c	pack/talk/SLIME:0x64a0	I'm a slime! Scum of the demon world!<FFF6>So what good is making fun of me!?<FFF6>I should be the one laughing at you!<FFF5>
-133	0x3679	pack/talk/SLIME:0x6580	You really know how to entertain! You<FFF6>think this is gonna make me angry!?<FFF5>
+133	0x3679	pack/talk/SLIME:0x6580	You really know how to entertain!<FFF6>You think this is gonna<FFF6>make me angry!?<FFF5>
 134	0x36ae	pack/talk/SLIME:0x6618	You really are human... It's so<FFF6>nice for things to be so lively...<FFF5>
 135	0x36dc	pack/talk/SLIME:0x66a0	I like what you do... But I'd like you<FFF6>better if you gave me something!<FFF1><FFF5>
 136	0x3713	pack/talk/SLIME:0x6738	Will you shut up!? I'm not interested!<FFF5>
@@ -140,7 +140,7 @@ id	pos	psp	en
 138	0x377a	pack/talk/SLIME:0x6858	What was that all about?<FFF6>Are you one of..."those" guys?<FFF6>If that's the case, I'll pass...<FFF5>
 139	0x37b3	pack/talk/SLIME:0x6910	Dude, you literally made me freeze<FFF6>up... Don't do that again...<FFF5>
 140	0x37e8	pack/talk/SLIME:0x6990	I like stuff like that! Show me more!<FFF5>
-141	0x3811	pack/talk/SLIME:0x69e0	I'm so delighted! I want you to delight<FFF6>me even more! Give me something!<FFF1><FFF5>
+141	0x3811	pack/talk/SLIME:0x69e0	I'm so delighted!<FFF6>I want you to delight me even more!<FFF6>Give me something!<FFF1><FFF5>
 142	0x3848	pack/talk/SLIME:0x6a78	Are you really inviting me...?<FFF6>But you're human, aren't you...?<FFF5>
 143	0x3877	pack/talk/SLIME:0x6af8	I don't mind doing what you ask, but<FFF6>you've gotta give me something first.<FFF1><FFF5>
 144	0x38ab	pack/talk/SLIME:0x6b90	I bet you were just gonna make fun of<FFF6>me because I'm so low class!<FFF6>What a nasty human!<FFF5>
@@ -152,11 +152,11 @@ id	pos	psp	en
 150	0x39be	pack/talk/SLIME:0x6eb8	I'm the weakest demon ever,<FFF6>so why ya gotta act be like that!?<FFF5>
 151	0x39f0	pack/talk/SLIME:0x6f38	If you're more courteous than me,<FFF6>maybe I should make a request too!<FFF1><FFF5>
 152	0x3a1f	pack/talk/SLIME:0x6fc8	That has to be a lie!<FFF6>I know for myself that I'm<FFF6>the weakest demon ever!<FFF5>
-153	0x3a57	pack/talk/SLIME:0x7060	If you really mean that, you better<FFF6>cough up some proof! Got it!?<FFF1><FFF5>
+153	0x3a57	pack/talk/SLIME:0x7060	If you really mean that,<FFF6>you better cough up some proof!<FFF6>Got it!?<FFF1><FFF5>
 154	0x3a89	pack/talk/SLIME:0x70e8	Dude... What's the plan?<FFF6>You've totally got something<FFF6>up your sleeve...<FFF5>
 155	0x3aa6	pack/talk/SLIME:0x7178	Listening to tricks like that is what<FFF6>gave me this slime problem...<FFF5>
 156	0x3ad5	pack/talk/SLIME:0x7200	This feels great!<FFF6>Today is the happiest day of my life!<FFF5>
-157	0x3af9	pack/talk/SLIME:0x7270	If you insist, maybe I should try<FFF6>threatening you! Give me something!<FFF1><FFF5>
+157	0x3af9	pack/talk/SLIME:0x7270	If you insist,<FFF6>maybe I should try threatening you!<FFF6>Give me something!<FFF1><FFF5>
 158	0x3b23	pack/talk/SLIME:0x7300	You already have my card!<FFF6>No reason for me to be<FFF6>here then, I guess...<FFEF>
 159	0x3b55	pack/talk/SLIME:0x7390	I'll give you this...<FFF6>That won't be a problem, will it?<FFEF>
 160	0x3b6b	pack/talk/SLIME:0x7400	I guess I'm just a slime after all...<FFF6>I'm so sad...<FFEF>
@@ -171,7 +171,7 @@ id	pos	psp	en
 169	0x3c77	pack/talk/SLIME:0x7748	I've got ambition, so I'm gonna go<FFF6>negotiate with different humans!<FFEF>
 170	0x3c9c	pack/talk/SLIME:0x77d0	I'm off to negotiate with another<FFF6>human! Here's some inspiration to<FFF6>work on your negotiation skills!<FFEF>
 171	0x3cd1	pack/talk/SLIME:0x78a0	If that's how you wanna play it,<FFF6>then I'll play dirty too! Eat my card!<FFEF>
-172	0x3d08	pack/talk/SLIME:0x7930	It's not like my card would be any<FFF6>use to you!...So will this work?<FFEF>
+172	0x3d08	pack/talk/SLIME:0x7930	It's not like my card would be any<FFF6>use to you! ...So will this work?<FFEF>
 173	0x3d38	pack/talk/SLIME:0x79c0	I wanna be useful for ya...<FFF6>So what should I do...?<FFEF>
 174	0x3d60	pack/talk/SLIME:0x7a28	I'll give you my spell card! I hope you<FFF6>use it to make a cool Persona!<FFEF>
 175	0x3d9a	pack/talk/SLIME:0x7ab8	That's why I don't wanna fight you...<FFF6>I don't like fighting...<FFEF>
@@ -184,13 +184,13 @@ id	pos	psp	en
 182	0x3eec	pack/talk/SLIME:0x7ec8	I hate you! If you want me to like you,<FFF6>then give me something!<FFF1><FFF5>
 183	0x3f1e	pack/talk/SLIME:0x7f50	There's no moon... I'm scared...<FFF5>
 184	0x3f3a	pack/talk/SLIME:0x7f98	I know this is sudden... But please,<FFF6>can't you spare something for<FFF6>the weakest creature ever?<FFFB><FFF7>Anything?<FFF1><FFF5>
-185	0x3f6b	pack/talk/SLIME:0x8070	Such a nice moon out tonight! Makes<FFF6>me wanna dance! Isn't it awesome!?<FFF5>
+185	0x3f6b	pack/talk/SLIME:0x8070	Such a nice moon out tonight!<FFF6>Makes me wanna dance!<FFF6>Isn't it awesome!?<FFF5>
 186	0x3f9a	pack/talk/SLIME:0x8100	I wished I could talk to a human,<FFF6>and my wish came true!<FFF5>
-187	0x3fc6	pack/talk/SLIME:0x8178	<FFED>Do ya need me for something?...Don't<FFF6>call me over for something stupid!<FFF6>Er... Was I the one who called you?<FFF5>
+187	0x3fc6	pack/talk/SLIME:0x8178	<FFED>Do ya need me for something? ...Don't<FFF6>call me over for something stupid!<FFF6>Er... Was I the one who called you?<FFF5>
 188	0x4005	pack/talk/SLIME:0x8258	<FFEE>I don't mind negotiating,<FFF6>but I don't do it for free!<FFF6>You'll have to give me something!<FFF1><FFF5>
-189	0x4043	pack/talk/SLIME:0x8310	<FFEC>I'd like to negotiate with you... But if<FFF6>you're too scary, I'm outta here...<FFF5>
+189	0x4043	pack/talk/SLIME:0x8310	<FFEC>I'd like to negotiate with you...<FFF6>But if you're too scary,<FFF6>I'm outta here...<FFF5>
 190	0x4072	pack/talk/SLIME:0x83b0	<FFEE>You look scary...<FFF6>But maybe you'll give me something...<FFF1><FFF5>
-191	0x40a5	pack/talk/SLIME:0x8428	<FFEB>I'm in a good mood for once! Lucky<FFF6>you! Better negotiate with me fast!<FFF5>
+191	0x40a5	pack/talk/SLIME:0x8428	<FFEB>I'm in a good mood for once!<FFF6>Lucky you!<FFF6>Better negotiate with me fast!<FFF5>
 192	0x40e0	pack/talk/SLIME:0x84b8	<FFEB>I'm gonna negotiate with you!<FFF6>I just love humans!<FFF6>But first, gimme something!<FFF1><FFF5>
 193	0x411c	pack/talk/SLIME:0x8558	<FFED>I didn't call you or anything,<FFF6>so what's up with that!?<FFF5>
 194	0x4150	pack/talk/SLIME:0x85d0	<FFEC>Are you picking a fight with me?<FFF6>It's fine if you aren't...<FFF5>
@@ -204,10 +204,10 @@ id	pos	psp	en
 202	0x42f9	pack/talk/SLIME:0x8a18	You do interesting things!<FFF6>I'm glad you gave me such<FFF6>a pleasant negotiation!<FFEF>
 203	0x4330	pack/talk/SLIME:0x8ab8	You're a nasty human, but I suppose<FFF6>you've got some good traits...<FFF6>So it's a deal. Whaddaya want?<FFEF>
 204	0x4368	pack/talk/SLIME:0x8b80	I'm scared, but kinda curious too...<FFF6>What do you want?<FFEF>
-205	0x439c	pack/talk/SLIME:0x8bf0	You're so awesome! If I ever get<FFF6>reincarnated, I wanna be a human!<FFFB><FFF7>Anyway, it's a deal, buddy!<FFF6>What do you want me to do?<FFEF>
+205	0x439c	pack/talk/SLIME:0x8bf0	You're so awesome!<FFF6>If I ever get reincarnated,<FFF6>I wanna be a human!<FFFB><FFF7>Anyway, it's a deal, buddy!<FFF6>What do you want me to do?<FFEF>
 206	0x43fc	pack/talk/SLIME:0x8ce8	I don't understand you at all... I don't<FFF6>wanna continue a negotiation that<FFF6>stopped making sense!<FFEF>
 207	0x4437	pack/talk/SLIME:0x8db0	You can't even do a decent<FFF6>negotiation! You're worse than me!<FFEF>
-208	0x4467	pack/talk/SLIME:0x8e30	You're amazing! I'm totally<FFF6>impressed... I mean like, wow...<FFEF>
+208	0x4467	pack/talk/SLIME:0x8e30	You're amazing!<FFF6>I'm totally impressed...<FFF6>I mean like, wow...<FFEF>
 209	0x4499	pack/talk/SLIME:0x8eb0	I want money! Gimme <FFF8> yen!<FFEF>
 210	0x44b0	pack/talk/SLIME:0x8ee8	I'm... so... HAPPY!<FFF5>
 211	0x44b9	pack/talk/SLIME:0x8f10	I bet you didn't pull any money outta<FFF6>the bank because I'm low class, huh!?<FFF5>

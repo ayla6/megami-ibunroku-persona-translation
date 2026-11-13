@@ -40,12 +40,14 @@ unused Japanese opcode, or append Japanese controls to satisfy a multiset.
 Japanese alignment identifies the destination row; it does not author the
 translated message. Unknown translations are reported, never guessed from
 the target row. Destination-code validation checks interpreter support, not
-equality to Japanese counts.
+equality to Japanese counts. One proven exception: a PSX timed beat around
+a lone ellipsis is carried to the English one (section 3.10).
 
 This does not change our layout behavior: prose reflow, pagination, box
 merging, choice gates and structural headings retain their existing rules.
 Runtime inserts and pauses remain anchored between their PSP source words.
-Spacing around visible numeric/record inserts is wording, not code padding.
+Spacing around visible numeric/record inserts is wording, not code padding,
+and so is the source's word gap beside a pause (`<FF05>`, battle `<FFFC>`).
 ADV keeps PSP FF11 in place and translates PSP FF1A operand 8200 to FF12
 there; unsupported variable operands require a proven implementation.
 
@@ -540,35 +542,88 @@ plain sequencer entries, without changing source wording or line layout.
 
 Order of preference, highest first - a lower rule NEVER beats a higher one:
 
-1. **Fewest lines.** A break is only ever placed to fit the box; text is never
-   spread over more lines for looks.
+1. **Fewest lines - counted in boxes.** A break is only ever placed to fit
+   the box; text is never spread over more lines for looks. Inside the box
+   one more line is free for rules 2-3 only: line counts up to what the box
+   has left (three lines, less any the box already shows above the block,
+   such as a card's name line) tie, a split word or name decides, then the
+   count. Past the box, every line counts first: rules 2-3 never buy a
+   scroll or a box (`Tsutomu: You know of / "The Snow Queen," right? /
+   Yes... the fairy tale.`). The same free line also buys out a line that
+   ends mid-clause, or a comma that strands a last line under a third of
+   its width: inside the box, fewer of those beats fewer lines
+   (`Yukino: / This school has a traditional play? / News to me.` over
+   `...a traditional / play? News to me.`). A line ending on the lone first
+   word of a new sentence (`Is that so...? You're / ...`), or a line that is
+   one word and its comma (`Hahaha,` / `Thus,` alone), counts as two of
+   them: `Is that so...? / You're unexpectedly / nice to her, I see.`
+   **A box that may join keeps room for the join** (section 3.10). The free
+   line never takes the room a joinable box boundary needs: the box after a
+   joinable `<FF04>` counts the lines of the box before it, and a box before
+   one leaves the next box its fewest lines when the pair can fit three
+   (`Don't worry, miss! Everything / will be A-OK now that I'm here! / Now go
+   get 'em, <name>!` stays one box). Fewer presses beat a nicer break.
 2. **Do not split a word.** Hyphenated words and code runs may split, but only
    when that saves a line or avoids an overflow. **A run of ellipses is ONE
    word**: `... ... ...` (even split by pause codes, `...<FF05><10><00>...`) is
    a single dramatic beat and never breaks inside it.
 3. **Do not split a proper name or short quoted term.** "Ms. Saeko", "St. Hermelin High", "Mikage
-   Hospital", "Saeko Takami". Not a wall: it is a cost, so it loses to 1-2 and
+   Hospital", "Saeko Takami". All-caps shouting is not a name: a name pair
+   has a lowercase letter on one side ("SEBEC Hospital", not "YOU GIVE").
+   Abbreviations and initials end in one plain period ("No.", "A."): "no!"
+   and "Q?" close their sentence. Not a wall: it is a cost, so it loses to 1-2 and
    beats everything below. Names are derived from capitalisation and sentence
    shape - never from a list. A comma or semicolon ends a name run; separate
    names in a list are not one full name. A glued atom is judged by the words
    that touch the break, not by its first letter: `the Peace | Diner on` still
    splits the name "Peace Diner", even though the first atom begins lowercase. A double-quoted term of up to four
-   words that fits a line has the same soft protection. Neither may buy an
-   extra line or scroll.
+   words that fits a line has the same soft protection. Neither may buy a
+   scroll or a box (rule 1).
 4. **Do not clip a tiny fragment onto a speaker label.** At the same line
    count, prefer a label-only line to a speech fragment occupying at most
    one fifth of the box width. Also discourage a mid-clause split of speech
    that fits whole on the following line. A useful comma/sentence boundary
    still competes normally. A standalone label is not a speech line for the
    width-transition or short-tail tests.
-   When the complete speech fits under the label, a comma break that leaves
-   its closing line under half the preceding width is also a clipped fragment.
-5. **End lines where the sentence breathes**: full stop > comma/semicolon/colon
-   > mid-clause. Merely ending on a connector is not a punctuation boundary
-   and must not force a growing triangle of short fragments.
+   When the complete speech fits one line under the label, any split of it
+   beside the label is a clipped fragment: the reader skims the name (and
+   the portrait beside it), so a scrap there buys nothing (`Elly: / Mm?
+   Isn't he that transfer student?`). The exception is a split that makes
+   the box a rectangle - two lines within a tenth of the box width of each
+   other (`Old man: Look, Akiko, / Hiroshi came to visit.`).
+   A complete sentence (ending `.`, `!` or `?`) is never a clipped
+   fragment, nor is a phrase that trails off (`F-Fresh meat... / Meat is
+   heeeeere!`), unless the whole speech fits one line under the label; one
+   word trailing off is (`Takeda: / Tch... It's almost time`).
+5. **End lines where the sentence breathes**: full stop (0) > short ellipsis
+   beat (1) > comma/semicolon/colon (2) > mid-clause (4). Merely ending on a
+   connector is not a punctuation boundary and must not force a growing
+   triangle of short fragments. A line of codes alone (a name insert) ends
+   mid-clause.
+   An ellipsis normally ends its sentence (`A flower's life is short, ho... /
+   That's why...`). The exception is a SHORT BEAT: one or two words, at
+   least one with letters, trailing off after a sentence that ended on the
+   same line (`It's not good. But...`, `Yamaoka! You bastards...`). That
+   beat opens what follows, so ending a line on it costs 1. Only after a
+   plain stop: in a chain of ellipses (`Hmmm... Hmmmmmm...`,
+   `G-I-V-E... M-E...`) no beat leans more than another. A stutter is one
+   phrase: a line never ends on `word...` that the next line repeats
+   (`No, I... / I am` counts as a mid-clause end).
    A comma/semicolon/colon boundary that strands a final line under one third
-   of the preceding width costs two additional rhythm points; a minor pause
+   of the preceding width costs four additional rhythm points; a minor pause
    must not force a severely short orphan. Full sentence boundaries are exempt.
+   A line that ends a sentence or trails off and then strands a final line
+   under half its speech width (the label is not speech) costs one point
+   (`Yes, I like it! / Keep it up!`): `Answer me... I'm begging you... / Yamaoka!`
+   loses to `Answer me... / I'm begging you... Yamaoka!`, while a long line
+   after the ellipsis (`What a dangerous human... / No, I... I am without
+   fear... you know...`) is not stranded.
+   **A hollow middle** - a line under half the width of both its neighbours -
+   costs two rhythm points, so its punctuation cannot buy the `<` shape
+   (`story, / but you know, / it'd be nice...`). A complete short sentence
+   is hollow only when the block is exactly three lines (one box: `here, /
+   <name>! / It's too late...`); in a longer block it may end a page and is
+   emphasis (`that... / inferior! | You are born...`).
 6. **Balance and gently taper the block, without adding lines.** Minimize
    `sum(line_width² // remaining_lines)` plus squared adjacent width changes
    (a downward increase costs
@@ -584,12 +639,22 @@ Order of preference, highest first - a lower rule NEVER beats a higher one:
 Glue (what a break may not fall inside):
 
 - **Articles and possessives bind FORWARD**: `a, an, the, this, these, those,
-  its, their, his, her, our, your, my` stay with the word after them. A line
+  its, their, his, her, our, your, my` stay with the word after them -
+  unless punctuation closes them (`to her, I see` is the pronoun). A line
   may therefore BEGIN with one - `the hospital` on a fresh line is correct.
+- **Subordinators bind FORWARD, softly**: `because, while, when, where, if,
+  until, unless, although, though, since, whether` open the clause they
+  introduce (`You should visit her / while you're there.`). Ending a line on
+  one costs two rhythm points on top of its mid-clause end (rule 5), so it
+  never buys a line. Compound leads (`as if`, `even though`, `only when`)
+  stay together. A subordinator closed by punctuation
+  (`while,`) or after `a/an/the` (`for a while`) is not one. A
+  pronoun-or-possessive word before one (`her while`) is the pronoun and
+  ends its own clause; it does not glue onto the subordinator.
 - **Connectors bind BACKWARD**: `to, of, in, on, at, with, from, for, by, as,
   and, or, but, nor, than, that, into, onto, about, over, under, off, upon,
-  without, through, toward(s), between, among, against, because, while, when,
-  where, if, so, yet` end the line they sit on. A line never STARTS with one
+  without, through, toward(s), between, among, against, so, yet` end the
+  line they sit on. A line never STARTS with one
   (the one exception: the connector's left neighbour is itself a break).
   A comma, semicolon or colon boundary releases the connector: the clause
   ends there, so the connector may start the next clause's line
@@ -630,7 +695,9 @@ Glue (what a break may not fall inside):
   Japanese-remnant guards match Japanese letters, not shared punctuation:
   `・` is a valid separator/bullet and must not make an English row a gap.
 - A closer (`. , ! ? ; : …`) never starts a line; the tail it closes moves
-  down with it. A leading `...` may start one (it is a pause). A break that
+  down with it. A spaced-off ellipsis is a pause and keeps the source's gap
+  (`whack! ...`, `I ...`); a lone mark attaches (`Wait !` -> `Wait!`). A leading `...` may start one (it is a pause), except
+  straight after an inline code: `<FF08>...` trails the name. A break that
   is immediately followed by punctuation is not a break: the punctuation moves
   up to the line it belongs to (`<FF03>: ` -> `:<FF03>`, and the same for
   `. , ; ! ?`). Two colons in a row are one colon.
@@ -707,7 +774,23 @@ one click. That is the whole model; "four clicks in one box" is a bug.
    carries no other code (a name insert or a pause keeps the flow's own
    spacing). The gate then counts the prompt's TEXT lines, never the
    nameplate's: `Agastya Tree:` / the question arms bare.
-10. **The authored boxes join down to the JP's own box count.** A PSP row that
+10. **Which boundaries join is read off the two Japanese scripts.** PSP-JP
+   and PSX-JP are the same script, so their page texts align
+   (`port_story.box_joins`: codes and labels stripped, width-normalised). A
+   PSP-JP box boundary that lands inside a PSX page is a box the PSX draws
+   as one, and only those boundaries may join (each still needs the free
+   join: no scroll, three lines). Every PSX boundary must be matched by a
+   PSP one, and the English must have as many boxes as PSP-JP; otherwise
+   nothing is decided and the joins fall at the tail as below. The decision
+   is frozen text-free in `story_port_plan` for PSP-JP-less replays.
+   (`I'm going to work! / To hell with fake hallways... / To hell with that
+   little ghost girl!` is one PSX box.)
+   **A timed ellipsis keeps its beat.** When a PSX page has exactly one
+   ellipsis carrying `<FF05>` pauses and the English box has exactly one
+   ellipsis and no pause, the same pauses go on the same sides of the
+   English ellipsis (`port_story.ellipsis_pauses`); any other count is left
+   alone. The pauses are zero-width, so the layout does not change.
+11. **The authored boxes join down to the JP's own box count.** A PSP row that
    spells a prompt's lead-in and its question as two boxes is one box in the
    JP (the press scrolls), so `port_story.merge_boxes` joins them wherever the
    joined text fits 3 lines: the press the player makes then buys the scroll
@@ -716,7 +799,7 @@ one click. That is the whole model; "four clicks in one box" is a bug.
    a choice row is joinable like any other, and the joined row ends with the
    block (`...?<FF02><FF03><FF0E><01><FF01>`): a dismissal wait after the
    block stops the options arming.
-11. **A choice list is at most two option rows, and four options are only
+12. **A choice list is at most two option rows, and four options are only
    ever a 2x2 grid.** The message box is three 16 px rows tall - ADV's
    room setup sets `g_bg_layers[4].h = 0x30` - and the prompt's arming line
    is the first of them, so the list can use at most two. The option cursor
@@ -858,8 +941,8 @@ and any interior controls are not changed by this terminator conversion.
 For negotiation source spans, separate EBOOT text units can be fragments of
 one sentence. Concatenate those fragments in source order without inventing
 breaks or waits. Recover an intervening box terminator from the original PSP
-bytes even if it was omitted from a text-only extract, and preserve source
-line breaks while wrapping any line that exceeds the destination width.
+bytes even if it was omitted from a text-only extract. Their source line
+breaks are prose like every other family's: the flow re-places them.
 Distinct messages must not be merged into a single textbox.
 
 ---

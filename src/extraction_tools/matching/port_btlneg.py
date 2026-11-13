@@ -189,8 +189,7 @@ def sequential_source(idx, ja, srcs, raw):
         raise ValueError('multiple PSP messages require destination alignment')
     output = []
     for i, part in enumerate(parts):
-        text, why = port_derive.derive(units[selected[i]], part, 'BTLP', '',
-                                       preserve_lines=True)
+        text, why = port_derive.derive(units[selected[i]], part, 'BTLP', '')
         if why:
             raise ValueError(why)
         output.append(text)
@@ -219,7 +218,7 @@ def emit(idx, en, src, man, ok, fail, srcs=(), raw_boot=None):
             fail.append((idx, str(error), en, tuple(srcs)))
             return
     else:
-        laid, why = port_derive.derive(en, ja, 'BTLP', '', preserve_lines=True)
+        laid, why = port_derive.derive(en, ja, 'BTLP', '')
     if why:
         fail.append((idx, why, laid, tuple(srcs)))
         return

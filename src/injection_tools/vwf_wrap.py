@@ -34,6 +34,8 @@ BATTLE_BOX_WIDTH = BOX_WIDTH + 12
 # A page carries three visible lines and one scroll of up to three more.
 # Longer text needs a new page.
 PAGE_LINES = 6
+BOX_LINES = 3      # the lines one box shows without a scroll
+BOX_ENDS = ('<FF04>', '<FFF7>', '<FF01>', '<FFEF>', '<FFF5>')   # a fresh box
 NEWLINE = "<FF03>"
 TOKEN = re.compile(r"(<[^>]+>)")
 
@@ -75,6 +77,10 @@ def sent_end(w):
     t = re.sub(r'<[^>]+>', '', w).rstrip()
     if not SENT_END_RE.search(t):
         return False
+    # Abbreviations and initials end in ONE plain period ("No.", "A.");
+    # "no!", "no?" and "no..." close their sentence.
+    if not re.search(r'(?<!\.)\.["\'”)\]]?$', t):
+        return True
     core = SENT_END_RE.sub('', t).lower()
     if re.fullmatch(r'[a-z]', core):
         return False  # initial ("A. Smith")
@@ -348,7 +354,13 @@ CONNECTORS = {'to', 'of', 'in', 'on', 'at', 'with', 'from', 'for', 'by',
               'as', 'and', 'or', 'but', 'nor', 'than', 'that', 'into',
               'onto', 'about', 'over', 'under', 'off', 'upon', 'without',
               'through', 'toward', 'towards', 'between', 'among', 'against',
-              'because', 'while', 'when', 'where', 'if', 'so', 'yet'}
+              'so', 'yet'}
+# SUBORDINATORS open the clause they introduce, so they bind FORWARD, but
+# softly: "You should visit her | while you're there" - a line may begin
+# with one, and ends on one only when that saves a line (a marked break,
+# ranked like a name split).
+SUBORDINATORS = {'because', 'while', 'when', 'where', 'if', 'until',
+                 'unless', 'although', 'though', 'since', 'whether'}
 _PROCL_STRIP = '"“‘([{'
 _PROCL_END = '.!?…'
 
@@ -371,6 +383,40 @@ def _caps_word(w):
     return not sent_end(w)
 
 
+# A pure article before a subordinator makes it a noun ("for a while").
+PURE_ARTICLES = {'a', 'an', 'the'}
+# Leads of compound subordinators ("as if", "even though", "only when"):
+# they open the clause together with the subordinator after them.
+SUB_LEADS = {'as', 'even', 'only', 'just', 'ever'}
+
+
+def _first(w):
+    return _core_word(w).split(' ', 1)[0].lower()
+
+
+def _binds_forward(out, i):
+    """Does word i glue onto the word after it (glue pass 1)?"""
+    word, nxt = out[i][1], out[i + 1][1]
+    test = _core_word(word)
+    bare = test.rstrip(',;:').lower()
+    follows_sub = _first(nxt) in SUBORDINATORS
+    if bare in ARTICLES:
+        # 'her while ...' is the pronoun ending its clause; 'a while' is
+        # the article of a noun
+        return bare in PURE_ARTICLES or not follows_sub
+    return test.lower() in SUB_LEADS and follows_sub
+
+
+def ends_on_subordinator(text):
+    """Does a line end on a subordinator that opens the next clause? Not
+    when punctuation closes it ('while,') or an article makes it a noun
+    ('for a while')."""
+    words = re.sub(r'<[^>]+>', '', text).split()
+    if not words or words[-1].lower() not in SUBORDINATORS:
+        return False
+    return len(words) < 2 or words[-2].lower() not in PURE_ARTICLES
+
+
 def _glue_items(items):
     """Glue the units a line break may not separate (see ARTICLES /
     CONNECTORS / proper names above). One pass, then the flow sees only
@@ -383,9 +429,8 @@ def _glue_items(items):
         kind, word = out[i][0], out[i][1]
         nxt = out[i + 1]
         test = _core_word(word)
-        if (kind == 'w' and nxt[0] == 'w'
-                and test.rstrip(',;:').lower() in ARTICLES
-                and test[-1:] not in _PROCL_END
+        if (kind == 'w' and nxt[0] == 'w' and _binds_forward(out, i)
+                and test[-1:] not in _PROCL_END + ',;:'
                 and not re.match(CLOSERS_RE, nxt[1])):
             out[i:i + 2] = [('w', word + ' ' + nxt[1])]
         i -= 1
@@ -437,8 +482,14 @@ def _mark_names(items):
         # "Peace Diner" even though "the Peace" begins lowercase.
         prev_word = prev.rsplit(' ', 1)[-1] if prev is not None else ''
         first_word = w.split(' ', 1)[0]
+        # Two all-caps words are shouting ("YOU GIVE"), not a name: a name
+        # pair has a lowercase letter on one side ("SEBEC Hospital").
+        lower = any(c.islower() for c in prev_word + first_word)
+        # A comma ends a name AFTER its word: "Mikage Hospital," is still
+        # the name, only the run stops there (prev_word keeps the test).
         if prev is not None and run < 9 and _caps_word(prev_word) \
-                and _caps_word(first_word) and not sent_end(prev_word):
+                and _caps_word(first_word.rstrip(',;:')) \
+                and not sent_end(prev_word) and lower:
             run += 1
             out.append((it[0], it[1], run))
         else:
@@ -516,7 +567,7 @@ def _is_article(w):
     (its follower was a code, not a word): such a word still may not leave
     the line it is on."""
     test = _core_word(w)
-    return (test.rstrip(',;:').lower() in ARTICLES
+    return (test.lower() in ARTICLES
             and test[-1:] not in _PROCL_END)
 
 
@@ -557,15 +608,23 @@ def flow_model(items):
             # keep the punctuation on the same line as the label.
             join, brk = ' ', False
         elif closer:
-            # A closer word attaches spaceless to the line it closes: a
-            # stranded "?" or "," never starts a line (the whole tail moves
-            # down together). Multi-dot ellipses may start one ("..." is a
-            # fine dramatic pause), so their attach point stays a break.
-            join, brk = '', w.startswith('..')
+            # A closer word never starts a line: a stranded "?" or "," moves
+            # down with the tail it closes. Multi-dot ellipses may start one
+            # ("..." is a fine dramatic pause), so their attach point stays a
+            # break. A spaced-off ellipsis is a pause and keeps the source's
+            # gap ("whack! ...", "I ..."); a lone mark attaches ("Wait !" ->
+            # "Wait!"). After an inline code the porter split it off
+            # ('<FF08>...' trails the name): bare, and no pause opening a line.
+            after_code = prev.text.endswith('>')
+            join = (' ' if w.startswith(('..', '…')) and not after_code
+                    else '')
+            brk = w.startswith('..') and not after_code
         else:
             join = ' ' if prev is not None else ''
             brk = True
-        if hold:
+        if hold and not (_first(w) in SUBORDINATORS
+                         and prev is not None and prev.text.rsplit(' ', 1)[-1]
+                         .lower() not in PURE_ARTICLES):  # 'her | while'
             brk = False
         pieces = word_pieces(w)
         hold = _is_article(w)
@@ -611,20 +670,43 @@ def line_text(text, atom):
 def stop_cost(text):
     """How badly a line ends (spec 2.4).
 
-    0 = a full stop (the line closes a sentence), 1 = a comma/semicolon/colon,
-    (the sentence breathes there), 2 = anywhere else. It is an element of the
+    0 = a full stop (the line closes a sentence), 1 = a trailing ellipsis
+    (the speech trails off but goes on), 2 = a comma/semicolon/colon (the
+    sentence breathes there), 4 = anywhere else. It is an element of the
     cost tuple BEFORE the look terms, so a layout that ends its lines where
     the sentence breathes wins over one that merely fills the box harder.
     """
     t = re.sub(r'<[^>]+>', '', text).rstrip()
     if not t:
-        return 0
+        # A line of codes alone ("<FFF3>" - the demon's name) ends nowhere
+        # in the sentence; an empty line ends nothing.
+        return 4 if text.strip() else 0
     last = t.split(' ')[-1]
+    # A SHORT ELLIPSIS BEAT LEANS FORWARD. One or two words trailing off
+    # after a sentence that ended on the same line ("It's not good. But...",
+    # "Yamaoka! You bastards...") open what follows, so ending the line on
+    # them is weaker than a full stop (yet stronger than a comma). An
+    # ellipsis that closes its own clause ("short, ho...") is a sentence end.
+    if re.search(r'(?:\.\.|…)["\'”)\]]?$', last):
+        words = t.split(' ')
+        ends = [k for k in range(len(words) - 1) if sent_end(words[k])]
+        beat = words[ends[-1] + 1:] if ends else []
+        # Only after a PLAIN stop: in a chain of trailing ellipses
+        # ("Hmmm... Hmmmmmm...", "G-I-V-E... M-E...") no beat leans more
+        # than another.
+        plain = bool(ends) and not re.search(r'\.\.|…', words[ends[-1]])
+        if (plain and 1 <= len(beat) <= 2
+                and any(c.isalpha() for c in ''.join(beat))):
+            return 1
+        return 0
     if sent_end(last):
         return 0
     if t[-1:] in ',;:':
-        return 1
-    return 2
+        return 2
+    return 4
+
+
+HOLLOW = 2   # rhythm points for a middle line under half its neighbours
 
 
 def fullness(w, remaining=1):
@@ -635,7 +717,42 @@ def fullness(w, remaining=1):
     return w * w // remaining
 
 
-def flow_layout(atoms, width, measure, tail=1, want=None):
+def stutter(text, nxt):
+    """Does the line end on 'word...' that the next line repeats?"""
+    words = re.sub(r'<[^>]+>', '', text).split()
+    following = re.sub(r'<[^>]+>', '', nxt).split()
+    if not words or not following:
+        return False
+    m = re.fullmatch(r"([\w'’-]+)(?:\.\.+|…)", words[-1])
+    # exact repetition: "I... I am" stutters, "meat... Meat is" starts over
+    return bool(m) and following[0].strip(',.!?') == m.group(1)
+
+
+def head_orphan(text):
+    """Does the line end on the lone first word of a new sentence ("Is that
+    so...? You're")? That word dangles away from the rest of its sentence:
+    worse than an ordinary mid-clause break."""
+    words = re.sub(r'<[^>]+>', '', text).split()
+    # a comma does not rescue it ("STUPID? HMM... WELL, / ME HAVE..."), and
+    # one word and its comma alone on a line is the same orphan ("Masao,")
+    # Returns how many mid-clause breaks it is worth: 2 for a lone sentence
+    # head ("Is that so...? You're") or a line that is one word and its
+    # comma ("Hahaha," / "Thus," alone). A comma after the head is a real
+    # pause ("Huh? Dude, / that bandwagon...").
+    if len(words) < 2:
+        return 2 if len(words) == 1 and stop_cost(text) == 2 else 0
+    if sent_end(words[-2]) and not sent_end(words[-1]) and stop_cost(text) == 4:
+        return 2
+    return 0
+
+
+def _rank(cost):
+    """A suffix cost in decision order: mid-clause ends (cost[7]) rank
+    right after the splits and names, as the root does inside a box."""
+    return cost[:3] + (cost[7],) + cost[3:7]
+
+
+def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES):
     """Where one run of words breaks - THE line-breaking decision, for both
     jobs: free flow (want=None: the LEAST lines that fit, overflow only where
     no break avoids it) and a fixed skeleton (want=n: exactly n lines, the
@@ -679,11 +796,19 @@ def flow_layout(atoms, width, measure, tail=1, want=None):
             body = line_text(body, a)
         label_width = measure(label)
         body_fits = bool(body) and measure(body) <= width + tail
+    def atoms_text(a, b):
+        text = ''
+        for atom in atoms[a:b + 1]:
+            text = line_text(text, atom)
+        return text
+
     # The preceding line's transition cost depends on the FIRST width of its
     # suffix. Keep one optimum per (line count, first width), not just per line
     # count: discarding the other widths makes a locally square suffix create
     # a globally hollow / narrow-middle block.
-    best = [{} for _ in range(n)] + [{(0, -1): ((0, 0, 0, 0, 0, 0, -1), -1, None)}]
+    # cost[7]: lines ending mid-clause (an extra line inside the box is
+    # cheaper than one of these; past the box the line count comes first)
+    best = [{} for _ in range(n)] + [{(0, -1): ((0, 0, 0, 0, 0, 0, -1, 0), -1, None)}]
     for i in range(n - 1, -1, -1):
         text = atoms[i].text
         w = measure(text)
@@ -693,24 +818,76 @@ def flow_layout(atoms, width, measure, tail=1, want=None):
             over = w - lim
             if j + 1 == n or atoms[j + 1].brk:
                 base = max(over, 0)
-                for subkey, (sub, _end, _next) in best[j + 1].items():
+                for subkey, (sub, _end, after) in best[j + 1].items():
+                    # _end: the last atom of the next line
                     k = subkey[0]
                     label_only = i == 0 and j == label_end
                     fragment = (i == 0 and label_end is not None
                                 and j > label_end and j + 1 < n
-                                and ((body_fits and (stop_cost(text) == 2
-                                                     or (stop_cost(text) == 1
-                                                         and k == 1 and sub[6] * 2 < w)))
-                                     or w - label_width <= width // 5))
+                                # the whole speech fits under the label:
+                                # any split of it beside the label is a
+                                # scrap the reader skims past with the name
+                                # ("Elly: / Mm? Isn't he that transfer
+                                # student?") - unless the split makes a
+                                # rectangle ("Old man: Look, Akiko, /
+                                # Hiroshi came to visit.")
+                                and ((body_fits and not (
+                                    k == 1 and abs(sub[6] - w) <= width // 10))
+                                     # a complete sentence is no clipped
+                                     # fragment ("Ayase: Awww!"); one word
+                                     # trailing off is ("Takeda: Tch..."),
+                                     # a phrase is not ("F-Fresh meat...")
+                                     or (w - label_width <= width // 5
+                                         and (stop_cost(text) != 0
+                                              or (bool(re.search(
+                                                  r'(?:\.\.|…)\W*$', text))
+                                                  and j == label_end + 1)))))
                     step = sub[6] - w
                     trans = (step * step + (step * step if step > 0 else 0)
                              if sub[6] >= 0 and not label_only else 0)
                     end = 0 if j + 1 == n else stop_cost(text)
+                    # A subordinator opens the clause after it: ending a
+                    # line on one is worse than another mid-clause end
+                    # ("visit her while / you're there").
+                    if end == 4 and ends_on_subordinator(text):
+                        end += 2
                     # A minor punctuation boundary is not worth stranding a
                     # severely short final fragment. Full sentence boundaries
                     # and standalone speaker labels retain their own rules.
-                    if not label_only and k == 1 and sub[6] * 3 < w and end == 1:
-                        end += 2
+                    # (a comma that strands a tiny last line is an orphan
+                    # like a mid-clause cut: it counts in cost[7] too)
+                    strand = (not label_only and k == 1 and sub[6] * 3 < w
+                              and end == 2)
+                    if strand:
+                        end += 4
+                    # A line that ends a sentence (or trails off) and then
+                    # strands a short final sentence under half its width
+                    # ("Answer me... I'm begging you... / Yamaoka!", "Yes, I
+                    # like it! / Keep it up!") orphans that scrap.
+                    # (the label is not speech: on its line only the
+                    # speech's own width counts)
+                    speech_w = (w - label_width if i == 0 and label_width
+                                else w)
+                    if (not label_only and k == 1 and sub[6] * 2 < speech_w
+                            and stop_cost(text) <= 1):
+                        end += 1
+                    # A STUTTER IS ONE PHRASE: "No, I... / I am" breaks
+                    # between a word and its own repetition.
+                    if j + 1 < n and stutter(text, atoms[j + 1].text):
+                        end = max(end, 4)
+                    # A HOLLOW MIDDLE: the next line is under half of both
+                    # its neighbours ("story, / but you know, / it'd be
+                    # nice..."). Its punctuation does not pay for it. A
+                    # complete short sentence is hollow only in a block of
+                    # exactly three lines (one box, "here, / <name>! / It's
+                    # too late..."); in a longer block it may end a page
+                    # ("that... / inferior! | You are born...").
+                    # `after` keys the line after next: (count, its width).
+                    if (k >= 2 and sub[6] >= 0
+                            and sub[6] * 2 < min(w, after[1])
+                            and (stop_cost(atoms_text(j + 1, _end)) > 0
+                                 or (i == 0 and k == 2))):
+                        end += HOLLOW
                     # Tail/rise tests are shape costs, not sentence-boundary
                     # vetoes. Otherwise a modest short tail could force a
                     # narrow middle line or a growing triangle regardless of
@@ -726,10 +903,14 @@ def flow_layout(atoms, width, measure, tail=1, want=None):
                              sub[3] + int(fragment),
                              sub[4] + end,
                              sub[5] + shape,
-                             w)
+                             w,
+                             sub[7] + (0 if j + 1 == n or label_only
+                                       else head_orphan(text)
+                                       or int(stop_cost(text) == 4
+                                              or strand)))
                     key = (k + 1, w)
                     cur = best[i].get(key)
-                    if cur is None or total < cur[0]:
+                    if cur is None or _rank(total) < _rank(cur[0]):
                         best[i][key] = (total, j, subkey)
                 if over > 0 and want is None:
                     break
@@ -741,8 +922,15 @@ def flow_layout(atoms, width, measure, tail=1, want=None):
     if want is None:
         # Least lines, then internal splits, protected phrases, clipped
         # speech fragments, sentence boundaries and the whole block's shape.
-        key = min(best[0], key=lambda key: (best[0][key][0][0], key[0])
-                  + best[0][key][0][1:6])
+        # A line inside the box is cheaper than a split word or name: line
+        # counts up to what the box has left (`box`) tie, the splits decide,
+        # then the count. Past the box, every line counts first.
+        # Inside the box a mid-clause break is worse than an extra line too.
+        key = min(best[0], key=lambda key: (
+            best[0][key][0][0], max(key[0], box))
+            + best[0][key][0][1:3]
+            + (best[0][key][0][7], key[0])
+            + best[0][key][0][3:6])
     else:
         key = min(best[0], key=lambda key: (abs(key[0] - want),)
                   + best[0][key][0][:6])
@@ -755,7 +943,7 @@ def flow_layout(atoms, width, measure, tail=1, want=None):
 
 
 def flow_lines(items, width=BOX_WIDTH, measure=text_width, newline=NEWLINE,
-               tail=1):
+               tail=1, joinable=None):
     """The textbox flow every porter and builder reflows through: the single
     place that decides where text breaks, so the rules and the look apply by
     default. items: ('w', word) words (speaker labels ride as words with the
@@ -791,12 +979,58 @@ def flow_lines(items, width=BOX_WIDTH, measure=text_width, newline=NEWLINE,
                                   or seq[k + 1][1] != newline))
             more = more or seq[k][1].word
     out, region = [], []
+    used = [0]      # lines already shown in the current box
+    pages = [0]     # <FF04> boundaries seen
+
+    def fewest(entries):
+        atoms = [a for k, a in entries if k == 'a']
+        return len(flow_layout(atoms, width, measure, tail, box=0)) if atoms else 0
+
+    def may_join(k):
+        return (joinable is True
+                or (joinable is not None and k < len(joinable) and joinable[k]))
+
+    # Look ahead one box: a region followed by a <FF04> the merge may join
+    # leaves the next box room for its fewest lines, when that join can fit
+    # at all ("Don't worry, miss! Everything will be A-OK now that I'm here!"
+    # keeps two lines so "Now go get 'em" joins instead of a new box).
+    groups, cur = [], []
+    for entry in seq:
+        if entry[0] == 'b':
+            groups.append((cur, entry))
+            cur = []
+        else:
+            cur.append(entry)
+    groups.append((cur, None))
+    reserve_for = {}
+    page_k = 0
+    for gi, (entries, brk) in enumerate(groups):
+        if brk is not None and brk[1] == '<FF04>':
+            if may_join(page_k):
+                nxt = next((e for e, _b in groups[gi + 1:] if e), None)
+                if nxt is not None:
+                    reserve_for[gi] = fewest(nxt)
+            page_k += 1
+    # the waits before a page (<FF02><FF04>) end the region early: carry a
+    # reservation back to the last region before them
+    for gi in sorted(reserve_for, reverse=True):
+        g = gi
+        while g > 0 and not groups[g][0]:
+            g -= 1
+        if g != gi:
+            reserve_for[g] = reserve_for.pop(gi)
+    gi_now = [0]
 
     def flush():
         if not region:
             return
         atoms = [a for k, a in region if k == 'a']
-        spans = flow_layout(atoms, width, measure, tail)
+        box = max(BOX_LINES - used[0], 0)
+        reserve = reserve_for.get(gi_now[0], 0)
+        if reserve and used[0] + fewest(region) + reserve <= BOX_LINES:
+            box = max(box - reserve, 0)
+        spans = flow_layout(atoms, width, measure, tail, box=box)
+        used[0] += len(spans)
         # voice codes print before the line their stream position sits in
         # (the line that was still accumulating when they fired)
         line_of = {}
@@ -825,7 +1059,19 @@ def flow_lines(items, width=BOX_WIDTH, measure=text_width, newline=NEWLINE,
     for entry in seq:
         if entry[0] == 'b':
             flush()
+            gi_now[0] += 1
             out.append(('c', entry[1]))
+            if entry[1] == '<FF04>' and joinable is not None:
+                # joinable: True (any boundary may join) or one flag per
+                # <FF04>; a box that may join keeps the earlier box's lines
+                k = pages[0]
+                pages[0] += 1
+                may = (joinable if joinable is True
+                       else k < len(joinable) and joinable[k])
+                if not may or used[0] >= BOX_LINES:   # nothing joins a full box
+                    used[0] = 0
+            elif entry[1] in BOX_ENDS:
+                used[0] = 0
             continue
         region.append(entry)
     flush()
@@ -913,7 +1159,7 @@ def clean_edges(en):
     Japanese padding (ASCII + ideographic spaces) is not wording and a
     fixed slot counts every byte: 'You already have this Persona. ' costs
     one more byte than it can ever show. Two things are never padding:
-    name inserts (FF07/08/0F), battle inserts and pauses (FF05) render as
+    name inserts (FF07/08/0F), battle inserts and pauses (FF05/FFFC) render as
     words and keep their neighbours' spacing ("Mark:<name>found", "Mark:<pause>Dammit!"),
     and a control code's PARAMETER travels with its code - <FF0E> is
     followed by its choice-set byte, which may itself be a space (0x88)."""
@@ -921,7 +1167,9 @@ def clean_edges(en):
     # Names, numeric inserts and pauses can occupy visible space. Battle
     # insertion tokens come from the same decomp-derived set used to price
     # their width, rather than a second hand-maintained list.
-    keep = ('<FF05>', '<FF11>', '<FF12>') + NAME_CODES + INSERT_CODES
+    # <FFFC> is the battle interpreter's pause (windowtype.c CODE_WAIT), the
+    # sibling of <FF05>: the source's word gap beside it is wording.
+    keep = ('<FF05>', '<FF11>', '<FF12>', '<FFFC>') + NAME_CODES + INSERT_CODES
     battle_inserts = frozenset(battle_insert_widths())
     out, i = [], 0
     while i < len(toks):

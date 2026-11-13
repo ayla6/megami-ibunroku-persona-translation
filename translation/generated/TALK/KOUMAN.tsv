@@ -4,7 +4,7 @@ id	pos	psp	en
 2	0x20d6	pack/talk/KOUMAN:0x2240	Ha! Do you truly think I could<FFF6>obey beings as weak and<FFF6>foolish as humans!?<FFFD>い<FFF5>
 3	0x210e	pack/talk/KOUMAN:0x22e0	Silence! Your words are meaningless!<FFFD>う<FFF5>
 4	0x213e	pack/talk/KOUMAN:0x2330	Muahaha!<FFF6>You say such asinine things.<FFFB><FFF7>I ask of you: what value do you<FFF6>place on my spell card?<FFFD>え<FFF5>
-5	0x21a0	pack/talk/KOUMAN:0x23f8	As I expected!<FFF6>The weaker the being, the more<FFF6>desperate they are for my help!<FFFB><FFF7>I, <FFF3>, walk amongst you as<FFF6>a god, wouldn't you agree?<FFFD>お<FFF5>
+5	0x21a0	pack/talk/KOUMAN:0x23f8	As I expected!<FFF6>The weaker the being, the more<FFF6>desperate they are for my help!<FFFB><FFF7>I, <FFF3>,<FFF6>walk amongst you as a god,<FFF6>wouldn't you agree?<FFFD>お<FFF5>
 6	0x2207	pack/talk/KOUMAN:0x2508	Muahaha!<FFF6>No feeling is greater than watching<FFF6>the weak put on such a display!<FFF5>
 7	0x223e	pack/talk/KOUMAN:0x25a8	Your insolent attitude does little<FFF6>more than prove your inferiority...<FFFB><FFF7>Shall I show you<FFF6>the extent of my power?<FFFD>か<FFF5>
 8	0x2299	pack/talk/KOUMAN:0x2690	How foolish for a being as low as<FFF6>you to mock me in such a way!<FFFB><FFF7>How low do you place<FFF6>the rank of the <FFF0>?<FFFD>き<FFF5>
@@ -62,9 +62,9 @@ id	pos	psp	en
 60	0x2e05	pack/talk/KOUMAN:0x4830	Urgh... What logic...<FFF6>You are not an ordinary human...<FFF5>
 61	0x2e33	pack/talk/KOUMAN:0x48a0	I wondered what you would do... But I<FFF6>am no less confused by you humans...<FFF5>
 62	0x2e53	pack/talk/KOUMAN:0x4938	Muahaha! I have not heard such<FFF6>a vulgar joke in an eon!<FFF5>
-63	0x2e83	pack/talk/KOUMAN:0x49a8	Hmm... What else can you do?<FFF6>Carry on.<FFFD>も<FFF5>
+63	0x2e83	pack/talk/KOUMAN:0x49a8	Hmm...<FFF6>What else can you do? Carry on.<FFFD>も<FFF5>
 64	0x2eb7	pack/talk/KOUMAN:0x4a00	A certain type of rumor, you say?<FFF6>What do people say of<FFF6>my greatness these days?<FFFD>や<FFF5>
-65	0x2eee	pack/talk/KOUMAN:0x4aa8	Hm, melting ice... No doubt a ploy to<FFF6>gain my favor, but I shall allow it.<FFF5>
+65	0x2eee	pack/talk/KOUMAN:0x4aa8	Hm, melting ice...<FFF6>No doubt a ploy to gain my favor,<FFF6>but I shall allow it.<FFF5>
 66	0x2f26	pack/talk/KOUMAN:0x4b40	What are you trying to say!?<FFF6>I have no time for inane chatter!<FFF5>
 67	0x2f5c	pack/talk/KOUMAN:0x4bc0	How can you speak such carefree<FFF6>words in these turbulent times!?<FFFB><FFF7>If you've time to talk,<FFF6>you've time to fight!<FFFD>ゆ<FFF5>
 68	0x2f99	pack/talk/KOUMAN:0x4ca8	My greatness has its downside.<FFF6>I am surrounded by yes men...<FFFB><FFF7>It's enjoyable to chat idly with lower<FFF6>beings like you. Amuse me further.<FFFD>よ<FFF5>
@@ -87,7 +87,7 @@ id	pos	psp	en
 85	0x336e	pack/talk/KOUMAN:0x5898	Don't make me laugh!<FFF6>You would be lucky to hold<FFFB><FFF7>a dead man's attention with<FFF6>such childish preaching!<FFF5>
 86	0x33a5	pack/talk/KOUMAN:0x5968	You have a strong desire to<FFF6>appease yourself. Huaha,<FFF6>humans as vigorous as you are rare.<FFF5>
 87	0x33e1	pack/talk/KOUMAN:0x5a20	Muahahaha! You say such interesting<FFF6>things. Perhaps you could be<FFF6>groomed into my successor.<FFFD>が<FFF5>
-88	0x3417	pack/talk/KOUMAN:0x5ae0	Huahaha! What a vigorous little<FFF6>human! You'd make an excellent pet.<FFF5>
+88	0x3417	pack/talk/KOUMAN:0x5ae0	Huahaha!<FFF6>What a vigorous little human!<FFF6>You'd make an excellent pet.<FFF5>
 89	0x3449	pack/talk/KOUMAN:0x5b68	Hm... Do you inferior beings<FFF6>have no sense of fear?<FFF6>What emotions do I stir in you?<FFFD>ぎ<FFF5>
 90	0x348a	pack/talk/KOUMAN:0x5c18	Child! I am the wrong demon for<FFF6>this display of arrogance!<FFF6>Now is your only chance to apologize.<FFFD>ぐ<FFF5>
 91	0x34c4	pack/talk/KOUMAN:0x5ce0	What are you weaklings saying!?<FFF6>I hope you die from hitting<FFF6>your head on the corner of tofu!<FFF5>
@@ -95,7 +95,7 @@ id	pos	psp	en
 93	0x3538	pack/talk/KOUMAN:0x5e30	To say such things to me...<FFF6>You are either a fool, or...<FFF5>
 94	0x355b	pack/talk/KOUMAN:0x5ea8	Hmm... Then I will make you my slave.<FFFD>ご<FFF5>
 95	0x357c	pack/talk/KOUMAN:0x5ef8	Huaha...<FFF6>Sarcasm does not beget the truth.<FFF6>I am worlds apart from your kind.<FFF5>
-96	0x35ab	pack/talk/KOUMAN:0x5f98	Human, if you are mocking me... death<FFF6>will come faster than you think!<FFFD>ざ<FFF5>
+96	0x35ab	pack/talk/KOUMAN:0x5f98	Human, if you are mocking me...<FFF6>death will come faster than<FFF6>you think!<FFFD>ざ<FFF5>
 97	0x35e9	pack/talk/KOUMAN:0x6030	Fool! Do you think me unable to<FFF6>see through your lies!?<FFF5>
 98	0x3617	pack/talk/KOUMAN:0x60a0	Muahahaha! And what if I were to<FFF6>deny these pleas for mercy?<FFFD>じ<FFF5>
 99	0x364b	pack/talk/KOUMAN:0x6120	Of course. You may continue<FFF6>these acts of submission.<FFF5>
@@ -116,7 +116,7 @@ id	pos	psp	en
 114	0x39f1	pack/talk/KOUMAN:0x6b30	Insolent cur!<FFF6>I can't negotiate with barbarians!<FFF5>
 115	0x3a28	pack/talk/KOUMAN:0x6b98	Avert your eyes, idiot!<FFF6>Your tainted stare is defiling me!<FFFD>ど<FFF5>
 116	0x3a67	pack/talk/KOUMAN:0x6c18	Huaha, it is only natural to<FFF6>be fascinated by me.<FFF6>You have my permission to look.<FFF5>
-117	0x3aa1	pack/talk/KOUMAN:0x6cc0	Truly, I am an attractive <FFF0>.<FFF6>Specifically,<FFF6>what has drawn you to me?<FFFD>ば<FFF5>
+117	0x3aa1	pack/talk/KOUMAN:0x6cc0	Truly, I am an attractive <FFF0>.<FFF6>Specifically, what has<FFF6>drawn you to me?<FFFD>ば<FFF5>
 118	0x3ada	pack/talk/KOUMAN:0x6d50	Hmm... Your words are strange,<FFF6>but I find that interesting...<FFF5>
 119	0x3b0a	pack/talk/KOUMAN:0x6dd0	You speak lies without the slightest<FFF6>hesitation... You wouldn't happen to<FFF6>be mocking me, would you?<FFFD>び<FFF5>
 120	0x3b48	pack/talk/KOUMAN:0x6ea0	Those who defy me shall<FFF6>burn in the fires of hell.<FFF6>Are you ready to be judged?<FFFD>ぶ<FFF5>
@@ -132,11 +132,11 @@ id	pos	psp	en
 130	0x3d3a	pack/talk/KOUMAN:0x7418	Hmm... Your voice is quite beautiful.<FFF6>I would like to be your partner.<FFF5>
 131	0x3d76	pack/talk/KOUMAN:0x74a8	Hmm... I like your song.<FFF6>Did you write it yourself?<FFFD>ぴ<FFF5>
 132	0x3d9d	pack/talk/KOUMAN:0x7518	You can stop that now!<FFF6>Your voice is not something to<FFF6>be endured for this long!<FFF5>
-133	0x3dd0	pack/talk/KOUMAN:0x75b8	Desist! This does not suit my noble<FFF6>tastes. Sing something that does.<FFFD>ぷ<FFF5>
+133	0x3dd0	pack/talk/KOUMAN:0x75b8	Desist!<FFF6>This does not suit my noble tastes.<FFF6>Sing something that does.<FFFD>ぷ<FFF5>
 134	0x3e02	pack/talk/KOUMAN:0x7648	Muahahaha! Your voice is splendid!<FFF5>
 135	0x3e33	pack/talk/KOUMAN:0x7690	Huahaha, how fitting of you to<FFF6>dedicate a song to me.<FFF6>What are your wishes?<FFFD>ぺ<FFF5>
 136	0x3e6a	pack/talk/KOUMAN:0x7730	Hmm... So this the "motherly love"<FFF6>they say humans have...<FFF5>
-137	0x3e91	pack/talk/KOUMAN:0x77a8	Hmm... You treat me as a child?<FFF6>How many eons have passed since<FFF6>you were brought into this world?<FFFD>ぽ<FFF5>
+137	0x3e91	pack/talk/KOUMAN:0x77a8	Hmm... You treat me as a child?<FFF6>How many eons have passed since you<FFF6>were brought into this world?<FFFD>ぽ<FFF5>
 138	0x3ec7	pack/talk/KOUMAN:0x7870	Know your place, girl!<FFF6>Never have I been so insulted!<FFF5>
 139	0x3efa	pack/talk/KOUMAN:0x78e0	Do you know what you're saying,<FFF6>little girl!? I am patient, but I will not<FFF6>tolerate being treated as a child!<FFFD>ぁ<FFF5>
 140	0x3f36	pack/talk/KOUMAN:0x79c0	Huaha, you are like an angel,<FFF6>naive and beautiful.<FFF6>Would you like my company?<FFFD>ぃ<FFF5>
@@ -163,7 +163,7 @@ id	pos	psp	en
 161	0x43da	pack/talk/KOUMAN:0x8688	What's the matter, human girl?<FFF6>Tears alone won't change anything.<FFF5>
 162	0x4404	pack/talk/KOUMAN:0x8710	You inferior beings can't<FFF6>supress your own emotions!<FFF6>Be silent, or be gone!<FFF5>
 163	0x443f	pack/talk/KOUMAN:0x87a8	Tears should be<FFF6>reserved for times of sorrow!<FFF6>I see no truth to your story!<FFFD>ウ<FFF5>
-164	0x447f	pack/talk/KOUMAN:0x8848	Urgh... The tears of a woman... They<FFF6>are a trap more often than not...<FFF5>
+164	0x447f	pack/talk/KOUMAN:0x8848	Urgh... The tears of a woman...<FFF6>They are a trap more<FFF6>often than not...<FFF5>
 165	0x44a8	pack/talk/KOUMAN:0x88d8	Sadness dwells in every heart, but...<FFF6>tears are not shed for oneself...<FFF5>
 166	0x44db	pack/talk/KOUMAN:0x8968	I do not care to see your beautiful<FFF6>face so marred and unsightly.<FFF6>Smile, child.<FFFD>エ<FFF5>
 167	0x4513	pack/talk/KOUMAN:0x8a10	Your threats are useless.<FFF6>Find a better purpose for that face.<FFF5>
@@ -190,16 +190,16 @@ id	pos	psp	en
 188	0x4990	pack/talk/KOUMAN:0x9750	Muahaha! I like the way you speak!<FFF6>You're good for your age!<FFFD>ソ<FFF5>
 189	0x49cb	pack/talk/KOUMAN:0x97d0	Huaha, I know your plan<FFF6>is to try and agitate me.<FFF5>
 190	0x4a02	pack/talk/KOUMAN:0x9838	Hmm... You seem rather comfortable<FFF6>before a being of my stature.<FFFB><FFF7>Very well! I shall see just how much<FFF6>pressure you can withstand.<FFFD>タ<FFF5>
-191	0x4a61	pack/talk/KOUMAN:0x9948	Huaha, do not try to endure it. That<FFF6>wouldn't be wise for your health.<FFF5>
+191	0x4a61	pack/talk/KOUMAN:0x9948	Huaha, do not try to endure it.<FFF6>That wouldn't be wise for<FFF6>your health.<FFF5>
 192	0x4a8d	pack/talk/KOUMAN:0x99d8	I see. You truly wish to see my fury?<FFF6>Consider the wish granted!<FFF5>
 193	0x4ac2	pack/talk/KOUMAN:0x9a60	Hmm! You are brazen to ignore me!<FFF6>But it will make killing you all<FFF6>the more satisfying!<FFFD>チ<FFF5>
-194	0x4afa	pack/talk/KOUMAN:0x9b18	Where are you looking? What are you<FFF6>saying? Are you not afraid of me...?<FFFD>ツ<FFF5>
+194	0x4afa	pack/talk/KOUMAN:0x9b18	Where are you looking?<FFF6>What are you saying?<FFF6>Are you not afraid of me...?<FFFD>ツ<FFF5>
 195	0x4b2a	pack/talk/KOUMAN:0x9bb0	Pitiful...<FFF6>The weak soul has caved in to fear...<FFF5>
 196	0x4b4e	pack/talk/KOUMAN:0x9c18	Hmm... So you're ignoring me...<FFF6>If you think you are proving<FFF6>your composure, I am not amused.<FFF5>
 197	0x4b88	pack/talk/KOUMAN:0x9cd8	Huahaha, don't strain yourself.<FFF6>Your face is tense with fear.<FFFD>テ<FFF5>
 198	0x4bca	pack/talk/KOUMAN:0x9d58	Do you truly wish to see my fury?<FFF6>Consider the wish granted, boy!<FFF5>
 199	0x4c03	pack/talk/KOUMAN:0x9de0	Inferior you may be, but no one<FFF6>gets away with ignoring me!<FFFD>ト<FFF5>
-200	0x4c40	pack/talk/KOUMAN:0x9e60	Where are you looking? What are you<FFF6>saying? Are you not afraid of me...?<FFFD>ナ<FFF5>
+200	0x4c40	pack/talk/KOUMAN:0x9e60	Where are you looking?<FFF6>What are you saying?<FFF6>Are you not afraid of me...?<FFFD>ナ<FFF5>
 201	0x4c71	pack/talk/KOUMAN:0x9ef8	Pitiful... The poor soul has been<FFF6>taken to another world of fear...<FFF5>
 202	0x4c9b	pack/talk/KOUMAN:0x9f80	The weaker the dog,<FFF6>the louder the bark. How fitting.<FFF6>Would you like a bone to chew on?<FFFD>ニ<FFF5>
 203	0x4cd5	pack/talk/KOUMAN:0xa038	Normally, I would have already<FFF6>sent you to hell for that.<FFFB><FFF7>However, on behalf of your courage,<FFF6>I will forgive you.<FFF5>
@@ -207,18 +207,18 @@ id	pos	psp	en
 205	0x4d52	pack/talk/KOUMAN:0xa198	Your threats are not<FFF6>the least bit frightening!<FFF6>I am more annoyed than anything!<FFF5>
 206	0x4d89	pack/talk/KOUMAN:0xa240	Urgh... Are you that confident in<FFF6>your fighting skills that you would<FFF6>threaten me like that, child?<FFFD>ネ<FFF5>
 207	0x4dc3	pack/talk/KOUMAN:0xa310	You'll pay for speaking to me like<FFF6>this, you insignificant creature...<FFF5>
-208	0x4dfc	pack/talk/KOUMAN:0xa3a0	What good is yelling going to do, you<FFF6>neanderthal!? It's just plain stupid!<FFF5>
+208	0x4dfc	pack/talk/KOUMAN:0xa3a0	What good is yelling going to do,<FFF6>you neanderthal!?<FFF6>It's just plain stupid!<FFF5>
 209	0x4e38	pack/talk/KOUMAN:0xa438	Silence! Die, fool!<FFFD>ノ<FFF5>
 210	0x4e57	pack/talk/KOUMAN:0xa468	Urgh... A madman...<FFF5>
 211	0x4e6e	pack/talk/KOUMAN:0xa490	Your scream...<FFF6>Is it some kind of enchantment?<FFFD>ハ<FFF5>
 212	0x4e8a	pack/talk/KOUMAN:0xa4f8	Muahahaha!<FFF6>My power has driven this human mad!<FFF5>
 213	0x4eb6	pack/talk/KOUMAN:0xa558	Huaha, like a beast in heat!<FFF6>What is the meaning of your scream?<FFFD>ヒ<FFF5>
 214	0x4ef3	pack/talk/KOUMAN:0xa5e0	Hmm... You are quite<FFF6>skilled with your hands.<FFF6>You could work in my court.<FFFD>フ<FFF5>
-215	0x4f26	pack/talk/KOUMAN:0xa678	Not bad, for an inferior. Continue to<FFF6>practice, and perhaps I'll be amused.<FFF5>
+215	0x4f26	pack/talk/KOUMAN:0xa678	Not bad, for an inferior.<FFF6>Continue to practice,<FFF6>and perhaps I'll be amused.<FFF5>
 216	0x4f62	pack/talk/KOUMAN:0xa710	Urgh... To think there are still<FFF6>powers in this world I don't have...<FFF5>
 217	0x4f90	pack/talk/KOUMAN:0xa7a0	Tell me your secret...<FFFD>ヘ<FFF5>
 218	0x4fbb	pack/talk/KOUMAN:0xa7d8	Muahaha! A young, evil spirit would<FFF6>be highly amused by this!<FFF5>
-219	0x4fee	pack/talk/KOUMAN:0xa858	Huaha, not bad, coming from such<FFF6>a lowly being. What else can you do?<FFFD>ホ<FFF5>
+219	0x4fee	pack/talk/KOUMAN:0xa858	Huaha, not bad,<FFF6>coming from such a lowly being.<FFF6>What else can you do?<FFFD>ホ<FFF5>
 220	0x5024	pack/talk/KOUMAN:0xa8e8	Well, I can indulge myself to hear<FFF6>the vulgar conversations of<FFF6>my inferiors every once in a while.<FFF5>
 221	0x5055	pack/talk/KOUMAN:0xa9b0	Hmm... So humans are capable of such<FFF6>speech... Ha... I've learned something.<FFF5>
 222	0x508b	pack/talk/KOUMAN:0xaa50	I am setting aside my precious<FFF6>time to listen to you, so a token of<FFF6>appreciation is only natural.<FFF1><FFF5>
@@ -239,14 +239,14 @@ id	pos	psp	en
 237	0x53c0	pack/talk/KOUMAN:0xb450	Do not greet me lightly...<FFF5>
 238	0x53dc	pack/talk/KOUMAN:0xb488	You seek my power?<FFF6>I cannot just bestow it upon you...<FFF5>
 239	0x5403	pack/talk/KOUMAN:0xb4f8	There must be something to that...<FFF5>
-240	0x5417	pack/talk/KOUMAN:0xb540	Huaha,<FFF6>so inferior beings have finally<FFF6>learned how to negotiate decently...<FFF5>
+240	0x5417	pack/talk/KOUMAN:0xb540	Huaha, so inferior beings<FFF6>have finally learned how to<FFF6>negotiate decently...<FFF5>
 241	0x5449	pack/talk/KOUMAN:0xb5d8	Huaha, so some humans do<FFF6>understand my grandeur.<FFF5>
-242	0x5474	pack/talk/KOUMAN:0xb640	Muahahaha! Everyone desires<FFF6>my power! I am beyond compare!<FFFB><FFF7>Very well. I'll give you fools a chance.<FFF1><FFF5>
+242	0x5474	pack/talk/KOUMAN:0xb640	Muahahaha!<FFF6>Everyone desires my power!<FFF6>I am beyond compare!<FFFB><FFF7>Very well. I'll give you fools a chance.<FFF1><FFF5>
 243	0x54db	pack/talk/KOUMAN:0xb710	Huahaha, are you trying to<FFF6>disturb me? It's useless!<FFF5>
 244	0x5512	pack/talk/KOUMAN:0xb780	Ha, how foolish. I know you are<FFF6>a low-ranking being, but can you at<FFF6>least try using your head?<FFF5>
-245	0x5546	pack/talk/KOUMAN:0xb840	WHAT!?...There. I got upset.<FFF6>You should thank me for<FFF6>my consideration.<FFFB><FFF7>And when you do, do it with<FFF6>something other than words!<FFF1><FFF5>
+245	0x5546	pack/talk/KOUMAN:0xb840	WHAT!? ...There. I got upset.<FFF6>You should thank me for<FFF6>my consideration.<FFFB><FFF7>And when you do, do it with<FFF6>something other than words!<FFF1><FFF5>
 246	0x55a2	pack/talk/KOUMAN:0xb948	How impudent! I could extinguish<FFF6>you in no more than a second!<FFF5>
-247	0x55cd	pack/talk/KOUMAN:0xb9c8	Such attitude! Do you want to feel<FFF6>my wrath, human weakling!?<FFF5>
+247	0x55cd	pack/talk/KOUMAN:0xb9c8	Such attitude!<FFF6>Do you want to feel my wrath,<FFF6>human weakling!?<FFF5>
 248	0x5601	pack/talk/KOUMAN:0xba48	Ha! You underestimate me?<FFF6>If you want to die, I can assist! If not,<FFF6>the time to apologize would be now.<FFF1><FFF5>
 249	0x5638	pack/talk/KOUMAN:0xbb20	Urgh... Do you not fear my rage?<FFF5>
 250	0x5653	pack/talk/KOUMAN:0xbb68	You don't know the extent of<FFF6>my terror, do you?<FFF6>That must be the case...<FFF5>
@@ -255,19 +255,19 @@ id	pos	psp	en
 253	0x56d1	pack/talk/KOUMAN:0xbce0	Bold, for a human!<FFFB><FFF7>Huahaha, I will enjoy crushing you!<FFF5>
 254	0x5715	pack/talk/KOUMAN:0xbd50	Huahaha! No matter your attitude,<FFF6>it's still just the howl of a loser.<FFF5>
 255	0x5748	pack/talk/KOUMAN:0xbde0	Huahaha...<FFF6>Do you plan on being chopped<FFF6>liver for the rest of your life?<FFFB><FFF7>Not that it doesn't become you...<FFF5>
-256	0x5783	pack/talk/KOUMAN:0xbeb8	Hmm... I wouldn't invite you to<FFF6>a party, but it was enjoyable.<FFF5>
+256	0x5783	pack/talk/KOUMAN:0xbeb8	Hmm...<FFF6>I wouldn't invite you to a party,<FFF6>but it was enjoyable.<FFF5>
 257	0x57b1	pack/talk/KOUMAN:0xbf38	Hmm... So this is how<FFF6>inferior beings are amused.<FFF6>I must claim a watching fee.<FFF1><FFF5>
 258	0x57e6	pack/talk/KOUMAN:0xbfd8	You sit upon the throne of stupidity!<FFF6>I have no need of you!<FFF5>
 259	0x5809	pack/talk/KOUMAN:0xc058	How stale!<FFF6>You call this a performance!?<FFFB><FFF7>You are but a tadpole on stage,<FFF6>being watched by a hungry piranha!<FFF5>
 260	0x583b	pack/talk/KOUMAN:0xc130	Every moment I spend with you is<FFF6>time wasted! Compensate, fool!<FFF1><FFF5>
 261	0x5875	pack/talk/KOUMAN:0xc1b8	What are you doing...?<FFF6>I don't get humans...<FFF5>
-262	0x5897	pack/talk/KOUMAN:0xc218	Urgh... That was quite<FFF6>a performance... Not bad, human...<FFF5>
+262	0x5897	pack/talk/KOUMAN:0xc218	Urgh...<FFF6>That was quite a performance...<FFF6>Not bad, human...<FFF5>
 263	0x58bb	pack/talk/KOUMAN:0xc290	Muahaha!<FFF6>So even humans have strengths.<FFF5>
-264	0x58e8	pack/talk/KOUMAN:0xc2e0	Hmm... Do you make your living doing<FFF6>this? If so, you must be starving.<FFF5>
+264	0x58e8	pack/talk/KOUMAN:0xc2e0	Hmm...<FFF6>Do you make your living doing this?<FFF6>If so, you must be starving.<FFF5>
 265	0x5911	pack/talk/KOUMAN:0xc370	Huahaha, are you that<FFF6>desperate for my attention?<FFF5>
 266	0x5938	pack/talk/KOUMAN:0xc3d8	I can't say your strategy<FFF6>is very effective on me,<FFF6>but I can acknowledge your effort!<FFF5>
 267	0x5966	pack/talk/KOUMAN:0xc488	Hmm... You plan to invite me with you?<FFF6>You show promise, human.<FFF5>
-268	0x5993	pack/talk/KOUMAN:0xc508	Hmm... So this is how humans invite<FFF6>others... It's not good enough.<FFF1><FFF5>
+268	0x5993	pack/talk/KOUMAN:0xc508	Hmm...<FFF6>So this is how humans invite others...<FFF6>It's not good enough.<FFF1><FFF5>
 269	0x59c4	pack/talk/KOUMAN:0xc598	Ha! I would never fall for such<FFF6>temptations! Now do you see, fool!?<FFF5>
 270	0x59f9	pack/talk/KOUMAN:0xc620	Even were I about to die,<FFF6>I could resist any temptations<FFF6>your inferior kind could offer me!<FFF5>
 271	0x5a2f	pack/talk/KOUMAN:0xc6d8	If it's my power you desire, you must<FFF6>show me your good faith, fool!<FFF1><FFF5>
@@ -281,7 +281,7 @@ id	pos	psp	en
 279	0x5bba	pack/talk/KOUMAN:0xcb48	You have an honest<FFF6>quality about you.<FFF6>It's important to know your strength.<FFF5>
 280	0x5beb	pack/talk/KOUMAN:0xcbe0	Ha, what a fool! Do your friends at<FFF6>home call you Captain Obvious?<FFF5>
 281	0x5c12	pack/talk/KOUMAN:0xcc68	Silence, girl! If you value your life,<FFF6>do not speak another word!<FFF5>
-282	0x5c41	pack/talk/KOUMAN:0xccf0	Quiet! You've ruined my moment of<FFF6>silence, and for that you shall pay!<FFF1><FFF5>
+282	0x5c41	pack/talk/KOUMAN:0xccf0	Quiet!<FFF6>You've ruined my moment of silence,<FFF6>and for that you shall pay!<FFF1><FFF5>
 283	0x5c73	pack/talk/KOUMAN:0xcd80	Hmm... Such an unassuming attitude...<FFF6>I like it not...<FFF5>
 284	0x5c97	pack/talk/KOUMAN:0xcdf0	...Is that your true intention?<FFF6>How suspicious...<FFF5>
 285	0x5caf	pack/talk/KOUMAN:0xce58	So you subscribe to the doctrine<FFF6>of,"if you can't beat them,<FFF6>join them"? Huaha, interesting.<FFF5>
@@ -290,9 +290,9 @@ id	pos	psp	en
 288	0x5d3d	pack/talk/KOUMAN:0xd010	You have my spell card.<FFF6>The strongest <FFF0><FFF6>is at your command.<FFFB><FFF7>Consider yourself lucky.<FFEF>
 289	0x5d79	pack/talk/KOUMAN:0xd0c0	Hm...<FFF6>Simply parting ways would be dull.<FFFB><FFF7>This is wasted on you humans,<FFF6>but I will give it to you regardless.<FFEF>
 290	0x5dd0	pack/talk/KOUMAN:0xd1a0	Hmph. Foolish creature.<FFEF>
-291	0x5de1	pack/talk/KOUMAN:0xd1d0	You thought I would join<FFF6>you and your ilk!? Fool!<FFFB><FFF7>However, times have changed. Demons<FFF6>have their own circumstances now...<FFEF>
+291	0x5de1	pack/talk/KOUMAN:0xd1d0	You thought I would join<FFF6>you and your ilk!? Fool!<FFFB><FFF7>However, times have changed.<FFF6>Demons have their own<FFF6>circumstances now...<FFEF>
 292	0x5e30	pack/talk/KOUMAN:0xd2c8	Muahahaha! You honestly thought<FFF6>I'd give you my spell card!?<FFFB><FFF7>Remember this! <FFF3><FFF6>only follows the strong!<FFEF>
-293	0x5e81	pack/talk/KOUMAN:0xd3a0	Ha... This would suit you. Take<FFF6>this archaic thing out of my sight.<FFEF>
+293	0x5e81	pack/talk/KOUMAN:0xd3a0	Ha... This would suit you.<FFF6>Take this archaic thing<FFF6>out of my sight.<FFEF>
 294	0x5eb3	pack/talk/KOUMAN:0xd428	Then farewell, weak, foolish,<FFF6>useless son of man!<FFEF>
 295	0x5ee0	pack/talk/KOUMAN:0xd490	This too might be of use to foolish<FFF6>humans. Do not waste it.<FFEF>
 296	0x5f11	pack/talk/KOUMAN:0xd510	I have no time for your kind!<FFEF>
@@ -301,12 +301,12 @@ id	pos	psp	en
 299	0x5fc5	pack/talk/KOUMAN:0xd6f8	Enough! I grow tired of insulting you!<FFF6>Farewell, foolish human!<FFEF>
 300	0x5ff8	pack/talk/KOUMAN:0xd778	Pathetic wretch...<FFF6>Take this and be gone.<FFEF>
 301	0x601d	pack/talk/KOUMAN:0xd7d0	How can I not see my own reasons for<FFF6>negotiating with you!?<FFFB><FFF7>Why am I unable to read the minds of<FFF6>such weak and inferior beings!?<FFEF>
-302	0x608a	pack/talk/KOUMAN:0xd8d8	Argh! That's enough! Take my spell<FFF6>card, and use it however you like!<FFEF>
+302	0x608a	pack/talk/KOUMAN:0xd8d8	Argh! That's enough!<FFF6>Take my spell card,<FFF6>and use it however you like!<FFEF>
 303	0x60c4	pack/talk/KOUMAN:0xd968	Huahaha, siding with you<FFF6>could prove interesting...<FFEF>
 304	0x60ec	pack/talk/KOUMAN:0xd9d0	My card will become the Persona that<FFF6>protects you. It is guaranteed.<FFEF>
-305	0x612a	pack/talk/KOUMAN:0xda60	Our meeting was obviously fated. To<FFF6>fight you would be to betray destiny.<FFEF>
+305	0x612a	pack/talk/KOUMAN:0xda60	Our meeting was obviously fated.<FFF6>To fight you would be to<FFF6>betray destiny.<FFEF>
 306	0x615d	pack/talk/KOUMAN:0xdaf8	It would be primitive to<FFF6>simply leave it at this...<FFFB><FFF7>It's not as beautiful or fleeting as<FFF6>the love letter of a songstress,<FFF6>but it's yours to keep all the same.<FFEF>
-307	0x61b1	pack/talk/KOUMAN:0xdc38	In times like this, you are damned if<FFF6>you do and damned if you don't.<FFEF>
+307	0x61b1	pack/talk/KOUMAN:0xdc38	In times like this, you are damned<FFF6>if you do and damned if you don't.<FFEF>
 308	0x61dc	pack/talk/KOUMAN:0xdcc8	Fine... I'll give you my spell card.<FFF6>If you throw it away, I will unleash<FFF6>a thousand terrors upon you.<FFEF>
 309	0x620c	pack/talk/KOUMAN:0xdd98	Hmm... If it isn't one of<FFF6>those inferior humans.<FFFB><FFF7>Ha...<FFF6>You should run home before I kill you.<FFFD>マ<FFF5>
 310	0x6265	pack/talk/KOUMAN:0xde60	Hmm... If it isn't one of<FFF6>those inferior humans.<FFFB><FFF7>Showing up here despite having such<FFF6>frail bodies... A strange race indeed.<FFF5>
@@ -318,13 +318,13 @@ id	pos	psp	en
 316	0x64d6	pack/talk/KOUMAN:0xe4c8	Don't mind me. Move along...<FFFB><FFF7>...Hm? Be gone already...<FFF5>
 317	0x652d	pack/talk/KOUMAN:0xe538	Don't mind me. Move along...<FFFB><FFF7>...Hm? Be gone already...<FFF5>
 318	0x6582	pack/talk/KOUMAN:0xe5a8	You look like you could entertain me.<FFF6>Why not travel at my side?<FFFD>メ<FFF5>
-319	0x65bd	pack/talk/KOUMAN:0xe630	Huaha,<FFF6>the moon is lovely this evening.<FFFB><FFF7>Such a night inspires me to dawdle.<FFF6>I can spare to negotiate with you.<FFF5>
+319	0x65bd	pack/talk/KOUMAN:0xe630	Huaha, the moon is<FFF6>lovely this evening.<FFFB><FFF7>Such a night inspires me to dawdle.<FFF6>I can spare to negotiate with you.<FFF5>
 320	0x6613	pack/talk/KOUMAN:0xe710	Hmm... a human.<FFF6>Normally you'd be dead<FFF6>before you laid eyes on me, but...<FFFB><FFF7>Luckily, I'm in a good mood.<FFF6>I'll negotiate with you.<FFF5>
 321	0x6689	pack/talk/KOUMAN:0xe818	<FFEE>You must not know your place if you<FFF6>are the one answering my call.<FFFB><FFF7>Still... An inferior being reaching<FFF6>out for my attention...Wise or<FFF6>foolhardy? We shall soon see.<FFFD>モ<FFF5>
 322	0x66f6	pack/talk/KOUMAN:0xe968	<FFED>Hmph! If it isn't a merry band of<FFF6>inferior creatures!<FFFB><FFF7>What annoying humans...<FFF6>You annoy me for no real reason!<FFF5>
 323	0x6759	pack/talk/KOUMAN:0xea50	<FFED>Hmph! If it isn't a merry band of<FFF6>inferior creatures!<FFFB><FFF7>I'll buy your worthless lives!<FFF6>Answer my demands.<FFF1><FFF5>
 324	0x67be	pack/talk/KOUMAN:0xeb28	<FFEE>Your aura of battle is strong for<FFF6>a human. Tell me... Have you<FFF6>dreamed of fighting the <FFF0>?<FFFD>ヤ<FFF5>
-325	0x67fe	pack/talk/KOUMAN:0xebe8	<FFEE>Huaha,<FFF6>I feel superb energy from you...<FFFB><FFF7>Hmm... Could you actually hold<FFF6>your ground against me...?<FFF6>It cannot be...<FFF5>
+325	0x67fe	pack/talk/KOUMAN:0xebe8	<FFEE>Huaha, I feel superb<FFF6>energy from you...<FFFB><FFF7>Hmm... Could you actually hold<FFF6>your ground against me...?<FFF6>It cannot be...<FFF5>
 326	0x684c	pack/talk/KOUMAN:0xecd0	<FFEC>So you answer to my voice...<FFF6>Hmmm... I see there are many<FFF6>types of inferior beings...<FFF5>
 327	0x6884	pack/talk/KOUMAN:0xed80	<FFEB>Muahaha! Quite a remarkable human,<FFF6>to answer my call!<FFFB><FFF7>But it's unfortunate...<FFF6>If you weren't so inferior,<FFF6>we could be partners.<FFFD>ユ<FFF5>
 328	0x68f6	pack/talk/KOUMAN:0xee88	<FFEB>Muahaha! Quite a remarkable human,<FFF6>to answer my call!<FFFB><FFF7>Though you are inferior, you would<FFF6>make a sufficient henchman.<FFF6>Not bad at all.<FFF5>
@@ -332,11 +332,11 @@ id	pos	psp	en
 330	0x69c4	pack/talk/KOUMAN:0xf0a0	<FFEC>...You have composure, despite<FFF6>my fury? You do realize, you'll be<FFF6>nothing but dust if I kill you!<FFFD>ヨ<FFF5>
 331	0x6a00	pack/talk/KOUMAN:0xf170	<FFEC>I have no will to fight you...<FFFB><FFF7>This can't be! I... I am afraid!?<FFF6>What have you done to me!?<FFF5>
 332	0x6a76	pack/talk/KOUMAN:0xf230	<FFED>...So you were the source of<FFF6>my discomfort...<FFFB><FFF7>Hmm... For you to put this much<FFF6>pressure on me...Urgh...<FFF6>How unpleasant.<FFF5>
-333	0x6ae0	pack/talk/KOUMAN:0xf328	<FFED>Ha! To think it was an inferior human!<FFF6>Fools who stand up to us,<FFF6>despite their weakness!<FFFB><FFF7>You are lucky to even gaze upon the <FFF6><FFF0>! Do you understand that?<FFFD>ラ<FFF5>
+333	0x6ae0	pack/talk/KOUMAN:0xf328	<FFED>Ha! To think it was an inferior human!<FFF6>Fools who stand up to us,<FFF6>despite their weakness!<FFFB><FFF7>You are lucky to even<FFF6>gaze upon the <FFF0>!<FFF6>Do you understand that?<FFFD>ラ<FFF5>
 334	0x6b54	pack/talk/KOUMAN:0xf460	<FFED>Your existence has led me to speak to<FFF6>an inferior! How foolish of me!<FFFB><FFF7>However, on behalf of the moon,<FFF6>I forgive you.<FFFB><FFF7>A negotiation would be pointless,<FFF6>but I will humor you. Engrave<FFF6>my greatness into your hearts!<FFF5>
 335	0x6bd8	pack/talk/KOUMAN:0xf610	<FFEB>The moon is at its prime!<FFF6>None can stand against me!<FFF6>No wall can hinder me!<FFFB><FFF7>Foolish inferior!<FFF6>The only value of your existence<FFF6>is to present gifts to us!<FFF1><FFF5>
-336	0x6c51	pack/talk/KOUMAN:0xf750	<FFEC>The aura of battle you exude is<FFF6>superb and certainly not of<FFF6>a human nature...<FFFB><FFF7>Hmm... You're a demon in<FFF6>a human's skin, aren't you?<FFFD>リ<FFF5>
-337	0x6ca7	pack/talk/KOUMAN:0xf860	<FFEC>The aura of battle you exude is<FFF6>superb and certainly not of<FFF6>a human nature...<FFFB><FFF7>Hmm... Enough energy to threaten<FFF6>even me... Perhaps we are rivals...<FFF5>
+336	0x6c51	pack/talk/KOUMAN:0xf750	<FFEC>The aura of battle you exude is<FFF6>superb and certainly not of<FFF6>a human nature...<FFFB><FFF7>Hmm...<FFF6>You're a demon in a human's skin,<FFF6>aren't you?<FFFD>リ<FFF5>
+337	0x6ca7	pack/talk/KOUMAN:0xf860	<FFEC>The aura of battle you exude is<FFF6>superb and certainly not of<FFF6>a human nature...<FFFB><FFF7>Hmm...<FFF6>Enough energy to threaten even me...<FFF6>Perhaps we are rivals...<FFF5>
 338	0x6d03	pack/talk/KOUMAN:0xf990	<FFEC>The aura of battle you exude is<FFF6>superb and certainly not of<FFF6>a human nature...<FFFB><FFF7>It has been some time since I last<FFF6>trembled with excitement.<FFFB><FFF7>Our meeting...<FFF6>For whom will it be better or worse?<FFF5>
 339	0x6d74	pack/talk/KOUMAN:0xfb18	Hmm... I had fun.<FFFB><FFF7>If you have business with me,<FFF6>state it. I may even listen.<FFEF>
 340	0x6dbe	pack/talk/KOUMAN:0xfbb8	Enough! Negotiation with inferior<FFF6>beings is truly meaningless.<FFFB><FFF7>You were a fool to anger me! You have<FFF6>chosen the path of destruction!<FFEF>
@@ -345,14 +345,14 @@ id	pos	psp	en
 343	0x6e86	pack/talk/KOUMAN:0xfdb0	Enough! Why have I even involved<FFF6>myself with a tedious fool like you...?<FFFB><FFF7>We have no further need for idle<FFF6>chat! State your business!<FFEF>
 344	0x6efe	pack/talk/KOUMAN:0xfec0	Urgh... This pressure... You are not<FFF6>a normal human by any means...<FFFB><FFF7>Very well. I'll grant your wish...<FFEF>
 345	0x6f5b	pack/talk/KOUMAN:0xff90	Muahaha! You are interesting!<FFF6>A diamond among the rough<FFF6>stones of lowly humans!<FFFB><FFF7>I like you, and that in itself<FFF6>is deserving of a reward.<FFF6>What do you wish?<FFEF>
-346	0x6fcb	pack/talk/KOUMAN:0x100c8	Ha... muahaha... ha... I-I can't<FFF6>believe this... Such insolence...<FFFB><FFF7>Insolence... t-toward me...<FFF6>I... I cannot fathom it!<FFEF>
+346	0x6fcb	pack/talk/KOUMAN:0x100c8	Ha... muahaha... ha...<FFF6>I-I can't believe this...<FFF6>Such insolence...<FFFB><FFF7>Insolence... t-toward me...<FFF6>I... I cannot fathom it!<FFEF>
 347	0x703e	pack/talk/KOUMAN:0x101c0	You are unfit to be my opponent...<FFF6>We have no further need to speak.<FFEF>
 348	0x707d	pack/talk/KOUMAN:0x10250	Huaha... That power... It's hard to<FFF6>believe it is born of a human... Huaha,<FFF6>what a dreadful person you are...<FFEF>
 349	0x70b7	pack/talk/KOUMAN:0x10330	You have the look of poverty all over<FFF6>your face. I will not ask for<FFF6>any jewels of yours...<FFFB><FFF7>In my compassion,<FFF6>I shall ask for ￥<FFF8> instead.<FFEF>
 350	0x7126	pack/talk/KOUMAN:0x10448	Muahaha! Very good, human!<FFFB><FFF7>Inferior creatures with neither<FFF6>wisdom or power kneel before<FFFB><FFF7>greater beings such as I. This is<FFF6>the natural order!<FFF5>
 351	0x7189	pack/talk/KOUMAN:0x10568	This isn't enough... A zombie would<FFF6>have higher standards...<FFF5>
 352	0x71b8	pack/talk/KOUMAN:0x105e8	You came into a negotiation without<FFF6>any money...? How absurd!<FFF6>The poor can die!<FFF5>
-353	0x71f4	pack/talk/KOUMAN:0x10688	Hm, you are either very ignorant or<FFF6>a deliberate fool to disobey me.<FFFB><FFF7>Regardless,<FFF6>you will regret that decision.<FFF5>
+353	0x71f4	pack/talk/KOUMAN:0x10688	Hm, you are either very ignorant or<FFF6>a deliberate fool to disobey me.<FFFB><FFF7>Regardless, you will<FFF6>regret that decision.<FFF5>
 354	0x7257	pack/talk/KOUMAN:0x10770	Hm, you are either very ignorant or<FFF6>a deliberate fool to disobey me. It's<FFF6>best I don't involve myself with you.<FFF5>
 355	0x728f	pack/talk/KOUMAN:0x10850	Hmm... Even meager ones like you<FFF6>should have a life stone.<FFF6>Present one to me.<FFEF>
 356	0x72ca	pack/talk/KOUMAN:0x108f0	Good, good!<FFF6>You seem to understand my power!<FFF6>My intelligence! My grandeur!<FFF5>
@@ -366,15 +366,15 @@ id	pos	psp	en
 364	0x74d7	pack/talk/KOUMAN:0x10e58	Can beings as low as you actually<FFF6>comprehend the value of jewels?<FFF5>
 365	0x74ff	pack/talk/KOUMAN:0x10ee0	As if a lesser race like you could<FFF6>comprehend a jewel's worth!<FFF6>I'll show you your place!<FFF5>
 366	0x753f	pack/talk/KOUMAN:0x10f98	I am hesitant to take the filthy life<FFF6>energy of such lowly creatures.<FFF6>It would hardly suit my tastes...<FFFB><FFF7>But I shall endure your weakness.<FFF6>Now, give it forth.<FFEF>
-367	0x75aa	pack/talk/KOUMAN:0x110d8	It will undoubtedly taste putrid, but<FFF6>it will fill the stomach. Let us dine!<FFEF>
+367	0x75aa	pack/talk/KOUMAN:0x110d8	It will undoubtedly taste putrid,<FFF6>but it will fill the stomach.<FFF6>Let us dine!<FFEF>
 368	0x75dd	pack/talk/KOUMAN:0x11178	A cretin of a human,<FFF6>wasting my consideration...<FFF6>You have no reason to exist!<FFF5>
 369	0x761d	pack/talk/KOUMAN:0x11218	Ha... It would be foolish to<FFF6>take your energy and end<FFF6>up with a stomach ache!<FFF5>
 370	0x7652	pack/talk/KOUMAN:0x112b8	Fool! I'm exasperated with those who<FFF6>don't know their place!<FFFB><FFF7>Even humans can only<FFF6>be so thoughtless!<FFF5>
 371	0x76a2	pack/talk/KOUMAN:0x11388	Muahaha! How modest! Such a reply<FFF6>is fitting of weaklings like you.<FFF5>
 372	0x76d4	pack/talk/KOUMAN:0x11410	How dare you<FFF6>assume such arrogance!?<FFFB><FFF7>I don't know what you're trying to<FFF6>accomplish, but it is angering me!<FFF5>
-373	0x7710	pack/talk/KOUMAN:0x114e8	Muahahaha!...Oh, excuse me.<FFFB><FFF7>All who stand before me are<FFF6>overcome with awe and dread...<FFF6>That question was rather pointless.<FFF5>
+373	0x7710	pack/talk/KOUMAN:0x114e8	Muahahaha! ...Oh, excuse me.<FFFB><FFF7>All who stand before me are<FFF6>overcome with awe and dread...<FFF6>That question was rather pointless.<FFF5>
 374	0x776a	pack/talk/KOUMAN:0x115e8	Hmm... So you're willing to risk<FFF6>your life to claim my spell card.<FFFB><FFF7>Life is sacred,<FFF6>but I'm beginning to like you, human.<FFF5>
-375	0x77cc	pack/talk/KOUMAN:0x116e0	Wha... You're not a...? A life stalker!?<FFF6>Or a berserker!?<FFF5>
+375	0x77cc	pack/talk/KOUMAN:0x116e0	Wha... You're not a...?<FFF6>A life stalker!? Or a berserker!?<FFF5>
 376	0x7802	pack/talk/KOUMAN:0x11758	Fool! Don't make me repeat myself!<FFF5>
 377	0x783b	pack/talk/KOUMAN:0x117a0	Muahaha! How honest.<FFF5>
 378	0x7854	pack/talk/KOUMAN:0x117d0	A-Are you taunting me...?<FFF6>Who are you?<FFF5>
@@ -393,13 +393,13 @@ id	pos	psp	en
 391	0x7abb	pack/talk/KOUMAN:0x11e20	Ha... It seems you understand<FFF6>the chain of power.<FFF5>
 392	0x7adb	pack/talk/KOUMAN:0x11e88	Ha! I never imagined being called<FFF6>a common demon by your kind!<FFF5>
 393	0x7b09	pack/talk/KOUMAN:0x11f08	Urgh... Do you not fear me?<FFF5>
-394	0x7b28	pack/talk/KOUMAN:0x11f40	Ha... Wait. I've changed my mind.<FFF6>Huahaha...<FFF5>
+394	0x7b28	pack/talk/KOUMAN:0x11f40	Ha... Wait.<FFF6>I've changed my mind. Huahaha...<FFF5>
 395	0x7b50	pack/talk/KOUMAN:0x11fa0	Urgh... Do you not fear me?<FFF5>
 396	0x7b6f	pack/talk/KOUMAN:0x11fd8	I can't just let you through<FFF6>here after all this!<FFF5>
 397	0x7ba0	pack/talk/KOUMAN:0x12040	Ha! Who would believe<FFF6>your empty promises!?<FFF5>
 398	0x7bc5	pack/talk/KOUMAN:0x12098	Huaha... You're trying to test me...?<FFF6>I never considered that.<FFF5>
-399	0x7bf2	pack/talk/KOUMAN:0x12118	Fool! Utterly inane! You are<FFF6>a cockroach before a lion! Useless!<FFF5>
-400	0x7c28	pack/talk/KOUMAN:0x121a0	Are you that stupid!? If you want<FFF6>my rage so much, I'll give it to you!<FFF5>
+399	0x7bf2	pack/talk/KOUMAN:0x12118	Fool! Utterly inane!<FFF6>You are a cockroach before a lion!<FFF6>Useless!<FFF5>
+400	0x7c28	pack/talk/KOUMAN:0x121a0	Are you that stupid!?<FFF6>If you want my rage so much,<FFF6>I'll give it to you!<FFF5>
 401	0x7c5a	pack/talk/KOUMAN:0x12230	Your attitude toward me is<FFF6>punishable by death!<FFF5>
 402	0x7c7c	pack/talk/KOUMAN:0x12290	Muahaha! That humiliated<FFF6>state is fitting of you!<FFF5>
 403	0x7cac	pack/talk/KOUMAN:0x122f8	I see...<FFF6>Then what do you want from me?<FFF5>
@@ -409,12 +409,12 @@ id	pos	psp	en
 407	0x7d40	pack/talk/KOUMAN:0x12428	Muahaha! How honest.<FFF5>
 408	0x7d59	pack/talk/KOUMAN:0x12458	Ha... It seems you can use your brain.<FFF6>You're clever, but oh well.<FFF5>
 409	0x7d85	pack/talk/KOUMAN:0x124e0	Don't lie!<FFF6>The heavens would never favor<FFF6>such a lowborn with that natural gift!<FFF5>
-410	0x7db5	pack/talk/KOUMAN:0x12580	Effort, huh? So in the end, you're<FFF6>just an ordinary person. You bore me.<FFF5>
+410	0x7db5	pack/talk/KOUMAN:0x12580	Effort, huh? So in the end,<FFF6>you're just an ordinary person.<FFF6>You bore me.<FFF5>
 411	0x7dec	pack/talk/KOUMAN:0x12618	An operation?<FFF6>I hadn't considered that.<FFF6>I don't comprehend you humans...<FFF5>
-412	0x7e19	pack/talk/KOUMAN:0x126b0	Muahaha! No matter how many songs<FFF6>you sing, the result is the same!<FFF5>
+412	0x7e19	pack/talk/KOUMAN:0x126b0	Muahaha!<FFF6>No matter how many songs you sing,<FFF6>the result is the same!<FFF5>
 413	0x7e38	pack/talk/KOUMAN:0x12738	Stop it, you imbecile!<FFF6>There is nothing more grating than<FFF6>an unskilled falsetto!<FFF5>
 414	0x7e71	pack/talk/KOUMAN:0x127e0	You...<FFF6>Do you understand your own actions?<FFF5>
-415	0x7e95	pack/talk/KOUMAN:0x12838	Muahaha! You are a rare<FFF6>type of youth! Not bad.<FFF5>
+415	0x7e95	pack/talk/KOUMAN:0x12838	Muahaha!<FFF6>You are a rare type of youth!<FFF6>Not bad.<FFF5>
 416	0x7ec4	pack/talk/KOUMAN:0x12898	Are you ignorant!?<FFF6>Put on the song, you buffoon!<FFF5>
 417	0x7ee4	pack/talk/KOUMAN:0x12900	Hmm... Skillful, for a human.<FFF5>
 418	0x7ef9	pack/talk/KOUMAN:0x12940	Precisely! I can acknowledge that.<FFF5>
@@ -427,10 +427,10 @@ id	pos	psp	en
 425	0x8038	pack/talk/KOUMAN:0x12c88	Hmmm...<FFF6>That expression is quite charming.<FFF5>
 426	0x805b	pack/talk/KOUMAN:0x12ce0	It seems my precious<FFF6>words were not heeded...<FFF6>I have no business with witless girls!<FFF5>
 427	0x8097	pack/talk/KOUMAN:0x12d90	Huahaha... Master...<FFF6>It has a nice ring to it.<FFF5>
-428	0x80ba	pack/talk/KOUMAN:0x12df0	A friend? Me, befriend a human girl!?<FFF6>Never!<FFF5>
+428	0x80ba	pack/talk/KOUMAN:0x12df0	A friend?<FFF6>Me, befriend a human girl!? Never!<FFF5>
 429	0x80f0	pack/talk/KOUMAN:0x12e50	Wh-What are you saying...?<FFF6>You're human, and I'm a <FFF0>...<FFF5>
 430	0x811c	pack/talk/KOUMAN:0x12ec0	Muahaha! How honest.<FFF5>
-431	0x8133	pack/talk/KOUMAN:0x12ef0	Hmm... So that last statement was<FFF6>a lie! I'll purify your sin with my fury!<FFF5>
+431	0x8133	pack/talk/KOUMAN:0x12ef0	Hmm...<FFF6>So that last statement was a lie!<FFF6>I'll purify your sin with my fury!<FFF5>
 432	0x8170	pack/talk/KOUMAN:0x12f88	Ha... Are you hoping to win<FFF6>me over with inane banter?<FFF6>What a conceited woman.<FFF5>
 433	0x819a	pack/talk/KOUMAN:0x13028	I thought as much...<FFF6>You humans would never bow to<FFF6>me without an ulterior motive!<FFF5>
 434	0x81cb	pack/talk/KOUMAN:0x130d0	Huahaha, you're a strong girl...<FFF6>Rare, for a human.<FFF5>
@@ -473,12 +473,12 @@ id	pos	psp	en
 471	0x87cd	pack/talk/KOUMAN:0x14290	Are you that desperate to see me<FFF6>smile? I didn't know men with such<FFFB><FFF7>convictions existed among<FFF6>my inferiors.<FFF5>
 472	0x880b	pack/talk/KOUMAN:0x14368	Do you not fear death?<FFF5>
 473	0x881e	pack/talk/KOUMAN:0x14398	Do you understand that I'm going to<FFF6>end your insignificant life, and that I<FFF6>will smile as I do it, you wretch!?<FFF5>
-474	0x885b	pack/talk/KOUMAN:0x14478	It takes skill to be so nimble. You'd<FFF6>make a fine addition to my court.<FFF5>
+474	0x885b	pack/talk/KOUMAN:0x14478	It takes skill to be so nimble.<FFF6>You'd make a fine<FFF6>addition to my court.<FFF5>
 475	0x8897	pack/talk/KOUMAN:0x14508	Is that all...?<FFF6>I doubt a crow would bother to caw...<FFF5>
 476	0x88b6	pack/talk/KOUMAN:0x14578	The same trick... I suppose I was<FFF6>a fool to expect anything different...<FFF5>
 477	0x88e6	pack/talk/KOUMAN:0x14610	Huahaha, I don't even need to ask.<FFF6>It was to be expected.<FFF5>
-478	0x8917	pack/talk/KOUMAN:0x14688	Right? It didn't even need to be<FFF6>asked. It was to be expected.<FFF5>
-479	0x8950	pack/talk/KOUMAN:0x14708	I have no words for uncouth, foolish<FFF6>humans... I'll turn you all to ashes!<FFF5>
+478	0x8917	pack/talk/KOUMAN:0x14688	Right?<FFF6>It didn't even need to be asked.<FFF6>It was to be expected.<FFF5>
+479	0x8950	pack/talk/KOUMAN:0x14708	I have no words for uncouth,<FFF6>foolish humans...<FFF6>I'll turn you all to ashes!<FFF5>
 480	0x8994	pack/talk/KOUMAN:0x147a0	Ah, how honest.<FFF5>
 481	0x89a1	pack/talk/KOUMAN:0x147c0	F-Fool! Don't poke me!<FFF5>
 482	0x89bf	pack/talk/KOUMAN:0x147f0	That is your response...?<FFF6>Then you shall see<FFFB><FFF7>this world's cruelty firsthand,<FFF6>with your own body as a conduit...<FFF5>
@@ -535,7 +535,7 @@ id	pos	psp	en
 533	0x91ed	pack/talk/KOUMAN:0x15fe8	...I can't do that.<FFF5>
 534	0x9205	pack/talk/KOUMAN:0x16010	Hmmm... You can't understand me...?<FFF6>Such pitiful, inferior creatures...<FFF5>
 535	0x9234	pack/talk/KOUMAN:0x160a0	How honest of you.<FFF5>
-536	0x9241	pack/talk/KOUMAN:0x160c8	You dare to mock me, you wretched<FFF6>creature!? I won't stand for this!<FFF5>
+536	0x9241	pack/talk/KOUMAN:0x160c8	You dare to mock me,<FFF6>you wretched creature!?<FFF6>I won't stand for this!<FFF5>
 537	0x927d	pack/talk/KOUMAN:0x16158	Ha! You are a disgrace to the art of<FFF6>dance, you vulgar wretch!<FFF5>
 538	0x92aa	pack/talk/KOUMAN:0x161d8	Something fitting of you... Sadly,<FFF6>I am lacking in things low and trite.<FFF5>
 539	0x92eb	pack/talk/KOUMAN:0x16270	Hmmm... It seems you know etiquette.<FFF6>Not bad at all...<FFF5>
@@ -552,13 +552,13 @@ id	pos	psp	en
 550	0x94cb	pack/talk/KOUMAN:0x16788	I see... So you share my opinion...<FFF6>Perhaps we would get along.<FFF5>
 551	0x94f6	pack/talk/KOUMAN:0x16808	I was a fool to expect something from<FFF6>one all the more foolish! I have no<FFF6>business with frolicing fools!<FFF5>
 552	0x952e	pack/talk/KOUMAN:0x168e0	Then I'll crush your eye sockets!<FFF5>
-553	0x954c	pack/talk/KOUMAN:0x16928	As long as you understand. Work<FFF6>hard to gain sight as pure as my own.<FFF5>
+553	0x954c	pack/talk/KOUMAN:0x16928	As long as you understand.<FFF6>Work hard to gain sight as<FFF6>pure as my own.<FFF5>
 554	0x957a	pack/talk/KOUMAN:0x169b8	It's only natural. A common answer.<FFF5>
 555	0x959d	pack/talk/KOUMAN:0x16a00	I am a model of refinement.<FFF6>It is only natural.<FFF5>
 556	0x95bf	pack/talk/KOUMAN:0x16a60	It... It can't be!<FFF6>Such a being exists in this world<FFF6>who could fail to grasp my charm...?<FFF5>
 557	0x95f6	pack/talk/KOUMAN:0x16b18	I see...<FFF6>Then I will show you what becomes of<FFF6>foolish boys who disrespect me!<FFF5>
 558	0x9634	pack/talk/KOUMAN:0x16bb8	So be it.<FFF5>
-559	0x963d	pack/talk/KOUMAN:0x16bd0	Hmph! A race of liars to this day... I<FFF6>pray for your expedient extinction...<FFF5>
+559	0x963d	pack/talk/KOUMAN:0x16bd0	Hmph! A race of liars to this day...<FFF6>I pray for your expedient<FFF6>extinction...<FFF5>
 560	0x9671	pack/talk/KOUMAN:0x16c70	Hmm... So you're in a hurry to die...<FFF6>Eccentric, for a human.<FFF5>
 561	0x9698	pack/talk/KOUMAN:0x16cf0	Then I will be the guide!<FFF5>
 562	0x96ba	pack/talk/KOUMAN:0x16d28	Then mind your manners in<FFF6>my presence.<FFF5>
@@ -571,14 +571,14 @@ id	pos	psp	en
 569	0x97b7	pack/talk/KOUMAN:0x17058	The fact that humans have yet to<FFF6>die off is a wonder to me.<FFF5>
 570	0x97ec	pack/talk/KOUMAN:0x170d0	Ha! There is nothing I don't know!<FFF5>
 571	0x980c	pack/talk/KOUMAN:0x17118	Don't lie, girl! There is no way humans<FFF6>could have that much skill!<FFF5>
-572	0x9844	pack/talk/KOUMAN:0x171a0	Hmmm... I can't believe this is<FFF6>a song of inferior beings! Perhaps<FFF6>I should reevaluate my opinion...<FFF5>
-573	0x9877	pack/talk/KOUMAN:0x17270	I see... Either way, I have heard<FFF6>something I liked... Thank you.<FFF5>
+572	0x9844	pack/talk/KOUMAN:0x171a0	Hmmm... I can't believe this is<FFF6>a song of inferior beings! Perhaps I<FFF6>should reevaluate my opinion...<FFF5>
+573	0x9877	pack/talk/KOUMAN:0x17270	I see... Either way,<FFF6>I have heard something I liked...<FFF6>Thank you.<FFF5>
 574	0x98a5	pack/talk/KOUMAN:0x172f8	You don't have enough tremolo!<FFF6>You lack the heart of enka!<FFF5>
 575	0x98de	pack/talk/KOUMAN:0x17370	Hmmm... How colorless.<FFF5>
 576	0x98ef	pack/talk/KOUMAN:0x173a0	Hmmm... A bizzare song.<FFF6>You have a strange hobby.<FFF5>
-577	0x9917	pack/talk/KOUMAN:0x17408	I am the noblest of the <FFF0>.<FFF6>Unfortunately,<FFF6>I am beyond your reach.<FFF5>
+577	0x9917	pack/talk/KOUMAN:0x17408	I am the noblest of the <FFF0>.<FFF6>Unfortunately, I am<FFF6>beyond your reach.<FFF5>
 578	0x993f	pack/talk/KOUMAN:0x17490	Ugh... Woman...<FFF5>
-579	0x9953	pack/talk/KOUMAN:0x174b0	Hmmm... So you too desire the stone of<FFF6>light... How common and lackluster.<FFF5>
+579	0x9953	pack/talk/KOUMAN:0x174b0	Hmmm...<FFF6>So you too desire the stone of light...<FFF6>How common and lackluster.<FFF5>
 580	0x9983	pack/talk/KOUMAN:0x17548	You are but a child!<FFF6>Humans are premature beings!<FFF5>
 581	0x99ac	pack/talk/KOUMAN:0x175b0	Huahaha, don't lie to me.<FFF6>An adult woman doesn't smell of<FFF6>milk in the way you do.<FFF5>
 582	0x99e2	pack/talk/KOUMAN:0x17658	I am asking your age! Can you not<FFF6>answer such a simple question!?<FFF5>
@@ -606,7 +606,7 @@ id	pos	psp	en
 604	0x9d23	pack/talk/KOUMAN:0x17f38	I have no reason to deal with<FFF6>those who don't know me.<FFF5>
 605	0x9d44	pack/talk/KOUMAN:0x17fa8	Ha! So it was just a girl who<FFF6>doesn't know her manners!<FFF5>
 606	0x9d6c	pack/talk/KOUMAN:0x18018	Hmph... The pebble speaks.<FFF5>
-607	0x9d8c	pack/talk/KOUMAN:0x18050	Ha...<FFF6>The world must be coming to an end if<FFF6>the rocks are getting angry.<FFF5>
+607	0x9d8c	pack/talk/KOUMAN:0x18050	Ha...<FFF6>The world must be coming to an end<FFF6>if the rocks are getting angry.<FFF5>
 608	0x9da6	pack/talk/KOUMAN:0x180e8	Silence! I detest women who think that<FFF6>crying is going to change things!<FFF5>
 609	0x9dd8	pack/talk/KOUMAN:0x18180	Ha! You plan to keep playing<FFF6>the fool? There're only so<FFF6>many lies you can stack!<FFF5>
 610	0x9e00	pack/talk/KOUMAN:0x18228	Muahaha! How honest!<FFF6>Skip the lies next time.<FFF5>
@@ -615,7 +615,7 @@ id	pos	psp	en
 613	0x9e8f	pack/talk/KOUMAN:0x18378	Ha... There is nothing I don't know.<FFF5>
 614	0x9ea9	pack/talk/KOUMAN:0x183c8	Muahaha! I figured. Not bad...<FFF5>
 615	0x9ed0	pack/talk/KOUMAN:0x18408	It was misfortune that you came into<FFF6>this world as an inferior being.<FFF6>All you can do now is endure it.<FFF5>
-616	0x9f07	pack/talk/KOUMAN:0x184d8	Just as light casts shadow, sadness<FFF6>exists within joy. It's all fate.<FFF5>
+616	0x9f07	pack/talk/KOUMAN:0x184d8	Just as light casts shadow,<FFF6>sadness exists within joy.<FFF6>It's all fate.<FFF5>
 617	0x9f40	pack/talk/KOUMAN:0x18568	Huaha! Are you saying<FFF6>I'm not enough for you?<FFF6>You underestimate me!<FFF5>
 618	0x9f6f	pack/talk/KOUMAN:0x185f0	...Perhaps I was too harsh.<FFF6>I get it, so stop crying.<FFF5>
 619	0x9f9d	pack/talk/KOUMAN:0x18660	Ha! I knew it! Playing with emotions<FFF6>doesn't make you a tactician,<FFF6>it makes you a coward!<FFF5>
@@ -627,7 +627,7 @@ id	pos	psp	en
 625	0xa07c	pack/talk/KOUMAN:0x188f0	Only a fool of a girl would disregard<FFF6>my opinion! You'll regret this!<FFF5>
 626	0xa0b8	pack/talk/KOUMAN:0x18980	Huaha, you have quite a strong will,<FFF6>girl. I'll let it slide this time.<FFF5>
 627	0xa0ea	pack/talk/KOUMAN:0x18a10	That would be best.<FFF5>
-628	0xa0f5	pack/talk/KOUMAN:0x18a38	You defy me, girl...? Urgh, you have<FFF6>some sort of plan, don't you...?<FFF5>
+628	0xa0f5	pack/talk/KOUMAN:0x18a38	You defy me, girl...?<FFF6>Urgh, you have some sort of plan,<FFF6>don't you...?<FFF5>
 629	0xa120	pack/talk/KOUMAN:0x18ac8	Only an ignoramus would ignore<FFF6>my teachings! You'll pay for that!<FFF5>
 630	0xa15e	pack/talk/KOUMAN:0x18b50	Is that so...? Being that these are<FFF6>the last words of a deranged man,<FFF6>I'll turn a blind eye to the offense.<FFF5>
 631	0xa18e	pack/talk/KOUMAN:0x18c28	Then I will make you<FFF6>pay for your words!<FFF5>
@@ -655,10 +655,10 @@ id	pos	psp	en
 653	0xa581	pack/talk/KOUMAN:0x197b8	Urgh... Such resistance... I can tell<FFF6>you are scheming something...<FFF5>
 654	0xa5af	pack/talk/KOUMAN:0x19840	Huahaha, if you fear death,<FFF6>you don't stand a chance against me.<FFF5>
 655	0xa5d9	pack/talk/KOUMAN:0x198c8	There is meaning in life and death,<FFF6>you say...? I'd like to discuss<FFF6>this further with you...<FFF5>
-656	0xa60d	pack/talk/KOUMAN:0x19988	Your lies are rotten, you inferior<FFF6>wretch! You should all perish!<FFF5>
+656	0xa60d	pack/talk/KOUMAN:0x19988	Your lies are rotten,<FFF6>you inferior wretch!<FFF6>You should all perish!<FFF5>
 657	0xa636	pack/talk/KOUMAN:0x19a10	Huaha! It's admirable to see you<FFF6>have your manners about you.<FFF5>
 658	0xa65f	pack/talk/KOUMAN:0x19a90	You need no encouragement!<FFF5>
-659	0xa672	pack/talk/KOUMAN:0x19ac8	Muahahaha! What an enjoyable<FFF6>manner of speech! Not bad at all!<FFF5>
+659	0xa672	pack/talk/KOUMAN:0x19ac8	Muahahaha!<FFF6>What an enjoyable manner of speech!<FFF6>Not bad at all!<FFF5>
 660	0xa6a1	pack/talk/KOUMAN:0x19b48	Enough! Your persistance is<FFF6>too much for even me!<FFF5>
 661	0xa6d2	pack/talk/KOUMAN:0x19bb0	Hmmm... That's it?<FFF6>You are such a boorish woman...<FFF5>
 662	0xa6f3	pack/talk/KOUMAN:0x19c18	Ha! Spineless fool! I despise women<FFF6>who falsify their expressions!<FFF5>
@@ -681,14 +681,14 @@ id	pos	psp	en
 679	0xa92f	pack/talk/KOUMAN:0x1a270	You'll take me? ME, <FFF3>?<FFF6>Are you truly so foolish?<FFF5>
 680	0xa95c	pack/talk/KOUMAN:0x1a2d8	I won't deal with you.<FFF6>Don't take it so seriously.<FFF5>
 681	0xa986	pack/talk/KOUMAN:0x1a340	It's too late for regrets!<FFF6>The gates of hell welcome all!<FFF5>
-682	0xa9b0	pack/talk/KOUMAN:0x1a3b8	Your words are futile. Utterly<FFF6>useless. But don't worry. I'll kill you.<FFF5>
+682	0xa9b0	pack/talk/KOUMAN:0x1a3b8	Your words are futile.<FFF6>Utterly useless.<FFF6>But don't worry. I'll kill you.<FFF5>
 683	0xa9e5	pack/talk/KOUMAN:0x1a448	Hmm... That spirit of yours<FFF6>is worthy of praise.<FFF6>I take back what I said.<FFF5>
 684	0xaa17	pack/talk/KOUMAN:0x1a4e0	...... To lose to<FFF5>
 685	0xaa23	pack/talk/KOUMAN:0x1a4f0	an inferior boy's cheap tricks,<FFF6>I have disgraced the <FFF0>.<FFF6>I must remove the stain!<FFF5>
-686	0xaa62	pack/talk/KOUMAN:0x1a5a8	I see... So you won't reveal<FFF6>your hand. You're a smart one.<FFF5>
+686	0xaa62	pack/talk/KOUMAN:0x1a5a8	I see...<FFF6>So you won't reveal your hand.<FFF6>You're a smart one.<FFF5>
 687	0xaa90	pack/talk/KOUMAN:0x1a620	This can't be! It's rather awkward<FFF6>telling this to someone who's<FFF6>going to die, but I'll prove it!<FFF5>
 688	0xaac7	pack/talk/KOUMAN:0x1a6e8	Impossible... You lack the power.<FFF5>
-689	0xaae6	pack/talk/KOUMAN:0x1a730	Muahahaha! I won't die, you say!?<FFF6>Not bad!<FFF5>
+689	0xaae6	pack/talk/KOUMAN:0x1a730	Muahahaha!<FFF6>I won't die, you say!? Not bad!<FFF5>
 690	0xab14	pack/talk/KOUMAN:0x1a788	Insolent fool! I am not to be<FFF6>mimicked by inferior creatures!<FFF5>
 691	0xab45	pack/talk/KOUMAN:0x1a808	Urgh... What are you scheming?<FFF5>
 692	0xab5f	pack/talk/KOUMAN:0x1a848	Then before you cast that spell,<FFF6>I'll simply kill you...<FFF6>Your big mouth was your end!<FFF5>
@@ -709,12 +709,12 @@ id	pos	psp	en
 707	0xadf6	pack/talk/KOUMAN:0x1b008	I'm not asking about<FFF6>your circumstances!<FFF6>Know your place, fool!<FFF5>
 708	0xae22	pack/talk/KOUMAN:0x1b088	I suppose it IS disgraceful to attack<FFF6>such helpless inferiors...<FFF5>
 709	0xae53	pack/talk/KOUMAN:0x1b110	Urgh...<FFF6>Are you so confident in your skills?<FFF5>
-710	0xae75	pack/talk/KOUMAN:0x1b170	I warned you personally, fool! Pray<FFF6>you are born smarter in the next life!<FFF5>
+710	0xae75	pack/talk/KOUMAN:0x1b170	I warned you personally, fool!<FFF6>Pray you are born smarter in<FFF6>the next life!<FFF5>
 711	0xaeb5	pack/talk/KOUMAN:0x1b208	I-It's not a lie!<FFF6>What are you saying, inferior one...?<FFF5>
 712	0xaedc	pack/talk/KOUMAN:0x1b278	You think so!? Well, it's quite natural.<FFF5>
 713	0xaefb	pack/talk/KOUMAN:0x1b2d0	You want to fight...? Then...<FFF6>if I die, I'm taking you with me!<FFF5>
 714	0xaf27	pack/talk/KOUMAN:0x1b350	Hmmm... A common answer.<FFF6>I expected too much of you...<FFF5>
-715	0xaf4d	pack/talk/KOUMAN:0x1b3c0	Ha! So you bite the hand that<FFF6>feeds you! I can't trust you!<FFF5>
+715	0xaf4d	pack/talk/KOUMAN:0x1b3c0	Ha!<FFF6>So you bite the hand that feeds you!<FFF6>I can't trust you!<FFF5>
 716	0xaf7f	pack/talk/KOUMAN:0x1b438	Huahaha, you're asking me if I<FFF6>want to die...? Too funny, human.<FFF5>
 717	0xafb7	pack/talk/KOUMAN:0x1b4c0	Hmmm... Suspicious.<FFF5>
 718	0xafcc	pack/talk/KOUMAN:0x1b4e8	Hmmm... Suspicious.<FFF5>
@@ -723,7 +723,7 @@ id	pos	psp	en
 721	0xb025	pack/talk/KOUMAN:0x1b5d0	Muahahaha! I was mistaken!<FFF6>You have no battle aura!<FFF5>
 722	0xb056	pack/talk/KOUMAN:0x1b638	Ha! The <FFF0> are nothing to you?<FFF6>Quite brash for an inferior being!<FFF5>
 723	0xb085	pack/talk/KOUMAN:0x1b6c0	Hmm... I guess it can't be helped.<FFF5>
-724	0xb0a2	pack/talk/KOUMAN:0x1b708	I'm the inferior being? I take back<FFF6>my words! It was my mistake!<FFF5>
+724	0xb0a2	pack/talk/KOUMAN:0x1b708	I'm the inferior being?<FFF6>I take back my words!<FFF6>It was my mistake!<FFF5>
 725	0xb0d5	pack/talk/KOUMAN:0x1b790	Hmmm... You have enough spirit.<FFF6>You interest me, human...<FFF5>
 726	0xb101	pack/talk/KOUMAN:0x1b808	Ugh... How imprudent...<FFF5>
 727	0xb112	pack/talk/KOUMAN:0x1b838	What are you saying!?<FFF6>The survival of the fittest is<FFF6>older than the philosophy itself!<FFFB><FFF7>I'll correct your mistake!<FFF5>
@@ -731,7 +731,7 @@ id	pos	psp	en
 729	0xb168	pack/talk/KOUMAN:0x1b998	As long as you understand now.<FFF5>
 730	0xb176	pack/talk/KOUMAN:0x1b9d8	Inferior beings are just that...<FFF6>inferior!<FFFB><FFF7>You are born into despair, and<FFF6>you leave this world the same way!<FFF5>
 731	0xb1b0	pack/talk/KOUMAN:0x1bab8	Ha! I'll teach you the true<FFF6>meaning of unhappiness!<FFF5>
-732	0xb1e6	pack/talk/KOUMAN:0x1bb20	...Yes,<FFF6>you seem too human to be a demon...<FFF5>
+732	0xb1e6	pack/talk/KOUMAN:0x1bb20	...Yes, you seem too<FFF6>human to be a demon...<FFF5>
 733	0xb20c	pack/talk/KOUMAN:0x1bb78	Hmmm... If you are so inferior,<FFF6>I see no reason to remember you.<FFF5>
 734	0xb233	pack/talk/KOUMAN:0x1bc00	Muahahaha! You're no demon!<FFF6>I have nothing left to fear!<FFF5>
 735	0xb25f	pack/talk/KOUMAN:0x1bc78	Muahahaha! You're no demon!<FFF6>I have nothing left to fear!<FFF5>

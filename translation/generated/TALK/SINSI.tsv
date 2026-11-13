@@ -47,7 +47,7 @@ id	pos	psp	en
 45	0x2957	pack/talk/SINSI:0x3b78	It seems I expected too much of you...<FFF6>I did not assume you<FFF6>were so wretched!<FFFD>に<FFF5>
 46	0x2993	pack/talk/SINSI:0x3c18	Hahahaha, unfortunately,<FFF6>the calvary isn't coming.<FFF5>
 47	0x29b9	pack/talk/SINSI:0x3c80	You have no need to fear.<FFF6>I just wanted to converse with you...<FFFB><FFF7>See how kind I am? Although,<FFF6>this always leads to trouble...<FFFB><FFF7>I end up gaining an even<FFF6>larger human fanbase...<FFFD>ぬ<FFF5>
-48	0x2a1c	pack/talk/SINSI:0x3de8	I cannot believe you, yet... nor can I<FFF6>bring myself to hate you. A mystery...<FFF5>
+48	0x2a1c	pack/talk/SINSI:0x3de8	I cannot believe you, yet...<FFF6>nor can I bring myself to hate you.<FFF6>A mystery...<FFF5>
 49	0x2a4f	pack/talk/SINSI:0x3e88	Perhaps this will open<FFF6>a door to a new world...<FFFD>ね<FFF5>
 50	0x2a6d	pack/talk/SINSI:0x3ef0	No matter how I look at it,<FFF6>you are still a man!<FFF5>
 51	0x2a8d	pack/talk/SINSI:0x3f58	I have no interest in this!<FFF6>I prefer an elegant, fair maiden!<FFFD>の<FFF5>
@@ -93,10 +93,10 @@ id	pos	psp	en
 91	0x325f	pack/talk/SINSI:0x55c0	The changing seasons always<FFF6>bring these types around.<FFF6>It's so troubling...<FFFD>わ<FFF5>
 92	0x3283	pack/talk/SINSI:0x5660	It would be easiest<FFF6>were I to just crush you...<FFF6>But I will stay my hand a bit longer...<FFF5>
 93	0x32b5	pack/talk/SINSI:0x5710	If you kill a demon who<FFF6>puts up no resistance,<FFF6>your reputation will suffer.<FFFD>を<FFF5>
-94	0x32ee	pack/talk/SINSI:0x57b0	I would not be a gentleman if<FFF6>I raised my eyebrows at<FFF6>everything a child says.<FFF5>
+94	0x32ee	pack/talk/SINSI:0x57b0	I would not be a gentleman<FFF6>if I raised my eyebrows at<FFF6>everything a child says.<FFF5>
 95	0x3326	pack/talk/SINSI:0x5850	If you cannot provide<FFF6>a satisfactory greeting,<FFF6>you'll have trouble later in life.<FFFB><FFF7>I happen to be a master of etiquette.<FFF6>Would you like some lessons?<FFFD>ん<FFF5>
 96	0x3379	pack/talk/SINSI:0x5980	I'd rather not involve myself with<FFF6>a twisted human like you!<FFF5>
-97	0x33a5	pack/talk/SINSI:0x5a00	Hmph,<FFF6>a gentleman only by appearance! You<FFF6>humans will be the death of the term!<FFFD>が<FFF5>
+97	0x33a5	pack/talk/SINSI:0x5a00	Hmph, a gentleman only by<FFF6>appearance! You humans will<FFF6>be the death of the term!<FFFD>が<FFF5>
 98	0x33e3	pack/talk/SINSI:0x5aa8	It is somewhat embarrassing to<FFF6>receive so much praise...<FFF5>
 99	0x3403	pack/talk/SINSI:0x5b20	You know a lot for a human!<FFF6>You are truly intelligent.<FFFD>ぎ<FFF5>
 100	0x343b	pack/talk/SINSI:0x5b98	How unfortunate...<FFF6>Were you a beautiful woman,<FFFB><FFF7>I would ask you for a dance, but...<FFF6>ahh, how unfortunate.<FFF5>
@@ -125,7 +125,7 @@ id	pos	psp	en
 123	0x38a9	pack/talk/SINSI:0x6920	So you understand how much power is<FFF6>flowing through my superior body?<FFFD>で<FFF5>
 124	0x38dd	pack/talk/SINSI:0x69b0	We seek identity through<FFF6>the words of ghosts...<FFFB><FFF7>What they said carries more<FFF6>weight than any modern tongue.<FFF5>
 125	0x3918	pack/talk/SINSI:0x6a88	How boring! I'll show you something<FFF6>much scarier than that...<FFFD>ど<FFF5>
-126	0x394d	pack/talk/SINSI:0x6b08	Uwah!...I-It's nothing...I just thought<FFF6>something touched me...<FFF5>
+126	0x394d	pack/talk/SINSI:0x6b08	Uwah! ...I-It's nothing...I just thought<FFF6>something touched me...<FFF5>
 127	0x397f	pack/talk/SINSI:0x6b90	I-I don't have time to listen to<FFF6>such frivilous stories...<FFFD>ば<FFF5>
 128	0x39a8	pack/talk/SINSI:0x6c10	Hmm... You enjoy stories of that sort?<FFF6>I find that becoming of a girl.<FFF5>
 129	0x39e0	pack/talk/SINSI:0x6ca0	You are easily scared, and yet you<FFF6>still enjoy stories like that!?<FFFB><FFF7>You've piqued my curiosity.<FFF6>Tell me why this is.<FFFD>び<FFF5>
@@ -147,13 +147,13 @@ id	pos	psp	en
 145	0x3d25	pack/talk/SINSI:0x75a8	Another lie... I can already imagine<FFF6>your undignified lifestyle.<FFFD>ぽ<FFF5>
 146	0x3d5f	pack/talk/SINSI:0x7630	Haha, those eyes of yours... It's all<FFF6>just a pretext to talk with me, no?<FFF5>
 147	0x3d94	pack/talk/SINSI:0x76c8	So you understand how much power is<FFF6>flowing through my superior body?<FFFD>ぁ<FFF5>
-148	0x3dc8	pack/talk/SINSI:0x7758	I would not be a gentleman if<FFF6>I raised my eyebrows at<FFF6>everything a child says.<FFF5>
+148	0x3dc8	pack/talk/SINSI:0x7758	I would not be a gentleman<FFF6>if I raised my eyebrows at<FFF6>everything a child says.<FFF5>
 149	0x3e00	pack/talk/SINSI:0x77f8	If you cannot provide<FFF6>a satisfactory greeting,<FFF6>you'll have trouble later in life.<FFFB><FFF7>I happen to be a master of etiquette.<FFF6>Would you like some lessons?<FFFD>ぃ<FFF5>
 150	0x3e53	pack/talk/SINSI:0x7928	I will make you regret<FFF6>taking that tone with me...<FFF6>for the rest of eternity from hell!<FFF5>
 151	0x3e8c	pack/talk/SINSI:0x79d8	You are surprisingly rude!<FFF6>Were you raised correctly?<FFFD>ぅ<FFF5>
 152	0x3ec3	pack/talk/SINSI:0x7a48	Ahh... Ahh...<FFF6>I can't stand it any longer!<FFF5>
 153	0x3ee8	pack/talk/SINSI:0x7aa0	Y-You piece of--! Oh my, excuse me...<FFFD>ぇ<FFF5>
-154	0x3f27	pack/talk/SINSI:0x7af0	I cannot believe you, yet... nor can I<FFF6>bring myself to hate you. A mystery...<FFF5>
+154	0x3f27	pack/talk/SINSI:0x7af0	I cannot believe you, yet...<FFF6>nor can I bring myself to hate you.<FFF6>A mystery...<FFF5>
 155	0x3f5a	pack/talk/SINSI:0x7b90	Perhaps this will open<FFF6>a door to a new world...<FFFD>ぉ<FFF5>
 156	0x3f78	pack/talk/SINSI:0x7bf8	If it's your plan to seduce me, you<FFF6>may want to try again in ten years!<FFF5>
 157	0x3fae	pack/talk/SINSI:0x7c88	You willingly step forward to be<FFF6>my prey? I am not interested in fools!<FFFD>っ<FFF5>
@@ -175,7 +175,7 @@ id	pos	psp	en
 173	0x42d1	pack/talk/SINSI:0x8630	You are surprisingly rude!<FFF6>Were you raised correctly?<FFFD>エ<FFF5>
 174	0x4308	pack/talk/SINSI:0x86a0	This is so sudden... Odd,<FFF6>I don't recall doing anything wrong...<FFF5>
 175	0x433a	pack/talk/SINSI:0x8728	If I've done you any wrong,<FFF6>I apologize for it...<FFF6>I beg your forgiveness...<FFFD>オ<FFF5>
-176	0x436e	pack/talk/SINSI:0x87c8	When I was a child, there was<FFF6>something I too, could not forgive...<FFFB><FFF7>But I have thrown that memory into<FFF6>oblivion, and it no longer upsets me.<FFF5>
+176	0x436e	pack/talk/SINSI:0x87c8	When I was a child,<FFF6>there was something I too,<FFF6>could not forgive...<FFFB><FFF7>But I have thrown that memory into<FFF6>oblivion, and it no longer upsets me.<FFF5>
 177	0x43d4	pack/talk/SINSI:0x88e8	Ahhh! I feel so humiliated... But...<FFF6>Please! Would you be so kind as to<FFF6>torment me more...!?<FFFD>カ<FFF5>
 178	0x4412	pack/talk/SINSI:0x89a8	It seems logical, but I'm rather<FFF6>suspicious as to whether or not<FFF6>you comprehend its meaning.<FFF5>
 179	0x4449	pack/talk/SINSI:0x8a68	So, what merits are there to<FFF6>listening to you speak?<FFFD>キ<FFF5>
@@ -187,20 +187,20 @@ id	pos	psp	en
 185	0x4588	pack/talk/SINSI:0x8dd0	You are surprisingly rude!<FFF6>Were you raised correctly?<FFFD>コ<FFF5>
 186	0x45bf	pack/talk/SINSI:0x8e40	This is so sudden... Odd,<FFF6>I don't recall doing anything wrong...<FFF5>
 187	0x45f1	pack/talk/SINSI:0x8ec8	If I've done you any wrong,<FFF6>I apologize for it...<FFF6>I beg your forgiveness...<FFFD>サ<FFF5>
-188	0x4625	pack/talk/SINSI:0x8f68	When I was a child, there was<FFF6>something I too, could not forgive...<FFFB><FFF7>But I have thrown that memory into<FFF6>oblivion, and it no longer upsets me.<FFF5>
+188	0x4625	pack/talk/SINSI:0x8f68	When I was a child,<FFF6>there was something I too,<FFF6>could not forgive...<FFFB><FFF7>But I have thrown that memory into<FFF6>oblivion, and it no longer upsets me.<FFF5>
 189	0x468b	pack/talk/SINSI:0x9088	Ahhh! I feel so humiliated... But...<FFF6>Please! Would you be so kind as to<FFF6>torment me more...!?<FFFD>シ<FFF5>
 190	0x46c9	pack/talk/SINSI:0x9148	How surprising! You don't see<FFF6>a reaction like that every day!<FFF5>
 191	0x46f6	pack/talk/SINSI:0x91c8	I thought you had business with me...<FFF6>Have I misunderstood?<FFFD>ス<FFF5>
 192	0x471a	pack/talk/SINSI:0x9248	I admire your courage, but,<FFF6>you are too bold! In other words,<FFF6>you are being impertinent!<FFF5>
 193	0x4756	pack/talk/SINSI:0x9300	To a demon, that is most insolent!<FFF6>Is this considered proper<FFF6>manners to you humans?<FFFD>セ<FFF5>
 194	0x4795	pack/talk/SINSI:0x93b0	I have no recollection of doing so,<FFF6>but... it seems I have angered you...<FFF5>
-195	0x47c5	pack/talk/SINSI:0x9448	......I am a gentleman, therefore I must<FFF6>remain gentle....That was a joke...<FFFD>ソ<FFF5>
+195	0x47c5	pack/talk/SINSI:0x9448	......I am a gentleman,<FFF6>therefore I must remain gentle.<FFF6>...That was a joke...<FFFD>ソ<FFF5>
 196	0x47fe	pack/talk/SINSI:0x94e8	How surprising! You don't see<FFF6>a reaction like that every day!<FFF5>
 197	0x482b	pack/talk/SINSI:0x9568	I thought you had business with me...<FFF6>Have I misunderstood?<FFFD>タ<FFF5>
 198	0x484f	pack/talk/SINSI:0x95e8	I admire your courage, but,<FFF6>you are too bold! In other words,<FFF6>you are being impertinent!<FFF5>
 199	0x488b	pack/talk/SINSI:0x96a0	To a demon, that is most insolent!<FFF6>Is this considered proper<FFF6>manners to you humans?<FFFD>チ<FFF5>
 200	0x48ca	pack/talk/SINSI:0x9750	I have no recollection of doing so,<FFF6>but... it seems I have angered you...<FFF5>
-201	0x48fa	pack/talk/SINSI:0x97e8	......I am a gentleman, therefore I must<FFF6>remain gentle....That was a joke...<FFFD>ツ<FFF5>
+201	0x48fa	pack/talk/SINSI:0x97e8	......I am a gentleman,<FFF6>therefore I must remain gentle.<FFF6>...That was a joke...<FFFD>ツ<FFF5>
 202	0x4933	pack/talk/SINSI:0x9888	Hmm... Well, well.<FFF6>Sounds like we should spar.<FFF5>
 203	0x495a	pack/talk/SINSI:0x98e8	Are you using those barbaric<FFF6>negotiation tactics in<FFF6>hopes that I'll listen?<FFFD>テ<FFF5>
 204	0x4984	pack/talk/SINSI:0x9988	If you can cross even me,<FFF6>you are really rather hopeless!<FFF5>
@@ -211,12 +211,12 @@ id	pos	psp	en
 209	0x4a7a	pack/talk/SINSI:0x9c78	You may have a point,<FFF6>but allow me to ask... What was it?<FFFD>ニ<FFF5>
 210	0x4ab2	pack/talk/SINSI:0x9cf0	Did I hurt your feelings? I'm sorry,<FFF6>but your logic is rather flawed.<FFF6>That's not good...<FFF5>
 211	0x4aef	pack/talk/SINSI:0x9da8	Calm down, young man...<FFF6>You are taking this too far...<FFFD>ヌ<FFF5>
-212	0x4b2c	pack/talk/SINSI:0x9e20	I cannot believe you, yet... nor can I<FFF6>bring myself to hate you. A mystery...<FFF5>
+212	0x4b2c	pack/talk/SINSI:0x9e20	I cannot believe you, yet...<FFF6>nor can I bring myself to hate you.<FFF6>A mystery...<FFF5>
 213	0x4b5f	pack/talk/SINSI:0x9ec0	Hahaha, I will consider that an overly<FFF6>expressive show of your emotions.<FFF5>
 214	0x4b89	pack/talk/SINSI:0x9f58	That's a childish idea. But I<FFF6>understand the need for attention.<FFF5>
 215	0x4bc6	pack/talk/SINSI:0x9fe0	Hmmm... Now THIS is entertainment!<FFFD>ネ<FFF5>
 216	0x4be7	pack/talk/SINSI:0xa030	Such uncanny trickery...<FFF6>You may be a much stronger<FFF6>opponent than I first imagined...<FFF5>
-217	0x4c1c	pack/talk/SINSI:0xa0e0	Using such uncanny trickery... How<FFF6>alarming! You are far too dangerous!<FFFD>ノ<FFF5>
+217	0x4c1c	pack/talk/SINSI:0xa0e0	Using such uncanny trickery...<FFF6>How alarming!<FFF6>You are far too dangerous!<FFFD>ノ<FFF5>
 218	0x4c59	pack/talk/SINSI:0xa178	Ah, thank goodness!<FFF6>If you can continue to make<FFFB><FFF7>such things appear, perhaps we<FFF6>could ride out this depression.<FFF5>
 219	0x4c8b	pack/talk/SINSI:0xa258	What superb magic! I won't be able to<FFF6>sleep if I don't know its mechanisms,<FFF6>so I do hope you'll tell me!<FFFD>ハ<FFF5>
 220	0x4cc3	pack/talk/SINSI:0xa330	No matter the subject,<FFF6>I will learn something new, correct?<FFFB><FFF7>From here on, be a good<FFF6>conversation partner with me!<FFF5>
@@ -229,8 +229,8 @@ id	pos	psp	en
 227	0x4e29	pack/talk/SINSI:0xa730	It has nothing to do with me...<FFF5>
 228	0x4e3c	pack/talk/SINSI:0xa770	Hahaha, quite an amusing subject.<FFF5>
 229	0x4e56	pack/talk/SINSI:0xa7b8	Many of my acquaintances<FFF6>are getting on in years...<FFFB><FFF7>I've actually been looking for<FFF6>someone like you to speak with.<FFF5>
-230	0x4e91	pack/talk/SINSI:0xa8a0	Hahaha,<FFF6>you say such amusing things.<FFF5>
-231	0x4eb9	pack/talk/SINSI:0xa8f0	Both of us stand to benefit...<FFF6>I will lend you my power if<FFF6>I feel so inclined...<FFF5>
+230	0x4e91	pack/talk/SINSI:0xa8a0	Hahaha, you say such<FFF6>amusing things.<FFF5>
+231	0x4eb9	pack/talk/SINSI:0xa8f0	Both of us stand to benefit...<FFF6>I will lend you my power<FFF6>if I feel so inclined...<FFF5>
 232	0x4ef0	pack/talk/SINSI:0xa998	I won't answer immediately, but...<FFF6>I don't think it's a bad deal.<FFF5>
 233	0x4f11	pack/talk/SINSI:0xaa20	In other words, you would like<FFF6>me to spare my time for you.<FFFB><FFF7>My answer will depend on<FFF6>your appreciation's weight.<FFF1><FFF5>
 234	0x4f4e	pack/talk/SINSI:0xab08	Were you never taught the rules of<FFF6>how common folk greet nobility!?<FFF5>
@@ -259,18 +259,18 @@ id	pos	psp	en
 257	0x544c	pack/talk/SINSI:0xb9d8	I would pay money to see a wonderful<FFF6>performance, but that... wasn't.<FFF6>Thus, the reverse should apply.<FFF1><FFF5>
 258	0x5490	pack/talk/SINSI:0xbaa8	How absurd... Cut it out!<FFF5>
 259	0x54af	pack/talk/SINSI:0xbae0	Enough of this!<FFF6>I have no business with<FFF6>such amateur performers!<FFF5>
-260	0x54d1	pack/talk/SINSI:0xbb68	I have no need of entertainment! Why<FFF6>don't you give me something useful?<FFF1><FFF5>
+260	0x54d1	pack/talk/SINSI:0xbb68	I have no need of entertainment!<FFF6>Why don't you give me<FFF6>something useful?<FFF1><FFF5>
 261	0x5508	pack/talk/SINSI:0xbc00	What do you think?<FFF6>If a stranger started singing and<FFFB><FFF7>dancing in front of you, wouldn't<FFF6>you be somewhat disturbed...?<FFF5>
 262	0x5549	pack/talk/SINSI:0xbcf0	Have you recently hit your head...?<FFF6>Are you... alright?<FFF5>
 263	0x5589	pack/talk/SINSI:0xbd60	You must not have a care in<FFF6>the world... I envy you.<FFF5>
-264	0x55b0	pack/talk/SINSI:0xbdd0	Haha,<FFF6>I feel like I've wandered into a play.<FFF5>
+264	0x55b0	pack/talk/SINSI:0xbdd0	Haha, I feel like I've<FFF6>wandered into a play.<FFF5>
 265	0x55de	pack/talk/SINSI:0xbe30	Hahaha! That is good!<FFF6>I could use a stiff drink!<FFF5>
 266	0x5602	pack/talk/SINSI:0xbe98	Honestly, this makes me happy.<FFF6>You are quite a charmer.<FFF5>
 267	0x5628	pack/talk/SINSI:0xbf08	If this is a dream, then...<FFF6>Hmmm... What to do...?<FFF5>
 268	0x564e	pack/talk/SINSI:0xbf70	That is quite enticing,<FFF6>but I think I'd like a little extra.<FFF1><FFF5>
 269	0x5685	pack/talk/SINSI:0xbff0	Will you stop mocking me!?<FFF5>
 270	0x56a3	pack/talk/SINSI:0xc028	Was that an attempt to win me over?<FFF6>I must say, it was not very proper!<FFF5>
-271	0x56d7	pack/talk/SINSI:0xc0b8	You plan to tempt me over to you,<FFF6>is that it?<FFF6>If so, it's not going to work!<FFF1><FFF5>
+271	0x56d7	pack/talk/SINSI:0xc0b8	You plan to tempt me over to you,<FFF6>is that it? If so,<FFF6>it's not going to work!<FFF1><FFF5>
 272	0x5702	pack/talk/SINSI:0xc158	You never know what humans like you<FFF6>will do if you don't play along...<FFF5>
 273	0x5733	pack/talk/SINSI:0xc1e8	I may be beautiful,<FFF6>but to accept such an invitation...<FFF6>I have a reputation...<FFF5>
 274	0x5768	pack/talk/SINSI:0xc288	I already have plans.<FFF6>Maybe next time...<FFF5>
@@ -284,7 +284,7 @@ id	pos	psp	en
 282	0x58b6	pack/talk/SINSI:0xc638	Then you will listen to<FFF6>whatever I say, correct!?<FFF1><FFF5>
 283	0x58db	pack/talk/SINSI:0xc6a0	Why would you say that...?<FFF6>That's a bit fishy...<FFF5>
 284	0x58fc	pack/talk/SINSI:0xc708	Wh-What are you trying to say?<FFF6>Let's negotiate normally, shall we...?<FFF5>
-285	0x5928	pack/talk/SINSI:0xc798	Exactly! I am as strong as I am<FFF6>beautiful! Hahahahaha!<FFF5>
+285	0x5928	pack/talk/SINSI:0xc798	Exactly!<FFF6>I am as strong as I am beautiful!<FFF6>Hahahahaha!<FFF5>
 286	0x594d	pack/talk/SINSI:0xc808	Admit defeat!<FFF6>If you do, I'll spare your life!<FFF5>
 287	0x597c	pack/talk/SINSI:0xc868	Finally! I have come so far!<FFF5>
 288	0x5996	pack/talk/SINSI:0xc8a8	Ahh, you already have my spell card!<FFF6>Not bad!<FFEF>
@@ -302,18 +302,18 @@ id	pos	psp	en
 300	0x5b87	pack/talk/SINSI:0xce00	You want this?<FFF6>Very well, take it and be gone!<FFEF>
 301	0x5bb8	pack/talk/SINSI:0xce60	Still... a gentleman should never<FFF6>engage in such pointless bloodshed...<FFF6>Hmmm... What to do...<FFEF>
 302	0x5bf1	pack/talk/SINSI:0xcf20	Urgh, I can not bring myself to care<FFF6>any less! Here is my spell card;<FFF6>do what you will with it!<FFEF>
-303	0x5c29	pack/talk/SINSI:0xcfe0	So,<FFF6>I'd like for you to have my spell card!<FFEF>
+303	0x5c29	pack/talk/SINSI:0xcfe0	So, I'd like for you to<FFF6>have my spell card!<FFEF>
 304	0x5c56	pack/talk/SINSI:0xd038	Now! Take my spell card!<FFEF>
 305	0x5c7e	pack/talk/SINSI:0xd070	So you see,<FFF6>I have no intention of fighting you.<FFF6>I hold you in high esteem!<FFEF>
 306	0x5cb4	pack/talk/SINSI:0xd108	This isn't much,<FFF6>but it'd be an honor if you'd take it!<FFEF>
 307	0x5cdb	pack/talk/SINSI:0xd178	I will give you my spell card...<FFF6>But please do not concern<FFF6>yourself with me again!<FFEF>
 308	0x5d06	pack/talk/SINSI:0xd220	Please, don't rip the spell card...<FFEF>
-309	0x5d26	pack/talk/SINSI:0xd268	You answered my call... So allow me to<FFF6>ask: what are your intentions?<FFFD>ヒ<FFF5>
+309	0x5d26	pack/talk/SINSI:0xd268	You answered my call...<FFF6>So allow me to ask:<FFF6>what are your intentions?<FFFD>ヒ<FFF5>
 310	0x5d62	pack/talk/SINSI:0xd2f8	So you answered my call...<FFF6>I am conducting a study on<FFF6>humans, you see...<FFFB><FFF7>But, it's quite strange...<FFF6>I don't see what reason you have for<FFF6>coming to such a dangerous place...<FFF5>
 311	0x5dce	pack/talk/SINSI:0xd458	Ah, you've answered my call.<FFF6>I am glad to meet you.<FFFB><FFF7>In any case,<FFF6>would you be so kind as to<FFFB><FFF7>provide some token by which I could<FFF6>commemorate this occasion by?<FFF1><FFF5>
 312	0x5e2b	pack/talk/SINSI:0xd598	For some reason, it irks me to<FFF6>simply look upon your face.<FFF6>Why do you think that is?<FFFD>フ<FFF5>
 313	0x5e5c	pack/talk/SINSI:0xd648	A human has answered my call,<FFF6>and it is a child, no less!<FFFB><FFF7>I would have rather it been<FFF6>a beautiful woman!<FFF5>
-314	0x5ebb	pack/talk/SINSI:0xd720	I am the guardian here! If you wish to<FFF6>pass, you must pay the toll!<FFF1><FFF5>
+314	0x5ebb	pack/talk/SINSI:0xd720	I am the guardian here!<FFF6>If you wish to pass,<FFF6>you must pay the toll!<FFF1><FFF5>
 315	0x5ef2	pack/talk/SINSI:0xd7b0	Do you believe that everything you<FFF6>say is automatically correct?<FFFD>ヘ<FFF5>
 316	0x5f26	pack/talk/SINSI:0xd838	Am I going to be killed by a human?<FFF6>Of all the ways to die...<FFFB><FFF7>Hmm? Don't mind me,<FFF6>I was just thinking aloud...<FFF5>
 317	0x5f76	pack/talk/SINSI:0xd918	I am strong! A vision of perfection!<FFF6>I cannot lose... to humans...<FFF6>or at least... I don't think I can...<FFF5>
@@ -338,14 +338,14 @@ id	pos	psp	en
 336	0x63f3	pack/talk/SINSI:0xe620	<FFEC>Ah, Master...<FFF6>I may call you that, yes?<FFFD>ヤ<FFF5>
 337	0x6429	pack/talk/SINSI:0xe678	<FFEC>Compared to your greatness,<FFF6>I am but a weak, ugly, filthy demon...<FFF6>and yet...<FFFB><FFF7>Thank you for answering my call.<FFF5>
 338	0x6486	pack/talk/SINSI:0xe760	<FFEB>So you've answered my call...<FFFB><FFF7>No matter how much verbal or<FFF6>physical abuse you have for me...<FFFB><FFF7>As long as it is from you,<FFF6>it is my pleasure!<FFF5>
-339	0x64de	pack/talk/SINSI:0xe880	It seems you and I might<FFF6>do well together.<FFFB><FFF7>Now,<FFF6>please tell me exactly what you want.<FFEF>
+339	0x64de	pack/talk/SINSI:0xe880	It seems you and I might<FFF6>do well together.<FFFB><FFF7>Now, please tell me exactly<FFF6>what you want.<FFEF>
 340	0x6527	pack/talk/SINSI:0xe930	So you have finally managed to anger<FFF6>me... You shall not leave here alive!<FFEF>
 341	0x655f	pack/talk/SINSI:0xe9c8	Y-You stand to gain n-nothing from...<FFF6>k-killing me...<FFF6>You are dangerous, human...<FFF5>
 342	0x659e	pack/talk/SINSI:0xea70	I am so glad to have met you!<FFF6>This is one of the greatest<FFF6>moments in my life!<FFF5>
 343	0x65c7	pack/talk/SINSI:0xeb10	I won't allow you to waste any<FFF6>more of my precious time!<FFF6>Now, tell me your business!<FFEF>
 344	0x6604	pack/talk/SINSI:0xebc0	I will listen to you, but please,<FFF6>no frightening or painful things!<FFEF>
-345	0x6633	pack/talk/SINSI:0xec48	You have all the qualifications of<FFF6>a gentleman!<FFF6>Allow me to hear your request.<FFEF>
-346	0x666f	pack/talk/SINSI:0xece8	D-Don't come near me! I'm...<FFF6>I'm very strong, you hear!?<FFEF>
+345	0x6633	pack/talk/SINSI:0xec48	You have all<FFF6>the qualifications of a gentleman!<FFF6>Allow me to hear your request.<FFEF>
+346	0x666f	pack/talk/SINSI:0xece8	D-Don't come near me!<FFF6>I'm... I'm very strong, you hear!?<FFEF>
 347	0x669a	pack/talk/SINSI:0xed60	Speaking with you<FFF6>has made me hungry...<FFF6>I must say, you look quite delicious!<FFF5>
 348	0x66cb	pack/talk/SINSI:0xee00	You deserve to reign over<FFF6>the demons as king...!<FFF6>You will be our overlord!<FFEF>
 349	0x6706	pack/talk/SINSI:0xee98	Then I shall have money.<FFF6>￥<FFF8> shall do.<FFEF>
@@ -396,13 +396,13 @@ id	pos	psp	en
 394	0x6f20	pack/talk/SINSI:0x106e0	What...? You enjoy the loss of life?<FFF6>I cannot fathom how anyone can't<FFF6>understand its precious nature...<FFF5>
 395	0x6f50	pack/talk/SINSI:0x107b0	Oh... Please, spare me a moment!<FFF6>I need time to think...<FFF5>
 396	0x6f7d	pack/talk/SINSI:0x10828	It may not have been your intention,<FFF6>but in the end, you tricked me!<FFF6>I cannot forgive you for this!<FFF5>
-397	0x6fb2	pack/talk/SINSI:0x108f0	Hahaha, I kid! An honest answer<FFF6>would only put me on the spot.<FFF6>Hahahaha!<FFF5>
+397	0x6fb2	pack/talk/SINSI:0x108f0	Hahaha, I kid!<FFF6>An honest answer would only<FFF6>put me on the spot. Hahahaha!<FFF5>
 398	0x6fe8	pack/talk/SINSI:0x10988	Hahaha, it's just a joke! You must<FFF6>have it hard, doing this and that to<FFF6>try and get on a demon's good side.<FFF5>
 399	0x7022	pack/talk/SINSI:0x10a60	What are you looking for?<FFF6>A warrior to fight by your side?<FFFB><FFF7>Or a circus performer?<FFF6>Now isn't the time to sing!<FFF5>
-400	0x7063	pack/talk/SINSI:0x10b40	Huh? It was just such a horrible<FFF6>voice, so... Er... Excuse me...<FFF5>
+400	0x7063	pack/talk/SINSI:0x10b40	Huh?<FFF6>It was just such a horrible voice,<FFF6>so... Er... Excuse me...<FFF5>
 401	0x709b	pack/talk/SINSI:0x10bc8	A gentleman can never be<FFF6>defeated by cowards!<FFF6>My rage is in full swing!<FFF5>
 402	0x70d8	pack/talk/SINSI:0x10c60	Please, stop this!<FFF6>If I hear any more, I may have<FFF6>reservations about killing you!<FFF5>
-403	0x710f	pack/talk/SINSI:0x10d08	I do not approve of this arrogance!<FFF6>You are a fool who has forgotten<FFFB><FFF7>the importance of<FFF6>knowing when to quit!<FFF5>
+403	0x710f	pack/talk/SINSI:0x10d08	I do not approve of this arrogance!<FFF6>You are a fool who has forgotten<FFFB><FFF7>the importance of knowing<FFF6>when to quit!<FFF5>
 404	0x714f	pack/talk/SINSI:0x10de8	That was wonderful...<FFF6>As long as I can hear that voice sing,<FFF6>I don't need anything else!<FFF5>
 405	0x7184	pack/talk/SINSI:0x10ea0	Is that so...? You can never trust<FFF6>the words of a human, though.<FFF5>
 406	0x71b2	pack/talk/SINSI:0x10f28	I'm nitpicky, you say!? Hahahaha!<FFF6>What an answer! Hahahaha!<FFF5>
@@ -414,9 +414,9 @@ id	pos	psp	en
 412	0x72df	pack/talk/SINSI:0x112a0	How tragic! Are your eyes clouded!?<FFF6>Allow me to polish them then!<FFF5>
 413	0x7317	pack/talk/SINSI:0x11328	What...?<FFF6>To think there are humans who<FFF6>cannot comprehend my body's beauty!<FFFB><FFF7>What is the world coming to...?<FFF5>
 414	0x7354	pack/talk/SINSI:0x11400	So you still have shame... So be it.<FFF6>But be careful next time.<FFF5>
-415	0x738b	pack/talk/SINSI:0x11480	I see. You mean to say that the ends<FFF6>justify the means....I disagree!<FFF5>
+415	0x738b	pack/talk/SINSI:0x11480	I see. You mean to say that the ends<FFF6>justify the means. ...I disagree!<FFF5>
 416	0x73c8	pack/talk/SINSI:0x11510	No? That is too bad. If it were true,<FFF6>I would have considered helping you.<FFF5>
-417	0x7403	pack/talk/SINSI:0x115a8	I knew it! You fell for it, you demon<FFF6>murderer! You won't be forgiven!<FFF5>
+417	0x7403	pack/talk/SINSI:0x115a8	I knew it!<FFF6>You fell for it, you demon murderer!<FFF6>You won't be forgiven!<FFF5>
 418	0x743b	pack/talk/SINSI:0x11638	Be more honest with yourself! I shall<FFF6>send you a pamphlet for my fan club.<FFF5>
 419	0x747c	pack/talk/SINSI:0x116d0	What kind of desperate excuse is<FFF6>that!? There's no emotion behind it!<FFF5>
 420	0x74b4	pack/talk/SINSI:0x11760	Is that so...? You can never trust<FFF6>the words of a human, though.<FFF5>
@@ -431,7 +431,7 @@ id	pos	psp	en
 429	0x7684	pack/talk/SINSI:0x11cc0	Hahahaha! That was a falsification.<FFF6>Stay alert next time!<FFF5>
 430	0x76b1	pack/talk/SINSI:0x11d38	Wha-What!? You must be a kunoichi...<FFF6>A professional in the art of<FFF6>seduction!<FFF5>
 431	0x76e6	pack/talk/SINSI:0x11dd8	So you still have shame... So be it.<FFF6>But be careful next time.<FFF5>
-432	0x771d	pack/talk/SINSI:0x11e58	I see. You mean to say that the ends<FFF6>justify the means....I disagree!<FFF5>
+432	0x771d	pack/talk/SINSI:0x11e58	I see. You mean to say that the ends<FFF6>justify the means. ...I disagree!<FFF5>
 433	0x775a	pack/talk/SINSI:0x11ee8	Be more honest with yourself! I shall<FFF6>send you a pamphlet for my fan club.<FFF5>
 434	0x779b	pack/talk/SINSI:0x11f80	What kind of desperate excuse is<FFF6>that!? There's no emotion behind it!<FFF5>
 435	0x77d3	pack/talk/SINSI:0x12010	Is... Is that so... V-Very well... Ugh!<FFF6>No! My body will not move...<FFF5>
@@ -450,18 +450,18 @@ id	pos	psp	en
 448	0x7a85	pack/talk/SINSI:0x12780	Huh!? Were you speaking? I simply<FFF6>cannot hear a word you're saying!<FFF5>
 449	0x7ab0	pack/talk/SINSI:0x12808	That... That's a lie...It cannot be!<FFF6>You are trying to trick me...<FFF5>
 450	0x7ae2	pack/talk/SINSI:0x12890	I knew it...! Ha!<FFF6>You won't make This easy, will you?<FFF6>Just as I expected...<FFF5>
-451	0x7b17	pack/talk/SINSI:0x12928	I knew it! Even if you disguise<FFF6>your spell, you can't fool my ears!<FFF5>
+451	0x7b17	pack/talk/SINSI:0x12928	I knew it!<FFF6>Even if you disguise your spell,<FFF6>you can't fool my ears!<FFF5>
 452	0x7b45	pack/talk/SINSI:0x129b0	Of course!<FFF6>Let us move to the international<FFFB><FFF7>ring and aim to make humanity<FFF6>a treasure of the world!<FFF5>
 453	0x7b81	pack/talk/SINSI:0x12a78	Mo... Model? I'm not sure...<FFF6>With style like that...<FFF5>
 454	0x7bb0	pack/talk/SINSI:0x12ae8	You! A bad joke only makes<FFF6>others feel awkward!<FFF5>
 455	0x7bdf	pack/talk/SINSI:0x12b48	Hahaha, well, well... I didn't think<FFF6>humans still gossiped about me!<FFF5>
 456	0x7c06	pack/talk/SINSI:0x12bd8	I... I see... But that is because you<FFF6>have yet to hear, so... I know it...<FFF5>
-457	0x7c3b	pack/talk/SINSI:0x12c70	Like, "Mr. <FFF3>,<FFF6>you're awesome!"...You! Laugh!<FFF5>
+457	0x7c3b	pack/talk/SINSI:0x12c70	Like, "Mr. <FFF3>,<FFF6>you're awesome!" ...You! Laugh!<FFF5>
 458	0x7c6b	pack/talk/SINSI:0x12cd0	Do you have any other interesting<FFF6>stories? I'd love to hear them! It's<FFF6>important to have common knowledge!<FFF5>
 459	0x7ca5	pack/talk/SINSI:0x12da8	It seems you do not understand<FFF6>my charm... Not many can be<FFF6>possessed of both beauty and power!<FFF5>
 460	0x7ce3	pack/talk/SINSI:0x12e68	...No! Even were I to be thrown into<FFF6>the darkness of hell,<FFF6>I could not tell you...<FFF5>
 461	0x7d1d	pack/talk/SINSI:0x12f10	You do not want to know?<FFF6>I can tell that you hide the truth!<FFF6>You'll regret that!<FFF5>
-462	0x7d51	pack/talk/SINSI:0x12fb8	You do not want to hear? You mean<FFF6>that? It makes me want to tell you...<FFF5>
+462	0x7d51	pack/talk/SINSI:0x12fb8	You do not want to hear?<FFF6>You mean that?<FFF6>It makes me want to tell you...<FFF5>
 463	0x7d8b	pack/talk/SINSI:0x13048	Well, I figured that was the case...<FFF6>How utterly absurd!<FFF5>
 464	0x7dbb	pack/talk/SINSI:0x130c0	Hmph! You don't have any excuses,<FFF6>do you!? How utterly absurd!<FFF5>
 465	0x7ded	pack/talk/SINSI:0x13140	Ah, you have an excuse? What is it?<FFF6>I'd be most interested in hearing it.<FFF5>
@@ -473,10 +473,10 @@ id	pos	psp	en
 471	0x7f3c	pack/talk/SINSI:0x13510	*sigh* I cannot comprehend you.<FFF6>Humans are a strange species...<FFF5>
 472	0x7f76	pack/talk/SINSI:0x13590	So you do! Quite rude to test<FFF6>my judgement without telling me first!<FFF5>
 473	0x7fad	pack/talk/SINSI:0x13620	My, my! I would expect<FFF6>nothing less of you, Master!<FFF6>I'd like this relationship to last.<FFF5>
-474	0x7fe4	pack/talk/SINSI:0x136d0	Hm? Your fortune is greater than<FFF6>that! You're holding back!<FFF5>
+474	0x7fe4	pack/talk/SINSI:0x136d0	Hm?<FFF6>Your fortune is greater than that!<FFF6>You're holding back!<FFF5>
 475	0x801d	pack/talk/SINSI:0x13748	When you become poor and lose all<FFF6>your friends, I will be there for you!<FFF5>
 476	0x8056	pack/talk/SINSI:0x137e0	Judging by your actions,<FFF6>I cannot believe it!<FFF5>
-477	0x8079	pack/talk/SINSI:0x13840	Very well... I will believe in<FFF6>your words, but just this once.<FFF5>
+477	0x8079	pack/talk/SINSI:0x13840	Very well...<FFF6>I will believe in your words,<FFF6>but just this once.<FFF5>
 478	0x80aa	pack/talk/SINSI:0x138c0	Hahaha, no need to worry!<FFF6>I have my preferences too!<FFF5>
 479	0x80d2	pack/talk/SINSI:0x13930	Of course! Even if this was a trap,<FFF6>a gentleman always accepts gifts.<FFF5>
 480	0x8110	pack/talk/SINSI:0x139c0	Well... hold for a moment...<FFF6>There's something I must know:<FFFB><FFF7>You aren't harboring any<FFF6>ulterior motives, are you?<FFF5>
@@ -498,7 +498,7 @@ id	pos	psp	en
 496	0x840e	pack/talk/SINSI:0x142c8	You don't care what others think of<FFF6>you...? Is... Is that so...?<FFF6>P-Please, spare my life!<FFF5>
 497	0x844c	pack/talk/SINSI:0x14380	You are quite understanding!<FFF6>It seems we have good affinity.<FFF5>
 498	0x8480	pack/talk/SINSI:0x14400	Correct, there is no need for<FFF6>pointless bloodshed!<FFF6>I'm glad you are so wise.<FFF5>
-499	0x84b8	pack/talk/SINSI:0x144a0	Then what if I said... "Hey baby,<FFF6>how's it hanging!?"...Hahaha, I jest!<FFF5>
+499	0x84b8	pack/talk/SINSI:0x144a0	Then what if I said... "Hey baby,<FFF6>how's it hanging!?" ...Hahaha, I jest!<FFF5>
 500	0x84f6	pack/talk/SINSI:0x14538	You are truly a rude person!<FFF6>Really, how impolite can you be!?<FFF5>
 501	0x8521	pack/talk/SINSI:0x145b8	So you finally reveal your true self!<FFF6>I knew true gentleman were<FFF6>more like me...<FFF5>
 502	0x8556	pack/talk/SINSI:0x14660	Hmph!<FFF6>That is called being superficial!<FFF6>Have you no self control!?<FFF5>
@@ -508,12 +508,12 @@ id	pos	psp	en
 506	0x860a	pack/talk/SINSI:0x148b8	It... It doesn't have<FFF6>any deep-seated reason...<FFF6>Please, there's no need to yell...<FFF5>
 507	0x863b	pack/talk/SINSI:0x14960	Hmmm... One two, one two...<FFF6>That's a rather difficult dance...<FFF5>
 508	0x866f	pack/talk/SINSI:0x149e0	Human fads are so bewildering!<FFF6>I never tire of watching them.<FFF5>
-509	0x86a6	pack/talk/SINSI:0x14a60	Hahaha,<FFF6>I knew that from the start, Mr. Klutz!<FFF5>
-510	0x86db	pack/talk/SINSI:0x14ac0	Hahaha,<FFF6>I knew that from the start, Mr. Klutz!<FFF5>
+509	0x86a6	pack/talk/SINSI:0x14a60	Hahaha, I knew that from<FFF6>the start, Mr. Klutz!<FFF5>
+510	0x86db	pack/talk/SINSI:0x14ac0	Hahaha, I knew that from<FFF6>the start, Mr. Klutz!<FFF5>
 511	0x8711	pack/talk/SINSI:0x14b20	Really? You should rest a little.<FFF6>Don't strain yourself so much...<FFF5>
 512	0x8744	pack/talk/SINSI:0x14ba8	Yeah! Yeah! Yeahhhh!<FFF5>
-513	0x8761	pack/talk/SINSI:0x14bd8	Are you alright? Breakfast<FFF6>is an important meal in the day,<FFF6>and you shouldn't skip it, you know.<FFF5>
-514	0x8799	pack/talk/SINSI:0x14ca0	You! I go through the pain of inviting<FFF6>you, and you have the nerve to fall!?<FFF5>
+513	0x8761	pack/talk/SINSI:0x14bd8	Are you alright? Breakfast is<FFF6>an important meal in the day,<FFF6>and you shouldn't skip it, you know.<FFF5>
+514	0x8799	pack/talk/SINSI:0x14ca0	You!<FFF6>I go through the pain of inviting you,<FFF6>and you have the nerve to fall!?<FFF5>
 515	0x87cc	pack/talk/SINSI:0x14d40	Hahaha, you are like a child!<FFF5>
 516	0x87e5	pack/talk/SINSI:0x14d80	Then would you be so kind as to tell<FFF6>me what the meaning of this is!?<FFF6>Hmph, there are no excuses!<FFF5>
 517	0x881d	pack/talk/SINSI:0x14e48	Is that so...?<FFF6>If that is the case, then never mind.<FFF5>
@@ -525,7 +525,7 @@ id	pos	psp	en
 523	0x8930	pack/talk/SINSI:0x15188	Correct, there is no need for<FFF6>pointless bloodshed!<FFF6>I'm glad you are so wise.<FFF5>
 524	0x8968	pack/talk/SINSI:0x15228	Even a demon would hesitate before<FFF6>doing some of the things you do!<FFF6>...You are a villain!<FFF5>
 525	0x89a0	pack/talk/SINSI:0x152e0	I cannot relax...<FFF6>This is an odd feeling...<FFF5>
-526	0x89c5	pack/talk/SINSI:0x15338	Phew... I am quite tired... You are so<FFF6>unpredictable, it's astounding!<FFF5>
+526	0x89c5	pack/talk/SINSI:0x15338	Phew... I am quite tired...<FFF6>You are so unpredictable,<FFF6>it's astounding!<FFF5>
 527	0x89f8	pack/talk/SINSI:0x153c8	Hmm... My apologies then.<FFF6>But still, why get so upset?<FFF6>Do you really have a girlfriend?<FFF5>
 528	0x8a3b	pack/talk/SINSI:0x15478	If I were you, I would be upset.<FFF6>You must have a big heart.<FFF6>Or maybe you're just a fool!<FFF5>
 529	0x8a77	pack/talk/SINSI:0x15530	It only troubles me that you got so<FFF6>angry. Anyway, you should<FFF6>hurry and make her yours!<FFFB><FFF7>Take life's next step!<FFF5>
@@ -550,11 +550,11 @@ id	pos	psp	en
 548	0x8e6f	pack/talk/SINSI:0x16190	Hmph!<FFF6>You shall be an expert when you<FFF6>can kill a man using only your voice!<FFF5>
 549	0x8eac	pack/talk/SINSI:0x16228	Oh, is that so? How nice.<FFF5>
 550	0x8eca	pack/talk/SINSI:0x16260	I probably would have ripped<FFF6>your throat out if you had<FFFB><FFF7>bragged about your voice,<FFF6>but you are actually quite humble!<FFF5>
-551	0x8f02	pack/talk/SINSI:0x16350	Hahaha, I kid! An honest answer<FFF6>would only put me on the spot.<FFF6>Hahahaha!<FFF5>
+551	0x8f02	pack/talk/SINSI:0x16350	Hahaha, I kid!<FFF6>An honest answer would only<FFF6>put me on the spot. Hahahaha!<FFF5>
 552	0x8f38	pack/talk/SINSI:0x163e8	Hahaha, it's just a joke! You must<FFF6>have it hard, doing this and that to<FFF6>try and get on a demon's good side.<FFF5>
 553	0x8f72	pack/talk/SINSI:0x164c0	What are you looking for?<FFF6>A warrior to fight by your side?<FFFB><FFF7>Or a circus performer?<FFF6>Now isn't the time to sing!<FFF5>
 554	0x8fb3	pack/talk/SINSI:0x165a0	Please, stop this!<FFF6>If I hear any more, I may have<FFF6>reservations about killing you!<FFF5>
-555	0x8fea	pack/talk/SINSI:0x16648	I do not approve of this arrogance!<FFF6>You are a fool who has forgotten<FFFB><FFF7>the importance of<FFF6>knowing when to quit!<FFF5>
+555	0x8fea	pack/talk/SINSI:0x16648	I do not approve of this arrogance!<FFF6>You are a fool who has forgotten<FFFB><FFF7>the importance of knowing<FFF6>when to quit!<FFF5>
 556	0x902a	pack/talk/SINSI:0x16728	That was wonderful...<FFF6>As long as I can hear that voice sing,<FFF6>I don't need anything else!<FFF5>
 557	0x905f	pack/talk/SINSI:0x167e0	Oh, so you understand...<FFF6>That was a bit boring...<FFF5>
 558	0x9087	pack/talk/SINSI:0x16848	I knew it!<FFF6>You hoped to bewitch me with that<FFF6>soft, glistening skin, didn't you!?<FFF5>
@@ -572,7 +572,7 @@ id	pos	psp	en
 570	0x92d5	pack/talk/SINSI:0x16f28	Right!? You weak humans<FFF6>must be quite jealous!<FFF5>
 571	0x9307	pack/talk/SINSI:0x16f88	How tragic! Are your eyes clouded!?<FFF6>Allow me to polish them then!<FFF5>
 572	0x933f	pack/talk/SINSI:0x17010	What...?<FFF6>To think there are humans who<FFF6>cannot comprehend my body's beauty!<FFFB><FFF7>What is the world coming to...?<FFF5>
-573	0x937c	pack/talk/SINSI:0x170e8	Then what if I said... "Hey baby,<FFF6>how's it hanging!?"...Hahaha, I jest!<FFF5>
+573	0x937c	pack/talk/SINSI:0x170e8	Then what if I said... "Hey baby,<FFF6>how's it hanging!?" ...Hahaha, I jest!<FFF5>
 574	0x93b8	pack/talk/SINSI:0x17180	You are truly a rude person!<FFF6>Really, how impolite can you be!?<FFF5>
 575	0x93e3	pack/talk/SINSI:0x17200	You are a pathetic human!<FFF6>A gentleman does not tell lies!<FFF5>
 576	0x9419	pack/talk/SINSI:0x17278	I assumed so... People like you lead<FFF6>humanity to destruction... Hahaha...<FFF5>
@@ -582,7 +582,7 @@ id	pos	psp	en
 580	0x94c7	pack/talk/SINSI:0x17450	Is... Is that so... V-Very well... Ugh!<FFF6>No! My body will not move...<FFF5>
 581	0x9505	pack/talk/SINSI:0x174e0	What do you have to fear now?<FFF6>Hahaha! Allow me!<FFF5>
 582	0x9532	pack/talk/SINSI:0x17540	You dare to quit<FFF6>after enticing me to do so!?<FFF6>A gentleman never breaks his word!<FFF5>
-583	0x9569	pack/talk/SINSI:0x175e8	I am no moral philosopher,<FFF6>but you shouldn't do something if<FFF6>your heart isn't in it!<FFF5>
+583	0x9569	pack/talk/SINSI:0x175e8	I am no moral philosopher,<FFF6>but you shouldn't do something<FFF6>if your heart isn't in it!<FFF5>
 584	0x959f	pack/talk/SINSI:0x17698	Hahahahaha! That short temper of<FFF6>yours is proof of your foolishness!<FFF5>
 585	0x95ce	pack/talk/SINSI:0x17728	Oh be quiet! I've been known to eat<FFF6>conceited children head first!<FFF5>
 586	0x9600	pack/talk/SINSI:0x177b0	You may think I am but an old man,<FFF6>but!<FFF6>You should hear what I have to say!<FFFB><FFF7>Those who are willing to-sell<FFF6>their souls to achieve their desires...<FFF6>They're a dime a dozen!<FFF5>
@@ -594,7 +594,7 @@ id	pos	psp	en
 592	0x9796	pack/talk/SINSI:0x17be0	So you agree...<FFF6>I have failed as a gentleman,<FFF6>but it is better than being malicious...<FFF5>
 593	0x97ce	pack/talk/SINSI:0x17c90	You don't understand!<FFF6>It is because of women like<FFF6>you that my troubles never cease!<FFF5>
 594	0x9802	pack/talk/SINSI:0x17d38	Well... It is not something that can<FFF6>be settled with a smile... Ha...<FFF6>You are a unique young lady...<FFF5>
-595	0x983b	pack/talk/SINSI:0x17e08	I cannot undersatnd you if<FFF6>you're going to sit here in tears!<FFF6>It is best to ignore women like this.<FFF5>
+595	0x983b	pack/talk/SINSI:0x17e08	I cannot undersatnd you if you're<FFF6>going to sit here in tears!<FFF6>It is best to ignore women like this.<FFF5>
 596	0x986e	pack/talk/SINSI:0x17ed0	No, no! Rumors will spread that<FFF6>I have made a woman cry...<FFF5>
 597	0x98a7	pack/talk/SINSI:0x17f48	Hahaha, you are like a child!<FFF5>
 598	0x98c0	pack/talk/SINSI:0x17f88	Then would you be so kind as to tell<FFF6>me what the meaning of this is!?<FFF6>Hmph, there are no excuses!<FFF5>
@@ -607,7 +607,7 @@ id	pos	psp	en
 605	0x9a0b	pack/talk/SINSI:0x18390	Correct, there is no need for<FFF6>pointless bloodshed!<FFF6>I'm glad you are so wise.<FFF5>
 606	0x9a43	pack/talk/SINSI:0x18430	You are a pathetic human!<FFF6>A gentleman does not tell lies!<FFF5>
 607	0x9a79	pack/talk/SINSI:0x184a8	I assumed so... People like you lead<FFF6>humanity to destruction... Hahaha...<FFF5>
-608	0x9aaa	pack/talk/SINSI:0x18540	That will not do? Then, this is not<FFF6>good... No no, if that won't do, then...<FFF5>
+608	0x9aaa	pack/talk/SINSI:0x18540	That will not do?<FFF6>Then, this is not good...<FFF6>No no, if that won't do, then...<FFF5>
 609	0x9ae0	pack/talk/SINSI:0x185e0	You say the obvious with<FFF6>such arrogance!<FFF5>
 610	0x9afb	pack/talk/SINSI:0x18638	Ahh!<FFF6>Who could imagine something that<FFF6>felt so good existed in this world!<FFF5>
 611	0x9b29	pack/talk/SINSI:0x186d0	...Oh! M-My shame has been exposed...<FFF6>Wh-What a calamity...<FFF5>
@@ -623,7 +623,7 @@ id	pos	psp	en
 621	0x9d2f	pack/talk/SINSI:0x18c58	What...?<FFF6>To think there are humans who<FFF6>cannot comprehend my body's beauty!<FFFB><FFF7>What is the world coming to...?<FFF5>
 622	0x9d6c	pack/talk/SINSI:0x18d30	You are a pathetic human!<FFF6>A lady does not tell lies!<FFF5>
 623	0x9da2	pack/talk/SINSI:0x18da0	I assumed so... People like you lead<FFF6>humanity to destruction... Hahaha...<FFF5>
-624	0x9dd3	pack/talk/SINSI:0x18e38	That will not do? Then, this is not<FFF6>good... No no, if that won't do, then...<FFF5>
+624	0x9dd3	pack/talk/SINSI:0x18e38	That will not do?<FFF6>Then, this is not good...<FFF6>No no, if that won't do, then...<FFF5>
 625	0x9e09	pack/talk/SINSI:0x18ed8	You say the obvious with<FFF6>such arrogance!<FFF5>
 626	0x9e24	pack/talk/SINSI:0x18f30	Ahh!<FFF6>Who could imagine something that<FFF6>felt so good existed in this world!<FFF5>
 627	0x9e52	pack/talk/SINSI:0x18fc8	...Oh! M-My shame has been exposed...<FFF6>Wh-What a calamity...<FFF5>
@@ -634,7 +634,7 @@ id	pos	psp	en
 632	0x9f59	pack/talk/SINSI:0x19238	Excuse me...<FFF6>It must be a technique of a rural<FFF6>school that I am unfamiliar with.<FFF5>
 633	0x9f8b	pack/talk/SINSI:0x192e0	Then why did you do that to me!?<FFF5>
 634	0x9fa7	pack/talk/SINSI:0x19328	So you liked it!?<FFF6>Do my jokes have some kind of lag!?<FFF5>
-635	0x9fd6	pack/talk/SINSI:0x19398	*ahem* Hrmmm! I was clearing<FFF6>my throat. Have you no emotions!?<FFF5>
+635	0x9fd6	pack/talk/SINSI:0x19398	*ahem* Hrmmm!<FFF6>I was clearing my throat.<FFF6>Have you no emotions!?<FFF5>
 636	0xa009	pack/talk/SINSI:0x19418	*ahem* Hrmmm!<FFF6>I was clearing my throat.<FFF5>
 637	0xa037	pack/talk/SINSI:0x19478	...... Are you pretending to have no<FFF6>interest in me? I do not mind, but...<FFF5>
 638	0xa065	pack/talk/SINSI:0x19500	What are you doing!? This sudden<FFF6>change in attitude is not good at all!<FFF5>
@@ -642,7 +642,7 @@ id	pos	psp	en
 640	0xa0af	pack/talk/SINSI:0x195c8	Excuse me...<FFF6>It must be a technique of a rural<FFF6>school that I am unfamiliar with.<FFF5>
 641	0xa0e1	pack/talk/SINSI:0x19670	Then why did you do that to me!?<FFF5>
 642	0xa0fd	pack/talk/SINSI:0x196b8	So you liked it!?<FFF6>Do my jokes have some kind of lag!?<FFF5>
-643	0xa12c	pack/talk/SINSI:0x19728	*ahem* Hrmmm! I was clearing<FFF6>my throat. Have you no emotions!?<FFF5>
+643	0xa12c	pack/talk/SINSI:0x19728	*ahem* Hrmmm!<FFF6>I was clearing my throat.<FFF6>Have you no emotions!?<FFF5>
 644	0xa15f	pack/talk/SINSI:0x197a8	*ahem* Hrmmm!<FFF6>I was clearing my throat.<FFF5>
 645	0xa18d	pack/talk/SINSI:0x19808	...... Hahaha, you are like a child!<FFF5>
 646	0xa1a6	pack/talk/SINSI:0x19848	Then would you be so kind as to tell<FFF6>me what the meaning of this is!?<FFF6>Hmph, there are no excuses!<FFF5>
@@ -660,13 +660,13 @@ id	pos	psp	en
 658	0xa3ee	pack/talk/SINSI:0x19f20	*sigh* I cannot comprehend you!<FFF6>Are you a dimwit or a genius...?<FFF5>
 659	0xa42a	pack/talk/SINSI:0x19fa8	*sigh* I cannot comprehend you.<FFF6>Humans are a strange species...<FFF5>
 660	0xa464	pack/talk/SINSI:0x1a028	I have seen the magic of Dr. Faustus,<FFF6>and you are equals!<FFF5>
-661	0xa49e	pack/talk/SINSI:0x1a0a0	Have you ever seen the sorcery of<FFF6>Dr. Faustus? Or Merlin?<FFF6>Or perhaps Crowley?<FFFB><FFF7>I assume the answer is no! Then do<FFF6>not presume greatness until you<FFF6>have seen the greats!<FFF5>
+661	0xa49e	pack/talk/SINSI:0x1a0a0	Have you ever seen the sorcery of<FFF6>Dr. Faustus? Or Merlin?<FFF6>Or perhaps Crowley?<FFFB><FFF7>I assume the answer is no!<FFF6>Then do not presume greatness<FFF6>until you have seen the greats!<FFF5>
 662	0xa518	pack/talk/SINSI:0x1a1f0	I enjoy the fact that you do<FFF6>not become oddly modest.<FFFB><FFF7>If I travel with you,<FFF6>my days will be anything but boring.<FFF5>
 663	0xa557	pack/talk/SINSI:0x1a2d8	Hmmmmm... What fool enjoys<FFF6>this danger being out in the world!?<FFF5>
 664	0xa58b	pack/talk/SINSI:0x1a358	A person this dangerous<FFF6>roaming through the world freely...<FFF6>How dreadful...<FFF5>
-665	0xa5be	pack/talk/SINSI:0x1a3f0	Child, that is dangerous. It is not<FFF6>a toy, thus, I shall take your weapon.<FFF5>
+665	0xa5be	pack/talk/SINSI:0x1a3f0	Child, that is dangerous.<FFF6>It is not a toy, thus,<FFF6>I shall take your weapon.<FFF5>
 666	0xa5fb	pack/talk/SINSI:0x1a488	As boring as I presumed it would be!<FFF6>I've known that all along!<FFF5>
-667	0xa638	pack/talk/SINSI:0x1a508	Well if that's how you'd put it, then...<FFF6>die!...Er... I lied. Please,<FFF6>just say you'll tell me someday!<FFF5>
+667	0xa638	pack/talk/SINSI:0x1a508	Well if that's how you'd put it, then...<FFF6>die! ...Er... I lied. Please,<FFF6>just say you'll tell me someday!<FFF5>
 668	0xa66d	pack/talk/SINSI:0x1a5d8	N-No... You wish to deprive<FFF6>me of sleep that much?<FFF5>
 669	0xa68b	pack/talk/SINSI:0x1a640	That is a noble objective! I shall<FFF6>cheer you on from the sidelines.<FFF5>
 670	0xa6b7	pack/talk/SINSI:0x1a6c8	So that is your answer...<FFF6>I wonder which is faster:<FFF6>that, or human genocide!<FFF5>

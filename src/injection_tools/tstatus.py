@@ -1,8 +1,7 @@
-"""Translation progress, QA and duplicate propagation for the event scripts.
+"""Translation progress and QA for the event scripts.
 
   python src/injection_tools/tstatus.py status       print coverage + exactly where to continue
   python tools/tstatus.py qa           check every translated box against its Japanese original
-  python tools/tstatus.py propagate    copy a translation to every box with identical Japanese
   python tools/tstatus.py next [N]     print the next N untranslated boxes (default 25) in work order
 
 QA errors (build.py fails on these):
@@ -34,7 +33,6 @@ import strlib     # noqa: E402
 import vwf_wrap   # noqa: E402
 
 ROOT = etext.ROOT
-EV = os.path.join(ROOT, 'translation', 'manual', 'events')
 TAB, NL = chr(9), chr(10)
 # parameter bytes that follow each control code (observed in all 7344 boxes)
 PARAM_LEN = {0x05: 2, 0x06: 1, 0x07: 1, 0x08: 1, 0x0E: 1, 0x0F: 1, 0x11: 0, 0x12: 0}
@@ -46,33 +44,24 @@ def rows(include_auto=True, reviewed=None):
     """Yield all source boxes, merging sparse manual rows over PSP-generated ports."""
     auto = etext.auto_event_text() if include_auto else {}
     for n in etext.FILES:
-        p = os.path.join(EV, f'{n}.tsv')
-        manual = {}
-        if not os.path.exists(p):
-            pass  # no human work left for this file: fully auto-covered
-        else:
-            for line in open(p, encoding='utf-8').read().split(NL)[1:]:
-                f = line.split(TAB)
-                if len(f) >= 4 and f[0].isdigit():
-                    manual[(int(f[0]), int(f[1]))] = (f[2], f[3])
         source = etext.efile.load(etext.path(n))
+        # the same pos-keyed manual rows the build reads (etext.load_edits)
+        pmap = etext.pos_map(source)
+        manual = {pmap[r['pos']]: r.get('en', '')
+                  for r in toolbelt.read_manual(f'ADV/{n}', optional=True)
+                  if r['pos'] in pmap}
         for entry in source.entries:
             for box, (a, b) in enumerate(entry.boxes):
                 key = (n, entry.index, box)
                 ja = etext.decode(entry.body[a:b])
-                local = manual.get((entry.index, box))
-                if local and local[0] == ja and etext.has_text(local[1]):
-                    en = local[1]
+                local = manual.get((entry.index, box), '')
+                if etext.has_text(local):
+                    en = local
                     if reviewed is not None:
                         reviewed.add(key)
                 else:
                     port = auto.get(key)
-                    if port and port[0] == ja:
-                        en = port[1]
-                    elif local and local[0] == ja:
-                        en = local[1]
-                    else:
-                        en = ''
+                    en = port[1] if port and port[0] == ja else ''
                 yield n, entry.index, box, ja, en
 
 
@@ -572,29 +561,6 @@ def cmd_qa(limit=40):
     return fatal
 
 
-def cmd_propagate():
-    by_ja = collections.defaultdict(collections.Counter)
-    for n, e, k, ja, en in rows(include_auto=False):
-        if etext.has_text(en):
-            by_ja[ja][en] += 1
-    conflicts = {ja: c for ja, c in by_ja.items() if len(c) > 1}
-    filled = 0
-    for n in etext.FILES:
-        p = os.path.join(EV, f'{n}.tsv')
-        lines = open(p, encoding='utf-8').read().split(NL)
-        for i, line in enumerate(lines[1:], 1):
-            f = line.split(TAB)
-            if len(f) >= 4 and f[0].isdigit() and etext.is_todo(f[3]) and f[2] in by_ja:
-                f[3] = by_ja[f[2]].most_common(1)[0][0]
-                lines[i] = TAB.join(f)
-                filled += 1
-        open(p, 'w', encoding='utf-8', newline=NL).write(NL.join(lines))
-    print(f'propagated {filled} boxes; {len(conflicts)} Japanese texts have conflicting translations')
-    for ja, c in list(conflicts.items())[:5]:
-        print('  conflict:', ja[:50])
-    return filled
-
-
 def stats():
     per = collections.OrderedDict()
     uniq, uniq_done = {}, set()
@@ -681,8 +647,6 @@ if __name__ == '__main__':
         cmd_status()
     elif a[0] == 'qa':
         sys.exit(1 if cmd_qa() else 0)
-    elif a[0] == 'propagate':
-        cmd_propagate()
     elif a[0] == 'next':
         cmd_next(int(a[1]) if len(a) > 1 else 25)
     else:

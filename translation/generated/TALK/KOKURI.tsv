@@ -127,8 +127,8 @@ id	pos	psp	en
 125	0x62e7	pack/talk/KOKURI:0x34d8	...H-E-E... H-E-E...<FFF5>
 126	0x6396	pack/talk/KOKURI:0x3508	...I... S-E-E...<FFF5>
 127	0x641b	pack/talk/KOKURI:0x3530	...I... S-E-E...<FFF5>
-128	0x64a0	pack/talk/KOKURI:0x3558	...W-I-L-L... K-I-L-L... Y-O-U... G-I-V-<FFF6>E... M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
-129	0x6541	pack/talk/KOKURI:0x35f0	...W-I-L-L... K-I-L-L... Y-O-U... G-I-V-<FFF6>E... M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+128	0x64a0	pack/talk/KOKURI:0x3558	...W-I-L-L... K-I-L-L...<FFF6>Y-O-U... G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
+129	0x6541	pack/talk/KOKURI:0x35f0	...W-I-L-L... K-I-L-L...<FFF6>Y-O-U... G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
 130	0x65e2	pack/talk/KOKURI:0x3688	...W-H-Y...?<FFF5>
 131	0x664f	pack/talk/KOKURI:0x36a8	...W-H-Y...?<FFF5>
 132	0x66bc	pack/talk/KOKURI:0x36c8	...H-A... H-A...<FFF5>
@@ -170,31 +170,31 @@ id	pos	psp	en
 168	0x79d5	pack/talk/KOKURI:0x3ff8	...G-O... H-O-M-E...<FFEF>
 169	0x7a2a	pack/talk/KOKURI:0x4028	...I-'-M... L-E-A-V-I-N-G...!...<FFEF>
 170	0x7a81	pack/talk/KOKURI:0x4070	...I-'-L-L... G-I-V-E... T-H-I-S...<FFF6>T-O... A... M-O-R-O-N...!...<FFEF>
-171	0x7b13	pack/talk/KOKURI:0x40f8	ABCDEFGHIJKLMNOPQRSTUVWXYZ<FFFB><FFF7>Ugh, screw this! I get all irritated if<FFF6>I don't talk normally sometimes.<FFEF>
+171	0x7b13	pack/talk/KOKURI:0x40f8	ABCDEFGHIJKLMNOPQRSTUVWXYZ<FFFB><FFF7>Ugh, screw this! I get all irritated if I<FFF6>don't talk normally sometimes.<FFEF>
 172	0x7b72	pack/talk/KOKURI:0x41c8	*yip* I'm not in the mood to<FFF6>use the board this time,<FFF6>so I'll just give you my card.<FFEF>
 173	0x7ba1	pack/talk/KOKURI:0x4278	You seem pretty amazing for a human.<FFF6>Let's just talk like normal.<FFEF>
-174	0x7bd1	pack/talk/KOKURI:0x4300	*yip* Not only that, I'll give you<FFF6>my card, too. Gracious, aren't I?<FFEF>
+174	0x7bd1	pack/talk/KOKURI:0x4300	*yip* Not only that,<FFF6>I'll give you my card, too.<FFF6>Gracious, aren't I?<FFEF>
 175	0x7c04	pack/talk/KOKURI:0x4390	...L-I-K-E... I-T... A... L-O-T...<FFEF>
 176	0x7c39	pack/talk/KOKURI:0x43d8	...T-H-I-S... I-S... F-O-R... Y-O-U...<FFEF>
 177	0x7ce0	pack/talk/KOKURI:0x4428	Alright, I'll talk normally...<FFF6>Just stop scaring me so much...<FFEF>
-178	0x7d11	pack/talk/KOKURI:0x44a8	C'mon, I'll give you my card.<FFF6>You won't have any complaints if<FFF6>I do that, right?<FFEF>
+178	0x7d11	pack/talk/KOKURI:0x44a8	C'mon, I'll give you my card.<FFF6>You won't have any complaints<FFF6>if I do that, right?<FFEF>
 179	0x7d37	pack/talk/KOKURI:0x4550	...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
 180	0x7d9c	pack/talk/KOKURI:0x45a8	...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
 181	0x7e01	pack/talk/KOKURI:0x4600	...G-I-M-M-E... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
-182	0x7e3d	pack/talk/KOKURI:0x4650	...H-A-N-D... S-O-M-E-T-H-I-N-G...<FFF6>O-V-E-R...<FFF1><FFF5>
+182	0x7e3d	pack/talk/KOKURI:0x4650	...H-A-N-D...<FFF6>S-O-M-E-T-H-I-N-G... O-V-E-R...<FFF1><FFF5>
 183	0x7eb7	pack/talk/KOKURI:0x46b0	...I... W-A-N-T... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
 184	0x7f21	pack/talk/KOKURI:0x4708	...I... W-A-N-T... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
 185	0x7f8b	pack/talk/KOKURI:0x4760	*yip* A full moon! This is so awesome!<FFFB><FFF7>Oh crap, I talked normally!<FFF6>Eh, oh well. *yip*<FFF5>
 186	0x7fd7	pack/talk/KOKURI:0x4810	*yip* That full moon feels great...<FFF6>By the way, human,<FFF6>do you know who I am?<FFFD>　<FFF5>
 187	0x8016	pack/talk/KOKURI:0x48b0	<FFEE>...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
-188	0x807d	pack/talk/KOKURI:0x4908	<FFED>...H-A-N-D... S-O-M-E-T-H-I-N-G...<FFF6>O-V-E-R...<FFF1><FFF5>
+188	0x807d	pack/talk/KOKURI:0x4908	<FFED>...H-A-N-D...<FFF6>S-O-M-E-T-H-I-N-G... O-V-E-R...<FFF1><FFF5>
 189	0x80f9	pack/talk/KOKURI:0x4968	<FFEE>...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
 190	0x8160	pack/talk/KOKURI:0x49c0	<FFEC>...I... W-A-N-T... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
 191	0x81cc	pack/talk/KOKURI:0x4a18	<FFEE>...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
 192	0x8233	pack/talk/KOKURI:0x4a70	<FFEB>...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
-193	0x829a	pack/talk/KOKURI:0x4ac8	<FFED>...H-A-N-D... S-O-M-E-T-H-I-N-G...<FFF6>O-V-E-R...<FFF1><FFF5>
+193	0x829a	pack/talk/KOKURI:0x4ac8	<FFED>...H-A-N-D...<FFF6>S-O-M-E-T-H-I-N-G... O-V-E-R...<FFF1><FFF5>
 194	0x8316	pack/talk/KOKURI:0x4b28	<FFEC>...I... W-A-N-T... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
-195	0x8382	pack/talk/KOKURI:0x4b80	<FFED>...H-A-N-D... S-O-M-E-T-H-I-N-G...<FFF6>O-V-E-R...<FFF1><FFF5>
+195	0x8382	pack/talk/KOKURI:0x4b80	<FFED>...H-A-N-D...<FFF6>S-O-M-E-T-H-I-N-G... O-V-E-R...<FFF1><FFF5>
 196	0x83fe	pack/talk/KOKURI:0x4be0	<FFEB>...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
 197	0x8465	pack/talk/KOKURI:0x4c38	<FFEC>...I... W-A-N-T... S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
 198	0x84d1	pack/talk/KOKURI:0x4c90	<FFEB>...G-I-V-E... M-E...<FFF6>S-O-M-E-T-H-I-N-G...<FFF1><FFF5>
@@ -202,20 +202,20 @@ id	pos	psp	en
 200	0x85b9	pack/talk/KOKURI:0x4d70	...B-O-R-I-N-G... D-I-E...!...<FFEF>
 201	0x8669	pack/talk/KOKURI:0x4db0	...S-O... S-C-A-R-Y... S-C-A-R-E-D...<FFEF>
 202	0x86bc	pack/talk/KOKURI:0x4e00	...S-O... N-I-C-E...<FFEF>
-203	0x8750	pack/talk/KOKURI:0x4e30	...B-O-R-I-N-G... B-U-T...<FFF6>I... W-I-L-L... L-I-S-T-E-N... T-O...<FFF6>Y-O-U-R... R-E-Q-U-E-S-T...<FFEF>
+203	0x8750	pack/talk/KOKURI:0x4e30	...B-O-R-I-N-G... B-U-T... I...<FFF6>W-I-L-L... L-I-S-T-E-N... T-O...<FFF6>Y-O-U-R... R-E-Q-U-E-S-T...<FFEF>
 204	0x87e9	pack/talk/KOKURI:0x4ef0	I... W-I-L-L... L-I-S-T-E-N... T-O...<FFF6>Y-O-U-R... R-E-Q-U-E-S-T...<FFEF>
 205	0x8854	pack/talk/KOKURI:0x4f78	...Y-O-U-'-R-E... F-U-N-N-Y...<FFF6>T-E-L-L... M-E... W-H-A-T...<FFF6>Y-O-U... W-A-N-T...<FFEF>
 206	0x88e6	pack/talk/KOKURI:0x5018	...W-E-I-R-D... H-U-M-A-N...<FFEF>
 207	0x893b	pack/talk/KOKURI:0x5058	...L-A-M-E...!...<FFEF>
 208	0x8990	pack/talk/KOKURI:0x5080	...Y-O-U-R-'-E... A-M-A-Z-I-N-G...!...<FFEF>
 209	0x8a26	pack/talk/KOKURI:0x50d0	...M-O-N-E-Y...<FFEF>
-210	0x8a56	pack/talk/KOKURI:0x50f0	*yip*...F<FFF5>
+210	0x8a56	pack/talk/KOKURI:0x50f0	*yip* ...F<FFF5>
 211	0x8a5e	pack/talk/KOKURI:0x5100	-O-O-L...<FFF5>
 212	0x8ae3	pack/talk/KOKURI:0x5120	...C-O-M-P-L-E-T-E...<FFF6>L-E-T-D-O-W-N...<FFF5>
 213	0x8b59	pack/talk/KOKURI:0x5170	...K-I-L-L...<FFF5>
 214	0x8be4	pack/talk/KOKURI:0x5190	...W-H-Y...?<FFF5>
 215	0x8c51	pack/talk/KOKURI:0x51b0	...L-I-F-E... S-T-O-N-E...<FFEF>
-216	0x8c8e	pack/talk/KOKURI:0x51e8	*yip*...F<FFF5>
+216	0x8c8e	pack/talk/KOKURI:0x51e8	*yip* ...F<FFF5>
 217	0x8c96	pack/talk/KOKURI:0x51f8	-O-O-L...<FFF5>
 218	0x8d1b	pack/talk/KOKURI:0x5218	...C-O-M-P-L-E-T-E...<FFF6>L-E-T-D-O-W-N...<FFF5>
 219	0x8d91	pack/talk/KOKURI:0x5268	...K-I-L-L...<FFF5>
@@ -226,12 +226,12 @@ id	pos	psp	en
 224	0x8ed3	pack/talk/KOKURI:0x52e0	-I-L-L...<FFF5>
 225	0x8f5e	pack/talk/KOKURI:0x5300	...W-H-Y...?<FFF5>
 226	0x8fcb	pack/talk/KOKURI:0x5320	...E-N-E-R-G-Y...<FFF1><FFF5>
-227	0x901a	pack/talk/KOKURI:0x5348	*yip*...K<FFF5>
+227	0x901a	pack/talk/KOKURI:0x5348	*yip* ...K<FFF5>
 228	0x9022	pack/talk/KOKURI:0x5358	-I-L-L...<FFF5>
 229	0x90ad	pack/talk/KOKURI:0x5378	...W-H-Y...?<FFF5>
 230	0x911a	pack/talk/KOKURI:0x5398	No, that's Comet.<FFF6>I like her too, you know.<FFF5>
 231	0x913f	pack/talk/KOKURI:0x53f0	No, that's a brokery. Dude, don't<FFF6>mistake me for one of those sharks...<FFF5>
-232	0x9165	pack/talk/KOKURI:0x5480	That's jiggery-pokery! You got it<FFF6>wrong, so I'm gonna curse you!<FFF5>
-233	0x9191	pack/talk/KOKURI:0x5508	That's jiggery-pokery! You got it<FFF6>wrong, so I'm gonna curse you!<FFF5>
+232	0x9165	pack/talk/KOKURI:0x5480	That's jiggery-pokery!<FFF6>You got it wrong,<FFF6>so I'm gonna curse you!<FFF5>
+233	0x9191	pack/talk/KOKURI:0x5508	That's jiggery-pokery!<FFF6>You got it wrong,<FFF6>so I'm gonna curse you!<FFF5>
 234	0x999c	KOKURI:0	An alien?<FFF5>
 235	0x99a6	KOKURI:1	An insurance agent?<FFF5>

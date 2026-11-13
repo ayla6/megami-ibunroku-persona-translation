@@ -31,7 +31,7 @@ id	pos	psp	en
 29	0x238f	pack/talk/ZOMB_MAN:0x2b98	I alrea'y kno I suck at dancing!<FFF5>
 30	0x23a5	pack/talk/ZOMB_MAN:0x2be0	If I could dance,<FFF6>would I be popular too?<FFF6>W-Would the kogalz be all over me...?<FFF5>
 31	0x23d1	pack/talk/ZOMB_MAN:0x2c80	Wanna do stand-up routinez with me?<FFF5>
-32	0x23df	pack/talk/ZOMB_MAN:0x2cc8	Thaa wuz booooring! I'm picky when<FFF6>it comez to stan'up comedy!<FFF5>
+32	0x23df	pack/talk/ZOMB_MAN:0x2cc8	Thaa wuz booooring! I'm picky when it<FFF6>comez to stan'up comedy!<FFF5>
 33	0x23fc	pack/talk/ZOMB_MAN:0x2d48	So coooold...<FFF6>I feel like I'm in the Ar'tic...<FFF5>
 34	0x241a	pack/talk/ZOMB_MAN:0x2da8	You gotta sense ov humor... I promize!<FFF5>
 35	0x243d	pack/talk/ZOMB_MAN:0x2df8	Wuz thaa song called?<FFF5>
@@ -50,7 +50,7 @@ id	pos	psp	en
 48	0x25a9	pack/talk/ZOMB_MAN:0x3298	You look like a tasty lumpa meat.<FFF6>Not bad...<FFF5>
 49	0x25ba	pack/talk/ZOMB_MAN:0x32f8	Do I have blood on me...? The meat I<FFF6>ate earlier wuz pretty messy.<FFF5>
 50	0x25e9	pack/talk/ZOMB_MAN:0x3380	I'm not yur bruther or yur friend.<FFF6>Everywun mistakes me for<FFF6>somewun else lately...<FFF5>
-51	0x2617	pack/talk/ZOMB_MAN:0x3428	Whu...? Do you need something with<FFF6>me? I need you for something too...!<FFF5>
+51	0x2617	pack/talk/ZOMB_MAN:0x3428	Whu...?<FFF6>Do you need something with me?<FFF6>I need you for something too...!<FFF5>
 52	0x263f	pack/talk/ZOMB_MAN:0x34b8	Wut's thaa?<FFF5>
 53	0x264b	pack/talk/ZOMB_MAN:0x34d0	I gave her all thoze prezents...<FFF6>but thaa witch wuz still<FFF6>cheating on me... Dammit!<FFF5>
 54	0x2684	pack/talk/ZOMB_MAN:0x3578	Yur gonna give thaa to me!?<FFF5>
@@ -60,7 +60,7 @@ id	pos	psp	en
 58	0x26e2	pack/talk/ZOMB_MAN:0x36b8	I'm starting to get the hang<FFF6>ov acting like a demon.<FFF5>
 59	0x26fc	pack/talk/ZOMB_MAN:0x3728	Then get strong like me!<FFF5>
 60	0x2718	pack/talk/ZOMB_MAN:0x3760	Women're scary.<FFF6>Wut're they thinking...?<FFF5>
-61	0x2736	pack/talk/ZOMB_MAN:0x37b8	Am I strong? Am I scary? Huhuh...<FFF6>I'm glad I became a demon!<FFF5>
+61	0x2736	pack/talk/ZOMB_MAN:0x37b8	Am I strong? Am I scary?<FFF6>Huhuh... I'm glad I became a demon!<FFF5>
 62	0x2766	pack/talk/ZOMB_MAN:0x3838	Sounz like yur talking about<FFF6>some hard stuff.<FFF5>
 63	0x277f	pack/talk/ZOMB_MAN:0x3898	If you really mean it, prove it...<FFF1><FFF5>
 64	0x279f	pack/talk/ZOMB_MAN:0x38e0	C'mon... Thaa'z all you have to say?<FFF5>
@@ -77,7 +77,7 @@ id	pos	psp	en
 75	0x2931	pack/talk/ZOMB_MAN:0x3d88	Wut language're you speaking?<FFF6>I don't geddit at all...<FFF5>
 76	0x2961	pack/talk/ZOMB_MAN:0x3df8	I guess a zombie like me izn't<FFF6>completely useless if humanz're<FFF6>asking for my help!<FFF5>
 77	0x298e	pack/talk/ZOMB_MAN:0x3ea0	I'm real happy to hear it!<FFF5>
-78	0x299b	pack/talk/ZOMB_MAN:0x3ed8	I might not look like it, but my IQ'z<FFF6>1300. I kno just wut yur thinking.<FFF5>
+78	0x299b	pack/talk/ZOMB_MAN:0x3ed8	I might not look like it,<FFF6>but my IQ'z 1300.<FFF6>I kno just wut yur thinking.<FFF5>
 79	0x29d3	pack/talk/ZOMB_MAN:0x3f70	Y'think thaa's the right attitude for<FFF6>negoshiashun? Sounz like yur<FFF6>brain'z pretty rotten too.<FFF5>
 80	0x29ff	pack/talk/ZOMB_MAN:0x4030	You ain't smart at all!<FFF6>You got no right to make fun ov me!<FFF5>
 81	0x2a32	pack/talk/ZOMB_MAN:0x40a8	You've gone way too far,<FFF6>making fun ov me!<FFF5>
@@ -97,7 +97,7 @@ id	pos	psp	en
 95	0x2c17	pack/talk/ZOMB_MAN:0x4640	I uzed to be real stoic when I wuz still<FFF6>human... but now I'm a demon!<FFF1><FFF5>
 96	0x2c4a	pack/talk/ZOMB_MAN:0x46d0	Iz it thaa much fun mocking me!?<FFF5>
 97	0x2c64	pack/talk/ZOMB_MAN:0x4718	I've been pretty unnerrated...<FFF6>Thaa'z not wut I want!<FFF1><FFF5>
-98	0x2c93	pack/talk/ZOMB_MAN:0x4788	O-Ov course everywun's free to<FFF6>chooze thaa... But I'm not like them!<FFF6>I'm different!<FFF5>
+98	0x2c93	pack/talk/ZOMB_MAN:0x4788	O-Ov course everywun's<FFF6>free to chooze thaa...<FFF6>But I'm not like them! I'm different!<FFF5>
 99	0x2cc4	pack/talk/ZOMB_MAN:0x4830	Whoooa... Y-You want me...?<FFF5>
 100	0x2ce2	pack/talk/ZOMB_MAN:0x4868	I feel like I'm burning up inside...<FFF5>
 101	0x2cf3	pack/talk/ZOMB_MAN:0x48b8	Want me to be frienz with you?<FFF6>Yur lonely, right?<FFF5>
@@ -108,18 +108,18 @@ id	pos	psp	en
 106	0x2d72	pack/talk/ZOMB_MAN:0x4a28	Yur such a pessimistic human...<FFF5>
 107	0x2d85	pack/talk/ZOMB_MAN:0x4a68	Guh! Sorry! I'm sorry!<FFF5>
 108	0x2da0	pack/talk/ZOMB_MAN:0x4a98	Then go out with me! Ahurhurhur!<FFF5>
-109	0x2dc3	pack/talk/ZOMB_MAN:0x4ae0	There'z nothing to worry about if<FFF6>you come with me!<FFF5>
+109	0x2dc3	pack/talk/ZOMB_MAN:0x4ae0	There'z nothing to worry about<FFF6>if you come with me!<FFF5>
 110	0x2ddb	pack/talk/ZOMB_MAN:0x4b48	You have my spell card, right...?<FFF6>Don't thro it away, okay?<FFEF>
 111	0x2e04	pack/talk/ZOMB_MAN:0x4bc0	You and me live in different worlz...<FFF6>It's too bad...<FFEF>
 112	0x2e2b	pack/talk/ZOMB_MAN:0x4c30	I feel like I'm not gonna gro az<FFF6>a zombie if I talk with you...<FFEF>
 113	0x2e4f	pack/talk/ZOMB_MAN:0x4cb0	Oh, okay.<FFEF>
 114	0x2e59	pack/talk/ZOMB_MAN:0x4cc8	Then I'll give you this.<FFEF>
 115	0x2e65	pack/talk/ZOMB_MAN:0x4d00	Take this, too.<FFEF>
-116	0x2e6b	pack/talk/ZOMB_MAN:0x4d20	I'll give you this, so don't hold<FFF6>a grudge against me...<FFEF>
+116	0x2e6b	pack/talk/ZOMB_MAN:0x4d20	I'll give you this,<FFF6>so don't hold a grudge against me...<FFEF>
 117	0x2e85	pack/talk/ZOMB_MAN:0x4d98	Lemme have just a li'l<FFF6>bite ov you next time!<FFEF>
 118	0x2ea1	pack/talk/ZOMB_MAN:0x4df8	I'm gonna go now. Somewun might be<FFF6>calling for me somewhere...<FFEF>
-119	0x2ec9	pack/talk/ZOMB_MAN:0x4e78	Uuurrgh... I'll give you this if<FFF6>you just lemme go...<FFEF>
-120	0x2eed	pack/talk/ZOMB_MAN:0x4ee8	I feel like my brain'z gonna<FFF6>rot if I keep talking to you!<FFEF>
+119	0x2ec9	pack/talk/ZOMB_MAN:0x4e78	Uuurrgh... I'll give you this<FFF6>if you just lemme go...<FFEF>
+120	0x2eed	pack/talk/ZOMB_MAN:0x4ee8	I feel like my brain'z gonna rot<FFF6>if I keep talking to you!<FFEF>
 121	0x2f0b	pack/talk/ZOMB_MAN:0x4f60	I'll give you this. You should go<FFF6>home before it'z too late...<FFEF>
 122	0x2f32	pack/talk/ZOMB_MAN:0x4fe0	...Why won't you disappear!?<FFF6>Urrrgh... I really am a zombie!<FFEF>
 123	0x2f67	pack/talk/ZOMB_MAN:0x5060	I'll give you my card, but hurry and<FFF6>make a Persona with it,<FFF6>or it might rot.<FFEF>
@@ -131,7 +131,7 @@ id	pos	psp	en
 129	0x3052	pack/talk/ZOMB_MAN:0x5310	I'm kinda in a fix right now.<FFF6>Think ov it as helping out a friend.<FFF1><FFF5>
 130	0x3075	pack/talk/ZOMB_MAN:0x5398	Just be happy yur still alive!<FFF6>It's greedy to want more!<FFEF>
 131	0x30a2	pack/talk/ZOMB_MAN:0x5410	You wanna talk? You brought a little<FFF6>prezent for me, right...?<FFF1><FFF5>
-132	0x30cf	pack/talk/ZOMB_MAN:0x5490	I got a right to live too,<FFF6>don't I? Don't I...?<FFF5>
+132	0x30cf	pack/talk/ZOMB_MAN:0x5490	I got a right to live too, don't I?<FFF6>Don't I...?<FFF5>
 133	0x30f7	pack/talk/ZOMB_MAN:0x54f0	You still wanna pick on me?<FFF6>Just leave me alone!<FFF5>
 134	0x3118	pack/talk/ZOMB_MAN:0x5558	Y'know, it's a lot more fun than<FFF6>you think being a zombie.<FFF5>
 135	0x313a	pack/talk/ZOMB_MAN:0x55d0	Yur fun to be around...<FFF6>Let's be frienz!<FFF5>
@@ -145,7 +145,7 @@ id	pos	psp	en
 143	0x3298	pack/talk/ZOMB_MAN:0x5a10	<FFEC>Yur cruel! Yur so cruel! Waaaah!<FFF5>
 144	0x32af	pack/talk/ZOMB_MAN:0x5a58	<FFEB>I'm above humans.<FFF6>Every human iz just food for us!<FFF5>
 145	0x32e2	pack/talk/ZOMB_MAN:0x5ac0	<FFED>I hear you've been doing pretty good<FFF6>lately. Gimme some of thaa money...!<FFF1><FFF5>
-146	0x3312	pack/talk/ZOMB_MAN:0x5b58	<FFEC>Hey, man. Won't we be unbeatable if<FFF6>we team up? How about it...?<FFF5>
+146	0x3312	pack/talk/ZOMB_MAN:0x5b58	<FFEC>Hey, man. Won't we be unbeatable<FFF6>if we team up? How about it...?<FFF5>
 147	0x3344	pack/talk/ZOMB_MAN:0x5be0	<FFEB>I've been looking for you...<FFF6>I wanted to be yur apprentice.<FFF5>
 148	0x3371	pack/talk/ZOMB_MAN:0x5c60	Whuh... Wut do you want with me?<FFEF>
 149	0x3387	pack/talk/ZOMB_MAN:0x5ca8	Don't make fun ov me!<FFF6>Get outta my sight!<FFEF>
@@ -176,7 +176,7 @@ id	pos	psp	en
 174	0x36f0	pack/talk/ZOMB_MAN:0x67d8	Wut's up with thaa...? I'm injured,<FFF6>y'kno... Yur cold for a human.<FFF5>
 175	0x3720	pack/talk/ZOMB_MAN:0x6860	You don't have any! You were alwayz<FFF6>planning to fight me, huh!?<FFF5>
 176	0x3746	pack/talk/ZOMB_MAN:0x68e0	Yur so cruel...<FFF6>Yur even more twisted than me!<FFF5>
-177	0x376b	pack/talk/ZOMB_MAN:0x6940	Huh...? Are you my rival!? Urrrgh...<FFF6>You won't be eazy to beat...<FFF5>
+177	0x376b	pack/talk/ZOMB_MAN:0x6940	Huh...? Are you my rival!?<FFF6>Urrrgh... You won't be eazy to beat...<FFF5>
 178	0x379b	pack/talk/ZOMB_MAN:0x69c8	I only wanted a little!<FFF6>Yur such a jerk!<FFF5>
 179	0x37bc	pack/talk/ZOMB_MAN:0x6a20	Dammit! I'll give you my spell card!<FFEF>
 180	0x37de	pack/talk/ZOMB_MAN:0x6a70	We're frienz,<FFF6>so I'll give you my spell card!<FFF6>But you better not thro it away...<FFEF>

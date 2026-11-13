@@ -39,7 +39,7 @@ id	pos	psp	en
 37	0x260e	pack/talk/GAKI:0x3278	No one says stuff like that anymore...<FFF6>You're behind the times, bro.<FFF5>
 38	0x2630	pack/talk/GAKI:0x3308	Gah! You must be rich, bro!<FFF6>I think I'm fallin' for ya!<FFF5>
 39	0x2659	pack/talk/GAKI:0x3378	What was that, lameass!?<FFF6>I'm an extravagant guy!<FFF5>
-40	0x2678	pack/talk/GAKI:0x33e0	Gyahahaha! Gyahahaha! Gimme more<FFF6>stuff! Gyahahaha! Gyahahaha!<FFF5>
+40	0x2678	pack/talk/GAKI:0x33e0	Gyahahaha! Gyahahaha!<FFF6>Gimme more stuff!<FFF6>Gyahahaha! Gyahahaha!<FFF5>
 41	0x26b0	pack/talk/GAKI:0x3460	Gah! You're a rationalist, eh, bro?<FFF6>I like that school of thought.<FFF5>
 42	0x26db	pack/talk/GAKI:0x34e8	What was that, lameass!?<FFF6>I ain't interested in speeches!<FFF5>
 43	0x2700	pack/talk/GAKI:0x3560	Gyahahaha! Gyahahaha!<FFF6>You're absolutely right, bro!<FFF5>
@@ -48,7 +48,7 @@ id	pos	psp	en
 46	0x2776	pack/talk/GAKI:0x36e0	C'mon bro... Don't hate...<FFF5>
 47	0x2793	pack/talk/GAKI:0x3718	Gah! I'm a superstar too!<FFF5>
 48	0x27ad	pack/talk/GAKI:0x3750	For some reason, I can't bring<FFF6>myself to listen to what you're sayin'!<FFF5>
-49	0x27cd	pack/talk/GAKI:0x37e0	Gyahahaha! Gyahahaha! You totally<FFF6>get it, bro! Gyahahaha! Gyahahaha!<FFF5>
+49	0x27cd	pack/talk/GAKI:0x37e0	Gyahahaha! Gyahahaha!<FFF6>You totally get it, bro!<FFF6>Gyahahaha! Gyahahaha!<FFF5>
 50	0x2805	pack/talk/GAKI:0x3870	Gah! You're lookin' sharp, bro!<FFF6>I think I'm fallin' for ya!<FFF5>
 51	0x282d	pack/talk/GAKI:0x38e8	What was that, lameass!? Don't be<FFF6>showin' me your shitty moves!<FFF5>
 52	0x2858	pack/talk/GAKI:0x3968	Gyahahaha! Gyahahaha!<FFF6>You're pretty good at that, bro!<FFF6>Put your hips into it!<FFF5>
@@ -72,7 +72,7 @@ id	pos	psp	en
 70	0x2b1b	pack/talk/GAKI:0x4188	Gyahahaha! Gyahahaha!<FFF6>Can't I act like a little kid just once?<FFF5>
 71	0x2b46	pack/talk/GAKI:0x4208	Gah! You've got a hot body, girl...<FFF6>I think I'm getting kinda... Gahhh!<FFF5>
 72	0x2b76	pack/talk/GAKI:0x4298	I ain't that easy of<FFF6>a preta to pick up on!<FFF5>
-73	0x2b94	pack/talk/GAKI:0x42f0	Gyahahaha! Gyahahaha! You need<FFF6>me? Me?! Well, that just made my day!<FFF5>
+73	0x2b94	pack/talk/GAKI:0x42f0	Gyahahaha! Gyahahaha!<FFF6>You need me? Me?!<FFF6>Well, that just made my day!<FFF5>
 74	0x2bc9	pack/talk/GAKI:0x4380	Gah! You've got a foul mouth, girl...<FFF6>But it sounds brisk!<FFF5>
 75	0x2bf3	pack/talk/GAKI:0x43f8	What was that, lameass!? I don't<FFF6>remember doin' anything to warrant<FFF6>this kinda shit talk outta you!<FFF5>
 76	0x2c1c	pack/talk/GAKI:0x44c0	C'mon, girl, don't talk like that...<FFF5>
@@ -85,7 +85,7 @@ id	pos	psp	en
 83	0x2d5b	pack/talk/GAKI:0x4808	Gah! You're a bold chick...<FFF6>I think I'm fallin' for ya!<FFF5>
 84	0x2d86	pack/talk/GAKI:0x4878	What was that, lameass!? A girl like<FFF6>you is gonna pick a fight with me!?<FFF5>
 85	0x2db1	pack/talk/GAKI:0x4910	C'mon, girl,<FFF6>don't threaten me like that...<FFF5>
-86	0x2dda	pack/talk/GAKI:0x4968	What was that, lameass!? Stop acting<FFF6>like you're the shit! Dumbass fool!<FFF5>
+86	0x2dda	pack/talk/GAKI:0x4968	What was that, lameass!?<FFF6>Stop acting like you're the shit!<FFF6>Dumbass fool!<FFF5>
 87	0x2e0f	pack/talk/GAKI:0x4a00	C'mon, girl, don't talk like that...<FFF5>
 88	0x2e34	pack/talk/GAKI:0x4a50	Gyahahaha! Gyahahaha! Bring it on!<FFF5>
 89	0x2e5a	pack/talk/GAKI:0x4a98	Gah! You must be smart, girl!<FFF6>I think I'm fallin' for ya!<FFF5>
@@ -124,7 +124,7 @@ id	pos	psp	en
 122	0x33ac	pack/talk/GAKI:0x5a68	That's got nothin' to do with me...<FFF5>
 123	0x33bb	pack/talk/GAKI:0x5ab0	You want my help?<FFF6>I've got a bad feeling about this...<FFF5>
 124	0x33e4	pack/talk/GAKI:0x5b20	Gyahahaha! Gyahahaha!<FFF6>I gotta plug up my pheromones!<FFF6>They must be overflowin'!<FFF5>
-125	0x3413	pack/talk/GAKI:0x5bc0	Gyahahaha! Gyahahaha! I like bein'<FFF6>counted on! Makes me feel awesome!<FFF5>
+125	0x3413	pack/talk/GAKI:0x5bc0	Gyahahaha! Gyahahaha!<FFF6>I like bein' counted on!<FFF6>Makes me feel awesome!<FFF5>
 126	0x3449	pack/talk/GAKI:0x5c50	Gah! You tryin' to piss me off?<FFF6>You're a weirdo of a human...<FFF5>
 127	0x3479	pack/talk/GAKI:0x5cd0	Gah! That ain't gonna upset me!<FFF6>Try another one!<FFF5>
 128	0x34a3	pack/talk/GAKI:0x5d38	What was that, lameass!?<FFF6>Don't underestimate me!<FFF5>
@@ -157,7 +157,7 @@ id	pos	psp	en
 155	0x3933	pack/talk/GAKI:0x6a08	If I'm gettin' this much pressure now,<FFF6>what's gonna happen to me later...?<FFF5>
 156	0x3954	pack/talk/GAKI:0x6aa0	Gyahahaha! Gyahahaha!<FFF6>It's been a while since I was in<FFF6>a good mood like this!<FFF5>
 157	0x3988	pack/talk/GAKI:0x6b40	Gyahahaha! Gyahahaha!<FFF6>Bein' able to call myself<FFF6>a demon is already the shit!<FFF5>
-158	0x39bd	pack/talk/GAKI:0x6be0	Eh...? You already have my spell<FFF6>card... I'm outta here then...<FFEF>
+158	0x39bd	pack/talk/GAKI:0x6be0	Eh...?<FFF6>You already have my spell card...<FFF6>I'm outta here then...<FFEF>
 159	0x39f2	pack/talk/GAKI:0x6c60	Let's see... Take this!<FFEF>
 160	0x3a03	pack/talk/GAKI:0x6c90	You're such a pitiful human...<FFEF>
 161	0x3a15	pack/talk/GAKI:0x6cd0	I dunno...<FFF6>You seem different from us...<FFEF>
@@ -166,24 +166,24 @@ id	pos	psp	en
 164	0x3a71	pack/talk/GAKI:0x6df0	...Later!<FFEF>
 165	0x3a7a	pack/talk/GAKI:0x6e08	You're such a cool guy,<FFF6>so take this too!<FFEF>
 166	0x3a9d	pack/talk/GAKI:0x6e60	You don't need my card?<FFF6>Then I'm outta here!<FFEF>
-167	0x3abe	pack/talk/GAKI:0x6ec0	This is my card! Isn't it the best card<FFF6>ever!? You owe me big time! Thank me!<FFEF>
-168	0x3aef	pack/talk/GAKI:0x6f60	I'll give ya this, so you<FFF6>have to let me go!<FFEF>
+167	0x3abe	pack/talk/GAKI:0x6ec0	This is my card!<FFF6>Isn't it the best card ever!?<FFF6>You owe me big time! Thank me!<FFEF>
+168	0x3aef	pack/talk/GAKI:0x6f60	I'll give ya this,<FFF6>so you have to let me go!<FFEF>
 169	0x3b05	pack/talk/GAKI:0x6fc0	This is a waste of time! Who taught<FFF6>ya to negotiate!? A brick wall?<FFF6>'Cause this is goin' nowhere! I'm out!<FFEF>
-170	0x3b38	pack/talk/GAKI:0x7098	This is a waste of time! I'll give ya<FFF6>this, so let's just leave it at that!<FFEF>
+170	0x3b38	pack/talk/GAKI:0x7098	This is a waste of time!<FFF6>I'll give ya this,<FFF6>so let's just leave it at that!<FFEF>
 171	0x3b69	pack/talk/GAKI:0x7130	I have a single sentence for you that<FFF6>sums up my thoughts rather well...<FFFB><FFF7>What was that, lameass!?<FFEF>
 172	0x3b96	pack/talk/GAKI:0x71f8	...I think I feel better now that I've<FFF6>said everything I wanted to say...<FFFB><FFF7>...But I'll make an exception this time!<FFF6>Have my spell card, buddy!<FFEF>
 173	0x3be2	pack/talk/GAKI:0x7318	I've made up my mind!<FFF6>I'm comin' along for the ride!<FFF6>...Not that I can really do that...<FFEF>
-174	0x3c17	pack/talk/GAKI:0x73d0	...Oh yeah! Here, take my spell card!<FFF6>We'll always be together if<FFF6>I become a Persona!<FFEF>
+174	0x3c17	pack/talk/GAKI:0x73d0	...Oh yeah! Here, take my spell card!<FFF6>We'll always be together if I<FFF6>become a Persona!<FFEF>
 175	0x3c51	pack/talk/GAKI:0x7480	I don't wanna fight anymore...<FFF6>I've had it with all the pain...<FFEF>
 176	0x3c73	pack/talk/GAKI:0x7500	Let's see... I'll give you this.<FFEF>
-177	0x3c89	pack/talk/GAKI:0x7548	Oh crap, oh crap... I'll give ya<FFF6>my spell card! Just lemme go!<FFEF>
+177	0x3c89	pack/talk/GAKI:0x7548	Oh crap, oh crap...<FFF6>I'll give ya my spell card!<FFF6>Just lemme go!<FFEF>
 178	0x3cbb	pack/talk/GAKI:0x75c8	M-My card's amazing... I ain't lyin'...<FFEF>
 179	0x3ce6	pack/talk/GAKI:0x7618	Gah! I was just thinkin',<FFF6>"I feel like talkin' to a human!"<FFF6>And you showed up!<FFF5>
 180	0x3d15	pack/talk/GAKI:0x76b8	Gah! I'm filled with greed! You'll take<FFF6>care of that for me, won't ya?<FFF1><FFF5>
 181	0x3d46	pack/talk/GAKI:0x7748	What was that, lameass!?<FFF6>Don't answer for me, bro!<FFF6>Man, I'm raging pissed!<FFF5>
 182	0x3d77	pack/talk/GAKI:0x77e0	What was that, lameass!?<FFF6>If you wanna calm me down,<FFF6>give me something!<FFF1><FFF5>
 183	0x3da8	pack/talk/GAKI:0x7870	The moon's gone... I don't like it...<FFF5>
-184	0x3dc4	pack/talk/GAKI:0x78c0	Lemme make myself clear... I ain't that<FFF6>tasty... alright? So no fighting...<FFF5>
+184	0x3dc4	pack/talk/GAKI:0x78c0	Lemme make myself clear...<FFF6>I ain't that tasty... alright?<FFF6>So no fighting...<FFF5>
 185	0x3dfd	pack/talk/GAKI:0x7958	Gyahahaha! Gyahahaha! I'm awesome!<FFF6>I'm so frickin' happy right now!<FFF5>
 186	0x3e2f	pack/talk/GAKI:0x79e0	Gyahahaha! Gyahahaha!<FFF6>I wanna play with you, bro!<FFF6>Hurry up and do somethin'!<FFF5>
 187	0x3e66	pack/talk/GAKI:0x7a80	<FFEE>Oh man, humans! I like killin' 'em,<FFF6>but might as well negotiate first...<FFF5>
@@ -191,7 +191,7 @@ id	pos	psp	en
 189	0x3eca	pack/talk/GAKI:0x7bc8	<FFEC>Words are better than fightin',<FFF6>so let's start with a negotiation...<FFF5>
 190	0x3eea	pack/talk/GAKI:0x7c58	<FFEE>I thought I felt somethin'<FFF6>catch my attention...<FFF6>Figured I'd check it out.<FFF5>
 191	0x3f1c	pack/talk/GAKI:0x7cf0	<FFEE>I love humans! Let's hurry up and<FFF6>get this negotiation started!<FFF5>
-192	0x3f41	pack/talk/GAKI:0x7d78	<FFEB>I ain't a social demon, but I feel like<FFF6>negotiating! First... gimme somethin'!<FFF1><FFF5>
+192	0x3f41	pack/talk/GAKI:0x7d78	<FFEB>I ain't a social demon,<FFF6>but I feel like negotiating!<FFF6>First... gimme somethin'!<FFF1><FFF5>
 193	0x3f75	pack/talk/GAKI:0x7e20	<FFEC>Who the hell are you?<FFF6>Crap, I shouldn't talk<FFF6>like that around real thugs...<FFF5>
 194	0x3fa6	pack/talk/GAKI:0x7ec0	<FFED>What's with that face?<FFF6>I don't like your attitude...<FFF5>
 195	0x3fcb	pack/talk/GAKI:0x7f30	<FFEB>It's an awesome moon! An awesome<FFF6>moon for an awesome demon!<FFF5>
@@ -199,18 +199,18 @@ id	pos	psp	en
 197	0x402e	pack/talk/GAKI:0x8088	<FFEC>Are you a pacifist? Well,<FFF6>let's see how negotiations turn out...<FFF5>
 198	0x405a	pack/talk/GAKI:0x8110	<FFEB>A lot of preta are players, and most<FFF6>players are preta, but bein' a preta<FFF6>doesn't guarantee you're a player.<FFF5>
 199	0x408a	pack/talk/GAKI:0x81f0	Gah! Humans are interesting!<FFF6>So whaddaya want?<FFEF>
-200	0x40b5	pack/talk/GAKI:0x8250	What was that, lameass!? I ain't doin'<FFF6>negotiations like this! I'm pissed!<FFEF>
+200	0x40b5	pack/talk/GAKI:0x8250	What was that, lameass!?<FFF6>I ain't doin' negotiations like this!<FFF6>I'm pissed!<FFEF>
 201	0x40e8	pack/talk/GAKI:0x82e8	Why ya gotta negotiate like that?<FFF6>You're scarin' me...<FFEF>
 202	0x410c	pack/talk/GAKI:0x8358	Gyahahaha! Gyahahaha!<FFF6>That was seriously fun!<FFEF>
 203	0x4133	pack/talk/GAKI:0x83b8	You know, that's kinda... Ah,<FFF6>forget it! Whaddaya want me to do?<FFEF>
 204	0x415c	pack/talk/GAKI:0x8440	So... basically... what I'm askin' is...<FFF6>Wh-Whaddaya want from me?<FFEF>
-205	0x417d	pack/talk/GAKI:0x84c8	You're awesome! You're like, my new<FFF6>BFF! I'll grant any wish you've got!<FFEF>
+205	0x417d	pack/talk/GAKI:0x84c8	You're awesome!<FFF6>You're like, my new BFF!<FFF6>I'll grant any wish you've got!<FFEF>
 206	0x41b3	pack/talk/GAKI:0x8560	...You're confusin' the hell outta me!<FFF6>Aaaaagh! *splat*<FFEF>
 207	0x41e6	pack/talk/GAKI:0x85d0	You suck at negotiating!<FFEF>
-208	0x41f9	pack/talk/GAKI:0x8608	...I'm impressed! What's the other<FFF6>word for that? Ad... Admiralation?<FFEF>
+208	0x41f9	pack/talk/GAKI:0x8608	...I'm impressed!<FFF6>What's the other word for that?<FFF6>Ad... Admiralation?<FFEF>
 209	0x421f	pack/talk/GAKI:0x8698	I want cash! Gimme <FFF8> yen!<FFEF>
 210	0x4238	pack/talk/GAKI:0x86d0	Alright! Now we're talkin'!<FFEF>
-211	0x4248	pack/talk/GAKI:0x8708	What the? You're broke!? I ain't got<FFF6>time for your games! You got that!?<FFEF>
+211	0x4248	pack/talk/GAKI:0x8708	What the? You're broke!?<FFF6>I ain't got time for your games!<FFF6>You got that!?<FFEF>
 212	0x426c	pack/talk/GAKI:0x87a0	Oh, so you're a bum...<FFEF>
 213	0x4277	pack/talk/GAKI:0x87d0	What was that, lameass!?<FFF6>You're pissin' me off!<FFEF>
 214	0x428e	pack/talk/GAKI:0x8830	Tch... I want a<FFEF>

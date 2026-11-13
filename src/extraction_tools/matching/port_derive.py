@@ -44,7 +44,7 @@ def fits_budget(en):
     return px <= PEN_MAX and lines <= BUDGET_LINES
 
 
-def reflow(en, ja='', width=BUDGET_PX, text_rel='', preserve_lines=False):
+def reflow(en, ja='', width=BUDGET_PX, text_rel=''):
     """A textbox is laid out by THE textbox pipeline - port_story.layout_box,
     the single entry every producer calls. Nothing here decides a box's
     layout; the line-break code is the file's own (port_caps.line_break:
@@ -53,10 +53,10 @@ def reflow(en, ja='', width=BUDGET_PX, text_rel='', preserve_lines=False):
     box)."""
     import port_story
     brk = port_caps.line_break(text_rel)
-    return port_story.layout_box(en, brk=brk, preserve_lines=preserve_lines)
+    return port_story.layout_box(en, brk=brk)
 
 
-def lay_out(text, rel, ja='', pos='', preserve_lines=False):
+def lay_out(text, rel, ja='', pos=''):
     """Lay a wording out the way its DESTINATION shows it.
 
     A textbox is reflowed at the box width (the words are never shortened -
@@ -69,7 +69,7 @@ def lay_out(text, rel, ja='', pos='', preserve_lines=False):
     if port_caps.is_fixed_field(rel, pos):
         return vwf_wrap.one_line(text)
     if port_caps.is_textbox(rel):
-        return reflow(text, ja, text_rel=rel, preserve_lines=preserve_lines)
+        return reflow(text, ja, text_rel=rel)
     return vwf_wrap.clean_edges(text)
 
 
@@ -607,7 +607,7 @@ def dest_check(rel, ja, en):
     return []
 
 
-def derive(text, ja, rel, pos='', preserve_lines=False):
+def derive(text, ja, rel, pos=''):
     """THE derivation, one call for every porter on its first pass: the
     wording's codes in the destination's spelling, laid out at the box,
     and the honest reason when it cannot ship (or '' when it does)."""
@@ -633,7 +633,7 @@ def derive(text, ja, rel, pos='', preserve_lines=False):
         raw = translate_codes(text, ja, strict=strict, interpreter=interpreter)
     except ValueError as ex:
         return text, str(ex)
-    laid = lay_out(raw, rel, ja, pos, preserve_lines=preserve_lines)
+    laid = lay_out(raw, rel, ja, pos)
     if HOLES.search(ink_of(laid or raw)):   # ink: <FFFD> params are the
                                             # engine's own glyphs, not wording
         return laid or raw, JAPANESE_REMNANT

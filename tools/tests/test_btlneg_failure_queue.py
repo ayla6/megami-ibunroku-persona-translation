@@ -39,10 +39,10 @@ class NegotiationFailureQueue(unittest.TestCase):
         self.assertEqual(port_btlneg.source_message(boot, [0x10, 0x20], raw),
                          ('', 'First<FF01> ＞ Second'))
 
-    def test_negotiation_layout_preserves_source_newlines(self):
-        text, reason = port_derive.derive('First<FF03>Second', '例',
-                                         'BTLP', preserve_lines=True)
-        self.assertEqual((text, reason), ('First<FFF6>Second', ''))
+    def test_negotiation_layout_reflows_source_newlines(self):
+        # A PSP prose newline is where its 16 px glyphs ran out, not a break.
+        text, reason = port_derive.derive('First<FF03>Second', '例', 'BTLP')
+        self.assertEqual((text, reason), ('First Second', ''))
 
     def test_source_span_rejects_missing_or_empty_units(self):
         boot = [(0x1230, '', 'A<FF03>First<FF01>'), (0x1250, '', '')]

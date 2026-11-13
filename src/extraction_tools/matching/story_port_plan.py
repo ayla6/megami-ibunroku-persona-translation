@@ -30,7 +30,7 @@ import source_plan
 
 PLAN = Path(toolbelt.MAPPINGS) / 'story_port_plan.tsv'
 REPLAY_ENV = 'PERSONA_STORY_PLAN'
-VERSION = '1'
+VERSION = '2'
 
 
 class PlanError(ValueError):
@@ -67,6 +67,7 @@ class _Capture:
     def __init__(self):
         self.arbitrations = {}
         self.slots = {}
+        self.joins = {}
 
 
 _capture = None
@@ -146,6 +147,24 @@ def slot(f, ei, psx_offset, live):
     return row['us_sub'], int(row['mode']), int(row['us_pos'], 16)
 
 
+def joins(f, ei, k, live):
+    """Box-boundary joins (port_story.box_joins) for a PSX box, or None."""
+    global _capture
+    if _capture is not None:
+        result = live()
+        _capture.joins[(f, ei, k)] = result
+        return result
+    row = _lookup('joins', f, ei, k)
+    if row is None:
+        if _load():
+            raise PlanError(f'story plan has no box joins for {f}/{ei}/{k}; '
+                             'recapture with PSP-JP')
+        return live()
+    if row['mode'] == 'none':
+        return None
+    return [c == '1' for c in row['mode']]
+
+
 def write_capture(path=PLAN):
     global _capture
     if _capture is None:
@@ -167,6 +186,10 @@ def write_capture(path=PLAN):
             sfile, sei, sk = found
             matches.append({'rel': f, 'pos': f'{ei}:{off:#x}', 'us_sub': 'slot',
                             'mode': str(sei), 'us_pos': hex(sk)})
+    for (f, ei, k), found in sorted(_capture.joins.items()):
+        matches.append({'rel': f, 'pos': f'{ei}:{k}', 'us_sub': 'joins',
+                        'mode': 'none' if found is None
+                        else ''.join('1' if j else '0' for j in found)})
     source_plan.write(path, metadata, matches)
     print(f'story plan: {len(matches)} decisions -> {path}')
     return matches

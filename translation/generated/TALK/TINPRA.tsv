@@ -3,7 +3,7 @@ id	pos	psp	en
 1	0x2047	pack/talk/TINPRA:0x20d8	Dude... don't ask me stuff like you 'n<FFF6>me are best buddies! I might be small<FFF6>time, but don't go underestimatin' me!<FFF5>
 2	0x2076	pack/talk/TINPRA:0x21c0	Ya got some real damn guts. I like it.<FFF6>Ya ain't scared o' me, neither.<FFF5>
 3	0x20a5	pack/talk/TINPRA:0x2250	You wanna step, man? Eh, I'll let it go.<FFF6>At least ya ain't no prancin' prick.<FFF5>
-4	0x20d9	pack/talk/TINPRA:0x22f0	Ya want some!? 'Cause I'll give ya<FFF6>more'n ya can handle! Better quit if<FFF6>ya know what's good for ya!<FFF5>
+4	0x20d9	pack/talk/TINPRA:0x22f0	Ya want some!? 'Cause I'll give ya<FFF6>more'n ya can handle! Better quit<FFF6>if ya know what's good for ya!<FFF5>
 5	0x210f	pack/talk/TINPRA:0x23b8	Guess I went soft, if even the humans<FFF6>are underestimatin' me...<FFF5>
 6	0x2130	pack/talk/TINPRA:0x2438	Ya invitin' me in? Eh... I got enough<FFF6>work of my own. But I might change<FFF6>my mind if you gimme somethin'.<FFF1><FFF5>
 7	0x216b	pack/talk/TINPRA:0x2510	We got our own code,<FFF6>and negotiatin' with humans for<FFF6>no damn reason ain't part of it!<FFF5>
@@ -19,18 +19,18 @@ id	pos	psp	en
 17	0x234c	pack/talk/TINPRA:0x2aa8	Hey, a girl that understands me!<FFF6>Now that makes my day!<FFF5>
 18	0x2379	pack/talk/TINPRA:0x2b18	You're an interestin' kid. Who knows,<FFF6>maybe the crap you're sayin' is true.<FFF5>
 19	0x23a8	pack/talk/TINPRA:0x2bb0	No more of your bullshit! I ain't so<FFF6>thick I'm gonna fall for that crap!<FFF5>
-20	0x23de	pack/talk/TINPRA:0x2c48	Ya lie so bad. If ya wanna fool a hood<FFF6>like me, ya gotta give it your all!<FFF5>
+20	0x23de	pack/talk/TINPRA:0x2c48	Ya lie so bad.<FFF6>If ya wanna fool a hood like me,<FFF6>ya gotta give it your all!<FFF5>
 21	0x2417	pack/talk/TINPRA:0x2ce0	Relax, willya? I'm a nice hood.<FFF6>I ain't gonna attack or nothin'.<FFF5>
 22	0x2446	pack/talk/TINPRA:0x2d68	Whaddaya talkin' to me for!? I ain't<FFF6>interested in no ordinary humans!<FFF5>
 23	0x2475	pack/talk/TINPRA:0x2df8	Whaddaya talkin' about?<FFF6>Don't worry,<FFF6>me and my guys are all gentlemen.<FFF5>
 24	0x24ac	pack/talk/TINPRA:0x2e88	Seriously, man? Get yourself<FFF6>checked out at the doc's...<FFFB><FFF7>If there ain't nothin' wrong with ya,<FFF6>I'll think about it.<FFF5>
 25	0x24e5	pack/talk/TINPRA:0x2f70	The hell are ya talkin' about!?<FFF6>A hood like me can't go around<FFF6>havin' tea with no regular joes!<FFF5>
 26	0x2522	pack/talk/TINPRA:0x3030	Dude... Hurry up and go see a doc...<FFF5>
-27	0x2537	pack/talk/TINPRA:0x3080	Man,<FFF6>that joke is wearin' out its welcome.<FFF6>Ya better quit while I'm still laughin'.<FFF5>
+27	0x2537	pack/talk/TINPRA:0x3080	Man, that joke is<FFF6>wearin' out its welcome.<FFF6>Ya better quit while I'm still laughin'.<FFF5>
 28	0x2567	pack/talk/TINPRA:0x3128	You're pretty frickin' funny, ya know<FFF6>that? Ya could be the next Diceman.<FFF6>Let's hear your nursery rhymes.<FFF5>
 29	0x25a1	pack/talk/TINPRA:0x3200	Ya tell another shitty joke, and I'm<FFF6>gonna cut ya down! Ya got talent,<FFF6>all right... talent for pissin' me off!<FFF5>
 30	0x25d7	pack/talk/TINPRA:0x32e0	No SAD Dummy.<FFF5>
-31	0x25e8	pack/talk/TINPRA:0x3300	You're pretty funny. I like that kinda<FFF6>joke, an' screw anyone who don't.<FFF5>
+31	0x25e8	pack/talk/TINPRA:0x3300	You're pretty funny.<FFF6>I like that kinda joke,<FFF6>an' screw anyone who don't.<FFF5>
 32	0x2613	pack/talk/TINPRA:0x3398	Ya wanna talk?<FFF6>Then cut the chit-chat.<FFF5>
 33	0x2648	pack/talk/TINPRA:0x33e8	Don't waste my time with that crap!<FFF5>
 34	0x2659	pack/talk/TINPRA:0x3430	Man, you're a real chatterbox!<FFF6>Alright, sure,<FFF6>I'm game if ya wanna talk!<FFF5>
@@ -44,16 +44,16 @@ id	pos	psp	en
 42	0x27d4	pack/talk/TINPRA:0x38c8	Quit usin' all those fancy words and<FFF6>be quiet for a while.<FFF5>
 43	0x27f0	pack/talk/TINPRA:0x3940	Is this for real!? Ain't ya kinda<FFF6>young to be sayin' crap like that?<FFF5>
 44	0x2823	pack/talk/TINPRA:0x39d0	You got cojones, man. I bet you 'n<FFF6>me'd make a hell of a team!<FFF5>
-45	0x2849	pack/talk/TINPRA:0x3a50	You wanna scrap? I ain't holdin'<FFF6>back, so you best be ready!<FFF5>
+45	0x2849	pack/talk/TINPRA:0x3a50	You wanna scrap?<FFF6>I ain't holdin' back,<FFF6>so you best be ready!<FFF5>
 46	0x2870	pack/talk/TINPRA:0x3ad0	The hell are you...? We ain't got<FFF6>nothin' to do with you, man...<FFF5>
 47	0x288f	pack/talk/TINPRA:0x3b58	Ya seem like you're on a roll!<FFF6>I wonder if it's about time I took<FFF6>a younger brother under my wing.<FFF5>
 48	0x28c6	pack/talk/TINPRA:0x3c20	Cut the bullshit! You ain't old<FFF6>enough to make a fool outta me!<FFF5>
 49	0x28f4	pack/talk/TINPRA:0x3ca0	Hell yeah!<FFF6>I'm workin' hard and aimin' high!<FFF5>
 50	0x2920	pack/talk/TINPRA:0x3d00	Man, lookit you work them hips!<FFF6>You're better 'n Crazy Legs! I love<FFF6>watchin' that breakdancin' stuff.<FFF5>
 51	0x2954	pack/talk/TINPRA:0x3dd0	Boy, do you ever suck ass...<FFF6>Stop that right now!<FFF5>
-52	0x2974	pack/talk/TINPRA:0x3e38	You ain't bad...<FFF6>But you better get more practice if<FFF6>you wanna be like Crazy Legs!<FFF5>
+52	0x2974	pack/talk/TINPRA:0x3e38	You ain't bad...<FFF6>But you better get more practice<FFF6>if you wanna be like Crazy Legs!<FFF5>
 53	0x29aa	pack/talk/TINPRA:0x3ee0	You wanna step, man? Eh, I'll let it go.<FFF6>At least ya ain't no prancin' prick.<FFF5>
-54	0x29df	pack/talk/TINPRA:0x3f80	The hell're ya talkin' about!? Better<FFF6>shut it if ya know what's good for ya!<FFF5>
+54	0x29df	pack/talk/TINPRA:0x3f80	The hell're ya talkin' about!?<FFF6>Better shut it if ya know<FFF6>what's good for ya!<FFF5>
 55	0x2a11	pack/talk/TINPRA:0x4020	Guess I went soft, if even the humans<FFF6>are underestimatin' me...<FFF5>
 56	0x2a34	pack/talk/TINPRA:0x40a0	You got guts, bro...<FFF6>It's been a while since a man's<FFF6>looked me straight in the eye!<FFF5>
 57	0x2a6e	pack/talk/TINPRA:0x4148	Hey, you just glare at me!?<FFF6>Alright, now I'm pissed!<FFF5>
@@ -67,7 +67,7 @@ id	pos	psp	en
 65	0x2bff	pack/talk/TINPRA:0x4620	Hey, that ain't bad! Ya coulda made<FFF6>it big if ya'd been a singer!<FFF5>
 66	0x2c2e	pack/talk/TINPRA:0x46a8	Man, that ain't gonna cut it!<FFF6>Even Alanis sang her jagged<FFF6>heart out better'n that!<FFF5>
 67	0x2c65	pack/talk/TINPRA:0x4750	You got a great voice! Not only that,<FFF6>but that's a great song!<FFF6>Man, I'm on top o' the world now!<FFF5>
-68	0x2c9a	pack/talk/TINPRA:0x4818	Ya seein' things? No matter which<FFF6>way ya cut it, I ain't a little kid...<FFF5>
+68	0x2c9a	pack/talk/TINPRA:0x4818	Ya seein' things?<FFF6>No matter which way ya cut it,<FFF6>I ain't a little kid...<FFF5>
 69	0x2ccd	pack/talk/TINPRA:0x48b0	Cut the bullshit! If you were my mom,<FFF6>how old would that make ya!?<FFF5>
 70	0x2d03	pack/talk/TINPRA:0x4938	Hah!<FFF6>I didn't see that one comin', lady!<FFFB><FFF7>Well, I guess life's more fun when it<FFF6>throws ya a curveball now and then!<FFF5>
 71	0x2d3c	pack/talk/TINPRA:0x4a20	Ya invitin' me in? Eh... I got enough<FFF6>work of my own. But I might change<FFF6>my mind if you gimme somethin'.<FFF1><FFF5>
@@ -82,11 +82,11 @@ id	pos	psp	en
 80	0x2ebb	pack/talk/TINPRA:0x4f10	Whaddaya cryin' for? Cheer up,<FFF6>it ain't the end of the world.<FFF5>
 81	0x2ee8	pack/talk/TINPRA:0x4f90	If ya think I'm gonna help ya for free,<FFF6>think again! It's gonna cost ya!<FFF1><FFF5>
 82	0x2f20	pack/talk/TINPRA:0x5028	You've been through some rough shit,<FFF6>huh? Must be hard being human...<FFF5>
-83	0x2f4a	pack/talk/TINPRA:0x50b8	What,<FFF6>you're tryin' to scare me with that?<FFF6>Ya gotta put some effort into it!<FFF5>
+83	0x2f4a	pack/talk/TINPRA:0x50b8	What, you're tryin' to<FFF6>scare me with that?<FFF6>Ya gotta put some effort into it!<FFF5>
 84	0x2f77	pack/talk/TINPRA:0x5158	Whaddaya talkin' about!? You're<FFF6>pissin' me off... I got half a mind to<FFF6>shut you up once and for all!<FFF5>
-85	0x2fa7	pack/talk/TINPRA:0x5228	You're a real handful... Even<FFF6>a yakuza floozy wouldn't go that far.<FFF5>
+85	0x2fa7	pack/talk/TINPRA:0x5228	You're a real handful...<FFF6>Even a yakuza floozy<FFF6>wouldn't go that far.<FFF5>
 86	0x2fcc	pack/talk/TINPRA:0x52b0	Whaddaya talkin' about?<FFF6>This ain't a joke, and I ain't laughin'!<FFF5>
-87	0x3003	pack/talk/TINPRA:0x5338	You're a holy terror... Those awful<FFF6>eyes o' yours... *shudder*<FFF5>
+87	0x3003	pack/talk/TINPRA:0x5338	You're a holy terror...<FFF6>Those awful eyes o' yours...<FFF6>*shudder*<FFF5>
 88	0x3026	pack/talk/TINPRA:0x53b8	You're one spirited gal.<FFF6>I like girls like you!<FFF5>
 89	0x304d	pack/talk/TINPRA:0x5418	You're one smart cookie! I'm pretty<FFF6>interested in that kinda stuff...<FFF5>
 90	0x3077	pack/talk/TINPRA:0x54a8	Do you ever shut up? I didn't come<FFF6>here to listen to girls talk!<FFF5>
@@ -96,7 +96,7 @@ id	pos	psp	en
 94	0x311e	pack/talk/TINPRA:0x56f8	You got guts, for a woman...<FFF6>You'll be a great mom someday!<FFF5>
 95	0x3143	pack/talk/TINPRA:0x5770	Hey, didn't ya want to<FFF6>talk to me about somethin'?<FFF6>I'm' dyin' to know what it was!<FFF5>
 96	0x3173	pack/talk/TINPRA:0x5818	Ain't you the one who started this?<FFF6>Screw it, you deserve a smackin'!<FFF5>
-97	0x319e	pack/talk/TINPRA:0x58a8	Ouch... A girl's givin' me the cold<FFF6>shoulder... I really blew it...<FFF5>
+97	0x319e	pack/talk/TINPRA:0x58a8	Ouch...<FFF6>A girl's givin' me the cold shoulder...<FFF6>I really blew it...<FFF5>
 98	0x31c2	pack/talk/TINPRA:0x5930	Hey, didn't ya want to<FFF6>talk to me about somethin'?<FFF6>I'm' dyin' to know what it was!<FFF5>
 99	0x31f2	pack/talk/TINPRA:0x59d8	Ain't you the one who started this?<FFF6>I've had enough of this shit!<FFF5>
 100	0x3221	pack/talk/TINPRA:0x5a60	A lone wolf, eh...? Well, that's fine.<FFF5>
@@ -105,7 +105,7 @@ id	pos	psp	en
 103	0x32a4	pack/talk/TINPRA:0x5c18	Holy crap, man...<FFF6>I-I'm gonna pass for now...<FFF5>
 104	0x32cc	pack/talk/TINPRA:0x5c78	Whaddaya talkin' about!?<FFF6>It's pissin' me off,<FFF6>so you better shut the hell up!<FFF5>
 105	0x32ff	pack/talk/TINPRA:0x5d18	Guess I went soft, if even the humans<FFF6>are underestimatin' me...<FFF5>
-106	0x3320	pack/talk/TINPRA:0x5d98	Look, I don't mind if ya yell, but do<FFF6>it where there ain't no one around, or<FFF6>else ya might get arrested someday.<FFF5>
+106	0x3320	pack/talk/TINPRA:0x5d98	Look, I don't mind if ya yell, but do it<FFF6>where there ain't no one around, or<FFF6>else ya might get arrested someday.<FFF5>
 107	0x3355	pack/talk/TINPRA:0x5e80	Man, that's rich! Wanna be partners?<FFF6>We'll hit it big in showbiz!<FFF5>
 108	0x3385	pack/talk/TINPRA:0x5f08	Magic tricks, of all things?<FFF6>Ain't ya a little old for that...?<FFF5>
 109	0x33aa	pack/talk/TINPRA:0x5f88	Man, it's a real waste usin'<FFF6>your brain on that crap!<FFFB><FFF7>You gotta take better care of<FFF6>your noggin than that.<FFF5>
@@ -119,7 +119,7 @@ id	pos	psp	en
 117	0x355f	pack/talk/TINPRA:0x64f8	You're pretty calm.<FFF6>As a li'l token of my goodwill,<FFF6>I ain't gonna ask too much from ya.<FFF1><FFF5>
 118	0x3586	pack/talk/TINPRA:0x65b0	Ya got some real guts there.<FFF6>Ain't too many people who could<FFF6>pull off a negotiation like that.<FFF5>
 119	0x35be	pack/talk/TINPRA:0x6670	I think I got a good idea of<FFF6>what you're thinkin'.<FFF6>I'll let you give me somethin'.<FFF1><FFF5>
-120	0x35ea	pack/talk/TINPRA:0x6718	Ya don't think too much, do ya?<FFF6>Ya gotta use your brain when<FFF6>ya negotiate.<FFF5>
+120	0x35ea	pack/talk/TINPRA:0x6718	Ya don't think too much, do ya?<FFF6>Ya gotta use your brain<FFF6>when ya negotiate.<FFF5>
 121	0x361a	pack/talk/TINPRA:0x67b0	Geez Louise, ya never shut up.<FFF6>Noise pollution's a crime, ya know.<FFF6>Now c'mon, let's get real here!<FFF1><FFF5>
 122	0x3659	pack/talk/TINPRA:0x6878	What's an honest guy want with me?<FFF6>I got a meeting I gotta get to...<FFF5>
 123	0x3681	pack/talk/TINPRA:0x6908	If you're talkin' to me,<FFF6>I know you ain't THAT honest.<FFF6>So let's see what ya got for me.<FFF1><FFF5>
@@ -131,8 +131,8 @@ id	pos	psp	en
 129	0x37a9	pack/talk/TINPRA:0x6cf0	Ya wanna see Hell?<FFF6>Then before I send ya off, ya better<FFF6>take everything ya got with ya.<FFF1><FFF5>
 130	0x37df	pack/talk/TINPRA:0x6da8	What's an honest guy want with me?<FFF6>I got a meeting I gotta get to...<FFF5>
 131	0x3807	pack/talk/TINPRA:0x6e38	Ain't ya scared that I'm mad at ya?<FFF6>Kids these days...<FFF5>
-132	0x3838	pack/talk/TINPRA:0x6ea8	A man's gotta rein his anger in. That<FFF6>blusterin' crap don't work on me.<FFF5>
-133	0x386e	pack/talk/TINPRA:0x6f38	I bet you're tryin' to piss me off,<FFF6>but it ain't gonna work. You're<FFF6>gonna have to cough up, okay?<FFF1><FFF5>
+132	0x3838	pack/talk/TINPRA:0x6ea8	A man's gotta rein his anger in.<FFF6>That blusterin' crap<FFF6>don't work on me.<FFF5>
+133	0x386e	pack/talk/TINPRA:0x6f38	I bet you're tryin' to piss me off,<FFF6>but it ain't gonna work. You're gonna<FFF6>have to cough up, okay?<FFF1><FFF5>
 134	0x38a4	pack/talk/TINPRA:0x7000	Man, you go all out. Keep it up!<FFF5>
 135	0x38c7	pack/talk/TINPRA:0x7048	You're a hell of a clown, pullin' that<FFF6>stuff while you're talkin' to me.<FFF6>Let's see what else ya got.<FFF1><FFF5>
 136	0x38fd	pack/talk/TINPRA:0x7118	Cut the bullshit!<FFF6>Us hoods ain't so laid-back that we'll<FFF6>just watch that crap without a word!<FFF5>
@@ -150,7 +150,7 @@ id	pos	psp	en
 148	0x3b67	pack/talk/TINPRA:0x78b0	Alright, first off, a man can't be<FFF6>greedy in this world. It keeps ya from<FFF6>bein' swayed by that kinda deal.<FFF5>
 149	0x3b98	pack/talk/TINPRA:0x7988	Don't go doin' stuff that pisses me<FFF6>off. Like bribin' me... I hate that.<FFF1><FFF5>
 150	0x3bc0	pack/talk/TINPRA:0x7a20	What're you all scared for?<FFF6>We wouldn't do nothin' to<FFF6>a regular gal like you.<FFF5>
-151	0x3bfa	pack/talk/TINPRA:0x7ac0	Don't worry about nothin'. I'm a nice<FFF6>guy, long as I get what I want.<FFF1><FFF5>
+151	0x3bfa	pack/talk/TINPRA:0x7ac0	Don't worry about nothin'.<FFF6>I'm a nice guy,<FFF6>long as I get what I want.<FFF1><FFF5>
 152	0x3c2a	pack/talk/TINPRA:0x7b50	Women who don't try to do nothin' but<FFF6>please their man are so narrow<FFF6>minded! They ain't worth trustin'!<FFF5>
 153	0x3c5d	pack/talk/TINPRA:0x7c20	If ya really wanna make me happy,<FFF6>ya know what to do.<FFF1><FFF5>
 154	0x3c8f	pack/talk/TINPRA:0x7c90	I bet ya got somethin' up<FFF6>your sleeve... Ya can't trust<FFF6>"honest" folks after all.<FFF5>
@@ -171,13 +171,13 @@ id	pos	psp	en
 169	0x3eda	pack/talk/TINPRA:0x8458	A normal guy like you should<FFF6>stay home and play games.<FFF6>I'm gonna get goin'.<FFEF>
 170	0x3f16	pack/talk/TINPRA:0x84f0	A normal guy like you should<FFF6>stay home and play games. Here,<FFF6>take this and buy yourself a new one.<FFEF>
 171	0x3f4e	pack/talk/TINPRA:0x85b8	I'm gonna take this knife and--What<FFF6>the!? The blade's chipped...<FFF6>Aw, hell, that was my favorite knife!<FFEF>
-172	0x3f8e	pack/talk/TINPRA:0x8688	I got nothin' to lose! Take<FFF6>my spell-card and get outta here!<FFEF>
+172	0x3f8e	pack/talk/TINPRA:0x8688	I got nothin' to lose!<FFF6>Take my spell-card and<FFF6>get outta here!<FFEF>
 173	0x3fc2	pack/talk/TINPRA:0x8708	...I ain't like ya.<FFF6>Guys like me, we don't know no<FFF6>other way but to live underground...<FFFB><FFF7>So yeah, it's true that sometimes I<FFF6>wished I could've gone straight...<FFEF>
 174	0x4025	pack/talk/TINPRA:0x8848	I'll leave that dream I gave up with<FFF6>you. Here's my spell card...<FFF6>Good luck with it.<FFEF>
 175	0x405b	pack/talk/TINPRA:0x88f8	I ain't got nothin' to gain from<FFF6>arguin' with folks like you...<FFEF>
 176	0x408c	pack/talk/TINPRA:0x8978	It was fate, us meetin' like this.<FFF6>Here, this is for you... Who knows?<FFF6>Maybe next time, we'll be enemies...<FFEF>
 177	0x40be	pack/talk/TINPRA:0x8a50	It's true, our place was<FFF6>raided not too long ago.<FFF6>The boss is in bad shape, too...<FFEF>
-178	0x40f5	pack/talk/TINPRA:0x8af8	Let's be adults here.<FFF6>I don't think you'll be disappointed if<FFF6>you get to have my spell card...<FFEF>
+178	0x40f5	pack/talk/TINPRA:0x8af8	Let's be adults here.<FFF6>I don't think you'll be disappointed<FFF6>if you get to have my spell card...<FFEF>
 179	0x4133	pack/talk/TINPRA:0x8bb8	What's a regular human doin'<FFF6>out on a moonless night?<FFF6>Better answer quick.<FFFD>　<FFF5>
 180	0x4171	pack/talk/TINPRA:0x8c58	Man, talk about carelessness...<FFF6>Ya better watch yourself on moonless<FFF6>nights. Got my warnin' fee?<FFF1><FFF5>
 181	0x41b2	pack/talk/TINPRA:0x8d20	What're ya hangin' around me for!?<FFF6>I'll crush you kids like bugs!<FFFD>あ<FFF5>
@@ -186,21 +186,21 @@ id	pos	psp	en
 184	0x425d	pack/talk/TINPRA:0x8ec8	What ARE you...? Eh, I'll let you give<FFF6>me somethin' if ya hurry on home.<FFF1><FFF5>
 185	0x4293	pack/talk/TINPRA:0x8f60	Hey, take a look at that!<FFF6>Ain't every day you get to see<FFF6>a beautiful full moon like that.<FFFD>う<FFF5>
 186	0x42cb	pack/talk/TINPRA:0x9018	Willya take a look at that? That's<FFF6>one hell of a moon! Why don't ya gimme<FFF6>somethin' to remember it by?<FFF1><FFF5>
-187	0x4305	pack/talk/TINPRA:0x90e8	<FFED>Ya got guts, answerin' my call when<FFF6>you're nothin' special.<FFFB><FFF7>but ya can go to hell if you're<FFF6>gonna act all arrogant!<FFFD>え<FFF5>
+187	0x4305	pack/talk/TINPRA:0x90e8	<FFED>Ya got guts, answerin' my call<FFF6>when you're nothin' special.<FFFB><FFF7>but ya can go to hell if you're<FFF6>gonna act all arrogant!<FFFD>え<FFF5>
 188	0x4346	pack/talk/TINPRA:0x91d8	<FFEE>Hey, you're in my way.<FFF6>Better pay the trespassing fee!<FFF1><FFF5>
 189	0x4383	pack/talk/TINPRA:0x9250	<FFEE>What's a regular joe doin'<FFF6>out on a moonless night?<FFF6>Gimme a straight answer.<FFFD>お<FFF5>
 190	0x43c0	pack/talk/TINPRA:0x92f0	<FFEC>If you're interested in the yakuza,<FFF6>I'm sure ya know already...<FFF6>Ya gotta pay up.<FFF1><FFF5>
 191	0x43f9	pack/talk/TINPRA:0x9398	<FFEB>I'm a hoodlum, ya know.<FFF6>But it ain't bad to talk to<FFF6>honest folks once in a while.<FFFD>か<FFF5>
-192	0x4432	pack/talk/TINPRA:0x9448	<FFEE>Man,<FFF6>ya look like you're rollin' in dough!<FFF6>C'mon, share the wealth a little.<FFF1><FFF5>
+192	0x4432	pack/talk/TINPRA:0x9448	<FFEE>Man, ya look like<FFF6>you're rollin' in dough!<FFF6>C'mon, share the wealth a little.<FFF1><FFF5>
 193	0x4464	pack/talk/TINPRA:0x94e8	<FFEC>Ya ain't scared of me?<FFF6>If ya don't shape up, someday<FFF6>ya'll get stabbed in the back...<FFFD>き<FFF5>
 194	0x4499	pack/talk/TINPRA:0x95a0	<FFED>Hey, you're supposed to<FFF6>greet your superiors first.<FFF6>Let's see a little show of faith, huh?<FFF1><FFF5>
 195	0x44d2	pack/talk/TINPRA:0x9660	<FFED>...What's a regular guy like you doin'<FFF6>answerin' my call!? You wanna<FFF6>walk on the wild side a little?<FFFD>く<FFF5>
-196	0x450b	pack/talk/TINPRA:0x9730	<FFEB>You? You came when I called? That's<FFF6>a laugh. I'll let ya go this time...<FFF6>long as you pay the fee.<FFF1><FFF5>
+196	0x450b	pack/talk/TINPRA:0x9730	<FFEB>You? You came when I called?<FFF6>That's a laugh. I'll let ya go<FFF6>this time... long as you pay the fee.<FFF1><FFF5>
 197	0x4550	pack/talk/TINPRA:0x97f8	<FFEB>Dude, I been lookin' all over for ya!<FFF6>I'll be countin' on you to take care of<FFF6>the Tendou family for us.<FFFD>け<FFF5>
 198	0x458d	pack/talk/TINPRA:0x98d0	<FFEC>Ya got a lotta nerve,<FFF6>talkin' to a junior yakuza type like<FFF6>me that way. Gimme whatever ya got.<FFF1><FFF5>
 199	0x45c9	pack/talk/TINPRA:0x9998	I like the hell outta you! Y'know what,<FFF6>I'm gonna make ya one of the family.<FFF6>Tell me what you want, and it's yours.<FFEF>
 200	0x45fc	pack/talk/TINPRA:0x9a80	You underestimatin' me!?<FFF6>I ain't gonna calm down again till<FFF6>I see some blood on the ground!<FFEF>
-201	0x462b	pack/talk/TINPRA:0x9b38	What's with you? Ain't you scared of<FFF6>hoodlums...? If you met my boss...<FFEF>
+201	0x462b	pack/talk/TINPRA:0x9b38	What's with you?<FFF6>Ain't you scared of hoodlums...?<FFF6>If you met my boss...<FFEF>
 202	0x4658	pack/talk/TINPRA:0x9bc8	Hahahaha! This's the greatest!<FFF6>Hahahahahaha!<FFEF>
 203	0x4686	pack/talk/TINPRA:0x9c28	I don't quite feel like you're takin' me<FFF6>seriously here, but I'll let it slide.<FFF6>So tell me what ya want.<FFEF>
 204	0x46bc	pack/talk/TINPRA:0x9d00	It's a huge relief knowin' I<FFF6>ain't gonna have to fight ya.<FFF6>Anyways, tell me what it is ya want.<FFEF>
@@ -217,7 +217,7 @@ id	pos	psp	en
 215	0x48f1	pack/talk/TINPRA:0xa4c8	Gimme a life stone. One'll do.<FFEF>
 216	0x4910	pack/talk/TINPRA:0xa508	Regular joes like you don't need that<FFF6>stuff anyway. I'll hang onto it for ya.<FFF5>
 217	0x4944	pack/talk/TINPRA:0xa5a8	You underestimatin' me!?<FFF6>It's just common sense to have some<FFF6>life stones when ya wanna negotiate!<FFF5>
-218	0x497b	pack/talk/TINPRA:0xa670	Dude, at least carry a life stone or<FFF6>two with ya. They're important when<FFF6>ya wanna talk with us.<FFF5>
+218	0x497b	pack/talk/TINPRA:0xa670	Dude, at least carry a life stone or<FFF6>two with ya. They're important<FFF6>when ya wanna talk with us.<FFF5>
 219	0x49b0	pack/talk/TINPRA:0xa738	You underestimatin' me!?<FFF6>Hand 'em over like a good kid,<FFF6>or ya'll sleep with the fishes.<FFF5>
 220	0x49e4	pack/talk/TINPRA:0xa7e8	What's a regular guy like you gonna<FFF6>use life stones for anyways?<FFF5>
 221	0x4a1b	pack/talk/TINPRA:0xa870	Hey, hand over a gem.<FFF6>Like a <FFF4> or somethin'.<FFEF>
@@ -246,10 +246,10 @@ id	pos	psp	en
 244	0x4dd4	pack/talk/TINPRA:0xb520	Well said! I'll back anyone with as<FFF6>much guts as you!<FFF5>
 245	0x4e03	pack/talk/TINPRA:0xb590	*sigh* Sure, you're just a kid,<FFF6>but you're doin' one lousy job...<FFF6>Money talks, and don't forget it.<FFF5>
 246	0x4e3d	pack/talk/TINPRA:0xb658	What're ya stakin' out?<FFF6>A hood like me? Now ain't the time...<FFEF>
-247	0x4e6f	pack/talk/TINPRA:0xb6d8	Ya look pretty comfy, havin'<FFF6>a stroll while I work my ass off.<FFFB><FFF7>Maybe I'll rip ya apart to<FFF6>blow off some steam!<FFF5>
+247	0x4e6f	pack/talk/TINPRA:0xb6d8	Ya look pretty comfy, havin' a stroll<FFF6>while I work my ass off. Maybe I'll rip<FFF6>ya apart to blow off some steam!<FFF5>
 248	0x4ea8	pack/talk/TINPRA:0xb7b8	Hahahaha! Ya'll go far, kid.<FFF5>
 249	0x4ec4	pack/talk/TINPRA:0xb7f8	Wasn't expectin' to<FFF6>find a real man here.<FFF6>Ya got what it takes to be a yakuza!<FFEF>
-250	0x4ef8	pack/talk/TINPRA:0xb898	That kinda attitude, I don't forgive!<FFF6>Talk fast,<FFF6>cause it might be your last chance!<FFF5>
+250	0x4ef8	pack/talk/TINPRA:0xb898	That kinda attitude,<FFF6>I don't forgive! Talk fast,<FFF6>cause it might be your last chance!<FFF5>
 251	0x4f2e	pack/talk/TINPRA:0xb948	If you're that scared, ya shouldn'tve<FFF6>answered in the first place!<FFF5>
 252	0x4f54	pack/talk/TINPRA:0xb9d0	You really are underestimatin' me...<FFF5>
 253	0x4f73	pack/talk/TINPRA:0xba20	It ain't smart to bluff.<FFF6>You wanna know that bad<FFF6>how it feels to be knifed!?<FFF5>

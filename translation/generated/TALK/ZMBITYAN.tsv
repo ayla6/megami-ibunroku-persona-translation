@@ -33,7 +33,7 @@ id	pos	psp	en
 31	0x248a	pack/talk/ZMBITYAN:0x3038	Ahahahaha! Totally fantabulous!<FFF6>I'm gonna have a laugh attack!<FFF5>
 32	0x24a9	pack/talk/ZMBITYAN:0x30b8	You're gonna talk to me?<FFF6>That's way nice of you, man...<FFF5>
 33	0x24d9	pack/talk/ZMBITYAN:0x3128	This is like, sooo not the time!<FFF6>I'm like, a zombie! You should be like,<FFF6>way too nervous for that!<FFF5>
-34	0x250d	pack/talk/ZMBITYAN:0x31f0	Like, wow... The stuff people<FFF6>talk about hasn't changed much.<FFF6>That's chill.<FFF5>
+34	0x250d	pack/talk/ZMBITYAN:0x31f0	Like, wow...<FFF6>The stuff people talk about<FFF6>hasn't changed much. That's chill.<FFF5>
 35	0x253b	pack/talk/ZMBITYAN:0x3288	Do you like, want me to tease you?<FFF6>Are you like, five, bro?<FFF5>
 36	0x2567	pack/talk/ZMBITYAN:0x3300	Like, oh my god, what was that for!?<FFF6>You're such a lamer!<FFF5>
 37	0x2584	pack/talk/ZMBITYAN:0x3378	What's up with you?<FFF6>You're like... way sketchy...<FFF5>
@@ -55,7 +55,7 @@ id	pos	psp	en
 53	0x2821	pack/talk/ZMBITYAN:0x3bd0	You're all like, sure of yourself...<FFF6>But like, it's all talk, bro!<FFF5>
 54	0x2848	pack/talk/ZMBITYAN:0x3c58	Like, oh my God, I'm so annoyed!<FFF6>You can't show me a good time, bro!<FFF5>
 55	0x2873	pack/talk/ZMBITYAN:0x3ce8	Like, what's so fun about<FFF6>taunting a zombie?<FFF5>
-56	0x2894	pack/talk/ZMBITYAN:0x3d48	Huh? Are you like, totally sprung on<FFF6>zombies? You're a funny human, bro!<FFF5>
+56	0x2894	pack/talk/ZMBITYAN:0x3d48	Huh? Are you like,<FFF6>totally sprung on zombies?<FFF6>You're a funny human, bro!<FFF5>
 57	0x28c4	pack/talk/ZMBITYAN:0x3de0	You got a problem with me...!?<FFF6>You can like,<FFF6>stop looking at me now, creeper!<FFF5>
 58	0x28eb	pack/talk/ZMBITYAN:0x3e80	Even though I'm decaying, it's like<FFF6>guys can't keep their eyes off me!<FFF5>
 59	0x291a	pack/talk/ZMBITYAN:0x3f10	That's like, so funny! Your sense of<FFF6>humor is totally bangin'!<FFF5>
@@ -63,7 +63,7 @@ id	pos	psp	en
 61	0x294f	pack/talk/ZMBITYAN:0x4008	You just want to talk to me and stuff,<FFF6>huh? Well, I AM super cute...<FFF5>
 62	0x2982	pack/talk/ZMBITYAN:0x4098	You are SO stupid to believe<FFF6>something like that!<FFF5>
 63	0x29a1	pack/talk/ZMBITYAN:0x4100	Like, seriously? I've totally never<FFF6>heard a story like that...<FFF5>
-64	0x29bf	pack/talk/ZMBITYAN:0x4180	That's way funny! Humans just don't<FFF6>know what like, real fear is!<FFF5>
+64	0x29bf	pack/talk/ZMBITYAN:0x4180	That's way funny!<FFF6>Humans just don't know what like,<FFF6>real fear is!<FFF5>
 65	0x29e7	pack/talk/ZMBITYAN:0x4208	That's so rad...<FFF6>You're like, pretty cool, dudette!<FFF5>
 66	0x2a26	pack/talk/ZMBITYAN:0x42e0	Oooh, that's way cool!<FFF6>You're like, awesome, sister!<FFFB><FFF7>Do you have to like, brag about<FFF6>being such a good singer?<FFF6>You're like, a douchebag squared!<FFF5>
 67	0x2a58	pack/talk/ZMBITYAN:0x4398	Way cool...<FFF6>It's totally melting my zombie heart...<FFF5>
@@ -114,7 +114,7 @@ id	pos	psp	en
 112	0x30dc	pack/talk/ZMBITYAN:0x5998	We like, finally meet, and that's, like,<FFF6>all you can say? Major lameness!<FFF5>
 113	0x310b	pack/talk/ZMBITYAN:0x5a30	It's totally useless, blabbermouth!<FFF6>Can you dig this? Give me something!<FFF1><FFF5>
 114	0x3138	pack/talk/ZMBITYAN:0x5ac8	What is telling me THAT gonna do...?<FFF5>
-115	0x3157	pack/talk/ZMBITYAN:0x5b18	I'm like... soooooo not interested!<FFF6>I wanna bail...<FFF5>
+115	0x3157	pack/talk/ZMBITYAN:0x5b18	I'm like...<FFF6>soooooo not interested! I wanna bail...<FFF5>
 116	0x3187	pack/talk/ZMBITYAN:0x5b80	I so knew it! I get along wayyyy<FFF6>better with humans than with demons!<FFF5>
 117	0x31b4	pack/talk/ZMBITYAN:0x5c10	This is totally fun... I wish I could<FFF6>talk to you for like, forever...<FFF5>
 118	0x31d3	pack/talk/ZMBITYAN:0x5ca0	So you like... need me...?<FFF6>For serious? What should I do...?<FFF5>
@@ -135,7 +135,7 @@ id	pos	psp	en
 133	0x33e5	pack/talk/ZMBITYAN:0x6408	You're like,<FFF6>totally flunking your negotiation.<FFF6>Get with the program...<FFF5>
 134	0x3411	pack/talk/ZMBITYAN:0x6498	I didn't know there were street<FFF6>performers in this area...<FFF5>
 135	0x3430	pack/talk/ZMBITYAN:0x6510	That was totally radical!<FFF5>
-136	0x343d	pack/talk/ZMBITYAN:0x6548	Dude,<FFF6>your lameness is off the charts!<FFF5>
+136	0x343d	pack/talk/ZMBITYAN:0x6548	Dude, your lameness<FFF6>is off the charts!<FFF5>
 137	0x3452	pack/talk/ZMBITYAN:0x6598	You suck! Make like a tree and leave!<FFF5>
 138	0x346e	pack/talk/ZMBITYAN:0x65e8	Like, what was that all about...?<FFF6>The crazy store called,<FFF6>they're out of you.<FFF5>
 139	0x3492	pack/talk/ZMBITYAN:0x6688	Wh-What are you like, trying to say?<FFF6>You're totally confusing me...<FFF5>
@@ -144,7 +144,7 @@ id	pos	psp	en
 142	0x34e4	pack/talk/ZMBITYAN:0x67c8	Like, oh my god, it's been forever<FFF6>since someone was interested in me!<FFF5>
 143	0x3504	pack/talk/ZMBITYAN:0x6858	Are you, like... trying to seduce me?<FFF6>You don't mind if I'm a little rotten?<FFF5>
 144	0x352f	pack/talk/ZMBITYAN:0x68f8	Are you making fun of me!?<FFF6>You must be cruisin' for a bruisin'!<FFF5>
-145	0x3542	pack/talk/ZMBITYAN:0x6978	Zombies go with zombies, and humans<FFF6>go with humans! That's like, the way!<FFF5>
+145	0x3542	pack/talk/ZMBITYAN:0x6978	Zombies go with zombies,<FFF6>and humans go with humans!<FFF6>That's like, the way!<FFF5>
 146	0x356b	pack/talk/ZMBITYAN:0x6a10	I'm kinda scared...<FFF5>
 147	0x3572	pack/talk/ZMBITYAN:0x6a38	I'm kinda scared...<FFF5>
 148	0x3579	pack/talk/ZMBITYAN:0x6a60	Like wow...<FFF6>I forgot how to feel excited,<FFF6>but it's coming back to me now.<FFF5>
@@ -186,7 +186,7 @@ id	pos	psp	en
 184	0x3af4	pack/talk/ZMBITYAN:0x7da8	Your face is like, way scary!<FFF6>I don't wanna negotiate with you...<FFF5>
 185	0x3b1a	pack/talk/ZMBITYAN:0x7e30	I'm feeling totally fantabulous<FFF6>today... Wanna negotiate?<FFF5>
 186	0x3b44	pack/talk/ZMBITYAN:0x7ea8	Today's gonna be like, totally lucky!<FFF6>Maybe I'll get a present from someone!<FFF1><FFF5>
-187	0x3b76	pack/talk/ZMBITYAN:0x7f48	<FFED>I'm crazy busy today, so if you've<FFF6>got somethin' to say, keep it simple!<FFF5>
+187	0x3b76	pack/talk/ZMBITYAN:0x7f48	<FFED>I'm crazy busy today,<FFF6>so if you've got somethin' to say,<FFF6>keep it simple!<FFF5>
 188	0x3ba3	pack/talk/ZMBITYAN:0x7fe0	<FFEE>I'm crazy busy today, but if you've<FFF6>got somethin' to give me,<FFF6>I'll make time!<FFF1><FFF5>
 189	0x3bd2	pack/talk/ZMBITYAN:0x8080	<FFEE>I'm scared, but like, kinda curious...<FFF6>How about negotiating with me...?<FFF5>
 190	0x3c04	pack/talk/ZMBITYAN:0x8118	<FFEC>You make one trippy move,<FFF6>and I'm going back to the grave<FFF6>I crawled out of...<FFF5>
@@ -205,7 +205,7 @@ id	pos	psp	en
 203	0x3e37	pack/talk/ZMBITYAN:0x8840	You wanna ask me something, right?<FFF6>Well spit it out already! Geez!<FFEF>
 204	0x3e69	pack/talk/ZMBITYAN:0x88c8	...I'll listen to anything you want...<FFF6>But let's talk first...<FFEF>
 205	0x3e9e	pack/talk/ZMBITYAN:0x8948	Like, screw logic! I just wanna be<FFF6>useful to you because you liked me!<FFEF>
-206	0x3ed9	pack/talk/ZMBITYAN:0x89d8	...I totally get it now! This is just<FFF6>a dream! A zombie dream! Yeahhhh!<FFF5>
+206	0x3ed9	pack/talk/ZMBITYAN:0x89d8	...I totally get it now!<FFF6>This is just a dream!<FFF6>A zombie dream! Yeahhhh!<FFF5>
 207	0x3f08	pack/talk/ZMBITYAN:0x8a68	...I totally wouldn't have even<FFF6>bothered with you, you know!<FFF5>
 208	0x3f2a	pack/talk/ZMBITYAN:0x8ae8	...To tell the truth, I've been<FFF6>crushing on you for a long time now!<FFF6>I-I'm not lying!<FFF5>
 209	0x3f5f	pack/talk/ZMBITYAN:0x8b98	The only thing that makes a girl's<FFF6>world go 'round is money...<FFF6>So gimme <FFF8> yen!<FFEF>
@@ -214,7 +214,7 @@ id	pos	psp	en
 212	0x3fc7	pack/talk/ZMBITYAN:0x8d00	Oh, you're broke, huh?<FFF5>
 213	0x3fdb	pack/talk/ZMBITYAN:0x8d30	If that's how it's gonna be,<FFF6>I'll just rip out your brains!<FFF5>
 214	0x3ffc	pack/talk/ZMBITYAN:0x8da8	...I swear, you won't get into heaven...<FFF5>
-215	0x4019	pack/talk/ZMBITYAN:0x8e00	Life stones! I so like, want one!<FFF6>Gimme one!<FFEF>
+215	0x4019	pack/talk/ZMBITYAN:0x8e00	Life stones!<FFF6>I so like, want one! Gimme one!<FFEF>
 216	0x4047	pack/talk/ZMBITYAN:0x8e60	Ahhh... It's so warm...<FFF5>
 217	0x4055	pack/talk/ZMBITYAN:0x8e90	Hey! If you don't have any,<FFF6>you should just say so!<FFF6>Seriously, that's like, so rude!<FFF5>
 218	0x408c	pack/talk/ZMBITYAN:0x8f40	It's so not my lucky day...<FFF6>I saw some other people who looked<FFF6>like they had life stones...<FFF5>

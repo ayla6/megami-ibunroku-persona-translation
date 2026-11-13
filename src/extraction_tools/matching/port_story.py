@@ -369,7 +369,7 @@ def label_words(label):
 sent_end = vwf_wrap.sent_end
 
 
-def reflow(first_label, items):
+def reflow(first_label, items, joins=None):
     """Lay out the PSP stream in source order, without a Japanese skeleton.
 
     Code translation precedes this function. Only prose line breaks and
@@ -475,8 +475,13 @@ def reflow(first_label, items):
             dirty = True
         else:
             fire(kind, val)
+    # A box the merge may join onto the one before shares that box's three
+    # lines: its layout must leave the join room (box_joins; unknown = any
+    # boundary may join).
     for k, v in vwf_wrap.flow_lines(flow_items, vwf_wrap.BOX_WIDTH,
-                                    vwf_wrap.text_width, '<FF03>'):
+                                    vwf_wrap.text_width, '<FF03>',
+                                    joinable=joins if joins is not None
+                                    else True):
         parts.append(v)
     # THE choice rule (vwf_wrap.choice_breaks): the options start on their
     # own line - every assembly point goes through it, no copy of the rule
@@ -819,7 +824,7 @@ def code_words(part):
     return toks
 
 
-def layout_box(en, brk=None, head=None, preserve_lines=False):
+def layout_box(en, brk=None, head=None):
     """THE textbox layout - the one entry every producer calls (boot_btlmsg,
     port_lastresort, any family that has a box in hand). Nothing about a box's
     layout is decided anywhere else: the label rule at EVERY box head
@@ -895,11 +900,11 @@ def layout_box(en, brk=None, head=None, preserve_lines=False):
         chunks = _re.split(r'<FF03>|<FFF6>', part)
         for i, chunk in enumerate(chunks):
             items.extend(('w', w) for w in code_words(chunk) if w)
-            if i < len(chunks) - 1 and (preserve_lines or is_heading(chunk)):
+            if i < len(chunks) - 1 and is_heading(chunk):
                 items.append(('b', brk))
     out = ''.join(v for _k, v in _v.flow_lines(
         items, _v.BOX_WIDTH, newline=brk,
-        tail=0 if preserve_lines and brk == '<FFF6>' else 1))
+        tail=1))
     out = _v.clean_edges(out)
     out = _v.choice_breaks(out, brk=brk)
     if brk == '<FFF6>':
@@ -1054,7 +1059,8 @@ def paginate(en, line='<FF03>', page='<FF04>', wait='<FF02>', per=3):
     return s, invented, nonsent
 
 
-def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1):
+def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1,
+                joins=None):
     """JOIN TWO AUTHORED BOXES WHEN THE JOIN IS FREE.
 
     The PSP's boxes are the author's and are kept - but two of them often fit
@@ -1063,6 +1069,11 @@ def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1):
     neither box scrolls and the pair fits the box's three lines, AND the box
     count stays in [psx boxes, psp boxes]: never fewer boxes than the PSX
     draws for the same speech. Nothing is re-flowed and no scroll is invented.
+
+    `joins` (box_joins: one flag per box boundary) names WHICH boundaries the
+    PSX does not draw, read off the PSP-JP and PSX-JP texts. When it is given
+    and the box count still matches, only those boundaries may join (each
+    still needs the free-join test); otherwise the joins fall at the tail.
     """
     ends = ('<FF01>', '<FFEF>', '<FFF5>')
     # The script's own dismissal tail (a wait, if it wrote one, then the end
@@ -1105,9 +1116,13 @@ def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1):
             (scr if after else vis).append(t.strip())
         if vis or scr:
             boxes.append((vis, scr))
+    if joins is not None and len(joins) + 1 != len(boxes):
+        joins = None
     merged = []
-    for vis, scr in boxes:
-        joined = (merged and len(merged) >= min_boxes     # never below the PSX
+    for bi, (vis, scr) in enumerate(boxes):
+        joined = (merged
+                  and (joins[bi - 1] if joins is not None
+                       else len(merged) >= min_boxes)   # never below the PSX
                   and not scr and not merged[-1][1]
                   and len(merged[-1][0]) + len(vis) <= 3)
         if joined:
@@ -1128,6 +1143,88 @@ def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1):
     # script wrote - a press wait, or just the end code behind a timed pause.
     res += (tail if block else tail_wait + tail)
     return res.replace('\x01CHOICE\x01', block) if block else res
+
+
+def _page_text(t):
+    """A page's spoken text for box alignment: no codes, no speaker label
+    (PSX inline 'name：', PSP '<FF1B>name<FF03>'), width-normalised."""
+    import unicodedata
+    t = re.sub(r'^\s*<FF1B>[^<]*<FF03>', '', t)
+    t = re.sub(r'<[^>]*>|\[[0-9a-f]{4}\]', '', t)
+    t = re.sub(r'^[^：:]{1,16}[：:]', '', t.strip())
+    return re.sub(r'\s+', '', unicodedata.normalize('NFKC', t))
+
+
+def box_joins(ja, jraw):
+    """Which PSP box boundaries the PSX does not draw: [join?] per PSP-JP
+    boundary, or None when the texts do not prove it.
+
+    PSP-JP and PSX-JP are the same script, so their texts align; a PSP-JP
+    page boundary that lands on a PSX page boundary is kept, one that lands
+    inside a PSX page is a box the PSX draws as one. Every PSX boundary must
+    be matched by a PSP one, or nothing is decided (the PSP wrote fewer or
+    different boxes)."""
+    import difflib
+    from codec import decode_box
+    psx = [_page_text(p) for p in ja.split('<FF04>')]
+    jp = [_page_text(p) for p in
+          decode_box(jraw, jp_map(), holes=[]).split('<FF04>')]
+    psx = [p for p in psx if p]
+    jp = [p for p in jp if p]
+    if len(jp) < 2 or len(jp) <= len(psx):
+        return None
+    a, b = ''.join(jp), ''.join(psx)
+    sm = difflib.SequenceMatcher(None, a, b, autojunk=False)
+    if sm.ratio() < 0.6:
+        return None
+    blocks = sm.get_matching_blocks()
+
+    def at(p):
+        for a0, b0, size in blocks:
+            if size and a0 <= p <= a0 + size:
+                return b0 + p - a0
+        return None
+    ends, n = [], 0
+    for page in psx[:-1]:
+        n += len(page)
+        ends.append(n)
+    out, n = [], 0
+    for page in jp[:-1]:
+        n += len(page)
+        q = at(n)
+        if q is None:
+            return None
+        out.append(not any(abs(q - e) <= 1 for e in ends))
+    if out.count(False) != len(ends):
+        return None
+    return out
+
+
+def ellipsis_pauses(en, ja, wait='<FF02>', page='<FF04>'):
+    """Carry the PSX's timed beat around an ellipsis onto the English one.
+
+    The PSX times some ellipses with <FF05> pauses ('ね<FF05><30><00>…
+    <FF05><15><00>私が'), and the PSP script drops them. Per box, when the
+    PSX page has exactly ONE ellipsis and it carries a pause, and the English
+    box has exactly one ellipsis and no pause of its own, the same pauses go
+    on the same sides of the English ellipsis. Any other count is left alone:
+    nothing is guessed. Pauses are zero-width, so the layout is unchanged."""
+    pause = r'<FF05><[0-9A-F]{2}><[0-9A-F]{2}>'
+    jp_pages = ja.split(page)
+    boxes = en.split(wait + page)
+    if len(jp_pages) != len(boxes):
+        return en
+    out = []
+    for box, jp in zip(boxes, jp_pages):
+        hits = list(re.finditer(r'(%s)?(?:…|\.\.)+(%s)?' % (pause, pause), jp))
+        dots = list(re.finditer(r'\.{3,}|…+', re.sub(r'<[^>]+>', lambda m: '\0' * len(m.group(0)), box)))
+        if (len(hits) == 1 and (hits[0].group(1) or hits[0].group(2))
+                and len(dots) == 1 and '<FF05>' not in box):
+            a, b = dots[0].span()
+            box = (box[:a] + (hits[0].group(1) or '') + box[a:b]
+                   + (hits[0].group(2) or '') + box[b:])
+        out.append(box)
+    return (wait + page).join(out)
 
 
 def _clean(en):
@@ -1492,7 +1589,7 @@ def convert_entry(f, ei):
                 else:
                     items.append(('w', x))
         def finish(items_in):
-            e2, used2, rf2 = reflow(first_lab, items_in)
+            e2, used2, rf2 = reflow(first_lab, items_in, joins=joins)
             flags.extend(rf2)
             if not e2.endswith('<FF01>'):
                 e2 += '<FF01>' if '<FF01>' not in e2 else ''
@@ -1522,6 +1619,16 @@ def convert_entry(f, ei):
                 counts[1] += nons1
             return e2
 
+        joins = None
+        if r is not None and r[5] == 'ok' and str(r[3]).isdigit():
+            jidx = int(r[3])
+
+            def _live_joins():
+                jent = jsp_entries(f)[ei]
+                if jidx >= len(jent.boxes):
+                    return None
+                return box_joins(ja, jent.box_bytes(jidx))
+            joins = story_port_plan.joins(f, ei, k, _live_joins)
         en = finish(items)
         if any('variable' in flag for flag in flags):
             out.append((k, ja, None, '; '.join(flags)))
@@ -1532,7 +1639,8 @@ def convert_entry(f, ei):
         # this box as 1 + its own <FF04> pages, the PSP's boxes are kept unless
         # the pair fits three lines (the count stays in
         # [psx boxes, psp boxes], never smaller than either).
-        en = merge_boxes(en, min_boxes=1 + ja.count('<FF04>'))
+        en = merge_boxes(en, min_boxes=1 + ja.count('<FF04>'), joins=joins)
+        en = ellipsis_pauses(en, ja)
         # THE OPTION BLOCK'S ARMING LINE IS THE LAYOUT'S, NOT THE JP'S. The
         # JP's wait is a proxy for ITS prompt length; the English prompt is a
         # different length, so copying the JP's wait either invents a press on

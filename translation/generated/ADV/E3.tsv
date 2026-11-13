@@ -1,10 +1,10 @@
 id	pos	psp	en
 0	0:0x1628	E3:0	Principal Ooishi: Honestly, that man...<FF03>The student must have had<FF03>a reason for starting the fight.<FF02><FF04>Teachers must hear all sides<FF03>before making a decision...<FF02><FF01>
-1	0:0x168c	E3:1	Principal Ooishi: I had the most<FF03>awful dream. Ugh, my head...<FF02><FF01>
+1	0:0x168c	E3:1	Principal Ooishi:<FF03>I had the most awful dream.<FF03>Ugh, my head...<FF02><FF01>
 2	0:0x16b4	E3:2	Principal Ooishi: Punishing students<FF03>isn't the only way to educate them.<FF02><FF01>
 3	0:0x16dc	E3:3	Vice-Principal Hanya:<FF03>How dare he give me lip that way!<FF02><FF04>I'm not listening to his excuses!<FF03>They're only lies, anyway.<FF02><FF04>As punishment, he must clean windows,<FF03>write lines, and polish my shoes!<FF02><FF01>
 4	0:0x175c	E3:4	Vice-Principal Hanya:<FF03>Oh, if only it had been real...<FF02><FF04>Hm? No, it's nothing.<FF03>Don't interfere with his punishment.<FF02><FF01>
-5	0:0x179c	E3:5	Vice-Principal Hanya: Hey! Don't<FF03>interfere with his punishment!<FF03>Unless you want to join him?<FF02><FF01>
+5	0:0x179c	E3:5	Vice-Principal Hanya: Hey!<FF03>Don't interfere with his punishment!<FF03>Unless you want to join him?<FF02><FF01>
 6	0:0x17d4	E3:6	Kiichi: To hell with this! Why am I<FF03>the only one getting lectured here?<FF02><FF04>It's just as much the student<FF03>council president's fault!<FF02><FF04>Is yelling at students without<FF03>listening to them a teacher's<FF03>job or what!?<FF02><FF01>
 7	0:0x183c	E3:7	Kiichi: Don't talk to me, dammit!<FF03>Why am I the only one who<FF03>has to write lines!?<FF02><FF04>I<FF05><1E><00> will<FF05><1E><00> not<FF05><1E><00> do<FF05><1E><00>...<FF02><FF01>
 8	0:0x1894	E3:8	Kiichi: Don't talk to me, dammit!<FF03>I'm a little busy here!<FF03>I<FF05><1E><00> promise<FF05><1E><00> not<FF05><1E><00> to<FF05><1E><00>...<FF02><FF01>
@@ -20,22 +20,22 @@ id	pos	psp	en
 18	0:0x1a7c	E3:18	Elly: Where could the Night Queen<FF03>have gone?<FF02><FF01>
 19	1:0x1550	E3:19	Gambling-addicted student:<FF03><FF07><01>! The room in front of<FF03>the library turned into a casino!<FF02><FF04>I'm so frickin' excited!<FF03>You should check it out, too!<FF02><FF01>
 20	1:0x159c	E3:20	Gambling-addicted student:<FF03>While you guys were gone, I, uh, blew<FF03>the club's whole budget on poker...<FF02><FF04>Whoever's playing next is one lucky<FF03>skunk. The prize bonus must<FF03>be through the roof!<FF02><FF01>
-21	1:0x160c	E3:21	Younger girl: Heh... We're done for.<FF02><FF04>We were always<FF03>going to die someday...<FF03>It's just been sped up a bit.<FF02><FF04>Yep... That's all there is to it.<FF02><FF04>I get to go out while<FF03>I'm still beautiful,<FF03>so I thank the Snow Queen for that.<FF02><FF01>
+21	1:0x160c	E3:21	Younger girl: Heh... We're done for.<FF02><FF04>We were always<FF03>going to die someday...<FF03>It's just been sped up a bit.<FF02><FF04>Yep... That's all there is to it.<FF02><FF04>I get to go out<FF03>while I'm still beautiful,<FF03>so I thank the Snow Queen for that.<FF02><FF01>
 22	1:0x1684	E3:22	Younger girl:<FF03>Heh... A blue room and a blue piano.<FF02><FF04>Blue curtains and a blue carpet...<FF03>I wonder what goes on in that room.<FF02><FF04>It's the room just to our left. Heh...<FF02><FF01>
 23	1:0x1704	E3:23	Younger girl: Heh... There's a light<FF03>floating in a dark room.<FF02><FF04>The light takes me to another world.<FF03>It's wonderful...<FF02><FF04>Leave here and turn<FF03>left at the cross-roads,<FF03>then keep going straight.<FF02><FF04>That's how you get there. Heh...<FF02><FF01>
 24	1:0x1794	E3:24	Yukino: A casino? Sounds tempting.<FF02><FF01>
-25	1:0x17b0	E3:25	Yukino: Huh, so if we've<FF03>been fighting for a while,<FF03>the prize might have increased.<FF02><FF01>
+25	1:0x17b0	E3:25	Yukino: Huh,<FF03>so if we've been fighting for a while,<FF03>the prize might have increased.<FF02><FF01>
 26	1:0x17e0	E3:26	Ayase: I'm hunnnngryyyy!<FF03>That reminds me,<FF03>where did the home ec room go?<FF02><FF04>I had ingredients left over after<FF03>I made sweets this morning,<FF03>so I left 'em there.<FF02><FF01>
 27	1:0x1844	E3:27	Ayase: I'm hunnnngryyyy.<FF02><FF01>
-28	1:0x1858	E3:28	Nanjo: A casino? You'll go to seed if<FF03>you get involved with such things.<FF02><FF01>
-29	1:0x1880	E3:29	Nanjo: The fool...<FF03>He brought it on himself.<FF02><FF01>
+28	1:0x1858	E3:28	Nanjo: A casino? You'll go to seed<FF03>if you get involved with such things.<FF02><FF01>
+29	1:0x1880	E3:29	Nanjo:<FF03>The fool... He brought it on himself.<FF02><FF01>
 30	1:0x18a0	E3:30	Brown: Hey, that sounds like fun.<FF02><FF04>We should try this casino ourselves!<FF02><FF01>
 31	1:0x18d8	E3:31	Brown: I wanna just kick back and<FF03>have fun at a casino or<FF03>somewhere for once.<FF02><FF01>
 32	1:0x1904	E3:32	Elly: That girl by the window...<FF03>She's been muttering<FF03>something for some time...<FF02><FF01>
 33	1:0x1934	E3:33	Elly: That girl by the window...<FF03>She's still muttering to herself...<FF02><FF01>
-34	2:0x1308	E3:34	Student council president:<FF03>Whew... that was close.<FF02><FF04>See, I got in a fight.<FF02><FF04>The Vice-Principal almost caught me,<FF03>which would have been bad.<FF03>But I bet he won't find me here.<FF02><FF01>
+34	2:0x1308	E3:34	Student council president:<FF03>Whew... that was close.<FF02><FF04>See, I got in a fight.<FF03>The Vice-Principal almost caught me,<FF03>which would have been bad.<FF02><FF04>But I bet he won't find me here.<FF02><FF01>
 35	2:0x13a4	E3:35	Student council president:<FF03>You guys really do work hard.<FF02><FF04>Leave everything to your ol'<FF03>student council president and<FF03>run along, okay?<FF02><FF01>
-36	2:0x13ec	E3:36	Drama club member:<FF03>I heard a story about when Ms. Saeko<FF03>was in the drama club...<FF02><FF04>They say she fought with her best<FF03>friend over who would play<FF03>the Snow Queen.<FF02><FF04>I forget her last name,<FF03>but I think her first name was Tomomi.<FF02><FF04>There were tears in Ms. Saeko's<FF03>eyes when she told me about that.<FF02><FF01>
+36	2:0x13ec	E3:36	Drama club member:<FF03>I heard a story about when Ms. Saeko<FF03>was in the drama club...<FF02><FF04>They say she fought with her best<FF03>friend over who would play<FF03>the Snow Queen.<FF02><FF04>I forget her last name,<FF03>but I think her first name was Tomomi.<FF02><FF04>There were tears in Ms. Saeko's eyes<FF03>when she told me about that.<FF02><FF01>
 37	2:0x1470	E3:37	Drama club member:<FF03>It seems like there's a tragic legacy<FF03>behind the Snow Queen's mask.<FF02><FF04>Maybe I should write a play about it<FF03>once the town's back to normal.<FF02><FF01>
 38	2:0x14c0	E3:38	Yukino: So our drama club's good<FF03>enough that it can win competitions?<FF02><FF01>
 39	2:0x14ec	E3:39	Yukino: Let's beat that<FF03>Night Queen for the sake of<FF03>the three tower guardians.<FF02><FF01>
@@ -48,10 +48,10 @@ id	pos	psp	en
 46	2:0x1654	E3:46	Elly: Nothing but<FF03>sheets and sheets of ice...<FF03>It's not beautiful at all; only cold.<FF02><FF01>
 47	2:0x1684	E3:47	Elly: Where could the other<FF03>club members be?<FF02><FF01>
 48	3:0x179c	E3:48	Male student:<FF03>Ah, so you're here too, <FF0F><01>.<FF02><FF04>Check it out!<FF03>With all this, we can stand up to<FF03>the demons whenever they appear!<FF02><FF01>
-49	3:0x17e8	E3:49	Male student: Huh? He's<FF03>selling different stuff now...<FF03>It looks even more dangerous.<FF02><FF01>
+49	3:0x17e8	E3:49	Male student: Huh?<FF03>He's selling different stuff now...<FF03>It looks even more dangerous.<FF02><FF01>
 50	3:0x1820	E3:50	Male teacher:<FF03>What is the matter with that child!?<FF02><FF04>This is a school! He can't open<FF03>a store here without permission!<FF02><FF01>
-51	3:0x185c	E3:51	Clerk: Welcoooome...<FF03>I from Devil's Peak.<FF02><FF04>Bring very good things.<FF03>Mister need this.<FF03>I sell at low price, you buy!<FF02><FF01>
-52	3:0x18bc	E3:52	Clerk: I been wait for you!<FF03>Lucky mister.<FF02><FF04>This store close soon.<FF03>Last sale, be waste if not buy!<FF02><FF01>
+51	3:0x185c	E3:51	Clerk: Welcoooome...<FF03>I from Devil's Peak.<FF03>Bring very good things.<FF02><FF04>Mister need this.<FF03>I sell at low price, you buy!<FF02><FF01>
+52	3:0x18bc	E3:52	Clerk:<FF03>I been wait for you! Lucky mister.<FF02><FF04>This store close soon.<FF03>Last sale, be waste if not buy!<FF02><FF01>
 53	3:0x1904	E3:53	Yukino: From Devil's Peak, huh?<FF03>Then is that kid a demon too...?<FF02><FF01>
 54	3:0x1934	E3:54	Yukino: It's making money off<FF03>humans fighting demons.<FF03>That's one ballsy kid...!<FF02><FF01>
 55	3:0x196c	E3:55	Ayase: Hey, are these, like, real?<FF02><FF01>
@@ -59,7 +59,7 @@ id	pos	psp	en
 57	3:0x19a4	E3:57	Nanjo: Amazing! All of these could<FF03>prove useful for us.<FF02><FF01>
 58	3:0x19c8	E3:58	Nanjo: I wonder how many times we<FF03>survived as a result of that child.<FF02><FF04>We should express our thanks,<FF03>even if its prices are<FF03>a bit exorbitant.<FF02><FF01>
 59	3:0x1a08	E3:59	Brown: Yikes, what's with the little<FF03>arms dealer at school?<FF02><FF04>...Well, I guess it's part of that small<FF03>stuff you're not supposed to sweat.<FF02><FF01>
-60	3:0x1a4c	E3:60	Brown: WHOA! Has it gotten<FF03>even crazier here?<FF02><FF01>
+60	3:0x1a4c	E3:60	Brown: WHOA!<FF03>Has it gotten even crazier here?<FF02><FF01>
 61	3:0x1a74	E3:61	Elly: That child is supposedly<FF03>a merchant of death from<FF03>the demon world.<FF02><FF01>
 62	3:0x1aa8	E3:62	Elly: Does that child care at all who<FF03>wins between us and the Queen?<FF02><FF01>
 63	4:0x18e8	E3:63	Female student: Squee! Look, look!<FF03>This dress is soooo cute!<FF02><FF01>
@@ -72,7 +72,7 @@ id	pos	psp	en
 70	4:0x1a24	E3:72	Yukino: All these clothes<FF03>have some practical use.<FF03>They're more like armor than clothes.<FF02><FF01>
 71	4:0x1a48	E3:73	Yukino: Think this shopkeeper<FF03>came from Devil's Peak like<FF03>the one across the hall?<FF02><FF01>
 72	4:0x1a80	E3:74	Ayase: Oh man, this is soooo cool!<FF02><FF01>
-73	4:0x1aa4	E3:75	Ayase: Yikes...<FF03>I wonder if I've gained weight.<FF02><FF01>
+73	4:0x1aa4	E3:75	Ayase:<FF03>Yikes... I wonder if I've gained weight.<FF02><FF01>
 74	4:0x1ac0	E3:76	Nanjo: The higher an item's price,<FF03>the sturdier it seems.<FF02><FF01>
 75	4:0x1ae0	E3:77	Nanjo: I wonder how often this armor<FF03>has saved our lives...<FF02><FF04>It's expensive,<FF03>but I'm not complaining.<FF02><FF01>
 76	4:0x1b28	E3:78	Brown:<FF03>Hey, what's with this store selling<FF03>these crazy clothes at school?<FF02><FF04>...Eh, whatever.<FF03>It's not like the school<FF03>regulations mean anything anymore.<FF02><FF01>
@@ -83,16 +83,16 @@ id	pos	psp	en
 81	5:0x1644	E3:83	Male student: It's all going to<FF03>hell outside, but it's hard to be<FF03>nervous with this store around.<FF02><FF01>
 82	5:0x1678	E3:84	Clerk: Hello. Thanks for always being<FF03>nice to my great-grandson.<FF02><FF04>I'm always watching from up above.<FF03>Heeheehee!<FF02><FF01>
 83	5:0x16cc	E3:85	Clerk:<FF03>Well! Rather chilly outside, isn't it?<FF02><FF01>
-84	5:0x16e8	E3:86	Yukino: What's with the old guy? And<FF03>what does he mean by "up above"?<FF02><FF04>And never mind that--why's there<FF03>a pharmacy here at school!?<FF02><FF01>
+84	5:0x16e8	E3:86	Yukino: What's with the old guy?<FF03>And what does he mean by<FF03>"up above"?<FF02><FF04>And never mind that--why's there<FF03>a pharmacy here at school!?<FF02><FF01>
 85	5:0x172c	E3:87	Yukino:<FF03>Where'd this store pop up from?<FF02><FF01>
-86	5:0x174c	E3:88	Ayase: Ooooooh! A frog!<FF03>Sooooo cuuuute!<FF02><FF01>
+86	5:0x174c	E3:88	Ayase:<FF03>Ooooooh! A frog! Sooooo cuuuute!<FF02><FF01>
 87	5:0x177c	E3:89	Ayase: I want this frog.<FF03>Buy it for me, Daddy!<FF02><FF01>
 88	5:0x17a8	E3:90	Nanjo:<FF03>Why is there a pharmacy here...?<FF02><FF01>
 89	5:0x17c0	E3:91	Nanjo: Is this a legitimate<FF03>place of business?<FF02><FF01>
 90	5:0x17d8	E3:92	Brown: No's-Bleed Z... Sounds like<FF03>that'll do the trick, all right.<FF02><FF01>
 91	5:0x1800	E3:93	Brown: Maybe I should buy up all<FF03>the No's-Bleed Z before things<FF03>go back to normal...<FF02><FF01>
 92	5:0x1834	E3:94	Elly: So many suspicious medicines...<FF03>I hope they aren't harmful to<FF03>one's health.<FF02><FF01>
-93	5:0x1858	E3:95	Elly: Aren't there more ordinary<FF03>medicines, for everyday use?<FF02><FF01>
+93	5:0x1858	E3:95	Elly:<FF03>Aren't there more ordinary medicines,<FF03>for everyday use?<FF02><FF01>
 94	5:0x1880	E3:96	Frog: You're talking to a frog.<FF03>A complete stranger frog, at that.<FF03>You must be bored.<FF02><FF04>I respect your curiosity.<FF03>Here's a sample recommended by<FF03>Satomi Tadashi himself.<FF02><FF01>
 95	5:0x18e0	E3:97	Obtained Muscle Drink.<FF02><FF04>Sample Muscle Drink.<FF03>That is my, Frog's, essence.<FF03>It's pure love for you.<FF02><FF04>Hmm. Missing a syllable.<FF02><FF01>
 96	5:0x1924	E3:98	N-No way. You have more than I do.<FF02><FF04>Rude to try to bum more from me.<FF03>You'll pay the piper, no doubt.<FF02><FF04>Just go die. No, no, seriously.<FF02><FF01>
@@ -102,8 +102,8 @@ id	pos	psp	en
 100	5:0x1b04	E3:102	Just kidding... No sweet nothings to<FF03>whisper to me after all those gifts?<FF02><FF04>You're at the right age to study<FF03>the subtleties of men's and<FF03>women's feelings.<FF02><FF04>What I'm trying to say is... I'm a girl!<FF02><FF01>
 101	6:0x183c	E3:103	Chemistry teacher: This is pretty<FF03>elaborate for a Culture Festival<FF03>stall. I'm impressed.<FF02><FF01>
 102	6:0x1870	E3:104	Chemistry teacher: This place sells<FF03>some pretty expensive stuff for<FF03>a Culture Festival stall.<FF02><FF04>And those are two<FF03>old-looking students...<FF02><FF01>
-103	6:0x18ac	E3:105	Turunkhamen: Hohoho... Welcome. What<FF03>manner of goods do you require?<FF02><FF01>
-104	6:0x18e4	E3:106	Turunkhamen: Hohoho... Welcome. What<FF03>manner of goods do you require?<FF02><FF01>
+103	6:0x18ac	E3:105	Turunkhamen: Hohoho...<FF03>Welcome. What manner of<FF03>goods do you require?<FF02><FF01>
+104	6:0x18e4	E3:106	Turunkhamen: Hohoho...<FF03>Welcome. What manner of<FF03>goods do you require?<FF02><FF01>
 105	6:0x191c	E3:107	Khamenturun: Hohohoho... I love gems<FF03>more than anything in this world.<FF02><FF04>I'll exchange my special<FF03>treasures for your gems.<FF03>Would you like to trade?<FF02><FF01>
 106	6:0x1988	E3:108	Khamenturun: Hohohoho... I love gems<FF03>more than anything in this world.<FF02><FF04>I'll exchange my special<FF03>treasures for your gems.<FF03>Would you like to trade?<FF02><FF01>
 107	6:0x19f4	E3:109	Yukino: Wasn't Sennen Mannen-Do<FF03>a sweets shop?<FF02><FF01>
@@ -112,19 +112,19 @@ id	pos	psp	en
 110	6:0x1a80	E3:112	Ayase:<FF03>I could stare at shiny stuff all day...!<FF02><FF01>
 111	6:0x1ab0	E3:113	Nanjo: What is this store?<FF03>A sweets shop...? Ahhh...<FF03>a sweatshop. Yes, of course.<FF02><FF01>
 112	6:0x1ae8	E3:114	Nanjo:<FF03>This "sweets shop" is rather bizarre.<FF02><FF01>
-113	6:0x1b08	E3:115	Brown: Hey, why's there<FF03>a sweets shop at school?<FF02><FF01>
+113	6:0x1b08	E3:115	Brown: Hey,<FF03>why's there a sweets shop at school?<FF02><FF01>
 114	6:0x1b34	E3:116	Brown: That reminds me...<FF03>it's not cold in here!<FF02><FF01>
 115	6:0x1b54	E3:117	Elly: Hm? This place isn't frozen...<FF03>Now why is that?<FF02><FF01>
-116	6:0x1b7c	E3:118	Elly: The stores here seem as if<FF03>they exist in another world.<FF03>They're not cold at all.<FF02><FF01>
+116	6:0x1b7c	E3:118	Elly: The stores here seem as if they<FF03>exist in another world.<FF03>They're not cold at all.<FF02><FF01>
 117	7:0x1538	E3:119	Female student: What are we going to<FF03>do? There's no way out.<FF03>We're trapped in here!<FF02><FF04>The demons will get us<FF03>eventually anyways...<FF02><FF04>Tons of demons will invade and we'll<FF03>all be tortured to death!<FF02><FF01>
 118	7:0x15b0	E3:120	Female student:<FF03>Even if you defeat the Snow Queen,<FF03>there will still be demons left, right!?<FF02><FF04>We're sunk...<FF02><FF01>
 119	7:0x15f8	E3:121	Female student: Who's the one who<FF03>claimed the school was safe?<FF03>I wanna go home...<FF02><FF01>
-120	7:0x1630	E3:122	Female student:<FF03>Why can't we get outside yet?<FF02><FF04>Are we forced to just sit here and<FF03>wait until we freeze to death?<FF02><FF04>I'm not having any of that! There's<FF03>still a lot I want to accomplish in life!<FF02><FF01>
-121	7:0x169c	E3:123	Satori: We're sunk. We were<FF03>always going to die someday...<FF03>It's just been sped up a bit.<FF02><FF04>I get to go out while<FF03>I'm still beautiful,<FF03>so I thank the Snow Queen for that.<FF02><FF01>
-122	7:0x1704	E3:124	Satori: When I keep my eyes shut<FF03>like this, it's like everything's<FF03>stopped breathing.<FF02><FF04>It's so quiet. You know... I think I'm<FF03>starting... to get... slee... py...<FF02><FF01>
+120	7:0x1630	E3:122	Female student:<FF03>Why can't we get outside yet?<FF02><FF04>Are we forced to just sit here and<FF03>wait until we freeze to death?<FF02><FF04>I'm not having any of that!<FF03>There's still a lot I want to<FF03>accomplish in life!<FF02><FF01>
+121	7:0x169c	E3:123	Satori: We're sunk. We were<FF03>always going to die someday...<FF03>It's just been sped up a bit.<FF02><FF04>I get to go out<FF03>while I'm still beautiful,<FF03>so I thank the Snow Queen for that.<FF02><FF01>
+122	7:0x1704	E3:124	Satori: When I keep my eyes shut<FF03>like this, it's like everything's<FF03>stopped breathing.<FF02><FF04>It's so quiet.<FF03>You know... I think I'm starting...<FF03>to get... slee... py...<FF02><FF01>
 123	7:0x1764	E3:125	Yukino:<FF03>Talk about an annoying bunch.<FF02><FF04>Let's go before they make<FF03>me as crazy as they are.<FF02><FF01>
 124	7:0x1798	E3:126	Yukino:<FF03>They're still spouting that crap.<FF03>It's depressing me, too... let's just go.<FF02><FF01>
-125	7:0x17c8	E3:127	Ayase: Actually, I joke around<FF03>a lot and stuff, but I'm worried too.<FF02><FF04>It's like, are we really gonna be<FF03>able to rescue Ms. Saeko?<FF02><FF04>I mean, we're just high schoolers!<FF03>What can we do!?<FF02><FF01>
+125	7:0x17c8	E3:127	Ayase: Actually,<FF03>I joke around a lot and stuff,<FF03>but I'm worried too.<FF02><FF04>It's like, are we really gonna be<FF03>able to rescue Ms. Saeko?<FF02><FF04>I mean, we're just high schoolers!<FF03>What can we do!?<FF02><FF01>
 126	7:0x1844	E3:128	Ayase: You're really strong,<FF03><FF07><01>. You never complain.<FF02><FF04>That's why I look up to you, y'know?<FF02><FF01>
 127	7:0x188c	E3:129	Nanjo: They're forfeiting before<FF03>even making a move...?<FF02><FF04>Not I! I'll fight to the bitter end!<FF03>I refuse to throw my future away.<FF02><FF01>
 128	7:0x18d4	E3:130	Nanjo: We'll accomplish<FF03>nothing by staying here.<FF02><FF01>
@@ -142,31 +142,31 @@ id	pos	psp	en
 140	8:0x5450	E3:142	Igor: Well then... Farewell...<FF02><FF01>
 141	8:0x5468	E3:143	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though,<FF03>I must summon demons to<FF03>fuse together into a Persona.<FF02><FF04>And for that,<FF03>a certain type of card is necessary.<FF02><FF04>You see,<FF03>these cards are inscribed with<FF03>demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only<FF03>way to deal with demons...<FF03>Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 142	8:0x5614	E3:144	Igor: It isn't enough merely to fuse<FF03>a new Persona in order to<FF03>make it your own...<FF02><FF04>There is rather more to<FF03>it than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of holding<FF03>up to three Personas.<FF02><FF04>A newly-fused Persona will be<FF03>entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas as<FF03>there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according to<FF03>the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
-143	8:0x57e0	E3:145	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF02><FF04>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
+143	8:0x57e0	E3:145	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF03>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
 144	8:0x5b78	E3:146	Igor: Pardon me for being nosy, but...<FF02><FF04>Personas have<FF03>eight levels of growth.<FF03>You should try to develop them fully.<FF02><FF04>I'm sure that there will be an ample<FF03>reward for doing so...<FF02><FF04>You might also be interested to<FF03>know about various factors in fusion.<FF02><FF04>For example, even when creating<FF03>the same Persona...<FF02><FF04>The combination of spell cards,<FF03>the affinities of the demons used...<FF02><FF04>The position of Terra and Luna, and<FF03>any essences added into the mix...<FF02><FF04>All of these factor into the resultant<FF03>Persona. And one more thing...<FF02><FF04>You may also add an item into<FF03>the fusion to trigger a change.<FF02><FF04>There are some items for which<FF03>the result is easily predictable...<FF02><FF04>But sometimes, even I will be unable to<FF03>guess at what may happen.<FF02><FF04>Should that come about,<FF03>I do hope that you'll pardon me.<FF02><FF04>But make no mistake,<FF03>I do believe it is worth trying...<FF02><FF04>I suggest gems for obtaining<FF03>a higher- or lower-ranked<FF03>fusion within an order.<FF02><FF04>As for the other items' effects,<FF03>you should experiment for yourself.<FF02><FF01>
 145	9:0x49bc	E3:147	Yukino: Why a casino?<FF03>Is the idea to forget about<FF03>reality and waste away?<FF02><FF04>Oh well,<FF03>no sense sweating the details.<FF03>Might as well take a short break.<FF02><FF01>
 146	9:0x4a14	E3:148	Yukino: Why a casino?<FF03>Is the idea to forget about<FF03>reality and waste away?<FF02><FF04>Oh well,<FF03>no sense sweating the details.<FF03>Might as well take a short break.<FF02><FF01>
-147	9:0x4a6c	E3:149	Ayase: A casino, huh? A club would<FF03>have been, like, way cooler.<FF02><FF01>
+147	9:0x4a6c	E3:149	Ayase: A casino, huh?<FF03>A club would have been,<FF03>like, way cooler.<FF02><FF01>
 148	9:0x4a9c	E3:150	Ayase: You're still playing games?<FF03>C'mon! Let's get going!<FF02><FF01>
 149	9:0x4abc	E3:151	Nanjo: What IS this place!?<FF02><FF01>
-150	9:0x4ad0	E3:152	Nanjo: Remember, our finances are in<FF03>your hands. Don't squander them.<FF02><FF01>
+150	9:0x4ad0	E3:152	Nanjo: Remember,<FF03>our finances are in your hands.<FF03>Don't squander them.<FF02><FF01>
 151	9:0x4b04	E3:153	Brown: Hehehehe...<FF03>I could spend all day here!<FF02><FF01>
-152	9:0x4b2c	E3:154	Brown: Heyyy, c'mon! Forget<FF03>the Queen for a while and kick back!<FF02><FF01>
+152	9:0x4b2c	E3:154	Brown: Heyyy, c'mon!<FF03>Forget the Queen for<FF03>a while and kick back!<FF02><FF01>
 153	9:0x4b68	E3:155	Elly: This is still our school, right...?<FF02><FF01>
 154	9:0x4b88	E3:156	Elly: Relaxation is<FF03>important now and again,<FF03>but don't lose sight of the goal.<FF02><FF01>
-155	9:0x4bbc	E3:157	Clerk: Hiiii! SO nice to see you!<FF02><FF04>If you're looking to exchange<FF03>money for coins, I'm your man.<FF02><FF04>Won't you purchase some coins?<FF03>Hmmmm?<FF02><FF03><FF0E><00><FF01>
+155	9:0x4bbc	E3:157	Clerk: Hiiii! SO nice to see you!<FF03>If you're looking to exchange<FF03>money for coins, I'm your man.<FF02><FF04>Won't you purchase some coins?<FF03>Hmmmm?<FF02><FF03><FF0E><00><FF01>
 156	9:0x4c10	E3:158	Clerk: I can exchange your coins for<FF03>items, if that's what you're in<FF03>the mood for...<FF02><FF04>Wanna see what I've got?<FF03><FF0E><00><FF01>
 157	9:0x4c54	E3:159	Male student: Woo-ha!<FF03>I'm on a roll today!<FF02><FF01>
 158	9:0x4c84	E3:160	Melancholy student: All that money...<FF03>Gone... How am I gonna pay my bills...?<FF02><FF01>
-159	9:0x4cb8	E3:161	Fro-Man: Yyyeah!<FF03>Shoobee da ba da, oh yeah!<FF02><FF04>While I was puzzlin' out future jive,<FF03>my mama was workin' a nine to five.<FF02><FF04>While I was cleaning the toilet stall,<FF03>the Man set up my daddy to fall.<FF02><FF04>Ya dig? Da ba shoobee bop, oh yeah!<FF02><FF01>
-160	9:0x4d4c	E3:162	Fro-Man: Yyyeah!<FF03>Shoobee da ba da, oh yeah!<FF02><FF04>While I was tryin' to make ends meet,<FF03>my sis was walkin'<FF03>those cruel streets.<FF02><FF04>Don't get it, do ya?<FF03>Da ba shoobee bop, oh yeah!<FF02><FF01>
+159	9:0x4cb8	E3:161	Fro-Man:<FF03>Yyyeah! Shoobee da ba da, oh yeah!<FF02><FF04>While I was puzzlin' out future jive,<FF03>my mama was workin' a nine to five.<FF02><FF04>While I was cleaning the toilet stall,<FF03>the Man set up my daddy to fall.<FF02><FF04>Ya dig? Da ba shoobee bop, oh yeah!<FF02><FF01>
+160	9:0x4d4c	E3:162	Fro-Man:<FF03>Yyyeah! Shoobee da ba da, oh yeah!<FF02><FF04>While I was tryin' to make ends meet,<FF03>my sis was walkin'<FF03>those cruel streets.<FF02><FF04>Don't get it, do ya?<FF03>Da ba shoobee bop, oh yeah!<FF02><FF01>
 161	9:0x4dc0	E3:163	You have <FF12> Metal Cards.<FF02><FF01>
 162	9:0x4de0	E3:164	It's a Code Breaker machine.<FF02><FF01>
 163	9:0x4df8	E3:165	What will you do?<FF03><FF0E><18><FF01>
 164	9:0x4e08	E3:166	What would you like explained?<FF03><FF0E><06><FF01>
-165	9:0x4e20	E3:167	In this game, the numbers 1 through 9<FF03>are dispersed throughout a grid.<FF02><FF04>Your goal is to guess<FF03>the arrangement of the numbers.<FF02><FF04>The fewer tries it takes,<FF03>the better the prize you receive.<FF02><FF04>If you cannot crack it in 8 tries,<FF03>the game ends.<FF02><FF04>The Result to the left of the screen<FF03>shows your previous attempts.<FF02><FF04>If you guess incorrectly, the guess<FF03>will be displayed in the Results.<FF02><FF04>Use it as a reference when<FF03>formulating your next guess.<FF02><FF04>The Chosen display at the top<FF03>shows the numbers in use.<FF02><FF04>All numbers, 1 through 9,<FF03>must be used in the code.<FF02><FF04>Use the Chosen display to see which<FF03>numbers are missing from your guess.<FF02><FF04>This game accepts Metal Cards<FF03>instead of coins.<FF02><FF01>
+165	9:0x4e20	E3:167	In this game, the numbers 1 through 9<FF03>are dispersed throughout a grid.<FF02><FF04>Your goal is to guess<FF03>the arrangement of the numbers.<FF02><FF04>The fewer tries it takes,<FF03>the better the prize you receive.<FF02><FF04>If you cannot crack it in 8 tries,<FF03>the game ends.<FF02><FF04>The Result to the left of the screen<FF03>shows your previous attempts.<FF02><FF04>If you guess incorrectly, the guess<FF03>will be displayed in the Results.<FF02><FF04>Use it as a reference<FF03>when formulating your next guess.<FF02><FF04>The Chosen display at the top<FF03>shows the numbers in use.<FF02><FF04>All numbers, 1 through 9,<FF03>must be used in the code.<FF02><FF04>Use the Chosen display to see which<FF03>numbers are missing from your guess.<FF02><FF04>This game accepts Metal Cards<FF03>instead of coins.<FF02><FF01>
 166	9:0x502c	E3:168	【○ button】<FF02><FF04>＜Before starting＞<FF03>Not used.<FF02><FF04>＜During play＞<FF03>Decreases the selected number.<FF02><FF04>【× button】<FF02><FF04>＜Before starting＞<FF03>Not used.<FF02><FF04>＜During play＞<FF03>Marks the selected number by<FF03>changing its color.<FF02><FF04>Use this to mark numbers<FF03>you know are correct.<FF02><FF04>【△ button】<FF02><FF04>＜Before starting＞<FF03>Not used.<FF02><FF04>＜During play＞<FF03>Increases the selected number.<FF02><FF04>【□ button】<FF02><FF04>＜Before starting＞<FF03>Not used.<FF02><FF04>＜During play＞<FF03>Marks the selected number by<FF03>changing its color.<FF02><FF04>Use this to mark numbers<FF03>you know are correct.<FF02><FF04>【R1・R2 button】<FF02><FF04>＜Before starting＞<FF03>Inserts 1 Metal Card to<FF03>start the game.<FF02><FF04>＜During play＞<FF03>Not used.<FF02><FF04>【L1・L2 button】<FF02><FF04>＜Before starting＞<FF03>Ends the game.<FF02><FF04>＜During play＞<FF03>Not used.<FF02><FF04>【Directional buttons】<FF03>＜Before starting＞<FF03>Not used.<FF02><FF04>＜During play＞<FF03>Moves the cursor.<FF02><FF01>
-167	9:0x540c	E3:169	H indicates how many exact<FF03>matches are in a row/column.<FF02><FF04>B shows how many numbers<FF03>belong in that row/column,<FF03>but not in their present position.<FF02><FF04>The key to the game is to<FF03>determine where a hit (H) is on<FF03>both the row and the column.<FF02><FF04>It's best to mark places where both<FF03>the row and the column are hits.<FF02><FF04>The Results of your previous<FF03>guesses can also be useful hints.<FF02><FF01>
+167	9:0x540c	E3:169	H indicates how many exact<FF03>matches are in a row/column.<FF02><FF04>B shows how many numbers<FF03>belong in that row/column,<FF03>but not in their present position.<FF02><FF04>The key to the game is to determine<FF03>where a hit (H) is on both<FF03>the row and the column.<FF02><FF04>It's best to mark places where both<FF03>the row and the column are hits.<FF02><FF04>The Results of your previous<FF03>guesses can also be useful hints.<FF02><FF01>
 168	9:0x54c4	E3:170	You have <FF11> coins.<FF02><FF01>
 169	9:0x54e0	E3:171	It's a video poker machine.<FF02><FF01>
 170	9:0x54f8	E3:172	What will you do?<FF03><FF0E><03><FF01>
@@ -178,9 +178,9 @@ id	pos	psp	en
 176	9:0x6470	E3:178	It's a video blackjack machine.<FF02><FF01>
 177	9:0x6490	E3:179	What will you do?<FF03><FF0E><03><FF01>
 178	9:0x64a0	E3:180	What would you like explained?<FF03><FF0E><05><FF01>
-179	9:0x64b8	E3:181	This is a one-on-one-game of<FF03>blackjack against the dealer.<FF02><FF04>The computer acts as the dealer.<FF02><FF04>Two cards are dealt to<FF03>the player and the dealer at<FF03>the outset.<FF02><FF04>One of the dealer's two cards<FF03>will be kept face-down.<FF02><FF04>If the dealer's shown card is an ace,<FF03>you may place an insurance bet.<FF02><FF04>The insurance mechanic will be<FF03>explained at the end of these rules.<FF02><FF04>First, compare your cards to<FF03>the dealer's to decide whether to<FF03>draw another card.<FF02><FF04>If you decide to draw, select Hit.<FF03>If not, select Stand.<FF02><FF04>You may draw up to 7 cards as<FF03>long as their total value<FF03>remains 21 or lower.<FF02><FF04>The following circumstances will<FF03>result in an automatic Stand:<FF02><FF04>-Your initial draw is blackjack.<FF02><FF04>-The total of the cards<FF03>drawn after Hitting is 21.<FF02><FF04>-You draw seven cards.<FF02><FF04>-The cards' total value surpasses<FF03>21, resulting in a bust.<FF02><FF04>2 through 10 are face value.<FF03>J through K are worth 10,<FF03>and A is worth either 1 or 11.<FF02><FF04>After the player Stands,<FF03>the dealer will draw cards.<FF02><FF04>If your total is larger than<FF03>the dealer's without surpassing 21...<FF03>Or if the dealer busts, you win.<FF02><FF04>If you and the dealer tie,<FF03>or if both of you have blackjack,<FF03>it is a draw,<FF02><FF03>and your bet will be returned to you.<FF02><FF04>Besides Hit and Stand, the player can<FF03>also choose to Double Down or Split.<FF02><FF04>＜D. Down＞<FF02><FF04>This is only an option while you still<FF03>have two cards in your hand.<FF02><FF04>You may double your bet under<FF03>the condition that you only Hit once.<FF02><FF04>This option will be unavailable if<FF03>you have fewer coins than<FF03>the bet would be.<FF02><FF04>If you Double Down and<FF03>beat the dealer,<FF03>your winnings will be doubled.<FF02><FF04>＜Split＞<FF02><FF04>You may Split if both of your initial<FF03>cards are the same value.<FF02><FF04>Your hand will be split, with a second<FF03>bet covering the other hand.<FF02><FF04>This option will be unavailable if<FF03>you have fewer coins than<FF03>the bet would be.<FF02><FF04>Even after a Split, you may<FF03>Double Down on either or both hands.<FF02><FF04>However, if you split,<FF03>even with a combination of<FF03>A with 10 through K...<FF02><FF04>It will be counted as 21 without<FF03>being considered blackjack.<FF02><FF04>【About insurance】<FF02><FF04>An insurance bet is<FF03>much as it sounds...<FF03>It can only be placed if the dealer's<FF02><FF03>first card is an ace.<FF02><FF04>Select Yes to place an insurance bet,<FF03>and No to decline.<FF02><FF04>If you select No,<FF03>the game progresses normally.<FF02><FF04>If you select Yes, you must first pay<FF03>half your bet as insurance.<FF02><FF04>If the dealer's second card is<FF03>10 through K, forming blackjack...<FF03>The initial bet is forfeited. However...<FF02><FF04>The insurance bet will pay out at<FF03>3 to 1, and the game will end.<FF02><FF04>If the dealer's card is A through 9,<FF03>the insurance is lost and the game<FF03>progresses normally.<FF02><FF04>Since 4 decks of cards<FF03>are used in this game,<FF03>there is a chance that two or<FF02><FF03>more identical cards will be dealt.<FF02><FF01>
+179	9:0x64b8	E3:181	This is a one-on-one-game of<FF03>blackjack against the dealer.<FF02><FF04>The computer acts as the dealer.<FF02><FF04>Two cards are dealt to<FF03>the player and the dealer at<FF03>the outset.<FF02><FF04>One of the dealer's two cards<FF03>will be kept face-down.<FF02><FF04>If the dealer's shown card is an ace,<FF03>you may place an insurance bet.<FF02><FF04>The insurance mechanic will be<FF03>explained at the end of these rules.<FF02><FF04>First, compare your cards to<FF03>the dealer's to decide whether to<FF03>draw another card.<FF02><FF04>If you decide to draw, select Hit.<FF03>If not, select Stand.<FF02><FF04>You may draw up to 7 cards as<FF03>long as their total value<FF03>remains 21 or lower.<FF02><FF04>The following circumstances will<FF03>result in an automatic Stand:<FF02><FF04>-Your initial draw is blackjack.<FF02><FF04>-The total of the cards<FF03>drawn after Hitting is 21.<FF02><FF04>-You draw seven cards.<FF02><FF04>-The cards' total value surpasses<FF03>21, resulting in a bust.<FF02><FF04>2 through 10 are face value.<FF03>J through K are worth 10,<FF03>and A is worth either 1 or 11.<FF02><FF04>After the player Stands,<FF03>the dealer will draw cards.<FF02><FF04>If your total is larger than<FF03>the dealer's without surpassing 21...<FF03>Or if the dealer busts, you win.<FF02><FF04>If you and the dealer tie,<FF03>or if both of you have blackjack,<FF03>it is a draw,<FF02><FF03>and your bet will be returned to you.<FF02><FF04>Besides Hit and Stand, the player can<FF03>also choose to Double Down or Split.<FF02><FF04>＜D. Down＞<FF02><FF04>This is only an option while you still<FF03>have two cards in your hand.<FF02><FF04>You may double your bet under<FF03>the condition that you only Hit once.<FF02><FF04>This option will be unavailable<FF03>if you have fewer coins than<FF03>the bet would be.<FF02><FF04>If you Double Down and<FF03>beat the dealer,<FF03>your winnings will be doubled.<FF02><FF04>＜Split＞<FF02><FF04>You may Split if both of your initial<FF03>cards are the same value.<FF02><FF04>Your hand will be split, with a second<FF03>bet covering the other hand.<FF02><FF04>This option will be unavailable<FF03>if you have fewer coins than<FF03>the bet would be.<FF02><FF04>Even after a Split, you may<FF03>Double Down on either or both hands.<FF02><FF04>However, if you split,<FF03>even with a combination of<FF03>A with 10 through K...<FF02><FF04>It will be counted as 21 without<FF03>being considered blackjack.<FF02><FF04>【About insurance】<FF02><FF04>An insurance bet is<FF03>much as it sounds...<FF03>It can only be placed if the dealer's<FF02><FF03>first card is an ace.<FF02><FF04>Select Yes to place an insurance bet,<FF03>and No to decline.<FF02><FF04>If you select No,<FF03>the game progresses normally.<FF02><FF04>If you select Yes, you must first pay<FF03>half your bet as insurance.<FF02><FF04>If the dealer's second card is<FF03>10 through K, forming blackjack...<FF03>The initial bet is forfeited. However...<FF02><FF04>The insurance bet will pay out at<FF03>3 to 1, and the game will end.<FF02><FF04>If the dealer's card is A through 9,<FF03>the insurance is lost and the game<FF03>progresses normally.<FF02><FF04>Since 4 decks of cards<FF03>are used in this game,<FF03>there is a chance that two or<FF02><FF03>more identical cards will be dealt.<FF02><FF01>
 180	9:0x6ddc	E3:182	【○ button】<FF02><FF04>＜Before starting＞<FF03>Add a coin.<FF02><FF04>＜During play＞<FF03>Call Hit to draw a card.<FF02><FF04>【× button】<FF02><FF04>＜Before starting＞<FF03>Remove a coin.<FF02><FF04>＜During play＞<FF03>Call Stand to end your turn.<FF02><FF04>【△ button】<FF02><FF04>＜Before starting＞<FF03>Bet the maximum total possible.<FF02><FF04>＜During play＞<FF03>Call Double Down.<FF02><FF04>【□ button】<FF02><FF04>＜Before starting＞<FF03>Not used.<FF02><FF04>＜During play＞<FF03>Call Split when possible.<FF02><FF04>【R1・R2 button】<FF02><FF04>＜Before starting＞<FF03>Starts the game if a bet<FF03>has been placed.<FF02><FF04>＜During play＞<FF03>Not used.<FF02><FF04>【L1・L2 button】<FF02><FF04>＜Before starting＞<FF03>Ends the game.<FF02><FF04>＜During play＞<FF03>Not used.<FF02><FF04>【Directional buttons】<FF02><FF04>＜Before starting＞<FF03>Not used.<FF02><FF04>＜During play＞<FF03>Not used.<FF02><FF01>
-181	9:0x7154	E3:183	Winning the game:<FF03>If your hand is larger than<FF03>the dealer's without going over 21...<FF02><FF04>Or if the dealer busts, you win.<FF02><FF04>Blackjack:<FF03>An A combined with a second card of<FF03>10 through K. (Automatically Stands.)<FF02><FF04>If you chose to Split, this will not be<FF03>counted as blackjack but is 21.<FF02><FF04>6 Cards: If you choose Stand when<FF03>you've drawn six cards without<FF03>surpassing 21.<FF02><FF04>7 Cards: If you've drawn seven<FF03>cards without surpassing 21.<FF03>(Automatically Stands.)<FF02><FF04>♥/♣/◆ A & J:<FF03>If you have blackjack of A and J and<FF03>the cards' suit is ♥, ♣, or ◆.<FF02><FF04>♠ A & J: If you have blackjack of<FF03>A and J and the cards' suit is ♠.<FF02><FF04>777:<FF03>When both initial cards are 7s and<FF03>you draw a third 7 after Hitting.<FF02><FF01>
+181	9:0x7154	E3:183	Winning the game:<FF03>If your hand is larger than<FF03>the dealer's without going over 21...<FF02><FF04>Or if the dealer busts, you win.<FF02><FF04>Blackjack:<FF03>An A combined with a second card of<FF03>10 through K. (Automatically Stands.)<FF02><FF04>If you chose to Split, this will not be<FF03>counted as blackjack but is 21.<FF02><FF04>6 Cards: If you choose<FF03>Stand when you've drawn six<FF03>cards without surpassing 21.<FF02><FF04>7 Cards: If you've drawn seven<FF03>cards without surpassing 21.<FF03>(Automatically Stands.)<FF02><FF04>♥/♣/◆ A & J:<FF03>If you have blackjack of A and J and<FF03>the cards' suit is ♥, ♣, or ◆.<FF02><FF04>♠ A & J: If you have blackjack of<FF03>A and J and the cards' suit is ♠.<FF02><FF04>777:<FF03>When both initial cards are 7s and<FF03>you draw a third 7 after Hitting.<FF02><FF01>
 182	9:0x73cc	E3:184	You currently have <FF11> coins.<FF02><FF01>
 183	9:0x73e8	E3:185	It's a slot machine.<FF02><FF01>
 184	9:0x73fc	E3:186	What will you do?<FF03><FF0E><03><FF01>
@@ -192,9 +192,9 @@ id	pos	psp	en
 190	9:0x7bdc	E3:192	It's a video dice game.<FF02><FF01>
 191	9:0x7bf0	E3:193	What will you do?<FF03><FF0E><03><FF01>
 192	9:0x7c00	E3:194	What would you like explained?<FF03><FF0E><06><FF01>
-193	9:0x7c18	E3:195	In this game, two dice are rolled on<FF03>screen, and you predict the outcome.<FF02><FF04>You can bet on eleven rolls,<FF03>from 2 to 12, and you may bet on as<FF03>many rolls per game as you wish.<FF02><FF04>However, you may bet a maximum of<FF03>100 coins on any given roll.<FF02><FF04>If you bet on the correct roll,<FF03>a multiplier determines your winnings.<FF02><FF04>You can also stake your winnings on<FF03>an Extra Game.<FF02><FF04>In the Extra Game, you do not predict<FF03>the outcome of the roll...<FF03>Instead, any roll other than 7 wins.<FF02><FF04>The amount you win differs<FF03>depending on the roll.<FF02><FF04>If the roll is 7, the Extra Game<FF03>ends and all your winnings are lost,<FF03>so be careful.<FF02><FF01>
+193	9:0x7c18	E3:195	In this game,<FF03>two dice are rolled on screen,<FF03>and you predict the outcome.<FF02><FF04>You can bet on eleven rolls,<FF03>from 2 to 12, and you may bet on as<FF03>many rolls per game as you wish.<FF02><FF04>However, you may bet a maximum of<FF03>100 coins on any given roll.<FF02><FF04>If you bet on the correct roll,<FF03>a multiplier determines your winnings.<FF02><FF04>You can also stake your winnings on<FF03>an Extra Game.<FF02><FF04>In the Extra Game, you do not predict<FF03>the outcome of the roll...<FF03>Instead, any roll other than 7 wins.<FF02><FF04>The amount you win differs<FF03>depending on the roll.<FF02><FF04>If the roll is 7, the Extra Game<FF03>ends and all your winnings are lost,<FF03>so be careful.<FF02><FF01>
 194	9:0x7dd0	E3:196	【○ button】<FF02><FF04>＜Before starting＞<FF03>Add 10 coins to the bet at the cursor.<FF02><FF04>＜During normal play＞<FF03>Not used.<FF02><FF04>＜After winning＞<FF03>Try the Extra Game.<FF02><FF04>＜After winning the Extra Game＞<FF03>Try the Extra Game again.<FF02><FF04>【× button】<FF02><FF04>＜Before starting＞<FF03>Remove all coins at the cursor.<FF02><FF04>＜During normal play＞<FF03>Not used.<FF02><FF04>＜After winning＞<FF03>Decline the Extra Game and<FF03>collect your winnings.<FF02><FF04>＜After winning the Extra Game＞<FF03>End the Extra Game and<FF03>collect your winnings.<FF02><FF04>【△ button】<FF02><FF04>＜Before starting＞<FF03>Add 100 coins to<FF03>the bet at the cursor.<FF02><FF04>＜During normal play＞<FF03>Not used.<FF02><FF04>＜After winning＞<FF03>Not used.<FF02><FF04>＜After winning the Extra Game＞<FF03>Not used.<FF02><FF04>【□ button】<FF02><FF04>＜Before starting＞<FF03>Reset bet amount to 0 coins.<FF02><FF04>＜During normal play＞<FF03>Not used.<FF02><FF04>＜After winning＞<FF03>Not used.<FF02><FF04>＜After winning the Extra Game＞<FF03>Not used.<FF02><FF04>【R1・R2 button】<FF02><FF04>＜Before starting＞<FF03>Starts the game if a bet<FF03>has been placed.<FF02><FF04>＜During normal play＞<FF03>Not used.<FF02><FF04>＜After winning＞<FF03>Not used.<FF02><FF04>＜After winning the Extra Game＞<FF03>Not used.<FF02><FF04>【L1・L2 button】<FF02><FF04>＜Before starting＞<FF03>Ends the game.<FF02><FF04>＜During normal play＞<FF03>Not used.<FF02><FF04>＜After winning＞<FF03>Not used.<FF02><FF04>＜After winning the Extra Game＞<FF03>Not used.<FF02><FF04>【Directional buttons】<FF02><FF04>＜Before starting＞<FF03>Select the rolls to bet on.<FF02><FF04>＜During normal play＞<FF03>Not used.<FF02><FF04>＜After winning＞<FF03>Not used.<FF02><FF04>＜After winning the Extra Game＞<FF03>Not used.<FF02><FF01>
-195	9:0x8394	E3:197	The closer the roll is to 7, the lower<FF03>the multiplier. This is because rolls<FF03>close to 7 appear more frequently.<FF02><FF04>Thus,<FF03>the safe bet is on rolls close to 7,<FF03>with rolls like 2 and 12 being riskier.<FF02><FF04>In the Extra Game, if a roll of 7 comes<FF03>up, you lose all your winnings.<FF02><FF04>The trick to not losing too much is<FF03>not to get greedy and leave with<FF03>a reasonable amount.<FF02><FF01>
+195	9:0x8394	E3:197	The closer the roll is to 7, the lower<FF03>the multiplier. This is because rolls<FF03>close to 7 appear more frequently.<FF02><FF04>Thus, the safe bet<FF03>is on rolls close to 7,<FF03>with rolls like 2 and 12 being riskier.<FF02><FF04>In the Extra Game,<FF03>if a roll of 7 comes up,<FF03>you lose all your winnings.<FF02><FF04>The trick to not losing too much is<FF03>not to get greedy and leave with<FF03>a reasonable amount.<FF02><FF01>
 196	10:0x1964	E3:198	Yukino: <FF07><01>! Be careful...<FF02><FF01>
 197	10:0x1980	E3:199	Touch the ball of light?<FF03><FF0E><00><FF01>
 198	10:0x1998	E3:200	Ayase:<FF03>Hey! What did you do, <FF07><01>!?<FF02><FF01>
@@ -202,32 +202,32 @@ id	pos	psp	en
 200	10:0x19cc	E3:202	Yukino: What's this...?<FF02><FF01>
 201	10:0x19dc	E3:203	Yukino:<FF03>Yeah? I'm ready to go anytime.<FF03>Let's get this show on the road!<FF02><FF01>
 202	10:0x1a08	E3:204	Ayase: It's like, so pretty...<FF02><FF01>
-203	10:0x1a18	E3:205	Ayase: What now?<FF03>You getting cold feet?<FF02><FF01>
+203	10:0x1a18	E3:205	Ayase:<FF03>What now? You getting cold feet?<FF02><FF01>
 204	10:0x1a34	E3:206	Nanjo: Watch yourself. They say that<FF03>every rose has its thorn.<FF02><FF01>
 205	10:0x1a60	E3:207	Nanjo: Watch yourself. They say that<FF03>every rose has its thorn.<FF02><FF01>
-206	10:0x1a8c	E3:208	Nanjo: I've been waiting for you.<FF03>I went on ahead so that I<FF03>could give you this.<FF02><FF04>It's a Phurba Dagger. I'm having some<FF03>difficulty using it, so it's yours.<FF02><FF04>No need to thank me.<FF03>You can show your gratitude by<FF03>saving this school quickly.<FF02><FF01>
+206	10:0x1a8c	E3:208	Nanjo: I've been waiting for you.<FF03>I went on ahead so that I<FF03>could give you this.<FF02><FF04>It's a Phurba Dagger.<FF03>I'm having some difficulty using it,<FF03>so it's yours.<FF02><FF04>No need to thank me.<FF03>You can show your gratitude by<FF03>saving this school quickly.<FF02><FF01>
 207	10:0x1b1c	E3:209	Obtained Phurba Dagger.<FF02><FF01>
-208	10:0x1b38	E3:210	Nanjo: Apparently, if you touch<FF03>this, you'll be teleported elsewhere.<FF02><FF04>I can't say for<FF03>sure where that might be.<FF02><FF01>
-209	10:0x1b80	E3:211	Brown: It feels like if I keep<FF03>staring at it, I'll get sucked inside.<FF02><FF01>
-210	10:0x1ba0	E3:212	Brown: It feels like if I keep<FF03>staring at it, I'll get sucked inside.<FF02><FF01>
-211	10:0x1bc0	E3:213	Brown: Geez, you're late.<FF02><FF04>Sorry I can't go with you guys,<FF03>but I gotta keep an eye on Toro.<FF02><FF04>This wasn't supposed to make up for<FF03>it, but you need it more than me.<FF03>Here y'go!<FF02><FF04>It's a Scorching Tablet.<FF02><FF04>I won one at the casino,<FF03>but I had another one on me.<FF02><FF04>Nah, no need for thanks.<FF03>Well, good luck!<FF02><FF01>
+208	10:0x1b38	E3:210	Nanjo: Apparently, if you touch this,<FF03>you'll be teleported elsewhere.<FF02><FF04>I can't say for sure<FF03>where that might be.<FF02><FF01>
+209	10:0x1b80	E3:211	Brown:<FF03>It feels like if I keep staring at it,<FF03>I'll get sucked inside.<FF02><FF01>
+210	10:0x1ba0	E3:212	Brown:<FF03>It feels like if I keep staring at it,<FF03>I'll get sucked inside.<FF02><FF01>
+211	10:0x1bc0	E3:213	Brown: Geez, you're late.<FF02><FF04>Sorry I can't go with you guys,<FF03>but I gotta keep an eye on Toro.<FF02><FF04>This wasn't supposed to make up for<FF03>it, but you need it more than me.<FF03>Here y'go!<FF02><FF04>It's a Scorching Tablet.<FF03>I won one at the casino,<FF03>but I had another one on me.<FF02><FF04>Nah, no need for thanks.<FF03>Well, good luck!<FF02><FF01>
 212	10:0x1c8c	E3:214	Obtained Scorching Tablet.<FF02><FF01>
 213	10:0x1ca8	E3:215	Brown:<FF03>Sorry I can't go with you guys,<FF03>but I gotta keep an eye on Toro.<FF02><FF01>
 214	10:0x1ce0	E3:216	Elly: Could it be plasma?<FF02><FF01>
 215	10:0x1cfc	E3:217	Elly: Now, let's go!<FF02><FF01>
-216	10:0x1d14	E3:218	Elly: I had a feeling you'd be here.<FF02><FF04>I came to give you this.<FF03>It's a Full Moon Tablet.<FF02><FF04>I happened to come across<FF03>it when I was searching for<FF03>something in the library...<FF02><FF04>I thought you might be able to<FF03>make better use of it.<FF02><FF01>
+216	10:0x1d14	E3:218	Elly: I had a feeling you'd be here.<FF02><FF04>I came to give you this.<FF03>It's a Full Moon Tablet.<FF02><FF04>I happened to come across it<FF03>when I was searching for<FF03>something in the library...<FF02><FF04>I thought you might be able to<FF03>make better use of it.<FF02><FF01>
 217	10:0x1d98	E3:219	Obtained Full Moon Tablet.<FF02><FF01>
 218	10:0x1db0	E3:220	Elly:<FF03>I wonder what's beyond the light?<FF02><FF01>
-219	11:0x1fe8	E3:221	Nurse Natsumi: Is everyone all right?<FF03>Here,<FF03>let me take a look at your wounds.<FF02><FF01>
+219	11:0x1fe8	E3:221	Nurse Natsumi:<FF03>Is everyone all right? Here,<FF03>let me take a look at your wounds.<FF02><FF01>
 220	11:0x2024	E3:222	Nurse Natsumi:<FF03>Well, you're all good to go.<FF03>Try not to push yourself too much!<FF02><FF01>
 221	11:0x2054	E3:223	Nurse Natsumi: Why are you<FF03>staring at me? Wait, let me guess...<FF03>Have you fallen for me?<FF02><FF04>Speaking of falling for people...<FF03>Ayase!<FF02><FF01>
 222	11:0x20a0	E3:224	Nurse Natsumi: Did I hear that Kenta<FF03>confessed his love for you?<FF02><FF04>What did you say to him!? That boy's<FF03>been acting very strange lately.<FF02><FF04>You should take people's<FF03>feelings into consideration<FF03>before you say something!<FF02><FF01>
 223	11:0x2110	E3:225	Ayase: Well said!<FF03>And like, you would know, with<FF03>all your experience getting rejected.<FF02><FF01>
 224	11:0x2138	E3:226	Nurse Natsumi: ...Well,<FF03>back to work for me.<FF02><FF04>Is everyone all right? Here,<FF03>let me take a look at your wounds.<FF02><FF01>
-225	11:0x218c	E3:227	Nurse Natsumi: *sigh* I wonder if<FF03>there are any good-looking men<FF03>lying around anywhere.<FF02><FF04>...Well, back to work for me.<FF02><FF04>Is everyone all right? Here,<FF03>let me take a look at your wounds.<FF02><FF01>
+225	11:0x218c	E3:227	Nurse Natsumi: *sigh* I wonder<FF03>if there are any good-looking<FF03>men lying around anywhere.<FF02><FF04>...Well, back to work for me.<FF02><FF04>Is everyone all right? Here,<FF03>let me take a look at your wounds.<FF02><FF01>
 226	11:0x21f8	E3:228	Setsuko Sonomura:<FF03>I can't believe the phenomenon<FF03>has spread to the school...<FF02><FF01>
 227	11:0x221c	E3:229	Setsuko Sonomura:<FF03>Maki... please be safe...<FF02><FF01>
-228	11:0x2240	E3:230	Setsuko Sonomura: If Maki had been<FF03>a bright, active girl like all of you...<FF02><FF01>
+228	11:0x2240	E3:230	Setsuko Sonomura:<FF03>If Maki had been a bright,<FF03>active girl like all of you...<FF02><FF01>
 229	11:0x2278	E3:231	Setsuko Sonomura: That Nanjo<FF03>boy left here a moment ago.<FF02><FF04>He was saying something about being<FF03>unable to enter a classroom with<FF03>a frozen door.<FF02><FF01>
 230	11:0x22d0	E3:232	Female student:<FF03>Oww... I fell and landed on my butt.<FF03>Why's the hall so slippery!?<FF02><FF01>
 231	11:0x2308	E3:233	Wounded girl: Apparently something<FF03>happened at the cafeteria...<FF02><FF04>I'd go check it out if I hadn't hurt<FF03>myself when I fell. Owww...<FF02><FF01>
@@ -251,16 +251,16 @@ id	pos	psp	en
 249	11:0x26f8	E3:252	Elly:<FF03>We must hurry and bring the school<FF03>back to normal so we can find Maki.<FF02><FF01>
 250	11:0x2728	E3:253	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 251	11:0x2754	E3:254	Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-252	11:0x27ac	E3:255	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
-253	12:0x1a7c	E3:256	Toro: No way...<FF03>All that's left is milk and cheese?<FF03>I can't even eat my sorrow away?<FF02><FF04>I'm lactose intolerant...<FF02><FF04>This is a conspiracy by someone who<FF03>knows! Yeah, that's gotta be it!<FF02><FF04>Everyone in the world is laughing at<FF03>my bad luck! *sob* Dammit...<FF02><FF01>
+252	11:0x27ac	E3:255	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
+253	12:0x1a7c	E3:256	Toro: No way...<FF03>All that's left is milk and cheese?<FF03>I can't even eat my sorrow away?<FF02><FF04>I'm lactose intolerant...<FF03>This is a conspiracy by someone who<FF03>knows! Yeah, that's gotta be it!<FF02><FF04>Everyone in the world is laughing at<FF03>my bad luck! *sob* Dammit...<FF02><FF01>
 254	12:0x1b20	E3:257	Toro: Huh? Huhhh?<FF03>Why was I sleeping here?<FF02><FF04>Oh... hi everyone. Don't look at me<FF03>like that, it's embarrassing...<FF02><FF01>
 255	12:0x1b70	E3:258	Toro: *sob* Why do these things<FF03>always happen to me...?<FF02><FF01>
 256	12:0x1ba0	E3:259	Toro: *sob* Why do these things<FF03>always happen to me...?<FF02><FF04>Oh, I almost forgot.<FF02><FF04>Tsutomu told me to give this to you.<FF02><FF04>When him and me were coming<FF03>back from the tower,<FF03>we found this shiny thing...<FF02><FF04>But his muscles hurt so bad that<FF03>he couldn't hold it.<FF03>So I'm giving it to you in his place.<FF02><FF01>
 257	12:0x1c5c	E3:260	Obtained 2 Mirror Shards.<FF02><FF01>
-258	12:0x1c7c	E3:261	Toro: I'm not the only one<FF03>going through hard times, huh?<FF02><FF04>You and Ayase and everyone are<FF03>all trying as hard as you can.<FF02><FF04>Alright, then! I'm gonna try as<FF03>hard as I can... to drink milk!<FF02><FF01>
+258	12:0x1c7c	E3:261	Toro: I'm not the only one<FF03>going through hard times, huh?<FF02><FF04>You and Ayase and everyone are<FF03>all trying as hard as you can.<FF02><FF04>Alright, then!<FF03>I'm gonna try as hard as I can...<FF03>to drink milk!<FF02><FF01>
 259	12:0x1ce0	E3:262	<FF06><02>Kenta Yokouchi (Nickname: Toro)<FF03>His love of food has made<FF03>him physically strong,<FF02><FF03>but emotionally fragile.<FF06><00><FF02><FF01>
 260	12:0x1d24	E3:263	Male student: Everything<FF03>froze over all of a sudden.<FF03>Did demons do that, too?<FF02><FF04>I just took a look and we're<FF03>starting to run low on food...<FF02><FF04>No surprise that Toro's panicking.<FF02><FF01>
-261	12:0x1d88	E3:264	Male student: Huh? You're asking<FF03>why I didn't go get the teacher?<FF02><FF04>I did! But she wouldn't give<FF03>me the time of day.<FF02><FF04>She said she was busy,<FF03>and that it'd heal on its own.<FF02><FF04>Anyway,<FF03>I'm just glad our food is safe.<FF02><FF01>
+261	12:0x1d88	E3:264	Male student: Huh? You're asking<FF03>why I didn't go get the teacher?<FF02><FF04>I did! But she wouldn't give<FF03>me the time of day.<FF02><FF04>She said she was busy,<FF03>and that it'd heal on its own.<FF02><FF04>Anyway, I'm just glad<FF03>our food is safe.<FF02><FF01>
 262	12:0x1e00	E3:265	Male student: First he gets<FF03>dumped by his crush and now<FF03>he has to drink milk...<FF02><FF04>Man, this just isn't Toro's day.<FF03>Though some days are<FF03>like that, I guess.<FF02><FF01>
 263	12:0x1e50	E3:266	Rumor-loving boy: That classroom<FF03>wasn't open until now...<FF03>You know, the one to our left.<FF02><FF04>I heard the ice thawed a little and<FF03>you can get inside now.<FF02><FF04>Rumor is there's<FF03>this beautiful sphere inside.<FF03>But should we go near it...?<FF02><FF01>
 264	12:0x1ed4	E3:267	Yukino: We can't waste our time here!<FF03>Let's go find someone we can rely on!<FF02><FF01>
@@ -269,82 +269,82 @@ id	pos	psp	en
 267	12:0x1f64	E3:270	Yukino: I'm not seeing Hidehiko...<FF03>Wasn't he going to keep<FF03>an eye on Toro?<FF02><FF04>The little prick must've ducked out.<FF02><FF01>
 268	12:0x1fa4	E3:271	Yukino: Doesn't it seem like it's<FF03>gotten a little warmer?<FF02><FF01>
 269	12:0x1fc4	E3:272	Ayase: Even the inside of the school's<FF03>frozen! How could that monster<FF03>do this to us!?<FF02><FF01>
-270	12:0x2000	E3:273	Ayase: I wonder if Toro's okay.<FF03>I mean, like,<FF03>not that I care or anything.<FF02><FF01>
+270	12:0x2000	E3:273	Ayase:<FF03>I wonder if Toro's okay. I mean, like,<FF03>not that I care or anything.<FF02><FF01>
 271	12:0x2030	E3:274	Ayase: Let's hurry out of here.<FF02><FF01>
 272	12:0x2044	E3:275	Nanjo: THAT'S how he reacts to<FF03>rejection!? He'll never<FF03>succeed with that attitude.<FF02><FF01>
 273	12:0x2074	E3:276	Nanjo: That gluttonous pig had<FF03>something coming out of his stomach.<FF03>Is he... well?<FF02><FF01>
 274	12:0x20a8	E3:277	Nanjo: It seems that he's matured.<FF02><FF01>
-275	12:0x20c8	E3:278	Brown: Aaaaaaa-choooo!<FF02><FF04>Oh, sorry.<FF03>Did that get on your clothes?<FF02><FF04>I seriously feel like some wilted<FF03>lettuce stuck in the fridge.<FF03>It's depressing.<FF02><FF04>I thought about having some hot<FF03>ramen, but I can't boil any water.<FF02><FF04>Plus, Toro's freaking out.<FF03>Says he's gonna eat all the food to<FF03>get over being dumped.<FF02><FF04>That's why I hurried to hide<FF03>everything except the dairy stuff.<FF02><FF04>I mean, who knows what'll happen,<FF03>y'know? I'm like, so on top of things!<FF02><FF01>
+275	12:0x20c8	E3:278	Brown: Aaaaaaa-choooo!<FF03>Oh, sorry.<FF03>Did that get on your clothes?<FF02><FF04>I seriously feel like some wilted<FF03>lettuce stuck in the fridge.<FF03>It's depressing.<FF02><FF04>I thought about having some hot<FF03>ramen, but I can't boil any water.<FF02><FF04>Plus, Toro's freaking out.<FF03>Says he's gonna eat all the food to<FF03>get over being dumped.<FF02><FF04>That's why I hurried to hide<FF03>everything except the dairy stuff.<FF02><FF04>I mean, who knows what'll happen,<FF03>y'know? I'm like, so on top of things!<FF02><FF01>
 276	12:0x21d0	E3:279	Brown: The whole school's in a panic,<FF03>and it can't be easy for<FF03>Teach, either.<FF02><FF04>I dunno how you did it,<FF03>but I'm glad everyone's calmed down.<FF02><FF04>Me and some other guy are gonna<FF03>keep watch, so you can leave it to us.<FF02><FF01>
 277	12:0x225c	E3:280	Brown: Just when I thought Toro had<FF03>vanished, he started ranting about<FF03>milk and torture.<FF02><FF04>Well, me and some other guy<FF03>are gonna keep watch,<FF03>so you can leave it to us.<FF02><FF01>
 278	12:0x22d8	E3:281	Brown: Persona, huh...?<FF03>Well, depending how you use it,<FF03>anything might be possible.<FF02><FF01>
 279	12:0x2304	E3:282	Brown: Persona's pretty scary.<FF02><FF04>Then again, I have no flaws,<FF03>so there's nothing for<FF03>me to worry about.<FF02><FF01>
 280	12:0x2340	E3:283	Elly: Even food is valuable in<FF03>a situation like this.<FF02><FF01>
-281	12:0x2364	E3:284	Elly: We went through hell, no<FF03>thanks to Ayase. Honestly, that girl...<FF02><FF01>
+281	12:0x2364	E3:284	Elly: We went through hell,<FF03>no thanks to Ayase.<FF03>Honestly, that girl...<FF02><FF01>
 282	12:0x239c	E3:285	Elly: A room with a beautiful sphere?<FF03>This sounds well worth investigating.<FF02><FF01>
 283	12:0x23d4	E3:286	Elly: Let's hurry to the next floor.<FF02><FF01>
 284	13:0x1150	E3:287	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 285	13:0x117c	E3:288	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-286	13:0x11a8	E3:289	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+286	13:0x11a8	E3:289	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 287	14:0x1150	E3:290	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 288	14:0x117c	E3:291	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-289	14:0x11a8	E3:292	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+289	14:0x11a8	E3:292	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 290	15:0x1150	E3:293	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 291	15:0x117c	E3:294	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-292	15:0x11a8	E3:295	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+292	15:0x11a8	E3:295	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 293	16:0x1150	E3:296	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 294	16:0x117c	E3:297	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-295	16:0x11a8	E3:298	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+295	16:0x11a8	E3:298	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 296	17:0x1150	E3:299	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 297	17:0x117c	E3:300	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-298	17:0x11a8	E3:301	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+298	17:0x11a8	E3:301	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 299	18:0x1150	E3:302	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 300	18:0x117c	E3:303	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-301	18:0x11a8	E3:304	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+301	18:0x11a8	E3:304	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 302	19:0x1150	E3:305	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 303	19:0x117c	E3:306	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-304	19:0x11a8	E3:307	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+304	19:0x11a8	E3:307	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 305	20:0x1150	E3:308	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 306	20:0x117c	E3:309	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-307	20:0x11a8	E3:310	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+307	20:0x11a8	E3:310	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 308	21:0x1150	E3:311	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 309	21:0x117c	E3:312	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-310	21:0x11a8	E3:313	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+310	21:0x11a8	E3:313	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 311	23:0x1150	E3:314	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 312	23:0x117c	E3:315	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-313	23:0x11a8	E3:316	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+313	23:0x11a8	E3:316	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 314	24:0x1150	E3:317	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 315	24:0x117c	E3:318	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-316	24:0x11a8	E3:319	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+316	24:0x11a8	E3:319	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 317	25:0x1150	E3:320	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 318	25:0x117c	E3:321	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-319	25:0x11a8	E3:322	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+319	25:0x11a8	E3:322	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 320	26:0x1150	E3:323	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 321	26:0x117c	E3:324	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-322	26:0x11a8	E3:325	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+322	26:0x11a8	E3:325	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 323	27:0x1150	E3:326	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 324	27:0x117c	E3:327	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-325	27:0x11a8	E3:328	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+325	27:0x11a8	E3:328	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 326	28:0x1150	E3:329	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 327	28:0x117c	E3:330	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-328	28:0x11a8	E3:331	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+328	28:0x11a8	E3:331	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 329	29:0x1150	E3:332	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 330	29:0x117c	E3:333	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-331	29:0x11a8	E3:334	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+331	29:0x11a8	E3:334	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 332	30:0x1150	E3:335	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 333	30:0x117c	E3:336	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-334	30:0x11a8	E3:337	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+334	30:0x11a8	E3:337	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 335	31:0x1150	E3:338	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 336	31:0x117c	E3:339	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-337	31:0x11a8	E3:340	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+337	31:0x11a8	E3:340	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 338	32:0x12c0	E3:341	They are frozen.<FF02><FF01>
 339	32:0x12cc	E3:342	They are frozen.<FF02><FF01>
-340	32:0x12d8	E3:343	Yukino: I'd wondered where<FF03>some of the students had gone.<FF03>Now I've got my answer...<FF02><FF04>Just wait for us, guys.<FF03>We'll rescue you all soon!<FF02><FF01>
+340	32:0x12d8	E3:343	Yukino: I'd wondered where some of<FF03>the students had gone.<FF03>Now I've got my answer...<FF02><FF04>Just wait for us, guys.<FF03>We'll rescue you all soon!<FF02><FF01>
 341	32:0x1320	E3:344	Ayase: How awful...<FF03>Who does stuff like this for fun?<FF02><FF01>
 342	32:0x1344	E3:345	Nanjo: Mm. It seems the enemy<FF03>is resorting to force now.<FF02><FF01>
 343	32:0x1364	E3:346	Brown: Oh crap... oh crap...!<FF02><FF01>
 344	32:0x1378	E3:347	Elly: They appear to still be alive.<FF03>Eternal Night...<FF03>so this is what it means.<FF02><FF01>
-345	33:0x1244	E3:348	Reiho: Jab! Jab! Hee-ho!<FF02><FF04>Raiho:<FF03>There's no sumo club hee-here, so<FF03>we're gonna join the boxing club, ho.<FF02><FF04>Reiho:<FF03>Hey! A sandbag can't move like that!<FF02><FF04>Raiho: Hee-ho?<FF03>Are you talking about me?<FF02><FF04>Reiho: Don't you hee-member?<FF03>How the boy at the fencing club<FF03>was beaten up by a girl?<FF02><FF04>Raiho: Hee-ho! I see...<FF03>so girls are strong, ho.<FF03>...Please...<FF05><07><00> Be gentle...<FF05><07><00> okay?<FF05><07><00> Hee-ho!<FF02><FF01>
+345	33:0x1244	E3:348	Reiho: Jab! Jab! Hee-ho!<FF02><FF04>Raiho:<FF03>There's no sumo club hee-here, so<FF03>we're gonna join the boxing club, ho.<FF02><FF04>Reiho:<FF03>Hey! A sandbag can't move like that!<FF02><FF04>Raiho:<FF03>Hee-ho? Are you talking about me?<FF02><FF04>Reiho: Don't you hee-member?<FF03>How the boy at the fencing club<FF03>was beaten up by a girl?<FF02><FF04>Raiho: Hee-ho!<FF03>I see... so girls are strong, ho.<FF03>...Please...<FF05><07><00> Be gentle...<FF05><07><00> okay?<FF05><07><00> Hee-ho!<FF02><FF01>
 346	33:0x1378	E3:349	Yukino: These guys again...<FF02><FF01>
 347	33:0x138c	E3:350	Ayase:<FF03>It's nice they get along so well.<FF02><FF01>
 348	33:0x13a0	E3:351	Nanjo:<FF03>They always act as though they're in<FF03>the middle of a stand-up routine.<FF02><FF01>
@@ -353,7 +353,7 @@ id	pos	psp	en
 351	34:0x1708	E3:354	Touch the ball of light?<FF03><FF0E><00><FF01>
 352	34:0x1720	E3:355	Yukino: What just happened?<FF02><FF01>
 353	34:0x1738	E3:356	Yukino:<FF03>Are we going through it again?<FF02><FF01>
-354	34:0x1750	E3:357	Ayase: Huh? I feel like<FF03>we're missing someone...<FF02><FF01>
+354	34:0x1750	E3:357	Ayase: Huh?<FF03>I feel like we're missing someone...<FF02><FF01>
 355	34:0x1770	E3:358	Ayase: It's glowing, but it's cold.<FF02><FF01>
 356	34:0x178c	E3:359	Nanjo: Is everyone all right?<FF03>What was that just now...?<FF02><FF01>
 357	34:0x17b4	E3:360	Nanjo:<FF03>It seems that we can be teleported<FF03>elsewhere by touching this.<FF02><FF01>
@@ -379,10 +379,10 @@ id	pos	psp	en
 377	36:0x16e4	E3:380	They are frozen.<FF02><FF01>
 378	36:0x16f0	E3:381	Yukino: This girl looks like she<FF03>wants to say something...<FF02><FF01>
 379	36:0x1714	E3:382	Yukino:<FF03>We gotta do all we can for these guys.<FF02><FF01>
-380	36:0x1734	E3:383	Ayase: Y'think they'd melt if<FF03>I cast Agi on 'em?<FF02><FF01>
-381	36:0x1750	E3:384	Ayase: Y'think they'd melt if<FF03>I cast Agi on 'em?<FF02><FF01>
+380	36:0x1734	E3:383	Ayase: Y'think they'd melt<FF03>if I cast Agi on 'em?<FF02><FF01>
+381	36:0x1750	E3:384	Ayase: Y'think they'd melt<FF03>if I cast Agi on 'em?<FF02><FF01>
 382	36:0x176c	E3:385	Nanjo: "Set your mind at ease that<FF03>even the fire may seem<FF03>cool and refreshing."<FF02><FF04>Wait... That makes it feel even colder.<FF02><FF01>
-383	36:0x17a8	E3:386	Nanjo: That was quite a windfall. One<FF03>hardly expects such an amazing find.<FF02><FF01>
+383	36:0x17a8	E3:386	Nanjo: That was quite a windfall.<FF03>One hardly expects such<FF03>an amazing find.<FF02><FF01>
 384	36:0x17cc	E3:387	Brown: Dammit!<FF03>Night Queen or no, I'm not letting<FF03>whoever did this off the hook!<FF02><FF01>
 385	36:0x1808	E3:388	Brown: A main character's costume?<FF03>It should go to me, naturally!.<FF03>..Oh, man...<FF02><FF04>It doesn't fit! Aw well... Much as it<FF03>breaks my heart to do this...<FF02><FF04>I guess I'll give it to you, <FF07><01>.<FF03>Just kidding!<FF02><FF01>
 386	36:0x1898	E3:389	Brown: Hunh?<FF02><FF04>H-Hey! Look...<FF03>There's something on the floor.<FF02><FF04>I-I-Is it a 10,000-yen bill!?<FF03>'Cause if it is, dibs!<FF03>Dibs, you hear me!? I saw it first!<FF02><FF01>
@@ -396,12 +396,12 @@ id	pos	psp	en
 394	36:0x1aa4	E3:397	Elly: Good heavens... here, too...?<FF02><FF01>
 395	36:0x1abc	E3:398	Elly: What an incredible find!<FF02><FF01>
 396	37:0x14ac	E3:399	Yukino: How'd that girl get<FF03>all the way up here?<FF02><FF01>
-397	37:0x14cc	E3:400	Ayase: Hey, look!<FF03>His eyelashes are frozen.<FF02><FF01>
+397	37:0x14cc	E3:400	Ayase:<FF03>Hey, look! His eyelashes are frozen.<FF02><FF01>
 398	37:0x14f0	E3:401	Nanjo: Under normal circumstances,<FF03>I find Ayase barely tolerable...<FF02><FF04>But it's something of a relief to have<FF03>her around at a time like this.<FF02><FF01>
 399	37:0x1524	E3:402	Brown: I'm starting to get sleepy...<FF02><FF01>
-400	37:0x153c	E3:403	Elly: The same scenery, wherever we<FF03>go... Are we really moving forward?<FF02><FF01>
-401	37:0x1570	E3:404	Girl with a camera: Oh, hello!<FF03>Nice to meet you.<FF02><FF04>I'm Mariko Yabe from Yamakumo High's<FF03>Paranormal Watchers Club!<FF02><FF04>Good to know you!<FF02><FF04>It's an unofficial club, and I'm<FF03>the president and only member!<FF02><FF04>My homeroom teach<FF03>refuses to recognize my club,<FF03>just 'cause he thinks it's lame!<FF02><FF04>So I came to visit Tsutomu,<FF03>my fellow devotee, but...<FF05><1E><00> I...<FF05><1E><00> this is...<FF02><FF04>This is GREAT!<FF03>I'm SO lucky I get to see an awesome<FF03>paranormal event like this!<FF02><FF04>I was just exploring those three<FF03>freaky towers that popped<FF03>up around campus!<FF02><FF04>They're chock-full of demons!<FF03>You wouldn't believe the photos I got!<FF02><FF04>I'm gonna submit these babies to<FF03>some national magazines!<FF02><FF04>If the media admits they're real,<FF03>maybe my teach will<FF03>recognize my club!<FF02><FF04>Here goes nothin'!<FF02><FF01>
-402	37:0x177c	E3:405	Mariko: I'm pretty much<FF03>done exploring the towers,<FF03>so I came back this way...<FF02><FF04>But just like I thought,<FF03>I'm pretty bushed now.<FF02><FF04>This is so exciting, though!<FF02><FF04>"A Mysteriously Frozen School"!<FF03>"The Revival of Demons"!<FF02><FF04>"The Bizarre Towers and<FF03>the School that Became a Labyrinth"!<FF03>So what do you think?<FF02><FF04>Me,<FF03>I say it's all a secret conspiracy to<FF03>take over the world by sorcery...<FF02><FF01>
+400	37:0x153c	E3:403	Elly:<FF03>The same scenery, wherever we go...<FF03>Are we really moving forward?<FF02><FF01>
+401	37:0x1570	E3:404	Girl with a camera:<FF03>Oh, hello! Nice to meet you.<FF02><FF04>I'm Mariko Yabe from Yamakumo High's<FF03>Paranormal Watchers Club!<FF03>Good to know you!<FF02><FF04>It's an unofficial club, and I'm<FF03>the president and only member!<FF02><FF04>My homeroom teach<FF03>refuses to recognize my club,<FF03>just 'cause he thinks it's lame!<FF02><FF04>So I came to visit Tsutomu,<FF03>my fellow devotee, but...<FF05><1E><00> I...<FF05><1E><00> this is...<FF02><FF04>This is GREAT!<FF03>I'm SO lucky I get to see an awesome<FF03>paranormal event like this!<FF02><FF04>I was just exploring those three<FF03>freaky towers that popped<FF03>up around campus!<FF02><FF04>They're chock-full of demons!<FF03>You wouldn't believe the photos I got!<FF02><FF04>I'm gonna submit these babies to<FF03>some national magazines!<FF02><FF04>If the media admits they're real,<FF03>maybe my teach will<FF03>recognize my club!<FF02><FF04>Here goes nothin'!<FF02><FF01>
+402	37:0x177c	E3:405	Mariko: I'm pretty much<FF03>done exploring the towers,<FF03>so I came back this way...<FF02><FF04>But just like I thought,<FF03>I'm pretty bushed now.<FF02><FF04>This is so exciting, though!<FF02><FF04>"A Mysteriously Frozen School"!<FF03>"The Revival of Demons"!<FF02><FF04>"The Bizarre Towers and<FF03>the School that Became a Labyrinth"!<FF03>So what do you think?<FF02><FF04>Me, I say it's all a secret<FF03>conspiracy to take over<FF03>the world by sorcery...<FF02><FF01>
 403	38:0x150c	E3:406	Reiho: Hee-ho! This is the 4th floor.<FF02><FF01>
 404	38:0x1530	E3:407	Raiho: Hee-ho! Hey, you guys!<FF02><FF01>
 405	38:0x1558	E3:408	Will you be friends with me?<FF03><FF0E><00><FF01>
@@ -420,10 +420,10 @@ id	pos	psp	en
 418	39:0x147c	E3:421	Nanjo: I'd expect Ayase to know.<FF03>She's certainly been to<FF03>the principal's office enough.<FF02><FF01>
 419	39:0x14b0	E3:422	Brown: Warmth of handmade<FF03>wooden buildings, my ass!<FF02><FF04>The wind blows through the cracks in<FF03>the walls and it smells all musty...<FF03>Makes me want a hot bath.<FF02><FF01>
 420	39:0x1528	E3:423	Elly:<FF03>This certainly is an antique building.<FF03>If we weren't in our current situation,<FF02><FF04>I'd have enjoyed looking around.<FF02><FF01>
-421	40:0x140c	E3:424	Yukino: Did the building<FF03>change because the past Snow<FF03>Queens attended class in this one?<FF02><FF04>...That would mean the demons<FF03>have gotten even stronger.<FF02><FF01>
+421	40:0x140c	E3:424	Yukino: Did the building change<FF03>because the past Snow Queens<FF03>attended class in this one?<FF02><FF04>...That would mean the demons<FF03>have gotten even stronger.<FF02><FF01>
 422	40:0x1478	E3:425	Ayase: So people back then went to<FF03>class in rooms like these?<FF03>Weren't they cold...?<FF02><FF01>
 423	40:0x14ac	E3:426	Nanjo: Mayuzumi is right.<FF03>From this point on,<FF03>we should brace for the worst.<FF02><FF01>
-424	40:0x14e0	E3:427	Brown: This place creeps me out. It's<FF03>bad enough that it's an old building...<FF02><FF04>But it's all frozen over,<FF03>and our footsteps echo way too loud.<FF02><FF01>
+424	40:0x14e0	E3:427	Brown: This place creeps me out.<FF03>It's bad enough that it's<FF03>an old building...<FF02><FF04>But it's all frozen over,<FF03>and our footsteps echo way too loud.<FF02><FF01>
 425	40:0x1524	E3:428	Elly: It's said many generations of<FF03>memories are ingrained into<FF03>old schools.<FF02><FF04>I only hope that doesn't mean evil<FF03>things are in store for us.<FF02><FF01>
 426	41:0x14b4	E3:429	Reiho: Hee-ho! This is the 5th floor.<FF02><FF01>
 427	41:0x14d8	E3:430	Raiho: Hee-ho!<FF02><FF01>
@@ -432,7 +432,7 @@ id	pos	psp	en
 430	41:0x151c	E3:433	Raiho: Hee-ho! Well then, hee-close<FF03>your eyes for a minute, ho...<FF02><FF01>
 431	41:0x154c	E3:434	Reiho: Tch.<FF02><FF01>
 432	41:0x155c	E3:435	Yukino: What kind of magic trick<FF03>is this snowman using?<FF02><FF01>
-433	41:0x157c	E3:436	Ayase: Whoa... this is like,<FF03>kinda creepy...<FF02><FF01>
+433	41:0x157c	E3:436	Ayase:<FF03>Whoa... this is like, kinda creepy...<FF02><FF01>
 434	41:0x1598	E3:437	Nanjo:<FF03>It's a wooden building now, I see.<FF02><FF04>Did the Night Queen run<FF03>out of funds to complete<FF03>the castle's construction?<FF02><FF01>
 435	41:0x15cc	E3:438	Brown:<FF03>Oh, hell no! This place is even colder!<FF02><FF01>
 436	41:0x15f0	E3:439	Elly: This place...<FF02><FF01>
@@ -448,19 +448,19 @@ id	pos	psp	en
 446	43:0x14c8	E3:449	Elly:<FF03>I've wondered for some time now...<FF03>What do you fight for, <FF07><01>?<FF02><FF01>
 447	44:0x1564	E3:450	Masked man: Yes?<FF02><FF01>
 448	44:0x157c	E3:451	Do you want to go back downstairs?<FF03><FF0E><14><FF01>
-449	44:0x1594	E3:452	Masked man: I see. Then hurry to<FF03>the highest floor. The Queen awaits.<FF02><FF01>
+449	44:0x1594	E3:452	Masked man: I see.<FF03>Then hurry to the highest floor.<FF03>The Queen awaits.<FF02><FF01>
 450	44:0x15d0	E3:453	Masked man: Very well.<FF02><FF01>
 451	44:0x15e8	E3:454	Masked man: Very well.<FF02><FF01>
 452	44:0x1600	E3:455	Masked man: So you've come this far,<FF03>yet you still wish to return to<FF03>the beginning.<FF02><FF04>Well, so be it.<FF02><FF01>
 453	44:0x1640	E3:456	Yukino: What's he scheming?<FF02><FF01>
-454	44:0x1658	E3:457	Ayase: He said he'll do it for us. If we<FF03>wanna go back, let's try asking him.<FF02><FF01>
+454	44:0x1658	E3:457	Ayase: He said he'll do it for us.<FF03>If we wanna go back,<FF03>let's try asking him.<FF02><FF01>
 455	44:0x168c	E3:458	Nanjo: ......<FF02><FF01>
 456	44:0x169c	E3:459	Brown:<FF03>Hey, you're not gonna say "yes"<FF03>after we came this far, are you?<FF02><FF01>
 457	44:0x16cc	E3:460	Elly: Be careful.<FF03>We can't say for sure yet<FF03>whether he's human or demon.<FF02><FF01>
 458	45:0x36dc	E3:461	Trish: Hi! I'm Trish and this is<FF03>my fountain of healing!<FF02><FF04>This world runs on give-and-take!<FF03>Give me money and I'll take<FF03>away your pain!<FF02><FF01>
 459	45:0x3750	E3:462	What do you say?<FF03><FF0E><11><FF01>
 460	45:0x3764	E3:463	Trish: Okay!<FF02><FF01>
-461	45:0x3778	E3:464	Trish: Umm, with the going<FF03>rate for healing...<FF03>And all of you put together...<FF02><FF01>
+461	45:0x3778	E3:464	Trish: Umm,<FF03>with the going rate for healing...<FF03>And all of you put together...<FF02><FF01>
 462	45:0x37b0	E3:465	It'll be 8,000 yen.<FF03>That's okay, right?<FF02><FF03><FF0E><00><FF01>
 463	45:0x37cc	E3:466	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 464	45:0x380c	E3:467	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
@@ -468,7 +468,7 @@ id	pos	psp	en
 466	45:0x3858	E3:469	Trish: You don't have enough!?<FF03>Boo to that! There's nothing<FF03>I hate like poor people!<FF02><FF04>Come back when your wallet's fuller.<FF03>Bye-bye!<FF02><FF01>
 467	45:0x38c0	E3:470	Trish: Boo to that!<FF03>You mangy, dirty bum!<FF03>Don't blame me if you wind up dead!<FF02><FF01>
 468	45:0x38f8	E3:471	Well, come again.<FF03>I'll be waiting! Bye-bye!<FF02><FF01>
-469	45:0x3924	E3:472	Trish: You called me out for no<FF03>reason!? Boo to that! Get outta here!<FF02><FF01>
+469	45:0x3924	E3:472	Trish:<FF03>You called me out for no reason!?<FF03>Boo to that! Get outta here!<FF02><FF01>
 470	46:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 471	46:0x5388	E3:474	Igor: Welcome to the Velvet Room...<FF02><FF01>
 472	46:0x53ac	E3:475	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
@@ -479,23 +479,23 @@ id	pos	psp	en
 477	46:0x5450	E3:480	Igor: Well then... Farewell...<FF02><FF01>
 478	46:0x5468	E3:481	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though,<FF03>I must summon demons to<FF03>fuse together into a Persona.<FF02><FF04>And for that,<FF03>a certain type of card is necessary.<FF02><FF04>You see,<FF03>these cards are inscribed with<FF03>demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only<FF03>way to deal with demons...<FF03>Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 479	46:0x5614	E3:482	Igor: It isn't enough merely to fuse<FF03>a new Persona in order to<FF03>make it your own...<FF02><FF04>There is rather more to<FF03>it than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of holding<FF03>up to three Personas.<FF02><FF04>A newly-fused Persona will be<FF03>entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas as<FF03>there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according to<FF03>the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
-480	46:0x57e0	E3:483	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF02><FF04>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
+480	46:0x57e0	E3:483	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF03>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
 481	46:0x5b78	E3:484	Igor: Pardon me for being nosy, but...<FF02><FF04>Personas have<FF03>eight levels of growth.<FF03>You should try to develop them fully.<FF02><FF04>I'm sure that there will be an ample<FF03>reward for doing so...<FF02><FF04>You might also be interested to<FF03>know about various factors in fusion.<FF02><FF04>For example, even when creating<FF03>the same Persona...<FF02><FF04>The combination of spell cards,<FF03>the affinities of the demons used...<FF02><FF04>The position of Terra and Luna, and<FF03>any essences added into the mix...<FF02><FF04>All of these factor into the resultant<FF03>Persona. And one more thing...<FF02><FF04>You may also add an item into<FF03>the fusion to trigger a change.<FF02><FF04>There are some items for which<FF03>the result is easily predictable...<FF02><FF04>But sometimes, even I will be unable to<FF03>guess at what may happen.<FF02><FF04>Should that come about,<FF03>I do hope that you'll pardon me.<FF02><FF04>But make no mistake,<FF03>I do believe it is worth trying...<FF02><FF04>I suggest gems for obtaining<FF03>a higher- or lower-ranked<FF03>fusion within an order.<FF02><FF04>As for the other items' effects,<FF03>you should experiment for yourself.<FF02><FF01>
 482	47:0x1150	E3:485	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 483	47:0x117c	E3:486	Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-484	47:0x11d4	E3:487	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+484	47:0x11d4	E3:487	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 485	48:0x19cc	E3:488	Elly: Wh... What...!?<FF02><FF01>
 486	48:0x19ec	E3:489	Brown: Oh, no... no no no...!<FF02><FF01>
 487	48:0x1a00	E3:490	Ayase: N-No! What is this!?<FF02><FF01>
 488	48:0x1a24	E3:491	Yukino: This is "Eternal Night"!?<FF03>To hell with this!<FF02><FF04>Hey, so-called "Night Queen"!<FF03>Quit hiding and come on out!<FF03>Fight us fair and square!<FF02><FF01>
-489	48:0x1a88	E3:492	Night Queen's voice: Ahaha...<FF03>Now, you too will slumber as<FF03>a statue of ice.<FF02><FF04>Tsutomu's voice: Aaaaagh...<FF03>s-stop... ngh...!<FF02><FF01>
+489	48:0x1a88	E3:492	Night Queen's voice: Ahaha...<FF03>Now, you too will slumber as<FF03>a statue of ice.<FF02><FF04>Tsutomu's voice:<FF03>Aaaaagh... s-stop... ngh...!<FF02><FF01>
 490	48:0x1adc	E3:493	Elly: *gasp* That was from<FF03>inside the school!<FF02><FF01>
 491	48:0x1afc	E3:494	Nanjo: That fiend!<FF03>What's it doing inside the school!?<FF02><FF01>
-492	48:0x1b24	E3:495	Night Queen's voice: Ahahaha... Run!<FF03>Run away, or you'll be frozen as well.<FF02><FF04>Toro's voice: Waaaaah!<FF03>Stop, stop--Nooooo!<FF02><FF04>Nurse Natsumi's voice: Hey! Who're<FF03>you...!? Aaaaa... aaaargh...<FF02><FF01>
+492	48:0x1b24	E3:495	Night Queen's voice: Ahahaha... Run!<FF03>Run away, or you'll be frozen as well.<FF02><FF04>Toro's voice: Waaaaah!<FF03>Stop, stop--Nooooo!<FF02><FF04>Nurse Natsumi's voice: Hey!<FF03>Who're you...!? Aaaaa... aaaargh...<FF02><FF01>
 493	48:0x1bc4	E3:496	Ayase: Toro? Nurse Natsumi!?<FF03>No... This can't be...<FF02><FF01>
 494	48:0x1bf4	E3:497	Yukino: Ms. Saeko!?<FF02><FF01>
 495	48:0x1c0c	E3:498	Ms. Saeko: Almost everyone in<FF03>the school building is frozen.<FF02><FF04>I gotta get you out before<FF03>the Queen returns...<FF02><FF01>
-496	48:0x1c5c	E3:499	Student's spirit: Please, run away!<FF03>You must live on!<FF02><FF01>
+496	48:0x1c5c	E3:499	Student's spirit: Please,<FF03>run away! You must live on!<FF02><FF01>
 497	48:0x1c80	E3:500	Ayase: R-Run away? But how!?<FF02><FF01>
 498	48:0x1ca4	E3:501	Student's spirit:<FF03>We'll use what power we have left to<FF03>send you all out of the school.<FF02><FF01>
 499	48:0x1cdc	E3:502	Yukino: We can't just run away with<FF03>our tails between our legs!<FF03>No way, I'm staying--<FF02><FF01>
@@ -503,49 +503,49 @@ id	pos	psp	en
 501	48:0x1d68	E3:504	Yukino: Ms. Saekoooooo!<FF02><FF01>
 502	49:0x1150	E3:505	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 503	49:0x117c	E3:506	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-504	49:0x11a8	E3:507	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+504	49:0x11a8	E3:507	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 505	50:0x1150	E3:508	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 506	50:0x117c	E3:509	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-507	50:0x11a8	E3:510	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+507	50:0x11a8	E3:510	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 508	51:0x1150	E3:511	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 509	51:0x117c	E3:512	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-510	51:0x11a8	E3:513	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+510	51:0x11a8	E3:513	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 511	52:0x1150	E3:514	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 512	52:0x117c	E3:515	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-513	52:0x11a8	E3:516	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+513	52:0x11a8	E3:516	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 514	53:0x1150	E3:517	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 515	53:0x117c	E3:518	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-516	53:0x11a8	E3:519	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+516	53:0x11a8	E3:519	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 517	54:0x1150	E3:520	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 518	54:0x117c	E3:521	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-519	54:0x11a8	E3:522	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+519	54:0x11a8	E3:522	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 520	55:0x1150	E3:523	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 521	55:0x117c	E3:524	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-522	55:0x11a8	E3:525	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+522	55:0x11a8	E3:525	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 523	56:0x1150	E3:526	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 524	56:0x117c	E3:527	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-525	56:0x11a8	E3:528	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+525	56:0x11a8	E3:528	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 526	57:0x1150	E3:529	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 527	57:0x117c	E3:530	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-528	57:0x11a8	E3:531	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+528	57:0x11a8	E3:531	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 529	58:0x1150	E3:532	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 530	58:0x117c	E3:533	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-531	58:0x11a8	E3:534	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+531	58:0x11a8	E3:534	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 532	59:0x1150	E3:535	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 533	59:0x117c	E3:536	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-534	59:0x11a8	E3:537	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+534	59:0x11a8	E3:537	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 535	60:0x1150	E3:538	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 536	60:0x117c	E3:539	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-537	60:0x11a8	E3:540	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+537	60:0x11a8	E3:540	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 538	61:0x1150	E3:541	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 539	61:0x117c	E3:542	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-540	61:0x11a8	E3:543	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+540	61:0x11a8	E3:543	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 541	62:0x1150	E3:544	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 542	62:0x117c	E3:545	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-543	62:0x11a8	E3:546	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+543	62:0x11a8	E3:546	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 544	63:0x1150	E3:547	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 545	63:0x117c	E3:548	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-546	63:0x11a8	E3:549	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+546	63:0x11a8	E3:549	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 547	64:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 548	64:0x5388	E3:551	Igor: Welcome to the Velvet Room...<FF02><FF01>
 549	64:0x53ac	E3:552	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
@@ -556,12 +556,12 @@ id	pos	psp	en
 554	64:0x5450	E3:557	Igor: Well then... Farewell...<FF02><FF01>
 555	64:0x5468	E3:558	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though,<FF03>I must summon demons to<FF03>fuse together into a Persona.<FF02><FF04>And for that,<FF03>a certain type of card is necessary.<FF02><FF04>You see,<FF03>these cards are inscribed with<FF03>demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only<FF03>way to deal with demons...<FF03>Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 556	64:0x5614	E3:559	Igor: It isn't enough merely to fuse<FF03>a new Persona in order to<FF03>make it your own...<FF02><FF04>There is rather more to<FF03>it than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of holding<FF03>up to three Personas.<FF02><FF04>A newly-fused Persona will be<FF03>entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas as<FF03>there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according to<FF03>the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
-557	64:0x57e0	E3:560	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF02><FF04>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
+557	64:0x57e0	E3:560	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF03>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
 558	64:0x5b78	E3:561	Igor: Pardon me for being nosy, but...<FF02><FF04>Personas have<FF03>eight levels of growth.<FF03>You should try to develop them fully.<FF02><FF04>I'm sure that there will be an ample<FF03>reward for doing so...<FF02><FF04>You might also be interested to<FF03>know about various factors in fusion.<FF02><FF04>For example, even when creating<FF03>the same Persona...<FF02><FF04>The combination of spell cards,<FF03>the affinities of the demons used...<FF02><FF04>The position of Terra and Luna, and<FF03>any essences added into the mix...<FF02><FF04>All of these factor into the resultant<FF03>Persona. And one more thing...<FF02><FF04>You may also add an item into<FF03>the fusion to trigger a change.<FF02><FF04>There are some items for which<FF03>the result is easily predictable...<FF02><FF04>But sometimes, even I will be unable to<FF03>guess at what may happen.<FF02><FF04>Should that come about,<FF03>I do hope that you'll pardon me.<FF02><FF04>But make no mistake,<FF03>I do believe it is worth trying...<FF02><FF04>I suggest gems for obtaining<FF03>a higher- or lower-ranked<FF03>fusion within an order.<FF02><FF04>As for the other items' effects,<FF03>you should experiment for yourself.<FF02><FF01>
 559	65:0x36dc	E3:562	Trish: Hi! I'm Trish and this is<FF03>my fountain of healing!<FF02><FF04>This world runs on give-and-take!<FF03>Give me money and I'll take<FF03>away your pain!<FF02><FF01>
 560	65:0x3750	E3:563	What do you say?<FF03><FF0E><11><FF01>
 561	65:0x3764	E3:564	Trish: Okay!<FF02><FF01>
-562	65:0x3778	E3:565	Trish: Umm, with the going<FF03>rate for healing...<FF03>And all of you put together...<FF02><FF01>
+562	65:0x3778	E3:565	Trish: Umm,<FF03>with the going rate for healing...<FF03>And all of you put together...<FF02><FF01>
 563	65:0x37b0	E3:566	It'll be 1,000 yen. That's okay, right?<FF03><FF0E><00><FF01>
 564	65:0x37cc	E3:567	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 565	65:0x380c	E3:568	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
@@ -569,10 +569,10 @@ id	pos	psp	en
 567	65:0x3858	E3:570	Trish: You don't have enough!?<FF03>Boo to that! There's nothing<FF03>I hate like poor people!<FF02><FF04>Come back when your wallet's fuller.<FF03>Bye-bye!<FF02><FF01>
 568	65:0x38c0	E3:571	Trish: Boo to that!<FF03>You mangy, dirty bum!<FF03>Don't blame me if you wind up dead!<FF02><FF01>
 569	65:0x38f8	E3:572	Well, come again.<FF03>I'll be waiting! Bye-bye!<FF02><FF01>
-570	65:0x3924	E3:573	Trish: You called me out for no<FF03>reason!? Boo to that! Get outta here!<FF02><FF01>
-571	66:0x155c	E3:574	Girl with a camera: Oh, hello!<FF03>Nice to meet you.<FF02><FF04>I'm Mariko Yabe from Yamakumo High's<FF03>Paranormal Watchers Club!<FF02><FF04>Good to know you!<FF02><FF04>It's an unofficial club, and I'm<FF03>the president and only member!<FF02><FF04>My homeroom teach<FF03>refuses to recognize my club,<FF03>just 'cause he thinks it's lame!<FF02><FF04>So I came to visit Tsutomu,<FF03>my fellow devotee, but...<FF05><1E><00> I...<FF05><1E><00> this is...<FF02><FF04>This is GREAT!<FF03>I'm SO lucky I get to see an awesome<FF03>paranormal event like this!<FF02><FF04>I was just exploring those three<FF03>freaky towers that popped<FF03>up around campus!<FF02><FF04>They're chock-full of demons!<FF03>You wouldn't believe the photos I got!<FF02><FF04>I'm gonna submit these babies to<FF03>some national magazines!<FF02><FF04>If the media admits they're real,<FF03>maybe my teach will<FF03>recognize my club!<FF02><FF04>Here goes nothin'!<FF02><FF01>
-572	66:0x1718	E3:575	Mariko: Huh? They don't sell film<FF03>here... Ugh! Of all the rotten luck!<FF02><FF01>
-573	66:0x174c	E3:576	Clerk: Welcoooome...<FF03>I from Devil's Peak.<FF02><FF04>Bring very good things.<FF03>Mister need this.<FF03>I sell at low price, you buy!<FF02><FF01>
+570	65:0x3924	E3:573	Trish:<FF03>You called me out for no reason!?<FF03>Boo to that! Get outta here!<FF02><FF01>
+571	66:0x155c	E3:574	Girl with a camera:<FF03>Oh, hello! Nice to meet you.<FF02><FF04>I'm Mariko Yabe from Yamakumo High's<FF03>Paranormal Watchers Club!<FF02><FF04>Good to know you!<FF02><FF04>It's an unofficial club, and I'm<FF03>the president and only member!<FF02><FF04>My homeroom teach<FF03>refuses to recognize my club,<FF03>just 'cause he thinks it's lame!<FF02><FF04>So I came to visit Tsutomu,<FF03>my fellow devotee, but...<FF05><1E><00> I...<FF05><1E><00> this is...<FF02><FF04>This is GREAT!<FF03>I'm SO lucky I get to see an awesome<FF03>paranormal event like this!<FF02><FF04>I was just exploring those three<FF03>freaky towers that popped<FF03>up around campus!<FF02><FF04>They're chock-full of demons!<FF03>You wouldn't believe the photos I got!<FF02><FF04>I'm gonna submit these babies to<FF03>some national magazines!<FF02><FF04>If the media admits they're real,<FF03>maybe my teach will<FF03>recognize my club!<FF02><FF04>Here goes nothin'!<FF02><FF01>
+572	66:0x1718	E3:575	Mariko: Huh?<FF03>They don't sell film here...<FF03>Ugh! Of all the rotten luck!<FF02><FF01>
+573	66:0x174c	E3:576	Clerk: Welcoooome...<FF03>I from Devil's Peak.<FF03>Bring very good things.<FF02><FF04>Mister need this.<FF03>I sell at low price, you buy!<FF02><FF01>
 574	66:0x17ac	E3:577	Yukino: From Devil's Peak, huh?<FF03>Then is that kid a demon too...?<FF02><FF01>
 575	66:0x17dc	E3:578	Ayase: Hey, are these, like, real?<FF02><FF01>
 576	66:0x17f8	E3:579	Nanjo: Amazing! All of these could<FF03>prove useful for us.<FF02><FF01>
@@ -585,17 +585,17 @@ id	pos	psp	en
 583	67:0x1520	E3:586	Brown:<FF03>Oh man, this is totally perfect for me!<FF02><FF04>Though I look good in anything,<FF03>of course. Mwahahahaha!<FF02><FF01>
 584	67:0x1574	E3:587	Elly: Could this be armor?<FF03>I must say, it's better than<FF03>no protection whatsoever.<FF02><FF01>
 585	68:0x118c	E3:588	Yukino: So we have until the hour<FF03>hand points to 12 o'clock...<FF03>This won't be easy.<FF02><FF01>
-586	68:0x11c4	E3:589	Ayase:<FF03>I've been feeling totally sleepy ever<FF03>since we came to this tower!<FF02><FF01>
+586	68:0x11c4	E3:589	Ayase:<FF03>I've been feeling totally sleepy<FF03>ever since we came to this tower!<FF02><FF01>
 587	68:0x11ec	E3:590	Nanjo: That Snow Queen...<FF03>I'm sure it's sneering as it watches<FF03>us gather mirror shards.<FF02><FF01>
 588	68:0x1234	E3:591	Brown: Hey, don't you feel all<FF03>sleepy for some reason?<FF03>No, no, I mean it.<FF02><FF01>
 589	68:0x1264	E3:592	Elly: I wonder what kind of foe<FF03>awaits us in this tower.<FF02><FF01>
 590	69:0x114c	E3:593	Kumi's father: ...Are you still up<FF03>fooling around with that<FF03>script, Kumi?<FF02><FF04>Refresh my memory, what are you<FF03>going to school for again?<FF03>To study? Or to fool around?<FF02><FF01>
 591	69:0x11ac	E3:594	Kumi: U-Um... it's just...<FF03>the "Snow Queen," see... I was pick--<FF02><FF01>
-592	69:0x11dc	E3:595	Kumi's father: Yes, your mother told<FF03>me. Apparently you scored in<FF03>the 70s on some tests lately?<FF02><FF04>You get those low<FF03>scores because you don't study.<FF03>You just fool around all the time.<FF02><FF01>
+592	69:0x11dc	E3:595	Kumi's father: Yes, your mother told<FF03>me. Apparently you scored in<FF03>the 70s on some tests lately?<FF02><FF04>You get those low scores<FF03>because you don't study.<FF03>You just fool around all the time.<FF02><FF01>
 593	69:0x1240	E3:596	Kumi: But--My average was eighty--<FF02><FF01>
-594	69:0x1264	E3:597	Kumi's father: I gave up drinking and<FF03>smoking, as much as I loved them...<FF02><FF04>And I quit playing golf on<FF03>weekends so I could make more money.<FF02><FF04>Who do you think that's for!?<FF02><FF04>I'm providing for you and<FF03>your mother, aren't I?<FF02><FF04>You're attending that school<FF03>now because your father's<FF03>working himself to death.<FF02><FF01>
+594	69:0x1264	E3:597	Kumi's father:<FF03>I gave up drinking and smoking,<FF03>as much as I loved them...<FF02><FF04>And I quit playing golf on<FF03>weekends so I could make more money.<FF02><FF04>Who do you think that's for!?<FF02><FF04>I'm providing for you and<FF03>your mother, aren't I?<FF02><FF04>You're attending that school<FF03>now because your father's<FF03>working himself to death.<FF02><FF01>
 595	69:0x1314	E3:598	Kumi: ...I know, Father.<FF02><FF01>
-596	69:0x1328	E3:599	Kumi's father:<FF03>But you still don't even think about<FF03>what I'm going through...<FF02><FF04>Instead, you get lost in some club and<FF03>never spend a moment studying.<FF03>You're in the wrong here, Kumi.<FF02><FF01>
+596	69:0x1328	E3:599	Kumi's father:<FF03>But you still don't even think about<FF03>what I'm going through...<FF02><FF04>Instead, you get lost in some club and<FF03>never spend a moment studying.<FF02><FF04>You're in the wrong here, Kumi.<FF02><FF01>
 597	69:0x138c	E3:600	Kumi: ...I'm sorry...<FF02><FF01>
 598	69:0x13a8	E3:601	Kumi's father: See, you understand.<FF03>So why don't you drop that<FF03>script and hit the books?<FF02><FF04>Keep studying and get a good<FF03>job at a good company so you<FF03>can repay us someday.<FF02><FF04>Hahah...<FF02><FF01>
 599	69:0x1424	E3:602	Kumi: ......<FF02><FF01>
@@ -603,33 +603,33 @@ id	pos	psp	en
 601	71:0x1158	E3:604	Agastya Tree: Ah. It seems that you<FF03>are rather exhausted, young ones.<FF02><FF04>Halting your journey here to rest for<FF03>the time being may be a wise decision.<FF02><FF04>But I cannot inscribe<FF03>your story onto myself.<FF02><FF04>I am only keeping it for your sake<FF03>until you depart again...<FF03>Do not forget that...<FF02><FF01>
 602	71:0x11fc	E3:605	Agastya Tree: Will you put<FF03>a temporary halt to your journey?<FF02><FF03><FF0E><00><FF01>
 603	71:0x1228	E3:606	Agastya Tree: Young ones...<FF03>I will remember the story of<FF03>your journey for you.<FF02><FF01>
-604	71:0x1258	E3:607	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+604	71:0x1258	E3:607	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 605	72:0x118c	E3:608	Yukino: We've come pretty far up.<FF03>I think we're near the end.<FF02><FF04>I better get psyched for<FF03>what's coming!<FF02><FF01>
 606	72:0x11c8	E3:609	Ayase: Urgh, I'm soooo tired! Sheesh!<FF03>Isn't there like, an elevator around!?<FF02><FF01>
 607	72:0x11fc	E3:610	Nanjo: Even if we pick up<FF03>high-quality equipment,<FF03>it's useless unless we put it on.<FF02><FF04>Be sure to check what you're<FF03>using from time to time.<FF02><FF01>
 608	72:0x1250	E3:611	Brown: Gaaaah! I'm so tired!<FF03>For crying out loud,<FF03>can't we take a little rest?<FF02><FF01>
-609	72:0x1288	E3:612	Elly: Fortunately,<FF03>we didn't fall asleep. Let's<FF03>stay cautious and press onward.<FF02><FF01>
+609	72:0x1288	E3:612	Elly: Fortunately,<FF03>we didn't fall asleep. Let's stay<FF03>cautious and press onward.<FF02><FF01>
 610	73:0x1150	E3:613	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 611	73:0x117c	E3:614	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-612	73:0x11a8	E3:615	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+612	73:0x11a8	E3:615	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 613	74:0x1150	E3:616	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 614	74:0x117c	E3:617	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-615	74:0x11a8	E3:618	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+615	74:0x11a8	E3:618	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 616	75:0x1150	E3:619	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 617	75:0x117c	E3:620	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-618	75:0x11a8	E3:621	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+618	75:0x11a8	E3:621	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 619	76:0x1150	E3:622	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 620	76:0x117c	E3:623	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-621	76:0x11a8	E3:624	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+621	76:0x11a8	E3:624	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 622	77:0x1150	E3:625	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 623	77:0x117c	E3:626	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-624	77:0x11a8	E3:627	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+624	77:0x11a8	E3:627	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 625	78:0x1150	E3:628	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 626	78:0x117c	E3:629	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-627	78:0x11a8	E3:630	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+627	78:0x11a8	E3:630	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 628	79:0x1150	E3:631	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 629	79:0x117c	E3:632	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-630	79:0x11a8	E3:633	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+630	79:0x11a8	E3:633	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 631	80:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 632	80:0x5388	E3:635	Igor: Welcome to the Velvet Room...<FF02><FF01>
 633	80:0x53ac	E3:636	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
@@ -640,12 +640,12 @@ id	pos	psp	en
 638	80:0x5450	E3:641	Igor: Well then... Farewell...<FF02><FF01>
 639	80:0x5468	E3:642	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though,<FF03>I must summon demons to<FF03>fuse together into a Persona.<FF02><FF04>And for that,<FF03>a certain type of card is necessary.<FF02><FF04>You see,<FF03>these cards are inscribed with<FF03>demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only<FF03>way to deal with demons...<FF03>Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 640	80:0x5614	E3:643	Igor: It isn't enough merely to fuse<FF03>a new Persona in order to<FF03>make it your own...<FF02><FF04>There is rather more to<FF03>it than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of holding<FF03>up to three Personas.<FF02><FF04>A newly-fused Persona will be<FF03>entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas as<FF03>there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according to<FF03>the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
-641	80:0x57e0	E3:644	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF02><FF04>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
+641	80:0x57e0	E3:644	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF03>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
 642	80:0x5b78	E3:645	Igor: Pardon me for being nosy, but...<FF02><FF04>Personas have<FF03>eight levels of growth.<FF03>You should try to develop them fully.<FF02><FF04>I'm sure that there will be an ample<FF03>reward for doing so...<FF02><FF04>You might also be interested to<FF03>know about various factors in fusion.<FF02><FF04>For example, even when creating<FF03>the same Persona...<FF02><FF04>The combination of spell cards,<FF03>the affinities of the demons used...<FF02><FF04>The position of Terra and Luna, and<FF03>any essences added into the mix...<FF02><FF04>All of these factor into the resultant<FF03>Persona. And one more thing...<FF02><FF04>You may also add an item into<FF03>the fusion to trigger a change.<FF02><FF04>There are some items for which<FF03>the result is easily predictable...<FF02><FF04>But sometimes, even I will be unable to<FF03>guess at what may happen.<FF02><FF04>Should that come about,<FF03>I do hope that you'll pardon me.<FF02><FF04>But make no mistake,<FF03>I do believe it is worth trying...<FF02><FF04>I suggest gems for obtaining<FF03>a higher- or lower-ranked<FF03>fusion within an order.<FF02><FF04>As for the other items' effects,<FF03>you should experiment for yourself.<FF02><FF01>
 643	81:0x36dc	E3:646	Trish: Hi! I'm Trish and this is<FF03>my fountain of healing!<FF02><FF04>This world runs on give-and-take!<FF03>Give me money and I'll take<FF03>away your pain!<FF02><FF01>
 644	81:0x3750	E3:647	What do you say?<FF03><FF0E><11><FF01>
 645	81:0x3764	E3:648	Trish: Okay!<FF02><FF01>
-646	81:0x3778	E3:649	Trish: Umm, with the going<FF03>rate for healing...<FF03>And all of you put together...<FF02><FF01>
+646	81:0x3778	E3:649	Trish: Umm,<FF03>with the going rate for healing...<FF03>And all of you put together...<FF02><FF01>
 647	81:0x37b0	E3:650	It'll be 4,000 yen.<FF03>That's okay, right?<FF02><FF03><FF0E><00><FF01>
 648	81:0x37cc	E3:651	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 649	81:0x380c	E3:652	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
@@ -653,11 +653,11 @@ id	pos	psp	en
 651	81:0x3858	E3:654	Trish: You don't have enough!?<FF03>Boo to that! There's nothing<FF03>I hate like poor people!<FF02><FF04>Come back when your wallet's fuller.<FF03>Bye-bye!<FF02><FF01>
 652	81:0x38c0	E3:655	Trish: Boo to that!<FF03>You mangy, dirty bum!<FF03>Don't blame me if you wind up dead!<FF02><FF01>
 653	81:0x38f8	E3:656	Well, come again.<FF03>I'll be waiting! Bye-bye!<FF02><FF01>
-654	81:0x3924	E3:657	Trish: You called me out for no<FF03>reason!? Boo to that! Get outta here!<FF02><FF01>
-655	82:0x155c	E3:658	Girl with a camera: Oh, hello!<FF03>Nice to meet you.<FF02><FF04>I'm Mariko Yabe from Yamakumo High's<FF03>Paranormal Watchers Club!<FF02><FF04>Good to know you!<FF02><FF04>It's an unofficial club, and I'm<FF03>the president and only member!<FF02><FF04>My homeroom teach<FF03>refuses to recognize my club,<FF03>just 'cause he thinks it's lame!<FF02><FF04>So I came to visit Tsutomu,<FF03>my fellow devotee, but...<FF05><1E><00> I...<FF05><1E><00> this is...<FF02><FF04>This is GREAT!<FF03>I'm SO lucky I get to see an awesome<FF03>paranormal event like this!<FF02><FF04>I was just exploring those three<FF03>freaky towers that popped<FF03>up around campus!<FF02><FF04>They're chock-full of demons!<FF03>You wouldn't believe the photos I got!<FF02><FF04>I'm gonna submit these babies to<FF03>some national magazines!<FF02><FF04>If the media admits they're real,<FF03>maybe my teach will<FF03>recognize my club!<FF02><FF04>Here goes nothin'!<FF02><FF01>
+654	81:0x3924	E3:657	Trish:<FF03>You called me out for no reason!?<FF03>Boo to that! Get outta here!<FF02><FF01>
+655	82:0x155c	E3:658	Girl with a camera:<FF03>Oh, hello! Nice to meet you.<FF02><FF04>I'm Mariko Yabe from Yamakumo High's<FF03>Paranormal Watchers Club!<FF02><FF04>Good to know you!<FF02><FF04>It's an unofficial club, and I'm<FF03>the president and only member!<FF02><FF04>My homeroom teach<FF03>refuses to recognize my club,<FF03>just 'cause he thinks it's lame!<FF02><FF04>So I came to visit Tsutomu,<FF03>my fellow devotee, but...<FF05><1E><00> I...<FF05><1E><00> this is...<FF02><FF04>This is GREAT!<FF03>I'm SO lucky I get to see an awesome<FF03>paranormal event like this!<FF02><FF04>I was just exploring those three<FF03>freaky towers that popped<FF03>up around campus!<FF02><FF04>They're chock-full of demons!<FF03>You wouldn't believe the photos I got!<FF02><FF04>I'm gonna submit these babies to<FF03>some national magazines!<FF02><FF04>If the media admits they're real,<FF03>maybe my teach will<FF03>recognize my club!<FF02><FF04>Here goes nothin'!<FF02><FF01>
 656	82:0x1718	E3:659	Mariko: According to<FF03>my investigation, aliens are behind<FF03>this school-freezing phenomenon!<FF02><FF04>Have you been abducted by any<FF03>UFOs in the last two or three days?<FF02><FF01>
-657	82:0x1780	E3:660	Clerk: Welcoooome...<FF03>I from Devil's Peak.<FF02><FF04>Bring very good things.<FF03>Mister need this.<FF03>I sell at low price, you buy!<FF02><FF01>
-658	82:0x17e0	E3:661	Yukino: Hey, how come all<FF03>the vendors at every weapon<FF03>shop have the same face?<FF02><FF01>
+657	82:0x1780	E3:660	Clerk: Welcoooome...<FF03>I from Devil's Peak.<FF03>Bring very good things.<FF02><FF04>Mister need this.<FF03>I sell at low price, you buy!<FF02><FF01>
+658	82:0x17e0	E3:661	Yukino: Hey,<FF03>how come all the vendors at every<FF03>weapon shop have the same face?<FF02><FF01>
 659	82:0x1814	E3:662	Ayase: Ew, it smells like oil here!<FF02><FF01>
 660	82:0x1834	E3:663	Nanjo: Incredible!<FF03>These items are all very specialized.<FF02><FF01>
 661	82:0x1858	E3:664	Brown: Yikes, what's with the little<FF03>arms dealer at school?<FF02><FF04>...Well, I guess it's part of that small<FF03>stuff you're not supposed to sweat.<FF02><FF01>
@@ -672,15 +672,15 @@ id	pos	psp	en
 670	84:0x1324	E3:673	Ayase: I wonder if that Michiko girl<FF03>ever, like, played the part of<FF03>the "Snow Queen," too.<FF02><FF01>
 671	84:0x1358	E3:674	Nanjo: Hmph! The woman's door<FF03>is as infuriating as she is!<FF02><FF04>All show on the outside,<FF03>lacking any substance within!<FF02><FF01>
 672	84:0x139c	E3:675	Brown: I wish I could take<FF03>this door back to my room!<FF03>It's one kickass door...<FF02><FF01>
-673	84:0x13cc	E3:676	Elly: Er... If this door is meant to be<FF03>a trap, it's a rather obvious one.<FF02><FF01>
+673	84:0x13cc	E3:676	Elly: Er...<FF03>If this door is meant to be a trap,<FF03>it's a rather obvious one.<FF02><FF01>
 674	84:0x13fc	E3:677	Open the door?<FF03><FF0E><00><FF01>
-675	85:0x12e4	E3:678	Yukino: Oh, for the love of...<FF03>not again.<FF02><FF04>What's with these hideous doors!?<FF03>Wasn't there one like it earlier, too?<FF02><FF01>
+675	85:0x12e4	E3:678	Yukino:<FF03>Oh, for the love of... not again.<FF03>What's with these hideous doors!?<FF02><FF04>Wasn't there one like it earlier, too?<FF02><FF01>
 676	85:0x132c	E3:679	Ayase: It's like, we walk and walk and<FF03>we never get to the top! I! AM! TIRED!<FF02><FF01>
 677	85:0x1368	E3:680	Nanjo: Dammit... I can sense Michiko's<FF03>malice in the air itself!<FF02><FF01>
 678	85:0x13a4	E3:681	Brown: Yukino's right! There was<FF03>a room like this downstairs, too!<FF02><FF01>
 679	85:0x13dc	E3:682	Elly: I feel that this tower is much<FF03>higher than it appears from outside.<FF03>Is it just me?<FF02><FF01>
 680	85:0x1414	E3:683	Open the door?<FF03><FF0E><00><FF01>
-681	86:0x118c	E3:684	Yukino: Ugh! I can't stand<FF03>this claustrophobic feeling<FF03>this tower gives me!<FF02><FF01>
+681	86:0x118c	E3:684	Yukino: Ugh!<FF03>I can't stand this claustrophobic<FF03>feeling this tower gives me!<FF02><FF01>
 682	86:0x11b4	E3:685	Ayase: I wonder if Toro and<FF03>Tsutomu are okay...<FF02><FF01>
 683	86:0x11d8	E3:686	Nanjo: This is one time I won't be<FF03>holding back! What that Michiko<FF03>did is unforgiveable!<FF02><FF01>
 684	86:0x1214	E3:687	Brown: Alright! Looks like Michiko's<FF03>room is coming up soon!<FF02><FF04>Might as well check<FF03>our equipment, huh?<FF02><FF01>
@@ -688,33 +688,33 @@ id	pos	psp	en
 686	87:0x1158	E3:689	Agastya Tree: Ah. It seems that you<FF03>are rather exhausted, young ones.<FF02><FF04>Halting your journey here to rest for<FF03>the time being may be a wise decision.<FF02><FF04>But I cannot inscribe<FF03>your story onto myself.<FF02><FF04>I am only keeping it for your sake<FF03>until you depart again...<FF03>Do not forget that...<FF02><FF01>
 687	87:0x11fc	E3:690	Agastya Tree: Will you put<FF03>a temporary halt to your journey?<FF02><FF03><FF0E><00><FF01>
 688	87:0x1228	E3:691	Agastya Tree: Young ones...<FF03>I will remember the story of<FF03>your journey for you.<FF02><FF01>
-689	87:0x1258	E3:692	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+689	87:0x1258	E3:692	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 690	88:0x120c	E3:693	Yukino: Having no time limit is<FF03>even more ominous, in a way.<FF03>I think we should hurry on ahead.<FF02><FF01>
 691	88:0x1244	E3:694	Ayase: This tower is, like,<FF03>totally creepy, y'know?<FF03>Let's hurry and get through it.<FF02><FF01>
-692	88:0x1278	E3:695	Nanjo: Gah, that Michiko woman<FF03>gets on my nerves! She's infuriating!<FF03>Truly infuriating!<FF02><FF01>
+692	88:0x1278	E3:695	Nanjo: Gah, that Michiko<FF03>woman gets on my nerves!<FF03>She's infuriating! Truly infuriating!<FF02><FF01>
 693	88:0x12bc	E3:696	Brown: Hey, c'mon!<FF03>There's no time limit on this tower,<FF03>right? So let's take a break!<FF02><FF04>We can kick back a bit and<FF03>then get right to it!<FF02><FF01>
 694	88:0x1314	E3:697	Elly: Can we hurry ahead with<FF03>all possible haste?<FF03>I can't shake this feeling...<FF02><FF01>
 695	89:0x1150	E3:698	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 696	89:0x117c	E3:699	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-697	89:0x11a8	E3:700	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+697	89:0x11a8	E3:700	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 698	90:0x1150	E3:701	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 699	90:0x117c	E3:702	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-700	90:0x11a8	E3:703	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+700	90:0x11a8	E3:703	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 701	91:0x1150	E3:704	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 702	91:0x117c	E3:705	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-703	91:0x11a8	E3:706	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+703	91:0x11a8	E3:706	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 704	92:0x1150	E3:707	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 705	92:0x117c	E3:708	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-706	92:0x11a8	E3:709	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+706	92:0x11a8	E3:709	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 707	93:0x1150	E3:710	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 708	93:0x117c	E3:711	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-709	93:0x11a8	E3:712	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+709	93:0x11a8	E3:712	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 710	94:0x1150	E3:713	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 711	94:0x117c	E3:714	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-712	94:0x11a8	E3:715	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+712	94:0x11a8	E3:715	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 713	95:0x1150	E3:716	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 714	95:0x117c	E3:717	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-715	95:0x11a8	E3:718	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+715	95:0x11a8	E3:718	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 716	96:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 717	96:0x5388	E3:720	Igor: Welcome to the Velvet Room...<FF02><FF01>
 718	96:0x53ac	E3:721	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
@@ -725,12 +725,12 @@ id	pos	psp	en
 723	96:0x5450	E3:726	Igor: Well then... Farewell...<FF02><FF01>
 724	96:0x5468	E3:727	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though,<FF03>I must summon demons to<FF03>fuse together into a Persona.<FF02><FF04>And for that,<FF03>a certain type of card is necessary.<FF02><FF04>You see,<FF03>these cards are inscribed with<FF03>demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only<FF03>way to deal with demons...<FF03>Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 725	96:0x5614	E3:728	Igor: It isn't enough merely to fuse<FF03>a new Persona in order to<FF03>make it your own...<FF02><FF04>There is rather more to<FF03>it than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of holding<FF03>up to three Personas.<FF02><FF04>A newly-fused Persona will be<FF03>entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas as<FF03>there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according to<FF03>the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
-726	96:0x57e0	E3:729	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF02><FF04>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
+726	96:0x57e0	E3:729	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF03>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
 727	96:0x5b78	E3:730	Igor: Pardon me for being nosy, but...<FF02><FF04>Personas have<FF03>eight levels of growth.<FF03>You should try to develop them fully.<FF02><FF04>I'm sure that there will be an ample<FF03>reward for doing so...<FF02><FF04>You might also be interested to<FF03>know about various factors in fusion.<FF02><FF04>For example, even when creating<FF03>the same Persona...<FF02><FF04>The combination of spell cards,<FF03>the affinities of the demons used...<FF02><FF04>The position of Terra and Luna, and<FF03>any essences added into the mix...<FF02><FF04>All of these factor into the resultant<FF03>Persona. And one more thing...<FF02><FF04>You may also add an item into<FF03>the fusion to trigger a change.<FF02><FF04>There are some items for which<FF03>the result is easily predictable...<FF02><FF04>But sometimes, even I will be unable to<FF03>guess at what may happen.<FF02><FF04>Should that come about,<FF03>I do hope that you'll pardon me.<FF02><FF04>But make no mistake,<FF03>I do believe it is worth trying...<FF02><FF04>I suggest gems for obtaining<FF03>a higher- or lower-ranked<FF03>fusion within an order.<FF02><FF04>As for the other items' effects,<FF03>you should experiment for yourself.<FF02><FF01>
 728	97:0x36dc	E3:731	Trish: Hi! I'm Trish and this is<FF03>my fountain of healing!<FF02><FF04>This world runs on give-and-take!<FF03>Give me money and I'll take<FF03>away your pain!<FF02><FF01>
 729	97:0x3750	E3:732	What do you say?<FF03><FF0E><11><FF01>
 730	97:0x3764	E3:733	Trish: Okay!<FF02><FF01>
-731	97:0x3778	E3:734	Trish: Umm, with the going<FF03>rate for healing...<FF03>And all of you put together...<FF02><FF01>
+731	97:0x3778	E3:734	Trish: Umm,<FF03>with the going rate for healing...<FF03>And all of you put together...<FF02><FF01>
 732	97:0x37b0	E3:735	It'll be 6,000 yen.<FF03>That's okay, right?<FF02><FF03><FF0E><00><FF01>
 733	97:0x37cc	E3:736	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 734	97:0x380c	E3:737	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
@@ -738,12 +738,12 @@ id	pos	psp	en
 736	97:0x3858	E3:739	Trish: You don't have enough!?<FF03>Boo to that! There's nothing<FF03>I hate like poor people!<FF02><FF04>Come back when your wallet's fuller.<FF03>Bye-bye!<FF02><FF01>
 737	97:0x38c0	E3:740	Trish: Boo to that!<FF03>You mangy, dirty bum!<FF03>Don't blame me if you wind up dead!<FF02><FF01>
 738	97:0x38f8	E3:741	Well, come again.<FF03>I'll be waiting! Bye-bye!<FF02><FF01>
-739	97:0x3924	E3:742	Trish: You called me out for no<FF03>reason!? Boo to that! Get outta here!<FF02><FF01>
-740	98:0x155c	E3:743	Girl with a camera: Oh, hello!<FF03>Nice to meet you.<FF02><FF04>I'm Mariko Yabe from Yamakumo High's<FF03>Paranormal Watchers Club!<FF02><FF04>Good to know you!<FF02><FF04>It's an unofficial club, and I'm<FF03>the president and only member!<FF02><FF04>My homeroom teach<FF03>refuses to recognize my club,<FF03>just 'cause he thinks it's lame!<FF02><FF04>So I came to visit Tsutomu,<FF03>my fellow devotee, but...<FF05><1E><00> I...<FF05><1E><00> this is...<FF02><FF04>This is GREAT!<FF03>I'm SO lucky I get to see an awesome<FF03>paranormal event like this!<FF02><FF04>I was just exploring those three<FF03>freaky towers that popped<FF03>up around campus!<FF02><FF04>They're chock-full of demons!<FF03>You wouldn't believe the photos I got!<FF02><FF04>I'm gonna submit these babies to<FF03>some national magazines!<FF02><FF04>If the media admits they're real,<FF03>maybe my teach will<FF03>recognize my club!<FF02><FF04>Here goes nothin'!<FF02><FF01>
+739	97:0x3924	E3:742	Trish:<FF03>You called me out for no reason!?<FF03>Boo to that! Get outta here!<FF02><FF01>
+740	98:0x155c	E3:743	Girl with a camera:<FF03>Oh, hello! Nice to meet you.<FF02><FF04>I'm Mariko Yabe from Yamakumo High's<FF03>Paranormal Watchers Club!<FF02><FF04>Good to know you!<FF02><FF04>It's an unofficial club, and I'm<FF03>the president and only member!<FF02><FF04>My homeroom teach<FF03>refuses to recognize my club,<FF03>just 'cause he thinks it's lame!<FF02><FF04>So I came to visit Tsutomu,<FF03>my fellow devotee, but...<FF05><1E><00> I...<FF05><1E><00> this is...<FF02><FF04>This is GREAT!<FF03>I'm SO lucky I get to see an awesome<FF03>paranormal event like this!<FF02><FF04>I was just exploring those three<FF03>freaky towers that popped<FF03>up around campus!<FF02><FF04>They're chock-full of demons!<FF03>You wouldn't believe the photos I got!<FF02><FF04>I'm gonna submit these babies to<FF03>some national magazines!<FF02><FF04>If the media admits they're real,<FF03>maybe my teach will<FF03>recognize my club!<FF02><FF04>Here goes nothin'!<FF02><FF01>
 741	98:0x1718	E3:744	Mariko: I'm thinkin' about<FF03>interviewing some demons,<FF03>but I don't have a recorder.<FF02><FF04>Hey, you know anyplace that<FF03>might sell some?<FF02><FF01>
-742	98:0x1774	E3:745	Clerk: Welcoooome...<FF03>I from Devil's Peak.<FF02><FF04>Bring very good things.<FF03>Mister need this.<FF03>I sell at low price, you buy!<FF02><FF01>
+742	98:0x1774	E3:745	Clerk: Welcoooome...<FF03>I from Devil's Peak.<FF03>Bring very good things.<FF02><FF04>Mister need this.<FF03>I sell at low price, you buy!<FF02><FF01>
 743	98:0x17d4	E3:746	Yukino: Considering how far we've<FF03>come, it's no surprise the items<FF03>are getting pricier.<FF02><FF01>
-744	98:0x1800	E3:747	Ayase: That clerk's clothes are so<FF03>cute! I want some like that!<FF02><FF01>
+744	98:0x1800	E3:747	Ayase:<FF03>That clerk's clothes are so cute!<FF03>I want some like that!<FF02><FF01>
 745	98:0x1830	E3:748	Nanjo: Astounding!<FF03>But they're all so expensive.<FF02><FF04>Still, we can't simply go without.<FF03>This is what's known as<FF03>a Hobson's choice.<FF02><FF01>
 746	98:0x1884	E3:749	Brown: Oh, man!<FF03>I want this one, and that one too.<FF03>But they're so expensive! Hmm...<FF02><FF01>
 747	98:0x18b4	E3:750	Elly: I wonder what that child<FF03>intends to do with the proceeds...<FF02><FF01>
@@ -751,17 +751,17 @@ id	pos	psp	en
 749	99:0x14b8	E3:752	Yukino: Not that I care, but<FF03>the armory clerks sure are creepy.<FF02><FF01>
 750	99:0x14e0	E3:753	Ayase: Look! It's like, soooo charming!<FF02><FF01>
 751	99:0x1504	E3:754	Nanjo: The heaviness of sturdier<FF03>armor can be a fly in the ointment.<FF02><FF01>
-752	99:0x152c	E3:755	Brown: Man, I look good in<FF03>just about anything.<FF02><FF04>So it takes me forever to decide!<FF03>Mwahahahaha!<FF02><FF01>
+752	99:0x152c	E3:755	Brown: Man,<FF03>I look good in just about anything.<FF02><FF04>So it takes me forever to decide!<FF03>Mwahahahaha!<FF02><FF01>
 753	99:0x157c	E3:756	Elly:<FF03>Where was this armor imported from?<FF02><FF04>It gives one rather a turn to<FF03>consider its origin...<FF02><FF01>
-754	100:0x118c	E3:757	Yukino: Even now, our time keeps<FF03>slipping away. It's frustrating.<FF02><FF04>Makes me think I might be<FF03>powerless after all.<FF02><FF01>
+754	100:0x118c	E3:757	Yukino: Even now,<FF03>our time keeps slipping away.<FF03>It's frustrating.<FF02><FF04>Makes me think I might be<FF03>powerless after all.<FF02><FF01>
 755	100:0x11dc	E3:758	Ayase:<FF03>It's kinda nice, having everyone work<FF03>together toward something like this.<FF02><FF01>
 756	100:0x1210	E3:759	Nanjo: *ahem*... How much longer do<FF03>you intend that we stay here?<FF02><FF01>
 757	100:0x1234	E3:760	Brown: It sucks that this happened to<FF03>our school, no doubt about that...<FF02><FF04>But then again, it's a break from<FF03>our boring everyday lives!<FF03>That's kinda cool!<FF02><FF01>
 758	100:0x129c	E3:761	Elly: Thanatos Tower and Tartarus...<FF03>It's all like something from<FF03>Greek mythology.<FF02><FF01>
 759	101:0x178c	E3:762	Yukino: So mirror shards can<FF03>be in treasure boxes, too!<FF02><FF04>Let's try and check as many<FF03>treasure boxes as we can,<FF03>time permitting.<FF02><FF01>
-760	101:0x17d8	E3:763	Ayase: I always get goosebumps when<FF03>we're about to open up<FF03>a treasure box!<FF02><FF01>
+760	101:0x17d8	E3:763	Ayase: I always get goosebumps<FF03>when we're about to open<FF03>up a treasure box!<FF02><FF01>
 761	101:0x180c	E3:764	Nanjo: It's always so unsightly to<FF03>witness one rummaging through<FF03>treasure boxes.<FF02><FF04>Oh, no,<FF03>I didn't mean you in particular.<FF03>Just... in the general sense. Yes.<FF02><FF01>
-762	101:0x1870	E3:765	Brown: Hey, to tell you the truth,<FF03>you're so quiet,<FF03>I always thought you were weird...<FF02><FF04>But after fighting along with you,<FF03>I get it now!<FF03>You're one hip, happenin' dude!<FF02><FF04>You're like, the next strongest and<FF03>second most reliable, after me!<FF03>I gotta give you props! Seriously.<FF02><FF01>
+762	101:0x1870	E3:765	Brown: Hey, to tell you the truth,<FF03>you're so quiet,<FF03>I always thought you were weird...<FF02><FF04>But after fighting along with you,<FF03>I get it now! You're one hip,<FF03>happenin' dude!<FF02><FF04>You're like, the next strongest and<FF03>second most reliable, after me!<FF03>I gotta give you props! Seriously.<FF02><FF01>
 763	101:0x192c	E3:766	Elly: I admit, my opinion of you<FF03>has slightly improved.<FF02><FF04>You haven't uttered<FF03>a word of complaint,<FF03>even in a situation like this...<FF02><FF04>You've been a real unifying force.<FF03>I never knew you had such<FF03>a brave heart.<FF02><FF01>
 764	101:0x19a4	E3:767	Open the box?<FF03><FF0E><00><FF01>
 765	101:0x19b8	E3:768	Obtained Mirror Shard.<FF02><FF01>
@@ -771,7 +771,7 @@ id	pos	psp	en
 769	102:0x11c4	E3:772	Ayase:<FF03>Hey, if we beat the Snow Queen and<FF03>rescue Ms. Saeko... that's it, right?<FF02><FF04>Everyone will go back to normal,<FF03>and we can, like, go home, right?<FF02><FF01>
 770	102:0x1228	E3:773	Nanjo: I'm worried about Ms. Saeko,<FF03>of course, but that Masao...<FF02><FF04>I wonder if he's all right.<FF03>He isn't very smart, after all.<FF03>Damn and blast!<FF02><FF01>
 771	102:0x127c	E3:774	Brown: Ughhhh!<FF03>This is supposedly the world after<FF03>death, but there's nothing here.<FF02><FF04>Boooooriiiiiing!<FF03>Hey! Let's start heading back up<FF03>the tower and go see Yuriko!<FF02><FF01>
-772	102:0x12f0	E3:775	Elly: Haha...<FF03>it's really rather amusing.<FF02><FF04>We five never knew each other well,<FF03>yet here we are on<FF03>an adventure together...<FF02><FF04>And not only that... part of me takes<FF03>a real delight in this situation.<FF03>It really is amazing...<FF02><FF01>
+772	102:0x12f0	E3:775	Elly:<FF03>Haha... it's really rather amusing.<FF02><FF04>We five never knew each other well,<FF03>yet here we are on<FF03>an adventure together...<FF02><FF04>And not only that... part of me takes<FF03>a real delight in this situation.<FF03>It really is amazing...<FF02><FF01>
 773	103:0x178c	E3:776	Yukino: It sounds strange saying<FF03>this in the world after death, but...<FF03>I hope we all make it back alive.<FF02><FF01>
 774	103:0x17c4	E3:777	Ayase: Hey, hey,<FF03>some of these treasure boxes<FF03>might have mirror shards in them!<FF02><FF01>
 775	103:0x17f8	E3:778	Nanjo: The enemies here are strong.<FF03>If we don't equip ourselves well, we<FF03>won't have a prayer against Yuriko.<FF02><FF01>
@@ -784,7 +784,7 @@ id	pos	psp	en
 782	104:0x178c	E3:785	Yukino: There's no end to this.<FF02><FF04>The clock's ticking.<FF03>If we don't stop this at some point,<FF03>we might be in trouble.<FF02><FF01>
 783	104:0x17c4	E3:786	Ayase: Just being around treasure<FF03>boxes makes me, like, totally happy!<FF02><FF01>
 784	104:0x17e8	E3:787	Nanjo: After so many battles<FF03>together, I have a higher<FF03>opinion of you. You're strong.<FF02><FF04>Anyway... I'm only putting out feelers,<FF03>but once we defeat the Snow Queen...<FF02><FF04>Would you mind coming<FF03>along to rescue Masao?<FF03>More manpower can hardly hurt.<FF02><FF04>I won't force you... just consider it.<FF02><FF01>
-785	104:0x189c	E3:788	Brown: Treasure boxes! What could<FF03>be greater!? Man! Treasure boxes!<FF02><FF04>Everyone knows what they are,<FF03>but how many have actually<FF03>touched a real one!?<FF02><FF01>
+785	104:0x189c	E3:788	Brown: Treasure boxes!<FF03>What could be greater!?<FF03>Man! Treasure boxes!<FF02><FF04>Everyone knows what they are,<FF03>but how many have actually<FF03>touched a real one!?<FF02><FF01>
 786	104:0x1910	E3:789	Elly: Please do keep our time<FF03>limitations in mind.<FF02><FF01>
 787	104:0x1944	E3:790	Open the box?<FF03><FF0E><00><FF01>
 788	104:0x1958	E3:791	Obtained Mirror Shard.<FF02><FF01>
@@ -797,25 +797,25 @@ id	pos	psp	en
 795	105:0x1294	E3:798	Elly:<FF03>It seems that if you transgress in<FF03>some way while in this tower...<FF02><FF04>There is a rule that you will<FF03>pay with your "life."<FF02><FF04>But in our case, it seems we'll lose<FF03>our Personas instead of our lives.<FF02><FF01>
 796	106:0x118c	E3:799	Yukino: Not that it matters,<FF03>but the treasure boxes in<FF03>this tower are shaped funny.<FF02><FF01>
 797	106:0x11bc	E3:800	Ayase: I'm hungry...<FF03>Do any of these treasure boxes have,<FF03>like, food in 'em?<FF02><FF01>
-798	106:0x11f0	E3:801	Nanjo: Supplies are only meaningful if<FF03>you put them to use.<FF02><FF04>We must take care to ensure that<FF03>they don't end up being useless.<FF02><FF01>
+798	106:0x11f0	E3:801	Nanjo: Supplies are only meaningful<FF03>if you put them to use.<FF02><FF04>We must take care to ensure that<FF03>they don't end up being useless.<FF02><FF01>
 799	106:0x1230	E3:802	Brown: Even if we had more time,<FF03>it still wouldn't be enough.<FF02><FF04>This "Eternal Night" thingy could<FF03>happen any second... What a drag.<FF02><FF01>
 800	106:0x1298	E3:803	Elly: Eternal Night...<FF02><FF04>What would that world be like?<FF03>Despite my curiosity, I dread it...<FF02><FF01>
 801	107:0x1158	E3:804	Agastya Tree: Ah. It seems that you<FF03>are rather exhausted, young ones.<FF02><FF04>Halting your journey here to rest for<FF03>the time being may be a wise decision.<FF02><FF04>But I cannot inscribe<FF03>your story onto myself.<FF02><FF04>I am only keeping it for your sake<FF03>until you depart again...<FF03>Do not forget that...<FF02><FF01>
 802	107:0x11fc	E3:805	Agastya Tree: Will you put<FF03>a temporary halt to your journey?<FF02><FF03><FF0E><00><FF01>
 803	107:0x1228	E3:806	Agastya Tree: Young ones...<FF03>I will remember the story of<FF03>your journey for you.<FF02><FF01>
-804	107:0x1258	E3:807	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+804	107:0x1258	E3:807	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 805	108:0x1150	E3:808	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 806	108:0x117c	E3:809	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-807	108:0x11a8	E3:810	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+807	108:0x11a8	E3:810	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 808	109:0x1150	E3:811	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 809	109:0x117c	E3:812	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-810	109:0x11a8	E3:813	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+810	109:0x11a8	E3:813	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 811	110:0x1150	E3:814	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 812	110:0x117c	E3:815	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-813	110:0x11a8	E3:816	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+813	110:0x11a8	E3:816	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 814	111:0x1150	E3:817	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 815	111:0x117c	E3:818	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-816	111:0x11a8	E3:819	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+816	111:0x11a8	E3:819	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 817	112:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 818	112:0x5388	E3:821	Igor: Welcome to the Velvet Room...<FF02><FF01>
 819	112:0x53ac	E3:822	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
@@ -826,12 +826,12 @@ id	pos	psp	en
 824	112:0x5450	E3:827	Igor: Well then... Farewell...<FF02><FF01>
 825	112:0x5468	E3:828	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though,<FF03>I must summon demons to<FF03>fuse together into a Persona.<FF02><FF04>And for that,<FF03>a certain type of card is necessary.<FF02><FF04>You see,<FF03>these cards are inscribed with<FF03>demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only<FF03>way to deal with demons...<FF03>Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 826	112:0x5614	E3:829	Igor: It isn't enough merely to fuse<FF03>a new Persona in order to<FF03>make it your own...<FF02><FF04>There is rather more to<FF03>it than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of holding<FF03>up to three Personas.<FF02><FF04>A newly-fused Persona will be<FF03>entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas as<FF03>there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according to<FF03>the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
-827	112:0x57e0	E3:830	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF02><FF04>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
+827	112:0x57e0	E3:830	Igor: Each of you can take on as<FF03>many as three Personas at once.<FF02><FF04>Of the three, only one can be<FF03>actively invoked during battle.<FF02><FF04>To invoke a Persona is to<FF03>summon it in combat.<FF02><FF04>The remaining two will<FF03>remain on standby...<FF02><FF04>Ready to be assumed at<FF03>any time during battle.<FF02><FF04>Different active Personas will<FF03>grant you different abilities.<FF02><FF04>Without the power of Persona,<FF03>you are no different than<FF03>an ordinary human...<FF02><FF04>You will be powerless before<FF03>the arcane might of<FF03>the demons' spells.<FF02><FF04>If by chance you were<FF03>hit by a spell in that state,<FF03>you would be struck down.<FF02><FF04>But by taking on a Persona,<FF03>your defense against spells<FF03>is considerably enhanced.<FF02><FF04>For some,<FF03>it may also confer strength,<FF03>or increase luck for others.<FF02><FF04>This, too, is the power of Persona.<FF03>Though they are called Personas,<FF03>each is a hidden side of yourself.<FF02><FF04>I suggest you examine your status<FF03>carefully after assuming one.<FF02><FF04>That way, you can see which of<FF03>your qualities have changed.<FF02><FF04>At first,<FF03>you will be unable to harness<FF03>your Persona's powers to the fullest.<FF02><FF04>But the more you invoke a Persona,<FF03>the more powers it will grant you.<FF02><FF04>As your Persona learns new skills,<FF03>you will have more options in battle.<FF02><FF04>Even if your Persona<FF03>learns a powerful skill,<FF03>the SP required remains constant.<FF02><FF04>You will grow in combat,<FF03>but do not forget that<FF03>your Personas grow as well.<FF02><FF01>
 828	112:0x5b78	E3:831	Igor: Pardon me for being nosy, but...<FF02><FF04>Personas have<FF03>eight levels of growth.<FF03>You should try to develop them fully.<FF02><FF04>I'm sure that there will be an ample<FF03>reward for doing so...<FF02><FF04>You might also be interested to<FF03>know about various factors in fusion.<FF02><FF04>For example, even when creating<FF03>the same Persona...<FF02><FF04>The combination of spell cards,<FF03>the affinities of the demons used...<FF02><FF04>The position of Terra and Luna, and<FF03>any essences added into the mix...<FF02><FF04>All of these factor into the resultant<FF03>Persona. And one more thing...<FF02><FF04>You may also add an item into<FF03>the fusion to trigger a change.<FF02><FF04>There are some items for which<FF03>the result is easily predictable...<FF02><FF04>But sometimes, even I will be unable to<FF03>guess at what may happen.<FF02><FF04>Should that come about,<FF03>I do hope that you'll pardon me.<FF02><FF04>But make no mistake,<FF03>I do believe it is worth trying...<FF02><FF04>I suggest gems for obtaining<FF03>a higher- or lower-ranked<FF03>fusion within an order.<FF02><FF04>As for the other items' effects,<FF03>you should experiment for yourself.<FF02><FF01>
 829	113:0x36dc	E3:832	Trish: Hi! I'm Trish and this is<FF03>my fountain of healing!<FF02><FF04>This world runs on give-and-take!<FF03>Give me money and I'll take<FF03>away your pain!<FF02><FF01>
 830	113:0x3750	E3:833	What do you say?<FF03><FF0E><11><FF01>
 831	113:0x3764	E3:834	Trish: Okay!<FF02><FF01>
-832	113:0x3778	E3:835	Trish: Umm, with the going<FF03>rate for healing...<FF03>And all of you put together...<FF02><FF01>
+832	113:0x3778	E3:835	Trish: Umm,<FF03>with the going rate for healing...<FF03>And all of you put together...<FF02><FF01>
 833	113:0x37b0	E3:836	It'll be 2,000 yen.<FF03>That's okay, right?<FF02><FF03><FF0E><00><FF01>
 834	113:0x37cc	E3:837	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 835	113:0x380c	E3:838	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
@@ -839,46 +839,46 @@ id	pos	psp	en
 837	113:0x3858	E3:840	Trish: You don't have enough!?<FF03>Boo to that! There's nothing<FF03>I hate like poor people!<FF02><FF04>Come back when your wallet's fuller.<FF03>Bye-bye!<FF02><FF01>
 838	113:0x38c0	E3:841	Trish: Boo to that!<FF03>You mangy, dirty bum!<FF03>Don't blame me if you wind up dead!<FF02><FF01>
 839	113:0x38f8	E3:842	Well, come again.<FF03>I'll be waiting! Bye-bye!<FF02><FF01>
-840	113:0x3924	E3:843	Trish: You called me out for no<FF03>reason!? Boo to that! Get outta here!<FF02><FF01>
+840	113:0x3924	E3:843	Trish:<FF03>You called me out for no reason!?<FF03>Boo to that! Get outta here!<FF02><FF01>
 841	114:0x1150	E3:844	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 842	114:0x117c	E3:845	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-843	114:0x11a8	E3:846	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+843	114:0x11a8	E3:846	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 844	115:0x1150	E3:847	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 845	115:0x117c	E3:848	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-846	115:0x11a8	E3:849	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+846	115:0x11a8	E3:849	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 847	116:0x1150	E3:850	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 848	116:0x117c	E3:851	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-849	116:0x11a8	E3:852	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+849	116:0x11a8	E3:852	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 850	117:0x1150	E3:853	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 851	117:0x117c	E3:854	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-852	117:0x11a8	E3:855	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+852	117:0x11a8	E3:855	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 853	118:0x1150	E3:856	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 854	118:0x117c	E3:857	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-855	118:0x11a8	E3:858	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+855	118:0x11a8	E3:858	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 856	119:0x1150	E3:859	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 857	119:0x117c	E3:860	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-858	119:0x11a8	E3:861	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+858	119:0x11a8	E3:861	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 859	120:0x1150	E3:862	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 860	120:0x117c	E3:863	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-861	120:0x11a8	E3:864	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+861	120:0x11a8	E3:864	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 862	121:0x1150	E3:865	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 863	121:0x117c	E3:866	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-864	121:0x11a8	E3:867	Agastya Tree: Take care on<FF03>your journey, young ones....<FF02><FF01>
+864	121:0x11a8	E3:867	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones....<FF02><FF01>
 865	122:0x1150	E3:868	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 866	122:0x117c	E3:869	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-867	122:0x11a8	E3:870	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+867	122:0x11a8	E3:870	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 868	123:0x1150	E3:871	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 869	123:0x117c	E3:872	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-870	123:0x11a8	E3:873	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+870	123:0x11a8	E3:873	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 871	124:0x1150	E3:874	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 872	124:0x117c	E3:875	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-873	124:0x11a8	E3:876	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+873	124:0x11a8	E3:876	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 874	125:0x1150	E3:877	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 875	125:0x117c	E3:878	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-876	125:0x11a8	E3:879	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+876	125:0x11a8	E3:879	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 877	126:0x1150	E3:880	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 878	126:0x117c	E3:881	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-879	126:0x11a8	E3:882	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+879	126:0x11a8	E3:882	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 880	127:0x1150	E3:883	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 881	127:0x117c	E3:884	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
-882	127:0x11a8	E3:885	Agastya Tree: Take care on<FF03>your journey, young ones...<FF02><FF01>
+882	127:0x11a8	E3:885	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>

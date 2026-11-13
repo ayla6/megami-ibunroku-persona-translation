@@ -1,9 +1,9 @@
 id	pos	psp	en
 0	0x2004	pack/talk/ETC:0x2030	S.<FFF5>
-1	0x200a	pack/talk/ETC:0x2038	<FFEB>Mrrmmm!......<FFFB><FFF7>＞ Karma Pride has no intention of<FFF6>negotiating with humans!<FFF5>
-2	0x2073	pack/talk/ETC:0x20d0	<FFEB>*yawn*......<FFFB><FFF7>＞ Karma Sloth yawned... It doesn't<FFF6>have the energy to negotiate!<FFF5>
-3	0x20e4	pack/talk/ETC:0x2178	<FFEB>Gewah!......<FFFB><FFF7>＞ Karma Wrath prefers a heated<FFF6>battle to negotiations!<FFF5>
-4	0x214d	pack/talk/ETC:0x2208	<FFEC>Grrrrr.........<FFFB><FFF7>＞ Karma Envy is jealous of someone,<FFF6>somewhere...<FFF6>Negotiations are impossible!<FFF5>
+1	0x200a	pack/talk/ETC:0x2038	<FFEB>Mrrmmm! ......<FFFB><FFF7>＞ Karma Pride has no intention of<FFF6>negotiating with humans!<FFF5>
+2	0x2073	pack/talk/ETC:0x20d0	<FFEB>*yawn* ......<FFFB><FFF7>＞ Karma Sloth yawned... It doesn't<FFF6>have the energy to negotiate!<FFF5>
+3	0x20e4	pack/talk/ETC:0x2178	<FFEB>Gewah! ......<FFFB><FFF7>＞ Karma Wrath prefers a heated<FFF6>battle to negotiations!<FFF5>
+4	0x214d	pack/talk/ETC:0x2208	<FFEC>Grrrrr... ......<FFFB><FFF7>＞ Karma Envy is jealous of someone,<FFF6>somewhere...<FFF6>Negotiations are impossible!<FFF5>
 5	0x21bd	pack/talk/ETC:0x22d0	<FFED>......<FFFB><FFF7>＞ Karma Greed seems to want<FFF6>something, but whatever that is,<FFF6>it's not a negotiation!<FFF5>
 6	0x222f	pack/talk/ETC:0x2390	<FFEB>......<FFFB><FFF7>＞ Karma Lust is lost in<FFF6>its own lewd fantasies!<FFF6>Negotiations are impossible!<FFF5>
 7	0x229e	pack/talk/ETC:0x2440	<FFEB>......<FFFB><FFF7>＞ The M.I.B. is not willing to negotiate!<FFF5>
@@ -13,12 +13,12 @@ id	pos	psp	en
 11	0x2434	pack/talk/ETC:0x2750	Worry not. I have my reasons for<FFF6>lending my power to this human.<FFFB><FFF7>Why don't you join us?<FFFB><FFF7><FFEE>...If you say so...<FFF6>Very well, human, take my card.<FFEF>
 12	0x24b9	pack/talk/ETC:0x2898	Bones of the underworld...<FFF6>I am the goddess of<FFF6>death and destruction.<FFFB><FFF7>Surely you have not forgotten me?<FFFB><FFF7><FFED> Of course not!<FFFB><FFF7>But I'm surprised to see you of all<FFF6>deities fooling around with humans.<FFEF>
 13	0x2536	pack/talk/ETC:0x2a60	Worry not. I have my reasons for<FFF6>lending my power to this human.<FFFB><FFF7>Why don't you join us?<FFFB><FFF7><FFEE> Even at your request,<FFF6>I have my pride to consider...<FFEF>
-14	0x25b5	pack/talk/ETC:0x2bb0	Human... You are making a foolish<FFF6>choice. Will you not reconsider?<FFFB><FFF7><FFED> No, no, m'lady! In the end,<FFF6>these humans will learn their lesson!<FFFB><FFF7>I... I should be going now!<FFEF>
+14	0x25b5	pack/talk/ETC:0x2bb0	Human...<FFF6>You are making a foolish choice.<FFF6>Will you not reconsider?<FFFB><FFF7><FFED> No, no, m'lady! In the end,<FFF6>these humans will learn their lesson!<FFFB><FFF7>I... I should be going now!<FFEF>
 15	0x2634	pack/talk/ETC:0x2d30	'Tis well... This shall lighten my load.<FFFB><FFF7><FFEC>...This is rather lamentable.<FFF6>A shame to the title of<FFF6>the "Black One"...<FFEF>
 16	0x26a4	pack/talk/ETC:0x2e38	Gdon...<FFF6>Hast thou grown tired of bearing<FFF6>this goddess upon your back?<FFFB><FFF7><FFEC> NO... ME YOUR RIDE... ME NO FORGET<FFF6>BATTLE WITH THE ASURA.<FFEF>
-17	0x271f	pack/talk/ETC:0x2f58	That is the past...<FFF6>Now I lend my power to this human.<FFFB><FFF7>Come,<FFF6>wilt thou be my steed once more?<FFFB><FFF7><FFEB> ME ALWAYS HAPPY TO HELP YOU!<FFF6>HUMAN, TAKE CARD!<FFEF>
+17	0x271f	pack/talk/ETC:0x2f58	That is the past...<FFF6>Now I lend my power to this human.<FFFB><FFF7>Come, wilt thou be<FFF6>my steed once more?<FFFB><FFF7><FFEB> ME ALWAYS HAPPY TO HELP YOU!<FFF6>HUMAN, TAKE CARD!<FFEF>
 18	0x27a5	pack/talk/ETC:0x30a0	Gdon...<FFF6>Hast thou grown tired of bearing<FFF6>this goddess upon your back?<FFFB><FFF7><FFEC> NO... ME YOUR RIDE... ME NO FORGET<FFF6>BATTLE WITH THE ASURA.<FFEF>
-19	0x2820	pack/talk/ETC:0x31c0	That is the past...<FFF6>Now I lend my power to this human.<FFFB><FFF7>Come,<FFF6>wilt thou be my steed once more?<FFFB><FFF7><FFEB> ME NO LIKE WEAK HUMANS...<FFF6>ME GIVE VAGUE ANSWER...<FFEF>
+19	0x2820	pack/talk/ETC:0x31c0	That is the past...<FFF6>Now I lend my power to this human.<FFFB><FFF7>Come, wilt thou be<FFF6>my steed once more?<FFFB><FFF7><FFEB> ME NO LIKE WEAK HUMANS...<FFF6>ME GIVE VAGUE ANSWER...<FFEF>
 20	0x289c	pack/talk/ETC:0x3310	<FFED> GAAAAHHH!<FFF6>YOU NO GET IN WAY OF ME HELPING!<FFFB><FFF7>Gdon, thou art before me,<FFF6>calm thyself!<FFEF>
 21	0x2907	pack/talk/ETC:0x33d8	<FFED> ME STILL NOT HAPPY! ME GO HOME!<FFEF>
 22	0x293e	pack/talk/ETC:0x3428	<FFEB> AWOOOO! ME CAN ONLY DO THIS MUCH.<FFFB><FFF7>HUMAN, TAKE CARE OF M'LADY!<FFEF>
@@ -56,9 +56,9 @@ id	pos	psp	en
 54	0x3686	pack/talk/ETC:0x53b0	Still only one tusk, my son?<FFF6>You should just break it off...<FFFB><FFF7><FFEC> Very well...<FFF6>Mother will be sad, but I shall<FFF6>break my tusk per your command...<FFEF>
 55	0x3705	pack/talk/ETC:0x54f0	Hmph, enough jesting.<FFF6>My son, I ask that you lend<FFF6>this human your power.<FFFB><FFF7><FFEB> As you wish, father.<FFF6>Son of man, take my card.<FFEF>
 56	0x377f	pack/talk/ETC:0x5608	Still only one tusk, my son?<FFF6>You should just break it off...<FFFB><FFF7><FFEC> Very well...<FFF6>Mother will be sad, but I shall<FFF6>break my tusk per your command...<FFEF>
-57	0x37fe	pack/talk/ETC:0x5748	Hmph, enough jesting.<FFF6>My son, I ask that you lend<FFF6>this human your power.<FFFB><FFF7><FFEB> Excuse my insolence, father, but I am<FFF6>a god. I cannot serve under man...<FFEF>
+57	0x37fe	pack/talk/ETC:0x5748	Hmph, enough jesting.<FFF6>My son, I ask that you lend<FFF6>this human your power.<FFFB><FFF7><FFEB> Excuse my insolence,<FFF6>father, but I am a god.<FFF6>I cannot serve under man...<FFEF>
 58	0x3883	pack/talk/ETC:0x5890	Fool... My son may be disfigured,<FFF6>but I assure you, he is strong.<FFFB><FFF7><FFED> Father, it is fine.<FFF6>Such are the limits of humanity.<FFFB><FFF7>I must excuse myself.<FFEF>
-59	0x3909	pack/talk/ETC:0x59f0	<FFEC> Father... You must make more Amrita<FFF6>soon, or we shall all be parched...<FFFB><FFF7>I know!<FFF6>Go and finish your composition!<FFEF>
+59	0x3909	pack/talk/ETC:0x59f0	<FFEC> Father...<FFF6>You must make more Amrita soon,<FFF6>or we shall all be parched...<FFFB><FFF7>I know!<FFF6>Go and finish your composition!<FFEF>
 60	0x3983	pack/talk/ETC:0x5af8	Bones of the underworld! I am<FFF6>the great and supreme destroyer!<FFFB><FFF7>Surely you have not forgotten me?<FFFB><FFF7><FFED> Of course not!<FFFB><FFF7>But I'm surprised to see you of all<FFF6>deities fooling around with humans.<FFEF>
 61	0x3a08	pack/talk/ETC:0x5cb0	Do not concern yourself with that.<FFFB><FFF7>Due to unforseen circumstances,<FFF6>I am merely lending<FFF6>my power to this human.<FFFB><FFF7>You! Aid us as well!<FFFB><FFF7><FFEC> Your wish is my command.<FFF6>...Human, take my card.<FFEF>
 62	0x3a8e	pack/talk/ETC:0x5e60	Bones of the underworld! I am<FFF6>the great and supreme destroyer!<FFFB><FFF7>Surely you have not forgotten me?<FFFB><FFF7><FFED> Of course not!<FFFB><FFF7>But I'm surprised to see you of all<FFF6>deities fooling around with humans.<FFEF>
@@ -72,10 +72,10 @@ id	pos	psp	en
 70	0x3e68	pack/talk/ETC:0x68a8	<FFEC> No way... Am I dreaming?<FFF6>I can't believe this! Ughhhh!<FFEF>
 71	0x3ea6	pack/talk/ETC:0x6938	<FFEB> Yay! See ya later then,<FFF6>big me and Mr. Human!<FFEF>
 72	0x3edb	pack/talk/ETC:0x69a8	AWOOOOOO! ME YOUR BROTHER!<FFF6>YOU DOING WELL?<FFFB><FFF7><FFEB> AWOOOO! ME FINE. BUT BROTHER,<FFF6>WHAT ABOUT GUARDING HADES?<FFEF>
-73	0x3f4c	pack/talk/ETC:0x6aa0	ME TAKE VACATION...<FFF6>BUT ENOUGH OF THAT. CAN<FFF6>YOU LEND POWER TO THIS HUMAN?<FFFB><FFF7><FFEE> HMMM... BROTHER'S REQUEST. ME NOT<FFF6>ABLE TO DECLINE. HUMAN, TAKE CARD.<FFEF>
+73	0x3f4c	pack/talk/ETC:0x6aa0	ME TAKE VACATION...<FFF6>BUT ENOUGH OF THAT. CAN YOU<FFF6>LEND POWER TO THIS HUMAN?<FFFB><FFF7><FFEE> HMMM... BROTHER'S REQUEST.<FFF6>ME NOT ABLE TO DECLINE.<FFF6>HUMAN, TAKE CARD.<FFEF>
 74	0x3fb9	pack/talk/ETC:0x6be8	AWOOOOOO! ME YOUR BROTHER!<FFF6>YOU DOING WELL?<FFFB><FFF7><FFEB> AWOOOO! ME FINE. BUT BROTHER,<FFF6>WHAT ABOUT GUARDING HADES?<FFEF>
-75	0x402a	pack/talk/ETC:0x6ce0	ME TAKE VACATION...<FFF6>BUT ENOUGH OF THAT. CAN<FFF6>YOU LEND POWER TO THIS HUMAN?<FFFB><FFF7><FFEE> HRRMMM... HE LOOK TOO WEAK. <FFED>ME<FFF6>GO BACK TO WORK. YOU SHOULD TOO.<FFEF>
-76	0x4097	pack/talk/ETC:0x6e20	<FFED> GAAAAAH! THIS HUMAN...<FFF6>DUMB, BROTHER!<FFF6>YOU SHOULD GO BACK TO WORK!<FFEF>
+75	0x402a	pack/talk/ETC:0x6ce0	ME TAKE VACATION...<FFF6>BUT ENOUGH OF THAT. CAN YOU<FFF6>LEND POWER TO THIS HUMAN?<FFFB><FFF7><FFEE> HRRMMM... HE LOOK TOO WEAK.<FFF6><FFED>ME GO BACK TO WORK.<FFF6>YOU SHOULD TOO.<FFEF>
+76	0x4097	pack/talk/ETC:0x6e20	<FFED> GAAAAAH!<FFF6>THIS HUMAN... DUMB, BROTHER!<FFF6>YOU SHOULD GO BACK TO WORK!<FFEF>
 77	0x40d7	pack/talk/ETC:0x6ec0	<FFEB> THIS FINE?<FFF6>THEN ME RETURN TO HADES.<FFFB><FFF7>BROTHER, YOU COME TOO.<FFFB><FFF7>NO. ME HAVE RESPONSIBILITY.<FFF6>YOU GO AHEAD.<FFFB><FFF7>RED CATTLE WAITING FOR YOU.<FFEF>
 78	0x4155	pack/talk/ETC:0x7018	Holy smokes! You're still alive?<FFF6>I thought you up and croaked.<FFFB><FFF7><FFEB> Whatchya talkin' 'bout, fool?<FFF6>I'm still alive and kickin', obviously!<FFEF>
 79	0x41d2	pack/talk/ETC:0x7150	I can see that! So how's about you<FFF6>lend yer power to this here human...?<FFFB><FFF7><FFEB> Consider it done.<FFFB><FFF7>Alright human, I'm about to<FFF6>give ya one heckuva card.<FFEF>
@@ -85,27 +85,27 @@ id	pos	psp	en
 83	0x43af	pack/talk/ETC:0x7660	It's just an evil whim. I know it.<FFFB><FFF7><FFED> It don't matter! I'm going home!<FFEF>
 84	0x4415	pack/talk/ETC:0x7718	<FFEE> When ya make me a Persona,<FFF6>gimme back my youth, m'kay?<FFF6>I'll be leavin' now.<FFEF>
 85	0x4452	pack/talk/ETC:0x77c8	Hey, what the hell? YOU'RE my son?<FFF6>Is this some kinda joke?<FFFB><FFF7>How do all my kids end up as snakes,<FFF6>horses, or wolves, man?<FFFB><FFF7><FFED> GAAHHH! THE GODS BOUND ME,<FFF6>AND EVEN STILL,<FFF6>FATHER IGNORES ME! HOW CRUEL!<FFEF>
-86	0x44db	pack/talk/ETC:0x7980	Uhh... Let's let bygones<FFF6>be bygones, shall we?<FFFB><FFF7>So! You've still got some cards left,<FFF6>right? Wanna give one to this human?<FFED><FFFB><FFF7>GRRR... IF YOU WEREN'T DAD, ME EAT<FFF6>YOU WHOLE!...HUMAN, TAKE CARD!<FFEF>
+86	0x44db	pack/talk/ETC:0x7980	Uhh... Let's let bygones<FFF6>be bygones, shall we?<FFFB><FFF7>So! You've still got some cards left,<FFF6>right? Wanna give one to this human?<FFED><FFFB><FFF7>GRRR... IF YOU WEREN'T DAD, ME EAT<FFF6>YOU WHOLE! ...HUMAN, TAKE CARD!<FFEF>
 87	0x455b	pack/talk/ETC:0x7b28	Hey, what the hell? YOU'RE my son?<FFF6>Is this some kinda joke?<FFFB><FFF7>How do all my kids end up as snakes,<FFF6>horses, or wolves, man?<FFFB><FFF7><FFED> GAAHHH! THE GODS BOUND ME,<FFF6>AND EVEN STILL,<FFF6>FATHER IGNORES ME! HOW CRUEL!<FFEF>
 88	0x45e2	pack/talk/ETC:0x7ce0	Uhh... Let's let bygones<FFF6>be bygones, shall we?<FFFB><FFF7>So! You've still got some cards left,<FFF6>right? Wanna give one to this human?<FFFB><FFF7><FFED> GAAAAAAH! ME NO WANT TO!<FFEF>
 89	0x4641	pack/talk/ETC:0x7e38	What's your deal, human?<FFF6>You don't want the world's<FFF6>strongest wolf here with ya?<FFFB><FFF7><FFEE> HMMM... NEXT TIME WE MEET,<FFF6>ME EAT YOU WHOLE.<FFEF>
-90	0x46b5	pack/talk/ETC:0x7f60	Alright, thanks. We're done with<FFF6>you now, so scamper along.<FFFB><FFF7><FFED> FATHER... ME EAT YOU SOMEDAY...<FFEF>
+90	0x46b5	pack/talk/ETC:0x7f60	Alright, thanks.<FFF6>We're done with you now,<FFF6>so scamper along.<FFFB><FFF7><FFED> FATHER... ME EAT YOU SOMEDAY...<FFEF>
 91	0x4717	pack/talk/ETC:0x8038	Oh, what a coincidence.<FFF6>Sucked on any good souls lately?<FFFB><FFF7><FFEC> It's been a bit dry, actually...<FFFB><FFF7>I need to lay off the smart<FFF6>Christian types...<FFEF>
 92	0x4797	pack/talk/ETC:0x8190	Hmm, yeah, those are the tough ones.<FFF6>Give up on them and come with us.<FFFB><FFF7><FFEE> Maybe I'll do that...<FFFB><FFF7>I'm glad we met.<FFF6>Why don't you take my card, humans?<FFEF>
 93	0x481c	pack/talk/ETC:0x82f8	Oh, what a coincidence.<FFF6>Sucked on any good souls lately?<FFFB><FFF7><FFEC> It's been a bit dry, actually...<FFFB><FFF7>I need to lay off the smart<FFF6>Christian types...<FFEF>
 94	0x489a	pack/talk/ETC:0x8450	Hmm, yeah, those are the tough ones.<FFF6>Give up on them and come with us.<FFFB><FFF7><FFED> No, I'm not ready to give up yet.<FFF6>I'll try a few more Europeans!<FFEF>
 95	0x4920	pack/talk/ETC:0x8590	<FFEC> Hmmm...<FFFB><FFF7>Well, you've already got my Persona.<FFF6>I should get back to my prey...<FFEF>
 96	0x4964	pack/talk/ETC:0x8660	<FFEB> Thanks for everything. Bye bye, now.<FFEF>
-97	0x4999	pack/talk/ETC:0x86c0	Hey, how's it going, Lilim? Been<FFF6>sucking the life out of the innocents?<FFFB><FFF7><FFEB> You bet I have!<FFFB><FFF7>How about you, Persona me?<FFF6>Having fun with those humans?<FFEF>
-98	0x4a12	pack/talk/ETC:0x8818	Hard to say... It's certainly not<FFF6>boring, but I have to fight a lot.<FFFB><FFF7><FFEE> Hmmm, really?<FFFB><FFF7>Sounds interesting.<FFF6>Why don't you take my card with you?<FFEF>
-99	0x4a8b	pack/talk/ETC:0x8960	Hey, how's it going, Lilim? Been<FFF6>sucking the life out of the innocents?<FFFB><FFF7><FFEB> You bet I have!<FFFB><FFF7>How about you, Persona me?<FFF6>Having fun with those humans?<FFEF>
-100	0x4b04	pack/talk/ETC:0x8ab8	Hard to say... It's certainly not<FFF6>boring, but I have to fight a lot.<FFFB><FFF7><FFEE> Hmm, I see. Maybe I'll go find<FFF6>some stronger humans then!<FFEF>
+97	0x4999	pack/talk/ETC:0x86c0	Hey, how's it going, Lilim?<FFF6>Been sucking the life<FFF6>out of the innocents?<FFFB><FFF7><FFEB> You bet I have!<FFFB><FFF7>How about you, Persona me?<FFF6>Having fun with those humans?<FFEF>
+98	0x4a12	pack/talk/ETC:0x8818	Hard to say...<FFF6>It's certainly not boring,<FFF6>but I have to fight a lot.<FFFB><FFF7><FFEE> Hmmm, really?<FFFB><FFF7>Sounds interesting.<FFF6>Why don't you take my card with you?<FFEF>
+99	0x4a8b	pack/talk/ETC:0x8960	Hey, how's it going, Lilim?<FFF6>Been sucking the life<FFF6>out of the innocents?<FFFB><FFF7><FFEB> You bet I have!<FFFB><FFF7>How about you, Persona me?<FFF6>Having fun with those humans?<FFEF>
+100	0x4b04	pack/talk/ETC:0x8ab8	Hard to say...<FFF6>It's certainly not boring,<FFF6>but I have to fight a lot.<FFFB><FFF7><FFEE> Hmm, I see. Maybe I'll go find<FFF6>some stronger humans then!<FFEF>
 101	0x4b79	pack/talk/ETC:0x8bd8	<FFED> Oh yeah? Fine, then!<FFF6>There're plenty of souls in the sea!<FFEF>
 102	0x4bb0	pack/talk/ETC:0x8c68	<FFEB> Ahaha!<FFF6>I've got some errands to run, but<FFF6>remember to turn me into a Persona!<FFEF>
 103	0x4bec	pack/talk/ETC:0x8d18	You! You imprisoned my mother and<FFF6>forced me to commit theft!<FFF6>I haven't forgotten!<FFFB><FFF7><FFEB> And now you hunt the world's evil,<FFF6>defiled as you are? How laughable!<FFEF>
 104	0x4c6c	pack/talk/ETC:0x8e68	How dare you...<FFFB><FFF7>Humans, protected by my power!<FFF6>Strike down this eviil snake!<FFFB><FFF7><FFED> Hahaha! Classic, bird!<FFF6>You only attained your rank by<FFF6>threatning the gods!<FFEF>
 105	0x4ce8	pack/talk/ETC:0x8fd0	Snake of darkness,<FFF6>the time for my vengeance is at hand!<FFFB><FFF7>I shall strike you down with<FFF6>my sword of light!<FFFB><FFF7><FFED> Hmph!<FFF6>You want me to swallow you again?<FFF6>You Tuatha De are so feebleminded!<FFEF>
-106	0x4d71	pack/talk/ETC:0x9188	<FFEB> ch...Not that your silver arm would<FFF6>be easy to digest! Gahahahaha!<FFFB><FFF7>...Master!<FFF6>To this bringer of death, death!<FFFB><FFF7>Avenge me!<FFFB><FFF7>It's futile!<FFEF>
+106	0x4d71	pack/talk/ETC:0x9188	<FFEB> ch ...Not that your silver arm would<FFF6>be easy to digest! Gahahahaha!<FFFB><FFF7>...Master!<FFF6>To this bringer of death, death!<FFFB><FFF7>Avenge me!<FFFB><FFF7>It's futile!<FFEF>
 107	0x4e03	pack/talk/ETC:0x9300	So the raging snakes still exist...<FFF6>I must rectify my mistake...<FFFB><FFF7><FFED> GAAAAAAAH! ME AVENGE GODDESS!<FFF6>ME READY TO DIE!<FFEF>
 108	0x4e85	pack/talk/ETC:0x9408	Fool...<FFFB><FFF7>Humans, in whom I breathe life!<FFF6>Defeat him and restore order!<FFFB><FFF7><FFED> GAAAAH! MASTER TIAMAT!<FFF6>GIVE ME POWER!<FFEF>
 109	0x4f08	pack/talk/ETC:0x9518	Son of Loki!<FFFB><FFF7>You will pay for taking my hand!<FFFB><FFF7><FFED> GAAAH! YOU TRICKED ME!<FFF6>YOU DESERVE TO HAVE NO HAND!<FFF6>YOU NOT MANLY!<FFEF>
@@ -113,10 +113,10 @@ id	pos	psp	en
 111	0x5008	pack/talk/ETC:0x9758	ane I did not think you still walked<FFF6>this world, evil beast!<FFFB><FFF7>It seems Abai's soul did<FFF6>not satiate you...<FFFB><FFF7>So taste the fury of<FFF6>my lightning bolt!<FFEF>
 112	0x5085	pack/talk/ETC:0x98d8	<FFED> GAAAAAAAH! ME HAD MANY<FFF6>RUN-INS WITH YOUR CHILDREN.<FFFB><FFF7>NOW IS THE TIME TO RETURN<FFF6>THE FAVOR. ME DEVOUR YOUR SOUL!<FFEF>
 113	0x50fd	pack/talk/ETC:0x99e8	na It is unpleasant to be in<FFF6>the presence of a spider-woman.<FFF6>Begone!<FFFB><FFF7><FFEC>...You're the one who did this to me.<FFF6>Don't you have anything else to say?<FFEF>
-114	0x517e	pack/talk/ETC:0x9b38	na Your words fall on deaf ears. You<FFF6>shall spin thread for all eternity!<FFFB><FFF7><FFED> You're just mad because<FFF6>I'm better than you!<FFF6>You call yourself a goddess!?<FFEF>
-115	0x5203	pack/talk/ETC:0x9c90	Cherub... The garden of<FFF6>Eden is safe, I presume?<FFFB><FFF7>We guard the gate from the tree of<FFF6>life. Infiltration would be unthinkable.<FFEF>
+114	0x517e	pack/talk/ETC:0x9b38	na Your words fall on deaf ears.<FFF6>You shall spin thread for<FFF6>all eternity!<FFFB><FFF7><FFED> You're just mad<FFF6>because I'm better than you!<FFF6>You call yourself a goddess!?<FFEF>
+115	0x5203	pack/talk/ETC:0x9c90	Cherub...<FFF6>The garden of Eden is safe,<FFF6>I presume?<FFFB><FFF7>We guard the gate from the tree of<FFF6>life. Infiltration would be unthinkable.<FFEF>
 116	0x5280	pack/talk/ETC:0x9db0	Very well.<FFFB><FFF7>Then I have a favor to ask of you...<FFF6>I'd like you to lend this human power.<FFFB><FFF7><FFEB> If it is your will, how can I refuse?<FFF6>Please, take this card.<FFEF>
-117	0x52fd	pack/talk/ETC:0x9f18	Cherub... The garden of<FFF6>Eden is safe, I presume?<FFFB><FFF7>We guard the gate from the tree of<FFF6>life. Infiltration would be unthinkable.<FFEF>
+117	0x52fd	pack/talk/ETC:0x9f18	Cherub...<FFF6>The garden of Eden is safe,<FFF6>I presume?<FFFB><FFF7>We guard the gate from the tree of<FFF6>life. Infiltration would be unthinkable.<FFEF>
 118	0x537a	pack/talk/ETC:0xa038	Very well.<FFFB><FFF7>Then I have a favor to ask of you...<FFF6>I'd like you to lend this human power.<FFFB><FFF7><FFEC> Excuse me, archangel,<FFF6>but my powers are to protect Eden...<FFF6>I cannot waste them...<FFEF>
 119	0x53fa	pack/talk/ETC:0xa1c8	This troubles me, human. You refuse<FFF6>the power of an arbitrator?<FFFB><FFF7>Cherub, I apologize...<FFFB><FFF7><FFED>...No need, high one!<FFF6>It is the blindness of human eyes...<FFEF>
 120	0x5478	pack/talk/ETC:0xa328	<FFEE> I must return to my duties, Master.<FFF6>Lead your flock to paradise.<FFEF>
@@ -176,7 +176,7 @@ id	pos	psp	en
 174	0x6ad2	pack/talk/ETC:0xdeb8	<FFED>... That is all. I have no business with<FFF6>those beyond redemption!<FFEF>
 175	0x6b04	pack/talk/ETC:0xdf58	Good... I thank thee for thy<FFF6>cooperation, Virtue.<FFEF>
 176	0x6b42	pack/talk/ETC:0xdfd0	My... name... Nike... Foreign angel...<FFF6>Angel... Let us... speak...<FFFB><FFF7><FFEB> Very well.<FFFB><FFF7>You are a goddess of victory,<FFF6>correct?<FFF6>What is the secret of your success?<FFEF>
-177	0x6bca	pack/talk/ETC:0xe130	Always... reinforce... power.<FFF6>So... desire... your card...<FFF6>for the humans...<FFFB><FFF7><FFEE> I understand you. Here, human.<FFF6>Take my card.<FFEF>
+177	0x6bca	pack/talk/ETC:0xe130	Always... reinforce... power.<FFF6>So... desire... your card...<FFF6>for the humans...<FFFB><FFF7><FFEE> I understand you.<FFF6>Here, human. Take my card.<FFEF>
 178	0x6c46	pack/talk/ETC:0xe248	My... name... Nike... Foreign angel...<FFF6>Angel... Let us... speak...<FFFB><FFF7><FFEB> Very well.<FFFB><FFF7>You are a goddess of victory,<FFF6>correct?<FFF6>What is the secret of your success?<FFEF>
 179	0x6cce	pack/talk/ETC:0xe3a8	Always... reinforce... power.<FFF6>So... desire... your card...<FFF6>for the humans...<FFFB><FFF7><FFED> I understand, but in this world,<FFF6>too much power is unnecessary...<FFEF>
 180	0x6d54	pack/talk/ETC:0xe4e8	<FFED> You are guarding a foolish human...<FFF6>I am irked!<FFEF>
