@@ -1,6 +1,19 @@
 # 2026-11-12
 - Added a Western controls patch: Circle to Cross, Triangle to Square and vice-versa. Like a lame western PlayStation release.
 - Doubles text speed to match the fact that Japanese text has about half as many characters as its English equivalent. The game is like a lot faster because of that. This is the more accurate to the original game way to do it btw.
+- Adjusted text wrapping to make it more natural. Too complicated to explain the changes exactly here, but it includes:
+  - Bug fixes on some space removals.
+  - Merges more text boxes to match the Japanese PS1 textbox division.
+  - Copies waits from the PSX in stuff like ellipses (not perfect but they're in good enough positions), to match the tone more, especially with the merged boxes (in the PSP a lot of those use new boxes to give that effect instead).
+  - Other minor-ish preferences on where the wrap the text into a new line to try to be more legible.
+- Analyze
+  - ATK, MAG ATK, etc are now VWF.
+  - Skills are now not capped to 10 characters anymore.
+  - Space after the demon's race.
+  - Traits is now plural and has a :
+- Slightly better dealing with memory cards being inserted and removed while on the save screen.
+- Faster FMV subtitle rendering! Even the moon transition is basically at fullspeed now without overclocking!
+- Possible fixes for possible bugs that could possibly affect real hardware. (Can't test that!)
 
 # 2026-11-11-2
 - Fixed the game freezing on real hardware and accurate emulators when a menu with VWF small text (like the item list) is drawn. The text was sent to the GPU in chunks too big for it, which only some emulators (like DuckStation) tolerated.

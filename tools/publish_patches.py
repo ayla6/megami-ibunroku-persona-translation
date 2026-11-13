@@ -280,7 +280,7 @@ def upload_release(tag, directory=None):
         except subprocess.CalledProcessError:
             label = tag.removeprefix(RELEASE_PREFIX)
             run('gh', 'release', 'create', '--repo', GITHUB_REPO, tag, *assets,
-                '--title', f'Persona translation patches ({label})',
+                '--title', f'{label}',
                  '--notes', description)
             print(f'release {tag} created on {GITHUB_REPO}')
             return 'created'
