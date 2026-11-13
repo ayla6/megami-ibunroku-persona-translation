@@ -29,7 +29,7 @@ filename; a plain build uses the retail save flow and the regular translation fi
 | `upright` | `QOL_UPRIGHT` | Upward Movement Orientation: Upper Right in the 2D rooms - pressing Up walks to the upper right instead of the retail upper left |
 | `skipfmv` | `QOL_SKIPFMV` | press Start to skip the movie that is playing (the story FMVs, Philemon's scenes among them; the opening quote and the Atlus logo already skip) |
 | `battlespeed` | `QOL_BATTLESPEED` | summons and skill effects at double speed |
-| `debug` | `QOL_DEBUG` | battle debug menu: press Start on either controller to open the debug page |
+| `debug` | `QOL_DEBUG` | battle debug menu: press Start on either controller to open the debug page; on the title menu L1/L2/R1/R2/Select start endings 0-4, holding R1 fast-forwards an ending and Start skips its movies |
 | `mark` | `QOL_MARK` | Mark wears the Revelations design: the dialogue/status headshot, battle sheet and overworld walk sheet are swapped for the art in `src/assets/mark/black` (edit those PNGs to change it; see `src/assets/mark/README.md`). No code changes: the BST face slot and his B/P.BIN battle entry are rewritten in place and the ~207 MES.BIN scene entries carrying his walk sheet are re-encoded around the swapped page |
 
 `build/` is shared and holds whichever variant was built last (armips rewrites every overlay from
@@ -169,6 +169,22 @@ Cancel leaves it. The Start hook has instruction-level tests but still needs in-
 particularly when opened during other battle screens. The debug board's fitting
 translated rows use the same battle small-font VWF bridge as other boards, in
 both normal and debug-enabled builds.
+
+## The endings from the title (`--qol=debug`)
+
+`qol/debug_open.asm`, `qol/debug_end.asm`. Every ending - its epilogue pages and the staff roll - is
+`END.EXE` running one of five real scripts (`g_movie_id` 0x30..0x34 in the resident's movie state).
+On the title menu a fresh press of L1, L2, R1, R2 or Select starts ending 0, 1, 2, 3 or 4: the hook
+sets `g_movie_id`, `g_movie_next_state = -1` (back to boot when the script returns) and the
+resident's `g_state_next` (`0x80055C5C`, off the resident's gp - OPEN.EXE has its own) to the movie
+state, then leaves through the menu's retail tail with a choice no title case takes. Other presses
+run the retail confirm test (or the western one) unchanged. In `END.EXE`, holding R1 skips
+`EndDraw`'s vblank wait, so the script runs as fast as it draws; Start during an ending movie raises
+the stream's own end flag. Nothing in a script is copied or changed, so each page shows exactly
+where and how the real ending shows it. The staff roll is in endings 1-4; ending 2 reaches it
+first (two epilogue pages, one movie). Endings 1 and 2 end on the retail hold, so the console is
+reset after them. The story flags of a fresh boot are clear, so the pages that ending 1 and ending 3 pick by flag are
+the ones their flag tests choose with every flag clear.
 
 ## Running in dungeons (`--qol=run`)
 
