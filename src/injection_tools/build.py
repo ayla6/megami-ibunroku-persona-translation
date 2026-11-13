@@ -57,7 +57,9 @@ QOL_PATCHES = {
                                        'the Philemon scenes among them; the opening quote and the Atlus '
                                        'logo already skip)'),
     'battlespeed': ('QOL_BATTLESPEED', 'summons and skill effects at double speed'),
-    'debug':       ('QOL_DEBUG',       'battle debug menu: press Start on either controller in battle'),
+    'debug':       ('QOL_DEBUG',       'battle debug menu: press Start on either controller in battle; '
+                                       'on the title L1/L2/R1/R2/Select start endings 0-4, R1 held '
+                                       'fast-forwards an ending and Start skips its movies'),
     'mark':        ('QOL_MARK',        'Mark wears the Revelations design: headshot, battle sheet and '
                                        'overworld walk sheet swapped for the art in src/assets/mark/black '
                                        '(edit those PNGs to change it)'),
@@ -155,7 +157,8 @@ def prepare_fmv_data(py, incremental=False):
     build_step_cache.run(
         'FMV subtitle data', [os.path.join(ROOT, 'src'), os.path.join(ROOT, 'translation')],
         [os.path.join(ROOT, 'build', f'movie_subs{suffix}.bin') for suffix in
-         ('_data', '_open_data', '_tex', '_open_tex', '_zoom', '_open_zoom')],
+         ('_data', '_open_data', '_end_data', '_tex', '_open_tex', '_end_tex',
+          '_zoom', '_open_zoom', '_end_zoom')],
         command, os.path.join(ROOT, 'build', '.step-cache', 'fmv-data.tsv'),
         context=(version('Pillow'), pil_features.version_module('freetype2')),
         reuse=incremental)

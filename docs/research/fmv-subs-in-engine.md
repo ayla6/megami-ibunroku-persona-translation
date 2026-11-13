@@ -455,10 +455,34 @@ extraction only, never needed to build) and measures, per movie, into
 - `<MV>.png` - the clean plate frame (full frame; cropping is a build concern
   because the build knows the new text's size),
 - `<MV>.timing.tsv` - per frame: the dark filter's opacity and one text alpha
-  per band (the quote's cards fade per line, the poems as one block),
+  per band (the quote's cards fade per line, the poems as one block), and a
+  `lift` column when the filter is a grey layer rather than black,
 - `<MV>.patch.bin` - the pixels the burned-in text touches, as binary row
   runs, tagged per band (the quote's cards share rows and must not
-  cross-contaminate).
+  cross-contaminate),
+- `<MV>.pan.tsv` / `<MV>.zoom.tsv` - the picture's drift and scale against the
+  plate, frame by frame (zoom only when it varies).
+
+The plate is the last still frame clear of text and filter. MV1E's camera
+starts zooming at frame 227, so its plate is frame 226 and its entry ends
+there (the burned text is gone from frame 225).
+
+Each frame is fitted on the text-free strips as `out = k*plate + lift`.
+MV1C's and MV1E's filters are black (the fit's lift is noise, under
+`LIFT_MIN` = 2 levels on the filter's plateau), and their scale is the
+strips' mean ratio. MV25's filter is a grey layer of about 39/255: on its
+plateau the frame is `0.407*plate + 23`, and through the fades the lift
+follows the same layer (`fade * (plate*(1-f) + 39*f)`). A pure scale left the
+band darker and more contrasty than the washed-out picture around it, so the
+entry carries the lift per frame (flag `0x80`, a u8 table after the scale
+table). The renderer subtracts the frame's lift from the live strip's mean
+before dividing by the plate's, keeps it in `S_SCALE`'s high half (so the
+composite cache key changes with it) and adds it in the patch's channel LUT.
+In the simulator the band then matches the live picture within a level on
+the plateau and through both fades.
+
+`measure` writes every asset; `FMV_MEASURE_OUT` sends a run elsewhere, to
+compare it byte for byte with the committed files.
 
 The curves were validated frame-for-frame against the original's behaviour
 (MV1C: black card to 459, a linear 460-489 moon fade; MV1E: text 47-70 in,
@@ -508,6 +532,25 @@ window (0x1F9C0), refuses a full MOVIE.EXE blob that would reach
    instructions are unchanged. The wrappers call the original SDK functions
    at `0x80089ED0` and `0x80092850` respectively; only a failed poll with a
    finished current frame permits early compositing.
+
+### END.EXE (the endings' movies)
+
+The endings play MV1B, MV1E, MV1F, MV25 and MV26 with END.EXE's own copy of
+the player (`EndPlayMovie`), not MOVIE.EXE, so the renderer has a third
+driver (`frame_entry_end` 0x80160020, `poll_entry_end` 0x80160028,
+`trueframe_end` 0x80161FA0; `src/asm/movie_exe/subs_boot_end.asm`). Its
+blob holds only the entries of the movies END.EXE's five scripts play
+(`fmv_subgen.end_movies()` reads their opcode-7 arguments). END.EXE's
+staging areas (0x80140000, 0x80180000, 0x801C0000, 0x801D0000) overlap
+the renderer's home and are refilled for every page and song, so the blob
+rides at the end of END.EXE's file (offset 0x2E000) and is read to
+0x80160000 when each movie starts: the movie's `CdSearchFile` call goes
+through a loader in END.EXE's unused `LoadFileToAddr` functions first.
+Sound is stopped by then and every staging area is reloaded after the
+movie. `t_size` covers the file, so the loader also copies the blob into
+END.EXE's VLC buffers at start, which only the player fills and reads.
+Hooks: `PadRead(1)` 0x8008285C, `StGetNext` 0x80082ACC, the sector-header
+frame 0x80082B0C, the movie lookup 0x80082790.
 
 ## 5. Phases
 

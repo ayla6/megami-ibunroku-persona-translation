@@ -15,10 +15,17 @@ MEASURED here and committed as data; the build reads the data and never touches
 ffmpeg or Java:
 
   src/assets/fmv/<MV>.png         the full plate frame (cropped only at build time)
-  src/assets/fmv/<MV>.timing.tsv  per frame: scale (=1-filter) + one text alpha per band
-  src/assets/fmv/<MV>.patch.tsv   every pixel the burned-in overlay touches (dilated),
-                            with the plate's colour there - what the renderer
-                            repaints each frame so the original text is gone
+  src/assets/fmv/<MV>.timing.tsv  per frame: scale (=1-filter) + one text alpha per band,
+                                  and the filter's lift when it is a grey layer
+  src/assets/fmv/<MV>.patch.bin   per text band, every pixel the burned-in overlay
+                                  touches (dilated) as row runs: what the renderer
+                                  repaints so the original text is gone
+  src/assets/fmv/<MV>.pan.tsv     per frame: vertical drift against the plate (1/8 px)
+  src/assets/fmv/<MV>.zoom.tsv    per frame: scale against the plate (per mille), only
+                                  when the picture zooms
+
+FMV_MEASURE_OUT overrides the output directory (to compare a run with the
+committed assets).
 
 Frame numbers are 0-based stream frames (g_movie_frame's units).
 """
@@ -37,8 +44,10 @@ IMAGE = os.environ.get('PERSONA_IMAGE') or os.path.join(
     'Megami Ibunroku Persona - Be Your True Mind (Japan).bin')
 PSX = os.path.join(ROOT, 'data', 'psx')          # the extracted disc tree (build's extractor)
 WORK = os.path.join(ROOT, 'build', 'fmv_frames')
-OUT = os.path.join(ROOT, 'src', 'assets', 'fmv')
+OUT = os.environ.get('FMV_MEASURE_OUT') or os.path.join(ROOT, 'src', 'assets', 'fmv')
 
+LIFT_MIN = 2                  # levels: a filter lifting the picture less than
+                              # this on its plateau is black (the rest is noise)
 ZOOM_VARY = 20                # per mille: a picture that changes size less
                               # than this over the entry is a still, and the
                               # pan's one-rectangle patch already covers it
@@ -129,10 +138,47 @@ def cmd_measure():
 
         fas = {f: filter_of(f) for f in range(s0, s1 + 1)}
 
+        def strips_of(f):
+            g = gray(mv, f)
+            parts = []
+            if top >= 24:
+                parts.append(slice(0, top - 4))
+            if h - bot >= 24:
+                parts.append(slice(bot + 4, h))
+            return (np.concatenate([plate[p].ravel() for p in parts]),
+                    np.concatenate([g[p].ravel() for p in parts]))
+
+        def fit_of(f):
+            # out = k*plate + lift on the strips, refitted without outliers:
+            # a filter that is a grey layer, not black, lifts the blacks
+            x, y = strips_of(f)
+            keep = np.ones(len(x), bool)
+            for _ in range(6):
+                k, b = np.polyfit(x[keep], y[keep], 1)
+                r = y - (k * x + b)
+                keep = np.abs(r) < 2.5 * max(float(r[keep].std()), 0.5)
+            return min(1.0, max(0.0, float(k))), max(0.0, float(b))
+
+        # A movie whose filter lifts the picture (MV25's is a grey layer, about
+        # 39/255) keeps the fitted scale and lift per frame. A black filter's
+        # fit still finds a level or so of noise; it is told apart on the
+        # filter's plateau (its most common scale), where a grey layer lifts
+        # by LIFT_MIN or more, and keeps the strips' mean ratio.
+        fits = {f: fit_of(f) for f in range(s0, s1 + 1)}
+        lifts = {f: int(round(b)) for f, (_k, b) in fits.items()}
+        levels = [int(round((1.0 - a) * 255)) for a in fas.values()]
+        lit = [v for v in levels if v]
+        plateau = max(set(lit), key=lit.count) if lit else 0
+        on = sorted(lifts[f] for f, v in zip(fas, levels) if v == plateau and v)
+        if on and on[len(on) // 2] >= LIFT_MIN:
+            fas = {f: 1.0 - k for f, (k, _b) in fits.items()}
+        else:
+            lifts = {}
+
         def ink_of(f, a):
-            # the ink's contribution in out = plate*(1-filter) + ink*text: the
-            # plate term cancels the scene, so no texture/noise floor remains
-            return gray(mv, f) - plate * (1.0 - a)
+            # the ink's contribution in out = plate*(1-filter) + lift + ink*text:
+            # the plate term cancels the scene, so no texture/noise floor remains
+            return gray(mv, f) - plate * (1.0 - a) - lifts.get(f, 0)
 
         # the replace patch: the pixels the burned-in overlay touches, inside the
         # text bands only. The ink is static and fades as a block per band, so
@@ -192,13 +238,44 @@ def cmd_measure():
             if f == plate_f or (1.0 - fas[f]) < 24 / 255.0:
                 continue
             g = gray(mv, f)
-            ref = plate * (1.0 - fas[f])
+            ref = plate * (1.0 - fas[f]) + lifts.get(f, 0)
 
             def err(d):
                 return float(np.abs(moved(ref, d) - g)[ok].mean())
 
             coarse = min(range(-6, 7), key=err)
             pans[f] = min(((coarse * 8 + k) / 8.0 for k in range(-4, 5)), key=err)
+        cv2.imwrite(os.path.join(OUT, mv + '.png'), plate_img)
+        with open(os.path.join(OUT, mv + '.timing.tsv'), 'w') as o:
+            o.write('frame\tscale' + ''.join(f'\ttext{k}' for k in range(len(curves)))
+                    + ('\tlift' if lifts else '') + '\n')
+            for i, f in enumerate(range(s0, s1 + 1)):
+                o.write(f'{f}\t{int(round((1.0 - fas[f]) * 255))}'
+                        + ''.join(f'\t{int(round(c[i] * 255))}' for c in curves)
+                        + (f'\t{lifts[f]}' if lifts else '') + '\n')
+        # the patch: per band, that band's own overlay pixels, dilated 3x3 like
+        # `over` (the quote's cards share rows, so each band keeps its own)
+        patch = bytearray((len(band_masks),))
+        for y0, y1, _plateau, band in band_masks:
+            own = np.zeros((h, w), bool)
+            own[y0:y1] = band[y0:y1]
+            own[:, :8] = False
+            own[:, w - 8:] = False
+            own = cv2.dilate(own.astype('uint8'), np.ones((3, 3), np.uint8)) > 0
+            for y in range(h):
+                xs = np.flatnonzero(own[y])
+                runs = []
+                for x in xs:
+                    if runs and x == runs[-1][0] + runs[-1][1]:
+                        runs[-1][1] += 1
+                    else:
+                        runs.append([int(x), 1])
+                if runs:
+                    patch += bytes((y, len(runs)))
+                    for x0, ln in runs:
+                        patch += x0.to_bytes(2, 'little') + ln.to_bytes(2, 'little')
+            patch.append(0xFF)
+        open(os.path.join(OUT, mv + '.patch.bin'), 'wb').write(bytes(patch))
         with open(os.path.join(OUT, mv + '.pan.tsv'), 'w') as o:
             o.write('frame\tdy8\n')
             for f in range(s0, s1 + 1):

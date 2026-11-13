@@ -73,7 +73,16 @@ VSYNC         equ 0x80093708
 OPEN_STORE    equ 0x8008AAC0
 OPEN_LOAD     equ 0x8008AA5C
 OPEN_DSYNC    equ 0x8008A834
-;; ---- libgpu (both binaries link their own copies) ----
+;; ---- Rev 0 END.EXE addresses (the endings' movies: EndPlayMovie) ----
+END_MOVIE     equ 0x800AD32C        ; g_end_movie (gp+0x78)
+END_RECT_ID   equ 0x80105270        ; its g_dec + 0x20
+END_DEC_DONE  equ 0x8010527C        ; its g_dec.done
+END_PAD_READ  equ 0x8008C614
+END_ST_GETNEXT equ 0x8008BBD4
+END_STORE     equ 0x8008421C
+END_LOAD      equ 0x800841B8
+END_DSYNC     equ 0x80083F90
+;; ---- libgpu (each binary links its own copy) ----
 STORE_IMAGE   equ 0x80082784        ; MOVIE.EXE's; OPEN.EXE's is OPEN_STORE
 LOAD_IMAGE    equ 0x80082720
 DRAW_SYNC     equ 0x800824F8
@@ -84,7 +93,8 @@ MAGIC         equ 0x34534D46        ; 'FMS4'
 ;;   +2  u16 end_frame (inclusive)
 ;;   +4  u8  nlines
 ;;   +5  u8  flags: 1 = patch composite, 2 = additive ink, 8 = the patch
-;;        repaints the whole band (no store pass needed)
+;;        repaints the whole band (no store pass needed), 0x80 = the filter
+;;        is a grey layer: a u8 lift per frame follows the scale table
 ;;   +6  u8  band_y0 / +7 u8 band_rows
 ;;   +8  u32 patch_ptr (0 = live frame, no patch)
 ;;   +12 u32 scale_ptr (u16 per frame, 8.8 fixed, 256 = straight copy; 0 = 256)
@@ -151,6 +161,7 @@ S_SCALE_H   equ 0x80161F88          ; the held scale (S_SCALE is zeroed per fram
 S_HEADROOM  equ 0x80161F8C          ; 255 - maximum scaled patch channel
 S_EARLY     equ 0x80161F90          ; render-only call from an idle CD poll
 S_RENDERED  equ 0x80161F94          ; current decoded frame already composited
+S_LIFT      equ 0x80161F98          ; this frame's filter lift (F_LIFT entries)
 
 ;; ---- the GPU's part: vram rectangles and the black quad ----
 ;; 24bpp pixels are CPU work (a GPU primitive writes 15-bit halfwords).
@@ -168,6 +179,7 @@ CACHE_Y     equ 256
 ;; ---------------------------------------------------------------
 ;; frame_entry (0x80160000): MOVIE.EXE - hook replaces PadRead(1)
 ;; frame_entry_open (0x80160008): OPEN.EXE - hook replaces VSync(0)
+;; frame_entry_end (0x80160020): END.EXE - hook replaces PadRead(1)
 ;; Both hooks land on a fixed two-instruction jump stub (these can
 ;; never outgrow their slots - armips .org would silently rewind and
 ;; overwrite an overflow). The real entries follow.
@@ -190,6 +202,16 @@ poll_entry_movie:
 .org 0x80160018
 poll_entry_open:
     j     poll_open
+    nop
+
+.org 0x80160020
+frame_entry_end:
+    j     entry_end
+    nop
+
+.org 0x80160028
+poll_entry_end:
+    j     poll_end
     nop
 
 entry_movie:
@@ -239,6 +261,33 @@ open_y:
     li    t0, OPEN_LOAD
     sw    t0, S_LOAD
     li    t0, OPEN_DSYNC
+    sw    t0, S_DSYNC
+    j     driver_common
+    nop
+
+entry_end:
+    lw    t0, S_DISP                ; the frame on screen (true stream index)
+    nop
+    sw    t0, S_FRAME
+    lw    t0, END_MOVIE
+    nop
+    sw    t0, S_NO
+    lw    t0, END_RECT_ID
+    li    t1, 0
+    bnez  t0, end_y
+    nop
+    li    t1, 240
+end_y:
+    sw    t1, S_BUFY
+    li    t0, END_PAD_READ
+    sw    t0, S_TAILFN
+    li    t0, 1
+    sw    t0, S_TAILARG
+    li    t0, END_STORE
+    sw    t0, S_STORE
+    li    t0, END_LOAD
+    sw    t0, S_LOAD
+    li    t0, END_DSYNC
     sw    t0, S_DSYNC
     j     driver_common
     nop
@@ -437,7 +486,26 @@ ag_done:
     sll   t1, t1, 1
     addu  t0, t0, t1
     lhu   s3, 0(t0)             ; the picture's scale (8.8 fixed)
+    ;; A grey filter layer lifts every channel as well as scaling it
+    ;; (out = plate*scale + lift): its lift table follows the scale table.
+    sw    zero, S_LIFT
+    lbu   t2, 5(s0)
     nop
+    andi  t2, t2, 0x80          ; F_LIFT
+    beqz  t2, al_none
+    lhu   t2, 2(s0)             ; f1
+    lhu   t3, 0(s0)             ; f0
+    lw    t4, 12(s0)
+    subu  t2, t2, t3
+    addiu t2, t2, 1
+    sll   t2, t2, 1             ; past the scale table
+    addu  t4, t4, t2
+    subu  t3, s2, t3
+    addu  t4, t4, t3
+    lbu   t4, 0(t4)
+    nop
+    sw    t4, S_LIFT
+al_none:
 
     ;; ---- the fade measured from the live frame ----
     ;; A strip of rows just outside the band is text-free and carries the
@@ -505,6 +573,14 @@ ag_done:
     divu  t5, s4
     nop
     mflo  t5
+    lw    t0, S_LIFT            ; the scale is what remains after the lift
+    nop
+    sll   t0, t0, 4
+    subu  t5, t5, t0
+    bgez  t5, ls_lifted
+    nop
+    move  t5, zero
+ls_lifted:
     lw    t2, 8(s0)
     nop
     lhu   t3, 770(t2)           ; plate mean*16
@@ -558,7 +634,14 @@ ls_take:
 ls_done:
     ;; park the scale the plate is painted at: the flow below reuses s3
     ;; (the text loop counts lines in it), and the cache key has to carry
-    ;; the exact value well after that
+    ;; the exact value well after that. A lit picture's lift rides in the
+    ;; high half, so the key changes with it; 0 stays the black card.
+    beqz  s3, ls_park
+    lw    t0, S_LIFT
+    nop
+    sll   t0, t0, 16
+    or    s3, s3, t0
+ls_park:
     sw    s3, S_SCALE
     ;; A black card paints nothing from the patch, so neither the zoom
     ;; level nor the pan can reach the band: keeping them out of the key
@@ -1346,10 +1429,14 @@ pp_tab:
     sll   t1, t1, 1
     addu  t0, t0, t1
     lhu   s3, 0(t0)
+    nop
 pp_lut:
-    ;; LUT32[v] = v * scale >> 8, saturated: the plate is baked at the
-    ;; entry's plateau, so a frame at the plateau is 256 and a brighter
-    ;; one brightens past it until the LUT clips
+    ;; LUT32[v] = (v * scale >> 8) + lift, saturated: the plate is baked at
+    ;; the entry's plateau, so a frame at the plateau is 256 and a brighter
+    ;; one brightens past it until the LUT clips. S_SCALE carries a grey
+    ;; filter's lift in its high half (0 for a black filter).
+    srl   t9, s3, 16
+    andi  s3, s3, 0xFFFF
     li    t0, LUT32
     li    t1, 0
 pp_lut_loop:
@@ -1359,6 +1446,7 @@ pp_lut_loop:
     mflo  t2
     addiu t2, t2, 128           ; round to nearest: truncation darkened
     srl   t2, t2, 8             ; the whole band half a level
+    addu  t2, t2, t9
     li    t3, 255
     sltu  t4, t3, t2
     beqz  t4, pp_lut_store
@@ -2171,6 +2259,12 @@ poll_movie:
     li    t2, frame_entry
     b     poll_common
     nop
+poll_end:
+    li    t0, END_ST_GETNEXT
+    li    t1, END_DEC_DONE
+    li    t2, frame_entry_end
+    b     poll_common
+    nop
 poll_open:
     li    t0, 0x80092850        ; OPEN StGetNext
     li    t1, 0x801146EC        ; g_dec.done
@@ -2265,6 +2359,13 @@ pp_four_a:
 .if . > S_FRAME
     .error "FMV renderer overlaps its per-frame state"
 .endif
+
+.org 0x80161FA0
+trueframe_end:                      ; END.EXE 0x80082B0C -> here (v1 = frame_count)
+    sw    v1, S_TRUE
+    addiu v0, v0, -3                ; the two instructions that were replaced
+    j     0x80082B14
+    sltu  v1, v1, v0
 
 .org 0x80161FC0
 trueframe_open:                     ; OPEN.EXE 0x80089410 -> here (v1 = frame_count)

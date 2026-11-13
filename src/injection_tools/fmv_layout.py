@@ -22,7 +22,7 @@ ATTR_RIGHT = 286              # ink right edge of right-aligned lines
 # clear of text and filter (the plate) and the span the burned-in text lives in
 MOVIES = {
     'MV1C': (0x1C, 'STR1/MV1C.STR', 490, (20, 492)),
-    'MV1E': (0x1E, 'STR1/MV1E.STR', 229, (40, 230)),
+    'MV1E': (0x1E, 'STR1/MV1E.STR', 226, (40, 226)),
     'MV25': (0x25, 'STR2/MV25.STR', 188, (20, 190)),
 }
 
@@ -101,6 +101,6 @@ def quote_cards():
 def poem_cards():
     p = poem_lines()
     return {
-        'MV1E': (40, 230, (20, 50, 300, 188), 57, p['MV1E']),
+        'MV1E': (40, 226, (20, 50, 300, 188), 57, p['MV1E']),
         'MV25': (20, 190, (40, 30, 290, 175), 57, p['MV25']),
     }

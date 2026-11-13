@@ -90,6 +90,8 @@ F_ZOOM = 0x10                 # the patch carries pre-scaled levels (the
                               # picture itself zooms under the burned text)
 F_INK = 0x20                  # positioned additive spans with shared expressions
 F_FLOOR = 0x40                # opening's existing floor-rounded additive blend
+F_LIFT = 0x80                 # the filter is a grey layer: a u8 lift per frame
+                              # follows the scale table and is added to the patch
 ZOOM_STEP = 6                 # per mille between levels: 0.6% of the frame
 ZOOM_VARY = 20                # per mille: a picture that changes size less
                               # than this over the entry is a still, and the
@@ -103,6 +105,16 @@ OPEN_BLOB_END = 0x80180000    # OPEN.BIN (the title's TIM/VAB/SEQ pack) lives
 OPEN_ZOOM_LEVELS = 3
 ZOOM_AUX_BASE = 0x80130000    # above eight 1024-expression ink lookups
 ZOOM_AUX_END = 0x8013FF00     # ink cache metadata starts here (8 x 16 bytes)
+# END.EXE plays the endings' movies with its own player; its blob is read
+# from the tail of END.EXE to CODE_BASE when each movie starts, and holds only
+# the movies its scripts play (end_movies). END.EXE's buffers and library work
+# areas stop near 0x80114700; its staging areas above are reloaded after every movie.
+END_EXE = os.path.join(ROOT, 'data', 'psx', 'EXE', 'END.EXE')
+END_SCRIPTS = 0x80099FF4      # Rev 0 g_end_scripts: five script pointers
+END_SCRIPT_COUNT = 5
+END_OP_ARGS = {0, 1, 2, 3, 4, 5, 7, 8, 11}   # opcodes followed by one u16
+END_OP_MOVIE = 7
+END_OP_STOP = {9, 10}
 
 
 def font():
@@ -339,10 +351,19 @@ def load_poems(adv, ext):
 
 
 def load_timing(mv):
-    """{frame: (scale 0..255 of the picture, [text alpha per band])}"""
-    rows = [l.split('\t') for l in
-            open(os.path.join(FMV_DIR, mv + '.timing.tsv')).read().strip().split('\n')[1:]]
-    return {int(r[0]): (int(r[1]), [int(v) for v in r[2:]]) for r in rows}
+    """{frame: (scale 0..255 of the picture, [text alpha per band], lift)} -
+    lift is what a grey filter layer adds to every channel (0 for a black
+    filter, whose timing has no lift column)."""
+    lines = open(os.path.join(FMV_DIR, mv + '.timing.tsv')).read().strip().split('\n')
+    head = lines[0].split('\t')
+    texts = [i for i, name in enumerate(head) if name.startswith('text')]
+    at = head.index('lift') if 'lift' in head else None
+    out = {}
+    for line in lines[1:]:
+        r = line.split('\t')
+        out[int(r[0])] = (int(r[1]), [int(r[i]) for i in texts],
+                          int(r[at]) if at is not None else 0)
+    return out
 
 
 def load_pan(mv):
@@ -560,7 +581,7 @@ def collect(adv, ext, open_only=False):
                     0, 320)
             entries.setdefault(no, []).append(
                 (a, b, 0, band, None, None, None, fade_shift(b - a, 2),
-                 [(x, y, k, t) for k, (x, y, t) in enumerate(gl)], (0, 0, 0, 0), None))
+                 [(x, y, k, t) for k, (x, y, t) in enumerate(gl)], (0, 0, 0, 0), None, None))
 
     def patch_head(plate, level, band):
         """The patch's 6-byte header: the strip just outside the band and the
@@ -774,7 +795,12 @@ def collect(adv, ext, open_only=False):
             flags |= F_INK
             if open_only:
                 flags |= F_FLOOR
-        return (f0, f1, flags | F_PATCH, band, patch, scale, alphas, 0, gl, pan, ztab)
+        lift = [timing[f][2] for f in range(f0, f1 + 1)]
+        if any(lift):
+            flags |= F_LIFT
+        else:
+            lift = None
+        return (f0, f1, flags | F_PATCH, band, patch, scale, alphas, 0, gl, pan, ztab, lift)
 
     for first, last, recs, bands in load_cards():
         entries.setdefault(QUOTE_MOVIE, []).append(
@@ -802,9 +828,37 @@ def blend_table():
     return bytes(t)
 
 
-def build_data(open_only=False):
+def end_movies():
+    """The movies END.EXE's five ending scripts play (their opcode-7
+    arguments), read from the retail executable."""
+    image = open(END_EXE, 'rb').read()
+
+    def u(addr, fmt):
+        return struct.unpack_from(fmt, image, addr - 0x80080000 + 0x800)[0]
+    movies = set()
+    for k in range(END_SCRIPT_COUNT):
+        at = u(END_SCRIPTS + 4 * k, '<I')
+        while True:
+            op = u(at, '<H')
+            at += 2
+            if op in END_OP_STOP:
+                break
+            if op not in END_OP_ARGS and op != 6:
+                raise SystemExit(f'fmv_subgen: END.EXE script {k}: unknown opcode {op:#x}')
+            if op in END_OP_ARGS:
+                if op == END_OP_MOVIE:
+                    movies.add(u(at, '<H'))
+                at += 2
+    return movies
+
+
+def build_data(open_only=False, movies=None, suffix=None):
+    """One payload. `open_only`: OPEN.EXE's opening quote; `movies`: only
+    these movies' entries (END.EXE's endings), written under `suffix`."""
     (cw, ch), adv, cells, ext = render_atlas()
     entries = collect(adv, ext, open_only=open_only)
+    if movies is not None:
+        entries = {no: lst for no, lst in entries.items() if no in movies}
 
     for lst in entries.values():
         for e in lst:
@@ -883,7 +937,7 @@ def build_data(open_only=False):
     for no in sorted(entries):
         list_ptr[no] = DATA_BASE + off_lists + len(list_bytes)
         for e in entries[no]:
-            f0, f1, flags, band, patch, scale, alphas, shift, gl, pan, ztab = e
+            f0, f1, flags, band, patch, scale, alphas, shift, gl, pan, ztab, lift = e
             (band_y0, band_rows, band_x0, band_w) = band
             patch_ptr = scale_ptr = alpha_ptr = 0
             tex_ptr = zoom_ptr = 0
@@ -915,7 +969,9 @@ def build_data(open_only=False):
             if ztab is not None:
                 zoom_ptr = DATA_BASE + off_pool + pool_add(ztab)
             if scale is not None:
-                at = pool_add(b''.join(int(sc).to_bytes(2, 'little') for sc in scale))
+                # a lifted entry's u8 lift per frame follows its scale table
+                at = pool_add(b''.join(int(sc).to_bytes(2, 'little') for sc in scale)
+                              + (bytes(lift) if lift else b''))
                 scale_ptr = DATA_BASE + off_pool + at
             if alphas:
                 alpha_ptr = DATA_BASE + off_pool + pool_add(b''.join(bytes(t) for t in alphas))
@@ -991,7 +1047,8 @@ def build_data(open_only=False):
     struct.pack_into('<I', blob, 0x18 + 4 * MOVIE_COUNT + 4, DATA_BASE + tab_at)
     struct.pack_into('<I', blob, 0x18 + 4 * MOVIE_COUNT + 8, 0)  # reserved
 
-    suffix = '_open' if open_only else ''
+    if suffix is None:
+        suffix = '_open' if open_only else ''
     open(os.path.join(ROOT, 'build', f'movie_subs{suffix}_tex.bin'), 'wb').write(bytes(tex_pool))
     open(os.path.join(ROOT, 'build', f'movie_subs{suffix}_zoom.bin'), 'wb').write(bytes(zoom_aux))
     total = CODE_SIZE + len(blob)
@@ -1027,12 +1084,15 @@ def main():
     if mode == 'data':
         open(os.path.join(build, 'movie_subs_data.bin'), 'wb').write(build_data())
         open(os.path.join(build, 'movie_subs_open_data.bin'), 'wb').write(build_data(open_only=True))
+        open(os.path.join(build, 'movie_subs_end_data.bin'), 'wb').write(
+            build_data(movies=end_movies(), suffix='_end'))
     elif mode == 'pack':
         code = open(os.path.join(build, 'movie_subs_code.bin'), 'rb').read()
         if len(code) > CODE_SIZE:
             raise SystemExit(f'fmv_subgen: renderer code is {len(code):#x} bytes (max {CODE_SIZE:#x})')
         for data_name, out_name in (('movie_subs_data.bin', 'movie_subs.bin'),
-                                    ('movie_subs_open_data.bin', 'movie_subs_open.bin')):
+                                    ('movie_subs_open_data.bin', 'movie_subs_open.bin'),
+                                    ('movie_subs_end_data.bin', 'movie_subs_end.bin')):
             data = open(os.path.join(build, data_name), 'rb').read()
             out = code.ljust(CODE_SIZE, b'\x00') + data
             open(os.path.join(build, out_name), 'wb').write(out)

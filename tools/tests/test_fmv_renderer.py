@@ -119,15 +119,15 @@ class Renderer(unittest.TestCase):
                 while len(patch) & 3:
                     patch.append(0)
         patch.append(255)
-        for pan in (-2, 0, 2):
+        for pan, lift in ((-2, 0), (0, 0), (2, 0), (0, 23), (2, 250)):
             for scale in (1, 128, 256, 400):
-                with self.subTest(pan=pan, scale=scale):
+                with self.subTest(pan=pan, scale=scale, lift=lift):
                     c = self.cpu()
                     scratch = 0x80140640
                     size = 24 * 3 * 3
                     c.load(scratch, b'\xa5' * (size + 16))
                     c.load(0x80020000, patch)
-                    for name, value in dict(s_scale=scale, s_cur_p=pan, s_cur_l=0,
+                    for name, value in dict(s_scale=scale | lift << 16, s_cur_p=pan, s_cur_l=0,
                                             s_bandy0=4, s_bandrows=3,
                                             s_stride=72, s_xoff=0).items():
                         c.write(self.sym[name], value)
@@ -143,7 +143,8 @@ class Renderer(unittest.TestCase):
                             for i, index in enumerate(indices):
                                 at = ((y + pan - 4) * 24 + x + i) * 3
                                 expected[at:at + 3] = bytes(
-                                    min(255, (v * scale + 128) >> 8) for v in palette[index])
+                                    min(255, ((v * scale + 128) >> 8) + lift)
+                                    for v in palette[index])
                     actual = bytes(c.read(scratch + i, 1) for i in range(size + 16))
                     self.assertEqual(actual, expected)
 
@@ -263,7 +264,8 @@ class Renderer(unittest.TestCase):
         import struct
         for driver, sdk, done_address, normal_tail in (
                 ('movie', 0x80089ED0, 0x800FF8F0, 0x8008A910),
-                ('open', 0x80092850, 0x801146EC, 0x80093708)):
+                ('open', 0x80092850, 0x801146EC, 0x80093708),
+                ('end', 0x8008BBD4, 0x8010527C, 0x8008C614)):
             for status in (0, 1):
                 for done in (0, 1):
                     for rendered in (0, 1):
@@ -315,7 +317,7 @@ class Renderer(unittest.TestCase):
                                 c.write(done_address, 0)
                                 c.write(self.sym['s_true'], 149)  # dropped stream frames remain correctly indexed
                                 c.r[REG['ra']] = 0x80001000
-                                self.run_until(c, 'frame_entry' + ('_open' if driver == 'open' else ''), normal_tail)
+                                self.run_until(c, 'frame_entry' + ('' if driver == 'movie' else '_' + driver), normal_tail)
                                 self.assertEqual(c.read(self.sym['s_rendered']), 0)
                                 self.assertEqual(c.read(self.sym['s_disp']), 149)
                                 self.assertEqual(c.r[REG['a0']], 0 if driver == 'open' else 1)
