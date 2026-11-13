@@ -687,6 +687,46 @@ FF_SHOW      equ 3                      ; u8 this tick waits for the vblank and 
 FF_ICON_X    equ 296                    ; ">>": two 9x12 triangles at the top right
 FF_ICON_Y    equ 10
 FF_ICON_RGB  equ 0x20F0F0F0             ; POLY_F3, light grey
+;; --qol=range (qol/range_btlp.asm): the reach overlay on the battle floor
+RNG_REACH        equ 0x800F7414         ; g_btl_reach[5 lanes][15 rows] (Rev 1 0x800F4DC8 + 0x264C)
+RNG_CELLS        equ 0x800F7FFC         ; g_btl_debug_grid_cells: the retired debug grid's 75 bytes
+RNG_ACTORS       equ 0x8005D678         ; g_btl_actors (Rev 1 0x8005D654 + 0x24, as BTLP_ENEMY_NAME_BASE - 5 * 0xEC - 0x3F): 5 party records, then the 9 enemies
+RNG_ACTOR_SIZE   equ 0xEC
+RNG_POLYG4_NEXT  equ 0x800EEC44         ; g_btl_polyg4_next
+RNG_DRMODE_NEXT  equ 0x800EEC4C         ; g_btl_drmode_next
+RNG_SPELL_UPDATE equ 0x800A5288         ; BtlPersonaSpellUpdate(short *row): one frame of the skill board
+RNG_SPELL_CALL   equ 0x800A345C         ; its only call, in BtlCommandCast
+RNG_ACTOR_PERSONA equ 0x800AE774        ; BtlActorPersona(slot)
+RNG_MARK_AREA    equ 0x80095644         ; BtlMarkMoveArea(actor, shape, flags)
+RNG_ACTOR_TURN   equ 0x800D224C         ; g_btl_actor_turn (s16)
+RNG_PERSONA_SPELLS equ 0x8005CDDB       ; g_btl_personas[p].spell[row] = this + p * 0x48 + row
+RNG_SPELL_DATA   equ 0x80047D44         ; g_spell_data, 0x14 a move: kind +0x0A, target +0x0D, aim +0x10
+RNG_PICK_MOVE    equ 0x800A7180         ; BtlPickMoveTarget(actor, move)
+RNG_PICK_CALL_CAST equ 0x800A37C0       ; its call in BtlCommandCast
+RNG_PICK_CALL_ITEM equ 0x800A3EC8       ; and in BtlCommandItem
+RNG_PICK_MEMBER  equ 0x800A4548         ; BtlPickTargetMember(actor)
+RNG_PICK_PARTY   equ 0x800A46B0         ; BtlPickTargetParty(actor)
+RNG_PICK_ENEMIES equ 0x800A48EC         ; BtlPickTargetEnemies(actor)
+RNG_PICK_CALL_MEMBER equ 0x800A3FE0     ; their one call each, in BtlCommandItem
+RNG_PICK_CALL_PARTY equ 0x800A4170
+RNG_PICK_CALL_ENEMIES equ 0x800A4280
+RNG_ATTACK       equ 0x800A2388         ; BtlCommandAttack: the sword's and the gun's command
+RNG_COMMAND_FN   equ 0x800D22E0         ; g_btl_command_fn: [0] the sword, [3] the gun (Rev 1 0x800CFC94 + 0x264C)
+RNG_PICK_UPDATE  equ 0x800A4EF0         ; BtlPickUpdate(&row): one frame of the command menu
+RNG_MENU_CALL    equ 0x8009E358         ; its call in BtlCommandEntry
+RNG_PICK_ROW     equ 0x800D2234         ; g_btl_pick_help_row2 (s16): the command under the cursor
+RNG_MENU_KEY     equ 0x8009C93C         ; BtlMenuKey
+RNG_ITEM_KEY_CALL equ 0x800A3AE4        ; its call that opens each frame of BtlCommandItem's board
+RNG_ITEM_ROW     equ 0x800D2244         ; g_btl_item_row (s16)
+RNG_ITEM_SLOTS   equ 0x800F8088         ; g_btl_item_slots (u16: id in the low 9 bits)
+RNG_ITEM_DEFS    equ 0x80044404         ; g_item_defs, 0x20 an item: move +0x12, area +0x19, swing +0x1A
+RNG_SET_PARTY_PICKABLE equ 0x800C8004   ; BtlSetPartyPickable
+RNG_PARTY_ONE    equ 0x800A7C8C         ; its call in BtlPickMoveTarget's one-member pick
+RNG_PARTY_SIDE   equ 0x800A7E4C         ; and in its whole-party pick
+RNG_PARTY_RESET_GFX equ 0x800C7424      ; BtlPartyResetGfx: clears g_btl_reach as it ends
+RNG_PARTY_RESET_CALL equ 0x800A7E54     ; its call right after, in the whole-party pick
+RNG_RGB_AREA     equ 0x001070B4         ; amber, 0x00BBGGRR (blue 10, green 70, red B4): the move's area
+RNG_RGB_TARGET   equ 0x002020E0         ; red: the cells of the fighters it would hit
 .if FF_RATE < 3 || (FF_RATE & 1) == 0
     .error "FF_RATE must be odd and at least 3"
 .endif

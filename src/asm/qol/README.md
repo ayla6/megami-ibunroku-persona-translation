@@ -30,6 +30,7 @@ filename; a plain build uses the retail save flow and the regular translation fi
 | `skipfmv` | `QOL_SKIPFMV` | press Start to skip the movie that is playing (the story FMVs, Philemon's scenes among them; the opening quote and the Atlus logo already skip) |
 | `battlespeed` | `QOL_BATTLESPEED` | summons and skill effects at double speed |
 | `fastforward` | `QOL_FASTFORWARD` | Start while a battle turn plays out fast-forwards it: 3 battle ticks per shown frame, ">>" at the top right; it ends at the command menu and at the results window. The release carries it in the `battlespeed` patch (`release_options.json` `qol`) |
+| `range` | `QOL_RANGE` | battle: while a target is picked, the move's reach is painted on the floor in orange and the fighters it would hit in red; on the command menu (sword, gun), the skill board and the item board, what is under the cursor has its whole area in red. Replaces the retail debug grid |
 | `debug` | `QOL_DEBUG` | battle debug menu: press Start on either controller to open the debug page; on the title menu L1/L2/R1/R2/Select start endings 0-4, holding R1 fast-forwards an ending and Start skips its movies |
 | `mark` | `QOL_MARK` | Mark wears the Revelations design: the dialogue/status headshot, battle sheet and overworld walk sheet are swapped for the art in `src/assets/mark/black` (edit those PNGs to change it; see `src/assets/mark/README.md`). No code changes: the BST face slot and his B/P.BIN battle entry are rewritten in place and the ~207 MES.BIN scene entries carrying his walk sheet are re-encoded around the swapped page |
 
@@ -166,6 +167,38 @@ With `battlespeed` the rewrite has no half-rate second VSync and main.asm leaves
 `battle_speed_btlp.asm` out; alone it keeps that wait. Start at the command menu stays the game's,
 so `--qol=debug`'s page still opens there. `tools/tests/test_qol_fastforward.py` runs the frame tick by
 tick on the R3000 model.
+
+## The reach on the battle floor (`--qol=range`)
+
+`qol/range_btlp.asm` (its header has the details). Retail never shows a move's reach: the target cursor
+only stops on the fighters it reaches. The reach is `g_btl_reach[5 lanes][15 rows]` (decomp
+`src/btlp/reach.c`), and a pick puts the fighters it would hit on the target motion (10/11).
+
+The picks run inside a wrapper that raises a state byte while they run: BtlCommandAttack (the sword's and
+the gun's rows of `g_btl_command_fn`), BtlPickMoveTarget (the cast's and the item's), and the item
+command's BtlPickTargetMember / Party / Enemies. Before the pick, the wrapper fills the reach with the side
+it picks from (by the move's kind for BtlPickMoveTarget); the line and burst picks write their own reach
+over it. BtlPickMoveTarget's whole-party pick clears the reach with BtlPartyResetGfx after it starts, so that
+call is followed by the party's side again. Every frame, while a pick is up and a fighter is on the target motion, the reach is painted
+orange and those fighters' cells red. Outside a pick the motion counts for nothing, so the negotiation's
+demons and the acting member (bobbed on motion 10 through the whole command by BtlSingleOutMember) paint
+nothing. Party members count only in a party pick: the item command's member and party picks, and
+BtlPickMoveTarget's once it calls BtlSetPartyPickable. There the acting member is a target like any other.
+
+Three menus preview what is under the cursor in red for two frames:
+- the command menu (BtlPickUpdate's call in BtlCommandEntry), on the sword and the gun: the weapon's line,
+  thrown with BtlMarkMoveArea as BtlCommandAttack throws it;
+- the skill board (BtlPersonaSpellUpdate's call) and the item board (the BtlMenuKey call that opens each of
+  its frames): moves aimed by their own data are thrown with BtlMarkMoveArea, as the pick will throw them;
+  support kinds paint the party's side, and every other move the enemies' side. The nine items the item
+  command aims itself paint the side their pick uses.
+
+Each lane's run of same-coloured cells is one semi-transparent floor quad, projected the way the retail
+debug grid projects its cells. The overlay replaces that grid (BtlDrawObjects 0x80082B78), which nothing in
+the game turns on. Code also lives in BtlDebugPause and BtlLoadDebugGrid (unreferenced) and in BtlDebugWait /
+BtlDebugWaitArgs (called only behind `g_btl_debug`, which no code sets). The colours are `RNG_RGB_AREA` /
+`RNG_RGB_TARGET` in `common/addresses.inc`. `tools/tests/test_qol_range.py` runs the overlay with a stand-in
+GTE and the wrappers and previews with stubbed callees.
 
 ## The battle debug menu (`--qol=debug`)
 

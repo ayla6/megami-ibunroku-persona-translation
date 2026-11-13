@@ -18,7 +18,15 @@
     "label": "battlespeed",
     "name": "Battle speedup",
     "description": "Doubles the speed of summons and skill effects in battle.",
-    "qol": ["battlespeed", "fastforward"]
+    "qol": [
+      "battlespeed",
+      "fastforward"
+    ]
+  },
+  {
+    "label": "range",
+    "name": "Attack range",
+    "description": "Shows the range of an attack on the battle floor while you pick its target. Yeah somewhat like the PSP version but with somewhat less info since it's just on the battle floor."
   },
   {
     "label": "60fps",

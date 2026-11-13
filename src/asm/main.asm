@@ -155,6 +155,9 @@ western_layout ADV_PAD_LAYOUTS, 0         ; QoL (--qol=western): the controller 
 .elseifdef QOL_BATTLESPEED
 .include "qol/battle_speed_btlp.asm"    ; QoL (--qol=battlespeed): summons / skill effects at double speed
 .endif
+.ifdef QOL_RANGE
+.include "qol/range_btlp.asm"          ; QoL (--qol=range): a move's reach painted on the floor (replaces the debug grid)
+.endif
 .ifdef QOL_DEBUG
 .include "qol/debug_btlp.asm"          ; QoL (--qol=debug): Start opens the battle debug menu
 .endif

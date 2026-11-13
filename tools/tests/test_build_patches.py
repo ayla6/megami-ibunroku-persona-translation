@@ -120,7 +120,7 @@ class ReleaseGraph(unittest.TestCase):
         anchors = release.size_changer_states()
         self.assertEqual(anchors, [(), ('saves',), ('60fps',),
                                    ('saves', '60fps')])
-        self.assertEqual(len(canonical), 13)
+        self.assertEqual(len(canonical), 14)
         self.assertEqual(canonical[0], ())
         self.assertEqual({tuple(labels) for labels in canonical[:4]},
                          set(anchors))
@@ -128,7 +128,7 @@ class ReleaseGraph(unittest.TestCase):
             self.assertIn(tuple(release.solver_order([option])), canonical)
             self.assertEqual(tuple(release.solver_order([option])), (option,))
         self.assertEqual(len({tuple(release.release_selection(labels))
-                              for labels in canonical}), 13)
+                              for labels in canonical}), 14)
 
         expected = {'rev0-to-base.xdelta', 'rev1-to-rev0.xdelta',
                     'add-saves.xdelta', 'add-60fps.xdelta',
@@ -137,7 +137,7 @@ class ReleaseGraph(unittest.TestCase):
             expected.add(release.patch_file(option, frozenset()))
         # a partnered option has a second file over its partner
         expected.add('add-run-western.xdelta')
-        self.assertEqual(len(release.release_file_names()), 14)
+        self.assertEqual(len(release.release_file_names()), 15)
         self.assertEqual(release.release_file_names(), expected)
 
     def test_samples_start_with_the_expected_popular_sets(self):
@@ -180,7 +180,7 @@ class ReleaseGraph(unittest.TestCase):
         self.assertIn(('60fps', ('saves',)), edges)
         self.assertIn(('run', ()), edges)
         self.assertIn(('run', ('western',)), edges)
-        self.assertEqual(len(edges), 12)
+        self.assertEqual(len(edges), 13)
 
     def test_every_add_edge_is_encoded_from_a_canonical_state(self):
         canonical = set(release.canonical_states())
@@ -311,25 +311,25 @@ class ReleaseBuild(unittest.TestCase):
             rev0.write_bytes(b'retail revision zero' * 100)
             rev1.write_bytes(b'retail revision one' * 100)
             verified, builder = self.run_release(root, rev0, rev1, out)
-            self.assertEqual(len(verified), 13 + len(self.samples),
+            self.assertEqual(len(verified), 14 + len(self.samples),
                              'an audit per canonical state and per sample disc')
             self.assertEqual(builder.call_count, 2,
                              'one canonical batch plus one sample batch')
-            self.assertEqual(len(list(out.glob('*.xdelta'))), 14)
+            self.assertEqual(len(list(out.glob('*.xdelta'))), 15)
             self.assertFalse(list(out.glob('*.bin')))
             readme = (out / 'README.txt').read_text(encoding='utf-8')
             for name in release.release_file_names():
                 self.assertIn(name, readme)
             for item in release.RELEASE_OPTIONS:
                 self.assertIn(item['name'], readme)
-            self.assertIn('14 steps across 14 patch files', ' '.join(readme.split()))
+            self.assertIn('15 steps across 15 patch files', ' '.join(readme.split()))
             self.assertIn('SAMPLING', readme)
 
             with (out / 'manifest.tsv').open() as f:
                 rows = list(csv.DictReader(f, delimiter='\t'))
-            self.assertEqual(len(rows), 14)
+            self.assertEqual(len(rows), 15)
             by_name = {row['patch']: row for row in rows}
-            self.assertEqual(len(by_name), 14, 'one row per patch file')
+            self.assertEqual(len(by_name), 15, 'one row per patch file')
             self.assertEqual(by_name['rev1-to-rev0.xdelta']['source_sha256'],
                              release.sha256(rev1))
             base = by_name['rev0-to-base.xdelta']
