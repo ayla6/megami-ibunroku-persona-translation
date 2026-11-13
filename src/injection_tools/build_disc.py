@@ -2,8 +2,13 @@
 
 For every file in build/ that differs from the original disc file:
   - if it fits in the sectors the original occupied, it is written in place;
-  - otherwise it is appended after the end of the volume and its ISO9660
-    directory record is pointed at the new extent.
+  - a file that grows keeps its place when the sectors right after it belong
+    to files that move out anyway (their old extents are free);
+  - otherwise it takes the first freed extent that holds it, or is appended
+    after the end of the volume, and its ISO9660 directory record is pointed
+    at the new extent.
+Freed extents are only those of files this build moves, so the volume grows
+by what does not fit back into them.
 Directory records get the file's whole-sector length (the same allocation
 size FSIZE.DAT stores), the PVD gets the new volume size, every written
 sector gets fresh EDC/ECC, and a matching .cue is written. With a
@@ -207,6 +212,7 @@ def build_to(src, out, build, placement=None):
         append_at = orig_end          # after the original volume + its padding
         changed = 0
         placed = []
+        work = []
         for r, _, files in os.walk(build):
             for f in sorted(files):
                 local = os.path.join(r, f)
@@ -221,24 +227,68 @@ def build_to(src, out, build, placement=None):
                 padded = data.ljust(sectors * 2048, b"\x00")
                 if sectors == old_sectors and padded == orig:
                     continue
-                changed += 1
-                if sectors <= old_sectors:
-                    disc.write_file(ext, data)
-                    where = f"in place @ {ext}"
+                work.append((disc_path, ext, old_sectors, sectors, data, padded,
+                             size, rec_lba, rec_off))
+
+        # Placement plan. The files that outgrow their extent free it; a
+        # growing file first tries to extend into freed sectors right after
+        # itself, then the moving ones take the first freed gap that holds
+        # them (largest first), and only the rest is appended.
+        free = sorted([w[1], w[1] + w[2]] for w in work if w[3] > w[2])
+
+        def take(lo, hi):
+            """Claim [lo, hi) if it lies inside one free extent."""
+            for k, (a, b) in enumerate(free):
+                if a <= lo and hi <= b:
+                    free[k:k + 1] = [x for x in ([a, lo], [hi, b]) if x[0] < x[1]]
+                    return True
+            return False
+
+        def merged():
+            out = []
+            for a, b in sorted(free):
+                if out and a <= out[-1][1]:
+                    out[-1][1] = max(out[-1][1], b)
                 else:
-                    ext = append_at
-                    append_at += disc.write_file(ext, data)
-                    where = f"relocated -> {ext}"
-                aligned = record_size(len(data))
-                disc.set_record(rec_lba, rec_off, ext, aligned)
-                placed.append((disc_path, ext, aligned,
-                               hashlib.sha256(padded).hexdigest()))
-                if disc_path in game_index:
-                    i = game_index[disc_path]
-                    struct.pack_into("<I", fsect, i * 4, ext)
-                    struct.pack_into("<I", fsize, i * 4, (len(data) + 2047) // 2048 * 2048)
-                    tables_dirty = True
-                print(f"{disc_path:20} {size:>9} -> {len(data):>9} bytes  {where}")
+                    out.append([a, b])
+            return out
+
+        target = {}
+        free[:] = merged()
+        for w in sorted((w for w in work if w[3] > w[2]), key=lambda w: w[1]):
+            if take(w[1], w[1] + w[3]):
+                target[w[0]] = (w[1], "grown in place")
+        for w in sorted((w for w in work if w[3] > w[2] and w[0] not in target),
+                        key=lambda w: -w[3]):
+            for a, b in list(free):
+                if b - a >= w[3] and take(a, a + w[3]):
+                    target[w[0]] = (a, "relocated into a freed extent")
+                    break
+
+        for (disc_path, ext, old_sectors, sectors, data, padded,
+             size, rec_lba, rec_off) in work:
+            changed += 1
+            if sectors <= old_sectors:
+                disc.write_file(ext, data)
+                where = f"in place @ {ext}"
+            elif disc_path in target:
+                ext, how = target[disc_path]
+                disc.write_file(ext, data)
+                where = f"{how} @ {ext}"
+            else:
+                ext = append_at
+                append_at += disc.write_file(ext, data)
+                where = f"relocated -> {ext}"
+            aligned = record_size(len(data))
+            disc.set_record(rec_lba, rec_off, ext, aligned)
+            placed.append((disc_path, ext, aligned,
+                           hashlib.sha256(padded).hexdigest()))
+            if disc_path in game_index:
+                i = game_index[disc_path]
+                struct.pack_into("<I", fsect, i * 4, ext)
+                struct.pack_into("<I", fsize, i * 4, (len(data) + 2047) // 2048 * 2048)
+                tables_dirty = True
+            print(f"{disc_path:20} {size:>9} -> {len(data):>9} bytes  {where}")
 
         if tables_dirty:
             for name, table in (("FSECT.DAT", fsect), ("FSIZE.DAT", fsize)):
