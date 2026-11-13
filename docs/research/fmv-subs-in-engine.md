@@ -181,12 +181,16 @@ Memory plan:
   the decoder, ink lookups, scratch band, primary blob or `OPEN.BIN`.
 - `0x80140000..0x801400FF` - the patch's 256-entry channel-scale LUT;
   `0x80140100..0x8014015F` - the
-  24-entry glyph-row base table; `0x80140200..0x801405FF` - the patch
-  palette; `0x80140640..` - the frame band (24bpp rows,
+  24-entry glyph-row base table; `0x80140640..` - the frame band (24bpp rows,
   `band_rows * band_w * 3` bytes plus padding, asserted under 0x1F9C0 so it ends before
   the blob at `0x80160000`; all of it is stale scratch during playback).
-  Each entry carries its own band geometry - the rows/cols it paints, x0/w
-  multiples of 2 so the GPU rect is halfword aligned.
+  Each entry carries its own band geometry - the rows/cols it paints; x0 is
+  even so the GPU rect is halfword aligned, and a full-band patch's width
+  is a multiple of 4 so every band row starts on a word.
+- `0x1F800000..0x1F8003FF` - the CPU's 1 KB data scratchpad: the patch
+  palette scaled for this frame (256 x RGB0), then, once the patch is
+  painted, each additive line's 256-byte coverage ramp. Neither driver nor
+  the resident executable touches the scratchpad.
 - Per-entry state `S_*` sits at `0x80161F00..0x80161F97`
   (frame/movie/buffy/tail/store/load/dsync/stride/xoff/band, then the
   true stream frame, the composite cache key and this frame's level/pan/
@@ -339,17 +343,22 @@ only reuses an actually identical state. The picture probe retains its
 two-level noise tolerance described above.
 
 The background expansion reads each scaled palette colour as one packed
-RGB word instead of three byte loads. Four pixels are expanded per loop
-iteration with overlapping little-endian `SWL`/`SWR` pairs. The byte just
-past each run is saved and restored, so neither adjacent pixels nor band
-padding changes. Patch index runs are word-aligned and padded at both ends;
-the `FMS4` payload format also pads zoom-level terminators to a whole word.
-The four-pixel core reads one source word instead of four separate index
-bytes, extracts their palette offsets and writes the same RGB bytes. It
-takes 31 instructions per four pixels; the extra arithmetic avoids three
-main-RAM loads. A 320-pixel run uses 405 loads including palette lookups and
-metadata instead of 645. This trades inexpensive shifts/masks for RAM reads,
-not visual accuracy or fade steps.
+RGB word from the scratchpad, so its four palette reads per source word
+cost no main-RAM bus cycles. The source word carries four indices. On a
+word-aligned cursor (every full-band row) four 3-byte pixels are exactly
+three words: they are assembled in registers from the entries (whose
+fourth byte is 0) and stored whole - three stores instead of eight
+partial ones, nothing past the run touched. Any other cursor uses
+overlapping `SWL`/`SWR` pairs and saves and restores the byte just past
+the run. Patch index runs are word-aligned and padded at both ends; the
+`FMS4` payload format also pads zoom-level terminators to a whole word.
+A 320-pixel aligned run takes 80 source-word loads plus metadata from
+main RAM.
+
+The additive ink's expression terms read `cov*alpha>>8` from the line's
+coverage ramp, built in the scratchpad by adding alpha 256 times, instead
+of multiplying per term; the remaining multiply by the glyph gray keeps
+both rounding modes exact.
 
 The fade probe also reads aligned words. Four words are summed into two
 independent 16-bit lanes, with at most 128 words per accumulator. Each lane
@@ -361,19 +370,28 @@ same integer mean and resulting measured fade as the byte-by-byte loop.
 ### Uniform zoom in the opening driver
 
 All zoom levels use the same affine scale in X and Y about the frame centre.
-OPEN selects the nearest of three levels from the extracted zoom curve on
-every stream frame; it no longer freezes one median level throughout the
-fade. With the current measurements the levels are 1000, 1014 and 1032 per
-mille. The final measured frame is 998, so its closest level is 1000 rather
-than the fixed 1014. This reduces the final overlay uniformly in both axes
-by about 1.4% compared with the frozen plate, without cropping, moving the
-text or adding a last-frame exception. The band margin is derived from the
-largest residual between each measurement and its actual selected level.
+The extracted zoom is one similarity fit per frame on a 2 per mille grid,
+with a few per mille of noise around the movie's steady ramp (about -1 per
+mille per frame over the moon fade). The builder follows one least-squares
+line through those measurements, weighted by the picture's brightness and
+held at the measured window's ends; picking the nearest level of each raw
+measurement flipped frames between two levels and back, which showed as
+the band popping.
+
+The levels cover the fitted range. No frame is further from its level than
+a uniform ladder's half step, and within that bound they sit where the
+brightness-weighted worst mismatch is smallest, since a rectangle edge
+shows in proportion to the picture under it. The level nearest the plate's
+own size moves to exactly 1000 when that keeps every frame inside the
+bound (a 1:1 crop needs no resampling). OPEN keeps three levels; with the
+current measurements they are 1000, 1008.5 and 1020.8 per mille, used in
+one run each across the fade. The band margin is derived from the largest
+residual between each raw measurement and its selected level.
 
 The builder places independent raw level streams in the auxiliary bank and
 primary blob and emits their absolute pointers. The renderer picks one
 pointer; it neither decompresses nor rescales a pixel during playback.
-MOVIE retains its full measured ladder and identical pixels. Bank/ink limits
+MOVIE uses the same fitted placement with its larger ladder. Bank/ink limits
 are enforced at build time and the verifier reads all sources back from the
 disc, including the extra OPEN bank. The user reports the latest fade looks
 somewhat better but still has glitches, with the same approximately 12 FPS
@@ -400,6 +418,13 @@ byte-identical to the confirmed build, as are a black-card frame and an
 ending-poem frame. Every stored patch palette, row and zoom level also
 decodes identically; only padding and access granularity change. These are
 instruction/load profiles, **not** cycle-accurate or in-game FPS measurements.
+
+For the scratchpad palette, whole-word patch stores and coverage ramps,
+OPEN's stream frame 470 in the same simulator takes 468,487 instructions,
+48,405 main-RAM loads and 38,799 stores, versus 449,090, 79,251 and 78,089
+before: 4% more instructions, 39% fewer RAM loads, half the stores. The
+patch and ink tests still pass byte-exact. This too is a load/store
+profile, not an in-game FPS measurement.
 
 In-game evidence for `5d81310`: the user reports the moon transition's minimum
 improving from about 8 FPS to 12 FPS. Some opening-start hiccups remain.

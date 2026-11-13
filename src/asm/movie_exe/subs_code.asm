@@ -40,8 +40,12 @@ INK_META    equ 0x8013FF00          ; 8 x {program, alpha, mode, spans}
 T_TAB       equ 0x80140000          ; reserved together with the patch LUT
 ROW_TAB     equ 0x80140100          ; per line: glyph cell row -> band row
                                     ; base (24 x 4 bytes)
-SPAL        equ 0x80140200          ; patch palette scaled for this frame,
-                                    ; 256 x 4 bytes (R,G,B,-)
+SPAL        equ 0x1F800000          ; patch palette scaled for this frame,
+                                    ; 256 x 4 bytes (R,G,B,0): the 1 KB
+                                    ; scratchpad, so the pixel loop's four
+                                    ; palette reads per word skip main RAM.
+                                    ; Neither driver nor the resident uses it
+RAMP        equ SPAL                ; draw_ink: one line's coverage ramp
 LUT32       equ 0x80140000          ; patch: 8-bit channel -> scaled (256 B).
                                     ; Text selects its ramp from H_TAB.
 
@@ -148,25 +152,18 @@ S_HEADROOM  equ 0x80161F8C          ; 255 - maximum scaled patch channel
 S_EARLY     equ 0x80161F90          ; render-only call from an idle CD poll
 S_RENDERED  equ 0x80161F94          ; current decoded frame already composited
 
-;; ---- the GPU: the plate is a texture, the fade is texture modulation ----
-;; A textured gouraud quad with all four vertices the same colour computes
-;; TEX x colour / 128 - an exact per-frame fade, done by the GPU while the
-;; CPU does nothing. The whole band rectangle is painted, so the burned
-;; text's compression halo goes with it.
+;; ---- the GPU's part: vram rectangles and the black quad ----
+;; 24bpp pixels are CPU work (a GPU primitive writes 15-bit halfwords).
+;; The GPU only carries finished bands around and paints a black card as
+;; one monochrome quad over the frame.
 PLATE_X     equ 480                 ; the plate on its own (patch_pass's
 PLATE_Y     equ 0                   ; output, before the text): a frame that
                                     ; only moves the text alphas stores it
                                     ; back instead of repainting it
 GP0         equ 0x1F801810
 GP0STAT     equ 0x1F801814          ; port+1: polled for FIFO room
-TEX_X       equ 512                 ; texture page x (a multiple of 64)
-TEX_Y       equ 0
 CACHE_X     equ 512                 ; the composited band (plain rectangle)
 CACHE_Y     equ 256
-CLUT_X      equ 768                 ; its 256-entry palette
-CLUT_Y      equ 0
-TEX_TPAGE   equ ((TEX_X / 64) | ((TEX_Y / 256) << 4) | (1 << 7))
-TEX_CLUT    equ ((CLUT_X / 16) | (CLUT_Y << 6))
 
 ;; ---------------------------------------------------------------
 ;; frame_entry (0x80160000): MOVIE.EXE - hook replaces PadRead(1)
@@ -1043,11 +1040,9 @@ sp_no:
     nop
 
 patch_quad:
-    ;; paints the plate over the whole band: TEX x (scale/2) / 128 = plate x
-    ;; scale. s0 = entry, s2 = frame, s3 = scale (8.8). tex_ptr 0 (a black
-    ;; card) is just a flat black rectangle. An 8bpp texture page is 128
-    ;; texels wide and 64 vram halfwords wide, so a wide band comes as
-    ;; several pages and one quad each.
+    ;; sets the drawing environment for the frame's vram rows and, at
+    ;; scale 0 (a black card), paints the whole frame black with one quad.
+    ;; s0 = entry, s3 = scale (8.8). A lit picture is painted by patch_pass.
     addiu sp, sp, -0x80
     sw    ra, 0x7C(sp)
     ;; the frame before this one may have ended with a band upload still in
@@ -1100,131 +1095,6 @@ patch_quad:
     b     pq_done
     nop
 
-pq_plate:
-    ;; ---- one upload and one raw quad per 64-halfword page ----
-    ;; A raw textured quad copies each texel to vram verbatim, so a texel is
-    ;; one exact 16-bit halfword of the band's 24bpp byte stream: the quad is
-    ;; a byte-exact blit of the plate. (Modulated or blended quads cannot do
-    ;; this - the gpu's 2-byte pixels never line up with the display's 3-byte
-    ;; pixels, so anything but a verbatim copy stripes.) Scale 256 is a
-    ;; straight copy, which is every frame outside the short fade ramps.
-    lw    t1, 28(s0)            ; tex_ptr
-    li    t6, 0                 ; page number
-pq_pg:
-    ;; texels on this page = min(64, hw - page*64), hw = band_w*3/2
-    lw    t7, 0x04(sp)          ; band_w (pixels)
-    nop
-    sll   t8, t7, 1
-    addu  t7, t7, t8            ; band_w*3
-    srl   t7, t7, 1             ; hw (halfwords)
-    sll   t8, t6, 6             ; page*64
-    subu  t7, t7, t8
-    blez  t7, pq_done
-    li    t8, 64
-    slt   t9, t7, t8
-    beqz  t9, pq_pw
-    nop
-    move  t8, t7                ; texels on this page
-pq_pw:
-    sw    t1, 0x30(sp)          ; page data pointer
-    sw    t6, 0x38(sp)          ; page number
-    sw    t8, 0x3C(sp)          ; texels on this page
-    ;; upload the page block: always 64 halfwords wide, rows tall
-    addiu a0, sp, 0x20
-    sll   t0, t6, 6             ; page*64 halfwords
-    li    t7, TEX_X
-    addu  t0, t7, t0
-    sh    t0, 0(a0)             ; vram x of this page
-    li    t0, TEX_Y
-    sh    t0, 2(a0)
-    li    t0, 64
-    sh    t0, 4(a0)
-    lw    t5, 0x0C(sp)          ; rows
-    nop
-    sh    t5, 6(a0)
-    move  a1, t1
-    lw    t0, S_LOAD
-    nop
-    jalr  t0
-    nop
-    ;; LoadImage only waits for the gpu before it starts the transfer; the
-    ;; pixels are still streaming in when it returns. Poking GP0 now would
-    ;; feed the quad's words to the gpu as image data and desync it.
-    move  a0, zero
-    lw    t0, S_DSYNC
-    nop
-    jalr  t0
-    nop
-
-    ;; the quad: one texel is one halfword, so the page spans texels halfwords
-    lw    t6, 0x38(sp)          ; page number
-    lw    t8, 0x3C(sp)          ; texels on this page
-    lw    t2, 0x00(sp)          ; x0 (halfwords)
-    lw    t3, 0x08(sp)          ; y0
-    lw    t5, 0x0C(sp)          ; rows
-    nop
-    sll   t4, t6, 6             ; page*64
-    addu  t2, t2, t4            ; x0 of this page
-    addu  t4, t2, t8            ; x1
-    addu  t5, t3, t5            ; y1
-    addiu t6, sp, 0x40
-    li    t8, 0x2D000000        ; textured quad, raw (verbatim), opaque
-    sw    t8, 0(t6)
-    sll   t8, t3, 16
-    or    t8, t8, t2
-    sw    t8, 4(t6)             ; xy0
-    sw    zero, 8(t6)           ; uv0 (0,0)
-    sll   t8, t3, 16
-    or    t8, t8, t4
-    sw    t8, 12(t6)            ; xy1
-    lw    t9, 0x38(sp)          ; page number
-    li    t8, (TEX_X / 64)
-    addu  t8, t8, t9            ; tpage x = this page's vram x / 64
-    ori   t8, t8, 0x0200        ; 15bpp direct (colours = 2)
-    sll   t8, t8, 16
-    lw    t9, 0x3C(sp)          ; texels on this page
-    nop
-    addiu t9, t9, -1
-    andi  t9, t9, 0xFF          ; u = texels-1
-    or    t8, t8, t9
-    sw    t8, 16(t6)            ; tpage | uv1
-    sll   t8, t5, 16
-    or    t8, t8, t2
-    sw    t8, 20(t6)            ; xy2
-    lw    t8, 0x0C(sp)          ; rows
-    nop
-    addiu t8, t8, -1
-    andi  t8, t8, 0xFF
-    sll   t8, t8, 8             ; v = rows-1
-    sw    t8, 24(t6)            ; uv2 (0, rows-1)
-    sll   t8, t5, 16
-    or    t8, t8, t4
-    sw    t8, 28(t6)            ; xy3
-    lw    t9, 0x3C(sp)          ; texels on this page
-    lw    t8, 0x0C(sp)          ; rows
-    nop
-    addiu t9, t9, -1
-    andi  t9, t9, 0xFF
-    addiu t8, t8, -1
-    andi  t8, t8, 0xFF
-    sll   t8, t8, 8
-    or    t9, t9, t8
-    sw    t9, 32(t6)            ; uv3
-    addiu t7, zero, 9           ; nine words - nothing more may follow
-    jal   pq_send
-    nop
-
-    ;; next page: each page block is 64 halfwords (128 bytes) per row
-    lw    t1, 0x30(sp)
-    lw    t6, 0x38(sp)
-    lw    t5, 0x0C(sp)          ; rows
-    nop
-    sll   t8, t5, 7             ; rows*128 bytes
-    addu  t1, t1, t8
-    addiu t6, t6, 1
-    b     pq_pg
-    nop
-
 pq_flat:
     ;; the picture is solid black here, so a single monochrome quad over the
     ;; whole frame hides every burned-in glyph. A 24bpp pixel is 1.5
@@ -1268,7 +1138,8 @@ pq_w:
 pq_wait:
     lw    t0, 0(t9)
     addiu t1, t1, -1
-    srl   t0, t0, 28            ; bit 28: ready for a command word
+    srl   t0, t0, 28            ; bit 28: FIFO has room (ready for a DMA block);
+    andi  t0, t0, 1             ; bits 29-31 (DMA direction, interlace) say nothing
     bnez  t0, pq_ok
     nop
     bnez  t1, pq_wait
@@ -1614,6 +1485,8 @@ pp_run:
     lbu   a2, 0(a1)
     sltiu t5, t4, 4
     bnez  t5, pp_px
+    andi  t5, t3, 3
+    beqz  t5, pp_four_a         ; word-aligned run: whole-word stores
     nop
 pp_four:
     lw    t9, 0(s4)             ; four indices, one main-RAM load
@@ -2025,6 +1898,19 @@ ink_build:
     nop
     move  s7, zero
 ink_round:
+    ;; this alpha's coverage ramp, cov*alpha>>8 for every cov, built by
+    ;; adding alpha (no multiply) into the scratchpad: patch_pass is done
+    ;; with its palette there and rebuilds it every frame it runs
+    li    t9, RAMP
+    move  t1, zero
+    addiu t2, t9, 256
+ink_ramp:
+    srl   t3, t1, 8
+    sb    t3, 0(t9)
+    addiu t9, t9, 1
+    bne   t9, t2, ink_ramp
+    addu  t1, t1, s6
+    addiu t9, t9, -256
     beqz  t8, ink_align
     nop
 ink_expr:
@@ -2035,10 +1921,9 @@ ink_term:
     lbu   t2, 0(s1)             ; gray
     lbu   t3, 1(s1)             ; coverage
     addiu s1, s1, 2
-    mult  t3, s6
+    addu  t3, t3, t9
+    lbu   t3, 0(t3)             ; cov*alpha>>8
     nop
-    mflo  t3
-    srl   t3, t3, 8
     mult  t2, t3
     nop
     mflo  t2
@@ -2332,6 +2217,49 @@ poll_return:
     nop
 early_return:
     jr    ra
+    nop
+;; patch_pass's four-pixel step for a word-aligned cursor (every full-band
+;; row: fmv_subgen keeps band_w a multiple of 4). Four 3-byte pixels are
+;; exactly three words, assembled from the scaled entries (their fourth
+;; byte is 0) and stored whole: three stores instead of eight partial
+;; ones, and nothing past the run is touched.
+pp_four_a:
+    lw    t9, 0(s4)             ; four indices
+    addiu s4, s4, 4
+    sll   t5, t9, 2
+    andi  t5, t5, 0x3FC
+    srl   t6, t9, 6
+    andi  t6, t6, 0x3FC
+    addu  t5, t5, s1
+    addu  t6, t6, s1
+    lw    t7, 0(t5)             ; p0
+    lw    t8, 0(t6)             ; p1
+    srl   t5, t9, 14
+    andi  t5, t5, 0x3FC
+    sll   t0, t8, 24
+    or    t0, t0, t7
+    sw    t0, 0(t3)             ; p0 | p1.R
+    srl   t6, t9, 22
+    andi  t6, t6, 0x3FC
+    addu  t5, t5, s1
+    addu  t6, t6, s1
+    lw    t7, 0(t5)             ; p2
+    lw    t9, 0(t6)             ; p3
+    srl   t8, t8, 8
+    sll   t0, t7, 16
+    or    t8, t8, t0
+    sw    t8, 4(t3)             ; p1.GB | p2.RG
+    srl   t7, t7, 16
+    sll   t0, t9, 8
+    or    t7, t7, t0
+    sw    t7, 8(t3)             ; p2.B | p3
+    addiu t4, t4, -4
+    sltiu t5, t4, 4
+    beqz  t5, pp_four_a
+    addiu t3, t3, 12
+    beqz  t4, pp_restore
+    nop
+    b     pp_px
     nop
 
 .if . > S_FRAME

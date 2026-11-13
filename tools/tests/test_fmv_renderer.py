@@ -17,11 +17,17 @@ class LoadCountCPU(CPU):
     def __init__(self):
         super().__init__()
         self.ram_loads = 0
+        self.stores = 0
 
     def step(self):
         word = self.read(self.pc)
         if word >> 26 in (32, 33, 34, 35, 36, 37, 38):
-            self.ram_loads += 1
+            base = self.r[(word >> 21) & 31]
+            offset = (word & 0xFFFF) - ((word & 0x8000) << 1)
+            if not 0x1F800000 <= (base + offset) & 0x1FFFFFFF < 0x1F800400:
+                self.ram_loads += 1     # the scratchpad costs no bus cycles
+        elif word >> 26 in (40, 41, 42, 43, 46):
+            self.stores += 1
         super().step()
 
 
@@ -56,7 +62,7 @@ class Renderer(unittest.TestCase):
             for length in (1, 2, 3, 4, 5, 7, 8, 15, 127, 320):
                 with self.subTest(alignment=alignment, length=length):
                     c = self.cpu(LoadCountCPU)
-                    src, dest, pal = 0x80020000, 0x80030000 + alignment, 0x80140200
+                    src, dest, pal = 0x80020000, 0x80030000 + alignment, 0x1F800000
                     indices = bytes((i * 53 + 17) & 255 for i in range(length))
                     c.load(pal, b''.join(palette))
                     # pp_run consumes x0,len,indices then stops at pp_row.
@@ -70,9 +76,12 @@ class Renderer(unittest.TestCase):
                     self.assertEqual(actual, expected)
                     if length == 320:
                         self.assertLess(c.steps, 8.5 * length)
-                        # 80 source words + 320 palette words + run metadata,
-                        # rather than 320 individual source-byte loads.
-                        self.assertLessEqual(c.ram_loads, 410)
+                        # 80 source words + run metadata: the palette is in
+                        # the scratchpad, never one load per source byte.
+                        self.assertLessEqual(c.ram_loads, 90)
+                    if alignment == 0 and length % 4 == 0:
+                        # a word-aligned run stores whole words only
+                        self.assertEqual(c.stores, (length // 4) * 3 + 1)
 
     def test_probe_sum_matches_every_byte_without_lane_carries(self):
         for offset in range(4):

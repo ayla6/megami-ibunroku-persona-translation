@@ -29,7 +29,8 @@ def signed(x):
 
 class CPU:
     def __init__(self):
-        self.mem = bytearray(0x200000)
+        # 2 MB of main RAM, then the 1 KB data scratchpad (0x1F800000)
+        self.mem = bytearray(0x200000 + 0x400)
         self.r = [0] * 32
         self.hi = self.lo = 0
         self.pc = self.next_pc = 0
@@ -44,7 +45,9 @@ class CPU:
     def offset(self, address, size=1):
         address &= MASK
         physical = address & 0x1FFFFFFF
-        if not 0 <= physical <= len(self.mem) - size:
+        if 0x1F800000 <= physical <= 0x1F800400 - size:
+            return 0x200000 + physical - 0x1F800000
+        if not 0 <= physical <= 0x200000 - size:
             raise ValueError(f"RAM access {address:08x}+{size} at PC {self.pc:08x}")
         return physical
 

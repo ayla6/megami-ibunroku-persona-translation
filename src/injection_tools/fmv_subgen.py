@@ -371,6 +371,18 @@ def load_zoom(mv):
     return out
 
 
+def word_cols(x0, w):
+    """(x0, w) of a full-band patch: w a multiple of 4 so every 24bpp band
+    row (w*3 bytes) starts word-aligned and the patch pass stores whole
+    words; x0 even so the GPU rect is halfword aligned. Grows the band
+    rightwards, or leftwards at the frame edge, never cutting a column."""
+    w = min(FRAME_W, (w + (x0 & 1) + 3) & ~3)
+    x0 &= ~1
+    if x0 + w > FRAME_W:
+        x0 = FRAME_W - w
+    return x0, w
+
+
 def zoom_levels(pts, scale, f0, f1, max_levels=ZOOM_MAX_LEVELS):
     """([level zoom per mille, ...], [level per frame, ...]) - or None when
     the picture holds the plate's size.
@@ -378,40 +390,75 @@ def zoom_levels(pts, scale, f0, f1, max_levels=ZOOM_MAX_LEVELS):
     The opening quote's picture zooms under the burned text (the moon card
     shrinks ~3% as it brightens), so one plate rectangle cannot line up with
     every frame. A still - the ending poems - changes less than ZOOM_VARY and
-    stays on the pan's path. The levels span the measured range, ZOOM_STEP
-    per mille apart, and every frame takes the nearest: the worst frame is
-    half a step off, a fraction of a pixel across the band.
+    stays on the pan's path.
 
-    `max_levels` limits the ladder to the driver's storage budget. OPEN's
-    compact ink lookups leave an auxiliary bank for two more raw levels,
-    so it follows the measured zoom rather than holding one median scale."""
-    z = [pts.get(f) for f in range(f0, f1 + 1)]
-    # hold the nearest measurement where the picture was too dark to fit
-    for i in range(1, len(z)):
-        if z[i] is None:
-            z[i] = z[i - 1]
-    for i in range(len(z) - 2, -1, -1):
-        if z[i] is None:
-            z[i] = z[i + 1]
-    vis = [v for v, sc in zip(z, scale) if v is not None and sc > 0]
-    if not vis:
+    Each frame's measurement is a fit on a 2 per mille grid with a few per
+    mille of noise, and the movie's zoom itself is a steady ramp: the frames
+    follow one least-squares line weighted by the picture's brightness, held
+    at the measured window's ends. Following the raw points instead flips a
+    frame between two levels and back, which shows as the band popping.
+
+    `max_levels` limits the ladder to the driver's storage budget (OPEN keeps
+    three). The levels cover the fitted range: no frame is further from its
+    level than a uniform ladder's half step, and within that bound they sit
+    where the brightness-weighted worst mismatch is smallest - a rectangle
+    edge shows in proportion to the picture under it, so the bright frames
+    get the close levels. The level nearest the plate's own size moves to
+    exactly 1000 whenever that keeps every frame inside the bound: a 1:1
+    crop is the sharpest picture and needs no resampling."""
+    raw = [pts.get(f) for f in range(f0, f1 + 1)]
+    seen = [i for i, v in enumerate(raw) if v is not None]
+    if not seen:
         return None
-    lo, hi = min(vis), max(vis)
-    if hi - lo < ZOOM_VARY:
+    vis = [raw[i] for i in seen if scale[i] > 0]
+    if not vis or max(vis) - min(vis) < ZOOM_VARY:
         return None
-    if hi == lo:
-        lev = [float(lo)]
-    else:
-        n = max(2, min(max_levels,
-                       (hi - lo + ZOOM_STEP - 1) // ZOOM_STEP + 1))
-        lev = [lo + (hi - lo) * k / (n - 1) for k in range(n)]
-        # keep a level exactly on the plate's own frame: it is the sharpest,
-        # brightest picture, and a 1:1 crop needs no resampling at all
-        if lo <= 1000 <= hi:
-            near = min(range(n), key=lambda k: abs(lev[k] - 1000))
-            if abs(lev[near] - 1000) > 0.5:
-                lev[near] = 1000.0
-                lev.sort()
+    w = [max(1, scale[i]) for i in seen]
+    sw = sum(w)
+    mx = sum(wi * i for wi, i in zip(w, seen)) / sw
+    my = sum(wi * raw[i] for wi, i in zip(w, seen)) / sw
+    den = sum(wi * (i - mx) ** 2 for wi, i in zip(w, seen))
+    slope = (sum(wi * (i - mx) * (raw[i] - my) for wi, i in zip(w, seen)) / den
+             if den else 0.0)
+    z = [my + slope * (min(max(i, seen[0]), seen[-1]) - mx) for i in range(len(raw))]
+    lit = [i for i in range(len(z)) if scale[i] > 0]
+    lo, hi = min(z[i] for i in lit), max(z[i] for i in lit)
+    n = max(2, min(max_levels, int(-(-(hi - lo) // ZOOM_STEP)) + 1))
+    cap = (hi - lo) / (2 * (n - 1))
+    weight = {i: min(256, scale[i]) / 256.0 for i in lit}
+
+    def place(err):
+        """Levels for a weighted error bound, or None: interval stabbing,
+        each level centred in its frames' common window."""
+        iv = sorted(((z[i] - min(cap, err / weight[i]), z[i] + min(cap, err / weight[i]))
+                     for i in lit), key=lambda r: r[1])
+        out, k = [], 0
+        while k < len(iv):
+            left, right = iv[k]
+            k += 1
+            while k < len(iv) and iv[k][0] <= right:
+                left = max(left, iv[k][0])
+                k += 1
+            out.append(1000.0 if left <= 1000 <= right else (left + right) / 2)
+            if len(out) > n:
+                return None
+        return out
+
+    lev = place(cap + 1e-9)
+    a, b = 0.0, cap
+    for _ in range(40):
+        m = (a + b) / 2
+        got = place(m)
+        if got is None:
+            a = m
+        else:
+            b, lev = m, got
+    lev.sort()
+    if lo <= 1000 <= hi:
+        near = min(range(len(lev)), key=lambda k: abs(lev[k] - 1000))
+        snapped = lev[:near] + [1000.0] + lev[near + 1:]
+        if all(min(abs(l - z[i]) for l in snapped) <= cap + 1e-9 for i in lit):
+            lev = snapped
     tab = bytes(min(range(len(lev)), key=lambda k: abs(lev[k] - v)) for v in z)
     return lev, tab
 
@@ -683,9 +730,7 @@ def collect(adv, ext, open_only=False):
              [y for y, _r in runs_by_row] + [y + 1 for y, _r in runs_by_row]
         band_y0 = min(ys)
         band_x0 = min(xs) & ~1
-        band_w = ((max(xs) - band_x0 + 1) & ~1)
-        if band_x0 + band_w > 320:
-            band_w = 320 - band_x0
+        band_x0, band_w = word_cols(band_x0, max(xs) - band_x0)
         band = (band_y0, max(ys) - band_y0, band_x0, band_w)
         # the picture may itself zoom under the burned text; then each level
         # is a pre-scaled copy of the band and the renderer picks this
@@ -711,9 +756,8 @@ def collect(adv, ext, open_only=False):
                 nx1 = min(FRAME_W, x0 + w + padx)
                 ny0 = max(0, y0 - pady)
                 ny1 = min(240, y0 + rows + pady)
-                if (nx1 - nx0) & 1:
-                    nx1 = min(FRAME_W, nx1 + 1)
-                band = (ny0, ny1 - ny0, nx0, nx1 - nx0)
+                nx0, nw = word_cols(nx0, nx1 - nx0)
+                band = (ny0, ny1 - ny0, nx0, nw)
             patch = zoom_patch(mv, level, band, levels)
             pan = (0, 0, 0, 0)
             flags |= F_ZOOM
