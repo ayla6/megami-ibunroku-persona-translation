@@ -4,3 +4,4 @@
 - Map subtitles don't allow for a name as long as Convenience Store. I've thought about having it as Konbini or Conbini but the script does refer to it as a convenience store and I think the association is much more obvious when it's a shortened version of it in English.
 - Config text could be written fully instead of all CMPCTD.
 - Need to be sure we aren't writing in any other wrong areas of memory. We have better tools now.
+- The red line in See explanations is like just ever so slightly too long, I guess deal with it?
