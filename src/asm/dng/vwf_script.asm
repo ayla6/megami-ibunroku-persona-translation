@@ -287,6 +287,7 @@ dng_txt_go:                                     ; a1 = 1: menu mode
     divu    t1, t2
     mfhi    t3                                  ; row
     li      t4, 15
+    nop                                         ; no mult within two instructions of mfhi
     multu   t3, t4
     mflo    t5
     addu    t5, t5, t0                          ; pos = row * 15 + col

@@ -33,8 +33,9 @@ btlp_act_queue:
     addiu   t1, t1, -1
     bnez    t1, @@scan
     addiu   t0, t0, -12
+    lw      t7, -0x41BC(t8)            ; glyph counter (not in the delay slot: btlp_act_new reads it first)
     j       btlp_act_new               ; not queued yet: allocate a ring slot
-    lw      t7, -0x41BC(t8)            ; glyph counter
+    nop
 @@found:
     j       btlp_act_copy              ; reuse its slot
     lw      t9, 8(t0)
