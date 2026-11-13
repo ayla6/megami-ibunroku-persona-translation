@@ -1,4 +1,4 @@
-# 2026-11-12
+# 2026-11-13
 - Added a Western controls patch: Circle to Cross, Triangle to Square and vice-versa. Like a lame western PlayStation release.
 - Doubles text speed to match the fact that Japanese text has about half as many characters as its English equivalent. The game is like a lot faster because of that. This is the more accurate to the original game way to do it btw.
 - Adjusted text wrapping to make it more natural. Too complicated to explain the changes exactly here, but it includes:
@@ -14,6 +14,7 @@
 - Slightly better dealing with memory cards being inserted and removed while on the save screen.
 - Faster FMV subtitle rendering! Even the moon transition is basically at fullspeed now without overclocking!
 - Possible fixes for possible bugs that could possibly affect real hardware. (Can't test that!)
+- Translated credits and missing subtitle hooks there. I'm so sorry they weren't there before.
 
 # 2026-11-11-2
 - Fixed the game freezing on real hardware and accurate emulators when a menu with VWF small text (like the item list) is drawn. The text was sent to the GPU in chunks too big for it, which only some emulators (like DuckStation) tolerated.
