@@ -226,7 +226,9 @@ class OfferVwf(unittest.TestCase):
         c = self.machine()
         actor, row = 0x801b0000, 0x800f6fb4
         race = 17
-        prefix = btlui.sf(btlui.psp_races()[race - 1]) + b'\xcb'
+        # The race, its ':' and the small-font space analyze_race_gap.asm puts
+        # before the name.
+        prefix = btlui.sf(btlui.psp_races()[race - 1]) + b'\xcb\x00'
         self.assertEqual(c.read(0x800dea58, 1), 24)
         for ident, name in self.demon_rows:
             encoded = items.encode(name)

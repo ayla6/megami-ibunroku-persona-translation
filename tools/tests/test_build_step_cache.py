@@ -87,7 +87,8 @@ class StepCache(unittest.TestCase):
         (self.root / 'build').mkdir()
         (self.root / 'src' / 'input').write_text('one')
         outputs = [self.root / 'build' / f'movie_subs{suffix}.bin' for suffix in
-                   ('_data', '_open_data', '_tex', '_open_tex', '_zoom', '_open_zoom')]
+                   ('_data', '_open_data', '_end_data', '_tex', '_open_tex', '_end_tex',
+                    '_zoom', '_open_zoom', '_end_zoom')]
         def produce(*_args):
             for output in outputs:
                 output.write_bytes(b'result')
