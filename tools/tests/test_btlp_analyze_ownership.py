@@ -1,4 +1,5 @@
-"""ANALYZE status board: only the translated producers' buffers are VWF.
+"""ANALYZE status board: the translated producers' buffers, the rank/kind
+rows and the stat label block are VWF.
 
 The board's rows are runtime-generated, so they sit outside every producer
 ownership range. addresses.inc registers the buffers of the translated
@@ -6,9 +7,8 @@ producers as always-owned spans; this test binds that table back to the live
 board and the installed lookup:
 
   * every span holds board rows and the spans do not overlap;
-  * no other static list points a row into a span (the shared kana label bank,
-    the untranslated label block and the fixed-width MAG ATK / MAG DEF labels
-    stay outside);
+  * no other static list points a row into a span (the shared kana label
+    bank stays outside);
   * the installed lookup owns exactly the board rows inside the spans, and
     every other board row keeps the retail path.
 """
@@ -42,7 +42,7 @@ class AnalyzeOwnership(unittest.TestCase):
         cls.spans = tuple(
             (name, toolbelt.asm_equ(f'ANALYZE_{name}_BUF'),
              toolbelt.asm_equ(f'ANALYZE_{name}_END'))
-            for name in ('NAME', 'SPELL', 'TRAIT'))
+            for name in ('NAME', 'LABEL', 'SPELL', 'TRAIT', 'RANK', 'KIND'))
         count, rows = struct.unpack_from('<II', cls.image, BOARD_HDR - B)
         cls.board = []
         for k in range(count):
@@ -63,25 +63,191 @@ class AnalyzeOwnership(unittest.TestCase):
                              if lo <= text < hi], name)
 
     def test_owned_rows_are_the_translated_producers(self):
-        # Header name, six spell rows and the affinity value line. The MAG
-        # ATK / MAG DEF labels (0x800DEA2C/0x800DEA34) and the "TRAIT:" label
-        # at 0x800DEA3C are fixed-width, like the untranslated label block
-        # above them (0x800DEA18..0x800DEA28), the rank/kind labels and the
-        # kana bank.
+        # Header name, six spell rows, the stat labels (STR..LUK, MAG ATK /
+        # MAG DEF, TRAIT) and the affinity value line. The rank/kind rows and
+        # the kana bank (Lv / HP / SP / St.) keep the retail path.
         self.assertEqual([k for k, _text in self.board_span],
-                         [1, 16, 17, 18, 19, 20, 21, 36])
+                         [1, 14, 15, 16, 17, 18, 19, 20, 21,
+                          28, 29, 30, 31, 32, 33, 34, 35, 36])
         spans = {name: [k for k, text, _n in self.board if lo <= text < hi]
                  for name, lo, hi in self.spans}
         self.assertEqual(spans['NAME'], [1])
+        self.assertEqual(spans['LABEL'], [28, 29, 30, 31, 32, 33, 34, 35])
         self.assertEqual(spans['SPELL'], [16, 17, 18, 19, 20, 21])
         self.assertEqual(spans['TRAIT'], [36])
+        self.assertEqual(spans['RANK'], [14])
+        self.assertEqual(spans['KIND'], [15])
 
-    def test_labels_are_not_owned(self):
-        # The MAG ATK / MAG DEF slots and the "TRAIT:" label keep the retail
-        # fixed-cell path; only the affinity value line is VWF.
-        for text in (0x800DEA2C, 0x800DEA34, 0x800DEA3C):
-            self.assertEqual(self._lookup(text), 0, hex(text))
+    def test_labels_are_owned(self):
+        for k in range(28, 36):
+            self.assertEqual(self._lookup(self.board[k][1]), 1, k)
         self.assertEqual(self._lookup(toolbelt.asm_equ('ANALYZE_TRAIT_BUF')), 1)
+
+    def _header(self, prefix):
+        from mips_cpu import CPU, REG
+        buf = toolbelt.asm_equ('ANALYZE_NAME_BUF')
+        name = bytes(range(0xA6, 0xB0))          # ten distinct glyph cells
+        c = CPU()
+        c.load(B, self.image)
+        c.load(0x80010000, self.full[0x800:])
+        c.load(0x801FF000, bytes(0x60))
+        c.load(0x801FF03F, name)
+        c.load(buf, prefix + b'\xa5' * (24 - len(prefix)))
+        c.r[REG['s0']] = 0x801FF000
+        c.r[REG['a2']] = buf + len(prefix)
+        c.r[REG['sp']] = 0x801ff800
+        c.start(0x800AD874)
+        for _ in range(100):
+            if c.pc == 0x800AD8A4:
+                break
+            c.step()
+        else:
+            self.fail('header copy did not reach the full-name hook')
+        at = c.offset(buf, 24)
+        return bytes(c.mem[at:at + 24]), name
+
+    def test_race_prefix_gets_a_space(self):
+        # "Jaki:" + space + name; a prefix without ':' is left as it was.
+        tag = bytes([0xAF, 0xA6, 0xB0, 0xAE, 0xCB])
+        got, name = self._header(tag)
+        self.assertEqual(got[:len(tag) + 1 + 10], tag + b'\x00' + name)
+        got, name = self._header(tag[:-1])
+        self.assertEqual(got[:len(tag) - 1 + 10], tag[:-1] + name)
+
+    def _skill_codes(self, i):
+        """The full name glyphs skill_name_copy_full writes for skill `i`."""
+        def rd(a, n):
+            return self.full[a - 0x80010000 + 0x800:a - 0x80010000 + 0x800 + n]
+        a = 0x80047D44 + i * 0x14
+        out = bytearray()
+        for x in rd(a, 10):
+            if x == 0xFF:
+                return bytes(out)
+            out.append(x)
+        spare = rd(a + 0x11, 3)
+        if spare[0] == 0xFE:
+            p = toolbelt.asm_equ('SKILL_TAILS_ADDR') + spare[1]
+            while rd(p, 1)[0] != 0xFF:
+                out.append(rd(p, 1)[0])
+                p += 1
+        else:
+            out += spare.split(b'\xff')[0]
+        return bytes(out)
+
+    def test_every_enemy_spell_fits_the_column(self):
+        # ANALYZE lists the enemy definition's six spells (0x80041784 +
+        # key * 0x38, ids at +0x2E). Every one fits ANALYZE_SPELL_PX at tier 0
+        # or tier 1 (narrow spaces); the battle page has no compact face, so
+        # a name that needs tier 2 must fail here, not draw over the frame.
+        import smallfont_vwf
+        widths = (ROOT / 'build' / 'btl_sf_width.bin').read_bytes()
+        budget = toolbelt.asm_equ('ANALYZE_SPELL_PX')
+        ids = set()
+        for key in range(195):
+            a = 0x80041784 + key * 0x38 + 0x2E - 0x80010000 + 0x800
+            ids.update(x for x in self.full[a:a + 6] if x)
+        for i in sorted(ids):
+            codes = self._skill_codes(i)
+            tier1 = sum(smallfont_vwf.tier_adv(widths[c], c, 1) for c in codes)
+            self.assertLessEqual(tier1, budget, (i, codes.hex()))
+
+    def _copy_rows(self, ids):
+        """Run the installed copy loop for an enemy whose spells are `ids`."""
+        from mips_cpu import CPU, REG
+        c = CPU()
+        c.load(B, self.image)
+        c.load(0x80010000, self.full[0x800:])
+        c.load(0x801FF000, bytes(0x60))
+        for k, i in enumerate(ids):
+            c.write(0x801FF000 + 0x2E + k, i, 1)
+        c.r[REG['s2']] = 0x801FF000
+        c.r[REG['s1']] = 0
+        c.r[REG['sp']] = 0x801ff800
+        c.start(0x800ADDC0)
+        for _ in range(40000):
+            if c.pc == 0x800AE070:
+                return c
+            c.step()
+        self.fail('spell copy loop did not reach the retail exit')
+
+    def _metric(self, c, row, code):
+        from mips_cpu import REG
+        c.load(0x801FE000, struct.pack('<hhI', 0, 0, row))
+        c.r[REG['t7']] = 0x801FE000
+        c.r[REG['a1']] = code
+        c.start(self.sym['btl_sf_metric'])
+        for _ in range(100):
+            if c.pc == self.sym['btl_sf_metric_back']:
+                return c.r[REG['a1']] & 0xFF
+            c.step()
+        self.fail('width lookup did not return to the bridge')
+
+    def test_wide_spell_rows_use_narrow_spaces(self):
+        # The copy loop marks a row wider than the column (its id is on the
+        # tier list) and the bridge's width lookup halves only that row's
+        # word space; a short row and every other board row keep 4 px.
+        import smallfont_vwf
+        widths = (ROOT / 'build' / 'btl_sf_width.bin').read_bytes()
+        budget = toolbelt.asm_equ('ANALYZE_SPELL_PX')
+        buf = toolbelt.asm_equ('ANALYZE_SPELL_BUF')
+        stride = toolbelt.asm_equ('ANALYZE_SPELL_STRIDE')
+        def px(i):
+            return sum(smallfont_vwf.adv(widths[c]) for c in self._skill_codes(i))
+        wide = next(i for i in range(1, 243) if px(i) > budget)
+        short = next(i for i in range(1, 243)
+                     if b'\x00' in self._skill_codes(i) and px(i) <= budget)
+        c = self._copy_rows([wide, short, 0, 0, 0, 0])
+        tiers = [c.read(buf + k * stride + stride - 1, 1) for k in range(2)]
+        self.assertEqual(tiers, [1, 0])
+        self.assertEqual(self._metric(c, buf, 0), widths[0] >> 1)
+        self.assertEqual(self._metric(c, buf + stride, 0), widths[0])
+        first = self._skill_codes(wide)[0]
+        self.assertEqual(self._metric(c, buf, first), widths[first])
+        self.assertEqual(self._metric(c, 0x800DEA18, 0), widths[0])
+
+    def test_spell_rows_carry_the_full_name(self):
+        # Drive the installed copy loop over an enemy whose six spells are
+        # long names: every row must hold the whole name and its FF, and
+        # the descriptors must point at the rows with room for it.
+        from mips_cpu import CPU, REG
+        stride = toolbelt.asm_equ('ANALYZE_SPELL_STRIDE')
+        buf = toolbelt.asm_equ('ANALYZE_SPELL_BUF')
+        records = 0x80047D44
+        def record(i):
+            a = records + i * 0x14 - 0x80010000 + 0x800
+            return self.full[a:a + 0x14]
+        def name(i):
+            return record(i)[:10]
+        # a full head and a tail (+0x11 is not FF): longer than ten glyphs
+        long_ids = [i for i in range(1, 243)
+                    if b'\xff' not in name(i) and record(i)[0x11] != 0xFF][:6]
+        self.assertEqual(len(long_ids), 6)
+        c = CPU()
+        c.load(B, self.image)
+        c.load(0x80010000, self.full[0x800:])
+        c.load(0x801FF000, bytes(0x60))
+        for k, i in enumerate(long_ids):
+            c.write(0x801FF000 + 0x2E + k, i, 1)
+        c.load(buf, b'\xa5' * (6 * stride))
+        c.r[REG['s2']] = 0x801FF000
+        c.r[REG['s1']] = 0
+        c.r[REG['sp']] = 0x801ff800
+        c.start(0x800ADDC0)
+        for _ in range(20000):
+            if c.pc == 0x800AE070:
+                break
+            c.step()
+        else:
+            self.fail('spell copy loop did not reach the retail exit')
+        for k, i in enumerate(long_ids):
+            row = bytes(c.mem[c.offset(buf + k * stride, stride):
+                              c.offset(buf + k * stride, stride) + stride])
+            self.assertIn(b'\xff', row, i)
+            self.assertGreater(row.index(b'\xff'), 10, i)
+            self.assertEqual(row[:10], name(i))
+            _k, text, n = self.board[16 + k]
+            self.assertEqual(text, buf + k * stride)
+            self.assertEqual(n, stride - 1)
 
     def test_trait_descriptor_holds_the_full_line(self):
         # The row points at the relocated buffer and its count is the whole
@@ -313,8 +479,10 @@ class AnalyzeOwnership(unittest.TestCase):
             base, span = 0x80000000 | (word & 0xffffff), word >> 24
             spans.append((hex(base), base, base + span))
             addr += 4
+        starts = {lo for _name, lo, _hi in spans}
         for _name, lo, hi in spans:
-            self.assertEqual(self._lookup(hi), 0, hex(hi))
+            if hi not in starts:                 # a touching span owns its start
+                self.assertEqual(self._lookup(hi), 0, hex(hi))
             self.assertEqual(self._lookup(lo), 1, hex(lo))
             self.assertEqual(self._lookup(lo + (hi - lo) // 2), 1, hex(lo))
 

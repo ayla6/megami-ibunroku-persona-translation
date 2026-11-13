@@ -134,10 +134,9 @@ btl_sf_flat_ptr:
  nop
 btl_sf_glyph:
  lbu a1,0(a1)
- la a2,BTLP_SF_WIDTH_ADDR
- addu a2,a2,a1
- lbu a1,0(a2)
+ j btl_sf_metric ; a1 = the glyph's width byte (btlp/offer_name.asm)
  nop
+btl_sf_metric_back:
  sf_glyph_layout a1, a0, a2, v1, a1
  addu a0,a0,a1
  sw a0,0(t9)

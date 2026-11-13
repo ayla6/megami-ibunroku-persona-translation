@@ -637,7 +637,11 @@ NAME_ADDR equ OVERLAY_SLOT_ADDR
 NAME_INIT_JAL_TARGET equ 0x80067318      ; first init callee, NAME.BIN +0x14 (name/latin_start.asm)
 NAME_TAB_STUB_ADDR equ 0x80024744        ; dead SLPS function (tools/deadfuncs.py, unclaimed)
 NAME_RING_STUB_ADDR equ 0x800316DC       ; dead SLPS function, taken from tools/choices.py FREE (name/ring.asm)
-NAME_RING_STUB_END equ 0x80031770
+NAME_RING_STUB_END equ 0x80031744
+;; The rest of that dead function: the ANALYZE "race: name" gap (btlp/offer_name.asm),
+;; resident but only entered from BTLP.
+ANALYZE_RACE_GAP_ADDR equ 0x80031744
+ANALYZE_RACE_GAP_END equ 0x80031770
 ;; The entry screen's family / given cells (u16 glyph codes) and the 10-byte
 ;; save slots the compact writer fills (name/long_names.asm).
 NAME_FAMILY_TEXT_ADDR equ 0x800682A0     ; g_name_text[0][0]
@@ -729,12 +733,36 @@ BTLP_HDR_VALUE_DESC equ 0x800DD764
 ;; kind labels, the shared kana label bank) stay retail. The span ends are the
 ;; buffers' own bounds, not the row descriptor addresses; the board list is
 ;; checked against these spans by tools/tests/test_btlp_analyze_ownership.py.
-;; The MAG ATK / MAG DEF labels at 0x800DEA2C are translated but fixed-width,
-;; like the other board labels: they are not an owned span.
-ANALYZE_NAME_BUF equ 0x800F6FB4         ; race:name header (enemystatus.c producer)
+;; The stat labels (STR..LUK, the two magic stats, traits) are an owned span
+;; too, so they share the VWF of the other boards; the shared kana label bank
+;; (Lv / HP / SP / St.) does not.
+ANALYZE_NAME_BUF equ 0x800F6FB4         ; "race: name" header (enemystatus.c producer)
+ANALYZE_NAME_CODE_SIZE equ 56           ; btlp/offer_name.asm: the ANALYZE full name, allocated by btlp.py
 ANALYZE_NAME_END equ 0x800F6FCC
-ANALYZE_SPELL_BUF equ 0x800F8780        ; six 11-byte spell rows (skills.py)
-ANALYZE_SPELL_END equ 0x800F87C2
+;; The labels (rows 28-35, btlui.py) are packed back to back in the retail
+;; label block, each row's count its exact length (no terminators), so the
+;; longer English fits the same 44 bytes.
+ANALYZE_LABEL_BUF equ 0x800DEA18
+ANALYZE_LABEL_END equ 0x800DEA44        ; = the board's row list
+;; Six full-name spell rows (btlp/analyze_spells.asm), right after the trait
+;; line in the same exclusive dialogue scratch and below the VWF ring; the
+;; rows are byte-addressed, and touching the trait line lets battle_board_text
+;; merge the two into one ownership directory entry.
+ANALYZE_SPELL_STRIDE equ 24             ; SKILL_MAXLEN glyphs + FF
+ANALYZE_SPELL_PX equ 92                 ; the spell column's room before the frame; wider rows use tier 1
+;; BTLP's retail 16 px string renderer at 0x8007BF44 is a jump to btlp_str16;
+;; its dead body holds the bridge's width lookup and the tier-1 id list
+;; (btlp/analyze_metric.asm). Nothing enters the body.
+ANALYZE_METRIC_ADDR equ 0x8007BF4C
+ANALYZE_METRIC_END equ 0x8007C068
+ANALYZE_SPELL_BUF equ 0x8005772F        ; = ANALYZE_TRAIT_END: one ownership entry
+ANALYZE_SPELL_END equ 0x800577BF        ; ANALYZE_SPELL_BUF + 6 * ANALYZE_SPELL_STRIDE
+;; The rank and kind rows (PHYSICAL / WEAKBOSON ...) follow, so the retail
+;; label text they copy is VWF and shares the same ownership entry.
+ANALYZE_RANK_BUF equ 0x800577BF         ; ten cells + end, retail 0x800F8248
+ANALYZE_RANK_END equ 0x800577CB
+ANALYZE_KIND_BUF equ 0x800577CB         ; ten cells + end, retail 0x800F8300
+ANALYZE_KIND_END equ 0x800577D7
 ;; The affinity line is the record's 25-cell head plus the pool tail that
 ;; completes it (smallfont_vwf.write_pool): the retail 28-byte slot ends at
 ;; g_btl_slot_owner. The main ANALYZE board and story-dialogue unpacking are
@@ -742,6 +770,9 @@ ANALYZE_SPELL_END equ 0x800F87C2
 ;; the CONTACT stock-name range and all name-owner ranges.
 ANALYZE_TRAIT_BUF equ 0x80057700
 ANALYZE_TRAIT_END equ 0x8005772F        ; 47 cells
+.if ANALYZE_SPELL_END != ANALYZE_SPELL_BUF + 6 * ANALYZE_SPELL_STRIDE || ANALYZE_SPELL_BUF < ANALYZE_TRAIT_END || ANALYZE_RANK_BUF != ANALYZE_SPELL_END || ANALYZE_KIND_BUF != ANALYZE_RANK_END || ANALYZE_KIND_END > VWF_DLG_RING_ADDR
+    .error "ANALYZE rows overlap the trait line or the VWF ring"
+.endif
 ;; Trait code/pool addresses are allocated by btlp.py from reclaimed strings.
 
 ;; --- full-length item/demon names (tools/slps.py + items.py/demons.py,

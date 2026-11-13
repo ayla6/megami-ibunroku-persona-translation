@@ -51,7 +51,11 @@ offer_tail:
 .endarea
 
 ;; ANALYZE builds the race prefix before copying the ten-byte actor name.
+;; A prefix ending in ':' gets a space before the name ("Jaki: Gremlin").
 ;; Append the same tail after that head, then terminate the combined row.
+.org 0x800ad874
+    j       analyze_race_gap
+    nop
 .org 0x800ad8a4
     jal     analyze_full_name
     nop
@@ -59,7 +63,7 @@ offer_tail:
     .byte   24
 
 .org ANALYZE_NAME_CODE
-.area 56
+.area ANALYZE_NAME_CODE_SIZE
 analyze_full_name:
     move    t4, ra
     lbu     v1, 0x3e(s0)

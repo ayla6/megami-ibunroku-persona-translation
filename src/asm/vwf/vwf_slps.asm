@@ -172,10 +172,10 @@ vwf_font_width:                         ; u8 pen advance
 ;; ENGLISH-PRODUCER BUFFERS outside every ownership range above. A row that
 ;; points into one of these buffers is owned (VWF) even though the battle
 ;; renderers do not know the row's producer. These are the buffers the
-;; translated producers write, never descriptor addresses: the ANALYZE board's
-;; untranslated rows (ailments, full-width rank/kind labels, the MAG ATK /
-;; MAG DEF labels, the shared kana label bank) stay fixed because their text
-;; lives elsewhere. The trait value line is translated, so it is owned; its
+;; translated producers write, never descriptor addresses, plus the ANALYZE
+;; stat label block and its rank/kind rows. The board's ailment rows and the
+;; shared kana label bank stay fixed because their text lives elsewhere.
+;; The trait value line is translated, so it is owned; its
 ;; unanalysed placeholder is a non-text cell and keeps the retail 8 px `?`.
 ;; Checked only when the range directory above has no match; the entries are
 ;; {span:u8, base low 24 bits}, with a zero word terminating the list. The

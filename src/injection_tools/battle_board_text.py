@@ -446,11 +446,11 @@ def plan(data, rows):
             descriptors[desc] = (desc, new_x, addr, len(body) - 1)
     descriptor_list = sorted(descriptors.values())
 
-    # The directory: every arena pool, the three ANALYZE buffers the resident
-    # ownership lookup already knew, and the command-stage member boards'
-    # full-length Persona rows (produced by btlp/status_persona.asm).
+    # The directory: every arena pool, the ANALYZE buffers and label block,
+    # and the command-stage member boards' full-length Persona rows
+    # (produced by btlp/status_persona.asm).
     directory = [(BASE + start, end - start) for start, end in arena]
-    for name in ('NAME', 'SPELL', 'TRAIT'):
+    for name in ('NAME', 'LABEL', 'SPELL', 'TRAIT', 'RANK', 'KIND'):
         base = toolbelt.asm_equ(f'ANALYZE_{name}_BUF')
         end = toolbelt.asm_equ(f'ANALYZE_{name}_END')
         directory.append((base, end - base))
@@ -470,6 +470,17 @@ def plan(data, rows):
                       toolbelt.asm_equ('BTLP_BOARD23_NAME_END_2')
                       - toolbelt.asm_equ('BTLP_BOARD23_NAME_ROW_2')))
     directory.sort()
+    # Spans that touch share one entry while the merged span still fits the
+    # entry's size byte: the directory lives in reclaimed space, not a pool.
+    merged = []
+    for base, span in directory:
+        if merged and base <= merged[-1][0] + merged[-1][1]:
+            end = max(merged[-1][0] + merged[-1][1], base + span)
+            if end - merged[-1][0] <= 0xff:
+                merged[-1] = (merged[-1][0], end - merged[-1][0])
+                continue
+        merged.append((base, span))
+    directory = merged
     table = bytearray()
     for base, span in directory:
         if not 0 < span <= 0xff or base & 0xff000000 != 0x80000000:

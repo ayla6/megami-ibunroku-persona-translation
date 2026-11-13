@@ -59,9 +59,9 @@ personality	7	Proud
 auto	0x800de5fc	Normal	
 auto	0x800de606	Replay	
 auto	0x800de610	Personal	
-btlui_label	0x800dea2c	MAG ATK	
-btlui_label	0x800dea34	MAG DEF	
-btlui_label	0x800dea3c	TRAIT:	
+btlui_label	0x800dea2c	MAGIC ATK	
+btlui_label	0x800dea34	MAGIC DEF	
+btlui_label	0x800dea3c	TRAITS:	
 race_literal	23	Mother	ジボシン/ジャシン/ボンジン source slot; no PSP table
 race_literal	25	Evil	ジボシン/ジャシン/ボンジン source slot; no PSP table
 race_literal	27	Mortal	ジボシン/ジャシン/ボンジン source slot; no PSP table

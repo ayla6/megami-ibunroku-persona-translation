@@ -157,17 +157,19 @@ class BattleBoardText(unittest.TestCase):
         entries = [(0x80000000 | (word & 0xffffff), word >> 24, 0)
                    for i in range(0, len(table) - 4, 4)
                    for word in (struct.unpack_from('<I', table, i)[0],)]
-        # Every translated source pool, the three ANALYZE buffers, the five
+        # Every translated source pool, the ANALYZE buffers and label block, the five
         # command-stage Persona rows, and board 23's arcana label table plus
         # its three full-name rows (btlp/board23_names.asm).
         self.assertEqual(len(entries), len(self.plan['directory']))
         self.assertEqual(entries, sorted(entries))
-        bases = {base for base, _span, _pad in entries}
-        for name in ('ANALYZE_NAME_BUF', 'ANALYZE_SPELL_BUF',
+        # Touching spans share an entry, so check coverage, not bases.
+        for name in ('ANALYZE_NAME_BUF', 'ANALYZE_LABEL_BUF', 'ANALYZE_SPELL_BUF',
                      'ANALYZE_TRAIT_BUF', 'BTLP_STATUS_PERSONA_BUF',
                      'BTLP_BOARD23_TAG_TABLE', 'BTLP_BOARD23_NAMES_ADDR',
                      'BTLP_BOARD23_NAME_ROW_2'):
-            self.assertIn(toolbelt.asm_equ(name), bases)
+            at = toolbelt.asm_equ(name)
+            self.assertTrue(any(base <= at < base + span
+                                for base, span, _pad in entries), name)
         for base, span, _pad in entries:
             self.assertTrue(0x80000000 <= base < 0x80200000)
             self.assertTrue(0 < span <= 0xff)

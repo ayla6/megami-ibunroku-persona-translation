@@ -122,6 +122,7 @@ if not EVT_ZONE[0] < EVT_UNPACK < EVT_ZONE[1]:
 # the drawn string's buffer, and the resident bank an over-slot message's text
 # lives in (see evt_plan: a slot may hold a pointer instead of its string)
 EVT_BUF = _equ('BTLEVT_BUF_SIZE')
+ANALYZE_NAME_CODE_SIZE = _equ('ANALYZE_NAME_CODE_SIZE')   # btlp/offer_name.asm's ANALYZE block
 EVT_MARK = _equ('BTLEVT_MARK')              # 'FF 00' + big-endian address
 EVT_MARK_LEN = 6
 EVT_OUT = os.path.join(ROOT, 'build', 'btlevt.asm')
@@ -908,8 +909,10 @@ def neg_build(d, rows_by_pos, body):
                 pen += metric & 15
             if right > (20 - 7) * 8:
                 toolbelt.fail(f'CONTACT demon {ident}: name overlaps CARD')
-            if right + 7 * 8 > 168:
+            if right + (7 + 1) * 8 > 168:        # race tag + ':' and the space after it
                 toolbelt.fail(f'ANALYZE demon {ident}: name overlaps status')
+            if 7 + 1 + len(glyphs) + 1 > _equ('ANALYZE_NAME_END') - _equ('ANALYZE_NAME_BUF'):
+                toolbelt.fail(f'ANALYZE demon {ident}: name overruns the header buffer')
             if len(glyphs) > 10:
                 bank.extend(bytes([ident]) + glyphs[10:] + b'\xff')
         bank.append(0)
@@ -926,9 +929,9 @@ def neg_build(d, rows_by_pos, body):
         analyze_at = None
         for z in merged:
             at = (z[0] + 3) & ~3
-            if at + 56 <= z[1]:
+            if at + ANALYZE_NAME_CODE_SIZE <= z[1]:
                 analyze_at = at
-                z[0] = at + 56
+                z[0] = at + ANALYZE_NAME_CODE_SIZE
                 break
         if code_at is None or bank_at is None or analyze_at is None:
             toolbelt.fail('CONTACT: no room for full demon names')
