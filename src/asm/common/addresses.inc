@@ -666,6 +666,18 @@ OPEN_EXE_OUTPUT equ "../../build/EXE/OPEN.EXE"
 OPEN_EXE_ADDR equ 0x80080000 - PSX_EXE_HEADER_SIZE
 OPEN_EXE_IMAGE_LIMIT equ 0x80180000      ; OPEN.BIN is loaded here
 
+;; QoL (--qol=debug): the endings from the title (qol/debug_open.asm in
+;; OPEN.EXE, qol/debug_end.asm in END.EXE).
+DBG_END_MOVIE_ID    equ 0x801F15C2      ; g_movie_id (u16)
+DBG_END_MOVIE_NEXT  equ 0x801F15C4      ; g_movie_next_state
+DBG_END_STATE_NEXT  equ 0x80055C5C      ; resident g_state_next
+DBG_END_STATE_MOVIE equ 6               ; GAME_STATE_MOVIE
+DBG_END_HOOK        equ 0x8008B53C
+DBG_END_HOOK_END    equ 0x8008B5C0
+DBG_END_VSYNC       equ 0x8008CA8C
+DBG_END_CAVE        equ 0x80083D60
+DBG_END_CAVE_END    equ 0x80083EF4
+
 ;; --- EXE/MOVIE.EXE - Movie player EXE, t_addr 0x80080000 ---
 MOVIE_EXE_FILENAME equ "../../data/psx/EXE/MOVIE.EXE"
 MOVIE_EXE_OUTPUT equ "../../build/EXE/MOVIE.EXE"
@@ -681,6 +693,8 @@ MOVIE_SUBS_CODE_IMAGE_LIMIT equ 0x80180000
 END_EXE_FILENAME equ "../../data/psx/EXE/END.EXE"
 END_EXE_OUTPUT equ "../../build/EXE/END.EXE"
 END_EXE_ADDR equ 0x80080000 - PSX_EXE_HEADER_SIZE
+END_EXE_IMAGE_LIMIT equ 0x800FD340      ; g_img_buf: the file's subtitle tail (movie_exe/subs_boot_end.asm)
+                                        ; loads into the VLC buffers 0x800AD340.. below it
 
 ;; =============================================================
 ;; Text data files (addresses are file offsets)

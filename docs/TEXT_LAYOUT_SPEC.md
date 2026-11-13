@@ -1071,6 +1071,49 @@ poisoned-register rule to the held-START renderer.
   minimum height that follows the canvas, and the lines table and the sources
   scroll inside their own panes.
 
+## The ending pages (`endtext.py`)
+
+The ending's text pages are 320x240 4bpp TIMs in `EXE/END.BIN`; END.EXE draws
+each as one sprite of the image's full height, but the display crops the edges
+(NTSC overscan, DuckStation's default crop): in game a line ending at row 239 is
+cut and one ending at row 226 shows whole. All text stays inside rows
+`SCREEN_TOP` = 8 .. `SCREEN_BOTTOM` = 228. Every page is cleared to its own
+background (its most common pixel index) and drawn in its brightest CLUT colour
+with the dialogue VWF font: the epilogue pages are 1-bit (index 0 white, 1
+black), the staff roll's a 16-step grey ramp whose black sits at 12, 13 or 15.
+
+**Profiles** (`p`). The name and paragraph keep the old ink's left edge, column
+width and the gap between them. The font's ink spans `INK_ROWS` = 15 rows, so a
+paragraph takes the largest pitch up to 16 (lines that never touch) that fits
+the visible rows; the name and paragraph move up together first, and only then
+does the pitch shrink, down to `MIN_PITCH` = 11. A tight page is preferred to a
+line that leaves the screen.
+
+**Staff roll** (`n`). Each page keeps the retail roll's two columns: job titles
+right-aligned to `CREDIT_TITLE_RIGHT` = 176 (from `CREDIT_TITLE_LEFT` = 8; a
+wider title wraps inside that column), names left-aligned at
+`CREDIT_NAME_LEFT` = 188 and ending by `CREDIT_NAME_RIGHT` = 312 (the widest
+name is 124 px). A title's
+first name shares its row, further names stack under it. Lines of one block
+are `CREDIT_PITCH` = 20 rows apart; blocks add `CREDIT_BLOCK_GAP` = 10, so
+single-name blocks step 30 rows like the retail roll. The columns are the
+same on every page. A page's block starts at its retail ink top and moves up
+only as far as its height needs; one that cannot fit the visible rows, or a
+title or name wider than its column, fails the build. A title with no names
+under it is a heading, centred on the page. When a page cannot fit the visible
+rows that way, its blocks with the most names put their title centred and the
+names in two columns under it, read across (`CREDIT_WIDE_GAP` = 24 between
+them), until it fits - the retail Debug page's shape. The PSP's title marker
+(`■`) is decoration and is not drawn. Pages the PSP-US roll lacks keep their
+Japanese picture until `translation/manual/ending/pages.tsv` has their text.
+
+**Logo sheet** (`l`). The roll's Direction and Art Direction cards are crops of
+one sheet (END.EXE's `g_end_logo` u/v/w/h tables). Their titles are already
+English; each crop's lower ink row (the name) is cleared and the PSP's name
+drawn centred under the title, from that row's top. The map's lines go to the
+crops in table order; the sheet's other crops (Presented By, fin, the Descartes
+quote) are retail English and untouched.
+
 ## The small font
 
 `SF_LATIN` (the latin cells on the font page) and `SF_VWF` (the small-font VWF kit)

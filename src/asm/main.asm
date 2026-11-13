@@ -272,6 +272,9 @@ western_layout S2D_PAD_LAYOUTS, 0         ; QoL (--qol=western): the controller 
 .ifdef QOL_SAVES
 .include "qol/saves_open.asm"       ; QoL (--qol=saves): 14 rows in the title's load list
 .endif
+.ifdef QOL_DEBUG
+.include "qol/debug_open.asm"       ; QoL (--qol=debug): L1/L2/R1/R2/Select on the title start endings 0-4
+.endif
 .close
 
 ;; --- EXE/MOVIE.EXE - Movie player EXE, t_addr 0x80080000 ---
@@ -286,6 +289,11 @@ western_layout S2D_PAD_LAYOUTS, 0         ; QoL (--qol=western): the controller 
 ;; --- EXE/END.EXE - Ending EXE, t_addr 0x80080000 ---
 .open END_EXE_FILENAME, END_EXE_OUTPUT, END_EXE_ADDR
 .include "end_exe/feature.asm"
+.include "movie_exe/subs_boot_end.asm"   ; in-engine FMV subtitles in the endings' movies: hooks + blob
+.include "end_exe/roll.asm"             ; the staff roll's added pages (U.S. localization staff)
+.ifdef QOL_DEBUG
+.include "qol/debug_end.asm"        ; QoL (--qol=debug): R1 fast-forwards an ending, Start skips its movies
+.endif
 .close
 
 ;; --- FONT.BIN - English VWF glyphs in unused slots ---

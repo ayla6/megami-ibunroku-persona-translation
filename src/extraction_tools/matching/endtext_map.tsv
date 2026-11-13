@@ -29,3 +29,8 @@ entry_offset	ps1_tim_offset	archive_entry	layout	first_line	end_line
 	0x334004		n		
 	0x33D804		n		
 	0x350804		n		
+0x50f000	0x35A004	ENDALL.BIN#84	l	1	2
+0x50f000	0x35A004	ENDALL.BIN#84	l	3	4
+	0x4D3004		n		
+	0x4DC804		n		
+	0x4E6004		n		

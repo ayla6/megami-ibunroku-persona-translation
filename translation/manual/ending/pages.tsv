@@ -1,4 +1,8 @@
 page	about	text
-0x334004	a credits page the PSP-US staff roll does not have; empty, the Japanese picture ships. Lines starting with ■ are job titles, the lines under them names	
-0x33d804	a credits page the PSP-US staff roll does not have; empty, the Japanese picture ships. Lines starting with ■ are job titles, the lines under them names	
-0x350804	a credits page the PSP-US staff roll does not have; empty, the Japanese picture ships. Lines starting with ■ are job titles, the lines under them names	
+0x334004	the Voice Act credits page (the PSP-US roll has none); names from the user's staff list	■ Voice Act\nJin Yamanoi\nToranori Yoshikawa\nKatashi Ishizuka\nJun Mizusawa\nTomoe Hanba\nMasayo Kurata
+0x33d804	the Velvet Room Vocal credits page (the PSP-US roll has none); names from the user (readings はやし のりきよ, みずしま えみ)	■ Velvet Room Vocal\nNorikiyo Hayashi\nEmi Mizushima
+0x350804	the Debug credits page (the PSP-US roll has none); names from the user's staff list, long vowels spelled out (no accented glyphs)	■ Debug\nKunihiko Kouzai\nShinobu Nonaka\nKazuhito Sekine\nKeiji Yoshimura\nTakatoshi Akiyama\nNatsuki Uryuu\nMasaharu Kouno\nTomomasa Fuse\nMika Morigouchi\nHiromichi Yoshikawa\nYoshihiro Sumiya\nTadayuki Hoshino
+
+0x4d3004	the added U.S. localization staff page: the heading worded by the user (marks these as the PSP release's staff); job titles and names from the PSP-US staff roll (its #94 screen)	■ PSP U.S. Localization Staff\n■ Executive Producer\nShinichi Suzuki\n■ General Manager\nMitsuhiro Tanaka\n■ Director of Production\nBill Alexander\n■ Project Lead\nYu Namba\n■ Project Coordinator\nHiroyuki Tanaka
+0x4dc804	the second added U.S. localization staff page: translators and editors from the PSP-US staff roll (its #95 screen; its voice recording block left out, this release keeps the Japanese voices)	■ Translators\nJames Kuroki\nMai Namba\nYu Namba\n■ Editors\nNich Maragos\nScott Strichart
+0x4e6004	the third added U.S. localization staff page: quality assurance from the PSP-US staff roll (its #95 screen)	■ QA Manager\nCarl Chen\n■ QA Lead\nRob Stone\n■ QA Testers\nConnie Chinn\nJennifer Eatherly\nJoel Ellis\nSteven Hall\nMeriel J. Regodon\nGerald Rempis\nCynthia Ungson

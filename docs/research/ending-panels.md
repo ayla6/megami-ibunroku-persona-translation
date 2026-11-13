@@ -26,6 +26,7 @@ marker; a two-column screen reads column by column.
 | `#26` | `0x18d000` | SEBEC epilogue; final prose matches PS1 `MV1E` |
 | `#31` | `0x1b8800` | Snow Queen good ending |
 | `#32` | `0x1c0800` | Snow Queen bad ending |
+| `#84` | `0x50f000` | Original Version Staff: Direction, Art Direction |
 | `#85–90` | `0x51f800–0x572000` | Original Version Staff (job title, names) |
 | `#92` | `0x593000` | `Cogito, ergo sum`, `-Rene Descartes`, `fin` |
 
@@ -42,8 +43,17 @@ PSP lacks are written in `translation/manual/ending/pages.tsv`
 (`page | about | text` - filled text also replaces a PSP page; empty keeps
 the Japanese picture). `src/injection_tools/endtext.py` renders `build/EXE/END.BIN` and previews in
 `build/previews/endtext/`. Layouts: `c` centred prose, `p` profile (name,
-then paragraph), `n` credits (each job title with its names indented below,
-the block starting where the page's old ink did). The PS1 credits pages for
+then paragraph), `n` credits (the retail roll's two columns: job titles right-aligned, names
+beside them), `l` the roll's logo sheet (the names under Direction and Art
+Direction, from #84); see docs/TEXT_LAYOUT_SPEC.md, "The ending pages".
+Pages the PS1 roll lacks are written in `pages.tsv`: Voice Act, Velvet Room
+Vocal and Debug, and two pages appended to END.BIN after the roll for the PSP
+release's U.S. localization staff (executive producer to project
+coordinator, translators, editors - from the PSP-US roll's #94/#95 screens;
+its voice recording and QA are left out). `end_exe/roll.asm` shows them in
+every ending with the roll, before the Presented By card. The
+names in the white-on-transparent GIMs only show composited onto black. `--qol=debug`
+starts any ending from the title (src/asm/qol/README.md). The PS1 credits pages for
 Voice Act, Velvet Room Vocal and Debug have no PSP counterpart. The poem tails from
 entries #25/#26 became the ending-movie poem overlays
 (`translation/manual/fmv/poems.tsv`, laid out in
