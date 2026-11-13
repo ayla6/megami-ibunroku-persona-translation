@@ -45,6 +45,15 @@ user edits the exported PNGs, and this patch installs them behind
   python src/injection_tools/mark.py verify [--art DIR]
           decode the built files back and check every swapped slot.
 
+The re-encoded MES.BIN is the slow part (a pure-Python encoder over every
+scene that carries a sheet). It depends only on the retail MES.BIN, the
+walk-sheet art and this tool's code, so build keeps it in
+build/.step-cache/mark-mes.bin keyed by the SHA-1 of exactly those files
+(build_step_cache.fingerprint); a hit is checked against the recorded SHA-1
+of the cached bytes. verify skips the MES decode when build/ADV/MES.BIN is
+byte-identical to a cached copy it already verified under the same key.
+Deleting build/.step-cache drops the cache.
+
 Art rules: same pixel size as the export. Alpha 0 is palette slot 0, the PS1
 transparent key; an opaque pixel never shares that slot, so opaque black does
 not become a hole. Slot 0 is reserved for transparency, so the art may use at
@@ -92,6 +101,8 @@ BATTLE_SPAN_MIN = 5
 BATTLE_SPAN_MAX = 60
 
 MES_LIMIT = 0x3F900                    # the game's own decode limit (MES_SIZE)
+MES_CACHE = os.path.join(ROOT, 'build', '.step-cache', 'mark-mes.bin')
+MES_CACHE_TSV = os.path.join(ROOT, 'build', '.step-cache', 'mark-mes.tsv')
 BST_SLOT_SIZE = 0x2800
 
 
@@ -525,6 +536,53 @@ def sheet_targets(mes, arts):
     return targets
 
 
+def mes_cache_key(artdir):
+    """Fingerprint of everything the re-encoded MES.BIN depends on."""
+    import build_step_cache
+    tools = os.path.dirname(os.path.abspath(__file__))
+    return build_step_cache.fingerprint(
+        [src_path('data', 'psx', 'ADV', 'MES.BIN')]
+        + [src_path(artdir, name) for name, _, _ in MES_SHEETS]
+        + [os.path.join(tools, name) for name in ('mark.py', 'mescodec.py', 'pngpage.py',
+                                                  'tim.py', 'build_step_cache.py')])
+
+
+def mes_cache_read():
+    """{'key', 'sha1', 'changed', 'verified'} from the cache record, or {}."""
+    try:
+        with open(MES_CACHE_TSV, encoding='utf-8') as f:
+            rows = [line.rstrip('\n').split('\t') for line in f]
+    except OSError:
+        return {}
+    if not rows or rows[0] != ['field', 'value'] or any(len(r) != 2 for r in rows):
+        return {}
+    return dict(rows[1:])
+
+
+def mes_cache_write(record):
+    os.makedirs(os.path.dirname(MES_CACHE_TSV), exist_ok=True)
+    tmp = MES_CACHE_TSV + '.tmp'
+    with open(tmp, 'w', encoding='utf-8') as f:
+        f.write('field\tvalue\n')
+        for field in ('key', 'sha1', 'changed', 'verified'):
+            f.write(f'{field}\t{record[field]}\n')
+    os.replace(tmp, MES_CACHE_TSV)
+
+
+def mes_cached(key):
+    """(bytes, changed count) of the cached MES.BIN for key, or None."""
+    record = mes_cache_read()
+    if record.get('key') != key:
+        return None
+    try:
+        data = open(MES_CACHE, 'rb').read()
+    except OSError:
+        return None
+    if hashlib.sha1(data).hexdigest() != record.get('sha1'):
+        return None
+    return data, int(record['changed'])
+
+
 def cmd_export(tree, outdir, suffix=''):
     names = ['headshot.png', 'battle.png', 'battle_gun.png', 'ending.png'] + [name for name, _, _ in MES_SHEETS]
     paths = [os.path.join(outdir, os.path.splitext(name)[0] + suffix + '.png')
@@ -568,7 +626,21 @@ def cmd_build(artdir):
     bst2 = bst_swap(bst, head)
     pbin2 = battle_swap(pbin, btlp, battle)
     pbin2 = battle_swap(pbin2, btlp, battle_gun, BATTLE_GUN_MEMBER, 'battle_gun.png')
-    mes2, changed = mes_swap(mes, targets, arts)
+    key = mes_cache_key(artdir)
+    cached = mes_cached(key)
+    if cached:
+        mes2, count = cached
+        print(f'mark: walk sheets unchanged; using the cached MES.BIN ({count} entries)', flush=True)
+    else:
+        mes2, changed = mes_swap(mes, targets, arts)
+        count = len(changed)
+        if mes_cache_key(artdir) == key:          # no input moved while encoding
+            # bytes first, then the record that vouches for them
+            os.makedirs(os.path.dirname(MES_CACHE), exist_ok=True)
+            open(MES_CACHE + '.tmp', 'wb').write(mes2)
+            os.replace(MES_CACHE + '.tmp', MES_CACHE)
+            mes_cache_write({'key': key, 'sha1': hashlib.sha1(mes2).hexdigest(),
+                             'changed': count, 'verified': 0})
     ending_path = src_path('build', 'EXE', 'END.BIN')
     ending = open(ending_path, 'rb').read()
     ending2 = ending_swap(ending, ending_art)
@@ -579,7 +651,7 @@ def cmd_build(artdir):
     open(src_path('build', 'B', 'P.BIN'), 'wb').write(pbin2)
     open(ending_path, 'wb').write(ending2)
     print(f'mark build: BST face {BST_FACE} and battle members {BATTLE_MEMBER}, {BATTLE_GUN_MEMBER} '
-          f'swapped; {len(changed)} MES entries re-encoded '
+          f'swapped; {count} MES entries re-encoded '
           f'(MES.BIN {len(mes)} -> {len(mes2)} bytes)')
 
 
@@ -636,9 +708,18 @@ def cmd_verify(artdir):
         print(f'battle member {member}', 'ok' if not bad else 'MISMATCH')
         ok &= not bad
 
+    mes2 = open(src_path('build', 'ADV', 'MES.BIN'), 'rb').read()
+    key = mes_cache_key(artdir)
+    record = mes_cache_read()
+    built_sha1 = hashlib.sha1(mes2).hexdigest()
+    if (record.get('key') == key and record.get('sha1') == built_sha1
+            and record.get('verified') == '1'):
+        print('MES: identical to the cached build verified earlier')
+        if not ok:
+            raise SystemExit(1)
+        return
     orig = open(src_path('data', 'psx', 'ADV', 'MES.BIN'), 'rb').read()
     targets = sheet_targets(orig, arts)
-    mes2 = open(src_path('build', 'ADV', 'MES.BIN'), 'rb').read()
     t = mes_entries(orig)
     t2 = mes_entries(mes2)
     bad = missed = untouched = 0
@@ -671,6 +752,9 @@ def cmd_verify(artdir):
     ok &= missed == 0 and bad == 0
     if not ok:
         raise SystemExit(1)
+    if record.get('key') == key and record.get('sha1') == built_sha1:
+        record['verified'] = 1
+        mes_cache_write(record)
 
 
 def main():
