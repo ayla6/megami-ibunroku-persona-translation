@@ -16,6 +16,8 @@
 - Possible fixes for possible bugs that could possibly affect real hardware. (Can't test that!)
 - Translated credits and missing subtitle hooks there. I'm so sorry they weren't there before.
 - From Redeted's work: the battlespeed QOL patch now let's you press Start to speedup the battle animations even more. Works way better with overclocking.
+- New QOL patch, Attack range, which lets you see your attack range for all skills, gun, sword and items.
+- See explanation choice in the casino is now positioned properly.
 
 # 2026-11-11-2
 - Fixed the game freezing on real hardware and accurate emulators when a menu with VWF small text (like the item list) is drawn. The text was sent to the GPU in chunks too big for it, which only some emulators (like DuckStation) tolerated.
