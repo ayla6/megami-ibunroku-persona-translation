@@ -16,6 +16,7 @@
 - Debug patch: battles now check their own graphics data every frame and stop with a red square if something breaks, so testing catches bugs right when they happen.
 - More adjustments to the dialogue wrapping.
 - More usage of the wait times in dialogue from the original release.
+- Some slight bug fixes in duplicated waits in dialogue, and failure to respect the Name: usage scheme in dungeon text.
 
 # 2026-11-13
 - Added a Western controls patch: Circle to Cross, Triangle to Square and vice-versa. Like a lame western PlayStation release.
