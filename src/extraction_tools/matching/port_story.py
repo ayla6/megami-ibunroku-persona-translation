@@ -429,6 +429,11 @@ def reflow(first_label, items, joins=None):
             # places every break. Structural instruction captions keep their
             # own break. After a hyphen fragment the
             # next word glues spaceless (bunny-<FF03>girls).
+            # A source line break after a pause is a word boundary, even if
+            # the next word starts with an ellipsis. Retain that information
+            # while allowing the shared flow to choose its own break.
+            if flow_items and flow_items[-1][0] == 'g':
+                flow_items[-1] = (*flow_items[-1][:2], True)
             from port_controls import is_heading
             last_break = next((i for i in range(len(flow_items) - 1, -1, -1)
                                if flow_items[i][0] == 'b'), -1)
@@ -1141,6 +1146,18 @@ def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1,
         joins = None
     merged = []
     for bi, (vis, scr) in enumerate(boxes):
+        can_join = (merged and (joins[bi - 1] if joins is not None
+                                else len(merged) >= min_boxes)
+                    and not scr and not merged[-1][1])
+        combined = merged[-1][0] + vis if can_join else []
+        # A source pause at the edge of a full visible box can retain its
+        # timing before the player's scroll. Never place FF03 before FF02:
+        # that would move/scroll the pen before the player presses.
+        if (len(combined) == 4
+                and re.search(r'<FF05><[0-9A-F]{2}><[0-9A-F]{2}>\s*$', combined[2])
+                and re.match(r'\s*(?:\.\.|…)', combined[3])):
+            merged[-1] = (combined[:3], combined[3:])
+            continue
         joined = (merged
                   and (joins[bi - 1] if joins is not None
                        else len(merged) >= min_boxes)   # never below the PSX
@@ -1278,6 +1295,22 @@ def sentence_pauses(items, ja):
         i = min(cand)[1]
         j = i + 1
         turn = False
+        existing_pause = None
+        while j < len(out) and out[j][0] == 'u' and (
+                out[j][1] in ('FF02', 'FF03', 'FF04', 'STRUCT03')
+                or str(out[j][1]).startswith('FF05')):
+            if str(out[j][1]).startswith('FF05'):
+                existing_pause = j
+            turn = turn or out[j][1] in ('FF02', 'FF04')
+            j += 1
+        if existing_pause is not None:
+            # The PSP already supplies this beat at the same sentence
+            # boundary. Keep its duration and position; only carry a PSX line
+            # break if it sits after the pause and no box turn supplies it.
+            if m.group(4) and not turn:
+                inserts[i] = (existing_pause + 1, [('u', 'STRUCT03')])
+            continue
+        j = i + 1
         while j < len(out) and out[j][0] == 'u' and out[j][1] in ('FF02', 'FF03', 'FF04'):
             # the PSP's own box turn after the sentence IS the line break;
             # its prose line break is not (the flow re-places those)
@@ -1330,7 +1363,7 @@ def _clean(en):
     # stranded at a line start belongs to the line above: "Saeko Takami:" then
     # the description, never "Saeko Takami" / ": Homeroom teacher".'
     en = re.sub(r'<FF03>: *', ':<FF03>', en)
-    en = re.sub(r'<FF03>([,.;!?]) *', r'\1<FF03>', en)
+    en = re.sub(r'<FF03>([,;!?]|\.(?!\.)) *', r'\1<FF03>', en)
     en = re.sub(r':{2,}', ':', en)
 
     """Strip JA padding blanks around codes and box edges; the box must

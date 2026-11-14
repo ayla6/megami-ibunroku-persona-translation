@@ -57,15 +57,15 @@ id	pos	psp	en
 55	0x6b7dc	EBOOT:29e5c6	Demon: Owwwww! <FFFC> That HURT!
 56	0x6b800	EBOOT:29e572	Brown: Wh-Whooooa! I... <FFFC> I'm gonna die!
 57	0x6b824	EBOOT:29e4ee	Mark: We didn't have a choice!<FFF6>No hard feelings, right, old man?
-58	0x6b848	EBOOT:29e456	Demon Lieutenant: Execution,<FFF6>execution, execution!<FFFC><FFF6>Kill 'em stone dead!
+58	0x6b848	EBOOT:29e456	Demon Lieutenant:<FFF6>Execution, execution, execution!<FFFC><FFF6>Kill 'em stone dead!
 59	0x6b87c	EBOOT:29e40e	Brown: Huh!? <FFFC> Wh-Wh-What the...!?
 60	0x6b8a4	EBOOT:29e396	Brown: What the hell, man!?<FFFC><FFF6>What happened to you guys!?
-61	0x6b8d0	EBOOT:29e2fa	Demon Lieutenant: Rrrrrrrgh!<FFF6><FFFC> I'm taking at least one of<FFF6>you down with me!
+61	0x6b8d0	EBOOT:29e2fa	Demon Lieutenant:<FFF6>Rrrrrrrgh! <FFFC> I'm taking at<FFF6>least one of you down with me!
 62	0x6b910	EBOOT:29e2ae	Brown: Waaaaaah! I don't wanna die!
 63	0x6b938	EBOOT:29e1ca	Ayase: Haha...ha...! You're all so cool!<FFF6>It's reaaaally fascinating.<FFFB><FFF7>So c'mon, let us go! Pretty please?
-64	0x6b984	EBOOT:29e126	Right M.I.B.: We can't have<FFF6>the company's secrets leaking out.<FFF6>Dispose of them.
+64	0x6b984	EBOOT:29e126	Right M.I.B.:<FFF6>We can't have the company's secrets<FFF6>leaking out. Dispose of them.
 65	0x6b9a4	EBOOT:29e0f2	Left M.I.B.: Roger that.
-66	0x6b9b4	EBOOT:29e05e	Ayase: Gah! Watch it! What were you<FFF6>gonna do if that hit me!? Murderers!
+66	0x6b9b4	EBOOT:29e05e	Ayase: Gah! Watch it!<FFF6>What were you gonna do<FFF6>if that hit me!? Murderers!
 67	0x6b9e8	EBOOT:29df96	Takeda: Mr. Kandori,<FFF6>please step back!<FFFB><FFF7>All right,<FFF6>don't let a single one of them escape!
 68	0x6ba24	EBOOT:29df72	Nanjo: Kandori!
 69	0x6ba34	EBOOT:29dec6	Kandori: What a surprise...<FFF6><FFFC> <FFFC> I didn't expect that you'd<FFF6>be Persona-users as well.
@@ -74,8 +74,8 @@ id	pos	psp	en
 72	0x6bac0	EBOOT:29ddaa	Takeda: Yes, Sir.
 73	0x6bacc	EBOOT:29dd6e	Nanjo: You're going nowhere!
 74	0x6badc	EBOOT:29dd36	Takeda: Oh, no you don't!
-75	0x6baf0	EBOOT:29dc62	Takeda: Damn kids! <FFFC> You're not<FFF6>taking one step outta here!<FFFB><FFF7>Now taste the power of my Persona!
-76	0x6bb2c	EBOOT:29dbbe	Reiji: You wanna kill ME?<FFF6><FFFC> <FFFC> <FFFC> What a joke...<FFF6>You're the one that's going down!
+75	0x6baf0	EBOOT:29dc62	Takeda: Damn kids!<FFF6><FFFC> You're not taking<FFF6>one step outta here!<FFFB><FFF7>Now taste the power of my Persona!
+76	0x6bb2c	EBOOT:29dbbe	Reiji:<FFF6>You wanna kill ME? <FFFC> <FFFC> <FFFC> What a joke...<FFF6>You're the one that's going down!
 77	0x6bb64	EBOOT:29db8a	Reiji: What an idiot…
 78	0x6bb74	EBOOT:29db62	Tesso: Sgweaaaaak!
 79	0x6bb8c	EBOOT:29db16	Mark: What the hell IS this thing!?
@@ -92,7 +92,7 @@ id	pos	psp	en
 90	0x6bcc0	EBOOT:29d742	Yog-Sothoth Jr.: Ia Shub-Niggurath!<FFF6>Ia Yog-Sothoth!<FFFC> <FFFC> A ia ia ia iaaaaaaa!
 91	0x6bcfc	EBOOT:29d722	Mark: Shaddup!
 92	0x6bd10	EBOOT:29d6da	Yog-Sothoth Jr.: Iiiiiiiiaaaaaaa!
-93	0x6bd28	EBOOT:29d602	Harem Queen: Tchahahahaha!<FFF6><FFFC> <FFFC> My paintings are<FFF6>the best in the world!<FFFB><FFF7>Now hurry up and die!
+93	0x6bd28	EBOOT:29d602	Harem Queen: Tchahahahaha! <FFFC> <FFFC> My<FFF6>paintings are the best in the world!<FFFB><FFF7>Now hurry up and die!
 94	0x6bd8c	EBOOT:29d526	Maki: Please, Chisato! Stop!<FFFB><FFF7>If you insist on hurting everyone, I...<FFF6><FFFC> I... <FFFC> I'll have to fight you!
 95	0x6bdd8	EBOOT:29d446	Harem Queen: Tchahahahaaaaa!<FFFB><FFF7>That terrified face! That's the face!<FFFC><FFF6>That's it! God, I LOVE it!
 96	0x6be28	EBOOT:29d406	Harem Queen: N-No waaaaay...!
@@ -113,13 +113,13 @@ id	pos	psp	en
 111	0x6c0dc	EBOOT:29cc3a	Ayase:<FFF6>Use all the big words you want!<FFF6>It doesn't fool us!
 112	0x6c0fc	EBOOT:29cbb2	Reiji: Spout that crap in hell. <FFFC><FFF6>I'll send you straight there...!
 113	0x6c124	EBOOT:29cb06	Nanjo: Kandori... <FFFC><FFF6>We'll close the curtain on this farce,<FFF6>if that's what you wish!
-114	0x6c164	EBOOT:29c9aa	Kandori: Ngh... <FFFC> <FFFC> <FFFC><FFF6>I refuse to accept this!<FFFC> I'm<FFF6>supposed to have transcended man!<FFFB><FFF7>Who am I!? <FFFC> <FFFC> I am Takahisa Kandori!<FFFC> <FFFC><FFF6>The man who transcended humanity!
-115	0x6c1d8	EBOOT:29c8e6	Kandori: Nrrrrrrrghaaaaaaa!?<FFFB><FFF7>Wh-What the...<FFF6>Something's forcing<FFFC> <FFFC> itself into me...!
+114	0x6c164	EBOOT:29c9aa	Kandori:<FFF6>Ngh... <FFFC> <FFFC> <FFFC> I refuse to accept this!<FFFC> I'm<FFF6>supposed to have transcended man!<FFFB><FFF7>Who am I!? <FFFC> <FFFC> I am Takahisa Kandori!<FFFC> <FFFC><FFF6>The man who transcended humanity!
+115	0x6c1d8	EBOOT:29c8e6	Kandori: Nrrrrrrrghaaaaaaa!?<FFFB><FFF7>Wh-What the... Something's forcing<FFFC><FFF6><FFFC> itself into me...!
 116	0x6c214	EBOOT:29c7da	Nyarlathotep's voice: Hohohoh... <FFFC><FFF6>Foolish man who has gone astray...<FFFB><FFF7>I shall give you the power you desire.
 117	0x6c258	EBOOT:29c7b2	Kandori: N-Nooooo!
 118	0x6c26c	EBOOT:29c786	Maki: Wh-What the!?
 119	0x6c27c	EBOOT:29c75e	Mark: Holy shit…
-120	0x6c28c	EBOOT:29c6de	Nanjo: Have his body and soul<FFF6>been dominated by the Persona!?
+120	0x6c28c	EBOOT:29c6de	Nanjo:<FFF6>Have his body and soul been<FFF6>dominated by the Persona!?
 121	0x6c2b0	EBOOT:29c682	Kandori:<FFF6>I am Kandori... <FFFC> <FFFC> God Kandori…
 122	0x6c2d8	EBOOT:29c602	Pandora:<FFF6>Now, let us disappear togetherrrr!
 123	0x6c300	EBOOT:29c602	Pandora: Rrrrwwaaaaa...! <FFFC>
@@ -133,7 +133,7 @@ id	pos	psp	en
 131	0x6c418	EBOOT:29c296	Ayase: Yikes! <FFFC> Huh?<FFF6>What the--!? <FFFC> What NOW!?
 132	0x6c44c	EBOOT:29c1b2	Brown: Whoa whoa whoa...<FFF6><FFFC> What IS this thing!?<FFFB><FFF7>I didn't give it permission to<FFF6>come out of me like that!
 133	0x6c484	EBOOT:29c192	Ayase: ......?
-134	0x6c494	EBOOT:29c08e	Hypnos: Allow me to teach you<FFF6>the wonders of the Dream World...<FFFB><FFF7>An eternal slumber from whence<FFF6>there is no awakening…
+134	0x6c494	EBOOT:29c08e	Hypnos:<FFF6>Allow me to teach you<FFF6>the wonders of the Dream World...<FFFB><FFF7>An eternal slumber from whence<FFF6>there is no awakening…
 135	0x6c4d4	EBOOT:29c032	Yukino: Yeah, right...<FFF6>in your dreams, pal!
 136	0x6c4f4	EBOOT:29bf6e	Nemesis: Aaaaaaahahahaha!<FFF6><FFFC> THIS is my true form!<FFFB><FFF7>Soooo lovely... <FFFC> and soooo elegant!
 137	0x6c560	EBOOT:29be66	Yukino: ...<FFFC> You gotta be joking!<FFF6><FFFC> I've had enough with<FFF6>the fun and games already!<FFFB><FFF7>I'm so disgusted I can barely speak.
@@ -141,7 +141,7 @@ id	pos	psp	en
 139	0x6c5dc	EBOOT:29bce6	Nemesis: ScreeeeeeEEEEE!<FFF6><FFFC> Silence! Silence! SILENCE!<FFFB><FFF7>I'll slice those insolent<FFF6>faces right off!
 140	0x6c638	EBOOT:29bbe6	Thanatos: Transformation complete!<FFFC><FFF6>Here comes Yuriko!<FFFB><FFF7>All righty, time to beat everyone up.<FFFC><FFF6>Hope you're ready!
 141	0x6c6a0	EBOOT:29bb7a	Ayase: Pbbbbt! You're uglier than<FFF6>death warmed over!
-142	0x6c6c4	EBOOT:29bada	Thanatos: Excuse me!?<FFF6>Oh, I have HAD it!<FFFC><FFF6>I'm SO not forgiving you for that!
+142	0x6c6c4	EBOOT:29bada	Thanatos:<FFF6>Excuse me!? Oh, I have HAD it!<FFFC><FFF6>I'm SO not forgiving you for that!
 144	0x647b0	EBOOT:2a55aa,EBOOT:2a55d6,EBOOT:2a5600,EBOOT:2a560e	Maki: Wow, lucky me!<FFFB><FFF7>Isn't this an Avatar Wow,<FFF6>this is so cool!
 145	0x647ec	EBOOT:2a550e,EBOOT:2a554e,EBOOT:2a555c	Brown: Daaaamn! <FFFC>So this is an Avatar,<FFF6>huh?<FFFC> Good thing you had me along!
 146	0x64824	EBOOT:2a5456,EBOOT:2a5488,EBOOT:2a5496	Nanjo: Ah... <FFFC>the totem Avatar, hmm?<FFF6><FFFC>It must be a reward for<FFF6>my exemplary behavior…

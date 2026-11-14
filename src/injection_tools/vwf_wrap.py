@@ -615,11 +615,13 @@ def flow_model(items):
     seq = []
     prev = None
     hold = False          # a lone proclitic: the next piece may not leave it
+    pause_gap = False     # source line break after a timed pause
     for it in items:
         kind = it[0]
         if kind == 'b':
             seq.append(('b', it[1]))
             prev, hold = None, False
+            pause_gap = False
             continue
         if kind == 'G':
             seq.append(('v', it[1]))
@@ -633,6 +635,7 @@ def flow_model(items):
             prev = None if (prev is None and (it[1] in VOICE_CODES
                                               or PAUSE_CODE.fullmatch(it[1]))) \
                 else seq[-1][1]
+            pause_gap = bool(len(it) > 2 and it[2] and PAUSE_CODE.fullmatch(it[1]))
             continue
         if kind == 's':
             join = ('' if prev is None or prev.text.endswith('>')
@@ -658,9 +661,11 @@ def flow_model(items):
             # "Wait!"). After an inline code the porter split it off
             # ('<FF08>...' trails the name): bare, and no pause opening a line.
             after_code = prev.text.endswith('>')
-            join = (' ' if w.startswith(('..', '…')) and not after_code
+            after_pause = bool(re.search(r'<FF05><[0-9A-F]{2}><[0-9A-F]{2}>$', prev.text))
+            separate = not after_code or pause_gap or after_pause
+            join = (' ' if w.startswith(('..', '…')) and separate
                     else '')
-            brk = w.startswith('..') and not after_code
+            brk = w.startswith(('..', '…')) and separate
         else:
             join = ' ' if prev is not None else ''
             brk = True
@@ -669,6 +674,7 @@ def flow_model(items):
                          .lower() not in PURE_ARTICLES):  # 'her | while'
             brk = False
         pieces = word_pieces(w)
+        pause_gap = False
         hold = _is_article(w)
         marked = it[2] if len(it) > 2 else 0
         for k, (text, inner, pen) in enumerate(pieces):
@@ -763,7 +769,7 @@ STEP_COST = 4
 # ("Mark: But that voice... / That's Maki's mom, I'm dead sure... /
 # Isn't it?" loses to "Mark: / But that voice... That's Maki's mom, /
 # I'm dead sure... Isn't it?").
-SHAPE_POINT = 2 * 239 * 239
+SHAPE_POINT = 239 * 239 // 2
 
 
 def fullness(w, remaining=1):
@@ -889,7 +895,11 @@ def shape_report(lines, width=BOX_WIDTH):
             # whole speech would have fit under the name, or what rides the
             # name is a scrap - and a scrap is only a scrap when it does not
             # close its sentence (spec 2.4).
-            if not rectangle and (
+            beat_over_sentences = (len(lines) == 3 and not body_fits
+                                   and bool(re.search(r'(?:\.\.|…)\W*$', lines[0]))
+                                   and abs(widths[1] - widths[2]) <= width // 5
+                                   and _whole_tail(lines[1]) and _whole_tail(lines[2]))
+            if not rectangle and not beat_over_sentences and (
                     body_fits
                     or (widths[0] - label <= width // 5
                         and (stop_cost(lines[0]) != 0
@@ -911,7 +921,7 @@ def shape_report(lines, width=BOX_WIDTH):
     cost = sum(fullness(x, len(w) - i) for i, x in enumerate(w))
     for i in range(len(w) - 1):
         step = w[i + 1] - w[i]
-        cost += step * step * (2 if step > 0 else 1)
+        cost += STEP_COST * step * step * (2 if step > 0 else 1)
     if len(w) > 1:
         if w[-1] * 2 < w[-2]:
             cost += (w[-2] - 2 * w[-1]) ** 2
@@ -921,10 +931,10 @@ def shape_report(lines, width=BOX_WIDTH):
 
 
 def _rank(cost):
-    """A suffix cost in decision order: a clipped fragment beside the speaker
-    label (cost[3]) ranks right after the splits and names, above the
-    mid-clause ends (cost[7]), as spec rules 3-5 order them."""
-    return cost[:4] + (cost[8], cost[7], cost[4], cost[5])
+    """Rank a suffix on the same reading/shape scale as the root."""
+    return cost[:3] + (cost[8],
+                       2 * cost[7] + cost[4] + cost[5] / SHAPE_POINT,
+                       cost[9])
 
 
 def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES):
@@ -989,8 +999,19 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES):
                     # _end: the last atom of the next line
                     k = subkey[0]
                     label_only = i == 0 and j == label_end_i
+                    # A complete opening beat over two balanced, complete
+                    # sentences is deliberate rhythm, not a clipped scrap.
+                    beat_over_sentences = (
+                        i == 0 and label_end_i is not None and j > label_end_i
+                        and k == 2 and not body_fits
+                        and bool(re.search(r'(?:\.\.|…)\W*$', text))
+                        and after is not None
+                        and abs(sub[6] - after[1]) <= width // 5
+                        and _whole_tail(atoms_text(j + 1, _end))
+                        and _whole_tail(atoms_text(_end + 1, n - 1)))
                     fragment = (i == 0 and label_end_i is not None
                                 and j > label_end_i and j + 1 < n
+                                and not beat_over_sentences
                                 # the whole speech fits under the label:
                                 # any split of it beside the label is a
                                 # scrap the reader skims past with the name
@@ -1013,9 +1034,10 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES):
                     # off the label's line, rectangle or not ("Female
                     # student: Uh, isn't it / time you gave up on Yosuke?").
                     midlabel = (i == 0 and label_end_i is not None
-                                and j > label_end_i and j + 1 < n
-                                and stop_cost(text) == 4
-                                and not (_closes_sentence_in(text)
+                                 and j > label_end_i and j + 1 < n
+                                 and stop_cost(text) == 4
+                                 and not (k >= 2 and abs(sub[6] - w) <= width // 5)
+                                 and not (_closes_sentence_in(text)
                                          and _whole_tail(
                                              atoms_text(j + 1, _end))))
                     step = sub[6] - w
@@ -1062,7 +1084,8 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES):
                     # the split a clean sentence boundary (stop_cost 0), so
                     # the rise itself is what must pay. It counts in cost[7]
                     # beside a mid-clause end, as spec rule 6 orders it.
-                    severe = (not label_only and sub[6] > w * 2
+                    severe = (not label_only and not beat_over_sentences
+                              and sub[6] > w * 2
                               and (stop_cost(text) == 4
                                    or bool(re.search(r'(?:\.\.|…)\W*$',
                                                      text))))
@@ -1092,7 +1115,12 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES):
                     # speaker label is not a speech line (spec 2.4): it takes
                     # no part in the block's balance, so the speech after it
                     # is scored as the block it would be on its own.
-                    shape = 0 if label_only else fullness(w, k + 1) + trans
+                    # Compare average speech shape, not a smaller sum merely
+                    # because a standalone label excluded one line. Scale
+                    # the suffix to this block's line count without pricing
+                    # the label's own width or a transition to it.
+                    shape = (sub[5] // k if label_only and k else
+                             0 if label_only else fullness(w, k + 1) + trans)
                     if not label_only and k == 1 and sub[6] * 2 < w:
                         shape += (w - 2 * sub[6]) ** 2
                     elif not label_only and k >= 1 and sub[6] * 10 > w * 14:
@@ -1132,8 +1160,9 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES):
         key = min(best[0], key=lambda key: (
             best[0][key][0][0], max(key[0], box))
             + best[0][key][0][1:3]
-            + (best[0][key][0][8], key[0], best[0][key][0][7],
-               best[0][key][0][4] + best[0][key][0][5] / SHAPE_POINT,
+            + (best[0][key][0][8], key[0],
+               2 * best[0][key][0][7] + best[0][key][0][4]
+               + best[0][key][0][5] / SHAPE_POINT,
                best[0][key][0][9]))
     else:
         key = min(best[0], key=lambda key: (abs(key[0] - want),)

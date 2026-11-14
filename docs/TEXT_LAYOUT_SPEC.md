@@ -32,6 +32,10 @@ broke there.
 ### Source control order
 
 PSP-US supplies the text **and runtime controls in their source order**.
+For dungeon inline speaker labels, the PSX Japanese page determines whether
+the corresponding PSP nameplate is printed: a PSP-only repeated nameplate is
+omitted. When page counts differ, only the first pages are unambiguously
+corresponding; later PSP nameplates are omitted rather than invented.
 Translate a control only when the destination interpreter spells it
 differently, using an explicit interpreter translation. Never distribute
 English over Japanese text slots, relocate an insert to a Japanese code
@@ -648,7 +652,11 @@ Order of preference, highest first - a lower rule NEVER beats a higher one:
    one fifth of the box width. Also discourage a mid-clause split of speech
    that fits whole on the following line. A useful comma/sentence boundary
    still competes normally. A standalone label is not a speech line for the
-   width-transition or short-tail tests.
+   width-transition or short-tail tests. When comparing a label-only layout
+   with one carrying speech on the label line, scale its speech shape by
+   total lines / speech lines: fewer scored lines must not automatically win
+   just because their squared-width sum is smaller. The label's own width
+   still contributes neither balance nor a transition.
    When the complete speech fits one line under the label, any split of it
    beside the label is a clipped fragment: the reader skims the name (and
    the portrait beside it), so a scrap there buys nothing (`Elly: / Mm?
@@ -658,7 +666,10 @@ Order of preference, highest first - a lower rule NEVER beats a higher one:
    A complete sentence (ending `.`, `!` or `?`) is never a clipped
    fragment, nor is a phrase that trails off (`F-Fresh meat... / Meat is
    heeeeere!`), unless the whole speech fits one line under the label; one
-   word trailing off is (`Takeda: / Tch... It's almost time`).
+   word trailing off is (`Takeda: / Tch... It's almost time`). An opening
+   ellipsis beat is not a scrap or severe-rise fault when it precedes two
+   complete sentences on two lines within one fifth of the box width of each
+   other; the full speech must not fit under the label in one line.
 5. **End lines where the sentence breathes**: full stop (0) > short ellipsis
    beat (1) > comma/semicolon/colon (2) > mid-clause (4). Merely ending on a
    connector is not a punctuation boundary and must not force a growing
@@ -689,9 +700,8 @@ Order of preference, highest first - a lower rule NEVER beats a higher one:
    <name>! / It's too late...`); in a longer block it may end a page and is
    emphasis (`that... / inferior! | You are born...`).
 6. **Balance and gently taper the block, without adding lines.** Minimize
-   `sum(line_width² // remaining_lines)` plus squared adjacent width changes
-   (a downward increase costs
-   twice as much as a decrease). This favours square, smoothly tapering blocks
+   `sum(line_width²)` plus four times squared adjacent width changes
+   (a downward increase costs twice as much as a decrease). This favours square, smoothly tapering blocks
    rather than an overfull first line or a hollow middle. The optimizer retains
    alternatives by both suffix line count and first-line width, so it scores
    the entire block, not just locally balanced suffixes.
@@ -735,12 +745,16 @@ Glue (what a break may not fall inside):
   fits the box. Speech that opens with a beat of its own - a hesitation or a
   one-word sentence (`Yuko: U-Um... I think Yukino`, `Elly: Good! I was
   worried you`) - may be cut beside the label when the next line finishes
-  that clause and nothing more (`would think it was weird!`, never `there?
-  When did they rebuild it!?`). A rise of more than 2x after a trailing
+   that clause and nothing more (`would think it was weird!`, never `there?
+   When did they rebuild it!?`). In a block of at least three lines, a
+   mid-clause label line also competes normally when its next line is within
+   one fifth of the box width: a balanced opening is not a clipped scrap.
+   A rise of more than 2x after a trailing
   ellipsis or a mid-clause line is a fault of the same rank.
-- **Shape and line ends share one scale at the root**: a rhythm point is worth
-  2·239² of shape (`SHAPE_POINT`), so one point never outweighs a far squarer
-  block.
+- **Shape and line ends share one scale**: a rhythm point is worth 239²/2
+  of shape (`SHAPE_POINT`), and a mid-clause end adds two rhythm points.
+  Suffixes and the root use the same scale, so a very uneven block need not
+  win solely because it has one fewer mid-clause break.
 - **Two joined boxes are laid out as one** (`port_story._rejoin`): when the
   free join removes the press between two PSP boxes, the pair takes the
   flow's best shape (`You gotta take it easy! / Live a little! Like me!`),
@@ -881,6 +895,12 @@ one click. That is the whole model; "four clicks in one box" is a bug.
    is frozen text-free in `story_port_plan` for PSP-JP-less replays.
    (`I'm going to work! / To hell with fake hallways... / To hell with that
    little ghost girl!` is one PSX box.)
+   A source line break after a timed pause remains a word boundary when prose
+   is reflowed, including before a leading ellipsis. Never pull the first dot
+   of that ellipsis onto the preceding line. When a joinable pair has four
+   lines and the pause ends its third line immediately before a leading
+   ellipsis, join it as `<FF05><duration><FF02><FF03>...`: the pause remains
+   anchored and the player must press before the scroll.
    **A timed ellipsis keeps its beat.** When a PSX page has exactly one
    ellipsis carrying `<FF05>` pauses and the English box has exactly one
    ellipsis and no pause, the same pauses go on the same sides of the
@@ -891,7 +911,9 @@ one click. That is the whole model; "four clicks in one box" is a bug.
    (`？！。`) with words after it goes on the English sentence end (a word
    ending `. ! ?`; a trailing ellipsis ends none) nearest the same
    proportional place in the box - JP in glyph cells, English in pixels -
-   when one lies within two fifths of the box. A beat that lands on a box
+   when one lies within two fifths of the box. A PSP pause already at that
+   boundary is retained instead of duplicating it; a following Japanese
+   line break can still be carried after it. A beat that lands on a box
    turn the PSP keeps is dropped: the press is the pause. Where the PSX broke the line
    around the pause (`？<FF03><FF05><58><00>オイ`, `うそ！<FF05><5E><00><FF03>`)
    the English breaks there too, and the PSP's own box turn at that point is

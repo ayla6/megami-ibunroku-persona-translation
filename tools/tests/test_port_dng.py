@@ -12,6 +12,16 @@ import port_dng
 
 
 class DungeonNameCodes(unittest.TestCase):
+    def test_nameplates_follow_each_destination_page(self):
+        en = '￥NSpeaker<FF03>First.<FF02><FF04>￥NSpeaker<FF03>Second.<FF02><FF01>'
+        ja = '女性の声：本文<FF02><FF04>続き<FF02><FF01>'
+        self.assertEqual(port_dng.psx_furniture(ja, en),
+                         'Speaker: First.<FF02><FF04>Second.<FF02><FF01>')
+        ja = '女性の声：本文<FF02><FF04>女性の声：続き<FF02><FF01>'
+        self.assertEqual(port_dng.psx_furniture(ja, en),
+                         'Speaker: First.<FF02><FF04>Speaker: Second.<FF02><FF01>')
+        self.assertNotIn('Speaker:', port_dng.psx_furniture('本文<FF02><FF01>', en))
+
     def test_source_pointer_is_the_selected_box_not_the_search_anchor(self):
         with patch.object(port_dng, 'boxes', return_value=[(0x100, 'Other'),
                                                             (0x180, 'Target words')]):

@@ -17,6 +17,53 @@ import port_story as story
 
 
 class FlowRules(unittest.TestCase):
+    def test_label_only_does_not_win_from_a_shorter_shape_sum(self):
+        text = "Clerk: Uh-oh... You're not a robber, are you? I don't like bad boys, heehee."
+        lines = wrap.wrap(text).split('<FF03>')
+        self.assertEqual(lines, ["Clerk: Uh-oh...", "You're not a robber, are you?",
+                                 "I don't like bad boys, heehee."])
+        self.assertNotIn('label-fragment', wrap.shape_report(lines)[1])
+
+    def test_existing_sentence_pause_is_not_duplicated(self):
+        items = [('w', 'H-Huh?'), ('u', 'FF052000'), ('w', 'Hey,'),
+                 ('w', 'what happened?')]
+        ja = 'あっ？<FF05><20><00><FF03>何だよ<FF02><FF01>'
+        out = story.sentence_pauses(items, ja)
+        self.assertEqual(sum(k == 'u' and v.startswith('FF05') for k, v in out), 1)
+        self.assertEqual(out[2], ('u', 'STRUCT03'))
+
+    def test_balance_can_outweigh_extra_mid_clause_break(self):
+        text = 'I mean, no one used the subway anyways, but having fewer hangouts kinda sucks.'
+        self.assertEqual(wrap.wrap(text).split('<FF03>'), [
+            'I mean, no one used the subway', 'anyways, but having fewer',
+            'hangouts kinda sucks.'])
+
+    def test_pause_before_ellipsis_preserves_boundary_and_player_scroll(self):
+        items = [('w', 'there.'), ('u', 'FF052000'), ('u', 'FF03'),
+                 ('w', '...I'), ('w', 'continue.')]
+        text = story.reflow(None, items)[0]
+        self.assertNotIn('>...I', text)
+        self.assertIn('...I', text)
+        self.assertEqual(story._clean('there.<FF03>...I'), 'there.<FF03>...I')
+        source = ('First line<FF02><FF04>Second line<FF03>'
+                  'Third line.<FF05><20><00><FF03>...Fourth line<FF02><FF01>')
+        result = story.merge_boxes(source, joins=[True])
+        self.assertIn('<FF05><20><00><FF02><FF03>...Fourth', result)
+        self.assertNotIn('<FF04>', result)
+        self.assertEqual(story.merge_boxes(source, joins=[False]), source)
+
+    def test_balanced_opening_beats_comma_scrap(self):
+        for text, expected in (
+            ('Brown: Man, do I ever love this suspense! Just wait until I get my shining moment!',
+             ['Brown: Man, do I ever love', 'this suspense! Just wait',
+              'until I get my shining moment!']),
+            ('Yukino: Hey, how come all the vendors at every weapon shop have the same face?',
+             ['Yukino: Hey, how come all', 'the vendors at every weapon',
+              'shop have the same face?']),
+        ):
+            with self.subTest(text=text):
+                self.assertEqual(wrap.wrap(text).split('<FF03>'), expected)
+
     def test_balanced_shape_is_a_cost_not_a_reward_for_wide_first_lines(self):
         self.assertLess(2 * wrap.fullness(100), wrap.fullness(180) + wrap.fullness(20))
 

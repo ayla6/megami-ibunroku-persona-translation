@@ -156,7 +156,23 @@ def psx_furniture(ja, en):
     '<name>：<text>'), and a box-head '>' survives only where the PSX row
     carries one. Both need BOTH texts, so every path that turns a PSP-US box
     into an `en` runs this - assemble() and the similarity fallback alike."""
-    return port_derive.head_marks(port_derive.nameplate(en, 'label'), ja)
+    # A PSP nameplate is repeated on each page even when the destination
+    # prints the speaker only once. Only retain it where the corresponding
+    # PSX page actually starts with an inline label. If page counts differ,
+    # only the first page has an unambiguous counterpart.
+    jp_pages = (ja or '').split('<FF04>')
+    us_pages = (en or '').split('<FF04>')
+    pages = []
+    for i, page in enumerate(us_pages):
+        corresponding = (i < len(jp_pages)
+                         and (i == 0 or len(jp_pages) == len(us_pages)))
+        has_label = (corresponding and bool(re.match(
+            r'^\s*[^<：:、。！？!?\n]{1,32}[：:]', jp_pages[i])))
+        def convert(m):
+            name = m.group(2).strip()
+            return m.group(1) + (name + ': ' if has_label and name else '')
+        pages.append(port_derive.NAMEPLATE.sub(convert, page))
+    return port_derive.head_marks('<FF04>'.join(pages), ja)
 
 
 def assemble(ja, en):
