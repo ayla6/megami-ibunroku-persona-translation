@@ -105,8 +105,9 @@ CHOICE_ORDER = [label for label, _group in CHOICES]
 # Options whose one-shot build changes the image layout (size or placement).
 # They are applied last, and each one is encoded against the size-changer
 # layout built before it. In-place options never change a file's allocation,
-# so one patch each is enough. The build verifies this classification against
-# the solo images it assembles.
+# so one patch each is enough. The build verifies the in-place classification
+# against the solo images it assembles; this set may conservatively include
+# options whose solo image happens not to change layout.
 SIZE_CHANGERS = frozenset(('saves', '60fps'))
 # An option whose edits share a disc sector with an in-place option applied
 # before it: its patch is encoded twice, without and with the partner, because
@@ -240,7 +241,7 @@ def feature_names():
 
 
 def in_place_options():
-    """The release options whose edits never change the image size."""
+    """The release options whose edits preserve the image layout."""
     return tuple(label for label in solver_order(CHOICE_ORDER)
                  if label not in SIZE_CHANGERS)
 
@@ -402,6 +403,35 @@ def image_changes(base, variant):
     finally:
         old_disc.f.close()
         new_disc.f.close()
+
+
+def image_layout(path):
+    """Image length, ISO file extents/sizes and directory extents.
+
+    Equal raw lengths do not imply equal placement: a file can move into
+    unused sectors, or grow there, without extending the image.
+    """
+    import verify_disc
+    disc = verify_disc.Disc(path)
+    try:
+        files, _dirs, directories = disc.walk_records()
+        return (Path(path).stat().st_size,
+                {name: (extent, size) for name, extent, size, _ in files},
+                sorted(directories))
+    finally:
+        disc.f.close()
+
+
+def check_layout_classification(option, source, target):
+    """An in-place edge must preserve layout; layout-changers may be conservative.
+
+    An option may change layout only in combination with another option, so
+    an unchanged solo image cannot prove it is safe to classify as in-place.
+    """
+    if option not in SIZE_CHANGERS and image_layout(source) != image_layout(target):
+        raise RuntimeError(f'{option} solo build changed the image layout but '
+                           'is not in SIZE_CHANGERS - correct build_patches.py '
+                           'before releasing')
 
 
 def unpartnered_overlaps(changes):
@@ -1354,16 +1384,9 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                 source = ensure_image(edge.parent)
                 patch(source, image, edge.file, metadata, key)
                 if not edge.anchor and not edge.parent:
-                    # The whole graph hangs on which options grow the image:
-                    # verify the classification against the assembled solo
-                    # build, never trust the constant.
-                    grew = image.stat().st_size != source.stat().st_size
-                    if grew != (option in SIZE_CHANGERS):
-                        raise RuntimeError(
-                            f'{option} solo build {"grew" if grew else "kept"}'
-                            ' the image size but SIZE_CHANGERS says the'
-                            ' opposite - correct build_patches.py before'
-                            ' releasing')
+                    # In-place patches must not change file placement or size,
+                    # even if freed extents keep the overall image length fixed.
+                    check_layout_classification(option, source, image)
             finally:
                 cue = image.with_suffix('.cue')
                 if cue.exists():

@@ -266,18 +266,20 @@ builds by default, not 512.
   in the build summary. That is the residual risk sampling accepts, and
   it covers patch composition, not in-game behavior (that is the audits
   and in-game QA).
-- **`SIZE_CHANGERS` is checked, not trusted**: the build measures each
-  solo variant against the base image and stops if the classification
-  disagrees. If an option starts (or stops) growing the image, fix the
-  constant and expect a full rebuild - the whole graph hangs off it.
+- **In-place classifications are checked**: each solo variant classified
+  in-place must preserve the base image length, file extents and sizes, and
+  directory extents. A relocation into free space can change layout without
+  changing image length. `SIZE_CHANGERS` is conservative: an option may be
+  listed even when its solo build keeps the same layout, since combinations
+  can still change it. Changes to the classification affect the whole graph.
 
 #### Adding a release option (checklist)
 
 1. Implement the patch and add it to `QOL_PATCHES` in
    `src/injection_tools/build.py` (with its verify gates).
 2. Add it to `CHOICES` in `tools/build_patches.py`. If its build changes
-   the image size, also add it to `SIZE_CHANGERS` - a wrong guess stops
-   the build at the solo-size check.
+   file placement or size, also add it to `SIZE_CHANGERS` - an in-place
+   classification that changes the solo layout stops the build.
 3. Add its wording to `tools/release_options.json` (label, name,
    description - the single source of option wording: `CHOICES` derives
    from it, the release README is generated from it, and the Pages

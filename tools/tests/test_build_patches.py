@@ -26,6 +26,22 @@ def scratch_in(root):
 
 class ReleaseIO(unittest.TestCase):
 
+    def test_layout_classification_accepts_conservative_size_changer(self):
+        with patch.object(release, 'image_layout', side_effect=AssertionError('not needed')):
+            release.check_layout_classification('60fps', 'base', 'variant')
+
+    def test_in_place_classification_checks_relocation_at_equal_image_size(self):
+        base = (10000, {'EXE/OPEN.EXE': (100, 4096)}, [(20, 2048)])
+        relocated = (10000, {'EXE/OPEN.EXE': (200, 4096)}, [(20, 2048)])
+        resized = (10000, {'EXE/OPEN.EXE': (100, 4097)}, [(20, 2048)])
+        for target in (relocated, resized):
+            with self.subTest(target=target), \
+                    patch.object(release, 'image_layout', side_effect=[base, target]):
+                with self.assertRaisesRegex(RuntimeError, 'changed the image layout'):
+                    release.check_layout_classification('run', 'base', 'variant')
+        with patch.object(release, 'image_layout', side_effect=[base, base]):
+            release.check_layout_classification('run', 'base', 'variant')
+
     def test_hash_cache_notices_a_rewritten_file(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / 'image.bin'
