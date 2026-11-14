@@ -11,6 +11,7 @@ MENU = 0x800A0CF8
 BUSY = 0x8008F130
 STEP = 0x800CF06B
 END = 0x801F0000
+SELECT = 0x0100
 
 
 class BattleDebugStart(unittest.TestCase):
@@ -51,11 +52,11 @@ class BattleDebugStart(unittest.TestCase):
         if expect_menu:
             self.assertEqual(c.read(BUSY, 1), 0)
 
-    def test_fresh_start_on_either_pad(self):
+    def test_fresh_select_on_either_pad(self):
         for pad in (0x800F88F0, 0x800F88F4):
             with self.subTest(pad=hex(pad)):
                 self.setUp()
-                self.cpu.write(pad, 0x0800, 2)
+                self.cpu.write(pad, SELECT, 2)
                 self.run_stub(True)
 
     def test_no_press_does_not_open(self):
@@ -66,7 +67,7 @@ class BattleDebugStart(unittest.TestCase):
             with self.subTest(address=hex(address)):
                 self.setUp()
                 self.cpu.write(address, 1, 1)
-                self.cpu.write(0x800F88F0, 0x0800, 2)
+                self.cpu.write(0x800F88F0, SELECT, 2)
                 self.run_stub(False)
 
 

@@ -12,9 +12,12 @@
 ;; The translation build's name entry is ABC-only (name/abc_only.asm),
 ;; so the kana name can never be typed and the retail key is dead on
 ;; every translated disc. This patch replaces the whole key with a
-;; fresh Start press on either pad: the debug page opens straight away,
+;; fresh Select press on either pad: the debug page opens straight away,
 ;; with no name and no Cancel gate, and no dependency on the debug HUD
-;; flag (so Start does not also become the round-end key).
+;; flag (so Select does not also become the round-end key). Select, not
+;; Start: Start during a turn is --qol=fastforward's. The page's own
+;; frames read the pad again, so the press does not also reach the
+;; picker (its Select opens the member boards).
 ;;
 ;; Addresses are this project's first-pressing BTLP.BIN (data/psx):
 ;;   BtlDrawFrame     0x80080F14   BtlCheatWatch  0x8008F05C
@@ -33,7 +36,7 @@
 ;;
 ;; BtlDebugMenu's own step machine lives in g_btl_step, the same byte
 ;; the battle's order and command stages use. Retail only reaches the
-;; page from a state where that byte is PICK (0), so a Start press at
+;; page from a state where that byte is PICK (0), so a Select press at
 ;; any other point would enter the page halfway through - on DONE (2)
 ;; it returns before drawing anything, and on ACT (1) it runs a row
 ;; that was never picked. The stub therefore puts the byte on PICK for
@@ -46,7 +49,7 @@
 .definelabel btl_debug_step,       0x800CF06B   ; g_btl_step (BtlDebugMenu's DEBUG_STEP_*)
 .definelabel btl_debug_stub,       0x8008F05C   ; BtlCheatWatch's body
 .definelabel btl_debug_busy,       0x8008F130   ; a byte past this stub, inside the dead function
-.definelabel PAD_START,            0x0800
+.definelabel PAD_SELECT,           0x0100
 
 .org btl_debug_cheat_call
     nop                                         ; was jal BtlCheatWatch
@@ -73,7 +76,7 @@
     lhu     v0, -0x770C(v0)                     ; g_btl_pad2_edge
     nop
     or      v1, v1, v0
-    ori     v0, zero, PAD_START
+    ori     v0, zero, PAD_SELECT
     and     v1, v1, v0
     beqz    v1, @@done
     nop

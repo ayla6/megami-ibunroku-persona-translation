@@ -63,7 +63,7 @@ QOL_PATCHES = {
     'range':       ('QOL_RANGE',       'battle: while you pick a target, the move\'s reach is painted on '
                                        'the floor in orange and the fighters it would hit in red; '
                                        'the menus show what is under the cursor in red'),
-    'debug':       ('QOL_DEBUG',       'battle debug menu: press Start on either controller in battle; '
+    'debug':       ('QOL_DEBUG',       'battle debug menu: press Select on either controller in battle; '
                                        'on the title L1/L2/R1/R2/Select start endings 0-4, R1 held '
                                        'fast-forwards an ending and Start skips its movies; battles check '
                                        'their primitive pool every frame and stop on the first broken one '

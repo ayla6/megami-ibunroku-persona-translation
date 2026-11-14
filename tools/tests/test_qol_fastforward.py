@@ -28,7 +28,7 @@ G = 0x800D0000
 POOL = 0x80100000
 STRIDE = 0xE660
 PAD1_EDGE = 0x800F88F0
-STEP, AUTO, HALF_RATE, VSYNC_COUNT = G - 0xF95, G + 0x2250, G - 0xF8D, G - 0xF6B
+STAGE, AUTO, HALF_RATE, VSYNC_COUNT = G - 0xF96, G + 0x2250, G - 0xF8D, G - 0xF6B
 FRAME_INDEX, CLOSING = G - 0xF08, G - 0xF8C
 VSYNC, PUT_DISP, PUT_DRAW, DRAW_OTAG = 0x80025C98, 0x8002BD98, 0x8002BBC0, 0x8002BB4C
 STUBS = {0x8008EA70, 0x8008F05C, 0x8001950C, 0x8001B6DC, 0x8001B06C, 0x80018E2C,
@@ -93,10 +93,11 @@ class Battle:
         c.next_pc = c.pc + 4
         return True
 
-    def tick(self, press=0, step=1, auto=0):
+    def tick(self, press=0, stage=2, auto=0, step=0):
         c = self.c
         self.press = press
-        c.write(STEP, step, 1)
+        c.write(STAGE, stage, 1)
+        c.write(G - 0xF95, step, 1)                          # g_btl_step
         c.write(AUTO, auto, 1)
         c.r[REG['sp']] = 0x801FF000
         c.r[REG['ra']] = SENTINEL
@@ -171,15 +172,25 @@ class FastForward(unittest.TestCase):
     def test_the_command_menu_ends_it_and_keeps_start(self):
         b = Battle(self.with_speed)
         b.tick(press=START)
-        b.tick(press=START, step=0)                          # command menu: the game's Start
+        b.tick(press=START, stage=1)                          # command menu: the game's Start
         self.assertEqual(b.c.read(PAD1_EDGE, 2), START)
-        self.assertEqual(b.kind(b.tick(step=0)), 'shown+drawn')
-        b.tick(press=START, step=0, auto=1)                  # AUTO between rounds: a turn
+        self.assertEqual(b.kind(b.tick(stage=1)), 'shown+drawn')
+        b.tick(press=START, stage=1, auto=1)                  # AUTO between rounds: a turn
         self.assertEqual(b.c.read(PAD1_EDGE, 2), 0)
-        self.assertEqual(b.kind(b.tick(step=0, auto=1)), 'shown+empty')
+        self.assertEqual(b.kind(b.tick(stage=1, auto=1)), 'shown+empty')
         for _ in range(RATE - 1):
-            b.tick(step=0)                                   # AUTO stopped mid-group
-        self.assertEqual(b.kind(b.tick(step=0)), 'shown+drawn')
+            b.tick(stage=1)                                   # AUTO stopped mid-group
+        self.assertEqual(b.kind(b.tick(stage=1)), 'shown+drawn')
+
+    def test_the_command_stage_keeps_start_at_any_step(self):
+        """BtlStageCommand's inner steps (the per-member walk, the formation
+        grid) are not a turn: START there is the game's."""
+        b = Battle(self.with_speed)
+        for step in range(1, 6):
+            b.tick(press=START, stage=1, step=step)
+            self.assertEqual(b.c.read(PAD1_EDGE, 2), START)
+            self.assertEqual(b.c.read(self.sym['ff_vars'], 1), 0)
+            self.assertEqual(b.kind(b.tick(stage=1, step=step)), 'shown+drawn')
 
     def battle_over(self, b):
         """Run the round flow's battle-over hook as retail reaches it."""
@@ -202,11 +213,11 @@ class FastForward(unittest.TestCase):
             b.tick(auto=1)
         self.battle_over(b)
         self.assertEqual(b.c.read(self.sym['ff_vars'], 1), 0)
-        b.tick(press=START, step=0, auto=1)                  # AUTO still on after the battle
+        b.tick(press=START, stage=1, auto=1)                  # AUTO still on after the battle
         self.assertEqual(b.c.read(PAD1_EDGE, 2), START)     # the game's
         self.assertEqual(b.c.read(self.sym['ff_vars'], 1), 0)
         for _ in range(RATE + 1):
-            self.assertEqual(b.kind(b.tick(step=0, auto=1)), 'shown+drawn')
+            self.assertEqual(b.kind(b.tick(stage=1, auto=1)), 'shown+drawn')
 
     def test_icon_links_into_the_last_ot_entry_only_while_on(self):
         b = Battle(self.with_speed)

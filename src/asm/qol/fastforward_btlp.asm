@@ -5,9 +5,12 @@
 ;; 0x80092270 and ~280 scripted waits call it).
 ;;
 ;; START fast-forward (as the PSP's battle skip). START while a turn plays
-;; out (g_btl_step != 0, or AUTO on) toggles it; START at the command menu
-;; stays the game's (and --qol=debug's page). It ends by itself when the
-;; command menu comes back for input (step 0 with AUTO off), and for good when
+;; out (g_btl_stage is BtlStageRound, or AUTO on) toggles it; START anywhere in
+;; BtlStageCommand (the picker, the per-member walk and its formation grid, a
+;; negotiation) stays the game's (and --qol=debug's page). g_btl_step is no
+;; test: BtlStageCommand and BtlCommandEntry use it as their own inner state.
+;; It ends by itself when the round is over (stage no longer BtlStageRound,
+;; AUTO off), and for good when
 ;; the battle is over: the round flow's battle-over branch (victory and defeat
 ;; alike, before the experience count, the level-up board or the defeat line)
 ;; switches it off and START is the game's again until the next battle. While
@@ -52,7 +55,7 @@
 ;; jumps into the old body (only jal 0x80080F14).
 ;;
 ;; Battle globals (decomp src/btlp/drawframe.c), from s0 = 0x800D0000:
-;;   -0xF95 g_btl_step    -0xF92 g_btl_no_help  -0xF8D g_btl_half_rate
+;;   -0xF96 g_btl_stage   -0xF95 g_btl_step    -0xF92 g_btl_no_help  -0xF8D g_btl_half_rate
 ;;   -0xF8C g_btl_closing -0xF6D g_btl_frame_due -0xF6B g_btl_vsync_count
 ;;   -0xF68 g_btl_prim_pool  -0xF08 g_btl_frame  -0xF0C g_btl_interlace
 ;;   -0xF0B g_btl_blank_on_load  -0xF05 g_btl_auto_confirm
@@ -214,13 +217,14 @@ ff_plan:
     lbu     t1, FF_CNT(t0)
     lbu     t2, FF_ON(t0)
     bnez    t1, @@in_group
-    lbu     a0, -0xF95(s0)              ; g_btl_step
+    lbu     a0, -0xF96(s0)              ; g_btl_stage
     lbu     a1, 0x2250(s0)              ; AUTO
-    nop
+    xori    a0, a0, 2
+    sltiu   a0, a0, 1                   ; 1 in BtlStageRound (stage 2)
     or      a0, a0, a1
     bnez    a0, @@turn
     nop
-    move    t2, zero                    ; the command menu is back: the fast-forward ends
+    move    t2, zero                    ; the turn is over: the fast-forward ends
     sb      zero, FF_ON(t0)
 @@turn:
     sb      t2, FF_CNT(t0)              ; tick 0, shown; on: a group starts,
@@ -324,13 +328,16 @@ ff_arena:
     nop
 
 ;; After BtlPadRead: a fresh START during a turn toggles the fast-forward and
-;; is consumed. At the command menu (step 0, AUTO off) it stays the game's.
+;; is consumed. Outside BtlStageRound with AUTO off (the command picker, the
+;; per-member walk, the formation grid, a negotiation) it stays the game's.
 ff_pad:
     lui     at, 0x8010
     lhu     v1, -0x7710(at)             ; g_btl_pad1_edge
-    lbu     a0, -0xF95(s0)              ; g_btl_step
+    lbu     a0, -0xF96(s0)              ; g_btl_stage
     lbu     a1, 0x2250(s0)              ; AUTO
     andi    v0, v1, FF_START
+    xori    a0, a0, 2
+    sltiu   a0, a0, 1                   ; 1 in BtlStageRound (stage 2)
     beqz    v0, @@pad_done
     or      a0, a0, a1
     beqz    a0, @@pad_done

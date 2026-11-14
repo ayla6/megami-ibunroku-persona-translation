@@ -29,9 +29,9 @@ filename; a plain build uses the retail save flow and the regular translation fi
 | `upright` | `QOL_UPRIGHT` | Upward Movement Orientation: Upper Right in the 2D rooms - pressing Up walks to the upper right instead of the retail upper left |
 | `skipfmv` | `QOL_SKIPFMV` | press Start to skip the movie that is playing (the story FMVs, Philemon's scenes among them; the opening quote and the Atlus logo already skip) |
 | `battlespeed` | `QOL_BATTLESPEED` | summons and skill effects at double speed |
-| `fastforward` | `QOL_FASTFORWARD` | Start while a battle turn plays out fast-forwards it: 3 battle ticks per shown frame, ">>" at the top right; it ends at the command menu and at the results window. The release carries it in the `battlespeed` patch (`release_options.json` `qol`) |
+| `fastforward` | `QOL_FASTFORWARD` | Start while a battle turn plays out (not in the command menus or the formation grid) fast-forwards it: 3 battle ticks per shown frame, ">>" at the top right; it ends at the command menu and at the results window. The release carries it in the `battlespeed` patch (`release_options.json` `qol`) |
 | `range` | `QOL_RANGE` | battle: while a target is picked, the move's reach is painted on the floor in orange and the fighters it would hit in red; on the command menu (sword, gun), the skill board and the item board, what is under the cursor has its whole area in red. Replaces the retail debug grid |
-| `debug` | `QOL_DEBUG` | battle debug menu: press Start on either controller to open the debug page; on the title menu L1/L2/R1/R2/Select start endings 0-4, holding R1 fast-forwards an ending and Start skips its movies; battles check their primitive pool every frame and stop on the first broken frame with a red square at the top left (`qol/debug_guard_btlp.asm`) |
+| `debug` | `QOL_DEBUG` | battle debug menu: press Select on either controller to open the debug page; on the title menu L1/L2/R1/R2/Select start endings 0-4, holding R1 fast-forwards an ending and Start skips its movies; battles check their primitive pool every frame and stop on the first broken frame with a red square at the top left (`qol/debug_guard_btlp.asm`) |
 | `mark` | `QOL_MARK` | Mark wears the Revelations design: the dialogue/status headshot, battle sheet and overworld walk sheet are swapped for the art in `src/assets/mark/black` (edit those PNGs to change it; see `src/assets/mark/README.md`). No code changes: the BST face slot and his B/P.BIN battle entry are rewritten in place and the ~207 MES.BIN scene entries carrying his walk sheet are re-encoded around the swapped page |
 
 `build/` is shared and holds whichever variant was built last (armips rewrites every overlay from
@@ -164,8 +164,10 @@ to the GPU with an empty drawing area. The last tick draws normally. Hidden tick
 logic and BtlDrawObjects' state work (position hand-down, colour fades): the handlers only build
 primitives (decomp `src/btlp/obj*.c`). The extra code also uses the dead `BtlFrontPost` (0x80065D88).
 With `battlespeed` the rewrite has no half-rate second VSync and main.asm leaves
-`battle_speed_btlp.asm` out; alone it keeps that wait. Start at the command menu stays the game's,
-so `--qol=debug`'s page still opens there. `tools/tests/test_qol_fastforward.py` runs the frame tick by
+`battle_speed_btlp.asm` out; alone it keeps that wait. Start arms it only in `BtlStageRound`
+(`g_btl_stage` 2) or with AUTO on; anywhere in `BtlStageCommand` (the picker, the per-member walk,
+the formation grid, a negotiation) Start stays the game's. `g_btl_step` is no test there: the command
+stage and `BtlCommandEntry` use it as their own inner state. `tools/tests/test_qol_fastforward.py` runs the frame tick by
 tick on the R3000 model.
 
 ## The reach on the battle floor (`--qol=range`)
@@ -209,11 +211,11 @@ flag `g_btl_debug_hud`; `BtlOrdersMenu` then opens `BtlDebugMenu` (decomp `src/b
 instead of the orders menu, as long as Cancel is held.
 
 The translation build cannot type the kana name the retail gate wants. With this option,
-a fresh **Start** press on either controller opens the debug page. The hook runs at the
+a fresh **Select** press on either controller opens the debug page (Start during a turn is `fastforward`'s). The hook runs at the
 end of `BtlDrawFrame`, guards against recursion and a closing battle, saves `g_btl_step`,
 sets the page's initial step, and restores the battle step on return. It does not enable
 the separate debug HUD. The page includes stat and ailment editors and a BGM selector;
-Cancel leaves it. The Start hook has instruction-level tests but still needs in-game QA,
+Cancel leaves it. The Select hook has instruction-level tests but still needs in-game QA,
 particularly when opened during other battle screens. The debug board's fitting
 translated rows use the same battle small-font VWF bridge as other boards, in
 both normal and debug-enabled builds.
