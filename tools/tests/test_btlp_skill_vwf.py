@@ -21,7 +21,7 @@ def test_flat(self, item=False):
     SKILL_BIT=toolbelt.asm_equ('SKILL_BIT_OFFSET')     # skill slot 0's ownership bit
     BASE=0x800643c4
     btl=(ROOT/'build/BTLP.BIN').read_bytes(); retail=(ROOT/'data/psx/BTLP.BIN').read_bytes(); width=(ROOT/'build/sf_width.bin').read_bytes()
-    OBJ=0x80100000;LIST=0x80101000;DESC=0x80102000;PRIM=0x80120000;POOL=0x80140000;DMODE=0x80118000;SRC=0x8002c248
+    OBJ=0x80100000;LIST=0x80101000;DESC=0x80102000;PRIM=0x80120000;POOL=0x80140000;DMODE=0x80118000;SRC=toolbelt.asm_equ('SKILL_MENU_BUF')  # skill slot 0's row
     
     fixture=item_fixture() if item else None
     if fixture:SRC=fixture[0]
@@ -30,7 +30,7 @@ def test_flat(self, item=False):
     def run(enabled,hook,flip=False):
      c=CPU();c.load(0x80010000,(ROOT/"build/SLPS_005.00").read_bytes()[0x800:]);c.load(BASE,btl)
      if not hook:
-       for a in (0x80088e80,0x800891a4,0x80088f84,0x80088f88,0x80088fa8,0x80088fac,0x80088fdc): c.load(a,retail[a-BASE:a-BASE+4])
+       for a in (0x80088e80,0x800891a4,*range(0x80088f24,0x80088f6c,4),0x80088f84,0x80088f88,0x80088fa8,0x80088fac,0x80088fdc): c.load(a,retail[a-BASE:a-BASE+4])
      c.write(OBJ+0x68,LIST);c.write(LIST,1);c.write(LIST+4,DESC);c.write(DESC,12,2);c.write(DESC+2,24,2);c.write(DESC+4,SRC)
      c.write(DESC+8,len(glyphs),1);c.write(DESC+9,0x20,1);c.write(DESC+10,12,1);c.write(DESC+11,0,1)
      c.load(SRC,glyphs);c.write(0x800120a0,(1<<SKILL_BIT) if enabled else 0,2)
@@ -50,7 +50,13 @@ def test_flat(self, item=False):
      return [bytes(c.read(PRIM+i*20+k,1) for k in range(20)) for i in range(len(glyphs))],c
     retail,_=run(False,False)
     fallback,_=run(False,True,True)
-    assert retail==fallback,'fallback altered retail SPRT packets'
+    # An unowned row is the original font (btl_row_face): retail cells and
+    # packets, laid out with the original face's metrics.
+    orig=(ROOT/'build/btl_orig_width.bin').read_bytes();pen=0
+    for a,b,code in zip(retail,fallback,glyphs):
+     assert int.from_bytes(b[8:10],'little')==62+pen-(orig[code]>>4),'fallback origin'
+     assert a[:8]+a[10:]==b[:8]+b[10:],'fallback altered retail SPRT packet data'
+     pen+=orig[code]&15
     prop,cpu=run(True,True,True)
     pen=0
     for i,(a,b,code) in enumerate(zip(retail,prop,glyphs)):
@@ -76,7 +82,7 @@ def test_rot(self, item=False):
     SKILL_BIT=toolbelt.asm_equ('SKILL_BIT_OFFSET')     # skill slot 0's ownership bit
     btl=(ROOT/'build/BTLP.BIN').read_bytes();retail=(ROOT/'data/psx/BTLP.BIN').read_bytes();width=(ROOT/'build/sf_width.bin').read_bytes()
     sym={m.group(2):int(m.group(1),16) for l in (HERE/'persona.sym').read_text().splitlines() if (m:=re.match(r'^([0-9a-fA-F]{8})\s+(\S+)',l))}
-    OBJ=0x80100000;LIST=0x80101000;DESC=0x80102000;PRIM=0x80120000;POOL=0x80140000;SRC=0x8002c248
+    OBJ=0x80100000;LIST=0x80101000;DESC=0x80102000;PRIM=0x80120000;POOL=0x80140000;SRC=toolbelt.asm_equ('SKILL_MENU_BUF')  # skill slot 0's row
     fixture=item_fixture() if item else None
     if fixture:SRC=fixture[0]
     glyphs=fixture[4] if fixture else bytes([0xa6,0xae,0xb8])
@@ -84,7 +90,7 @@ def test_rot(self, item=False):
     def run(enabled,hook,flip=False):
      c=CPU();c.load(0x80010000,(ROOT/"build/SLPS_005.00").read_bytes()[0x800:]);c.load(0x800643c4,btl)
      if not hook:
-       for a in (0x800891b0,0x800895c8,0x800892c8,0x800892cc,0x80089370,0x80089374):c.load(a,retail[a-0x800643c4:a-0x800643c4+4])
+       for a in (0x800891b0,0x800895c8,*range(0x8008927c,0x800892d0,4),0x80089370,0x80089374):c.load(a,retail[a-0x800643c4:a-0x800643c4+4])
      c.write(OBJ+0x68,LIST);c.write(LIST,1);c.write(LIST+4,DESC);c.write(DESC,12,2);c.write(DESC+2,24,2);c.write(DESC+4,SRC)
      c.write(DESC+8,len(glyphs),1);c.write(DESC+9,0x20,1);c.write(DESC+10,12,1);c.write(DESC+11,0,1)
      c.load(SRC,glyphs);c.write(0x800120a0,(1<<SKILL_BIT) if enabled else 0,2)
@@ -109,7 +115,14 @@ def test_rot(self, item=False):
      return [bytes(c.read(PRIM+i*40+k,1) for k in range(40)) for i in range(len(glyphs))],c
     retail,_=run(False,False)
     fallback,_=run(False,True,True)
-    assert retail==fallback,'fallback altered retail FT4 packets'
+    orig=(ROOT/'build/btl_orig_width.bin').read_bytes();pen=0
+    for a,b,code in zip(retail,fallback,glyphs):
+     x=(12+pen-(orig[code]>>4))&0xffff
+     for off,dx in ((8,0),(16,8),(24,0),(32,8)):
+      assert int.from_bytes(b[off:off+2],'little')==(x+dx)&0xffff,('fallback origin',off,b.hex())
+     keep=lambda p:p[:8]+p[10:16]+p[18:24]+p[26:32]+p[34:]
+     assert keep(a)==keep(b),'fallback altered retail FT4 packet data'
+     pen+=orig[code]&15
     prop,cpu=run(True,True,True)
     pen=0
     for a,b,code in zip(retail,prop,glyphs):
@@ -138,7 +151,7 @@ def test_row_latch_and_live_glyph(self):
     sym={m.group(2):int(m.group(1),16) for line in (HERE/'persona.sym').read_text().splitlines() if (m:=re.match(r'^([0-9a-fA-F]{8})\s+(\S+)',line))}
     # The battle bridge reads the split table: text cells proportional, every
     # other cell the retail 8 px metric.
-    image=(HERE/'BTLP.BIN').read_bytes();widths=(HERE/'btl_sf_width.bin').read_bytes()
+    image=(HERE/'BTLP.BIN').read_bytes();widths=(HERE/'btl_sf_width.bin').read_bytes();orig=(HERE/'btl_orig_width.bin').read_bytes()
     DESC=0x800e0100;SP=0x801f0000
     sys.path.insert(0,str(ROOT/'src/injection_tools'))
     import toolbelt as _tb
@@ -163,11 +176,15 @@ def test_row_latch_and_live_glyph(self):
        if c.pc==stop:break
        c.step()
       else:raise AssertionError('no return')
-      origin=c.r[REG['v0' if mode=='flat' else 'a1']]-(100 if mode=='flat' else 200)
-      if origin>=2**31:origin-=2**32
-      want=(advance-(widths[code]>>4)) if enabled else i*8
+      # An unowned row is the original font (btl_row_face): its pen carries
+      # bit 31, which the renderers drop with the rest of the high half when
+      # they store x, and the original face's metrics.
+      table=widths if enabled else orig
+      origin=(c.r[REG['v0' if mode=='flat' else 'a1']]-(100 if mode=='flat' else 200))&0xFFFF
+      if origin>=2**15:origin-=2**16
+      want=advance-(table[code]>>4)
       assert origin==want,(mode,enabled,i,origin,want)
-      if enabled:advance+=widths[code]&15
+      advance+=table[code]&15
       allowed={REG['v1'],REG['v0' if mode=='flat' else 'a1']}
       for r in range(1,32):
        if r not in allowed:assert c.r[r]==before[r],(mode,enabled,i,r,hex(c.r[r]),hex(before[r]))

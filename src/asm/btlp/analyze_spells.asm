@@ -125,3 +125,27 @@
     .word ANALYZE_RANK_BUF
 .org 0x800DEAFC
     .word ANALYZE_KIND_BUF
+
+;; The trait, spell, rank and kind rows live in the resident dialogue scratch,
+;; which holds whatever was there last (zeros after boot: 00 is the space), not
+;; retail's short rows reloaded with BTLP. Retail BtlAnalyseMenu draws a frame
+;; between BtlOpenStatusBoard and the first BtlShowEnemyStatus, so those rows
+;; would be drawn at their full counts - over 200 cells of leftovers, past the
+;; POLY_FT4 run into the next primitive runs (corrupt quads, or a GPU list the
+;; DMA never leaves). That frame is replaced by the one part of it the menu
+;; needs, BtlPadRead, which takes the press that chose ANALYZE off the edge
+;; bits before BtlPickEnemy reads them. The loop's first pass then fills the
+;; board (BtlShowEnemyStatus) before its BtlDrawFrame draws it.
+.org 0x800A0C4C
+.area 0x800A0C74 - 0x800A0C4C
+    jal     0x800AD76C                  ; BtlOpenStatusBoard
+    nop
+    jal     0x8008E980                  ; BtlPadRead
+    nop
+    jal     0x800C7F94                  ; BtlSetPickable
+    nop
+    jal     0x800C6FA0                  ; BtlPickableNext(-1)
+    addiu   a0, zero, -1
+    lui     at, 0x800F
+    sh      v0, 0x6E64(at)              ; g_btl_enemy_slot
+.endarea

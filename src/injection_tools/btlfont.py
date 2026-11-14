@@ -398,10 +398,12 @@ def verify_skill_vwf():
         if text != (battle_widths[code] != 0x08):
             raise SystemExit(f'btlfont: battle width table marks code {code:#x} wrong '
                              f'(text={text}, metric={battle_widths[code]:#x})')
-    for hook, label in ((0x80088F84, code_addr), (0x800892C8, code_addr + 0x20)):
+    # the rotated hook's delay slot carries retail's lhu a1, 0(s5)
+    # (btlp/text_slot_bound.asm takes its old slot)
+    for hook, label, slot in ((0x80088F84, code_addr, 0), (0x800892C8, code_addr + 0x20, 0x96A50000)):
         actual, delay = struct.unpack_from('<II', built, hook - base)
         expected = 0x08000000 | ((label >> 2) & 0x3FFFFFF)
-        if (actual, delay) != (expected, 0):
+        if (actual, delay) != (expected, slot):
             raise SystemExit(f'btlfont: missing battle VWF hook at {hook:#x}')
 
     # The battle skill menu's display bound is the width between the two
@@ -465,10 +467,10 @@ def verify_skill_vwf():
     if slots_addr % 2 or resident[slots_addr - slps.BASE:slots_addr - slps.BASE + 2] != expected_slots:
         raise SystemExit('btlfont: battle name-slot ownership halfword is not clear at boot')
     # The Persona header bank (4 x 16 bytes: three owned name slots and the
-    # fixed-width "Cost" label) and the skill bank (7 x 24 bytes) are separate
-    # ranges of one ownership bitmap: Persona bits 0..2, skill slot i at bit
-    # 3+i. Each must fill its own dead run exactly; the label's slot is outside
-    # the owned Persona range.
+    # "Cost" label) and the skill bank (7 x 24 bytes) are separate ranges of
+    # one ownership bitmap: Persona bits 0..2, skill slot i at bit 3+i. The
+    # Persona bank fills its dead run; the skill bank is runtime scratch in
+    # the CD path-table cache's tail, below the battle decompressor's.
     persona_buf = toolbelt.asm_equ('PERSONA_HDR_BUF')
     hdr_stride = toolbelt.asm_equ('PERSONA_HDR_STRIDE')
     persona_end = toolbelt.asm_equ('PERSONA_HDR_BUF_END')
@@ -476,8 +478,9 @@ def verify_skill_vwf():
     if (persona_buf + 4 * hdr_stride != persona_end
             or persona_end > toolbelt.asm_equ('PERSONA_HDR_LIMIT')
             or skill_buffer + 7 * stride != skill_end
-            or skill_end > toolbelt.asm_equ('BANNER_SPILL_ADDR')):
-        raise SystemExit('btlfont: Persona and skill slot banks do not fill their own dead runs')
+            or skill_buffer != toolbelt.asm_equ('RESIDENT_SCRATCH_ADDR')
+            or skill_end > toolbelt.asm_equ('BTLEVT_BUF_ADDR')):
+        raise SystemExit('btlfont: Persona or skill slot bank is outside its own run')
     for key, offsets in (('BTLP_HDR_NAME_DESC', (0,)), ('BTLP_PRSCHG_DESC', (0, 1, 2))):
         first = toolbelt.asm_equ(key)
         for index in offsets:

@@ -1,10 +1,14 @@
-;; Battle object-text bridge to the existing small-font VWF metrics.
-;; Only rows owned by a producer range or a translated-producer span (skill,
-;; Persona and complete item names, plus the ANALYZE board's translated rows)
-;; are proportional; every other row retains the retail 8px path. A pen/mode word belongs to each renderer
-;; invocation, so rows cannot switch modes halfway through a draw.
-;; No glyph count, OT, packet size or animation is changed. Owned VWF rows
-;; sample separate proportional cells; fixed rows sample original artwork.
+;; Battle object-text bridge to the small-font VWF metrics. Every row is laid
+;; out proportionally. A producer's name row (skill, Persona and complete item
+;; names, the ANALYZE board) samples the separate proportional cells with
+;; their metrics; every other row - board labels, character names, rows no
+;; producer owns - is the original font: its retail cells with the original
+;; face's advances, numbers and every non-text cell at the retail 8 px
+;; (btl_row_face). The pen/mode word belongs to each renderer invocation, so
+;; rows cannot switch modes halfway through a draw; the original font's pen
+;; is negative (bit 31), which the art selector reads as "the retail cell"
+;; and the renderers drop with the rest of the high half when they store x.
+;; No glyph count, OT, packet size or animation is changed.
 .include "../../build/btl_text_centres.asm"
 .if BTLP_SF_WIDTH_ADDR != 0x800F8960 || BTLP_SF_CODE_ADDR != BTLP_SF_WIDTH_ADDR + 0x100 || BTLP_SF_END_ADDR != 0x800F8BC4
     .error "battle VWF must fit after the optional reward code in the last loaded sector"
@@ -24,23 +28,15 @@
     j btl_sf_flat_entry
     nop
 
-;; Party marker names retain retail x = 12 - n * 4 and 8-px pitch. The
-;; bounded count loop leaves room for the flat renderer's art adapter;
+;; Party marker names draw in the original font and are centred on their
+;; drawn width (btl_marker_x, btlp/orig_face.asm), where retail centred
+;; 12 - n * 4 cells; the room left holds the flat renderer's art adapter.
 ;; btl_marker_name_tail restores the registers the retail continuation reads.
 .org 0x800AA0F8
 .area 0x800AA150 - 0x800AA0F8
-    lw      a0, 4(s7)                   ; party marker names retain retail pitch
+    jal     btl_marker_x                ; v0 = the name's x
+    lw      a0, 4(s7)                   ; (delay) the marker's name
     ori     t3, zero, 0xFF
-    ori     v0, zero, 12
-    addiu   t4, a0, 8                   ; NAME_CELLS bound
-@@width:
-    lbu     t2, 0(a0)
-    addiu   a0, a0, 1
-    beq     t2, t3, @@centred
-    nop
-    bne     a0, t4, @@width
-    addiu   v0, v0, -4
-@@centred:
     ori     t0, zero, 0x10
     ori     v1, zero, 0x20
     j       btl_marker_name_tail
@@ -65,7 +61,7 @@ btl_sf_flat_art:
     ori     v0, v0, 0x1085             ; displaced divide constant
 .org 0x800892C8
     j btl_sf_rot_entry
-    nop
+    lhu a1, 0(s5)                       ; retail's at 0x800892C4 (btlp/text_slot_bound.asm takes that slot)
 
 .org BTLP_SF_WIDTH_ADDR
 .area BTLP_SF_CODE_ADDR - BTLP_SF_WIDTH_ADDR
@@ -101,26 +97,15 @@ btl_sf_common:
  sw v0,28(sp)
  bnez t8,btl_sf_read_state
  nop
- ; First glyph latches only current producer-owned semantic name rows.
+ ; First glyph latches the row's face and pen (btl_row_face).
  sw ra,4(t9) ; second word of the bridge's existing extra stack area
  lw a0,4(t7)
- jal btl_name_lookup
+ jal btl_row_face
  nop
  lw ra,4(t9)
- bnez v0,btl_sf_eligible
- nop
-btl_sf_not_vwf:
- addiu a0,zero,-1
- b btl_sf_set_state
- nop
-btl_sf_eligible:
- move a0,zero
-btl_sf_set_state:
- sw a0,0(t9)
+ sw v0,0(t9)
 btl_sf_read_state:
  lw a0,0(t9)
- nop
- bltz a0,btl_sf_fallback
  nop
  ; Renderer uses the current live btl_sf_glyph for its UV; use that same byte here.
  addiu a1,sp,0x50
@@ -142,8 +127,6 @@ btl_sf_metric_back:
  sw a0,0(t9)
  b btl_sf_done
  nop
-btl_sf_fallback:
- sll v1,t8,3
 btl_sf_done:
  lw a0,12(sp)
  lw a1,16(sp)
