@@ -1,3 +1,22 @@
+# 2026-11-14
+- Fixed the game freezing when you pick a demon to talk to with CONTACT.
+- Fixed ANALYZE sometimes crashing the game, or filling the screen with big colourful polygons for a moment. It got more likely the more you used ANALYZE and fought in the same battle. (Both bugs had the same cause: the ANALYZE board drew leftover garbage text for a frame when opening, and the battle ran out of room for text.)
+- The battle can no longer break its graphics when a screen has a lot of text at once. If it ever runs out of room, a few letters are skipped for that frame instead.
+- Two-column menus (casino, card game, fusion, tips...) now line up their second column exactly: "Go back" no longer sits a bit to the right of "Controls".
+- Small text uses the right font in more places:
+  - Labels (ATK, HIT, DEF, EVA, MATK, MDEF, the ANALYZE labels, rank and kind) and demon races now use the game's original font, but variable width.
+  - Names (items, skills, Personas, demons) and the traits line keep the regular one.
+  - The ANALYZE header shows the race in the original font and the demon's name in the regular one.
+  - The names in the title screen's Load list now use the variable-width font.
+- Eriko's status screen shows her full surname, Kirishima, instead of "Eriko K.".
+- Fixed small text disappearing from long menus when scrolling.
+- Fast forward is now its own option in the patcher, separate from Battle speedup.
+- The Western controls patch is taken out of the patcher for now: the buttons drawn on screen (like the △ on the Persona list) don't follow the swap yet. I'm sorry :( and I'm sorry for letting it in without changing everything.
+- Convenience Store now fits in the map labels!
+- Debug patch: battles now check their own graphics data every frame and stop with a red square if something breaks, so testing catches bugs right when they happen.
+- More adjustments to the dialogue wrapping.
+- More usage of the wait times in dialogue from the original release.
+
 # 2026-11-13
 - Added a Western controls patch: Circle to Cross, Triangle to Square and vice-versa. Like a lame western PlayStation release.
 - Doubles text speed to match the fact that Japanese text has about half as many characters as its English equivalent. The game is like a lot faster because of that. This is the more accurate to the original game way to do it btw.

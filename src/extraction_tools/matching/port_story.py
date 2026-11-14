@@ -1059,6 +1059,27 @@ def paginate(en, line='<FF03>', page='<FF04>', wait='<FF02>', per=3):
     return s, invented, nonsent
 
 
+def _rejoin(first, second, line):
+    """The lines of two joined boxes, laid out as ONE box.
+
+    Once the press between them is gone the boundary is just a word gap, so
+    the pair takes the flow's best three-line shape (`Mark: / But that
+    voice... That's Maki's mom, / I'm dead sure... Isn't it?`), not the first
+    box's lines with the second stacked under them. A box that opens on a
+    timed pause keeps its boundary as a line break: the beat is the
+    Japanese's line (sentence_pauses). A re-layout that would not fit three
+    lines keeps the plain join."""
+    if re.match(r'\s*<FF05>', second[0]):
+        return first + second
+    laid = layout_box(' '.join(first + second))
+    if not laid or re.search(r'<FF0[24]>', laid):
+        return first + second
+    lines = [x for x in laid.split(line) if x.strip()]
+    if len(lines) > 3:
+        return first + second
+    return lines
+
+
 def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1,
                 joins=None):
     """JOIN TWO AUTHORED BOXES WHEN THE JOIN IS FREE.
@@ -1126,7 +1147,7 @@ def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1,
                   and not scr and not merged[-1][1]
                   and len(merged[-1][0]) + len(vis) <= 3)
         if joined:
-            merged[-1] = (merged[-1][0] + vis, [])
+            merged[-1] = (_rejoin(merged[-1][0], vis, line), [])
             continue
         merged.append((list(vis), list(scr)))
     out = []
@@ -1197,6 +1218,83 @@ def box_joins(ja, jraw):
         out.append(not any(abs(q - e) <= 1 for e in ends))
     if out.count(False) != len(ends):
         return None
+    return out
+
+
+JP_STOP = re.compile(r'[？！。?!]+')
+JP_PAUSE = re.compile(r'(<FF03>)?<FF05><([0-9A-F]{2})><([0-9A-F]{2})>(<FF03>)?')
+
+
+def sentence_pauses(items, ja):
+    """Carry the PSX's timed beat BETWEEN sentences onto the English ones.
+
+    The PSX holds a timed pause where one sentence ends and the next begins
+    ('なんだそりゃ？<FF03><FF05><58><00>オイ　オマエ…'), the PSP drops it, and
+    the beat is what separates the two thoughts. For a pause that follows a
+    Japanese sentence end (？！。) with more words after it, the English
+    sentence end (a word ending . ! ?; a trailing ellipsis ends none) nearest
+    the same proportional place in the box takes the pause - measured in
+    glyph cells for the Japanese, in pixels for the English - when one lies
+    within a fifth of the box. Where the PSX broke the line around the pause,
+    the English breaks there too; the PSP's own box turn at that point is
+    that break. A pause in the middle of a clause is not carried, and a box
+    re-shaped by a mid-box label or an option block is left alone.
+    """
+    if '<FF04>' in ja or '<FF0E>' in ja:
+        return items
+    if any(k == 'b' or (k == 'u' and str(v).startswith('FF0E'))
+           for k, v, *_ in items):
+        return items
+    flat = re.sub(r'<(?!FF05>|FF03>|[0-9A-F]{2}>)[^>]+>', '', ja)
+    flat = re.sub(r'^[^：<]*：', '', flat)
+
+    def cells(t):
+        return len(re.sub(r'<[^>]+>', '', t).replace('　', '').replace(' ', ''))
+    jp_total = cells(flat)
+    words = [(i, w) for i, (k, w, *_r) in enumerate(items) if k == 'w']
+    if not jp_total or not words:
+        return items
+    en_total = sum(vwf_wrap.text_width(w) for _i, w in words)
+    ends, run = [], 0
+    for n, (i, w) in enumerate(words):
+        run += vwf_wrap.text_width(w)
+        if (n + 1 < len(words) and vwf_wrap.sent_end(w)
+                and re.search(r'[.!?][\'")\]”]*$', w)
+                and not re.search(r'(?:\.\.|…)[\'")\]”]*$', w)):
+            ends.append((run / en_total, i))
+    out = list(items)
+    inserts = {}
+    for m in JP_PAUSE.finditer(flat):
+        before = flat[:m.start()]
+        if not re.search(r'[？！。?!][」』）)]?$',
+                         re.sub(r'<[^>]+>', '', before).rstrip('　 ')):
+            continue
+        if not cells(flat[m.end():]):
+            continue
+        at = cells(before) / jp_total
+        cand = [(abs(f - at), i) for f, i in ends if i not in inserts]
+        if not cand or min(cand)[0] > 0.4:
+            continue
+        i = min(cand)[1]
+        j = i + 1
+        turn = False
+        while j < len(out) and out[j][0] == 'u' and out[j][1] in ('FF02', 'FF03', 'FF04'):
+            # the PSP's own box turn after the sentence IS the line break;
+            # its prose line break is not (the flow re-places those)
+            turn = turn or out[j][1] in ('FF02', 'FF04')
+            j += 1
+        ins = []
+        if m.group(1) and not turn:
+            ins.append(('u', 'STRUCT03'))
+        ins.append(('u', 'FF05%s%s' % (m.group(2), m.group(3))))
+        # the Japanese broke the line right after the pause: so does the
+        # English ('うそ！<FF05><5E><00><FF03>そんなことって…')
+        if m.group(4) and not turn and not m.group(1):
+            ins.append(('u', 'STRUCT03'))
+        inserts[i] = (j, ins)
+    for i in sorted(inserts, reverse=True):
+        j, ins = inserts[i]
+        out[j:j] = ins
     return out
 
 
@@ -1629,7 +1727,7 @@ def convert_entry(f, ei):
                     return None
                 return box_joins(ja, jent.box_bytes(jidx))
             joins = story_port_plan.joins(f, ei, k, _live_joins)
-        en = finish(items)
+        en = finish(sentence_pauses(items, ja))
         if any('variable' in flag for flag in flags):
             out.append((k, ja, None, '; '.join(flags)))
             prev_lab = None
@@ -1640,6 +1738,9 @@ def convert_entry(f, ei):
         # the pair fits three lines (the count stays in
         # [psx boxes, psp boxes], never smaller than either).
         en = merge_boxes(en, min_boxes=1 + ja.count('<FF04>'), joins=joins)
+        # A carried beat that still lands on a box turn is the press itself:
+        # the player's button IS the pause there (sentence_pauses).
+        en = re.sub(r'(<FF02><FF04>)<FF05><[0-9A-F]{2}><[0-9A-F]{2}>', r'\1', en)
         en = ellipsis_pauses(en, ja)
         # THE OPTION BLOCK'S ARMING LINE IS THE LAYOUT'S, NOT THE JP'S. The
         # JP's wait is a proxy for ITS prompt length; the English prompt is a

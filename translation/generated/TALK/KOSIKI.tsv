@@ -20,7 +20,7 @@ id	pos	psp	en
 18	0x22cb	pack/talk/KOSIKI:0x28c8	A fine voice indeed...<FFF6>But let us change the tune...<FFF6>I would have thy screams!<FFF5>
 19	0x22f8	pack/talk/KOSIKI:0x2968	Dost thou mean to<FFF6>challenge the bearer of<FFF6>the netherworld's sweetest voice?<FFFB><FFF7>Consider the gauntlet thrown!<FFFD>け<FFF5>
 20	0x2334	pack/talk/KOSIKI:0x2a40	Hark... That may... have bested me...<FFF5>
-21	0x2359	pack/talk/KOSIKI:0x2a90	How dost thou maintain thy calm<FFF6>disposition with such vile<FFF6>sounds assaulting thee?<FFFD>こ<FFF5>
+21	0x2359	pack/talk/KOSIKI:0x2a90	How dost thou maintain thy<FFF6>calm disposition with such<FFF6>vile sounds assaulting thee?<FFFD>こ<FFF5>
 22	0x2387	pack/talk/KOSIKI:0x2b40	Haha... Thou canst match me not,<FFF6>but it doth suffice.<FFF5>
 23	0x23ad	pack/talk/KOSIKI:0x2bb0	Hmmm...<FFFD>さ<FFF5>
 24	0x23b6	pack/talk/KOSIKI:0x2bc8	What thou sayest is rational...<FFF6>As such, I shall proffer a request.<FFF1><FFF5>
@@ -57,7 +57,7 @@ id	pos	psp	en
 55	0x283f	pack/talk/KOSIKI:0x38d8	O, the anguish...<FFFD>の<FFF5>
 56	0x2852	pack/talk/KOSIKI:0x3900	Thou desirest my attentions so?<FFF6>Thou art quite winsome.<FFF5>
 57	0x2879	pack/talk/KOSIKI:0x3970	Thy story is childish,<FFF6>but I see why thou playest the fool.<FFF5>
-58	0x28b0	pack/talk/KOSIKI:0x39e8	How unpleasant thy words<FFF6>are to mine ear.<FFF5>
+58	0x28b0	pack/talk/KOSIKI:0x39e8	How unpleasant thy<FFF6>words are to mine ear.<FFF5>
 59	0x28bb	pack/talk/KOSIKI:0x3a40	More matter, less art.<FFF6>What dost thou mean?<FFFD>は<FFF5>
 60	0x28d1	pack/talk/KOSIKI:0x3aa0	Methinks there is a draft... I shiver.<FFF5>
 61	0x28e3	pack/talk/KOSIKI:0x3af0	This carries the stench of suspicion.<FFF6>Thou art a treacherous man...<FFFD>ひ<FFF5>
@@ -65,7 +65,7 @@ id	pos	psp	en
 63	0x2923	pack/talk/KOSIKI:0x3c00	Hahaha, how amusing!<FFF6>Not so much as thy face, however...<FFFD>ふ<FFF5>
 64	0x2948	pack/talk/KOSIKI:0x3c78	I see... The human world yieldeth<FFF6>not for its own denizens.<FFF5>
 65	0x2964	pack/talk/KOSIKI:0x3cf0	Continue thy tale.<FFFD>へ<FFF5>
-66	0x2978	pack/talk/KOSIKI:0x3d20	Such stories art the offspring of<FFF6>idle minds! Dost thou not have<FFF6>a tale more worthy?<FFF5>
+66	0x2978	pack/talk/KOSIKI:0x3d20	Such stories art the offspring of<FFF6>idle minds! Dost thou not<FFF6>have a tale more worthy?<FFF5>
 67	0x299e	pack/talk/KOSIKI:0x3dd0	This is an ill time for idle chatter!<FFF6>Thou art much too composed!<FFFD>ほ<FFF5>
 68	0x29d3	pack/talk/KOSIKI:0x3e58	Then later, I shall relate to<FFF6>thee a story of interest.<FFF5>
 69	0x29f5	pack/talk/KOSIKI:0x3ec8	No matter the era,<FFF6>women are ever drawn to scandals,<FFF6>and scandals to women...<FFFD>ま<FFF5>
@@ -116,19 +116,19 @@ id	pos	psp	en
 114	0x303a	pack/talk/KOSIKI:0x5380	Why dost thou glare? I like this not...<FFF5>
 115	0x3053	pack/talk/KOSIKI:0x53d0	What art thou looking at!?<FFF6>Hast thou no manners, villain!?<FFFD>ず<FFF5>
 116	0x3087	pack/talk/KOSIKI:0x5450	Thou art fascinated by me,<FFF6>art thou not? I sympathize, but...<FFF5>
-117	0x30b5	pack/talk/KOSIKI:0x54d0	What ails thee?<FFF6>Am I the first beautiful maiden<FFF6>thou hast lain eyes upon?<FFFD>ぜ<FFF5>
+117	0x30b5	pack/talk/KOSIKI:0x54d0	What ails thee?<FFF6>Am I the first beautiful<FFF6>maiden thou hast lain eyes upon?<FFFD>ぜ<FFF5>
 118	0x30e2	pack/talk/KOSIKI:0x5568	What thou sayest is rational...<FFF5>
 119	0x30fb	pack/talk/KOSIKI:0x55a8	I see, thou may appear young,<FFF6>but thou hast endured many trials.<FFF6>Thy words bear weight.<FFFD>ぞ<FFF5>
 120	0x3130	pack/talk/KOSIKI:0x5660	Speak not such nonsense!<FFF5>
 121	0x313f	pack/talk/KOSIKI:0x5698	Thou speakest of such uncanny<FFF6>things... Is this thine intention?<FFFD>だ<FFF5>
 122	0x3173	pack/talk/KOSIKI:0x5720	What reason hast thou to<FFF6>speak on such subjects?<FFF6>Art thou interested in me...?<FFF5>
 123	0x31a4	pack/talk/KOSIKI:0x57c0	What meanest thou?<FFF6>Dost thou desire my power?<FFFD>ぢ<FFF5>
-124	0x31d3	pack/talk/KOSIKI:0x5820	Thou art irrational to put stock in<FFF6>such childish notions.<FFF5>
+124	0x31d3	pack/talk/KOSIKI:0x5820	Thou art irrational to put<FFF6>stock in such childish notions.<FFF5>
 125	0x3200	pack/talk/KOSIKI:0x5898	Thou thinkest me no<FFF6>different than such fiends!?<FFFD>づ<FFF5>
 126	0x3226	pack/talk/KOSIKI:0x5900	O, what terror... P-Please, no more...<FFF5>
-127	0x3247	pack/talk/KOSIKI:0x5950	They sayeth, "Speak of the devil..."<FFF6>What canst thou hope to<FFFB><FFF7>accomplish with such foul<FFF6>creatures abound?<FFFD>で<FFF5>
+127	0x3247	pack/talk/KOSIKI:0x5950	They sayeth, "Speak of the devil..."<FFF6>What canst thou hope to<FFFB><FFF7>accomplish with such<FFF6>foul creatures abound?<FFFD>で<FFF5>
 128	0x3281	pack/talk/KOSIKI:0x5a28	Tales of my comrades<FFF6>inspire far greater terror!<FFF6>For after all, they are real!<FFF5>
-129	0x32af	pack/talk/KOSIKI:0x5ac8	Thou seemest quite learned in<FFF6>this subject. Wilst thou not<FFFB><FFF7>exchange more harrowing<FFF6>tales with me on the morrow?<FFFD>ど<FFF5>
+129	0x32af	pack/talk/KOSIKI:0x5ac8	Thou seemest quite learned<FFF6>in this subject. Wilst thou<FFFB><FFF7>not exchange more harrowing<FFF6>tales with me on the morrow?<FFFD>ど<FFF5>
 130	0x32e8	pack/talk/KOSIKI:0x5bb0	A fine voice indeed...<FFF6>Thou art skilled, young lady.<FFF5>
 131	0x3304	pack/talk/KOSIKI:0x5c20	I must confess, I, too,<FFF6>am skilled in the art of song.<FFF6>What sayest thou to a duet with me?<FFFD>ば<FFF5>
 132	0x3339	pack/talk/KOSIKI:0x5ce0	A fine voice indeed...<FFF6>But let us change the tune...<FFF6>I would have thy screams!<FFF5>
@@ -137,7 +137,7 @@ id	pos	psp	en
 135	0x33bd	pack/talk/KOSIKI:0x5ec8	Hmmm...<FFFD>ぶ<FFF5>
 136	0x33c6	pack/talk/KOSIKI:0x5ee0	Hahaha, what is this?<FFF6>It is rather delightful!<FFF5>
 137	0x33e6	pack/talk/KOSIKI:0x5f40	Hahaha, do I truly look so young?<FFF6>'Tis not unappreciated...<FFFD>べ<FFF5>
-138	0x3412	pack/talk/KOSIKI:0x5fc0	Thou art envious of my beauty!<FFF6>Women can be base and<FFF6>sinful creatures.<FFF5>
+138	0x3412	pack/talk/KOSIKI:0x5fc0	Thou art envious of my beauty! Women<FFF6>can be base and sinful creatures.<FFF5>
 139	0x3449	pack/talk/KOSIKI:0x6050	Insolent rogue!<FFF6>Thou art not of standing to<FFF6>speak to me in such a fashion!<FFFD>ぼ<FFF5>
 140	0x3479	pack/talk/KOSIKI:0x60f0	I am reminded of days long past...<FFF5>
 141	0x3490	pack/talk/KOSIKI:0x6138	Hahaha, how amusing!<FFFD>ぱ<FFF5>
@@ -149,7 +149,7 @@ id	pos	psp	en
 147	0x3569	pack/talk/KOSIKI:0x63d8	What meanest thou?<FFF6>Dost thou desire my power?<FFFD>ぺ<FFF5>
 148	0x3598	pack/talk/KOSIKI:0x6438	Thy speech treads deep in<FFF6>the realm of absurdity...<FFF6>However, I forgive thee.<FFF5>
 149	0x35c1	pack/talk/KOSIKI:0x64d8	If thou desirest longevity,<FFF6>'twould be prudent to learn courtesy.<FFFD>ぽ<FFF5>
-150	0x35e5	pack/talk/KOSIKI:0x6560	Thou art envious of my beauty!<FFF6>Women can be base and<FFF6>sinful creatures.<FFF5>
+150	0x35e5	pack/talk/KOSIKI:0x6560	Thou art envious of my beauty! Women<FFF6>can be base and sinful creatures.<FFF5>
 151	0x3618	pack/talk/KOSIKI:0x65f0	Insolent rogue!<FFF6>Thou art not of standing to<FFF6>speak to me in such a fashion!<FFFD>ぁ<FFF5>
 152	0x3646	pack/talk/KOSIKI:0x6690	That is... too cruel. O, woe...<FFF5>
 153	0x3662	pack/talk/KOSIKI:0x66d0	Wh-What!? Never have I been<FFF6>subjected to an act of such cruelty...<FFFD>ぃ<FFF5>
@@ -161,7 +161,7 @@ id	pos	psp	en
 159	0x3747	pack/talk/KOSIKI:0x6960	O, the anguish...<FFFD>ぉ<FFF5>
 160	0x375a	pack/talk/KOSIKI:0x6988	Thou hast seen many a trying time...<FFF5>
 161	0x376e	pack/talk/KOSIKI:0x69d8	How pitable. Take heart.<FFFD>っ<FFF5>
-162	0x378f	pack/talk/KOSIKI:0x6a10	Hmph. Do not take me for a fool!<FFF6>Thy tears lack the brine of<FFF6>authenticity!<FFF5>
+162	0x378f	pack/talk/KOSIKI:0x6a10	Hmph. Do not take me for a fool! Thy<FFF6>tears lack the brine of authenticity!<FFF5>
 163	0x37b1	pack/talk/KOSIKI:0x6aa8	Now I see why thou art known as<FFF6><FFF9>, the Weeping<FFF6>Crocodile among we demons.<FFFD>ゃ<FFF5>
 164	0x37e1	pack/talk/KOSIKI:0x6b40	Please, banish thy tears. The human<FFF6>world is one of many terrors...<FFF5>
 165	0x3812	pack/talk/KOSIKI:0x6bc8	Thou needst not thy tears...<FFFD>ゅ<FFF5>
@@ -171,7 +171,7 @@ id	pos	psp	en
 169	0x3887	pack/talk/KOSIKI:0x6d58	Thy tongue weaveth<FFF6>a grand tapestry,<FFFB><FFF7>but it shalt fall mute if thou hast<FFF6>not the fortitude to back thy words...<FFFD>ゎ<FFF5>
 170	0x38ad	pack/talk/KOSIKI:0x6e40	Thou art an extortionist, knave?<FFF6>I have no coin for thee.<FFF5>
 171	0x38e3	pack/talk/KOSIKI:0x6eb8	Hm? That scowl...<FFFD>ア<FFF5>
-172	0x38f8	pack/talk/KOSIKI:0x6ee0	Thou art envious of my beauty!<FFF6>Women can be base and<FFF6>sinful creatures.<FFF5>
+172	0x38f8	pack/talk/KOSIKI:0x6ee0	Thou art envious of my beauty! Women<FFF6>can be base and sinful creatures.<FFF5>
 173	0x392b	pack/talk/KOSIKI:0x6f70	Insolent rogue!<FFF6>Thou art not of standing to<FFF6>speak to me in such a fashion!<FFFD>イ<FFF5>
 174	0x3959	pack/talk/KOSIKI:0x7010	I beg thy pardon...<FFF5>
 175	0x396a	pack/talk/KOSIKI:0x7038	This is much too cruel!<FFF6>Tell me, how have I offended thee?<FFFD>ウ<FFF5>
@@ -183,7 +183,7 @@ id	pos	psp	en
 181	0x3a28	pack/talk/KOSIKI:0x72c8	Thou speakest of such uncanny<FFF6>things... Is this thine intention?<FFFD>カ<FFF5>
 182	0x3a5c	pack/talk/KOSIKI:0x7350	What reason hast thou to<FFF6>speak on such subjects?<FFF6>Art thou interested in me...?<FFF5>
 183	0x3a8d	pack/talk/KOSIKI:0x73f0	What meanest thou?<FFF6>Dost thou desire my power?<FFFD>キ<FFF5>
-184	0x3abc	pack/talk/KOSIKI:0x7450	Thou art envious of my beauty!<FFF6>Women can be base and<FFF6>sinful creatures.<FFF5>
+184	0x3abc	pack/talk/KOSIKI:0x7450	Thou art envious of my beauty! Women<FFF6>can be base and sinful creatures.<FFF5>
 185	0x3aef	pack/talk/KOSIKI:0x74e0	Insolent rogue!<FFF6>Thou art not of standing to<FFF6>speak to me in such a fashion!<FFFD>ク<FFF5>
 186	0x3b1d	pack/talk/KOSIKI:0x7580	I beg thy pardon...<FFF5>
 187	0x3b2e	pack/talk/KOSIKI:0x75a8	This is much too cruel!<FFF6>Tell me, how have I offended thee?<FFFD>ケ<FFF5>
@@ -191,13 +191,13 @@ id	pos	psp	en
 189	0x3b6b	pack/talk/KOSIKI:0x7670	I admit, 'tis my most secret<FFF6>desire to be tormented so!<FFF6>Please... do as thou wilt.<FFFD>コ<FFF5>
 190	0x3b97	pack/talk/KOSIKI:0x7720	Thou hast confidence in spades...<FFF6>yet I cannot help but wonder<FFF6>how easily it it shaken...<FFF5>
 191	0x3bc5	pack/talk/KOSIKI:0x77d8	What?<FFF6>Hast thou no business with me?<FFFD>サ<FFF5>
-192	0x3bea	pack/talk/KOSIKI:0x7828	Thy confidence runneth over...<FFF6>Yet thou hast chosen<FFF6>the wrong opponent!<FFF5>
+192	0x3bea	pack/talk/KOSIKI:0x7828	Thy confidence runneth over... Yet<FFF6>thou hast chosen the wrong opponent!<FFF5>
 193	0x3c10	pack/talk/KOSIKI:0x78b8	Thou heedest me not?<FFF6>Then thou hast underestimated me!<FFFD>シ<FFF5>
 194	0x3c35	pack/talk/KOSIKI:0x7930	...I have committed no wrongs...<FFF6>At least, I do not believe I have...<FFF5>
 195	0x3c5c	pack/talk/KOSIKI:0x79c0	Pardon me, o wanderer...<FFFD>ス<FFF5>
 196	0x3c77	pack/talk/KOSIKI:0x79f8	Thou hast confidence in spades...<FFF6>yet I cannot help but wonder<FFF6>how easily it it shaken...<FFF5>
 197	0x3ca5	pack/talk/KOSIKI:0x7ab0	What?<FFF6>Hast thou no business with me?<FFFD>セ<FFF5>
-198	0x3cca	pack/talk/KOSIKI:0x7b00	Thy confidence runneth over...<FFF6>Yet thou hast chosen<FFF6>the wrong opponent!<FFF5>
+198	0x3cca	pack/talk/KOSIKI:0x7b00	Thy confidence runneth over... Yet<FFF6>thou hast chosen the wrong opponent!<FFF5>
 199	0x3cf0	pack/talk/KOSIKI:0x7b90	Thou heedest me not?<FFF6>Then thou hast underestimated me!<FFFD>ソ<FFF5>
 200	0x3d15	pack/talk/KOSIKI:0x7c08	...I have committed no wrongs...<FFF6>At least, I do not believe I have...<FFF5>
 201	0x3d3c	pack/talk/KOSIKI:0x7c98	Pardon me, o wanderer...<FFFD>タ<FFF5>
@@ -214,45 +214,45 @@ id	pos	psp	en
 212	0x3e9a	pack/talk/KOSIKI:0x80c8	Thou art quite eccentric.<FFF6>I, however, am offended not.<FFF5>
 213	0x3ebe	pack/talk/KOSIKI:0x8138	Thou art no ordinary fellow...<FFF6>Perhaps thou art my type...<FFFD>ニ<FFF5>
 214	0x3ee5	pack/talk/KOSIKI:0x81b8	Thou desirest my attentions so?<FFF6>Thou art quite winsome.<FFF5>
-215	0x3f0c	pack/talk/KOSIKI:0x8228	Art thou a practicioner of the dark<FFF6>arts? I shall request a water<FFF6>illusion of thee.<FFFD>ヌ<FFF5>
+215	0x3f0c	pack/talk/KOSIKI:0x8228	Art thou a practicioner of<FFF6>the dark arts? I shall request<FFF6>a water illusion of thee.<FFFD>ヌ<FFF5>
 216	0x3f35	pack/talk/KOSIKI:0x82d8	What strange powers<FFF6>thou commandest...<FFF5>
-217	0x3f47	pack/talk/KOSIKI:0x8328	Dost thou mean to smite me with<FFF6>thy arcane forces?<FFFD>ネ<FFF5>
+217	0x3f47	pack/talk/KOSIKI:0x8328	Dost thou mean to smite<FFF6>me with thy arcane forces?<FFFD>ネ<FFF5>
 218	0x3f6f	pack/talk/KOSIKI:0x8398	Canst thou conjure objects?<FFF6>I wish for a jewel...<FFF5>
 219	0x3f98	pack/talk/KOSIKI:0x8400	I wouldst liken thy skill to that of<FFF6>the famed magician of thy world...<FFF6>Houdini, was it not?<FFFD>ノ<FFF5>
 220	0x3fc9	pack/talk/KOSIKI:0x84c0	Hahaha, thy story inspires laughter.<FFF5>
 221	0x3fe4	pack/talk/KOSIKI:0x8510	More matter, less art.<FFF5>
 222	0x400a	pack/talk/KOSIKI:0x8540	Conversing with thee is most<FFF6>enjoyable, but hast thou<FFF6>anything greater to offer?<FFF1><FFF5>
-223	0x403e	pack/talk/KOSIKI:0x85e8	I shall hear thee! I would not wish<FFF6>regret upon one who comes so close to<FFF6>departing the mortal coil.<FFF5>
+223	0x403e	pack/talk/KOSIKI:0x85e8	I shall hear thee! I would not wish<FFF6>regret upon one who comes so<FFF6>close to departing the mortal coil.<FFF5>
 224	0x4071	pack/talk/KOSIKI:0x86b8	I am not the least bit interested!<FFF5>
 225	0x4087	pack/talk/KOSIKI:0x8700	If thou wouldst<FFF6>have an audience with me,<FFF6>there is something to be done first!<FFF1><FFF5>
-226	0x40bc	pack/talk/KOSIKI:0x87a0	...Thou speakest<FFF6>as though possessed by spirits...<FFF5>
+226	0x40bc	pack/talk/KOSIKI:0x87a0	...Thou speakest as though<FFF6>possessed by spirits...<FFF5>
 227	0x40f6	pack/talk/KOSIKI:0x8808	I understand thy words,<FFF6>but due to circumstances thou<FFF6>couldst not percieve, I must decline...<FFF5>
 228	0x4127	pack/talk/KOSIKI:0x88c8	Thy stories hold great interest.<FFF6>It hath been ages since words<FFF6>hath refreshed me so.<FFF5>
 229	0x415c	pack/talk/KOSIKI:0x8978	Hahaha, a ploy such as that to<FFF6>garner my attention? How amusing...<FFF5>
 230	0x418b	pack/talk/KOSIKI:0x8a00	Hahaha, I am quite amused...<FFF6>I desire to speak with thee further...<FFF5>
 231	0x41b6	pack/talk/KOSIKI:0x8a88	I can see thy true intentions like<FFF6>a pool of clear water... Thou art<FFF6>interested in me, art thou not?<FFF5>
 232	0x41e7	pack/talk/KOSIKI:0x8b58	Thou art shrewd to take<FFF6>notice of my power!<FFF5>
-233	0x420b	pack/talk/KOSIKI:0x8bb0	I am wont to concede to thy wishes,<FFF6>but first...<FFF6>Hast thou anything to offer me?<FFF1><FFF5>
+233	0x420b	pack/talk/KOSIKI:0x8bb0	I am wont to concede to<FFF6>thy wishes, but first...<FFF6>Hast thou anything to offer me?<FFF1><FFF5>
 234	0x4255	pack/talk/KOSIKI:0x8c58	Thou art but a commoner!<FFF6>Know thy place!<FFF5>
 235	0x4288	pack/talk/KOSIKI:0x8cb0	Dost thou know me!? I am the almighty<FFF6><FFF3> the <FFF0>!<FFFB><FFF7>I have no intentions of<FFF6>negotiating with humans!<FFF5>
 236	0x42d8	pack/talk/KOSIKI:0x8d78	How presumptuous!<FFF6>'Tis my orders that are to<FFF6>be followed, not thine!<FFF1><FFF5>
 237	0x4307	pack/talk/KOSIKI:0x8e08	I could lend thee power,<FFF6>but due to circumstances thou<FFF6>couldst not percieve, I must decline...<FFF5>
 238	0x433a	pack/talk/KOSIKI:0x8ec8	I can see thy true intentions<FFF6>like a pool of clear water...<FFF6>Thou desirest my fortune...<FFF5>
-239	0x436d	pack/talk/KOSIKI:0x8f78	'Tis my decision not to lend<FFF6>thee my strength...<FFF5>
+239	0x436d	pack/talk/KOSIKI:0x8f78	'Tis my decision not to<FFF6>lend thee my strength...<FFF5>
 240	0x438f	pack/talk/KOSIKI:0x8fe0	Thou desirest me? How adorable!<FFF6>I could swallow thee right up!<FFF5>
 241	0x43c6	pack/talk/KOSIKI:0x9060	Hahaha... Carry on.<FFF5>
-242	0x43e2	pack/talk/KOSIKI:0x9088	Hahaha... It seems my charms hath<FFF6>not fallen victim to time!<FFF5>
-243	0x440b	pack/talk/KOSIKI:0x9108	Is it thine intention to rouse<FFF6>my anger? Perhaps thou hast<FFF6>reason I cannot fathom...<FFF5>
+242	0x43e2	pack/talk/KOSIKI:0x9088	Hahaha... It seems my charms<FFF6>hath not fallen victim to time!<FFF5>
+243	0x440b	pack/talk/KOSIKI:0x9108	Is it thine intention to rouse my<FFF6>anger? Perhaps thou hast<FFF6>reason I cannot fathom...<FFF5>
 244	0x443e	pack/talk/KOSIKI:0x91b8	'Twas hardly an action worthy of<FFF6>a demon negotiator. Stay thy rage.<FFF5>
 245	0x4475	pack/talk/KOSIKI:0x9240	What child's play...<FFFB><FFF7>If thou desirest my favors,<FFF6>there is but one way...<FFF6>Thou knowest it, yes?<FFF1><FFF5>
 246	0x44cf	pack/talk/KOSIKI:0x9308	I shall exact punishment upon<FFF6>impudent fools such as thee!<FFF5>
 247	0x44fc	pack/talk/KOSIKI:0x9380	Because thou art an insolent knave,<FFF6>I can smite thee without reserve!<FFF5>
-248	0x4525	pack/talk/KOSIKI:0x9410	How uncouth! I am wont to punish<FFF6>such impudent foolery!<FFFB><FFF7>If thou art frightened at<FFF6>the thought, pacify me with treasure!<FFF1><FFF5>
+248	0x4525	pack/talk/KOSIKI:0x9410	How uncouth! I am wont to<FFF6>punish such impudent foolery!<FFFB><FFF7>If thou art frightened at<FFF6>the thought, pacify me with treasure!<FFF1><FFF5>
 249	0x4585	pack/talk/KOSIKI:0x9508	Such vulgar acts thou choosest to<FFF6>display in my presence...<FFF5>
 250	0x45a4	pack/talk/KOSIKI:0x9580	How uncouth...<FFF6>Woe is me, thou hast roused<FFF6>my *hic* chronic *hic* hiccups...<FFF5>
 251	0x45cf	pack/talk/KOSIKI:0x9620	Insolent knave...<FFF5>
 252	0x45de	pack/talk/KOSIKI:0x9648	Conceited, yet rather adorable...<FFF5>
-253	0x45fc	pack/talk/KOSIKI:0x9690	Excellent! 'Tis best to do what suits<FFF6>thee whilst thou art young.<FFF5>
+253	0x45fc	pack/talk/KOSIKI:0x9690	Excellent! 'Tis best to do what<FFF6>suits thee whilst thou art young.<FFF5>
 254	0x4627	pack/talk/KOSIKI:0x9718	Haha, bravo! Children should be<FFF6>raised in such an environment.<FFF5>
 255	0x4655	pack/talk/KOSIKI:0x9798	The curtain of inexperience<FFF6>hangeth upon thy act.<FFFB><FFF7>With effort, thou shalt master it.<FFF6>Lose not thy faith.<FFF5>
 256	0x4691	pack/talk/KOSIKI:0x9870	I would see that once more<FFF6>when thou hast improved...<FFF5>
@@ -268,11 +268,11 @@ id	pos	psp	en
 266	0x47b8	pack/talk/KOSIKI:0x9bf0	They say no good cometh hence from<FFF6>humans, but... I find myself intrigued.<FFF5>
 267	0x47e9	pack/talk/KOSIKI:0x9c88	Thou desirest to take me with thee?<FFF6>Thinkest thou hast the requisite<FFF6>confidence to fetter me?<FFF5>
 268	0x481a	pack/talk/KOSIKI:0x9d48	If thou wouldst have my trust,<FFF6>thou wouldst do well to produce<FFF6>something to dazzle mine eyes.<FFF1><FFF5>
-269	0x4848	pack/talk/KOSIKI:0x9e08	Those who would mock me shall<FFF6>pay with their lives!<FFF5>
+269	0x4848	pack/talk/KOSIKI:0x9e08	Those who would mock me<FFF6>shall pay with their lives!<FFF5>
 270	0x4873	pack/talk/KOSIKI:0x9e70	Thou wouldst have me twist<FFF6>the dagger into the backs of<FFF6>my sisters for that!? Never!<FFF5>
 271	0x488e	pack/talk/KOSIKI:0x9f20	What would become of thee were<FFF6>my brethren to hear of this!?<FFF6>If thy desire is to silence me, then...<FFF1><FFF5>
 272	0x48c6	pack/talk/KOSIKI:0x9ff0	Wh-What art thou doing?<FFF6>I... I shall apologize, so...<FFF5>
-273	0x48e3	pack/talk/KOSIKI:0xa060	What wouldst thou do with me after<FFF6>that...? Someone, save me...!<FFF5>
+273	0x48e3	pack/talk/KOSIKI:0xa060	What wouldst thou do with me<FFF6>after that...? Someone, save me...!<FFF5>
 274	0x490d	pack/talk/KOSIKI:0xa0e8	Why dost thou treat me so...?<FFF5>
 275	0x4926	pack/talk/KOSIKI:0xa128	Hahaha...<FFF5>
 276	0x492d	pack/talk/KOSIKI:0xa140	Ah, thy resolution is admirable...<FFF5>
@@ -297,7 +297,7 @@ id	pos	psp	en
 295	0x4c0b	pack/talk/KOSIKI:0xa918	Take more!<FFEF>
 296	0x4c17	pack/talk/KOSIKI:0xa930	I must be on my way.<FFEF>
 297	0x4c26	pack/talk/KOSIKI:0xa960	If thou wouldst make me a Persona,<FFF6>grant me both strength and beauty.<FFEF>
-298	0x4c4a	pack/talk/KOSIKI:0xa9f0	I cannot bear it!<FFF6>I shall give this unto thee.<FFF6>Please forgive me!<FFEF>
+298	0x4c4a	pack/talk/KOSIKI:0xa9f0	I cannot bear it! I shall give<FFF6>this unto thee. Please forgive me!<FFEF>
 299	0x4c70	pack/talk/KOSIKI:0xaa78	If negotiatons with thee are of no<FFF6>value, then I shall take my leave.<FFEF>
 300	0x4c96	pack/talk/KOSIKI:0xab08	Take this and begone!<FFEF>
 301	0x4caa	pack/talk/KOSIKI:0xab38	What a vile stench thou must have...<FFF6>Hmm... What to do...?<FFEF>
@@ -308,16 +308,16 @@ id	pos	psp	en
 306	0x4da6	pack/talk/KOSIKI:0xade8	Take this,<FFF6>and hold it close to thee as<FFF6>a keepsake of our encounter...<FFEF>
 307	0x4ddc	pack/talk/KOSIKI:0xae78	No... I must find a way to survive...<FFEF>
 308	0x4dfe	pack/talk/KOSIKI:0xaec8	...I know!<FFF6>I shall give unto thee my spell card,<FFF6>in hopes that it subdue thy anger...<FFEF>
-309	0x4e35	pack/talk/KOSIKI:0xaf78	Hahaha... What business doth<FFF6>a human have here?<FFFD>ハ<FFF5>
+309	0x4e35	pack/talk/KOSIKI:0xaf78	Hahaha... What business<FFF6>doth a human have here?<FFFD>ハ<FFF5>
 310	0x4e5c	pack/talk/KOSIKI:0xafe0	Haha, humans wear such<FFF6>eccentric raiments...<FFF5>
-311	0x4e80	pack/talk/KOSIKI:0xb040	Thou art the first human I have met...<FFF6>Wouldst thou honor me with<FFF6>a keepsake?<FFF1><FFF5>
+311	0x4e80	pack/talk/KOSIKI:0xb040	Thou art the first human I have met...<FFF6>Wouldst thou honor me<FFF6>with a keepsake?<FFF1><FFF5>
 312	0x4eb7	pack/talk/KOSIKI:0xb0e0	Thou art an obstruction in my path!<FFF6>Remove thyself, now!<FFFD>ヒ<FFF5>
-313	0x4edb	pack/talk/KOSIKI:0xb158	I am rife with choler this day. Makest<FFF6>thou an ill move, and I shall tear thy<FFF6>throat from 'neath thy head!<FFF5>
+313	0x4edb	pack/talk/KOSIKI:0xb158	I am rife with choler this day. Makest<FFF6>thou an ill move, and I shall tear<FFF6>thy throat from 'neath thy head!<FFF5>
 314	0x4f19	pack/talk/KOSIKI:0xb230	I stand before thee,<FFF6>yet thou dost nothing! Canst thou<FFF6>not even present me with a gift!?<FFF1><FFF5>
 315	0x4f54	pack/talk/KOSIKI:0xb2e8	Mark me well, beyond where thou<FFF6>standest is my territory...<FFFD>フ<FFF5>
 316	0x4f73	pack/talk/KOSIKI:0xb368	My, how thy face hath contorted...<FFF6>Thou lookest ill,<FFF6>and I shall grant thee no favors...<FFF5>
-317	0x4f86	pack/talk/KOSIKI:0xb420	Thy face is one to be reviled...<FFF6>I daren't use the toilet<FFF6>alone this eve...<FFF5>
-318	0x4fba	pack/talk/KOSIKI:0xb4b8	Haha, a beautifully rounded moon<FFF6>shineth this eve. But lunar cycles<FFF6>aside, how dost thou fare?<FFFD>ヘ<FFF5>
+317	0x4f86	pack/talk/KOSIKI:0xb420	Thy face is one to be reviled... I<FFF6>daren't use the toilet alone this eve...<FFF5>
+318	0x4fba	pack/talk/KOSIKI:0xb4b8	Haha, a beautifully rounded<FFF6>moon shineth this eve. But lunar<FFF6>cycles aside, how dost thou fare?<FFFD>ヘ<FFF5>
 319	0x4ff3	pack/talk/KOSIKI:0xb580	Hahaha, 'twould gladden my heart to<FFF6>drink fine mead and take in a dance!<FFF5>
 320	0x5021	pack/talk/KOSIKI:0xb618	Were I to be offered a gift from<FFF6>a winsome lad, I would be most merry!<FFF1><FFF5>
 321	0x5053	pack/talk/KOSIKI:0xb6a8	<FFED>To think that thou wouldst answer<FFF6>my question! What dost thou desire?<FFF6>If it be nothing, I shall take my leave!<FFFD>マ<FFF5>
@@ -326,25 +326,25 @@ id	pos	psp	en
 324	0x511e	pack/talk/KOSIKI:0xb980	<FFEC>Pardon me, but if the conversation<FFF6>hath run its course,<FFF6>may I take my leave?<FFFD>ミ<FFF5>
 325	0x5145	pack/talk/KOSIKI:0xba20	<FFEE>...Another savage human...<FFF6>Whatever shall I do? Luck doth<FFF6>forsake me on these moonless nights...<FFF5>
 326	0x5182	pack/talk/KOSIKI:0xbae8	<FFEC>Violence is an ill retort, and only<FFF6>those of addled minds resort to steel.<FFF5>
-327	0x51b9	pack/talk/KOSIKI:0xbb80	<FFEB>Hahaha, I wish to abandon<FFF6>my station and go with thee... Were<FFF6>I to say that, what wouldst thou do?<FFFD>ム<FFF5>
+327	0x51b9	pack/talk/KOSIKI:0xbb80	<FFEB>Hahaha, I wish to abandon my<FFF6>station and go with thee... Were I to<FFF6>say that, what wouldst thou do?<FFFD>ム<FFF5>
 328	0x51f4	pack/talk/KOSIKI:0xbc50	<FFEE>Hahaha, even encounters of<FFF6>chance are guided by fate.<FFF5>
-329	0x521f	pack/talk/KOSIKI:0xbcc0	<FFEB>If it is thy desire,<FFF6>I shall hear thee further.<FFF6>That is, with a proper gift...<FFF1><FFF5>
+329	0x521f	pack/talk/KOSIKI:0xbcc0	<FFEB>If it is thy desire, I shall hear thee<FFF6>further. That is, with a proper gift...<FFF1><FFF5>
 330	0x5254	pack/talk/KOSIKI:0xbd68	<FFEC>Monster! Come n-no closer!<FFFD>メ<FFF5>
 331	0x527f	pack/talk/KOSIKI:0xbda8	<FFEC>What darkness doth I espy that<FFF6>gathers behind thee?<FFF6>N-No, keep it at bay!<FFF5>
 332	0x52b5	pack/talk/KOSIKI:0xbe40	<FFED>In order to live, I must take life!<FFF6>Thou mustn't fault me...<FFF5>
 333	0x52ed	pack/talk/KOSIKI:0xbec0	<FFEB>Thou and I art as day is to night.<FFF6>A world of difference exists betwixt<FFF6>us! Dost thou understand?<FFFD>モ<FFF5>
 334	0x5326	pack/talk/KOSIKI:0xbf90	<FFED>Thou knowest not the proper way to<FFF6>speak to a lady. 'Tis written on<FFF6>thy face like a birthmark!<FFF5>
-335	0x535a	pack/talk/KOSIKI:0xc050	<FFEB>My question is answered...<FFF6>And I see that thou hast brought<FFF6>a symbol of surrender!<FFF1><FFF5>
+335	0x535a	pack/talk/KOSIKI:0xc050	<FFEB>My question is answered...<FFF6>And I see that thou hast<FFF6>brought a symbol of surrender!<FFF1><FFF5>
 336	0x5392	pack/talk/KOSIKI:0xc100	<FFEC>Thy gaze is sharp as needles...<FFF6>What dost thou plan to do with me?<FFFD>ヤ<FFF5>
-337	0x53c4	pack/talk/KOSIKI:0xc190	<FFEB>Though I close mine eyes,<FFF6>thine image remains clear as day.<FFF6>Why is this...?<FFF5>
+337	0x53c4	pack/talk/KOSIKI:0xc190	<FFEB>Though I close mine eyes, thine image<FFF6>remains clear as day. Why is this...?<FFF5>
 338	0x5402	pack/talk/KOSIKI:0xc230	<FFEB>O, what art thou doing...?<FFF6>Nay... I mind not whatever<FFF6>thou dost unto me...<FFF5>
 339	0x5430	pack/talk/KOSIKI:0xc2c8	Thou art a human of interest!<FFF6>Very well, I shall grant thy wishes;<FFF6>you have only to ask them.<FFEF>
 340	0x546a	pack/talk/KOSIKI:0xc388	Hm, it seems negotiations with<FFF6>humans are a waste of time.<FFF6>I shall tear thy body asunder!<FFEF>
-341	0x54b5	pack/talk/KOSIKI:0xc440	How frightful... Is this<FFF6>where my ashes are to be scattered?<FFEF>
+341	0x54b5	pack/talk/KOSIKI:0xc440	How frightful... Is this where my<FFF6>ashes are to be scattered?<FFEF>
 342	0x54e1	pack/talk/KOSIKI:0xc4c0	What a grand moment we've shared!<FFF6>Thou hast stolen my heart...<FFF5>
 343	0x5515	pack/talk/KOSIKI:0xc540	I have not time to spare thee,<FFF6>so keep thy negotiations swift!<FFF6>If thou hast business, state it thusly!<FFEF>
 344	0x554f	pack/talk/KOSIKI:0xc610	Thou art a dreadful sort...<FFF6>I did not say I would hear thee...<FFFB><FFF7>Tell me thy desires.<FFEF>
-345	0x55b1	pack/talk/KOSIKI:0xc6c0	The moment that hath<FFF6>just passed carried more<FFF6>meaning than a fortnight!<FFFB><FFF7>'Tis for thee, I shall be glad to oblige.<FFEF>
+345	0x55b1	pack/talk/KOSIKI:0xc6c0	The moment that hath<FFF6>just passed carried<FFF6>more meaning than a fortnight!<FFFB><FFF7>'Tis for thee, I shall be glad to oblige.<FFEF>
 346	0x55ed	pack/talk/KOSIKI:0xc7a8	What evil is this?<FFF6>My skin shivers as though 'twere ice,<FFF6>yet mine eyes boil with choler!<FFFB><FFF7>What hath become of me? Will I be<FFF6>slain by thee where I stand, my tomb<FFF6>marked only by the wild posies?<FFEF>
 347	0x565b	pack/talk/KOSIKI:0xc930	...Hmm, I grow weary of toying with<FFF6>thee. Thou hast outlived thy use!<FFF5>
 348	0x5690	pack/talk/KOSIKI:0xc9c0	...I understand.<FFF6>Our encounter was fated...<FFEF>
@@ -362,7 +362,7 @@ id	pos	psp	en
 360	0x5821	pack/talk/KOSIKI:0xced0	A covetous human... However,<FFF6>survival dictates necessity. Perhaps<FFF6>'tis natural to become as thou art...<FFF5>
 361	0x5879	pack/talk/KOSIKI:0xcfa0	Then I shall have a <FFF4>!<FFEF>
 362	0x588e	pack/talk/KOSIKI:0xcfd0	A devilish stone that bewitcheth<FFF6>even demons... Hahaha...<FFF5>
-363	0x58b6	pack/talk/KOSIKI:0xd048	Hmm...<FFF6>Next time it shan't end like this.<FFF5>
+363	0x58b6	pack/talk/KOSIKI:0xd048	Hmm... Next time it<FFF6>shan't end like this.<FFF5>
 364	0x58d0	pack/talk/KOSIKI:0xd0a0	Dost thou mean to imply I am<FFF6>unworthy of it!? Curse thee, human!<FFF5>
 365	0x58ff	pack/talk/KOSIKI:0xd128	Dost thou mean to imply I am<FFF6>unworthy of it? Hmph... So be it...<FFF5>
 366	0x5931	pack/talk/KOSIKI:0xd1b0	Give unto me some of thy life...<FFEF>
@@ -382,8 +382,8 @@ id	pos	psp	en
 380	0x5a99	pack/talk/KOSIKI:0xd608	Ha! Art thou so confident?<FFF5>
 381	0x5aab	pack/talk/KOSIKI:0xd640	Ha, thou art not<FFF6>lacking in confidence.<FFF5>
 382	0x5abe	pack/talk/KOSIKI:0xd690	That is correct.<FFF6>Thou must hone thy devotion daily.<FFF5>
-383	0x5ad8	pack/talk/KOSIKI:0xd6f8	Haha... One's true colors reveal<FFF6>themselves in due time.<FFF5>
-384	0x5af5	pack/talk/KOSIKI:0xd770	Hmph...! One's true colors reveal<FFF6>themselves in due time.<FFF5>
+383	0x5ad8	pack/talk/KOSIKI:0xd6f8	Haha... One's true colors<FFF6>reveal themselves in due time.<FFF5>
+384	0x5af5	pack/talk/KOSIKI:0xd770	Hmph...! One's true colors<FFF6>reveal themselves in due time.<FFF5>
 385	0x5b14	pack/talk/KOSIKI:0xd7e8	Thy kindness hath<FFF6>caught me off-guard.<FFF5>
 386	0x5b28	pack/talk/KOSIKI:0xd838	Conceited knave!<FFF6>Divine retribution wilt smite thee!<FFF5>
 387	0x5b47	pack/talk/KOSIKI:0xd8a8	Conceited knave! Divine retribution<FFF6>wilt strike thee down...<FFF5>
@@ -396,14 +396,14 @@ id	pos	psp	en
 394	0x5c18	pack/talk/KOSIKI:0xdb38	Never have I seen such<FFF6>an honest villain...<FFF5>
 395	0x5c3e	pack/talk/KOSIKI:0xdb90	Never have I seen such an honest<FFF6>villain. Thou art an interesting one!<FFF5>
 396	0x5c76	pack/talk/KOSIKI:0xdc20	All the more suspicious...<FFF5>
-397	0x5c85	pack/talk/KOSIKI:0xdc58	Hmm...<FFF6>Thou art not wanting for confidence...<FFF5>
+397	0x5c85	pack/talk/KOSIKI:0xdc58	Hmm... Thou art not<FFF6>wanting for confidence...<FFF5>
 398	0x5c9d	pack/talk/KOSIKI:0xdcb8	Haha, my spirit surgeth!<FFF5>
 399	0x5cb5	pack/talk/KOSIKI:0xdcf0	Ha!<FFF6>How canst thou speak so shamelessly<FFF6>when that was thy true intention!<FFF5>
 400	0x5cd7	pack/talk/KOSIKI:0xdd88	This one... Thou art no human...<FFF5>
 401	0x5cef	pack/talk/KOSIKI:0xddd0	Oh, is that the truth of it!?<FFF6>Adaptation can be dreadful.<FFF5>
 402	0x5d0f	pack/talk/KOSIKI:0xde48	Hmph! Unlike thee,<FFF6>I have not grown accustomed to it!<FFF5>
 403	0x5d31	pack/talk/KOSIKI:0xdeb8	Why hast thou stopped?<FFF6>Sound thy vocal melodies once more,<FFF6>for my sake.<FFF5>
-404	0x5d5a	pack/talk/KOSIKI:0xdf48	Were I to eat thy tongue,<FFF6>perhaps I too,<FFF6>could sing as the nightingale...<FFF5>
+404	0x5d5a	pack/talk/KOSIKI:0xdf48	Were I to eat thy tongue, perhaps I<FFF6>too, could sing as the nightingale...<FFF5>
 405	0x5d88	pack/talk/KOSIKI:0xdfe0	Haha, o that I could<FFF6>sing as thou dost...<FFF5>
 406	0x5db0	pack/talk/KOSIKI:0xe038	Hmph... Is this thy true intention!?<FFF5>
 407	0x5dca	pack/talk/KOSIKI:0xe088	That maketh thee rather adorable.<FFF5>
@@ -422,7 +422,7 @@ id	pos	psp	en
 420	0x5f17	pack/talk/KOSIKI:0xe550	Dost thou know nothing of<FFF6>the thorns of sarcasm!?<FFF5>
 421	0x5f27	pack/talk/KOSIKI:0xe5b8	Haha, ordinary men<FFF6>cannot comprehend.<FFF5>
 422	0x5f45	pack/talk/KOSIKI:0xe608	Ordinary men cannot comprehend!<FFF5>
-423	0x5f5a	pack/talk/KOSIKI:0xe648	O, that I were naught but a nameless<FFF6>flower such as thee...<FFF5>
+423	0x5f5a	pack/talk/KOSIKI:0xe648	O, that I were naught but<FFF6>a nameless flower such as thee...<FFF5>
 424	0x5f79	pack/talk/KOSIKI:0xe6c0	Hmph... Is this thy true intention!?<FFF5>
 425	0x5f93	pack/talk/KOSIKI:0xe710	That maketh thee rather adorable.<FFF5>
 426	0x5fa6	pack/talk/KOSIKI:0xe758	Art thou familiar with the phrase,<FFF6>"the less spoken, the better"?<FFF5>
@@ -437,12 +437,12 @@ id	pos	psp	en
 435	0x6076	pack/talk/KOSIKI:0xe9f8	I was mistaken! Thou art but a jester!<FFF5>
 436	0x609d	pack/talk/KOSIKI:0xea48	Haha, ordinary men<FFF6>cannot comprehend.<FFF5>
 437	0x60bb	pack/talk/KOSIKI:0xea98	Ordinary men cannot comprehend!<FFF5>
-438	0x60d0	pack/talk/KOSIKI:0xead8	O, that I were naught but a nameless<FFF6>flower such as thee...<FFF5>
+438	0x60d0	pack/talk/KOSIKI:0xead8	O, that I were naught but<FFF6>a nameless flower such as thee...<FFF5>
 439	0x60ef	pack/talk/KOSIKI:0xeb50	Just for tea...!<FFF5>
 440	0x60fb	pack/talk/KOSIKI:0xeb78	Thou darest to humiliate me!?<FFF6>Insolent scallywag!<FFF5>
 441	0x611f	pack/talk/KOSIKI:0xebe0	Thy heart is steeped in craven<FFF6>cruelty to embarrass me so...<FFF5>
 442	0x613f	pack/talk/KOSIKI:0xec60	All things hath an order.<FFF6>One mustn't be negligent.<FFF5>
-443	0x6167	pack/talk/KOSIKI:0xecc8	Sometimes the use of adequate<FFF6>force is desirable.<FFF5>
+443	0x6167	pack/talk/KOSIKI:0xecc8	Sometimes the use of<FFF6>adequate force is desirable.<FFF5>
 444	0x617c	pack/talk/KOSIKI:0xed30	Thinkest me not a vulgar woman...<FFF5>
 445	0x6197	pack/talk/KOSIKI:0xed78	My kingdom that I might<FFF6>peer into thy heart...<FFF5>
 446	0x61b4	pack/talk/KOSIKI:0xedd8	Thou art in the right!<FFF6>There is little gained from brooding!<FFF5>
@@ -489,12 +489,12 @@ id	pos	psp	en
 487	0x6635	pack/talk/KOSIKI:0xfc18	Understood!<FFF5>
 488	0x6640	pack/talk/KOSIKI:0xfc30	Oh, is that the truth of it?<FFF6>...Cursed human!<FFF5>
 489	0x665f	pack/talk/KOSIKI:0xfc90	I see... Thou needst this not...<FFF5>
-490	0x6679	pack/talk/KOSIKI:0xfcd8	You speak thusly after thou<FFF6>makest such threats?<FFF6>Thou art a vexing being.<FFF5>
+490	0x6679	pack/talk/KOSIKI:0xfcd8	You speak thusly after<FFF6>thou makest such threats?<FFF6>Thou art a vexing being.<FFF5>
 491	0x66a1	pack/talk/KOSIKI:0xfd70	Ha! Art thou so confident?<FFF5>
 492	0x66b3	pack/talk/KOSIKI:0xfda8	Ha, thou art not<FFF6>lacking in confidence.<FFF5>
 493	0x66c6	pack/talk/KOSIKI:0xfdf8	That is correct.<FFF6>Thou must hone thy devotion daily.<FFF5>
-494	0x66e0	pack/talk/KOSIKI:0xfe60	Haha... One's true colors reveal<FFF6>themselves in due time.<FFF5>
-495	0x66fd	pack/talk/KOSIKI:0xfed8	Hmph...! One's true colors reveal<FFF6>themselves in due time.<FFF5>
+494	0x66e0	pack/talk/KOSIKI:0xfe60	Haha... One's true colors<FFF6>reveal themselves in due time.<FFF5>
+495	0x66fd	pack/talk/KOSIKI:0xfed8	Hmph...! One's true colors<FFF6>reveal themselves in due time.<FFF5>
 496	0x671c	pack/talk/KOSIKI:0xff50	Thy kindness hath<FFF6>caught me off-guard.<FFF5>
 497	0x6730	pack/talk/KOSIKI:0xffa0	Conceited knave!<FFF6>Divine retribution will smite thee!<FFF5>
 498	0x674f	pack/talk/KOSIKI:0x10010	Conceited knave! Divine retribution<FFF6>will strike thee down...<FFF5>
@@ -513,12 +513,12 @@ id	pos	psp	en
 511	0x6918	pack/talk/KOSIKI:0x10678	Thou hast a body capable of<FFF6>great feats of strength.<FFF6>I shall speak no more of it...<FFF5>
 512	0x6933	pack/talk/KOSIKI:0x10720	Why dost thou stop?<FFF6>I beeseech thee, continue thy dance!<FFF5>
 513	0x6958	pack/talk/KOSIKI:0x10798	Why dost thou stop!? Hmph!<FFF6>Thou art a sadistic human!<FFF5>
-514	0x6978	pack/talk/KOSIKI:0x10808	You speak thusly after thou<FFF6>makest such threats?<FFF6>Thou art a vexing being.<FFF5>
+514	0x6978	pack/talk/KOSIKI:0x10808	You speak thusly after<FFF6>thou makest such threats?<FFF6>Thou art a vexing being.<FFF5>
 515	0x69a0	pack/talk/KOSIKI:0x108a0	Ha! Art thou so confident?<FFF5>
 516	0x69b2	pack/talk/KOSIKI:0x108d8	Ha, thou art not<FFF6>lacking in confidence.<FFF5>
 517	0x69c5	pack/talk/KOSIKI:0x10928	That is correct.<FFF6>Thou must hone thy devotion daily.<FFF5>
-518	0x69df	pack/talk/KOSIKI:0x10990	Haha... One's true colors reveal<FFF6>themselves in due time.<FFF5>
-519	0x69fc	pack/talk/KOSIKI:0x10a08	Hmph...! One's true colors reveal<FFF6>themselves in due time.<FFF5>
+518	0x69df	pack/talk/KOSIKI:0x10990	Haha... One's true colors<FFF6>reveal themselves in due time.<FFF5>
+519	0x69fc	pack/talk/KOSIKI:0x10a08	Hmph...! One's true colors<FFF6>reveal themselves in due time.<FFF5>
 520	0x6a1b	pack/talk/KOSIKI:0x10a80	Thy kindness hath<FFF6>caught me off-guard.<FFF5>
 521	0x6a2f	pack/talk/KOSIKI:0x10ad0	Conceited knave!<FFF6>Divine retribution will smite thee!<FFF5>
 522	0x6a4e	pack/talk/KOSIKI:0x10b40	Conceited knave. Divine retribution<FFF6>will strike thee down...<FFF5>
@@ -544,24 +544,24 @@ id	pos	psp	en
 542	0x6cc2	pack/talk/KOSIKI:0x11328	Never hath I met a more<FFF6>insolent being than thee!<FFF5>
 543	0x6ce0	pack/talk/KOSIKI:0x11390	Thinkest thou so?<FFF6>Thou hast disctinction worthy of<FFF6>my taking something from thee.<FFF1><FFF5>
 544	0x6d15	pack/talk/KOSIKI:0x11438	I can protect myself!<FFF5>
-545	0x6d27	pack/talk/KOSIKI:0x11468	Hahaha, if thou art protecting me,<FFF6>my dear sister,<FFF6>we have naught to fear.<FFF5>
+545	0x6d27	pack/talk/KOSIKI:0x11468	Hahaha, if thou art protecting me, my<FFF6>dear sister, we have naught to fear.<FFF5>
 546	0x6d51	pack/talk/KOSIKI:0x11500	D-Do not leave me behind...<FFF5>
 547	0x6d6f	pack/talk/KOSIKI:0x11538	Be that thy true intent?<FFF6>Thou canst remain calm<FFFB><FFF7>only because thou knowest not<FFF6>the true fear of ghost stories...<FFF5>
 548	0x6da8	pack/talk/KOSIKI:0x11618	How daring a woman thou art!<FFF6>I like thee.<FFF5>
 549	0x6dc5	pack/talk/KOSIKI:0x11670	Art thou hesitant?<FFF6>Women must be bold!<FFF5>
-550	0x6de5	pack/talk/KOSIKI:0x116c0	O, thou knowest not thine own<FFF6>strength? Then I have no<FFF6>further words for thee!<FFF5>
+550	0x6de5	pack/talk/KOSIKI:0x116c0	O, thou knowest not thine<FFF6>own strength? Then I have<FFF6>no further words for thee!<FFF5>
 551	0x6e15	pack/talk/KOSIKI:0x11760	Haha, thou wouldst stand up to me?<FFF6>'Tis like the mouse before<FFF6>the lioness...<FFF5>
 552	0x6e35	pack/talk/KOSIKI:0x11800	Haha, that is for thine own sake.<FFF5>
-553	0x6e54	pack/talk/KOSIKI:0x11848	Hmm...<FFF6>Thou art not wanting for confidence...<FFF5>
+553	0x6e54	pack/talk/KOSIKI:0x11848	Hmm... Thou art not<FFF6>wanting for confidence...<FFF5>
 554	0x6e6c	pack/talk/KOSIKI:0x118a8	Haha, my spirit surgeth!<FFF5>
 555	0x6e84	pack/talk/KOSIKI:0x118e0	Ha!<FFF6>How canst thou speak so shamelessly<FFF6>when that was thy true intention!<FFF5>
 556	0x6ea6	pack/talk/KOSIKI:0x11978	Why hast thou stopped?<FFF6>Sound thy vocal melodies once more,<FFF6>for my sake.<FFF5>
-557	0x6ecf	pack/talk/KOSIKI:0x11a08	Were I to eat thy tongue,<FFF6>perhaps I too,<FFF6>could sing as the nightingale!<FFF5>
+557	0x6ecf	pack/talk/KOSIKI:0x11a08	Were I to eat thy tongue, perhaps I<FFF6>too, could sing as the nightingale!<FFF5>
 558	0x6efd	pack/talk/KOSIKI:0x11a98	Haha, o that I could<FFF6>sing as thou dost...<FFF5>
 559	0x6f25	pack/talk/KOSIKI:0x11af0	...That was sarcasm, was it not!?<FFF5>
 560	0x6f46	pack/talk/KOSIKI:0x11b38	Thou spit forth a most venemous<FFF6>sarcasm! Thou art an insolent human!<FFF5>
 561	0x6f7e	pack/talk/KOSIKI:0x11bc8	...Why dost thou laugh?<FFF6>I do not understand...<FFF5>
-562	0x6faa	pack/talk/KOSIKI:0x11c28	Children these days know<FFF6>naught of manners!<FFF5>
+562	0x6faa	pack/talk/KOSIKI:0x11c28	Children these days<FFF6>know naught of manners!<FFF5>
 563	0x6fcb	pack/talk/KOSIKI:0x11c80	V-Very well... I apologize.<FFF6>Please speak no ill of me...<FFF5>
 564	0x7004	pack/talk/KOSIKI:0x11cf8	So the human race has those who<FFF6>inspire laughter as well.<FFF5>
 565	0x7024	pack/talk/KOSIKI:0x11d70	How boring.<FFF5>
@@ -576,13 +576,13 @@ id	pos	psp	en
 574	0x7107	pack/talk/KOSIKI:0x12010	I see... Thou needst this not...<FFF5>
 575	0x7121	pack/talk/KOSIKI:0x12058	Thou art a conceited but<FFF6>honest child.<FFF5>
 576	0x7139	pack/talk/KOSIKI:0x120a8	Thou shouldst excercise caution!<FFF5>
-577	0x714f	pack/talk/KOSIKI:0x120f0	Children these days know<FFF6>naught of manners!<FFF5>
+577	0x714f	pack/talk/KOSIKI:0x120f0	Children these days<FFF6>know naught of manners!<FFF5>
 578	0x7170	pack/talk/KOSIKI:0x12148	V-Very well... I apologize.<FFF6>Please speak no ill of me...<FFF5>
 579	0x71a9	pack/talk/KOSIKI:0x121c0	Grrrr...!<FFF5>
 580	0x71b4	pack/talk/KOSIKI:0x121d8	To find myself being comforted by<FFF6>an ingrate such as this...<FFF5>
 581	0x71d3	pack/talk/KOSIKI:0x12258	Just for tea!<FFF5>
 582	0x71df	pack/talk/KOSIKI:0x12278	Thou thinkest it too embarrassing to<FFF6>drink tea with me!?<FFF6>How selfish a girl thou art!<FFF5>
-583	0x720f	pack/talk/KOSIKI:0x12328	Thou art opposed to having tea with<FFF6>me? I cannot fathom why...<FFF5>
+583	0x720f	pack/talk/KOSIKI:0x12328	Thou art opposed to having tea<FFF6>with me? I cannot fathom why...<FFF5>
 584	0x723e	pack/talk/KOSIKI:0x123a8	All things hath an order.<FFF6>One mustn't be negligent.<FFF5>
 585	0x7266	pack/talk/KOSIKI:0x12410	Thou art a spoilt child!<FFF5>
 586	0x7277	pack/talk/KOSIKI:0x12448	Thinkest me not a vulgar woman...<FFF5>
@@ -596,18 +596,18 @@ id	pos	psp	en
 594	0x737f	pack/talk/KOSIKI:0x12768	So thy tears ran true...<FFF6>Forgivest me...<FFF5>
 595	0x73a2	pack/talk/KOSIKI:0x127c0	This is quite vexing...<FFF5>
 596	0x73af	pack/talk/KOSIKI:0x127f0	There now, quell thy tears.<FFF5>
-597	0x73c3	pack/talk/KOSIKI:0x12828	You speak thusly after thou<FFF6>makest such threats?<FFF6>Thou art a vexing being.<FFF5>
+597	0x73c3	pack/talk/KOSIKI:0x12828	You speak thusly after<FFF6>thou makest such threats?<FFF6>Thou art a vexing being.<FFF5>
 598	0x73eb	pack/talk/KOSIKI:0x128c0	Ha! Art thou so confident?<FFF5>
 599	0x73fd	pack/talk/KOSIKI:0x128f8	Ha, thou art not<FFF6>lacking in confidence.<FFF5>
 600	0x7410	pack/talk/KOSIKI:0x12948	That is correct.<FFF6>Thou must hone thy devotion daily.<FFF5>
-601	0x742a	pack/talk/KOSIKI:0x129b0	Haha... One's true colors reveal<FFF6>themselves in due time.<FFF5>
-602	0x7447	pack/talk/KOSIKI:0x12a28	Hmph...! One's true colors reveal<FFF6>themselves in due time.<FFF5>
+601	0x742a	pack/talk/KOSIKI:0x129b0	Haha... One's true colors<FFF6>reveal themselves in due time.<FFF5>
+602	0x7447	pack/talk/KOSIKI:0x12a28	Hmph...! One's true colors<FFF6>reveal themselves in due time.<FFF5>
 603	0x7466	pack/talk/KOSIKI:0x12aa0	Thy kindness hath<FFF6>caught me off-guard.<FFF5>
 604	0x747a	pack/talk/KOSIKI:0x12af0	Conceited knave!<FFF6>Divine retribution will smite thee!<FFF5>
 605	0x7499	pack/talk/KOSIKI:0x12b60	Conceited knave! Divine retribution<FFF6>will strike thee down...<FFF5>
-606	0x74ba	pack/talk/KOSIKI:0x12be0	Children these days know<FFF6>naught of manners!<FFF5>
+606	0x74ba	pack/talk/KOSIKI:0x12be0	Children these days<FFF6>know naught of manners!<FFF5>
 607	0x74db	pack/talk/KOSIKI:0x12c38	V-Very well... I apologize.<FFF6>Please speak no ill of me...<FFF5>
-608	0x7514	pack/talk/KOSIKI:0x12cb0	Thy mind's eye hath been twisted<FFF6>beyond recognition...<FFF5>
+608	0x7514	pack/talk/KOSIKI:0x12cb0	Thy mind's eye hath been<FFF6>twisted beyond recognition...<FFF5>
 609	0x7532	pack/talk/KOSIKI:0x12d20	Thou art a demon...<FFF5>
 610	0x7540	pack/talk/KOSIKI:0x12d48	Thou art a demon!<FFF5>
 611	0x754e	pack/talk/KOSIKI:0x12d70	I shall endure!<FFF5>
@@ -621,9 +621,9 @@ id	pos	psp	en
 619	0x7600	pack/talk/KOSIKI:0x12fa8	Understood!<FFF5>
 620	0x760b	pack/talk/KOSIKI:0x12fc0	Oh, is that the truth of it?<FFF6>...Cursed human!<FFF5>
 621	0x762a	pack/talk/KOSIKI:0x13020	I see... Thou needst this not...<FFF5>
-622	0x7644	pack/talk/KOSIKI:0x13068	Children these days know<FFF6>naught of manners!<FFF5>
+622	0x7644	pack/talk/KOSIKI:0x13068	Children these days<FFF6>know naught of manners!<FFF5>
 623	0x7665	pack/talk/KOSIKI:0x130c0	V-Very well... I apologize.<FFF6>Please speak no ill of me...<FFF5>
-624	0x769e	pack/talk/KOSIKI:0x13138	Thy mind's eye hath been twisted<FFF6>beyond recognition...<FFF5>
+624	0x769e	pack/talk/KOSIKI:0x13138	Thy mind's eye hath been<FFF6>twisted beyond recognition...<FFF5>
 625	0x76bc	pack/talk/KOSIKI:0x131a8	Thou art a demon...<FFF5>
 626	0x76ca	pack/talk/KOSIKI:0x131d0	Thou art a demon!<FFF5>
 627	0x76d8	pack/talk/KOSIKI:0x131f8	I shall endure!<FFF5>
@@ -647,12 +647,12 @@ id	pos	psp	en
 645	0x7895	pack/talk/KOSIKI:0x13680	What manner of remark is that,<FFF6>thou irksome human!?<FFF5>
 646	0x78bc	pack/talk/KOSIKI:0x136e8	...Art thou feeling proper?<FFF5>
 647	0x78db	pack/talk/KOSIKI:0x13720	Thou knowest not a proper greeting!<FFF5>
-648	0x78f6	pack/talk/KOSIKI:0x13768	You speak thusly after thou<FFF6>makest such threats?<FFF6>Thou art a vexing being.<FFF5>
+648	0x78f6	pack/talk/KOSIKI:0x13768	You speak thusly after<FFF6>thou makest such threats?<FFF6>Thou art a vexing being.<FFF5>
 649	0x791e	pack/talk/KOSIKI:0x13800	Ha! Art thou so confident?<FFF5>
 650	0x7930	pack/talk/KOSIKI:0x13838	Ha, thou art not<FFF6>lacking in confidence.<FFF5>
 651	0x7943	pack/talk/KOSIKI:0x13888	That is correct.<FFF6>Thou must hone thy devotion daily.<FFF5>
-652	0x795d	pack/talk/KOSIKI:0x138f0	Haha... One's true colors reveal<FFF6>themselves in due time.<FFF5>
-653	0x797a	pack/talk/KOSIKI:0x13968	Hmph...! One's true colors reveal<FFF6>themselves in due time.<FFF5>
+652	0x795d	pack/talk/KOSIKI:0x138f0	Haha... One's true colors<FFF6>reveal themselves in due time.<FFF5>
+653	0x797a	pack/talk/KOSIKI:0x13968	Hmph...! One's true colors<FFF6>reveal themselves in due time.<FFF5>
 654	0x7999	pack/talk/KOSIKI:0x139e0	Thy kindness hath<FFF6>caught me off-guard.<FFF5>
 655	0x79ad	pack/talk/KOSIKI:0x13a30	Conceited knave!<FFF6>Divine retribution will smite thee!<FFF5>
 656	0x79cc	pack/talk/KOSIKI:0x13aa0	Conceited knave! Divine retribution<FFF6>will strike thee down...<FFF5>
@@ -665,9 +665,9 @@ id	pos	psp	en
 663	0x7a6b	pack/talk/KOSIKI:0x13c58	S-So it was... slightly different...<FFF5>
 664	0x7a82	pack/talk/KOSIKI:0x13ca8	'Twas different this time. I desire for<FFF6>thee to put greater effort into it.<FFF5>
 665	0x7ab1	pack/talk/KOSIKI:0x13d40	Thou art shrouded in mystery...<FFF5>
-666	0x7ac1	pack/talk/KOSIKI:0x13d80	'Tis a shame...<FFF6>Practice and return here once more.<FFF5>
+666	0x7ac1	pack/talk/KOSIKI:0x13d80	'Tis a shame... Practice and<FFF6>return here once more.<FFF5>
 667	0x7adf	pack/talk/KOSIKI:0x13de8	Hurry! Thou must hurry and show me!<FFF5>
-668	0x7af3	pack/talk/KOSIKI:0x13e30	If I disappear...<FFF6>what shall become of me?<FFF6>What shall be my fate!?<FFF5>
+668	0x7af3	pack/talk/KOSIKI:0x13e30	If I disappear... what shall become<FFF6>of me? What shall be my fate!?<FFF5>
 669	0x7b1e	pack/talk/KOSIKI:0x13eb8	If I disappear...<FFF6>what shall become of me?<FFF5>
 670	0x7b3b	pack/talk/KOSIKI:0x13f10	Ah, that is correct. Fear not;<FFF6>I do not think thee suspicious.<FFF5>
 671	0x7b5f	pack/talk/KOSIKI:0x13f90	I was correct!<FFF5>
@@ -678,12 +678,12 @@ id	pos	psp	en
 676	0x7be0	pack/talk/KOSIKI:0x140f8	Hahaha, 'tis well.<FFF5>
 677	0x7bf6	pack/talk/KOSIKI:0x14120	Children in these times!<FFF5>
 678	0x7c0a	pack/talk/KOSIKI:0x14158	Hm? What sayest thou!?<FFF6>I hear nothing!<FFF5>
-679	0x7c2d	pack/talk/KOSIKI:0x141a8	Hm? I am in the way...?<FFF6>Thou sayest that I, <FFF3><FFF6>am in the way...?<FFF5>
+679	0x7c2d	pack/talk/KOSIKI:0x141a8	Hm? I am in the way...?<FFF6>Thou sayest that I,<FFF6><FFF3> am in the way...?<FFF5>
 680	0x7c5a	pack/talk/KOSIKI:0x14228	A reasonable child.<FFF5>
 681	0x7c6b	pack/talk/KOSIKI:0x14250	I say 'tis my territory,<FFF6>and thus, 'tis my territory!<FFF5>
 682	0x7c81	pack/talk/KOSIKI:0x142c0	This is... my territory...<FFF5>
 683	0x7c9c	pack/talk/KOSIKI:0x142f8	Hmm... Thy question is difficult...<FFF6>Perhaps I should reconsider...<FFF5>
-684	0x7cc4	pack/talk/KOSIKI:0x14380	Thy fortitude is thine only<FFF6>trait to be proud of.<FFF5>
+684	0x7cc4	pack/talk/KOSIKI:0x14380	Thy fortitude is thine<FFF6>only trait to be proud of.<FFF5>
 685	0x7ce2	pack/talk/KOSIKI:0x143e8	Hmm... Then take care of thy heart.<FFF5>
 686	0x7d01	pack/talk/KOSIKI:0x14430	Wha... If thou art vomitting, please...<FFF6>Turn away from my sight...<FFF5>
 687	0x7d20	pack/talk/KOSIKI:0x144b8	The question hath changed.<FFF5>
@@ -701,7 +701,7 @@ id	pos	psp	en
 699	0x7e84	pack/talk/KOSIKI:0x14878	E-Eeeeek!<FFF5>
 700	0x7e91	pack/talk/KOSIKI:0x14890	Hahahahaha...<FFF5>
 701	0x7e9b	pack/talk/KOSIKI:0x148b0	If thou understandest, begone!<FFF5>
-702	0x7eaf	pack/talk/KOSIKI:0x148f0	Hahaha...<FFF6>Hast thou a dictionary on hand?<FFF6>Perhaps thou shouldst open it.<FFF5>
+702	0x7eaf	pack/talk/KOSIKI:0x148f0	Hahaha... Hast thou a dictionary on<FFF6>hand? Perhaps thou shouldst open it.<FFF5>
 703	0x7ec8	pack/talk/KOSIKI:0x14988	Use a dictionary if thou must know!<FFF5>
 704	0x7ee5	pack/talk/KOSIKI:0x149d0	Quite a merry one!<FFF5>
 705	0x7ef3	pack/talk/KOSIKI:0x149f8	I am a fool to hath believed!<FFF5>

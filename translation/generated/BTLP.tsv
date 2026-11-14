@@ -60,7 +60,7 @@ id	pos	psp	en
 58	0x6b848	EBOOT:29e456	Demon Lieutenant: Execution,<FFF6>execution, execution!<FFFC><FFF6>Kill 'em stone dead!
 59	0x6b87c	EBOOT:29e40e	Brown: Huh!? <FFFC> Wh-Wh-What the...!?
 60	0x6b8a4	EBOOT:29e396	Brown: What the hell, man!?<FFFC><FFF6>What happened to you guys!?
-61	0x6b8d0	EBOOT:29e2fa	Demon Lieutenant: Rrrrrrrgh! <FFFC><FFF6>I'm taking at least one of<FFF6>you down with me!
+61	0x6b8d0	EBOOT:29e2fa	Demon Lieutenant: Rrrrrrrgh!<FFF6><FFFC> I'm taking at least one of<FFF6>you down with me!
 62	0x6b910	EBOOT:29e2ae	Brown: Waaaaaah! I don't wanna die!
 63	0x6b938	EBOOT:29e1ca	Ayase: Haha...ha...! You're all so cool!<FFF6>It's reaaaally fascinating.<FFFB><FFF7>So c'mon, let us go! Pretty please?
 64	0x6b984	EBOOT:29e126	Right M.I.B.: We can't have<FFF6>the company's secrets leaking out.<FFF6>Dispose of them.
@@ -68,9 +68,9 @@ id	pos	psp	en
 66	0x6b9b4	EBOOT:29e05e	Ayase: Gah! Watch it! What were you<FFF6>gonna do if that hit me!? Murderers!
 67	0x6b9e8	EBOOT:29df96	Takeda: Mr. Kandori,<FFF6>please step back!<FFFB><FFF7>All right,<FFF6>don't let a single one of them escape!
 68	0x6ba24	EBOOT:29df72	Nanjo: Kandori!
-69	0x6ba34	EBOOT:29dec6	Kandori: What a surprise... <FFFC> <FFFC><FFF6>I didn't expect that you'd be<FFF6>Persona-users as well.
+69	0x6ba34	EBOOT:29dec6	Kandori: What a surprise...<FFF6><FFFC> <FFFC> I didn't expect that you'd<FFF6>be Persona-users as well.
 70	0x6ba68	EBOOT:29de6e	Mark:<FFF6>What!? Don't tell me... <FFFC> You too!?
-71	0x6ba88	EBOOT:29ddd2	Kandori: Takeda. I leave this to you. <FFFC> <FFFC><FFF6>You can handle a few children, mm?
+71	0x6ba88	EBOOT:29ddd2	Kandori: Takeda. I leave this to you.<FFF6><FFFC> <FFFC> You can handle a few children, mm?
 72	0x6bac0	EBOOT:29ddaa	Takeda: Yes, Sir.
 73	0x6bacc	EBOOT:29dd6e	Nanjo: You're going nowhere!
 74	0x6badc	EBOOT:29dd36	Takeda: Oh, no you don't!
@@ -85,7 +85,7 @@ id	pos	psp	en
 83	0x6bc00	EBOOT:29d9d6	Maki: Awww... it's adorable!
 84	0x6bc14	EBOOT:29d99e	Brown: Th-That was close!
 85	0x6bc2c	EBOOT:29d946	Elly:<FFF6>I, ah, take back what I said before.
-86	0x6bc44	EBOOT:29d8ce	Ayase: What was that for!? <FFFC><FFF6>It's, like, not cute at all!
+86	0x6bc44	EBOOT:29d8ce	Ayase: What was that for!?<FFF6><FFFC> It's, like, not cute at all!
 87	0x6bc68	EBOOT:29d862	Maki: That wasn't cute! <FFFC><FFF6>That wasn't cute at ALL!
 88	0x6bc8c	EBOOT:29d80a	Nanjo:<FFF6>Take it seriously or pay the price!
 89	0x6bca8	EBOOT:29d7de	Tesso: Zgweaaaaaaak!
@@ -107,7 +107,7 @@ id	pos	psp	en
 105	0x6bf74	EBOOT:29d042	Kandori:<FFF6>You won't get an easy death...<FFF6>Are you prepared for that?
 106	0x6bf98	EBOOT:29cffa	Mark: Shut up! <FFFC> That's our line!
 107	0x6bfc0	EBOOT:29cf02	Maki: If what Nanjo said is true...<FFFB><FFF7>There's still time!<FFF6><FFFC> Stop this nonsense, <FFFC><FFF6>and bring back our town--our world!
-108	0x6c014	EBOOT:29cda2	Kandori: Hah...<FFF6>You'd tell a god to condone nonsense?<FFF6><FFFC> That, too, is a grave sin...<FFFB><FFF7>A god commands and condemns.<FFF6><FFFC> It does not lend an ear to<FFF6>the pleas of vermin.
+108	0x6c014	EBOOT:29cda2	Kandori: Hah... You'd tell<FFF6>a god to condone nonsense?<FFF6><FFFC> That, too, is a grave sin...<FFFB><FFF7>A god commands and condemns.<FFF6><FFFC> It does not lend an ear to<FFF6>the pleas of vermin.
 109	0x6c07c	EBOOT:29cd6a	Brown: Heh, keep dreamin'!
 110	0x6c098	EBOOT:29ccb2	Elly: Shut up!<FFFB><FFF7>A man who can't answer for himself<FFF6>has no right to condemn mankind.
 111	0x6c0dc	EBOOT:29cc3a	Ayase:<FFF6>Use all the big words you want!<FFF6>It doesn't fool us!
@@ -119,7 +119,7 @@ id	pos	psp	en
 117	0x6c258	EBOOT:29c7b2	Kandori: N-Nooooo!
 118	0x6c26c	EBOOT:29c786	Maki: Wh-What the!?
 119	0x6c27c	EBOOT:29c75e	Mark: Holy shit…
-120	0x6c28c	EBOOT:29c6de	Nanjo: Have his body and soul been<FFF6>dominated by the Persona!?
+120	0x6c28c	EBOOT:29c6de	Nanjo: Have his body and soul<FFF6>been dominated by the Persona!?
 121	0x6c2b0	EBOOT:29c682	Kandori:<FFF6>I am Kandori... <FFFC> <FFFC> God Kandori…
 122	0x6c2d8	EBOOT:29c602	Pandora:<FFF6>Now, let us disappear togetherrrr!
 123	0x6c300	EBOOT:29c602	Pandora: Rrrrwwaaaaa...! <FFFC>
@@ -127,8 +127,8 @@ id	pos	psp	en
 125	0x6c32c	EBOOT:29c57a	Maki: It's beautiful…
 126	0x6c33c	EBOOT:29c4f2	Pandora: Why won't you give up?<FFFC><FFF6>Please... give up... <FFFC> please…
 127	0x6c370	EBOOT:29c4aa	Yukino: Whoa! <FFFC> What's with him!?
-128	0x6c38c	EBOOT:29c412	Ayase: Haha... ha... <FFFC> S-Sorry, Kenta. <FFFC><FFF6>Is, uh, it too late to apologize?
-129	0x6c3c0	EBOOT:29c34e	Toro: Ahahahahahahahahaha... <FFFC><FFF6>It's much, much, much, much,<FFF6>much too laaaaate!<FFFB><FFF7>Eat THIS!
+128	0x6c38c	EBOOT:29c412	Ayase: Haha... ha... <FFFC> S-Sorry, Kenta.<FFF6><FFFC> Is, uh, it too late to apologize?
+129	0x6c3c0	EBOOT:29c34e	Toro: Ahahahahahahahahaha...<FFF6><FFFC> It's much, much, much,<FFF6>much, much too laaaaate!<FFFB><FFF7>Eat THIS!
 130	0x6c3fc	EBOOT:29c2fa	Yukino:<FFF6>Agh! <FFFC> Dammit... How dare you!?
 131	0x6c418	EBOOT:29c296	Ayase: Yikes! <FFFC> Huh?<FFF6>What the--!? <FFFC> What NOW!?
 132	0x6c44c	EBOOT:29c1b2	Brown: Whoa whoa whoa...<FFF6><FFFC> What IS this thing!?<FFFB><FFF7>I didn't give it permission to<FFF6>come out of me like that!
@@ -136,9 +136,9 @@ id	pos	psp	en
 134	0x6c494	EBOOT:29c08e	Hypnos: Allow me to teach you<FFF6>the wonders of the Dream World...<FFFB><FFF7>An eternal slumber from whence<FFF6>there is no awakening…
 135	0x6c4d4	EBOOT:29c032	Yukino: Yeah, right...<FFF6>in your dreams, pal!
 136	0x6c4f4	EBOOT:29bf6e	Nemesis: Aaaaaaahahahaha!<FFF6><FFFC> THIS is my true form!<FFFB><FFF7>Soooo lovely... <FFFC> and soooo elegant!
-137	0x6c560	EBOOT:29be66	Yukino: ...<FFFC> You gotta be joking! <FFFC><FFF6>I've had enough with the fun and<FFF6>games already!<FFFB><FFF7>I'm so disgusted I can barely speak.
-138	0x6c5a4	EBOOT:29bdbe	Ayase: Like,<FFF6>have you ever even SEEN a mirror!?<FFFC><FFF6>You don't look like that at ALL!
-139	0x6c5dc	EBOOT:29bce6	Nemesis: ScreeeeeeEEEEE! <FFFC><FFF6>Silence! Silence! SILENCE!<FFFB><FFF7>I'll slice those insolent<FFF6>faces right off!
+137	0x6c560	EBOOT:29be66	Yukino: ...<FFFC> You gotta be joking!<FFF6><FFFC> I've had enough with<FFF6>the fun and games already!<FFFB><FFF7>I'm so disgusted I can barely speak.
+138	0x6c5a4	EBOOT:29bdbe	Ayase: Like, have you<FFF6>ever even SEEN a mirror!?<FFFC><FFF6>You don't look like that at ALL!
+139	0x6c5dc	EBOOT:29bce6	Nemesis: ScreeeeeeEEEEE!<FFF6><FFFC> Silence! Silence! SILENCE!<FFFB><FFF7>I'll slice those insolent<FFF6>faces right off!
 140	0x6c638	EBOOT:29bbe6	Thanatos: Transformation complete!<FFFC><FFF6>Here comes Yuriko!<FFFB><FFF7>All righty, time to beat everyone up.<FFFC><FFF6>Hope you're ready!
 141	0x6c6a0	EBOOT:29bb7a	Ayase: Pbbbbt! You're uglier than<FFF6>death warmed over!
 142	0x6c6c4	EBOOT:29bada	Thanatos: Excuse me!?<FFF6>Oh, I have HAD it!<FFFC><FFF6>I'm SO not forgiving you for that!
@@ -165,7 +165,7 @@ id	pos	psp	en
 164	0x64c9c	EBOOT:2ada3c	＞ Elly told a scary story!
 165	0x64cb4	EBOOT:2ada14	＞ Elly sang a song!
 166	0x64cc8	EBOOT:2ad9de	＞ Elly soothed the demon!
-167	0x64ce4	EBOOT:2ad98c	＞ Elly invited the demon into<FFF6>the party!
+167	0x64ce4	EBOOT:2ad98c	＞ Elly invited<FFF6>the demon into the party!
 168	0x64d00	EBOOT:2ad956	＞ Ayase dissed the demon!
 169	0x64d1c	EBOOT:2ad91e	＞ Ayase seduced the demon!
 170	0x64d38	EBOOT:2ad8e0	＞ Ayase cried crocodile tears!
@@ -185,9 +185,9 @@ id	pos	psp	en
 184	0x6781c	EBOOT:2ab432	＞ Mark showed off his smooth moves.
 185	0x6783c	EBOOT:2ab406	＞ Mark danced crazy!
 186	0x67854	EBOOT:2ab3c0	＞ Mark did a seductive slow dance.
-187	0x67894	EBOOT:2ab2a4	＞ Mark stared passionately at<FFF6>the demon.
+187	0x67894	EBOOT:2ab2a4	＞ Mark stared<FFF6>passionately at the demon.
 188	0x678b4	EBOOT:2ab258	＞ Mark stared intensely at the demon.
-189	0x678d4	EBOOT:2ab202	＞ Mark stared flirtatiously at<FFF6>the demon.
+189	0x678d4	EBOOT:2ab202	＞ Mark stared<FFF6>flirtatiously at the demon.
 190	0x67a44	EBOOT:2aad86	＞ Elly sang a chic bossa nova.
 191	0x67a68	EBOOT:2aad46	＞ Elly sang her favorite song.
 192	0x67a8c	EBOOT:2aad06	＞ Elly sang a touching ballad.
@@ -220,7 +220,7 @@ id	pos	psp	en
 219	0x65b68	EBOOT:2a862e	Hey!<FFF6><FFFC>You can't have more than 12 cards.<FFF6>Throw away the ones you don't need.
 220	0x65ba0	EBOOT:2a8a1c	Why you little...!<FFFC><FFF6>You've got too many cards now!<FFF6>Keep the best and toss the rest!
 221	0x655a4	EBOOT:2a8c76	...You carry too many needless cards.<FFFC><FFF6>Your request is denied unless you<FFF6>mend the situation.
-222	0x671cc	EBOOT:2ac7a2,EBOOT:2ac7fc	Maki: Demons live the way<FFF6>they want, right?<FFFB><FFF7>It would be nice if you could put<FFF6>aside our differences and<FFF6>help me out.
+222	0x671cc	EBOOT:2ac7a2,EBOOT:2ac7fc	Maki:<FFF6>Demons live the way<FFF6>they want, right?<FFFB><FFF7>It would be nice if you could put<FFF6>aside our differences and<FFF6>help me out.
 223	0x67210	EBOOT:2ac6ae,EBOOT:2ac752	Maki: I can't do much for you,<FFF6>but I promise our time<FFF6>together will be exciting.<FFFB><FFF7>So c'mon, lend me your strength!
 224	0x6724c	EBOOT:2ac606,EBOOT:2ac62a	Maki: Are you <FFF3>?<FFFB><FFF7>I could tell right off!<FFF6>You have a unique aura about you…
 225	0x6727c	EBOOT:2ac57e	Maki: Many artists have been<FFF6>captivated by you, and now I see why!
@@ -265,9 +265,9 @@ id	pos	psp	en
 264	0x67b84	EBOOT:2aaa06	Elly: I'd like a demon like you to walk<FFF6>me home on my way back from school.
 265	0x67bb8	EBOOT:2aa95e	Ayase: You're seriously willing to be<FFF6>seen outside looking like that?<FFF6>What a dork!
 266	0x67bf0	EBOOT:2aa8be	Ayase: Wow, you must be REALLY old,<FFF6>'cause that style is like,<FFF6>PRE-prehistoric.
-267	0x67c1c	EBOOT:2aa81a	Ayase: Hey...<FFF6>does it smell funny around here?<FFF6>It's you, isn't it? Uchhh, gag me.
+267	0x67c1c	EBOOT:2aa81a	Ayase: Hey... does it<FFF6>smell funny around here?<FFF6>It's you, isn't it? Uchhh, gag me.
 268	0x67c4c	EBOOT:2aa77a	Ayase: Y'know...<FFF6>I'm usually really innocent...<FFF6>But today? I'm feeling daring.
-269	0x67c80	EBOOT:2aa6d2	Ayase: C'mon,<FFF6>don't make that awful face... We just<FFF6>need to get to know each other.
+269	0x67c80	EBOOT:2aa6d2	Ayase: C'mon, don't make that<FFF6>awful face... We just need to<FFF6>get to know each other.
 270	0x67cb8	EBOOT:2aa642	Ayase: Ooooh, my chest is sore...<FFF6>Maybe if you gave it a little rub...?
 271	0x67ce8	EBOOT:2aa5a2	Ayase: I'm the oldest of 23<FFF6>brothers and sisters...<FFF6>I have to feed them all…
 272	0x67d20	EBOOT:2aa4fe	Ayase:<FFF6>Won't someone buy my matches...?<FFF6>If I don't sell any, Papa will beat me…
@@ -284,7 +284,7 @@ id	pos	psp	en
 283	0x67f74	EBOOT:2a9ca2	Yukino: Hey! Didn't they teach you in<FFF6>kindergarten not to cause trouble!?
 284	0x67fa8	EBOOT:2a9c52	Yukino: Stop whining! No one likes it!
 285	0x67fc4	EBOOT:2a9b42,EBOOT:2a9bca	Yukino: Stay quiet for once and<FFF6>listen to what others have to say!<FFFB><FFF7>And don't you make fun of them,<FFF6>or I'll make you regret it!
-286	0x67fec	EBOOT:2a9ade	Yukino: Hmm...<FFF6>what should I make for dinner...?
+286	0x67fec	EBOOT:2a9ade	Yukino:<FFF6>Hmm...<FFF6>what should I make for dinner...?
 287	0x68010	EBOOT:2a9a5a	Yukino: Hm...? Did I remember to<FFF6>turn the lights off when I left?
 288	0x68038	EBOOT:2a99b2	Yukino:<FFF6>I should decide soon which photo I'm<FFF6>going to enter in the next contest…
 289	0x680b8	EBOOT:2a9876	Reiji: This isn't your lucky day...<FFF6>You won't be leaving here alive.
@@ -293,7 +293,7 @@ id	pos	psp	en
 292	0x68178	EBOOT:2a9556	Reiji: With a snap of my fingers...<FFFC><FFF6>presto! Flowers appear.<FFF6>Beautiful, aren't they?
 293	0x6819c	EBOOT:2a94e6	Reiji: Watch the top...<FFF6>Don't take your eyes off it…
 294	0x674a4	EBOOT:2abcd6,EBOOT:2abd5e	Brown: Why did the buffalos throw<FFF6>a party on their 200th birthday?<FFFB><FFF7>It was their bisontennial!
-295	0x674dc	EBOOT:2abda2,EBOOT:2abe52	Brown: What do you do if you're on<FFF6>a horse and you see a giraffe and<FFF6>lion next to you?<FFFB><FFF7>Get off the carousel! <FFFC>C'mon, laugh!
+295	0x674dc	EBOOT:2abda2,EBOOT:2abe52	Brown: What do you do<FFF6>if you're on a horse and you<FFF6>see a giraffe and lion next to you?<FFFB><FFF7>Get off the carousel! <FFFC>C'mon, laugh!
 296	0x6750c	EBOOT:2abeaa,EBOOT:2abf3e	Brown: Alright,<FFF6>what's the difference between<FFF6>a rottweiler and a poodle?<FFFB><FFF7>They're two totally different breeds!<FFF6>Get it?
 297	0x67870	EBOOT:2ab2fa	Mark: Hey! I'm right here!
 298	0x6787c	EBOOT:2ab332	Mark:<FFF6>You think you're bad? Then try me!
@@ -397,7 +397,7 @@ id	pos	psp	en
 396	0x649a8	EBOOT:2a4fca,EBOOT:2a502a,EBOOT:2a5070,EBOOT:2a507e	Yukino:<FFF6>This is one hell of an amazing card...<FFFB><FFF7>Huh.<FFF6>So this is the totem Avatar, huh?<FFFB><FFF7>Looks like it's my lucky day…
 397	0x64a0c	EBOOT:2a4ece,EBOOT:2a4f00,EBOOT:2a4f10	Reiji: What is this, an Avatar <FFFC>Heh...<FFF6><FFFC>I don't need it.<FFFB><FFF7>＞ Reiji tossed the Avatar aside...<FFFB><FFF7>＞ <FFFA> picked up the Avatar…
 398	0x6797c	EBOOT:2aaf7e,EBOOT:2aaffa	Elly: Have you heard of the restroom<FFF6>stall you can't escape?<FFFB><FFF7>Once you go inside, the door won't<FFF6>open until you've done your business.
-399	0x681b4	EBOOT:2a9472	Reiji: Watch, as I power a small<FFF6>lamp by my chi alone…
+399	0x681b4	EBOOT:2a9472	Reiji: Watch, as I power<FFF6>a small lamp by my chi alone…
 400	0x675f4	EBOOT:2aba52	Brown: Wh... What's that!?<FFF6><FFFC>Hee heeeee! You fell for it!
 401	0x6473c	EBOOT:2a5776	The demon spoke to you!
 402	0x64668	EBOOT:2a58ec	＞ Obtained <FFF4>.

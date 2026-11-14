@@ -2,25 +2,25 @@ id	pos	psp	en
 0	0x2014	pack/talk/ZOMBIKO:0x2030	Hmm, what you're saying<FFF6>sounds pretty respectable...<FFF6>it just doesn't apply to me anymore.<FFF5>
 1	0x2037	pack/talk/ZOMBIKO:0x20e8	Don't talk like you know everything!<FFF6>I mean, you're still alive!<FFFB><FFF7>You can act that way once<FFF6>you've experienced death!<FFF5>
 2	0x2071	pack/talk/ZOMBIKO:0x21d8	Liar! I won't get fooled again!<FFF5>
-3	0x208a	pack/talk/ZOMBIKO:0x2218	Am I still pretty? That was all I<FFF6>used to have going for me...<FFF5>
-4	0x20ae	pack/talk/ZOMBIKO:0x2298	Hahaha...<FFF6>Shall I take off my head in return?<FFF5>
-5	0x20d4	pack/talk/ZOMBIKO:0x22f8	Aaah, stop it...!<FFF6>If I move around too much,<FFF6>I'll fall to pieces...<FFF5>
+3	0x208a	pack/talk/ZOMBIKO:0x2218	Am I still pretty? That was all<FFF6>I used to have going for me...<FFF5>
+4	0x20ae	pack/talk/ZOMBIKO:0x2298	Hahaha... Shall I take off<FFF6>my head in return?<FFF5>
+5	0x20d4	pack/talk/ZOMBIKO:0x22f8	Aaah, stop it...! If I move around<FFF6>too much, I'll fall to pieces...<FFF5>
 6	0x20f7	pack/talk/ZOMBIKO:0x2380	Wh-What're you doing?<FFF6>I thought my heart was going to stop!<FFF5>
 7	0x211c	pack/talk/ZOMBIKO:0x23f8	Nooooo! You do some<FFF5>
 8	0x2126	pack/talk/ZOMBIKO:0x2408	pretty bold things.<FFF6>That gave me a good laugh...<FFF5>
-9	0x213f	pack/talk/ZOMBIKO:0x2488	Haha...<FFF6>Who do you think's stronger,<FFF6>you or me?<FFF5>
+9	0x213f	pack/talk/ZOMBIKO:0x2488	Haha... Who do you think's<FFF6>stronger, you or me?<FFF5>
 10	0x215c	pack/talk/ZOMBIKO:0x24e8	It's okay, I'm not mad.<FFF6>I just want you to become one of us...<FFF5>
 11	0x2184	pack/talk/ZOMBIKO:0x2568	Hey!<FFF6>You're dealing with a demon here...<FFF6>Can't you be scared even a little!?<FFF5>
 12	0x21af	pack/talk/ZOMBIKO:0x2608	I'll tell you a really scary story...<FFF6>You're the heroine in it.<FFFB><FFF7>And now the fear begins!<FFF5>
 13	0x21e1	pack/talk/ZOMBIKO:0x26c0	Th-That's not scary at all...<FFFB><FFF7>Wh-Why am I shaking?<FFF6>I-It's cold, that's all...<FFF5>
 14	0x2211	pack/talk/ZOMBIKO:0x2760	That's hilarious!<FFF6>No one knows what true fear is like!<FFF5>
-15	0x223c	pack/talk/ZOMBIKO:0x27d0	How dare you talk that way to<FFF6>someone who has so much<FFF6>more life experience!?<FFF5>
+15	0x223c	pack/talk/ZOMBIKO:0x27d0	How dare you talk that<FFF6>way to someone who has so<FFF6>much more life experience!?<FFF5>
 16	0x2261	pack/talk/ZOMBIKO:0x2870	A-Aagh... Stop... Stop it...!<FFF5>
 17	0x2280	pack/talk/ZOMBIKO:0x28b0	Haha... You really can do a lot!<FFF5>
 18	0x229b	pack/talk/ZOMBIKO:0x28f8	I'm not the girl I used to be...<FFF6>I'm not going to stand by and<FFF6>let you pick on me!<FFF5>
 19	0x22c8	pack/talk/ZOMBIKO:0x29a0	You're okay with that? Well, I don't<FFF6>wanna hear you cry about it later.<FFF5>
 20	0x22e9	pack/talk/ZOMBIKO:0x2a30	I like strong men, but I have a pretty<FFF6>twisted way of showing affection.<FFF5>
-21	0x2314	pack/talk/ZOMBIKO:0x2ac8	Now hold on...<FFF6>What did I ever do to you...?<FFF5>
+21	0x2314	pack/talk/ZOMBIKO:0x2ac8	Now hold on... What did<FFF6>I ever do to you...?<FFF5>
 22	0x2336	pack/talk/ZOMBIKO:0x2b28	I've been so mellow lately that I don't<FFF6>even feel like getting mad at that.<FFF5>
 23	0x2354	pack/talk/ZOMBIKO:0x2bc0	I already know that! You don't<FFF6>have to say it twice... That's why<FFF6>I always tried not to stand out!<FFF5>
 24	0x238a	pack/talk/ZOMBIKO:0x2c88	When I was still human,<FFF6>I really liked guys like you.<FFFB><FFF7>I was so immature then!<FFF5>
@@ -33,12 +33,12 @@ id	pos	psp	en
 31	0x248e	pack/talk/ZOMBIKO:0x3070	So you're pretty much the class<FFF6>clown, I take it. But actually,<FFF6>I don't mind your lame jokes so much.<FFF5>
 32	0x24c4	pack/talk/ZOMBIKO:0x3140	Your jokes aren't funny at all!<FFF6>Someone tell this guy<FFF6>how lame they are!<FFF5>
 33	0x24f3	pack/talk/ZOMBIKO:0x31d8	Well? Are you going to take<FFF6>responsibility for killing the mood?<FFF5>
-34	0x2511	pack/talk/ZOMBIKO:0x3260	There isn't that much that's<FFF6>fun to do around here.<FFF6>You really brightened my day!<FFF5>
+34	0x2511	pack/talk/ZOMBIKO:0x3260	There isn't that much<FFF6>that's fun to do around here.<FFF6>You really brightened my day!<FFF5>
 35	0x2538	pack/talk/ZOMBIKO:0x3308	Aren't you a little off key?<FFF5>
 36	0x2547	pack/talk/ZOMBIKO:0x3348	Sing all you want! I'll be biting into<FFF6>your throat in a few seconds!<FFF5>
-37	0x2578	pack/talk/ZOMBIKO:0x33d8	Hey! Can you cut it<FFF6>out with that screeching!?<FFF5>
+37	0x2578	pack/talk/ZOMBIKO:0x33d8	Hey! Can you cut it out with<FFF6>that screeching!?<FFF5>
 38	0x2597	pack/talk/ZOMBIKO:0x3438	I want to go to karaoke again!<FFF6>Ahh... just once would be enough...<FFF5>
-39	0x25b7	pack/talk/ZOMBIKO:0x34c0	Just... don't breathe fire or anything<FFF6>out of the blue, okay...?<FFF5>
+39	0x25b7	pack/talk/ZOMBIKO:0x34c0	Just... don't breathe fire or<FFF6>anything out of the blue, okay...?<FFF5>
 40	0x25dd	pack/talk/ZOMBIKO:0x3548	Do it again! I'll figure out<FFF6>the trick this time for sure!<FFF5>
 41	0x25fd	pack/talk/ZOMBIKO:0x35c0	So a lot's happened?<FFF6>I heard all about it.<FFF5>
 42	0x2618	pack/talk/ZOMBIKO:0x3618	I already knew that!<FFF6>Don't underestimate my sources!<FFF5>
@@ -47,15 +47,15 @@ id	pos	psp	en
 45	0x2686	pack/talk/ZOMBIKO:0x3740	Am I... still attractive?<FFF6>I-I'm so happy...<FFF5>
 46	0x26a9	pack/talk/ZOMBIKO:0x3798	Will you quit bothering me!?<FFF6>Just stop already!<FFF5>
 47	0x26bf	pack/talk/ZOMBIKO:0x37f8	Oh wow, you're okay with me?<FFF6>Haha... I'll think about it.<FFF5>
-48	0x26dc	pack/talk/ZOMBIKO:0x3870	D-Don't tell me...! Phew,<FFF6>thank goodness. I thought my eyeball<FFF6>had fallen out or something!<FFF5>
-49	0x270d	pack/talk/ZOMBIKO:0x3928	You're looking at me like I'm<FFF6>some kind of monster...<FFF6>Have some self-control!<FFF5>
+48	0x26dc	pack/talk/ZOMBIKO:0x3870	D-Don't tell me...! Phew,<FFF6>thank goodness. I thought my<FFF6>eyeball had fallen out or something!<FFF5>
+49	0x270d	pack/talk/ZOMBIKO:0x3928	You're looking at me like I'm some kind<FFF6>of monster... Have some self-control!<FFF5>
 50	0x273c	pack/talk/ZOMBIKO:0x39c8	I can tell what you're thinking.<FFFB><FFF7>But the answer is no!<FFF6>I won't be picked up that easily!<FFF5>
 51	0x2770	pack/talk/ZOMBIKO:0x3a80	Look, I'm not interested in<FFF6>cheap trinkets.<FFF5>
 52	0x2785	pack/talk/ZOMBIKO:0x3ad8	That would have fooled me in<FFF6>the past, but I've learned my lessons.<FFF5>
 53	0x27a9	pack/talk/ZOMBIKO:0x3b60	No way... Is that...<FFF6>a present? For me!?<FFF5>
 54	0x27d2	pack/talk/ZOMBIKO:0x3bb8	You're interested in me, huh?<FFF6>I guess you can't judge<FFF6>people by their looks.<FFF5>
 55	0x27f3	pack/talk/ZOMBIKO:0x3c58	Don't treat me like one of<FFF6>those stupid demons around here.<FFF5>
-56	0x2813	pack/talk/ZOMBIKO:0x3cd0	Yikes! There's no need to cry over<FFF6>something like that...<FFF5>
+56	0x2813	pack/talk/ZOMBIKO:0x3cd0	Yikes! There's no need to<FFF6>cry over something like that...<FFF5>
 57	0x282f	pack/talk/ZOMBIKO:0x3d48	You're actually cute in your own way.<FFF5>
 58	0x283e	pack/talk/ZOMBIKO:0x3d98	Hey, let me have that body!<FFF6>I deserve it way more than you!<FFF5>
 59	0x2869	pack/talk/ZOMBIKO:0x3e10	I bet you're going to keep flattering<FFF6>me before making me look like a fool in<FFF6>front of everyone... again...<FFF5>
@@ -66,15 +66,15 @@ id	pos	psp	en
 64	0x292d	pack/talk/ZOMBIKO:0x4118	I don't want to hear that stuff.<FFF6>There's only one thing I want...<FFF1><FFF5>
 65	0x2954	pack/talk/ZOMBIKO:0x41a0	Why are you telling me this...?<FFF5>
 66	0x2970	pack/talk/ZOMBIKO:0x41e0	Of all the people to<FFF6>tell that to, why me?<FFF5>
-67	0x2998	pack/talk/ZOMBIKO:0x4238	I really do get along much better with<FFF6>humans than demons.<FFF5>
+67	0x2998	pack/talk/ZOMBIKO:0x4238	I really do get along much<FFF6>better with humans than demons.<FFF5>
 68	0x29be	pack/talk/ZOMBIKO:0x42b0	I feel like I've gone back in time!<FFF5>
 69	0x29d0	pack/talk/ZOMBIKO:0x42f8	So you need me... Is that so? Huh...<FFF5>
-70	0x29f4	pack/talk/ZOMBIKO:0x4348	Now, what's the most important<FFF6>step in negotiation?<FFF6>You know, right...?<FFF1><FFF5>
+70	0x29f4	pack/talk/ZOMBIKO:0x4348	Now, what's the most important step<FFF6>in negotiation? You know, right...?<FFF1><FFF5>
 71	0x2a28	pack/talk/ZOMBIKO:0x43e0	We finally got to meet,<FFF6>and that's all you have to say?<FFF5>
 72	0x2a46	pack/talk/ZOMBIKO:0x4450	I can't agree to a request like that.<FFF6>But you'd better agree to mine!<FFF1><FFF5>
-73	0x2a6e	pack/talk/ZOMBIKO:0x44e0	I dunno... what are you going to<FFF6>use my powers for...?<FFF5>
+73	0x2a6e	pack/talk/ZOMBIKO:0x44e0	I dunno... what are you<FFF6>going to use my powers for...?<FFF5>
 74	0x2a88	pack/talk/ZOMBIKO:0x4550	Ewwww!<FFF6>I can't stand being around you!<FFF5>
-75	0x2aa7	pack/talk/ZOMBIKO:0x45a0	Hahaha... This negotion's going<FFF6>pretty well, I'd say...<FFF5>
+75	0x2aa7	pack/talk/ZOMBIKO:0x45a0	Hahaha... This negotion's<FFF6>going pretty well, I'd say...<FFF5>
 76	0x2aca	pack/talk/ZOMBIKO:0x4610	I get asked for more favors by<FFF6>humans than demons.<FFF5>
 77	0x2ae8	pack/talk/ZOMBIKO:0x4678	I still have at least half a brain left,<FFF6>you know... Rotten though it is.<FFFB><FFF7>Anyway, I see what<FFF6>you're trying to do.<FFF5>
 78	0x2b1f	pack/talk/ZOMBIKO:0x4760	You're rather childish.<FFF6>I don't entirely mind, but...<FFF5>
@@ -118,23 +118,23 @@ id	pos	psp	en
 116	0x2fd1	pack/talk/ZOMBIKO:0x58e0	I-I'll give you this! Please,<FFF6>just look the other way this once!<FFEF>
 117	0x2ff0	pack/talk/ZOMBIKO:0x5968	I think I'm starting to get all cold...<FFF6>I want to go somewhere else.<FFEF>
 118	0x300e	pack/talk/ZOMBIKO:0x59f8	I'll give you this, so hurry on home!<FFEF>
-119	0x302e	pack/talk/ZOMBIKO:0x5a48	I can kill you anytime I want...<FFF6>What's the harm in keeping you<FFF6>alive just a little longer?<FFEF>
+119	0x302e	pack/talk/ZOMBIKO:0x5a48	I can kill you anytime I want...<FFF6>What's the harm in keeping<FFF6>you alive just a little longer?<FFEF>
 120	0x305c	pack/talk/ZOMBIKO:0x5b00	Here's my card.<FFF6>I... I just want to be beautiful again...<FFEF>
 121	0x3085	pack/talk/ZOMBIKO:0x5b78	Oh, I know! I can eat anyone<FFF6>you don't like for you...<FFFB><FFF7>But I can't come along like this...<FFEF>
-122	0x30cc	pack/talk/ZOMBIKO:0x5c30	If I fight you...<FFF6>I'll turn all the way into a demon.<FFEF>
-123	0x30f0	pack/talk/ZOMBIKO:0x5ca0	Will you accept this? Or do you not<FFF6>want anything I'd give you...?<FFEF>
+122	0x30cc	pack/talk/ZOMBIKO:0x5c30	If I fight you... I'll turn<FFF6>all the way into a demon.<FFEF>
+123	0x30f0	pack/talk/ZOMBIKO:0x5ca0	Will you accept this? Or do you<FFF6>not want anything I'd give you...?<FFEF>
 124	0x310f	pack/talk/ZOMBIKO:0x5d28	There's still so much I want to do.<FFF6>So...<FFEF>
-125	0x3132	pack/talk/ZOMBIKO:0x5d80	Why go through all the trouble of<FFF6>fighting? You could just turn<FFF6>your back on it all and go have fun...<FFF5>
+125	0x3132	pack/talk/ZOMBIKO:0x5d80	Why go through all the trouble of<FFF6>fighting? You could just turn your<FFF6>back on it all and go have fun...<FFF5>
 126	0x315f	pack/talk/ZOMBIKO:0x5e50	It's been a while since I last<FFF6>met a human. Won't you give me<FFF6>something to remember the occasion?<FFF1><FFF5>
 127	0x3186	pack/talk/ZOMBIKO:0x5f18	What more do you want from me?<FFF5>
 128	0x31a3	pack/talk/ZOMBIKO:0x5f58	If you want me to talk to you,<FFF6>it's common sense to bring<FFF6>a present or two!<FFF1><FFF5>
-129	0x31d9	pack/talk/ZOMBIKO:0x5ff8	What's wrong with living an un-life?<FFF6>I want to stay alive as<FFF6>much as you do!<FFF5>
+129	0x31d9	pack/talk/ZOMBIKO:0x5ff8	What's wrong with living an un-life? I<FFF6>want to stay alive as much as you do!<FFF5>
 130	0x3204	pack/talk/ZOMBIKO:0x6098	Did you come to make fun of<FFF6>me again? Well, I've had it!<FFFB><FFF7>I'm not falling for it this time!<FFF6>Don't come near me!<FFF5>
 131	0x3234	pack/talk/ZOMBIKO:0x6178	I don't have to be on a diet anymore!<FFF5>
 132	0x324d	pack/talk/ZOMBIKO:0x61c8	You should come over to our side!<FFF5>
 133	0x3262	pack/talk/ZOMBIKO:0x6210	<FFED>You know what I hate?<FFF6>Insincere people!<FFF5>
 134	0x3285	pack/talk/ZOMBIKO:0x6268	<FFEE>You've been taking a lot of<FFF6>things from demons, right?<FFF6>Share some with me!<FFF1><FFF5>
-135	0x32b5	pack/talk/ZOMBIKO:0x6308	<FFEC>Violence against women is<FFF6>never called for, okay?<FFF6>I'm sure we can talk this out.<FFF5>
+135	0x32b5	pack/talk/ZOMBIKO:0x6308	<FFEC>Violence against women<FFF6>is never called for, okay?<FFF6>I'm sure we can talk this out.<FFF5>
 136	0x32ee	pack/talk/ZOMBIKO:0x63b0	<FFEE><FFFA>, right? You're so famous,<FFF6>even I know about you.<FFF6>So do you need something from me?<FFF5>
 137	0x331d	pack/talk/ZOMBIKO:0x6460	<FFEE>You know... I think we can be friends.<FFF5>
 138	0x333a	pack/talk/ZOMBIKO:0x64b0	<FFEE>Hey, let's talk some more!<FFF5>
@@ -149,11 +149,11 @@ id	pos	psp	en
 147	0x34d9	pack/talk/ZOMBIKO:0x69b8	Are you going to get rid of me...?<FFF6>That's fine... It's got to be<FFF6>better than looking like this. But...<FFF5>
 148	0x350d	pack/talk/ZOMBIKO:0x6a88	I don't know why, but I have a warm<FFF6>feeling when I'm by your side...<FFF5>
 149	0x3528	pack/talk/ZOMBIKO:0x6b18	You wanted something from me, right?<FFF6>Why not stop bluffing and spit it out?<FFEF>
-150	0x3555	pack/talk/ZOMBIKO:0x6bb0	I'll do anything you want!<FFF6>Just start by telling<FFF6>me what's going on!<FFEF>
+150	0x3555	pack/talk/ZOMBIKO:0x6bb0	I'll do anything you want! Just<FFF6>start by telling me what's going on!<FFEF>
 151	0x3586	pack/talk/ZOMBIKO:0x6c40	The reasons why don't matter, I just<FFF6>want to be useful to you! After all...<FFF6>you took an interest in me...!<FFEF>
 152	0x35bd	pack/talk/ZOMBIKO:0x6d18	I get it! This is just a dream!<FFF6>It's all a dream! It's gotta be!<FFF5>
-153	0x35ea	pack/talk/ZOMBIKO:0x6da0	I wouldn't normally deal with<FFF6>people like you.<FFF5>
-154	0x3607	pack/talk/ZOMBIKO:0x6e00	To be honest,<FFF6>I've liked you for some time now!<FFF6>I-I'm not lying!<FFF5>
+153	0x35ea	pack/talk/ZOMBIKO:0x6da0	I wouldn't normally<FFF6>deal with people like you.<FFF5>
+154	0x3607	pack/talk/ZOMBIKO:0x6e00	To be honest, I've liked you for<FFF6>some time now! I-I'm not lying!<FFF5>
 155	0x3638	pack/talk/ZOMBIKO:0x6e88	Money's the only thing I can<FFF6>believe in... Give me <FFF8> yen.<FFEF>
 156	0x365e	pack/talk/ZOMBIKO:0x6f00	I guess I'll take it.<FFF5>
 157	0x366c	pack/talk/ZOMBIKO:0x6f30	Ohh... you're poor.<FFF5>
@@ -168,12 +168,12 @@ id	pos	psp	en
 166	0x3766	pack/talk/ZOMBIKO:0x7280	You're turning down a poor girl's<FFF6>only wish? That's so awful...!<FFF5>
 167	0x3795	pack/talk/ZOMBIKO:0x7308	Share your living body's<FFF6>warmth with me...<FFEF>
 168	0x37b6	pack/talk/ZOMBIKO:0x7360	Ahh... so revitalizing...<FFF5>
-169	0x37c3	pack/talk/ZOMBIKO:0x7398	You stingy bastard!<FFF6>Didn't anyone ever teach you to<FFF6>help out people in trouble!?<FFF5>
-170	0x37f3	pack/talk/ZOMBIKO:0x7440	You don't have any!<FFFB><FFF7>Ugh! Poor bums like you are<FFF6>out of the question!<FFF5>
+169	0x37c3	pack/talk/ZOMBIKO:0x7398	You stingy bastard!<FFF6>Didn't anyone ever teach<FFF6>you to help out people in trouble!?<FFF5>
+170	0x37f3	pack/talk/ZOMBIKO:0x7440	You don't have any!<FFFB><FFF7>Ugh! Poor bums like you<FFF6>are out of the question!<FFF5>
 171	0x3828	pack/talk/ZOMBIKO:0x74d0	Well, if that's the attitude you're<FFF6>going to take, I'll rip you apart!<FFF5>
 172	0x384b	pack/talk/ZOMBIKO:0x7560	Hey!<FFF6>You should've just been honest with<FFF6>me that you didn't have any!<FFFB><FFF7>You really make me mad!<FFF5>
 173	0x3881	pack/talk/ZOMBIKO:0x7620	You're stingier than you look...<FFFB><FFF7>Sheesh, just my luck.<FFF6>There were other potential<FFF6>customers around, too...<FFF5>
-174	0x38b5	pack/talk/ZOMBIKO:0x76f8	...It's okay...<FFF6>I had a feeling you'd say no anyway...<FFF5>
+174	0x38b5	pack/talk/ZOMBIKO:0x76f8	...It's okay... I had a feeling<FFF6>you'd say no anyway...<FFF5>
 175	0x38d0	pack/talk/ZOMBIKO:0x7768	I'm just a zombie after all...<FFF6>It's so cold...<FFF5>
 176	0x38e9	pack/talk/ZOMBIKO:0x77c8	...... I'll give you my spell card!<FFEF>
 177	0x3909	pack/talk/ZOMBIKO:0x7810	Hey, I'll give you my spell card! Since<FFF6>I can't eat that much, let the Persona<FFF6>you make eat it all for me!<FFEF>

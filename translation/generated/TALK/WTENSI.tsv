@@ -29,28 +29,28 @@ id	pos	psp	en
 27	0x25c2	pack/talk/WTENSI:0x3188	As a redeemed human,<FFF6>you must speak only the truth!<FFFB><FFF7>Pursuing personal gain and<FFF6>deceitfully hiding your true<FFF6>intentions will only anger Him!<FFFD>し<FFF5>
 28	0x2632	pack/talk/WTENSI:0x32a8	Your instincts are<FFF6>right to be interested in me...<FFFB><FFF7>Now turn your heart to the Lord and<FFF6>let us walk a path of righteousness!<FFF5>
 29	0x2672	pack/talk/WTENSI:0x33a0	Do you wish to form a contract with<FFF6>me, one of His messengers?<FFFD>す<FFF5>
-30	0x269b	pack/talk/WTENSI:0x3428	That will change nothing!<FFF6>You must cling fast to<FFF6>your beliefs to live your life!<FFF5>
+30	0x269b	pack/talk/WTENSI:0x3428	That will change nothing!<FFF6>You must cling fast to your<FFF6>beliefs to live your life!<FFF5>
 31	0x26c4	pack/talk/WTENSI:0x34d0	What an obvious charade...<FFF6>Your true intentions are known to me!<FFFD>せ<FFF5>
-32	0x26f1	pack/talk/WTENSI:0x3558	I feel there must be some catch to<FFF6>this... How uncanny...<FFF5>
+32	0x26f1	pack/talk/WTENSI:0x3558	I feel there must be some<FFF6>catch to this... How uncanny...<FFF5>
 33	0x2710	pack/talk/WTENSI:0x35d0	Oh, not at all... I still lack<FFF6>experience as one of His messengers.<FFFD>そ<FFF5>
 34	0x2744	pack/talk/WTENSI:0x3660	Very true!<FFF6>Obedience to me is indeed the first<FFF6>step on the path to redemption!<FFF5>
 35	0x2773	pack/talk/WTENSI:0x3700	So you instinctively sensed that<FFF6>an almighty, transcendent entity<FFF6>is enthroned in the heavens!<FFFD>た<FFF5>
 36	0x27ae	pack/talk/WTENSI:0x37c8	Since you have been redeemed,<FFF6>your point is indeed reasonable.<FFF5>
 37	0x27e5	pack/talk/WTENSI:0x3848	You have a great deal of foresight...<FFF6>Though still young, you possess<FFF6>an admirable understanding.<FFFD>ち<FFF5>
-38	0x2826	pack/talk/WTENSI:0x3910	Do you truly wish to form a contract?<FFF6>There is no sincerity in<FFF6>your speech and actions!<FFF5>
+38	0x2826	pack/talk/WTENSI:0x3910	Do you truly wish to form a contract?<FFF6>There is no sincerity in your<FFF6>speech and actions!<FFF5>
 39	0x2860	pack/talk/WTENSI:0x39c0	As a redeemed human,<FFF6>you must speak only the truth!<FFFB><FFF7>Pursuing personal gain and<FFF6>deceitfully hiding your true<FFF6>intentions will only anger Him!<FFFD>つ<FFF5>
-40	0x28d0	pack/talk/WTENSI:0x3ae0	Speaking of the world is<FFF6>a good habit... You have turned<FFFB><FFF7>your heart to the Lord, and you<FFF6>walk the path of righteousness!<FFF5>
+40	0x28d0	pack/talk/WTENSI:0x3ae0	Speaking of the world is a good<FFF6>habit... You have turned your<FFFB><FFF7>heart to the Lord, and you walk<FFF6>the path of righteousness!<FFF5>
 41	0x2915	pack/talk/WTENSI:0x3bd8	Do you wish to form a contract with<FFF6>me, one of His messengers?<FFFD>て<FFF5>
-42	0x293e	pack/talk/WTENSI:0x3c60	To be humble, avoiding conflict...<FFF6>That is desirable in humans who have<FFF6>been banished from paradise.<FFF5>
+42	0x293e	pack/talk/WTENSI:0x3c60	To be humble, avoiding conflict...<FFF6>That is desirable in humans who<FFF6>have been banished from paradise.<FFF5>
 43	0x297c	pack/talk/WTENSI:0x3d30	Though you had been<FFF6>banished from paradise,<FFFB><FFF7>you have a keen understanding of<FFF6>your true strengths.<FFFD>と<FFF5>
-44	0x29ac	pack/talk/WTENSI:0x3df8	That will change nothing!<FFF6>You must cling fast to<FFF6>your beliefs to live your life!<FFF5>
+44	0x29ac	pack/talk/WTENSI:0x3df8	That will change nothing!<FFF6>You must cling fast to your<FFF6>beliefs to live your life!<FFF5>
 45	0x29d5	pack/talk/WTENSI:0x3ea0	What an obvious charade...<FFF6>Your true intentions are known to me!<FFFD>な<FFF5>
-46	0x2a02	pack/talk/WTENSI:0x3f28	I feel there must be some catch to<FFF6>this... How uncanny...<FFF5>
+46	0x2a02	pack/talk/WTENSI:0x3f28	I feel there must be some<FFF6>catch to this... How uncanny...<FFF5>
 47	0x2a21	pack/talk/WTENSI:0x3fa0	Oh, not at all... I still lack<FFF6>experience as one of His messengers.<FFFD>に<FFF5>
 48	0x2a55	pack/talk/WTENSI:0x4030	You are a pleasant human...<FFF5>
 49	0x2a6a	pack/talk/WTENSI:0x4068	You wish to converse with me?<FFF6>Shall I teach you about the Lord,<FFF6>mankind, and love?<FFFD>ぬ<FFF5>
 50	0x2aa2	pack/talk/WTENSI:0x4118	How dare you, towards an angel and<FFF6>one of His messengers! Be ashamed!<FFF5>
-51	0x2ad3	pack/talk/WTENSI:0x41a8	It is useless to try and deceive me.<FFF6>Such things should not be so easily<FFF6>said in the first place!<FFFD>ね<FFF5>
+51	0x2ad3	pack/talk/WTENSI:0x41a8	It is useless to try and deceive me.<FFF6>Such things should not be so<FFF6>easily said in the first place!<FFFD>ね<FFF5>
 52	0x2b13	pack/talk/WTENSI:0x4270	I-I... am neither male nor female...<FFF5>
 53	0x2b36	pack/talk/WTENSI:0x42c0	S-Stop this! Upsetting the peace and<FFF6>order is a grave offense!<FFFD>の<FFF5>
 54	0x2b6a	pack/talk/WTENSI:0x4348	It does not shame me to hear this...<FFF6>But until the fated day on<FFFB><FFF7>which we form a contract,<FFF6>remember those words well.<FFF5>
@@ -61,18 +61,18 @@ id	pos	psp	en
 59	0x2c72	pack/talk/WTENSI:0x4690	What about that pointless story<FFF6>was meant to be humorous?<FFFD>ひ<FFF5>
 60	0x2c99	pack/talk/WTENSI:0x4708	Ah! I'm getting goosebumps...<FFF6>It must be divine intervention...<FFF5>
 61	0x2cb9	pack/talk/WTENSI:0x4788	What is the meaning of this...?<FFF6>Are you entirely mentally balanced?<FFFD>ふ<FFF5>
-62	0x2ce4	pack/talk/WTENSI:0x4818	That was not a poor<FFF6>effort for one who had been<FFF6>banished from paradise.<FFF5>
+62	0x2ce4	pack/talk/WTENSI:0x4818	That was not a poor<FFF6>effort for one who had<FFF6>been banished from paradise.<FFF5>
 63	0x2d05	pack/talk/WTENSI:0x48a8	You are talented indeed!<FFF6>Would you consider becoming<FFFB><FFF7>a comedic missionary to spread<FFF6>His truth across the world?<FFFD>へ<FFF5>
-64	0x2d45	pack/talk/WTENSI:0x4990	I am interested in the human world's<FFF6>state of affairs as well.<FFF5>
+64	0x2d45	pack/talk/WTENSI:0x4990	I am interested in the human<FFF6>world's state of affairs as well.<FFF5>
 65	0x2d66	pack/talk/WTENSI:0x4a10	I ask this not of personal interest...<FFF6>But do you know any stories that<FFF6>are more engaging?<FFFD>ほ<FFF5>
 66	0x2da5	pack/talk/WTENSI:0x4ad0	These vulgar stories hold no<FFF6>interest for His messengers!<FFF5>
-67	0x2dc9	pack/talk/WTENSI:0x4b48	I am aghast...<FFF6>Are you truly making small talk<FFF6>during a discussion of contracts?<FFFB><FFF7>You must take this seriously!<FFFD>ま<FFF5>
+67	0x2dc9	pack/talk/WTENSI:0x4b48	I am aghast... Are you truly<FFF6>making small talk during<FFF6>a discussion of contracts?<FFFB><FFF7>You must take this seriously!<FFFD>ま<FFF5>
 68	0x2e07	pack/talk/WTENSI:0x4c30	What a pleasant story.<FFF6>Perhaps later, I shall relate<FFF6>firsthand accounts of Heaven to you.<FFF5>
 69	0x2e41	pack/talk/WTENSI:0x4ce8	I must listen to your story, that I<FFF6>might learn more about humans who<FFF6>had been banished from paradise...<FFFD>み<FFF5>
 70	0x2e7f	pack/talk/WTENSI:0x4dc0	If you wish to draw my attention,<FFF6>you need only praise Him on<FFF6>high with your hand to heart.<FFF5>
 71	0x2eb6	pack/talk/WTENSI:0x4e78	Was that divine intervention...?<FFF6>What was that?<FFFD>む<FFF5>
 72	0x2edc	pack/talk/WTENSI:0x4ee0	Do you enjoy surprising<FFF6>His messengers this way!?<FFF5>
-73	0x2f00	pack/talk/WTENSI:0x4f48	Is it given unto me that I must<FFF6>guide such a fool...?<FFFD>め<FFF5>
+73	0x2f00	pack/talk/WTENSI:0x4f48	Is it given unto me that I<FFF6>must guide such a fool...?<FFFD>め<FFF5>
 74	0x2f25	pack/talk/WTENSI:0x4fb8	What a dangerous human...<FFF6>No, I... I am not afraid... you know...<FFF5>
 75	0x2f52	pack/talk/WTENSI:0x5040	With His protection, I fear nothing.<FFF6>Thus, I am not afraid... You see...?<FFFD>も<FFF5>
 76	0x2f89	pack/talk/WTENSI:0x50d8	I can scarcely believe it would<FFF6>occur to you to behave that<FFFB><FFF7>way in the presence of<FFF6>one of His messengers.<FFF5>
@@ -83,9 +83,9 @@ id	pos	psp	en
 81	0x3065	pack/talk/WTENSI:0x53f8	Thank you very much.<FFF6>I shall use it with care.<FFFD>よ<FFF5>
 82	0x308a	pack/talk/WTENSI:0x5460	Since you have been redeemed,<FFF6>your point is indeed reasonable.<FFF5>
 83	0x30c1	pack/talk/WTENSI:0x54e0	You have a great deal of foresight...<FFF6>Though still young, you possess<FFF6>an admirable understanding.<FFFD>ら<FFF5>
-84	0x3102	pack/talk/WTENSI:0x55a8	Do you truly wish to form a contract?<FFF6>There is no sincerity in<FFF6>your speech and actions!<FFF5>
+84	0x3102	pack/talk/WTENSI:0x55a8	Do you truly wish to form a contract?<FFF6>There is no sincerity in your<FFF6>speech and actions!<FFF5>
 85	0x313e	pack/talk/WTENSI:0x5658	As a redeemed human,<FFF6>you must speak only the truth!<FFFB><FFF7>Pursuing personal gain and<FFF6>deceitfully hiding your true<FFF6>intentions will only anger Him!<FFFD>り<FFF5>
-86	0x31ae	pack/talk/WTENSI:0x5778	Speaking of the world is<FFF6>a good habit... You have turned<FFFB><FFF7>your heart to the Lord, and you<FFF6>walk the path of righteousness!<FFF5>
+86	0x31ae	pack/talk/WTENSI:0x5778	Speaking of the world is a good<FFF6>habit... You have turned your<FFFB><FFF7>heart to the Lord, and you walk<FFF6>the path of righteousness!<FFF5>
 87	0x31f3	pack/talk/WTENSI:0x5870	Do you wish to form a contract with<FFF6>me, one of His messengers?<FFFD>る<FFF5>
 88	0x321c	pack/talk/WTENSI:0x58f8	You are overflowing with confidence.<FFF6>Should the chance ever arise, I would<FFF6>like a personal match with you.<FFF5>
 89	0x325d	pack/talk/WTENSI:0x59d0	I understand now your strength...<FFF6>But what will you do with me?<FFFD>れ<FFF5>
@@ -93,14 +93,14 @@ id	pos	psp	en
 91	0x32ca	pack/talk/WTENSI:0x5ac0	Where did you learn to<FFF6>speak such filth?<FFFD>ろ<FFF5>
 92	0x32f0	pack/talk/WTENSI:0x5b18	I am an angel; His own messenger...<FFF6>I-I do not yield to threats.<FFF5>
 93	0x3318	pack/talk/WTENSI:0x5ba0	As one of His messengers,<FFF6>you must attend to me with respect.<FFFD>わ<FFF5>
-94	0x333c	pack/talk/WTENSI:0x5c20	You speak as though you<FFF6>make sport of me...<FFFB><FFF7>You are but a child, so I am sure<FFF6>He will forgive your indiscretion.<FFF5>
+94	0x333c	pack/talk/WTENSI:0x5c20	You speak as though you make sport<FFF6>of me... You are but a child, so I am<FFF6>sure He will forgive your indiscretion.<FFF5>
 95	0x3379	pack/talk/WTENSI:0x5d08	Those who forget their manners<FFF6>make needless enemies!<FFFD>を<FFF5>
 96	0x339e	pack/talk/WTENSI:0x5d78	Barbed words hurt not only others,<FFF6>but can be turned upon yourself!<FFF5>
 97	0x33d3	pack/talk/WTENSI:0x5e00	How old do I appear to you?<FFF6>Suffice to say I am older than you,<FFFB><FFF7>so speak to me in a more<FFF6>appropriate manner!<FFFD>ん<FFF5>
 98	0x3411	pack/talk/WTENSI:0x5ee0	Your words of praise... I am<FFF6>certain that He is pleased with them.<FFF5>
 99	0x3434	pack/talk/WTENSI:0x5f68	It seems that you are a quick<FFF6>thinker, if nothing else.<FFFD>が<FFF5>
 100	0x3450	pack/talk/WTENSI:0x5fe0	I would like to show you the dance of<FFF6>we heavenly creatures someday.<FFF5>
-101	0x3485	pack/talk/WTENSI:0x6070	That is quite a dance. I would like<FFF6>you to teach it to me as well.<FFFD>ぎ<FFF5>
+101	0x3485	pack/talk/WTENSI:0x6070	That is quite a dance. I would<FFF6>like you to teach it to me as well.<FFFD>ぎ<FFF5>
 102	0x34ac	pack/talk/WTENSI:0x6100	You seem to lack training.<FFF6>Your dancing is a form of ordeal...<FFF6>You must not neglect your practice!<FFF5>
 103	0x34e5	pack/talk/WTENSI:0x61c8	How unsightly!<FFF6>The restroom is that way!<FFFD>ぐ<FFF5>
 104	0x350a	pack/talk/WTENSI:0x6220	Your dance is an expression of<FFF6>the joys of living! Magnificent!<FFF6>I feel as though I would like to join in!<FFF5>
@@ -119,16 +119,16 @@ id	pos	psp	en
 117	0x375b	pack/talk/WTENSI:0x6948	What is the matter?<FFF6>Have you never seen someone of<FFF6>my beauty before? Ahaha...<FFFD>ぞ<FFF5>
 118	0x3787	pack/talk/WTENSI:0x69e8	Since you have been redeemed,<FFF6>your point is indeed reasonable.<FFF5>
 119	0x37bf	pack/talk/WTENSI:0x6a68	You have a great deal of foresight...<FFF6>Though still young, you possess<FFF6>an admirable understanding.<FFFD>だ<FFF5>
-120	0x3800	pack/talk/WTENSI:0x6b30	Do you truly wish to form a contract?<FFF6>There is no sincerity in<FFF6>your speech and actions!<FFF5>
+120	0x3800	pack/talk/WTENSI:0x6b30	Do you truly wish to form a contract?<FFF6>There is no sincerity in your<FFF6>speech and actions!<FFF5>
 121	0x383a	pack/talk/WTENSI:0x6be0	As a redeemed human,<FFF6>you must speak only the truth!<FFFB><FFF7>Pursuing personal gain and<FFF6>deceitfully hiding your true<FFF6>intentions will only anger Him!<FFFD>ぢ<FFF5>
-122	0x38aa	pack/talk/WTENSI:0x6d00	This contract is based on<FFF6>my conjecture... You have turned<FFFB><FFF7>your heart to the Lord, and you<FFF6>walk the path of righteousness!<FFF5>
+122	0x38aa	pack/talk/WTENSI:0x6d00	This contract is based on my<FFF6>conjecture... You have turned<FFFB><FFF7>your heart to the Lord, and you<FFF6>walk the path of righteousness!<FFF5>
 123	0x38e9	pack/talk/WTENSI:0x6df8	Do you wish to form a contract with<FFF6>me, one of His messengers?<FFFD>づ<FFF5>
 124	0x3912	pack/talk/WTENSI:0x6e80	That is a lie, spread by the wicked!<FFF6>It is foolish of you to believe it!<FFF5>
 125	0x3944	pack/talk/WTENSI:0x6f18	That was not a harmonious story.<FFF6>Why do humans enjoy stories of<FFF6>disrupting peace and order!?<FFFD>で<FFF5>
 126	0x3989	pack/talk/WTENSI:0x6fd8	H-Hold a moment...<FFF6>I must hence to the lavatory...<FFF5>
-127	0x39b2	pack/talk/WTENSI:0x7040	To be plain...<FFF6>I do not deal well with such stories...<FFFD>ど<FFF5>
+127	0x39b2	pack/talk/WTENSI:0x7040	To be plain... I do not deal<FFF6>well with such stories...<FFFD>ど<FFF5>
 128	0x39d3	pack/talk/WTENSI:0x70b8	If you speak of such things,<FFF6>they will gather near you.<FFF6>Look... There is one behind you now!<FFFB><FFF7>Ahaha... Were you frightened?<FFF6>If you obey Him, these things<FFF6>will no longer trouble you.<FFF5>
-129	0x3a3a	pack/talk/WTENSI:0x7228	You seem very familiar with that.<FFF6>Are there dreadful places in such<FFF6>utter disorder here too?<FFFD>ば<FFF5>
+129	0x3a3a	pack/talk/WTENSI:0x7228	You seem very familiar with that.<FFF6>Are there dreadful places in<FFF6>such utter disorder here too?<FFFD>ば<FFF5>
 130	0x3a74	pack/talk/WTENSI:0x72e8	Magnificent! You are one graced with<FFF6>both intelligence and beauty.<FFF5>
 131	0x3aab	pack/talk/WTENSI:0x7370	How marvelous!<FFF6>Had I not been an angel, I would<FFF6>have succumbed to your charms.<FFFD>び<FFF5>
 132	0x3ae0	pack/talk/WTENSI:0x7418	Though you try to appease<FFF6>angels with such songs,<FFF6>His order will not be swayed!<FFF5>
@@ -147,7 +147,7 @@ id	pos	psp	en
 145	0x3d54	pack/talk/WTENSI:0x7b98	As a redeemed human,<FFF6>you must speak only the truth!<FFFB><FFF7>Pursuing personal gain and<FFF6>deceitfully hiding your true<FFF6>intentions will only anger Him!<FFFD>ぺ<FFF5>
 146	0x3dc4	pack/talk/WTENSI:0x7cb8	Your instincts are<FFF6>right to be interested in me...<FFFB><FFF7>Now turn your heart to the Lord and<FFF6>let us walk a path of righteousness!<FFF5>
 147	0x3e04	pack/talk/WTENSI:0x7db0	Do you wish to form a contract with<FFF6>me, one of His messengers?<FFFD>ぽ<FFF5>
-148	0x3e2d	pack/talk/WTENSI:0x7e38	You speak as though you<FFF6>make sport of me...<FFFB><FFF7>You are but a child, so I am sure<FFF6>He will forgive your indiscretion.<FFF5>
+148	0x3e2d	pack/talk/WTENSI:0x7e38	You speak as though you make sport<FFF6>of me... You are but a child, so I am<FFF6>sure He will forgive your indiscretion.<FFF5>
 149	0x3e6d	pack/talk/WTENSI:0x7f20	Those who forget their manners<FFF6>make needless enemies!<FFFD>ぁ<FFF5>
 150	0x3e92	pack/talk/WTENSI:0x7f90	Ever since the redemption of<FFF6>humanity, they have become quite<FFF6>insolent! That must now be corrected!<FFF5>
 151	0x3ece	pack/talk/WTENSI:0x8058	How deplorable,<FFF6>not to even know your place!<FFFD>ぃ<FFF5>
@@ -179,9 +179,9 @@ id	pos	psp	en
 177	0x431f	pack/talk/WTENSI:0x8d28	This must be an ordeal as well!<FFF6>Hurl as much abuse as you see fit!<FFFD>オ<FFF5>
 178	0x4357	pack/talk/WTENSI:0x8db8	Since you have been redeemed,<FFF6>your point is indeed reasonable.<FFF5>
 179	0x438e	pack/talk/WTENSI:0x8e38	You have a great deal of foresight.<FFF6>Young though you are,<FFF6>you are both admirable and reliable.<FFFD>カ<FFF5>
-180	0x43c9	pack/talk/WTENSI:0x8f00	Do you truly wish to form a contract?<FFF6>There is no sincerity in<FFF6>your speech and actions!<FFF5>
+180	0x43c9	pack/talk/WTENSI:0x8f00	Do you truly wish to form a contract?<FFF6>There is no sincerity in your<FFF6>speech and actions!<FFF5>
 181	0x4403	pack/talk/WTENSI:0x8fb0	As a redeemed human,<FFF6>you must speak only the truth!<FFFB><FFF7>Pursuing personal gain and<FFF6>deceitfully hiding your true<FFF6>intentions will only anger Him!<FFFD>キ<FFF5>
-182	0x4474	pack/talk/WTENSI:0x90d0	This contract is based on<FFF6>my conjecture... You have turned<FFFB><FFF7>your heart to the Lord, and you<FFF6>walk the path of righteousness!<FFF5>
+182	0x4474	pack/talk/WTENSI:0x90d0	This contract is based on my<FFF6>conjecture... You have turned<FFFB><FFF7>your heart to the Lord, and you<FFF6>walk the path of righteousness!<FFF5>
 183	0x44b3	pack/talk/WTENSI:0x91c8	Do you wish to form a contract with<FFF6>me, one of His messengers?<FFFD>ク<FFF5>
 184	0x44dc	pack/talk/WTENSI:0x9250	Ever since the redemption of<FFF6>humanity, they have become quite<FFF6>insolent! That must now be corrected!<FFF5>
 185	0x4518	pack/talk/WTENSI:0x9318	How deplorable,<FFF6>not to even know your place!<FFFD>ケ<FFF5>
@@ -208,7 +208,7 @@ id	pos	psp	en
 206	0x489f	pack/talk/WTENSI:0x9cd0	I am an angel; His own messenger...<FFF6>I-I do not yield to threats.<FFF5>
 207	0x48c7	pack/talk/WTENSI:0x9d58	As one of His messengers,<FFF6>you must attend to me with respect.<FFFD>ト<FFF5>
 208	0x48eb	pack/talk/WTENSI:0x9dd8	It was correct after all to have<FFF6>banished humans from paradise!<FFF5>
-209	0x4914	pack/talk/WTENSI:0x9e58	Is it given unto me that I must<FFF6>guide such a fool...?<FFFD>ナ<FFF5>
+209	0x4914	pack/talk/WTENSI:0x9e58	Is it given unto me that I<FFF6>must guide such a fool...?<FFFD>ナ<FFF5>
 210	0x493a	pack/talk/WTENSI:0x9ec8	What a dangerous human...<FFF6>No, I... I am without fear... you know...<FFF5>
 211	0x4966	pack/talk/WTENSI:0x9f50	With His protection, I fear nothing.<FFF6>Thus, I am not afraid... You see...?<FFFD>ニ<FFF5>
 212	0x499e	pack/talk/WTENSI:0x9fe8	Is that a cry from your soul...?<FFF6>What a pleasant human...<FFF5>
@@ -216,34 +216,34 @@ id	pos	psp	en
 214	0x49e6	pack/talk/WTENSI:0xa0e0	If you wish to draw my attention,<FFF6>you need only praise Him on<FFF6>high with your hand to heart.<FFF5>
 215	0x4a1d	pack/talk/WTENSI:0xa198	What a surprise!<FFF6>I had not known there were<FFF6>humans capable of using magic!<FFFD>ネ<FFF5>
 216	0x4a45	pack/talk/WTENSI:0xa238	If humans, banished from paradise,<FFF6>can use magic...<FFF6>this is rather inconvenient.<FFF5>
-217	0x4a80	pack/talk/WTENSI:0xa2e0	Your skill is the equivalent to angelic<FFF6>works... I do not mind as long as it<FFF6>does not affect me, but...<FFFD>ノ<FFF5>
-218	0x4ac0	pack/talk/WTENSI:0xa3b8	Tell me, can you produce any object<FFF6>you choose from there?<FFFB><FFF7>Do not misunderstand...<FFF6>It is not that I want something...<FFF5>
-219	0x4b0b	pack/talk/WTENSI:0xa4a8	Your power is<FFF6>a blessing from the heavens.<FFFB><FFF7>Use it not for your own sake, but for<FFF6>the sake of those who have strayed.<FFFD>ハ<FFF5>
-220	0x4b4d	pack/talk/WTENSI:0xa598	Your stories are a great help in<FFF6>learning the state of affairs in<FFF6>the human world.<FFF5>
-221	0x4b83	pack/talk/WTENSI:0xa640	A method of negotiation using<FFF6>stories... It seems that you truly<FFF6>wish to draw my attention.<FFF5>
+217	0x4a80	pack/talk/WTENSI:0xa2e0	Your skill is the equivalent to<FFF6>angelic works... I do not mind as<FFF6>long as it does not affect me, but...<FFFD>ノ<FFF5>
+218	0x4ac0	pack/talk/WTENSI:0xa3b8	Tell me, can you produce any<FFF6>object you choose from there?<FFFB><FFF7>Do not misunderstand...<FFF6>It is not that I want something...<FFF5>
+219	0x4b0b	pack/talk/WTENSI:0xa4a8	Your power is a blessing<FFF6>from the heavens.<FFFB><FFF7>Use it not for your own sake, but for<FFF6>the sake of those who have strayed.<FFFD>ハ<FFF5>
+220	0x4b4d	pack/talk/WTENSI:0xa598	Your stories are a great<FFF6>help in learning the state of<FFF6>affairs in the human world.<FFF5>
+221	0x4b83	pack/talk/WTENSI:0xa640	A method of negotiation using<FFF6>stories... It seems that you<FFF6>truly wish to draw my attention.<FFF5>
 222	0x4bb2	pack/talk/WTENSI:0xa6f8	I will gladly hear your story,<FFF6>but I wish for you to make<FFF6>an offering before you do so.<FFF1><FFF5>
 223	0x4be7	pack/talk/WTENSI:0xa7b0	There was no worth in your story...<FFF6>I am sure that He is angry as well.<FFF6>Now repent your sins!<FFF1><FFF5>
 224	0x4c24	pack/talk/WTENSI:0xa870	*sigh* I cannot continue<FFF6>listening to such rubbish!<FFF5>
 225	0x4c52	pack/talk/WTENSI:0xa8d8	You should speak of<FFF6>more meaningful things...<FFF6>Such as your offerings to us!<FFF1><FFF5>
-226	0x4c8c	pack/talk/WTENSI:0xa978	If all humans can tell only<FFF6>such foolish tales...<FFFB><FFF7>Then perhaps it was a mistake to<FFF6>allow them to be redeemed.<FFF5>
+226	0x4c8c	pack/talk/WTENSI:0xa978	If all humans can tell<FFF6>only such foolish tales...<FFFB><FFF7>Then perhaps it was a mistake to<FFF6>allow them to be redeemed.<FFF5>
 227	0x4cdc	pack/talk/WTENSI:0xaa58	I believe there are others better<FFF6>suited than I to tell that story to...<FFF5>
-228	0x4d03	pack/talk/WTENSI:0xaaf0	It has been some time since I came to<FFF6>the human world and heard<FFF6>such a pleasant tale.<FFF5>
-229	0x4d37	pack/talk/WTENSI:0xaba0	Your words have a certain<FFF6>poetry to them. Thanks to that,<FFF6>I enjoyed your speech.<FFF5>
-230	0x4d6b	pack/talk/WTENSI:0xac48	It is rare to find one with<FFF6>your talent for speaking. Let us<FFF6>thank Him for our meeting today.<FFF1><FFF5>
-231	0x4da9	pack/talk/WTENSI:0xad08	I understand your meaning.<FFF6>By all means,<FFF6>continue with the negotiation.<FFF5>
+228	0x4d03	pack/talk/WTENSI:0xaaf0	It has been some time since I<FFF6>came to the human world and<FFF6>heard such a pleasant tale.<FFF5>
+229	0x4d37	pack/talk/WTENSI:0xaba0	Your words have a certain poetry<FFF6>to them. Thanks to that,<FFF6>I enjoyed your speech.<FFF5>
+230	0x4d6b	pack/talk/WTENSI:0xac48	It is rare to find one with your<FFF6>talent for speaking. Let us thank<FFF6>Him for our meeting today.<FFF1><FFF5>
+231	0x4da9	pack/talk/WTENSI:0xad08	I understand your meaning. By all<FFF6>means, continue with the negotiation.<FFF5>
 232	0x4dca	pack/talk/WTENSI:0xad98	How could I possibly neglect<FFF6>one who is suffering!?<FFF5>
 233	0x4dec	pack/talk/WTENSI:0xae00	My powers will naturally be<FFF6>bestowed on those who do good<FFF6>works! Now, please make an offering.<FFF1><FFF5>
-234	0x4e27	pack/talk/WTENSI:0xaec0	You take too much for granted.<FFF6>If you think what you want can<FFFB><FFF7>be that easily obtained,<FFF6>you are gravely mistaken!<FFF5>
+234	0x4e27	pack/talk/WTENSI:0xaec0	You take too much for granted.<FFF6>If you think what you want<FFFB><FFF7>can be that easily obtained,<FFF6>you are gravely mistaken!<FFF5>
 235	0x4e5d	pack/talk/WTENSI:0xafa8	Have you forgotten how to<FFF6>make an effort? Do not allow<FFF6>yourself to become dissolute!<FFF5>
 236	0x4e91	pack/talk/WTENSI:0xb058	I refuse.<FFF5>
 237	0x4e9c	pack/talk/WTENSI:0xb070	If all humans think they can<FFF6>obtain power so easily...<FFFB><FFF7>Perhaps it was a mistake to<FFF6>allow them to be redeemed.<FFF5>
-238	0x4eef	pack/talk/WTENSI:0xb150	O son of man...<FFF6>When did you become so corrupt...?<FFF5>
+238	0x4eef	pack/talk/WTENSI:0xb150	O son of man... When did<FFF6>you become so corrupt...?<FFF5>
 239	0x4f1f	pack/talk/WTENSI:0xb1b8	I am by no means a demon that<FFF6>will lend you my power...<FFF5>
 240	0x4f47	pack/talk/WTENSI:0xb228	Cherish that feeling.<FFF5>
 241	0x4f5b	pack/talk/WTENSI:0xb258	If you heighten<FFF6>your faith in the Lord,<FFF6>this negotiation will be successful.<FFF5>
 242	0x4f82	pack/talk/WTENSI:0xb2f8	It is good to trust in my powers,<FFF6>which are after all derived from Him.<FFF5>
 243	0x4fa8	pack/talk/WTENSI:0xb388	I see the light of wisdom in your eyes.<FFFB><FFF7>Thus, your unbelievable actions just<FFF6>now must have been to some purpose.<FFF5>
-244	0x4ff2	pack/talk/WTENSI:0xb470	Poor human,<FFF6>unable to grasp my existence...<FFF6>Study His teachings.<FFF5>
+244	0x4ff2	pack/talk/WTENSI:0xb470	Poor human, unable to grasp my<FFF6>existence... Study His teachings.<FFF5>
 245	0x5024	pack/talk/WTENSI:0xb4f8	Act as though you are making<FFF6>fun of one of His messengers,<FFF6>and you ensure your own damnation...<FFFB><FFF7>But then too, even in Hell,<FFF6>money has a powerful sway.<FFFB><FFF7>This is not the infernal abyss,<FFF6>but you should make an offering.<FFF1><FFF5>
 246	0x509f	pack/talk/WTENSI:0xb6b0	How dare you make light of one of<FFF6>His messengers! Know your place!<FFF5>
 247	0x50ce	pack/talk/WTENSI:0xb738	Wicked humans who ridicule<FFF6>Him must be corrected!<FFF5>
@@ -252,7 +252,7 @@ id	pos	psp	en
 250	0x51a5	pack/talk/WTENSI:0xb988	H-How deplorable,<FFF6>being ridiculed by a human...<FFF6>So this is the extent of His power...<FFF5>
 251	0x51d9	pack/talk/WTENSI:0xba38	I cannot believe you would<FFF6>mock one of His messengers...<FFF6>Are you, perchance, a demon child...?<FFFB><FFF7>Regardless, my work does not<FFF6>change. Now, make an offering...<FFF1><FFF5>
 252	0x522c	pack/talk/WTENSI:0xbb78	Humans are blessed with free will!<FFF6>Negotiate with me as you please!<FFF5>
-253	0x524e	pack/talk/WTENSI:0xbc00	Do you challenge me in combat?<FFF6>That is much like a babe rising<FFF6>up against an adult...<FFF5>
+253	0x524e	pack/talk/WTENSI:0xbc00	Do you challenge me in combat?<FFF6>That is much like a babe<FFF6>rising up against an adult...<FFF5>
 254	0x528a	pack/talk/WTENSI:0xbcb0	Hah... Ah, excuse me. Please go on...<FFF5>
 255	0x52b9	pack/talk/WTENSI:0xbd00	Ah, you are a street performer.<FFF6>Well, good luck to you.<FFF5>
 256	0x52db	pack/talk/WTENSI:0xbd70	Listen well... training is required in<FFF6>all things. If you persist,<FFF6>you will someday become proficient.<FFF5>
@@ -260,27 +260,27 @@ id	pos	psp	en
 258	0x5352	pack/talk/WTENSI:0xbed8	That has no value at all.<FFF5>
 259	0x5365	pack/talk/WTENSI:0xbf10	How vulgar! This is sufficiently<FFF6>appalling to make me feel faint!<FFF5>
 260	0x5391	pack/talk/WTENSI:0xbf98	I have wasted valuable time! You must<FFF6>make amends for what you have done!<FFF1><FFF5>
-261	0x53c1	pack/talk/WTENSI:0xc030	I cannot understand humans who<FFF6>have strayed from order!<FFF5>
+261	0x53c1	pack/talk/WTENSI:0xc030	I cannot understand humans<FFF6>who have strayed from order!<FFF5>
 262	0x53e7	pack/talk/WTENSI:0xc0a0	Am I to understand... that was<FFF6>an evil ritual of black magic!?<FFF5>
-263	0x540b	pack/talk/WTENSI:0xc120	I assume humans would wear<FFF6>an expression of joy in<FFF6>times like these.<FFF5>
+263	0x540b	pack/talk/WTENSI:0xc120	I assume humans would<FFF6>wear an expression of<FFF6>joy in times like these.<FFF5>
 264	0x543c	pack/talk/WTENSI:0xc1b0	These tricks would be effective if one<FFF6>thinks of them as a form of training.<FFF5>
 265	0x5462	pack/talk/WTENSI:0xc250	So the humans banished from<FFF6>paradise do at least have<FFF6>one redeeming feature...<FFF5>
 266	0x549d	pack/talk/WTENSI:0xc2f0	What do you mean to say to me,<FFF6>one of His messengers?<FFF5>
-267	0x54c1	pack/talk/WTENSI:0xc360	I understand your desire to draw<FFF6>my attention, and therefore also His.<FFF6>Now make an offering.<FFF1><FFF5>
+267	0x54c1	pack/talk/WTENSI:0xc360	I understand your desire to draw my<FFF6>attention, and therefore also His.<FFF6>Now make an offering.<FFF1><FFF5>
 268	0x5500	pack/talk/WTENSI:0xc420	So you yearn for His intervention...<FFF6>An offering will be necessary.<FFF1><FFF5>
 269	0x5528	pack/talk/WTENSI:0xc4b0	What is the meaning of this!?<FFF6>Regardless, you must<FFF6>make an offering!<FFF1><FFF5>
 270	0x5555	pack/talk/WTENSI:0xc540	I will not be tempted!<FFF5>
 271	0x5574	pack/talk/WTENSI:0xc570	Are your actions truly worthy of<FFF6>one claiming to be a hero?<FFFB><FFF7>Should others find out about this,<FFF6>your reputation will suffer.<FFF1><FFF5>
 272	0x55b6	pack/talk/WTENSI:0xc670	Wh-What do you want!?<FFF6>This is disgusting...<FFF5>
 273	0x55da	pack/talk/WTENSI:0xc6c8	Th-That would be a sin...<FFF6>Get thee behind me!<FFF5>
-274	0x5601	pack/talk/WTENSI:0xc728	Wh-What do you want!? You would<FFF6>try to force me to go against<FFF6>His will...? I-I'm being corrupted...<FFF5>
+274	0x5601	pack/talk/WTENSI:0xc728	Wh-What do you want!? You would<FFF6>try to force me to go against His<FFF6>will...? I-I'm being corrupted...<FFF5>
 275	0x5636	pack/talk/WTENSI:0xc7f0	Ahaha... That was not bad.<FFF6>Now the time has come for<FFF6>you to make an offering.<FFF1><FFF5>
 276	0x5665	pack/talk/WTENSI:0xc890	How charming!<FFF6>You have definite charisma.<FFF6>It is a truly wondrous thing!<FFF5>
 277	0x569f	pack/talk/WTENSI:0xc920	It is very good that you<FFF6>hold an interest in us...<FFF5>
 278	0x56c3	pack/talk/WTENSI:0xc988	You, too, must be rather skilled.<FFF6>It is not necessary to guess at<FFF6>my feelings to maintain order.<FFF5>
 279	0x56fc	pack/talk/WTENSI:0xca50	Ahaha... There is no use in<FFF6>trying to put me off my guard.<FFF5>
-280	0x5724	pack/talk/WTENSI:0xcac8	Have you forgotten already that<FFF6>such thinking caused<FFF6>your exile from paradise!?<FFF5>
-281	0x575c	pack/talk/WTENSI:0xcb68	There is no need for humility if you<FFF6>have done nothing wrong.<FFF6>Now atone for your sins!<FFF1><FFF5>
+280	0x5724	pack/talk/WTENSI:0xcac8	Have you forgotten already that<FFF6>such thinking caused your<FFF6>exile from paradise!?<FFF5>
+281	0x575c	pack/talk/WTENSI:0xcb68	There is no need for humility<FFF6>if you have done nothing wrong.<FFF6>Now atone for your sins!<FFF1><FFF5>
 282	0x5799	pack/talk/WTENSI:0xcc18	There is no need to fear me if you<FFF6>have done nothing wrong.<FFF6>Now atone for your sins!<FFF1><FFF5>
 283	0x57d5	pack/talk/WTENSI:0xccc8	How suspicious...<FFF6>What are you scheming?<FFF5>
 284	0x57f4	pack/talk/WTENSI:0xcd20	Your sweet words mask a serpent's<FFF6>poison... You frighten me...<FFF5>
@@ -296,14 +296,14 @@ id	pos	psp	en
 294	0x59b7	pack/talk/WTENSI:0xd230	If He wills it,<FFF6>we shall meet again someday.<FFEF>
 295	0x59d8	pack/talk/WTENSI:0xd290	I shall give you this as well.<FFEF>
 296	0x59e7	pack/talk/WTENSI:0xd2d0	There are others who need my help!<FFF6>Be truthful... do you really need me?<FFEF>
-297	0x5a27	pack/talk/WTENSI:0xd368	Then I will give you my spell card as<FFF6>proof of our contract.<FFFB><FFF7>I am ever watching you,<FFF6>so do not use my spell card for evil...<FFEF>
+297	0x5a27	pack/talk/WTENSI:0xd368	Then I will give you my spell<FFF6>card as proof of our contract.<FFFB><FFF7>I am ever watching you,<FFF6>so do not use my spell card for evil...<FFEF>
 298	0x5a80	pack/talk/WTENSI:0xd468	I will give you this, so...<FFEF>
 299	0x5a93	pack/talk/WTENSI:0xd4a0	If I continue talking with you,<FFF6>I will become corrupt as well!<FFEF>
 300	0x5ab6	pack/talk/WTENSI:0xd520	Take this and leave.<FFF6>If you wish to live a long life,<FFF6>you must forget everything.<FFEF>
-301	0x5af5	pack/talk/WTENSI:0xd5c8	I cannot forgive you...<FFF6>but if we were to do battle,<FFFB><FFF7>I would be injured as well...<FFF6>That would not be ideal.<FFEF>
+301	0x5af5	pack/talk/WTENSI:0xd5c8	I cannot forgive you... but if we<FFF6>were to do battle, I would be injured<FFF6>as well... That would not be ideal.<FFEF>
 302	0x5b2c	pack/talk/WTENSI:0xd6a0	O Lord! What does He wish of me!?<FFF6>I will allow this to run its course...!<FFEF>
 303	0x5b5a	pack/talk/WTENSI:0xd738	Then I must thank you for giving me<FFF6>a chance to face an ordeal...<FFF6>What would you like?<FFEF>
-304	0x5b97	pack/talk/WTENSI:0xd7e8	Then I shall protect you.<FFF6>I will give you my card;<FFF6>please accept it!<FFEF>
+304	0x5b97	pack/talk/WTENSI:0xd7e8	Then I shall protect you. I will give<FFF6>you my card; please accept it!<FFEF>
 305	0x5bd7	pack/talk/WTENSI:0xd878	I cannot take actions<FFF6>equivalent to harming you!<FFEF>
 306	0x5bf7	pack/talk/WTENSI:0xd8e0	Please take this.<FFEF>
 307	0x5c11	pack/talk/WTENSI:0xd908	However! I have an important<FFF6>mission that must be accomplished!<FFEF>
@@ -315,51 +315,51 @@ id	pos	psp	en
 313	0x5d23	pack/talk/WTENSI:0xdc60	I will warn you in His stead:<FFF6>an insult to me will not<FFF6>be easily forgiven!<FFF5>
 314	0x5d4c	pack/talk/WTENSI:0xdcf8	So you are the one who has been<FFF6>pillaging treasure from demons!<FFF6>Return them to the Lord!<FFF1><FFF5>
 315	0x5d89	pack/talk/WTENSI:0xddb0	I will warn you in His stead:<FFF6>do not come near me!<FFFD>ヘ<FFF5>
-316	0x5db3	pack/talk/WTENSI:0xde20	I am always<FFF6>watched over by the heavens!<FFF6>There is n-nothing I f-fear...<FFF5>
+316	0x5db3	pack/talk/WTENSI:0xde20	I am always watched over<FFF6>by the heavens!<FFF6>There is n-nothing I f-fear...<FFF5>
 317	0x5dee	pack/talk/WTENSI:0xdeb0	Wicked one... Try though you might,<FFF6>you cannot deceive me...<FFF5>
 318	0x5e1d	pack/talk/WTENSI:0xdf30	It has been some time since I met one<FFF6>capable of such orderly negotiation.<FFF6>Please tell me your story!<FFFD>ホ<FFF5>
-319	0x5e5c	pack/talk/WTENSI:0xe000	I will confess to you...<FFF6>An angel's lot is not an easy one.<FFF6>Do you see?<FFF5>
-320	0x5e94	pack/talk/WTENSI:0xe090	A full moon...<FFF6>On a day such as this, it may<FFF6>be a way to entrust myself to you.<FFF5>
+319	0x5e5c	pack/talk/WTENSI:0xe000	I will confess to you... An angel's<FFF6>lot is not an easy one. Do you see?<FFF5>
+320	0x5e94	pack/talk/WTENSI:0xe090	A full moon... On a day such as this,<FFF6>it may be a way to entrust<FFF6>myself to you.<FFF5>
 321	0x5ecf	pack/talk/WTENSI:0xe130	<FFED>We are very busy.<FFF6>You must have important<FFF6>business indeed to stop us, yes?<FFFD>マ<FFF5>
 322	0x5f0d	pack/talk/WTENSI:0xe1d0	<FFEE>You are rather suspicious... It may<FFF6>be necessary to keep watch over you.<FFF5>
 323	0x5f38	pack/talk/WTENSI:0xe268	<FFED>You constantly perform wicked acts,<FFF6>don't you?<FFF6>Now you will atone for those sins!<FFF1><FFF5>
 324	0x5f6d	pack/talk/WTENSI:0xe310	<FFEC>N-Normally, I would not have time to<FFF6>hear your words, but this once...<FFF6>I will make an exception.<FFFD>ミ<FFF5>
 325	0x5faf	pack/talk/WTENSI:0xe3d8	<FFEC>I accept your terms,<FFF6>but never forget that He is with me.<FFF5>
-326	0x5fe8	pack/talk/WTENSI:0xe450	<FFEE>I called to you because He wished it.<FFFB><FFF7>But... I feel that my spell card would<FFF6>be of limited use to you...<FFF5>
-327	0x6039	pack/talk/WTENSI:0xe528	<FFEE>Our encounter here today... Is it<FFF6>His will that I lend you my strength?<FFFD>ム<FFF5>
+326	0x5fe8	pack/talk/WTENSI:0xe450	<FFEE>I called to you because He wished it.<FFFB><FFF7>But... I feel that my spell card<FFF6>would be of limited use to you...<FFF5>
+327	0x6039	pack/talk/WTENSI:0xe528	<FFEE>Our encounter here today... Is it His<FFF6>will that I lend you my strength?<FFFD>ム<FFF5>
 328	0x6072	pack/talk/WTENSI:0xe5c0	<FFEB>First, I must thank Him for<FFF6>being able to meet you...<FFF5>
 329	0x609d	pack/talk/WTENSI:0xe630	<FFEB>Will I be of use to you?<FFF6>I am certain that I will!<FFF5>
 330	0x60d0	pack/talk/WTENSI:0xe698	<FFEC>Minions of the ancient serpent!<FFF6>Y-You will go no further!<FFFD>メ<FFF5>
 331	0x60fd	pack/talk/WTENSI:0xe718	<FFEC>To encounter such wicked ones here...<FFF6>O Lord! I place my life in Your hands!<FFF5>
 332	0x6132	pack/talk/WTENSI:0xe7b8	<FFED>If you are not in league with<FFF6>the Fallen One, then I would<FFF6>have you make an offering...<FFF1><FFF5>
 333	0x616e	pack/talk/WTENSI:0xe870	<FFED>I will warn you in His stead:<FFF6>whatever excuse you make,<FFF6>you will not deceive these eyes!<FFFD>モ<FFF5>
-334	0x61ad	pack/talk/WTENSI:0xe928	<FFEB>I called to you because He wished it.<FFFB><FFF7>Regrettably, I fear you will not be<FFF6>able to understand my words...<FFF5>
-335	0x6206	pack/talk/WTENSI:0xea00	<FFEB>I am <FFF3>! Well? You must be<FFF6>inclined to give an offering now.<FFF1><FFF5>
+334	0x61ad	pack/talk/WTENSI:0xe928	<FFEB>I called to you because He wished it.<FFFB><FFF7>Regrettably, I fear you will not<FFF6>be able to understand my words...<FFF5>
+335	0x6206	pack/talk/WTENSI:0xea00	<FFEB>I am <FFF3>! Well? You must<FFF6>be inclined to give an offering now.<FFF1><FFF5>
 336	0x6235	pack/talk/WTENSI:0xea80	<FFEC>Ah... You have no plans to...<FFF6>torture me or the like, do you...?<FFFD>ヤ<FFF5>
-337	0x626c	pack/talk/WTENSI:0xeb08	<FFEC>O Lord... Am I committing a mortal sin?<FFFB><FFF7>I can scarcely believe how<FFF6>my heart leapt to imagine the cold<FFF6>treatment that I will soon face...<FFF5>
+337	0x626c	pack/talk/WTENSI:0xeb08	<FFEC>O Lord... Am I committing a mortal sin?<FFFB><FFF7>I can scarcely believe how my<FFF6>heart leapt to imagine the cold<FFF6>treatment that I will soon face...<FFF5>
 338	0x62c7	pack/talk/WTENSI:0xec20	<FFEB>I confess... I... I was wrong.<FFF6>Please punish me...<FFF5>
 339	0x62fd	pack/talk/WTENSI:0xec88	I see... I can understand<FFF6>it from your point of view.<FFF6>Then what do you want of me?<FFEF>
-340	0x6330	pack/talk/WTENSI:0xed30	As I thought...<FFF6>You must be fundamentally corrected!<FFEF>
+340	0x6330	pack/talk/WTENSI:0xed30	As I thought... You must be<FFF6>fundamentally corrected!<FFEF>
 341	0x6360	pack/talk/WTENSI:0xeda0	How dreadful... Is it my fate to die<FFF6>before I accomplish my mission...?<FFEF>
 342	0x6399	pack/talk/WTENSI:0xee30	I was able to spend my time<FFF6>meaningfully. I thank Him for<FFF6>the chance to meet you!<FFEF>
 343	0x63d2	pack/talk/WTENSI:0xeed8	I have an important task.<FFF6>If there is something you desire,<FFF6>be quick and tell me what it is!<FFEF>
-344	0x6405	pack/talk/WTENSI:0xef98	...I understand.<FFF6>I will listen to your words...<FFF6>Only calm your heart.<FFEF>
+344	0x6405	pack/talk/WTENSI:0xef98	...I understand. I will listen to your<FFF6>words... Only calm your heart.<FFEF>
 345	0x6438	pack/talk/WTENSI:0xf028	It must be His will that I hear<FFF6>your words... Now please tell me.<FFEF>
 346	0x646e	pack/talk/WTENSI:0xf0b0	O Lord... I have been corrupted.<FFF6>No! You are wicked!<FFF6>Urgh... Get thee behind me, tempter!<FFEF>
-347	0x64b1	pack/talk/WTENSI:0xf168	Even I do not believe that<FFF6>everyone can be saved!<FFFB><FFF7>And in addition, you have foolishly<FFF6>rejected His salvation!<FFEF>
+347	0x64b1	pack/talk/WTENSI:0xf168	Even I do not believe that<FFF6>everyone can be saved!<FFFB><FFF7>And in addition, you have<FFF6>foolishly rejected His salvation!<FFEF>
 348	0x64fc	pack/talk/WTENSI:0xf248	*gasp* If my delight is so intense...<FFF6>I must have failed...<FFFB><FFF7>I have succumbed to your wicked<FFF6>charms... Was this a test from Him?<FFEF>
 349	0x6564	pack/talk/WTENSI:0xf350	The love of money is the root of all<FFF6>evil! I will look after <FFF8> yen for you!<FFEF>
-350	0x6593	pack/talk/WTENSI:0xf3e8	You have done a good thing.<FFF6>I am certain that His blessings<FFF6>will be with you...<FFF5>
-351	0x65bb	pack/talk/WTENSI:0xf488	So you have none...<FFF6>If that is the case,<FFF6>it is quite all right.<FFF5>
-352	0x65de	pack/talk/WTENSI:0xf508	How dare you boast falsely of<FFF6>your own wealth!? Suffer His wrath!<FFF5>
-353	0x660a	pack/talk/WTENSI:0xf590	How could this be!?<FFF6>Do you intend to sell your immortal<FFF6>soul to the ones below!?<FFF5>
-354	0x662d	pack/talk/WTENSI:0xf638	I cannot believe you<FFF6>would defy His will...<FFFB><FFF7>The extent of your blasphemy<FFF6>is almost miraculous...<FFF5>
+350	0x6593	pack/talk/WTENSI:0xf3e8	You have done a good thing.<FFF6>I am certain that His<FFF6>blessings will be with you...<FFF5>
+351	0x65bb	pack/talk/WTENSI:0xf488	So you have none... If that is<FFF6>the case, it is quite all right.<FFF5>
+352	0x65de	pack/talk/WTENSI:0xf508	How dare you boast falsely of your<FFF6>own wealth!? Suffer His wrath!<FFF5>
+353	0x660a	pack/talk/WTENSI:0xf590	How could this be!?<FFF6>Do you intend to sell your<FFF6>immortal soul to the ones below!?<FFF5>
+354	0x662d	pack/talk/WTENSI:0xf638	I cannot believe you would defy<FFF6>His will... The extent of your<FFF6>blasphemy is almost miraculous...<FFF5>
 355	0x6667	pack/talk/WTENSI:0xf700	Then I will take one life stone...<FFEF>
 356	0x6684	pack/talk/WTENSI:0xf748	Continue to do good works.<FFF5>
-357	0x669e	pack/talk/WTENSI:0xf780	You... have none?<FFF6>You are not hiding them from me,<FFF6>are you...?<FFF5>
-358	0x66ce	pack/talk/WTENSI:0xf800	How dare you boast falsely of<FFF6>your own wealth!? Suffer His wrath!<FFF5>
-359	0x66fa	pack/talk/WTENSI:0xf888	Poor thing...<FFF6>Your actions just now may have<FFF6>ensured your eternal damnation.<FFF5>
-360	0x672d	pack/talk/WTENSI:0xf928	I cannot believe you<FFF6>would defy His will...<FFFB><FFF7>The extent of your blasphemy<FFF6>is almost miraculous...<FFF5>
+357	0x669e	pack/talk/WTENSI:0xf780	You... have none? You are not<FFF6>hiding them from me, are you...?<FFF5>
+358	0x66ce	pack/talk/WTENSI:0xf800	How dare you boast falsely of your<FFF6>own wealth!? Suffer His wrath!<FFF5>
+359	0x66fa	pack/talk/WTENSI:0xf888	Poor thing... Your actions<FFF6>just now may have ensured<FFF6>your eternal damnation.<FFF5>
+360	0x672d	pack/talk/WTENSI:0xf928	I cannot believe you would defy<FFF6>His will... The extent of your<FFF6>blasphemy is almost miraculous...<FFF5>
 361	0x6767	pack/talk/WTENSI:0xf9f0	You carry a <FFF4>,<FFF6>do you not? You should give it to me.<FFEF>
 362	0x678b	pack/talk/WTENSI:0xfa60	I am astounded by your inner beauty!<FFF5>
 363	0x67b1	pack/talk/WTENSI:0xfab0	If you had none, you should have<FFF6>said as much from the start...<FFF5>
@@ -367,47 +367,47 @@ id	pos	psp	en
 365	0x67f2	pack/talk/WTENSI:0xfb90	It seems that you have<FFF6>very little awe of Him...<FFFB><FFF7>There is no doubt that judgement<FFF6>will be brought down upon you!<FFF5>
 366	0x682c	pack/talk/WTENSI:0xfc78	That fresh, youthful,<FFF6>vital energy you have about you...<FFF6>That is what I desire.<FFEF>
 367	0x6861	pack/talk/WTENSI:0xfd18	Thank you.<FFF6>You have been most generous.<FFF5>
-368	0x6876	pack/talk/WTENSI:0xfd68	Well, I am sure you have<FFF6>your reasons. It is all right.<FFF6>Do not let it get to you.<FFF5>
+368	0x6876	pack/talk/WTENSI:0xfd68	Well, I am sure you have your<FFF6>reasons. It is all right.<FFF6>Do not let it get to you.<FFF5>
 369	0x68a9	pack/talk/WTENSI:0xfe10	This is your opportunity to<FFF6>devote yourself to His cause!<FFFB><FFF7>I am sure that judgement will<FFF6>be brought down upon you!<FFF5>
 370	0x68d1	pack/talk/WTENSI:0xfef8	There is no need to be modest.<FFF5>
-371	0x68e7	pack/talk/WTENSI:0xff38	I think... that you would seem more<FFF6>refined if you said nothing.<FFF5>
-372	0x6907	pack/talk/WTENSI:0xffc0	You are a rare breed of human to<FFF6>have overcome the ordeal<FFF6>He presented.<FFF5>
+371	0x68e7	pack/talk/WTENSI:0xff38	I think... that you would seem<FFF6>more refined if you said nothing.<FFF5>
+372	0x6907	pack/talk/WTENSI:0xffc0	You are a rare breed of<FFF6>human to have overcome<FFF6>the ordeal He presented.<FFF5>
 373	0x6932	pack/talk/WTENSI:0x10050	Lies hurt the liar as well!<FFF5>
 374	0x694c	pack/talk/WTENSI:0x10088	You stand before Him and yet lie...?<FFF6>How dreadful...<FFF5>
 375	0x6970	pack/talk/WTENSI:0x100f8	An honest apology<FFF6>is important as well.<FFF6>I am sure His blessing will be with you!<FFF5>
 376	0x69a4	pack/talk/WTENSI:0x101a0	You are wise.<FFF5>
-377	0x69b6	pack/talk/WTENSI:0x101c0	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to meet<FFF6>a human as wise as you.<FFF5>
+377	0x69b6	pack/talk/WTENSI:0x101c0	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to<FFF6>meet a human as wise as you.<FFF5>
 378	0x69f3	pack/talk/WTENSI:0x102b0	Very well, but...<FFF6>you are not going to borrow<FFF6>the power of demons instead, I hope.<FFFB><FFF7>Listen well:<FFF6>demons cannot be trusted!<FFF6>...Well then, please make an offering...<FFF1><FFF5>
 379	0x6a68	pack/talk/WTENSI:0x10400	Whew... Very well, then.<FFF5>
 380	0x6a7e	pack/talk/WTENSI:0x10438	Perhaps I misheard, but did you just<FFF6>threaten to do something cruel to<FFF6>me? You did...! Me, of all creatures!<FFF5>
-381	0x6abb	pack/talk/WTENSI:0x10518	Perhaps I misheard, but did you just<FFF6>threaten to do something cruel to<FFF6>me? You are a wicked one...<FFF5>
+381	0x6abb	pack/talk/WTENSI:0x10518	Perhaps I misheard, but did you just<FFF6>threaten to do something cruel<FFF6>to me? You are a wicked one...<FFF5>
 382	0x6af8	pack/talk/WTENSI:0x105e0	Ahaha... If you speak such things,<FFF6>you will become a target for<FFF6>the demons, you know...<FFF5>
 383	0x6b24	pack/talk/WTENSI:0x10690	If you speak such things, you will be<FFF6>a target for the demons, you know...<FFF5>
 384	0x6b45	pack/talk/WTENSI:0x10728	Surely that is the work of demons!<FFF6>Tell me, did your schoolteacher<FFF6>have a tail...?<FFF5>
 385	0x6b87	pack/talk/WTENSI:0x107d0	You see?<FFF6>If you try, you can do it too!<FFF5>
-386	0x6ba3	pack/talk/WTENSI:0x10820	Such rudeness towards me, one of<FFF6>His messengers... I can scarcely<FFF6>believe that you are a son of man...<FFF5>
+386	0x6ba3	pack/talk/WTENSI:0x10820	Such rudeness towards me, one<FFF6>of His messengers... I can scarcely<FFF6>believe that you are a son of man...<FFF5>
 387	0x6bda	pack/talk/WTENSI:0x108f0	Do not underestimate an angel!<FFF5>
 388	0x6bee	pack/talk/WTENSI:0x10930	There is no need to be modest.<FFF5>
-389	0x6c04	pack/talk/WTENSI:0x10970	I think... that you would seem more<FFF6>refined if you said nothing.<FFF5>
-390	0x6c24	pack/talk/WTENSI:0x109f8	You are a rare breed of human to<FFF6>have overcome the ordeal<FFF6>He presented.<FFF5>
+389	0x6c04	pack/talk/WTENSI:0x10970	I think... that you would seem<FFF6>more refined if you said nothing.<FFF5>
+390	0x6c24	pack/talk/WTENSI:0x109f8	You are a rare breed of<FFF6>human to have overcome<FFF6>the ordeal He presented.<FFF5>
 391	0x6c4f	pack/talk/WTENSI:0x10a88	Lies hurt the liar as well!<FFF5>
 392	0x6c69	pack/talk/WTENSI:0x10ac0	You stand before Him and yet lie...?<FFF6>How dreadful...<FFF5>
 393	0x6c8d	pack/talk/WTENSI:0x10b30	An honest apology<FFF6>is important as well.<FFF6>I am sure His blessing will be with you!<FFF5>
 394	0x6cc1	pack/talk/WTENSI:0x10bd8	Unfortunately... this is not a game!<FFF5>
 395	0x6ce1	pack/talk/WTENSI:0x10c28	You will not escape after this!<FFF6>Now draw your weapon!<FFF5>
 396	0x6d0b	pack/talk/WTENSI:0x10c98	At last, you have stopped!<FFF6>Good heavens,<FFF6>did you never take music lessons!?<FFF5>
-397	0x6d42	pack/talk/WTENSI:0x10d30	Whew... That was a near thing...<FFF6>My wings were about to<FFF6>be jarred loose.<FFF5>
+397	0x6d42	pack/talk/WTENSI:0x10d30	Whew... That was a near thing... My<FFF6>wings were about to be jarred loose.<FFF5>
 398	0x6d6f	pack/talk/WTENSI:0x10dc8	I let my guard down... I had not<FFF6>expected another form of assault...!<FFF5>
 399	0x6d92	pack/talk/WTENSI:0x10e58	I can only say that was marvelous!<FFF6>I was not aware humans like you<FFF6>still existed in this world!<FFF5>
-400	0x6dc7	pack/talk/WTENSI:0x10f18	I feel as though I<FFF6>am under your sway...<FFF5>
+400	0x6dc7	pack/talk/WTENSI:0x10f18	I feel as though I am<FFF6>under your sway...<FFF5>
 401	0x6dd9	pack/talk/WTENSI:0x10f70	There is no need to be modest.<FFF5>
-402	0x6def	pack/talk/WTENSI:0x10fb0	I think... that you would seem more<FFF6>refined if you said nothing.<FFF5>
-403	0x6e0f	pack/talk/WTENSI:0x11038	You are a rare breed of human to<FFF6>have overcome the ordeal<FFF6>He presented.<FFF5>
+402	0x6def	pack/talk/WTENSI:0x10fb0	I think... that you would seem<FFF6>more refined if you said nothing.<FFF5>
+403	0x6e0f	pack/talk/WTENSI:0x11038	You are a rare breed of<FFF6>human to have overcome<FFF6>the ordeal He presented.<FFF5>
 404	0x6e3a	pack/talk/WTENSI:0x110c8	Lies hurt the liar as well!<FFF5>
 405	0x6e55	pack/talk/WTENSI:0x11100	You stand before Him and yet lie...?<FFF6>How dreadful...<FFF5>
 406	0x6e79	pack/talk/WTENSI:0x11170	An honest apology<FFF6>is important as well.<FFF6>I am sure His blessing will be with you!<FFF5>
 407	0x6ead	pack/talk/WTENSI:0x11218	You are wise.<FFF5>
-408	0x6ec4	pack/talk/WTENSI:0x11238	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to meet<FFF6>a human as wise as you.<FFF5>
+408	0x6ec4	pack/talk/WTENSI:0x11238	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to<FFF6>meet a human as wise as you.<FFF5>
 409	0x6f01	pack/talk/WTENSI:0x11328	Very well, but...<FFF6>you are not going to borrow<FFF6>the power of demons instead, I hope.<FFFB><FFF7>Listen well:<FFF6>demons cannot be trusted!<FFF6>...Well then, please make an offering...<FFF1><FFF5>
 410	0x6f77	pack/talk/WTENSI:0x11478	I can scarcely believe you continue to<FFF6>lie before one of His messengers!<FFF6>There will be no clemency for you!<FFF5>
 411	0x6fad	pack/talk/WTENSI:0x11550	Did I err...? No, I cannot have...<FFF5>
@@ -415,16 +415,16 @@ id	pos	psp	en
 413	0x6fe0	pack/talk/WTENSI:0x115e0	Is that so? Then I shall<FFF6>continue to try my hardest!<FFF5>
 414	0x7003	pack/talk/WTENSI:0x11650	If you are going to be so blunt,<FFF6>even an angel will recall<FFF6>what anger feels like.<FFF5>
 415	0x703b	pack/talk/WTENSI:0x116f8	I understand, but...<FFF6>it is rather disheartening to<FFF6>hear you say it so bluntly...<FFF5>
-416	0x706e	pack/talk/WTENSI:0x117a0	But why? That was what drove<FFF6>your earlier actions!<FFF5>
+416	0x706e	pack/talk/WTENSI:0x117a0	But why? That was what<FFF6>drove your earlier actions!<FFF5>
 417	0x709b	pack/talk/WTENSI:0x11808	You have made great strides in<FFF6>coming to understand that, have you<FFF6>not? Then keep trying your hardest!<FFF5>
 418	0x70d0	pack/talk/WTENSI:0x118d8	There is no need to be modest.<FFF5>
-419	0x70e6	pack/talk/WTENSI:0x11918	I think... that you would seem more<FFF6>refined if you said nothing.<FFF5>
-420	0x7106	pack/talk/WTENSI:0x119a0	You are a rare breed of human to<FFF6>have overcome the ordeal<FFF6>He presented.<FFF5>
+419	0x70e6	pack/talk/WTENSI:0x11918	I think... that you would seem<FFF6>more refined if you said nothing.<FFF5>
+420	0x7106	pack/talk/WTENSI:0x119a0	You are a rare breed of<FFF6>human to have overcome<FFF6>the ordeal He presented.<FFF5>
 421	0x7131	pack/talk/WTENSI:0x11a30	Lies hurt the liar as well!<FFF5>
 422	0x714c	pack/talk/WTENSI:0x11a68	You stand before Him and yet lie...?<FFF6>How dreadful...<FFF5>
 423	0x7170	pack/talk/WTENSI:0x11ad8	An honest apology<FFF6>is important as well.<FFF6>I am sure His blessing will be with you!<FFF5>
 424	0x71a4	pack/talk/WTENSI:0x11b80	You are wise.<FFF5>
-425	0x71ba	pack/talk/WTENSI:0x11ba0	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to meet<FFF6>a human as wise as you.<FFF5>
+425	0x71ba	pack/talk/WTENSI:0x11ba0	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to<FFF6>meet a human as wise as you.<FFF5>
 426	0x71f7	pack/talk/WTENSI:0x11c90	Very well, but...<FFF6>you are not going to borrow<FFF6>the power of demons instead, I hope.<FFFB><FFF7>Listen well:<FFF6>demons cannot be trusted!<FFF6>...Well then, please make an offering...<FFF1><FFF5>
 427	0x726d	pack/talk/WTENSI:0x11de0	Haha, please excuse me.<FFF6>That was indeed very rude of me.<FFF5>
 428	0x728b	pack/talk/WTENSI:0x11e58	Why are you ashamed?<FFF6>Knowing one's true strengths<FFF6>is a very ordinary thing!<FFF5>
@@ -438,7 +438,7 @@ id	pos	psp	en
 436	0x73cd	pack/talk/WTENSI:0x12278	There are many forms of love,<FFF6>but not all are genuine.<FFF6>However, His love suffuses all, and...<FFFB><FFF7>＞ The speech goes on and on.<FFF5>
 437	0x743f	pack/talk/WTENSI:0x12370	Did you not want to talk?<FFF6>What a fickle creature you are!<FFF5>
 438	0x7467	pack/talk/WTENSI:0x123e8	I will forgive you this time.<FFF5>
-439	0x747c	pack/talk/WTENSI:0x12428	You must not flee simply<FFF6>because my words are painful to you!<FFF5>
+439	0x747c	pack/talk/WTENSI:0x12428	You must not flee simply because my<FFF6>words are painful to you!<FFF5>
 440	0x74a6	pack/talk/WTENSI:0x124a8	Whew... In truth, that surprised me.<FFF5>
 441	0x74bf	pack/talk/WTENSI:0x124f8	At this rate, I shall become fallen...<FFF5>
 442	0x74db	pack/talk/WTENSI:0x12548	You are right.<FFF6>Courage is necessary at times.<FFF5>
@@ -447,12 +447,12 @@ id	pos	psp	en
 445	0x7553	pack/talk/WTENSI:0x12678	So that is why! Your actions<FFF6>are deceptively profound.<FFF5>
 446	0x7577	pack/talk/WTENSI:0x126e8	You fail to understand indirect<FFF6>methods of expressions!<FFF5>
 447	0x7598	pack/talk/WTENSI:0x12758	That is more interesting than<FFF6>what you tried a moment ago.<FFF5>
-448	0x75ad	pack/talk/WTENSI:0x127d0	Ah, is that so?<FFF6>But that is something one would<FFF6>normally say to a female human.<FFF5>
+448	0x75ad	pack/talk/WTENSI:0x127d0	Ah, is that so?<FFF6>But that is something one<FFF6>would normally say to a female human.<FFF5>
 449	0x75e3	pack/talk/WTENSI:0x12870	A-Are you quite well...?<FFF5>
 450	0x75f5	pack/talk/WTENSI:0x128a8	It would be best to offer all<FFF6>your proceeds to the Lord.<FFF5>
 451	0x7622	pack/talk/WTENSI:0x12920	That is unfortunate.<FFF5>
 452	0x7631	pack/talk/WTENSI:0x12950	I would definitely like to hear it.<FFF5>
-453	0x7642	pack/talk/WTENSI:0x12998	If that is your attitude, so be it!<FFF6>There is a limit to how much I<FFF6>will take from a human!<FFF5>
+453	0x7642	pack/talk/WTENSI:0x12998	If that is your attitude, so be it!<FFF6>There is a limit to how much<FFF6>I will take from a human!<FFF5>
 454	0x767f	pack/talk/WTENSI:0x12a58	This is not for my personal interest,<FFF6>but rather my duty...<FFF5>
 455	0x76a3	pack/talk/WTENSI:0x12ad0	Can you not hear my words!?<FFF5>
 456	0x76bd	pack/talk/WTENSI:0x12b08	Humans have not changed.<FFF6>They are as childish as ever...<FFF5>
@@ -461,37 +461,37 @@ id	pos	psp	en
 459	0x771e	pack/talk/WTENSI:0x12c40	We who are His messengers do not lie!<FFF6>Do not insult me so!<FFF5>
 460	0x7753	pack/talk/WTENSI:0x12cb8	...How did you find out?<FFF5>
 461	0x7763	pack/talk/WTENSI:0x12cf0	You should have no secret from<FFF6>one of His messengers!<FFF5>
-462	0x7784	pack/talk/WTENSI:0x12d60	What a troublesome human... The Lord<FFF6>watches over you, even if you do not<FFF6>carry out such bizarre acts.<FFF5>
+462	0x7784	pack/talk/WTENSI:0x12d60	What a troublesome human... The Lord<FFF6>watches over you, even if you do<FFF6>not carry out such bizarre acts.<FFF5>
 463	0x77b9	pack/talk/WTENSI:0x12e30	So that is why... Ahaha...<FFF6>That is not even worth reprimanding!<FFF5>
 464	0x77d8	pack/talk/WTENSI:0x12eb0	I refer to you! You!<FFF5>
-465	0x77ed	pack/talk/WTENSI:0x12ee0	You are right. Even a lowly human<FFF6>such as you has pride.<FFF5>
-466	0x7813	pack/talk/WTENSI:0x12f58	Ahaha...<FFF6>So you, too, have your pride...<FFF5>
+465	0x77ed	pack/talk/WTENSI:0x12ee0	You are right. Even a lowly<FFF6>human such as you has pride.<FFF5>
+466	0x7813	pack/talk/WTENSI:0x12f58	Ahaha... So you, too,<FFF6>have your pride...<FFF5>
 467	0x7838	pack/talk/WTENSI:0x12fb0	Do you see now that it is all right?<FFF5>
-468	0x7849	pack/talk/WTENSI:0x13000	Ah...! Do not tell me that it is<FFF6>because of the shine of my halo...<FFFB><FFF7>Have you taken leave of<FFF6>your senses?<FFF5>
+468	0x7849	pack/talk/WTENSI:0x13000	Ah...! Do not tell me that it is<FFF6>because of the shine of my halo...<FFFB><FFF7>Have you taken leave<FFF6>of your senses?<FFF5>
 469	0x7878	pack/talk/WTENSI:0x130d8	Those who show kindness will receive<FFF6>their rewards. Do not forget that.<FFF5>
-470	0x789b	pack/talk/WTENSI:0x13168	Listen well: you are being tested.<FFF6>Are you truly confident in<FFF6>your choice?<FFF5>
+470	0x789b	pack/talk/WTENSI:0x13168	Listen well:<FFF6>you are being tested. Are you<FFF6>truly confident in your choice?<FFF5>
 471	0x78cd	pack/talk/WTENSI:0x13200	I meant that I wanted something else...<FFF6>Can you not deduce even that!?<FFF5>
-472	0x7904	pack/talk/WTENSI:0x13290	You are a quick thinker.<FFF6>Very well then,<FFF6>I shall take you up on it.<FFF1><FFF5>
+472	0x7904	pack/talk/WTENSI:0x13290	You are a quick thinker. Very well<FFF6>then, I shall take you up on it.<FFF1><FFF5>
 473	0x7932	pack/talk/WTENSI:0x13320	May His blessing be with you...<FFF5>
 474	0x794f	pack/talk/WTENSI:0x13360	*gasp* So it was a trap!<FFF6>Deceiving an angel is an act of<FFF6>blasphemy towards Him!<FFF5>
 475	0x7984	pack/talk/WTENSI:0x13400	*gasp* So it was a trap...<FFF5>
 476	0x7996	pack/talk/WTENSI:0x13438	There is no need to be modest.<FFF5>
-477	0x79ab	pack/talk/WTENSI:0x13478	I think... that you would seem more<FFF6>refined if you said nothing.<FFF5>
-478	0x79cb	pack/talk/WTENSI:0x13500	You are a rare breed of human to<FFF6>have overcome the ordeal<FFF6>He presented.<FFF5>
+477	0x79ab	pack/talk/WTENSI:0x13478	I think... that you would seem<FFF6>more refined if you said nothing.<FFF5>
+478	0x79cb	pack/talk/WTENSI:0x13500	You are a rare breed of<FFF6>human to have overcome<FFF6>the ordeal He presented.<FFF5>
 479	0x79f6	pack/talk/WTENSI:0x13590	Lies hurt the liar as well!<FFF5>
 480	0x7a11	pack/talk/WTENSI:0x135c8	You stand before Him and yet lie...?<FFF6>How dreadful...<FFF5>
 481	0x7a35	pack/talk/WTENSI:0x13638	An honest apology<FFF6>is important as well.<FFF6>I am sure His blessing will be with you!<FFF5>
 482	0x7a69	pack/talk/WTENSI:0x136e0	You are wise.<FFF5>
-483	0x7a7a	pack/talk/WTENSI:0x13700	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to meet<FFF6>a human as wise as you.<FFF5>
+483	0x7a7a	pack/talk/WTENSI:0x13700	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to<FFF6>meet a human as wise as you.<FFF5>
 484	0x7ab7	pack/talk/WTENSI:0x137f0	Very well, but...<FFF6>you are not going to borrow<FFF6>the power of demons instead, I hope.<FFFB><FFF7>Listen well:<FFF6>demons cannot be trusted!<FFF6>...Well then, please make an offering...<FFF1><FFF5>
-485	0x7b2d	pack/talk/WTENSI:0x13940	Ahahah...<FFF6>If that is the case, very well.<FFF5>
+485	0x7b2d	pack/talk/WTENSI:0x13940	Ahahah... If that is the case,<FFF6>very well.<FFF5>
 486	0x7b46	pack/talk/WTENSI:0x13998	Perhaps I misheard, but did you just<FFF6>threaten to do something cruel to<FFF6>me? You did...! Me, of all creatures!<FFF5>
-487	0x7b80	pack/talk/WTENSI:0x13a78	Perhaps I misheard, but did you just<FFF6>threaten to do something cruel to<FFF6>me? You are a wicked one...<FFF5>
+487	0x7b80	pack/talk/WTENSI:0x13a78	Perhaps I misheard, but did you just<FFF6>threaten to do something cruel<FFF6>to me? You are a wicked one...<FFF5>
 488	0x7bbd	pack/talk/WTENSI:0x13b40	Ahaha... If you speak such things,<FFF6>you will become a target for<FFF6>the demons, you know...<FFF5>
 489	0x7be9	pack/talk/WTENSI:0x13bf0	If you speak such things, you will be<FFF6>a target for the demons, you know...<FFF5>
 490	0x7c0a	pack/talk/WTENSI:0x13c88	Surely that is the work of demons!<FFF6>Tell me, did your schoolteacher<FFF6>have a tail...?<FFF5>
 491	0x7c4c	pack/talk/WTENSI:0x13d30	You see?<FFF6>If you try, you can do it too!<FFF5>
-492	0x7c5f	pack/talk/WTENSI:0x13d80	Such rudeness towards me, one of<FFF6>His messengers... I can scarcely<FFF6>believe that you are a son of man...<FFF5>
+492	0x7c5f	pack/talk/WTENSI:0x13d80	Such rudeness towards me, one<FFF6>of His messengers... I can scarcely<FFF6>believe that you are a son of man...<FFF5>
 493	0x7c97	pack/talk/WTENSI:0x13e50	Do not underestimate an angel!<FFF5>
 494	0x7cab	pack/talk/WTENSI:0x13e90	You are rash,<FFF6>yet surprisingly honest.<FFF5>
 495	0x7ccc	pack/talk/WTENSI:0x13ee0	You are without hope if you<FFF6>cannot even understand<FFF6>the kindness of others!<FFF5>
@@ -500,12 +500,12 @@ id	pos	psp	en
 498	0x7d45	pack/talk/WTENSI:0x140a0	Were my words too<FFF6>difficult to understand?<FFF5>
 499	0x7d64	pack/talk/WTENSI:0x140f8	But your words are not<FFF6>worth reprimanding!<FFF5>
 500	0x7d86	pack/talk/WTENSI:0x14150	Perhaps from your point of view,<FFF6>that is the case...<FFF5>
-501	0x7dad	pack/talk/WTENSI:0x141c0	I am still in training.<FFF6>Withstanding insults is<FFF6>also part of my ordeal.<FFF5>
+501	0x7dad	pack/talk/WTENSI:0x141c0	I am still in training. Withstanding<FFF6>insults is also part of my ordeal.<FFF5>
 502	0x7de5	pack/talk/WTENSI:0x14250	I may not look it, but I am very<FFF6>familiar with modern youth's music!<FFF5>
 503	0x7e08	pack/talk/WTENSI:0x142e0	I only wanted a little, you see...<FFF5>
 504	0x7e2c	pack/talk/WTENSI:0x14328	Ahaha... It was a mere jest.<FFF5>
 505	0x7e43	pack/talk/WTENSI:0x14368	Hm? Ah, please excuse me. I did not<FFF6>understand that you were dancing...<FFF5>
-506	0x7e6d	pack/talk/WTENSI:0x143f8	Your endurance is impressive for<FFF6>a human. My opinion of you has<FFF6>improved considerably.<FFF5>
+506	0x7e6d	pack/talk/WTENSI:0x143f8	Your endurance is impressive<FFF6>for a human. My opinion of you<FFF6>has improved considerably.<FFF5>
 507	0x7e9d	pack/talk/WTENSI:0x144a8	*sigh* I am weary...<FFF6>I had underestimated you humans...<FFF5>
 508	0x7ec1	pack/talk/WTENSI:0x14518	Is that the extent of your passion!?<FFF5>
 509	0x7edc	pack/talk/WTENSI:0x14568	Hm... Very well, then.<FFF5>
@@ -515,11 +515,11 @@ id	pos	psp	en
 513	0x7f7e	pack/talk/WTENSI:0x147b0	If you speak such things, you will be<FFF6>a target for the demons, you know...<FFF5>
 514	0x7f9f	pack/talk/WTENSI:0x14848	Surely that is the work of demons!<FFF6>Tell me, did your schoolteacher<FFF6>have a tail...?<FFF5>
 515	0x7fe1	pack/talk/WTENSI:0x148f0	You see?<FFF6>If you try, you can do it too!<FFF5>
-516	0x7fff	pack/talk/WTENSI:0x14940	Such rudeness towards me, one of<FFF6>His messengers... I can scarcely<FFF6>believe that you are a son of man...<FFF5>
+516	0x7fff	pack/talk/WTENSI:0x14940	Such rudeness towards me, one<FFF6>of His messengers... I can scarcely<FFF6>believe that you are a son of man...<FFF5>
 517	0x8037	pack/talk/WTENSI:0x14a10	Do not underestimate an angel!<FFF5>
 518	0x804b	pack/talk/WTENSI:0x14a50	I was merely jesting!<FFF6>You seem somewhat naive...<FFF5>
 519	0x8067	pack/talk/WTENSI:0x14ab8	*gasp* Do you mean to say you<FFF6>truly are trying to open it...?<FFF6>Stop this madness at once, I beg you!<FFF5>
-520	0x80a2	pack/talk/WTENSI:0x14b80	Oh my... I sincerely hope that you are<FFF6>not truly trying to open it...<FFF5>
+520	0x80a2	pack/talk/WTENSI:0x14b80	Oh my... I sincerely hope that you<FFF6>are not truly trying to open it...<FFF5>
 521	0x80c6	pack/talk/WTENSI:0x14c10	Is that so? In any event, thank you.<FFF5>
 522	0x80e3	pack/talk/WTENSI:0x14c60	You know that I am<FFF6>a <FFF3>, yes?<FFF5>
 523	0x80f7	pack/talk/WTENSI:0x14ca0	You are quite rude! In any event,<FFF6>it is folly to negotiate with someone<FFF6>whom you know nothing about!<FFF5>
@@ -527,13 +527,13 @@ id	pos	psp	en
 525	0x8140	pack/talk/WTENSI:0x14da0	You have a very short temper!<FFF6>Our Lord weeps to see that<FFF6>you cannot take a joke!<FFF5>
 526	0x8172	pack/talk/WTENSI:0x14e48	I am sorry. My jest went too far.<FFF5>
 527	0x818b	pack/talk/WTENSI:0x14e90	There is no need to be modest.<FFF5>
-528	0x81a0	pack/talk/WTENSI:0x14ed0	I think... that you would seem more<FFF6>refined if you said nothing.<FFF5>
-529	0x81c0	pack/talk/WTENSI:0x14f58	You are a rare breed of human to<FFF6>have overcome the ordeal<FFF6>He presented.<FFF5>
+528	0x81a0	pack/talk/WTENSI:0x14ed0	I think... that you would seem<FFF6>more refined if you said nothing.<FFF5>
+529	0x81c0	pack/talk/WTENSI:0x14f58	You are a rare breed of<FFF6>human to have overcome<FFF6>the ordeal He presented.<FFF5>
 530	0x81eb	pack/talk/WTENSI:0x14fe8	Lies hurt the liar as well!<FFF5>
 531	0x8206	pack/talk/WTENSI:0x15020	You stand before Him and yet lie...?<FFF6>How dreadful...<FFF5>
 532	0x822a	pack/talk/WTENSI:0x15090	An honest apology<FFF6>is important as well.<FFF6>I am sure His blessing will be with you!<FFF5>
 533	0x825e	pack/talk/WTENSI:0x15138	You are wise.<FFF5>
-534	0x8273	pack/talk/WTENSI:0x15158	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to meet<FFF6>a human as wise as you.<FFF5>
+534	0x8273	pack/talk/WTENSI:0x15158	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to<FFF6>meet a human as wise as you.<FFF5>
 535	0x82b0	pack/talk/WTENSI:0x15248	Very well, but...<FFF6>you are not going to borrow<FFF6>the power of demons instead, I hope.<FFFB><FFF7>Listen well:<FFF6>demons cannot be trusted!<FFF6>...Well then, please make an offering...<FFF1><FFF5>
 536	0x8325	pack/talk/WTENSI:0x15398	What folly!<FFF5>
 537	0x8332	pack/talk/WTENSI:0x153b0	So that is why! I must say, though,<FFF6>that is a bizarre commandment.<FFF5>
@@ -542,14 +542,14 @@ id	pos	psp	en
 540	0x838c	pack/talk/WTENSI:0x154e8	You should refrain from doing<FFF6>things that others would not like!<FFF5>
 541	0x83a6	pack/talk/WTENSI:0x15570	Next time, I shall teach you that<FFF6>nothing can scare me while I<FFF6>am under His protection.<FFF5>
 542	0x83e1	pack/talk/WTENSI:0x15620	I am sorry.<FFF6>But first, you must make an offering.<FFF1><FFF5>
-543	0x8404	pack/talk/WTENSI:0x15688	Keeping secrets is the first step on<FFF6>the road to depravity!<FFF5>
+543	0x8404	pack/talk/WTENSI:0x15688	Keeping secrets is the first<FFF6>step on the road to depravity!<FFF5>
 544	0x841d	pack/talk/WTENSI:0x15700	It is true!<FFF5>
-545	0x8428	pack/talk/WTENSI:0x15718	I was only teasing you!<FFF6>It is unthinkable for me to be<FFF6>swayed by a human's song!<FFF5>
+545	0x8428	pack/talk/WTENSI:0x15718	I was only teasing you!<FFF6>It is unthinkable for me to<FFF6>be swayed by a human's song!<FFF5>
 546	0x845d	pack/talk/WTENSI:0x157c0	...I am glad I remained unswayed.<FFF5>
 547	0x847f	pack/talk/WTENSI:0x15808	Unfortunately... this is not a game!<FFF5>
 548	0x849f	pack/talk/WTENSI:0x15858	You will not escape after this!<FFF6>Now draw your weapon!<FFF5>
 549	0x84c9	pack/talk/WTENSI:0x158c8	I can only say that was marvelous!<FFF6>I was not aware humans like you<FFF6>still existed in this world!<FFF5>
-550	0x84fe	pack/talk/WTENSI:0x15988	I feel as though I<FFF6>am under your sway...<FFF5>
+550	0x84fe	pack/talk/WTENSI:0x15988	I feel as though I am<FFF6>under your sway...<FFF5>
 551	0x8510	pack/talk/WTENSI:0x159e0	Ahaha... Angels do not age!<FFF5>
 552	0x852c	pack/talk/WTENSI:0x15a18	You were making sport of me,<FFF6>were you not...?<FFF5>
 553	0x8544	pack/talk/WTENSI:0x15a78	...Did you just mock an angel?<FFF6>Blasphemer! Defier of His will!<FFF5>
@@ -558,13 +558,13 @@ id	pos	psp	en
 556	0x85dc	pack/talk/WTENSI:0x15c20	Hmm... I have no answer ready.<FFF5>
 557	0x8604	pack/talk/WTENSI:0x15c60	Ahaha... Whichever it may be,<FFF6>I am afraid I do not know.<FFF5>
 558	0x862a	pack/talk/WTENSI:0x15cd8	There is no need to be modest.<FFF5>
-559	0x863f	pack/talk/WTENSI:0x15d18	I think... that you would seem more<FFF6>refined if you said nothing.<FFF5>
-560	0x865f	pack/talk/WTENSI:0x15da0	You are a rare breed of human to<FFF6>have overcome the ordeal<FFF6>He presented.<FFF5>
+559	0x863f	pack/talk/WTENSI:0x15d18	I think... that you would seem<FFF6>more refined if you said nothing.<FFF5>
+560	0x865f	pack/talk/WTENSI:0x15da0	You are a rare breed of<FFF6>human to have overcome<FFF6>the ordeal He presented.<FFF5>
 561	0x868a	pack/talk/WTENSI:0x15e30	Lies hurt the liar as well!<FFF5>
 562	0x86a5	pack/talk/WTENSI:0x15e68	You stand before Him and yet lie...?<FFF6>How dreadful...<FFF5>
 563	0x86c9	pack/talk/WTENSI:0x15ed8	An honest apology<FFF6>is important as well.<FFF6>I am sure His blessing will be with you!<FFF5>
 564	0x86fd	pack/talk/WTENSI:0x15f80	You are wise.<FFF5>
-565	0x870f	pack/talk/WTENSI:0x15fa0	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to meet<FFF6>a human as wise as you.<FFF5>
+565	0x870f	pack/talk/WTENSI:0x15fa0	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to<FFF6>meet a human as wise as you.<FFF5>
 566	0x874c	pack/talk/WTENSI:0x16090	Very well, but...<FFF6>you are not going to borrow<FFF6>the power of demons instead, I hope.<FFFB><FFF7>Listen well:<FFF6>demons cannot be trusted!<FFF6>...Well then, please make an offering...<FFF1><FFF5>
 567	0x87c2	pack/talk/WTENSI:0x161e0	You are rash,<FFF6>yet surprisingly honest.<FFF5>
 568	0x87e3	pack/talk/WTENSI:0x16230	You are without hope if you<FFF6>cannot even understand<FFF6>the kindness of others!<FFF5>
@@ -575,45 +575,45 @@ id	pos	psp	en
 573	0x88c4	pack/talk/WTENSI:0x164b0	There are many forms of love,<FFF6>but not all are genuine.<FFF6>However, His love suffuses all, and...<FFFB><FFF7>＞ The speech goes on and on.<FFF5>
 574	0x8936	pack/talk/WTENSI:0x165a8	Did you not want to talk?<FFF6>What a fickle creature you are!<FFF5>
 575	0x895e	pack/talk/WTENSI:0x16620	...Atone for your sins and<FFF6>I will forgive you.<FFF1><FFF5>
-576	0x8985	pack/talk/WTENSI:0x16680	You must not flee simply<FFF6>because my words are painful to you!<FFF5>
+576	0x8985	pack/talk/WTENSI:0x16680	You must not flee simply because my<FFF6>words are painful to you!<FFF5>
 577	0x89b0	pack/talk/WTENSI:0x16700	...In the end, I cannot do it!<FFF5>
 578	0x89d3	pack/talk/WTENSI:0x16740	Why is the whisper of<FFF6>evil so sweet...!?<FFF5>
 579	0x89fc	pack/talk/WTENSI:0x16798	Do your utmost!<FFF6>I will aid you in getting through it!<FFF5>
 580	0x8a1b	pack/talk/WTENSI:0x16808	Ordeals are meant to be trying!<FFF6>If you yield now,<FFF6>you are not even worth a reprimand!<FFF5>
-581	0x8a51	pack/talk/WTENSI:0x168b8	This is an ordeal.<FFF6>Though... if you make an offering,<FFFB><FFF7>I am sure your suffering will<FFF6>be lessened somewhat.<FFF1><FFF5>
+581	0x8a51	pack/talk/WTENSI:0x168b8	This is an ordeal. Though... if you<FFF6>make an offering, I am sure your<FFF6>suffering will be lessened somewhat.<FFF1><FFF5>
 582	0x8a88	pack/talk/WTENSI:0x16990	Hm? That was true? ......<FFF5>
 583	0x8ab4	pack/talk/WTENSI:0x169c8	Is it not so? Well, it is your own<FFF6>fault for looking so suspicious!<FFF5>
 584	0x8ae6	pack/talk/WTENSI:0x16a50	It is I who wants to cry, you realize...<FFF6>*sniffle*<FFF5>
 585	0x8b07	pack/talk/WTENSI:0x16ab8	That is correct! The Lord helps<FFF6>those who help themselves!<FFF5>
 586	0x8b39	pack/talk/WTENSI:0x16b30	Those were false tears, then?<FFF6>Do not alarm me so!<FFF5>
 587	0x8b5b	pack/talk/WTENSI:0x16b98	...Very well, then.<FFF5>
-588	0x8b73	pack/talk/WTENSI:0x16bc0	Did you just threaten to do<FFF6>something to me? You did...!<FFF6>Me, of all creatures!<FFF5>
-589	0x8bad	pack/talk/WTENSI:0x16c60	Did you just threaten to<FFF6>do something to me?<FFF6>You are a wicked one...<FFF5>
+588	0x8b73	pack/talk/WTENSI:0x16bc0	Did you just threaten to do something<FFF6>to me? You did...! Me, of all creatures!<FFF5>
+589	0x8bad	pack/talk/WTENSI:0x16c60	Did you just threaten to do something<FFF6>to me? You are a wicked one...<FFF5>
 590	0x8bd3	pack/talk/WTENSI:0x16cf0	Ahaha... If you speak such things,<FFF6>you will become a target for<FFF6>the demons, you know...<FFF5>
 591	0x8bff	pack/talk/WTENSI:0x16da0	If you speak such things, you will be<FFF6>a target for the demons, you know...<FFF6>You must make an offering.<FFF1><FFF5>
 592	0x8c38	pack/talk/WTENSI:0x16e70	Surely that is the work of demons!<FFF6>Tell me, did your schoolteacher<FFF6>have a tail...?<FFF5>
 593	0x8c7a	pack/talk/WTENSI:0x16f18	Ahaha... You certainly know<FFF6>how to show gratitude!<FFF5>
-594	0x8c9b	pack/talk/WTENSI:0x16f80	Such rudeness towards me, one of<FFF6>His messengers... I can scarcely<FFF6>believe that you are a son of man...<FFF5>
+594	0x8c9b	pack/talk/WTENSI:0x16f80	Such rudeness towards me, one<FFF6>of His messengers... I can scarcely<FFF6>believe that you are a son of man...<FFF5>
 595	0x8cd3	pack/talk/WTENSI:0x17050	Do not underestimate an angel!<FFF5>
 596	0x8ce7	pack/talk/WTENSI:0x17090	Then that was on purpose...? O Lord!<FFF6>A deceiver stands before me!<FFF5>
 597	0x8d1a	pack/talk/WTENSI:0x17118	All is well.<FFF6>I will guide you to the correct path.<FFF6>First, make an offering.<FFF1><FFF5>
 598	0x8d4f	pack/talk/WTENSI:0x171b8	That is a rather cruel way to treat<FFF6>someone who has done nothing!<FFF5>
-599	0x8d73	pack/talk/WTENSI:0x17240	I cannot claim to understand,<FFF6>but if I have offended you,<FFF6>I apologize...<FFF5>
+599	0x8d73	pack/talk/WTENSI:0x17240	I cannot claim to understand, but if I<FFF6>have offended you, I apologize...<FFF5>
 600	0x8d96	pack/talk/WTENSI:0x172d8	Your harsh words sear away even<FFF6>what little uncleanliness I possess.<FFF5>
 601	0x8dc7	pack/talk/WTENSI:0x17368	What is the matter? Please do go on!<FFF5>
 602	0x8ddf	pack/talk/WTENSI:0x173b8	There is no need to be ashamed.<FFF5>
-603	0x8df2	pack/talk/WTENSI:0x173f8	I think... that you would seem more<FFF6>refined if you said nothing.<FFF5>
-604	0x8e12	pack/talk/WTENSI:0x17480	You are a rare breed of human to<FFF6>have overcome the ordeal<FFF6>He presented.<FFF5>
+603	0x8df2	pack/talk/WTENSI:0x173f8	I think... that you would seem<FFF6>more refined if you said nothing.<FFF5>
+604	0x8e12	pack/talk/WTENSI:0x17480	You are a rare breed of<FFF6>human to have overcome<FFF6>the ordeal He presented.<FFF5>
 605	0x8e3d	pack/talk/WTENSI:0x17510	Lies hurt the liar as well!<FFF5>
 606	0x8e58	pack/talk/WTENSI:0x17548	You stand before Him and yet lie...?<FFF6>How dreadful...<FFF5>
 607	0x8e7c	pack/talk/WTENSI:0x175b8	An honest apology<FFF6>is important as well.<FFF6>I am sure His blessing will be with you!<FFF5>
 608	0x8eb0	pack/talk/WTENSI:0x17660	You are wise.<FFF5>
-609	0x8ec2	pack/talk/WTENSI:0x17680	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to meet<FFF6>a human as wise as you.<FFF5>
+609	0x8ec2	pack/talk/WTENSI:0x17680	So you will follow His teachings?<FFF6>My time as a messenger was<FFFB><FFF7>well-spent if I was able to<FFF6>meet a human as wise as you.<FFF5>
 610	0x8eff	pack/talk/WTENSI:0x17770	Very well, but...<FFF6>you are not going to borrow<FFF6>the power of demons instead, I hope.<FFFB><FFF7>Listen well:<FFF6>demons cannot be trusted!<FFF6>...Well then, please make an offering...<FFF1><FFF5>
 611	0x8f75	pack/talk/WTENSI:0x178c0	Then that was on purpose...? O Lord!<FFF6>A deceiver stands before me!<FFF5>
 612	0x8fa9	pack/talk/WTENSI:0x17948	All is well.<FFF6>I will guide you to the correct path.<FFF6>First, make an offering.<FFF1><FFF5>
 613	0x8fde	pack/talk/WTENSI:0x179e8	That is a rather cruel way to treat<FFF6>someone who has done nothing!<FFF5>
-614	0x9002	pack/talk/WTENSI:0x17a70	I cannot claim to understand,<FFF6>but if I have offended you,<FFF6>I apologize...<FFF5>
+614	0x9002	pack/talk/WTENSI:0x17a70	I cannot claim to understand, but if I<FFF6>have offended you, I apologize...<FFF5>
 615	0x9025	pack/talk/WTENSI:0x17b08	Your harsh words sear away even<FFF6>what little uncleanliness I possess.<FFF5>
 616	0x9055	pack/talk/WTENSI:0x17b98	What is the matter? Please do go on!<FFF5>
 617	0x906d	pack/talk/WTENSI:0x17be8	You are a rather shy one.<FFF5>
@@ -630,7 +630,7 @@ id	pos	psp	en
 628	0x91b8	pack/talk/WTENSI:0x18090	In your heart, you wished to talk,<FFF6>no? There is no need to<FFF6>pretend otherwise.<FFF5>
 629	0x91de	pack/talk/WTENSI:0x18130	You felt His wrath and yet remain<FFF6>defiant... You have sold your soul to<FFF6>the ones below, haven't you?<FFF5>
 630	0x920e	pack/talk/WTENSI:0x18200	There is nothing left of<FFF6>your soul to be saved!<FFF5>
-631	0x9222	pack/talk/WTENSI:0x18260	This is how you are meant to be!<FFF6>Let us next work on fixing<FFF6>your speech!<FFF5>
+631	0x9222	pack/talk/WTENSI:0x18260	This is how you are meant to be! Let<FFF6>us next work on fixing your speech!<FFF5>
 632	0x9244	pack/talk/WTENSI:0x182f8	Ah, so you are in<FFF6>the midst of training!<FFF5>
 633	0x9258	pack/talk/WTENSI:0x18350	Ah... I am of the order of<FFF6><FFF3>, you know...<FFF5>
 634	0x9276	pack/talk/WTENSI:0x183a8	Why would you take that<FFF6>tone with me!?<FFF5>
@@ -641,10 +641,10 @@ id	pos	psp	en
 639	0x932e	pack/talk/WTENSI:0x18600	If you speak such things, you will be<FFF6>a target for the demons, you know...<FFF6>You must make an offering.<FFF1><FFF5>
 640	0x9365	pack/talk/WTENSI:0x186d0	Surely that is the work of demons!<FFF6>Tell me, did your schoolteacher<FFF6>have a tail...?<FFF5>
 641	0x93a7	pack/talk/WTENSI:0x18778	I do not jest!<FFF5>
-642	0x93ba	pack/talk/WTENSI:0x18798	Such rudeness towards me, one of<FFF6>His messengers... I can scarcely<FFF6>believe that you are a son of man...<FFF5>
+642	0x93ba	pack/talk/WTENSI:0x18798	Such rudeness towards me, one<FFF6>of His messengers... I can scarcely<FFF6>believe that you are a son of man...<FFF5>
 643	0x93f2	pack/talk/WTENSI:0x18868	It is your fault! Yours!<FFF5>
-644	0x9407	pack/talk/WTENSI:0x188a0	You are right. Even a lowly human<FFF6>such as you has pride.<FFF5>
-645	0x942d	pack/talk/WTENSI:0x18918	Ahaha...<FFF6>So you, too, have your pride...<FFF5>
+644	0x9407	pack/talk/WTENSI:0x188a0	You are right. Even a lowly<FFF6>human such as you has pride.<FFF5>
+645	0x942d	pack/talk/WTENSI:0x18918	Ahaha... So you, too,<FFF6>have your pride...<FFF5>
 646	0x9452	pack/talk/WTENSI:0x18970	Do you see now that it is all right?<FFF5>
 647	0x9463	pack/talk/WTENSI:0x189c0	Oh dear... did you see through it...?<FFF5>
 648	0x947a	pack/talk/WTENSI:0x18a10	Things that go beyond moderation<FFF6>rapidly become unpleasant.<FFF5>
@@ -652,21 +652,21 @@ id	pos	psp	en
 650	0x94b3	pack/talk/WTENSI:0x18ac8	You are a rather elusive one.<FFF5>
 651	0x94c7	pack/talk/WTENSI:0x18b08	Mmm... I suppose so.<FFF5>
 652	0x94d7	pack/talk/WTENSI:0x18b38	What? Is this true!?<FFF5>
-653	0x94e8	pack/talk/WTENSI:0x18b68	How could you!?<FFF6>You can be nothing but a villain<FFF6>who preys on the innocent!<FFF5>
+653	0x94e8	pack/talk/WTENSI:0x18b68	How could you!?<FFF6>You can be nothing but<FFF6>a villain who preys on the innocent!<FFF5>
 654	0x9520	pack/talk/WTENSI:0x18c00	H-How could you...?<FFF5>
 655	0x9531	pack/talk/WTENSI:0x18c28	I thought as much. I only wanted to<FFF6>confirm it with you. Now, let us<FFF6>move on to an offering, shall we...?<FFF1><FFF5>
 656	0x9565	pack/talk/WTENSI:0x18d00	I am relieved.<FFF5>
-657	0x9572	pack/talk/WTENSI:0x18d20	Do you intend to use that for<FFF6>your own personal gain? I warn you...!<FFF5>
+657	0x9572	pack/talk/WTENSI:0x18d20	Do you intend to use that for your<FFF6>own personal gain? I warn you...!<FFF5>
 658	0x959e	pack/talk/WTENSI:0x18db0	We are not demons, you realize...<FFF5>
-659	0x95b7	pack/talk/WTENSI:0x18df8	Ahaha...<FFF6>Your intentions are good, I see.<FFF6>That is, if what you say is true...<FFF5>
+659	0x95b7	pack/talk/WTENSI:0x18df8	Ahaha... Your intentions are good, I<FFF6>see. That is, if what you say is true...<FFF5>
 660	0x95e5	pack/talk/WTENSI:0x18e98	Your intentions are good.<FFF6>I am sure that He is pleased.<FFF5>
 661	0x9609	pack/talk/WTENSI:0x18f08	Oh, my! Are you striving to improve<FFF6>the environment? How commendable!<FFF5>
 662	0x9638	pack/talk/WTENSI:0x18f98	That is how it should be.<FFF5>
 663	0x9648	pack/talk/WTENSI:0x18fd0	Can you not see that if you walk<FFF6>alongside another on the road, you<FFF6>will only get in the way of others!?<FFF5>
 664	0x967d	pack/talk/WTENSI:0x190a8	I see! If that is the case,<FFF6>perhaps I can permit it.<FFF5>
-665	0x9698	pack/talk/WTENSI:0x19118	Ahaha...<FFF6>You thought this through,<FFF6>didn't you?<FFF5>
+665	0x9698	pack/talk/WTENSI:0x19118	Ahaha... You thought<FFF6>this through, didn't you?<FFF5>
 666	0x96ac	pack/talk/WTENSI:0x19178	I-I warned you not to come near...<FFF6>D-Did you not hear me...?<FFF5>
-667	0x96d4	pack/talk/WTENSI:0x191f8	Listen well... The noble of heart<FFF6>do nothing suspicious.<FFF5>
+667	0x96d4	pack/talk/WTENSI:0x191f8	Listen well... The noble of<FFF6>heart do nothing suspicious.<FFF5>
 668	0x970b	pack/talk/WTENSI:0x19270	To mock me is to mock Him!<FFF6>It seems that you require punishment!<FFF5>
 669	0x9746	pack/talk/WTENSI:0x192f8	Ha... haha...<FFF5>
 670	0x9751	pack/talk/WTENSI:0x19318	Are you demanding<FFF6>a tithe from an angel!?<FFF6>I take back what I said earlier!<FFF5>
@@ -690,7 +690,7 @@ id	pos	psp	en
 688	0x9a09	pack/talk/WTENSI:0x19c30	Ahaha... It is not right to<FFF6>make sport of we angels.<FFF5>
 689	0x9a2e	pack/talk/WTENSI:0x19ca0	Ah... did I err?<FFF6>Then you should make an offering.<FFF1><FFF5>
 690	0x9a56	pack/talk/WTENSI:0x19d08	It is deplorable to continue these lies<FFF6>after all this! Be ashamed!<FFF5>
-691	0x9a91	pack/talk/WTENSI:0x19d90	Dear me... I feel as though my face<FFF6>is becoming red...<FFF5>
+691	0x9a91	pack/talk/WTENSI:0x19d90	Dear me... I feel as though my<FFF6>face is becoming red...<FFF5>
 692	0x9ab3	pack/talk/WTENSI:0x19e00	But your behavior compels me...<FFF5>
 693	0x9ad5	pack/talk/WTENSI:0x19e40	Whew... thank Heaven.<FFF6>Then please, make an offering.<FFF1><FFF5>
 694	0x9af4	pack/talk/WTENSI:0x19eb0	Dear me... What should I do...?<FFF5>

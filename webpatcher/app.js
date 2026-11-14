@@ -300,6 +300,28 @@ window.addEventListener('pagehide', event => {
   dropScratch(resultScratch);
 });
 
+const SAVED_KEY = 'patcher.selected';
+
+function saveSelection() {
+  try {
+    const checked = [...document.querySelectorAll('#choices input:checked')]
+        .map(box => box.value);
+    localStorage.setItem(SAVED_KEY, JSON.stringify(checked));
+  } catch (err) { /* storage blocked: the choice just isn't remembered */ }
+}
+
+/* Tick the options remembered from the last patch run; labels that no
+ * longer exist are ignored. */
+function restoreSelection() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(SAVED_KEY) || '[]');
+    if (!Array.isArray(saved)) return;
+    for (const box of document.querySelectorAll('#choices input')) {
+      box.checked = saved.includes(box.value);
+    }
+  } catch (err) { /* nothing saved, or storage blocked */ }
+}
+
 function renderGrid() {
   const grid = $('choices');
   // FEATURES order, so the checkboxes stay where they are regardless of how
@@ -328,6 +350,7 @@ function renderGrid() {
     item.append(box, text);
     return item;
   }));
+  restoreSelection();
   $('choices-box').hidden = false;
 }
 
@@ -491,6 +514,7 @@ async function init() {
   $('delete-scratch').addEventListener('click', deleteResult);
   $('apply').addEventListener('click', async () => {
     if (!state.source || state.running) return;
+    saveSelection();
     state.running = true;
     refreshApply();
     let lock = null;
