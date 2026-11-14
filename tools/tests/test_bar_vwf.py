@@ -95,12 +95,12 @@ DNG_RACE_TABLE = 0x8009AEB0
 S2D_WRITER = 0x80083A64
 S2D_WRITER_SPAN = (0x80083A64, 0x80083B24)
 S2D_ADVANCE_SITE = 0x80065744
-S2D_HOOK = 0x800BE900
-S2D_HOOK_END = 0x800BE930
-S2D_LIST = 0x800BE800
-S2D_ARCANA_BLOCK = 0x800BE820
-S2D_NAME_BLOCK = 0x800BE878
-S2D_NAME_CELLS = 0x800BE880
+S2D_HOOK = 0x800BF100
+S2D_HOOK_END = 0x800BF130
+S2D_LIST = 0x800BF000
+S2D_ARCANA_BLOCK = 0x800BF020
+S2D_NAME_BLOCK = 0x800BF078
+S2D_NAME_CELLS = 0x800BF080
 S2D_SLOT_INIT = 0x8006EC2C
 S2D_STATUS = 0x8006F26C
 S2D_WIDTHS = 0x800BC224                      # sf_widths_s2d
@@ -175,7 +175,11 @@ class BarVWF(unittest.TestCase):
         self.assertEqual(struct.unpack_from('<I', body, 0x2C)[0], 0x3C18800C)  # la t8, sf_widths_adv
         self.assertEqual(struct.unpack_from('<I', body, 0x30)[0], 0x2718D264)
         self.assertIn(0xA1020003, struct.unpack(f'<{len(body) // 4}I', body))  # sb v0,3(t0)
-        self.assertEqual(body[0xB8:], bytes(len(body) - 0xB8))        # the stale tail zeroed
+        # the caption entry fills the tail: b cells_row / andi a2,a2,0xBF
+        self.assertEqual(start + 0xB8, self.sym['cells_row_caption'])
+        self.assertEqual(struct.unpack_from('<2I', body, 0xB8),
+                         (0x10000000 | ((-0xBC // 4) & 0xFFFF), 0x30C600BF))
+        self.assertEqual(len(body), 0xC0)
         # the next retail function intact
         self.assertEqual(self.word(self.adv, end), self.word(self.retail_adv, end))
 
@@ -275,7 +279,10 @@ class BarVWF(unittest.TestCase):
             self.assertEqual(self.word(self.adv, site + 0x28), 0x3407000A)  # ori a3,10
             self.assertEqual(self.word(self.adv, site + 0x38), 0x3C02800B)  # lui v0,0x800B
             self.assertEqual(self.word(self.adv, site + 0x3C), 0x2442249A)  # addiu v0,ADV_KIND_LABELS-10
-            self.assertEqual(self.word(self.adv, site + 0x44), jal(ADV_WRITER))
+            # the arcana enters through the caption entry: bit 6 (the name
+            # row's regular face) cleared, the original font
+            self.assertEqual(self.word(self.adv, site + 0x44),
+                             jal(self.sym['cells_row_caption']))
             self.assertEqual(self.word(self.adv, site + 0x48), 0x2444FC22)  # addiu a0,v0,-0x3DE
         self.assertEqual((ADV_KIND_LABELS - 10 - 0x3DE) & 0xFFFFFFFF, ADV_CELLS)
 
@@ -318,19 +325,20 @@ class BarVWF(unittest.TestCase):
         # the helper fills retail's old name block exactly
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR), 0x27BDFFF8)  # addiu sp,-8
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 4), 0xAFBF0000)  # sw ra,(sp)
-        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x14), jal(0x800BDA88))
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x14), jal(self.sym['demon_name_copy_adv']))
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x1C), 0x3C04800B)  # lui a0,0x800B
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x20), 0x24842114)  # ADV_BAR_NAME_CELLS
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x28), jal(ADV_CELLS_CLEAR))
-        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x40), 0x34060080)  # ori a2,0x80
+        self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x40), 0x340600C0)  # ori a2,0xC0: a name
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x44), 0x34070010)  # ori a3,16
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x50),
                          0x08000000 | ((ADV_WRITER >> 2) & 0x03FFFFFF))  # j ADV_CELLS_ROW
         self.assertEqual(self.word(self.adv, ADV_PDATA_BAR + 0x54), 0)  # nop (delay)
         self.assertEqual(ADV_PDATA_BAR + 0x58, ADV_PDATA_LIST)
 
-    def a2_selects_vwf(self, data, site, writer):
-        """The a2 in force at a row call is page 0 + bit 7.
+    def row_page(self, data, site, writer):
+        """The a2 in force at a row call: 0x80 (VWF face, original font) or
+        0xC0 (VWF face, regular face: a name), else None.
 
         Walk back to the nearest instruction that writes a2. A call in
         between is allowed only when it is the row writer itself, whose
@@ -341,16 +349,16 @@ class BarVWF(unittest.TestCase):
             word = self.word(data, site - back)
             op, rt, rd, fn = word >> 26, word >> 16 & 31, word >> 11 & 31, word & 63
             if op in (9, 10, 11, 12, 13, 15) and rt == 6:
-                return word == 0x34060080        # ori a2,zero,0x80
+                return {0x34060080: 0x80, 0x340600C0: 0xC0}.get(word)
             if op in (32, 33, 35, 36, 37) and rt == 6:
-                return False
+                return None
             if op == 0 and rd == 6 and fn not in (8, 9, 24, 25, 26, 27):
-                return False
+                return None
             if op == 3:
                 target = 0x80000000 | ((word & 0x3FFFFFF) << 2)
                 if target != writer:
-                    return False
-        return False
+                    return None
+        return None
 
     def test_every_bar_row_selects_the_vwf_face(self):
         for data, writer, spans in (
@@ -360,12 +368,21 @@ class BarVWF(unittest.TestCase):
                 (self.dng, DNG_WRITER, ((DNG_STATUS, 0xC0),)),
                 (self.s2d, S2D_WRITER, ((S2D_STATUS, 0xC0),))):
             for start, size in spans:
+                # one name row (the regular face) and one arcana row (the
+                # original font, through the caption entry when it chains
+                # the name row's a2)
+                caption = self.sym['cells_row_caption'] if data is self.adv else None
                 calls = [a for a in range(start, start + size, 4)
-                         if self.word(data, a) == jal(writer)]
+                         if self.word(data, a) in (jal(writer), caption and jal(caption))]
                 self.assertEqual(len(calls), 2, f'{start:#x}')
+                pages = []
                 for call in calls:
-                    self.assertTrue(self.a2_selects_vwf(data, call, writer),
-                                    f'row call at {call:#x} does not select the VWF face')
+                    page = self.row_page(data, call, writer)
+                    self.assertIsNotNone(page, f'row call at {call:#x} does not select the VWF face')
+                    if caption and self.word(data, call) == jal(caption):
+                        page &= 0xBF
+                    pages.append(page)
+                self.assertEqual(sorted(pages), [0x80, 0xC0], f'{start:#x}')
 
     def test_dng_patches(self):
         self.assertEqual(self.word(self.dng, DNG_ADVANCE_SITE), jal(DNG_HOOK))
@@ -419,8 +436,10 @@ class BarVWF(unittest.TestCase):
         self.assertEqual(self.word(self.dng, DNG_DRAW_SPELL_NAME + 0x94),
                          jal(0x8007782C))                 # the DNG recorder hook
         self.assertEqual(self.half(self.dng, DNG_DRAW_SPELL_NAME + 0x74), 10)
-        self.assertEqual(self.word(self.dng, DNG_DRAW_SPELL_NAME + 0x60), 0x3C04800B)  # lui a0,0x800B
-        self.assertEqual(self.half(self.dng, DNG_DRAW_SPELL_NAME + 0x64), 0x54D0)      # sf_name_scratch_dng
+        scratch = self.sym['sf_name_scratch_dng']
+        self.assertEqual(self.word(self.dng, DNG_DRAW_SPELL_NAME + 0x60),
+                         0x3C040000 | (scratch + 0x8000) >> 16)                 # lui a0
+        self.assertEqual(self.half(self.dng, DNG_DRAW_SPELL_NAME + 0x64), scratch & 0xFFFF)
         # the next retail function is untouched
         self.assertEqual(self.word(self.dng, DNG_DRAW_SPELL_NAME + 0xC0),
                          self.word(self.retail_dng, DNG_DRAW_SPELL_NAME + 0xC0))
@@ -452,18 +471,38 @@ class BarVWF(unittest.TestCase):
                                       DNG_PDATA_NAME_CELLS - OVERLAY_BASE + i * 8 + 8],
                              bytes.fromhex('00001E000000FF01'))
 
-    def test_dng_pdata_bar_runtime(self):
-        """Run the real helper: race and full demon name into their cells."""
+    @staticmethod
+    def original_cells(codes):
+        """(u, v, advance) per cell of the original-font bar writer: the
+        retail cell, and adv + bearing - the next glyph's bearing (the cell
+        has no x offset; sf_bar_orig in smallfont_variants.py)."""
+        table = (ROOT / 'build/sf_field_orig.bin').read_bytes()
+        out = []
+        for i, code in enumerate(codes):
+            following = table[codes[i + 1]] >> 4 if i + 1 < len(codes) else 0
+            out.append(((code % 31) * 8, (code // 31) * 12,
+                        (table[code] & 15) + (table[code] >> 4) - following))
+        return out
+
+    @staticmethod
+    def regular_cells(codes, widths):
+        """(u, v, advance) per cell of a name row (page bit 6): the
+        selector's regular-face cell and the overlay's advance table."""
         sys.path.insert(0, str(ROOT / 'src/injection_tools'))
         import smallfont_variants                         # noqa: E402
         editable = smallfont_variants.editable_codes()
         regular, _compact = smallfont_variants.cell_codes()
-
-        def uv(code):
+        out = []
+        for code in codes:
             if code in editable:
-                return smallfont_variants.cell_uv(regular[editable.index(code)])
-            return ((code % 31) * 8, (code // 31) * 12)
+                u, v = smallfont_variants.cell_uv(regular[editable.index(code)])
+            else:
+                u, v = (code % 31) * 8, (code // 31) * 12
+            out.append((u, v, widths[code] & 0xF))
+        return out
 
+    def test_dng_pdata_bar_runtime(self):
+        """Run the real helper: race and full demon name into their cells."""
         ident = 1                                        # Jahi: no tail
         record = DNG_DEMON_BASE + ident * 0x38
         name = bytes([0xAF, 0x23, 0x34])                 # J a h i
@@ -478,18 +517,14 @@ class BarVWF(unittest.TestCase):
         race_codes = self.dng[DNG_RACE_TABLE - OVERLAY_BASE +
                               (race - 1) * 6:DNG_RACE_TABLE - OVERLAY_BASE +
                               (race - 1) * 6 + 6]
-        for i, code in enumerate(race_codes):
-            base = DNG_PDATA_RACE_CELLS + i * 8
-            u, v = uv(code)
-            self.assertEqual(cpu.read(base, 1), u)
-            self.assertEqual(cpu.read(base + 1, 1), v)
-            self.assertEqual(cpu.read(base + 3, 1), self.dng_widths[code] & 0xF)
-        for i, code in enumerate(name):
-            base = DNG_PDATA_NAME_CELLS + i * 8
-            u, v = uv(code)
-            self.assertEqual(cpu.read(base, 1), u)
-            self.assertEqual(cpu.read(base + 1, 1), v)
-            self.assertEqual(cpu.read(base + 3, 1), self.dng_widths[code] & 0xF)
+        # the race in the original font, the demon name in the regular face
+        for base0, cells in ((DNG_PDATA_RACE_CELLS, self.original_cells(list(race_codes))),
+                             (DNG_PDATA_NAME_CELLS, self.regular_cells(name, self.dng_widths))):
+            for i, (u, v, advance) in enumerate(cells):
+                base = base0 + i * 8
+                self.assertEqual(cpu.read(base, 1), u)
+                self.assertEqual(cpu.read(base + 1, 1), v)
+                self.assertEqual(cpu.read(base + 3, 1), advance)
         # the FF ended the row; the rest of the twenty cells stay cleared
         for i in range(len(name), 20):
             self.assertEqual(cpu.read(DNG_PDATA_NAME_CELLS + i * 8, 1), 0xFF)
@@ -500,15 +535,6 @@ class BarVWF(unittest.TestCase):
         sys.path.insert(0, str(ROOT / 'src/injection_tools'))
         import demons                                   # noqa: E402
         import skills                                   # noqa: E402
-        import smallfont_variants                       # noqa: E402
-        editable = smallfont_variants.editable_codes()
-        regular, _compact = smallfont_variants.cell_codes()
-
-        def uv(code):
-            if code in editable:
-                return smallfont_variants.cell_uv(regular[editable.index(code)])
-            return ((code % 31) * 8, (code // 31) * 12)
-
         ident = 90                                      # Yomotsu Shikome: 15 glyphs
         codes = list(skills.encode_glyphs(ident, demons.record_en()[ident]))
         self.assertGreater(len(codes), 10)              # the head alone would cut it
@@ -522,24 +548,23 @@ class BarVWF(unittest.TestCase):
         cpu.start(ADV_PDATA_TAIL)
         cpu.run(RETURN, limit=200000)
 
-        for i, code in enumerate(codes):
+        # the demon name in the regular face; the race below in the original font
+        for i, (u, v, advance) in enumerate(self.regular_cells(codes, self.widths)):
             base = ADV_PDATA_NAME_CELLS + i * 8
-            u, v = uv(code)
             self.assertEqual(cpu.read(base, 1), u)
             self.assertEqual(cpu.read(base + 1, 1), v)
-            self.assertEqual(cpu.read(base + 3, 1), self.widths[code] & 0xF)
+            self.assertEqual(cpu.read(base + 3, 1), advance)
         # the FF ended the row; the remaining cells stayed cleared
         self.assertEqual(cpu.read(ADV_PDATA_NAME_CELLS + len(codes) * 8, 1), 0xFF)
 
         race = cpu.read(ADV_DEMON_BASE + ident * 0x38 + 0xB, 1)
         race_codes = self.adv[ADV_RACE_TABLE - OVERLAY_BASE + (race - 1) * 6:
                               ADV_RACE_TABLE - OVERLAY_BASE + (race - 1) * 6 + 6]
-        for i, code in enumerate(race_codes):
+        for i, (u, v, advance) in enumerate(self.original_cells(list(race_codes))):
             base = ADV_PDATA_RACE_CELLS + i * 8
-            u, v = uv(code)
             self.assertEqual(cpu.read(base, 1), u)
             self.assertEqual(cpu.read(base + 1, 1), v)
-            self.assertEqual(cpu.read(base + 3, 1), self.widths[code] & 0xF)
+            self.assertEqual(cpu.read(base + 3, 1), advance)
 
     def test_s2d_patches(self):
         self.assertEqual(self.word(self.s2d, S2D_ADVANCE_SITE), jal(S2D_HOOK))
@@ -559,8 +584,8 @@ class BarVWF(unittest.TestCase):
             self.assertEqual(self.s2d[cells - OVERLAY_BASE:cells - OVERLAY_BASE + 8],
                              bytes.fromhex('00001E000000FF01'))
         # the status preview points slot 0x1E at the list (lui 0x800C / addiu -0x1800)
-        self.assertEqual(self.word(self.s2d, S2D_SLOT_INIT), 0x3C04800C)
-        self.assertEqual(self.half(self.s2d, S2D_SLOT_INIT + 4), 0xE800)
+        self.assertEqual(self.word(self.s2d, S2D_SLOT_INIT), 0x3C040000 | (S2D_LIST + 0x8000) >> 16)
+        self.assertEqual(self.half(self.s2d, S2D_SLOT_INIT + 4), S2D_LIST & 0xFFFF)
         # the status rewrite grows the full name, key passed unchanged
         self.assertEqual(self.word(self.s2d, 0x8006F2E0), 0x92450018)  # lbu a1,0x18(s2)
         self.assertEqual(self.word(self.s2d, 0x8006F2E4), jal(0x80031878))
@@ -614,10 +639,10 @@ class BarVWF(unittest.TestCase):
         self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR), 0x27BDFFF8)  # addiu sp,-8
         self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 4), 0xAFBF0000)  # sw ra,(sp)
         self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x14), jal(0x800BD7E4))
-        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x1C), 0x3C04800C)  # lui a0,0x800C
-        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x20), 0x2484E880)  # S2D_BAR_NAME_CELLS
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x1C), 0x3C040000 | (S2D_NAME_CELLS + 0x8000) >> 16)  # lui a0
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x20), 0x24840000 | S2D_NAME_CELLS & 0xFFFF)  # S2D_BAR_NAME_CELLS
         self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x28), jal(0x800838E8))
-        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x40), 0x34060080)  # ori a2,0x80
+        self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x40), 0x340600C0)  # ori a2,0xC0: a name
         self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x44), 0x34070010)  # ori a3,16
         self.assertEqual(self.word(self.s2d, S2D_PDATA_BAR + 0x50),
                          0x08000000 | ((S2D_WRITER >> 2) & 0x03FFFFFF))  # j S2D_CELLS_ROW
@@ -630,15 +655,6 @@ class BarVWF(unittest.TestCase):
         sys.path.insert(0, str(ROOT / 'src/injection_tools'))
         import demons                                   # noqa: E402
         import skills                                   # noqa: E402
-        import smallfont_variants                       # noqa: E402
-        editable = smallfont_variants.editable_codes()
-        regular, _compact = smallfont_variants.cell_codes()
-
-        def uv(code):
-            if code in editable:
-                return smallfont_variants.cell_uv(regular[editable.index(code)])
-            return ((code % 31) * 8, (code // 31) * 12)
-
         ident = 90                                      # Yomotsu Shikome: 15 glyphs
         codes = list(skills.encode_glyphs(ident, demons.record_en()[ident]))
         self.assertGreater(len(codes), 10)              # the head alone would cut it
@@ -652,24 +668,23 @@ class BarVWF(unittest.TestCase):
         cpu.start(S2D_PDATA_TAIL)
         cpu.run(RETURN, limit=200000)
 
-        for i, code in enumerate(codes):
+        # the demon name in the regular face; the race below in the original font
+        for i, (u, v, advance) in enumerate(self.regular_cells(codes, self.s2d_widths)):
             base = S2D_PDATA_NAME_CELLS + i * 8
-            u, v = uv(code)
             self.assertEqual(cpu.read(base, 1), u)
             self.assertEqual(cpu.read(base + 1, 1), v)
-            self.assertEqual(cpu.read(base + 3, 1), self.s2d_widths[code] & 0xF)
+            self.assertEqual(cpu.read(base + 3, 1), advance)
         # the FF ended the row; the remaining cells stayed cleared
         self.assertEqual(cpu.read(S2D_PDATA_NAME_CELLS + len(codes) * 8, 1), 0xFF)
 
         race = cpu.read(S2D_DEMON_BASE + ident * 0x38 + 0xB, 1)
         race_codes = self.s2d[S2D_RACE_TABLE - OVERLAY_BASE + (race - 1) * 6:
                               S2D_RACE_TABLE - OVERLAY_BASE + (race - 1) * 6 + 6]
-        for i, code in enumerate(race_codes):
+        for i, (u, v, advance) in enumerate(self.original_cells(list(race_codes))):
             base = S2D_PDATA_RACE_CELLS + i * 8
-            u, v = uv(code)
             self.assertEqual(cpu.read(base, 1), u)
             self.assertEqual(cpu.read(base + 1, 1), v)
-            self.assertEqual(cpu.read(base + 3, 1), self.s2d_widths[code] & 0xF)
+            self.assertEqual(cpu.read(base + 3, 1), advance)
 
     # -------------------------------------------------------------
     # runtime: the writer and the advance hook on the R3000
@@ -709,15 +724,6 @@ class BarVWF(unittest.TestCase):
         selector; the advance stays this overlay's table and the page's low
         7 bits still set the tpage."""
         sys.path.insert(0, str(ROOT / 'src/injection_tools'))
-        import smallfont_variants                         # noqa: E402
-        editable = smallfont_variants.editable_codes()
-        regular, _compact = smallfont_variants.cell_codes()
-
-        def uv(code):
-            if code in editable:
-                return smallfont_variants.cell_uv(regular[editable.index(code)])
-            return ((code % 31) * 8, (code // 31) * 12)
-
         glyphs = [0xB4, 0x32, 0x00]                       # O, g, the blank pad
         cpu = self.machine(self.adv)
         cpu.load(BUF, bytes(0x100))
@@ -728,12 +734,31 @@ class BarVWF(unittest.TestCase):
         cpu.r[REG['a3']] = 3
         cpu.start(ADV_WRITER)
         cpu.run(RETURN, limit=20000)
-        for i, code in enumerate(glyphs):
+        for i, (u, v, advance) in enumerate(self.original_cells(glyphs)):
             base = BUF + i * 8
-            u, v = uv(code)
             self.assertEqual(cpu.read(base, 1), u)
             self.assertEqual(cpu.read(base + 1, 1), v)
-            self.assertEqual(cpu.read(base + 3, 1), self.widths[code] & 0xF)
+            self.assertEqual(cpu.read(base + 3, 1), advance)
+            self.assertEqual(cpu.read(base + 6, 2), 0x01A0)
+
+    def test_adv_writer_name_face(self):
+        """Bit 6 with bit 7 is a name: the selector's regular-face cell and
+        the overlay's own advance."""
+        glyphs = [0xB4, 0x32, 0x00]                       # O, g, the blank pad
+        cpu = self.machine(self.adv)
+        cpu.load(BUF, bytes(0x100))
+        cpu.load(BUF + 0x100, bytes(glyphs + [0xFF]))
+        cpu.r[REG['a0']] = BUF
+        cpu.r[REG['a1']] = BUF + 0x100
+        cpu.r[REG['a2']] = 0xC0
+        cpu.r[REG['a3']] = 3
+        cpu.start(ADV_WRITER)
+        cpu.run(RETURN, limit=20000)
+        for i, (u, v, advance) in enumerate(self.regular_cells(glyphs, self.widths)):
+            base = BUF + i * 8
+            self.assertEqual(cpu.read(base, 1), u)
+            self.assertEqual(cpu.read(base + 1, 1), v)
+            self.assertEqual(cpu.read(base + 3, 1), advance)
             self.assertEqual(cpu.read(base + 6, 2), 0x01A0)
 
     def test_renderer_and_selector_share_t7(self):
@@ -787,15 +812,6 @@ class BarVWF(unittest.TestCase):
         the cells: the bar's exact two-call flow."""
         sys.path.insert(0, str(ROOT / 'src/injection_tools'))
         import personas                                    # noqa: E402
-        import smallfont_variants                           # noqa: E402
-        editable = smallfont_variants.editable_codes()
-        regular, _compact = smallfont_variants.cell_codes()
-
-        def uv(code):
-            if code in editable:
-                return smallfont_variants.cell_uv(regular[editable.index(code)])
-            return ((code % 31) * 8, (code // 31) * 12)
-
         rows = sorted(personas.record_en().items())
         self.assertTrue(rows)
         for ident, _text in rows[:4]:
@@ -816,22 +832,22 @@ class BarVWF(unittest.TestCase):
             cpu.r[REG['a3']] = 16
             cpu.start(ADV_WRITER)
             cpu.run(RETURN, limit=20000)
-            for i, code in enumerate(copied):
+            for i, (u, v, advance) in enumerate(self.original_cells(list(copied))):
                 base = cells + i * 8
-                u, v = uv(code)
                 self.assertEqual(cpu.read(base, 1), u)
                 self.assertEqual(cpu.read(base + 1, 1), v)
-                self.assertEqual(cpu.read(base + 3, 1), self.widths[code] & 0xF)
+                self.assertEqual(cpu.read(base + 3, 1), advance)
 
-    def writer_row(self, cells, codes, count):
-        """Run CellsWriteRow on its own cleared row: the expected bytes."""
+    def writer_row(self, cells, codes, count, page=0x80):
+        """Run CellsWriteRow on its own cleared row: the expected bytes.
+        page 0x80 is the original font, 0xC0 a name's regular face."""
         cpu = self.machine(self.adv)
         dst, src = 0x80190000, 0x80190100
         cpu.load(dst, bytes(cells))
         cpu.load(src, bytes(codes))
         cpu.r[REG['a0']] = dst
         cpu.r[REG['a1']] = src
-        cpu.r[REG['a2']] = 0x80                     # the bar's VWF face
+        cpu.r[REG['a2']] = page
         cpu.r[REG['a3']] = count
         cpu.start(ADV_WRITER)
         cpu.run(RETURN, limit=20000)
@@ -882,7 +898,7 @@ class BarVWF(unittest.TestCase):
             self.assertNotEqual(arcana[:2], b'\xff\xff',
                                 f'{site:#x}: the arcana row was never drawn')
             self.assertEqual(name, self.writer_row(clear * 16,
-                                                   copied + b'\xff', 16),
+                                                   copied + b'\xff', 16, 0xC0),
                              f'{site:#x}: name row')
 
     def test_persona_name_copy_uses_the_retail_record_key(self):
@@ -940,10 +956,6 @@ class BarVWF(unittest.TestCase):
             self.assertEqual(cpu.read(base + 3, 1), self.dng_widths[code] & 0xF)
 
     def test_dng_writer_vwf_face(self):
-        sys.path.insert(0, str(ROOT / 'src/injection_tools'))
-        import smallfont_variants                         # noqa: E402
-        editable = smallfont_variants.editable_codes()
-        regular, _compact = smallfont_variants.cell_codes()
         glyphs = [0xAD, 0x39]                             # H, n
         cpu = self.machine(self.dng)
         cpu.load(BUF, bytes(0x100))
@@ -954,12 +966,11 @@ class BarVWF(unittest.TestCase):
         cpu.r[REG['a3']] = 2
         cpu.start(DNG_WRITER)
         cpu.run(RETURN, limit=20000)
-        for i, code in enumerate(glyphs):
+        for i, (u, v, advance) in enumerate(self.original_cells(glyphs)):
             base = BUF + i * 8
-            u, v = smallfont_variants.cell_uv(regular[editable.index(code)])
             self.assertEqual(cpu.read(base, 1), u)
             self.assertEqual(cpu.read(base + 1, 1), v)
-            self.assertEqual(cpu.read(base + 3, 1), self.dng_widths[code] & 0xF)
+            self.assertEqual(cpu.read(base + 3, 1), advance)
             self.assertEqual(cpu.read(base + 6, 2), 0x01A0)
 
     def test_s2d_advance_hook(self):
@@ -993,10 +1004,6 @@ class BarVWF(unittest.TestCase):
             self.assertEqual(cpu.read(base + 3, 1), self.s2d_widths[code] & 0xF)
 
     def test_s2d_writer_vwf_face(self):
-        sys.path.insert(0, str(ROOT / 'src/injection_tools'))
-        import smallfont_variants                         # noqa: E402
-        editable = smallfont_variants.editable_codes()
-        regular, _compact = smallfont_variants.cell_codes()
         glyphs = [0xAD, 0x39]                             # H, n
         cpu = self.machine(self.s2d)
         cpu.load(BUF, bytes(0x100))
@@ -1007,12 +1014,11 @@ class BarVWF(unittest.TestCase):
         cpu.r[REG['a3']] = 2
         cpu.start(S2D_WRITER)
         cpu.run(RETURN, limit=20000)
-        for i, code in enumerate(glyphs):
+        for i, (u, v, advance) in enumerate(self.original_cells(glyphs)):
             base = BUF + i * 8
-            u, v = smallfont_variants.cell_uv(regular[editable.index(code)])
             self.assertEqual(cpu.read(base, 1), u)
             self.assertEqual(cpu.read(base + 1, 1), v)
-            self.assertEqual(cpu.read(base + 3, 1), self.s2d_widths[code] & 0xF)
+            self.assertEqual(cpu.read(base + 3, 1), advance)
             self.assertEqual(cpu.read(base + 6, 2), 0x01A0)
 
 

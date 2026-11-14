@@ -145,15 +145,11 @@ def write_analyze_tiers(d):
 
 def trait_line_x(d):
     """The trait line (ANALYZE row 36) starts one space after the traits
-    label (row 35), as the Japanese line follows its label: both are VWF,
-    measured with the battle width table."""
-    if not os.path.exists(smallfont_vwf.BTL_WIDTH_OUT):
-        smallfont_vwf.build()
-    with open(smallfont_vwf.BTL_WIDTH_OUT, 'rb') as f:
-        widths = f.read()
+    label (row 35), as the Japanese line follows its label: the label is
+    the original font (btlp/orig_face.asm's pools), the gap its word space."""
     label = strlib.glossary('btlui_label')['0x800dea3c']
     label_x, = struct.unpack_from('<h', d, 0x800DEA44 + 35 * 12 - B)
-    return label_x + sum(smallfont_vwf.adv(widths[skills.glyph(c)]) for c in label + ' ')
+    return label_x + smallfont_vwf.btl_orig_px([skills.glyph(c) for c in label + ' '])
 
 
 def guard_offer_retail(d):
@@ -289,13 +285,10 @@ def main():
     # label block, so they are VWF and free of the retail 8-byte slots: no
     # terminators, each row's count is its label's length. A row whose retail
     # string is translated in terms.tsv (keyed by that string's address) takes
-    # the English; STR..LUK are retail English and keep their bytes.
-    if not os.path.exists(smallfont_vwf.BTL_WIDTH_OUT):
-        smallfont_vwf.build()
-    with open(smallfont_vwf.BTL_WIDTH_OUT, 'rb') as f:
-        btl_widths = f.read()
-    def btl_px(codes):
-        return sum(smallfont_vwf.adv(btl_widths[c]) for c in codes)
+    # the English; STR..LUK are retail English and keep their bytes. The block
+    # is drawn in the original font (btlp/orig_face.asm's pools), so the
+    # column check measures that face.
+    btl_px = smallfont_vwf.btl_orig_px
     label_buf = toolbelt.asm_equ('ANALYZE_LABEL_BUF')
     label_end = toolbelt.asm_equ('ANALYZE_LABEL_END')
     blob = b''

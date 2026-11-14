@@ -228,6 +228,63 @@ wording never changes. If no tier fits, the porter refuses the name
 (`over limit Npx/80px`, reporting natural width), queues its draft in manual,
 and leaves Japanese on disc.
 
+**The original font.** In the field overlays (ADV, DNG and S2D,
+`smallfont_vwf.ORIG_FACE_OVERLAYS`) the kit's own face is the page's
+original fixed font, spaced proportionally. Each glyph's metric
+(`smallfont_variants.original_metrics`, the table `SF_ORIG_TABLE` bytes after
+the advance table) is its left bearing and its ink plus the 1-px letter gap;
+the retail cell is drawn at pen - bearing, so the ink starts at the pen.
+Digits keep the cell's 8-px pitch (numbers stay tabular), and so does every
+code without Latin art. Every row the kit draws without a name budget is
+tier 3, the original font with 4-px word spaces, while its advances fit the
+caller's retail footprint (8 px per cell); a wider row takes the regular
+face's tiers against that footprint, and a centered field always keeps its
+natural width. Name rows - items, skills, demons and Personas, in lists and
+on the sprite-cell bars - and the affinity (Type/Subtype) lines keep the
+regular face and tiers 0-2 above; on the bars, page bit 6 marks a name row, while
+races and arcana keep the original font (ADV's fusion bar chains its arcana
+row through the writer's caption entry, `cells_row_caption`, which clears
+the bit).
+
+The row table holds 96 rows: a menu's whole list map fits beside the rest of
+its screen (DNG's item list is a 32-line ring of two names per line, 64 rows,
+next to the party names). When it is full the recorder evicts by a clock
+with one bit per row (`SF_REC_SEEN`, set whenever the renderer draws the
+row): the victim is the first row, from the last victim on, not drawn since
+the clock last passed it. A new row starts with the bit; a rewrite keeps the
+bit of the row it replaces, so a menu that rewrites every row at once does
+not mark them all drawn. Rows on screen keep their records - a menu's names
+written once when it opens - and rows scrolled out of view go first.
+
+**The original font in battle.** Every battle object-text row is laid out
+proportionally. A producer's name row (skill, Persona, complete item names and
+the ANALYZE board) keeps the separate proportional cells and their metrics.
+Every other row - character names, any row no producer owns, and the board
+text whose every showing list still fits in it - is the original font: the
+retail cells with the original face's advances (`btl_orig_width`), numbers
+and every non-text cell at 8 px (`btl_row_face`). A board list ships when it
+fits in the regular face; its wordings that some showing list fits only that
+way keep the regular face, and headings centre on their own face's width. A
+race tag is the original font and a demon name the regular face: the CONTACT
+list's tag rows draw from the race-tag table (an original-font pool), and the
+ANALYZE header, one "race: name" row, starts in the original font and takes
+the regular face from the word space after the race colon on
+(`btl_orig_glyph`; no race tag holds a space). ANALYZE's stat labels and
+rank/kind rows are the original font; its spell rows and trait line keep the
+regular face. A party marker's name is
+centred on its drawn width (`btl_marker_x`). Centred rows centre on the original font's advances. The
+Persona bar's sprite-cell writer draws the same retail cells; its cells have
+no x offset, so a cell advances adv + bearing - the next glyph's bearing (the
+first glyph's bearing, at most 2 px, stays). ADV's row table is runtime
+scratch above the game's globals (`ADV_SF_TABLE_ADDR`, docs/MEMORY_AUDIT.md)
+to make room for the second table; the recorder frees its slots whenever it finds a fresh state.
+The save list's names are text and go through the kit; its level and TIME
+labels, digits and dashes remain atlas art written straight to the map. The
+title's load list (OPEN.EXE, no kit) draws each name glyph as its own sprite:
+the retail cell at the pen minus the glyph's left bearing, the pen moving by
+its original-font advance (the field kit's metric table), so both lists show
+the same face.
+
 The ADV field item-pickup animation uses the same regular proportional
 sprite face as the Persona bar, with up to 20 cells for the complete item
 name. Its quantity and multiplication-sign sprites remain unchanged. The
@@ -237,8 +294,15 @@ the actor-relative position remains unchanged otherwise. The item name is
 copied from the source record and its derived tail, never shortened.
 
 Font style and row spacing are independent of wording. Structurally identified
-Char.name producers and statically addressed 3/4/5-cell captions mark their rows
-fixed-cell (a3 bit 14); they retain the original font and 8-px pitch. The
+Char.name producers, statically addressed 3/4/5-cell captions, and statically
+addressed captions of any length whose retail cells already spell English
+(blank cells plus the page's own Latin letters, digits and dash: DELETE,
+BUTTON, NOTHING, ...) mark their rows fixed-cell (a3 bit 14); they retain the
+original font and 8-px pitch, so the retail layout drawn around them (button
+plates, centring) still holds. A producer the centring rule below owns keeps
+that rule instead. In the original-font overlays (all three field overlays)
+neither kind is fixed-cell: character names are ordinary rows in the original
+font and captions are centred on their retail field (a3 bit 15). The
 recorder still retires overwritten rows but the sorter never suppresses a
 fixed-cell row. Variable item/demon/skill lists and ordinary proportional
 labels keep VWF. Atlas/UI bitmap elements remain with their original renderer.
@@ -659,6 +723,38 @@ Glue (what a break may not fall inside):
   A comma, semicolon or colon boundary releases the connector: the clause
   ends there, so the connector may start the next clause's line
   (`C'mon, <FFF3>,<FFF6>if ya don't laugh...` keeps its comma break).
+- **A connector may OPEN the short phrase that closes its sentence**
+  (`He obviously ran off / with his girlfriend!`): when a connector and at
+  most one more word end the sentence, a line may start on the connector. It
+  is a soft break (one rhythm point on the line before it), so it only wins
+  where the backward-bound layout is worse.
+- **Speech beside a speaker label may not stop mid-clause.** A label line
+  that carries speech cut mid-clause (`Female student: Uh, isn't it / time
+  you...`), a clipped scrap, or a tiny comma tail ranks above the line count:
+  a label alone on its line (spec 2.4) is preferred while the block still
+  fits the box. Speech that opens with a beat of its own - a hesitation or a
+  one-word sentence (`Yuko: U-Um... I think Yukino`, `Elly: Good! I was
+  worried you`) - may be cut beside the label when the next line finishes
+  that clause and nothing more (`would think it was weird!`, never `there?
+  When did they rebuild it!?`). A rise of more than 2x after a trailing
+  ellipsis or a mid-clause line is a fault of the same rank.
+- **Shape and line ends share one scale at the root**: a rhythm point is worth
+  2·239² of shape (`SHAPE_POINT`), so one point never outweighs a far squarer
+  block.
+- **Two joined boxes are laid out as one** (`port_story._rejoin`): when the
+  free join removes the press between two PSP boxes, the pair takes the
+  flow's best shape (`You gotta take it easy! / Live a little! Like me!`),
+  not the first box's lines with the second stacked under them. A box that
+  opens on a carried timed pause keeps the boundary as its line break.
+- **Possessives bind to their noun softly** (`its their his her our your
+  my`): a line may break between one and its noun (`at the end of her /
+  journey was`), at one rhythm point, so only a clearly better shape takes
+  it. `a/an/the/this/these/those` stay glued.
+- **A standalone label costs no line end**: its colon is the label's, not a
+  place the speech breathes, so a label alone on its line is ranked by the
+  speech under it (spec 2.4).
+- **A voice code opening a line prints nothing**: the words after it start
+  bare (`<FFEB>Alright!`), never behind a space.
 - **A PROSE newline in the source is not a break of ours.** The PSP broke its
   lines where ITS 16px glyphs ran out, and English has different widths.
   The flow owns every line break in prose.
@@ -790,6 +886,20 @@ one click. That is the whole model; "four clicks in one box" is a bug.
    ellipsis and no pause, the same pauses go on the same sides of the
    English ellipsis (`port_story.ellipsis_pauses`); any other count is left
    alone. The pauses are zero-width, so the layout does not change.
+   **A timed beat between sentences keeps its place too**
+   (`port_story.sentence_pauses`): a JP pause right after a sentence end
+   (`？！。`) with words after it goes on the English sentence end (a word
+   ending `. ! ?`; a trailing ellipsis ends none) nearest the same
+   proportional place in the box - JP in glyph cells, English in pixels -
+   when one lies within two fifths of the box. A beat that lands on a box
+   turn the PSP keeps is dropped: the press is the pause. Where the PSX broke the line
+   around the pause (`？<FF03><FF05><58><00>オイ`, `うそ！<FF05><5E><00><FF03>`)
+   the English breaks there too, and the PSP's own box turn at that point is
+   that break (`What do you mean?<FF03><FF05><58><00>Wait a sec, ...`). A
+   pause in the middle of a clause is not carried; a box re-shaped by a
+   mid-box label or an option block is left alone.
+   A pause (or voice code) that opens a line leaves no space before the next
+   word.
 11. **The authored boxes join down to the JP's own box count.** A PSP row that
    spells a prompt's lead-in and its question as two boxes is one box in the
    JP (the press scrolls), so `port_story.merge_boxes` joins them wherever the
@@ -814,9 +924,10 @@ one click. That is the whole model; "four clicks in one box" is a bug.
    write, routes the full PSP draft to manual as `over limit Npx/239px;
    <draft>`, and leaves the Japanese on the disc. A human shortens the draft
    into `en`; the grid then fits.
-   Column 1 is padded with whole 4 px VWF spaces rounded UP to the stop, so
-   column 2 never starts before it (at most 3 px past it); rounding to the
-   nearest space put rows whose shortfall was 14.5 and 13.5 spaces 4 px apart.
+   Column 1 is padded to the stop exactly: whole 4 px VWF spaces, then the
+   0-3 px left over as the font's 1 px blank (`make_vwf_font.HAIR_SPACE`), so
+   column 2 of every row starts on the same pixel. Whole spaces alone left
+   rows up to 3 px apart ("Go back" under "Controls").
 
 **S2D overworld portrait dialogue.** The generic 15x3 text object treats
 `<FF02>` as a wait in place and `<FF04>` as a page advance. For complete

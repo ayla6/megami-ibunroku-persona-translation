@@ -13,6 +13,8 @@ sf_state_adv:
     .fill SF_ST_END, 0
 sf_widths_adv:
     .incbin "../../build/sf_field_width.bin"
+sf_orig_adv:                            ; the original font's metrics (SF_ORIG_TABLE)
+    .incbin "../../build/sf_field_orig.bin"
 sf_pool_adv:
     .incbin "../../build/affinity_pool.bin"
 sf_data_end_adv:
@@ -26,16 +28,12 @@ sf_item_end_adv:
 .if SF_VWF
 .align 4
 sf_cfg_adv:
-    .word SF_ENG_MAGIC, ADV_SF_MAP_BASE, sf_table_adv, 0
+    .word SF_ENG_MAGIC, ADV_SF_MAP_BASE, ADV_SF_TABLE_ADDR, 0
     .word ADV_SF_BUFS_ADDR, sf_widths_adv, sf_pool_adv, ADV_SF_HOOK_ADDR + 0x0C
     .word SF_REG_MAGIC
     .include "../../build/smallfont_hook_adv.asm"
     .include "../../build/smallfont_rec_adv.asm"
     .include "../../build/smallfont_helpers_adv.asm"
-.align 4
-sf_table_adv:
-    .fill SF_TABLE_SIZE, 0
-sf_table_end_adv:
 .endif
 
 ;; --- MsgStep cases 9-12: full names instead of the ten-glyph record head ---
@@ -51,6 +49,17 @@ sf_msg_name_end_adv:
 sf_name_scratch_adv:
     .fill SF_NAME_BYTES, 0
 sf_extension_end_adv:
+
+.if SF_VWF
+.definelabel sf_table_adv, ADV_SF_TABLE_ADDR
+.definelabel sf_table_end_adv, ADV_SF_TABLE_ADDR + SF_TABLE_SIZE
+.if sf_table_end_adv > ADV_SF_TABLE_LIMIT
+    .error "smallfont: the ADV row table overruns ADV_SF_TABLE_LIMIT"
+.endif
+.if sf_orig_adv - sf_widths_adv != SF_ORIG_TABLE
+    .error "smallfont: the ADV original-font table must follow the advance table"
+.endif
+.endif
 .if sf_extension_end_adv > ADV_SF_EXTENSION_END
     .error "smallfont: packed ADV extension exceeds the sector-safe overlay ceiling"
 .endif

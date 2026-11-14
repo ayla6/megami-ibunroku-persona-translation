@@ -216,8 +216,11 @@ wording and expected glyph positions in ADV/DNG/S2D through both sorter paths.
 It also checks every CLUT bank, all three stages (stage 3 draws the compact
 face with 1 px word spaces), unchanged centered and non-name rows, the
 fixed-cell producer flag, blank markers, and the measured compact advance.
-Producer-owned character-name rows and statically addressed 3/4-cell captions
-carry a fixed-cell flag. They retain original artwork and 8px spacing; their
+In the field overlays (`ORIG_FACE_OVERLAYS`) the kit's face is the original
+fixed font spaced proportionally, with tabular digits; see the text-layout
+specification. An overlay without it marks producer-owned character-name
+rows, statically addressed 3/4/5-cell captions and statically addressed
+captions the Japanese release already spells in Latin cells fixed-cell. They retain original artwork and 8px spacing; their
 classification uses source instructions and the Char layout, not names or
 per-screen exceptions. Atlas bitmap labels stay bitmap labels.
 

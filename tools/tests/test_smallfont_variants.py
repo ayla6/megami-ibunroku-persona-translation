@@ -99,6 +99,31 @@ class VariantArt(unittest.TestCase):
                 self.assertFalse(any(lo <= address < hi for lo, hi in retired),
                                  f'{overlay}: tag {address:#x} lands in retired code')
 
+    def test_retail_english_captions_keep_fixed_cells(self):
+        import items
+        self.assertTrue(variants.retail_latin(bytes(items.glyph(c) for c in 'DELETE')))
+        self.assertTrue(variants.retail_latin(bytes(items.glyph(c) for c in '  IN BATTLE')))
+        self.assertFalse(variants.retail_latin(bytes(6)), 'an all-blank run is no caption')
+        self.assertFalse(variants.retail_latin(bytes(range(6))), 'graphic cells are not Latin')
+        for overlay in ('ADV', 'DNG', 'S2D'):
+            stock = (ROOT / f'data/psx/{overlay}.BIN').read_bytes()
+            longer = [word & 0x3FFF for _at, word in variants.fixed_producers(stock, overlay)
+                      if word & 0x3FFF > 5 and word & 0x3FFF not in (8, 10)]
+            self.assertTrue(longer, f'{overlay}: no retail English caption kept its cells')
+
+    def test_caption_source_follows_saved_registers_across_calls(self):
+        # lui s0,0x800B / addiu s0,s0,0x22D0 / jal writer / move a0,s0 /
+        # addiu a0,s0,6 / lui t0 / sh t0 / jal writer
+        jal = 0x0C000000
+        words = [0x3C10800B, 0x261022D0, jal, 0x02002021, 0x26040006,
+                 0x3C08800F, 0xA5080000, jal]
+        self.assertEqual(variants.caption_source(words, 7, set()), 0x800B22D6)
+        self.assertIsNone(variants.caption_source(words, 7, {5}),
+                          'a path merging after the address was set is unknown')
+        # a0 itself does not survive a call
+        words = [0x3C04800B, 0x248422D0, jal, 0, jal]
+        self.assertIsNone(variants.caption_source(words, 4, set()))
+
     def test_character_producers_are_tagged_without_rewriting_wording(self):
         for overlay in ('ADV', 'DNG', 'S2D'):
             stock = (ROOT / f'data/psx/{overlay}.BIN').read_bytes()

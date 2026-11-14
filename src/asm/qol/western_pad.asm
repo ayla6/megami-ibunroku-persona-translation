@@ -48,4 +48,32 @@ western_pad:
 @@done:
     jr      ra
     addiu   sp, sp, 0x18
+
+;; The text names the game's buttons with the font's marks (○ 80 EA, × 80 E3,
+;; △ 80 EE, □ 80 EC): help pages, the casino's controls, "Press the ○, ×,
+;; △, □". With TYPE 1 swapped they name the wrong keys, so the dialogue
+;; renderer (vwf/vwf_dialog.asm) draws each two-byte glyph through here: the
+;; marks trade places pairwise exactly as the buttons do, and only while the
+;; controller is TYPE 1 - the text itself is never rewritten. t1 = the glyph
+;; index (code & 0x7FF); t0, t2, t3 scratch (the renderer rewrites them).
+western_glyph:
+    lui     t0, (PAD_TYPE_ADDR >> 16) & 0xFFFF
+    lbu     t0, (PAD_TYPE_ADDR & 0xFFFF)(t0)
+    ori     t3, zero, 0xEE ^ 0xEC       ; (load delay) the △ / □ pair
+    bnez    t0, @@glyph_done            ; TYPE 2: as it was
+    xori    t0, t1, 0xEE                ; (delay)
+    beqz    t0, @@swap
+    xori    t0, t1, 0xEC                ; (delay)
+    beqz    t0, @@swap
+    xori    t0, t1, 0xEA                ; (delay)
+    beqz    t0, @@swap
+    ori     t3, zero, 0xEA ^ 0xE3       ; (delay) the ○ / × pair
+    xori    t0, t1, 0xE3
+    bnez    t0, @@glyph_done
+    nop
+@@swap:
+    xor     t1, t1, t3
+@@glyph_done:
+    jr      ra
+    nop
 .endarea

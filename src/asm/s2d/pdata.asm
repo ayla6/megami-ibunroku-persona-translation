@@ -60,7 +60,7 @@ pdata_bar_s2d:
     nop
     la      a0, S2D_PDATA_NAME_CELLS
     la      a1, sf_name_scratch_s2d
-    ori     a2, zero, 0x80              ; page 0 + bit 7: the VWF Latin face
+    ori     a2, zero, 0xC0              ; page 0 + VWF face (7) + regular face (6): a name
     ori     a3, zero, S2D_PDATA_NAME_COLS
     lw      ra, 0(sp)
     addiu   sp, sp, 8

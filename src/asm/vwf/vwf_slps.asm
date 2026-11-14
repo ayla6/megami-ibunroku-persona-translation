@@ -143,11 +143,13 @@ btl_name_ranges:
     .halfword 2, 0x1FF, BTLP_ITEM_ID_COUNT, 0
     .word btl_item_vwf_flags, btl_item_owner
     .word 0
-;; The banks are fixed-size windows carved out of dead code, so their geometry
-;; is asserted here: the skill slots fill the dead run up to the live function
-;; 0x8002C2F0, and every slot keeps one byte for the FF terminator.
-.if SKILL_MENU_BUF + 7 * SKILL_MENU_STRIDE != SKILL_MENU_BUF_END
-    .error "skill slot bank does not fill its dead code run"
+;; The skill slots are runtime scratch below the other resident scratch, and
+;; every slot keeps one byte for the FF terminator.
+.if SKILL_MENU_BUF + 7 * SKILL_MENU_STRIDE != SKILL_MENU_BUF_END || RESIDENT_SCRATCH_ADDR != SKILL_MENU_BUF
+    .error "skill slot bank geometry: SKILL_MENU_BUF_END / RESIDENT_SCRATCH_ADDR"
+.endif
+.if SKILL_MENU_BUF_END > BTLEVT_BUF_ADDR
+    .error "skill slot bank reaches the battle decompressor's scratch"
 .endif
 .if SKILL_MAXLEN != SKILL_MENU_STRIDE - 1
     .error "skill slot glyph bound must leave the FF terminator byte"
@@ -220,3 +222,12 @@ btl_owned_span_end:
 .align 4
 .include "vwf/vwf_btlp_str16_act.asm"
 .endarea
+
+;; The battle's original-font advances (smallfont_vwf.py, btl_orig_width):
+;; two runs of codes, read by btl_sf_metric (btlp/analyze_metric.asm).
+.if SF_VWF
+.org BTL_ORIG_WIDTH_ADDR
+.area BTL_ORIG_WIDTH_END - BTL_ORIG_WIDTH_ADDR
+.include "../../build/btl_orig_width.asm"
+.endarea
+.endif

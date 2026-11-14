@@ -147,6 +147,19 @@ adv_menu_top_def_end:
     .error "adv/bar: the slot-0x20 block runs past the ADV image limit"
 .endif
 
+;; the text stat labels (vwf/stat_label.asm, menu_gfx.py) after the slot-0x20 block
+.if SF_VWF
+.align 4
+stat_label_text_adv:
+    stat_label_text stat_label_strings_adv, stat_label_writer_adv
+stat_label_strings_adv:
+.include "../../build/stat_label_strings.asm"
+stat_label_end_adv:
+.if stat_label_end_adv > ADV_IMAGE_LIMIT
+    .error "smallfont: the ADV text stat labels reach ADV_IMAGE_LIMIT"
+.endif
+.endif
+
 ;; --- the status layout points slot 0x1E at the new list ---
 ;; The list is at 0x800BD224, across the 0x800B/0x800C halfword boundary, so
 ;; keep retail's lui 0x800B and use ori (zero-extends) for the low half.
@@ -211,7 +224,7 @@ adv_menu_top_def_end:
     nop                                 ; (delay) the key is already the record id
     addiu   a0, s0, 0x58                ; ADV_BAR_NAME_CELLS
     move    a1, sp
-    ori     a2, zero, 0x80              ; page 0 + bit 7: the VWF Latin face
+    ori     a2, zero, 0xC0              ; page 0 + VWF face (7) + regular face (6): a name
     ori     a3, zero, 16
     jal     ADV_CELLS_ROW
     nop
@@ -252,7 +265,7 @@ status_names_end:
     addiu   v1, s3, 8                   ; (delay) persona_name_copy_at reads v1
     lui     a0, 0x800B
     addiu   a0, a0, 0x2114              ; ADV_BAR_NAME_CELLS
-    ori     a2, zero, 0x80              ; page 0 + bit 7: the VWF Latin face
+    ori     a2, zero, 0xC0              ; page 0 + VWF face (7) + regular face (6): a name
     ori     a3, zero, 16
     jal     ADV_CELLS_ROW
     move    a1, sp                      ; (delay) the scratch
@@ -270,7 +283,7 @@ status_names_end:
     lui     v0, 0x800B
     addiu   v0, v0, 0x249A              ; ADV_KIND_LABELS - 10
     addu    a1, a1, v0                  ; (kind-1)*10 + ADV_KIND_LABELS
-    jal     ADV_CELLS_ROW               ; a2 = 0x80 survives the row writer
+    jal     cells_row_caption           ; a2 = 0xC0 survives; the arcana drops bit 6
     addiu   a0, v0, -0x3DE              ; (delay) ADV_BAR_CELLS = v0 - 0x3DE
 
 .endarea
@@ -284,7 +297,7 @@ status_names_end:
     addiu   v1, s4, 0x19                ; (delay) persona_name_copy_at reads v1
     lui     a0, 0x800B
     addiu   a0, a0, 0x2114              ; ADV_BAR_NAME_CELLS
-    ori     a2, zero, 0x80              ; page 0 + bit 7: the VWF Latin face
+    ori     a2, zero, 0xC0              ; page 0 + VWF face (7) + regular face (6): a name
     ori     a3, zero, 16
     jal     ADV_CELLS_ROW
     move    a1, sp                      ; (delay) the scratch
@@ -299,7 +312,7 @@ status_names_end:
     lui     v0, 0x800B
     addiu   v0, v0, 0x249A              ; ADV_KIND_LABELS - 10
     addu    a1, a1, v0                  ; (kind-1)*10 + ADV_KIND_LABELS
-    jal     ADV_CELLS_ROW               ; a2 = 0x80 survives the row writer
+    jal     cells_row_caption           ; a2 = 0xC0 survives; the arcana drops bit 6
     addiu   a0, v0, -0x3DE              ; (delay) ADV_BAR_CELLS = v0 - 0x3DE
 
 .endarea

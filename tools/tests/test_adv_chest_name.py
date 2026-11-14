@@ -23,10 +23,10 @@ ITEM = 0x800f7eb8
 class PickupName(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        paths = [ROOT / 'build' / p for p in ('ADV.BIN', 'SLPS_005.00', 'sf_field_width.bin')]
+        paths = [ROOT / 'build' / p for p in ('ADV.BIN', 'SLPS_005.00')]
         if not all(p.exists() for p in paths):
-            raise unittest.SkipTest('requires assembled ADV, resident image and widths')
-        cls.adv, cls.slps, cls.metrics = [p.read_bytes() for p in paths]
+            raise unittest.SkipTest('requires assembled ADV and resident image')
+        cls.adv, cls.slps = [p.read_bytes() for p in paths]
         cls.retail = (ROOT / 'data/psx/ADV.BIN').read_bytes()
         symbols = {}
         for line in (ROOT / 'build/persona.sym').read_text().splitlines():
@@ -37,6 +37,11 @@ class PickupName(unittest.TestCase):
                 except ValueError:
                     pass
         cls.symbols = symbols
+        widths = symbols['sf_widths_adv'] - BASE
+        cls.widths = cls.adv[widths:widths + 256]
+        editable = smallfont_variants.editable_codes()
+        regular, _compact = smallfont_variants.cell_codes()
+        cls.uv = {code: smallfont_variants.cell_uv(regular[i]) for i, code in enumerate(editable)}
 
     def machine(self):
         c = CPU()
@@ -59,8 +64,6 @@ class PickupName(unittest.TestCase):
                          self.retail[0x800b59f4 - BASE:0x800b5a1c - BASE])
         self.assertEqual(self.adv[0x800b5a28 - BASE:0x800b5a44 - BASE],
                          self.retail[0x800b5a28 - BASE:0x800b5a44 - BASE])
-        regular = dict(zip(smallfont_variants.editable_codes(),
-                           smallfont_variants.cell_codes()[0]))
         item_rows = name_tails.item_rows()
         self.assertTrue(item_rows, 'no source-derived item names')
         for ident, name in item_rows:
@@ -80,20 +83,21 @@ class PickupName(unittest.TestCase):
                 self.assertEqual(c.r[REG['t0']], CELLS + len(glyphs) * 8)
                 pen = 0
                 for k, glyph in enumerate(glyphs):
+                    # an item name: the regular face's cell and advance
+                    advance = self.widths[glyph] & 15
                     self.assertNotEqual(c.read(CELLS + k * 8, 1), 0xff)
                     self.assertEqual(c.read(CELLS + k * 8 + 2, 1), 0x1e)
-                    self.assertEqual(c.read(CELLS + k * 8 + 3, 1), self.metrics[glyph] & 15)
-                    self.assertLessEqual(self.metrics[glyph] & 15, 8)
-                    expected_uv = smallfont_variants.cell_uv(regular.get(glyph, glyph))
+                    self.assertEqual(c.read(CELLS + k * 8 + 3, 1), advance)
+                    self.assertLessEqual(advance, 10)
                     self.assertEqual((c.read(CELLS + k * 8, 1), c.read(CELLS + k * 8 + 1, 1)),
-                                     expected_uv)
+                                     self.uv.get(glyph, smallfont_variants.cell_uv(glyph)))
                     c.r[REG['s4']] = pen
                     c.r[REG['s6']] = CELLS + k * 8
                     c.r[REG['t9']] = 0x800b5a1c
                     c.r[REG['a3']] = 8
                     c.start(toolbelt.asm_equ('ADV_BAR_ADV_SITE'))
                     c.run(toolbelt.asm_equ('ADV_BAR_ADV_SITE') + 8, limit=30)
-                    pen += self.metrics[glyph] & 15
+                    pen += advance
                     self.assertEqual(c.r[REG['s4']], pen)
                 if len(glyphs) < COUNT:
                     self.assertEqual(c.read(CELLS + len(glyphs) * 8, 1), 0xff)

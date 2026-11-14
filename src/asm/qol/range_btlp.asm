@@ -47,12 +47,15 @@
 ;; spans x -75 + 30 * lane (30 across), y -150 + 20 * row (20 deep), z 0,
 ;; through the battle camera BtlDrawObjects has just loaded into the GTE. It
 ;; is replaced by this overlay. Each lane's run of same-coloured rows is one
-;; semi-transparent POLY_F4 (the floor is a plane, so the four projected
+;; semi-transparent quad (the floor is a plane, so the four projected
 ;; corners are exact; they go straight into the GTE's vertex registers),
 ;; allocated from the frame's POLY_G4 run behind the effect quads with its end
-;; checked, and linked into the arena's ordering table entry like the debug
-;; grid's squares: drawn after the arena floor and the mesh, before every
-;; fighter. One DR_MODE linked last (so drawn first) selects blend 3 (floor +
+;; checked. It is a complete POLY_G4 (one colour at every corner, 8-word tag):
+;; the game sets that run's packet headers once at init and later users (the
+;; level-up board's stat bars) only rewrite colours and corners, so a slot
+;; must never be left with another primitive's command or length. It is
+;; linked into the arena's ordering table entry like the debug grid's
+;; squares: drawn after the arena floor and the mesh, before every fighter. One DR_MODE linked last (so drawn first) selects blend 3 (floor +
 ;; a quarter of the panel colour), so the floor keeps its own brightness under
 ;; a light tint. The cell colours are built in the debug grid's own 75-byte
 ;; buffer, which only the debug grid read.
@@ -153,12 +156,12 @@
     .word   0x48800000 | (0 << 16) | (1 << 11)      ; mtc2 zero, VZ0: every corner's z is 0
     .word   0x48800000 | (0 << 16) | (3 << 11)      ; mtc2 zero, VZ1
     .word   0x48800000 | (0 << 16) | (5 << 11)      ; mtc2 zero, VZ2
-    lui     a3, hi(RNG_RGB_TARGET | 0x2A000000)     ; POLY_F4, semi-transparent
-    addiu   a3, a3, lo(RNG_RGB_TARGET | 0x2A000000)
+    lui     a3, hi(RNG_RGB_TARGET | 0x3A000000)     ; POLY_G4, semi-transparent
+    addiu   a3, a3, lo(RNG_RGB_TARGET | 0x3A000000)
     beqz    t4, @@colours               ; a menu's preview: the area all red
     move    a2, a3
-    lui     a2, hi(RNG_RGB_AREA | 0x2A000000)   ; a pick: the area orange
-    addiu   a2, a2, lo(RNG_RGB_AREA | 0x2A000000)
+    lui     a2, hi(RNG_RGB_AREA | 0x3A000000)   ; a pick: the area orange
+    addiu   a2, a2, lo(RNG_RGB_AREA | 0x3A000000)
 @@colours:
     lui     t3, 0x00FF
     ori     t3, t3, 0xFFFF              ; the link mask
@@ -214,24 +217,27 @@
     nop
     .word   0x4A280030                                  ; rtpt
     .word   0xE8000000 | (17 << 21) | (12 << 16) | 8    ; swc2 SXY0, 8(s1)
-    .word   0xE8000000 | (17 << 21) | (13 << 16) | 12   ; swc2 SXY1, 12(s1)
-    .word   0xE8000000 | (17 << 21) | (14 << 16) | 16   ; swc2 SXY2, 16(s1)
+    .word   0xE8000000 | (17 << 21) | (13 << 16) | 16   ; swc2 SXY1, 16(s1)
+    .word   0xE8000000 | (17 << 21) | (14 << 16) | 24   ; swc2 SXY2, 24(s1)
     .word   0x48800000 | (13 << 16) | (0 << 11)     ; mtc2 t5, VXY0
     nop
     nop
     .word   0x4A180001                                  ; rtps
-    .word   0xE8000000 | (17 << 21) | (14 << 16) | 20   ; swc2 SXY2, 20(s1)
+    .word   0xE8000000 | (17 << 21) | (14 << 16) | 32   ; swc2 SXY2, 32(s1)
     ori     at, zero, 2
     beq     s7, at, @@colour
     move    v0, a3                      ; red
     move    v0, a2                      ; orange
 @@colour:
-    sw      v0, 4(s1)
+    sw      v0, 4(s1)                   ; every corner the same colour
+    sw      v0, 12(s1)
+    sw      v0, 20(s1)
+    sw      v0, 28(s1)
     lw      v0, 0(s3)                   ; addPrim(arena entry, quad)
-    lui     a0, 0x0500
+    lui     a0, 0x0800
     and     v1, v0, t3
     or      v1, v1, a0
-    sw      v1, 0(s1)                   ; 5 words, then the entry's list
+    sw      v1, 0(s1)                   ; 8 words, then the entry's list
     and     a0, s1, t3
     srl     v0, v0, 24
     sll     v0, v0, 24

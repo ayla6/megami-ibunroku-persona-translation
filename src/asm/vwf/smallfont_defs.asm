@@ -90,7 +90,12 @@ SF_ST_BUFS         equ 0x20                ; this overlay's packet-buffer pair
 SF_ST_END          equ 0x24
 
 ;; per-overlay row table, loaded and zeroed with the overlay
-SF_ROWS            equ 64                  ; bounded simultaneous rows; tables ride each overlay
+SF_ROWS            equ 96                  ; bounded simultaneous rows; tables ride each overlay.
+                                           ; A menu holds its whole list map: DNG's item list
+                                           ; is a 32-line ring of two names per line (64 rows)
+                                           ; beside the party names, help and labels, and the
+                                           ; clock cannot keep rows on screen when the rows a
+                                           ; menu rewrites outnumber the table
 SF_NAME_BYTES      equ 24                  ; full terminated name scratch: SKILL_MAXLEN
                                            ; glyphs (23) + FF; covers item/demon (20+FF)
                                            ; and Persona (16+FF) too
@@ -108,9 +113,18 @@ SF_REC_PAD         equ 0x06                ; u16: the overlay id that wrote the 
                                            ; bit 15: producer says field is centered
 ;; SF_REC_PAD's high byte (the second byte of the halfword)
 SF_REC_BANK_MASK   equ 0x03                ; CLUT bank 0-3
-SF_REC_TIER_SHIFT  equ 2                   ; tier 0-2 in bits 2-3
-SF_REC_TIER_MASK   equ 0x0C
+SF_REC_TIER_SHIFT  equ 2                   ; tier 0-4 in bits 2-4
+SF_REC_TIER_MASK   equ 0x1C
+SF_TIER_ORIG       equ 0x20                ; renderer's tier 3/4: the original
+                                           ; font's table, read as tier 0/1
+SF_ORIG_TABLE      equ 0x100               ; the original font's metrics follow
+                                           ; the advance table (SF_ORIG_FACE)
 SF_REC_CENTERED    equ 0x80                ; the producer's centered-field flag
+SF_REC_SEEN        equ 0x20                ; drawn since the eviction clock last
+                                           ; passed (set by every claim; a new
+                                           ; row starts with it, a rewrite keeps
+                                           ; the replaced row's; the recorder's
+                                           ; second chance)
 SF_REC_CODES       equ 0x08                ; u8 x (SF_ROW_REC - SF_REC_CODES): cell
                                            ; indices (code+base), 0xFF after the end
 SF_REC_CODE_MAX    equ SF_ROW_REC - SF_REC_CODES - 1  ; glyphs that fit beside the 0xFF
@@ -121,8 +135,8 @@ SF_TABLE_SIZE      equ SF_ROWS * SF_ROW_REC
     .error "smallfont_defs: SF_REC_CODE_MAX must stay 47 (48-byte code area, 0xFF terminator, the affinity head + pool tail cap)"
 .endif
 
-.if (SF_ROWS & (SF_ROWS - 1)) != 0
-    .error "smallfont_defs: SF_ROWS must be a power of two (the victim index wraps with andi)"
+.if SF_ROWS > 0x7FFF
+    .error "smallfont_defs: SF_ROWS must fit the victim's sltiu wrap"
 .endif
 .if SF_ROW_REC != 56
     .error "smallfont_defs: SF_ROW_REC must stay 56 (the recorder's slot scan and the renderer's chunk walk assume it)"

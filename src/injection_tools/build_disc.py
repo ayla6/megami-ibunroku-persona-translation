@@ -39,10 +39,10 @@ POSTGAP = 150
 
 # CdInit's path-table cache uses 44-byte entries beginning at 0x80056A18.
 # Use the lower base also used by the 1-based lookup as a conservative bound.
-# Both the battle decompressor and VWF compositor use the unused cache tail.
+# The battle skill slots, decompressor and VWF compositor use the unused cache tail.
 CD_PATH_CACHE_BASE = 0x800569F4
 CD_PATH_CACHE_STRIDE = 44
-RESIDENT_SCRATCH_START = toolbelt.asm_equ('BTLEVT_BUF_ADDR')
+RESIDENT_SCRATCH_START = toolbelt.asm_equ('RESIDENT_SCRATCH_ADDR')
 
 
 def record_size(length):

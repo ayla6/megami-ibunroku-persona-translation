@@ -1,11 +1,17 @@
 """Read back the live name hooks and overlay-owned storage from assembled files."""
 import re
 import struct
+import sys
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / 'src/injection_tools'))
+from smallfont_vwf import SCRATCH_TABLE_OVERLAYS as SCRATCH_TABLES  # noqa: E402
+from toolbelt import asm_equ  # noqa: E402
+
 BASE = 0x800643C4
+ROWS = asm_equ('SF_ROWS', str(ROOT / 'src/asm/vwf/smallfont_defs.asm'))
 
 
 class OverlayStorage(unittest.TestCase):
@@ -48,16 +54,26 @@ class OverlayStorage(unittest.TestCase):
                 end = self.sym[f'sf_table_end_{ovl}']
                 scratch = self.sym[f'sf_name_scratch_{ovl}']
                 cfg = self.sym[f'sf_cfg_{ovl}']
-                self.assertEqual(end - table, 64 * 56)
+                self.assertEqual(end - table, ROWS * 56)
+                self.assertEqual(struct.unpack_from('<I', data, cfg - BASE + 8)[0], table)
+                self.assertEqual(data[scratch-BASE:scratch-BASE+21], bytes(21))
+                self.assertLessEqual(scratch + 21, BASE + len(data))
+                if ovl in SCRATCH_TABLES:
+                    # runtime scratch outside the image (ADV: above the game's
+                    # globals; DNG: the top of its image room); the recorder
+                    # clears it on a fresh load
+                    limit = asm_equ(f'{ovl.upper()}_SF_TABLE_LIMIT')
+                    self.assertEqual(table, asm_equ(f'{ovl.upper()}_SF_TABLE_ADDR'))
+                    self.assertLessEqual(end, limit)
+                    self.assertTrue(end <= BASE or table >= BASE + len(data),
+                                    'the scratch table overlaps the image')
+                    continue
                 # The scratch sits at or after the table: overlay code (the
                 # MsgStep full-name stubs) may own the run between them, but
                 # it must never share bytes with the table or the scratch.
                 self.assertGreaterEqual(scratch, end)
-                self.assertEqual(struct.unpack_from('<I', data, cfg - BASE + 8)[0], table)
-                self.assertEqual(data[table-BASE:end-BASE], bytes(64 * 56))
-                self.assertEqual(data[scratch-BASE:scratch-BASE+21], bytes(21))
+                self.assertEqual(data[table-BASE:end-BASE], bytes(ROWS * 56))
                 self.assertGreaterEqual(table, self.sym[f'sf_data_end_{ovl}'])
-                self.assertLessEqual(scratch + 21, BASE + len(data))
 
 
 if __name__ == '__main__':

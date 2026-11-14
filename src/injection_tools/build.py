@@ -65,7 +65,9 @@ QOL_PATCHES = {
                                        'the menus show what is under the cursor in red'),
     'debug':       ('QOL_DEBUG',       'battle debug menu: press Start on either controller in battle; '
                                        'on the title L1/L2/R1/R2/Select start endings 0-4, R1 held '
-                                       'fast-forwards an ending and Start skips its movies'),
+                                       'fast-forwards an ending and Start skips its movies; battles check '
+                                       'their primitive pool every frame and stop on the first broken one '
+                                       '(red square at the top left)'),
     'mark':        ('QOL_MARK',        'Mark wears the Revelations design: headshot, battle sheet and '
                                        'overworld walk sheet swapped for the art in src/assets/mark/black '
                                        '(edit those PNGs to change it)'),
@@ -220,6 +222,7 @@ def assemble_variant(py, patches, disc_path, make_disc=True, mark_builder=None,
              '-sym2', os.path.join(ROOT, 'build', 'persona.sym'),
              '-temp', listing, *qol)
     run(py, os.path.join('injection_tools', 'write_guard.py'), 'check', '--listing', listing)
+    run(py, os.path.join('injection_tools', 'scratch_map.py'), 'verify')
     run(py, os.path.join('injection_tools', 'make_vwf_font.py'), 'verify')
     import features
     if features.on('SF_VWF'):

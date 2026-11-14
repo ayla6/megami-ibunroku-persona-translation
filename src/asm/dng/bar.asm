@@ -27,7 +27,7 @@ dng_writer_start:
     ori     t4, zero, 0xFF          ; the terminator
     ori     t5, zero, 265           ; the /31 reciprocal
     ori     t3, zero, 0x3C0         ; flag (the CLUT x the renderer reads)
-    andi    t2, a2, 0x7F
+    andi    t2, a2, 0x3F                ; the page (bit 6: regular face, bit 7: VWF)
     addiu   t2, t2, 0x1A0           ; tpage (the CLUT y the renderer reads)
     la      t8, sf_widths_dng       ; this overlay's advance table
 
@@ -46,12 +46,11 @@ dng_writer_start:
     sll     a1, v0, 1
     addu    a1, a1, v0
     sll     a1, a1, 2               ; v = q * 12
-    addu    t1, t8, v1              ; the glyph's advance entry
     andi    t6, a2, 0x80            ; bit 7 of the page: the VWF Latin face
     beqz    t6, @@uv                ; retail face: keep the atlas u/v
-    move    v0, v1                  ; (delay) the selector's code
-    jal     sf_variant_uv_v1_dng    ; retail code -> the regular Latin cell
-    nop
+    addu    t1, t8, v1              ; (delay) the glyph's advance entry
+    jal     sf_bar_orig_dng         ; the original font: the retail cell, its
+    move    v0, v1                  ; (delay) advance -> t1 (sf_bar_orig)
 @@uv:
     sb      a0, 0(t0)
     sb      a1, 1(t0)
@@ -216,7 +215,7 @@ sf_cell_adv_dng:
     nop                                 ; (delay) the key is already the record id
     addiu   a0, s0, 0x58                ; DNG_BAR_NAME_CELLS
     move    a1, sp
-    ori     a2, zero, 0x80              ; page 0 + bit 7: the VWF Latin face
+    ori     a2, zero, 0xC0              ; page 0 + VWF face (7) + regular face (6): a name
     ori     a3, zero, 16
     jal     DNG_CELLS_ROW
     nop

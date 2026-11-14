@@ -100,9 +100,23 @@ ADV_SF_DATA_ADDR equ 0x800BD240            ; state + advance table + affinity po
 ;; smallfont.asm asserts the literal ITEM_DATA_ADDRs below keep this width.
 SF_DATA_WINDOW equ 0x1000                  ; state + widths + affinity pool
 ADV_SF_EXTENSION_END equ 0x800BFBC4       ; largest sector-safe end below work area 0x800C0000
+;; ADV's small-font row table: runtime scratch above the game's last global
+;; (g_seq_handle, 0x801F537C + 0x40) and far below the main stack, which
+;; starts at 0x801FFFF0 (docs/MEMORY_AUDIT.md), not in the overlay image.
+;; The recorder frees every slot when it finds a fresh state, so nothing is
+;; loaded or copied there.
+ADV_SF_TABLE_ADDR equ 0x801F53C0
+ADV_SF_TABLE_LIMIT equ 0x801F8000
 DNG_SF_DATA_ADDR equ 0x800B3000            ; past the dungeon-script glue
 DNG_ITEM_DATA_ADDR equ 0x800B4000          ; DNG_SF_DATA_ADDR + SF_DATA_WINDOW
-DNG_ITEM_DATA_END equ 0x800C0000
+;; DNG's small-font row table: runtime scratch at the top of the room the
+;; image may grow into (DNG_IMAGE_LIMIT), below the 0x800C0000 work area;
+;; the image ends below it. While DNG runs the room holds only a stale copy of
+;; the previous overlay's image; the recorder frees every slot when it finds
+;; a fresh state, so nothing is loaded or copied there.
+DNG_SF_TABLE_LIMIT equ 0x800C0000
+DNG_SF_TABLE_ADDR equ 0x800BEB00            ; DNG_SF_TABLE_LIMIT - SF_ROWS * SF_ROW_REC
+DNG_ITEM_DATA_END equ 0x800BEB00            ; DNG_SF_TABLE_ADDR (literal: partynames.py reads it)
 S2D_SF_DATA_ADDR equ 0x800BC200            ; past the extension glue
 S2D_ITEM_DATA_ADDR equ 0x800BD200          ; S2D_SF_DATA_ADDR + SF_DATA_WINDOW
 S2D_ITEM_DATA_END equ 0x800E0000           ; S2D's work-area bias ceiling
@@ -323,15 +337,19 @@ DNG_SPELL_RULE_GLYPHS equ 0x8009BA64       ; the eight-glyph rule under an empty
 ;; overworld save's status page used, so it still drew retail fixed-width
 ;; cells). Mirror the DNG layout: the retail list points at the two old
 ;; 10-cell blocks at 0x8009D734/0x8009D78C; the new pair + hook ride the
-;; image extension past every generated block (0x800BE800, well below the
-;; 0x800E0000 work-area ceiling and inside the last image sector).
-S2D_BAR_LIST       equ 0x800BE800          ; two entries {block, dx, dy, z, mark} + FF (0x1C)
-S2D_BAR_ARCANA_BLOCK equ 0x800BE820        ; header: cols 10, rows 1, w 8, h 12
-S2D_BAR_CELLS      equ 0x800BE828          ; the 10 arcana cells (ends 0x800BE878)
-S2D_BAR_NAME_BLOCK equ 0x800BE878          ; header: cols 16, rows 1
-S2D_BAR_NAME_CELLS equ 0x800BE880          ; the 16 name cells (ends 0x800BE900)
-S2D_BAR_HOOK       equ 0x800BE900          ; sf_cell_adv_s2d, 48 bytes
-S2D_BAR_HOOK_END   equ 0x800BE930
+;; image extension past every generated block (well below the 0x800E0000
+;; work-area ceiling).
+S2D_BAR_LIST       equ 0x800BF000          ; two entries {block, dx, dy, z, mark} + FF (0x1C)
+S2D_BAR_ARCANA_BLOCK equ S2D_BAR_LIST + 0x20  ; header: cols 10, rows 1, w 8, h 12
+S2D_BAR_CELLS      equ S2D_BAR_LIST + 0x28    ; the 10 arcana cells
+S2D_BAR_NAME_BLOCK equ S2D_BAR_LIST + 0x78    ; header: cols 16, rows 1
+S2D_BAR_NAME_CELLS equ S2D_BAR_LIST + 0x80    ; the 16 name cells
+S2D_BAR_HOOK       equ S2D_BAR_LIST + 0x100   ; sf_cell_adv_s2d, 48 bytes
+S2D_BAR_HOOK_END   equ S2D_BAR_LIST + 0x130
+;; The small-font page as BG tiles: tile = SF_PAGE_TILE0 + row * 32 + column
+;; (8x12 cells, 32 per 256-px row). Retail draws the MATK label from tile
+;; 0x3CB, page cell (208,156): 0x3CB - (13 * 32 + 26).
+SF_PAGE_TILE0      equ 0x211
 S2D_CELLS_ROW      equ 0x80083A64          ; S2D CellsWriteRow, rewritten in place (0xC0)
 S2D_CELLS_CLEAR    equ 0x800838E8          ; S2D CellsClear (retail, unchanged)
 S2D_KIND_LABELS    equ 0x8009DB24          ; g_kind_labels (same records as ADV/DNG)
@@ -397,6 +415,11 @@ BTLP_SF_END_ADDR equ 0x800F8BC4        ; end of that retail loaded sector
 BTLP_NAME_DATA_ADDR equ 0x800F8BC4    ; immutable data after the sprite bridge
 BTLP_NAME_DATA_END equ 0x800F9148     ; first sound-work buffer (entry.c)
 BTLP_IMAGE_LIMIT equ BTLP_NAME_DATA_END
+;; BTLP's retail text-window glyph function: both of its calls go to
+;; btlp_vwf_emit (btlp/vwf_hooks.asm), and nothing else calls, jumps to or
+;; points at it, so its body holds the original-font helpers (btlp/orig_face.asm).
+BTLP_GLYPH_FREE_ADDR equ 0x8007C754
+BTLP_GLYPH_FREE_END equ 0x8007C8DC
 ;; The battle-board ownership directory is allocated by battle_board_text.py
 ;; in reclaimed, immutable source text, never the live stock-number array
 ;; at 0x800F7ED8..0x800F7FF8.
@@ -468,8 +491,16 @@ BATTLE_LABEL_BUF equ 0x8002BCB4        ; PERSONA_HDR_BUF + 3 * PERSONA_HDR_STRID
 BTLP_STATUS_PERSONA_BUF equ 0x800F7F80
 BTLP_STATUS_PERSONA_END equ 0x800F7FD0
 SKILL_MENU_STRIDE equ 24               ; 23 glyphs + terminator; 7 slots fill the run exactly
-SKILL_MENU_BUF equ 0x8002C248          ; dead code run before the live function 0x8002C2F0
-SKILL_MENU_BUF_END equ 0x8002C2F0      ; = the live function entry (asserted in asm)
+;; The skill slots are runtime scratch in the CD path-table cache's unused
+;; tail (BTLEVT_BUF_ADDR's comment); build_disc.py checks the disc's path
+;; table against RESIDENT_SCRATCH_ADDR, the lowest scratch byte.
+SKILL_MENU_BUF equ 0x80056CA0
+SKILL_MENU_BUF_END equ 0x80056D48      ; SKILL_MENU_BUF + 7 * SKILL_MENU_STRIDE (asserted in asm)
+RESIDENT_SCRATCH_ADDR equ 0x80056CA0   ; = SKILL_MENU_BUF, the lowest scratch byte (asserted in asm)
+;; The dead code run the skill slots used to fill (before the live function
+;; 0x8002C2F0) holds the battle's original-font advance table (btl_orig_width).
+BTL_ORIG_WIDTH_ADDR equ 0x8002C248
+BTL_ORIG_WIDTH_END equ 0x8002C2F0
 SKILL_BIT_OFFSET equ 3                 ; ownership bits 3..9
 BATTLE_NAME_BITS equ 10                ; ownership halfword: Persona 0..2, skill slot i at 3+i
 BANNER_SPILL_ADDR equ 0x8002C374        ; first banner spill fragment after the battle name bank
@@ -573,7 +604,7 @@ DNG_PAD_DRAW_ADDIU equ 0x80090700          ; addiu at,at,-0x3534 - its low half
 ;; --- QoL western controls (qol/western_pad.asm, qol/western_layout.asm) ---
 WESTERN_PAD_READ_NOR equ 0x8002515C        ; PadRead: nor v0,zero,v0 (the held buttons, active high)
 WESTERN_PAD_CODE   equ 0x80028F2C          ; dead libgte function (tools/deadfuncs.py with transitive deadness: only the
-WESTERN_PAD_CODE_END equ 0x80028F8C        ; dead 0x800316DC called it; 1000 bytes to 0x80029314): 96 bytes taken
+WESTERN_PAD_CODE_END equ 0x80028FEC        ; dead 0x800316DC called it; 1000 bytes to 0x80029314): 192 bytes taken
 BTLP_INDICATOR_ICON equ 0x800E2408   ; MES blob: choice-menu corner icon (frame 1 = the cancel key)
 BTLP_CONTROLS_ICONS equ 0x800DE7E0      ; the Controls page's TYPE 1 icon descriptors: eight, 8 bytes each
 PAD_TYPE_ADDR      equ 0x801F2AC7          ; the saved controller type: 0 = TYPE 1, 1 = TYPE 2
@@ -684,16 +715,33 @@ FF_ON        equ 0                      ; ff_vars: u8 fast-forward wanted
 FF_CNT       equ 1                      ; u8 tick within the group (0 = shown)
 FF_HIDE      equ 2                      ; u8 this tick draws nothing
 FF_SHOW      equ 3                      ; u8 this tick waits for the vblank and shows a frame
+FF_OVER      equ 4                      ; u8 the battle is over: no fast-forward until the next one
 FF_ICON_X    equ 296                    ; ">>": two 9x12 triangles at the top right
 FF_ICON_Y    equ 10
 FF_ICON_RGB  equ 0x20F0F0F0             ; POLY_F3, light grey
+;; --- BTLP's per-frame primitive pool (decomp src/btlp/objectinit.c) ---
+;; BtlInitObjects tags every slot of six typed runs in both frame halves once
+;; (SetSprt, SetTile, SetPolyFT4, SetPolyF4, SetPolyG4, SetLineG2); the game's
+;; users take slots by advancing a run's cursor and rewrite only colours and
+;; corners. Patch code that takes a slot must leave that slot's header (length
+;; and command) as the run's own type: tools/tests/test_prim_pool_borrowers.py
+;; requires a contract test for every patch that touches a cursor.
+BTL_PRIM_POOL    equ 0x800CF098         ; g_btl_prim_pool (u8 *): frame f at + f * 0xE660
+BTL_INIT_OBJECTS equ 0x8008136C         ; BtlInitObjects (Rev 1 0x80080820)
+BTL_SPRT_NEXT    equ 0x800EEC34         ; g_btl_sprt_next   (Rev 1 0x800EC5E8 + 0x264C)
+BTL_TILE_NEXT    equ 0x800EEC38         ; g_btl_tile_next
+BTL_POLYFT4_NEXT equ 0x800EEC3C         ; g_btl_polyft4_next
+BTL_POLYF4_NEXT  equ 0x800EEC40         ; g_btl_polyf4_next
+BTL_POLYG4_NEXT  equ 0x800EEC44         ; g_btl_polyg4_next
+BTL_LINEG2_NEXT  equ 0x800EEC48         ; g_btl_lineg2_next
+BTL_DRMODE_NEXT  equ 0x800EEC4C         ; g_btl_drmode_next (not pre-tagged: users write whole DR_MODEs)
 ;; --qol=range (qol/range_btlp.asm): the reach overlay on the battle floor
 RNG_REACH        equ 0x800F7414         ; g_btl_reach[5 lanes][15 rows] (Rev 1 0x800F4DC8 + 0x264C)
 RNG_CELLS        equ 0x800F7FFC         ; g_btl_debug_grid_cells: the retired debug grid's 75 bytes
 RNG_ACTORS       equ 0x8005D678         ; g_btl_actors (Rev 1 0x8005D654 + 0x24, as BTLP_ENEMY_NAME_BASE - 5 * 0xEC - 0x3F): 5 party records, then the 9 enemies
 RNG_ACTOR_SIZE   equ 0xEC
-RNG_POLYG4_NEXT  equ 0x800EEC44         ; g_btl_polyg4_next
-RNG_DRMODE_NEXT  equ 0x800EEC4C         ; g_btl_drmode_next
+RNG_POLYG4_NEXT  equ BTL_POLYG4_NEXT
+RNG_DRMODE_NEXT  equ BTL_DRMODE_NEXT
 RNG_SPELL_UPDATE equ 0x800A5288         ; BtlPersonaSpellUpdate(short *row): one frame of the skill board
 RNG_SPELL_CALL   equ 0x800A345C         ; its only call, in BtlCommandCast
 RNG_ACTOR_PERSONA equ 0x800AE774        ; BtlActorPersona(slot)
@@ -834,7 +882,9 @@ ANALYZE_KIND_END equ 0x800577D7
 ;; completes it (smallfont_vwf.write_pool): the retail 28-byte slot ends at
 ;; g_btl_slot_owner. The main ANALYZE board and story-dialogue unpacking are
 ;; exclusive; reuse the upper part of the resident dialogue buffer, outside
-;; the CONTACT stock-name range and all name-owner ranges.
+;; the CONTACT stock-name range and all name-owner ranges. The scratch holds
+;; leftovers (zeros after boot), so the board is filled before its first frame
+;; (btlp/analyze_spells.asm, BtlAnalyseMenu).
 ANALYZE_TRAIT_BUF equ 0x80057700
 ANALYZE_TRAIT_END equ 0x8005772F        ; 47 cells
 .if ANALYZE_SPELL_END != ANALYZE_SPELL_BUF + 6 * ANALYZE_SPELL_STRIDE || ANALYZE_SPELL_BUF < ANALYZE_TRAIT_END || ANALYZE_RANK_BUF != ANALYZE_SPELL_END || ANALYZE_KIND_BUF != ANALYZE_RANK_END || ANALYZE_KIND_END > VWF_DLG_RING_ADDR

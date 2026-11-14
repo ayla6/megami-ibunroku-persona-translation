@@ -65,6 +65,25 @@ sf_record:
     li      t2, SF_ENG_MAGIC
     bne     t1, t2, @@verbatim
     nop
+.if SF_TABLE_SCRATCH
+    ;; ---- a row table outside the overlay image starts empty ----
+    ;; The state is the overlay's own (zero at every load); until this
+    ;; overlay registers, the table may hold another load's rows. Free
+    ;; every slot before the first write uses it.
+    la      t1, sf_state
+    lw      t2, SF_ST_ID(t1)
+    li      t3, OVERLAY_SLOT_ADDR
+    lw      t3, 0(t3)
+    lw      t1, SF_CFG_TABLE(t0)
+    beq     t2, t3, @@table_ready
+    li      t2, SF_ROWS
+@@table_clear:
+    sw      zero, SF_REC_DST(t1)
+    addiu   t2, t2, -1
+    bnez    t2, @@table_clear
+    addiu   t1, t1, SF_ROW_REC
+@@table_ready:
+.endif
     ;; ---- an item record's 10-byte head resolves to the FULL name ----
     ;; Not every writer goes through DrawItemName: EquipDrawCompare draws
     ;; g_item_defs[id].name straight to the map, which is only the head.
@@ -143,11 +162,16 @@ sf_record:
     la      t3, sf_name_scratch         ; this overlay's full-name scratch
     ;; a full-name row's budget is the caller's own retail footprint (8 px
     ;; per cell); a centered field keeps its natural advances, because its
-    ;; origin is derived from them
+    ;; origin is derived from them. Item, demon and Persona full names are
+    ;; full-name rows.
     lw      t4, 0x10(sp)
     sll     t1, s3, 3
-    bne     s0, t3, @@bare_row
+    beq     s0, t3, @@named             ; an item / demon full name
+    lw      at, 0x18(sp)                ; (delay) a complete Persona source
     nop
+    beqz    at, @@bare_row
+    nop
+@@named:
     beqz    t4, @@row_budget
     nop
 @@bare_row:
@@ -173,7 +197,10 @@ sf_record:
     addiu   t4, t3, SF_RECORDS * SF_ROW_BYTES
     sltu    t4, s0, t4
     beqz    t4, @@walk0
-    nop
+    sll     t4, s3, 3                   ; (delay) the caller's footprint
+    sw      t4, 0x08(sp)                ; an affinity line is read like a name:
+                                        ; the regular face's tiers, never the
+                                        ; original font
     subu    t4, s0, t3
     li      t5, SF_ROW_BYTES
     divu    t4, t5
@@ -215,6 +242,12 @@ sf_record:
     beqz    t6, @@out                   ; empty source performs no map write
     sll     t6, t6, 1
     addu    t6, s1, t6                  ; exclusive end of the actual logical write
+    ;; 0x04(sp): the new row's SEEN bit. A brand-new row starts with its
+    ;; chance; a rewrite inherits the bit of the row it replaces, so a menu
+    ;; that rewrites all its rows at once cannot mark every row drawn and
+    ;; send the clock round the table onto rows that are on screen.
+    ori     t1, zero, SF_REC_SEEN << 8
+    sw      t1, 0x04(sp)
     lw      t5, SF_CFG_TABLE(t0)
     li      t4, SF_ROWS
 @@invalidate:
@@ -229,7 +262,10 @@ sf_record:
     sltu    t3, t1, t6
     beqz    t3, @@invalidate_next
     nop
+    lhu     t2, SF_REC_PAD(t5)
     sw      zero, SF_REC_DST(t5)
+    andi    t2, t2, SF_REC_SEEN << 8    ; the replaced row's bit
+    sw      t2, 0x04(sp)
 @@invalidate_next:
     addiu   t4, t4, -1
     bnez    t4, @@invalidate
@@ -250,15 +286,30 @@ sf_record:
     addiu   t4, t4, -1
     bnez    t4, @@scan
     addiu   t5, t5, SF_ROW_REC
+    ;; The table is full: evict the first row, clock-wise from the last
+    ;; victim, that has not been drawn since the clock last passed it. A row
+    ;; on screen is drawn every frame and keeps its place (a menu's names
+    ;; written once at its opening); a row scrolled out of view goes first.
+    ;; The second pass always finds one: the first cleared every bit.
+@@victim:
     lhu     t4, SF_CFG_VICTIM(t0)
     nop
+    sltiu   t6, t4, SF_ROWS - 1         ; 1 below the last slot, 0 on it
     addiu   t4, t4, 1
-    andi    t4, t4, SF_ROWS - 1         ; wrap (SF_ROWS is a power of two)
+    subu    t6, zero, t6
+    and     t4, t4, t6                  ; wrap to slot 0
     sh      t4, SF_CFG_VICTIM(t0)
     sll     t5, t4, 6                   ; slot * 64
     sll     t6, t4, 3                   ; slot * 8
     subu    t5, t5, t6                  ; * SF_ROW_REC (56)
-    addu    t5, t3, t5                  ; the victim slot
+    addu    t5, t3, t5                  ; the candidate slot
+    lbu     t6, SF_REC_PAD + 1(t5)
+    nop
+    andi    t7, t6, SF_REC_SEEN
+    beqz    t7, @@slot                  ; not drawn since: the victim
+    xori    t6, t6, SF_REC_SEEN         ; (delay) second chance spent
+    b       @@victim
+    sb      t6, SF_REC_PAD + 1(t5)
 @@slot:
     sw      zero, SF_REC_DST(t5)        ; uncommitted until the row fits
 
@@ -393,8 +444,10 @@ sf_record:
     sll     t2, t4, 8                   ;   byte is the overlay that wrote the
     lw      t3, 0x10(sp)                ; producer-owned centering metadata
     or      t1, t1, t2                  ;   row (the pre-pass compares one
-    or      t1, t1, t3
-    sh      t1, SF_REC_PAD(t5)          ;   byte); the high byte is its bank
+    lw      t2, 0x04(sp)                ;   byte); the high byte is its bank,
+    or      t1, t1, t3                  ;   and the SEEN bit chosen at the
+    or      t1, t1, t2                  ;   invalidation above
+    sh      t1, SF_REC_PAD(t5)
     lw      t1, SF_CFG_BUFS(t0)
     nop
     sw      t1, SF_ST_BUFS(t6)
@@ -402,15 +455,43 @@ sf_record:
     ;; ---- the condensed tier of a full-name row ----
     ;; The codes just recorded are the whole wording. A name row's budget is
     ;; its caller's retail footprint (8 * s3, at 0x08(sp)); every other row
-    ;; has 0 there and keeps tier 0. Choose the least aggressive tier whose
-    ;; advances fit, using the same table the emitter reads:
+    ;; has 0 there and is tier 0 - with SF_ORIG_FACE tier 3, the original
+    ;; font. A name row takes the least aggressive tier whose advances fit,
+    ;; using the same table the emitter reads:
+    ;;   tier 0  the regular face
     ;;   tier 1  every word space loses 2 px
     ;;   tier 2  compact artwork and its measured advances (still 1-px gaps)
     lw      t2, 0x08(sp)
     nop
+.if SF_ORIG_FACE
+    bnez    t2, @@name_row
+    nop
+    ;; Every other row is the original font at its natural width while that
+    ;; fits the caller's retail footprint (8 px per cell; a centered field
+    ;; always keeps its natural width); a wider row takes
+    ;; the regular face's tiers against the same budget, like a name. A row
+    ;; with no Latin letter (numbers, kana, icons) draws exactly as retail,
+    ;; so the retail writer keeps it and it costs no packets.
+    jal     sf_has_letter
+    addiu   a0, t5, SF_REC_CODES
+    beqz    v0, @@letterless
+    sll     t2, s3, 3                   ; (delay) the caller's footprint
+    lw      t4, 0x10(sp)                ; a centered field keeps its natural
+    lw      t3, SF_CFG_WIDTHS(t0)       ; advances (its origin derives from them)
+    bnez    t4, @@tier_store
+    li      t4, 3                       ; (delay) the original font
+    b       @@tier_measure
+    addiu   t3, t3, SF_ORIG_TABLE       ; (delay) the original font first
+@@letterless:
+    b       @@verbatim
+    sw      zero, SF_REC_DST(t5)        ; (delay) the slot stays free
+@@name_row:
+.else
     beqz    t2, @@tier_ready
     nop
+.endif
     lw      t3, SF_CFG_WIDTHS(t0)
+@@tier_measure:
     addiu   t6, t5, SF_REC_CODES
     move    a0, zero                    ; natural width
     move    a1, zero                    ; compact-face width
@@ -432,7 +513,19 @@ sf_record:
     b       @@tier_sum
     addu    t7, t7, at
 @@tier_pick:
+.if SF_ORIG_FACE
+    lw      at, SF_CFG_WIDTHS(t0)
+    nop
+    beq     at, t3, @@regular_pick      ; the regular face's pass
+    subu    a0, a0, t2                  ; (delay) excess over the footprint
+    blez    a0, @@tier_store
+    li      t4, 3                       ; (delay) fits: the original font
+    b       @@tier_measure              ; too wide: measure the regular face
+    move    t3, at
+@@regular_pick:
+.else
     subu    a0, a0, t2                  ; excess over caller's footprint
+.endif
     blez    a0, @@tier_ready
     sll     t4, t7, 1
     subu    a0, a0, t4                  ; tier 1: spaces are 2 px narrower
@@ -490,10 +583,20 @@ sf_row_reserve:
     la      t8, sf_center_row
     jalr    t8, t6
     nop
-    lbu     t8, SF_REC_PAD + 1(t5)      ; the row's condensed tier (0-2)
+    lbu     t8, SF_REC_PAD + 1(t5)      ; the row's condensed tier (0-4)
     addiu   a1, t5, SF_REC_CODES
     srl     t8, t8, SF_REC_TIER_SHIFT
-    andi    t8, t8, 0x03
+    andi    t8, t8, SF_REC_TIER_MASK >> SF_REC_TIER_SHIFT
+.if SF_ORIG_FACE
+    ;; Tiers 3/4 read the original font's table and behave as tiers 0/1:
+    ;; the recorded value becomes SF_TIER_ORIG | 0/1, which sf_field_metric
+    ;; reads as tier 0/1 (srlv takes five bits, the nibble test bit 1).
+    sltiu   at, t8, 3
+    bnez    at, @@tier_known
+    nop
+    addiu   t8, t8, SF_TIER_ORIG - 3
+@@tier_known:
+.endif
     sw      t8, 0x2C(sp)
     move    t2, t1
     move    v0, zero
@@ -525,9 +628,29 @@ sf_row_reserve:
     nop
     lbu     t8, -1(a1)                  ; the cell's code (0 = word space)
     lw      t6, 0x2C(sp)
+.if SF_ORIG_FACE
+    nop
+    andi    at, t6, SF_TIER_ORIG
+    beqz    at, @@row_face
+    addu    at, a2, t8                  ; (delay) the original metric's address
+    lbu     t4, SF_ORIG_TABLE(at)
+@@row_face:
+.endif
     nop
     sf_field_metric t4, t8, t6, t4
     move    t6, t2                      ; both Latin atlases are left-normalised
+.if SF_ORIG_FACE
+    lw      at, 0x2C(sp)
+    nop
+    andi    at, at, SF_TIER_ORIG
+    beqz    at, @@row_left
+    addu    at, a2, t8                  ; (delay)
+    lbu     at, SF_ORIG_TABLE(at)       ; the original cell's ink starts
+    nop                                 ; `bearing` px in: draw it that far
+    srl     at, at, 4                   ; left of the pen, as the emitter does
+    subu    t6, t6, at
+@@row_left:
+.endif
     beqz    t8, @@row_count
     addu    t2, t2, t4                  ; spaces still advance the pen
     ;; A tail crossing the ring edge can make the preceding copy visible.
@@ -986,6 +1109,10 @@ sf_hook:
     ori     t4, zero, SF_REC_OWNED      ; NOT lui: the bit lives at 15, and lui
     or      t2, t2, t4                  ; would set bit 31 - which the sh below
     sh      t2, SF_REC_COUNT(t5)        ; then throws away, claiming nothing
+    lbu     t2, SF_REC_PAD + 1(t5)      ; drawn: the eviction clock spares it
+    nop
+    ori     t2, t2, SF_REC_SEEN
+    sb      t2, SF_REC_PAD + 1(t5)
 @@blank_next:
     addiu   a3, a3, -1
     bnez    a3, @@blank_rec
@@ -1129,6 +1256,19 @@ sf_hook:
     nop
     lw      t6, 0x2C(sp)                ; the row's condensed tier
     move    t2, t1
+.if SF_ORIG_FACE
+    andi    at, t6, SF_TIER_ORIG
+    beqz    at, @@glyph_face
+    nop
+    lw      t5, 0x20(sp)
+    nop
+    addu    t5, t5, v0
+    lbu     t4, SF_ORIG_TABLE(t5)       ; the original font: bearing | advance
+    nop
+    srl     at, t4, 4
+    subu    t2, t2, at                  ; the cell's ink starts at the pen
+@@glyph_face:
+.endif
     sf_field_metric t4, v0, t6, t4
     beqz    v0, @@have_first            ; word space: advance without a packet
     nop

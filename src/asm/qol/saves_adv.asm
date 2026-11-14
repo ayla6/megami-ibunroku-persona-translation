@@ -528,8 +528,8 @@ qol_draw_cells:
     move    a0, s3
     move    a1, s1
     move    a2, zero
-    jal     qol_row
-    ori     a3, zero, 8             ; (delay)
+    jal     QOL_WRITEROW            ; TileMapWriteRow: the name is text, drawn
+    ori     a3, zero, 8             ; (delay) by the small-font kit like any name
     ;; line 2: dedicated Lv artwork, level, TIME artwork, hh:mm
     la      a0, QOL_STRRUN
     move    a1, s2
@@ -597,8 +597,9 @@ qol_fill:
     addiu   sp, sp, 0x20
 
 ;; qol_row(src=a0, dst=a1, base=a2, count=a3): the row's cells, written
-;; straight into the tilemap.  TileMapWriteRow is the VWF's dispatcher in
-;; this build and TileMapWriteRowRev mirrors the row, so neither is used.
+;; straight into the tilemap, for the label and digit artwork. The name is
+;; text and goes through TileMapWriteRow (QOL_WRITEROW), so the small-font
+;; kit draws it like every other menu name.
 qol_row:
     addiu   sp, sp, -0x10
     sw      ra, 0xC(sp)

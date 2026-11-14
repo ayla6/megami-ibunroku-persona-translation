@@ -14,9 +14,9 @@
 ;; guard, the 0xFF terminator, u/v/flag/tpage values, and the caller
 ;; contract (a0-a3, v0-v1, t0-t9, at clobbered - a2 only re-read, never
 ;; written, so callers can chain row writes without re-setting it;
-;; s-registers and ra kept). Nothing reads +3 unless a cel entry carries
-;; the SF_BAR_MARK pad, so rows without the mark render exactly as
-;; retail. The /31 is the multiply-shift reciprocal (code * 265 >> 13,
+;; s-registers and ra kept; cells_row_caption clears a2's bit 6 first).
+;; Nothing reads +3 unless a cel entry carries the SF_BAR_MARK pad, so
+;; rows without the mark render exactly as retail. The /31 is the multiply-shift reciprocal (code * 265 >> 13,
 ;; exact for every code 0..255), replacing retail's 0x08421085 trick.
 ;;
 ;; BIT 7 OF THE PAGE ARGUMENT selects the VWF Latin face: each glyph's
@@ -43,7 +43,7 @@ cells_row:
     ori     t4, zero, 0xFF          ; the terminator
     ori     t5, zero, 265           ; the /31 reciprocal
     ori     t3, zero, 0x3C0         ; flag (the CLUT x the renderer reads)
-    andi    t2, a2, 0x7F
+    andi    t2, a2, 0x3F                ; the page (bit 6: regular face, bit 7: VWF)
     addiu   t2, t2, 0x1A0           ; tpage (the CLUT y the renderer reads)
     la      t8, sf_widths_adv       ; this overlay's advance table
 
@@ -62,12 +62,11 @@ cells_row:
     sll     a1, v0, 1
     addu    a1, a1, v0
     sll     a1, a1, 2               ; v = q * 12
-    addu    t1, t8, v1              ; the glyph's advance entry
     andi    t6, a2, 0x80            ; bit 7 of the page: the VWF Latin face
     beqz    t6, @@uv                ; retail face: keep the atlas u/v
-    move    v0, v1                  ; (delay) the selector's code
-    jal     sf_variant_uv_v1_adv    ; retail code -> the regular Latin cell
-    nop
+    addu    t1, t8, v1              ; (delay) the glyph's advance entry
+    jal     sf_bar_orig_adv         ; the original font: the retail cell, its
+    move    v0, v1                  ; (delay) advance -> t1 (sf_bar_orig)
 @@uv:
     sb      a0, 0(t0)
     sb      a1, 1(t0)
@@ -86,6 +85,13 @@ cells_row:
 @@ret0:
     jr      ra
     nop
+
+;; A caption row chained after a name row (the fusion bar's arcana): the
+;; same writer with bit 6 cleared, so the caption takes the original font
+;; while the caller's a2 still names the row a Persona name.
+cells_row_caption:
+    b       cells_row
+    andi    a2, a2, 0xBF            ; (delay) VWF face, original font
 cells_row_end:
 .fill ADV_CELLS_ROW + 0xC0 - cells_row_end
 

@@ -578,6 +578,7 @@ qol_o_cell_color_done:
     addu    s7, s7, t0
     addiu   s4, s4, -QOL_C_ALL
     move    s6, zero
+    move    s2, zero                ; the name's pen (s2 is reloaded below)
 qol_o_name:
     addu    t0, s7, s6
     lbu     t1, 0(t0)
@@ -597,6 +598,23 @@ qol_o_name:
     nop
     sb      t1, 14(s5)
     sb      t2, 15(s5)
+.if SF_VWF
+    ;; The name in the original font, as the field kit draws it: the
+    ;; retail cell at pen - its left bearing, then the pen moves by the
+    ;; glyph's advance (qol_o_orig: bearing << 4 | advance per code).
+    addu    t0, s7, s6
+    lbu     t0, 0(t0)
+    la      t3, qol_o_orig
+    addu    t3, t3, t0
+    lbu     t3, 0(t3)
+    nop
+    srl     t0, t3, 4               ; the left bearing
+    andi    t3, t3, 0x0F            ; the advance
+    subu    t0, s2, t0
+    addu    t0, t0, s0
+    sh      t0, 4(s5)
+    addu    s2, s2, t3
+.endif
     addiu   s4, s4, 1
     addiu   s6, s6, 1
     sltiu   t0, s6, QOL_C_NAME
@@ -638,6 +656,11 @@ qol_o_next_row:
     nop
     jr      ra
     addiu   sp, sp, 0x50
+.if SF_VWF
+;; The original font's metrics (smallfont_vwf.py: the field kit's table).
+qol_o_orig:
+    .incbin "../../build/sf_field_orig.bin"
+.endif
 qol_o_end:
 .if qol_o_end > 0x80180000
     .error "save-list code/state overlaps OPEN.BIN"

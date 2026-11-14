@@ -90,6 +90,13 @@ class Pipeline(unittest.TestCase):
         self.assertEqual(c.r[8], 3)
 
 
+def toolbelt_equ(name):
+    import sys
+    sys.path.insert(0, str(ROOT / 'src/injection_tools'))
+    import toolbelt
+    return toolbelt.asm_equ(name, str(ROOT / 'src/asm/vwf/smallfont_defs.asm'))
+
+
 class BuiltSmallfont(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -123,7 +130,55 @@ class BuiltSmallfont(unittest.TestCase):
         widths = c.read(cfg + 0x14)
         c.load(widths, bytes([0x34]) * 256)
         c.write(widths, 0x24, 1)
+        if self.has_original(widths):
+            # the same synthetic advances for the original font's table
+            # (bearing 0): mechanics tests see one metric in every overlay
+            c.load(widths + 0x100, bytes([0x04]) * 256)
+            # synthetic codes are kana: count them as letters, or a row with
+            # none would go to the retail writer (test_letterless_rows_*)
+            if self.stub_letters:
+                c.load(self.active('sf_has_letter'), struct.pack('<II', 0x03E00008, 0x34020001))
         return c
+
+    stub_letters = True
+
+    def active(self, name):
+        """`name`'s address in the overlay the test has made current."""
+        original = type(self).symbols         # the build's own, before a test remaps
+        for ovl in ('adv', 'dng', 's2d'):
+            if original['sf_cfg_' + ovl] == self.symbols['sf_cfg_adv']:
+                return original[f'{name}_{ovl}']
+        raise AssertionError('no current overlay')
+
+    def test_letterless_rows_stay_with_the_retail_writer(self):
+        """A row without a Latin letter (numbers, kana, icons) draws exactly
+        as retail in the original font: it is not recorded, and the retail
+        writer puts it in the map. A row with a letter is the kit's."""
+        import sys
+        sys.path.insert(0, str(ROOT / 'src/injection_tools'))
+        import toolbelt
+        self.stub_letters = False
+        try:
+            digits = [toolbelt.smallfont_char(ch) for ch in '999/999']
+            c = self.machine()
+            c.load(SOURCE, bytes(digits + [255]))
+            for name, value in dict(a0=SOURCE, a1=INDEX, a2=0, a3=len(digits),
+                                    t0=self.symbols['sf_cfg_adv'], sp=STACK, ra=RETURN).items():
+                c.r[REG[name]] = value
+            c.start(self.symbols['sf_record_adv'])
+            c.run(RETURN)
+            self.assertFalse(any(c.read(self.table(c) + i * 56) for i in range(self.rows)))
+            self.assertEqual([c.read(INDEX + 2 * i, 2) for i in range(len(digits))], digits)
+            word = [toolbelt.smallfont_char(ch) for ch in 'Maki']
+            c = self.machine()
+            ptr = self.record(c, word + [255], len(word))
+            self.assertEqual(c.read(ptr + 7, 1) >> 2 & 7, 3)
+        finally:
+            self.stub_letters = True
+
+    def has_original(self, widths):
+        """The active overlay has the original-font table after `widths`."""
+        return widths + 0x100 in (self.symbols.get('sf_orig_' + o) for o in ('adv', 'dng', 's2d'))
 
     def table(self, c):
         return c.read(self.symbols['sf_cfg_adv'] + 8)
@@ -179,7 +234,7 @@ class BuiltSmallfont(unittest.TestCase):
                     codes = [10 + i % 20 for i in range(55)] + [255]
                     ptr = self.record(c, codes, cap, bank)
                     self.assertEqual(c.read(ptr + 4, 2), cap)
-                    self.assertEqual(c.read(ptr + 6, 2) >> 8, bank)
+                    self.assertEqual(c.read(ptr + 6, 2) >> 8 & 3, bank)
                     self.assertEqual(bytes(c.mem[c.offset(ptr + 8):c.offset(ptr + 8) + cap + 1]), bytes(codes[:cap] + [255]))
                     self.assertEqual(c.r[REG['sp']], STACK)
 
@@ -193,8 +248,13 @@ class BuiltSmallfont(unittest.TestCase):
                 for fast in (False, True):
                     with self.subTest(codes=codes, tier=tier, bank=bank, fast=fast):
                         c = self.machine(); self.layer(c)
+                        widths = c.read(self.symbols['sf_cfg_adv'] + 0x14)
+                        if self.has_original(widths):
+                            # an original font too wide for these rows: the
+                            # ladder falls through to the tiers under test
+                            c.load(widths + 0x100, bytes([0x08]) * 256)
                         ptr = self.record(c, codes + [255], 2, bank, source=self.scratch)
-                        self.assertEqual(c.read(ptr + 7, 1), bank | tier << 2)
+                        self.assertEqual(c.read(ptr + 7, 1) & 0x1F, bank | tier << 2)   # bank | tier
                         self.assertEqual([p & 65535 for p in self.render(c, fast=fast)], expected)
                         self.assertTrue(c.read(ptr + 4, 2) & 0x8000)
 
@@ -227,7 +287,10 @@ class BuiltSmallfont(unittest.TestCase):
         for source, count in ((SOURCE, 5), (self.scratch, 0x8002)):
             c = self.machine()
             ptr = self.record(c, [10] * 5 + [255], count, source=source)
-            self.assertEqual(c.read(ptr + 7, 1) >> 2 & 3, 0)
+            # the overlay's own face at its natural width: the original
+            # font (tier 3) where it has one, else the regular face
+            natural = 3 if self.has_original(c.read(self.symbols['sf_cfg_adv'] + 0x14)) else 0
+            self.assertEqual(c.read(ptr + 7, 1) >> 2 & 7, natural)
 
     def test_fixed_cell_producer_keeps_the_retail_map_and_font(self):
         c = self.machine(); self.layer(c)
@@ -237,27 +300,63 @@ class BuiltSmallfont(unittest.TestCase):
         self.assertFalse(c.read(ptr + 4, 2) & 0x8000)
         self.assertEqual([c.read(INDEX + 2 * i, 2) for i in range(3)], [166, 167, 168])
 
-    def test_all_condensed_source_names_render_complete_in_every_overlay(self):
+    def test_a_row_takes_the_original_font_only_while_it_fits(self):
+        """A non-name row is the original font while its advances fit the
+        caller's retail footprint (8 px per cell); a wider one takes the
+        regular face's tiers against that footprint."""
+        c = self.machine()
+        ptr = self.record(c, [10] * 4 + [255], 4)
+        self.assertEqual(c.read(ptr + 7, 1) >> 2 & 7, 3)
+        c = self.machine()
+        widths = c.read(self.symbols['sf_cfg_adv'] + 0x14)
+        c.write(widths + 0x100 + 10, 0x0C, 1)            # 12 px: 48 > 32
+        ptr = self.record(c, [10] * 4 + [255], 4)
+        self.assertEqual(c.read(ptr + 7, 1) >> 2 & 7, 0)
+
+    def test_affinity_lines_take_the_regular_face(self):
+        """The Type/Subtype line is read like a name: never the original
+        font, even when it would fit."""
+        c = self.machine()
+        table = toolbelt_equ('SF_AFFINITY_TABLE')
+        pool = c.read(self.symbols['sf_cfg_adv'] + 0x18)
+        record = next(k for k in range(120) if c.read(pool + 2 * k, 2) == 0xFFFF)
+        ptr = self.record(c, [10] * 4 + [255], 4, source=table + record * 0x19)
+        self.assertEqual(c.read(ptr + 7, 1) >> 2 & 7, 0)
+
+    def name_cases(self, keep):
         import sys
         sys.path.insert(0, str(ROOT / 'src/injection_tools'))
         import items, demons, name_tails, smallfont_vwf
-        import smallfont_variants
         field_widths = (ROOT / 'build/sf_field_width.bin').read_bytes()
+        original = (ROOT / 'build/sf_field_orig.bin').read_bytes()
         cases = []
         for family, rows, base, stride in (
                 ('items', name_tails.item_rows(), items.FIRST - items.STRIDE, items.STRIDE),
                 ('demons', name_tails.demon_rows(), demons.REC0, demons.STRIDE)):
             for ident, text in rows:
                 codes = items.encode(text)
-                if sum(field_widths[c] & 15 for c in codes) <= 80:
-                    continue
                 # The porter refuses a name no stage fits (items.build fails,
                 # the wording is never widened or cut), so only fitting names
                 # reach a row and must render complete there.
                 if smallfont_vwf.condensed_tier(codes, 80, field_widths)[0] is None:
                     continue
-                cases.append((family, ident, codes, base + ident * stride))
-        self.assertTrue(cases, 'requires the canonical over-natural-width names')
+                if keep(codes, field_widths, original):
+                    cases.append((family, ident, codes, base + ident * stride))
+        return cases
+
+    def test_all_condensed_source_names_render_complete_in_every_overlay(self):
+        self.check_name_rows(self.name_cases(
+            lambda codes, widths, _original: sum(widths[c] & 15 for c in codes) > 80),
+            {1, 2})
+
+    def check_name_rows(self, cases, want_tiers):
+        import sys
+        sys.path.insert(0, str(ROOT / 'src/injection_tools'))
+        import smallfont_vwf
+        import smallfont_variants
+        field_widths = (ROOT / 'build/sf_field_width.bin').read_bytes()
+        original = (ROOT / 'build/sf_field_orig.bin').read_bytes()
+        self.assertTrue(cases, 'requires the canonical name rows')
         original_symbols, original_overlay, original_scratch = self.symbols, self.overlay, self.scratch
         tiers = set()
         try:
@@ -278,7 +377,7 @@ class BuiltSmallfont(unittest.TestCase):
                             self.assertLessEqual(px, 80)
                             ptr = self.record(c, list(codes[:10]) + ([255] if len(codes) < 10 else []),
                                               10, bank=ident % 4, source=source)
-                            self.assertEqual(c.read(ptr + 7, 1), ident % 4 | tier << 2)
+                            self.assertEqual(c.read(ptr + 7, 1) & 0x1F, ident % 4 | tier << 2)
                             start = c.offset(ptr + 8)
                             self.assertEqual(bytes(c.mem[start:start + len(codes) + 1]), codes + b'\xff')
                             expected, pen = [], 20
@@ -295,7 +394,7 @@ class BuiltSmallfont(unittest.TestCase):
                             self.assertTrue(c.read(ptr + 4, 2) & 0x8000)
         finally:
             self.symbols, self.overlay, self.scratch = original_symbols, original_overlay, original_scratch
-        self.assertEqual(tiers, {1, 2})
+        self.assertEqual(tiers, want_tiers)
 
     def captured_code(self, c, spans):
         path = os.environ.get('SMALLFONT_CRASH_RAM')
@@ -770,6 +869,36 @@ class BuiltSmallfont(unittest.TestCase):
         addresses = {c.read(self.table(c) + slot * 56) for slot in range(self.rows)}
         self.assertTrue({index + row * 80 for row in range(40)} <= addresses)
 
+    def test_a_menu_rewriting_its_whole_list_keeps_drawn_rows(self):
+        """DNG's item list is a 32-line ring of two names per line (64 rows)
+        drawn beside the party names, and a scroll rewrites the list. The
+        party names, written once, must keep their records."""
+        c = self.machine()
+        party = [INDEX + row * 80 for row in range(6)]
+        listing = [0x80112000 + row * 80 for row in range(64)]
+        self.assertGreaterEqual(self.rows, len(party) + len(listing))
+        for row, dst in enumerate(party):
+            self.record(c, [10, 11, 255], 2, dst=dst, source=SOURCE)
+        for frame in range(4):
+            for dst in listing:
+                self.record(c, [12 + frame, 13, 255], 2, dst=dst, source=SOURCE + 0x40)
+            held = {c.read(self.table(c) + i * 56) for i in range(self.rows)}
+            self.assertTrue(set(party) <= held, f'frame {frame}: a party name was evicted')
+
+    def test_a_rewrite_keeps_the_replaced_rows_drawn_bit(self):
+        """A new row starts with the clock's second chance; a rewrite of a
+        row keeps that row's bit, so rewriting a list cannot mark its
+        hidden rows drawn."""
+        c = self.machine()
+        ptr = self.record(c, [10, 11, 255], 2)
+        self.assertTrue(c.read(ptr + 7, 1) & 0x20)
+        c.write(ptr + 7, c.read(ptr + 7, 1) & ~0x20, 1)       # passed, not drawn
+        ptr = self.record(c, [12, 13, 255], 2)
+        self.assertFalse(c.read(ptr + 7, 1) & 0x20)
+        c.write(ptr + 7, c.read(ptr + 7, 1) | 0x20, 1)        # drawn
+        ptr = self.record(c, [14, 15, 255], 2)
+        self.assertTrue(c.read(ptr + 7, 1) & 0x20)
+
     def test_fast_sorter_thunk_reaches_real_body_and_preserves_saved_registers(self):
         c = self.machine(); self.layer(c)
         self.record(c, [10, 11, 255], 2)
@@ -1168,7 +1297,10 @@ class BuiltSmallfont(unittest.TestCase):
                         codes = list(self.overlay[offset:offset + count])
                         codes = codes[:codes.index(255)] if 255 in codes else codes
                         c = self.machine(); self.layer(c)
-                        c.load(c.read(self.symbols['sf_cfg_adv'] + 0x14), widths)
+                        table = c.read(self.symbols['sf_cfg_adv'] + 0x14)
+                        c.load(table, widths)
+                        if self.has_original(table):
+                            c.load(table + 0x100, bytes(w & 15 for w in widths))
                         self.record(c, codes + [255], count | 0x8000, bank=bank)
                         points = self.render(c)
                         first = next(i for i, code in enumerate(codes) if code)

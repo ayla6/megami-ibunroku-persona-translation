@@ -41,8 +41,10 @@ the resident name_count_store helper (slps_005.00/name_count.asm): a compact slo
 stores its real glyph count - the FF position, never padded to eight - and a legacy all-glyph slot keeps
 retail's five. Code 16's second half (MSG_SURNAME) calls name_count_surname, the same scan on the +10 slot
 plus the blank separator that branch prints before it; the DNG field-script name print gets the same scan
-through a proxy (it stops at FF itself, so the scan there only picks the wide bound). A name longer than
-eight is written as its initial and a full stop (Kirishima -> "K."), the same rule for every name.
+through a proxy (it stops at FF itself, so the scan there only picks the wide bound). A slot holds nine
+letters: up to eight end FF 01, a ninth fills the slot and ends at FF alone (Kirishima), which is all any
+reader looks for. A name longer than nine is written as its initial and a full stop, the same rule for
+every name.
 """
 import os
 import re
@@ -56,10 +58,10 @@ import toolbelt   # noqa: E402
 ROOT = etext.ROOT
 REL = 'SLPS_005.00'
 BASE = 0x80049040            # PARTY_NAMES_ADDR (addresses.inc; the VWF wrapper tests this range)
-SLOT = 10                    # bytes per slot (9 letters + FF 01 would fit)
+SLOT = 10                    # bytes per slot: up to 8 letters + FF 01, or 9 letters + FF
 SLOTS = 18                   # company, protagonist, then 8 family / given pairs
 FIRST_PAIR = 2
-MAXCHARS = 8                 # characters the name inserts print (the count glue below)
+MAXCHARS = SLOT - 1          # letters a slot holds: every reader stops at its FF
 SLPS_BASE = 0x8000F800       # file offset = VA - SLPS_BASE
 OUT = os.path.join(ROOT, 'build', 'partynames.asm')
 UA = chr(0x3000)             # the full-width space of a Japanese full name
@@ -121,15 +123,17 @@ def members():
 
 
 def fit(part, i):
-    """The insert prints MAXCHARS characters; a longer part keeps its initial."""
+    """A slot holds MAXCHARS characters; a longer part keeps its initial."""
     if len(part) <= MAXCHARS:
         return part
-    print(f'partynames: slot {i} {part!r} is {len(part)} characters, the insert prints {MAXCHARS}: using {part[0] + "."!r}')
+    print(f'partynames: slot {i} {part!r} is {len(part)} characters, the slot holds {MAXCHARS}: using {part[0] + "."!r}')
     return part[0] + '.'
 
 
 def enc(t):
     out = etext.encode(t)          # dialogue encoding, ends FF 01
+    if len(out) == SLOT + 1 and out.endswith(b'\xff\x01'):
+        out = out[:-1]             # a full slot ends at its FF alone: every reader stops there
     if len(out) > SLOT:
         toolbelt.fail(f'partynames: {t!r} needs {len(out)} bytes (slot {SLOT})')
     return out + bytes(SLOT - len(out))
@@ -229,7 +233,7 @@ def overlay_patches():
     DNG's field-script interpreter calls FieldMsgPrint(0x80075428, a1 = 5)
     directly in three places. FieldMsgPrint stops at MSG_END (0xFF), so its
     count only has to cover a compact slot: a proxy in the rest of the count
-    stub's dead function scans a0's 10-byte slot for FF, sets a1 = 8 / 5, and
+    stub's dead function scans a0's 10-byte slot for FF, sets a1 = MAXCHARS / 5, and
     tail-jumps to FieldMsgPrint. It uses only t0-t2 and leaves a0 alone."""
     import struct
     base = 0x800643C4
@@ -285,7 +289,7 @@ def overlay_patches():
                       '    b       @@go',
                       '    nop',
                       '@@wide:',
-                      '    li      a1, 8',
+                      f'    li      a1, {MAXCHARS}',
                       '@@go:',
                       '    j       %#x' % fmp,
                       '    nop',

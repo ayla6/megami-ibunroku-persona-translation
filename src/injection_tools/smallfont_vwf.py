@@ -341,6 +341,8 @@ def glyph_rows(pix, w, code):
 
 
 ENGINE_TPL = os.path.join(ROOT, 'src', 'asm', 'vwf', 'smallfont.asm')
+ORIG_FACE_OVERLAYS = ('adv', 'dng', 's2d')   # overlays drawing in the original font
+SCRATCH_TABLE_OVERLAYS = ('adv', 'dng')  # row table outside the overlay image
 
 
 def write_engines():
@@ -356,9 +358,16 @@ def write_engines():
     labels = ('sf_record_end', 'sf_thunks_end', 'sf_hook_fastbg', 'sf_hook_end',
               'sf_hook_bg', 'sf_hook', 'sf_call_fastbg', 'sf_call_bg', 'sf_record',
               'sf_state', 'sf_cfg', 'sf_name_scratch', 'sf_clip_glyph', 'sf_row_reserve',
-              'item_name_copy', 'demon_name_copy', 'sf_center_row', 'sf_variant_uv')
+              'item_name_copy', 'demon_name_copy', 'sf_center_row', 'sf_variant_uv',
+              'sf_has_letter')
     for ovl in ('adv', 'dng', 's2d'):
-        out = tpl
+        # The original-font tiers need the second metric table and code
+        # room; ADV's packed extension has neither, so it keeps tiers 0-2.
+        original = ovl in ORIG_FACE_OVERLAYS
+        out = re.sub(r'\bSF_ORIG_FACE\b', '1' if original else '0', tpl)
+        # ADV's row table lives outside its image (addresses.inc
+        # ADV_SF_TABLE_ADDR): the recorder clears it for a fresh load.
+        out = re.sub(r'\bSF_TABLE_SCRATCH\b', '1' if ovl in SCRATCH_TABLE_OVERLAYS else '0', out)
         for label in labels:
             out = re.sub(rf'\b{label}\b', f'{label}_{ovl}', out)
         lines = out.split('\n')
@@ -367,6 +376,15 @@ def write_engines():
             k -= 1                  # the renderer's comment header goes with it
         rec = '\n'.join(lines[:k]).rstrip() + '\n'
         hook = '\n'.join(lines[k:])
+        reserve = ''
+        if original:
+            # The original-font tiers grow the recorder past its bounded
+            # HELP dead run; the row reservation helper moves to the
+            # extension with the clip and UV helpers.
+            start = rec.index(';; Count visible glyphs')
+            end = rec.index(f'sf_record_end_{ovl}:')
+            reserve = rec[start:end]
+            rec = rec[:start] + rec[end:]
         # Clipping and font UV selection share the overlay's extension. This
         # keeps the bounded DNG/S2D renderer dead runs independent of font art.
         start = hook.index(f'sf_clip_glyph_{ovl}:')
@@ -374,13 +392,14 @@ def write_engines():
         clip = hook[start:end]
         hook = hook[:start] + hook[end:]
         import smallfont_variants
-        variant = smallfont_variants.assembly()
+        variant = smallfont_variants.assembly(original)
         for name in ('sf_variant_uv_end', 'sf_variant_uv_v1', 'sf_variant_uv',
-                     'sf_variant_cells'):
+                     'sf_variant_cells', 'sf_bar_orig', 'sf_bar_adv', 'sf_has_letter'):
             variant = re.sub(rf'\b{name}\b', f'{name}_{ovl}', variant)
-        open(os.path.join(ROOT, 'build', f'smallfont_helpers_{ovl}.asm'), 'w').write(clip + variant)
+        open(os.path.join(ROOT, 'build', f'smallfont_helpers_{ovl}.asm'), 'w').write(
+            clip + reserve + variant)
         stock = open(toolbelt.bin_path(ovl.upper()), 'rb').read()
-        fixed = smallfont_variants.fixed_producers(stock, ovl.upper())
+        fixed = smallfont_variants.producer_tags(stock, ovl.upper(), original)
         open(os.path.join(ROOT, 'build', f'smallfont_fixed_{ovl}.asm'), 'w').write(
             '\n'.join(f'.org {at:#x}\n    .word {word:#x}' for at, word in fixed) + '\n')
         for path, body in (
@@ -392,6 +411,8 @@ def write_engines():
                  ';; (placed by the wrapper: the overlay renderer dead function)\n' + hook)):
             open(path, 'w', newline='\n').write(body)
         center = open(os.path.join(ROOT, 'src/asm/vwf/sf_center.asm')).read()
+        if original:        # centre on the original font's advances
+            center = center.replace('lbu     t8, 0(t8)', 'lbu     t8, SF_ORIG_TABLE(t8)')
         center = re.sub(r'\bsf_center_row\b', f'sf_center_row_{ovl}', center)
         center = re.sub(r'\bsf_center_end\b', f'sf_center_end_{ovl}', center)
         open(os.path.join(ROOT, 'build', f'smallfont_center_{ovl}.asm'), 'w', newline='\n').write(center)
@@ -431,6 +452,8 @@ def build():
     os.makedirs(os.path.dirname(WIDTH_OUT), exist_ok=True)
     open(WIDTH_OUT, 'wb').write(bytes(widths))
     open(os.path.join(ROOT, 'build', 'sf_field_width.bin'), 'wb').write(field_widths)
+    open(os.path.join(ROOT, 'build', 'sf_field_orig.bin'), 'wb').write(
+        smallfont_variants.original_metrics(retail, glyph_rows))
     text = text_bits()
     open(TEXT_BITS_OUT, 'wb').write(text)
     # THE BATTLE TABLE gives every NON-text code the retail cell's 8 px pitch:
@@ -447,9 +470,11 @@ def build():
            for c in range(CODES) if text[c >> 3] & (1 << (c & 7))):
         raise SystemExit('smallfont_vwf: a text cell has the fixed 8 px metric')
     open(BTL_WIDTH_OUT, 'wb').write(bytes(battle))
+    write_btl_orig(smallfont_variants.original_metrics(retail, glyph_rows), text)
     import battle_text_layout
     stock = open(toolbelt.bin_path('BTLP'), 'rb').read()
-    headings = battle_text_layout.centred_headings(stock, widths, text)
+    headings = battle_text_layout.centred_headings(
+        stock, btl_orig_widths(smallfont_variants.original_metrics(retail, glyph_rows), text), text)
     with open(os.path.join(ROOT, 'build', 'btl_text_centres.asm'), 'w') as out:
         out.write(battle_text_layout.assembly(headings))
     write_pool(bytes(widths))
@@ -465,6 +490,53 @@ def build():
           f'every other cell retail 8 px)')
     print(f'{len(blank)} blank cells, {len(used)} with ink; average advance {avg:.2f} px')
     print(f'affinity row budget {ROW_PX} px = about {ROW_PX / avg:.0f} average glyphs')
+
+
+BTL_ORIG_OUT = os.path.join(ROOT, 'build', 'btl_orig_width.asm')
+BTL_ORIG_BIN = os.path.join(ROOT, 'build', 'btl_orig_width.bin')
+
+
+def btl_orig_widths(original, text):
+    """The battle's original-font metric per code (256 bytes): the original
+    face's bearing << 4 | advance on every text cell, the retail 8 px on
+    every other cell (numbers, icons, kana), exactly what btl_sf_metric reads
+    for a row btl_row_face gives the original font."""
+    return bytes(original[c] if text[c >> 3] & (1 << (c & 7)) else PACK(0, GLYPH_W)
+                 for c in range(CODES))
+
+
+def btl_orig_runs(table):
+    """(low_n, high_first, high_n): the two runs of codes the resident table
+    stores - [0, low_n) and [high_first, high_first + high_n) - split at the
+    widest gap between codes whose metric is not the 8 px cell. Every code
+    outside them is that cell."""
+    wide = [c for c in range(len(table)) if c == 0 or table[c] != PACK(0, GLYPH_W)]
+    gap, split = max((b - a, i) for i, (a, b) in enumerate(zip(wide, wide[1:])))
+    low, high = wide[:split + 1], wide[split + 1:]
+    return low[-1] + 1, high[0], high[-1] - high[0] + 1
+
+
+def btl_orig_px(codes):
+    """Drawn width of battle codes in the original font (btl_row_face rows)."""
+    if not os.path.exists(BTL_ORIG_BIN):
+        build()
+    table = open(BTL_ORIG_BIN, 'rb').read()
+    return sum(adv(table[c]) for c in codes)
+
+
+def write_btl_orig(original, text):
+    table = btl_orig_widths(original, text)
+    low_n, high_first, high_n = btl_orig_runs(table)
+    body = table[:low_n] + table[high_first:high_first + high_n]
+    open(BTL_ORIG_BIN, 'wb').write(table)
+    with open(BTL_ORIG_OUT, 'w', newline='\n') as out:
+        out.write(';; generated by tools/smallfont_vwf.py build - do not edit\n'
+                  f'.definelabel BTL_ORIG_LOW_N, {low_n}\n'
+                  f'.definelabel BTL_ORIG_HIGH_FIRST, {high_first}\n'
+                  f'.definelabel BTL_ORIG_HIGH_N, {high_n}\n'
+                  'btl_orig_width:\n')
+        for start in range(0, len(body), 16):
+            out.write('    .byte ' + ', '.join(f'0x{x:02X}' for x in body[start:start + 16]) + '\n')
 
 
 POOL_OUT = os.path.join(ROOT, 'build', 'affinity_pool.bin')
@@ -537,6 +609,8 @@ def write_pool(widths):
     room = None
     for ovl in ('DNG', 'S2D'):
         start = toolbelt.asm_equ(f'{ovl}_SF_DATA_ADDR') + st_end + len(widths)
+        if ovl.lower() in ORIG_FACE_OVERLAYS:
+            start += len(widths)            # the original font's table follows it
         left = toolbelt.asm_equ(f'{ovl}_ITEM_DATA_ADDR') - start
         room = left if room is None else min(room, left)
     # BTLP converts this to its compact byte index and checks its separately
@@ -785,6 +859,15 @@ def condensed_tier(codes, budget, widths=None):
     return None, natural
 
 
+# ---- the original font (ORIG_FACE_OVERLAYS) ----
+#
+# Every row the field kit draws without a name budget is tier 3: the
+# original fixed font, proportionally spaced (smallfont_variants.
+# original_metrics: bearing << 4 | advance per code). Name rows - items,
+# skills, demons, Personas - keep the regular face and tiers 0-2 above.
+ORIG_TIER = 3
+
+
 AFF_LO = 0x8004C848 - 0x8000F800          # affinity record offsets in the SLPS row store
 AFF_HI = AFF_LO + 120 * 0x19
 
@@ -964,7 +1047,7 @@ def verify():
     import battle_text_layout
     stock = open(toolbelt.bin_path('BTLP'), 'rb').read()
     headings = battle_text_layout.centred_headings(
-        stock, open(WIDTH_OUT, 'rb').read(), open(TEXT_BITS_OUT, 'rb').read())
+        stock, open(BTL_ORIG_BIN, 'rb').read(), open(TEXT_BITS_OUT, 'rb').read())
     battle_text_layout.verify(
         open(os.path.join(ROOT, 'build', 'BTLP.BIN'), 'rb').read(), headings)
 
@@ -1062,7 +1145,8 @@ def verify():
         if ovl == 'ADV' and (center != toolbelt.asm_equ('ADV_SF_CENTER_ADDR') or
                              center_end > toolbelt.asm_equ('ADV_SF_CENTER_END')):
             raise SystemExit('smallfont_vwf: verify: ADV centering helper escapes its allocated run')
-        if center_reference is not None and center_code != center_reference:
+        if low not in ORIG_FACE_OVERLAYS and center_reference is not None and \
+                center_code != center_reference:
             raise SystemExit(f'smallfont_vwf: verify: {ovl} centering helper differs from ADV')
         center_reference = center_code
 
@@ -1096,10 +1180,20 @@ def verify():
             raise SystemExit(
                 f'smallfont_vwf: verify: the {ovl} advance table is at {wi:#x}, '
                 f'want {st + st_end:#x} (state + SF_ST_END).')
-        if po != wi + len(widths):
+        orig_at = wi + len(widths)
+        tables = len(widths)
+        if low in ORIG_FACE_OVERLAYS:
+            original = open(os.path.join(ROOT, 'build', 'sf_field_orig.bin'), 'rb').read()
+            if sym.get(f'sf_orig_{low}') != orig_at or \
+                    d[orig_at - BASE:orig_at - BASE + len(original)] != original:
+                raise SystemExit(
+                    f'smallfont_vwf: verify: the {ovl} original-font table at {orig_at:#x} '
+                    f'does not read back as build/sf_field_orig.bin.')
+            tables += len(original)
+        if po != wi + tables:
             raise SystemExit(
                 f'smallfont_vwf: verify: the {ovl} affinity pool is at {po:#x}, '
-                f'want {wi + len(widths):#x}.')
+                f'want {wi + tables:#x}.')
         data_end = po + len(pool) if ovl == 'ADV' else sym[f'sf_variant_uv_end_{low}']
         if de != data_end:
             raise SystemExit(
@@ -1250,6 +1344,9 @@ def verify():
         reserve = sym[f'sf_row_reserve_{low}']
         rec_end = sym[f'sf_record_end_{low}']
         rec_start = sym[f'sf_record_{low}']
+        if low in ORIG_FACE_OVERLAYS:       # moved to the helpers
+            rec_start, rec_end = ((rec_start, sym[f'sf_variant_uv_end_{low}']) if ovl == 'ADV'
+                                  else (st, de))
         if not rec_start < reserve < rec_end:
             raise SystemExit(f'smallfont_vwf: verify: {ovl} row reservation helper is outside its owned recorder region.')
         hwords = struct.unpack_from(f'<{(rec_end - reserve) // 4}I', d, reserve - BASE)
@@ -1416,7 +1513,15 @@ def verify():
         extension_end = sym[f'sf_extension_end_{low}']
         name_bytes = toolbelt.asm_equ('SF_NAME_BYTES', defs)
         owner_end = sym['sf_variant_uv_end_adv'] if ovl == 'ADV' else iend
-        if table_addr != ((owner_end + 3) & ~3) or table_end != table_addr + table_size:
+        if low in SCRATCH_TABLE_OVERLAYS:
+            # the table is runtime scratch outside the image; the stubs
+            # follow the helpers where the table used to be
+            if table_addr != toolbelt.asm_equ(f'{ovl}_SF_TABLE_ADDR') or \
+                    table_end != table_addr + table_size or \
+                    table_end > toolbelt.asm_equ(f'{ovl}_SF_TABLE_LIMIT'):
+                raise SystemExit(f'smallfont_vwf: verify: {ovl} row table is not at {ovl}_SF_TABLE_ADDR')
+            table_end = (owner_end + 3) & ~3
+        elif table_addr != ((owner_end + 3) & ~3) or table_end != table_addr + table_size:
             raise SystemExit(f'smallfont_vwf: verify: {ovl} row table is outside its owned extension order')
         # ADV/DNG pack the message-insert name stubs between the row table and
         # the scratch (vwf/sf_msg_name.asm); S2D does not use that path.
@@ -1433,7 +1538,8 @@ def verify():
             raise SystemExit(f'smallfont_vwf: verify: {ovl} name scratch does not follow the row table')
         if extension_end != scratch + name_bytes:
             raise SystemExit(f'smallfont_vwf: verify: {ovl} name scratch overlaps the extension end')
-        if d[table_addr - BASE:table_end - BASE] != bytes(table_size):
+        if low not in SCRATCH_TABLE_OVERLAYS and \
+                d[table_addr - BASE:table_end - BASE] != bytes(table_size):
             raise SystemExit(f'smallfont_vwf: verify: {ovl} row table is not zero-filled in its file')
         if d[scratch - BASE:extension_end - BASE] != bytes(name_bytes):
             raise SystemExit(f'smallfont_vwf: verify: {ovl} name scratch is not zero-filled in its file')

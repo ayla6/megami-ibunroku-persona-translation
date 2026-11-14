@@ -45,7 +45,7 @@ s2d_writer_start:
     ori     t4, zero, 0xFF          ; the terminator
     ori     t5, zero, 265           ; the /31 reciprocal
     ori     t3, zero, 0x3C0         ; flag (the CLUT x the renderer reads)
-    andi    t2, a2, 0x7F
+    andi    t2, a2, 0x3F                ; the page (bit 6: regular face, bit 7: VWF)
     addiu   t2, t2, 0x1A0           ; tpage (the CLUT y the renderer reads)
     la      t8, sf_widths_s2d       ; this overlay's advance table
 
@@ -64,12 +64,11 @@ s2d_writer_start:
     sll     a1, v0, 1
     addu    a1, a1, v0
     sll     a1, a1, 2               ; v = q * 12
-    addu    t1, t8, v1              ; the glyph's advance entry
     andi    t6, a2, 0x80            ; bit 7 of the page: the VWF Latin face
     beqz    t6, @@uv                ; retail face: keep the atlas u/v
-    move    v0, v1                  ; (delay) the selector's code
-    jal     sf_variant_uv_v1_s2d    ; retail code -> the regular Latin cell
-    nop
+    addu    t1, t8, v1              ; (delay) the glyph's advance entry
+    jal     sf_bar_orig_s2d         ; the original font: the retail cell, its
+    move    v0, v1                  ; (delay) advance -> t1 (sf_bar_orig)
 @@uv:
     sb      a0, 0(t0)
     sb      a1, 1(t0)
@@ -174,8 +173,8 @@ sf_cell_adv_s2d:
 
 ;; --- the status preview points slot 0x1E at the new list ---
 .org S2D_BAR_SLOT_INIT
-    lui     a0, 0x800C
-    addiu   a0, a0, -0x1800             ; 0x800C0000 - 0x1800 = S2D_BAR_LIST (was 0x8009D7E4)
+    lui     a0, (S2D_BAR_LIST + 0x8000) >> 16
+    addiu   a0, a0, (S2D_BAR_LIST & 0xFFFF) - ((S2D_BAR_LIST & 0x8000) << 1)  ; (was 0x8009D7E4)
 
 ;; --- the slot renderer's pen advance: jal the hook ---
 .org S2D_BAR_ADV_SITE
@@ -195,8 +194,8 @@ sf_cell_adv_s2d:
     sw      s2, 0x18(sp)
     move    s2, a0                      ; the Persona*
     sw      s0, 0x10(sp)
-    lui     s0, 0x800C
-    addiu   s0, s0, -0x17D8             ; 0x800C0000 - 0x17D8 = S2D_BAR_CELLS
+    lui     s0, (S2D_BAR_CELLS + 0x8000) >> 16
+    addiu   s0, s0, (S2D_BAR_CELLS & 0xFFFF) - ((S2D_BAR_CELLS & 0x8000) << 1)
 
     ;; arcana: the retail clear+write pair
     move    a0, s0
@@ -232,7 +231,7 @@ sf_cell_adv_s2d:
     nop                                 ; (delay) the key is already the record id
     addiu   a0, s0, 0x58                ; S2D_BAR_NAME_CELLS
     move    a1, sp
-    ori     a2, zero, 0x80              ; page 0 + bit 7: the VWF Latin face
+    ori     a2, zero, 0xC0              ; page 0 + VWF face (7) + regular face (6): a name
     ori     a3, zero, 16
     jal     S2D_CELLS_ROW
     nop

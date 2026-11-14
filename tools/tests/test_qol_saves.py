@@ -23,7 +23,10 @@ class SavePatch(unittest.TestCase):
         blob = ROOT / 'build/movie_subs_open.bin'
         blob_end = 0x80160000 + blob.stat().st_size if blob.exists() else 0x80170000
         save_ui.build()
-        source = ['.psx', '.definelabel SLPS_FREE_START, 0x80055C10',
+        # the feature gates, as main.asm takes them (the title list's name
+        # pen is the small-font kit's original font)
+        source = ['.psx', '.include "../../build/features.inc"',
+                  '.definelabel SLPS_FREE_START, 0x80055C10',
                   '.definelabel SLPS_FREE_END, 0x80056000',
                   '.definelabel BTLEVT_BUF_ADDR, 0x80057400',
                   '.definelabel BTLEVT_BUF_SIZE, 1024',

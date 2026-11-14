@@ -72,7 +72,7 @@ class FlowRules(unittest.TestCase):
                         extra += (a - 2*b) ** 2
                     elif b * 10 > a * 14:
                         extra += (b-a) ** 2
-                shape = extra + sum(w*w // (len(widths)-i) for i, w in enumerate(widths)) + sum(
+                shape = extra + sum(w*w for w in widths) + wrap.STEP_COST * sum(
                     (b-a)**2 * (2 if b > a else 1) for a, b in zip(widths, widths[1:]))
                 return len(widths), rhythm, shape
 

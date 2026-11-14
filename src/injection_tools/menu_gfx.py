@@ -57,7 +57,21 @@ G57.update({
 # equipment screen stat labels 攻撃 / 命中 / 防御 / 回避 are the 12 px kanji at row 156, u = 112, 136, 160, 184
 LABELS_LAY = [(208, 156), (0, 168), (112, 156), (136, 156), (160, 156), (184, 156)]
 LABELS = [(strlib.glossary('menu_gfx')[f'{u},{v}'], u, v) for u, v in LABELS_LAY]
-LABEL_Y0, LABEL_Y1 = 156, 180      # pixel rows holding the two labels
+LABEL_CELLS = 3                    # the retail label: three 8x12 cells
+# The labels are drawn in the original small font: each letter is the page's
+# own retail cell art (ink colour 1, shadow 2), cropped to its ink and packed
+# with a 1-px gap, centred in the label's three cells. A label wider than
+# its cells (MATK, MDEF) cannot grow into other page cells - the screens
+# draw from page copies whose VRAM neighbours belong to other textures - so
+# with the small-font kit every call that draws it writes the wording as a
+# text row instead (the kit draws the original font), and its cells keep a 5x7 rendering for builds without the
+# kit (build/stat_labels_<ovl>.asm, build/stat_label_strings.asm). The row
+# starts at the retail cells and takes one more: left-aligned, its middle is
+# within 2 px of the three-cell labels' (a centred field would centre on its
+# own cells, not on the retail label's).
+LABEL_Y0, LABEL_Y1 = 156, 180      # pixel rows holding the labels
+PAGE_TILES = 32                    # BG tiles per page row (256 px / 8)
+STAT_LABEL_OVERLAYS = ('ADV', 'DNG', 'S2D')
 
 
 def text_pixels(s, adv=None):
@@ -115,20 +129,124 @@ GLYPH_ROWS = smallfont_vwf.GLYPH_ROWS  # the page's whole glyph area (codes 0..2
 PROBE = 3 * 12                       # the kana rows every copy stores identically (proves the offset)
 
 
+def tile0():
+    import toolbelt
+    return toolbelt.asm_equ('SF_PAGE_TILE0')
+
+
+def tile_of(u, v):
+    return tile0() + (v // 12) * PAGE_TILES + u // 8
+
+
+def original_label(text):
+    """{(x, y): colour} of `text` in the original small font, and its width
+    (ink of every letter, 1-px gaps, the last letter's shadow column)."""
+    import toolbelt
+    retail, _pal, w = smallfont_vwf.disc_page()
+    out, x = {}, 0
+    for i, ch in enumerate(text):
+        rows = smallfont_vwf.glyph_rows(retail, w, toolbelt.smallfont_char(ch))
+        ink = [c for row in rows for c, colour in enumerate(row) if colour == 1]
+        left, right = min(ink), max(ink)
+        for y, row in enumerate(rows):
+            for c in range(left, min(right + 2, len(row))):
+                if row[c] and out.get((x + c - left, y), 0) != 1:
+                    out[(x + c - left, y)] = row[c]
+        x += right - left + 2
+    return out, x
+
+
+def label_cells(text):
+    """The cells `text` takes in the original font (at least the retail 3)."""
+    return max(LABEL_CELLS, -(-original_label(text)[1] // 8))
+
+
+def text_labels():
+    """[(text, retail first tile, cells)] of the labels drawn as text."""
+    return [(text, tile_of(u, v), label_cells(text)) for text, u, v in LABELS
+            if label_cells(text) > LABEL_CELLS]
+
+
 def draw_labels(pix, w, y0=0):
     """Draw LABELS into 4bpp pixels of a page (w px wide) whose first row is page row y0."""
     for text, u, v in LABELS:
         for y in range(12):
             for x in range(24):
                 pix[(v - y0 + y) * w + u + x] = 0
-        x0 = (24 - 6 * len(text) + 1) // 2
-        main = {(x0 + 6 * i + b, 2 + r) for i, c in enumerate(text) for r, row in enumerate(G57[c])
-                for b, bit in enumerate(row) if bit == '1'}
-        for x, y in main:
-            pix[(v - y0 + y) * w + u + x] = 1
-        for x, y in main:
-            if (x + 1, y + 1) not in main and x + 1 < 24:
-                pix[(v - y0 + y + 1) * w + u + x + 1] = 2
+        if label_cells(text) > LABEL_CELLS:
+            x0 = (24 - 6 * len(text) + 1) // 2
+            main = {(x0 + 6 * i + b, 2 + r) for i, c in enumerate(text) for r, row in enumerate(G57[c])
+                    for b, bit in enumerate(row) if bit == '1'}
+            for x, y in main:
+                pix[(v - y0 + y) * w + u + x] = 1
+            for x, y in main:
+                if (x + 1, y + 1) not in main and x + 1 < 24:
+                    pix[(v - y0 + y + 1) * w + u + x + 1] = 2
+            continue
+        art, width = original_label(text)
+        x0 = (24 - width) // 2
+        for y in range(12):
+            for x in range(24):
+                if art.get((x - x0, y)):
+                    pix[(v - y0 + y) * w + u + x] = art[(x - x0, y)]
+
+
+TEXT_SLOT = 8                      # bytes per string: codes, 0xFF, padding, cell count last
+
+
+def stat_label_strings():
+    """The text labels' rows: glyph codes, 0xFF, the cell count in the last byte."""
+    import toolbelt
+    out = []
+    for text, _tile, n in text_labels():
+        codes = [toolbelt.smallfont_char(ch) for ch in text] + [0xFF]
+        if len(codes) > TEXT_SLOT - 1:
+            raise SystemExit(f'menu_gfx: the stat label {text!r} outgrows its {TEXT_SLOT}-byte slot')
+        out.append(bytes(codes + [0xFF] * (TEXT_SLOT - 1 - len(codes)) + [n]))
+    return out
+
+
+def stat_label_sites():
+    """{overlay: [asm lines]}: every retail call that draws a text label -
+    lui a1 / ori a1,lo / ori a2,zero,base / jal / ori a3,zero,3 - calls
+    stat_label_text_<ovl> with the label's index in a2."""
+    import struct
+    out = {}
+    index = {tile: (i, n) for i, (_text, tile, n) in enumerate(text_labels())}
+    for ovl in STAT_LABEL_OVERLAYS:
+        d = open(os.path.join(ROOT, 'data', 'psx', ovl + '.BIN'), 'rb').read()
+        words = struct.unpack_from(f'<{len(d) // 4}I', d)
+        base = 0x800643C4
+        lines = [';; generated by tools/menu_gfx.py - stat labels drawn as text rows', '.if SF_VWF']
+        writers = set()
+        for i in range(1, len(words) - 2):
+            word = words[i + 1]
+            if word >> 16 != 0x3406 or word & 0xFFFF not in index:
+                continue
+            if words[i] >> 16 != 0x34A5 or words[i - 1] >> 16 != 0x3C05 or \
+                    words[i + 2] >> 26 != 3 or words[i + 3] != 0x34070000 | LABEL_CELLS:
+                raise SystemExit(f'menu_gfx: {ovl} {base + 4 * i + 4:#x}: a label call of another shape')
+            writers.add(0x80000000 | (words[i + 2] & 0x03FFFFFF) << 2)
+            k, _n = index[word & 0xFFFF]
+            lines += [f'.org {base + 4 * i + 4:#x}', f'    ori     a2, zero, {k}',
+                      f'.org {base + 4 * i + 8:#x}', f'    jal     stat_label_text_{ovl.lower()}']
+        if len(writers) != 1:
+            raise SystemExit(f'menu_gfx: {ovl}: the label calls reach {len(writers)} row writers')
+        # the overlay's own TileMapWriteRow, the one its label calls reach
+        lines.append(f'.definelabel stat_label_writer_{ovl.lower()}, {writers.pop():#x}')
+        lines.append('.endif')
+        out[ovl] = lines
+    return out
+
+
+def write_stat_label_sites():
+    for ovl, lines in stat_label_sites().items():
+        with open(os.path.join(ROOT, 'build', f'stat_labels_{ovl.lower()}.asm'), 'w', newline=chr(10)) as o:
+            o.write(chr(10).join(lines) + chr(10))
+    with open(os.path.join(ROOT, 'build', 'stat_label_strings.asm'), 'w', newline=chr(10)) as o:
+        o.write(';; generated by tools/menu_gfx.py - the text stat labels (terms.tsv, menu_gfx)' + chr(10))
+        for row in stat_label_strings():
+            o.write('    .byte ' + ', '.join(f'0x{x:02X}' for x in row) + chr(10))
 
 
 def label_rows(b, at, bpr, ref):
@@ -140,12 +258,13 @@ def label_rows(b, at, bpr, ref):
             if b[at + r * bpr + u // 2:at + r * bpr + (u + 24) // 2] != ref[r * 128 + u // 2:r * 128 + (u + 24) // 2]:
                 return False
     w = bpr * 2
-    raw = bytes(b[at + LABEL_Y0 * bpr:at + LABEL_Y1 * bpr])
+    y0, y1 = LABEL_Y0, LABEL_Y1
+    raw = bytes(b[at + y0 * bpr:at + y1 * bpr])
     pix = bytearray()
     for x in raw:
         pix += bytes((x & 15, x >> 4))
-    draw_labels(pix, w, LABEL_Y0)
-    b[at + LABEL_Y0 * bpr:at + LABEL_Y1 * bpr] = pack(pix)
+    draw_labels(pix, w, y0)
+    b[at + y0 * bpr:at + y1 * bpr] = pack(pix)
     return True
 
 
@@ -215,7 +334,8 @@ def main():
             for b, bit in enumerate(row):
                 if bit == '1':
                     pg[(v + 2 + r) * w2 + u + 6 * i + b] = 3
-    draw_labels(pg, w2)                             # MATK / MDEF status labels
+    draw_labels(pg, w2)                             # the status / equipment stat labels
+    write_stat_label_sites()
     out[t2['at']:t2['at'] + t2['w'] * 2 * t2['h']] = pack(pg)
     os.makedirs(os.path.join(ROOT, 'build', 'ADV'), exist_ok=True)
     open(os.path.join(ROOT, 'build', 'ADV', 'ADVCMD.BIN'), 'wb').write(bytes(out))

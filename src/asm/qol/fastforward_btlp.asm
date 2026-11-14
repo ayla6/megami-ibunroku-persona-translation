@@ -7,8 +7,11 @@
 ;; START fast-forward (as the PSP's battle skip). START while a turn plays
 ;; out (g_btl_step != 0, or AUTO on) toggles it; START at the command menu
 ;; stays the game's (and --qol=debug's page). It ends by itself when the
-;; command menu comes back for input (step 0 with AUTO off) and when the
-;; results window opens. While it is on, a small ">>" shows at the top right.
+;; command menu comes back for input (step 0 with AUTO off), and for good when
+;; the battle is over: the round flow's battle-over branch (victory and defeat
+;; alike, before the experience count, the level-up board or the defeat line)
+;; switches it off and START is the game's again until the next battle. While
+;; it is on, a small ">>" shows at the top right.
 ;;
 ;; Every tick still runs the whole battle: logic, object scripts and
 ;; animation steps, BtlDrawObjects' own state work (positions handed to
@@ -332,6 +335,10 @@ ff_pad:
     or      a0, a0, a1
     beqz    a0, @@pad_done
     lui     t0, hi(ff_vars)
+    lbu     v0, lo(ff_vars + FF_OVER)(t0)
+    nop
+    bnez    v0, @@pad_done              ; the battle is over: START is the game's
+    nop
     lbu     v0, lo(ff_vars + FF_ON)(t0)
     xori    v1, v1, FF_START
     sh      v1, -0x7710(at)
@@ -341,7 +348,24 @@ ff_pad:
     jr      ra
     nop
 
+;; The round flow's battle-over branch (0x8008FB68, reached once the last
+;; turn's HUD and message box are done, for a victory and a defeat alike): the
+;; fast-forward ends and stays off. Then retail's own first instructions:
+;; v0 = g_btl_party_lost (its consumer's load-delay nop follows the call).
+ff_battle_over:
+    lui     at, hi(ff_vars)
+    sb      zero, lo(ff_vars + FF_ON)(at)
+    ori     v0, zero, 1
+    sb      v0, lo(ff_vars + FF_OVER)(at)
+    lui     v0, 0x800D
+    jr      ra
+    lbu     v0, 0xB07(v0)               ; (delay) g_btl_party_lost, as retail
+
 .endarea
+
+.org 0x8008FB68
+    jal     ff_battle_over              ; was lui v0, 0x800D / lbu v0, 0xB07(v0)
+    nop
 
 ;; BtlDrawObjects' per-object handler call: g_btl_obj_draw[o->draw](o).
 .org 0x80082A9C
@@ -405,7 +429,8 @@ ff_icon:
 
 .align 4
 ff_vars:
-    .byte   0, 0, 0, 0                  ; BTLP is read anew for every battle: off at the start
+    .byte   0, 0, 0, 0, 0               ; BTLP is read anew for every battle: off at the start
+.align 4
 ff_prims:                               ; buffer 0, buffer 1
     .word   0x04FFFFFF, FF_ICON_RGB
     .word   (FF_ICON_Y << 16) | (FF_ICON_X + 0)
@@ -424,11 +449,3 @@ ff_prims:                               ; buffer 0, buffer 1
     .word   ((FF_ICON_Y + 12) << 16) | (FF_ICON_X + 9)
     .word   ((FF_ICON_Y + 6) << 16) | (FF_ICON_X + 18)
 .endarea
-
-;; The results window (0x80098CF4: opens the window, then frames until a new
-;; press) ends the fast-forward. Its prologue saved s0, which it first sets at
-;; 0x80098D80; the two window calls before keep it.
-.org 0x80098D30
-    lui     s0, hi(ff_vars)             ; delay slot of jal 0x800AB650 (was nop)
-.org 0x80098D38
-    sb      zero, lo(ff_vars + FF_ON)(s0) ; delay slot of jal 0x800A9CEC (was nop)

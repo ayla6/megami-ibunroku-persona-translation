@@ -136,8 +136,12 @@ class BattleBoardText(unittest.TestCase):
                     self.assertEqual(addr, next(
                         at for at, body in self.plan['strings']
                         if body[:-1] == boards._encode(en)))
-                width = smallfont_vwf.codes_px(
-                    toolbelt.smallfont_char(c) for c in en)
+                # a heading centres on its own face: the original font when
+                # its string ships in an original-font span
+                codes = [toolbelt.smallfont_char(c) for c in en]
+                original = any(lo <= addr < hi for lo, hi in self.plan['original'])
+                width = (smallfont_vwf.btl_orig_px(codes) if original
+                         else smallfont_vwf.codes_px(codes))
                 sole_top = sum(1 for other in entry['entries']
                                if other['n'] > 0
                                and other['y'] == min(o['y'] for o in entry['entries']

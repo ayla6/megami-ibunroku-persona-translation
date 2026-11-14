@@ -16,6 +16,9 @@
   with its Japanese laid out the way the game breaks it, the PSP Japanese and
   PSP English where a source is known, and `--hunt` finds a gap's Japanese in
   the extracted PSP trees by small identifiable fragments.
+  `sidebyside.py FILE` dumps a whole file as TSV with the PSX, PSP-JP and
+  PSP-US side of every item and each side's own row id (`--no-jp` drops the
+  PSP-JP pair); it reuses textview's matched items and only lays them out.
 - `external_tools/` is ignored local storage for third-party executables such as
   armips. `src/video_font/` contains the tracked font files used for
   subtitle rendering.

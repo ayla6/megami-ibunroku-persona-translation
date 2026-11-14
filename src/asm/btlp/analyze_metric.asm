@@ -11,6 +11,7 @@
 ;; row's descriptor; a0 holds the bridge's pen. Only a1-a3 and v1 change: the
 ;; bridge restores a2/a3 itself, and v1 is its scratch.
 btl_sf_metric:
+    bltz    a0, @@orig                  ; the original font's row (btl_row_face)
     lui     a2, hi(BTLP_SF_WIDTH_ADDR)
     addu    a2, a2, a1
     lbu     a2, lo(BTLP_SF_WIDTH_ADDR)(a2)
@@ -29,6 +30,47 @@ btl_sf_metric:
 @@done:
     j       btl_sf_metric_back
     nop
+;; The original font (btlp/orig_face.asm). The renderer's return address
+;; is live here: it waits in v1, the bridge's scratch.
+@@orig:
+    move    v1, ra
+    jal     btl_orig_glyph
+    nop
+    j       btl_sf_metric_back
+    move    ra, v1
+
+;; The face of a battle text row, latched at its first glyph by the bridge
+;; (btlp/smallfont_vwf.asm). a0 = the row's text; v0 = its starting pen word:
+;; 0 for a producer's name row (it owns its row and its text is not board
+;; text: the proportional cells and metrics), 0x80000000 for everything else
+;; (the original font). Board text is every pool battle_board_text.py ships
+;; English into in the original font (btl_board_pools, btlp/orig_face.asm).
+;; a0 survives; a1-a3/v1 are scratch, as for btl_name_lookup.
+btl_row_face:
+    la      a1, btl_board_pools
+@@pool:
+    lw      a2, 0(a1)
+    lw      a3, 4(a1)
+    beqz    a2, @@owner
+    sltu    v1, a0, a2
+    bnez    v1, @@pool                  ; below this pool
+    addiu   a1, a1, 8
+    sltu    v1, a0, a3
+    beqz    v1, @@pool                  ; past it
+    nop
+@@orig_face:
+    jr      ra
+    lui     v0, 0x8000
+@@owner:
+    addiu   sp, sp, -8
+    sw      ra, 0(sp)
+    jal     btl_name_lookup
+    nop
+    lw      ra, 0(sp)
+    beqz    v0, @@orig_face             ; nobody's row: the original font
+    addiu   sp, sp, 8
+    jr      ra
+    move    v0, zero                    ; a producer's name row
 ;; Skill ids whose name needs tier 1 in the spell column, 0-terminated
 ;; (btlui.py; the battle page has no compact face, so no tier 2).
 analyze_tier_ids:

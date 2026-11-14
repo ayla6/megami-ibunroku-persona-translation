@@ -66,6 +66,8 @@ sf_state_s2d:
     .fill   SF_ST_END, 0                ; zero at build; the recorder fills it
 sf_widths_s2d:
     .incbin "../../build/sf_field_width.bin"
+sf_orig_s2d:                            ; the original font's metrics (SF_ORIG_TABLE)
+    .incbin "../../build/sf_field_orig.bin"
 sf_pool_s2d:
     .incbin "../../build/affinity_pool.bin"
 .align 4
@@ -77,6 +79,12 @@ sf_data_end_s2d:
 .endif
 .if sf_center_end_s2d > S2D_SF_HELP_ADDR + S2D_SF_HELP_SIZE
     .error "smallfont: S2D centering helper exceeds the recorder run"
+.endif
+.if sf_orig_s2d - sf_widths_s2d != SF_ORIG_TABLE
+    .error "smallfont: the S2D original-font table must follow the advance table"
+.endif
+.if sf_data_end_s2d > S2D_ITEM_DATA_ADDR
+    .error "smallfont: the S2D kit data overruns its window"
 .endif
 .if (sf_thunks_end_s2d - sf_hook_bg_s2d) > S2D_SF_ROW_SIZE - SF_CFG_END - 4
     .error "smallfont: the S2D renderer + thunks overrun the ROW dead run (past the config and its guard)"
@@ -116,4 +124,17 @@ sf_name_scratch_s2d:
 sf_extension_end_s2d:
 .if sf_extension_end_s2d > S2D_ITEM_DATA_END
     .error "smallfont: the S2D full-name block reaches the work area (S2D_ITEM_DATA_END)"
+.endif
+
+;; the text stat labels (vwf/stat_label.asm, menu_gfx.py) past the extension
+.if SF_VWF
+.align 4
+stat_label_text_s2d:
+    stat_label_text stat_label_strings_s2d, stat_label_writer_s2d
+stat_label_strings_s2d:
+.include "../../build/stat_label_strings.asm"
+stat_label_end_s2d:
+.if stat_label_end_s2d > S2D_BAR_LIST
+    .error "smallfont: the S2D text stat labels reach S2D_BAR_LIST"
+.endif
 .endif

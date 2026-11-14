@@ -11,6 +11,7 @@ board's and the item board's frames are followed by a preview of what is
 under the cursor, painted all red for two frames.
 """
 from pathlib import Path
+import struct
 import subprocess
 import sys
 import tempfile
@@ -20,6 +21,9 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / 'tools/tests')]
 from mips_cpu import CPU, REG  # noqa: E402
 
+sys.path.insert(0, str(ROOT / 'src/injection_tools'))
+from toolbelt import asm_equ  # noqa: E402
+
 BTLP = 0x800643C4
 START, LEAVE = 0x80082B78, 0x80082E6C
 REACH, CELLS, ACTORS = 0x800F7414, 0x800F7FFC, 0x8005D678
@@ -28,7 +32,7 @@ POOL = 0x80100000
 OT = POOL + 0xD6C0
 G4_RUN, G4_END = POOL + 0x6C68, POOL + 0x7568
 OBJS = 0x80140000
-AREA, TARGET = 0x2A1070B4, 0x2A2020E0
+AREA, TARGET = 0x3A1070B4, 0x3A2020E0
 SX, SY = 1000, 2000
 SPELL_UPDATE, ACTOR_PERSONA, MARK_AREA = 0x800A5288, 0x800AE774, 0x80095644
 ACTOR_TURN, PERSONA_SPELLS, SPELL_DATA = 0x800D224C, 0x8005CDDB, 0x80047D44
@@ -154,12 +158,17 @@ class Range(unittest.TestCase):
             if n == 2:
                 out.append(('mode', c.read(a + 4)))
             else:
-                self.assertEqual(n, 5)
+                # a whole POLY_G4: the run's slots keep their shape for the
+                # game's own users (the level-up board's stat bars)
+                self.assertEqual(n, 8)
+                colour = c.read(a + 4)
                 corners = []
                 for k in range(4):
-                    xy = c.read(a + 8 + 4 * k)
+                    if k:
+                        self.assertEqual(c.read(a + 4 + 8 * k) & 0xFFFFFF, colour & 0xFFFFFF)
+                    xy = c.read(a + 8 + 8 * k)
                     corners.append((s16(xy & 0xFFFF) - SX, s16(xy >> 16) - SY))
-                out.append((c.read(a + 4), corners))
+                out.append((colour, corners))
             p = c.read(a) & 0xFFFFFF
         return out
 
@@ -204,6 +213,55 @@ class Range(unittest.TestCase):
         self.run_overlay(c)
         self.assertEqual(len(self.quads(c)), 1 + 2)
         self.assertEqual(c.read(G4_NEXT), G4_END)
+
+    def tag_pool(self, c):
+        """Run the game's own BtlInitObjects on POOL (both frame halves
+        tagged, as at every battle start), then point the cursors where a
+        frame starts them."""
+        exe = (ROOT / 'data/psx/SLPS_005.00').read_bytes()
+        base, size = struct.unpack_from('<II', exe, 0x18)
+        c.load(base, exe[0x800:0x800 + size])
+        c.write(asm_equ('BTL_PRIM_POOL'), POOL)
+        c.r[REG['sp']], c.r[REG['ra']] = 0x801FF000, SENTINEL
+        c.start(asm_equ('BTL_INIT_OBJECTS'))
+        c.run(SENTINEL, 400000)
+        self.assertEqual(c.pc, SENTINEL)
+        c.write(G4_NEXT, G4_RUN)
+        c.write(DRMODE_NEXT, POOL + 0xC1A8)
+        c.write(OT, 0x00FFFFFF)
+
+    def test_borrowed_slots_keep_the_games_shape(self):
+        """The contract of every patch that takes slots from the battle's
+        primitive pool (tools/tests/test_prim_pool_borrowers.py): after the
+        overlay, the pool BtlInitObjects tagged is byte for byte the same
+        outside the slots it took by advancing a cursor and the ordering
+        table, and every POLY_G4 slot it took is still a POLY_G4 (8 words,
+        command 0x38 with only the semi-transparency bit free). A slot left
+        as another primitive is how the level-up board's stat bars, drawn
+        later from the same slots, turned into screen-wide triangles."""
+        enemies = [(5 + k, k % 5, 2 * (k // 5) + (k % 2), 10) for k in range(9)]
+        for start in (G4_RUN, G4_END - 3 * 36):          # roomy, and the run's end
+            with self.subTest(start=hex(start)):
+                c = self.battle(lit=[(l, r) for l in range(5) for r in range(15)],
+                                fighters=enemies)
+                self.tag_pool(c)
+                c.write(G4_NEXT, start)
+                pool = lambda: bytes(c.read(POOL + k, 1) for k in range(2 * 0xE660))
+                before = pool()
+                self.run_overlay(c)
+                after = pool()
+                g4_end = c.read(G4_NEXT)
+                dm_start, dm_end = POOL + 0xC1A8, c.read(DRMODE_NEXT)
+                self.assertGreater(g4_end, start)
+                taken = [(start, g4_end), (dm_start, dm_end), (OT, OT + 4)]
+                for k in range(len(before)):
+                    a = POOL + k
+                    if before[k] != after[k]:
+                        self.assertTrue(any(lo <= a < hi for lo, hi in taken),
+                                        f'{a:#x} changed outside the taken slots')
+                for slot in range(start, g4_end, 36):
+                    self.assertEqual(c.read(slot + 3, 1), 8, f'{slot:#x}: G4 length')
+                    self.assertEqual(c.read(slot + 7, 1) & ~2, 0x38, f'{slot:#x}: G4 command')
 
     def test_the_reach_grid_is_not_written(self):
         lit = [(3, r) for r in range(15)]

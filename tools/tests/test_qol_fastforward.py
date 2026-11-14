@@ -181,6 +181,33 @@ class FastForward(unittest.TestCase):
             b.tick(step=0)                                   # AUTO stopped mid-group
         self.assertEqual(b.kind(b.tick(step=0)), 'shown+drawn')
 
+    def battle_over(self, b):
+        """Run the round flow's battle-over hook as retail reaches it."""
+        c = b.c
+        c.write(0x800D0B07, 0, 1)                            # g_btl_party_lost: a victory
+        c.r[REG['ra']] = SENTINEL
+        c.start(0x8008FB68)
+        c.run(0x8008FB74, 100)                               # past retail's load-delay nop
+        self.assertEqual(c.pc, 0x8008FB74)
+        self.assertEqual(c.r[REG['v0']], 0)                  # retail's v0 for the branch
+
+    def test_the_battle_over_ends_it_for_good(self):
+        """The experience count and the level-up board are UI: once the
+        battle is over the fast-forward is off and START cannot bring it
+        back, AUTO or not."""
+        b = Battle(self.with_speed)
+        b.tick(press=START, auto=1)                          # on during an AUTO battle
+        self.assertEqual(b.c.read(self.sym['ff_vars'], 1), 1)
+        for _ in range(RATE):
+            b.tick(auto=1)
+        self.battle_over(b)
+        self.assertEqual(b.c.read(self.sym['ff_vars'], 1), 0)
+        b.tick(press=START, step=0, auto=1)                  # AUTO still on after the battle
+        self.assertEqual(b.c.read(PAD1_EDGE, 2), START)     # the game's
+        self.assertEqual(b.c.read(self.sym['ff_vars'], 1), 0)
+        for _ in range(RATE + 1):
+            self.assertEqual(b.kind(b.tick(step=0, auto=1)), 'shown+drawn')
+
     def test_icon_links_into_the_last_ot_entry_only_while_on(self):
         b = Battle(self.with_speed)
         entry = POOL + 0xE65C
@@ -258,7 +285,7 @@ class FastForward(unittest.TestCase):
                     address = BTLP + i
                     self.assertTrue(0x80080F2C <= address < 0x80081358
                                     or 0x80065D88 <= address < 0x80065E98
-                                    or address in (0x80098D30, 0x80098D38, 0x80082A9C,
+                                    or address in (0x8008FB68, 0x8008FB6C, 0x80082A9C,
                                                    0x80082E6C, 0x80082E70), hex(address))
 
 

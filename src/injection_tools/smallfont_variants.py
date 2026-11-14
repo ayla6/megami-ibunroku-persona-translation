@@ -150,6 +150,32 @@ def normalise(rows):
     return out, right - left + 2
 
 
+def original_metrics(retail, glyph_rows):
+    """The original fixed font, spaced proportionally: one byte per code,
+    left bearing << 4 | advance, measured on the page's own cells (retail
+    capitals and numerals, the lowercase extension). The renderer draws the
+    retail cell at pen - bearing, so the ink starts at the pen; the advance
+    is the ink plus the 1-px letter gap, as `normalise` measures the faces.
+    Codes without Latin art keep the cell's 8-px pitch, and so do the
+    digits: numbers stay tabular. The word space is SPACE_ADV, halved by
+    the narrow-space stage like the regular face."""
+    import smallfont_lc
+    page = bytearray(retail)
+    smallfont_lc.draw(page, 256)
+    metrics = bytearray([0x08] * 256)
+    for code in slots():
+        ink = [x for row in glyph_rows(page, 256, code)
+               for x, colour in enumerate(row) if colour and colour != 2]
+        if not ink:
+            raise ValueError(f'original face: missing ink in code {code:#x}')
+        left, right = min(ink), max(ink)
+        metrics[code] = left << 4 | (right - left + 2)
+    for digit in '0123456789':
+        metrics[toolbelt.smallfont_char(digit)] = 0x08
+    metrics[0] = SPACE_ADV
+    return bytes(metrics)
+
+
 def compose(retail, regular, palette, glyph_rows):
     import smallfont_lc
     compact = compact_pixels(palette)
@@ -195,7 +221,80 @@ def prepare(regular, palette, glyph_rows):
     print(f'created intact regular-glyph template (compact art must be drawn): {COMPACT}')
 
 
-def assembly():
+# The persona bar's sprite-cell writer (dng/bar.asm, s2d/bar.asm) draws the
+# original font from the retail cells. A cell has no x offset, only the
+# advance the slot renderer adds after it, so the left bearing moves into
+# the advances: cell i advances adv(i) + bearing(i) - bearing(i + 1), which
+# puts every glyph's ink where the kit's rows put it (the first glyph's own
+# bearing, at most 2 px, stays). In: v0 = code, t8 = advance table,
+# t9 = the next code, a3 = cells left, t4 = 0xFF. Out: t1 = the byte the
+# writer reads its advance from. Clobbers t6/t7. A Persona name (page bit 6)
+# keeps the regular face: the selector's cell and the advance table's entry.
+BAR_ORIGINAL = [
+    'sf_bar_orig:',
+    '    andi t7,a2,0x40',                 # bit 6 of the page: a Persona name,
+    '    bnez t7,@@regular',               # drawn in the regular face
+    '    nop',
+    '    lbu t7,0(t9)',
+    '    addu t1,t8,v0',
+    '    lbu t6,SF_ORIG_TABLE(t1)',
+    '    beqz a3,@@last',
+    '    nop',
+    '    beq t7,t4,@@last',
+    '    addu t7,t8,t7',
+    '    lbu t7,SF_ORIG_TABLE(t7)',
+    '    nop',
+    '    b @@sum',
+    '    srl t7,t7,4',
+    '@@last:',
+    '    move t7,zero',
+    '@@sum:',
+    '    andi t1,t6,0x0F',
+    '    srl t6,t6,4',
+    '    addu t1,t1,t6',
+    '    subu t1,t1,t7',
+    '    la t6,sf_bar_adv',
+    '    sb t1,0(t6)',
+    '    jr ra',
+    '    move t1,t6',
+    '@@regular:',
+    '    j sf_variant_uv_v1',              # the regular cell; returns to the writer
+    '    addu t1,t8,v0',                   # its advance entry (the writer reads t1)
+    'sf_bar_adv:',
+    '    .byte 0',
+    '    .align 4',
+]
+
+
+def letter_ranges():
+    """The Latin letters' codes, coalesced into ranges (from the encoder)."""
+    import toolbelt
+    out = []
+    for code in sorted({toolbelt.smallfont_char(c) for c in
+                        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'}):
+        if out and code == out[-1][1] + 1:
+            out[-1] = (out[-1][0], code)
+        else:
+            out.append((code, code))
+    return out
+
+
+def has_letter():
+    """sf_has_letter(a0 = codes, 0xFF ends) -> v0 = 1 when one is a Latin
+    letter. A row without one (numbers, kana, icons) draws exactly as retail
+    in the original font. Only a0/a1/at/v0 change."""
+    out = ['sf_has_letter:', '    lbu a1,0(a0)', '    addiu a0,a0,1',
+           '    xori at,a1,0xFF', '    beqz at,@@none', '    nop']
+    for lo, hi in letter_ranges():
+        out += [f'    addiu at,a1,-{lo}', f'    sltiu at,at,{hi - lo + 1}',
+                '    bnez at,@@yes', '    nop']
+    out += ['    b sf_has_letter', '    nop',
+            '@@yes:', '    jr ra', '    ori v0,zero,1',
+            '@@none:', '    jr ra', '    move v0,zero']
+    return out
+
+
+def assembly(original=False):
     """Code-to-slot mapping comes from the encoder, not a second alphabet map.
 
     v0 = code, a0/a1 = retail UV, t7 = tier. Only at/t6/a0/a1 change (the
@@ -207,7 +306,9 @@ def assembly():
     position - no rectangle arithmetic can drift into another screen's page.
     The regular face takes the first spare cells (scattered, so a table);
     the compact face lands on the text band's one long contiguous spare run
-    and is just its base plus the slot.
+    and is just its base plus the slot. With `original` (the overlay builds
+    SF_ORIG_FACE) a tier carrying SF_TIER_ORIG keeps the retail cell: the
+    original font is the page's own art.
     """
     regular, compact = cell_codes()
     base = compact[0]
@@ -222,6 +323,10 @@ def assembly():
     # and pins the tier the selector reads.
     out += ['    .align 4', 'sf_variant_uv_v1:', '    move t7,zero',
             'sf_variant_uv:']
+    if original:
+        # the emitter loads t7 in the call's delay slot: the first
+        # instruction here is still that load's delay slot
+        out += ['    nop', '    andi at,t7,SF_TIER_ORIG', '    bnez at,@@retail', '    nop']
     slot = 0
     for lo, hi in ranges():
         out += [f'    addiu t6,v0,-{lo}', f'    sltiu at,t6,{hi - lo + 1}',
@@ -243,7 +348,12 @@ def assembly():
             '    divu t6,at', '    nop', '    nop', '    mfhi a0', '    mflo a1',
             '    sll a0,a0,3',
             '    sll at,a1,3', '    sll a1,a1,2', '    addu a1,a1,at',
-            '    jr ra', '    nop', 'sf_variant_uv_end:']
+            '    jr ra', '    nop']
+    if original:
+        out += ['@@retail:', '    jr ra', '    nop']
+        out += BAR_ORIGINAL
+        out += has_letter()
+    out += ['sf_variant_uv_end:']
     return '\n'.join(out) + '\n'
 
 
@@ -265,7 +375,76 @@ def retired_ranges(overlay):
     return [(starts[name], ends[name]) for name in starts if name in ends]
 
 
-def fixed_producers(data, overlay):
+def retail_latin(cells):
+    """True when retail tile cells already spell English: every cell is a
+    blank or one of the page's fixed Latin letters, digits or dash, and at
+    least one is not blank. The codes come from the encoder."""
+    import items
+    latin = {items.glyph(c) for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-'}
+    blank = items.glyph(' ')
+    return (any(c != blank for c in cells)
+            and all(c == blank or c in latin for c in cells))
+
+
+CALLER_SAVED = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 24, 25, 31}
+
+
+def branch_targets(words, base):
+    """Word indices other code can branch or jump to (path merges).
+
+    A conditional branch counts only within one function's reach (1024
+    instructions); farther "branches" are data words that decode as one."""
+    out = set()
+    for k, ins in enumerate(words):
+        op = ins >> 26
+        if op in (1, 4, 5, 6, 7, 20, 21, 22, 23):
+            imm = ins & 65535
+            offset = imm - 65536 if imm & 32768 else imm
+            if abs(offset) <= 1024:
+                out.add(k + 1 + offset)
+        elif op in (2, 3):
+            target = (base & 0xF0000000) | (ins & 0x3FFFFFF) << 2
+            out.add((target - base) >> 2)
+    return out
+
+
+def caption_source(words, call, merges, window=16):
+    """a0 at the writer call `words[call]`, from the straight-line block
+    before it, or None. A branch target restarts the walk (another path may
+    enter there); a call keeps only the callee-saved registers once its
+    delay slot has run."""
+    registers = {0: 0}
+    returned = None                 # index where an earlier call has returned
+    for k in range(max(0, call - window), call):
+        if k in merges:
+            registers = {0: 0}
+        if k == returned:
+            registers = {r: v for r, v in registers.items() if r not in CALLER_SAVED}
+        ins = words[k]
+        op, rs, rt = ins >> 26, ins >> 21 & 31, ins >> 16 & 31
+        imm = ins & 65535
+        if op == 3 or (op == 0 and ins & 63 == 9):
+            returned = k + 2
+            if op == 0:
+                registers[ins >> 11 & 31] = None
+        elif op == 15:
+            registers[rt] = imm << 16
+        elif op in (9, 13):
+            value = registers.get(rs)
+            registers[rt] = None if value is None else (
+                value + (imm - 65536 if imm & 32768 else imm) if op == 9 else value | imm)
+        elif op == 0 and ins & 63 in (33, 37) and (rs == 0 or rt == 0):
+            registers[ins >> 11 & 31] = registers.get(rt if rs == 0 else rs)
+        elif op == 0:
+            registers[ins >> 11 & 31] = None
+        elif op not in (2, 4, 5, 40, 41, 43):
+            registers[rt] = None
+    if call == returned or call in merges:
+        return None
+    return registers.get(4)
+
+
+def _producers(data, overlay):
     """Char.name producers, recognised by their struct field and writer ABI.
 
     Do not classify by English wording, name length or screen position. The
@@ -278,6 +457,9 @@ def fixed_producers(data, overlay):
     words = struct.unpack_from(f'<{len(data) // 4}I', data)
     call = 0x0C000000 | ((writer >> 2) & 0x3FFFFFF)
     retired = retired_ranges(overlay)
+    import cfgtext
+    centered = {at for at, _word in cfgtext.centered_producers(data, overlay)}
+    merges = branch_targets(words, base)
     if overlay != 'ADV':
         for kind in ('HELP', 'ROW'):
             start = toolbelt.asm_equ(f'{overlay}_SF_{kind}_ADDR')
@@ -293,35 +475,49 @@ def fixed_producers(data, overlay):
                       if words[j] >> 26 == 9 and words[j] >> 16 & 31 == 4
                       and words[j] & 65535 == 0x3F]
         if not candidates:
-            # Literal short captions have a fixed 3/4/5-cell destination and
-            # a statically addressed overlay string, unlike variable names.
-            if words[i + 1] not in (0x34070003, 0x34070004, 0x34070005):
+            # Literal captions have a constant cell count and a statically
+            # addressed overlay string, unlike variable names. Short ones
+            # (3/4/5 cells) keep retail cells; so does any caption the
+            # Japanese release already spells in the page's Latin cells
+            # (DELETE, BUTTON, ...): nothing translates it, and the retail
+            # layout was drawn around those 8-px cells.
+            if words[i + 1] >> 16 != 0x3407:
                 continue
-            registers = {0: 0}
-            for ins in words[max(0, i - 8):i]:
-                op, rs, rt = ins >> 26, ins >> 21 & 31, ins >> 16 & 31
-                imm = ins & 65535
-                if op == 15:
-                    registers[rt] = imm << 16
-                elif op in (9, 13):
-                    value = registers.get(rs)
-                    registers[rt] = None if value is None else (
-                        value + (imm - 65536 if imm & 32768 else imm) if op == 9 else value | imm)
-                elif op == 0 and ins & 63 in (33, 37) and (rs == 0 or rt == 0):
-                    registers[ins >> 11 & 31] = registers.get(rt if rs == 0 else rs)
-                elif op == 0:
-                    registers[ins >> 11 & 31] = None
-                elif op not in (2, 3, 4, 5, 40, 41, 43):
-                    registers[rt] = None
-            source = registers.get(4)
-            if source is not None and base <= source < base + len(data):
-                out.append((base + (i + 1) * 4, words[i + 1] | 0x4000))
+            source = caption_source(words, i, merges)
+            if base + (i + 1) * 4 in centered:
+                continue                # the centring rule owns this row
+            cells = words[i + 1] & 0xFFFF
+            if source is None or not base <= source <= base + len(data) - cells:
+                continue
+            if cells in (3, 4, 5) or retail_latin(data[source - base:source - base + cells]):
+                out.append((base + (i + 1) * 4, words[i + 1] | 0x4000, 'caption'))
             continue
         if words[i + 1] not in (0x34070008, 0x3407000A):
             raise ValueError(f'{overlay}: Char.name writer count changed at {base + i * 4:#x}')
         if any(w >> 26 == 3 for w in words[candidates[-1] + 1:i]):
             continue
-        out.append((base + (i + 1) * 4, words[i + 1] | 0x4000))
+        out.append((base + (i + 1) * 4, words[i + 1] | 0x4000, 'name'))
     if not out:
         raise ValueError(f'{overlay}: no structurally recognised character-name producers')
+    return out
+
+
+def fixed_producers(data, overlay):
+    """(address, tagged count word) for every fixed-cell producer."""
+    return [(at, word) for at, word, _kind in _producers(data, overlay)]
+
+
+def producer_tags(data, overlay, original):
+    """The count-word tags an overlay assembles.
+
+    Without the original-font tiers both kinds keep the retail fixed cells
+    (bit 14). With them the original font is the kit's own face: a
+    character name becomes an ordinary row in it, and a caption keeps its
+    retail field's midpoint (bit 15, the centring rule)."""
+    out = []
+    for at, word, kind in _producers(data, overlay):
+        if not original:
+            out.append((at, word))
+        elif kind == 'caption':
+            out.append((at, word & ~0x4000 | 0x8000))
     return out

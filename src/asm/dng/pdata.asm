@@ -163,7 +163,7 @@ pdata_bar:
     nop
     la      a0, DNG_PDATA_NAME_CELLS
     la      a1, sf_name_scratch_dng
-    ori     a2, zero, 0x80
+    ori     a2, zero, 0xC0              ; page 0 + VWF face (7) + regular face (6): a name
     ori     a3, zero, DNG_PDATA_NAME_COLS
     jal     DNG_CELLS_ROW
     nop

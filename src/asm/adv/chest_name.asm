@@ -34,7 +34,7 @@
     nop
     move    a0, s3
     move    a1, sp
-    ori     a2, zero, 0x80
+    ori     a2, zero, 0xC0              ; VWF face (7), regular face (6): a name
     jal     ADV_CELLS_ROW
     ori     a3, zero, ADV_CHEST_NAME_COUNT
 .endarea

@@ -143,19 +143,22 @@ specific owner documented, and the blanket row catches anything else.
 ## Current audit (all built images)
 
 `python src/injection_tools/memory_audit.py --all` covers every image the
-current listing writes:
+listing writes. The counts below are for a listing assembled with every QoL
+option defined (`--listing` of `armips main.asm` with each `QOL_*` label), so
+every option's writes are audited at once:
 
 | Image | Ranges | Indexed refs | Exact | Near stores | Near loads |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| SLPS_005.00 | 1131 | 43 | 1 | 0 | 13 |
-| ADV.BIN | 153 | 592 | 5 | 0 | 185 |
-| BTLP.BIN | 854 | 2284 | 15 | 82 | 812 |
-| DNG.BIN | 129 | 436 | 1 | 0 | 94 |
-| S2D.BIN | 571 | 404 | 2 | 1 | 96 |
+| SLPS_005.00 | 1136 | 43 | 1 | 0 | 13 |
+| ADV.BIN | 197 | 592 | 6 | 0 | 200 |
+| BTLP.BIN | 925 | 2284 | 16 | 87 | 831 |
+| DNG.BIN | 162 | 436 | 3 | 0 | 164 |
+| S2D.BIN | 601 | 404 | 3 | 1 | 111 |
 | NAME.BIN | 48 | 134 | 14 | 72 | 727 |
-| OPEN.BIN | 1131 | 0 | 0 | 0 | 0 |
-| OPEN.EXE | 8 | 83 | 0 | 0 | 0 |
-| MOVIE.EXE | 5 | 23 | 0 | 0 | 0 |
+| OPEN.BIN | 1130 | 0 | 0 | 0 | 0 |
+| OPEN.EXE | 36 | 83 | 0 | 0 | 0 |
+| MOVIE.EXE | 7 | 23 | 0 | 0 | 0 |
+| END.EXE | 24 | 87 | 0 | 0 | 1 |
 | FONT.BIN | 9 | 0 | 0 | 0 | 0 |
 | NAMEDT.BIN | 116 | 0 | 0 | 0 | 0 |
 
@@ -192,8 +195,16 @@ All exact leads are reviewed:
 - **SLPS event sector table** (`0x8004DFDC..0x8004E0DE`): 129 halfwords from
   `event_tables.asm`; reader `0x80015B74` indexes with `(s1 & 0xff) * 2`.
   Intended.
+- **QoL tables placed where retail readers point**: the `western` controller
+  page layouts (ADV `0x800B983C`, reader `0x8008C35C`; S2D `0x8009F6A8`,
+  reader `0x80080814`), `encounters`' divisor table (DNG `0x80099ED0`,
+  reader `0x800709EC`, the per-step roll), `run`'s pad-layout entry (DNG
+  `0x8009CB18`, reader `0x800906E4`) and `range`'s sword and gun entries of
+  `g_btl_command_fn` (BTLP `0x800D22E0`, reader `0x8009E8D4` in
+  BtlCommandEntry). Intended consumers.
 
-The BTLP and NAME near-store leads reviewed below do not reach patch data:
+The BTLP, NAME and S2D near-store leads reviewed below do not reach patch
+data:
 
 - NAME bases `0x800682AE`/`0x800682D0` target records `0x800682A0..0x800682D2`;
   the patch writes at `0x800682DC` and later.
@@ -206,7 +217,12 @@ The BTLP and NAME near-store leads reviewed below do not reach patch data:
 - `0x800AE060` (v1 `0x37`) reaches `0x800F87B7`; `0x800AB340` (s0 `0..4`)
   reaches `0x800F87F0`; `0x80084130`/`0x80084140` (s0 ≤ `0xE`) reach
   `0x800F8873`; `0x800849F4` (slots 5..9) reaches `0x800F8866`. All end
-  before the patch extension at `0x800F8960`.
+  before `rewards`' data at `0x800F8900` and the patch extension at
+  `0x800F8960`.
+- S2D `0x8008C62C` stores the config value at `0x800A5424 + row * 4`; the row
+  (`0x800A5434`) wraps within `0..11` or `0..4` and every other store to it
+  is zero, so it ends by `0x800A5453`, before the location-name pointers at
+  `0x800A54DC`.
 - The `0x800AB340` writer is inside the board23 branch that
   `board23_names.asm` rewrites, so its scratch is dead under the patch.
 
@@ -214,10 +230,82 @@ The remaining near leads are unproven, not safe. Review one when its screen or
 transition is touched. The inventory is a snapshot of one build and must be
 regenerated after allocation changes.
 
-## Unclaimed: the BIOS kernel pool tail
+## Reclaimed space
 
-`0x8000EA00..0x8000FFF0` (about 5.6 KB) is RAM no patch uses yet, kept in
-reserve for when the resident EXE runs out of room. The BIOS kernel takes its
+- The CD path-table cache (`0x800569F4`, 44 bytes per directory) holds as many
+  entries as the disc's ISO path table has (15). Its tail up to the resident
+  scratch is runtime scratch: the battle skill slots (`SKILL_MENU_BUF`, the
+  lowest scratch byte `RESIDENT_SCRATCH_ADDR`), the battle decompressor's
+  buffer and the dialogue compositor ring. `build_disc.py` fails a disc whose
+  path table would reach `RESIDENT_SCRATCH_ADDR`.
+- The dead code run the skill slots used to occupy (`BTL_ORIG_WIDTH_ADDR`)
+  holds the battle's original-font advances.
+- BTLP's retail text-window glyph function (`BTLP_GLYPH_FREE_ADDR`, 392 bytes):
+  both calls go to the VWF emitter and nothing else reaches it.
+- The top of RAM above the game's last global (`g_seq_handle`,
+  `0x801F537C + 0x40 = 0x801F53BC`) holds no fixed data: the main stack grows
+  down from the EXE header's `0x801FFFF0` (about 2.6 KB deep in a measured
+  ADV session), and the sub-EXE stack `0x801FBFF0` (LoadAndExecPsExe) and the
+  OPEN/CASINO buffers there only live while ADV is not loaded (both replace
+  it, and ADV comes back fresh). ADV's small-font row table
+  (`ADV_SF_TABLE_ADDR`, 96 x 56 bytes, `0x801F53C0..0x801F68C0`) is runtime
+  scratch at its bottom, about 38 KB below the stack's start; the recorder
+  frees its slots whenever ADV's state is fresh. Measured: an ADV session
+  (menus, item scrolling, shop, save, NPCs) left a fill pattern in
+  `0x801F53BC..0x801FBB18` untouched.
+- `D_8004EC70` (`0x8004EC94..`) is libetc's interrupt-handler stack.
+
+## Borrowed primitive slots
+
+The static audit cannot see writes through a pointer the game computes at
+runtime. The battle's per-frame primitive pool is reached that way, and so is
+covered by its own rule. `BtlInitObjects` tags every slot of six typed runs
+once per battle (SPRT, TILE, POLY_FT4, POLY_F4, POLY_G4, LINE_G2; cursors
+`BTL_*_NEXT` in addresses.inc). The game's users take a slot by advancing a
+run's cursor and rewrite only colours and corners, never the header. Patch
+code that takes a slot must write it as the run's own primitive, header
+included, and must not touch any other byte of the pool apart from the ordering
+table links. A slot left as another primitive breaks the next retail user of
+that slot: the range overlay's flat quads in POLY_G4 slots made the level-up
+board's stat bars screen-wide triangles.
+
+The runs have fixed sizes, and retail never checks them. The text renderers
+take one slot per drawn cell (flat text a SPRT, scaled or rotated text - a
+board opening or closing - a POLY_FT4), 450 of each per frame. A user that
+takes more writes its primitives over the next run, whose slots keep their own
+headers: the overrun draws as screen-wide quads, and an overwritten link can
+leave the GPU's list DMA in a loop, which also starves the SPU's DMA (a
+sound-bank wait that never ends); the slots it wrote keep the wrong shape
+for the rest of the battle, since the runs are tagged once. Every object
+drawer that takes SPRT or POLY_FT4 slots (flat and rotated text, and the
+drawers at 0x80088AF4 and 0x80089A2C) now ends its object when the run is
+full (`btlp/text_slot_bound.asm`): an overrun loses cells instead of the
+frame. The longer English board text is what fills the POLY_FT4 run while a
+board animates during a turn, so the demand still has to stay low: a row in
+borrowed scratch is filled before its board's first frame, so leftovers are
+never drawn.
+
+`tools/tests/test_prim_pool_borrowers.py` finds every patched BTLP instruction
+that reaches a cursor and fails unless its source file is registered with a
+contract test. A contract test runs the game's own `BtlInitObjects`, then the
+patch at its heaviest, and checks that the pool is unchanged outside the slots
+taken and that every taken slot keeps its type
+(`test_qol_range.Range.test_borrowed_slots_keep_the_games_shape`).
+
+## Shared runtime scratch
+
+`src/asm/common/scratch_map.tsv` lists every region the patch writes at
+runtime outside its own images (the resident path-table cache tail, the
+overlays' small-font tables and buffers), with its users. Two regions may
+overlap only when each names the other and the row says why they are never
+live together; `tools/scratch_map.py verify` runs in every build and fails on
+anything else. Where a reason is a size (an unpacked battle line stays below
+the ANALYZE rows), the tool that makes the bytes enforces it (`btlp.py`,
+`UNPACK_ROOM`).
+
+## The BIOS kernel pool tail
+
+`0x8000EA00..0x8000FFF0` (about 5.6 KB) is unused and in reserve. The BIOS kernel takes its
 control blocks from the pool at `0x8000E000..0x8000FFFF` only at boot, sized by
 SYSTEM.CNF (`TCB = 4`, `EVENT = 16`: about 0x500 bytes, measured as
 `0x8000E000..0x8000E59F` with Sony's BIOS). The tail is free under that BIOS.
@@ -225,6 +313,16 @@ OpenBIOS, Unirom and cheat cartridges are unchecked. Code placed there needs a
 boot stub that copies it in before the original entry point (`0x80011930`),
 because the PS-EXE loader cannot load below the executable's own `t_addr`.
 The ancestor translation (Redeted's) ships its full-name renderer this way.
+
+## DNG's image room
+
+DNG's image may grow to `0x800C0000`, the work area. Its small-font row table
+(`DNG_SF_TABLE_ADDR`, 96 x 56 bytes, `0x800BEB00..0x800C0000`) is runtime
+scratch at the top of that room, and `DNG_ITEM_DATA_END` (the image's ceiling)
+stops below it. While DNG runs the room holds only a stale copy of the
+previously loaded overlay's image (checked with gdb in a DNG menu: its last
+non-zero byte is ADV's extension end); the recorder frees the table's slots
+whenever DNG's state is fresh.
 
 ## Known blind spots
 

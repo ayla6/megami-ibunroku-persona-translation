@@ -170,10 +170,24 @@ class AnalyzeOwnership(unittest.TestCase):
             c.step()
         self.fail('spell copy loop did not reach the retail exit')
 
+    def _face(self, c, row):
+        """The row's pen word, latched like the bridge: btl_row_face."""
+        from mips_cpu import REG
+        c.r[REG['a0']] = row
+        c.r[REG['ra']] = 0x801FFFF0
+        c.start(self.sym['btl_row_face'])
+        for _ in range(400):
+            if c.pc == 0x801FFFF0:
+                return c.r[REG['v0']]
+            c.step()
+        self.fail('btl_row_face did not return')
+
     def _metric(self, c, row, code):
         from mips_cpu import REG
+        pen = self._face(c, row)
         c.load(0x801FE000, struct.pack('<hhI', 0, 0, row))
         c.r[REG['t7']] = 0x801FE000
+        c.r[REG['a0']] = pen
         c.r[REG['a1']] = code
         c.start(self.sym['btl_sf_metric'])
         for _ in range(100):
@@ -203,7 +217,10 @@ class AnalyzeOwnership(unittest.TestCase):
         self.assertEqual(self._metric(c, buf + stride, 0), widths[0])
         first = self._skill_codes(wide)[0]
         self.assertEqual(self._metric(c, buf, first), widths[first])
-        self.assertEqual(self._metric(c, 0x800DEA18, 0), widths[0])
+        # the stat labels are the original font (btlp/orig_face.asm's pools)
+        original = (ROOT / 'build' / 'btl_orig_width.bin').read_bytes()
+        self.assertEqual(self._face(c, 0x800DEA18), 0x80000000)
+        self.assertEqual(self._metric(c, 0x800DEA18, 0), original[0])
 
     def test_spell_rows_carry_the_full_name(self):
         # Drive the installed copy loop over an enemy whose six spells are

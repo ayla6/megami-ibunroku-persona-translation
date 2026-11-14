@@ -64,7 +64,7 @@ pdata_bar_adv:
     addiu   a0, a0, 0x2114              ; ADV_PDATA_NAME_CELLS
     lui     a1, 0x800C
     addiu   a1, a1, -0x474              ; sf_name_scratch_adv
-    ori     a2, zero, 0x80              ; page 0 + bit 7: the VWF Latin face
+    ori     a2, zero, 0xC0              ; page 0 + VWF face (7) + regular face (6): a name
     ori     a3, zero, ADV_PDATA_NAME_COLS
     lw      ra, 0(sp)
     addiu   sp, sp, 8

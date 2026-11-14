@@ -66,6 +66,8 @@ sf_state_dng:
     .fill   SF_ST_END, 0                ; zero at build; the recorder fills it
 sf_widths_dng:
     .incbin "../../build/sf_field_width.bin"
+sf_orig_dng:                            ; the original font's metrics (SF_ORIG_TABLE)
+    .incbin "../../build/sf_field_orig.bin"
 sf_pool_dng:
     .incbin "../../build/affinity_pool.bin"
 .align 4
@@ -77,6 +79,12 @@ sf_data_end_dng:
 .endif
 .if sf_center_end_dng > DNG_SF_HELP_ADDR + DNG_SF_HELP_SIZE
     .error "smallfont: DNG centering helper exceeds the recorder run"
+.endif
+.if sf_orig_dng - sf_widths_dng != SF_ORIG_TABLE
+    .error "smallfont: the DNG original-font table must follow the advance table"
+.endif
+.if sf_data_end_dng > DNG_ITEM_DATA_ADDR
+    .error "smallfont: the DNG kit data overruns its window"
 .endif
 .if (sf_thunks_end_dng - sf_hook_bg_dng) > DNG_SF_ROW_SIZE - SF_CFG_END - 4
     .error "smallfont: the DNG renderer + thunks overrun the ROW dead run (past the config and its guard)"
@@ -96,10 +104,14 @@ sf_data_end_dng:
     .include "../../build/item_names_dng.asm"
 sf_item_end_dng:
 .if SF_VWF
-.align 4
-sf_table_dng:
-    .fill SF_TABLE_SIZE, 0
-sf_table_end_dng:
+.definelabel sf_table_dng, DNG_SF_TABLE_ADDR
+.definelabel sf_table_end_dng, DNG_SF_TABLE_ADDR + SF_TABLE_SIZE
+.if sf_table_end_dng != DNG_SF_TABLE_LIMIT
+    .error "smallfont: the DNG row table must end at DNG_SF_TABLE_LIMIT"
+.endif
+.if DNG_ITEM_DATA_END != DNG_SF_TABLE_ADDR
+    .error "smallfont: DNG_ITEM_DATA_END must stay DNG_SF_TABLE_ADDR (the image ends below the table)"
+.endif
 .endif
 ;; --- MsgStep cases 9-12: full names instead of the ten-glyph record head ---
 .align 4
@@ -116,4 +128,17 @@ sf_name_scratch_dng:
 sf_extension_end_dng:
 .if sf_extension_end_dng > DNG_ITEM_DATA_END
     .error "smallfont: the DNG full-name block reaches the work area (DNG_ITEM_DATA_END)"
+.endif
+
+;; the text stat labels (vwf/stat_label.asm, menu_gfx.py) past the extension
+.if SF_VWF
+.align 4
+stat_label_text_dng:
+    stat_label_text stat_label_strings_dng, stat_label_writer_dng
+stat_label_strings_dng:
+.include "../../build/stat_label_strings.asm"
+stat_label_end_dng:
+.if stat_label_end_dng > DNG_ITEM_DATA_END
+    .error "smallfont: the DNG text stat labels reach DNG_ITEM_DATA_END"
+.endif
 .endif
