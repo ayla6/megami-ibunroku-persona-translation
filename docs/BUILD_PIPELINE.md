@@ -144,16 +144,15 @@ as no two of them write the same 2 KB disc sector: each raw sector's EDC/ECC
 is a literal of the patch that last wrote it, so a patch encoded without
 another option's bytes rewrites that sector's checksums for a disc without
 them. Options that share a sector are partners (`PARTNERS` in
-`tools/build_patches.py`), and the later one has a second file encoded from
-the partner's state, used when the partner is applied:
+`tools/build_patches.py`), and the later one has an encoding for every subset
+of its earlier partners, used when that subset is applied:
 
-- `add-run-western.xdelta`: `run` writes the controller-page entry that
-  `western` moves;
-- `add-range-battlespeed.xdelta`: `range` replaces BtlDrawObjects' debug grid
-  between fast-forward's hooks;
-- `add-saves-western.xdelta`: `saves` hooks the title menus whose button masks
-  `western` swaps. A size-changer can have an in-place partner; its partnered
-  file is encoded from the partner's state to the one-shot layout with both.
+- `add-fastforward-battlespeed.xdelta` handles their shared battle sector;
+- `range` shares battle sectors with both, so it has encodings over neither,
+  either, and both (`add-range-battlespeed-fastforward.xdelta`).
+
+A size-changer can also have in-place partners; its encodings cover their
+subsets over each preceding size-changer layout.
 
 The partner is an in-place option applied first (listed first in
 `tools/release_options.json`, whose order is the apply order). The release

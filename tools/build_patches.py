@@ -109,24 +109,25 @@ CHOICE_ORDER = [label for label, _group in CHOICES]
 # against the solo images it assembles; this set may conservatively include
 # options whose solo image happens not to change layout.
 SIZE_CHANGERS = frozenset(('saves', '60fps'))
-# An option whose edits share a disc sector with an in-place option applied
-# before it: its patch is encoded twice, without and with the partner, because
-# only the second states what the two do together. Sharing a sector is enough:
+# An option whose edits share disc sectors with earlier in-place options needs
+# one encoding for every subset of those partners. Sharing a sector is enough:
 # each raw sector's EDC/ECC is a literal of the patch that last wrote it, so a
 # patch encoded without the partner's bytes rewrites that sector's checksums
-# for a disc without them. `range` replaces BtlDrawObjects' debug grid between
-# fast-forward's hooks and shares BtlLoadDebugGrid's sector with them.
+# for a disc without them. Battle speed and fast-forward share one sector;
+# range shares sectors with both.
 # (`western`, held back from the release, would pair with `run`, whose
 # controller-page entry it moves, and with `saves`, whose title-menu button
-# masks it swaps.) The partner is an in-place option that comes first in solver order, and a patch
+# masks it swaps.) Each partner is an in-place option that comes first in solver order, and a patch
 # applied over it is encoded against the state with it, as a size-changer is
 # against the layout before it.
-PARTNERS = {'range': 'battlespeed'}
-for _option, _partner in PARTNERS.items():
-    if (_partner in SIZE_CHANGERS
-            or (_option not in SIZE_CHANGERS
-                and CHOICE_ORDER.index(_partner) > CHOICE_ORDER.index(_option))):
-        raise ValueError(f'PARTNERS: {_partner} must be an in-place option applied before {_option}')
+PARTNERS = {'fastforward': ('battlespeed',),
+            'range': ('battlespeed', 'fastforward')}
+for _option, _partners in PARTNERS.items():
+    for _partner in _partners:
+        if (_partner in SIZE_CHANGERS or _partner == _option
+                or (_option not in SIZE_CHANGERS
+                    and CHOICE_ORDER.index(_partner) > CHOICE_ORDER.index(_option))):
+            raise ValueError(f'PARTNERS: {_partner} must be an in-place option applied before {_option}')
 REV1_PATCH = 'rev1-to-rev0.xdelta'
 BASE_PATCH = 'rev0-to-base.xdelta'
 DEFAULT_REV1 = (ROOT / 'data/discs/Megami Ibunroku - Persona - Be Your True Mind (Japan) (Rev 1)' /
@@ -157,9 +158,9 @@ def solver_order(labels):
 
 def anchor_of(option, applied):
     """The labels among `applied` that `option`'s patch file is encoded
-    against: the size-changers before it and its partner (PARTNERS)."""
+    against: the size-changers before it and its applied partners (PARTNERS)."""
     return frozenset(label for label in applied
-                     if label in SIZE_CHANGERS or label == PARTNERS.get(option))
+                     if label in SIZE_CHANGERS or label in PARTNERS.get(option, ()))
 
 
 def patch_file(option, anchor):
@@ -259,7 +260,7 @@ def canonical_states():
     for option in in_place_options():
         states.append(tuple(solver_order([option])))
     for option, anchor in add_edges():
-        if PARTNERS.get(option) in anchor:
+        if set(PARTNERS.get(option, ())) & anchor:
             states.append(tuple(solver_order([*anchor, option])))
     for option, anchor in add_edges():
         if tuple(solver_order(anchor)) not in states:
@@ -270,29 +271,33 @@ def canonical_states():
 def add_edges():
     """(option, anchor) for every add- patch file a release can contain.
 
-    An in-place option has one file, encoded from the base translation
-    (empty anchor), and a second one over its partner. A size-changer has one
-    file per subset of the size-changers that precede it, and with a partner
-    one more per subset with the partner in it."""
+    An in-place option has one file per subset of its earlier partners. A
+    size-changer has one per combination of earlier size-changer and partner
+    subsets."""
+    def partner_subsets(option):
+        partners = PARTNERS.get(option, ())
+        for bits in itertools.product((False, True), repeat=len(partners)):
+            yield frozenset(p for p, on in zip(partners, bits) if on)
+
     sized = tuple(label for label in solver_order(CHOICE_ORDER)
                   if label in SIZE_CHANGERS)
     for index, option in enumerate(sized):
         preceding = sized[:index]
         for bits in itertools.product((False, True), repeat=len(preceding)):
             anchor = frozenset(label for label, on in zip(preceding, bits) if on)
-            yield option, anchor
-            if option in PARTNERS:
-                yield option, anchor | {PARTNERS[option]}
+            for partners in partner_subsets(option):
+                yield option, anchor | partners
     for option in in_place_options():
-        yield option, frozenset()
-        if option in PARTNERS:
-            yield option, frozenset((PARTNERS[option],))
+        for partners in partner_subsets(option):
+            yield option, partners
 
 
 SAMPLE_POPULAR = (
     ('saves', 'mark', 'battlespeed', '60fps', 'run', 'skipfmv'),
     ('saves', 'mark', 'battlespeed', '60fps', 'run', 'skipfmv',
      'encounters', 'rewards'),
+    ('mark', 'fastforward', 'range'),
+    ('mark', 'battlespeed', 'fastforward', 'range', 'saves', '60fps'),
 )
 
 
@@ -446,7 +451,7 @@ def unpartnered_overlaps(changes):
         for b in labels[i + 1:]:
             if a in SIZE_CHANGERS and b in SIZE_CHANGERS:
                 continue
-            if PARTNERS.get(a) == b or PARTNERS.get(b) == a:
+            if b in PARTNERS.get(a, ()) or a in PARTNERS.get(b, ()):
                 continue
             shared = changes[a] & changes[b]
             if shared:

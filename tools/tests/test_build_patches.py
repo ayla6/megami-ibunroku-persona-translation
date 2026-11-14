@@ -171,7 +171,7 @@ class ReleaseGraph(unittest.TestCase):
         anchors = release.size_changer_states()
         self.assertEqual(anchors, [(), ('saves',), ('60fps',),
                                    ('saves', '60fps')])
-        self.assertEqual(len(canonical), 14)
+        self.assertEqual(len(canonical), 17)
         self.assertEqual(canonical[0], ())
         self.assertEqual({tuple(labels) for labels in canonical[:4]},
                          set(anchors))
@@ -179,16 +179,17 @@ class ReleaseGraph(unittest.TestCase):
             self.assertIn(tuple(release.solver_order([option])), canonical)
             self.assertEqual(tuple(release.solver_order([option])), (option,))
         self.assertEqual(len({tuple(release.release_selection(labels))
-                              for labels in canonical}), 14)
+                              for labels in canonical}), 17)
 
         expected = {'rev0-to-base.xdelta', 'rev1-to-rev0.xdelta',
                     'add-saves.xdelta', 'add-60fps.xdelta',
                     'add-60fps-saves.xdelta'}
         for option in release.in_place_options():
             expected.add(release.patch_file(option, frozenset()))
-        # a partnered option has a second file over its partner
-        expected |= {'add-range-battlespeed.xdelta'}
-        self.assertEqual(len(release.release_file_names()), 15)
+        expected |= {'add-fastforward-battlespeed.xdelta',
+                     'add-range-battlespeed.xdelta', 'add-range-fastforward.xdelta',
+                     'add-range-battlespeed-fastforward.xdelta'}
+        self.assertEqual(len(release.release_file_names()), 18)
         self.assertEqual(release.release_file_names(), expected)
 
     def test_samples_start_with_the_expected_popular_sets(self):
@@ -232,8 +233,28 @@ class ReleaseGraph(unittest.TestCase):
         self.assertIn(('60fps', ('saves',)), edges)
         self.assertIn(('run', ()), edges)
         self.assertIn(('range', ('battlespeed',)), edges)
+        self.assertIn(('fastforward', ('battlespeed',)), edges)
+        self.assertIn(('range', ('fastforward',)), edges)
+        self.assertIn(('range', ('battlespeed', 'fastforward')), edges)
         self.assertNotIn(('60fps', ('battlespeed',)), edges)
-        self.assertEqual(len(edges), 13)
+        self.assertEqual(len(edges), 16)
+
+    def test_shared_battle_sectors_select_all_partner_subsets(self):
+        for selected, expected in (
+            (('mark', 'fastforward', 'range'), 'add-range-fastforward.xdelta'),
+            (('mark', 'battlespeed', 'range'), 'add-range-battlespeed.xdelta'),
+            (('mark', 'battlespeed', 'fastforward', 'range'),
+             'add-range-battlespeed-fastforward.xdelta'),
+        ):
+            with self.subTest(selected=selected):
+                self.assertEqual(release.release_edge(selected).file, expected)
+        self.assertEqual(release.release_edge(('battlespeed', 'fastforward')).file,
+                         'add-fastforward-battlespeed.xdelta')
+        self.assertEqual(release.unpartnered_overlaps({
+            'battlespeed': {('BTLP.BIN', 1)},
+            'fastforward': {('BTLP.BIN', 1), ('BTLP.BIN', 2)},
+            'range': {('BTLP.BIN', 1), ('BTLP.BIN', 2)},
+        }), [])
 
     def test_options_sharing_a_sector_must_be_partners(self):
         base = {'BTLP.BIN': bytes(4096), 'OPEN.EXE': bytes(4096)}
@@ -266,22 +287,9 @@ class ReleaseGraph(unittest.TestCase):
             edge = release.release_edge(labels)
             self.assertIn(edge.parent, canonical, labels)
             self.assertIn(edge.file, files, labels)
-            anchor = release.assembly_parent(labels)
             ordered = release.solver_order(labels)
-            if ordered[-1] in release.PARTNERS and ordered[:-1] == [release.PARTNERS[ordered[-1]]]:
-                # the pair is assembled on the base, encoded over the partner
-                self.assertEqual(edge.parent, tuple(ordered[:-1]), labels)
-            elif anchor is not None:
-                self.assertEqual(edge.parent, anchor, labels)
-            else:
-                # A second size-changer is laid out from retail in one pass,
-                # but its patch is still encoded from the earlier layout.
-                ordered = release.solver_order(labels)
-                self.assertEqual(
-                    edge.parent,
-                    tuple(label for label in ordered[:-1]
-                          if label in release.SIZE_CHANGERS),
-                    labels)
+            self.assertEqual(edge.parent, tuple(release.solver_order(
+                release.anchor_of(ordered[-1], ordered[:-1]))), labels)
 
     def test_xdelta_selection_prefers_explicit_then_bundled_then_path(self):
         with tempfile.TemporaryDirectory() as tmp, \
