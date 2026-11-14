@@ -15,6 +15,7 @@ import os
 import csv
 import subprocess
 import sys
+import time
 
 # Every porter must see the same set/dict order: a re-run that picks a
 # different equal-score candidate is not reproducible.
@@ -65,7 +66,9 @@ def run(*cmd):
     derived data. So a failed step is recorded and fails the port at the
     end."""
     print('+', ' '.join(cmd), flush=True)
+    t0 = time.monotonic()
     r = subprocess.run([PY] + list(cmd), check=False)
+    print(f'port: {os.path.basename(cmd[0])} {time.monotonic() - t0:.1f}s', flush=True)
     if r.returncode:
         FAILED.append((os.path.basename(cmd[0]), r.returncode))
         print(f'port: STEP FAILED {os.path.basename(cmd[0])} '
@@ -75,7 +78,9 @@ def run(*cmd):
 def must(*cmd):
     """A step every later one measures by: the port stops when it fails."""
     print('+', ' '.join(cmd), flush=True)
+    t0 = time.monotonic()
     subprocess.run([PY] + list(cmd), check=True)
+    print(f'port: {os.path.basename(cmd[0])} {time.monotonic() - t0:.1f}s', flush=True)
 
 
 def port_slps_tables():
@@ -195,11 +200,13 @@ def port_all():
     for wave in waves(porters):
         print(f'port: wave ({len(wave)}): '
               + ', '.join(name for name, _a, _w in wave), flush=True)
-        with futures.ThreadPoolExecutor(max_workers=os.cpu_count() or 4) as pool:
+        with futures.ThreadPoolExecutor(max_workers=toolbelt.jobs()) as pool:
             list(pool.map(one, wave))
     # LAST, and only for leftovers: every family porter above has already
     # claimed its rows. This phase must never rewrite one of their rows.
     must(os.path.join(HERE, 'port_lastresort.py'), '--apply')
+    # the viewer's close calls, weighed once here, never by the viewer
+    run(os.path.join(HERE, 'close_calls.py'))
 
 
 def main():

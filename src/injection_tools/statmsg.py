@@ -6,6 +6,8 @@ Layout (same in the three overlays, RAM address differs): 19 dialogue-format str
 space) packed back to back, 0x00 00 80 C1 81 4B FF 01 = "　　１回" first, and a table of 19 word pointers to them that
 precedes the next data block. The weapon-list header prints "攻撃 8 命中11 2回": the code draws these strings through the
 dialogue engine at fixed positions (so English goes through the dialogue VWF); the numbers are drawn by the code itself.
+The hit-count field starts right after HIT's two digits, so every count, a range too, opens with the full-width space the
+Japanese "　　１回" opens with ("HIT 16　1-3 hits", never "HIT 161-3 hits").
 English strings are re-packed in the same byte span and the pointers rewritten.
 """
 import os
@@ -24,7 +26,7 @@ N = 19
 
 EN = [
     "　1 hit", "　2 hits", "　3 hits", "　4 hits", "　5 hits", "　6 hits", "　7 hits",
-    "0-1 hits", "1-3 hits", "2-4 hits", "3-5 hits", "4-6 hits", "5-7 hits", "0-7 hits",
+    "　0-1 hits", "　1-3 hits", "　2-4 hits", "　3-5 hits", "　4-6 hits", "　5-7 hits", "　0-7 hits",
     "　ALL", "ATK", "　HIT ", "DEF", "　EVA ",
 ]
 assert len(EN) == N

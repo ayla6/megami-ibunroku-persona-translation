@@ -165,6 +165,7 @@ def us_parts(raw, ja=None):
             # NOTE: no flag: mid-box speaker breaks are handled structurally
             # (FF03 + 'Name: '), labels come straight from PSP data.
 
+    spaced = False      # the last unit was a space
     while i + 1 < n:
         if raw[i] == 0xFF:
             op = raw[i + 1]
@@ -208,7 +209,11 @@ def us_parts(raw, ja=None):
                 if i + 1 < n and raw[i] != 0xFF:
                     param = struct.unpack_from('>H', raw, i)[0]
                     i += 2
-                    words.append('%sFF05%04X' % (US_BRK, param))
+                    # 'G': the PSP has a space around the pause ("... <pause>
+                    # ..."); "...<pause>..." has none (one after it is added
+                    # below)
+                    words.append('%sFF05%04X%s' % (US_BRK, param,
+                                                  'G' if spaced else ''))
             elif op in (0x07, 0x08, 0x0F):
                 # PSP name insertion: kept as a position marker. The name
                 # code is synthesized here (not at its JA slot), so
@@ -246,12 +251,16 @@ def us_parts(raw, ja=None):
                             i += 2
             else:
                 flags.append('unsupported-psp-control:FF%02X' % op)
+            spaced = False
             continue
         u = struct.unpack_from('>H', raw, i)[0]
         i += 2
         ch = US_MAP.get(u, '')
+        spaced = ch == ' '
         if ch == ' ':
             flush()
+            if words and re.fullmatch(US_BRK + 'FF05[0-9A-F]{4}', words[-1]):
+                words[-1] += 'G'
         elif ch:
             cur += ch
         else:
@@ -458,7 +467,10 @@ def reflow(first_label, items, joins=None):
             flow_items.append(('s', av[len('INSERT'):]))
             dirty = True
         elif av.startswith('FF05'):
-            flow_items.append(('g', '<FF05><%s><%s>' % (av[4:6], av[6:8])))
+            # third field: the PSP has a gap after the pause (a space; a
+            # line break sets it below)
+            flow_items.append(('g', '<FF05><%s><%s>' % (av[4:6], av[6:8]),
+                               av.endswith('G')))
             dirty = True
         elif av.startswith('FF0E'):
             flow_items.append(('b', '<FF0E><%s>' % av[4:6]))
@@ -1082,7 +1094,49 @@ def _rejoin(first, second, line):
     lines = [x for x in laid.split(line) if x.strip()]
     if len(lines) > 3:
         return first + second
+    # THE SEAM IS WORTH A POINT: the two were the PSP's own boxes, so a
+    # layout that keeps their boundary as a line break is preferred unless
+    # running across it is clearly better ("Mark: Say what!? Huh...? / So
+    # you're the dude with the scar / on his head...", never "Huh...? So
+    # you're / the dude with..."). Both are ranked by the flow's own scale.
+    seam = len(' '.join(first).split())
+    ends = []
+    for x in lines:
+        ends.append((ends[-1] if ends else 0) + len(x.split()))
+    if seam in ends:
+        return lines
+    ranked = vwf_wrap.weigh(' '.join(first + second).split(' '))
+    best = next((r for r, ls in ranked
+                 if tuple(' '.join(x.split()) for x in ls)
+                 == tuple(' '.join(x.split()) for x in lines)), None)
+    for r, ls in ranked:
+        at, cut = 0, set()
+        for x in ls:
+            at += len(x.split())
+            cut.add(at)
+        if seam in cut and len(ls) <= 3:
+            if (best and r[:6] == best[:6] and r[6] - best[6] < SEAM_POINTS
+                    and _cuts(ls) <= _cuts(lines)):
+                return ls
+            break
     return lines
+
+
+def _cuts(lines):
+    """Mid-clause line ends of a layout, the label's line counting twice:
+    the seam never buys one ("Girl in black: No way, Jose! I don't /
+    listen..." keeps "No way, Jose! / I don't listen to anybody but my /
+    Daddy!...")."""
+    n = 0
+    for i, x in enumerate(lines[:-1]):
+        if vwf_wrap.stop_cost(x) == 4:
+            label = i == 0 and re.match(r'\s*' + vwf_wrap.LABEL_RE,
+                                        re.sub(r'<[^>]+>', '', x))
+            n += 2 if label else 1
+    return n
+
+
+SEAM_POINTS = 1.0   # what a joined box's seam is worth as a line break
 
 
 def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1,
@@ -1319,7 +1373,8 @@ def sentence_pauses(items, ja):
         ins = []
         if m.group(1) and not turn:
             ins.append(('u', 'STRUCT03'))
-        ins.append(('u', 'FF05%s%s' % (m.group(2), m.group(3))))
+        # carried between two words, so the gap around it is theirs
+        ins.append(('u', 'FF05%s%sG' % (m.group(2), m.group(3))))
         # the Japanese broke the line right after the pause: so does the
         # English ('うそ！<FF05><5E><00><FF03>そんなことって…')
         if m.group(4) and not turn and not m.group(1):
@@ -1389,8 +1444,27 @@ def psx_entries(f):
 
 
 def usp_entries(f):
+    """The PSP-US entries of story file f, psp_errata.tsv applied to their
+    boxes (toolbelt.psp_errata). load_psp's cached container is copied, so
+    the alignment and the extract keep reading the PSP's own bytes."""
     if f not in _USPC:
-        _USPC[f] = load_psp(f, 'us').entries
+        import copy
+        from codec import box_replace
+        entries = load_psp(f, 'us').entries
+        fixes = toolbelt.psp_errata(f'pack/{f}')
+        if fixes:
+            entries = copy.deepcopy(entries)
+            spots = {f'{e.index}:0x{s:x}': (e, k)
+                     for e in entries for k, (s, _e) in enumerate(e.boxes)}
+            for pos, find, replace in fixes:
+                if pos not in spots:
+                    toolbelt.fail(f'psp_errata.tsv: {f} {pos} names no PSP-US box')
+                e, k = spots[pos]
+                try:
+                    e.override[k] = box_replace(e.box_bytes(k), find, replace)
+                except ValueError as err:
+                    toolbelt.fail(f'psp_errata.tsv: {f} {pos}: {err}')
+        _USPC[f] = entries
     return _USPC[f]
 
 
@@ -1934,7 +2008,7 @@ def cmd_bulk(apply=False, jobs=None):
     entry_ids = [(f, ei) for f in ('E0', 'E1', 'E2', 'E3')
                  for ei in range(len(psx_entries(f)))]
     if jobs is None:
-        jobs = min(8, os.cpu_count() or 4)
+        jobs = toolbelt.jobs()
     if jobs > 1:
         with mp.Pool(jobs) as pool:
             results = pool.map(_one, entry_ids)

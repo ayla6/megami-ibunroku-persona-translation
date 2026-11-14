@@ -112,6 +112,7 @@ class PspEntry:
         self.index = index
         self.body = bytes(body)
         self.region = region
+        self.override = {}             # box index -> corrected bytes (psp_errata)
         self._parse()
 
     def pointers(self):
@@ -263,6 +264,8 @@ class PspEntry:
         return out
 
     def box_bytes(self, k):
+        if k in self.override:
+            return self.override[k]
         s, e = self.boxes[k]
         return self.body[s:e]
 
@@ -482,7 +485,9 @@ def load_talk_slots(name, region):
     import toolbelt
     p = toolbelt.ext_path(f'psp_{region}', f'pack/talk/{name}')
     src = os.path.join(TALK_DIR[region], name + '.BIN')
-    if _stale(p, src, MAP_FILES[region], __file__):
+    # the units are port_talk.psp_unit_spans': a change there is a new extract
+    spans = os.path.join(ROOT, 'src', 'extraction_tools', 'matching', 'port_talk.py')
+    if _stale(p, src, MAP_FILES[region], __file__, spans):
         holes = []
         out = refresh_talk_slots(name, region, holes=holes)
         if holes:
@@ -528,7 +533,12 @@ def load_dng_boxes(region, sub):
             print(f'warning: psp_{region} pack/dng/{sub}: {len(holes)} '
                   f'glyph-map holes (visible as [xxxx]; gates list them)',
                   file=sys.stderr)
-        return out
+        if region != 'us':
+            return out
+        import toolbelt
+        rel = f'pack/dng/{sub}'
+        toolbelt.errata_check(rel, (hex(off) for off, _t in out))
+        return [(off, toolbelt.errata_text(rel, hex(off), t)) for off, t in out]
     import toolbelt
     return [(int(r['pos'], 16), r['text'])
             for r in toolbelt.read_extracted(f'psp_{region}', f'pack/dng/{sub}', optional=True)]

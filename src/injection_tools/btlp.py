@@ -335,6 +335,64 @@ def evt_original_layout(raw):
     return raw
 
 
+FIT_NODES = 200000   # search budget; the greedy first path almost always fits
+
+
+def _fit(items):
+    """[(id, size, pools)] -> {id: address}, every string in a free home of
+    one of its pools (lists of [start, end] holes, consumed in place), or None.
+    Largest first, smallest home first - the greedy best fit - backtracking
+    only when that strands a string. Holes that look alike to every string
+    still to place (pool, start parity, size) are tried once."""
+    order = sorted(items, key=lambda t: -t[1])
+    seen = set()
+    nodes = [0]
+
+    def state(k):
+        return (k, tuple(sorted((pi, z[0] & 1, z[1] - z[0])
+                                for pi, pool in enumerate(pools_all)
+                                for z in pool if z[1] > z[0])))
+
+    pools_all = []
+    for _, _, pools in items:
+        for pool in pools:
+            if not any(pool is p for p in pools_all):
+                pools_all.append(pool)
+
+    def go(k, out):
+        if k == len(order):
+            return True
+        nodes[0] += 1
+        key = state(k)
+        if key in seen or nodes[0] > FIT_NODES:
+            return False
+        i, n, pools = order[k]
+        homes, kinds = [], set()
+        for pool in pools:
+            for z in pool:
+                q = (z[0] + EVT_ALIGN - 1) & ~(EVT_ALIGN - 1)
+                if q + n <= z[1]:
+                    homes.append((z[1] - q - n, q, z, id(pool)))
+        homes.sort(key=lambda h: (h[0], h[1]))
+        for left, q, z, pk in homes:
+            kind = (pk, z[0] & 1, z[1] - z[0])
+            if kind in kinds:
+                continue
+            kinds.add(kind)
+            old = z[0]
+            z[0] = q + n
+            out[i] = q
+            if go(k + 1, out):
+                return True
+            z[0] = old
+            del out[i]
+        seen.add(key)
+        return False
+
+    out = {}
+    return out if go(0, out) else None
+
+
 def evt_plan(d, rows_by_pos):
     """Decide the whole evt family once: each message's PACKED bytes, where
     they go, which slot hands its text over to a pointer, and why a message
@@ -464,26 +522,24 @@ def evt_plan(d, rows_by_pos):
         carve(a, a + len(packed[i]))
     code = [i for i in packed if i not in fixed and any(k == 'addiu' for k, _ in rf.get(msgs[i][0], []))]
     words = [i for i in packed if i not in fixed and i not in code]
-    # LARGEST FIRST, SMALLEST HOME THAT FITS: the placement is nobody's
-    # structure (every reference is repointed at wherever the string lands),
-    # so it can be the packing that wastes the least.
-    for i in sorted(code, key=lambda i: -len(packed[i])):
-        place[i] = take(free, len(packed[i]), best=True)
-        if place[i] is None:
-            toolbelt.fail(f'evt: out of space in the BTLP zone at message {i}')
-    gone = []
-    for i in sorted(words, key=lambda i: -len(packed[i])):
-        place[i] = take(free, len(packed[i]), best=True)
-        if place[i] is None:
-            place[i] = take(spill, len(packed[i]), best=True)
-            gone.append(i)
-            if place[i] is None:
-                toolbelt.fail(f'evt {i}: no room for packed message in the '
-                              f'battle text zone or spill bank')
+    # The placement is nobody's structure (every reference is repointed at
+    # wherever the string lands), so it is a bin packing: a string loaded by
+    # code (addiu) lives in the zone, a data-referenced one in the zone or a
+    # spill bank alike. The zone runs a few bytes from full, so a greedy pass
+    # strands slivers (5- and 6-byte holes while a 7-byte string had
+    # nowhere): _fit searches for a packing that places every string.
+    got = _fit([(i, len(packed[i]), (free,) if i in code else (free, spill))
+                for i in code + words])
+    if got is None:
+        toolbelt.fail('evt: the strings do not pack into the BTLP zone and '
+                      'spill bank')
+    for i, q in got.items():
+        place[i] = q
+        if i in words and not EVT_ZONE[0] <= q < EVT_ZONE[1]:
             # a string this family RELOCATED lives in the spill bank; its
             # bytes are written by the same include that carries the marker
             # texts (btlevt_slps.asm), so keep it out of the zone emission
-            plan['spill'][place[i]] = packed[i]
+            plan['spill'][q] = packed[i]
     return plan
 
 

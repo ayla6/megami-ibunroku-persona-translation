@@ -644,8 +644,9 @@ Order of preference, highest first - a lower rule NEVER beats a higher one:
    shape - never from a list. A comma or semicolon ends a name run; separate
    names in a list are not one full name. A glued atom is judged by the words
    that touch the break, not by its first letter: `the Peace | Diner on` still
-   splits the name "Peace Diner", even though the first atom begins lowercase. A double-quoted term of up to four
-   words that fits a line has the same soft protection. Neither may buy a
+   splits the name "Peace Diner", even though the first atom begins lowercase. A double-quoted phrase that fits a
+   line, however many words, has the same soft protection (`Nanjo: / "Truth
+   is stranger than fiction"... / Evidently.`). Neither may buy a
    scroll or a box (rule 1).
 4. **Do not clip a tiny fragment onto a speaker label.** At the same line
    count, prefer a label-only line to a speech fragment occupying at most
@@ -662,14 +663,21 @@ Order of preference, highest first - a lower rule NEVER beats a higher one:
    the portrait beside it), so a scrap there buys nothing (`Elly: / Mm?
    Isn't he that transfer student?`). The exception is a split that makes
    the box a rectangle - two lines within a tenth of the box width of each
-   other (`Old man: Look, Akiko, / Hiroshi came to visit.`).
+   other, the label's line ending on punctuation (`Old man: Look, Akiko, /
+   Hiroshi came to visit.`; never `Setsuko Sonomura: ...And / that's what
+   happened.`). Speech that opens on an ellipsis beat may start the line
+   under the label (`Setsuko Sonomura: / ...And that's what happened.`);
+   punctuation-only speech stays beside it.
    A complete sentence (ending `.`, `!` or `?`) is never a clipped
    fragment, nor is a phrase that trails off (`F-Fresh meat... / Meat is
    heeeeere!`), unless the whole speech fits one line under the label; one
    word trailing off is (`Takeda: / Tch... It's almost time`). An opening
    ellipsis beat is not a scrap or severe-rise fault when it precedes two
    complete sentences on two lines within one fifth of the box width of each
-   other; the full speech must not fit under the label in one line.
+   other; the full speech must not fit under the label in one line. The beat
+   may share the label's line or open the speech under a standalone label
+   (`College student with her boyfriend: / Hoo boy... / Know where the police
+   station is? / My boyfriend crashed his motorcycle.`).
 5. **End lines where the sentence breathes**: full stop (0) > short ellipsis
    beat (1) > comma/semicolon/colon (2) > mid-clause (4). Merely ending on a
    connector is not a punctuation boundary and must not force a growing
@@ -679,11 +687,20 @@ Order of preference, highest first - a lower rule NEVER beats a higher one:
    That's why...`). The exception is a SHORT BEAT: one or two words, at
    least one with letters, trailing off after a sentence that ended on the
    same line (`It's not good. But...`, `Yamaoka! You bastards...`). That
-   beat opens what follows, so ending a line on it costs 1. Only after a
+   beat opens what follows, so ending a line on it costs 1. A speaker's label
+   opens the speech the way a stop does (`Brown: So, uh... / he said...`
+   costs 1, so `Brown: / So, uh... he said there's / a monster...` wins). Only after a
    plain stop: in a chain of ellipses (`Hmmm... Hmmmmmm...`,
    `G-I-V-E... M-E...`) no beat leans more than another. A stutter is one
    phrase: a line never ends on `word...` that the next line repeats
-   (`No, I... / I am` counts as a mid-clause end).
+   (`No, I... / I am` counts as a mid-clause end), and a chain of trailing
+   fragments is one stammer (`And this, uh... / Exp... Expel...?` counts the
+   same: `Mark: He said there's / a demon in the subway. / And this, uh...
+   Exp... Expel...?`).
+   A comma before the one word that closes its sentence is no breath: ending
+   a line there is a mid-clause end (`What adventures await me, ho...? / I'm
+   excited!`, never `await me, / ho...? I'm excited!`; `You're not being
+   sincere, hee-ho! / If you're gonna lie, at least / make it...`).
    A comma/semicolon/colon boundary that strands a final line under one third
    of the preceding width costs four additional rhythm points; a minor pause
    must not force a severely short orphan. Full sentence boundaries are exempt.
@@ -701,7 +718,16 @@ Order of preference, highest first - a lower rule NEVER beats a higher one:
    emphasis (`that... / inferior! | You are born...`).
 6. **Balance and gently taper the block, without adding lines.** Minimize
    `sum(line_width²)` plus four times squared adjacent width changes
-   (a downward increase costs twice as much as a decrease). This favours square, smoothly tapering blocks
+   (a downward increase costs twice as much as a decrease). An opening
+   sentence alone on the first line, ending on `.`, `!` or `?` (not a
+   trailing ellipsis), is a line of its own: when the longer line after it
+   ends a sentence too, it is no rise, under this rule or rule 7 (`Eeeeeeee!
+   / Areyoupicking a f-f-fight with Q!?`, `I... I am a male. / Please, do not
+   make such jokes...`; never `Hey! / If I put you in a chained up box and /
+   submerged it`). Not beside a speaker label (`Mark: / Idiot! Even guys like
+   him have moms...`, never `Mark: Idiot! / Even guys...`) and not further
+   down the block (`Reiji's mother: / I see... I'm not surprised. / He
+   does...`): there it would only break up a rectangle. This favours square, smoothly tapering blocks
    rather than an overfull first line or a hollow middle. The optimizer retains
    alternatives by both suffix line count and first-line width, so it scores
    the entire block, not just locally balanced suffixes.
@@ -725,6 +751,23 @@ Glue (what a break may not fall inside):
   (`while,`) or after `a/an/the` (`for a while`) is not one. A
   pronoun-or-possessive word before one (`her while`) is the pronoun and
   ends its own clause; it does not glue onto the subordinator.
+- **Subject pronouns bind FORWARD, softly**: `I, he, she, we, they` are only
+  ever a subject, so a line ending on one cuts the subject from its verb and
+  costs two rhythm points on top of its mid-clause end, as a subordinator
+  does (`..., but / I ended up getting caught with Mark!`, never `..., but I
+  / ended up...`). `you` and `it` are objects as often (`I want you / to
+  keep...`) and are not in the set. A pronoun or question word contracted
+  with its verb (`what's, I'll, it's, that's, you're...`) is a subject and
+  its verb, and ending a line on one costs the same (`what's / got me so
+  pissed off?` is a cut; `maybe / I'll hear what you have to say`).
+- **Object pronouns bind BACKWARD, softly**: `me, him, us, them` are only
+  ever an object, so a line opening on one after a verb cuts it from that
+  verb and costs one rhythm point on top of its mid-clause end (`Speaking
+  with you / brings me peace of mind!`, never `...brings / me peace...`;
+  `Don't blame me / when you end up...`). One point only: a near-square
+  block still keeps it (`what's got / me so pissed off?`). Not after a
+  connector (`look at / me` starts a phrase) or punctuation; `you, it, her`
+  are subjects or possessives as often and are not in the set.
 - **Connectors bind BACKWARD**: `to, of, in, on, at, with, from, for, by, as,
   and, or, but, nor, than, that, into, onto, about, over, under, off, upon,
   without, through, toward(s), between, among, against, so, yet` end the
@@ -734,8 +777,13 @@ Glue (what a break may not fall inside):
   ends there, so the connector may start the next clause's line
   (`C'mon, <FFF3>,<FFF6>if ya don't laugh...` keeps its comma break).
 - **A connector may OPEN the short phrase that closes its sentence**
-  (`He obviously ran off / with his girlfriend!`): when a connector and at
-  most one more word end the sentence, a line may start on the connector. It
+  (`He obviously ran off / with his girlfriend!`, `Mark: H-Hey! Did you
+  forget / about Maki's mom here?`): when a connector and at most three more
+  words end the sentence, a line may start on the connector, at one rhythm
+  point (`my presence a secret from / the young master...` keeps its
+  connector). `of` belongs to
+  the noun before it and opens one word at most (never `a hell / of a mouth
+  for a brat...`). It
   is a soft break (one rhythm point on the line before it), so it only wins
   where the backward-bound layout is worse.
 - **Speech beside a speaker label may not stop mid-clause.** A label line
@@ -758,12 +806,22 @@ Glue (what a break may not fall inside):
 - **Two joined boxes are laid out as one** (`port_story._rejoin`): when the
   free join removes the press between two PSP boxes, the pair takes the
   flow's best shape (`You gotta take it easy! / Live a little! Like me!`),
-  not the first box's lines with the second stacked under them. A box that
-  opens on a carried timed pause keeps the boundary as its line break.
+  not the first box's lines with the second stacked under them. The seam is
+  still worth one rhythm point: the best layout that ends a line where the
+  PSP's box ended wins unless the flow's best beats it by a point or more
+  (`Mark: Say what!? Huh...? / So you're the dude with the scar on / his
+  head...`, never `Huh...? So you're / the dude...`), and it never buys a
+  line that ends mid-clause: the seam layout may not end more lines
+  mid-clause than the flow's best, the label's line counting twice (`Girl in
+  black: No way, Jose! / I don't listen to anybody but my / Daddy! Try...`,
+  never `No way, Jose! I don't / listen to anybody but my Daddy!`). A box that opens on a
+  carried timed pause keeps the boundary as its line break.
 - **Possessives bind to their noun softly** (`its their his her our your
   my`): a line may break between one and its noun (`at the end of her /
   journey was`), at one rhythm point, so only a clearly better shape takes
-  it. `a/an/the/this/these/those` stay glued.
+  it (`put my money / where my mouth is`, never `where my / mouth is`;
+  `the Tailors in your / hands while I'm gone` keeps its rectangle).
+  `a/an/the/this/these/those` stay glued.
 - **A standalone label costs no line end**: its colon is the label's, not a
   place the speech breathes, so a label alone on its line is ranked by the
   speech under it (spec 2.4).
@@ -806,7 +864,11 @@ Glue (what a break may not fall inside):
   `・` is a valid separator/bullet and must not make an English row a gap.
 - A closer (`. , ! ? ; : …`) never starts a line; the tail it closes moves
   down with it. A spaced-off ellipsis is a pause and keeps the source's gap
-  (`whack! ...`, `I ...`); a lone mark attaches (`Wait !` -> `Wait!`). A leading `...` may start one (it is a pause), except
+  (`whack! ...`, `I ...`); a lone mark attaches (`Wait !` -> `Wait!`). After
+  a timed pause the PSP decides too: `...<pause>...` stays unspaced, `...
+  <pause>...` keeps its gap, and a pause carried from the Japanese sits
+  between two words and keeps theirs. The PSP's pause word is its duration,
+  never a glyph (`<FF05>摩` is a 0x1000 pause, `codec.EAT_ID`). A leading `...` may start one (it is a pause), except
   straight after an inline code: `<FF08>...` trails the name. A break that
   is immediately followed by punctuation is not a break: the punctuation moves
   up to the line it belongs to (`<FF03>: ` -> `:<FF03>`, and the same for
@@ -1185,13 +1247,33 @@ poisoned-register rule to the held-START renderer.
 
 `python tools/textvis/serve.py [port]` -> http://127.0.0.1:8765/
 
-- Draws with **the disc's own font** (`/font` serves the live `vwf_font.bin`
-  and `vwf_width.bin`), so a width on screen is the width in game.
+- **The box is drawn by the server, with the porter's own code.** `/render`
+  runs `vwf_render` - the compositor of `vwf_dialog_draw.asm` in Python: the
+  live `vwf_font.bin` / `vwf_width.bin` and FONT.BIN, ink with its `+1,+1`
+  shadow on rows 0-14, the 240 px clip, the engine's own wrap when a glyph
+  does not fit (flagged `↵`), and inserts as hatched blocks at the width their
+  family's measure prices (talktl for TALK). The findings under the box are
+  `vwf_wrap.shape_report`'s (`textshape.py`'s), so the page holds no copy of
+  a rule and cannot disagree with the port. Rows past the box's three are
+  dimmed: the box scrolls to them.
+- **Git**: a row that differs from HEAD shows the HEAD version drawn beside
+  it with a word diff, and the filter "changed since HEAD" lists every row
+  whose shipped English (manual wins) differs from the last commit
+  (`/changed`).
+- **Close calls**: under the box, a page whose runner-up layout lost on line
+  ends and shape by under one rhythm point is drawn as that runner-up, and a
+  page whose stored lines are not what the flow chooses now is drawn as the
+  flow's choice (`vwf_wrap.weigh` ranks them). The "close calls" filter lists
+  every such page closest first, from `build/close_calls.tsv`, which the
+  port's last step (`close_calls.py`) writes - the viewer never weighs the
+  tables itself.
 - Picking a row shows **every box as stored**, the row's **file / id / pos**,
   and the **sources** side by side: the PSP-US wording and the PSX Japanese,
   each with its own breaks.
-- Typing re-lays out live; a newline is a line break and a blank line is a new
-  box; the rule checks are listed under the box.
+- Typing with no row picked lays the text out with `vwf_wrap.flow_lines`; a
+  newline is a line break and a blank line is a new box. In a picked row
+  Enter types the row's own line code (`<FFF6>` in the battle box, BTLP and
+  TALK; `<FF03>` elsewhere): one row is one TSV line.
 - Rows can be filtered by family, by text, and "3+ words only" hides the one-
   and two-word cells that are not textboxes.
 - A **dialogue-choice row** (`SLPS_005.00`'s `<FF0E>` table) is drawn as the

@@ -35,7 +35,10 @@ INTRO_CARD_HEAD = (0x0200, 0x0300)
 #   an ID   (the name spans FF18/FF19/FF1A, the intro card FF1B): the
 #           unit is whatever the id happens to be - 0x0200 reads 'beta',
 #           0x0500 reads as a kanji - and the code eats it always.
-#   a NUMBER (FF05 pause, FF06 colour, FF0E choice): a number is never a
+#   a PAUSE (FF05): its one unit is the duration, and every FF05 in both
+#           PSP packs carries one - 0x1000 reads as '摩', 0x0E00 as '餘'.
+#           Eaten always, like an id: a duration is never text.
+#   a NUMBER (FF06 colour, FF0E choice): a number is never a
 #           letter, so where the next unit is a glyph the map solves, it
 #           is text and the code does not eat it. (A name record's field
 #           separator reads as 'FF0E' and sits right before the name -
@@ -46,7 +49,7 @@ INTRO_CARD_HEAD = (0x0200, 0x0300)
 # middle of a sentence; reading a separator's next letter as a parameter
 # is what ate a name. Neither is a per-row special case: it is which kind
 # of parameter the code takes.
-EAT_ID = (0x18, 0x19, 0x1A)
+EAT_ID = (0x05, 0x18, 0x19, 0x1A)
 
 
 def param_take(op, peek=None, peek2=None):
@@ -139,3 +142,68 @@ def decode_box(raw, glyph_map=US_MAP, stop_at_end=False, holes=None):
     if i < n:
         out.append('[%02x]' % raw[i])
     return ''.join(out)
+
+
+_TOKEN = None
+
+
+def _tokens(text):
+    """decode_box's spelling cut into units: '<FFxx>' a control, '<xxxx>' a
+    parameter unit, anything else one glyph."""
+    import re
+    global _TOKEN
+    if _TOKEN is None:
+        _TOKEN = re.compile(r'<FF[0-9A-F]{2}>|<[0-9A-F]{4}>|.', re.S)
+    return _TOKEN.findall(text)
+
+
+def box_replace(raw, find, replace, glyph_map=US_MAP):
+    """`raw` (a PSP box) with the units that decode_box spells as `find`
+    replaced by `replace` encoded the same way: controls and parameters as
+    their bytes, each glyph as the unit the box already uses for it (else the
+    lowest unit the map spells it with). `find` must occur exactly once, on a
+    unit boundary; ValueError otherwise."""
+    import struct
+    by_char = {}
+    for u, ch in glyph_map.items():
+        by_char.setdefault(ch, []).append(u)
+
+    def alternatives(tok):
+        if len(tok) == 6 and tok.startswith('<FF'):
+            return [bytes((0xFF, int(tok[3:5], 16)))]
+        if len(tok) == 6 and tok[0] == '<':
+            return [struct.pack('>H', int(tok[1:5], 16))]
+        units = by_char.get(tok)
+        if not units:
+            raise ValueError(f'no PSP glyph for {tok!r}')
+        return [struct.pack('>H', u) for u in sorted(units)]
+
+    pattern = [alternatives(t) for t in _tokens(find)]
+
+    def match_at(i):
+        used = []
+        for alts in pattern:
+            for b in alts:
+                if raw[i:i + len(b)] == b:
+                    used.append(b)
+                    i += len(b)
+                    break
+            else:
+                return None
+        return i, used
+
+    hits = []
+    for i in range(0, len(raw) - 1, 2):
+        m = match_at(i)
+        if m:
+            hits.append((i, m[0], m[1]))
+    if len(hits) != 1:
+        raise ValueError(f'{find!r} is in the box {len(hits)} times')
+    start, end, used = hits[0]
+    known = {}
+    for tok, b in zip(_tokens(find), used):
+        known.setdefault(tok, b)
+    out = bytearray()
+    for tok in _tokens(replace):
+        out += known.get(tok) or alternatives(tok)[0]
+    return raw[:start] + bytes(out) + raw[end:]

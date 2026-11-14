@@ -1,0 +1,6 @@
+psp	find	replace	note
+E3:167	The Result to the left of the screen	The Result to the right of the screen	Code Breaker: the PSX screen has RESULT on the right; PSX ja 規定回数は　画面右側の「ＲＥＳＵＬＴ」の個数分です
+E3:189	Add a coin.<FF02><FF04>＜During play＞<FF03>Rotate the four small reels to the<FF03>bottom.	Add a coin.<FF02><FF04>＜During play＞<FF03>Rotate the four small reels to the<FF03>right.	slots: the coin button (PSX ○) turns the right four; PSX ja 【○ボタン】＜ゲームスタート前＞コインを１枚ベットします＜大ドラム回転中＞小ドラムの右４つを回転させます
+E3:189	Remove a coin.<FF02><FF04>＜During play＞<FF03>Rotate the four small reels to the<FF03>right.	Remove a coin.<FF02><FF04>＜During play＞<FF03>Rotate the four small reels to the<FF03>bottom.	slots: the cancel button (PSX ×) turns the bottom four; PSX ja 【×ボタン】＜ゲームスタート前＞ベットしたコインをキャンセルします＜大ドラム回転中＞小ドラムの下４つを回転させます
+d13:c238	&sob& &sob&	*sob* *sob*	the PSP line spells *sob* with &; PSX ja 女性の声：うっ　うっ　うっ…
+E0:409	I could really use a hand, <FF07>!	<FF07>, I could really use a hand!	the PSX line opens on the name; PSX ja <FF0F><01>　早く手を貸して！

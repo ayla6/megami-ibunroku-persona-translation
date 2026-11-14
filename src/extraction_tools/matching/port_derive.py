@@ -813,7 +813,7 @@ def renorm_generated(rels=None):
                                                 if r in LAST_RESORT_TABLES]
     try:
         import concurrent.futures as futures
-        with futures.ProcessPoolExecutor() as pool:
+        with futures.ProcessPoolExecutor(max_workers=toolbelt.jobs()) as pool:
             return sum(pool.map(_renorm_rel, rels))
     except Exception:
         # a platform without fork still works, just slower

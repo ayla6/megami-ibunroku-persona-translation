@@ -68,9 +68,21 @@ def psp_unit_spans(path):
             break
         offs.append(v)
         i += 4
-    starts = [o + b0 for o in offs]
+    # the table's offsets are from the FILE start, not from b0 (where the
+    # table itself sits): every unit follows the end code (FFF5/FFEF) or
+    # the zero padding before it. Adding b0 started each unit 24 bytes into
+    # its text ("ay be demons" for "No way! We may be demons").
+    starts = list(offs)
     ends = starts[1:] + [hdr[1]]
-    return [(s, bytes(d[s:t])) for s, t in zip(starts, ends)]
+    out = []
+    for s, t in zip(starts, ends):
+        # A few entries point at the end code of the message before (BASKET
+        # 642 '<FFF5>Heh, what a bull!...'): the unit's own text starts
+        # after it.
+        while s + 2 <= t and d[s:s + 2] in (b'\xff\xf5', b'\xff\xef'):
+            s += 2
+        out.append((s, bytes(d[s:t])))
+    return out
 
 
 def psp_units_raw(path):

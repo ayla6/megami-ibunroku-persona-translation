@@ -53,6 +53,16 @@ import sys
 _TABLE_LOCK = threading.RLock()
 
 
+def jobs():
+    """Worker processes one CPU-heavy step may run: PORT_JOBS, or half the
+    cores - the port shares the machine with its user, and several steps of
+    a wave run their pools at once."""
+    try:
+        return max(1, int(os.environ['PORT_JOBS']))
+    except (KeyError, ValueError):
+        return max(1, (os.cpu_count() or 2) // 2)
+
+
 def _locked(fn):
     """Serialize a table mutator. See _TABLE_LOCK."""
     def wrapper(*a, **k):
@@ -265,8 +275,94 @@ def read_manual(rel, optional=True):
 
 
 def read_extracted(region, rel, optional=False):
-    """Rows (dicts keyed by EXT_COLS) of extracted_text/<region>/<rel>.tsv."""
-    return _read(ext_path(region, rel), EXT_COLS, optional)
+    """Rows (dicts keyed by EXT_COLS) of extracted_text/<region>/<rel>.tsv.
+    PSP-US rows come with translation/psp_errata.tsv applied."""
+    rows = _read(ext_path(region, rel), EXT_COLS, optional)
+    return _errata_rows(rel, rows) if region == 'psp_us' else rows
+
+
+# translation/psp_errata.tsv: corrections to single PSP-US lines that are
+# wrong for the PSX game (its screens or controls differ). A porter reads the
+# corrected line as if the PSP had said it, so the row still gets every port
+# rule (wrapping, box merges, waits) at its one write, which a manual row
+# never does. A row: `psp` (one line, as the generated `psp` column spells
+# it: the id for pack/E?, the pos elsewhere), `find` (text that occurs exactly
+# once in that line), `replace`, `note` (the PSX Japanese that says so).
+# Nothing outside the named line is touched. A pointer that names no line or
+# a `find` that is not there exactly once fails the tool: the PSP extract
+# changed and the row needs a look. Three readers apply it, the ones porters
+# take PSP-US text from: read_extracted (every extract reader),
+# text.load_dng_boxes (its refresh path) and port_story.usp_entries (the
+# story boxes, as bytes, codec.box_replace).
+ERRATA = os.path.join(ROOT, 'translation', 'psp_errata.tsv')
+ERRATA_COLS = ('psp', 'find', 'replace', 'note')
+_ERRATA_CACHE = {}
+
+
+def psp_errata(rel):
+    """[(pos, find, replace)] of psp_errata.tsv for one PSP-US extract rel,
+    each pointer resolved to its line's pos."""
+    try:
+        st = os.stat(ERRATA)
+    except OSError:
+        return []
+    key = (st.st_mtime_ns, st.st_size)
+    if _ERRATA_CACHE.get('table', (None,))[0] != key:
+        table = {}
+        for r in strlib.tsv_rows(ERRATA, required=ERRATA_COLS):
+            name, _, loc = r['psp'].partition(':')
+            if not loc or not r['find']:
+                fail(f'psp_errata.tsv: bad row {r["psp"]!r} (needs psp and find)')
+            table.setdefault(psp_rel(name), []).append((loc, r['find'], r['replace']))
+        _ERRATA_CACHE['table'] = (key, table)
+        _ERRATA_CACHE.pop('resolved', None)
+    resolved = _ERRATA_CACHE.setdefault('resolved', {})
+    if rel not in resolved:
+        out = []
+        raw = None
+        for loc, find, replace in _ERRATA_CACHE['table'][1].get(rel, ()):
+            if re.fullmatch(r'pack/E\d', rel):
+                if raw is None:
+                    raw = {r['id']: r['pos'] for r in _read(
+                        ext_path('psp_us', rel), EXT_COLS, True)}
+                if loc not in raw:
+                    fail(f'psp_errata.tsv: {psp_name(rel)}:{loc} names no PSP-US line')
+                loc = raw[loc]
+            out.append((psp_loc(loc), find, replace))
+        resolved[rel] = out
+    return resolved[rel]
+
+
+def errata_text(rel, pos, text):
+    """`text` (the PSP-US line at `pos` of `rel`) with its errata applied."""
+    for loc, find, replace in psp_errata(rel):
+        if loc == psp_loc(pos):
+            if text.count(find) != 1:
+                fail(f'psp_errata.tsv: {psp_name(rel)} {pos}: {find!r} is not in '
+                     f'the line exactly once')
+            text = text.replace(find, replace)
+    return text
+
+
+def errata_check(rel, positions):
+    """Fail when an errata row of `rel` names a pos the reader does not have."""
+    have = {psp_loc(p) for p in positions}
+    for loc, _f, _r in psp_errata(rel):
+        if loc not in have:
+            fail(f'psp_errata.tsv: {psp_name(rel)} {loc} names no PSP-US line')
+
+
+def _errata_rows(rel, rows):
+    if not psp_errata(rel):
+        return rows
+    key = (rel, id(rows))
+    hit = _ERRATA_CACHE.get(key)
+    if hit and hit[0] is rows:
+        return hit[1]
+    errata_check(rel, (r['pos'] for r in rows))
+    out = [dict(r, text=errata_text(rel, r['pos'], r['text'])) for r in rows]
+    _ERRATA_CACHE[key] = (rows, out)
+    return out
 
 
 def _extract(reg, rel):
