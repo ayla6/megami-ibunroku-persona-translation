@@ -21,6 +21,7 @@ Rules (each unit = ONE page of the BTLP text box: 3 lines of 15 cells, VWF, 239 
     <FFF2> card 80 px, <FFF8> number 27 px);
   * plain ASCII text only (letters, digits, space and ! ? . , ' " - ~ : ; / ( ) & * +), no other symbols.
 """
+import functools
 import os
 import re
 import sys
@@ -90,6 +91,7 @@ def lines_of(s):
     return [ln for pg in pages_of(s) for ln in pg]
 
 
+@functools.lru_cache(maxsize=1 << 17)   # pure in the line; the flow asks per candidate
 def width(line):
     w = 0
     for c, tw in WIDTH.items():

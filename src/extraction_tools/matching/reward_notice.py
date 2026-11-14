@@ -7,6 +7,7 @@ independently proven, monotonic EBOOT anchors. Ambiguity is always a gap.
 """
 import bisect
 import collections
+import functools
 import hashlib
 import os
 import re
@@ -85,20 +86,24 @@ def overlaps(target, rows):
         start = int(row['pos'], 16)
         if start >= target:
             break
-        text = row['text']
-        # EBOOT uses two bytes per glyph/control. End at the first actual end;
-        # ignore any continuation the extractor happened to attach after it.
-        if '<FF01>' in text:
-            text = text[:text.index('<FF01>') + len('<FF01>')]
-        tokens = TOKEN.findall(text)
-        # Malformed markup cannot be priced exactly. Its raw character length
-        # is an upper bound on encoded units, so retain a conservative overlap.
-        units = (sum(1 if t.startswith('<') else len(t.encode('utf-16-be')) // 2
-                     for t in tokens)
-                 if ''.join(tokens) == text else len(text.encode('utf-16-be')) // 2)
-        if start + 2 * units > target:
+        if start + 2 * _units(row['text']) > target:
             return True
     return False
+
+
+@functools.lru_cache(maxsize=None)   # the same rows are asked about per target
+def _units(text):
+    """Encoded units of a record's complete text."""
+    # EBOOT uses two bytes per glyph/control. End at the first actual end;
+    # ignore any continuation the extractor happened to attach after it.
+    if '<FF01>' in text:
+        text = text[:text.index('<FF01>') + len('<FF01>')]
+    tokens = TOKEN.findall(text)
+    # Malformed markup cannot be priced exactly. Its raw character length
+    # is an upper bound on encoded units, so retain a conservative overlap.
+    return (sum(1 if t.startswith('<') else len(t.encode('utf-16-be')) // 2
+                for t in tokens)
+            if ''.join(tokens) == text else len(text.encode('utf-16-be')) // 2)
 
 
 def candidates(messages, names, jp_rows, us_rows, anchors, templates):

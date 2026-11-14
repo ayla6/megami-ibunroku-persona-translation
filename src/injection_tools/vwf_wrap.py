@@ -444,6 +444,7 @@ def ends_on_subject(text):
     return stem in CONTRACTED and "'" + tail in CONTRACTIONS
 
 
+@functools.lru_cache(maxsize=1 << 16)   # pure in its two texts; the layout asks per candidate line
 def opens_on_object(prev, nxt):
     """Does a line opening on nxt (its first piece) cut an object pronoun
     from the verb that ends the line before it? Not after a connector
@@ -1003,6 +1004,10 @@ def shape_report(lines, width=BOX_WIDTH):
     return w, findings, cost, clauses
 
 
+# a line that trails off ("..." or "…" at its end)
+TRAILS_RE = re.compile(r'(?:\.\.|…)\W*$')
+
+
 def _rank(cost):
     """Rank a suffix on the same reading/shape scale as the root."""
     return cost[:3] + (cost[8],
@@ -1064,6 +1069,7 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
     # cost[7]: lines ending mid-clause (an extra line inside the box is
     # cheaper than one of these; past the box the line count comes first)
     best = [{} for _ in range(n)] + [{(0, -1): ((0, 0, 0, 0, 0, 0, -1, 0, 0, 0), -1, None)}]
+    ranked = [{} for _ in range(n + 1)]   # best[i]'s ranks, kept beside it
     for i in range(n - 1, -1, -1):
         text = atoms[i].text
         w = measure(text)
@@ -1073,10 +1079,65 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
             over = w - lim
             if j + 1 == n or atoms[j + 1].brk:
                 base = max(over, 0)
+                # what this line alone decides, whatever follows it: worked
+                # out once here, not once per remembered suffix below
+                last = j + 1 == n
+                nxt = None if last else atoms[j + 1]
+                label_only = i == 0 and j == label_end_i
+                sc = stop_cost(text)
+                trails = bool(TRAILS_RE.search(text))
+                # (a standalone label ends on its colon, which says
+                # nothing about where the speech breathes - but a label
+                # alone over speech that would have fit beside it is a
+                # wasted line, and pays the colon's rhythm point)
+                end0 = (0 if last
+                        else int(body_fits) * 2 if label_only
+                        else sc)
+                # A subordinator opens the clause after it: ending a
+                # line on one is worse than another mid-clause end
+                # ("visit her while / you're there").
+                if end0 == 4 and (ends_on_subordinator(text)
+                                  or ends_on_subject(text)):
+                    end0 += 2
+                # An object pronoun opening the next line is cut from
+                # its verb ("Don't blame / me when..."): one rhythm
+                # point, so a near-square block still keeps it ("what's
+                # got / me so pissed off?").
+                elif end0 == 4 and opens_on_object(text, nxt.text):
+                    end0 += 1
+                # A possessive cut from its noun ("where my / mouth") is
+                # one rhythm point: a clearly better shape still takes it.
+                if not last and nxt.lead == 3:
+                    end0 += 1
+                # A connector opening the phrase that closes its
+                # sentence is a soft break: one rhythm point on the line
+                # before it ("a secret from / the young master..." keeps
+                # its connector unless the lead buys a better block).
+                if not last and nxt.lead == 2:
+                    end0 += 1
+                # the next WORD (its pieces), for the comma tic below
+                word_end = None
+                if end0 == 2 and not last:
+                    word_end = j + 1
+                    while word_end < n - 1 and not atoms[word_end].last:
+                        word_end += 1
+                # (the label is not speech: on its line only the
+                # speech's own width counts)
+                speech_w = (w - label_width if i == 0 and label_width
+                            else w)
+                stut = not last and stutter(text, nxt.text)
+                orphan = (0 if last or label_only
+                          else head_orphan(text) or int(sc == 4))
+                led = int(not last and bool(nxt.lead))
+                pen = atoms[i].pen if i else 0
+                nbrk = 1 if atoms[i].nbrk else 0
+                opener = (i == 0 and label_end_i is None and not last
+                          and full_stop(text))
+                beside = i == 0 and label_end_i is not None and j > label_end_i and not last
+                bucket, ranks = best[i], ranked[i]
                 for subkey, (sub, _end, after) in best[j + 1].items():
                     # _end: the last atom of the next line
                     k = subkey[0]
-                    label_only = i == 0 and j == label_end_i
                     # A complete opening beat over two balanced, complete
                     # sentences is deliberate rhythm, not a clipped scrap.
                     # The beat may share the label's line or open the speech
@@ -1087,13 +1148,12 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                         label_end_i is not None
                         and ((i == 0 and j > label_end_i) or i == label_end_i + 1)
                         and k == 2 and not body_fits
-                        and bool(re.search(r'(?:\.\.|…)\W*$', text))
+                        and trails
                         and after is not None
                         and abs(sub[6] - after[1]) <= width // 5
                         and _whole_tail(atoms_text(j + 1, _end))
                         and _whole_tail(atoms_text(_end + 1, n - 1)))
-                    fragment = (i == 0 and label_end_i is not None
-                                and j > label_end_i and j + 1 < n
+                    fragment = (beside
                                 and not beat_over_sentences
                                 # the whole speech fits under the label:
                                 # any split of it beside the label is a
@@ -1104,22 +1164,20 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                                 # Hiroshi came to visit.")
                                 and ((body_fits and not (
                                     k == 1 and abs(sub[6] - w) <= width // 10
-                                    and stop_cost(text) < 4))
+                                    and sc < 4))
                                      # a complete sentence is no clipped
                                      # fragment ("Ayase: Awww!"); one word
                                      # trailing off is ("Takeda: Tch..."),
                                      # a phrase is not ("F-Fresh meat...")
                                      or (w - label_width <= width // 5
-                                         and (stop_cost(text) != 0
-                                              or (bool(re.search(
-                                                  r'(?:\.\.|…)\W*$', text))
+                                         and (sc != 0
+                                              or (trails
                                                   and j == label_end_i + 1)))))
                     # Speech that stops mid-clause beside the name trails
                     # off the label's line, rectangle or not ("Female
                     # student: Uh, isn't it / time you gave up on Yosuke?").
-                    midlabel = (i == 0 and label_end_i is not None
-                                 and j > label_end_i and j + 1 < n
-                                 and stop_cost(text) == 4
+                    midlabel = (beside
+                                 and sc == 4
                                  and not (k >= 2 and abs(sub[6] - w) <= width // 5)
                                  and not (_closes_sentence_in(text)
                                          and _whole_tail(
@@ -1134,42 +1192,13 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                     # like him..."), and not further down the block ("I see...
                     # / I'm not surprised. / He does..."): there it only
                     # breaks up a rectangle.
-                    full = (i == 0 and label_end_i is None
-                            and full_stop(text) and j + 1 < n
+                    full = (opener
                             and stop_cost(atoms_text(j + 1, _end)) == 0)
                     trans = (STEP_COST * (step * step
                                           + (step * step if step > 0 else 0))
                              if sub[6] >= 0 and not label_only
                              and not (full and step > 0) else 0)
-                    # (a standalone label ends on its colon, which says
-                    # nothing about where the speech breathes - but a label
-                    # alone over speech that would have fit beside it is a
-                    # wasted line, and pays the colon's rhythm point)
-                    end = (0 if j + 1 == n
-                           else int(body_fits) * 2 if label_only
-                           else stop_cost(text))
-                    # A subordinator opens the clause after it: ending a
-                    # line on one is worse than another mid-clause end
-                    # ("visit her while / you're there").
-                    if end == 4 and (ends_on_subordinator(text)
-                                     or ends_on_subject(text)):
-                        end += 2
-                    # An object pronoun opening the next line is cut from
-                    # its verb ("Don't blame / me when..."): one rhythm
-                    # point, so a near-square block still keeps it ("what's
-                    # got / me so pissed off?").
-                    elif end == 4 and opens_on_object(text, atoms[j + 1].text):
-                        end += 1
-                    # A possessive cut from its noun ("where my / mouth") is
-                    # one rhythm point: a clearly better shape still takes it.
-                    if j + 1 < n and atoms[j + 1].lead == 3:
-                        end += 1
-                    # A connector opening the phrase that closes its
-                    # sentence is a soft break: one rhythm point on the line
-                    # before it ("a secret from / the young master..." keeps
-                    # its connector unless the lead buys a better block).
-                    if j + 1 < n and atoms[j + 1].lead == 2:
-                        end += 1
+                    end = end0
                     # A minor punctuation boundary is not worth stranding a
                     # severely short final fragment. Full sentence boundaries
                     # and standalone speaker labels retain their own rules.
@@ -1184,25 +1213,17 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                     # adventures await me, / ho...? I'm excited!", "You're
                     # not being sincere, / hee-ho! If..."). Ending there is
                     # a mid-clause end.
-                    tic = False
-                    if end == 2 and j + 1 < n:
-                        word_end = j + 1          # the next WORD: its pieces
-                        while word_end < n - 1 and not atoms[word_end].last:
-                            word_end += 1
-                        tic = (_end > word_end
-                               and sent_end(atoms_text(j + 1, word_end)))
+                    tic = (end == 2 and word_end is not None
+                           and _end > word_end
+                           and sent_end(atoms_text(j + 1, word_end)))
                     if tic:
                         end = 4
                     # A line that ends a sentence (or trails off) and then
                     # strands a short final sentence under half its width
                     # ("Answer me... I'm begging you... / Yamaoka!", "Yes, I
                     # like it! / Keep it up!") orphans that scrap.
-                    # (the label is not speech: on its line only the
-                    # speech's own width counts)
-                    speech_w = (w - label_width if i == 0 and label_width
-                                else w)
                     if (not label_only and k == 1 and sub[6] * 2 < speech_w
-                            and stop_cost(text) <= 1):
+                            and sc <= 1):
                         end += 1
                     # A SEVERE RISE strands this line the way a mid-clause
                     # cut does: a line under half the width of the one after
@@ -1214,14 +1235,12 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                     # beside a mid-clause end, as spec rule 6 orders it.
                     severe = (not label_only and not beat_over_sentences
                               and sub[6] > w * 2
-                              and (stop_cost(text) == 4
-                                   or bool(re.search(r'(?:\.\.|…)\W*$',
-                                                     text))))
+                              and (sc == 4 or trails))
                     if severe:
                         end += 4
                     # A STUTTER IS ONE PHRASE: "No, I... / I am" breaks
                     # between a word and its own repetition.
-                    if j + 1 < n and stutter(text, atoms[j + 1].text):
+                    if stut:
                         end = max(end, 4)
                     # A HOLLOW MIDDLE: the next line is under half of both
                     # its neighbours ("story, / but you know, / it'd be
@@ -1255,23 +1274,24 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                           and not full):
                         shape += (sub[6] - w) ** 2
                     total = (base + sub[0],
-                             (atoms[i].pen if i else 0) + sub[1],
-                             (1 if atoms[i].nbrk else 0) + sub[2],
+                             pen + sub[1],
+                             nbrk + sub[2],
                              sub[3] + int(fragment),
                              sub[4] + end,
                              sub[5] + shape,
                              w,
-                             sub[7] + (0 if j + 1 == n or label_only
-                                       else head_orphan(text)
-                                       or int(stop_cost(text) == 4
-                                              or strand or severe or tic)),
+                             sub[7] + (0 if last or label_only
+                                       else orphan or int(strand or severe
+                                                          or tic)),
                              sub[8] + int(midlabel or fragment or strand
                                           or severe),
-                             sub[9] + int(j + 1 < n and bool(atoms[j + 1].lead)))
+                             sub[9] + led)
                     key = (k + 1, w)
-                    cur = best[i].get(key)
-                    if cur is None or _rank(total) < _rank(cur[0]):
-                        best[i][key] = (total, j, subkey)
+                    r = _rank(total)
+                    cur = ranks.get(key)
+                    if cur is None or r < cur:
+                        bucket[key] = (total, j, subkey)
+                        ranks[key] = r
                 if over > 0 and want is None:
                     break
             if j + 1 >= n:
@@ -1279,6 +1299,27 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
             j += 1
             text = line_text(text, atoms[j])
             w = measure(text)
+        # A suffix already past the box loses to one with fewer lines and no
+        # more overflow under ANY start: the root ranks overflow, then
+        # max(lines, box), and the same start adds the same to both. Free
+        # flow only (a fixed skeleton wants an exact count). A trace loses
+        # nothing it reports: such a layout loses to the winner on overflow
+        # or lines, so it is never a close call's runner-up.
+        if want is None and len(best[i]) > 1:
+            bucket = best[i]
+            floor = {}
+            for (k, _w), (c, _j, _s) in bucket.items():
+                if floor.get(k, c[0] + 1) > c[0]:
+                    floor[k] = c[0]
+            low, run = [], None
+            for k in sorted(floor):
+                run = floor[k] if run is None else min(run, floor[k])
+                low.append((k, run))
+            for key in [key for key, (c, _j, _s) in bucket.items()
+                        if key[0] > box and any(k < key[0] and o <= c[0]
+                                                for k, o in low)]:
+                del bucket[key]
+                del ranked[i][key]
     if want is None:
         # Least lines, then internal splits, protected phrases, clipped
         # speech fragments, sentence boundaries and the whole block's shape.
@@ -1308,6 +1349,26 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
 
 def flow_lines(items, width=BOX_WIDTH, measure=text_width, newline=NEWLINE,
                tail=1, joinable=None):
+    # Pure in its arguments, and the corpus repeats itself (the talk
+    # families share most of their lines): lay each stream out once.
+    try:
+        key = (tuple(tuple(it) for it in items), width, measure, newline,
+               tail, joinable)
+        hash(key)
+    except TypeError:
+        return _flow_lines(items, width, measure, newline, tail, joinable)
+    got = _FLOWN.get(key)
+    if got is None:
+        got = _FLOWN[key] = tuple(_flow_lines(items, width, measure, newline,
+                                              tail, joinable))
+    return list(got)
+
+
+_FLOWN = {}
+
+
+def _flow_lines(items, width=BOX_WIDTH, measure=text_width, newline=NEWLINE,
+                tail=1, joinable=None):
     """The textbox flow every porter and builder reflows through: the single
     place that decides where text breaks, so the rules and the look apply by
     default. items: ('w', word) words (speaker labels ride as words with the

@@ -280,11 +280,11 @@ def reflow(words, slots, end, breaks=None):
     # flatten text with explicit wrap points from FFF6 slots
     breaks = breaks or {}
 
-    def width(s):
-        # talktl widths: demon/race/member/item/card tokens count at their
-        # inserted widths (vwf_wrap alone measures them as zero and the
-        # line overflows in game once the name renders).
-        return talktl.width(s)
+    # talktl widths: demon/race/member/item/card tokens count at their
+    # inserted widths (vwf_wrap alone measures them as zero and the line
+    # overflows in game once the name renders). The function itself, not a
+    # wrapper: the flow lays out a stream once per measure.
+    width = talktl.width
 
     items = []
     wi = 0

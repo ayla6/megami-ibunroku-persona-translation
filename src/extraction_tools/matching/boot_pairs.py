@@ -194,14 +194,16 @@ def fit_grid(points):
     backwards through their slot indices), so only a zero stride is not a
     grid."""
     best = None
+    tried = set()   # a grid through m anchors is met once per pair of them
     for i, (k0, p0) in enumerate(points):
         for k1, p1 in points[i + 1:]:
             if k1 <= k0 or p1 == p0 or (p1 - p0) % (k1 - k0):
                 continue
             stride = (p1 - p0) // (k1 - k0)
             base = p0 - k0 * stride
-            if base < 0:
+            if base < 0 or (base, stride) in tried:
                 continue
+            tried.add((base, stride))
             on = [(k, p) for k, p in points if base + k * stride == p]
             if best is None or len(on) > best[3]:
                 best = (base, stride, dict(on), len(on))
@@ -227,11 +229,18 @@ def ff01_runs(rows):
     return runs
 
 
+_STARTS = {}   # id(rows) -> (rows, their starts): callers ask one list many times
+
+
 def covering(rows_sorted, off):
     """The row whose unit holds `off` (a unit starts at its first decoded
     unit, so a pointer may name a byte inside it)."""
     import bisect
-    starts = [int(r['pos'], 16) for r in rows_sorted]
+    got = _STARTS.get(id(rows_sorted))
+    if got is None or got[0] is not rows_sorted or len(got[1]) != len(rows_sorted):
+        got = _STARTS[id(rows_sorted)] = (
+            rows_sorted, [int(r['pos'], 16) for r in rows_sorted])
+    starts = got[1]
     i = bisect.bisect_right(starts, off) - 1
     return rows_sorted[i] if i >= 0 else None
 
