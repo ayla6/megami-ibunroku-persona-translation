@@ -7,6 +7,7 @@ fit it must be over limit, never a taller single-column list that scrolls its
 first option out of view (choices.layout -> OverLimit -> toolbelt.route_over).
 """
 import sys
+import re
 import unittest
 from pathlib import Path
 
@@ -25,19 +26,18 @@ class ChoiceLayout(unittest.TestCase):
             row(0, 2, 2), 'Start|Quit<FF03>Coins|Rules')
         self.assertEqual((rn, cn), (2, 2))
 
-    def test_column_two_never_starts_before_its_stop(self):
+    def test_column_two_starts_on_its_stop(self):
         # 'Start game' (70 px) and 'Check coins' (74 px) sit 58 and 54 px
-        # short of the 128 px stop: 14.5 and 13.5 spaces. Rounding to nearest
-        # made both 14 (row 1 at 126 px, row 2 at 130); rounding up puts both
-        # at 130.
+        # short of the 128 px stop: whole 4 px spaces then 1 px blanks put
+        # both rows' column 2 on the stop exactly.
         import vwf_wrap
+        import make_vwf_font
         text, rn, cn, w = choices.layout(
             row(3, 2, 2), 'Start game|Stop playing<FF03>Check coins|See explanations')
         starts = set()
-        for line in text.split('<FF03>'):
-            col2 = line.split('  ')[-1].lstrip(' ')
-            starts.add(vwf_wrap.text_width(line[:len(line) - len(col2)]))
-        self.assertEqual(starts, {(w + 1) * 16 + 2})
+        for line, col2 in zip(text.split('<FF03>'), ('Stop playing', 'See explanations')):
+            starts.add(vwf_wrap.text_width(line[:line.index(col2)]))
+        self.assertEqual(starts, {(w + 1) * 16})
 
     def test_four_options_that_fit_no_two_column_width_are_over_limit(self):
         # Four options cannot become a taller single column: the box has two

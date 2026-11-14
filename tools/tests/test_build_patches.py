@@ -136,9 +136,9 @@ def variant_bytes(labels):
     shift = 0
     for label in release.CHOICE_ORDER:
         if label in set(labels):
-            # run writes where western does, so alone it differs from run
-            # applied over western: the case a partner file exists for
-            marker = (b'[run+western]' if label == 'run' and 'western' in labels
+            # range writes where battlespeed does, so alone it differs from
+            # range applied over battlespeed: the case a partner file exists for
+            marker = (b'[range+battlespeed]' if label == 'range' and 'battlespeed' in labels
                       else f'[{label}]'.encode())
             at = 8192 * (release.CHOICE_ORDER.index(label) + 1) + shift
             if label in release.SIZE_CHANGERS:
@@ -155,7 +155,7 @@ class ReleaseGraph(unittest.TestCase):
         anchors = release.size_changer_states()
         self.assertEqual(anchors, [(), ('saves',), ('60fps',),
                                    ('saves', '60fps')])
-        self.assertEqual(len(canonical), 16)
+        self.assertEqual(len(canonical), 14)
         self.assertEqual(canonical[0], ())
         self.assertEqual({tuple(labels) for labels in canonical[:4]},
                          set(anchors))
@@ -163,7 +163,7 @@ class ReleaseGraph(unittest.TestCase):
             self.assertIn(tuple(release.solver_order([option])), canonical)
             self.assertEqual(tuple(release.solver_order([option])), (option,))
         self.assertEqual(len({tuple(release.release_selection(labels))
-                              for labels in canonical}), 16)
+                              for labels in canonical}), 14)
 
         expected = {'rev0-to-base.xdelta', 'rev1-to-rev0.xdelta',
                     'add-saves.xdelta', 'add-60fps.xdelta',
@@ -171,9 +171,8 @@ class ReleaseGraph(unittest.TestCase):
         for option in release.in_place_options():
             expected.add(release.patch_file(option, frozenset()))
         # a partnered option has a second file over its partner
-        expected |= {'add-run-western.xdelta', 'add-range-battlespeed.xdelta',
-                     'add-saves-western.xdelta'}
-        self.assertEqual(len(release.release_file_names()), 17)
+        expected |= {'add-range-battlespeed.xdelta'}
+        self.assertEqual(len(release.release_file_names()), 15)
         self.assertEqual(release.release_file_names(), expected)
 
     def test_samples_start_with_the_expected_popular_sets(self):
@@ -181,16 +180,17 @@ class ReleaseGraph(unittest.TestCase):
         self.assertEqual(picks[:len(release.SAMPLE_POPULAR)],
                          [tuple(release.solver_order(labels))
                           for labels in release.SAMPLE_POPULAR])
-        self.assertEqual(len(picks), 6, 'three popular sets plus three random')
+        popular = len(release.SAMPLE_POPULAR)
+        self.assertEqual(len(picks), popular + 3, 'the popular sets plus three random')
         canonical = set(release.canonical_states())
         self.assertEqual(len(set(picks)), len(picks), 'no duplicate samples')
-        for labels in picks[3:]:
+        for labels in picks[popular:]:
             self.assertNotIn(frozenset(labels), canonical,
                              'random samples exercise decorated chains')
             self.assertTrue(labels)
         self.assertEqual(picks, release.sample_selections(3, 0),
                          'the same seed samples the same combinations')
-        self.assertNotEqual(picks[3:], release.sample_selections(3, 1)[3:],
+        self.assertNotEqual(picks[popular:], release.sample_selections(3, 1)[popular:],
                             'a new seed samples new combinations')
 
     def test_assembly_parent_keeps_the_one_shot_size_changer_layout(self):
@@ -215,11 +215,9 @@ class ReleaseGraph(unittest.TestCase):
         self.assertIn(('60fps', ()), edges)
         self.assertIn(('60fps', ('saves',)), edges)
         self.assertIn(('run', ()), edges)
-        self.assertIn(('run', ('western',)), edges)
         self.assertIn(('range', ('battlespeed',)), edges)
-        self.assertIn(('saves', ('western',)), edges)
-        self.assertNotIn(('60fps', ('western',)), edges)
-        self.assertEqual(len(edges), 15)
+        self.assertNotIn(('60fps', ('battlespeed',)), edges)
+        self.assertEqual(len(edges), 13)
 
     def test_options_sharing_a_sector_must_be_partners(self):
         base = {'BTLP.BIN': bytes(4096), 'OPEN.EXE': bytes(4096)}
@@ -230,17 +228,18 @@ class ReleaseGraph(unittest.TestCase):
         changes = {
             'battlespeed': release.changed_sectors(base, edit('BTLP.BIN', 10)),
             'range': release.changed_sectors(base, edit('BTLP.BIN', 20)),
-            'western': release.changed_sectors(base, edit('OPEN.EXE', 2048)),
+            'skipfmv': release.changed_sectors(base, edit('OPEN.EXE', 2048)),
             'saves': release.changed_sectors(base, edit('OPEN.EXE', 3000)),
             'mark': release.changed_sectors(base, edit('BTLP.BIN', 2048)),
             '60fps': release.changed_sectors(base, edit('OPEN.EXE', 2100)),
         }
         self.assertEqual(changes['range'], {('BTLP.BIN', 0)})
-        # range/battlespeed and saves/western are partners; mark sits in its
-        # own sector; 60fps and saves are both size-changers. 60fps shares
-        # western's sector without being its partner.
+        # range/battlespeed are partners; mark sits in its own sector; 60fps
+        # and saves are both size-changers. skipfmv shares their sector
+        # without being a partner of either.
         self.assertEqual(release.unpartnered_overlaps(changes),
-                         [('western', '60fps', [('OPEN.EXE', 1)])])
+                         [('skipfmv', 'saves', [('OPEN.EXE', 1)]),
+                          ('skipfmv', '60fps', [('OPEN.EXE', 1)])])
 
     def test_every_add_edge_is_encoded_from_a_canonical_state(self):
         canonical = set(release.canonical_states())
@@ -293,7 +292,7 @@ class ReleaseBuild(unittest.TestCase):
     rebuild only what changed."""
 
     samples = (('mark', 'battlespeed'),
-               ('mark', 'encounters', 'western', 'run', 'saves'))
+               ('mark', 'encounters', 'battlespeed', 'range', 'run', 'saves'))
 
     def setUp(self):
         self.tool = shutil.which('xdelta3')
@@ -371,25 +370,26 @@ class ReleaseBuild(unittest.TestCase):
             rev0.write_bytes(b'retail revision zero' * 100)
             rev1.write_bytes(b'retail revision one' * 100)
             verified, builder = self.run_release(root, rev0, rev1, out)
-            self.assertEqual(len(verified), 16 + len(self.samples),
+            self.assertEqual(len(verified), len(self.canonical) + len(self.samples),
                              'an audit per canonical state and per sample disc')
             self.assertEqual(builder.call_count, 2,
                              'one canonical batch plus one sample batch')
-            self.assertEqual(len(list(out.glob('*.xdelta'))), 17)
+            files = len(release.release_file_names())
+            self.assertEqual(len(list(out.glob('*.xdelta'))), files)
             self.assertFalse(list(out.glob('*.bin')))
             readme = (out / 'README.txt').read_text(encoding='utf-8')
             for name in release.release_file_names():
                 self.assertIn(name, readme)
             for item in release.RELEASE_OPTIONS:
                 self.assertIn(item['name'], readme)
-            self.assertIn('17 steps across 17 patch files', ' '.join(readme.split()))
+            self.assertIn(f'{files} steps across {files} patch files', ' '.join(readme.split()))
             self.assertIn('SAMPLING', readme)
 
             with (out / 'manifest.tsv').open() as f:
                 rows = list(csv.DictReader(f, delimiter='\t'))
-            self.assertEqual(len(rows), 17)
+            self.assertEqual(len(rows), files)
             by_name = {row['patch']: row for row in rows}
-            self.assertEqual(len(by_name), 17, 'one row per patch file')
+            self.assertEqual(len(by_name), files, 'one row per patch file')
             self.assertEqual(by_name['rev1-to-rev0.xdelta']['source_sha256'],
                              release.sha256(rev1))
             base = by_name['rev0-to-base.xdelta']
@@ -446,8 +446,8 @@ class ReleaseBuild(unittest.TestCase):
                 [('60fps',)])
             self.assertEqual(conversion.stat().st_mtime_ns, stamp)
 
-            # The second sample has western, so its saves is the partnered file.
-            (out / 'add-saves-western.xdelta').unlink()
+            # The second sample has battlespeed, so its range is the partnered file.
+            (out / 'add-range-battlespeed.xdelta').unlink()
             _, builder = self.run_release(root, rev0, rev1, out)
             self.assertEqual(builder.call_count, 2,
                              'the canonical state plus the sample that uses it')
@@ -456,7 +456,7 @@ class ReleaseBuild(unittest.TestCase):
                 [tuple(release.solver_order(release.state_labels(selected)))
                  for selected, _path in
                  canonical_call.kwargs['variants_override']],
-                [('western', 'saves')])
+                [('battlespeed', 'range')])
             self.assertEqual(
                 [tuple(release.solver_order(release.state_labels(selected)))
                  for selected, _path in

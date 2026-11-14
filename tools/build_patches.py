@@ -113,14 +113,14 @@ SIZE_CHANGERS = frozenset(('saves', '60fps'))
 # only the second states what the two do together. Sharing a sector is enough:
 # each raw sector's EDC/ECC is a literal of the patch that last wrote it, so a
 # patch encoded without the partner's bytes rewrites that sector's checksums
-# for a disc without them. `western` moves the run action's entry on the
-# controller page, which `run` writes; `range` replaces BtlDrawObjects' debug
-# grid between fast-forward's hooks and shares BtlLoadDebugGrid's sector with
-# them; `saves` hooks the title menus whose button masks `western` swaps. The
-# partner is an in-place option that comes first in solver order, and a patch
+# for a disc without them. `range` replaces BtlDrawObjects' debug grid between
+# fast-forward's hooks and shares BtlLoadDebugGrid's sector with them.
+# (`western`, held back from the release, would pair with `run`, whose
+# controller-page entry it moves, and with `saves`, whose title-menu button
+# masks it swaps.) The partner is an in-place option that comes first in solver order, and a patch
 # applied over it is encoded against the state with it, as a size-changer is
 # against the layout before it.
-PARTNERS = {'run': 'western', 'range': 'battlespeed', 'saves': 'western'}
+PARTNERS = {'range': 'battlespeed'}
 for _option, _partner in PARTNERS.items():
     if (_partner in SIZE_CHANGERS
             or (_option not in SIZE_CHANGERS
@@ -292,7 +292,6 @@ SAMPLE_POPULAR = (
     ('saves', 'mark', 'battlespeed', '60fps', 'run', 'skipfmv'),
     ('saves', 'mark', 'battlespeed', '60fps', 'run', 'skipfmv',
      'encounters', 'rewards'),
-    ('saves', 'mark', 'battlespeed', '60fps', 'western', 'run', 'skipfmv'),
 )
 
 
@@ -350,10 +349,15 @@ def assembly_parent(labels):
     return ()
 
 
+# QoL patches build.py can build that a release never offers: the debug tools,
+# and western until the buttons drawn on screen follow its swap (BUGS.md).
+NOT_RELEASED = frozenset(('debug', 'western'))
+
+
 def check_choices():
     """Fail before any work when a QoL patch has no release choice."""
     covered = {item for _label, group in CHOICES for item in group}
-    if covered | {'debug'} != set(build.QOL_PATCHES):
+    if covered | NOT_RELEASED != set(build.QOL_PATCHES):
         raise ValueError('QoL patch list changed; review release choices before publishing')
 
 

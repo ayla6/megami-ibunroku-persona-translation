@@ -14,8 +14,8 @@ The strings are drawn by the dialogue text interpreter, so English goes through 
 (width_chars + 1) * 16 px, the cursor underline is width_chars * 16 px long.
 
 CHOICES.tsv `en` syntax: rows joined by <FF03>; cells of a 2-column row joined by `|`
-(e.g. `Start Game|Quit<FF03>Check Coins|Rules`). Column 1 is padded with VWF spaces (4 px, rounded up) to the
-column 2 pixel start. Single-column menus: the underline width byte is raised if an option is wider
+(e.g. `Start Game|Quit<FF03>Check Coins|Rules`). Column 1 is padded to the column 2 pixel start exactly:
+4 px VWF spaces, then 1 px blanks (make_vwf_font.HAIR_SPACE) for the rest. Single-column menus: the underline width byte is raised if an option is wider
 than width_chars * 16 px. Empty `en` = left Japanese.
 The box shows three 16 px rows and the prompt's arming line is the first, so the list may use two;
 four options must therefore stay a 2x2 grid. Wording that fits no 2-column width is routed to manual
@@ -59,6 +59,7 @@ import toolbelt  # noqa: E402
 import etext                  # noqa: E402
 import strlib                  # noqa: E402
 import vwf_wrap   # noqa: E402
+import make_vwf_font  # noqa: E402
 
 ROOT = etext.ROOT
 TABLE = 0x8004D760
@@ -184,17 +185,17 @@ def layout(r, en):
         for ln in lines:
             c1, c2 = ln.split('|')
             widths.append((vwf_wrap.text_width(c1), vwf_wrap.text_width(c2)))
-        # The padding is whole 4 px spaces, rounded up: column 2 then starts
-        # at the stop or at most 3 px past it, the same for rows whose column
-        # 1 widths agree modulo 4 (rounding to nearest put rows whose
-        # remainders straddle a half on opposite sides of the stop).
-        def pad(w1, x2):
-            return -(-(x2 - w1) // 4)
+        # The padding reaches the stop exactly: whole 4 px spaces, then the
+        # 0-3 px left as 1 px blanks (make_vwf_font.HAIR_SPACE), so column 2
+        # of every row starts on the same pixel.
+        def padding(w1, x2):
+            n, rest = divmod(x2 - w1, 4)
+            return ' ' * n + make_vwf_font.HAIR_SPACE * rest
 
         cands = sorted(range(0, 15), key=lambda w: (abs(w - width_p), w))
         for w in cands:
             x2 = (w + 1) * 16
-            if all(x2 >= w1 + 4 and w1 + 4 * pad(w1, x2) + w2 <= BOX_PX for w1, w2 in widths):
+            if all(x2 >= w1 + 4 and x2 + w2 <= BOX_PX for w1, w2 in widths):
                 width_new = w
                 break
         else:
@@ -203,7 +204,7 @@ def layout(r, en):
             out = []
             for (w1, w2), ln in zip(widths, lines):
                 c1, c2 = ln.split('|')
-                out.append(c1 + ' ' * pad(w1, (width_new + 1) * 16) + c2)
+                out.append(c1 + padding(w1, (width_new + 1) * 16) + c2)
             assert width_new <= 14
             return '<FF03>'.join(out), rows_p, cols_p, width_new
         # No 2-column width fits. The nearest legal column starts are the
@@ -262,7 +263,8 @@ def build():
                 f"choice wording; the box cannot show all its options")
         b = etext.encode(text)
         for ch in re.sub(r'<[^>]*>', '', text):
-            assert 0x20 <= ord(ch) <= 0x7E, f"{r['idx']}: non-ASCII {ch!r}"
+            assert 0x20 <= ord(ch) <= 0x7E or ch == make_vwf_font.HAIR_SPACE, \
+                f"{r['idx']}: non-ASCII {ch!r}"
         placed[r['idx']] = (b, rn, cn, w)
         free.append((r['ptr'], r['ptr'] + r['size']))     # its Japanese slot becomes free
     # first-fit decreasing into the free list (merge touching slots first)

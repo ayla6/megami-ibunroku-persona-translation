@@ -64,7 +64,13 @@ CW, CH = 8, 16
 # encoding rather than provide a separate blank glyph.
 WIDE_SPACE = '\ue000'
 WIDE_SPACE_ADVANCE = 8
-EXTRA = '…＊￥' + WIDE_SPACE
+# A BLANK ONE PIXEL WIDE. A two-column choice menu pads column 1 to the column
+# 2 stop with 4 px spaces; the remainder (0-3 px) is made of these, so every
+# row's column 2 starts on the stop exactly (choices.py). No text prints it
+# and, blank, it costs no FONT.BIN slot.
+HAIR_SPACE = '\ue001'
+HAIR_SPACE_ADVANCE = 1
+EXTRA = '…＊￥' + WIDE_SPACE + HAIR_SPACE
 # THE SPELLING FOLD: characters the source writes typographically and this
 # font cannot draw, in the spelling the sheet DOES have. The PSP-US wording
 # uses the curly apostrophe ('Don\u2019t come then!'); the font's cells hold
@@ -271,6 +277,7 @@ def build():
             # a blank ever needs to move the pen past itself. WIDE_SPACE is
             # the exception: its blank IS its advance.
             widths.append(WIDE_SPACE_ADVANCE if c == code_of(WIDE_SPACE)
+                          else HAIR_SPACE_ADVANCE if c == code_of(HAIR_SPACE)
                           else SPACE_ADVANCE if c == 0x20 else 1)
         elif c == 0x20:
             widths.append(SPACE_ADVANCE)

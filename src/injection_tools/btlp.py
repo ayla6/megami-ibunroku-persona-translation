@@ -122,6 +122,11 @@ if not EVT_ZONE[0] < EVT_UNPACK < EVT_ZONE[1]:
 # the drawn string's buffer, and the resident bank an over-slot message's text
 # lives in (see evt_plan: a slot may hold a pointer instead of its string)
 EVT_BUF = _equ('BTLEVT_BUF_SIZE')
+# What an unpacked line may take: either window's buffer (BtlOpenMessage(1, ...)
+# shows story-zone strings in the second, decomp entry.c), and in the primary
+# one the bytes below the ANALYZE rows that share it (src/asm/common/scratch_map.tsv).
+UNPACK_ROOM = min(EVT_BUF, _equ('BTL_SECOND_BUF_SIZE'),
+                  _equ('ANALYZE_TRAIT_BUF') - _equ('BTLEVT_BUF_ADDR'))
 ANALYZE_NAME_CODE_SIZE = _equ('ANALYZE_NAME_CODE_SIZE')   # btlp/offer_name.asm's ANALYZE block
 EVT_MARK = _equ('BTLEVT_MARK')              # 'FF 00' + big-endian address
 EVT_MARK_LEN = 6
@@ -386,6 +391,8 @@ def evt_plan(d, rows_by_pos):
     for i, b in new.items():
         if len(b) > EVT_BUF:
             toolbelt.fail(f'evt {i} is {len(b)} bytes unpacked (buffer {EVT_BUF})')
+        if len(b) > UNPACK_ROOM:
+            toolbelt.fail(f'evt {i} is {len(b)} bytes unpacked (room {UNPACK_ROOM})')
 
     # the ONE packer (bpe), not a copy of it: the format is decided in
     # exactly two places - bpe and btlp/btlevt_unpack.asm - and this
@@ -825,8 +832,8 @@ def neg_build(d, rows_by_pos, body):
     for i, b in new.items():
         if i in packed_indices and len(b) > NEG_BUF:
             toolbelt.fail(f'neg {i}: exceeds the fixed unpack buffer, cannot build as-is')
-        if i in packed_indices and len(b) > _equ('BTL_SECOND_BUF_SIZE'):
-            toolbelt.fail(f'neg {i}: exceeds the second-window unpack buffer')
+        if i in packed_indices and len(b) > UNPACK_ROOM:
+            toolbelt.fail(f'neg {i}: {len(b)} bytes unpacked (room {UNPACK_ROOM})')
     if not new:
         return 0
     packed, pairs = neg_pack({i: b for i, b in new.items() if i in packed_indices})

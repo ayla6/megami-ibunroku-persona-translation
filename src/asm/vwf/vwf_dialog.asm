@@ -76,9 +76,10 @@ DLG_SHADOW_DX           equ 0xA         ; u8 shadow x offset (1: retail conventi
 
 VWF_CHAR_BIAS           equ 0x68        ; byte = ASCII + bias (0x20 -> 0x88)
 VWF_FIRST_BYTE          equ (0x20 + VWF_CHAR_BIAS)
-VWF_GLYPHS              equ 99          ; THE ENCODER'S WHOLE CODE SPACE:
+VWF_GLYPHS              equ 100         ; THE ENCODER'S WHOLE CODE SPACE:
                                         ; ASCII 0x20-0x7E plus the font's own
-                                        ; extras above it (… ￥). A byte the
+                                        ; extras above it (… ＊ ￥ and the
+                                        ; 8 px / 1 px blanks). A byte the
                                         ; encoder can emit must print. MUST equal
                                         ; make_vwf_font TOP - FIRST + 1;
                                         ; make_vwf_font.build() checks it.
@@ -170,8 +171,14 @@ vwf_dialog_emit:
     j       @@fit
     move    a1, zero
 @@wide:
+.ifdef QOL_WESTERN
+    jal     western_glyph               ; qol/western_pad.asm: the button marks follow the swapped buttons
+    lui     a0, FONT_GLYPHS_ADDR >> 16  ; (delay) western_glyph keeps a0
+    sll     t1, t1, 5
+.else
     sll     t1, t1, 5
     lui     a0, FONT_GLYPHS_ADDR >> 16
+.endif
     addu    a0, a0, t1                  ; 16 rows x 2 bytes
     li      s3, 16
     li      a1, 1

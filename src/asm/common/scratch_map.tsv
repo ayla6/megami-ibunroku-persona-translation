@@ -1,0 +1,12 @@
+name	start	end	users	shares	why
+skill_menu	SKILL_MENU_BUF	SKILL_MENU_BUF_END	battle skill menu: full skill names (btlp/skill_menu.asm)
+btlevt_buf	BTLEVT_BUF_ADDR	BTLEVT_BUF_ADDR + BTLEVT_BUF_SIZE	battle primary window: packed story and negotiation lines unpack here (btlp/btlevt_unpack.asm)	stock_full,analyze_rows	see the two sharers
+stock_full	BTLP_STOCK_FULL_ADDR	BTLP_STOCK_FULL_END	CONTACT stock list: full Persona names (btlp/stock_menu.asm)	btlevt_buf	BtlSeqClear runs right before BtlTalkStockMenu and the list's prompt is the second window's; nothing plays in the primary window until the list has closed (decomp talkscenetrade.c, talkscenesummon.c)
+analyze_rows	ANALYZE_TRAIT_BUF	ANALYZE_KIND_END	ANALYZE board: trait, spell, rank and kind rows (btlp/analyze_trait.asm, btlp/analyze_spells.asm)	btlevt_buf	every unpacked line ends below ANALYZE_TRAIT_BUF (btlp.py fails the build otherwise), and the board is filled before its first frame (BtlAnalyseMenu, btlp/analyze_spells.asm)
+vwf_ring	VWF_DLG_RING_ADDR	VWF_DLG_RING_LIMIT	dialogue VWF compositor ring (vwf/)
+second_buf	BTL_SECOND_BUF_ADDR	BTL_SECOND_BUF_ADDR + BTL_SECOND_BUF_SIZE	battle second window (BtlTextOpen, BtlOpenMessage): packed lines unpack here (btlp/btlevt_unpack.asm)	item_full	see the sharer
+item_full	BTLP_ITEM_FULL_ADDR	BTLP_ITEM_FULL_END	battle item list: full item names	second_buf	the item list opens only from the command and target menus (decomp commands.c, pickmove.c, targetpick.c), never in a talk scene; its help lines go through the second window but are plain strings, which the unpacker never copies (only story-zone and negotiation strings are written)
+adv_sf_table	ADV_SF_TABLE_ADDR	ADV_SF_TABLE_ADDR + SF_TABLE_SIZE	ADV small-font row table (adv/smallfont.asm)
+dng_sf_table	DNG_SF_TABLE_ADDR	DNG_SF_TABLE_ADDR + SF_TABLE_SIZE	DNG small-font row table (dng/smallfont.asm)
+adv_sf_bufs	ADV_SF_BUFS_ADDR	ADV_SF_BUFS_LIMIT	ADV small-font buffers	dng_sf_bufs	ADV and DNG are overlays of the same slot: never loaded together
+dng_sf_bufs	DNG_SF_BUFS_ADDR	DNG_SF_BUFS_LIMIT	DNG small-font buffers	adv_sf_bufs	ADV and DNG are overlays of the same slot: never loaded together
