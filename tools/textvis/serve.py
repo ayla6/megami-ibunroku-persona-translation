@@ -23,12 +23,27 @@ translation/manual/ with the row's psp and note kept.
   GET  /font                  the build's VWF font + the retail FONT.BIN and
                               its glyph map (the missing-character fallback)
   GET  /count                 how many rows the tables hold
+  POST /render {rel,text,flow} the text as the game draws it, page by page:
+                              vwf_render's compositor model (ink, shadow,
+                              inserts, the engine's own wrap) and
+                              vwf_wrap.shape_report's findings - the porter's
+                              rules, never a copy of them. flow=1 lays typed
+                              text out with vwf_wrap.flow_lines first
+                              (a newline is a break, a blank line a new box)
+  GET  /changed?ref=HEAD      [rel, pos] of every row whose shipped English
+                              (manual wins) differs from the git ref's
+  GET  /close                 the close calls the port weighed
+                              (build/close_calls.tsv, close_calls.py):
+                              {rows: [rel, pos, margin], missing}
 """
 import base64
+import csv
 import glob
 import importlib
 import json
 import os
+import re
+import subprocess
 import sys
 import urllib.parse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -232,8 +247,12 @@ def row_detail(rel, pos):
         over = note.startswith("over limit") and bool(draft)
         initial = draft if over else ja
         state = "queue" if man else "empty"
+    try:
+        head = shipped_at("HEAD").get((rel, pos))
+    except ValueError:
+        head = None
     return {"rel": rel, "pos": pos, "ja": ja, "state": state,
-            "initial": initial, "gen": slim(tb_, gen),
+            "initial": initial, "head": head, "gen": slim(tb_, gen),
             "man": slim(tb_, man, with_note=True),
             "choice": choice_grid(rel, pos)}
 
@@ -480,6 +499,158 @@ def save_manual(rel, pos, en):
     return row_detail(rel, pos)
 
 
+def inj(name):
+    """A module from src/injection_tools (the porter's own code)."""
+    tb()
+    return importlib.import_module(name)
+
+
+def cc():
+    """close_calls (src/extraction_tools/matching): the page weighing the
+    port writes build/close_calls.tsv with - the open row is weighed with the
+    same code."""
+    tb()
+    sys.path.insert(0, os.path.join(ROOT, "src", "extraction_tools", "matching"))
+    return importlib.import_module("close_calls")
+
+
+def measure_for(rel):
+    return cc().measure_for(rel)
+
+
+def flow_text(text):
+    """Typed text (no row) laid out by the porter's flow: a newline is a
+    break you asked for, a blank line starts a new box."""
+    vw = inj("vwf_wrap")
+    items = []
+    for bi, box in enumerate(t for t in text.replace("\r", "").split("\n\n")):
+        if not box.strip():
+            continue
+        if items:
+            items.append(("b", "<FF04>"))
+        for li, line in enumerate(box.split("\n")):
+            if li:
+                items.append(("b", "<FF03>"))
+            items += [("w", w) for w in line.split(" ") if w]
+    return "".join(v for _k, v in vw.flow_lines(items))
+
+
+_renders = {}
+
+
+def render(rel, text, flow=False, weigh=True):
+    """The page model the viewer draws (see /render), cached per input: the
+    page asks again for every keystroke and for the HEAD column. `weigh`
+    adds the close calls (the main box only)."""
+    key = (rel, text, flow, weigh, row_tables()[1])
+    if key not in _renders:
+        if len(_renders) > 256:
+            _renders.clear()
+        _renders[key] = _render(rel, text, flow, weigh)
+    return _renders[key]
+
+
+def _render(rel, text, flow, weigh):
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    shape = importlib.import_module("textshape")
+    vr = inj("vwf_render")
+    measure = measure_for(rel)
+    en = flow_text(text) if flow else text
+    # A BOX, NOT A PAGE: a wait followed by a line move (<FF02><FF03>, battle
+    # <FF02><FFF6>) scrolls the SAME box to its next line, so the pages
+    # textshape reads (a wait ends one for the shape findings) are drawn
+    # together until a real box move.
+    boxes = []
+    for k, chunk in enumerate(re.split(r"<FF02>(?=<FF03>|<FFF6>)", en)):
+        pages = shape.pages(chunk)
+        if k and pages and boxes:
+            boxes[-1].append(pages.pop(0))
+        boxes += [[p] for p in pages]
+    out = []
+    for box in boxes:
+        lines, planes, missing, found, weighs = [], bytearray(), [], [], []
+        for page in box:
+            for stored in page:
+                phys, lost = vr.render_line(stored, measure)
+                missing += lost
+                lines.append({"text": stored, "width": measure(stored),
+                              "engine_wraps": len(phys) - 1})
+                for ln in phys:
+                    for row in ln.px:
+                        planes += bytes(row)
+            found += shape.findings_for(page)[1]
+            weighs.append(cc().weigh_page(page, measure)
+                          if weigh and "<FF0E>" not in en else None)
+        out.append({"lines": lines, "h": len(planes) // vr.BOX_PX // 16,
+                    "weighs": weighs,
+                    "planes": base64.b64encode(bytes(planes)).decode(),
+                    "findings": found, "missing": sorted(set(missing))})
+    return {"en": en, "pages": out, "box": vr.BOX_PX}
+
+
+_git = {}
+
+
+def git(*args):
+    return subprocess.run(["git", "-C", ROOT] + list(args), capture_output=True,
+                          check=False).stdout
+
+
+def shipped_at(ref):
+    """{(rel, pos): en} of what a git ref ships (manual's en wins), cached
+    per commit."""
+    sha = git("rev-parse", "--verify", "-q", ref).decode().strip()
+    if not sha:
+        raise ValueError(f"no such git ref: {ref}")
+    if _git.get("sha") == sha:
+        return _git["rows"]
+    out = {}
+    for tree in ("generated", "manual"):
+        names = git("ls-tree", "-r", "--name-only", sha, f"translation/{tree}").decode().split("\n")
+        for name in names:
+            if not name.endswith(".tsv"):
+                continue
+            body = git("show", f"{sha}:{name}").decode("utf-8", "replace")
+            head = body.split("\n", 1)[0].rstrip("\r").split("\t")
+            if "pos" not in head or "en" not in head:
+                continue                    # a source table (fmv/, terms.tsv)
+            rel = name[len(f"translation/{tree}/"):-4]
+            for r in csv.DictReader(body.splitlines(), delimiter="\t",
+                                    quoting=csv.QUOTE_NONE):
+                en = r.get("en") or ""
+                if tree == "generated" or en.strip():
+                    out[(rel, r.get("pos") or "")] = en
+    _git.update(sha=sha, rows=out)
+    return out
+
+
+def changed(ref):
+    """[rel, pos] of every row whose shipped English differs from ref's."""
+    old = shipped_at(ref)
+    hit = []
+    for r in rows():
+        rel, pos, state = r[0], r[2], r[4]
+        now = r[3] if state in ("manual", "generated") else ""
+        if old.get((rel, pos), "") != now:
+            hit.append([rel, pos])
+    return hit
+
+
+def close_rows():
+    """[rel, pos, margin] of build/close_calls.tsv's close calls (the port
+    writes it; run the port to refresh it)."""
+    path = cc().OUT
+    if not os.path.exists(path):
+        return None
+    out = {}
+    with open(path, encoding="utf-8") as f:
+        for r in csv.DictReader(f, delimiter="\t", quoting=csv.QUOTE_NONE):
+            if r["close"] == "1":
+                key = (r["rel"], r["pos"])
+                out[key] = min(out.get(key, 99.0), float(r["margin"]))
+    return [[rel, pos, m] for (rel, pos), m in out.items()]
+
+
 # ---------------------------------------------------------------------------
 
 class Handler(BaseHTTPRequestHandler):
@@ -587,6 +758,17 @@ class Handler(BaseHTTPRequestHandler):
                     _font["json"] = json.dumps(data, ensure_ascii=False).encode()
                     _font["stamp"] = stamp
                 self.send(200, "application/json", _font["json"])
+            elif url.path == "/changed":
+                try:
+                    hit = changed(one("ref", "HEAD"))
+                    self.send(200, "application/json", json.dumps(hit).encode())
+                except ValueError as exc:
+                    self.send(400, "application/json",
+                              json.dumps({"error": str(exc)}).encode())
+            elif url.path == "/close":
+                got = close_rows()
+                self.send(200, "application/json", json.dumps(
+                    {"rows": got or [], "missing": got is None}).encode())
             elif url.path == "/count":
                 self.send(200, "application/json",
                           json.dumps({"rows": len(rows())}).encode())
@@ -597,6 +779,18 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         url = urllib.parse.urlsplit(self.path)
+        if url.path == "/render":
+            try:
+                n = int(self.headers.get("Content-Length") or 0)
+                body = json.loads(self.rfile.read(n).decode("utf-8"))
+                self.send(200, "application/json", json.dumps(
+                    render(str(body.get("rel") or ""), str(body.get("text") or ""),
+                           bool(body.get("flow")), body.get("weigh", True) is not False),
+                    ensure_ascii=False).encode())
+            except Exception as exc:
+                self.send(400, "application/json",
+                          json.dumps({"error": str(exc)}).encode())
+            return
         if url.path != "/save":
             self.send(404, "text/plain", b"no")
             return

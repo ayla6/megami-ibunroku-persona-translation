@@ -22,12 +22,6 @@ function loadFont(){
 const BOX=239, SCROLL_ROWS=3;
 const EXTRA={'…':0x7F,'＊':0x80,'￥':0x81};
 const SPELL={'＊':'*','’':"'",'‘':"'",'“':'"','”':'"','–':'-','—':'-','−':'-','＞':'>'};
-const ARTICLES=new Set(['a','an','the','this','these','those','its','their','his','her','our','your','my']);
-const CONNECTORS=new Set(['to','of','in','on','at','with','from','for','by','as','and','or','but','nor','than','that','into','onto','about','over','under','off','upon','without','through','toward','towards','between','among','against','because','while','when','where','if','so','yet']);
-const CLOSERS=/^[.,!?;:'…»)\]]/;
-const ABBREV=new Set(['mr','mrs','ms','dr','st','jr','sr','vs','etc','no','fig','sen']);
-const CODE=/<[^>]+>/g;
-
 function fold(ch){return SPELL[ch]||ch}
 function code(ch){const c=fold(ch);const o=c.codePointAt(0);
   if(o>=0x20&&o<=0x7E)return o;
@@ -67,207 +61,10 @@ function textWidth(s){
   for(const part of s.split(/(<[^>]+>)/)) if(!/^<[^>]+>$/.test(part)) for(const ch of part) w+=cw(ch);
   return w;
 }
-function sentEnd(w){
-  const t=w.replace(CODE,'').replace(/\s+$/,'');
-  if(!/[.!?…]["'”)\]]?$/.test(t))return false;
-  const core=t.replace(/[.!?…]+["'”)\]]?$/,'').toLowerCase();
-  if(/^[a-z]$/.test(core))return false;
-  return !ABBREV.has(core);
-}
-function capsWord(w){
-  let t=w.replace(/^["'“‘(\[{]+/,'').replace(/["'”’)\]}]+$/,'');
-  if(t.replace(/[,;:]$/,'').length<2||!/^[A-Z]/.test(t))return false;
-  if(t.endsWith(':'))return false;
-  return !sentEnd(w);
-}
-function coreWord(w){return w.replace(/^["'“‘(\[{]+/,'')}
-
-// ---- glue + name marks (mirrors vwf_wrap._glue_items) ----
-function items(text){
-  let out=text.split(/\s+/).filter(x=>x).map(w=>['w',w]);
-  for(let i=out.length-2;i>=0;i--){
-    const a=out[i],b=out[i+1];
-    if(a[0]==='w'&&b[0]==='w'){
-      const t=coreWord(a[1]);
-      if(ARTICLES.has(t.replace(/[,;:]$/,'').toLowerCase())&&!/[.!?…]$/.test(t)&&!CLOSERS.test(b[1]))
-        out.splice(i,2,['w',a[1]+' '+b[1]]);
-    }
-  }
-  const g=[];
-  for(const it of out){
-    if(it[0]==='w'&&g.length&&g[g.length-1][0]==='w'&&
-       CONNECTORS.has(coreWord(it[1]).replace(/[,;:]$/,'').toLowerCase())&&
-       !sentEnd(g[g.length-1][1])&&!CLOSERS.test(it[1]))
-      g[g.length-1]=['w',g[g.length-1][1]+' '+it[1]];
-    else g.push(it.slice());
-  }
-  let prev=null,run=0;
-  for(const it of g){
-    if(it[0]!=='w'){prev=null;run=0;continue}
-    if(prev!==null&&run<9&&capsWord(prev)&&capsWord(it[1])&&!sentEnd(prev)){run++;it[2]=run}
-    else run=0;
-    prev=it[1];
-  }
-  return g;
-}
-function pieces(w){
-  const cuts=[];
-  for(const m of w.matchAll(/<[^>]+>/g)){if(m.index>0)cuts.push(m.index);if(m.index+m[0].length<w.length)cuts.push(m.index+m[0].length)}
-  let start=1;
-  while(true){const k=w.indexOf('-',start);if(k<1||k>=w.length-1)break;
-    if(!/[A-Za-z0-9']/.test(w.slice(k+1)))break;cuts.push(k+1);start=k+1}
-  const uniq=[...new Set(cuts)].filter(c=>c>0&&c<w.length).sort((a,b)=>a-b);
-  const out=[];let prev=0;
-  for(const c of uniq.concat([w.length])){out.push([w.slice(prev,c),prev>0]);prev=c}
-  return out.length?out:[[w,false]];
-}
-function atoms(text){
-  const seq=[];let prev=null,hold=false;
-  for(const it of items(text)){
-    const word=it[1], mark=it[2]||0;
-    const closer=word&&CLOSERS.test(word)&&prev!==null&&
-      !(("'’").includes(word[0])&&word.length>1&&/[A-Za-z0-9]/.test(word[1]));
-    let join,brk;
-    if(closer){join='';brk=word.startsWith('..')}
-    else{join=prev!==null?' ':'';brk=true}
-    if(hold)brk=false;
-    const ps=pieces(word);
-    const t0=coreWord(word);
-    hold=ARTICLES.has(t0.replace(/[,;:]$/,'').toLowerCase())&&!/[.!?…]$/.test(t0);
-    ps.forEach(([t,inner],k)=>{
-      seq.push({t,join:k===0?join:'',brk:k===0?brk:inner,pen:k?1:0,
-                nbrk:k===0&&!!mark,fin:false});
-    });
-    prev=seq[seq.length-1];
-  }
-  // the pen-240 allowance: only a line holding the very last word may use it
-  let more=false;
-  for(let k=seq.length-1;k>=0;k--){seq[k].fin=(!more && k===seq.length-1);more=more||true}
-  return seq;
-}
-function lineText(cur,a){return cur+((cur&&a.join)?a.join:'')+a.t}
-// ---- the layout search (mirrors vwf_wrap.flow_layout) ----
-function layout(ats,width=BOX){
-  const n=ats.length;if(!n)return[];
-  const best=[...Array(n)].map(()=>({}));
-  best.push({0:{c:[0,0,0,0,0,-1],end:-1}});
-  for(let i=n-1;i>=0;i--){
-    let text=ats[i].t,w=textWidth(text),j=i;
-    for(;;){
-      const lim=ats[j].fin?width+1:width;
-      const over=w-lim, base=over>0?over:0;
-      if(j+1===n||ats[j+1].brk){
-        for(const kk of Object.keys(best[j+1])){
-          const sub=best[j+1][kk].c, k=+kk;
-          const step=sub[5]-w;
-          const trans=sub[5]>=0?(step*step+(step>0?step*step:0)):0;
-          const tot=[base+sub[0],
-                     (i?ats[i].pen:0)+sub[1],
-                     (ats[i].nbrk?1:0)+sub[2],
-                     sub[3]+((j+1===n||sentEnd(text))?0:1),
-                     sub[4]-(w*w)*(k+2)+trans,
-                     w];
-          const cur=best[i][k+1];
-          if(!cur||cmp(tot,cur.c)<0)best[i][k+1]={c:tot,end:j};
-        }
-        if(over>0)break;
-      }
-      if(j+1>=n)break;
-      j++;text=lineText(text,ats[j]);w=textWidth(text);
-    }
-  }
-  let pick=null;
-  for(const kk of Object.keys(best[0])){
-    const c=best[0][kk].c,k=+kk;
-    const key=[c[0],k,c[1],c[2],c[3],c[4]];
-    if(!pick||cmp(key,pick.key)<0)pick={k,key};
-  }
-  const out=[];let i=0,k=pick.k;
-  while(i<n){const j=best[i][k].end;out.push([i,j]);i=j+1;k--}
-  return out;
-}
-function cmp(a,b){for(let i=0;i<a.length;i++){if(a[i]!==b[i])return a[i]-b[i]}return 0}
-function flowLines(text){
-  // A NEWLINE IN THE BOX IS A BREAK YOU ASKED FOR: the flow wraps each run
-  // between them and never moves one.
-  const out = [];
-  for(const part of text.split('\n')){
-    if(!part.trim()) continue;
-    const ats = atoms(part);
-    for(const [i2,j2] of layout(ats)){
-      let s = '';
-      for(let k=i2;k<=j2;k++) s = lineText(s, ats[k]);
-      out.push(s);
-    }
-  }
-  return out;
-}
-
-// ---- pagination: 3 lines, one scroll, then a NEW box ----
-function paginate2(text){
-  const pages = [];
-  for(const boxText of text.split(/\n{2,}/)){
-    if(!boxText.trim()) continue;
-    const parts = boxText.split(/\n⏸\n/);
-    const lines = [];
-    parts.forEach((part, pi) => {
-      if(pi) lines.push('\u0000SCROLL\u0000');
-      for(const l of flowLines(part)) lines.push(l);
-    });
-    let cur = null;
-    const open = () => { cur = {visible: [], scrolled: []}; pages.push(cur); return cur; };
-    open();
-    for(const l of lines){
-      if(l === '\u0000SCROLL\u0000'){
-        if(cur.scrolled.length) open();
-        continue;
-      }
-      const target = !cur.scrolled.length && cur.visible.length < 3
-        ? cur.visible : cur.scrolled;
-      target.push(l);
-      if(target === cur.scrolled && cur.scrolled.length === 3) open();
-    }
-  }
-  return {lines: pages.flatMap(p => p.visible.concat(p.scrolled)), pages};
-}
-
 // what the box really shows for one stored line: the player's name stands in
 // as {name} (8 glyphs, the entry's cap), every other code is invisible
 function drawText(s){
   return withPlaceholder(s).replace(/<FFFD>./g, '').replace(/<[^>]+>/g, '');
-}
-
-// ---- the stored layout: what the FILE says, box by box ----
-// A row is read as authored: <FF04> starts a new box, <FF03> a line, <FF02>
-// the box's one scroll. So the viewer shows the row the way the disc will,
-// not a re-wrap that might disagree with it. A literal newline in a draft is
-// a line break too (the save refuses it: one row is one TSV line).
-function cleanLine(t){
-  // the box's TAIL is codes, not text: <FF01> ends it, <FF06>xx<FF00> is the
-  // portrait frame. Leaving them in the line made it measure too wide.
-  return t.replace(/<FF01>|<FFEF>|<FFF5>/g, '')
-          .replace(/<FF06><[0-9A-Fa-f]{2}>|<FF00>/g, '')
-          .trim();
-}
-function storedBoxes(en){
-  const out = [];
-  for(const raw of en.split('<FF04>')){
-    const visible = [], scrolled = [];
-    let after = false;
-    // THE LINE BREAK IS THE FAMILY'S (<FF03> dialogue, <FFF6> battle), and a
-    // <FF02> with nothing after it is the box's DISMISSAL press, not a scroll.
-    for(const seg of raw.split(/(<FF03>|<FFF6>|<FFFB><FFF7>|<FF02>)/)){
-      if(seg === '<FF03>' || seg === '<FFF6>') continue;
-      if(seg === '<FF02>' || seg === '<FFFB><FFF7>'){ after = true; continue; }
-      for(const piece of seg.split(/\r?\n/)){
-        const t = cleanLine(piece);
-        if(!t.replace(/<[^>]+>/g, '').trim()) continue;   // codes only
-        (after ? scrolled : visible).push(t);
-      }
-    }
-    if(visible.length || scrolled.length) out.push({visible, scrolled});
-  }
-  return out.length ? out : [{visible: [], scrolled: []}];
 }
 
 // ---- choice grids (ADV <FF0E> option blocks) ----
@@ -419,80 +216,186 @@ function renderChoice(text, z, shadow, guides){
     ` · ${fit.rows} option row(s) · ${fit.cols} column(s)`+
     (fit.width!==null?` · col2 at ${fit.x2}px`:'');
 }
+// ---- the box: drawn by the server's model of the game ----
+// /render runs the porter's own code: vwf_render (the compositor in
+// vwf_dialog_draw.asm: ink, the +1,+1 shadow on rows 0-14, the 240 px clip,
+// the engine's own wrap, inserts at their priced width) and
+// vwf_wrap.shape_report (the findings the flow scores with). Nothing here
+// knows a wrapping rule, so the page can never disagree with the port.
+const INK_RGB=[0xdf,0xe7,0xdf,255], SHADE_RGB=[0,0,0,255], INSERT_RGB=[232,193,90,140], BG='#0b1a10';
+const PAD=6, GAP=10, SHOWN_ROWS=3;
+let RSEQ=0, RT=null;
 function render(){
-  const text=document.getElementById('src').value;
-  const z=Math.max(1, Math.round(+document.getElementById('zoom').value));
-  const shadow=document.getElementById('shadow').checked;
-  const guides=document.getElementById('guides').checked;
-  if(CUR && CUR.choice){ renderChoice(text, z, shadow, guides); return; }
-  // a picked ROW is drawn as stored from the draft (every box, its own lines);
-  // typed text with no row is laid out by the flow so you can watch the rules
-  // decide. Editing a row never drops the row: the page follows the draft.
-  const boxes = CUR ? storedBoxes(text) : paginate2(text).pages;
-  const lines = CUR ? boxes.reduce((a,b)=>a.concat(b.visible, b.scrolled), []) : paginate2(text).lines;
-  const PADX=4, PADY=6, GAP=10, ROWS=6;
-  const W=(BOX+16)*z, H=boxes.length*((ROWS*16+PADY*2+GAP)*z);
-  cv.width=W; cv.height=H; cv.style.width=W+'px'; cv.style.height=H+'px';
-  const wrap=document.getElementById('cvwrap');
-  if(wrap && wrap.style) wrap.style.minHeight=(H+2)+'px';
-  ctx.clearRect(0,0,W,H);
-  ctx.fillStyle='#0b1a10'; ctx.fillRect(0,0,W,H);
-  const rows=[];
-  boxes.forEach((page,bi)=>{
-    const base = bi*((ROWS*16+PADY*2+GAP)*z);
-    if(guides){
-      ctx.fillStyle='rgba(255,255,255,.06)';
-      for(let r=0;r<ROWS;r++) ctx.fillRect(0, base+(PADY+r*16)*z, W, 1);
-      ctx.fillStyle='rgba(255,255,255,.12)'; ctx.fillRect((PADX+BOX)*z, base, 1, (ROWS*16+PADY*2)*z);
-    }
-    let y = base + PADY*z;
-    page.visible.forEach((l,i)=>{
-      drawLine(drawText(l), PADX*z, y, z, '#dfe7df', shadow);
-      rows.push([`${bi+1}.${i+1}`, textWidth(l), l]); y += 16*z;
-    });
-    page.scrolled.forEach((l)=>{
-      drawLine(drawText(l), PADX*z, y, z, 'rgba(223,231,223,.42)', false);
-      rows.push([`${bi+1}↕`, textWidth(l), l]); y += 16*z;
-    });
-    if(guides && bi+1 < boxes.length){          // the box boundary
-      ctx.fillStyle='rgba(255,255,255,.18)';
-      ctx.fillRect(0, base+(ROWS*16+PADY*2+GAP/2)*z, W, 1);
-    }
-    ctx.fillStyle='rgba(232,193,90,.75)';
-    const ax=(PADX+BOX-6)*z, ay=base+(PADY+4*16+3)*z;
-    ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(ax+8*z,ay); ctx.lineTo(ax+4*z,ay+6*z);
-    ctx.closePath(); ctx.fill();
-  });
-  const tb=document.getElementById('lines'); tb.innerHTML='';
-  for(const [tag,w,l] of rows){
-    const over=w>240, sl=tag.includes('↕');
-    tb.insertAdjacentHTML('beforeend',
-      `<tr><td class="${sl?'pg':'w'}">${tag}</td>`+
-      `<td class="w ${over?'warn':''}">${Math.round(w)}</td>`+
-      `<td class="${sl?'pg':''}">${esc(l)}</td></tr>`);
-  }
-  const viol=violations(lines);
-  document.getElementById('stat').innerHTML=
-    `<span class="${viol.length?'warn':'ok'}">${viol.length?viol.join(' · '):'no rule broken'}</span>`+
-    ` · ${lines.length} lines · ${boxes.length} box(es)`;
+  const text=$('src').value;
+  const z=Math.max(1, Math.round(+$('zoom').value));
+  if(CUR && CUR.choice){ $('headwrap').hidden=true; $('nowhead').hidden=true; $('wdiff').hidden=true; renderChoice(text, z, $('shadow').checked, $('guides').checked); return; }
+  clearTimeout(RT);
+  RT=setTimeout(()=>renderServer(text), 150);
 }
-function violations(lines){
-  const v=[];
-  lines.forEach((l,i)=>{
-    const w=textWidth(l);if(w>240)v.push(`line ${i+1} is ${w}px`);
-    if(i>0){const first=l.split(/\s+/)[0].replace(/^["'“‘(\[{]+/,'').replace(/[,;:]$/,'').toLowerCase();
-      // AN ARTICLE AT A LINE START IS CORRECT: articles glue FORWARD to their
-      // noun ("the hospital" is one atom). Only a CONNECTOR must end the line
-      // it sits on (it glues backwards).
-      if(CONNECTORS.has(first))v.push(`line ${i+1} starts with "${first}"`)}
+async function fetchRender(text, flow, weigh=true){
+  const r=await fetch('/render',{method:'POST',headers:{'Content-Type':'application/json'},
+                                 body:JSON.stringify({rel:CUR?CUR.rel:'', text, flow, weigh})});
+  const d=await r.json();
+  if(!r.ok) throw new Error(d.error||'render failed');
+  return d;
+}
+function drawPages(canvas, d, zoom, shadow, guides){
+  // drawn at the game's own 1x and scaled by CSS (image-rendering: pixelated)
+  const z=1;
+  const c=canvas.getContext('2d');
+  const box=d.box, W=(box+PAD*2)*z;
+  const hs=d.pages.map(p=>Math.max(p.h, SHOWN_ROWS)*16);
+  const H=Math.max(1, hs.reduce((a,h)=>a+(h+PAD*2+GAP)*z, 0));
+  canvas.width=W; canvas.height=H;
+  canvas.style.width=(W*zoom)+'px'; canvas.style.height=(H*zoom)+'px';
+  c.fillStyle=BG; c.fillRect(0,0,W,H);
+  let base=0;
+  d.pages.forEach((p,pi)=>{
+    const px=Uint8Array.from(atob(p.planes), ch=>ch.charCodeAt(0));
+    const ox=PAD*z, oy=base+PAD*z;
+    if(guides){
+      c.fillStyle='rgba(255,255,255,.06)';
+      for(let r=0;r<=Math.max(p.h,SHOWN_ROWS);r++) c.fillRect(0, oy+r*16*z, W, 1);
+      c.fillStyle='rgba(255,255,255,.18)';
+      c.fillRect(ox+box*z, base, 1, (hs[pi]+PAD*2)*z);       // the 240 px edge
+      c.fillStyle='rgba(255,255,255,.08)';
+      c.fillRect(ox+(box-1)*z, base, 1, (hs[pi]+PAD*2)*z);   // 239: the line limit
+    }
+    // one pixel per pixel into an ImageData, scaled up once (no per-pixel
+    // canvas calls); the rows past the box's three are what it scrolls to
+    if(p.h){
+      const img=new ImageData(box, p.h*16), a=img.data;
+      for(let y=0;y<p.h*16;y++){
+        const dim=(y>>4)>=SHOWN_ROWS;
+        for(let x=0;x<box;x++){
+          const v=px[y*box+x];
+          let col=null;
+          if(v&1) col=INK_RGB; else if(v&4) col=INSERT_RGB; else if((v&2)&&shadow) col=SHADE_RGB;
+          if(!col) continue;
+          const o=(y*box+x)*4;
+          a[o]=col[0]; a[o+1]=col[1]; a[o+2]=col[2]; a[o+3]=dim?107:col[3];
+        }
+      }
+      const off=document.createElement('canvas'); off.width=box; off.height=p.h*16;
+      off.getContext('2d').putImageData(img,0,0);
+      c.imageSmoothingEnabled=false;
+      c.drawImage(off, ox, oy, box*z, p.h*16*z);
+    }
+    base+=(hs[pi]+PAD*2+GAP)*z;
+    if(guides && pi+1<d.pages.length){
+      c.fillStyle='rgba(255,255,255,.18)'; c.fillRect(0, base-GAP/2*z, W, 1);
+    }
   });
-  return v;
+}
+// THE CLOSE CALLS: per box, the layout the flow nearly chose (vwf_wrap.weigh)
+// when it lost on line ends + shape by under a point, and the flow's own
+// choice when the stored lines are not it (a manual row, or a table the rules
+// moved on from). Each is drawn so the two can be compared by eye.
+async function showWeigh(d, z, shadow, guides, seq){
+  const box=$('weigh'); box.innerHTML=''; box.hidden=true;
+  const brk=/<FFF6>/.test($('src').value)?'<FFF6>':'<FF03>';
+  for(const [pi,p] of d.pages.entries()) for(const w of p.weighs){
+    if(!w) continue;
+    const shows=[];
+    if(w.stored_differs) shows.push([`box ${pi+1}: the flow now lays this out differently`, w.chosen]);
+    if(w.close) shows.push([`box ${pi+1}: close call — ${marginText(w.margin)} on ${esc(w.decided_by)}`, w.runner_up]);
+    for(const [label, lines] of shows){
+      box.hidden=false;
+      box.insertAdjacentHTML('beforeend', `<div class="wk">${label}</div>`);
+      const c=document.createElement('canvas'); box.appendChild(c);
+      try{
+        const r=await fetchRender(lines.join(brk), false, false);
+        if(seq!==RSEQ) return;
+        drawPages(c, r, z, shadow, guides);
+      }catch(e){}
+    }
+  }
+}
+function wordDiff(a, b){
+  const ta=a.split(/(\s+|<[^>]+>)/).filter(x=>x), tb=b.split(/(\s+|<[^>]+>)/).filter(x=>x);
+  const n=ta.length, m=tb.length;
+  if(n*m>400000) return esc(b);
+  const L=[...Array(n+1)].map(()=>new Uint16Array(m+1));
+  for(let i=n-1;i>=0;i--) for(let j=m-1;j>=0;j--)
+    L[i][j]=ta[i]===tb[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);
+  let i=0,j=0,out='';
+  while(i<n||j<m){
+    if(i<n&&j<m&&ta[i]===tb[j]){out+=esc(ta[i]);i++;j++;}
+    else if(j<m&&(i>=n||L[i][j+1]>=L[i+1][j])){out+='<ins>'+esc(tb[j])+'</ins>';j++;}
+    else {out+='<del>'+esc(ta[i])+'</del>';i++;}
+  }
+  return out;
+}
+// THE LAST RENDERS, for the copy buttons: what the box shows now and at HEAD
+let LAST_NOW=null, LAST_HEAD=null;
+function linesText(d){
+  return d.pages.map((p,pi)=>p.lines.map((l,li)=>
+    `${String(l.width).padStart(4)}  ${pi+1}.${li+1}${li>=SHOWN_ROWS?'↕':' '} ${l.text}`).join('\n')).join('\n  --\n');
+}
+function rowHead(){
+  if(!CUR) return '(typed text)';
+  const id=(CUR.gen&&CUR.gen.id)||(CUR.man&&CUR.man.id)||'';
+  return `${CUR.rel} #${id} · pos ${CUR.pos}`;
+}
+async function renderServer(text){
+  const seq=++RSEQ;
+  const z=Math.max(1, Math.round(+$('zoom').value));
+  const shadow=$('shadow').checked, guides=$('guides').checked;
+  let d;
+  try{ d=await fetchRender(text, !CUR, false); }
+  catch(e){ if(seq===RSEQ) $('stat').innerHTML=`<span class="warn">${esc(e.message||e)}</span>`; return; }
+  if(seq!==RSEQ) return;
+  LAST_NOW=d; LAST_HEAD=null;
+  drawPages(cv, d, z, shadow, guides);
+  const wrap=$('cvwrap'); if(wrap && wrap.style) wrap.style.minHeight=(cv.height*z+2)+'px';
+  const tb=$('lines'); tb.innerHTML='';
+  const found=[], notes=[];
+  d.pages.forEach((p,pi)=>{
+    p.lines.forEach((l,li)=>{
+      const over=l.width>240||l.engine_wraps>0;
+      tb.insertAdjacentHTML('beforeend',
+        `<tr><td class="${li>=SHOWN_ROWS?'pg':'w'}">${pi+1}.${li+1}</td>`+
+        `<td class="w ${over?'warn':''}">${l.width}${l.engine_wraps?' ↵':''}</td>`+
+        `<td class="${li>=SHOWN_ROWS?'pg':''}">${esc(l.text)}</td></tr>`);
+      if(l.engine_wraps) found.push(`box ${pi+1} line ${li+1}: the engine wraps it`);
+    });
+    // a scroll is no fault (a wait then a line move): said, not flagged
+    if(p.lines.length>SHOWN_ROWS) notes.push(`box ${pi+1} scrolls (${p.lines.length} lines)`);
+    if(p.findings.length) found.push(`box ${pi+1}: ${p.findings.join(', ')}`);
+    if(p.missing.length) found.push(`box ${pi+1}: no glyph for ${p.missing.join(' ')}`);
+  });
+  $('stat').innerHTML=`<span class="${found.length?'warn':'ok'}">${found.length?esc(found.join(' · ')):'no finding'}</span>`+
+    ` · ${d.pages.reduce((a,p)=>a+p.lines.length,0)} lines · ${d.pages.length} box(es)`+
+    (notes.length?` · ${esc(notes.join(' · '))}`:'');
+  // the close calls cost the server a weighing: the box is drawn first and
+  // the panel follows from a second, weighed render of the same text
+  fetchRender(text, !CUR, true).then(w=>{ if(seq===RSEQ) showWeigh(w, z, shadow, guides, seq); }).catch(()=>{});
+  // side by side: what HEAD ships on the left, the working tree on the right
+  const hw=$('headwrap'), show=on=>{ hw.hidden=!on; $('nowhead').hidden=!on; $('wdiff').hidden=!on; };
+  if(CUR && CUR.head!=null && CUR.head!==text){
+    let h;
+    try{ h=await fetchRender(CUR.head, false, false); }catch(e){ show(false); return; }
+    if(seq!==RSEQ) return;
+    show(true);
+    LAST_HEAD=h;
+    drawPages($('cvh'), h, z, shadow, guides);
+    $('wdiff').innerHTML=wordDiff(CUR.head, text);
+  } else show(false);
+}
+// how far the runner-up fell behind: a tie says so, a hair says how small
+function marginText(m){
+  m = +m;
+  if(m === 0) return 'the runner-up <b>tied</b> it';
+  if(m < 0.01) return 'the runner-up lost by <b>under 0.01</b> points';
+  return `the runner-up lost by <b>${m.toFixed(2)}</b> points`;
 }
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 
 // ---- state ----
 let ROWS = [], FAM = 'ALL', MANF = 'all', SHOWN = [], PAINTED = 0;
 let CUR = null;                     // the row detail the box is showing
+let CHANGED = new Set();            // rel\0pos of rows that differ from git HEAD
+let CLOSEM = new Map();             // rel\0pos -> how close its runner-up came
 let DIRTY = false;                  // the draft differs from what is stored
 let MODE = 'rows';                  // rows | psp
 let HITS = [], HITSEQ = 0, REF = null;
@@ -512,9 +415,20 @@ function fillFamilies(){
   sel.value = FAM;
 }
 const wordsIn = (en) => pretty(en).split(/\s+/).filter(w => w && !/^[⏸␌⏹❓⋯]+$/.test(w)).length;
+// per-row facts the filter reads on every keystroke, computed once per row
+// (and again only when the row's text changes: a save resets them)
+const words = r => (r._w !== undefined && r._wt === r[3]) ? r._w : (r._wt = r[3], r._w = wordsIn(r[3]));
+// a sentence matches wherever its line breaks fall: the line, box and wait
+// codes read as the word gap they stand for (the raw text, codes and all,
+// is searched too)
+const flat = t => t.replace(/<FF0[1234]>|<FFF[5-7]>|<FFFB>|<FFEF>/g, ' ')
+                   .replace(/<FF05><[0-9A-F]{2}><[0-9A-F]{2}>/g, '').replace(/\s+/g, ' ');
+const hay = r => (r._h !== undefined && r._ht === r[3] + r[5]) ? r._h
+  : (r._ht = r[3] + r[5],
+     r._h = (flat(r[3]) + '\u0000' + r[3] + ' ' + r[5] + ' ' + r[0] + ' ' + r[1] + ' ' + r[2]).toLowerCase());
 function matches(q){
   const longonly = $('longonly').checked;
-  const needle = q.toLowerCase();
+  const needle = q.toLowerCase().replace(/\s+/g, ' ');
   return ROWS.filter(r => {
     const [rel, id, pos, text, state, note, man] = r;
     if(FAM !== 'ALL' && !rel.startsWith(FAM)) return false;
@@ -527,13 +441,15 @@ function matches(q){
       if(MANF === 'inman' && !man) return false;
       if(MANF === 'queue' && state !== 'queue') return false;
       if(MANF === 'noman' && man) return false;
-    } else if(longonly && (state === 'manual' || state === 'generated') && wordsIn(text) < 3){
+      if(MANF === 'changed' && !CHANGED.has(rel + '\u0000' + pos)) return false;
+      if(MANF === 'close' && !CLOSEM.has(rel + '\u0000' + pos)) return false;
+    } else if(longonly && (state === 'manual' || state === 'generated') && words(r) < 3){
       // the 3+ word filter is about English textboxes; a row with no English
       // yet (its draft is the Japanese) is never hidden by it.
       return false;
     }
     if(!needle) return true;
-    return (text + ' ' + note + ' ' + rel + ' ' + id + ' ' + pos).toLowerCase().includes(needle);
+    return hay(r).includes(needle);
   });
 }
 
@@ -821,8 +737,7 @@ function onFilter(){
   const q = $('filt').value.trim();
   clearTimeout(SEARCH_T);
   if(MODE === 'rows'){
-    SHOWN = matches(q);
-    renderList();
+    SEARCH_T = setTimeout(() => { SHOWN = matches(q); renderList(); }, 120);
     return;
   }
   if(!q){
@@ -890,27 +805,84 @@ $('filt').onkeydown = e => {
     MODE === 'rows' ? pick(SHOWN[0]) : showRefFor(SHOWN[0]);
     return;
   }
-  const step = {'ArrowDown': 1, 'ArrowRight': 1, 'ArrowUp': -1, 'ArrowLeft': -1}[e.key];
+  // Up/Down step rows; Left/Right stay the text box's own cursor keys
+  const step = {'ArrowDown': 1, 'ArrowUp': -1}[e.key];
   if(!step) return;
   e.preventDefault();
   stepRow(step);
 };
 $('fam').onchange = e => { FAM = e.target.value; if(MODE === 'rows'){ SHOWN = matches($('filt').value.trim()); renderList(); } };
-$('manfilt').onchange = e => { MANF = e.target.value; if(MODE === 'rows'){ SHOWN = matches($('filt').value.trim()); renderList(); } };
+$('manfilt').onchange = async e => {
+  MANF = e.target.value;
+  if(MANF === 'changed'){
+    // asked anew each time: the working tree moves under the viewer
+    try{
+      const r = await fetch('/changed?ref=HEAD');
+      const d = await r.json();
+      if(!r.ok) throw new Error(d.error || 'git failed');
+      CHANGED = new Set(d.map(([rel, pos]) => rel + '\u0000' + pos));
+    }catch(err){ setStatus(String(err.message || err), true); }
+  }
+  if(MANF === 'close'){
+    try{
+      const r = await fetch('/close');
+      const d = await r.json();
+      CLOSEM = new Map(d.rows.map(([rel, pos, m]) => [rel + '\u0000' + pos, m]));
+      if(d.missing) setStatus('no build/close_calls.tsv yet: the port writes it (or run close_calls.py)', true);
+    }catch(err){ setStatus(String(err.message || err), true); }
+  }
+  if(MODE === 'rows'){
+    SHOWN = matches($('filt').value.trim());
+    // the closest calls first
+    if(MANF === 'close') SHOWN.sort((a, b) => CLOSEM.get(a[0] + '\u0000' + a[2]) - CLOSEM.get(b[0] + '\u0000' + b[2]));
+    renderList();
+  }
+};
 $('longonly').onchange = () => { if(MODE === 'rows'){ SHOWN = matches($('filt').value.trim()); renderList(); } };
 for(const b of document.querySelectorAll('.mode')) b.onclick = () => setMode(b.dataset.mode);
 $('save').onclick = saveDraft;
+$('copylines').onclick = () => { if(LAST_NOW) copyText(`${rowHead()}\n${linesText(LAST_NOW)}`); };
+$('copydiff').onclick = () => {
+  if(!LAST_NOW) return;
+  copyText(LAST_HEAD
+    ? `${rowHead()}\nHEAD:\n${linesText(LAST_HEAD)}\nNOW:\n${linesText(LAST_NOW)}`
+    : `${rowHead()}\n(same as HEAD)\n${linesText(LAST_NOW)}`);
+};
 $('find').onclick = findMatches;
 $('copy').onclick = () => { if(CUR) copyText(`${CUR.rel} ${CUR.pos}`); };
 $('copyt').onclick = () => { if(CUR) copyText(CUR.initial); };
 const srcEl = $('src');
 srcEl.oninput = () => { DIRTY = true; updateDirty(); render(); };
-// a picked row is one TSV line: a break is a code, not a newline (typed
-// no-row text keeps Enter - that is the flow-layout demo)
+// a picked row is one TSV line: a break is a code, not a newline, so Enter
+// types the row's own line code - <FFF6> for the battle box (BTLP, the TALK
+// negotiation lines), <FF03> for every other box (typed no-row text keeps
+// Enter: that is the flow-layout demo)
+function lineCode(){
+  const t = srcEl.value;
+  if(/<FFF6>/.test(t)) return '<FFF6>';
+  if(/<FF03>/.test(t)) return '<FF03>';
+  return /^(BTLP|TALK)/.test(CUR.rel) ? '<FFF6>' : '<FF03>';
+}
 srcEl.onkeydown = e => {
+  // A CODE IS ONE CHARACTER TO ERASE: Backspace right after a '<...>' token
+  // (Delete right before one) takes the whole token, never half a code.
+  if((e.key === 'Backspace' || e.key === 'Delete') && srcEl.selectionStart === srcEl.selectionEnd){
+    const t = srcEl.value, at = srcEl.selectionStart;
+    const m = e.key === 'Backspace' ? /<[^<>]*>$/.exec(t.slice(0, at))
+                                    : /^<[^<>]*>/.exec(t.slice(at));
+    if(m){
+      e.preventDefault();
+      const a = e.key === 'Backspace' ? at - m[0].length : at;
+      srcEl.setRangeText('', a, a + m[0].length, 'end');
+      DIRTY = true; updateDirty(); render();
+      return;
+    }
+  }
   if(CUR && e.key === 'Enter' && !e.ctrlKey && !e.metaKey){
     e.preventDefault();
-    setStatus('one row is one line — type <FF03> (dialogue) or <FFF6> (battle) for a break', true);
+    const code = lineCode(), a = srcEl.selectionStart, b = srcEl.selectionEnd;
+    srcEl.setRangeText(code, a, b, 'end');
+    DIRTY = true; updateDirty(); render();
   }
 };
 document.addEventListener('keydown', e => {

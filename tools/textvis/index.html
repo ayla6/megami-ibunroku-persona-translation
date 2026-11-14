@@ -110,6 +110,17 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--albe
 .mcard .chips .none{opacity:.6;border-style:dashed}
 .mcard .flags{font-size:11px;color:var(--albedo-danger,#e5534b)}
 .mcard .mbtns{display:flex;gap:6px}
+.cvbox{overflow:auto;max-width:100%;border-radius:6px;background:#0b1a10}
+[hidden]{display:none !important}
+#weigh{display:flex;flex-direction:column;gap:6px;border:1px solid var(--albedo-border,#333);
+       border-radius:8px;padding:8px 10px;background:var(--albedo-surface,#161616)}
+#weigh .wk{font-size:12px;color:var(--albedo-muted,#999)}
+#weigh .wk b{color:#e8c15a;font-weight:600}
+#sbs{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+#sbs .col{display:flex;flex-direction:column;gap:4px;min-width:0}
+#sbs h2{margin:0}
+#wdiff del{color:var(--albedo-danger,#e5534b);text-decoration:line-through}
+#wdiff ins{color:var(--albedo-added,#3fa66a);text-decoration:none;font-weight:600}
 </style></head><body>
 <main>
   <div id="side">
@@ -125,6 +136,8 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--albe
         <option value="inman">has a manual row</option>
         <option value="queue">queued (ja, no en)</option>
         <option value="noman">no manual row</option>
+        <option value="changed">changed since HEAD (git)</option>
+        <option value="close">close calls (the runner-up nearly won)</option>
       </select>
       <input id="filt" placeholder="filter rows…" autocomplete="off" spellcheck="false">
       <div id="count" class="sub"></div>
@@ -145,12 +158,25 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--albe
     <div class="tools">
       <label>zoom <input id="zoom" type="range" min="1" max="5" value="3"></label>
       <label><input id="shadow" type="checkbox" checked> shadow</label>
-      <label><input id="guides" type="checkbox" checked> width guides</label>
+      <label><input id="guides" type="checkbox" checked> guides</label>
       <label><input id="longonly" type="checkbox" checked> 3+ words only</label>
       <span class="sub">codes are literal: &lt;FF03&gt; line · &lt;FF04&gt; box · &lt;FF02&gt; scroll/dismiss</span>
       <span id="stat"></span>
     </div>
-    <div id="cvwrap"><canvas id="cv" width="800" height="300"></canvas></div>
+    <div id="sbs">
+      <div id="headwrap" class="col" hidden>
+        <h2>at HEAD — the last commit</h2>
+        <div class="cvbox"><canvas id="cvh" width="800" height="100"></canvas></div>
+      </div>
+      <div class="col">
+        <h2 id="nowhead" hidden>now — the working tree / your draft</h2>
+        <div id="cvwrap"><canvas id="cv" width="800" height="300"></canvas></div>
+      </div>
+    </div>
+    <div class="tools"><button id="copylines" class="btn" title="the box as lines, each with its width in px">copy lines</button>
+      <button id="copydiff" class="btn" title="HEAD and now, line by line, with widths">copy diff</button></div>
+    <pre id="wdiff" hidden></pre>
+    <div id="weigh" hidden></div>
     <div id="ref" hidden></div>
     <h2>psp matches</h2>
     <div class="matchbar">
