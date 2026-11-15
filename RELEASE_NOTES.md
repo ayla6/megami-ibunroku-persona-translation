@@ -1,3 +1,10 @@
+# 2026-11-15
+- Much much better text wrapping in all areas!
+- Fixed some bugs in the text porting, including a certain character having wrong "Name:" things.
+- Slight adjustments to the script in the name of better wrapping.
+- Better text wrapping and timing in subtitles!
+- Removed a sentence from the Philemon opening because it's not in the PS1 script and it made it kind of too long.
+
 # 2026-11-14
 - Fixed the game freezing when you pick a demon to talk to with CONTACT.
 - Fixed ANALYZE sometimes crashing the game, or filling the screen with big colourful polygons for a moment. It got more likely the more you used ANALYZE and fought in the same battle. (Both bugs had the same cause: the ANALYZE board drew leftover garbage text for a frame when opening, and the battle ran out of room for text.)
