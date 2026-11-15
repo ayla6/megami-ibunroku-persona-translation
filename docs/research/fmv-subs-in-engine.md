@@ -446,6 +446,18 @@ values* of the plate and the text are always CPU work; what the GPU does is
 carry finished bands around (the cache copy, the plate rectangle, the black
 quad).
 
+### Speech subtitle timing
+
+`translation/manual/fmv/subtitles.tsv` (movie, start_s, end_s, text, note) is
+the one table the build reads for speech subtitles. Its timing, line breaks
+and how many subtitles a sentence is shown as are set by hand-run
+`tools/fmv_retime.py`, which rewrites the table in place from the voice's
+loudness (ffmpeg, never needed to build): a subtitle starts with its voice,
+splits at the voice's pauses only where an English sentence or clause ends,
+never holds more than two lines (bottom-heavy when the flow allows), and
+reads no faster than 17 cps where the silence allows. `tools/fmv_preview.py`
+burns the table into `scratch/fmv_preview/<MV>_<tag>.mp4` to watch.
+
 ### Where the timing/picture data comes from
 
 `src/extraction_tools/fmv_frames.py measure` decodes the movies (ffmpeg -
