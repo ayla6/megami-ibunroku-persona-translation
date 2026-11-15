@@ -838,7 +838,10 @@ def _order_pairs(rel):
     if got:
         import boot_pairs
         anchors, jp_rows, us_rows = got
-        ja, us = jp_by_pos(rel), us_by_pos(rel)
+        ja = jp_by_pos(rel)
+        # the PSP's own text: the join PROVES pairs, and an errata row may
+        # drop a code the Japanese still carries (read_extracted)
+        us = {r['pos']: r for r in toolbelt.read_extracted('psp_us', rel, errata=False)}
         speakers = _speaker_map(rel)
         again_a, again_b = _rereads(ja.values()), _rereads(us.values())
         jp_o = [o for o, _p in jp_rows]

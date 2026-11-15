@@ -6,3 +6,20 @@ d13:c238	&sob& &sob&	*sob* *sob*	the PSP line spells *sob* with &; PSX ja 女性
 E0:409	I could really use a hand, <FF07>!	<FF07>, I could really use a hand!	the PSX line opens on the name; PSX ja <FF0F><01>　早く手を貸して！
 E0:84	Nickname	Nick	the full nickname header (246 px) cannot fit a line: shortened for this card only, so its nameplate keeps its own line like every other card
 E0:531	Nickname	Nick	the same card again (see E0:84)
+pack/talk/SYOUJO:0x6508	all-the<FF03>boys	all-the-boys	the PSP drops the hyphen at its own line break, so the run reads "brings-all-the boys-to-the-yard"
+EBOOT:2c06d4	That's true, but...	True, but...	the choice grid cannot draw the PSP wording (248px of 239px)
+EBOOT:2c06d4	For everyone's sake.	For everyone.	the choice grid cannot draw the PSP wording (262px of 239px)
+EBOOT:29b1b8	<FF07> and friends were annihilated	The whole party was annihilated	the battle line cannot draw the PSP wording with an 8-letter name (266px of 240px)
+E0:253	Hmmmm?	Hmm?	the PSX asks in one line (お金をコインに替えますかぁ？); with "Hmm?" the question fits one line and its options follow without a press
+E0:1219	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
+E0:2284	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
+E0:2576	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
+E0:2725	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
+E2:1042	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
+E2:1859	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
+E3:465	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
+E3:566	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
+E3:650	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
+E3:735	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
+E3:836	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
+E0:1093	Do you have someone	You have someone	the PSX asks in one line, casually (大切な人っています？): without "Do" the question fits one line and its options follow without a press

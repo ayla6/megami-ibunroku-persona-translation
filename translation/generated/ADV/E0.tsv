@@ -16,7 +16,7 @@ id	pos	psp	en
 14	0:0x1f68	E0:14	Brown: Heeheehee... This'll be fun!<FF03>Awright, let's get started!<FF02><FF01>
 15	0:0x1f98	E0:15	Ayase: 'Kay! Here goes!<FF02><FF01>
 16	0:0x1fac	E0:16	Ayase: Umm. Persona!<FF03>Persona! Please come here!<FF02><FF01>
-17	0:0x1fd4	E0:17	Brown: My turn! Persona!<FF03>Persona! Come here!<FF02><FF01>
+17	0:0x1fd4	E0:17	Brown: My turn!<FF03>Persona! Persona! Come here!<FF02><FF01>
 18	0:0x2004	E0:18	Mark: Man, why I gotta do this...?<FF02><FF01>
 19	0:0x2030	E0:19	Brown: Hurry it up! All-you-can-eat!<FF03>All-you-can-eat!<FF02><FF01>
 20	0:0x2058	E0:20	Mark: Okay, okay...<FF03>Persona, Persona. C'mere... I guess.<FF02><FF01>
@@ -252,7 +252,7 @@ id	pos	psp	en
 250	16:0x1778	E0:250	Blonde man:<FF03>Aw crap, what'm I gonna do?<FF03>I'm not cut out to fight demons.<FF02><FF04>And Mark ain't gonna be around,<FF03>neither. I gotta say, I'm scared.<FF02><FF01>
 251	16:0x17b0	E0:251	Mark:<FF03>Dude, don't go freakin'<FF03>out over somethin' like this.<FF02><FF04>I'm leavin' the Tailors in your hands<FF03>while I'm gone, y'know.<FF02><FF01>
 252	16:0x17fc	E0:252	Gambling addict:<FF03>Dammit! I'm broke again!<FF02><FF04>After all my losses, the next one who<FF03>plays this machine oughtta win big...<FF02><FF04>Wait, are you up next?<FF03>Aww, this sucks!<FF02><FF01>
-253	16:0x1880	E0:253	Clerk: Hiiii! SO nice to see you!<FF03>If you're looking to exchange<FF03>money for coins, I'm your man.<FF02><FF04>Won't you purchase some coins?<FF03>Hmmmm?<FF02><FF03><FF0E><00><FF01>
+253	16:0x1880	E0:253	Clerk: Hiiii! SO nice to see you!<FF03>If you're looking to exchange<FF03>money for coins, I'm your man.<FF02><FF04>Won't you purchase some coins? Hmm?<FF03><FF0E><00><FF01>
 254	16:0x18d4	E0:254	Clerk: I can exchange your coins<FF03>for items, if that's what you're<FF03>in the mood for...<FF02><FF04>Wanna see what I've got?<FF03><FF0E><00><FF01>
 255	16:0x1918	E0:255	The machine seems to be out of order.<FF02><FF01>
 256	16:0x1d90	E0:256	You have <FF11> coins.<FF02><FF01>
@@ -309,7 +309,7 @@ id	pos	psp	en
 307	18:0x190c	E0:307	Reiji's mother:<FF03>Oh, do you go to St. Hermelin?<FF03>That's the school my son attends...<FF02><FF01>
 308	18:0x1940	E0:308	Reiji's mother: His name's Reiji Kido.<FF03>Do you know him?<FF02><FF03><FF0E><02><FF01>
 309	18:0x1970	E0:309	Reiji's mother: Oh, so you know him?<FF03>Ah, you're in the same class?<FF02><FF04>I see... Then you must know<FF03>my son isn't very outgoing...<FF02><FF01>
-310	18:0x19b8	E0:310	Reiji's mother: It may be selfish<FF03>of me to ask this, but could<FF03>you make friends with Reiji?<FF02><FF03><FF0E><01><FF01>
+310	18:0x19b8	E0:310	Reiji's mother: It may be selfish<FF03>of me to ask this, but<FF03>could you make friends with Reiji?<FF02><FF03><FF0E><01><FF01>
 311	18:0x19fc	E0:311	Reiji's mother: Ah, I see...<FF05><20><00><FF03>I'm sorry to have been so forward.<FF02><FF01>
 312	18:0x1a2c	E0:312	Reiji's mother: Ah, truly?<FF03>Thank you! Please feel free<FF03>to come visit him at home sometime!<FF02><FF01>
 313	18:0x1a68	E0:313	Reiji's mother:<FF03>I see... I'm not surprised.<FF03>He does cultivate a bizarre image...<FF02><FF04>But deep down,<FF03>he's really very sweet.<FF02><FF04>That reminds me... It's not much,<FF03>but please take this.<FF02><FF01>
@@ -408,10 +408,10 @@ id	pos	psp	en
 406	24:0x1804	E0:406	Mark: Yo, <FF07><01>!<FF03>The monsters are just<FF03>around the corner!<FF02><FF01>
 407	24:0x182c	E0:407	Severely wounded nurse:<FF03>I... I'm not going to make it...<FF03>You kids... g-get out of here...<FF02><FF01>
 408	24:0x185c	E0:408	Yukino: Don't give up!<FF02><FF01>
-409	24:0x1870	E0:409	<FF07><01>, I could<FF03>really use a hand!<FF02><FF03><FF0E><08><FF01>
+409	24:0x1870	E0:409	<FF07><01>,<FF03>I could really use a hand!<FF02><FF03><FF0E><08><FF01>
 410	24:0x1888	E0:410	Yukino: Okay, you take that side!<FF02><FF01>
 411	24:0x18a0	E0:411	Mark: It's no good! They're coming!<FF02><FF01>
-412	24:0x18b8	E0:412	Elly: Oh, good day. Oh, my!<FF03>There are demons here too?<FF02><FF01>
+412	24:0x18b8	E0:412	Elly: Oh, good day.<FF03>Oh, my! There are demons here too?<FF02><FF01>
 413	24:0x18e8	E0:413	Yukino: Are you serious!?<FF03>But she's still alive!<FF03>You're telling me to abandon her!?<FF02><FF01>
 414	24:0x1920	E0:414	Nanjo:<FF03>...I don't want to leave<FF03>Yamaoka behind, either.<FF02><FF01>
 415	24:0x1948	E0:415	But we don't have a choice!<FF03>We have to go!<FF02><FF03><FF0E><09><FF01>
@@ -481,7 +481,7 @@ id	pos	psp	en
 479	29:0x2a5c	E0:479	Setsuko Sonomura: My God...<FF03>But Kandori has to be stopped...!<FF02><FF01>
 480	29:0x2a88	E0:480	Mark: ...How did you escape, Ma'am?<FF02><FF01>
 481	29:0x2aac	E0:481	Setsuko Sonomura:<FF03>Through the abandoned factory...<FF03>It has a secret freight entrance.<FF02><FF04>Use this security card...<FF02><FF01>
-482	29:0x2af0	E0:482	Yukino: Lady! Whew...<FF03>she only passed out. We have<FF03>to get her to the school, quick!<FF02><FF01>
+482	29:0x2af0	E0:482	Yukino: Lady!<FF03>Whew... she only passed out. We have<FF03>to get her to the school, quick!<FF02><FF01>
 483	29:0x2b2c	E0:483	Mark: ...You handle this, <FF07><01>.<FF03>I got business to take care of.<FF02><FF01>
 484	29:0x2b58	E0:484	Nanjo: Wait, Masao.<FF03>"Nothing ventured, nothing gained..."<FF03>I'll come with you.<FF02><FF04>Remember, you won't be able to get<FF03>near Kandori without this card.<FF02><FF01>
 485	29:0x2bac	E0:485	Yukino: H-Hey!<FF03>...<FF05><58><00>Tch, thanks, guys. C'mon,<FF03>let's go back to the school ourselves.<FF02><FF04>Honestly! Men never think about<FF03>how the ones they leave behind feel.<FF02><FF01>
@@ -696,7 +696,7 @@ id	pos	psp	en
 694	50:0x173c	E0:698	Nanjo:<FF03>We have a firearm for you, Masao.<FF03>Just don't shoot us by mistake.<FF02><FF01>
 695	50:0x1768	E0:699	Brown: Hey, hey,<FF03>think I should come with you guys?<FF02><FF04>Without me, you fools don't<FF03>have any star power, y'know?<FF02><FF04>You guys need me to whip you into<FF03>shape! How about it, <FF07><01>!?<FF02><FF01>
 696	50:0x17e0	E0:700	Mark: ...It's your call, <FF07><01>.<FF03><FF0E><07><FF01>
-697	50:0x17f8	E0:701	Are you certain that you want<FF03>to bring Hidehiko along?<FF02><FF03><FF0E><00><FF01>
+697	50:0x17f8	E0:701	Are you certain that<FF03>you want to bring Hidehiko along?<FF02><FF03><FF0E><00><FF01>
 698	50:0x1808	E0:703	Brown: Great! I'm down--not<FF03>like I have a choice!<FF03>Hahahahaha!<FF02><FF01>
 699	50:0x1844	E0:704	Nanjo: Then here's a firearm<FF03>for you, too, Hidehiko.<FF03>Don't be careless with it.<FF02><FF04>...What's that look for...?<FF02><FF01>
 700	50:0x1888	E0:705	Brown: Oh? Is that... Really?<FF03>You're sure you won't regret it?<FF02><FF04>Alright<FF05><10><00>...<FF05><15><00> Guess I'll head to<FF03>the school, then. Later, chumps!<FF02><FF01>
@@ -1026,7 +1026,7 @@ id	pos	psp	en
 1024	65:0x1fc4	E0:1035	Dammit... I gotta go!<FF02><FF01>
 1025	65:0x1fdc	E0:1036	Maki: Wait, Yosuke!<FF03>Don't strain yourself!<FF02><FF04>Everyone... give me a hand.<FF03>We have to do something!<FF02><FF01>
 1026	65:0x2020	E0:1037	Mark:<FF03>I'm not sure what's goin' on here, but<FF03>at this rate, we can't get outside.<FF02><FF04>Let's do this, <FF07><01>!<FF02><FF01>
-1027	65:0x2054	E0:1038	Yosuke:<FF03>Dammit! If only I wasn't so banged up,<FF03>I could get Chisato back this time...<FF02><FF04>Huh? My wounds? Oh...<FF03>The last time that little girl<FF03>was here, she kicked my ass...<FF02><FF04>Man, talk about pathetic!<FF02><FF01>
+1027	65:0x2054	E0:1038	Yosuke:<FF03>Dammit! If only I wasn't so banged up,<FF03>I could get Chisato back this time...<FF02><FF04>Huh? My wounds?<FF03>Oh... The last time that little girl<FF03>was here, she kicked my ass...<FF02><FF04>Man, talk about pathetic!<FF02><FF01>
 1028	65:0x20d4	E0:1039	Maki:<FF03>That girl must be<FF03>somewhere in the school!<FF02><FF04>Don't let your guard down<FF03>just because she's a kid.<FF03>She has strange powers...<FF02><FF01>
 1029	65:0x2120	E0:1040	Nanjo:<FF03>What sort of relationship does<FF03>that girl have with Kandori?<FF02><FF04>There's too little data to draw<FF03>a useful conclusion...<FF02><FF01>
 1030	65:0x215c	E0:1041	Mark:<FF03>There's no use sitting around<FF03>and worrying over this!<FF02><FF04>We gotta take action<FF03>and find a way back home.<FF02><FF01>
@@ -1081,11 +1081,11 @@ id	pos	psp	en
 1079	67:0x22b4	E0:1090	Nanjo: Leave him be.<FF03>We're after the same man, so<FF03>we're sure to see one another again.<FF02><FF04>He can do what he wants so long<FF03>as he doesn't get in our way.<FF02><FF01>
 1080	67:0x2304	E0:1091	Nanjo:<FF03>You're asking me why Reiji<FF03>is after Kandori?<FF02><FF04>Mm... we'll find out eventually.<FF03>For now, it's enough<FF03>that our goals dovetail.<FF02><FF01>
 1081	67:0x2344	E0:1092	Elly: Something important...<FF03>Someone who's precious...<FF03><FF07><01>, do you...<FF02><FF01>
-1082	67:0x2370	E0:1093	Do you have someone<FF03>precious to you?<FF02><FF03><FF0E><1C><FF01>
+1082	67:0x2370	E0:1093	You have someone precious to you?<FF03><FF0E><1C><FF01>
 1083	67:0x2388	E0:1094	Elly: I see...<FF05><3C><00> I...<FF05><3C><00><FF03>I'm sorry to ask such<FF03>an odd question...<FF02><FF01>
 1084	67:0x23c0	E0:1095	Elly: I see...<FF05><3C><00> You're like me, then...<FF02><FF01>
 1085	67:0x23e4	E0:1096	Brown:<FF03>Dude, it's not nice to try to dig up<FF03>the skeletons in a guy's closet.<FF02><FF01>
-1086	67:0x2414	E0:1097	You must have stuff<FF03>you're hiding too, right?<FF02><FF03><FF0E><1D><FF01>
+1086	67:0x2414	E0:1097	You must<FF03>have stuff you're hiding too, right?<FF02><FF03><FF0E><1D><FF01>
 1087	67:0x2430	E0:1098	Brown: See? See?<FF03>Am I right or am I right?<FF03>That's just how people are!<FF02><FF01>
 1088	67:0x2460	E0:1099	Brown: That's a joke, right?<FF03>Was our friendship that shallow...?<FF02><FF01>
 1089	67:0x2498	E0:1100	Ayase: It's no use worrying<FF03>about what might happen,<FF03>don't you think, <FF07><01>?<FF02><FF01>
@@ -1205,7 +1205,7 @@ id	pos	psp	en
 1203	75:0x3750	E0:1216	What do you say?<FF03><FF0E><11><FF01>
 1204	75:0x3764	E0:1217	Trish: Okay!<FF02><FF01>
 1205	75:0x3778	E0:1218	Trish: Umm, with the going rate<FF03>for healing... And all of you<FF03>put together...<FF02><FF01>
-1206	75:0x37b0	E0:1219	It'll be 2,500 yen. That's okay, right?<FF0E><00><FF01>
+1206	75:0x37b0	E0:1219	It'll be 2,500 yen. Okay?<FF03><FF0E><00><FF01>
 1207	75:0x37cc	E0:1220	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 1208	75:0x380c	E0:1221	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
 1209	75:0x3844	E0:1222	Need anything else?<FF03><FF0E><00><FF01>
@@ -1218,11 +1218,11 @@ id	pos	psp	en
 1216	76:0x11a8	E0:1229	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 1217	77:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1218	77:0x5388	E0:1231	Igor: Welcome to the Velvet Room...<FF02><FF01>
-1219	77:0x53ac	E0:1232	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+1219	77:0x53ac	E0:1232	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 1220	77:0x53c8	E0:1233	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 1221	77:0x53f4	E0:1234	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 1222	77:0x5414	E0:1235	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-1223	77:0x5438	E0:1236	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+1223	77:0x5438	E0:1236	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 1224	77:0x5450	E0:1237	Igor: Well then... Farewell...<FF02><FF01>
 1225	77:0x5468	E0:1238	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 1226	77:0x5614	E0:1239	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -1230,11 +1230,11 @@ id	pos	psp	en
 1228	77:0x5b78	E0:1241	Igor: Pardon me for being nosy, but...<FF02><FF04>Personas have<FF03>eight levels of growth.<FF03>You should try to develop them fully.<FF02><FF04>I'm sure that there will be<FF03>an ample reward for doing so...<FF02><FF04>You might also be interested to know<FF03>about various factors in fusion.<FF02><FF04>For example, even when creating<FF03>the same Persona...<FF02><FF04>The combination of spell cards,<FF03>the affinities of the demons used...<FF02><FF04>The position of Terra and Luna, and<FF03>any essences added into the mix...<FF02><FF04>All of these factor into the resultant<FF03>Persona. And one more thing...<FF02><FF04>You may also add an item into<FF03>the fusion to trigger a change.<FF02><FF04>There are some items for which<FF03>the result is easily predictable...<FF02><FF04>But sometimes, even I will be unable<FF03>to guess at what may happen.<FF02><FF04>Should that come about,<FF03>I do hope that you'll pardon me.<FF02><FF04>But make no mistake,<FF03>I do believe it is worth trying...<FF02><FF04>I suggest gems for obtaining<FF03>a higher- or lower-ranked<FF03>fusion within an order.<FF02><FF04>As for the other items' effects,<FF03>you should experiment for yourself.<FF02><FF01>
 1229	78:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1230	78:0x5388	E0:1243	Igor: Welcome to the Velvet Room...<FF02><FF01>
-1231	78:0x53ac	E0:1244	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+1231	78:0x53ac	E0:1244	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 1232	78:0x53c8	E0:1245	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 1233	78:0x53f4	E0:1246	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 1234	78:0x5414	E0:1247	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-1235	78:0x5438	E0:1248	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+1235	78:0x5438	E0:1248	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 1236	78:0x5450	E0:1249	Igor: Well then... Farewell...<FF02><FF01>
 1237	78:0x5468	E0:1250	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 1238	78:0x5614	E0:1251	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -2268,7 +2268,7 @@ id	pos	psp	en
 2266	156:0x3750	E0:2281	What do you say?<FF03><FF0E><11><FF01>
 2267	156:0x3764	E0:2282	Trish: Okay!<FF02><FF01>
 2268	156:0x3778	E0:2283	Trish: Umm, with the going rate<FF03>for healing... And all of you<FF03>put together...<FF02><FF01>
-2269	156:0x37b0	E0:2284	It'll be 4,000 yen.<FF03>That's okay, right?<FF02><FF03><FF0E><00><FF01>
+2269	156:0x37b0	E0:2284	It'll be 4,000 yen. Okay?<FF03><FF0E><00><FF01>
 2270	156:0x37cc	E0:2285	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 2271	156:0x380c	E0:2286	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
 2272	156:0x3844	E0:2287	Need anything else?<FF03><FF0E><00><FF01>
@@ -2278,11 +2278,11 @@ id	pos	psp	en
 2276	156:0x3924	E0:2291	Trish:<FF03>You called me out for no reason!?<FF03>Boo to that! Get outta here!<FF02><FF01>
 2277	157:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 2278	157:0x5388	E0:2293	Igor: Welcome to the Velvet Room...<FF02><FF01>
-2279	157:0x53ac	E0:2294	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+2279	157:0x53ac	E0:2294	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 2280	157:0x53c8	E0:2295	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 2281	157:0x53f4	E0:2296	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 2282	157:0x5414	E0:2297	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-2283	157:0x5438	E0:2298	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+2283	157:0x5438	E0:2298	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 2284	157:0x5450	E0:2299	Igor: Well then... Farewell...<FF02><FF01>
 2285	157:0x5468	E0:2300	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 2286	157:0x5614	E0:2301	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -2333,7 +2333,7 @@ id	pos	psp	en
 2331	160:0x24f8	E0:2346	Reiji: That's how mothers<FF03>really are inside...<FF03>Their kids just don't know it.<FF02><FF01>
 2332	160:0x252c	E0:2347	Reiji: How long do you intend<FF03>to stand around here?<FF03>Aren't we going to the shrine?<FF02><FF01>
 2333	160:0x2558	E0:2348	Elly: <FF07><01>......<FF05><58><00><FF03>Is it weird to hear me talk like this?<FF02><FF01>
-2334	160:0x2580	E0:2349	Did you... like the way<FF03>I used to talk better?<FF02><FF03><FF0E><1E><FF01>
+2334	160:0x2580	E0:2349	Did you...<FF03>like the way I used to talk better?<FF02><FF03><FF0E><1E><FF01>
 2335	160:0x2598	E0:2350	Elly:<FF03>I see... Then I'll speak more politely.<FF02><FF01>
 2336	160:0x25b8	E0:2351	Elly: Good! I was worried you<FF03>would think it was weird!<FF03><FF07><01>... Thanks...<FF02><FF01>
 2337	160:0x2600	E0:2352	Elly: Quickly! We must hurry<FF03>and get to the shrine!<FF02><FF01>
@@ -2341,7 +2341,7 @@ id	pos	psp	en
 2339	160:0x2660	E0:2354	Brown: Hey, <FF08><01>!<FF03>If you think I'm the same me<FF03>I always was, you're dead wrong!<FF02><FF04>Now that I've matured a little,<FF03>call me Brown Mk.II!<FF02><FF04>Huh?<FF03>Whaddaya mean, that sounds lame?<FF03>So what should I call myself, then?<FF02><FF01>
 2340	160:0x26dc	E0:2355	Brown: We're going to the shrine next,<FF03>right? Well, "more haste, less speed"!<FF02><FF04>Huh? That's not what that means...?<FF03>Well, it is when I say it!<FF02><FF01>
 2341	160:0x2734	E0:2356	Ayase: Huh... Y'know, up close,<FF03>you're a pretty good-looking guy,<FF03><FF07><01>!<FF02><FF01>
-2342	160:0x277c	E0:2357	Want me to put you down on my list<FF03>of potential husbands?<FF02><FF03><FF0E><1F><FF01>
+2342	160:0x277c	E0:2357	Want me to put you down<FF03>on my list of potential husbands?<FF02><FF03><FF0E><1F><FF01>
 2343	160:0x278c	E0:2358	Ayase: Beep! Got it! Okay, keep<FF03>working yourself to the bone for me!<FF02><FF01>
 2344	160:0x27c8	E0:2359	Ayase: What!? Are you saying<FF03>I'm not good enough for you!?<FF02><FF04>Fine! Like I care! I'll dump even more<FF03>of my share of the work on you now!<FF02><FF01>
 2345	160:0x2818	E0:2360	Ayase:<FF03>We're going to the shrine, right?<FF02><FF04>I wonder if all this trudging<FF03>around counts as a workout.<FF02><FF01>
@@ -2420,7 +2420,7 @@ id	pos	psp	en
 2418	161:0x28b4	E0:2433	Setsuko Sonomura:<FF03>Hm? Erusaer Tsymmom?<FF02><FF04>Oh...<FF05><58><00> it's something I taught<FF03>Maki when she was little.<FF02><FF04>With her father dead and me busy<FF03>with work, Maki was always alone...<FF02><FF04>So I taught her this spell to chant<FF03>when she was lonely at the hospital.<FF02><FF04>I told her that wherever Mommy was,<FF03>I could always sense her presence...<FF02><FF04>And she remembered it all this time...<FF05><58><00><FF03>Try saying it backwards.<FF03>That girl's still my treasure...<FF02><FF01>
 2419	162:0x19a8	E0:2434	Setsuko Sonomura: Maki, it's me!<FF03>Your mother! Let's go back together!<FF02><FF04>Look! These people came all<FF03>this way because they were<FF03>worried about you!<FF02><FF01>
 2420	162:0x19fc	E0:2435	Maki: Don't come near me!<FF03>Why... Why did you all come here!?<FF03>Don't you know what kind of girl I am?<FF02><FF01>
-2421	162:0x1a40	E0:2436	Mark: Maki... I know you feel<FF03>like you can't just let it go...<FF02><FF04>But doesn't everyone<FF03>get jealous now and then,<FF03>one way or another? I know I do.<FF02><FF04>And on top of that,<FF03>you were just being used.<FF03>It's Kandori's fault, not yours.<FF02><FF01>
+2421	162:0x1a40	E0:2436	Mark: Maki... I know you feel<FF03>like you can't just let it go...<FF02><FF04>But doesn't everyone get jealous now<FF03>and then, one way or another?<FF03>I know I do.<FF02><FF04>And on top of that,<FF03>you were just being used.<FF03>It's Kandori's fault, not yours.<FF02><FF01>
 2422	162:0x1ac0	E0:2437	Maki:<FF03>How often did I try to kill everyone!?<FF03>How can you be so nice to me!?<FF02><FF04>I don't want pity. It just makes me<FF03>more miserable... I deserve to die!<FF02><FF01>
 2423	162:0x1b24	E0:2438	Mark: That's not true!<FF02><FF01>
 2424	162:0x1b3c	E0:2439	Nanjo: What a petulant child...<FF02><FF01>
@@ -2539,28 +2539,28 @@ id	pos	psp	en
 2537	179:0x14a0	E0:2552	Yukino: <FF07><01>!<FF03>This one's still alive!<FF03>Gimme a hand here!<FF02><FF01>
 2538	179:0x14c8	E0:2553	Nanjo: We haven't time to waste here,<FF03><FF07><01>! It's too late for her,<FF03>but not for us!<FF02><FF01>
 2539	179:0x1500	E0:2554	Mark: Yo, <FF07><01>!<FF03>The monsters are just<FF03>around the corner!<FF02><FF01>
-2540	179:0x1528	E0:2555	<FF08><01> 's voice Remember this?<FF03>You left the poor woman to die...<FF02><FF04><FF08><01> 's voice "I'm looking out<FF03>for number one"... Are you sure<FF03>that wasn't your reasoning?<FF02><FF01>
-2541	179:0x1580	E0:2556	<FF08><01> 's voice Remember this?<FF03>You saved this woman,<FF03>heedless of your own safety...<FF02><FF01>
+2540	179:0x1528	E0:2555	<FF08><01>'s voice: Remember this?<FF03>You left the poor woman to die...<FF02><FF04>"I'm looking out for number one"...<FF03>Are you sure that wasn't<FF03>your reasoning?<FF02><FF01>
+2541	179:0x1580	E0:2556	<FF08><01>'s voice: Remember this?<FF03>You saved this woman,<FF03>heedless of your own safety...<FF02><FF01>
 2542	180:0x1478	E0:2557	Maki: I've had enough!<FF03>I don't want any more deaths...<FF03>No one wants to die, right?<FF02><FF04>We can catch Kandori anytime.<FF03>This man needs our help!<FF02><FF01>
-2543	180:0x14d0	E0:2558	<FF08><01> 's voice And here,<FF03>you tried to abandon an old man,<FF03>though he was only a pawn...<FF02><FF01>
-2544	180:0x1500	E0:2559	<FF08><01> 's voice And here,<FF03>you chose to save an old man<FF03>at the risk of losing Kandori...<FF02><FF01>
+2543	180:0x14d0	E0:2558	<FF08><01>'s voice: And here,<FF03>you tried to abandon an old man,<FF03>though he was only a pawn...<FF02><FF01>
+2544	180:0x1500	E0:2559	<FF08><01>'s voice: And here,<FF03>you chose to save an old man<FF03>at the risk of losing Kandori...<FF02><FF01>
 2545	181:0x152c	E0:2560	Harem Queen:<FF03>I'll give you, and only you,<FF03>one last chance, <FF07><01>...<FF02><FF04>Which is better? My breathtaking<FF03>painting, or Maki's piece?<FF03>And I want an honest answer!<FF02><FF01>
-2546	181:0x1598	E0:2561	<FF08><01> 's voice Did you<FF03>really think that Chisato's<FF03>painting was superior...?<FF02><FF04><FF08><01> 's voice Say, "I wasn't<FF03>afraid of being turned to stone."<FF03>Can you say that honestly?<FF02><FF01>
-2547	181:0x1604	E0:2562	<FF08><01> 's voice Asserting one's<FF03>beliefs in the face of danger...<FF03>it isn't easily done.<FF02><FF01>
+2546	181:0x1598	E0:2561	<FF08><01>'s voice:<FF03>Did you really think that Chisato's<FF03>painting was superior...?<FF02><FF04>Say, "I wasn't afraid<FF03>of being turned to stone."<FF03>Can you say that honestly?<FF02><FF01>
+2547	181:0x1604	E0:2562	<FF08><01>'s voice:<FF03>Asserting one's beliefs in the face<FF03>of danger... it isn't easily done.<FF02><FF01>
 2548	182:0x13e8	E0:2563	Mark: But that voice...<FF03>That's Maki's mom,<FF03>I'm dead sure... Isn't it?<FF02><FF04>I don't know why she'd look like that,<FF03>but what if it really is her mom...?<FF03>Put your weapon away, <FF07><01>!<FF02><FF01>
-2549	182:0x1468	E0:2564	<FF08><01> 's voice<FF03>You lacked the vision<FF03>to see through to the truth...<FF02><FF04><FF08><01> 's voice You<FF03>judge only with your eyes,<FF03>and fail to see with your heart...<FF02><FF01>
-2550	182:0x14c0	E0:2565	<FF08><01> 's voice You had vision<FF03>enough to see through to the truth...<FF02><FF04><FF08><01> 's voice You see<FF03>not only with your eyes,<FF03>but also with your heart...<FF02><FF01>
+2549	182:0x1468	E0:2564	<FF08><01>'s voice:<FF03>You lacked the vision to<FF03>see through to the truth...<FF02><FF04>You judge only with your eyes,<FF03>and fail to see with your heart...<FF02><FF01>
+2550	182:0x14c0	E0:2565	<FF08><01>'s voice:<FF03>You had vision enough<FF03>to see through to the truth...<FF02><FF04>You see not only with your eyes,<FF03>but also with your heart...<FF02><FF01>
 2551	183:0x11ec	E0:2566	Kandori: You, boy...<FF03>I haven't heard your answer yet.<FF03>What are you living for?<FF02><FF01>
-2552	183:0x1218	E0:2567	<FF08><01> 's voice This man's<FF03>soul was sick with doubt...<FF02><FF04><FF08><01> 's voice But you<FF03>could not give his soul<FF03>the salvation it yearned for...<FF02><FF04><FF08><01> 's voice And<FF03>the cause was the doubt<FF03>gnawing at your own soul.<FF02><FF01>
-2553	183:0x1280	E0:2568	<FF08><01> 's voice This man's<FF03>soul was sick with doubt...<FF02><FF04><FF08><01> 's voice But you were<FF03>able to soothe his soul's torment...<FF02><FF04><FF08><01> 's voice You could<FF03>do this because your own soul<FF03>was free and clear of doubt.<FF02><FF01>
+2552	183:0x1218	E0:2567	<FF08><01>'s voice:<FF03>This man's soul was sick with doubt...<FF02><FF04>But you could not give his soul<FF03>the salvation it yearned for...<FF02><FF04>And the cause was the doubt<FF03>gnawing at your own soul.<FF02><FF01>
+2553	183:0x1280	E0:2568	<FF08><01>'s voice:<FF03>This man's soul was sick with doubt...<FF02><FF04>But you were able to soothe<FF03>his soul's torment...<FF02><FF04>You could do this because your own<FF03>soul was free and clear of doubt.<FF02><FF01>
 2554	184:0x1294	E0:2569	Maki:<FF03>You know it, don't you, <FF07><01>!?<FF03>You know I'm the worst girl alive!<FF02><FF01>
-2555	184:0x12cc	E0:2570	<FF08><01> 's voice And<FF03>what did you say to that?<FF02><FF04><FF08><01> 's voice You couldn't<FF03>tell her not to run, for you too<FF03>were running, weren't you?<FF02><FF04><FF08><01> 's voice Can you look me<FF03>in the eye and deny that, self?<FF02><FF01>
-2556	184:0x1340	E0:2571	<FF08><01> 's voice You<FF03>answered well. It's easy to run<FF03>from one's problems, yes...<FF02><FF04><FF08><01> 's voice But the further<FF03>you run, the more you resent<FF03>yourself. You know all too well.<FF02><FF01>
+2555	184:0x12cc	E0:2570	<FF08><01>'s voice:<FF03>And what did you say to that?<FF02><FF04>You couldn't tell her not to run, for<FF03>you too were running, weren't you?<FF02><FF04>Can you look me in the eye<FF03>and deny that, self?<FF02><FF01>
+2556	184:0x1340	E0:2571	<FF08><01>'s voice:<FF03>You answered well. It's easy<FF03>to run from one's problems, yes...<FF02><FF04>But the further you run,<FF03>the more you resent yourself.<FF03>You know all too well.<FF02><FF01>
 2557	185:0x36dc	E0:2572	Trish: Hi! I'm Trish and this is<FF03>my fountain of healing!<FF02><FF04>This world runs on give-and-take!<FF03>Give me money and I'll take<FF03>away your pain!<FF02><FF01>
 2558	185:0x3750	E0:2573	What do you say?<FF03><FF0E><11><FF01>
 2559	185:0x3764	E0:2574	Trish: Okay!<FF02><FF01>
 2560	185:0x3778	E0:2575	Trish: Umm, with the going rate<FF03>for healing... And all of you<FF03>put together...<FF02><FF01>
-2561	185:0x37b0	E0:2576	It'll be 5,000 yen. That's okay, right?<FF0E><00><FF01>
+2561	185:0x37b0	E0:2576	It'll be 5,000 yen. Okay?<FF03><FF0E><00><FF01>
 2562	185:0x37cc	E0:2577	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 2563	185:0x380c	E0:2578	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
 2564	185:0x3844	E0:2579	Need anything else?<FF03><FF0E><00><FF01>
@@ -2594,24 +2594,24 @@ id	pos	psp	en
 2592	196:0x11a8	E0:2607	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 2593	197:0x1508	E0:2608	Maki: Who's there!?<FF03><FF07><01>! Someone's here!<FF03><FF05><58><00>No way... Is that... <FF07><01>!?<FF02><FF01>
 2594	197:0x1548	E0:2609	Maki: <FF07><01>!<FF03>There's two of you! How...!?<FF02><FF04>Why is he here?<FF03>And why is he playing games!?<FF02><FF01>
-2595	197:0x1588	E0:2610	<FF08><01>...Could you<FF03>shut up for a second?<FF03>Who gives a damn what I do...<FF02><FF01>
+2595	197:0x1588	E0:2610	<FF08><01>:<FF03>...Could you shut up for a second?<FF03>Who gives a damn what I do...<FF02><FF01>
 2596	197:0x15b0	E0:2611	Maki: A-Are you... really <FF07><01>?<FF02><FF01>
-2597	197:0x15cc	E0:2612	<FF08><01> That's right.<FF03>I'm <FF07><01><FF0F><01>.<FF03>You can call me <FF08><01>.<FF02><FF04><FF08><01> I'm a second-year<FF03>at St. Hermelin High in class 4.<FF02><FF04><FF08><01> Don't believe me?<FF03>Want me to tell you my height,<FF03>weight, and favorite girl?<FF02><FF01>
+2597	197:0x15cc	E0:2612	<FF08><01>: That's right.<FF03>I'm <FF07><01><FF0F><01>.<FF03>You can call me <FF08><01>.<FF02><FF04>I'm a second-year at<FF03>St. Hermelin High in class 4.<FF02><FF04>Don't believe me? Want me to tell you<FF03>my height, weight, and favorite girl?<FF02><FF01>
 2598	197:0x1640	E0:2613	Maki: Huh?<FF02><FF01>
-2599	197:0x1650	E0:2614	<FF08><01> I'm you.<FF02><FF04><FF08><01> I know everything<FF03>you've done up to now. And the kind<FF03>of person you really are...<FF02><FF01>
+2599	197:0x1650	E0:2614	<FF08><01>: I'm you.<FF02><FF04>I know everything you've done up<FF03>to now. And the kind of person<FF03>you really are...<FF02><FF01>
 2600	198:0x1150	E0:2615	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 2601	198:0x117c	E0:2616	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 2602	198:0x11a8	E0:2617	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
-2603	199:0x18bc	E0:2618	<FF08><01> Get it now?<FF03><FF08><01> I'm every inch like you.<FF03>I'm you... and you're me.<FF02><FF04><FF08><01> We're two sides<FF03>of the same coin... No, not just two.<FF02><FF04><FF08><01> There are tens of<FF03>thousands of "you"s inside yourself.<FF02><FF01>
+2603	199:0x18bc	E0:2618	<FF08><01>: Get it now?<FF03>I'm every inch like you.<FF03>I'm you... and you're me.<FF02><FF04>We're two sides of the same coin...<FF03>No, not just two.<FF02><FF04>There are tens of thousands<FF03>of "you"s inside yourself.<FF02><FF01>
 2604	199:0x1934	E0:2619	Maki: ......<FF02><FF01>
-2605	199:0x1940	E0:2620	<FF08><01>...So quit bothering me.<FF03>You must know how it feels.<FF02><FF04><FF08><01> Long as I can<FF03>play games all day, I'm good.<FF03>I'd rather stay out of trouble.<FF02><FF04><FF08><01> Hurry up and get<FF03>outta here... Seeya.<FF02><FF01>
+2605	199:0x1940	E0:2620	<FF08><01>: ...So quit bothering me.<FF03>You must know how it feels.<FF02><FF04>Long as I can play games all day, I'm<FF03>good. I'd rather stay out of trouble.<FF03>Hurry up and get outta here... Seeya.<FF02><FF01>
 2606	199:0x19b0	E0:2621	Maki: Why're you acting like this!?<FF03><FF07><01> is a nice guy!<FF03>Let's go, <FF07><01>!<FF02><FF01>
-2607	199:0x19e4	E0:2622	<FF08><01>...If you made it this far,<FF03>it means there's some hope for you.<FF02><FF04><FF08><01> Alright, self...<FF03>Go do the best you can.<FF02><FF01>
-2608	199:0x1a24	E0:2623	<FF08><01>...Someone seems to be<FF03>aiming to take your place,<FF03>but that won't happen.<FF02><FF04><FF08><01> Your will<FF03>is rooted nice and deep.<FF03>You have a good grip on yourself.<FF02><FF01>
-2609	199:0x1a94	E0:2624	<FF08><01> Here, take this.<FF02><FF04><FF08><01> I think you can handle it.<FF02><FF04><FF08><01> It's the key<FF03>to awakening the strongest<FF03>Persona sealed deep in your soul.<FF02><FF04><FF08><01> Ask that old geezer<FF03>Igor how to use it.<FF02><FF04><FF08><01> But... don't forget.<FF03>The "me" you see here is still you.<FF02><FF04><FF08><01> As long as you're aware<FF03>of it, you'll be fine.<FF03>You're one strong guy.<FF02><FF01>
-2610	199:0x1b4c	E0:2625	<FF08><01> Here, take these.<FF02><FF04><FF08><01> I think you<FF03>and the girl can handle them.<FF02><FF04><FF08><01> They're keys<FF03>to awakening the strongest<FF03>Personas sealed deep in one's soul.<FF02><FF04><FF08><01> Ask that old geezer<FF03>Igor how to use them.<FF02><FF04><FF08><01> But... don't forget.<FF03>The "me" you see here is still you.<FF02><FF04><FF08><01> As long as you're aware<FF03>of it, you'll be fine.<FF03>You're one strong guy.<FF02><FF01>
-2611	199:0x1c0c	E0:2626	<FF08><01> Here, take these.<FF02><FF04><FF08><01> I think you and<FF03>your friends can handle them.<FF02><FF04><FF08><01> They're keys<FF03>to awakening the strongest<FF03>Personas sealed deep in one's soul.<FF02><FF04><FF08><01> Ask that old geezer<FF03>Igor how to use them.<FF02><FF04><FF08><01> But... don't forget.<FF03>The "me" you see here is still you.<FF02><FF04><FF08><01> As long as you're aware<FF03>of it, you'll be fine.<FF03>You're one strong guy.<FF02><FF01>
-2612	199:0x1ccc	E0:2627	<FF08><01> What's wrong?<FF03>Hurry up and go.<FF02><FF04><FF08><01> Your friends are waiting.<FF03>Seeya, self.<FF02><FF01>
+2607	199:0x19e4	E0:2622	<FF08><01>: ...If you made it this far,<FF03>it means there's some hope for you.<FF02><FF04>Alright, self...<FF03>Go do the best you can.<FF02><FF01>
+2608	199:0x1a24	E0:2623	<FF08><01>:<FF03>...Someone seems to be aiming to take<FF03>your place, but that won't happen.<FF02><FF04>Your will is rooted nice and deep.<FF03>You have a good grip on yourself.<FF02><FF01>
+2609	199:0x1a94	E0:2624	<FF08><01>: Here, take this.<FF02><FF04>I think you can handle it.<FF02><FF04>It's the key to awakening<FF03>the strongest Persona<FF03>sealed deep in your soul.<FF02><FF04>Ask that old geezer<FF03>Igor how to use it.<FF02><FF04>But... don't forget.<FF03>The "me" you see here is still you.<FF02><FF04>As long as you're aware of it,<FF03>you'll be fine. You're one strong guy.<FF02><FF01>
+2610	199:0x1b4c	E0:2625	<FF08><01>: Here, take these.<FF02><FF04>I think you and the girl<FF03>can handle them.<FF02><FF04>They're keys to awakening<FF03>the strongest Personas<FF03>sealed deep in one's soul.<FF02><FF04>Ask that old geezer<FF03>Igor how to use them.<FF02><FF04>But... don't forget.<FF03>The "me" you see here is still you.<FF02><FF04>As long as you're aware of it,<FF03>you'll be fine. You're one strong guy.<FF02><FF01>
+2611	199:0x1c0c	E0:2626	<FF08><01>: Here, take these.<FF02><FF04>I think you and your friends<FF03>can handle them.<FF02><FF04>They're keys to awakening<FF03>the strongest Personas<FF03>sealed deep in one's soul.<FF02><FF04>Ask that old geezer<FF03>Igor how to use them.<FF02><FF04>But... don't forget.<FF03>The "me" you see here is still you.<FF02><FF04>As long as you're aware of it,<FF03>you'll be fine. You're one strong guy.<FF02><FF01>
+2612	199:0x1ccc	E0:2627	<FF08><01>:<FF03>What's wrong? Hurry up and go.<FF03>Your friends are waiting. Seeya, self.<FF02><FF01>
 2613	199:0x1cf8	E0:2628	Maki: So it's not just me...<FF03>Everyone has different selves.<FF02><FF01>
 2614	199:0x1d24	E0:2629	Maki: Let's get out of here.<FF03>I don't like that other <FF07><01>.<FF02><FF01>
 2615	199:0x1d48	E0:2630	Obtained Rosetta Stone.<FF02><FF01>
@@ -2620,7 +2620,7 @@ id	pos	psp	en
 2618	199:0x1dec	E0:2633	Obtained Rosetta Stone,<FF03>Pasque Flower, Purified Water...<FF02><FF04>...Amber Glasses,<FF03>and Judgement Contract.<FF02><FF01>
 2619	199:0x1e48	E0:2634	Obtained Rosetta Stone,<FF03>Pasque Flower, Purified Water...<FF02><FF04>...Amber Glasses, and Victorian Rune.<FF02><FF01>
 2620	199:0x1ea4	E0:2635	Obtained Rosetta Stone,<FF03>Pasque Flower, Purified Water...<FF02><FF04>...Amber Glasses, and Stuffed Deer.<FF02><FF01>
-2621	199:0x1ef8	E0:2636	<FF08><01> Will you shut up and let<FF03>me alone? Get outta here already.<FF02><FF01>
+2621	199:0x1ef8	E0:2636	<FF08><01>:<FF03>Will you shut up and let me alone?<FF03>Get outta here already.<FF02><FF01>
 2622	199:0x1f18	E0:2637	It's the Atlus fighting game,<FF03>Groove On Fight. You haven't<FF03>seen this game in years...<FF02><FF01>
 2623	200:0x1150	E0:2638	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 2624	200:0x117c	E0:2639	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
@@ -2629,10 +2629,10 @@ id	pos	psp	en
 2627	201:0x155c	E0:2642	Maki: ......<FF02><FF01>
 2628	201:0x156c	E0:2643	Maki: Hold it right there! Where do<FF03>you think you're running off to?<FF03>There's nowhere left to hide!<FF02><FF01>
 2629	201:0x15a8	E0:2644	Maki:<FF03>Those countless bubbles... Each one,<FF03>a different person's consciousness...<FF02><FF04>People's minds are nothing more than<FF03>fragile bubbles born from this sea...<FF02><FF04>I was a consciousness that should<FF03>never have been born...<FF02><FF04>If you'd been born first, my life would<FF03>have turned out much differently...<FF02><FF01>
-2630	201:0x165c	E0:2645	Maki: Stop that!<FF03>I don't want to hear that kind<FF03>of talk from my own mouth!<FF02><FF04>Did you ever try to change?<FF03>How? All you did was hide<FF03>under the sheets and cry!<FF02><FF04>But now's our chance!<FF03>We can change along with Masao,<FF03>Kei, Reiji... And <FF07><01>...<FF02><FF04>Doesn't looking at those guys make<FF03>you feel like nothing is impossible?<FF03>You just have to get over yourself!<FF02><FF01>
-2631	201:0x1748	E0:2646	Maki: Stop that!<FF03>I don't want to hear that kind<FF03>of talk from my own mouth!<FF02><FF04>Did you ever try to change?<FF03>How? All you did was hide<FF03>under the sheets and cry!<FF02><FF04>But now's our chance!<FF03>We can change along with Masao,<FF03>Kei, Elly... And <FF07><01>...<FF02><FF04>Doesn't looking at those guys make<FF03>you feel like nothing is impossible?<FF03>You just have to get over yourself!<FF02><FF01>
-2632	201:0x1834	E0:2647	Maki: Stop that!<FF03>I don't want to hear that kind<FF03>of talk from my own mouth!<FF02><FF04>Did you ever try to change?<FF03>How? All you did was hide<FF03>under the sheets and cry!<FF02><FF04>But now's our chance!<FF03>We can change along with Masao,<FF03>Kei, Hidehiko... And <FF07><01>...<FF02><FF04>Doesn't looking at those guys make<FF03>you feel like nothing is impossible?<FF03>You just have to get over yourself!<FF02><FF01>
-2633	201:0x1920	E0:2648	Maki: Stop that!<FF03>I don't want to hear that kind<FF03>of talk from my own mouth!<FF02><FF04>Did you ever try to change?<FF03>How? All you did was hide<FF03>under the sheets and cry!<FF02><FF04>But now's our chance!<FF03>We can change along with Masao,<FF03>Kei, Yuka... And <FF07><01>...<FF02><FF04>Doesn't looking at those guys make<FF03>you feel like nothing is impossible?<FF03>You just have to get over yourself!<FF02><FF01>
+2630	201:0x165c	E0:2645	Maki: Stop that!<FF03>I don't want to hear that kind<FF03>of talk from my own mouth!<FF02><FF04>Did you ever try to change? How?<FF03>All you did was hide under<FF03>the sheets and cry!<FF02><FF04>But now's our chance!<FF03>We can change along with Masao,<FF03>Kei, Reiji... And <FF07><01>...<FF02><FF04>Doesn't looking at those guys make<FF03>you feel like nothing is impossible?<FF03>You just have to get over yourself!<FF02><FF01>
+2631	201:0x1748	E0:2646	Maki: Stop that!<FF03>I don't want to hear that kind<FF03>of talk from my own mouth!<FF02><FF04>Did you ever try to change? How?<FF03>All you did was hide under<FF03>the sheets and cry!<FF02><FF04>But now's our chance!<FF03>We can change along with Masao,<FF03>Kei, Elly... And <FF07><01>...<FF02><FF04>Doesn't looking at those guys make<FF03>you feel like nothing is impossible?<FF03>You just have to get over yourself!<FF02><FF01>
+2632	201:0x1834	E0:2647	Maki: Stop that!<FF03>I don't want to hear that kind<FF03>of talk from my own mouth!<FF02><FF04>Did you ever try to change? How?<FF03>All you did was hide under<FF03>the sheets and cry!<FF02><FF04>But now's our chance!<FF03>We can change along with Masao,<FF03>Kei, Hidehiko... And <FF07><01>...<FF02><FF04>Doesn't looking at those guys make<FF03>you feel like nothing is impossible?<FF03>You just have to get over yourself!<FF02><FF01>
+2633	201:0x1920	E0:2648	Maki: Stop that!<FF03>I don't want to hear that kind<FF03>of talk from my own mouth!<FF02><FF04>Did you ever try to change? How?<FF03>All you did was hide under<FF03>the sheets and cry!<FF02><FF04>But now's our chance!<FF03>We can change along with Masao,<FF03>Kei, Yuka... And <FF07><01>...<FF02><FF04>Doesn't looking at those guys make<FF03>you feel like nothing is impossible?<FF03>You just have to get over yourself!<FF02><FF01>
 2634	201:0x1a0c	E0:2649	Maki: ......<FF02><FF01>
 2635	201:0x1a1c	E0:2650	Maki: I won't run away anymore...<FF03>I'll own up to the mistakes I've made!<FF02><FF01>
 2636	201:0x1a50	E0:2651	Maki: ...You should take this...<FF03>You can use it to enter<FF03>the Avidya World, where Pandora is.<FF02><FF04>I... really didn't want you<FF03>to see me this way, <FF07><01>...<FF02><FF01>
@@ -2709,7 +2709,7 @@ id	pos	psp	en
 2707	210:0x3750	E0:2722	What do you say?<FF03><FF0E><11><FF01>
 2708	210:0x3764	E0:2723	Trish: Okay!<FF02><FF01>
 2709	210:0x3778	E0:2724	Trish: Umm, with the going rate<FF03>for healing... And all of you<FF03>put together...<FF02><FF01>
-2710	210:0x37b0	E0:2725	It'll be 8,000 yen.<FF03>That's okay, right?<FF02><FF03><FF0E><00><FF01>
+2710	210:0x37b0	E0:2725	It'll be 8,000 yen. Okay?<FF03><FF0E><00><FF01>
 2711	210:0x37cc	E0:2726	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 2712	210:0x380c	E0:2727	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
 2713	210:0x3844	E0:2728	Need anything else?<FF03><FF0E><00><FF01>
@@ -2719,11 +2719,11 @@ id	pos	psp	en
 2717	210:0x3924	E0:2732	Trish:<FF03>You called me out for no reason!?<FF03>Boo to that! Get outta here!<FF02><FF01>
 2718	211:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 2719	211:0x5388	E0:2734	Igor: Welcome to the Velvet Room...<FF02><FF01>
-2720	211:0x53ac	E0:2735	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+2720	211:0x53ac	E0:2735	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 2721	211:0x53c8	E0:2736	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 2722	211:0x53f4	E0:2737	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 2723	211:0x5414	E0:2738	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-2724	211:0x5438	E0:2739	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+2724	211:0x5438	E0:2739	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 2725	211:0x5450	E0:2740	Igor: Well then... Farewell...<FF02><FF01>
 2726	211:0x5468	E0:2741	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 2727	211:0x5614	E0:2742	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>

@@ -16,13 +16,13 @@ id	pos	psp	en
 14	1:0x2b28	E1:14	Ms. Saeko: Jokes? Look around you.<FF03>Hahaha... you think this is a joke?<FF02><FF04>Beautiful, isn't it?<FF03>A peaceful, perfectly still landscape.<FF02><FF04>You'll all be dressed in ice and stay<FF03>beautiful forever. So come on over...<FF02><FF01>
 15	1:0x2bc8	E1:15	Ayase: What are you saying!?<FF03>You're our teacher! This is just...<FF02><FF01>
 16	1:0x2c04	E1:16	Ms. Saeko: Oh, what a lovely girl.<FF02><FF04>Hahaha... Come closer, girl,<FF03>and I'll give you ageless beauty.<FF02><FF01>
-17	1:0x2c50	E1:17	Yukino:<FF03>Don't do it, Yuka! It's the mask...<FF03>It must have taken her over!<FF02><FF04>Okay, monster, you lay one finger<FF03>on Ms. Saeko and your ass is grass!<FF02><FF01>
+17	1:0x2c50	E1:17	Yukino: Don't do it, Yuka!<FF03>It's the mask...<FF03>It must have taken her over!<FF02><FF04>Okay, monster, you lay one finger<FF03>on Ms. Saeko and your ass is grass!<FF02><FF01>
 18	1:0x2cd4	E1:18	Mask: "Taken her over"?<FF03>That's not very nice.<FF02><FF04>Tell me, who was it<FF03>who undid the seal on the mask?<FF03>Who put it on without thinking twice?<FF02><FF04>Not to mention... isn't it rude to go<FF03>around calling people monsters?<FF02><FF04>I think I'd prefer... the Snow Queen.<FF03>Very fitting for this mask,<FF03>isn't it? Hahaha...<FF02><FF01>
 19	1:0x2db0	E1:19	Yukino: Can it!<FF03>What do you want with Ms. Saeko!?<FF02><FF01>
 20	1:0x2dd8	E1:20	Snow Queen: What a reckless young<FF03>lady. Your teacher is going to be...<FF03>a sacrifice.<FF02><FF01>
 21	1:0x2e00	E1:21	Ayase: A... A sacrifice?<FF02><FF01>
 22	1:0x2e18	E1:22	Snow Queen: Yes, that's right.<FF02><FF04>Saeko is so full of hope.<FF03>If I offer her as a sacrifice...<FF02><FF04>The stillness of despair--the<FF03>Eternal Night--is sure to descend.<FF02><FF01>
-23	1:0x2e70	E1:23	Ayase: Huh...? Does that mean<FF03>everyone's gonna get frozen?<FF03>I hate being cold!<FF02><FF01>
+23	1:0x2e70	E1:23	Ayase: Huh...?<FF03>Does that mean everyone's<FF03>gonna get frozen? I hate being cold!<FF02><FF01>
 24	1:0x2ea4	E1:24	Yukino: That's not gonna happen!<FF03>I'm taking back Ms. Saeko, right now!<FF02><FF01>
 25	1:0x2ecc	E1:25	Snow Queen: Well, aren't you brave?<FF03>Fine... you can have her.<FF02><FF04>But Saeko will stay frozen<FF03>as long as she has this mask on.<FF02><FF04>So will the school.<FF02><FF04>And don't think you can leave.<FF03>You'll see what I mean if you<FF03>walk around a little.<FF02><FF04>There's no escape.<FF03>You only have two choices...<FF02><FF04>Welcome the Eternal Night,<FF03>or take the mask off Saeko.<FF02><FF01>
 26	1:0x2f98	E1:26	Ayase: Okay, but like,<FF03>how do we do that?<FF02><FF01>
@@ -98,7 +98,7 @@ id	pos	psp	en
 96	5:0x1874	E1:97	Elly: Excuse me, but...<FF03>what were you talking<FF03>about just now?<FF02><FF04>I didn't mean to eavesdrop,<FF03>but I heard my name come up.<FF02><FF01>
 97	5:0x18bc	E1:98	Yukino: Oh, we were just saying you<FF03>probably know a lot about demons.<FF02><FF04>Here's what's going on...<FF02><FF01>
 98	5:0x18f8	E1:99	Elly:<FF03>Ahh, so that's how the school became<FF03>encased in ice. Fascinating...<FF02><FF04>I love stories of monsters<FF03>and ghosts, but this...<FF02><FF04>I never imagined I'd witness<FF03>multiple supernatural events,<FF03>one after another.<FF02><FF01>
-99	5:0x1978	E1:100	Something must be done<FF03>before it's too late.<FF02><FF03><FF0E><07><FF01>
+99	5:0x1978	E1:100	Something<FF03>must be done before it's too late.<FF02><FF03><FF0E><07><FF01>
 100	5:0x1990	E1:102	Elly: All right!<FF02><FF04>Let's search for the Mirror Shards<FF03>and save Ms. Saeko.<FF02><FF01>
 101	5:0x19d0	E1:103	Elly: All right!<FF02><FF04>Let's search for the Mirror Shards<FF03>and save Ms. Saeko.<FF02><FF04>By the way, I heard something<FF03>happened at the cafeteria.<FF03>Have you been yet?<FF02><FF01>
 102	5:0x1a3c	E1:104	Elly:<FF03>If there's anything I can do to help,<FF03>please don't hesitate to ask.<FF02><FF01>
@@ -143,7 +143,7 @@ id	pos	psp	en
 141	7:0x1668	E1:143	Ayase: You... what?<FF02><FF01>
 142	7:0x1674	E1:144	Toro: I LOVE YOOOOOOOOU!<FF03>I ...<FF05><40><00> I LOVE YOU SOOOOO MUUUUUCH!<FF02><FF04>P-P-P-P-Please go out with me!<FF02><FF04>I p-p-p-promise I'll make you hippy...<FF05><12><00><FF03>I, I mean, happy.<FF02><FF04>*pant* *pant*<FF02><FF01>
 143	7:0x1720	E1:145	Ayase: .<FF05><12><00>.<FF05><12><00>.<FF05><12><00>.<FF05><12><00>.<FF05><12><00>.<FF05><12><00> No. Way. Like, have you<FF03>even seen yourself in a mirror?<FF02><FF04>Alright, I'm out. Laters.<FF02><FF01>
-144	7:0x178c	E1:146	Toro: W-Wait! Please! Why not?<FF03>What's so bad about me?<FF02><FF01>
+144	7:0x178c	E1:146	Toro: W-Wait! Please!<FF03>Why not? What's so bad about me?<FF02><FF01>
 145	7:0x17cc	E1:147	Ayase: Let's see, you're fat, slow,<FF03>wear the same clothes every day,<FF03>laugh at everything...<FF02><FF04>And I've never seen you do anything<FF03>but eat, sleep, and read manga.<FF02><FF04>I like, don't get what keeps you<FF03>going. Everything about you sucks!<FF02><FF01>
 146	7:0x1858	E1:148	Toro: H-How can you be so mean...?<FF03>Well... what do YOU like, Yuka?<FF02><FF04>You laugh when you aren't happy,<FF03>you hang out with people<FF03>you think are stupid...<FF02><FF04>Are you scared to be alone?<FF02><FF01>
 147	7:0x18e0	E1:149	Ayase: Sh-Shut up!<FF03>Stop acting like you got it<FF03>all figured out, butterball!<FF02><FF01>
@@ -157,7 +157,7 @@ id	pos	psp	en
 155	9:0x1810	E1:157	Elly: They don't seem to be hostile;<FF03>at least, not for now.<FF02><FF01>
 156	9:0x1834	E1:158	Yukino:<FF03>Looks like our little<FF03>squad's getting bigger.<FF02><FF01>
 157	9:0x184c	E1:159	Brown: Uh... squad?<FF02><FF01>
-158	9:0x1860	E1:160	Ayase: Huh? You mean you<FF03>and <FF07><01> are like,<FF03>you know... and stuff?<FF02><FF01>
+158	9:0x1860	E1:160	Ayase: Huh?<FF03>You mean you and <FF07><01><FF03>are like, you know... and stuff?<FF02><FF01>
 159	9:0x1890	E1:161	Nanjo: I'm... not sure<FF03>what you're trying to say, but...<FF02><FF04>There's definitely<FF03>a commonality between us.<FF02><FF01>
 160	9:0x18c0	E1:162	Yukino: Yeah, after we had<FF03>those weird dreams,<FF03>we can summon... Personas, was it?<FF02><FF01>
 161	9:0x18f8	E1:163	Elly: For some reason,<FF03>only those who dreamed of<FF03>the butterfly acquired the power.<FF02><FF04>It also seems related to<FF03>the demon invasion somehow...<FF02><FF01>
@@ -243,7 +243,7 @@ id	pos	psp	en
 241	12:0x2924	E1:246	Brown:<FF03>There's no need to worry<FF03>as long as you follow me!<FF02><FF01>
 242	12:0x2950	E1:247	Brown: Hey, uh, how about we stop<FF03>talking about Nemesis Tower, huh?<FF03>Sound good?<FF02><FF01>
 243	12:0x2978	E1:248	Elly: It's so cold... At this rate,<FF03>we'll all freeze to death.<FF02><FF01>
-244	12:0x29a4	E1:249	Something must be done<FF03>before it's too late.<FF02><FF03><FF0E><07><FF01>
+244	12:0x29a4	E1:249	Something<FF03>must be done before it's too late.<FF02><FF03><FF0E><07><FF01>
 245	12:0x29bc	E1:251	Elly: All right!<FF02><FF04>Let's search for the Mirror Shards<FF03>and save Ms. Saeko.<FF02><FF01>
 246	12:0x29fc	E1:252	Elly: All right!<FF02><FF04>Let's search for the Mirror Shards<FF03>and save Ms. Saeko.<FF02><FF04>By the way, I heard something<FF03>happened at the cafeteria.<FF03>Have you been yet?<FF02><FF01>
 247	12:0x2a68	E1:253	Elly:<FF03>If there's anything I can do to help,<FF03>please don't hesitate to ask.<FF02><FF01>
@@ -620,7 +620,7 @@ id	pos	psp	en
 618	66:0x165c	E1:626	Nanjo: This may be difficult<FF03>for you to grasp, but we saved<FF03>both of your lives.<FF02><FF04>We aren't asking for your thanks,<FF03>and we certainly don't<FF03>deserve your anger.<FF02><FF04>I'm sure you understand, mm?<FF02><FF04>That aside... do either of you know<FF03>anything about the Mirror Shards?<FF02><FF04>They're of the utmost<FF03>importance to us.<FF02><FF01>
 619	66:0x1728	E1:627	Brown: Oh, come ON, Mr. Hanya!<FF03>How can you call us delinquents!?<FF02><FF04>With a little support from these guys,<FF03>I was risking my neck out there!<FF02><FF04>All to save you and Ms. Ooishi!<FF02><FF04>Wouldn't you say I deserve<FF03>at least a little thank-you for that?<FF02><FF04>Then again... I guess it's all right.<FF03>What's done is done!<FF02><FF04>What's important now<FF03>is these Mirror Shards.<FF03>Do either of you know anything?<FF02><FF04>They're super important<FF03>if me and these guys are<FF03>gonna save the school.<FF02><FF04>Any ideas? Any at all...?<FF02><FF01>
 620	66:0x186c	E1:628	Vice-Principal Hanya:<FF03>Mirror Shards!?<FF05><1E><00> Oh, you mean this?<FF02><FF04>I don't know how it got there,<FF03>but that was in my suit pocket.<FF02><FF04>It ripped a hole in the inside!<FF02><FF04>My daughter starts her job soon!<FF03>I can't ask her to mend<FF03>my clothes anymore...<FF02><FF04>*ahem* Th-That wasn't relevant.<FF02><FF04>Forget what I just said!<FF03>Anyway, just what are you<FF03>kids planning to do with this!?<FF02><FF04>Nothing good, I'll bet!<FF03>Absolutely not!<FF05><1E><00> Out of the question!<FF02><FF04>Something tells me if I give you this,<FF03>the situation will get even worse!<FF02><FF01>
-621	66:0x19e8	E1:629	Ayase: Seriously!?<FF05><1E><00> Are you for real!?<FF03>What's wrong with you, cueball!?<FF02><FF04>You didn't even let us explain, and<FF03>you're gonna say no just like that!?<FF03>Ooooooh, you're the worst!<FF02><FF04>This is why everyone likes<FF03>the principal and NO ONE likes you!<FF02><FF04>Now gimme that shard, chromedome!<FF05><1E><00><FF03>Hand it over, baldo! GIVE IT,<FF03>damn you! You assface!<FF02><FF01>
+621	66:0x19e8	E1:629	Ayase: Seriously!?<FF05><1E><00> Are you for real!?<FF03>What's wrong with you, cueball!?<FF02><FF04>You didn't even let us explain, and<FF03>you're gonna say no just like that!?<FF03>Ooooooh, you're the worst!<FF02><FF04>This is why everyone likes<FF03>the principal and NO ONE likes you!<FF02><FF04>Now gimme that shard,<FF03>chromedome!<FF05><1E><00> Hand it over, baldo!<FF03>GIVE IT, damn you! You assface!<FF02><FF01>
 622	66:0x1adc	E1:630	Principal Ooishi: Now, now, Yuka.<FF03>Ladies shouldn't use such language.<FF02><FF04>Mr. Hanya, please refrain<FF03>from scolding the students<FF03>before hearing them out.<FF02><FF04>I'd like you to make an effort<FF03>to put yourself on their level.<FF02><FF04>It should be clear to you then<FF03>whether the students<FF03>are lying or not.<FF02><FF04>You can decide whether to<FF03>scold them after that.<FF02><FF04>Now I ask that you please<FF03>give them this Mirror Shard.<FF02><FF04>I can see in their eyes that<FF03>they haven't done anything wrong.<FF02><FF01>
 623	66:0x1c0c	E1:631	Vice-Principal Hanya: ...<FF05><1E><00>...Okay.<FF03>Here you go.<FF02><FF01>
 624	66:0x1c3c	E1:632	Obtained a Mirror Shard.<FF02><FF01>
@@ -785,7 +785,7 @@ id	pos	psp	en
 783	86:0x2448	E1:791	Nanjo: Eh? A trap!?<FF02><FF04>*gasp* That letter...!<FF03>What was that all about? Answer me!<FF02><FF01>
 784	86:0x2490	E1:792	Brown: Huh? We fell into your trap?<FF03>Whaddaya mean?<FF02><FF04>Hey, you better explain this to us!<FF02><FF01>
 785	86:0x24e0	E1:793	Ayase: Whatever, ugly!<FF02><FF04>You're just bluffing 'cause<FF03>we got the Mirror Shard<FF03>and you're outta luck!<FF02><FF04>You're such a liar!<FF03>Just let us beat you already!<FF02><FF01>
-786	86:0x255c	E1:794	Michiko: Hohohohohoho!<FF02><FF04>Allow me to tell you<FF03>how this Nemesis Tower works...<FF02><FF04>Anger, hatred despair...<FF02><FF04>The tower absorbs those negative<FF03>emotions as energy,<FF03>allowing it to grow...<FF02><FF04>You might say the tower<FF03>is a living thing.<FF02><FF04>By tapping into the energy<FF03>stored within the tower...<FF02><FF04>There's no limit to<FF03>how strong I can become!<FF02><FF04>Do you understand now?<FF02><FF04>Hmhmhm... The anguish and rage that<FF03>hideous pair felt as they suffered...<FF02><FF04>The hatred and despair<FF03>that filled their hearts<FF03>as their friends forsook them...<FF02><FF04>Hahahahah!<FF03>Those emotions have fueled<FF03>the incredible power I wield! Ohohoho!<FF02><FF04>Low-born fools!<FF03>Curse your own selfish nature!<FF02><FF01>
+786	86:0x255c	E1:794	Michiko: Hohohohohoho!<FF02><FF04>Allow me to tell you<FF03>how this Nemesis Tower works...<FF02><FF04>Anger, hatred despair...<FF02><FF04>The tower absorbs those negative<FF03>emotions as energy,<FF03>allowing it to grow...<FF02><FF04>You might say the tower<FF03>is a living thing.<FF02><FF04>By tapping into the energy<FF03>stored within the tower...<FF02><FF04>There's no limit to<FF03>how strong I can become!<FF02><FF04>Do you understand now?<FF02><FF04>Hmhmhm... The anguish and rage that<FF03>hideous pair felt as they suffered...<FF02><FF04>The hatred and despair<FF03>that filled their hearts<FF03>as their friends forsook them...<FF02><FF04>Hahahahah! Those emotions have<FF03>fueled the incredible power I wield!<FF03>Ohohoho!<FF02><FF04>Low-born fools!<FF03>Curse your own selfish nature!<FF02><FF01>
 787	86:0x2760	E1:795	Nanjo: Her power is indeed immense...!<FF02><FF04>Why, she's merely standing there, and<FF03>I can feel her strength from here!<FF02><FF04>It must be true, then,<FF03>that Kenta and Tsutomu's<FF03>anger and hatred fuel her...<FF02><FF04>How could I have let this happen!?<FF02><FF01>
 788	86:0x2828	E1:796	Elly:<FF03>What!? Ngh... This malevolent force...!<FF02><FF04>It's coming from Michiko!?<FF03>But she's only standing in place!<FF02><FF04>The anger and hatred those two felt<FF03>as they were tortured...<FF02><FF04>Their emotions must have<FF03>enhanced her power beyond<FF03>what we can imagine...!<FF02><FF04>We've been utterly outfoxed!<FF02><FF01>
 789	86:0x28f4	E1:797	Michiko: Now, presumptuous whelps...<FF02><FF04>For your crimes in defying the Snow<FF03>Queen and making light of me...<FF02><FF04>I'll add you to the ranks<FF03>of those who have betrayed me!<FF02><FF04>Show me your anger! Your regret!<FF03>Your despair! Your hatred!<FF02><FF04>All your most negative emotions!<FF02><FF04>Bare your human nature and face me!<FF02><FF04>You'll no doubt make<FF03>a splendid feast!<FF02><FF04>Hmhmhmhm...<FF02><FF04>Hahahahahahaha!<FF03>Ohohohohohohohohoho!<FF02><FF04>Lord Nemesis... Be the shield<FF03>which protects me!<FF02><FF04>Lord Nemesis... Be the sword<FF03>which vanquishes my foe!<FF03>Heed my call! Go! Nemesis!<FF02><FF01>
@@ -874,7 +874,7 @@ id	pos	psp	en
 872	98:0x1edc	E1:880	Nanjo: Hmph, as if we'd fall for that.<FF03>We know all about your shenanigans.<FF03>Just ignore her, Yukino.<FF02><FF01>
 873	98:0x1f0c	E1:881	Brown:<FF03>A present!? L-Let's take it, Yukino!<FF02><FF04>No one that pretty can be a crook.<FF03>True fact! C'mon, we can trust Yuriko!<FF02><FF01>
 874	98:0x1f7c	E1:882	Ayase: Huh. Sure, it looks like a trap,<FF03>but it sounds kinda fun!<FF02><FF04>I don't wanna chicken out...<FF03>Okay, go ahead and tell us what's up!<FF02><FF01>
-875	98:0x1fcc	E1:883	Yuriko: Woo-hoo! I knew you'd get it!<FF03>I think you and me could be<FF03>best friends forever!<FF02><FF04>Oh, I'm so happy!<FF02><FF01>
+875	98:0x1fcc	E1:883	Yuriko: Woo-hoo!<FF03>I knew you'd get it! I think you<FF03>and me could be best friends forever!<FF02><FF04>Oh, I'm so happy!<FF02><FF01>
 876	98:0x2014	E1:884	Nanjo:<FF03>Stop blathering and get to the point.<FF03>Your mannerisms give me a migraine.<FF02><FF01>
 877	98:0x2044	E1:885	Elly: I'm sure you're up to no<FF03>good with this so-called "gift."<FF03>It's a waste of time.<FF02><FF01>
 878	98:0x207c	E1:886	Yuriko: Awww, why can't<FF03>you be more positive?<FF03>I know you're all thrilled!<FF02><FF04>Oh well, I'll go ahead and explain<FF03>the gift! Put your listening hat on!<FF02><FF04>One of these two chests has a Mirror<FF03>Shard! We all like those, don't we?<FF02><FF04>And I'm feeling<FF03>super-duper-generous today,<FF03>so you can try your luck for free!<FF02><FF04>But! You only get one try!<FF02><FF04>And of course,<FF03>something bad will happen<FF03>if you open the wrong one. Uh-oh!<FF02><FF04>Whee! Sounds fun, huh?<FF03>Good luck! Teeheeheehee!<FF02><FF01>
@@ -1017,7 +1017,7 @@ id	pos	psp	en
 1015	119:0x1a70	E1:1023	Elly:<FF03>She may be even more of a danger<FF03>to herself than Tsutomu...<FF02><FF01>
 1016	119:0x1aac	E1:1024	Mariko:<FF03>Huh? You wanna know if anything<FF03>used to be in that chest over there?<FF02><FF04>Yeah, sure! This broken mirror piece!<FF03>I can feel strong spiritual<FF03>energy in it.<FF02><FF04>It's gotta be some kinda<FF03>powerful supernatural object.<FF02><FF04>Huh? You want it...? Hmmmm...<FF02><FF04>How 'bout this?<FF03>I'll sell it for 5,000 yen!<FF02><FF04>I found it first, after all...<FF03>It's not such a bad price, is it?<FF02><FF01>
 1017	119:0x1b7c	E1:1025	Buy the Mirror Shard from her?<FF03><FF0E><00><FF01>
-1018	119:0x1b98	E1:1026	Mariko: Thanks! I've been taking<FF03>roll after roll of pics here,<FF03>so I'm nearly out of film.<FF02><FF04>Now I can buy some more!<FF02><FF01>
+1018	119:0x1b98	E1:1026	Mariko: Thanks!<FF03>I've been taking roll after roll<FF03>of pics here, so I'm nearly out of film.<FF02><FF04>Now I can buy some more!<FF02><FF01>
 1019	119:0x1bf8	E1:1027	Obtained a Mirror Shard.<FF02><FF01>
 1020	119:0x1c10	E1:1028	Mariko: Oh, so you don't want it?<FF02><FF04>That's cool. I'll just send it<FF03>to the Atlantis News<FF03>and have 'em appraise it!<FF02><FF01>
 1021	119:0x1c5c	E1:1029	Mariko:<FF03>Huh? You don't even have 5,000 yen?<FF03>*sigh* That's just sad!<FF02><FF04>Tell you what, you can work<FF03>it off as my assistant.<FF02><FF04>What? No way...?<FF02><FF04>Then fork over the cash!<FF02><FF01>
@@ -1273,7 +1273,7 @@ id	pos	psp	en
 1271	160:0x223c	E1:1279	Yukino: Alright, thanks.<FF02><FF01>
 1272	160:0x2254	E1:1280	Yukino: I got mine already.<FF02><FF01>
 1273	160:0x2270	E1:1281	Yukino: We don't have many Ambrosia.<FF03>You should think hard<FF03>about who gets a totem.<FF02><FF01>
-1274	160:0x22ac	E1:1282	Yukino:<FF03>You want me to have one?<FF03><FF0E><00><FF01>
+1274	160:0x22ac	E1:1282	Yukino: You want me to have one?<FF03><FF0E><00><FF01>
 1275	160:0x22c4	E1:1283	Yukino: You're the boss.<FF03>Whatever you say is cool with me.<FF02><FF01>
 1276	160:0x22e8	E1:1284	I just wanna be clear...<FF03>You're cool with this, right?<FF02><FF03><FF0E><00><FF01>
 1277	160:0x22fc	E1:1285	Raiho:<FF03>Hee-ho! Here's your Bisonskin Drums!<FF02><FF01>
@@ -1283,7 +1283,7 @@ id	pos	psp	en
 1281	160:0x238c	E1:1289	Ayase: Uhhh... I have one, remember?<FF02><FF01>
 1282	160:0x23a4	E1:1290	Ayase: Why'd it have to be<FF03>a stuffed CORPSE!?<FF03>This is terrible!<FF02><FF01>
 1283	160:0x23c8	E1:1291	Ayase: Totems are valuable, right?<FF02><FF01>
-1284	160:0x23e8	E1:1292	Ayase:<FF03>Ooh, I can have one?<FF03><FF0E><00><FF01>
+1284	160:0x23e8	E1:1292	Ayase: Ooh, I can have one?<FF03><FF0E><00><FF01>
 1285	160:0x2400	E1:1293	Ayase: Fine! Jerk!<FF02><FF01>
 1286	160:0x2410	E1:1294	Awesome! No fooling?<FF03><FF0E><00><FF01>
 1287	160:0x2424	E1:1295	Raiho:<FF03>Hee-ho! Here's your Stuffed Deer!<FF02><FF01>
@@ -1293,7 +1293,7 @@ id	pos	psp	en
 1291	160:0x24c4	E1:1299	Nanjo: Yamaoka...<FF02><FF01>
 1292	160:0x24d4	E1:1300	Nanjo: Yamaoka...<FF02><FF01>
 1293	160:0x24e4	E1:1301	Nanjo:<FF03>I'm sure you're aware that<FF03>Ambrosia is a rare commodity.<FF02><FF01>
-1294	160:0x250c	E1:1302	Nanjo:<FF03>Am I to understand that you<FF03>want me to have a totem?<FF02><FF03><FF0E><00><FF01>
+1294	160:0x250c	E1:1302	Nanjo:<FF03>Am I to understand that<FF03>you want me to have a totem?<FF02><FF03><FF0E><00><FF01>
 1295	160:0x2528	E1:1303	Nanjo: I leave it to your judgement.<FF02><FF01>
 1296	160:0x2548	E1:1304	If you're sure...<FF03><FF0E><00><FF01>
 1297	160:0x2558	E1:1305	Raiho:<FF03>Hee-ho! Here's your Amber Glasses!<FF02><FF01>
@@ -1303,7 +1303,7 @@ id	pos	psp	en
 1301	160:0x2634	E1:1309	Elly: I'm taking good care of mine.<FF02><FF01>
 1302	160:0x2650	E1:1310	Elly: Thank you!<FF02><FF01>
 1303	160:0x2670	E1:1311	Elly: Totems are quite valuable.<FF03>It's best that you give them<FF03>to those most in need.<FF02><FF01>
-1304	160:0x26ac	E1:1312	Elly:<FF03>You'd like me to have one?<FF03><FF0E><00><FF01>
+1304	160:0x26ac	E1:1312	Elly: You'd like me to have one?<FF03><FF0E><00><FF01>
 1305	160:0x26c4	E1:1313	Elly: By all means,<FF03>take your time before deciding.<FF02><FF01>
 1306	160:0x26e0	E1:1314	Are you certain?<FF03><FF0E><00><FF01>
 1307	160:0x26f4	E1:1315	Raiho: Hee-ho!<FF03>Here's your Judgement Contract!<FF02><FF01>
@@ -1313,7 +1313,7 @@ id	pos	psp	en
 1311	160:0x2788	E1:1319	Brown: Heheh, right on!<FF02><FF01>
 1312	160:0x27a4	E1:1320	Brown: Heheh... this is great!<FF02><FF01>
 1313	160:0x27c0	E1:1321	Brown: Look, I'm the leader here.<FF03>Therefore, I deserve a totem.<FF03>Got that?<FF02><FF01>
-1314	160:0x27f4	E1:1322	Brown:<FF03>So this one's mine.<FF03><FF0E><00><FF01>
+1314	160:0x27f4	E1:1322	Brown: So this one's mine.<FF03><FF0E><00><FF01>
 1315	160:0x2810	E1:1323	Brown: C'mon... you won't reconsider?<FF02><FF01>
 1316	160:0x2828	E1:1324	R-Really? You don't mind?<FF03><FF0E><00><FF01>
 1317	160:0x283c	E1:1325	Raiho:<FF03>Hee-ho! Here's your Victorian Rune!<FF02><FF01>

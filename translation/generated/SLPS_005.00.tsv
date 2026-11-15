@@ -1245,3 +1245,5 @@ id	pos	psp	en
 1243	0x3b220	EBOOT:277618	The "ideal" Maki's compact
 1244	0x3b238	EBOOT:2775dc	The "awakened" Maki's compact
 1245	0x3b250	EBOOT:27759e	A special item used in fusion
+1246	0x3dd60	EBOOT:2c06ec	Stop hiding.|Yes, it's safe here.<FF03>True, but...|I don't really know.
+1247	0x3dd84	EBOOT:2c06ec	For myself.|Just 'cause.<FF03>For everyone.|That's how it went.

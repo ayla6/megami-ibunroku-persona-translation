@@ -441,6 +441,19 @@ def main(name, max_units=None, verbose=True):
     # across the dead unit as if it were not there (`live[k]`: the unit the
     # stream reaches k from) instead of losing the piece with it.
     praw = list(praw)
+    # THE PSP'S OWN SLIPS, fixed at the source (translation/psp_errata.tsv):
+    # a row names the unit by its start, the pointer its generated row carries
+    errata = toolbelt.psp_errata(f'pack/talk/{name}')
+    if errata:
+        from codec import box_replace
+        at = {toolbelt.psp_loc(hex(st)): k for k, (st, _b) in enumerate(uspans)}
+        for loc, find, replace in errata:
+            if loc not in at:
+                toolbelt.fail(f'psp_errata.tsv: pack/talk/{name}:{loc} names no PSP-US unit')
+            try:
+                praw[at[loc]] = box_replace(praw[at[loc]], find, replace)
+            except ValueError as err:
+                toolbelt.fail(f'psp_errata.tsv: pack/talk/{name}:{loc}: {err}')
     # The first pointer, like all the others, may point inside the first
     # message. Its prefix follows the FF-filled pointer-table padding.
     with open(os.path.join(PUS, f'{name}.BIN'), 'rb') as f:

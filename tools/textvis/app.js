@@ -315,12 +315,17 @@ function wordDiff(a, b){
   const ta=a.split(/(\s+|<[^>]+>)/).filter(x=>x), tb=b.split(/(\s+|<[^>]+>)/).filter(x=>x);
   const n=ta.length, m=tb.length;
   if(n*m>400000) return esc(b);
-  const L=[...Array(n+1)].map(()=>new Uint16Array(m+1));
+  // a WORD outweighs a space or a code in the alignment: when only a line
+  // break moved ("Did you<FF03>really" -> "Did you really<FF03>"), the words
+  // stay matched and the break shows as moved - never the word struck on one
+  // side of it and inserted on the other
+  const wt=t=>/^(\s+|<[^>]+>)$/.test(t)?1:3;
+  const L=[...Array(n+1)].map(()=>new Uint32Array(m+1));
   for(let i=n-1;i>=0;i--) for(let j=m-1;j>=0;j--)
-    L[i][j]=ta[i]===tb[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);
+    L[i][j]=ta[i]===tb[j]?L[i+1][j+1]+wt(ta[i]):Math.max(L[i+1][j],L[i][j+1]);
   let i=0,j=0,out='';
   while(i<n||j<m){
-    if(i<n&&j<m&&ta[i]===tb[j]){out+=esc(ta[i]);i++;j++;}
+    if(i<n&&j<m&&ta[i]===tb[j]&&L[i][j]===L[i+1][j+1]+wt(ta[i])){out+=esc(ta[i]);i++;j++;}
     else if(j<m&&(i>=n||L[i][j+1]>=L[i+1][j])){out+='<ins>'+esc(tb[j])+'</ins>';j++;}
     else {out+='<del>'+esc(ta[i])+'</del>';i++;}
   }

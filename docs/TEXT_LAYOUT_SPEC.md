@@ -837,7 +837,11 @@ Glue (what a break may not fall inside):
   mid-clause than the flow's best, the label's line counting twice (`Girl in
   black: No way, Jose! / I don't listen to anybody but my / Daddy! Try...`,
   never `No way, Jose! I don't / listen to anybody but my Daddy!`). A box that opens on a
-  carried timed pause keeps the boundary as its line break.
+  carried timed pause keeps the boundary as its line break. A seam where the
+  first box ends its sentence AND the Japanese breaks its line right after
+  that sentence is the original's own sentence line, worth eight points
+  (`Yukino: Lady! / Whew... she only passed out.` - the JA breaks after
+  おばさん！): our boxes follow the Japanese, the PSP's boxes are only a hint.
 - **Possessives bind to their noun softly** (`its their his her our your
   my`): a line may break between one and its noun (`at the end of her /
   journey was`), at two rhythm points (`NOUN_SPLIT`, below), so only a
@@ -983,6 +987,30 @@ one click. That is the whole model; "four clicks in one box" is a bug.
    carries no other code (a name insert or a pause keeps the flow's own
    spacing). The gate then counts the prompt's TEXT lines, never the
    nameplate's: `Agastya Tree:` / the question arms bare.
+   **And the question's last line carries as much of it as fits**
+   (`vwf_wrap.prompt_tail_line`): while the options are up, the box has
+   scrolled so only that line shows above them. The line holds the
+   question - at most `Name: question` - never a piece of the sentence
+   before it: a last line that already starts at a clause is left alone
+   (`His name's Reiji Kido. / Do you know him?`, `As long as I'm having fun
+   now, / who cares about tomorrow?`, never `...having / fun now, who
+   cares...`), and the line never reaches back past the final sentence.
+   Otherwise it starts at the earliest clause boundary inside the final
+   sentence whose rest fits - after punctuation (a vocative's comma, the
+   label's colon) or after the conjunction that opens the clause (`Are you
+   certain that / you want to bring Hidehiko along?`, `<name>, / I could
+   really use a hand!`, `...ask this, but / could you make friends with
+   Reiji?`); and when the final sentence has none, the longest tail that
+   fits, never cut after a subject, an article, a connector or an auxiliary
+   before its subject (`You must / have stuff you're hiding too, right?`,
+   never `Do / you have...`). `that` opens a clause only before a clause,
+   never as a determiner (`give back / that book`). The lines above keep
+   their breaks and only end sooner - unless one would then end on the
+   first word of a new sentence; then the flow lays them out again in the
+   lines the box has left (`Yuko: Um, I hate to ask, but... / Could you
+   tell Maki I'll give back / that book next time I go visit her...?`). A
+   question that fits one line is one. Name inserts are the only codes
+   such a box may hold.
 10. **Which boundaries join is read off the two Japanese scripts.** PSP-JP
    and PSX-JP are the same script, so their page texts align
    (`port_story.box_joins`: codes and labels stripped, width-normalised). A

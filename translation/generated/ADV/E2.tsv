@@ -7,7 +7,7 @@ id	pos	psp	en
 5	0:0x1504	E2:5	Vice-Principal Hanya: You there!<FF03>I TOLD you not to use this place!<FF02><FF01>
 6	1:0x1484	E2:6	Meek girl: Um... <FF07><01>?<FF03>You're going to the hospital, right...?<FF02><FF01>
 7	1:0x14b4	E2:7	<FF06><03>Yuko Himeno<FF03>Maki's friend. She works<FF03>part-time to support her family.<FF02><FF01>
-8	1:0x14f8	E2:8	Yuko: Um, I hate to ask, but... Could<FF03>you tell Maki I'll give back that book<FF03>next time I go visit her...?<FF02><FF03><FF0E><01><FF01>
+8	1:0x14f8	E2:8	Yuko: Um, I hate to ask, but...<FF03>Could you tell Maki I'll give back<FF03>that book next time I go visit her...?<FF02><FF03><FF0E><01><FF01>
 9	1:0x1554	E2:9	Yuko: U-Um, thanks.<FF03>I'm sorry to ask you to go out<FF03>of your way like that...<FF02><FF01>
 10	1:0x1580	E2:10	Yuko: O-Oh... Um, sorry I asked...<FF03>It's okay, don't worry about it...!<FF02><FF01>
 11	1:0x15b8	E2:11	Yukino:<FF03><FF07><01>! Don't be such an asshole!<FF02><FF01>
@@ -284,12 +284,12 @@ id	pos	psp	en
 282	45:0x13f0	E2:282	Nurse: I hear things<FF03>are going haywire outside.<FF03>If I wasn't on the job, I'd go look!<FF02><FF01>
 283	45:0x1824	E2:283	Doctor: You must go to St. Hermelin.<FF03>I heard they finished<FF03>building the new gym.<FF02><FF04>Must be easier to use<FF03>than the old one, huh?<FF02><FF01>
 284	45:0x1864	E2:284	Doctor:<FF03>Wish I could find a nurse<FF03>who was less of a ditz.<FF02><FF01>
-285	45:0x1888	E2:285	Doctor:<FF03>Now, what can I do for you?<FF03><FF0E><11><FF01>
+285	45:0x1888	E2:285	Doctor: Now, what can I do for you?<FF03><FF0E><11><FF01>
 286	45:0x18a0	E2:286	Doctor:<FF03>Alright... For all of you together...<FF02><FF01>
-287	45:0x18bc	E2:287	Doctor:<FF03>My fee is 800 yen. Well?<FF03><FF0E><00><FF01>
+287	45:0x18bc	E2:287	Doctor: My fee is 800 yen. Well?<FF03><FF0E><00><FF01>
 288	45:0x18e4	E2:288	Doctor:<FF03>Hm. Then let's get you patched up.<FF02><FF01>
 289	45:0x1900	E2:289	Doctor: There, that should do it.<FF02><FF01>
-290	45:0x1918	E2:290	Doctor:<FF03>Anything else you need?<FF03><FF0E><00><FF01>
+290	45:0x1918	E2:290	Doctor: Anything else you need?<FF03><FF0E><00><FF01>
 291	45:0x1934	E2:291	Doctor: Well, I can't treat<FF03>patients who can't pay.<FF03>Come back when you have the fee.<FF02><FF01>
 292	45:0x1974	E2:292	Doctor: I hope you don't run<FF03>into trouble later because you<FF03>cheaped out on treatment.<FF02><FF01>
 293	45:0x19a4	E2:293	Doctor: All right.<FF03>If anything else comes up,<FF03>I recommend you see me immediately.<FF02><FF01>
@@ -378,12 +378,12 @@ id	pos	psp	en
 376	49:0x13d4	E2:376	Nurse: My, does that uniform bring<FF03>back memories! I'm a St. Hermelin grad<FF03>myself.<FF02><FF04>One of my old classmates,<FF03>Saeko Takami, teaches there now.<FF03>Do you know her?<FF02><FF04>Haha, that Saeko...<FF03>I never pictured her as a teacher!<FF02><FF01>
 377	49:0x1454	E2:377	Nurse: I heard an injured woman<FF03>was walking around here.<FF03>Did the demons get her...?<FF02><FF01>
 378	49:0x1870	E2:378	Doctor: Well, hello there.<FF03>Your friends are...<FF03>interesting as always.<FF02><FF01>
-379	49:0x18a0	E2:379	Doctor:<FF03>Now, what can I do for you?<FF03><FF0E><11><FF01>
+379	49:0x18a0	E2:379	Doctor: Now, what can I do for you?<FF03><FF0E><11><FF01>
 380	49:0x18b8	E2:380	Doctor:<FF03>Alright... For all of you together...<FF02><FF01>
-381	49:0x18d4	E2:381	Doctor:<FF03>My fee is 800 yen. Well?<FF03><FF0E><00><FF01>
+381	49:0x18d4	E2:381	Doctor: My fee is 800 yen. Well?<FF03><FF0E><00><FF01>
 382	49:0x18fc	E2:382	Doctor:<FF03>Hm. Then let's get you patched up.<FF02><FF01>
 383	49:0x1918	E2:383	Doctor: There, that should do it.<FF02><FF01>
-384	49:0x1930	E2:384	Doctor:<FF03>Anything else you need?<FF03><FF0E><00><FF01>
+384	49:0x1930	E2:384	Doctor: Anything else you need?<FF03><FF0E><00><FF01>
 385	49:0x194c	E2:385	Doctor: Well, I can't treat<FF03>patients who can't pay.<FF03>Come back when you have the fee.<FF02><FF01>
 386	49:0x198c	E2:386	Doctor: I hope you don't run<FF03>into trouble later because you<FF03>cheaped out on treatment.<FF02><FF01>
 387	49:0x19bc	E2:387	Doctor: All right.<FF03>If anything else comes up,<FF03>I recommend you see me immediately.<FF02><FF01>
@@ -399,12 +399,12 @@ id	pos	psp	en
 397	50:0x13a4	E2:397	Nurse: I heard a bear appeared.<FF03>Was it brown? White?<FF03>Plump and hairy?<FF02><FF01>
 398	50:0x17c8	E2:398	Doctor: It's another nice day out.<FF02><FF01>
 399	50:0x17e0	E2:399	Doctor:<FF03>Do bears appear even in this town...?<FF02><FF01>
-400	50:0x1804	E2:400	Doctor:<FF03>Now, what can I do for you?<FF03><FF0E><11><FF01>
+400	50:0x1804	E2:400	Doctor: Now, what can I do for you?<FF03><FF0E><11><FF01>
 401	50:0x181c	E2:401	Doctor:<FF03>Alright... For all of you together...<FF02><FF01>
-402	50:0x1838	E2:402	Doctor:<FF03>My fee is 1,000 yen. Well?<FF03><FF0E><00><FF01>
+402	50:0x1838	E2:402	Doctor: My fee is 1,000 yen. Well?<FF03><FF0E><00><FF01>
 403	50:0x1860	E2:403	Doctor:<FF03>Hm. Then let's get you patched up.<FF02><FF01>
 404	50:0x187c	E2:404	Doctor: There, that should do it.<FF02><FF01>
-405	50:0x1894	E2:405	Doctor:<FF03>Anything else you need?<FF03><FF0E><00><FF01>
+405	50:0x1894	E2:405	Doctor: Anything else you need?<FF03><FF0E><00><FF01>
 406	50:0x18b0	E2:406	Doctor: Well, I can't treat<FF03>patients who can't pay.<FF03>Come back when you have the fee.<FF02><FF01>
 407	50:0x18f0	E2:407	Doctor: I hope you don't run<FF03>into trouble later because you<FF03>cheaped out on treatment.<FF02><FF01>
 408	50:0x1920	E2:408	Doctor: All right.<FF03>If anything else comes up,<FF03>I recommend you see me immediately.<FF02><FF01>
@@ -441,11 +441,11 @@ id	pos	psp	en
 439	54:0x16c4	E2:439	Customer: The TV and radio<FF03>don't work, and my parents<FF03>are hiding under their futons.<FF02><FF04>I guess in the end, you have to take<FF03>matters into your own hands.<FF02><FF01>
 440	55:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 441	55:0x5388	E2:441	Igor: Welcome to the Velvet Room...<FF02><FF01>
-442	55:0x53ac	E2:442	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+442	55:0x53ac	E2:442	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 443	55:0x53c8	E2:443	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 444	55:0x53f4	E2:444	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 445	55:0x5414	E2:445	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-446	55:0x5438	E2:446	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+446	55:0x5438	E2:446	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 447	55:0x5450	E2:447	Igor: Well then... Farewell...<FF02><FF01>
 448	55:0x5468	E2:448	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 449	55:0x5614	E2:449	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -459,11 +459,11 @@ id	pos	psp	en
 457	56:0x12e4	E2:457	Yukino:<FF03>Looks like Yuko isn't home yet.<FF02><FF01>
 458	57:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 459	57:0x5388	E2:459	Igor: Welcome to the Velvet Room...<FF02><FF01>
-460	57:0x53ac	E2:460	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+460	57:0x53ac	E2:460	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 461	57:0x53c8	E2:443	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 462	57:0x53f4	E2:462	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 463	57:0x5414	E2:463	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-464	57:0x5438	E2:464	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+464	57:0x5438	E2:464	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 465	57:0x5450	E2:465	Igor: Well then... Farewell...<FF02><FF01>
 466	57:0x5468	E2:466	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 467	57:0x5614	E2:467	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -656,12 +656,12 @@ id	pos	psp	en
 654	104:0x13f4	E2:654	Ayase: Wow... SEBEC really<FF03>was as bad as they say...<FF02><FF01>
 655	104:0x1418	E2:655	Nurse: I hear things<FF03>are going haywire outside.<FF03>If I wasn't on the job, I'd go look!<FF02><FF01>
 656	104:0x1828	E2:656	Doctor:<FF03>Wish I could find a nurse<FF03>who was less of a ditz.<FF02><FF01>
-657	104:0x184c	E2:657	Doctor:<FF03>Now, what can I do for you?<FF03><FF0E><11><FF01>
+657	104:0x184c	E2:657	Doctor: Now, what can I do for you?<FF03><FF0E><11><FF01>
 658	104:0x1864	E2:658	Doctor:<FF03>Alright... For all of you together...<FF02><FF01>
-659	104:0x1880	E2:659	Doctor:<FF03>My fee is 800 yen. Well?<FF03><FF0E><00><FF01>
+659	104:0x1880	E2:659	Doctor: My fee is 800 yen. Well?<FF03><FF0E><00><FF01>
 660	104:0x18a8	E2:660	Doctor:<FF03>Hm. Then let's get you patched up.<FF02><FF01>
 661	104:0x18c4	E2:661	Doctor: There, that should do it.<FF02><FF01>
-662	104:0x18dc	E2:662	Doctor:<FF03>Anything else you need?<FF03><FF0E><00><FF01>
+662	104:0x18dc	E2:662	Doctor: Anything else you need?<FF03><FF0E><00><FF01>
 663	104:0x18f8	E2:663	Doctor: Well, I can't treat<FF03>patients who can't pay.<FF03>Come back when you have the fee.<FF02><FF01>
 664	104:0x1938	E2:664	Doctor: I hope you don't run<FF03>into trouble later because you<FF03>cheaped out on treatment.<FF02><FF01>
 665	104:0x1968	E2:665	Doctor: All right.<FF03>If anything else comes up,<FF03>I recommend you see me immediately.<FF02><FF01>
@@ -793,12 +793,12 @@ id	pos	psp	en
 791	109:0x13ac	E2:791	Ayase: He's not gonna give us a shot,<FF03>is he? I HATE shots.<FF02><FF01>
 792	109:0x13d8	E2:792	Nurse: I heard an injured woman<FF03>was walking around not long ago.<FF03>I wonder if she fell prey to demons...<FF02><FF01>
 793	109:0x17dc	E2:793	Doctor: Well, hello there.<FF03>Your friends are...<FF03>interesting as always.<FF02><FF01>
-794	109:0x180c	E2:794	Doctor:<FF03>Now, what can I do for you?<FF03><FF0E><11><FF01>
+794	109:0x180c	E2:794	Doctor: Now, what can I do for you?<FF03><FF0E><11><FF01>
 795	109:0x1824	E2:795	Doctor:<FF03>Alright... For all of you together...<FF02><FF01>
-796	109:0x1840	E2:796	Doctor:<FF03>My fee is 800 yen. Well?<FF03><FF0E><00><FF01>
+796	109:0x1840	E2:796	Doctor: My fee is 800 yen. Well?<FF03><FF0E><00><FF01>
 797	109:0x1868	E2:797	Doctor:<FF03>Hm. Then let's get you patched up.<FF02><FF01>
 798	109:0x1884	E2:798	Doctor: There, that should do it.<FF02><FF01>
-799	109:0x189c	E2:799	Doctor:<FF03>Anything else you need?<FF03><FF0E><00><FF01>
+799	109:0x189c	E2:799	Doctor: Anything else you need?<FF03><FF0E><00><FF01>
 800	109:0x18b8	E2:800	Doctor: Well, I can't treat<FF03>patients who can't pay.<FF03>Come back when you have the fee.<FF02><FF01>
 801	109:0x18f8	E2:801	Doctor: I hope you don't run<FF03>into trouble later because you<FF03>cheaped out on treatment.<FF02><FF01>
 802	109:0x1928	E2:802	Doctor: All right.<FF03>If anything else comes up,<FF03>I recommend you see me immediately.<FF02><FF01>
@@ -812,12 +812,12 @@ id	pos	psp	en
 810	110:0x12e4	E2:810	Nurse: I heard a bear appeared.<FF03>Was it brown? White?<FF03>Plump and hairy?<FF02><FF01>
 811	110:0x1708	E2:811	Doctor: It's another nice day out.<FF02><FF01>
 812	110:0x1720	E2:812	Doctor:<FF03>Do bears appear even in this town...?<FF02><FF01>
-813	110:0x1744	E2:813	Doctor:<FF03>Now, what can I do for you?<FF03><FF0E><11><FF01>
+813	110:0x1744	E2:813	Doctor: Now, what can I do for you?<FF03><FF0E><11><FF01>
 814	110:0x175c	E2:814	Doctor:<FF03>Alright... For all of you together...<FF02><FF01>
-815	110:0x1778	E2:815	Doctor:<FF03>My fee is 1,000 yen. Well?<FF03><FF0E><00><FF01>
+815	110:0x1778	E2:815	Doctor: My fee is 1,000 yen. Well?<FF03><FF0E><00><FF01>
 816	110:0x17a0	E2:816	Doctor:<FF03>Hm. Then let's get you patched up.<FF02><FF01>
 817	110:0x17bc	E2:817	Doctor: There, that should do it.<FF02><FF01>
-818	110:0x17d4	E2:818	Doctor:<FF03>Anything else you need?<FF03><FF0E><00><FF01>
+818	110:0x17d4	E2:818	Doctor: Anything else you need?<FF03><FF0E><00><FF01>
 819	110:0x17f0	E2:819	Doctor: Well, I can't treat<FF03>patients who can't pay.<FF03>Come back when you have the fee.<FF02><FF01>
 820	110:0x1830	E2:820	Doctor: I hope you don't run<FF03>into trouble later because you<FF03>cheaped out on treatment.<FF02><FF01>
 821	110:0x1860	E2:821	Doctor: All right.<FF03>If anything else comes up,<FF03>I recommend you see me immediately.<FF02><FF01>
@@ -1041,7 +1041,7 @@ id	pos	psp	en
 1039	161:0x3750	E2:1039	What do you say?<FF03><FF0E><11><FF01>
 1040	161:0x3764	E2:1040	Trish: Okay!<FF02><FF01>
 1041	161:0x3778	E2:1041	Trish: Umm, with the going rate<FF03>for healing... And all of you<FF03>put together...<FF02><FF01>
-1042	161:0x37b0	E2:1042	It'll be 2,000 yen.<FF03>That's okay, right?<FF02><FF03><FF0E><00><FF01>
+1042	161:0x37b0	E2:1042	It'll be 2,000 yen. Okay?<FF03><FF0E><00><FF01>
 1043	161:0x37cc	E2:1043	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 1044	161:0x380c	E2:1044	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
 1045	161:0x3844	E2:1045	Need anything else?<FF03><FF0E><00><FF01>
@@ -1398,11 +1398,11 @@ id	pos	psp	en
 1396	186:0x1750	E2:1396	Clerk: Hey, if you open that door,<FF03>all the frogs I keep will<FF03>come rushing out!<FF02><FF04>Hahah! You fell for it!<FF02><FF01>
 1397	187:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1398	187:0x5388	E2:1398	Igor: Welcome to the Velvet Room...<FF02><FF01>
-1399	187:0x53ac	E2:1399	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+1399	187:0x53ac	E2:1399	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 1400	187:0x53c8	E2:1400	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 1401	187:0x53f4	E2:1401	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 1402	187:0x5414	E2:1402	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-1403	187:0x5438	E2:1403	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+1403	187:0x5438	E2:1403	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 1404	187:0x5450	E2:1404	Igor: Well then... Farewell...<FF02><FF01>
 1405	187:0x5468	E2:1405	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 1406	187:0x5614	E2:1406	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -1485,12 +1485,12 @@ id	pos	psp	en
 1483	192:0x1368	E2:1483	Nurse:<FF03>The reason I'm so happy is all<FF03>because of the Harem Queen.<FF02><FF04>Let's all give thanks to the Queen!<FF03>Hooray for the Queen!<FF02><FF01>
 1484	192:0x13d4	E2:1484	Nurse: It was never the Queen<FF03>who made me happy!<FF02><FF04>But now who am I supposed to thank?<FF02><FF01>
 1485	192:0x17e8	E2:1485	Doctor: What, did you catch a cold?<FF03>Then go sleep it off!<FF02><FF01>
-1486	192:0x1810	E2:1486	Doctor:<FF03>Now, what can I do for you?<FF03><FF0E><11><FF01>
+1486	192:0x1810	E2:1486	Doctor: Now, what can I do for you?<FF03><FF0E><11><FF01>
 1487	192:0x1828	E2:1487	Doctor:<FF03>Alright... For all of you together...<FF02><FF01>
-1488	192:0x1844	E2:1488	Doctor:<FF03>My fee is 1,500 yen. Well?<FF03><FF0E><00><FF01>
+1488	192:0x1844	E2:1488	Doctor: My fee is 1,500 yen. Well?<FF03><FF0E><00><FF01>
 1489	192:0x186c	E2:1489	Doctor:<FF03>Hm. Then let's get you patched up.<FF02><FF01>
 1490	192:0x1888	E2:1490	Doctor: There, that should do it.<FF02><FF01>
-1491	192:0x18a0	E2:1491	Doctor:<FF03>Anything else you need?<FF03><FF0E><00><FF01>
+1491	192:0x18a0	E2:1491	Doctor: Anything else you need?<FF03><FF0E><00><FF01>
 1492	192:0x18bc	E2:1492	Doctor: Well, I can't treat<FF03>patients who can't pay.<FF03>Come back when you have the fee.<FF02><FF01>
 1493	192:0x18fc	E2:1493	Doctor: I hope you don't run<FF03>into trouble later because you<FF03>cheaped out on treatment.<FF02><FF01>
 1494	192:0x192c	E2:1494	Doctor: All right.<FF03>If anything else comes up,<FF03>I recommend you see me immediately.<FF02><FF01>
@@ -1570,11 +1570,11 @@ id	pos	psp	en
 1568	196:0x11a8	E2:1568	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 1569	197:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1570	197:0x5388	E2:1570	Igor: Welcome to the Velvet Room...<FF02><FF01>
-1571	197:0x53ac	E2:1571	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+1571	197:0x53ac	E2:1571	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 1572	197:0x53c8	E2:1572	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 1573	197:0x53f4	E2:1573	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 1574	197:0x5414	E2:1574	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-1575	197:0x5438	E2:1575	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+1575	197:0x5438	E2:1575	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 1576	197:0x5450	E2:1576	Igor: Well then... Farewell...<FF02><FF01>
 1577	197:0x5468	E2:1577	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 1578	197:0x5614	E2:1578	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -1821,12 +1821,12 @@ id	pos	psp	en
 1819	211:0x1680	E2:1820	Elly:<FF03>We don't have much time<FF03>to waste, <FF07><01>.<FF02><FF01>
 1820	211:0x169c	E2:1821	Reiji:<FF03>I'm pretty sure we didn't<FF03>have any business here.<FF02><FF04>Seriously... You're either a brave<FF03>man or an idiot. I don't get you.<FF02><FF04>Then again, no matter how you<FF03>slice it, you're an interesting guy.<FF02><FF01>
 1821	212:0x163c	E2:1822	Doctor:<FF03>Wish I could find a nurse<FF03>who was less of a ditz.<FF02><FF01>
-1822	212:0x1660	E2:1823	Doctor:<FF03>Now, what can I do for you?<FF03><FF0E><11><FF01>
+1822	212:0x1660	E2:1823	Doctor: Now, what can I do for you?<FF03><FF0E><11><FF01>
 1823	212:0x1678	E2:1824	Doctor:<FF03>Alright... For all of you together...<FF02><FF01>
-1824	212:0x1694	E2:1825	Doctor:<FF03>My fee is 1,500 yen. Well?<FF03><FF0E><00><FF01>
+1824	212:0x1694	E2:1825	Doctor: My fee is 1,500 yen. Well?<FF03><FF0E><00><FF01>
 1825	212:0x16bc	E2:1826	Doctor:<FF03>Hm. Then let's get you patched up.<FF02><FF01>
 1826	212:0x16d8	E2:1827	Doctor: There, that should do it.<FF02><FF01>
-1827	212:0x16f0	E2:1828	Doctor:<FF03>Anything else you need?<FF03><FF0E><00><FF01>
+1827	212:0x16f0	E2:1828	Doctor: Anything else you need?<FF03><FF0E><00><FF01>
 1828	212:0x170c	E2:1829	Doctor: Well, I can't treat<FF03>patients who can't pay.<FF03>Come back when you have the fee.<FF02><FF01>
 1829	212:0x174c	E2:1830	Doctor: I hope you don't run<FF03>into trouble later because you<FF03>cheaped out on treatment.<FF02><FF01>
 1830	212:0x177c	E2:1831	Doctor: All right.<FF03>If anything else comes up,<FF03>I recommend you see me immediately.<FF02><FF01>
@@ -1843,11 +1843,11 @@ id	pos	psp	en
 1841	212:0x19cc	E2:1842	Reiji: What's wrong?<FF03>Hope you're not tired,<FF03>'cause we got a long ways to go.<FF02><FF01>
 1842	213:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 1843	213:0x5388	E2:1844	Igor: Welcome to the Velvet Room...<FF02><FF01>
-1844	213:0x53ac	E2:1845	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+1844	213:0x53ac	E2:1845	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 1845	213:0x53c8	E2:1846	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 1846	213:0x53f4	E2:1847	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 1847	213:0x5414	E2:1848	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-1848	213:0x5438	E2:1849	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+1848	213:0x5438	E2:1849	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 1849	213:0x5450	E2:1850	Igor: Well then... Farewell...<FF02><FF01>
 1850	213:0x5468	E2:1851	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 1851	213:0x5614	E2:1852	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -1857,7 +1857,7 @@ id	pos	psp	en
 1855	214:0x3784	E2:1856	What do you say?<FF03><FF0E><11><FF01>
 1856	214:0x3798	E2:1857	Trish: Okay!<FF02><FF01>
 1857	214:0x37ac	E2:1858	Trish: Umm, with the going rate<FF03>for healing... And all of you<FF03>put together...<FF02><FF01>
-1858	214:0x37e4	E2:1859	It'll be 3,000 yen.<FF03>That's okay, right?<FF02><FF03><FF0E><00><FF01>
+1858	214:0x37e4	E2:1859	It'll be 3,000 yen. Okay?<FF03><FF0E><00><FF01>
 1859	214:0x3800	E2:1860	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 1860	214:0x3840	E2:1861	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
 1861	214:0x3878	E2:1862	Need anything else?<FF03><FF0E><00><FF01>
@@ -1874,12 +1874,12 @@ id	pos	psp	en
 1872	215:0x1344	E2:1873	Reiji:<FF03>I want to get this all over<FF03>with as soon as I can.<FF02><FF04>Don't you have someone waiting<FF03>for you to come home, too?<FF02><FF01>
 1873	215:0x138c	E2:1874	Nurse:<FF03>It's dangerous outside, so don't<FF03>go wandering around too much!<FF02><FF01>
 1874	215:0x177c	E2:1875	Doctor:<FF03>I hope the demons go away soon...<FF02><FF04>Then again, that might put<FF03>us out of business. Haha!<FF02><FF01>
-1875	215:0x17c0	E2:1876	Doctor:<FF03>Now, what can I do for you?<FF03><FF0E><11><FF01>
+1875	215:0x17c0	E2:1876	Doctor: Now, what can I do for you?<FF03><FF0E><11><FF01>
 1876	215:0x17d8	E2:1877	Doctor:<FF03>Alright... For all of you together...<FF02><FF01>
-1877	215:0x17f4	E2:1878	Doctor:<FF03>My fee is 1,500 yen. Well?<FF03><FF0E><00><FF01>
+1877	215:0x17f4	E2:1878	Doctor: My fee is 1,500 yen. Well?<FF03><FF0E><00><FF01>
 1878	215:0x181c	E2:1879	Doctor:<FF03>Hm. Then let's get you patched up.<FF02><FF01>
 1879	215:0x1838	E2:1880	Doctor: There, that should do it.<FF02><FF01>
-1880	215:0x1850	E2:1881	Doctor:<FF03>Anything else you need?<FF03><FF0E><00><FF01>
+1880	215:0x1850	E2:1881	Doctor: Anything else you need?<FF03><FF0E><00><FF01>
 1881	215:0x186c	E2:1882	Doctor: Well, I can't treat<FF03>patients who can't pay.<FF03>Come back when you have the fee.<FF02><FF01>
 1882	215:0x18ac	E2:1883	Doctor: I hope you don't run<FF03>into trouble later because you<FF03>cheaped out on treatment.<FF02><FF01>
 1883	215:0x18dc	E2:1884	Doctor: All right.<FF03>If anything else comes up,<FF03>I recommend you see me immediately.<FF02><FF01>

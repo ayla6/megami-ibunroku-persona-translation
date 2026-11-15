@@ -324,6 +324,16 @@ def sync_boot():
     import toolbelt
     opts = {}
     packed = toolbelt.read_be(0x2C06EC, 0x2C1094)
+    # THE PSP'S OWN SLIPS AND OVER-WIDE WORDINGS, fixed at the source
+    # (translation/psp_errata.tsv): a row names the extract line that holds
+    # this table, and its find must occur once in the whole table
+    ext = toolbelt.read_extracted('psp_us', 'EBOOT')
+    line = max((r['pos'] for r in ext if int(r['pos'], 16) <= 0x2C06EC),
+               key=lambda pos: int(pos, 16))
+    if any(loc == toolbelt.psp_loc(line) for loc, _f, _r in toolbelt.psp_errata('EBOOT')):
+        sep = '\ue000'
+        fixed = toolbelt.errata_text('EBOOT', line, sep.join(u for _p, u in packed))
+        packed = [(p, u) for (p, _u), u in zip(packed, fixed.split(sep))]
     for _p, unit in packed:
         for i, text in enumerate(unit.split('<FF03>')):
             if text.strip():

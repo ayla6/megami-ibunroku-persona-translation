@@ -192,8 +192,18 @@ def us_parts(raw, ja=None):
                     structural = is_heading(' '.join(words[start + 1:]))
                 words.append(US_BRK + ('STRUCT03' if structural else 'FF%02X' % op))
             elif op == 0x1B:
+                # the label runs to its line break, and a name insert is part
+                # of it: '<FF1B><FF08>'s voice<FF03>' is the label
+                # "<name>'s voice", not an empty label before speech that
+                # opens on a name
                 lab = []
-                while i + 1 < n and raw[i] != 0xFF:
+                while i + 1 < n:
+                    if raw[i] == 0xFF:
+                        if raw[i + 1] in (0x07, 0x08, 0x0F):
+                            lab.append('<FF%02X><01>' % raw[i + 1])
+                            i += 2
+                            continue
+                        break
                     u = struct.unpack_from('>H', raw, i)[0]
                     i += 2
                     ch = US_MAP.get(u, '')
@@ -1082,7 +1092,21 @@ def paginate(en, line='<FF03>', page='<FF04>', wait='<FF02>', per=3):
     return s, invented, nonsent
 
 
-def _rejoin(first, second, line):
+def _ja_breaks_after(ja, n):
+    """Does the Japanese break its line right after its n-th sentence end
+    ("ゆきの：おばさん！<FF03>…よかった" breaks after the first)? The label's
+    colon is no sentence end; closing brackets ride with their mark."""
+    t = re.sub(r'^[^<：]{1,12}：', '', ja or '')
+    t = re.sub(r'<FF0[5-9A-F]>(?:<[0-9A-F]{2}>)*', '', t)
+    count = 0
+    for m in re.finditer(r'[！？。!?]+[」』）)]*', t):
+        count += 1
+        if count == n:
+            return t[m.end():].startswith(('<FF03>', '<FF02><FF03>'))
+    return False
+
+
+def _rejoin(first, second, line, ja=None):
     """The lines of two joined boxes, laid out as ONE box.
 
     Once the press between them is gone the boundary is just a word gap, so
@@ -1121,7 +1145,16 @@ def _rejoin(first, second, line):
             at += len(x.split())
             cut.add(at)
         if seam in cut and len(ls) <= 3:
-            if (best and r[:6] == best[:6] and r[6] - best[6] < SEAM_POINTS
+            # a first box that ends its sentence WHERE THE JAPANESE BREAKS
+            # ITS LINE is the original's own sentence line ("Yukino: Lady! /
+            # Whew... she only passed out." - the JA breaks after おばさん！):
+            # our boxes follow the Japanese, so it is worth far more than a
+            # box the PSP alone ended
+            sentences = sum(1 for w in ' '.join(first).split() if vwf_wrap.sent_end(w))
+            worth = (SENTENCE_SEAM_POINTS
+                     if vwf_wrap.sent_end(first[-1]) and _ja_breaks_after(ja, sentences)
+                     else SEAM_POINTS)
+            if (best and r[:6] == best[:6] and r[6] - best[6] < worth
                     and _cuts(ls) <= _cuts(lines)):
                 return ls
             break
@@ -1137,16 +1170,17 @@ def _cuts(lines):
     for i, x in enumerate(lines[:-1]):
         if vwf_wrap.stop_cost(x) == 4:
             label = i == 0 and re.match(r'\s*' + vwf_wrap.LABEL_RE,
-                                        re.sub(r'<[^>]+>', '', x))
+                                        vwf_wrap.label_plain(x))
             n += 2 if label else 1
     return n
 
 
 SEAM_POINTS = 1.0   # what a joined box's seam is worth as a line break
+SENTENCE_SEAM_POINTS = 8.0   # ... when it ends a sentence where the Japanese breaks its line
 
 
 def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1,
-                joins=None):
+                joins=None, ja=None):
     """JOIN TWO AUTHORED BOXES WHEN THE JOIN IS FREE.
 
     The PSP's boxes are the author's and are kept - but two of them often fit
@@ -1224,7 +1258,9 @@ def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1,
                   and not scr and not merged[-1][1]
                   and len(merged[-1][0]) + len(vis) <= 3)
         if joined:
-            merged[-1] = (_rejoin(merged[-1][0], vis, line), [])
+            pages = (ja or '').split('<FF04>')
+            merged[-1] = (_rejoin(merged[-1][0], vis, line,
+                                  pages[min(len(merged) - 1, len(pages) - 1)]), [])
             continue
         merged.append((list(vis), list(scr)))
     out = []
@@ -1689,6 +1725,17 @@ def convert_entry(f, ei):
         segments, flags = us_parts(us_raw, ja=ja)
         toks = psx_tok_raw(psx.box_bytes(k))
         ja_label, toks = split_label(toks)
+        # A NAME INSERT IS A LABEL LIKE ANY NAME: "<FF08>あ：俺はお前さ" is
+        # spoken by the nickname, and the PSP says the same with its own
+        # label ("<FF1B><FF08><FF03>I'm you."), so the box shows "<name>:"
+        # like every speaker - never a box stripped of its speaker
+        if (ja_label is None and len(toks) > 1 and toks[0][0] == 'c'
+                and re.fullmatch(r'<FF0[78F]><[0-9A-F]{2}>', toks[0][1])
+                and toks[1][0] == 't' and toks[1][1].startswith('：')
+                and segments and segments[0][0]
+                and re.search(r'<FF0[78F]>', segments[0][0])):
+            ja_label = toks[0][1] + '：'
+            toks = [('t', toks[1][1][1:])] + toks[2:]
         # hero grunt: the US speaker is the hero name-variable ({surname
         # given} in braces: FF1B 002f..0030, inner glyphs unmapped) while
         # the PSX box is spoken by the name insert itself (FF07+param, no
@@ -1851,7 +1898,7 @@ def convert_entry(f, ei):
         # this box as 1 + its own <FF04> pages, the PSP's boxes are kept unless
         # the pair fits three lines (the count stays in
         # [psx boxes, psp boxes], never smaller than either).
-        en = merge_boxes(en, min_boxes=1 + ja.count('<FF04>'), joins=joins)
+        en = merge_boxes(en, min_boxes=1 + ja.count('<FF04>'), joins=joins, ja=ja)
         # A carried beat that still lands on a box turn is the press itself:
         # the player's button IS the pause there (sentence_pauses).
         en = re.sub(r'(<FF02><FF04>)<FF05><[0-9A-F]{2}><[0-9A-F]{2}>', r'\1', en)

@@ -274,11 +274,15 @@ def read_manual(rel, optional=True):
     return _read(man_path(rel), MAN_COLS, optional)
 
 
-def read_extracted(region, rel, optional=False):
+def read_extracted(region, rel, optional=False, errata=True):
     """Rows (dicts keyed by EXT_COLS) of extracted_text/<region>/<rel>.tsv.
-    PSP-US rows come with translation/psp_errata.tsv applied."""
+    PSP-US rows come with translation/psp_errata.tsv applied - the WORDING.
+    A matcher proving which PSP line is which reads them as the PSP has them
+    (errata=False): an errata row may drop a code the Japanese still carries
+    ("<FF07> and friends were annihilated" -> "The whole party was..."), and
+    the pairing is the PSP's, the correction comes after it."""
     rows = _read(ext_path(region, rel), EXT_COLS, optional)
-    return _errata_rows(rel, rows) if region == 'psp_us' else rows
+    return _errata_rows(rel, rows) if region == 'psp_us' and errata else rows
 
 
 # translation/psp_errata.tsv: corrections to single PSP-US lines that are

@@ -134,11 +134,11 @@ id	pos	psp	en
 132	7:0x19a4	E3:134	Elly: One sees a glimpse<FF03>of humanity's true nature<FF03>during extreme conditions. Haha...<FF02><FF01>
 133	8:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 134	8:0x5388	E3:136	Igor: Welcome to the Velvet Room...<FF02><FF01>
-135	8:0x53ac	E3:137	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+135	8:0x53ac	E3:137	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 136	8:0x53c8	E3:138	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 137	8:0x53f4	E3:139	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 138	8:0x5414	E3:140	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-139	8:0x5438	E3:141	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+139	8:0x5438	E3:141	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 140	8:0x5450	E3:142	Igor: Well then... Farewell...<FF02><FF01>
 141	8:0x5468	E3:143	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 142	8:0x5614	E3:144	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -461,7 +461,7 @@ id	pos	psp	en
 459	45:0x3750	E3:462	What do you say?<FF03><FF0E><11><FF01>
 460	45:0x3764	E3:463	Trish: Okay!<FF02><FF01>
 461	45:0x3778	E3:464	Trish: Umm, with the going rate<FF03>for healing... And all of you<FF03>put together...<FF02><FF01>
-462	45:0x37b0	E3:465	It'll be 8,000 yen.<FF03>That's okay, right?<FF02><FF03><FF0E><00><FF01>
+462	45:0x37b0	E3:465	It'll be 8,000 yen. Okay?<FF03><FF0E><00><FF01>
 463	45:0x37cc	E3:466	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 464	45:0x380c	E3:467	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
 465	45:0x3844	E3:468	Need anything else?<FF03><FF0E><00><FF01>
@@ -471,11 +471,11 @@ id	pos	psp	en
 469	45:0x3924	E3:472	Trish:<FF03>You called me out for no reason!?<FF03>Boo to that! Get outta here!<FF02><FF01>
 470	46:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 471	46:0x5388	E3:474	Igor: Welcome to the Velvet Room...<FF02><FF01>
-472	46:0x53ac	E3:475	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+472	46:0x53ac	E3:475	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 473	46:0x53c8	E3:476	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 474	46:0x53f4	E3:477	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 475	46:0x5414	E3:478	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-476	46:0x5438	E3:479	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+476	46:0x5438	E3:479	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 477	46:0x5450	E3:480	Igor: Well then... Farewell...<FF02><FF01>
 478	46:0x5468	E3:481	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 479	46:0x5614	E3:482	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -548,11 +548,11 @@ id	pos	psp	en
 546	63:0x11a8	E3:549	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 547	64:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 548	64:0x5388	E3:551	Igor: Welcome to the Velvet Room...<FF02><FF01>
-549	64:0x53ac	E3:552	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+549	64:0x53ac	E3:552	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 550	64:0x53c8	E3:553	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 551	64:0x53f4	E3:554	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 552	64:0x5414	E3:555	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-553	64:0x5438	E3:556	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+553	64:0x5438	E3:556	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 554	64:0x5450	E3:557	Igor: Well then... Farewell...<FF02><FF01>
 555	64:0x5468	E3:558	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 556	64:0x5614	E3:559	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -562,7 +562,7 @@ id	pos	psp	en
 560	65:0x3750	E3:563	What do you say?<FF03><FF0E><11><FF01>
 561	65:0x3764	E3:564	Trish: Okay!<FF02><FF01>
 562	65:0x3778	E3:565	Trish: Umm, with the going rate<FF03>for healing... And all of you<FF03>put together...<FF02><FF01>
-563	65:0x37b0	E3:566	It'll be 1,000 yen. That's okay, right?<FF03><FF0E><00><FF01>
+563	65:0x37b0	E3:566	It'll be 1,000 yen. Okay?<FF03><FF0E><00><FF01>
 564	65:0x37cc	E3:567	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 565	65:0x380c	E3:568	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
 566	65:0x3844	E3:569	Need anything else?<FF03><FF0E><00><FF01>
@@ -601,7 +601,7 @@ id	pos	psp	en
 599	69:0x1424	E3:602	Kumi: ......<FF02><FF01>
 600	70:0x10ec	E3:603	Kumi: ...Why is everyone cross at me?<FF03>What did I do?<FF02><FF04>Whether I do or don't do anything,<FF03>it's always like that... All of them...<FF02><FF04>The world around me.<FF03>The people around me.<FF02><FF04>Everyone's so... full of hostility...<FF03>I feel like I don't have any freedom...<FF02><FF04>Do I have to exist in this reality<FF03>with all these other people...?<FF02><FF04>If only there was a gentle world...<FF03>filled with gentle people...<FF02><FF04>A whole world full of kindness and<FF03>generosity... where I could be free...<FF02><FF04>Some dream, huh...?<FF02><FF04>Hah... Yeah, a dream... that only<FF03>happens when I'm asleep in this bed...<FF02><FF04>It's the only free world I have left,<FF03>where no one complains about me...<FF02><FF04>The world of dreams...<FF03>I wish I could just live there...<FF02><FF04>In my dream world, made only for me...<FF02><FF01>
 601	71:0x1158	E3:604	Agastya Tree: Ah. It seems that you<FF03>are rather exhausted, young ones.<FF02><FF04>Halting your journey here to rest for<FF03>the time being may be a wise decision.<FF02><FF04>But I cannot inscribe<FF03>your story onto myself.<FF02><FF04>I am only keeping it for your sake<FF03>until you depart again...<FF03>Do not forget that...<FF02><FF01>
-602	71:0x11fc	E3:605	Agastya Tree:<FF03>Will you put a temporary<FF03>halt to your journey?<FF02><FF03><FF0E><00><FF01>
+602	71:0x11fc	E3:605	Agastya Tree:<FF03>Will you put<FF03>a temporary halt to your journey?<FF02><FF03><FF0E><00><FF01>
 603	71:0x1228	E3:606	Agastya Tree: Young ones...<FF03>I will remember the story<FF03>of your journey for you.<FF02><FF01>
 604	71:0x1258	E3:607	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 605	72:0x118c	E3:608	Yukino: We've come pretty far up.<FF03>I think we're near the end.<FF02><FF04>I better get psyched<FF03>for what's coming!<FF02><FF01>
@@ -632,11 +632,11 @@ id	pos	psp	en
 630	79:0x11a8	E3:633	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 631	80:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 632	80:0x5388	E3:635	Igor: Welcome to the Velvet Room...<FF02><FF01>
-633	80:0x53ac	E3:636	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+633	80:0x53ac	E3:636	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 634	80:0x53c8	E3:637	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 635	80:0x53f4	E3:638	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 636	80:0x5414	E3:639	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-637	80:0x5438	E3:640	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+637	80:0x5438	E3:640	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 638	80:0x5450	E3:641	Igor: Well then... Farewell...<FF02><FF01>
 639	80:0x5468	E3:642	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 640	80:0x5614	E3:643	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -646,7 +646,7 @@ id	pos	psp	en
 644	81:0x3750	E3:647	What do you say?<FF03><FF0E><11><FF01>
 645	81:0x3764	E3:648	Trish: Okay!<FF02><FF01>
 646	81:0x3778	E3:649	Trish: Umm, with the going rate<FF03>for healing... And all of you<FF03>put together...<FF02><FF01>
-647	81:0x37b0	E3:650	It'll be 4,000 yen.<FF03>That's okay, right?<FF02><FF03><FF0E><00><FF01>
+647	81:0x37b0	E3:650	It'll be 4,000 yen. Okay?<FF03><FF0E><00><FF01>
 648	81:0x37cc	E3:651	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 649	81:0x380c	E3:652	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
 650	81:0x3844	E3:653	Need anything else?<FF03><FF0E><00><FF01>
@@ -686,7 +686,7 @@ id	pos	psp	en
 684	86:0x1214	E3:687	Brown: Alright! Looks like<FF03>Michiko's room is coming up soon!<FF02><FF04>Might as well check<FF03>our equipment, huh?<FF02><FF01>
 685	86:0x125c	E3:688	Elly: Whew... this is tiring,<FF03>both mentally and physically.<FF03>Is that also Michiko's fault?<FF02><FF01>
 686	87:0x1158	E3:689	Agastya Tree: Ah. It seems that you<FF03>are rather exhausted, young ones.<FF02><FF04>Halting your journey here to rest for<FF03>the time being may be a wise decision.<FF02><FF04>But I cannot inscribe<FF03>your story onto myself.<FF02><FF04>I am only keeping it for your sake<FF03>until you depart again...<FF03>Do not forget that...<FF02><FF01>
-687	87:0x11fc	E3:690	Agastya Tree:<FF03>Will you put a temporary<FF03>halt to your journey?<FF02><FF03><FF0E><00><FF01>
+687	87:0x11fc	E3:690	Agastya Tree:<FF03>Will you put<FF03>a temporary halt to your journey?<FF02><FF03><FF0E><00><FF01>
 688	87:0x1228	E3:691	Agastya Tree: Young ones...<FF03>I will remember the story<FF03>of your journey for you.<FF02><FF01>
 689	87:0x1258	E3:692	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 690	88:0x120c	E3:693	Yukino: Having no time limit<FF03>is even more ominous, in a way.<FF03>I think we should hurry on ahead.<FF02><FF01>
@@ -717,11 +717,11 @@ id	pos	psp	en
 715	95:0x11a8	E3:718	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 716	96:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 717	96:0x5388	E3:720	Igor: Welcome to the Velvet Room...<FF02><FF01>
-718	96:0x53ac	E3:721	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+718	96:0x53ac	E3:721	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 719	96:0x53c8	E3:722	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 720	96:0x53f4	E3:723	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 721	96:0x5414	E3:724	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-722	96:0x5438	E3:725	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+722	96:0x5438	E3:725	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 723	96:0x5450	E3:726	Igor: Well then... Farewell...<FF02><FF01>
 724	96:0x5468	E3:727	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 725	96:0x5614	E3:728	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -731,7 +731,7 @@ id	pos	psp	en
 729	97:0x3750	E3:732	What do you say?<FF03><FF0E><11><FF01>
 730	97:0x3764	E3:733	Trish: Okay!<FF02><FF01>
 731	97:0x3778	E3:734	Trish: Umm, with the going rate<FF03>for healing... And all of you<FF03>put together...<FF02><FF01>
-732	97:0x37b0	E3:735	It'll be 6,000 yen.<FF03>That's okay, right?<FF02><FF03><FF0E><00><FF01>
+732	97:0x37b0	E3:735	It'll be 6,000 yen. Okay?<FF03><FF0E><00><FF01>
 733	97:0x37cc	E3:736	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 734	97:0x380c	E3:737	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
 735	97:0x3844	E3:738	Need anything else?<FF03><FF0E><00><FF01>
@@ -770,7 +770,7 @@ id	pos	psp	en
 768	102:0x118c	E3:771	Yukino: I wonder if this Tartarus<FF03>is Yuriko's treasure hoard.<FF03>There sure are a lot of boxes here.<FF02><FF01>
 769	102:0x11c4	E3:772	Ayase:<FF03>Hey, if we beat the Snow Queen and<FF03>rescue Ms. Saeko... that's it, right?<FF02><FF04>Everyone will go back to normal,<FF03>and we can, like, go home, right?<FF02><FF01>
 770	102:0x1228	E3:773	Nanjo: I'm worried about Ms. Saeko,<FF03>of course, but that Masao...<FF02><FF04>I wonder if he's all right. He isn't<FF03>very smart, after all. Damn and blast!<FF02><FF01>
-771	102:0x127c	E3:774	Brown: Ughhhh!<FF03>This is supposedly the world after<FF03>death, but there's nothing here.<FF02><FF04>Boooooriiiiiing! Hey!<FF03>Let's start heading back<FF03>up the tower and go see Yuriko!<FF02><FF01>
+771	102:0x127c	E3:774	Brown: Ughhhh!<FF03>This is supposedly the world after<FF03>death, but there's nothing here.<FF02><FF04>Boooooriiiiiing!<FF03>Hey! Let's start heading back<FF03>up the tower and go see Yuriko!<FF02><FF01>
 772	102:0x12f0	E3:775	Elly:<FF03>Haha... it's really rather amusing.<FF02><FF04>We five never knew each other well,<FF03>yet here we are on<FF03>an adventure together...<FF02><FF04>And not only that... part of me takes<FF03>a real delight in this situation.<FF03>It really is amazing...<FF02><FF01>
 773	103:0x178c	E3:776	Yukino: It sounds strange saying<FF03>this in the world after death, but...<FF03>I hope we all make it back alive.<FF02><FF01>
 774	103:0x17c4	E3:777	Ayase: Hey, hey,<FF03>some of these treasure boxes<FF03>might have mirror shards in them!<FF02><FF01>
@@ -801,7 +801,7 @@ id	pos	psp	en
 799	106:0x1230	E3:802	Brown: Even if we had more time,<FF03>it still wouldn't be enough.<FF02><FF04>This "Eternal Night" thingy could<FF03>happen any second... What a drag.<FF02><FF01>
 800	106:0x1298	E3:803	Elly: Eternal Night...<FF02><FF04>What would that world be like?<FF03>Despite my curiosity, I dread it...<FF02><FF01>
 801	107:0x1158	E3:804	Agastya Tree: Ah. It seems that you<FF03>are rather exhausted, young ones.<FF02><FF04>Halting your journey here to rest for<FF03>the time being may be a wise decision.<FF02><FF04>But I cannot inscribe<FF03>your story onto myself.<FF02><FF04>I am only keeping it for your sake<FF03>until you depart again...<FF03>Do not forget that...<FF02><FF01>
-802	107:0x11fc	E3:805	Agastya Tree:<FF03>Will you put a temporary<FF03>halt to your journey?<FF02><FF03><FF0E><00><FF01>
+802	107:0x11fc	E3:805	Agastya Tree:<FF03>Will you put<FF03>a temporary halt to your journey?<FF02><FF03><FF0E><00><FF01>
 803	107:0x1228	E3:806	Agastya Tree: Young ones...<FF03>I will remember the story<FF03>of your journey for you.<FF02><FF01>
 804	107:0x1258	E3:807	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 805	108:0x1150	E3:808	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
@@ -818,11 +818,11 @@ id	pos	psp	en
 816	111:0x11a8	E3:819	Agastya Tree:<FF03>Take care on your journey,<FF03>young ones...<FF02><FF01>
 817	112:0x5324	E4:949	Igor: Welcome to the Velvet Room...<FF02><FF01>
 818	112:0x5388	E3:821	Igor: Welcome to the Velvet Room...<FF02><FF01>
-819	112:0x53ac	E3:822	Igor:<FF03>What is it you desire?<FF03><FF0E><0C><FF01>
+819	112:0x53ac	E3:822	Igor: What is it you desire?<FF03><FF0E><0C><FF01>
 820	112:0x53c8	E3:823	Igor: Well then,<FF03>what would you like to know?<FF02><FF03><FF0E><17><FF01>
 821	112:0x53f4	E3:824	Igor: I'm afraid you don't have<FF03>enough spell cards to give<FF03>birth to a new Persona.<FF02><FF01>
 822	112:0x5414	E3:825	Igor:<FF03>Alas, we cannot look after<FF03>any more Personas.<FF02><FF01>
-823	112:0x5438	E3:826	Igor:<FF03>What would you like to do?<FF03><FF0E><15><FF01>
+823	112:0x5438	E3:826	Igor: What would you like to do?<FF03><FF0E><15><FF01>
 824	112:0x5450	E3:827	Igor: Well then... Farewell...<FF02><FF01>
 825	112:0x5468	E3:828	Igor: If it's new Personas you want,<FF03>I shall fuse and create them for you.<FF02><FF04>First, though, I must summon demons<FF03>to fuse together into a Persona.<FF02><FF04>And for that, a certain type<FF03>of card is necessary.<FF02><FF04>You see, these cards are inscribed<FF03>with demon-summoning spells.<FF02><FF04>They are known as spell cards,<FF03>and all demons carry one.<FF02><FF04>Thus, in order to perform a fusion,<FF03>I will need you to gather spell cards.<FF02><FF04>Go forth, negotiate with demons, and<FF03>bring these spell cards back here.<FF02><FF04>Combat is not the only way to deal<FF03>with demons... Do you understand?<FF02><FF04>And not all demons are necessarily<FF03>wishing for a fight...<FF02><FF01>
 826	112:0x5614	E3:829	Igor: It isn't enough merely<FF03>to fuse a new Persona in order<FF03>to make it your own...<FF02><FF04>There is rather more to it<FF03>than that, I'm afraid.<FF02><FF04>You must take a Persona onto<FF03>yourself in order to use its power.<FF02><FF04>Each of you is capable of<FF03>holding up to three Personas.<FF02><FF04>A newly-fused Persona will<FF03>be entrusted into my care.<FF02><FF04>By all means let me know when you<FF03>would like to take on new Personas.<FF02><FF04>But I can only look after 16<FF03>Personas at a time, mind you.<FF02><FF04>There are as many Personas<FF03>as there are personalities...<FF03>an infinite variety.<FF02><FF04>Each has its own form and substance,<FF03>to be used according<FF03>to the situation.<FF02><FF04>If you can master that principle,<FF03>you will make a fine Persona-user.<FF02><FF01>
@@ -832,7 +832,7 @@ id	pos	psp	en
 830	113:0x3750	E3:833	What do you say?<FF03><FF0E><11><FF01>
 831	113:0x3764	E3:834	Trish: Okay!<FF02><FF01>
 832	113:0x3778	E3:835	Trish: Umm, with the going rate<FF03>for healing... And all of you<FF03>put together...<FF02><FF01>
-833	113:0x37b0	E3:836	It'll be 2,000 yen.<FF03>That's okay, right?<FF02><FF03><FF0E><00><FF01>
+833	113:0x37b0	E3:836	It'll be 2,000 yen. Okay?<FF03><FF0E><00><FF01>
 834	113:0x37cc	E3:837	Trish: Great! Then here goes!<FF03>Pain, pain, go away!<FF02><FF01>
 835	113:0x380c	E3:838	Trish: Phew... That should do it!<FF03>You're all good to go!<FF02><FF01>
 836	113:0x3844	E3:839	Need anything else?<FF03><FF0E><00><FF01>

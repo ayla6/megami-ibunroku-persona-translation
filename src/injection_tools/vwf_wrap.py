@@ -564,6 +564,50 @@ def ends_on_transitive(text, nxt):
     return _opens_noun_phrase('', nxt)
 
 
+# AUXILIARIES carry the verb after them: a line ending on one cuts the verb
+# phrase ("Only those who have been / called", "you will / witness"). One
+# rhythm point - the weakest unit viewers keep whole (61-69%), but kept.
+MODALS = {'will', 'would', 'can', 'could', 'shall', 'should', 'may', 'might',
+          'must', 'do', 'does', 'did'}
+AUX_BE_HAVE = {'is', 'are', 'was', 'were', 'am', 'be', 'been', 'being', 'have',
+               'has', 'had'}
+AUX_BE = {'is', 'are', 'was', 'were', 'am', 'be', 'been'}   # the copula: "The smiles you wear / are no longer false masks"
+AUX_END = 1
+
+
+@functools.lru_cache(maxsize=1 << 16)   # pure in the two texts; the layout asks per candidate line
+def ends_on_auxiliary(text, nxt):
+    """Does the line end on an auxiliary whose verb opens the next line?
+    After a modal the next word is its verb, after a form of be its
+    predicate ("The smiles you wear are / no longer..."); after have only a
+    participle is ("have been / called"; never "I have / books")."""
+    words = re.sub(r'<[^>]+>', '', text).split()
+    if not words:
+        return False
+    aux = words[-1].lower()
+    head = _core_word(nxt).split(' ', 1)[0].rstrip('.,;:!?…"”’)').lower()
+    if aux in MODALS:
+        return bool(head) and head not in ('not', 'you', 'i', 'we', 'they', 'he', 'she', 'it')
+    if aux in AUX_BE:
+        return bool(head)       # a copula carries its predicate, whatever it is
+    if aux in AUX_BE_HAVE:
+        tags = lexicon().get(head, ())
+        return (head in AUX_BE_HAVE
+                or ('verb' in tags and re.search(r'(?:ed|en|ing)$', head) is not None))
+    return False
+
+
+@functools.lru_cache(maxsize=1 << 16)   # pure in the two texts; the layout asks per candidate line
+def subject_before_auxiliary(text, nxt):
+    """Does the line end on "you" or "it" with an auxiliary opening the next
+    line? Then it is the subject, whatever it is elsewhere ("The time is soon
+    when you / will need this power")."""
+    words = re.sub(r'<[^>]+>', '', text).split()
+    head = _core_word(nxt).split(' ', 1)[0].lower()
+    return (bool(words) and words[-1].lower() in ('you', 'it')
+            and head in MODALS | AUX_BE_HAVE)
+
+
 def _opens_noun_phrase(con, word):
     """Does word open the phrase of the particle-capable connector con: an
     article/possessive, a pronoun, a name or number, a question word or
@@ -598,9 +642,24 @@ def lexicon():
 
 
 def _determiner(word):
-    """An article, possessive or other determiner ("some", "no", "which")."""
+    """An article, possessive or other determiner ("some", "no", "which"),
+    or a possessive noun ("people's souls", "Kandori's ambitions")."""
     w = word.lower()
-    return w in ARTICLES or 'det' in lexicon().get(w, ())
+    return (w in ARTICLES or 'det' in lexicon().get(w, ())
+            or (VERB_UNITS and _possessive_noun(w)))
+
+
+def _possessive_noun(w):
+    """A noun's possessive ("people's", "mankind's") - not a contraction
+    ("let's", "who's", "something's" are a pronoun and its verb). Subtitle
+    mode only: in a textbox "Maki's / mom" is a split the user keeps."""
+    w = w.replace('\u2019', "'")
+    if not re.search(r"\w(?:'s|s')$", w):
+        return False
+    stem = w[:-2] if w.endswith("'s") else w[:-1]
+    tags = lexicon().get(stem, ())
+    return 'noun' in tags and 'pron' not in tags and 'det' not in tags and stem != 'let'
+
 
 
 def _modifier(word):
@@ -993,6 +1052,20 @@ HOLLOW = 2   # rhythm points for a middle line under half its neighbours
 # (spec 2.6), not one big drop at the tail, without rewarding a wide line
 # for being wide.
 STEP_COST = 4
+# Which way a block may lean. A textbox reads top-heavy: a growing step costs
+# double, and a line far wider than the one before it pays (spec 2.6). A
+# subtitle over a picture is the reverse - its upper line the shorter, so the
+# text covers as little of the image as it can (the subtitling guidelines'
+# pyramid): tools/fmv_retime.py sets this False for the movie subtitles.
+TOP_HEAVY = True
+# The verb-phrase units (an auxiliary and its verb, a copula and its
+# predicate, "you"/"it" before an auxiliary) and a noun's possessive with its
+# noun ("people's / souls"): a SUBTITLE keeps them whole - the subtitling
+# standard, and what the movie subtitles read best with - but a textbox does
+# not ("The library at home is / much better stocked.", "leave Maki's / mom"
+# are the user's call). tools/fmv_retime.py sets this True for the movie
+# subtitles.
+VERB_UNITS = False
 # What one rhythm point (cost[4]) is worth in shape: the root weighs a line
 # end and the block's shape on one scale, so a single rhythm point (a short
 # closing sentence, a trailing beat) never outweighs a far squarer block
@@ -1050,6 +1123,14 @@ def head_orphan(text):
 LABEL_RE = r'[^():!?"“”]+:'
 
 
+def label_plain(text):
+    """The text a label test reads: a name insert IS a name ("<FF08><01>:"
+    is a speaker label like "Yukino:"), every other code is nothing."""
+    text = NAME_TOKEN_RE.sub('Name', text)
+    text = re.sub(r'<FF(?:07|08|0F|10)>(?:<[0-9A-F]{2}>)?', 'Name', text)
+    return re.sub(r'<[^>]+>', '', text)
+
+
 def label_end(atoms):
     """The atom that closes a speaker label ('Name:'), or None.
 
@@ -1062,7 +1143,7 @@ def label_end(atoms):
     prefix = ''
     for i, a in enumerate(atoms):
         prefix = line_text(prefix, a)
-        plain = re.sub(r'<[^>]+>', '', prefix)
+        plain = label_plain(prefix)
         if re.fullmatch(LABEL_RE, plain):
             return i
         if re.search(r'[():!?"“”]', plain):
@@ -1076,7 +1157,7 @@ def _closes_sentence_in(text):
     hesitation that trails off or a one-word sentence ("Yuko: U-Um... I
     think Yukino", "Elly: Good! I was worried you")? A hesitation is a beat of its own,
     so the cut after it is not a clause cut in half."""
-    plain = re.sub(r'<[^>]+>', '', text)
+    plain = label_plain(text)
     m = re.match(r'\s*' + LABEL_RE + r'\s*(.*)$', plain)
     words = (m.group(1) if m else plain).split()
     # the hesitation OPENS the speech ("U-Um..."); an ellipsis later in the
@@ -1098,7 +1179,7 @@ def _whole_tail(text):
 def label_only(text):
     """True when the whole line is a speaker label ('Name:') and nothing
     else - the one line spec 2.4 exempts from the speech block's shape."""
-    return bool(re.fullmatch(LABEL_RE, re.sub(r'<[^>]+>', '', text).strip()))
+    return bool(re.fullmatch(LABEL_RE, label_plain(text).strip()))
 
 
 def shape_report(lines, width=BOX_WIDTH):
@@ -1120,7 +1201,7 @@ def shape_report(lines, width=BOX_WIDTH):
     if lines and label_only(lines[0]):
         first = 1
     elif len(lines) >= 2:
-        plain = re.sub(r'<[^>]+>', '', lines[0])
+        plain = label_plain(lines[0])
         m = re.match(r'\s*(' + LABEL_RE + r')\s*(.*)$', plain)
         if m:
             label = text_width(m.group(1))
@@ -1210,6 +1291,7 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
     # by label_words (or several hyphen pieces for an over-wide label).
     label_end_i = label_end(atoms)
     label_width = None
+    label_insert = False
     body_fits = False
     if label_end_i is not None:
         label = body = ''
@@ -1218,6 +1300,10 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
         for a in atoms[label_end_i + 1:]:
             body = line_text(body, a)
         label_width = measure(label)
+        # a label with a name insert in it has no width the reader sees: the
+        # flow reserves the widest name, so any balance against it is only
+        # the reservation's
+        label_insert = bool(NAME_TOKEN_RE.search(label))
         body_fits = bool(body) and measure(body) <= width + tail
     # the same spans are asked for once per suffix: built once
     @functools.lru_cache(maxsize=None)
@@ -1262,7 +1348,9 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                 # line on one is worse than another mid-clause end
                 # ("visit her while / you're there").
                 if end0 == 4 and (ends_on_subordinator(text)
-                                  or ends_on_subject(text)):
+                                  or ends_on_subject(text)
+                                  or (VERB_UNITS and
+                                      subject_before_auxiliary(text, nxt.text))):
                     end0 += 2
                 # An object pronoun opening the next line is cut from
                 # its verb ("Don't blame / me when..."): one rhythm
@@ -1281,6 +1369,10 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                 if (not last and sc == 4 and not label_only
                         and ends_on_connector(text, nxt.text)):
                     end0 += CONNECTOR_END
+                # An auxiliary carries its verb ("have been / called").
+                if (VERB_UNITS and not last and sc == 4 and not label_only
+                        and ends_on_auxiliary(text, nxt.text)):
+                    end0 += AUX_END
                 # A verb that must take an object ends no line for free
                 # when the object opens the next one.
                 if (not last and sc == 4 and not label_only
@@ -1354,7 +1446,8 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                     # student: Uh, isn't it / time you gave up on Yosuke?").
                     midlabel = (beside
                                  and sc == 4
-                                 and not (k >= 2 and abs(sub[6] - w) <= width // 5)
+                                 and not (k >= 2 and abs(sub[6] - w) <= width // 5
+                                          and not label_insert)
                                  and not (_closes_sentence_in(text)
                                          and _whole_tail(
                                              atoms_text(j + 1, _end))))
@@ -1370,8 +1463,9 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                     # breaks up a rectangle.
                     full = (first_full
                             and stop_cost(atoms_text(j + 1, _end)) == 0)
+                    grows = step > 0 if TOP_HEAVY else step < 0
                     trans = (STEP_COST * (step * step
-                                          + (step * step if step > 0 else 0))
+                                          + (step * step if grows else 0))
                              if sub[6] >= 0 and not label_only
                              and not (full and step > 0) else 0)
                     end = end0
@@ -1446,9 +1540,12 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                              0 if label_only else fullness(w, k + 1) + trans)
                     if not label_only and k == 1 and sub[6] * 2 < w:
                         shape += (w - 2 * sub[6]) ** 2
-                    elif (not label_only and k >= 1 and sub[6] * 10 > w * 14
-                          and not full):
+                    elif (TOP_HEAVY and not label_only and k >= 1
+                          and sub[6] * 10 > w * 14 and not full):
                         shape += (sub[6] - w) ** 2
+                    elif (not TOP_HEAVY and not label_only and k >= 1
+                          and w * 10 > sub[6] * 14):
+                        shape += (w - sub[6]) ** 2
                     total = (base + sub[0],
                              pen + sub[1],
                              nbrk + sub[2],
@@ -1885,6 +1982,125 @@ def prompt_label_line(head, brk=NEWLINE, width=BOX_WIDTH, measure=text_width):
     return (''.join(parts[:-1]) + ' '.join(label) + brk + rest)
 
 
+# the words after which a new clause starts: a prompt's last line may begin
+# there (prompt_tail_line)
+CLAUSE_OPENERS = {'that', 'and', 'but', 'or', 'so', 'yet'} | SUBORDINATORS
+
+
+def prompt_tail_line(head, brk=NEWLINE, width=BOX_WIDTH, measure=text_width):
+    """The prompt's own box, BOTTOM-HEAVY: while the options are up the box
+    has scrolled so only the question's LAST line shows above them, so that
+    line carries as much of the question as fits ("<name>, / I could really
+    use a hand!", never "<name>, I could / really use a hand!").
+
+    The last line starts at the earliest CLAUSE boundary whose rest fits one
+    line: after punctuation (a vocative's comma, a sentence end, a label's
+    colon) or after the conjunction that opens the clause ("Are you certain
+    that / you want to bring Hidehiko along?", "...ask this, but / could you
+    make friends with Reiji?") - never between an auxiliary and its subject
+    (no "Do / you have..."). A last line that already starts at a clause is
+    left alone, and the tail never reaches back past the final sentence (the
+    line holds the question, at most "Name: question"). Only when the final
+    sentence is too long does it take the longest tail that does not cut
+    after a subject, an article, a connector or an auxiliary before its
+    subject ("You must / have stuff you're hiding too, right?"); the lines
+    above are the flow's best layout in the lines the box has left, so the
+    box never grows; a question that fits one line is one. Only line breaks
+    move. Only the prompt's own box (after its
+    last page move), and only a box whose codes are name inserts (a pause
+    keeps the box's own spacing). Returns `head` unchanged whenever the test
+    fails or the last line would not grow."""
+    parts = re.split(r'(<FF02><FF04>|<FFFB><FFF7>)', head)
+    box = parts[-1]
+    lines = [x for x in box.split(brk) if x.strip()]
+    if len(lines) < 2 or '<' in NAME_TOKEN_RE.sub('', box.replace(brk, ' ')):
+        return head
+    words = box.replace(brk, ' ').split()
+    # a question that fits one line IS one line: wholly visible, and the
+    # options follow it without a press
+    if measure(' '.join(words)) <= width:
+        return ''.join(parts[:-1]) + ' '.join(words)
+    def fits_from(i):
+        tail = ' '.join(words[i:])
+        return measure(tail) <= width and measure(tail) > measure(lines[-1].strip())
+
+    def ends_clause(w):
+        return re.search(r'[,.!?:;…]["”’)]*$', w) is not None
+
+    def clause(i):
+        w = words[i - 1].lower()
+        if w == 'that':
+            # a complementizer opens a clause ("certain that / you want");
+            # a determiner does not ("give back that / book")
+            tags = lexicon().get(_core_word(words[i]).lower().strip('.,!?;:'), ())
+            return not ('noun' in tags and not tags & {'pron', 'det'})
+        return ends_clause(words[i - 1]) or w in CLAUSE_OPENERS
+
+    def phrase(i):
+        # the final sentence alone is too long: the longest tail, but never
+        # cut after a word that leans on the next - a subject ("you / want"),
+        # an article, a connector, an auxiliary before its subject ("Do /
+        # you"); a modal before its verb may end the line ("You must / have
+        # stuff you're hiding too, right?")
+        w = _core_word(words[i - 1]).lower().rstrip(',;:')
+        nxt = _core_word(words[i]).lower()
+        if w in SUBJECTS | {'you', 'it'} | ARTICLES | CONNECTORS:
+            return False
+        if w in MODALS and nxt in SUBJECTS | {'you', 'it'}:
+            return False
+        return not (w in AUX_BE_HAVE and ends_on_auxiliary(w, words[i]))
+
+    # a last line that already starts at a clause is the question's own:
+    # left alone ("Do you know him?", "who cares about tomorrow?")
+    if clause(len(words) - len(lines[-1].split())):
+        return head
+    # never past the final sentence: the line holds the question, at most
+    # "Name: question" - not the end of the sentence before it
+    start = max([k + 1 for k in range(len(words) - 1)
+                 if re.search(r'[.!?…:]["”’)]*$', words[k])] or [1])
+    for test in (clause, phrase):
+        i = next((i for i in range(max(start, 1), len(words))
+                  if test(i) and fits_from(i)), None)
+        if i is None:
+            continue
+        above = _prompt_above(words[:i], lines, width, measure)
+        if above is None:
+            continue
+        return ''.join(parts[:-1]) + brk.join(above) + brk + ' '.join(words[i:])
+    return head
+
+
+def _prompt_above(words, lines, width, measure):
+    """The prompt's lines above its last one: the box's own lines, ending
+    sooner ("Reiji's mother: It may be selfish / of me to ask this, but") -
+    unless one would end on the first word of a new sentence ("but...
+    Could"); then the flow's best layout of `words` in the lines the box has
+    left ("Yuko: Um, I hate to ask, but... / Could you tell Maki I'll give
+    back"), a label that stood on its own line keeping it. None when they
+    do not fit."""
+    kept, left = [], len(words)
+    for line in lines:
+        ws = line.split()
+        if left <= 0:
+            break
+        kept.append(' '.join(ws[:left]))
+        left -= len(ws)
+    if not any(strands_opener(x) for x in kept):
+        return kept
+    room = BOX_LINES - 1
+    head = []
+    first = lines[0].split()
+    if (len(first) < len(words) and words[:len(first)] == first
+            and re.fullmatch(LABEL_RE, label_plain(lines[0]).strip())):
+        head, words, room = [lines[0].strip()], words[len(first):], room - 1
+    if not words:
+        return head
+    for _key, laid in weigh(words, width=width, measure=measure, box=room):
+        if len(laid) <= room:
+            return head + [' '.join(x.split()) for x in laid]
+    return None
+
+
 def choice_breaks(en, brk=NEWLINE):
     """Choice options start on their own line - and the PEN decides where
     their break goes, never a blanket rule.
@@ -1920,6 +2136,7 @@ def choice_breaks(en, brk=NEWLINE):
         # the prompt's own text
         head = re.sub(r'(?:' + re.escape(wait) + r'|' + re.escape(brk) + r')+$', '', head)
         head = prompt_label_line(head, brk)
+        head = prompt_tail_line(head, brk)
         # only the break right in front of the prompt is the prompt's own -
         # it goes FIRST, or it is what makes the pen look like a line start
         head = re.sub(r'(?:' + re.escape(brk) + r')+$', '', head)
