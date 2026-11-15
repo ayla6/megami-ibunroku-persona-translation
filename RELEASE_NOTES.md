@@ -4,6 +4,7 @@
 - Slight adjustments to the script in the name of better wrapping.
 - Better text wrapping and timing in subtitles!
 - Removed a sentence from the Philemon opening because it's not in the PS1 script and it made it kind of too long.
+- Minor bug fix with the description of some weapons.
 
 # 2026-11-14
 - Fixed the game freezing when you pick a demon to talk to with CONTACT.
