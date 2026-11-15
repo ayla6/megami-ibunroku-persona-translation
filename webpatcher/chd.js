@@ -374,7 +374,7 @@
    * fraction of a second whatever its size (Chrome on Android: about 0.4 s,
    * one read at a time, even from several workers), so reading a megabyte
    * too many is far cheaper than one read more. */
-  function readPlan(chd, indices, {gap = 1 << 20, most = 16 << 20} = {}) {
+  function readPlan(chd, indices, {gap = 4 << 20, most = 16 << 20} = {}) {
     const blocks = [];
     for (const index of indices) {
       let entry = chd.map[index];

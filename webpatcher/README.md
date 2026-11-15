@@ -99,7 +99,7 @@ produced the release patches) compiled to WebAssembly - see
   unpacked (about a tenth of the disc for the base translation and three
   options), each checked against the CRC-16 in the CHD's map, and the PPF
   is built from them. The patch worker reads the compressed blocks in a
-  few large slices (`CHD.readPlan`: gaps up to 1 MB are read through, up
+  few large slices (`CHD.readPlan`: gaps up to 4 MB are read through, up
   to 16 MB a read) - on Chrome for Android every read of a picked file
   costs about 0.3 s whatever its size, and reads do not overlap, so one
   read per block took minutes - and up to four block workers unpack them
