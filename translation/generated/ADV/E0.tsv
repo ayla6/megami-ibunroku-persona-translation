@@ -1081,7 +1081,7 @@ id	pos	psp	en
 1079	67:0x22b4	E0:1090	Nanjo: Leave him be.<FF03>We're after the same man, so<FF03>we're sure to see one another again.<FF02><FF04>He can do what he wants so long<FF03>as he doesn't get in our way.<FF02><FF01>
 1080	67:0x2304	E0:1091	Nanjo:<FF03>You're asking me why Reiji<FF03>is after Kandori?<FF02><FF04>Mm... we'll find out eventually.<FF03>For now, it's enough<FF03>that our goals dovetail.<FF02><FF01>
 1081	67:0x2344	E0:1092	Elly: Something important...<FF03>Someone who's precious...<FF03><FF07><01>, do you...<FF02><FF01>
-1082	67:0x2370	E0:1093	You have someone precious to you?<FF03><FF0E><1C><FF01>
+1082	67:0x2370	E0:1093	Do you have<FF03>someone precious to you?<FF02><FF03><FF0E><1C><FF01>
 1083	67:0x2388	E0:1094	Elly: I see...<FF05><3C><00> I...<FF05><3C><00><FF03>I'm sorry to ask such<FF03>an odd question...<FF02><FF01>
 1084	67:0x23c0	E0:1095	Elly: I see...<FF05><3C><00> You're like me, then...<FF02><FF01>
 1085	67:0x23e4	E0:1096	Brown:<FF03>Dude, it's not nice to try to dig up<FF03>the skeletons in a guy's closet.<FF02><FF01>

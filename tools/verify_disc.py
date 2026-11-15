@@ -640,10 +640,6 @@ def _row_forms(r):
             forms.append(('etext+pauses', [pat]))
         else:
             forms.append(('etext', [re.escape(etext.encode(t, end=None))]))
-            if '<FF0E>' in t:
-                import sysmsg
-                forms.append(('etext-choice-pages',
-                              [re.escape(etext.encode(sysmsg.choice_pages(t), end=None))]))
     except ValueError:
         pass
     try:                       # small-font single-byte families

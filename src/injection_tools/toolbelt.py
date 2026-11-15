@@ -236,11 +236,14 @@ def _read_uncached(path, cols, optional):
     if tuple(head) != tuple(cols):
         # A MANUAL FILE IS NOT NECESSARILY A ROW TABLE: translation/manual/
         # fmv/poems.tsv is a SOURCE table a builder reads with its own schema
-        # (fmv_layout.poem_lines: movie/seq/text). A table that shares NO
-        # column with the canonical one is not a row table, so the walker
-        # skips it instead of aborting every porter that walks the tree. One
-        # that shares a column but spells it wrong is still a plain error.
-        if optional and not set(head) & set(cols):
+        # (fmv_layout.poem_lines: movie/seq/text), and so are the subtitles,
+        # the opening crawl, the ending pages and the terminology list. What
+        # makes a table a ROW table is its identity - an id and a pos - so a
+        # table without both is skipped instead of aborting every porter that
+        # walks the tree (a source table may share `note` or `text` with the
+        # canonical schema by accident, not by being rows). One that carries
+        # id and pos but spells a column wrong is still a plain error.
+        if optional and not {'id', 'pos'} <= set(head):
             return []
         fail(f'{os.path.relpath(path, ROOT)}: header {head} != canonical '
              f'{list(cols)}')

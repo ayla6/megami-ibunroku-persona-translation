@@ -14,6 +14,9 @@ fusion prompt (message 24, own zone so the older message indices stay put).
 
 `en` syntax = the event TSVs (`<FF03>` newline, `<FF02>` wait, ...; no trailing <FF01>, the build adds it); checked with
 tools/tstatus.check (control codes identical to the Japanese, 239 px lines, <= 3 lines per page, ASCII).
+A confirmation prompt ships the row's own layout - the warning, then the question and its options on a
+fresh page (`<FF02><FF04>`): a question on the box's second-to-last row would scroll the options in
+without a press. The build ships the row as written, never re-laid-out after the gate.
 A message whose own call site proves a one-row viewport (`display_size`) is one line of the width that viewport shows,
 with no line/page move: `tstatus.ship_errors(..., line_px=...)` measures it against the proven width.
 """
@@ -348,15 +351,6 @@ def qol_retired_ranges():
             for name, value in labels.items() if name.endswith('_START')]
 
 
-def choice_pages(text):
-    """A warning waits once; question and choices share a fresh page."""
-    if '<FF0E>' not in text:
-        return text
-    text = re.sub(r'<FF02>(?=<FF03><FF0E>)', '', text)
-    return re.sub(r'<FF02><FF03>(?=[^<]*(?:<FF03>)?<FF0E>)',
-                  '<FF02><FF04>', text)
-
-
 def build():
     d = adv()
     msgs = messages(d)
@@ -398,7 +392,7 @@ def build():
         if bad:
             errors.extend(f'{i}: [{k}] {m}' for k, m in bad)
             continue
-        todo[i] = etext.encode(choice_pages(t))        # + FF01
+        todo[i] = etext.encode(t)        # + FF01
     if errors:
         raise SystemExit('sysmsg:\n  ' + '\n  '.join(errors))
     routed = kept = 0

@@ -13,13 +13,13 @@ id	pos	psp	en	note
 12	0x56eab		Memory card is damaged.<FF03>Cannot save.<FF02><FF01>	by Rei; ja メモリーカードが壊れています<FF03>このメモリーカードには<FF03>セーブ出来ません<FF02><FF01>
 13	0x56ee0		Memory card is full.<FF03>Cannot save.<FF02><FF01>	by Rei; ja メモリーカードに<FF03>空き容量がありません<FF03>セーブが出来ません<FF02><FF01>
 14	0x56f0d		Game saved.<FF02><FF01>	by Rei; ja セーブは無事完了しました<FF02><FF01>
-15	0x56f26		Memory card needs to be formatted.<FF02><FF03>Proceed?<FF03><FF0E><00><FF01>	by Rei; ja メモリーカードが<FF03>フォーマットされていません<FF02><FF04>フォーマットしますか？<FF03><FF0E>　<FF01>
+15	0x56f26		Memory card needs to be formatted.<FF02><FF04>Proceed?<FF03><FF0E><00><FF01>	by Rei; ja メモリーカードが<FF03>フォーマットされていません<FF02><FF04>フォーマットしますか？<FF03><FF0E>　<FF01>
 16	0x56f5f		Formatting memory card.<FF03>Please wait.<FF01>	by Rei; ja メモリーカードを<FF03>フォーマットしています<FF03>しばらくお待ちください<FF01>
 17	0x56f8b		Memory card format complete.<FF02><FF01>	by Rei; ja メモリーカードのフォーマットが終了しました<FF02><FF01>
 18	0x56fad		Memory card format failed.<FF02><FF01>	by Rei; ja メモリーカードのフォーマットに失敗しました<FF02><FF01>
 19	0x56fd1		Writing data.<FF03>Do not remove the memory card.<FF01>	by Rei; ja データを書き込んでいます<FF03>メモリーカードを<FF03>抜かないで下さい<FF01>
 20	0x56fff		Suspend data saved.<FF03>Quitting game.<FF02><FF04>Select CONTINUE on the title screen<FF03>to resume from this data.<FF02><FF04>Please turn off the power.<FF03>(Press any button to<FF03>return to the title screen.)<FF02><FF01>	by Rei; ja 中断データのセーブが<FF03>完了しました<FF03>ゲームを終了します<FF02><FF04>ＣＯＮＴＩＮＵＥで<FF03>このデータの続きを始めることができます<FF02><FF04>このまま電源を切って下さい<FF03>（何かボタンを押すと<FF03>　タイトル画面に戻ります）<FF02><FF01>
-21	0x57093		Old data will be overwritten.<FF02><FF03>Proceed?<FF03><FF0E><00><FF01>	by Rei; ja 上書きすると　元のデータは<FF03>消えてしまいます<FF02><FF03>上書きしますか？<FF03><FF0E>　<FF01>
+21	0x57093		Old data will be overwritten.<FF02><FF04>Proceed?<FF03><FF0E><00><FF01>	by Rei; ja 上書きすると　元のデータは<FF03>消えてしまいます<FF02><FF03>上書きしますか？<FF03><FF0E>　<FF01>
 22	0x570c7		Suspend data cannot be<FF03>overwritten with Save data.<FF02><FF01>	by Rei; ja 中断データ（Ｃデータ）領域に<FF03>セーブデータ（Ｓデータ）を<FF03>上書きすることはできません<FF02><FF01>
 23	0x5710e		Save data cannot be overwritten<FF03>with Suspend data.<FF02><FF01>	by Rei; ja セーブデータ（Ｓデータ）領域に中断データ（Ｃデータ）を<FF03>上書きすることはできません<FF02><FF01>
 24	0x56d90		Would you like to add an item?<FF01>	PSP-US; ja さらにアイテムを加えるかね？<FF01>

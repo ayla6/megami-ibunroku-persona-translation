@@ -571,14 +571,18 @@ class SavePatch(unittest.TestCase):
                 self.assertEqual(after, before)
 
     def test_warning_question_and_options_have_only_one_wait_and_fresh_page(self):
-        import sysmsg
+        """The confirmation prompt ships its own layout: one wait, then the
+        question and its options on a fresh page. A question on the box's
+        second-to-last row would scroll the options in without a press, which
+        is why the row carries <FF02><FF04> and the build never re-lays it out."""
         import etext
-        text = next(row['en'] for row in __import__('toolbelt').read_manual('ADV')
-                    if '<FF0E>' in row['en'] and '<FF02><FF03>' in row['en'])
-        normalized = sysmsg.choice_pages(text)
-        self.assertEqual(normalized.count('<FF02>'), 1)
-        self.assertIn('<FF02><FF04>', normalized)
-        self.assertTrue(etext.encode(normalized).endswith(b'\xff\x03\xff\x0e\x00\xff\x01'))
+        prompts = [row['en'] for row in __import__('toolbelt').read_manual('ADV')
+                   if '<FF0E>' in row['en']]
+        self.assertTrue(prompts)
+        for text in prompts:
+            self.assertEqual(text.count('<FF02>'), 1)
+            self.assertIn('<FF02><FF04>', text)
+            self.assertTrue(etext.encode(text).endswith(b'\xff\x03\xff\x0e\x00\xff\x01'))
 
     def test_confirmation_backing_cursor_and_labels_sort_above_all_rows(self):
         cpu = self.title_cpu()
