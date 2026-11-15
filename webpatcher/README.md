@@ -111,7 +111,8 @@ produced the release patches) compiled to WebAssembly - see
   `lzma.js`) and `cdzl` (deflate, `inflate.js`; both synchronous, since a
   stream per small block costs more than the unpacking) - and a block in any
   other codec (`cdfl` FLAC, `cdzs` zstd), a parent CHD or a Rev 1 CHD is
-  refused with the reason. Build disc stays off for a CHD: xdelta patches only
+  refused with the reason. Build disc does not take a CHD (it shows dimmed, and hovering or clicking
+  says why: Build PPF, or the .bin): xdelta patches only
   the raw `.bin`.
 - With the File System Access API (Chrome, Edge) **Source disc** starts
   with the disc folder: "Disc folder: ... [Choose folder]". Below it, a

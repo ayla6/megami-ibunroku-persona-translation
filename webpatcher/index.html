@@ -52,6 +52,7 @@
                  /* a magnifying glass at the left edge */
                  background: #000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='10' cy='10' r='6.5'/%3E%3Cline x1='15' y1='15' x2='21' y2='21'/%3E%3C/svg%3E") no-repeat 0.6rem center / 1.1rem; }
   .disc-search:focus { outline: none; border-color: #ff0; }
+  button.unavailable { opacity: 0.5; cursor: not-allowed; }
   .split { border: 0; border-top: 2px solid #fff; margin: 0.75rem 0; }
   .or { display: flex; align-items: center; gap: 0.75rem; font-weight: bold; margin: 0.75rem 0; }
   .or::before, .or::after { content: ""; flex: 1; border-top: 2px solid #fff; }
@@ -87,7 +88,7 @@
 
 <fieldset>
   <legend>Source disc</legend>
-  <p>It needs to a .bin or .chd (LZMA) of Megami Ibunroku Persona, not an iso or Revelations. Rev 0 and Rev 1 both work (we downgrade Rev 1).</p>
+  <p>It needs to a .bin or, just for the PPF patching, .chd (LZMA) of Megami Ibunroku Persona, not an iso or Revelations. Rev 0 and Rev 1 both work (we downgrade Rev 1).</p>
   <hr class="split">
   <p id="folder-line" hidden>Disc folder: <span id="folder-name"></span>
   <button id="change-folder" type="button">Choose folder</button></p>

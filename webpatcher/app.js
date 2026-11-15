@@ -866,10 +866,20 @@ function renderGrid() {
 
 /* Identifying the disc (which may still be downloading its patch) does not
  * disable Apply: a click waits for that run to finish. */
+/* Build disc cannot take a CHD: xdelta3 patches only a raw .bin, and a CHD
+ * would have to be unpacked whole. The button stays clickable (a disabled
+ * one gets no hover or click) but looks unavailable, and both hovering and
+ * clicking say why. */
+const CHD_DISC_WARNING = "Build disc can't use a CHD: it would have to unpack the"
+    + ' whole disc. Use Build PPF with the CHD, or pick the .bin to build a disc.';
+
 function refreshApply() {
   const disabled = state.running || !state.source || !state.rows.length;
-  // a CHD is compressed: xdelta cannot patch it, only a PPF can be made
-  $('apply').disabled = disabled || isChd(state.source);
+  const chd = !disabled && isChd(state.source);
+  $('apply').disabled = disabled;
+  $('apply').classList.toggle('unavailable', chd);
+  $('apply').setAttribute('aria-disabled', chd);
+  $('apply').title = chd ? CHD_DISC_WARNING : '';
   $('build-ppf').disabled = disabled;
 }
 
@@ -1111,6 +1121,10 @@ async function init() {
   }
   async function run(ppf) {
     if (!state.source || state.running) return;
+    if (!ppf && isChd(state.source)) {
+      status(CHD_DISC_WARNING, true);
+      return;
+    }
     saveSelection();
     state.running = true;
     refreshApply();
