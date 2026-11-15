@@ -5,6 +5,7 @@
 - Better text wrapping and timing in subtitles!
 - Removed a sentence from the Philemon opening because it's not in the PS1 script and it made it kind of too long.
 - Minor bug fix with the description of some weapons.
+- PPF patches! You can build a PPF patch instead of applying it fully to the original Rev 0 disc (we can still downgrade Rev 1 to 0 for you but you have to keep it as a separate file), so that you don't have to continously replace one file. Enable it on DuckStation by going Settings -> Console -> CD-ROM Emulation -> Apply Image Patches! You can now even update it without having to manually choose the file again and again (Chromium only).
 
 # 2026-11-14
 - Fixed the game freezing when you pick a demon to talk to with CONTACT.

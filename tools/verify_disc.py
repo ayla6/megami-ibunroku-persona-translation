@@ -256,7 +256,26 @@ def audit_structure(disc, original, build, placed=None):
         for path, ext, size in outside[:6]:
             print(f'    {path}: {ext}..{ext + _sectors(size)}')
 
-    spans = [(ext, ext + _sectors(size), path) for path, ext, size, _rec in files if size]
+    # Files may share one extent exactly when each of them still reads its
+    # own retail bytes there: the disc builder points an untouched duplicate
+    # at its twin instead of keeping both copies.
+    by_span = {}
+    for path, ext, size, _rec in files:
+        if size:
+            by_span.setdefault((ext, ext + _sectors(size)), []).append(path)
+    spans = []
+    for (start, end), paths in by_span.items():
+        if len(paths) > 1:
+            checks += 1
+            moved = [path for path in paths
+                     if path.upper() not in orig_entries
+                     or _read_file(disc, start, entries[path.upper()][1])
+                     != _read_file(original, *orig_entries[path.upper()][:2])]
+            if moved:
+                fails += 1
+                print(f'STRUCTURE FAIL: {", ".join(paths)} share {start}..{end},'
+                      f' but {", ".join(moved)} differ from retail there')
+        spans.append((start, end, paths[0]))
     spans += [(lba, lba + _sectors(size), '<directory>') for lba, size in dir_extents]
     spans.sort()
     overlaps = [(a, b) for a, b in zip(spans, spans[1:]) if b[0] < a[1]]

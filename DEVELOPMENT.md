@@ -137,8 +137,13 @@ or matching rule invalidates its plan, and the porter fails instead of guessing.
 ## Disc image patching
 
 `src/injection_tools/build_disc.py` writes changed PSX files in their original
-sectors when they fit, otherwise appends them and updates ISO9660 and game file
-tables. FMV subtitles and the opening quote / ending poem overlays render
+sectors when they fit, otherwise moves them into freed extents and updates
+ISO9660 and game file tables. Retail packs its files without gaps, so when the
+moved files would not fit, untouched files that duplicate another file sector
+for sector (`STR1/MVFF.STR` is `STR1/MV14.STR`, many sound banks are stored
+several times) are pointed at that copy and their extents are reused: the
+image keeps retail's length, so a patch never has to extend the disc. Only
+what still does not fit is appended. FMV subtitles and the opening quote / ending poem overlays render
 in-engine (renderer + data blob appended to `EXE/MOVIE.EXE`); the STR streams
 themselves are never re-encoded.
 

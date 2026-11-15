@@ -7,8 +7,11 @@ For every file in build/ that differs from the original disc file:
   - otherwise it takes the first freed extent that holds it, or is appended
     after the end of the volume, and its ISO9660 directory record is pointed
     at the new extent.
-Freed extents are only those of files this build moves, so the volume grows
-by what does not fit back into them.
+Freed extents are those of files this build moves and, when that is not
+enough, those of untouched files that duplicate another file sector for
+sector: retail packs its files without gaps, and its duplicates (one movie is
+stored twice, many sound banks several times) are shared instead, so the
+image keeps retail's length. The volume grows only by what still does not fit.
 Directory records get the file's whole-sector length (the same allocation
 size FSIZE.DAT stores), the PVD gets the new volume size, every written
 sector gets fresh EDC/ECC, and a matching .cue is written. With a
@@ -171,6 +174,45 @@ class Disc:
         self.f.write(b"".join(make_form1_many(entries)))
 
 
+def sector_body(raw):
+    """A raw sector without its address: subheader and data, plus the EDC for
+    Form 2 (Form 1's EDC/ECC cover the header and so follow the address)."""
+    return raw[16:2348] if raw[18] & 0x20 else raw[16:2072]
+
+
+def duplicate_files(disc, entries, written):
+    """(path, twin) for every file the build leaves alone that is, sector for
+    sector, a copy of another such file at a lower extent - largest first.
+
+    Only the sectors' addresses may differ, so the twin's sectors are what
+    the game would read from the file's own extent."""
+    by_length = {}
+    for path, (ext, size, _, _) in sorted(entries.items(), key=lambda e: e[1][0]):
+        if size and path not in written:
+            by_length.setdefault((size + 2047) // 2048, []).append((ext, path))
+    out = []
+    for sectors, group in sorted(by_length.items(), reverse=True):
+        exts = {}
+        for ext, path in group:
+            exts.setdefault(ext, path)
+        if len(exts) < 2:
+            continue
+        firsts = {}
+        for ext, path in sorted(exts.items()):
+            firsts.setdefault(sector_body(disc.raw(ext)), []).append((ext, path))
+        for candidates in firsts.values():
+            kept = []
+            for ext, path in candidates:
+                body = [sector_body(disc.raw(ext + n)) for n in range(sectors)]
+                twin = next((k for k in kept if k[2] == body), None)
+                if twin is None:
+                    kept.append((ext, path, body))
+                else:
+                    out.append((sectors, ext, path, twin[1]))
+    out.sort(key=lambda d: (-d[0], d[1]))
+    return [(path, twin) for _sectors, _ext, path, twin in out]
+
+
 def build_to(src, out, build, placement=None):
     """Construct and flush the complete image at a private temporary path.
 
@@ -233,37 +275,73 @@ def build_to(src, out, build, placement=None):
         # Placement plan. The files that outgrow their extent free it; a
         # growing file first tries to extend into freed sectors right after
         # itself, then the moving ones take the first freed gap that holds
-        # them (largest first), and only the rest is appended.
-        free = sorted([w[1], w[1] + w[2]] for w in work if w[3] > w[2])
+        # them (largest first), and only the rest is appended. Retail packs
+        # its files without gaps, so when something would still be appended,
+        # the untouched files that duplicate another file sector for sector
+        # are pointed at that copy (largest first) and their extents join the
+        # freed ones, until everything fits inside the original volume.
+        written = {w[0] for w in work}
+        shared = {}
+        for path, (ext, size, _, _) in entries.items():
+            shared.setdefault(ext, []).append(path)
+        for path in written:
+            if len(shared[entries[path][0]]) > 1:
+                raise ValueError(f'{path} shares its extent with '
+                                 f'{shared[entries[path][0]]}; it cannot be written in place')
+        growing = [w for w in work if w[3] > w[2]]
+        collapsed = {}
+        twins = None
 
-        def take(lo, hi):
-            """Claim [lo, hi) if it lies inside one free extent."""
-            for k, (a, b) in enumerate(free):
-                if a <= lo and hi <= b:
-                    free[k:k + 1] = [x for x in ([a, lo], [hi, b]) if x[0] < x[1]]
-                    return True
-            return False
+        def plan():
+            free = sorted([w[1], w[1] + w[2]] for w in growing)
+            free += [[entries[p][0], entries[p][0] + (entries[p][1] + 2047) // 2048]
+                     for p in collapsed]
 
-        def merged():
-            out = []
+            def take(lo, hi):
+                """Claim [lo, hi) if it lies inside one free extent."""
+                for k, (a, b) in enumerate(free):
+                    if a <= lo and hi <= b:
+                        free[k:k + 1] = [x for x in ([a, lo], [hi, b]) if x[0] < x[1]]
+                        return True
+                return False
+
+            merged = []
             for a, b in sorted(free):
-                if out and a <= out[-1][1]:
-                    out[-1][1] = max(out[-1][1], b)
+                if merged and a <= merged[-1][1]:
+                    merged[-1][1] = max(merged[-1][1], b)
                 else:
-                    out.append([a, b])
-            return out
+                    merged.append([a, b])
+            free[:] = merged
+            target = {}
+            for w in sorted(growing, key=lambda w: w[1]):
+                if take(w[1], w[1] + w[3]):
+                    target[w[0]] = (w[1], "grown in place")
+            for w in sorted((w for w in growing if w[0] not in target),
+                            key=lambda w: -w[3]):
+                for a, b in list(free):
+                    if b - a >= w[3] and take(a, a + w[3]):
+                        target[w[0]] = (a, "relocated into a freed extent")
+                        break
+            return target
 
-        target = {}
-        free[:] = merged()
-        for w in sorted((w for w in work if w[3] > w[2]), key=lambda w: w[1]):
-            if take(w[1], w[1] + w[3]):
-                target[w[0]] = (w[1], "grown in place")
-        for w in sorted((w for w in work if w[3] > w[2] and w[0] not in target),
-                        key=lambda w: -w[3]):
-            for a, b in list(free):
-                if b - a >= w[3] and take(a, a + w[3]):
-                    target[w[0]] = (a, "relocated into a freed extent")
-                    break
+        target = plan()
+        while any(w[0] not in target for w in growing):
+            if twins is None:
+                twins = duplicate_files(disc, entries, written)
+            if not twins:
+                break
+            path, twin = twins.pop(0)
+            collapsed[path] = twin
+            target = plan()
+
+        for path, twin in collapsed.items():
+            ext, size, rec_lba, rec_off = entries[path]
+            disc.set_record(rec_lba, rec_off, entries[twin][0], size)
+            if path in game_index:
+                struct.pack_into("<I", fsect, game_index[path] * 4, entries[twin][0])
+                tables_dirty = True
+            print(f"{path:20} {size:>9} bytes  shares {twin} @ {entries[twin][0]}"
+                  f" (freed {ext})")
 
         for (disc_path, ext, old_sectors, sectors, data, padded,
              size, rec_lba, rec_off) in work:

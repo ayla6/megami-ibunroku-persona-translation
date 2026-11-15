@@ -178,6 +178,12 @@ def plan(before, after, after_len):
     for lba, size, path in order:
         start = lba * SECTOR
         end = start + sector_count(size) * SECTOR
+        if start < pos:
+            # A file pointed at its duplicate's extent (build_disc shares
+            # identical files): that extent is already planned.
+            if end > pos:
+                raise ValueError(f'{path} overlaps the file before it at {lba}')
+            continue
         if start > pos:
             gap(pos, start)
         if path in before:

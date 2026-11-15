@@ -43,9 +43,33 @@
   #status { white-space: pre-wrap; }
   #status.error { color: #b00; }
   #results a { display: block; }
+  #history-box summary { cursor: pointer; font-weight: bold; }
+  #update-banner { color: #ff0; font-weight: bold; font-size: 1.2em; border: 2px solid #ff0; padding: 0.5rem 1rem; background: #000b; }
+  .file-choice { display: block; width: 100%; text-align: left; margin: 0.15rem 0; overflow-wrap: anywhere; border: 2px solid #444; padding: 0.15rem 0.5rem; }
+  .file-choice.picked { border-color: #ff0; color: #ff0; font-weight: bold; }
+  .disc-search { display: block; box-sizing: border-box; width: 100%; margin: 0.5rem 0; padding: 0.3rem 0.6rem 0.3rem 2.2rem;
+                 color: #fff; border: 2px solid #fff; font: inherit; text-shadow: none;
+                 /* a magnifying glass at the left edge */
+                 background: #000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='10' cy='10' r='6.5'/%3E%3Cline x1='15' y1='15' x2='21' y2='21'/%3E%3C/svg%3E") no-repeat 0.6rem center / 1.1rem; }
+  .disc-search:focus { outline: none; border-color: #ff0; }
+  .split { border: 0; border-top: 2px solid #fff; margin: 0.75rem 0; }
+  .or { display: flex; align-items: center; gap: 0.75rem; font-weight: bold; margin: 0.75rem 0; }
+  .or::before, .or::after { content: ""; flex: 1; border-top: 2px solid #fff; }
   #scratch-warning { color: #ff0; font-weight: bold; }
   #low-ram-note { color: #ff0; margin-bottom: 0; }
   input[type="file"] {width: 100%}
+  /* the file input's own button, dressed like the page's buttons */
+  input[type="file"]::file-selector-button {
+    font: inherit;
+    color: #fff;
+    text-shadow: 2px 2px 0px black;
+    background-color: #000;
+    border: 2px outset #767676;
+    padding: 1px 6px;
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
+  input[type="file"]::file-selector-button:hover { border-color: #ff0; }
   p, label {margin-top: 0;}
   a { color: #FF0; }
 </style>
@@ -53,6 +77,7 @@
 <body>
 <div id="content">
 <div class="heading"><h1>Persona 1 Translation Patcher</h1> <details class="version"><summary>(beta $VERSION)</summary><pre>$RELEASE_NOTES</pre></details></div>
+<p id="update-banner" hidden></p>
 <p>
 <a href="https://github.com/ayla6/megami-ibunroku-persona-translation">source - ayla6/megami-ibunroku-persona-translation</a>, based on <a href="https://github.com/Redeted/megami-ibunroku-persona-ps1-translation">Redeted's work</a>
 </p>
@@ -62,8 +87,13 @@
 
 <fieldset>
   <legend>Source disc</legend>
-  <p>It needs to a .bin of Megami Ibunroku Persona, not an iso or Revelations. Rev 0 and Rev 1 both work (we downgrade Rev 1).</p>
-  <input type="file" id="source" accept=".bin">
+  <p>It needs to a .bin or .chd (LZMA) of Megami Ibunroku Persona, not an iso or Revelations. Rev 0 and Rev 1 both work (we downgrade Rev 1).</p>
+  <hr class="split">
+  <p id="folder-line" hidden>Disc folder: <span id="folder-name"></span>
+  <button id="change-folder" type="button">Choose folder</button></p>
+  <div id="folder-discs" hidden></div>
+  <p id="folder-or" class="or" hidden>OR</p>
+  <input type="file" id="source" accept=".bin,.chd">
 </fieldset>
 
 <fieldset id="choices-box" hidden>
@@ -73,29 +103,46 @@
 </fieldset>
 
 <fieldset>
-<legend><button id="apply" disabled>Apply patches</button></legend>
+<legend><button id="build-ppf" disabled>Build PPF</button> <button id="apply" disabled>Build disc</button></legend>
 
+<p>You can build a PPF patch instead of applying it fully to the original Rev 0 disc (we can still downgrade Rev 1 to 0 for you but you have to keep it as a separate file), so that you don't have to continously replace one file.<br>
+Enable it on DuckStation by going Settings -&gt; Console -&gt; CD-ROM Emulation -&gt; Apply Image Patches!</p>
 <div id="status"></div>
 <div id="results"></div>
 <p id="scratch-warning" hidden>Please be sure that the patched disc won't
 accidentally stay in your browser's storage forever! Download it or click
 <button id="delete-scratch" type="button">Delete</button>.</p>
 </fieldset>
+<fieldset id="history-box" hidden>
+  <details>
+    <summary>Patched before</summary>
+    <ul id="history"></ul>
+    <button id="clear-history" type="button">Clear history</button>
+  </details>
+</fieldset>
 <fieldset>
-  <legend>Memory</legend>
+  <legend>Memory and storage</legend>
   <label class="choice">
     <input type="checkbox" id="low-ram">
     <span class="choice-text">
       <span class="choice-name">I don't have enough RAM mode</span>
-      <span class="choice-description">Writes the patched disc to browser storage instead of keeping it in memory. It's slower on a computer, but it lets low-memory devices patch.</span>
+      <span class="choice-description">Writes the patched disc to browser storage instead of keeping it in memory. It's slower on a computer, but it lets low-memory devices patch. Only for Build disc; PPFs don't need it.</span>
     </span>
   </label>
   <p id="low-ram-note" hidden></p>
+  <label class="choice">
+    <input type="checkbox" id="keep-chd" checked>
+    <span class="choice-text">
+      <span class="choice-name">Keep CHD parts</span>
+      <span class="choice-description">Keeps the parts of a CHD that building a PPF reads (about 30 MB) in browser storage, so the next PPF from it is much faster. Unticking it deletes them.</span>
+    </span>
+  </label>
 </fieldset>
 
 <script src="scratch.js"></script>
 <script src="features.js"></script>
 <script src="plan.js"></script>
+<script src="chd.js"></script>
 <script src="app.js"></script>
 </body>
 </div>

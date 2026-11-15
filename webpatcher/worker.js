@@ -23,11 +23,24 @@
  * check-only mode (-J, decodes and verifies, writes nothing): rev1-to-rev0
  * succeeds only on a Rev 1 disc, rev0-to-base only on a Rev 0 disc.
  *
+ * A PPF is built without applying anything: vcdiff.js follows each patch's
+ * instructions over a sparse view of the original disc and the PPF holds the
+ * bytes where the result differs from the disc it patches. A PPF only
+ * overwrites bytes and a Rev 1 disc is shorter than Rev 0, so for a Rev 1
+ * source the PPF patches the Rev 0 disc (the first step's result), which is
+ * handed back as a Blob of slices of the user's file plus the patched bytes.
+ *
  * Message in:  {type: 'apply', source, patchFiles, steps, sourceExpect,
  *               keepScratch, scratchName, useScratch}  // page-held OPFS dirs
+ *              {type: 'ppf', source, patchFiles, steps, sourceExpect,
+ *               description, chd, keepChd, rev0Handle}
+ *                // chd: the source is a CHD (Rev 0 only); keepChd: keep its
+ *                // parts; rev0Handle: write the Rev 0 disc made from a Rev 1
+ *                // source straight into this file instead of returning it
  *              {type: 'identify', source, expect}
  * Message out: {type: 'progress', message}
- *              {type: 'done', blob, bytes, scratchDir}
+ *              {type: 'done', blob, bytes, scratchDir, onDisk}
+ *              {type: 'ppf-done', ppf, rev0}  // rev0: Blob, Rev 1 sources only
  *              {type: 'identified', rev}
  *              {type: 'error', message}
  */
@@ -41,7 +54,8 @@ var Module = {
 };
 
 importScripts('vendor/xdelta3.js', 'workerfs.js', 'scratch.js', 'opfsfs.js',
-              'xdelta.js', 'plan.js');
+              'xdelta.js', 'plan.js', 'ppf.js', 'vcdiff.js', 'lzma.js', 'inflate.js',
+              'chd.js');
 
 /* The whole-file SHA-256 that certifies a patch file against the manifest.
  * crypto.subtle does the hashing natively; this just hands it the bytes: a
@@ -116,9 +130,349 @@ async function identifySource(msg) {
   }
 }
 
+/* What a PPF reads from a CHD is kept in IndexedDB (when the page's "Keep
+ * CHD parts" option is on; unticking it deletes the database): one record per disc, keyed by its raw SHA-1 - the same
+ * disc always holds the same bytes - with the stretches of the .bin a PPF
+ * read and their bytes. A later PPF from that CHD (other options, Update
+ * PPF, a new release) unpacks only blocks for stretches the record lacks,
+ * and the record grows by them. Only the bytes really read are kept, not
+ * the whole blocks they
+ * came from (31.5 MB for the translation with Black Mark, saves and
+ * 60 fps). Storage that is blocked or evicted just means unpacking. */
+const PART_DB = 'patcher-chd';
+const PART_STORE = 'parts';
+
+function partDb() {
+  return new Promise((resolve, reject) => {
+    const open = indexedDB.open(PART_DB, 2);
+    open.onupgradeneeded = () => {
+      const db = open.result;
+      if (db.objectStoreNames.contains('blocks')) db.deleteObjectStore('blocks');
+      if (!db.objectStoreNames.contains(PART_STORE)) db.createObjectStore(PART_STORE);
+    };
+    open.onsuccess = () => resolve(open.result);
+    open.onerror = () => reject(open.error);
+  });
+}
+
+/* One request; it resolves when its transaction has committed, not when
+ * the request succeeds - the page ends this worker as soon as the PPF is
+ * done, and a write still committing then is lost. */
+async function partStore(mode, use) {
+  const db = await partDb();
+  try {
+    return await new Promise((resolve, reject) => {
+      const tx = db.transaction(PART_STORE, mode);
+      const request = use(tx.objectStore(PART_STORE));
+      tx.oncomplete = () => resolve(request.result);
+      tx.onerror = () => reject(tx.error || request.error);
+      tx.onabort = () => reject(tx.error || new Error('IndexedDB transaction aborted'));
+    });
+  } finally {
+    db.close();
+  }
+}
+
+/* A set of stretches of the .bin with their bytes: sorted, disjoint
+ * [start, end) pairs and the bytes laid end to end. */
+class Parts {
+  constructor(spans = [], data = new Uint8Array(0)) {
+    this.spans = spans;        // [[start, end], ...]
+    this.data = data;
+    this.at = [];              // where each span's bytes start in data
+    let pos = 0;
+    for (const [start, end] of spans) {
+      this.at.push(pos);
+      pos += end - start;
+    }
+  }
+  find(offset) {               // index of the span holding offset, or -1
+    let lo = 0, hi = this.spans.length - 1;
+    while (lo <= hi) {
+      const mid = (lo + hi) >> 1;
+      const [start, end] = this.spans[mid];
+      if (offset < start) hi = mid - 1;
+      else if (offset >= end) lo = mid + 1;
+      else return mid;
+    }
+    return -1;
+  }
+  read(offset, length) {       // null unless one span holds all of it
+    const k = this.find(offset);
+    if (k < 0 || offset + length > this.spans[k][1]) return null;
+    const from = this.at[k] + offset - this.spans[k][0];
+    return this.data.subarray(from, from + length);
+  }
+}
+
+/* Sorted, merged [start, end) spans; gaps up to `join` bytes are bridged
+ * (a few extra bytes cost less than another span). */
+function mergeSpans(spans, join = 64) {
+  const sorted = spans.slice().sort((a, b) => a[0] - b[0]);
+  const out = [];
+  for (const [start, end] of sorted) {
+    const last = out[out.length - 1];
+    if (last && start <= last[1] + join) last[1] = Math.max(last[1], end);
+    else out.push([start, end]);
+  }
+  return out;
+}
+
+async function storedParts(sha1) {
+  try {
+    const record = await partStore('readonly', store => store.get(sha1));
+    if (record) return new Parts(record.spans, record.data);
+  } catch (err) { /* nothing kept */ }
+  return new Parts();
+}
+
+async function keepParts(sha1, parts) {
+  postMessage({type: 'progress', message: 'Keeping the CHD parts'});
+  try {
+    await partStore('readwrite', store => store.put({spans: parts.spans, data: parts.data}, sha1));
+  } catch (err) {
+    // not kept: the next PPF unpacks again, and the page says why
+    postMessage({type: 'progress', message: 'Could not keep the CHD parts: '
+        + String((err && err.message) || err)});
+  }
+}
+
+/* The bytes of `needed` (sorted [start, end) spans of the .bin) from a CHD:
+ * what the kept record already holds, the rest unpacked from the blocks
+ * that hold it. With `keep`, the record grows by what was unpacked. */
+async function chdParts(file, chd, needed, keep) {
+  const stored = keep ? await storedParts(chd.rawSha1) : new Parts();
+  const lacking = needed.filter(([start, end]) => !stored.read(start, end - start));
+  const perBlock = chd.framesPerHunk * CHD.SECTOR;
+  const indices = new Set();
+  for (const [start, end] of lacking) {
+    for (const index of CHD.hunksFor(chd, start, end - start)) indices.add(index);
+  }
+  if (!lacking.length) {
+    postMessage({type: 'progress', message: 'Using the kept CHD parts'});
+  }
+  const blocks = await chdBlocks(file, chd, [...indices].sort((a, b) => a - b));
+  const fromBlocks = (start, end, out, at) => {
+    for (let pos = start; pos < end;) {
+      const index = Math.floor(pos / perBlock);
+      const skip = pos - index * perBlock;
+      const take = Math.min(perBlock - skip, end - pos);
+      out.set(blocks.get(index).subarray(skip, skip + take), at + pos - start);
+      pos += take;
+    }
+  };
+  // the new record: everything kept plus everything needed, exactly (no
+  // bridged gaps: their bytes come from neither)
+  const spans = mergeSpans(keep ? stored.spans.concat(needed) : needed, 0);
+  const data = new Uint8Array(spans.reduce((n, [start, end]) => n + end - start, 0));
+  // both inputs are sorted and disjoint: walk them alongside the output
+  let at = 0, l = 0, k = 0;
+  for (const [start, end] of spans) {
+    while (l < lacking.length && lacking[l][1] <= start) l++;
+    for (let i = l; i < lacking.length && lacking[i][0] < end; i++) {
+      fromBlocks(Math.max(lacking[i][0], start), Math.min(lacking[i][1], end), data, at);
+    }
+    while (k < stored.spans.length && stored.spans[k][1] <= start) k++;
+    for (let i = k; i < stored.spans.length && stored.spans[i][0] < end; i++) {
+      const from = Math.max(stored.spans[i][0], start);
+      const to = Math.min(stored.spans[i][1], end);
+      data.set(stored.read(from, to - from), at + from - start);
+    }
+    at += end - start;
+  }
+  const parts = new Parts(spans, data);
+  if (keep && lacking.length) await keepParts(chd.rawSha1, parts);
+  return parts;
+}
+
+/* The sector bytes of `indices`, unpacked by a few block workers side by
+ * side (chdblocks.js), batch by batch. */
+async function chdBlocks(file, chd, indices) {
+  const out = new Map();
+  const todo = indices;
+  if (!todo.length) return out;
+  const batches = [];
+  for (let k = 0; k < todo.length; k += 64) batches.push(todo.slice(k, k + 64));
+  let unpacked = 0;
+  const progress = () => postMessage({type: 'progress', message:
+      `Unpacking the CHD (${unpacked} of ${todo.length} blocks)`});
+  const store = blocks => {
+    for (const [index, block] of blocks) out.set(index, block);
+    unpacked += blocks.length;
+    progress();
+  };
+  progress();
+  const portable = CHD.portable(chd);
+  const cores = (self.navigator && navigator.hardwareConcurrency) || 2;
+  const count = Math.max(1, Math.min(4, cores - 1, batches.length));
+  let next = 0;
+  const lane = () => new Promise((resolve, reject) => {
+    let helper;
+    try {
+      helper = new Worker('chdblocks.js');
+    } catch (err) {
+      helper = null;           // no nested workers here: unpack inline
+    }
+    if (!helper) {
+      (async () => {
+        while (next < batches.length) {
+          const batch = batches[next++];
+          const blocks = [];
+          for (const index of batch) blocks.push([index, await CHD.hunk(chd, index, chd.readAt)]);
+          store(blocks);
+        }
+      })().then(resolve, reject);
+      return;
+    }
+    const send = () => {
+      if (next >= batches.length) {
+        helper.terminate();
+        resolve();
+        return;
+      }
+      helper.postMessage({file, chd: portable, indices: batches[next++]});
+    };
+    helper.onmessage = ({data}) => {
+      if (data.error) {
+        helper.terminate();
+        reject(new Error(data.error));
+        return;
+      }
+      store(data.blocks);
+      send();
+    };
+    helper.onerror = event => {
+      helper.terminate();
+      reject(new Error(event.message || 'a CHD block worker failed'));
+    };
+    send();
+  });
+  await Promise.all(Array.from({length: count}, lane));
+  return out;
+}
+
+/* The PPF for a plan, from the patches' instructions alone (see the top of
+ * this file). The source was identified before this runs (xdelta3 for a
+ * .bin, the header's raw SHA-1 for a CHD); each patch file must match its
+ * manifest hash and each step its output size.
+ *
+ * A CHD is read only where the PPF needs the disc: a first pass over the
+ * chain records which of its blocks are touched, those blocks alone are
+ * unpacked, and the second pass reads from them. */
+async function buildPpf(msg) {
+  try {
+    const reader = new FileReaderSync();
+    const files = new Map(msg.patchFiles.map(({name, file}) => [name, file]));
+    const patches = new Map();
+    for (const step of msg.steps) {
+      if (patches.has(step.patch)) continue;
+      const patch = new Uint8Array(reader.readAsArrayBuffer(files.get(step.patch)));
+      const digest = [...new Uint8Array(await crypto.subtle.digest('SHA-256', patch))]
+          .map(byte => byte.toString(16).padStart(2, '0')).join('');
+      if (digest !== step.patchHash) {
+        throw new Error(`${step.patch} does not match the release manifest`
+            + ' - the release files are damaged or mixed from different'
+            + ' releases; reload the page and retry');
+      }
+      patches.set(step.patch, patch);
+    }
+
+    let size;
+    let readOriginal;
+    let chd = null;
+    let parts = null;            // CHD: the stretches a run may read, with bytes
+    const requests = [];         // CHD: what a run read that `parts` lacked
+    if (msg.chd) {
+      const readAt = async (offset, length) =>
+          new Uint8Array(await msg.source.slice(offset, offset + length).arrayBuffer());
+      chd = await CHD.open(readAt);
+      size = chd.binBytes;
+      readOriginal = (offset, length) => {
+        const bytes = parts && parts.read(offset, length);
+        if (bytes) return bytes;
+        requests.push([offset, offset + length]);
+        return new Uint8Array(length);
+      };
+      chd.readAt = readAt;
+    } else {
+      size = msg.source.size;
+      readOriginal = (offset, length) => new Uint8Array(
+          reader.readAsArrayBuffer(msg.source.slice(offset, offset + length)));
+    }
+    if (size !== msg.sourceExpect.bytes) {
+      throw new Error(`The selected disc is ${size.toLocaleString()} bytes`
+          + ` but this release patches the ${msg.sourceExpect.bytes.toLocaleString()}`
+          + '-byte original disc - select the .bin image, not the .cue');
+    }
+
+    const run = () => {
+      // a CHD's parts are already in memory; a .bin is read through a cache
+      const read = chd ? readOriginal : VCDIFF.cachedReader(readOriginal, size);
+      let image = VCDIFF.original(size);
+      let reference = image;     // the disc the PPF patches
+      let converted = false;     // reference is the Rev 0 disc made from Rev 1
+      for (const step of msg.steps) {
+        postMessage({type: 'progress', message: 'Reading ' + step.patch});
+        image = VCDIFF.apply(image, patches.get(step.patch), read);
+        if (image.size !== step.expectBytes) {
+          throw new Error(`${step.patch} did not apply - the selected disc does`
+              + ' not match the original image this release patches, or the'
+              + ' release files are damaged');
+        }
+        if (step.patch === PatchPlan.REV1_PATCH) {
+          reference = image;
+          converted = true;
+        }
+      }
+      postMessage({type: 'progress', message: 'Writing the PPF'});
+      const block = VCDIFF.read(reference, PPF.BLOCK_AT, PPF.BLOCK_BYTES, read);
+      const parts = PPF.fromRegions(block,
+          VCDIFF.differences(reference, image, read), msg.description || '');
+      return {parts, reference, converted};
+    };
+
+    if (chd) {
+      run();                     // which stretches of the disc the PPF reads
+      const needed = mergeSpans(requests);
+      requests.length = 0;
+      parts = await chdParts(msg.source, chd, needed, msg.keepChd);
+    }
+    const {parts: ppfParts, reference, converted} = run();
+    if (requests.length) throw new Error('the CHD was read outside the parts unpacked for it');
+    if (chd && converted) throw new Error('a Rev 1 CHD cannot be turned into a Rev 0 disc here');
+    const ppf = new Blob(ppfParts, {type: 'application/octet-stream'});
+    let rev0 = null;
+    if (converted) {
+      // The Rev 0 disc, 8 MB at a time: Rev 1 and Rev 0 differ in so many
+      // small places that a Blob of the image's pieces would have about a
+      // million parts, which stalls the browser. Into the disc folder it is
+      // streamed straight to its file; as a download it is a Blob of ~90.
+      const CHUNK = 8 << 20;
+      const read = VCDIFF.cachedReader(readOriginal, msg.source.size, 1 << 20, 16);
+      const writable = msg.rev0Handle ? await msg.rev0Handle.createWritable() : null;
+      let blob = new Blob([], {type: 'application/octet-stream'});
+      for (let base = 0; base < reference.size; base += CHUNK) {
+        if (base % (64 << 20) === 0) {
+          postMessage({type: 'progress', message:
+              `Writing the Rev 0 disc (${Math.floor(100 * base / reference.size)}%)`});
+        }
+        const chunk = VCDIFF.read(reference, base, Math.min(CHUNK, reference.size - base), read);
+        if (writable) await writable.write(chunk);
+        else blob = new Blob([blob, chunk], {type: 'application/octet-stream'});
+      }
+      if (writable) await writable.close();
+      else rev0 = blob;
+    }
+    postMessage({type: 'ppf-done', ppf, rev0});
+  } catch (err) {
+    postMessage({type: 'error', message: String((err && err.message) || err)});
+  }
+}
+
 self.onmessage = async event => {
   const msg = event.data;
   if (msg && msg.type === 'identify') return identifySource(msg);
+  if (msg && msg.type === 'ppf') return buildPpf(msg);
   if (!msg || msg.type !== 'apply') return;
 
   const work = '/patchwork';
@@ -215,7 +569,7 @@ self.onmessage = async event => {
       blob = new Blob([data], {type: 'application/octet-stream'});
       bytes = data.length;
     }
-    postMessage({type: 'done', blob, bytes,
+    postMessage({type: 'done', blob, bytes, onDisk: !!scratch,
                  scratchDir: scratch ? scratch.dirName : null});
   } catch (err) {
     postMessage({type: 'error', message: String((err && err.message) || err)});

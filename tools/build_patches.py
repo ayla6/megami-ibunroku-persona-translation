@@ -517,6 +517,27 @@ def system_mismatch(applied, built, limit=8):
     return [f'  {len(found)} sector(s) outside files: ' + ', '.join(found[:limit]) + more]
 
 
+def chd_raw_sha1(path):
+    """The raw SHA-1 a CHD of this single-track image carries in its header.
+
+    chdman stores each 2352-byte sector as a 2448-byte frame (96 subcode
+    bytes, zero for a .bin) and pads the track to a multiple of 4 frames;
+    the header's raw SHA-1 covers exactly those bytes. The web patcher
+    identifies a CHD by it without unpacking anything."""
+    digest = hashlib.sha1()
+    subcode = bytes(96)
+    frames = 0
+    with open(path, 'rb') as source:
+        for chunk in iter(lambda: source.read(2352 * 1024), b''):
+            for at in range(0, len(chunk), 2352):
+                digest.update(chunk[at:at + 2352])
+                digest.update(subcode)
+                frames += 1
+    for _ in range(-frames % 4):
+        digest.update(bytes(2448))
+    return digest.hexdigest()
+
+
 def sha256(path):
     """SHA-256 of a file, remembered for the rest of this run.
 
@@ -559,6 +580,18 @@ def same_bytes(first, second):
                 return True
 
 
+def plain_vcdiff(path):
+    """Whether a patch file is plain VCDIFF: no secondary compression.
+
+    Every release patch is encoded with `-S none`, so a decoder needs only
+    RFC 3284 - the web patcher builds a PPF from the instructions without
+    applying the patches, and no LZMA decoder exists there. A recorded patch
+    with the secondary bit set is from an older encoder and is re-encoded."""
+    with open(path, 'rb') as handle:
+        head = handle.read(5)
+    return head[:4] == b'\xd6\xc3\xc4\x00' and not head[4] & 0x01
+
+
 def run_delta(tool, source, target, output, *, disable_armor):
     """Encode, then verify the patch by decoding it with output disabled.
 
@@ -570,7 +603,8 @@ def run_delta(tool, source, target, output, *, disable_armor):
     env.pop('XDELTA', None)
     flags = ['-a'] if disable_armor else []
     output.unlink(missing_ok=True)      # scratch; xdelta3 refuses to overwrite
-    subprocess.run([tool, '-e', '-A', *flags, '-s', str(source), str(target), str(output)],
+    subprocess.run([tool, '-e', '-A', '-S', 'none', *flags,
+                    '-s', str(source), str(target), str(output)],
                    check=True, env=env)
     subprocess.run([tool, '-d', '-J', '-s', str(source), str(output)],
                    check=True, env=env)
@@ -746,7 +780,7 @@ def masked_delta(tool, source, target, output, scratch, unit=2352):
                 out_source.write(block)
         with open(output, 'wb') as out_patch:
             process = subprocess.Popen(
-                [tool, '-e', '-A', '-a', '-n', '-s', str(masked_source)],
+                [tool, '-e', '-A', '-a', '-n', '-S', 'none', '-s', str(masked_source)],
                 stdin=subprocess.PIPE, stdout=out_patch, env=env)
             try:
                 for block in blocks(False):
@@ -761,7 +795,7 @@ def masked_delta(tool, source, target, output, scratch, unit=2352):
 
 
 MANIFEST_FIELDS = ('patch', 'adds', 'anchor', 'order', 'choices', 'verify',
-                   'source_bytes', 'source_sha256', 'target_bytes',
+                   'source_bytes', 'source_sha256', 'source_chd_sha1', 'target_bytes',
                    'target_sha256', 'patch_sha256', 'verified', 'build_key',
                    'release')
 
@@ -907,6 +941,25 @@ def scratch_root(required_bytes):
     return root
 
 
+def pipeline_depth(kept_images, image_bytes):
+    """How many finished states may wait for their audit and encode.
+
+    IN_FLIGHT when the system temp directory holds the run's peak with it;
+    otherwise the deepest pipeline it still holds, because a narrower
+    pipeline on tmpfs is far faster than the full one on the project's data
+    disk. An explicit $PERSONA_BUILD_SCRATCH keeps IN_FLIGHT."""
+    if os.environ.get(SCRATCH_ENV):
+        return IN_FLIGHT
+    try:
+        room = available_bytes(tempfile.gettempdir())
+    except OSError:
+        return IN_FLIGHT
+    for depth in range(IN_FLIGHT, 0, -1):
+        if (kept_images + max(depth + 2, 3)) * image_bytes <= room:
+            return depth
+    return IN_FLIGHT
+
+
 def supports_reflink(root):
     """Whether `root`'s filesystem can share extents between image copies."""
     probe = root / f'.reflink-probe-{os.getpid()}'
@@ -1004,13 +1057,15 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
     # Kept for the whole run: the staged retail image, the base translation
     # (the sample chains decode from it) and every state another patch is
     # encoded from. Every other state is deleted once its audit and encode
-    # are done; at most IN_FLIGHT of them wait for that while the next one
-    # is assembled, and the sample check holds one disc and two chain slots;
-    # one masked encoding or decoy test (one image) runs at a time. The
-    # staged retail image is a free clone where the workspace can clone and
-    # is read in place where it cannot, so it is not counted.
+    # are done; while assembling, at most `in_flight` of them wait for that
+    # behind the one being assembled, and one masked encoding or decoy test
+    # (one image) runs at a time; the sample check later holds one disc and
+    # two chain slots. The staged retail image is a free clone where the
+    # workspace can clone and is read in place where it cannot, so it is not
+    # counted.
     parents = {edge.parent for edge in edges.values()} - {()}
-    keep_images = 1 + len(parents) + max(IN_FLIGHT + 1, 3) + 1
+    in_flight = pipeline_depth(1 + len(parents), image_bytes)
+    keep_images = 1 + len(parents) + max(in_flight + 2, 3)
     with workspace(keep_images * image_bytes) as work:
         manifest = output / 'manifest.tsv'
         records = read_manifest(manifest)
@@ -1039,7 +1094,7 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
         records_lock = threading.Lock()
         image_lock = threading.RLock()
         tasks = ThreadPoolExecutor(max_workers=max(1, workers))
-        room = threading.BoundedSemaphore(IN_FLIGHT)
+        room = threading.BoundedSemaphore(in_flight)
         decoy_lock = threading.Lock()     # one perturbed image at a time
         solo_changes = {}   # option -> file sectors its solo build changes
         futures = {}
@@ -1057,7 +1112,7 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                 return False
             if sha256(path) != row['patch_sha256']:
                 raise RuntimeError(f'{path} was modified; refusing to replace your file')
-            return True
+            return plain_vcdiff(path)
 
         def anchor_text(anchor):
             return ','.join(label for label in solver_order(CHOICE_ORDER)
@@ -1217,6 +1272,8 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                     'source_bytes': str(source.stat().st_size),
                     'source_sha256': (sha256(source) if hashes and 'source' in hashes
                                       else ''),
+                    'source_chd_sha1': (chd_raw_sha1(source)
+                                        if hashes and 'source' in hashes else ''),
                     'target_bytes': str(target.stat().st_size),
                     'target_sha256': (sha256(target) if hashes and 'target' in hashes
                                       else ''),
@@ -1249,9 +1306,11 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
                     and old.get('target_sha256') == target_hash
                     and old.get('source_sha256') == source_hash):
                 print(f'patch: {name} unchanged; reusing verified patch', flush=True)
+                chd_sha1 = old.get('source_chd_sha1') or chd_raw_sha1(source)
                 with records_lock:
                     row = records[name]
-                    row.update({'adds': metadata.get('adds', ''),
+                    row.update({'source_chd_sha1': chd_sha1,
+                                'adds': metadata.get('adds', ''),
                                 'anchor': metadata.get('anchor', ''),
                                 'order': metadata.get('order', ''),
                                 'choices': metadata.get('choices', ''),
@@ -1348,9 +1407,11 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
         if (revision_row and file_matches_row(REV1_PATCH, revision_row)
                 and revision_row.get('source_sha256') == rev1_hash):
             print(f'patch: {REV1_PATCH} unchanged; reusing verified patch', flush=True)
+            chd_sha1 = revision_row.get('source_chd_sha1') or chd_raw_sha1(rev1)
             with records_lock:
                 row = records[REV1_PATCH]
-                row.update({'adds': '', 'anchor': '', 'order': '',
+                row.update({'source_chd_sha1': chd_sha1,
+                            'adds': '', 'anchor': '', 'order': '',
                             'choices': '', 'verified': '', 'build_key': ''})
                 touched.add(REV1_PATCH)
                 save_records()
@@ -1428,7 +1489,7 @@ def build_release(rev0, rev1, output, xdelta, *, port=False, workers=3,
             baseline = baselines.get(labels)
             if baseline is None:
                 baseline = original if parent is None else ensure_image(parent)
-            room.acquire()      # the next build waits while IN_FLIGHT images do
+            room.acquire()      # the next build waits while in_flight images do
             try:
                 futures[labels] = tasks.submit(
                     edge_task, labels, image, placement, audit, baseline,

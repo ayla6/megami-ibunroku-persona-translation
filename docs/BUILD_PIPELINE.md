@@ -125,6 +125,15 @@ first and rebuilds every variant patch. A release directory written by the
 old per-combination layout is refused: move it away before the first build
 of this layout.
 
+Every patch is plain VCDIFF (RFC 3284): xdelta3 encodes with `-S none` and
+`tools/sizedelta.py` writes no secondary compression either. The patches are
+about a sixth larger than with xdelta3's LZMA sections (the base patch is
+3.7 MB instead of 3.1 MB), and in exchange anything that reads RFC 3284 can
+follow their instructions without xdelta3: the web patcher builds a PPF
+straight from them, without applying a patch. A recorded patch whose header
+carries the secondary-compression bit is from an older encoder and is
+re-encoded instead of reused.
+
 The ten release choices are save UI, Mark artwork, battle speed, 60 fps,
 double battle rewards, half random encounters, Western controls, running in
 dungeons, Upper Right movement and Start-to-skip movies. Rewards and encounters ship
@@ -250,7 +259,11 @@ builds by default, not 512.
 - **Hashes only where they describe a real disc**: the revision
   conversions and the base translation record whole-image
   `source_sha256`/`target_sha256`, because their inputs are exactly a
-  retail or translated disc. An add- row's source is whatever the player's
+  retail or translated disc. The two revision rows also record
+  `source_chd_sha1`: the raw SHA-1 a chdman CHD of that original disc
+  carries in its header (each sector as a 2448-byte frame with zero
+  subcode, the track padded to 4 frames), which is how the web patcher
+  recognises a CHD without unpacking it. An add- row's source is whatever the player's
   earlier options made it, so its hash columns stay empty; there is no one
   canonical hash for a decorated disc. The runtime checks each patch
   file's SHA-256 (`patch_sha256`) and every step's output size, and uses
@@ -375,7 +388,7 @@ what feeds the disc - `src/`, `translation/`, the extracted data, and the
 two scripts it runs - so unrelated churn in `tools/tests/` never
 invalidates a running release. The Rev 1 to Rev 0 conversion never depends
 on build inputs and is reused across any same-source run. A release is
-complete when its manifest lists all 17 steps across the 17 patch files.
+complete when its manifest lists all 18 steps across the 18 patch files.
 
 The run's scratch images live in a private workspace that is deleted on
 exit. It prefers the system temp directory (tmpfs on most Linux systems) when
@@ -383,8 +396,12 @@ it can hold the run's peak, then `build/`. Only the staged retail copy, the
 base translation and the states another patch is encoded from (the partners
 and the size-changer layouts) are kept for the whole run; every other option
 state is deleted once its audit and encode are done, the next build waits
-while `IN_FLIGHT` of them are still in progress, and the sample check holds
-one disc and two chain slots - about eight images in all.
+while `IN_FLIGHT` (2) of them are still in progress, one masked encoding runs
+at a time, and the sample check holds one disc and two chain slots - nine
+images (6.3 GB) in all. When the temp directory cannot hold that but can hold
+it with a shallower pipeline, the pipeline narrows to one in-flight state
+(eight images) and the run stays on tmpfs; only when even that does not fit
+does the workspace go to `build/`.
 `PERSONA_BUILD_SCRATCH` names the parent directory explicitly. The retail
 image is staged there once, so the source disc is read once rather than once
 per variant. On a reflink filesystem (btrfs) image clones share their

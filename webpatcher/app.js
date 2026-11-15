@@ -40,6 +40,8 @@ const state = {
   labels: [],            // option labels, in apply order
   patches: null,         // {manifestText}
   source: null,
+  fromFolder: false,     // the source was chosen from the disc folder's list
+  folder: null,          // the disc folder (File System Access API)
   rev: null,             // detected revision (0 or 1), null until checked
   identifying: false,
   identifyRun: 0,
@@ -124,8 +126,8 @@ function selectedLabels() {
  * rev0-to-base, then one add- patch per selected option in apply order.
  * PatchPlan picks the file each option needs from `anchor`; nothing about
  * the options themselves is hardcoded here. */
-function buildPlan(rev) {
-  const plan = PatchPlan.plan(state.graph, rev, selectedLabels());
+function buildPlan(rev, labels = selectedLabels()) {
+  const plan = PatchPlan.plan(state.graph, rev, labels);
   return {
     steps: plan.steps.map(step => stepOf(step.row, step.source)),
     patchNames: plan.patchNames,
@@ -133,8 +135,11 @@ function buildPlan(rev) {
   };
 }
 
-async function apply(source, rev, scratchName, useScratch) {
-  const plan = buildPlan(rev);
+/* `ppf` set: the worker builds a PPF instead of a disc and answers
+ * {ppf, blob} (blob: the Rev 0 disc it patches, for a Rev 1 source). */
+async function apply(source, rev, scratchName, useScratch, ppf, ppfDescription,
+                     labels = selectedLabels(), rev0Handle = null) {
+  const plan = buildPlan(rev, labels);
   const patchFiles = [];
   for (const name of plan.patchNames) {
     status(`Fetching ${name}`);
@@ -148,15 +153,20 @@ async function apply(source, rev, scratchName, useScratch) {
         const msg = event.data;
         if (msg.type === 'progress') status(msg.message + '...');
         else if (msg.type === 'done') resolve(msg);
-        else if (msg.type === 'error') reject(new Error(msg.message));
+        else if (msg.type === 'ppf-done') {
+          resolve({ppf: msg.ppf, blob: msg.rev0, scratchDir: null, onDisk: false});
+        } else if (msg.type === 'error') reject(new Error(msg.message));
       };
       worker.onerror = event => {
         reject(new Error(event.message || 'patch worker failed to start'));
       };
-      worker.postMessage({type: 'apply', source, patchFiles,
-                          steps: plan.steps, sourceExpect: plan.sourceExpect,
-                          keepScratch: resultScratch, scratchName,
-                          useScratch});
+      worker.postMessage(ppf
+          ? {type: 'ppf', source, patchFiles, steps: plan.steps,
+             sourceExpect: plan.sourceExpect, description: ppfDescription,
+             chd: isChd(source), keepChd: $('keep-chd').checked, rev0Handle}
+          : {type: 'apply', source, patchFiles, steps: plan.steps,
+             sourceExpect: plan.sourceExpect, keepScratch: resultScratch,
+             scratchName, useScratch});
     });
   } finally {
     worker.terminate();
@@ -239,10 +249,49 @@ async function dropScratch(name) {
   } catch (err) {}
 }
 
-function showResult(base, done, lock) {
-  const binName = base + '.bin';
-  const cueName = base + '.cue';
-  const cue = `FILE "${binName.replace(/"/g, '')}" BINARY\n` + CUE_BODY;
+/* Build PPF on a Rev 1 disc hands back the Rev 0 disc the PPF patches. It
+ * carries the Redump name of the Rev 0 dump, so it is the same disc a Rev 0
+ * owner has, and every later PPF is built from it. */
+const REV0_NAME = 'Megami Ibunroku Persona - Be Your True Mind (Japan)';
+const REV0_NOTE = "PPF patches don't work on differently sized discs, please"
+    + ' use this disc instead for now and future repatches.';
+
+/* An emulator finds a PPF by the disc's own file name, so the PPF is named
+ * after the disc it patches; which release and options it holds goes in
+ * its description field and in the manifest beside it. */
+const stem = name => name.replace(/\.[^./\\]*$/, '');
+
+/* Beside the PPF: the release, then one option label per line. A local
+ * release has no stamp yet; its first line says so, so the first line is
+ * always the release and never an option. */
+const UNSTAMPED = 'unstamped';
+
+function ppfNote(info) {
+  const lines = [PatchPlan.releaseStamp(state.rows) || UNSTAMPED, ...info.labels];
+  return new Blob([lines.join('\n') + '\n'], {type: 'text/plain'});
+}
+
+/* `done.blob` is the disc to download (the patched disc, or for a PPF built
+ * from Rev 1 the Rev 0 disc it patches); `done.ppf` the PPF, if one was
+ * built, named after the disc it patches, with a note of what it holds. */
+function showResult(base, done, lock, info) {
+  const files = [];   // [blob, name]
+  if (done.ppf) {
+    const disc = done.blob ? REV0_NAME : stem(info.sourceName);
+    const ppfName = disc + '.ppf';
+    files.push([done.ppf, ppfName]);
+    files.push([ppfNote(info), ppfName + '.txt']);
+    if (done.blob) files.push([done.blob, disc + '.bin']);
+  } else {
+    files.push([done.blob, base + '.bin']);
+  }
+  const disc = files.find(([, name]) => name.endsWith('.bin'));
+  if (disc) {
+    files.push([new Blob([`FILE "${disc[1].replace(/"/g, '')}" BINARY\n` + CUE_BODY],
+                         {type: 'application/octet-stream'}),
+                stem(disc[1]) + '.cue']);
+  }
+
   for (const url of resultUrls) URL.revokeObjectURL(url);
   const previousScratch = resultScratch;
   const previousLock = resultLock;
@@ -250,17 +299,436 @@ function showResult(base, done, lock) {
   resultLock = resultScratch ? lock : null;
   resultDownloaded = false;
   downloadClickedAt = 0;  // a new result has not been downloaded yet
-  const binUrl = URL.createObjectURL(done.blob);
-  const cueUrl = URL.createObjectURL(
-      new Blob([cue], {type: 'application/octet-stream'}));
-  resultUrls = [binUrl, cueUrl];
-  $('results').replaceChildren(
-      downloadLink(binUrl, binName, true),
-      downloadLink(cueUrl, cueName, false));
+  resultUrls = [];
+  const entry = {at: new Date().toISOString(),
+                 release: PatchPlan.releaseStamp(state.rows),
+                 options: info.labels, kind: done.ppf ? 'ppf' : 'disc',
+                 source: REV_LABEL[info.rev], file: files[0][1]};
+  let recorded = false;
+  const record = () => {   // once per result, however it is saved
+    if (!recorded) addHistory(entry);
+    recorded = true;
+  };
+  // the disc is the download the leave-page warning protects
+  const tracked = disc ? disc[1] : files[0][1];
+  const links = files.map(([blob, name]) => {
+    const url = URL.createObjectURL(blob);
+    resultUrls.push(url);
+    const link = downloadLink(url, name, name === tracked);
+    link.querySelector('a').addEventListener('click', record);
+    return link;
+  });
+  $('results').replaceChildren(...links);
   $('scratch-warning').hidden = !done.scratchDir;
   if (previousScratch) dropScratch(previousScratch);
   releaseScratch(previousLock);
-  status(`Here it is :D`);
+  status(done.ppf && done.blob ? REV0_NOTE : 'Here it is :D');
+}
+
+/* A PPF this patcher wrote: PPF 3.0 whose description (bytes 6..56) is a
+ * release name, which always starts with OUTPUT_NAME. */
+function ownPpf(head) {
+  const magic = String.fromCharCode(...head.subarray(0, 5));
+  const description = String.fromCharCode(...head.subarray(6, 56));
+  return magic === 'PPF30' && description.startsWith(OUTPUT_NAME + '-');
+}
+
+/* Build PPF with a disc from the disc folder (Chrome, Edge): the PPF and
+ * its note are written next to the disc - nothing to download. From a Rev
+ * 1 disc the PPF patches the Rev 0 copy: the copy already in the folder,
+ * or a new one written there with it. A PPF this patcher did not write is
+ * never overwritten, and one that already holds this release and these
+ * options is left alone. */
+const PPF_DISC_KEY = 'patcher.ppf-disc';
+
+function rememberPpfDisc(name) {
+  try { localStorage.setItem(PPF_DISC_KEY, name); } catch (err) {}
+}
+
+function rememberedPpfDisc() {
+  try { return localStorage.getItem(PPF_DISC_KEY); } catch (err) { return null; }
+}
+
+async function fileIn(folder, name) {
+  try {
+    return await (await folder.getFileHandle(name)).getFile();
+  } catch (err) {
+    return null;
+  }
+}
+
+
+const cueFor = binName =>
+    new Blob([`FILE "${binName.replace(/"/g, '')}" BINARY\n` + CUE_BODY],
+             {type: 'application/octet-stream'});
+
+async function writeInFolder(folder, files) {
+  for (const [blob, name] of files) {
+    status(`Saving ${name}`);
+    const writable = await (await folder.getFileHandle(name, {create: true})).createWritable();
+    await writable.write(blob);
+    await writable.close();
+  }
+}
+
+async function ppfIntoFolder(rev, labels) {
+  const folder = await writableFolder();
+  let source = state.source;
+  let sourceRev = rev;
+  if (rev === 1) {
+    // the Rev 0 copy made before, when it is there, is what the PPF patches
+    const copy = await fileIn(folder, REV0_NAME + '.bin');
+    if (copy) {
+      status(`Checking ${copy.name}`);
+      if ((await identify(copy)).rev === 0) {
+        source = copy;
+        sourceRev = 0;
+      }
+    }
+  }
+  const discName = sourceRev === 1 ? REV0_NAME + '.bin' : source.name;
+  const ppfName = stem(discName) + '.ppf';
+  const noteName = ppfName + '.txt';
+  const existing = await fileIn(folder, ppfName);
+  if (existing && !ownPpf(new Uint8Array(await existing.slice(0, 56).arrayBuffer()))) {
+    throw new Error(`${ppfName} in ${folder.name} is not a Persona translation PPF;`
+        + ' it was left alone');
+  }
+  const stamp = PatchPlan.releaseStamp(state.rows);
+  const note = await fileIn(folder, noteName);
+  if (note && existing && stamp) {
+    // the first line is the release; options follow, one per line
+    const [first = '', ...rest] = (await note.text()).split(/\r?\n/);
+    if (first.trim() === stamp
+        && sameOptions(labels, rest.map(line => line.trim()).filter(Boolean))) {
+      $('results').replaceChildren();
+      status(`${ppfName} is already ${stamp} with these options`);
+      return;
+    }
+  }
+  // from Rev 1 the Rev 0 disc is written by the worker straight into its
+  // file, its .cue first (a tiny file, so it is there whatever happens)
+  let rev0Handle = null;
+  if (sourceRev === 1) {
+    await writeInFolder(folder, [[cueFor(REV0_NAME + '.bin'), REV0_NAME + '.cue']]);
+    rev0Handle = await folder.getFileHandle(REV0_NAME + '.bin', {create: true});
+  }
+  const done = await apply(source, sourceRev, null, false, true, outputBase(labels), labels,
+                           rev0Handle);
+  await writeInFolder(folder, [[done.ppf, ppfName], [ppfNote({labels}), noteName]]);
+  rememberPpfDisc(discName);       // the disc chosen from now on
+  addHistory({at: new Date().toISOString(), release: stamp, options: labels,
+              kind: 'ppf', source: REV_LABEL[rev], file: ppfName});
+  $('results').replaceChildren();
+  status(rev0Handle
+      ? `The PPF was placed alongside the selected disc, together with the Rev 0 disc`
+        + ` it patches (${REV0_NAME}.bin). ${REV0_NOTE}`
+      : `The PPF was placed alongside the selected disc (${discName}).`);
+}
+
+/* The disc folder (Chrome, Edge). Picked once and kept as a handle in
+ * IndexedDB, so a later visit only re-confirms write permission (one click
+ * on the browser's prompt) instead of picking again; Change folder picks a
+ * different one. Blocked storage just means picking every time. */
+const FOLDER_STORE = 'handles';
+const FOLDER_KEY = 'ppf-folder';
+
+function folderDb(mode, use) {
+  return new Promise((resolve, reject) => {
+    const open = indexedDB.open('patcher', 1);
+    open.onupgradeneeded = () => open.result.createObjectStore(FOLDER_STORE);
+    open.onerror = () => reject(open.error);
+    open.onsuccess = () => {
+      const db = open.result;
+      const request = use(db.transaction(FOLDER_STORE, mode).objectStore(FOLDER_STORE));
+      request.onsuccess = () => { resolve(request.result); db.close(); };
+      request.onerror = () => { reject(request.error); db.close(); };
+    };
+  });
+}
+
+async function storedFolder() {
+  try {
+    return await folderDb('readonly', store => store.get(FOLDER_KEY)) || null;
+  } catch (err) {
+    return null;
+  }
+}
+
+async function pickFolder() {
+  const previous = state.folder || await storedFolder();
+  const folder = await window.showDirectoryPicker(
+      {id: FOLDER_KEY, mode: 'readwrite', ...(previous ? {startIn: previous} : {})});
+  try {
+    await folderDb('readwrite', store => store.put(folder, FOLDER_KEY));
+  } catch (err) { /* not remembered: the next save asks again */ }
+  state.folder = folder;
+  showFolder(folder);
+  return folder;
+}
+
+/* The remembered folder with write permission, or a newly picked one. */
+async function writableFolder() {
+  const folder = state.folder || await storedFolder();
+  if (folder) {
+    let permission = await folder.queryPermission({mode: 'readwrite'});
+    if (permission !== 'granted') permission = await folder.requestPermission({mode: 'readwrite'});
+    if (permission === 'granted') return folder;
+  }
+  return pickFolder();
+}
+
+function showFolder(folder) {
+  $('folder-line').hidden = !window.showDirectoryPicker;
+  $('folder-or').hidden = !window.showDirectoryPicker;   // folder OR file picker
+  $('folder-name').textContent = folder ? folder.name : 'not chosen yet';
+  $('change-folder').textContent = folder ? 'Change folder' : 'Choose folder';
+}
+
+/* The disc folder (Chrome, Edge) comes first: the page lists the Megami
+ * Ibunroku Persona discs in it - a .bin by its size, a .chd by the raw
+ * SHA-1 in its 124-byte header, so other games never show up - and picks
+ * the one used last. A PPF built from a disc chosen here is saved next to
+ * it at once. */
+async function discsIn(folder) {
+  const sizes = new Map(state.rows.filter(row => row.patch === BASE_PATCH || row.patch === REV1_PATCH)
+      .map(row => [Number(row.source_bytes), row.patch === BASE_PATCH ? 0 : 1]));
+  const hashes = new Map(state.rows.filter(row => row.source_chd_sha1)
+      .map(row => [row.source_chd_sha1, row.patch === BASE_PATCH ? 0 : 1]));
+  const found = [];
+  const all = [];              // every .bin and .chd, for the search
+  for await (const [name, handle] of folder.entries()) {
+    if (handle.kind !== 'file' || !/\.(bin|chd)$/i.test(name)) continue;
+    all.push({name, handle});
+    const file = await handle.getFile();
+    let rev;
+    if (/\.bin$/i.test(name)) {
+      rev = sizes.get(file.size);
+    } else {
+      const sha1 = await CHD.headerSha1(async (offset, length) =>
+          new Uint8Array(await file.slice(offset, offset + length).arrayBuffer()));
+      rev = hashes.get(sha1);
+    }
+    if (rev !== undefined) found.push({name, rev, handle});
+  }
+  const byName = (a, b) => a.name.localeCompare(b.name);
+  return {discs: found.sort(byName), all: all.sort(byName)};
+}
+
+/* The disc picker: a search over the folder's .bin and .chd files, every
+ * word of the query somewhere in the name, starting with the game's name.
+ * Recognised discs carry their revision and come first; the picked one is
+ * highlighted and always heads the list, whatever the search (an empty
+ * search shows it alone). */
+const SEARCH_DEFAULT = 'Megami Ibunroku Persona';
+const SEARCH_SHOWN = 200;
+
+function discPicker(all, discs) {
+  const revOf = new Map(discs.map(disc => [disc.name, disc.rev]));
+  const files = all.slice().sort((a, b) =>
+      (revOf.has(b.name) - revOf.has(a.name)) || a.name.localeCompare(b.name));
+  const wrap = document.createElement('div');
+  const search = document.createElement('input');
+  search.type = 'search';
+  search.className = 'disc-search';
+  search.placeholder = 'Search the folder for the disc';
+  search.value = SEARCH_DEFAULT;
+  const list = document.createElement('div');
+  const button = (file, current) => {
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = 'file-choice' + (file.name === current ? ' picked' : '');
+    item.setAttribute('aria-pressed', file.name === current);
+    item.textContent = file.name + (revOf.has(file.name) ? ` - ${REV_LABEL[revOf.get(file.name)]}` : '');
+    item.addEventListener('click', async () => setSource(await file.handle.getFile(), true));
+    return item;
+  };
+  const render = () => {
+    // the picked disc heads the list whatever the search says
+    const current = state.fromFolder && state.source ? state.source.name : null;
+    const head = files.find(file => file.name === current);
+    const items = head ? [button(head, current)] : [];
+    const words = search.value.toLowerCase().split(/\s+/).filter(Boolean);
+    if (words.length) {
+      const matches = files.filter(file => file !== head && words.every(word =>
+          file.name.toLowerCase().includes(word)));
+      items.push(...matches.slice(0, SEARCH_SHOWN).map(file => button(file, current)));
+      if (matches.length > SEARCH_SHOWN) {
+        const more = document.createElement('p');
+        more.textContent = `and ${matches.length - SEARCH_SHOWN} more - narrow the search`;
+        items.push(more);
+      } else if (!matches.length && !head) {
+        const none = document.createElement('p');
+        none.textContent = 'No .bin or .chd matches.';
+        items.push(none);
+      }
+    }
+    list.replaceChildren(...items);
+  };
+  search.addEventListener('input', render);
+  state.renderPicker = render;
+  render();
+  wrap.append(search, list);
+  return wrap;
+}
+
+/* `fresh`: the user just chose this folder, so its best disc is selected
+ * even when one from another folder was. */
+async function loadFolder(folder, fresh = false) {
+  state.folder = folder;
+  showFolder(folder);
+  const box = $('folder-discs');
+  box.hidden = false;
+  box.textContent = 'Looking for the disc...';
+  let discs, all;
+  try {
+    ({discs, all} = await discsIn(folder));
+  } catch (err) {
+    box.textContent = err.message;
+    return;
+  }
+  const remembered = rememberedPpfDisc();
+  const note = remembered && await fileIn(folder, stem(remembered) + '.ppf.txt');
+  if (note) {
+    noteRelease = (await note.text()).split(/\r?\n/)[0].trim() || UNSTAMPED;
+    updateBanner();
+  }
+  box.replaceChildren(discPicker(all, discs));
+  if (!discs.length) {
+    status(`No Megami Ibunroku Persona disc this page recognises in ${folder.name} -`
+        + ' search for it below, choose the folder that has it, or pick the file.', true);
+    return;
+  }
+  // the best disc here: the one used last, the file picked with the file
+  // input, one that already has a PPF note, a Rev 0 disc (the PPF patches
+  // Rev 0), else the first
+  const notes = new Set();
+  for (const disc of discs) {
+    if (await fileIn(folder, stem(disc.name) + '.ppf.txt')) notes.add(disc.name);
+  }
+  const rank = disc => [disc.name === remembered, !!state.source && disc.name === state.source.name,
+                        notes.has(disc.name), disc.rev === 0];
+  const pick = discs.slice().sort((a, b) => {
+    const ra = rank(a), rb = rank(b);
+    for (let k = 0; k < ra.length; k++) if (ra[k] !== rb[k]) return ra[k] ? -1 : 1;
+    return 0;
+  })[0];
+  if (fresh || !state.source) {
+    setSource(await pick.handle.getFile(), true);
+  } else if (state.renderPicker) {
+    state.renderPicker();
+  }
+}
+
+/* The disc to patch: from the folder list (`fromFolder`), or from the file
+ * picker. */
+function setSource(file, fromFolder) {
+  state.source = file;
+  state.fromFolder = !!(file && fromFolder);
+  state.rev = null;
+  state.identifyError = null;
+  if (state.fromFolder) rememberPpfDisc(file.name);
+  if (state.renderPicker) state.renderPicker();
+  status(file ? file.name : '');
+  refreshApply();
+  maybeIdentify();
+}
+
+/* The remembered disc folder: listed at once when permission survived,
+ * otherwise its button asks for it back (that needs a click). */
+async function restoreFolder() {
+  const folder = await storedFolder();
+  if (!folder) {
+    $('folder-discs').hidden = false;
+    $('folder-discs').textContent = 'Choose the folder with your disc, then pick it here.';
+    return;
+  }
+  state.folder = folder;
+  showFolder(folder);
+  if (await folder.queryPermission({mode: 'readwrite'}) === 'granted') return loadFolder(folder);
+  $('change-folder').textContent = 'Allow access';
+  $('change-folder').dataset.allow = '1';
+  $('folder-discs').hidden = false;
+  $('folder-discs').textContent = `Click Allow access to use ${folder.name} again.`;
+}
+
+/* A file from the picker: when the disc folder holds the same file, it is
+ * that one (so its PPF can be saved beside it); otherwise say so. */
+async function pickedFile(file) {
+  if (!file || !state.folder) return setSource(file, false);
+  const inFolder = await fileIn(state.folder, file.name);
+  if (inFolder && inFolder.size === file.size) return setSource(inFolder, true);
+  setSource(file, false);
+  status(`${file.name} is not in ${state.folder.name}, so a PPF cannot be saved next to`
+      + ' it - pick it from the list above, or choose its folder', true);
+}
+
+
+/* Everything patched in this browser (Patched before): when, which release, which
+ * options, a disc or a PPF. It lives only in this browser's localStorage;
+ * blocked storage just means no history. */
+const HISTORY_KEY = 'patcher.history';
+const HISTORY_MAX = 200;
+
+function readHistory() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    return Array.isArray(saved) ? saved : [];
+  } catch (err) {
+    return [];
+  }
+}
+
+function addHistory(entry) {
+  noteRelease = null;         // what was just patched is the latest now
+  try {
+    const history = readHistory();
+    history.unshift(entry);
+    localStorage.setItem(HISTORY_KEY,
+                         JSON.stringify(history.slice(0, HISTORY_MAX)));
+  } catch (err) { /* storage blocked or full: nothing is remembered */ }
+  renderHistory();
+}
+
+function clearHistory() {
+  try { localStorage.removeItem(HISTORY_KEY); } catch (err) {}
+  renderHistory();
+}
+
+/* "There's a new update" under the title: the release this browser last
+ * patched with (the newest Patched before entry, or the remembered disc's
+ * .ppf.txt once the disc folder is open) against this release. An
+ * unstamped (local) release cannot be compared, so it never shows. */
+let noteRelease = null;
+
+function updateBanner() {
+  const stamp = PatchPlan.releaseStamp(state.rows);
+  const last = noteRelease || (readHistory()[0] || {}).release || '';
+  const old = stamp && last && last !== UNSTAMPED && last !== stamp;
+  $('update-banner').hidden = !old;
+  if (old) {
+    $('update-banner').textContent = `There's a new update (${stamp})! You're on ${last} -`
+        + ' press Build PPF, or build your disc again.';
+  }
+}
+
+function renderHistory() {
+  const history = readHistory();
+  if (state.rows.length) updateBanner();
+  $('history-box').hidden = !history.length;
+  $('history').replaceChildren(...history.map(item => {
+    const row = document.createElement('li');
+    const when = new Date(item.at);
+    const date = isNaN(when) ? '' : when.toLocaleString();
+    const options = (item.options || []).length
+        ? item.options.map(label => featureOf(label).name)
+            .join(', ')
+        : 'no options';
+    row.textContent = `${date} - ${item.release || 'unstamped release'} - `
+        + `${item.kind === 'ppf' ? 'PPF' : 'disc'} from ${item.source || '?'}`
+        + ` - ${options} (${item.file})`;
+    return row;
+  }));
 }
 
 async function deleteResult() {
@@ -310,6 +778,8 @@ function saveSelection() {
   } catch (err) { /* storage blocked: the choice just isn't remembered */ }
 }
 
+const sameOptions = (a, b) => a.length === b.length && a.every(label => b.includes(label));
+
 /* Tick the options remembered from the last patch run; labels that no
  * longer exist are ignored. */
 function restoreSelection() {
@@ -357,7 +827,10 @@ function renderGrid() {
 /* Identifying the disc (which may still be downloading its patch) does not
  * disable Apply: a click waits for that run to finish. */
 function refreshApply() {
-  $('apply').disabled = state.running || !state.source || !state.rows.length;
+  const disabled = state.running || !state.source || !state.rows.length;
+  // a CHD is compressed: xdelta cannot patch it, only a PPF can be made
+  $('apply').disabled = disabled || isChd(state.source);
+  $('build-ppf').disabled = disabled;
 }
 
 /* The release patches that prove which original disc this is: applying
@@ -379,7 +852,34 @@ function revisionExpectations() {
   return expect;
 }
 
+const isChd = file => !!file && /\.chd$/i.test(file.name);
+
+/* A CHD is identified by its header alone: the raw SHA-1 chdman records for
+ * the disc inside, against the one the release computed from each original
+ * disc (`source_chd_sha1`). Only a Rev 0 CHD can take a PPF: from Rev 1 the
+ * PPF patches a converted Rev 0 disc, which is a .bin. */
+async function identifyChd(source) {
+  const readAt = async (offset, length) =>
+      new Uint8Array(await source.slice(offset, offset + length).arrayBuffer());
+  const chd = await CHD.open(readAt);
+  const known = state.rows.filter(row => row.source_chd_sha1);
+  if (!known.length) {
+    throw new Error('this release cannot recognise CHD files yet - use the .bin');
+  }
+  const row = known.find(item => item.source_chd_sha1 === chd.rawSha1);
+  if (!row) {
+    throw new Error("this CHD's disc is not the original Megami Ibunroku Persona"
+        + ' (Rev 0 or Rev 1) - it may be a different or modified dump');
+  }
+  if (row.patch === REV1_PATCH) {
+    throw new Error('this is a Rev 1 CHD; a PPF needs the Rev 0 disc - pick the'
+        + ' Rev 1 .bin to get a Rev 0 copy, or a Rev 0 CHD');
+  }
+  return {rev: 0};
+}
+
 async function identify(source) {
+  if (isChd(source)) return identifyChd(source);
   const expect = revisionExpectations();
   /* Only the patch for the candidate with this file's size can apply, so
    * don't download the other revision's patch. */
@@ -471,6 +971,29 @@ function lowMemoryHint() {
 
 let autoMemoryHint = null;
 
+const MEMORY_KEY = 'patcher.memory';
+
+function savedMemory() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(MEMORY_KEY) || 'null');
+    return saved && typeof saved === 'object' ? saved : null;
+  } catch (err) {
+    return null;
+  }
+}
+
+function saveMemory() {
+  try {
+    localStorage.setItem(MEMORY_KEY, JSON.stringify(
+        {lowRam: $('low-ram').checked, keepChd: $('keep-chd').checked}));
+  } catch (err) { /* storage blocked: the boxes just aren't remembered */ }
+}
+
+/* The CHD parts the worker keeps (worker.js, PART_DB) - the whole store. */
+function dropChdParts() {
+  try { indexedDB.deleteDatabase('patcher-chd'); } catch (err) {}
+}
+
 function setMemoryNote(text) {
   const note = $('low-ram-note');
   note.hidden = !text;
@@ -496,23 +1019,58 @@ window.patcher = {loadManifest, FEATURES, buildPlan, apply, selectedLabels,
 async function init() {
   ScratchSpace.clean();  // a closed tab could not finish deleting its output
   prefetchBase();        // the largest patch; ready before a disc is picked
-  autoMemoryHint = lowMemoryHint();
-  $('low-ram').checked = !!autoMemoryHint;
+  // the memory and storage options are remembered from the first visit:
+  // low-RAM mode starts from the device hint and CHD parts start kept
+  const memory = savedMemory();
+  autoMemoryHint = memory ? null : lowMemoryHint();
+  $('low-ram').checked = memory ? !!memory.lowRam : !!autoMemoryHint;
+  $('keep-chd').checked = memory ? memory.keepChd !== false : true;
+  if (!memory) saveMemory();     // the starting choices, written at once
   refreshMemoryNote(false);
+  // kept parts should survive storage pressure: ask for persistent storage
+  // (Chrome decides without a prompt, by how the site is used)
+  const persist = () => {
+    if ($('keep-chd').checked && navigator.storage && navigator.storage.persist) {
+      navigator.storage.persist().catch(() => {});
+    }
+  };
+  persist();
+  $('keep-chd').addEventListener('change', () => {
+    saveMemory();
+    if (!$('keep-chd').checked) dropChdParts();
+    persist();
+  });
   $('low-ram').addEventListener('change', () => {
     autoMemoryHint = null;
+    saveMemory();
     refreshMemoryNote(false);
   });
-  $('source').addEventListener('change', () => {
-    state.source = $('source').files[0] || null;
-    state.rev = null;
-    state.identifyError = null;
-    status(state.source ? state.source.name : '');
-    refreshApply();
-    maybeIdentify();
-  });
+  $('source').addEventListener('change', () => pickedFile($('source').files[0] || null));
   $('delete-scratch').addEventListener('click', deleteResult);
-  $('apply').addEventListener('click', async () => {
+  $('clear-history').addEventListener('click', clearHistory);
+  renderHistory();
+  $('apply').addEventListener('click', () => run(false));
+  $('build-ppf').addEventListener('click', () => run(true));
+  if (window.showDirectoryPicker) {
+    showFolder(null);
+    $('change-folder').addEventListener('click', async () => {
+      try {
+        // a remembered folder only needs its permission back (a click is
+        // the user gesture that asks); Change folder picks another
+        const folder = state.folder;
+        if (folder && $('change-folder').dataset.allow) {
+          if (await folder.requestPermission({mode: 'readwrite'}) === 'granted') {
+            delete $('change-folder').dataset.allow;
+            return loadFolder(folder);
+          }
+        }
+        await loadFolder(await pickFolder(), true);
+      } catch (err) {
+        if (!err || err.name !== 'AbortError') status(err.message, true);
+      }
+    });
+  }
+  async function run(ppf) {
     if (!state.source || state.running) return;
     saveSelection();
     state.running = true;
@@ -529,7 +1087,10 @@ async function init() {
       // Name the download from the selection this run applied, not from
       // whatever the boxes say by the time the worker finishes.
       const labels = selectedLabels();
-      const lowRam = $('low-ram').checked;
+      // a disc from the disc folder: the PPF goes next to it, no downloads
+      if (ppf && state.fromFolder && state.folder) return await ppfIntoFolder(rev, labels);
+      // a PPF never holds a disc image, so it needs no scratch space
+      const lowRam = !ppf && $('low-ram').checked;
       let scratch = lowRam ? ScratchSpace.name(Date.now()) : null;
       if (lowRam) lock = await holdScratch(scratch);
       const useScratch = lowRam && lock !== false;
@@ -540,12 +1101,14 @@ async function init() {
         scratch = null;
         lock = null;
       }
-      const done = await apply(state.source, rev, scratch, useScratch);
+      const done = await apply(state.source, rev, scratch, useScratch, ppf,
+                               outputBase(labels));
       const keep = done.scratchDir ? lock : null;
       if (!keep) releaseScratch(lock);
       lock = null;  // showResult owns the lock from here
-      refreshMemoryNote(lowRam && !done.scratchDir);
-      showResult(outputBase(labels), done, keep);
+      if (!ppf) refreshMemoryNote(lowRam && !done.onDisk);
+      showResult(outputBase(labels), done, keep,
+                       {labels, rev, sourceName: state.source.name});
     } catch (err) {
       releaseScratch(lock);
       status(err.message, true);
@@ -553,10 +1116,12 @@ async function init() {
       state.running = false;
       refreshApply();
     }
-  });
+  }
   try {
     await loadManifest();
     renderGrid();
+    updateBanner();
+    if (window.showDirectoryPicker) restoreFolder();
     status(`Hello :D - there are ${state.labels.length} options`);
   } catch (err) {
     status(err.message, true);
