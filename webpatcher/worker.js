@@ -286,68 +286,94 @@ async function chdParts(file, chd, needed, keep) {
 }
 
 /* The sector bytes of `indices`, unpacked by a few block workers side by
- * side (chdblocks.js), batch by batch. */
+ * side (chdblocks.js), batch by batch. This worker reads the compressed
+ * blocks itself, in the few large slices CHD.readPlan picks (reads are
+ * the slow part on some devices, and they do not run in parallel there),
+ * reading the next slice while the block workers unpack the last one. */
 async function chdBlocks(file, chd, indices) {
   const out = new Map();
-  const todo = indices;
-  if (!todo.length) return out;
-  const batches = [];
-  for (let k = 0; k < todo.length; k += 64) batches.push(todo.slice(k, k + 64));
+  if (!indices.length) return out;
+  const slices = CHD.readPlan(chd, indices);
   let unpacked = 0;
   const progress = () => postMessage({type: 'progress', message:
-      `Unpacking the CHD (${unpacked} of ${todo.length} blocks)`});
+      `Unpacking the CHD (${unpacked} of ${indices.length} blocks)`});
   const store = blocks => {
     for (const [index, block] of blocks) out.set(index, block);
     unpacked += blocks.length;
     progress();
   };
   progress();
+
+  // batches of up to 64 blocks, each with its own compressed bytes; at most
+  // two slices are read ahead of the block workers
+  const batches = [];
+  let reading = 0;
+  let wake = null;
+  const readSlice = async slice => {
+    const bytes = slice.start === null ? null
+        : await chd.readAt(slice.start, slice.end - slice.start);
+    for (let k = 0; k < slice.blocks.length; k += 64) {
+      const blocks = slice.blocks.slice(k, k + 64);
+      const pieces = bytes ? blocks.map(({offset, length}) => [offset,
+          bytes.slice(offset - slice.start, offset - slice.start + length)]) : [];
+      batches.push({indices: blocks.map(block => block.index), pieces});
+    }
+  };
+  const reader = (async () => {
+    for (; reading < slices.length; reading++) {
+      while (batches.length > 2 * 4 + 8) await new Promise(resolve => { wake = resolve; });
+      await readSlice(slices[reading]);
+      if (wake) { const go = wake; wake = null; go(); }
+    }
+  })();
+  let readError = null;
+  reader.catch(err => { readError = err; });
+  const take = async () => {
+    for (;;) {
+      if (readError) throw readError;
+      if (batches.length) {
+        const batch = batches.shift();
+        if (wake) { const go = wake; wake = null; go(); }
+        return batch;
+      }
+      if (reading >= slices.length) return null;
+      await new Promise(resolve => setTimeout(resolve, 20));
+    }
+  };
+
   const portable = CHD.portable(chd);
   const cores = (self.navigator && navigator.hardwareConcurrency) || 2;
-  const count = Math.max(1, Math.min(4, cores - 1, batches.length));
-  let next = 0;
-  const lane = () => new Promise((resolve, reject) => {
+  const count = Math.max(1, Math.min(4, cores - 1, Math.ceil(indices.length / 64)));
+  const lane = async () => {
     let helper;
     try {
       helper = new Worker('chdblocks.js');
     } catch (err) {
       helper = null;           // no nested workers here: unpack inline
     }
-    if (!helper) {
-      (async () => {
-        while (next < batches.length) {
-          const batch = batches[next++];
+    try {
+      for (let batch; (batch = await take());) {
+        if (!helper) {
+          const read = CHD.piecesReader(batch.pieces, chd.readAt);
           const blocks = [];
-          for (const index of batch) blocks.push([index, await CHD.hunk(chd, index, chd.readAt)]);
+          for (const index of batch.indices) blocks.push([index, await CHD.hunk(chd, index, read)]);
           store(blocks);
+          continue;
         }
-      })().then(resolve, reject);
-      return;
+        store(await new Promise((resolve, reject) => {
+          helper.onmessage = ({data}) => (data.error ? reject(new Error(data.error))
+                                                     : resolve(data.blocks));
+          helper.onerror = event => reject(new Error(event.message || 'a CHD block worker failed'));
+          helper.postMessage({file, chd: portable, indices: batch.indices, pieces: batch.pieces},
+                             batch.pieces.map(([, bytes]) => bytes.buffer));
+        }));
+      }
+    } finally {
+      if (helper) helper.terminate();
     }
-    const send = () => {
-      if (next >= batches.length) {
-        helper.terminate();
-        resolve();
-        return;
-      }
-      helper.postMessage({file, chd: portable, indices: batches[next++]});
-    };
-    helper.onmessage = ({data}) => {
-      if (data.error) {
-        helper.terminate();
-        reject(new Error(data.error));
-        return;
-      }
-      store(data.blocks);
-      send();
-    };
-    helper.onerror = event => {
-      helper.terminate();
-      reject(new Error(event.message || 'a CHD block worker failed'));
-    };
-    send();
-  });
+  };
   await Promise.all(Array.from({length: count}, lane));
+  await reader;
   return out;
 }
 
@@ -405,9 +431,9 @@ async function buildPpf(msg) {
           + '-byte original disc - select the .bin image, not the .cue');
     }
 
-    const run = () => {
-      // a CHD's parts are already in memory; a .bin is read through a cache
-      const read = chd ? readOriginal : VCDIFF.cachedReader(readOriginal, size);
+    // a CHD's parts are already in memory; a .bin is read through a cache
+    const read = chd ? readOriginal : VCDIFF.cachedReader(readOriginal, size);
+    const chain = () => {
       let image = VCDIFF.original(size);
       let reference = image;     // the disc the PPF patches
       let converted = false;     // reference is the Rev 0 disc made from Rev 1
@@ -424,20 +450,29 @@ async function buildPpf(msg) {
           converted = true;
         }
       }
+      return {image, reference, converted};
+    };
+    const write = ({image, reference}) => {
       postMessage({type: 'progress', message: 'Writing the PPF'});
       const block = VCDIFF.read(reference, PPF.BLOCK_AT, PPF.BLOCK_BYTES, read);
-      const parts = PPF.fromRegions(block,
+      return PPF.fromRegions(block,
           VCDIFF.differences(reference, image, read), msg.description || '');
-      return {parts, reference, converted};
     };
 
+    let result = chain();
     if (chd) {
-      run();                     // which stretches of the disc the PPF reads
+      // which stretches of the disc the PPF reads. The chain itself reads
+      // the disc only for an overlapping copy; when it read nothing, its
+      // images are already exact and only the writing is done again.
+      const chainRead = requests.length > 0;
+      write(result);
       const needed = mergeSpans(requests);
       requests.length = 0;
       parts = await chdParts(msg.source, chd, needed, msg.keepChd);
+      if (chainRead) result = chain();
     }
-    const {parts: ppfParts, reference, converted} = run();
+    const {reference, converted} = result;
+    const ppfParts = write(result);
     if (requests.length) throw new Error('the CHD was read outside the parts unpacked for it');
     if (chd && converted) throw new Error('a Rev 1 CHD cannot be turned into a Rev 0 disc here');
     const ppf = new Blob(ppfParts, {type: 'application/octet-stream'});

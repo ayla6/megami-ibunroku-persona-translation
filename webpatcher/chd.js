@@ -136,8 +136,22 @@
     return [...head.subarray(64, 84)].map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
-  async function open(readAt) {
-    const head = await readAt(0, 124);
+  async function open(fileReadAt) {
+    // Reads go through a few larger ones: the header and the metadata sit
+    // at the start of the file, the map's header just before the map, and
+    // a read can cost a fixed fraction of a second (see readPlan).
+    const read = [];
+    const readAt = async (offset, n, ahead = n) => {
+      for (const [start, bytes] of read) {
+        if (offset >= start && offset + n <= start + bytes.length) {
+          return bytes.subarray(offset - start, offset - start + n);
+        }
+      }
+      const bytes = await fileReadAt(offset, Math.max(n, ahead));
+      read.push([offset, bytes]);
+      return bytes.subarray(0, n);
+    };
+    const head = await readAt(0, 124, 64 << 10);
     if (fourcc(head.subarray(0, 8)) !== 'MComprHD') throw new Error('not a CHD file');
     const version = be(head, 12, 4);
     if (version !== 5) {
@@ -162,7 +176,7 @@
     // tracks, from the CHT2 (or older CHTR) metadata entries
     const tracks = [];
     for (let at = metaOffset; at;) {
-      const entry = await readAt(at, 16);
+      const entry = await readAt(at, 16, 64 << 10);
       const tag = fourcc(entry.subarray(0, 4));
       const length = be(entry, 5, 3);
       if (tag === 'CHT2' || tag === 'CHTR') {
@@ -185,7 +199,8 @@
       map = Array.from({length: hunks}, (_, i) => ({
         type: COMPRESSION_NONE, offset: be(raw, 4 * i, 4) * hunkBytes, length: hunkBytes, crc: -1}));
     } else {
-      const top = await readAt(mapOffset, 16);
+      // the compressed map is smaller than the plain one (4 bytes a block)
+      const top = await readAt(mapOffset, 16, 16 + hunks * 4);
       const mapBytes = be(top, 0, 4);
       const firstOffset = be(top, 4, 6);
       const mapCrc = be(top, 10, 2);
@@ -352,6 +367,55 @@
     return out;
   }
 
+  /* How to read the compressed blocks of `indices` in a few large slices:
+   * [{start, end, blocks: [{index, offset, length}]}], a block's bytes being
+   * those of the block it repeats, if it repeats one. chdman writes blocks
+   * back to back, and on some devices every read of a File costs a fixed
+   * fraction of a second whatever its size (Chrome on Android: about 0.4 s,
+   * one read at a time, even from several workers), so reading a megabyte
+   * too many is far cheaper than one read more. */
+  function readPlan(chd, indices, {gap = 1 << 20, most = 16 << 20} = {}) {
+    const blocks = [];
+    for (const index of indices) {
+      let entry = chd.map[index];
+      for (let depth = 0; entry && entry.type === COMPRESSION_SELF && depth <= 8; depth++) {
+        entry = chd.map[entry.offset];
+      }
+      // anything unusual is left to hunk() to read (and to report)
+      const plain = entry && entry.type !== COMPRESSION_SELF
+          && entry.type !== COMPRESSION_PARENT && entry.length;
+      blocks.push(plain ? {index, offset: entry.offset, length: entry.length}
+                        : {index, offset: null, length: 0});
+    }
+    blocks.sort((a, b) => (a.offset ?? -1) - (b.offset ?? -1));
+    const slices = [];
+    for (const block of blocks) {
+      const last = slices[slices.length - 1];
+      const end = block.offset + block.length;
+      if (block.offset === null) {
+        if (!last || last.start !== null) slices.unshift({start: null, end: null, blocks: []});
+        slices[0].blocks.push(block);
+      } else if (last && last.start !== null && block.offset - last.end <= gap
+                 && Math.max(end, last.end) - last.start <= most) {
+        last.end = Math.max(last.end, end);
+        last.blocks.push(block);
+      } else {
+        slices.push({start: block.offset, end, blocks: [block]});
+      }
+    }
+    return slices;
+  }
+
+  /* A readAt over `pieces` ([[offset, bytes], ...], from readPlan's slices)
+   * that reads anything else from `readAt`. */
+  function piecesReader(pieces, readAt) {
+    const at = new Map(pieces.map(([offset, bytes]) => [offset, bytes]));
+    return async (offset, length) => {
+      const bytes = at.get(offset);
+      return bytes && bytes.length === length ? bytes : readAt(offset, length);
+    };
+  }
+
   function hunksFor(chd, offset, n) {
     const perHunk = chd.framesPerHunk * SECTOR;
     const out = [];
@@ -378,5 +442,5 @@
     return {codecs, hunkBytes, hunks, map, framesPerHunk};
   }
 
-  globalThis.CHD = {open, headerSha1, hunk, hunksFor, codecUse, portable, SECTOR};
+  globalThis.CHD = {open, headerSha1, hunk, readPlan, piecesReader, hunksFor, codecUse, portable, SECTOR};
 })();

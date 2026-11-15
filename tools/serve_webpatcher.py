@@ -4,6 +4,7 @@
   python tools/serve_webpatcher.py --no-tailscale # localhost only
   python tools/serve_webpatcher.py --patches DIR  # serve that patch set
   python tools/serve_webpatcher.py --port 8137
+  python tools/serve_webpatcher.py --debug        # with the debug log
 
 This is the offline stand-in for the Pages deploy: the same static page,
 served from webpatcher/ on this machine, with the patch set and the option
@@ -21,6 +22,11 @@ tailscale serve publishes the local server at this node's tailnet URL, so
 any device on the tailnet (a phone, a handheld, the console-adjacent
 laptop) opens the patcher without a deploy. The serve entry is removed on
 Ctrl-C; with --no-tailscale nothing touches tailscale at all.
+
+--debug loads tools/webpatcher_debug.js into the page and into every patch
+worker (worker.js, chdblocks.js): a log panel at the bottom of the page,
+mirrored to build/webpatcher-debug.log on this machine, so a device without
+dev tools can still show what its workers did. The Pages site never has it.
 """
 import argparse
 import contextlib
@@ -42,6 +48,10 @@ import publish_patches  # noqa: E402  (sync_local_patches + completeness rules)
 import stamp_webpatcher  # noqa: E402
 
 SITE = ROOT / 'webpatcher'
+DEBUG_SCRIPT = ROOT / 'tools' / 'webpatcher_debug.js'
+DEBUG_LOG = ROOT / 'build' / 'webpatcher-debug.log'
+# the debug script runs last in these workers, after their own imports
+DEBUG_WORKERS = ('/worker.js', '/chdblocks.js')
 
 
 def sha256(path):
@@ -128,18 +138,42 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         '.js': 'text/javascript',
     }
 
-    def __init__(self, *args, page=None, **kwargs):
+    def __init__(self, *args, page=None, debug=False, **kwargs):
         self.page = page
+        self.debug = debug
         super().__init__(*args, **kwargs)
 
+    def send_bytes(self, body, content_type):
+        self.send_response(200)
+        self.send_header('Content-Type', content_type)
+        self.send_header('Content-Length', str(len(body)))
+        self.end_headers()
+        return io.BytesIO(body)
+
     def send_head(self):
-        if self.page is not None and urlsplit(self.path).path in ('/', '/index.html'):
-            self.send_response(200)
-            self.send_header('Content-Type', 'text/html; charset=utf-8')
-            self.send_header('Content-Length', str(len(self.page)))
-            self.end_headers()
-            return io.BytesIO(self.page)
+        path = urlsplit(self.path).path
+        if self.page is not None and path in ('/', '/index.html'):
+            return self.send_bytes(self.page, 'text/html; charset=utf-8')
+        if self.debug and path == '/debug.js':
+            return self.send_bytes(DEBUG_SCRIPT.read_bytes(), 'text/javascript')
+        if self.debug and path in DEBUG_WORKERS:
+            body = ((SITE / path.lstrip('/')).read_bytes()
+                    + b"\nimportScripts('debug.js');\n")
+            return self.send_bytes(body, 'text/javascript')
         return super().send_head()
+
+    def do_POST(self):
+        if not (self.debug and urlsplit(self.path).path == '/__debug/log'):
+            self.send_error(404)
+            return
+        text = self.rfile.read(int(self.headers.get('Content-Length') or 0))
+        text = text.decode('utf-8', 'replace')
+        with open(DEBUG_LOG, 'a', encoding='utf-8') as out:
+            out.write(text)
+        for line in text.splitlines():
+            print(f'debug: {line}')
+        self.send_response(204)
+        self.end_headers()
 
     def end_headers(self):
         self.send_header('Cache-Control', 'no-cache')
@@ -157,6 +191,9 @@ def main(argv=None):
                              '(default: dist/patches)')
     parser.add_argument('--no-tailscale', action='store_true',
                         help='serve on localhost only; do not run tailscale serve')
+    parser.add_argument('--debug', action='store_true',
+                        help='add the debug log panel, mirrored to '
+                             'build/webpatcher-debug.log')
     args = parser.parse_args(argv)
 
     source = Path(args.patches) if args.patches else publish_patches.DIST
@@ -186,12 +223,23 @@ def main(argv=None):
                                                 local / 'manifest.tsv', local=True)
     except (OSError, ValueError) as error:
         raise SystemExit(f'web patcher version: {error}') from error
-    handler = functools.partial(Handler, directory=str(SITE), page=page.encode('utf-8'))
+    if args.debug:
+        tag = '<script src="app.js"></script>'
+        if tag not in page:
+            raise SystemExit(f'web patcher page has no {tag} to load the debug log before')
+        page = page.replace(tag, '<script src="debug.js"></script>\n' + tag)
+        DEBUG_LOG.parent.mkdir(exist_ok=True)
+        with open(DEBUG_LOG, 'a', encoding='utf-8') as out:
+            out.write(f'--- serve_webpatcher --debug {time.strftime("%Y-%m-%d %H:%M:%S")}\n')
+    handler = functools.partial(Handler, directory=str(SITE), page=page.encode('utf-8'),
+                                debug=args.debug)
     server = http.server.ThreadingHTTPServer(('127.0.0.1', args.port), handler)
     url = f'http://127.0.0.1:{args.port}'
     print(f'webpatcher: serving {SITE.name}/ at {url} '
           f'({len(list(local.glob("*.xdelta")))} patches, '
           f'options from tools/release_options.json, version {release})')
+    if args.debug:
+        print(f'webpatcher: debug log on the page and in {DEBUG_LOG.relative_to(ROOT)}')
     published = None if args.no_tailscale else tailscale_publish(args.port)
     if published:
         print(f'webpatcher: tailnet URL {published} (Ctrl-C withdraws it)')

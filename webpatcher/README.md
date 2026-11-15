@@ -98,7 +98,11 @@ produced the release patches) compiled to WebAssembly - see
   over the chain records which of its blocks the PPF reads, only those are
   unpacked (about a tenth of the disc for the base translation and three
   options), each checked against the CRC-16 in the CHD's map, and the PPF
-  is built from them. Unpacking is spread over up to four block workers
+  is built from them. The patch worker reads the compressed blocks in a
+  few large slices (`CHD.readPlan`: gaps up to 1 MB are read through, up
+  to 16 MB a read) - on Chrome for Android every read of a picked file
+  costs about 0.3 s whatever its size, and reads do not overlap, so one
+  read per block took minutes - and up to four block workers unpack them
   (`chdblocks.js`, one per spare core). With **Keep CHD parts** (under
   Memory and storage, on by default) the exact stretches of the disc a PPF
   read are kept in IndexedDB, one record per disc under its raw SHA-1 - the
@@ -213,6 +217,12 @@ chain (usually a handful).
 page locally without modifying the HTML template. If the local manifest has
 not yet been stamped by the publisher, its version is shown as `local`.
 Restart the server after editing the page, release notes, or manifest.
+With `--debug` the page and every patch worker also load
+`tools/webpatcher_debug.js`: a log panel at the bottom of the page (each
+status line, worker starts, messages and errors, every file read with its
+offset, size and time, CHD block timings), mirrored to
+`build/webpatcher-debug.log` on the serving machine, so a phone without dev
+tools leaves its log there. The deployed site never loads it.
 
 The page itself is deployed by `.github/workflows/pages.yml`. The workflow
 runs on every push to `main`, on `release: published`, and manually; each

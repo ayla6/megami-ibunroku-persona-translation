@@ -3,7 +3,9 @@
  * side by side on a multi-core machine (LZMA is the slow part of building a
  * PPF from a CHD).
  *
- * Message in:  {file, chd: CHD.portable(...), indices}
+ * Message in:  {file, chd: CHD.portable(...), indices, pieces}
+ *              (pieces: the blocks' compressed bytes, CHD.readPlan's; the
+ *              file is read only for anything they lack)
  * Message out: {blocks: [[index, Uint8Array], ...]}  (buffers transferred)
  *              {error}
  */
@@ -12,11 +14,12 @@ importScripts('lzma.js', 'inflate.js', 'chd.js');
 
 self.onmessage = async ({data}) => {
   try {
-    const {file, chd, indices} = data;
+    const {file, chd, indices, pieces = []} = data;
     const readAt = async (offset, length) =>
         new Uint8Array(await file.slice(offset, offset + length).arrayBuffer());
+    const read = CHD.piecesReader(pieces, readAt);
     const blocks = [];
-    for (const index of indices) blocks.push([index, await CHD.hunk(chd, index, readAt)]);
+    for (const index of indices) blocks.push([index, await CHD.hunk(chd, index, read)]);
     postMessage({blocks}, blocks.map(([, bytes]) => bytes.buffer));
   } catch (err) {
     postMessage({error: String((err && err.message) || err)});
