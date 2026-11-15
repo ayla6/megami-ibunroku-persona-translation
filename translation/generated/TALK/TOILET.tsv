@@ -287,7 +287,7 @@ id	pos	psp	en
 285	0x4e6b	pack/talk/TOILET:0xace8	Hee hee! Maybe I should<FFF6>make you my bodyguard!<FFF5>
 286	0x4e97	pack/talk/TOILET:0xad48	Hee hee! I feel like I finally<FFF6>have a minion of my own!<FFF5>
 287	0x4eb8	pack/talk/TOILET:0xadb8	My name seems to be famous<FFF6>in the human world, too!<FFF6>Hee hee... That's so great!<FFF5>
-288	0x4eee	pack/talk/TOILET:0xae58	Huh? You already have my card! You<FFF6>better take good care of it, okay!?<FFEF>
+288	0x4eee	pack/talk/TOILET:0xae58	Huh? You already have my card!<FFF6>You better take good<FFF6>care of it, okay!?<FFEF>
 289	0x4f23	pack/talk/TOILET:0xaee8	Then I'll give you this!<FFEF>
 290	0x4f32	pack/talk/TOILET:0xaf20	Huh? Is that so?<FFEF>
 291	0x4f3e	pack/talk/TOILET:0xaf48	Sorry, it seems like our tastes<FFF6>are too different.<FFEF>
@@ -301,7 +301,7 @@ id	pos	psp	en
 299	0x5032	pack/talk/TOILET:0xb268	Ugh, I've had enough! I'm leaving!<FFEF>
 300	0x5049	pack/talk/TOILET:0xb2b0	I'll give you this if you go<FFF6>home like a good human.<FFEF>
 301	0x5068	pack/talk/TOILET:0xb320	Sheesh! Humans have made me<FFF6>so angry lately! Honestly... I feel like<FFF6>a total idiot for negotiating with you!<FFF5>
-302	0x50a5	pack/talk/TOILET:0xb400	I just don't even care anymore! You<FFF6>want my spell card? Fine! It's yours!<FFEF>
+302	0x50a5	pack/talk/TOILET:0xb400	I just don't even care anymore!<FFF6>You want my spell card?<FFF6>Fine! It's yours!<FFEF>
 303	0x50dc	pack/talk/TOILET:0xb498	Um... I... I want to be useful...<FFEF>
 304	0x5111	pack/talk/TOILET:0xb4e0	Here's my spell card...<FFF6>Feel free to make it into<FFF6>whatever Persona you want!<FFF5>
 305	0x5146	pack/talk/TOILET:0xb580	I can't fight you...<FFEF>
@@ -436,7 +436,7 @@ id	pos	psp	en
 434	0x65d6	pack/talk/TOILET:0xf168	Hey! Don't come over here!<FFF5>
 435	0x65ec	pack/talk/TOILET:0xf1a0	But... your eyes say otherwise...<FFF5>
 436	0x6607	pack/talk/TOILET:0xf1e8	What're you so angry about!?<FFF6>You need to take criticism better!<FFF5>
-437	0x662c	pack/talk/TOILET:0xf268	Honestly, will you grow up? There's<FFF6>no use getting mad about criticism.<FFF5>
+437	0x662c	pack/talk/TOILET:0xf268	Honestly, will you grow up?<FFF6>There's no use getting<FFF6>mad about criticism.<FFF5>
 438	0x665b	pack/talk/TOILET:0xf2f8	Hmm... If that made you laugh,<FFF6>you might have some promise.<FFF5>
 439	0x6687	pack/talk/TOILET:0xf370	Huh, so you do... Then tell me later!<FFF5>
 440	0x66a6	pack/talk/TOILET:0xf3c0	Oh, is that so...? I'll flush anyone<FFF6>who bullies me out to the ocean!<FFF5>
@@ -508,7 +508,7 @@ id	pos	psp	en
 506	0x6eff	pack/talk/TOILET:0x10ca8	Then why are you staring at me<FFF6>so much? Oh, could it be...?<FFF6>Hee hee, I'm popular!<FFF5>
 507	0x6f32	pack/talk/TOILET:0x10d50	Oh, so I'm right? But is it okay<FFF6>for you to call over a demoness?<FFF5>
 508	0x6f66	pack/talk/TOILET:0x10dd8	Screw that, you jerk!<FFF6>I'll flush you all the way to the ocean!<FFF5>
-509	0x6f7e	pack/talk/TOILET:0x10e58	But you're totally not my type! You<FFF6>make me feel all dirty... stop looking!<FFF5>
+509	0x6f7e	pack/talk/TOILET:0x10e58	But you're totally not my type!<FFF6>You make me feel all dirty...<FFF6>stop looking!<FFF5>
 510	0x6fb3	pack/talk/TOILET:0x10ef0	Hee hee! You're embarrassed,<FFF6>so you're saying stuff you<FFF6>don't mean. I understand...<FFF5>
 511	0x6fe8	pack/talk/TOILET:0x10f98	*sigh* Won't you play<FFF6>along even just a little?<FFF5>
 512	0x700f	pack/talk/TOILET:0x10ff8	You know, I can't believe it!<FFF5>

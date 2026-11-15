@@ -396,7 +396,7 @@ id	pos	psp	en
 394	0x6cbf	pack/talk/TENSI:0x10c20	Unfortunately... this is not a game!<FFF5>
 395	0x6cdf	pack/talk/TENSI:0x10c70	You will not escape after this!<FFF6>Now draw your weapon!<FFF5>
 396	0x6d0c	pack/talk/TENSI:0x10ce0	Whew... Good heavens,<FFF6>did you never take music lessons!?<FFF5>
-397	0x6d39	pack/talk/TENSI:0x10d58	Whew... That was a near thing... My<FFF6>wings were about to be jarred loose.<FFF5>
+397	0x6d39	pack/talk/TENSI:0x10d58	Whew... That was a near thing...<FFF6>My wings were about<FFF6>to be jarred loose.<FFF5>
 398	0x6d63	pack/talk/TENSI:0x10df0	I let my guard down... I had not<FFF6>expected another form of assault...!<FFF5>
 399	0x6d85	pack/talk/TENSI:0x10e80	I can only say that was marvelous!<FFF6>I was not aware humans like you<FFF6>still existed in this world!<FFF5>
 400	0x6dba	pack/talk/TENSI:0x10f40	I feel as though I am<FFF6>under your sway...<FFF5>
@@ -500,7 +500,7 @@ id	pos	psp	en
 498	0x7d13	pack/talk/TENSI:0x13fb8	Were my words too<FFF6>difficult to understand?<FFF5>
 499	0x7d27	pack/talk/TENSI:0x14010	But your words are not<FFF6>worth reprimanding!<FFF5>
 500	0x7d4a	pack/talk/TENSI:0x14068	That is correct... Perhaps from<FFF6>your point of view, that is the case...<FFF5>
-501	0x7d70	pack/talk/TENSI:0x140f8	I am still in training. Withstanding<FFF6>insults is also part of my ordeal.<FFF5>
+501	0x7d70	pack/talk/TENSI:0x140f8	I am still in training.<FFF6>Withstanding insults is<FFF6>also part of my ordeal.<FFF5>
 502	0x7da9	pack/talk/TENSI:0x14188	I may not look it, but I am very<FFF6>familiar with modern youth's music!<FFF5>
 503	0x7dcd	pack/talk/TENSI:0x14218	I only wanted a little, you see...<FFF5>
 504	0x7de1	pack/talk/TENSI:0x14260	Ahaha... It was a mere jest.<FFF5>
@@ -581,7 +581,7 @@ id	pos	psp	en
 579	0x8994	pack/talk/TENSI:0x166e0	Do your utmost!<FFF6>I will aid you in getting through it!<FFF5>
 580	0x89ad	pack/talk/TENSI:0x16750	Ordeals are meant to be trying!<FFF6>If you yield now, you are not<FFF6>even worth a reprimand!<FFF5>
 581	0x89e3	pack/talk/TENSI:0x16800	This is an ordeal. Though... if you<FFF6>make an offering, I am sure your<FFF6>suffering will be lessened somewhat.<FFF1><FFF5>
-582	0x8a1c	pack/talk/TENSI:0x168d8	Hm? That was true? P-Please<FFF6>forgive me for doubting you...<FFF5>
+582	0x8a1c	pack/talk/TENSI:0x168d8	Hm? That was true? P-Please forgive<FFF6>me for doubting you...<FFF5>
 583	0x8a41	pack/talk/TENSI:0x16950	Is it not so? Well, it is your own fault<FFF6>for looking so suspicious!<FFF5>
 584	0x8a73	pack/talk/TENSI:0x169d8	It is I who wants to cry,<FFF6>you realize... *sniffle*<FFF5>
 585	0x8a94	pack/talk/TENSI:0x16a40	That is correct! The Lord helps<FFF6>those who help themselves!<FFF5>

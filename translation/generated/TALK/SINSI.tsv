@@ -159,7 +159,7 @@ id	pos	psp	en
 157	0x3fae	pack/talk/SINSI:0x7c70	You willingly step forward to be<FFF6>my prey? I am not interested in fools!<FFFD>っ<FFF5>
 158	0x3ff0	pack/talk/SINSI:0x7d08	If you insist, I would be happy to!<FFF5>
 159	0x4017	pack/talk/SINSI:0x7d50	I must say, women these days have<FFF6>no sense of shame... Although...<FFF6>it works to my advantage!<FFFD>ゃ<FFF5>
-160	0x405b	pack/talk/SINSI:0x7e10	That brings a tear to my eye... Your<FFF6>hard work will be rewarded one day.<FFF5>
+160	0x405b	pack/talk/SINSI:0x7e10	That brings a tear to my eye...<FFF6>Your hard work will be<FFF6>rewarded one day.<FFF5>
 161	0x407e	pack/talk/SINSI:0x7ea8	Your tear-stained face is cute, but<FFF6>I'm sure your smile is many times more<FFF6>beautiful... Wipe your tears, child.<FFFD>ゅ<FFF5>
 162	0x40bf	pack/talk/SINSI:0x7f90	What proof do I have<FFF6>that those tears are real!?<FFF6>Your plan is to trick me, isn't it!?<FFF5>
 163	0x40f6	pack/talk/SINSI:0x8040	Women have cried a thousand tears,<FFF6>and I have been taken by each one<FFF6>of them! Am I too good at heart...?<FFFD>ょ<FFF5>
@@ -216,7 +216,7 @@ id	pos	psp	en
 214	0x4b89	pack/talk/SINSI:0x9f40	That's a childish idea. But I<FFF6>understand the need for attention.<FFF5>
 215	0x4bc6	pack/talk/SINSI:0x9fc8	Hmmm... Now THIS is entertainment!<FFFD>ネ<FFF5>
 216	0x4be7	pack/talk/SINSI:0xa018	Such uncanny trickery...<FFF6>You may be a much stronger<FFF6>opponent than I first imagined...<FFF5>
-217	0x4c1c	pack/talk/SINSI:0xa0c8	Using such uncanny trickery... How<FFF6>alarming! You are far too dangerous!<FFFD>ノ<FFF5>
+217	0x4c1c	pack/talk/SINSI:0xa0c8	Using such uncanny trickery...<FFF6>How alarming!<FFF6>You are far too dangerous!<FFFD>ノ<FFF5>
 218	0x4c59	pack/talk/SINSI:0xa160	Ah, thank goodness!<FFF6>If you can continue to make<FFFB><FFF7>such things appear, perhaps<FFF6>we could ride out this depression.<FFF5>
 219	0x4c8b	pack/talk/SINSI:0xa240	What superb magic! I won't be able to<FFF6>sleep if I don't know its mechanisms,<FFF6>so I do hope you'll tell me!<FFFD>ハ<FFF5>
 220	0x4cc3	pack/talk/SINSI:0xa318	No matter the subject,<FFF6>I will learn something new, correct?<FFFB><FFF7>From here on, be a good<FFF6>conversation partner with me!<FFF5>
@@ -259,7 +259,7 @@ id	pos	psp	en
 257	0x544c	pack/talk/SINSI:0xb9c0	I would pay money to see a wonderful<FFF6>performance, but that... wasn't.<FFF6>Thus, the reverse should apply.<FFF1><FFF5>
 258	0x5490	pack/talk/SINSI:0xba90	How absurd... Cut it out!<FFF5>
 259	0x54af	pack/talk/SINSI:0xbac8	Enough of this! I have no business<FFF6>with such amateur performers!<FFF5>
-260	0x54d1	pack/talk/SINSI:0xbb50	I have no need of entertainment! Why<FFF6>don't you give me something useful?<FFF1><FFF5>
+260	0x54d1	pack/talk/SINSI:0xbb50	I have no need of entertainment!<FFF6>Why don't you give me<FFF6>something useful?<FFF1><FFF5>
 261	0x5508	pack/talk/SINSI:0xbbe8	What do you think?<FFF6>If a stranger started singing<FFFB><FFF7>and dancing in front of you, wouldn't<FFF6>you be somewhat disturbed...?<FFF5>
 262	0x5549	pack/talk/SINSI:0xbcd8	Have you recently hit your head...?<FFF6>Are you... alright?<FFF5>
 263	0x5589	pack/talk/SINSI:0xbd48	You must not have a care<FFF6>in the world... I envy you.<FFF5>

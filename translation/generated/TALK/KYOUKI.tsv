@@ -21,7 +21,7 @@ id	pos	psp	en
 19	0x24a3	pack/talk/KYOUKI:0x2bd8	Damn, no need to go showin' off!<FFF6>I'm SO sorry I'm tone-deaf, alright!?<FFFD>け<FFF5>
 20	0x24d6	pack/talk/KYOUKI:0x2c70	Y-You're good...<FFF5>
 21	0x24e7	pack/talk/KYOUKI:0x2c98	Damn, are you part banshee!?<FFF6>S-Stop it, please!<FFFD>こ<FFF5>
-22	0x2514	pack/talk/KYOUKI:0x2d00	Ah, my heart feels cleansed... Maybe<FFF6>it's time to re-evalute my life...?<FFF5>
+22	0x2514	pack/talk/KYOUKI:0x2d00	Ah, my heart feels cleansed...<FFF6>Maybe it's time to<FFF6>re-evalute my life...?<FFF5>
 23	0x254b	pack/talk/KYOUKI:0x2d98	Bravo! Oh, good for you!<FFFD>さ<FFF5>
 24	0x2567	pack/talk/KYOUKI:0x2dd0	I don't know what chicks like you<FFF6>talk about, but it sounds kinda fun.<FFF5>
 25	0x259c	pack/talk/KYOUKI:0x2e60	You don't sound much like a high<FFF6>schooler when you talk...<FFF6>You lyin' about your age?<FFFD>し<FFF5>
@@ -104,7 +104,7 @@ id	pos	psp	en
 102	0x35c3	pack/talk/KYOUKI:0x5570	You've got no rhythm! You suck!<FFF5>
 103	0x35ef	pack/talk/KYOUKI:0x55b0	What is THAT? Did your granddaddy<FFF6>teach you to dance!?<FFFD>げ<FFF5>
 104	0x3619	pack/talk/KYOUKI:0x5628	Ye-yah! My blood's burning! I'm gonna<FFF6>see some blood tonight! Yeahhhh!<FFF5>
-105	0x365c	pack/talk/KYOUKI:0x56b8	I-I can dance too, y'know! Check<FFF6>this out! JUMP, JUMP! ...Haha, I kid!<FFFD>ご<FFF5>
+105	0x365c	pack/talk/KYOUKI:0x56b8	I-I can dance too, y'know!<FFF6>Check this out!<FFF6>JUMP, JUMP! ...Haha, I kid!<FFFD>ご<FFF5>
 106	0x3694	pack/talk/KYOUKI:0x5750	Sounds like you're pretty sure<FFF6>of yourself! Better not let it go<FFF6>to your head, or you'll regret it!<FFF5>
 107	0x36cd	pack/talk/KYOUKI:0x5818	You think you could kill me!?<FFF6>Gahaha, you couldn't handle it.<FFFD>ざ<FFF5>
 108	0x3706	pack/talk/KYOUKI:0x5898	Hehehe! Time to see if the blood<FFF6>of stupid humans runs<FFF6>as red as they say!<FFF5>
@@ -133,9 +133,9 @@ id	pos	psp	en
 131	0x3bf3	pack/talk/KYOUKI:0x64a0	You wanna do a duet?<FFF6>I'd be cool with that!<FFFD>ぶ<FFF5>
 132	0x3c2e	pack/talk/KYOUKI:0x6500	That song is whack! Unless you're<FFF6>TRYING to sound like a whale!<FFF5>
 133	0x3c68	pack/talk/KYOUKI:0x6580	Damn, no need to go showin' off!<FFF6>I'm SO sorry I'm tone-deaf, alright!?<FFFD>べ<FFF5>
-134	0x3c9b	pack/talk/KYOUKI:0x6618	Ah, my heart feels cleansed... Maybe<FFF6>it's time to re-evalute my life...?<FFF5>
+134	0x3c9b	pack/talk/KYOUKI:0x6618	Ah, my heart feels cleansed...<FFF6>Maybe it's time to<FFF6>re-evalute my life...?<FFF5>
 135	0x3cd2	pack/talk/KYOUKI:0x66b0	Bravo! Oh, good for you!<FFFD>ぼ<FFF5>
-136	0x3cee	pack/talk/KYOUKI:0x66e8	Whoa... You totally blew my mind. Was<FFF6>that even a negotiation technique?<FFF5>
+136	0x3cee	pack/talk/KYOUKI:0x66e8	Whoa... You totally blew my mind.<FFF6>Was that even a negotiation<FFF6>technique?<FFF5>
 137	0x3d22	pack/talk/KYOUKI:0x6780	...Do I look like a minor?<FFFD>ぱ<FFF5>
 138	0x3d3e	pack/talk/KYOUKI:0x67c0	What was that!?<FFF6>You better shut your mouth!<FFF5>
 139	0x3d6f	pack/talk/KYOUKI:0x6818	I'm about to beat some sense into you!<FFF6>This may hurt, but you'll live...<FFF6>Maybe!<FFFD>ぴ<FFF5>
@@ -494,7 +494,7 @@ id	pos	psp	en
 492	0x8466	pack/talk/KYOUKI:0x11968	Ooh, now we're talking.<FFF6>Why can't kids be more like that?<FFF5>
 493	0x8498	pack/talk/KYOUKI:0x119e0	Ooh, now we're talking.<FFF6>Makes it easier to kill ya!<FFF5>
 494	0x84bc	pack/talk/KYOUKI:0x11a48	It's worse than that... Listen,<FFF6>don't ever tie the knot, man!<FFF5>
-495	0x84f3	pack/talk/KYOUKI:0x11ac8	Whaddaya mean, stupid!? It's<FFF6>important, man! You just don't get it!<FFF5>
+495	0x84f3	pack/talk/KYOUKI:0x11ac8	Whaddaya mean, stupid!?<FFF6>It's important, man!<FFF6>You just don't get it!<FFF5>
 496	0x852e	pack/talk/KYOUKI:0x11b50	Wha... What's with those puppy-dog<FFF6>eyes!? That was a lie...<FFF6>I feel so defiled...<FFF5>
 497	0x8569	pack/talk/KYOUKI:0x11bf8	Haha, an attitude like that only<FFF6>makes me more interested.<FFF5>
 498	0x8598	pack/talk/KYOUKI:0x11c70	That's too bad! Sometimes they call<FFF6>me the gentleman of the demon world!<FFF5>
@@ -520,7 +520,7 @@ id	pos	psp	en
 518	0x8924	pack/talk/KYOUKI:0x12540	Ooh, now we're talking.<FFF6>Why can't kids be more like that?<FFF5>
 519	0x8956	pack/talk/KYOUKI:0x125b8	Ooh, now we're talking.<FFF6>Makes it easier to kill ya!<FFF5>
 520	0x897a	pack/talk/KYOUKI:0x12620	It's worse than that... Listen,<FFF6>don't ever tie the knot, man!<FFF5>
-521	0x89b1	pack/talk/KYOUKI:0x126a0	Whaddaya mean, stupid!? It's<FFF6>important, man! You just don't get it!<FFF5>
+521	0x89b1	pack/talk/KYOUKI:0x126a0	Whaddaya mean, stupid!?<FFF6>It's important, man!<FFF6>You just don't get it!<FFF5>
 522	0x89ed	pack/talk/KYOUKI:0x12728	It was a bluff, huh?<FFF6>Well it's no fun now that I know...<FFF5>
 523	0x8a13	pack/talk/KYOUKI:0x127a0	What? What do I need?<FFF6>C'mon, please, tell me!<FFF5>
 524	0x8a3a	pack/talk/KYOUKI:0x12800	...Me. *blush*<FFF5>
@@ -597,7 +597,7 @@ id	pos	psp	en
 595	0x98a5	pack/talk/KYOUKI:0x14c88	Ooh, now we're talking.<FFF6>Why can't kids be more like that?<FFF5>
 596	0x98d7	pack/talk/KYOUKI:0x14d00	Ooh, now we're talking.<FFF6>Makes it easier to kill ya!<FFF5>
 597	0x98fb	pack/talk/KYOUKI:0x14d68	Rough doesn't even begin to describe<FFF6>it. Listen, make sure you marry rich!<FFF5>
-598	0x9936	pack/talk/KYOUKI:0x14e00	Whaddaya mean, stupid!? It's<FFF6>important, man! You just don't get it!<FFF5>
+598	0x9936	pack/talk/KYOUKI:0x14e00	Whaddaya mean, stupid!?<FFF6>It's important, man!<FFF6>You just don't get it!<FFF5>
 599	0x9970	pack/talk/KYOUKI:0x14e88	Yeah! I like honest kids!<FFF5>
 600	0x998e	pack/talk/KYOUKI:0x14ec0	Hm... You wanna rumble?<FFF6>Well, I'm not huge on violence, but...<FFF5>
 601	0x99c4	pack/talk/KYOUKI:0x14f40	What a fool! Resisting is only gonna<FFF6>make it hurt more, and I can prove it!<FFF5>
@@ -647,7 +647,7 @@ id	pos	psp	en
 645	0xa201	pack/talk/KYOUKI:0x16478	Ooh, now we're talking.<FFF6>Why can't kids be more like that?<FFF5>
 646	0xa233	pack/talk/KYOUKI:0x164f0	Ooh, now we're talking.<FFF6>Makes it easier to kill ya!<FFF5>
 647	0xa257	pack/talk/KYOUKI:0x16558	It's worse than that... Listen,<FFF6>don't ever tie the knot, man!<FFF5>
-648	0xa28e	pack/talk/KYOUKI:0x165d8	Whaddaya mean, stupid!? It's<FFF6>important, man! You just don't get it!<FFF5>
+648	0xa28e	pack/talk/KYOUKI:0x165d8	Whaddaya mean, stupid!?<FFF6>It's important, man!<FFF6>You just don't get it!<FFF5>
 649	0xa2c8	pack/talk/KYOUKI:0x16660	Shut up, shut up! I hate dudes<FFF6>who can't even make a decision!<FFF5>
 650	0xa302	pack/talk/KYOUKI:0x166e0	Gyahaha!<FFF6>You really are whacked out!<FFF5>
 651	0xa32a	pack/talk/KYOUKI:0x16730	Gyahaha! You really are whack! ...<FFF6>Maybe I'll join you! Grr... RAAHHHH!<FFF5>

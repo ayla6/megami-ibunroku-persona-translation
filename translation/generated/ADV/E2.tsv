@@ -88,7 +88,7 @@ id	pos	psp	en
 86	11:0x1280	E2:86	Yukino:<FF03>...I could lose some weight myself...<FF02><FF01>
 87	11:0x12a0	E2:87	Dieting club member: I'm trying to lose<FF03>weight. Even the boxing gloves are<FF03>starting to look like candy...<FF02><FF01>
 88	11:0x12dc	E2:88	Dieting club member: Hey! Don't open<FF03>the lockers without permission!<FF03>Our stuff's in there!<FF02><FF01>
-89	12:0x11ec	E2:89	Nanjo:<FF03>I agree, archery is interesting... But<FF03>don't forget to go to the hospital.<FF02><FF01>
+89	12:0x11ec	E2:89	Nanjo: I agree, archery<FF03>is interesting... But don't<FF03>forget to go to the hospital.<FF02><FF01>
 90	12:0x1220	E2:90	Mark:<FF03>I heard there's a bunch of bows here.<FF02><FF04>I think I'll borrow one and<FF03>mess around with it next time.<FF02><FF01>
 91	12:0x1254	E2:91	Yukino:<FF03>Bows and arrows aren't my thing.<FF03>I prefer razor blades.<FF02><FF01>
 92	12:0x1284	E2:92	Archery club member: Archery<FF03>is an intelligent, mature sport!<FF03>Don't have a bow? We'll lend you one!<FF02><FF01>
@@ -375,7 +375,7 @@ id	pos	psp	en
 373	49:0x1318	E2:373	Yukino:<FF03>Y'think the woman that nurse<FF03>saw was Maki's mom?<FF02><FF01>
 374	49:0x134c	E2:374	Elly: Let's go to the Alaya Shrine<FF03>once we're fixed up. It's just<FF03>around the corner.<FF02><FF01>
 375	49:0x1384	E2:375	Elly:<FF03>Once our wounds are treated, let's<FF03>hurry to the abandoned factory.<FF02><FF04>Though do you really think it's<FF03>possible to access SEBEC from there?<FF02><FF01>
-376	49:0x13d4	E2:376	Nurse: My, does that uniform bring<FF03>back memories! I'm a St. Hermelin<FF03>grad myself.<FF02><FF04>One of my old classmates,<FF03>Saeko Takami, teaches there now.<FF03>Do you know her?<FF02><FF04>Haha, that Saeko...<FF03>I never pictured her as a teacher!<FF02><FF01>
+376	49:0x13d4	E2:376	Nurse: My, does that uniform bring<FF03>back memories! I'm a St. Hermelin grad<FF03>myself.<FF02><FF04>One of my old classmates,<FF03>Saeko Takami, teaches there now.<FF03>Do you know her?<FF02><FF04>Haha, that Saeko...<FF03>I never pictured her as a teacher!<FF02><FF01>
 377	49:0x1454	E2:377	Nurse: I heard an injured woman<FF03>was walking around here.<FF03>Did the demons get her...?<FF02><FF01>
 378	49:0x1870	E2:378	Doctor: Well, hello there.<FF03>Your friends are...<FF03>interesting as always.<FF02><FF01>
 379	49:0x18a0	E2:379	Doctor:<FF03>Now, what can I do for you?<FF03><FF0E><11><FF01>
@@ -901,7 +901,7 @@ id	pos	psp	en
 899	129:0x1370	E2:899	Smitten girl: Oh, hey!<FF03>It looks like Reiji went<FF03>outside a minute ago!<FF02><FF04>Awww... that was the perfect chance<FF03>for me to talk to him!<FF02><FF01>
 900	130:0x1440	E2:900	Toro: I'm scared of the demons,<FF03>but I think this might be my chance!<FF02><FF04>If I prove to Ayase how macho I am...<FF03>She... she might l-like me... right?<FF02><FF01>
 901	130:0x14a4	E2:901	<FF06><02>Kenta Yokouchi (Nickname: Toro) His<FF03>love of food has made him physically<FF03>strong, but emotionally fragile.<FF06><00><FF02><FF01>
-902	130:0x14e4	E2:902	Male student:<FF03>Something's up with Toro.<FF03>You can see it in his eyes...<FF02><FF04>Guess he's still hung up on Ayase. His<FF03>type is scary when they can't let go.<FF02><FF01>
+902	130:0x14e4	E2:902	Male student:<FF03>Something's up with Toro.<FF03>You can see it in his eyes...<FF02><FF04>Guess he's still hung up on Ayase.<FF03>His type is scary<FF03>when they can't let go.<FF02><FF01>
 903	130:0x154c	E2:903	The lunchlady seems to have<FF03>already gone home.<FF02><FF01>
 904	131:0x1408	E2:904	Short-haired girl:<FF03>Hey, the principal was right after all<FF03>about the guardian of this school!<FF02><FF04>I mean, not a single demon has<FF03>gotten in here yet, right?<FF02><FF01>
 905	131:0x1464	E2:905	Resting boy: Won't she shut up...?<FF03>All that crap about guardians<FF03>and demons... She's dreaming.<FF02><FF01>
@@ -1123,7 +1123,7 @@ id	pos	psp	en
 1121	168:0x1550	E2:1121	Female student:<FF03>Maki was good friends with Chisato.<FF03>She must be awfully worried.<FF02><FF01>
 1122	169:0x1794	E2:1122	Maki: Ms. Saeko is always so sad!<FF03>She's kinda getting me down, too.<FF02><FF01>
 1123	169:0x17c8	E2:1123	Brown:<FF03>Huh? Is something up, Ms. Saeko?<FF02><FF01>
-1124	169:0x17f4	E2:1124	Brown: It feels wrong when Ms. Saeko<FF03>doesn't have enough energy to<FF03>light the room.<FF02><FF01>
+1124	169:0x17f4	E2:1124	Brown: It feels wrong when<FF03>Ms. Saeko doesn't have<FF03>enough energy to light the room.<FF02><FF01>
 1125	169:0x1828	E2:1125	Nanjo:<FF03>Even Ms. Saeko is acting strangely...<FF02><FF01>
 1126	169:0x1848	E2:1126	Nanjo:<FF03>I'm sure Yukino would be shocked<FF03>to see Ms. Saeko this way.<FF02><FF01>
 1127	169:0x187c	E2:1127	Mark: H-Huh?<FF05><20><00><FF03>Hey, what's wrong, Ms. Saeko?<FF03>And don't just say you overate again!<FF02><FF01>
@@ -1436,7 +1436,7 @@ id	pos	psp	en
 1434	189:0x1760	E2:1434	Ayase: I want this one!<FF03>C'mon, buy it for me!<FF02><FF01>
 1435	189:0x1784	E2:1435	Reiji: The clerks are suspicious...<FF03>but their stock is even<FF03>more suspicious.<FF02><FF01>
 1436	189:0x17a8	E2:1436	Area man:<FF03>There've been more demons<FF03>lately, I've noticed.<FF02><FF04>But they seem different<FF03>from the demons that girl<FF03>in black had with her.<FF02><FF01>
-1437	189:0x17e8	E2:1437	Turunkhamen: Hohoho... Welcome. What<FF03>manner of goods do you require?<FF02><FF01>
+1437	189:0x17e8	E2:1437	Turunkhamen: Hohoho... Welcome.<FF03>What manner of goods<FF03>do you require?<FF02><FF01>
 1438	189:0x1820	E2:1438	Khamenturun: Hohohoho... I love gems<FF03>more than anything in this world.<FF02><FF04>I'll exchange my special<FF03>treasures for your gems.<FF03>Would you like to trade?<FF02><FF01>
 1439	190:0x15f4	E2:1439	Maki:<FF03>I wonder if she has<FF03>a thing for frogs...<FF02><FF01>
 1440	190:0x160c	E2:1440	Nanjo:<FF03>I wonder if the day will come when our<FF03>convenience stores sell weapons too.<FF02><FF01>
@@ -1502,7 +1502,7 @@ id	pos	psp	en
 1500	193:0x1744	E2:1500	Brown: This jar's pretty neat.<FF03>Hey <FF08><01>, could you<FF03>buy this for me as a gift?<FF02><FF01>
 1501	193:0x1778	E2:1501	Ayase:<FF03>Did you talk to the clerks here?<FF03>Their makeup is like, really weird!<FF02><FF01>
 1502	193:0x17a8	E2:1502	Reiji: ...Is this place haunted?<FF02><FF01>
-1503	193:0x17c4	E2:1503	Turunkhamen: Hohoho... Welcome. What<FF03>manner of goods do you require?<FF02><FF01>
+1503	193:0x17c4	E2:1503	Turunkhamen: Hohoho... Welcome.<FF03>What manner of goods<FF03>do you require?<FF02><FF01>
 1504	193:0x17fc	E2:1504	Khamenturun: Hohohoho... I love gems<FF03>more than anything in this world.<FF02><FF04>I'll exchange my special<FF03>treasures for your gems.<FF03>Would you like to trade?<FF02><FF01>
 1505	193:0x1868	E2:1505	Customer: If I was a beautiful<FF03>youth who looked like a stray dog,<FF03>the Queen would've liked me!<FF02><FF04>Then I could've kicked back<FF03>at the palace instead<FF03>of living in this dump.<FF02><FF01>
 1506	193:0x18e0	E2:1506	Customer:<FF03>The men in the harem all had to swear<FF03>their loyalty to the Queen, right?<FF02><FF04>That's so lame...<FF03>I'm gonna live the way I want,<FF03>without submitting to anyone.<FF02><FF01>
@@ -1602,7 +1602,7 @@ id	pos	psp	en
 1600	198:0x1894	E2:1600	Reiji:<FF03>Better she found out now instead of<FF03>going on thinking they were friends.<FF02><FF01>
 1601	198:0x18d0	E2:1601	Reiji: This is such crap...<FF03>I can't keep up with<FF03>this high school drama.<FF02><FF01>
 1602	198:0x18fc	E2:1602	Young man:<FF03>This is the Harem Queen's painting.<FF03>Isn't it awesome?<FF02><FF04>Our Queen is both<FF03>talented and gorgeous!<FF02><FF04>She's gotten more moles lately...<FF05><20><00><FF03>Oh, but she's still beautiful!<FF02><FF01>
-1603	198:0x1988	E2:1603	Young man:<FF03>This painting is worthless! There's<FF03>not a shred of artistic talent in it!<FF02><FF04>She should be ashamed<FF03>of calling herself Queen,<FF03>producing something like this!<FF02><FF01>
+1603	198:0x1988	E2:1603	Young man: This painting<FF03>is worthless! There's not<FF03>a shred of artistic talent in it!<FF02><FF04>She should be ashamed<FF03>of calling herself Queen,<FF03>producing something like this!<FF02><FF01>
 1604	198:0x19d8	E2:1604	It's the piece the Queen<FF03>supposedly painted. You feel like<FF03>you've seen this style somewhere<FF05><15><00>...<FF02><FF01>
 1605	198:0x1a08	E2:1605	Maki: Hey... I know this painting!<FF05><30><00><FF03>It's Chisato's...!<FF02><FF01>
 1606	198:0x1a3c	E2:1606	Mark: What, Chisato Kasai's?<FF03>I thought they said she went missing.<FF02><FF04>Wait... Chisato's painting is here, and<FF03>they're saying it's the Queen's...?<FF02><FF01>
@@ -1777,7 +1777,7 @@ id	pos	psp	en
 1775	207:0x18b4	E2:1775	Elly:<FF03>No matter how many times I come here,<FF03>I just can't get used to this store.<FF02><FF01>
 1776	207:0x18dc	E2:1776	Elly:<FF03>This store remains bizarre to me<FF03>now matter how often we visit.<FF02><FF01>
 1777	207:0x1904	E2:1777	Reiji: Buy something if you're gonna.<FF02><FF01>
-1778	208:0x16d8	E2:1778	Turunkhamen: Hohoho... Welcome. What<FF03>manner of goods do you require?<FF02><FF01>
+1778	208:0x16d8	E2:1778	Turunkhamen: Hohoho... Welcome.<FF03>What manner of goods<FF03>do you require?<FF02><FF01>
 1779	208:0x1710	E2:1779	Khamenturun: Hohohoho... I love gems<FF03>more than anything in this world.<FF02><FF04>I'll exchange my special<FF03>treasures for your gems.<FF03>Would you like to trade?<FF02><FF01>
 1780	208:0x177c	E2:1780	Area man: This town used to be<FF03>so pleasant... What happened?<FF03>Is this all a bad dream?<FF02><FF01>
 1781	208:0x17b4	E2:1781	Maki: A pleasant town, huh...?<FF03>I need to apologize<FF03>to the townspeople, too.<FF02><FF01>

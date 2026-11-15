@@ -43,7 +43,7 @@ id	pos	psp	en
 41	0x2638	pack/talk/QSIRUBA:0x3188	*ring* *ring* You-you-you must be<FFF6>very self-confident! Not bad-ba-BAD!<FFF5>
 42	0x2662	pack/talk/QSIRUBA:0x3218	Eeeeeeee! Hey-hey y-y-y-y-you!<FFF6>Stop bragGINGsomuch to Q!<FFF5>
 43	0x2695	pack/talk/QSIRUBA:0x3290	Heeheehee! You-you're exactly right!<FFF5>
-44	0x26b0	pack/talk/QSIRUBA:0x32e0	Q isn't scared. You-you're<FFF6>a ggggggood person after all!<FFF5>
+44	0x26b0	pack/talk/QSIRUBA:0x32e0	Q isn't scared.<FFF6>You-you're a ggggggood<FFF6>person after all!<FFF5>
 45	0x26cf	pack/talk/QSIRUBA:0x3358	Eeeeeeee! Some rich moronispicking<FFF6>a f-f-f-fiiiIIIGHT with Q!?<FFF5>
 46	0x26ff	pack/talk/QSIRUBA:0x33d8	*crackle* You-you must<FFF6>be scaredofthis place!<FFF5>
 47	0x271b	pack/talk/QSIRUBA:0x3438	*ring* *ring* You-you<FFF6>know a lot about Q!<FFF5>
@@ -173,7 +173,7 @@ id	pos	psp	en
 171	0x3aff	pack/talk/QSIRUBA:0x70b0	Q doesn't feeeeeel like it-it-it<FFF6>anymore! You-you d-d-don't care<FFFB><FFF7>about Q as long asyoug-g-gettt<FFF6>a card, huhhhh!?<FFEF>
 172	0x3b36	pack/talk/QSIRUBA:0x7198	Q will giveyoua card, b-b-but if you<FFF6>make it into a w-w-weird PerSOna,<FFFB><FFF7>she'll write Q on you-your<FFF6>hhhheeeaaadddd!<FFEF>
 173	0x3b64	pack/talk/QSIRUBA:0x7280	Soooo, Q doesn't wan-wan-want<FFF6>to fight youuuuu-uuu...<FFF6>She su-su-surrenders...<FFEF>
-174	0x3b8f	pack/talk/QSIRUBA:0x7320	Q will giveyouher card... D-Don't<FFF6>hurttt her... l-l-let her ggggo...<FFEF>
+174	0x3b8f	pack/talk/QSIRUBA:0x7320	Q will giveyouher card...<FFF6>D-Don't hurttt her...<FFF6>l-l-let her ggggo...<FFEF>
 175	0x3bb5	pack/talk/QSIRUBA:0x73b0	Soooo, Q doesn't wan-wan-want<FFF6>to fight youuuuu-uuu...<FFEF>
 176	0x3bd4	pack/talk/QSIRUBA:0x7420	Q will giveyouthisssss. It's her way<FFF6>of-f-f-f showing respeccccct,<FFF6>so p-please take i-i-i-it!<FFEF>
 177	0x3bf6	pack/talk/QSIRUBA:0x74e0	*crackle* *crackle* I-Ifffff<FFF6>you-youuu want Q's card-ard-ard,<FFF6>Q will gi-gi-gi-give ittoyou...!<FFEF>

@@ -37,7 +37,7 @@ id	pos	psp	en
 35	0x25db	pack/talk/POLUTAR:0x2fa0	Hyuk hyuk!<FFF6>You fell for it, just like I hoped!<FFF5>
 36	0x2601	pack/talk/POLUTAR:0x3000	Uuuurrrgh! What was that for,<FFF6>you brown-haired meanie!?<FFF5>
 37	0x262c	pack/talk/POLUTAR:0x3078	Yikes... What an old trick...<FFF6>That's not very good, mister.<FFFD>こ<FFF5>
-38	0x2654	pack/talk/POLUTAR:0x30f8	Hyuk hyuk! Huh? What's that? It<FFF6>looks even yummier than life stones!<FFF5>
+38	0x2654	pack/talk/POLUTAR:0x30f8	Hyuk hyuk! Huh? What's that?<FFF6>It looks even yummier<FFF6>than life stones!<FFF5>
 39	0x267d	pack/talk/POLUTAR:0x3188	Uuuurrrgh! Don't make fun of me,<FFF6>you rich jerk! I don't want that stuff!<FFFB><FFF7>I want something else!<FFF1><FFF5>
 40	0x26ce	pack/talk/POLUTAR:0x3250	Oooh, I like that. Are you gonna<FFF6>give it to me? Ooohehehe!<FFFD>さ<FFF5>
 41	0x26f0	pack/talk/POLUTAR:0x32d0	Hyuk hyuk! You must be a rationalist,<FFF6>mister. I like those guys.<FFF5>
@@ -211,7 +211,7 @@ id	pos	psp	en
 209	0x42f2	pack/talk/POLUTAR:0x80c8	I'm gonna kill you.<FFF5>
 210	0x42f8	pack/talk/POLUTAR:0x80f0	I want a life stone. Just one...<FFEF>
 211	0x431a	pack/talk/POLUTAR:0x8138	Yaaaaay! I got a life stone! Hooray!<FFF5>
-212	0x433c	pack/talk/POLUTAR:0x8188	Huh!? You don't have any!? You're<FFF6>a big dummy, aren't you? Stupid!<FFF5>
+212	0x433c	pack/talk/POLUTAR:0x8188	Huh!? You don't have any!?<FFF6>You're a big dummy,<FFF6>aren't you? Stupid!<FFF5>
 213	0x4372	pack/talk/POLUTAR:0x8210	Don't make fun of me! I'll throw<FFF6>plates at you! I'll break windows!<FFF5>
 214	0x439a	pack/talk/POLUTAR:0x8298	I know you'll probably say no...<FFF6>but I want a <FFF4>...<FFEF>
 215	0x43bd	pack/talk/POLUTAR:0x8300	No way, seriously!? Yaaaaay!<FFF5>

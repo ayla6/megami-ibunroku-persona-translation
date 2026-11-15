@@ -70,7 +70,7 @@ id	pos	psp	en
 68	0x2973	pack/talk/DOPPEL:0x3b80	There, there, little Eriko... Play nice.<FFF5>
 69	0x2995	pack/talk/DOPPEL:0x3bd8	Yes? Would you like some milk?<FFF6>...I can't keep this up!<FFF5>
 70	0x29c9	pack/talk/DOPPEL:0x3c48	Heehee...That's a dear.<FFF5>
-71	0x29de	pack/talk/DOPPEL:0x3c78	You're a very capable human. Won't<FFF6>you take on a job as my bodyguard?<FFF5>
+71	0x29de	pack/talk/DOPPEL:0x3c78	You're a very capable human.<FFF6>Won't you take on a job<FFF6>as my bodyguard?<FFF5>
 72	0x2a10	pack/talk/DOPPEL:0x3d08	What did you just say...? I refuse.<FFF5>
 73	0x2a35	pack/talk/DOPPEL:0x3d50	Ahahah... What should I do?<FFF5>
 74	0x2a4c	pack/talk/DOPPEL:0x3d88	I may have a smart mouth,<FFF6>but I'm really a good girl!<FFF5>
@@ -115,8 +115,8 @@ id	pos	psp	en
 113	0x3006	pack/talk/DOPPEL:0x4e68	Even a copycat has its pride,<FFF6>you know! I refuse to mimic<FFF6>something so cheap!<FFF5>
 114	0x303b	pack/talk/DOPPEL:0x4f08	What do you hope to gain,<FFF6>saying that stuff to a double?<FFF6>I can't tell what you're thinking...<FFF5>
 115	0x306d	pack/talk/DOPPEL:0x4fc8	What do you hope to gain,<FFF6>saying that stuff to a double?<FFF6>I can't tell what you're thinking...<FFF5>
-116	0x309f	pack/talk/DOPPEL:0x5088	What a bizarre story... You've<FFF6>already surpassed my expectations!<FFF5>
-117	0x30db	pack/talk/DOPPEL:0x5110	What a bizarre story... You've<FFF6>already surpassed my expectations!<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
+116	0x309f	pack/talk/DOPPEL:0x5088	What a bizarre story...<FFF6>You've already surpassed<FFF6>my expectations!<FFF5>
+117	0x30db	pack/talk/DOPPEL:0x5110	What a bizarre story...<FFF6>You've already surpassed<FFF6>my expectations!<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
 118	0x314e	pack/talk/DOPPEL:0x5228	You're exceptionally talented.<FFF6>I'm going to study your method of<FFF6>expression... It rather interests me.<FFF5>
 119	0x317d	pack/talk/DOPPEL:0x52f8	You're exceptionally talented.<FFF6>I'm going to study your method of<FFF6>expression... It rather interests me.<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
 120	0x31df	pack/talk/DOPPEL:0x5460	That isn't even worth mimicking!<FFF6>Can't you do anything<FFF6>to pique my curiosity a bit!?<FFF5>
@@ -131,8 +131,8 @@ id	pos	psp	en
 129	0x342e	pack/talk/DOPPEL:0x5c20	Even a copycat has its pride,<FFF6>you know! I refuse to mimic<FFF6>something so cheap!<FFF5>
 130	0x3463	pack/talk/DOPPEL:0x5cc0	What do you hope to gain,<FFF6>taunting a double?<FFF6>I can't tell what you're thinking...<FFF5>
 131	0x3493	pack/talk/DOPPEL:0x5d68	What do you hope to gain,<FFF6>taunting a double?<FFF6>I can't tell what you're thinking...<FFF5>
-132	0x34c3	pack/talk/DOPPEL:0x5e10	You're taunting a double...? You've<FFF6>already surpassed my expectations!<FFF5>
-133	0x34ff	pack/talk/DOPPEL:0x5ea0	You're taunting a double...? You've<FFF6>already surpassed my expectations!<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
+132	0x34c3	pack/talk/DOPPEL:0x5e10	You're taunting a double...?<FFF6>You've already surpassed<FFF6>my expectations!<FFF5>
+133	0x34ff	pack/talk/DOPPEL:0x5ea0	You're taunting a double...?<FFF6>You've already surpassed<FFF6>my expectations!<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
 134	0x3572	pack/talk/DOPPEL:0x5fc8	You're exceptionally talented. I'm<FFF6>going to study the way you perform<FFF6>your tricks... It rather interests me.<FFF5>
 135	0x35a1	pack/talk/DOPPEL:0x60a8	You're exceptionally talented. I'm<FFF6>going to study the way you perform<FFF6>your tricks... It rather interests me.<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
 136	0x3603	pack/talk/DOPPEL:0x6218	That isn't even worth mimicking!<FFF6>Don't you have any tricks that<FFF6>would pique my curiosity a bit!?<FFF5>

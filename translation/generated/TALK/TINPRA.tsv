@@ -53,7 +53,7 @@ id	pos	psp	en
 51	0x2954	pack/talk/TINPRA:0x3db8	Boy, do you ever suck ass...<FFF6>Stop that right now!<FFF5>
 52	0x2974	pack/talk/TINPRA:0x3e20	You ain't bad... But you better<FFF6>get more practice if you<FFF6>wanna be like Crazy Legs!<FFF5>
 53	0x29aa	pack/talk/TINPRA:0x3ec8	You wanna step, man? Eh, I'll let it go.<FFF6>At least ya ain't no prancin' prick.<FFF5>
-54	0x29df	pack/talk/TINPRA:0x3f68	The hell're ya talkin' about!? Better<FFF6>shut it if ya know what's good for ya!<FFF5>
+54	0x29df	pack/talk/TINPRA:0x3f68	The hell're ya talkin' about!?<FFF6>Better shut it if ya know<FFF6>what's good for ya!<FFF5>
 55	0x2a11	pack/talk/TINPRA:0x4008	Guess I went soft, if even the humans<FFF6>are underestimatin' me...<FFF5>
 56	0x2a34	pack/talk/TINPRA:0x4088	You got guts, bro...<FFF6>It's been a while since a man's<FFF6>looked me straight in the eye!<FFF5>
 57	0x2a6e	pack/talk/TINPRA:0x4130	Hey, you just glare at me!?<FFF6>Alright, now I'm pissed!<FFF5>
@@ -84,7 +84,7 @@ id	pos	psp	en
 82	0x2f20	pack/talk/TINPRA:0x5010	You've been through some rough shit,<FFF6>huh? Must be hard being human...<FFF5>
 83	0x2f4a	pack/talk/TINPRA:0x50a0	What, you're tryin'<FFF6>to scare me with that?<FFF6>Ya gotta put some effort into it!<FFF5>
 84	0x2f77	pack/talk/TINPRA:0x5140	Whaddaya talkin' about!? You're<FFF6>pissin' me off... I got half a mind<FFF6>to shut you up once and for all!<FFF5>
-85	0x2fa7	pack/talk/TINPRA:0x5210	You're a real handful... Even<FFF6>a yakuza floozy wouldn't go that far.<FFF5>
+85	0x2fa7	pack/talk/TINPRA:0x5210	You're a real handful...<FFF6>Even a yakuza floozy<FFF6>wouldn't go that far.<FFF5>
 86	0x2fcc	pack/talk/TINPRA:0x5298	Whaddaya talkin' about?<FFF6>This ain't a joke, and I ain't laughin'!<FFF5>
 87	0x3003	pack/talk/TINPRA:0x5320	You're a holy terror... Those awful<FFF6>eyes o' yours... *shudder*<FFF5>
 88	0x3026	pack/talk/TINPRA:0x53a0	You're one spirited gal.<FFF6>I like girls like you!<FFF5>
@@ -131,7 +131,7 @@ id	pos	psp	en
 129	0x37a9	pack/talk/TINPRA:0x6cd8	Ya wanna see Hell?<FFF6>Then before I send ya off, ya better<FFF6>take everything ya got with ya.<FFF1><FFF5>
 130	0x37df	pack/talk/TINPRA:0x6d90	What's an honest guy want with me?<FFF6>I got a meeting I gotta get to...<FFF5>
 131	0x3807	pack/talk/TINPRA:0x6e20	Ain't ya scared that I'm mad at ya?<FFF6>Kids these days...<FFF5>
-132	0x3838	pack/talk/TINPRA:0x6e90	A man's gotta rein his anger in. That<FFF6>blusterin' crap don't work on me.<FFF5>
+132	0x3838	pack/talk/TINPRA:0x6e90	A man's gotta rein his anger in.<FFF6>That blusterin' crap<FFF6>don't work on me.<FFF5>
 133	0x386e	pack/talk/TINPRA:0x6f20	I bet you're tryin' to piss me off,<FFF6>but it ain't gonna work. You're gonna<FFF6>have to cough up, okay?<FFF1><FFF5>
 134	0x38a4	pack/talk/TINPRA:0x6fe8	Man, you go all out. Keep it up!<FFF5>
 135	0x38c7	pack/talk/TINPRA:0x7030	You're a hell of a clown, pullin'<FFF6>that stuff while you're talkin' to me.<FFF6>Let's see what else ya got.<FFF1><FFF5>

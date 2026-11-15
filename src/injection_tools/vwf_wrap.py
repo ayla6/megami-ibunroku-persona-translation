@@ -474,6 +474,21 @@ def opens_on_object(prev, nxt):
 
 
 @functools.lru_cache(maxsize=1 << 16)   # pure in the line text; the layout asks per suffix
+def strands_opener(text):
+    """Does the line end on the first word of a new sentence ("Anything is
+    nonsense! Anything / nowadays...", "Let's go back! Yosuke's / hurt!")?
+    The sentence end is the strongest break there is (Gerber-Moron &
+    Szarkowska 2018: 85-95% of viewers): its next sentence starts the next
+    line whole. An ellipsis ends a sentence only when a capital follows
+    ("zombie... but / you're cool" goes on)."""
+    words = re.sub(r'<[^>]+>', '', text).split()
+    if len(words) < 2 or not re.search(r'[.!?…]["”’)]*$', words[-2]):
+        return False
+    trails = bool(re.search(r'(?:\.\.|…)["”’)]*$', words[-2]))
+    return not trails or words[-1].lstrip('"“‘(')[:1].isupper()
+
+
+@functools.lru_cache(maxsize=1 << 16)   # pure in the line text; the layout asks per suffix
 def ends_on_subordinator(text):
     """Does a line end on a subordinator that opens the next clause? Not
     when punctuation closes it ('while,') or an article makes it a noun
@@ -1255,6 +1270,12 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                 # got / me so pissed off?").
                 elif end0 == 4 and opens_on_object(text, nxt.text):
                     end0 += 1
+                # A new sentence's first word left at the end of the line
+                # is a scrap: it ranks above the line count inside the box
+                # ("Let's go back together! / Yosuke's hurt! / He needs
+                # you...", never "together! Yosuke's / hurt!").
+                opener = (not last and not label_only and sc == 4
+                          and strands_opener(text))
                 # A connector ends no line for free: it opens the phrase
                 # after it ("the tech / to doctor a bit").
                 if (not last and sc == 4 and not label_only
@@ -1286,8 +1307,8 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                 led = int(not last and bool(nxt.lead))
                 pen = atoms[i].pen if i else 0
                 nbrk = 1 if atoms[i].nbrk else 0
-                opener = (i == 0 and label_end_i is None and not last
-                          and full_stop(text))
+                first_full = (i == 0 and label_end_i is None and not last
+                              and full_stop(text))
                 beside = i == 0 and label_end_i is not None and j > label_end_i and not last
                 bucket, ranks = best[i], ranked[i]
                 for subkey, (sub, _end, after) in best[j + 1].items():
@@ -1347,7 +1368,7 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                     # like him..."), and not further down the block ("I see...
                     # / I'm not surprised. / He does..."): there it only
                     # breaks up a rectangle.
-                    full = (opener
+                    full = (first_full
                             and stop_cost(atoms_text(j + 1, _end)) == 0)
                     trans = (STEP_COST * (step * step
                                           + (step * step if step > 0 else 0))
@@ -1439,7 +1460,7 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                                        else orphan or int(strand or severe
                                                           or tic)),
                              sub[8] + int(midlabel or fragment or strand
-                                          or severe),
+                                          or severe or opener),
                              sub[9] + led)
                     key = (k + 1, w)
                     r = _rank(total)
@@ -1660,7 +1681,7 @@ def _flow_lines(items, width=BOX_WIDTH, measure=text_width, newline=NEWLINE,
 
 
 RANK_NAMES = ('overflow', 'lines past the box', 'split words', 'split names',
-              'label scraps', 'lines', 'line ends and shape', 'noun phrase splits')
+              'scraps', 'lines', 'line ends and shape', 'noun phrase splits')
 
 
 def weigh(words, width=BOX_WIDTH, measure=text_width, tail=1, box=BOX_LINES):

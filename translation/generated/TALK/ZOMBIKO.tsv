@@ -128,7 +128,7 @@ id	pos	psp	en
 126	0x315f	pack/talk/ZOMBIKO:0x5e38	It's been a while since I last<FFF6>met a human. Won't you give me<FFF6>something to remember the occasion?<FFF1><FFF5>
 127	0x3186	pack/talk/ZOMBIKO:0x5f00	What more do you want from me?<FFF5>
 128	0x31a3	pack/talk/ZOMBIKO:0x5f40	If you want me to talk to you,<FFF6>it's common sense to bring<FFF6>a present or two!<FFF1><FFF5>
-129	0x31d9	pack/talk/ZOMBIKO:0x5fe0	What's wrong with living an un-life? I<FFF6>want to stay alive as much as you do!<FFF5>
+129	0x31d9	pack/talk/ZOMBIKO:0x5fe0	What's wrong with living an un-life?<FFF6>I want to stay alive<FFF6>as much as you do!<FFF5>
 130	0x3204	pack/talk/ZOMBIKO:0x6080	Did you come to make fun of me<FFF6>again? Well, I've had it! I'm not falling<FFF6>for it this time! Don't come near me!<FFF5>
 131	0x3234	pack/talk/ZOMBIKO:0x6160	I don't have to be on a diet anymore!<FFF5>
 132	0x324d	pack/talk/ZOMBIKO:0x61b0	You should come over to our side!<FFF5>

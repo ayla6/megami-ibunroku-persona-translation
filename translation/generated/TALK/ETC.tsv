@@ -96,9 +96,9 @@ id	pos	psp	en
 94	0x489a	pack/talk/ETC:0x8438	Hmm, yeah, those are the tough ones.<FFF6>Give up on them and come with us.<FFFB><FFF7><FFED>No, I'm not ready to give up yet.<FFF6>I'll try a few more Europeans!<FFEF>
 95	0x4920	pack/talk/ETC:0x8578	<FFEC>Hmmm...<FFFB><FFF7>Well, you've already got my Persona.<FFF6>I should get back to my prey...<FFEF>
 96	0x4964	pack/talk/ETC:0x8648	<FFEB>Thanks for everything. Bye bye, now.<FFEF>
-97	0x4999	pack/talk/ETC:0x86a8	Hey, how's it going, Lilim? Been<FFF6>sucking the life out of the innocents?<FFFB><FFF7><FFEB>You bet I have!<FFFB><FFF7>How about you, Persona me?<FFF6>Having fun with those humans?<FFEF>
+97	0x4999	pack/talk/ETC:0x86a8	Hey, how's it going, Lilim?<FFF6>Been sucking the life out<FFF6>of the innocents?<FFFB><FFF7><FFEB>You bet I have!<FFFB><FFF7>How about you, Persona me?<FFF6>Having fun with those humans?<FFEF>
 98	0x4a12	pack/talk/ETC:0x8800	Hard to say... It's certainly not<FFF6>boring, but I have to fight a lot.<FFFB><FFF7><FFEE>Hmmm, really?<FFFB><FFF7>Sounds interesting.<FFF6>Why don't you take my card with you?<FFEF>
-99	0x4a8b	pack/talk/ETC:0x8948	Hey, how's it going, Lilim? Been<FFF6>sucking the life out of the innocents?<FFFB><FFF7><FFEB>You bet I have!<FFFB><FFF7>How about you, Persona me?<FFF6>Having fun with those humans?<FFEF>
+99	0x4a8b	pack/talk/ETC:0x8948	Hey, how's it going, Lilim?<FFF6>Been sucking the life out<FFF6>of the innocents?<FFFB><FFF7><FFEB>You bet I have!<FFFB><FFF7>How about you, Persona me?<FFF6>Having fun with those humans?<FFEF>
 100	0x4b04	pack/talk/ETC:0x8aa0	Hard to say... It's certainly not<FFF6>boring, but I have to fight a lot.<FFFB><FFF7><FFEE>Hmm, I see. Maybe I'll go find<FFF6>some stronger humans then!<FFEF>
 101	0x4b79	pack/talk/ETC:0x8bc0	<FFED>Oh yeah? Fine, then!<FFF6>There're plenty of souls in the sea!<FFEF>
 102	0x4bb0	pack/talk/ETC:0x8c50	<FFEB>Ahaha! I've got some errands to run,<FFF6>but remember to turn me<FFF6>into a Persona!<FFEF>
@@ -113,7 +113,7 @@ id	pos	psp	en
 111	0x5008	pack/talk/ETC:0x9740	I did not think you still walked<FFF6>this world, evil beast!<FFFB><FFF7>It seems Abai's soul<FFF6>did not satiate you...<FFFB><FFF7>So taste the fury<FFF6>of my lightning bolt!<FFEF>
 112	0x5085	pack/talk/ETC:0x98c0	<FFED>GAAAAAAAH! ME HAD MANY<FFF6>RUN-INS WITH YOUR CHILDREN.<FFFB><FFF7>NOW IS THE TIME TO RETURN<FFF6>THE FAVOR. ME DEVOUR YOUR SOUL!<FFEF>
 113	0x50fd	pack/talk/ETC:0x99d0	It is unpleasant to be in the presence<FFF6>of a spider-woman. Begone!<FFFB><FFF7><FFEC>...You're the one who did this to me.<FFF6>Don't you have anything else to say?<FFEF>
-114	0x517e	pack/talk/ETC:0x9b20	Your words fall on deaf ears. You<FFF6>shall spin thread for all eternity!<FFFB><FFF7><FFED>You're just mad<FFF6>because I'm better than you!<FFF6>You call yourself a goddess!?<FFEF>
+114	0x517e	pack/talk/ETC:0x9b20	Your words fall on deaf ears.<FFF6>You shall spin thread<FFF6>for all eternity!<FFFB><FFF7><FFED>You're just mad<FFF6>because I'm better than you!<FFF6>You call yourself a goddess!?<FFEF>
 115	0x5203	pack/talk/ETC:0x9c78	Cherub... The garden<FFF6>of Eden is safe, I presume?<FFFB><FFF7>We guard the gate from the tree of<FFF6>life. Infiltration would be unthinkable.<FFEF>
 116	0x5280	pack/talk/ETC:0x9d98	Very well.<FFFB><FFF7>Then I have a favor to ask of you...<FFF6>I'd like you to lend this human power.<FFFB><FFF7><FFEB>If it is your will, how can I refuse?<FFF6>Please, take this card.<FFEF>
 117	0x52fd	pack/talk/ETC:0x9f00	Cherub... The garden<FFF6>of Eden is safe, I presume?<FFFB><FFF7>We guard the gate from the tree of<FFF6>life. Infiltration would be unthinkable.<FFEF>

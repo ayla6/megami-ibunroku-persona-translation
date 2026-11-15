@@ -4,7 +4,7 @@ id	pos	psp	en
 2	0x2075	pack/talk/KUTISAKE:0x2120	I knew it!<FFF6>You're interested in me, aren't you?<FFFB><FFF7>Let me guess... You're attracted<FFF6>to women with large mouths!<FFF5>
 3	0x20b7	pack/talk/KUTISAKE:0x2200	Goodness, you're rather confident.<FFF6>Wanna put that to the test later on?<FFF5>
 4	0x20e9	pack/talk/KUTISAKE:0x2290	The nerve, taunting me!<FFF6>Don't make me take off this mask!<FFF5>
-5	0x2113	pack/talk/KUTISAKE:0x2308	Wh-What's wrong with you...? Don't<FFF6>you know how to speak to a lady...?<FFF5>
+5	0x2113	pack/talk/KUTISAKE:0x2308	Wh-What's wrong with you...?<FFF6>Don't you know how to<FFF6>speak to a lady...?<FFF5>
 6	0x2149	pack/talk/KUTISAKE:0x2398	Do you really need my help?<FFFB><FFF7>Aren't you just trying<FFF6>to join our group?<FFF5>
 7	0x2182	pack/talk/KUTISAKE:0x2428	Are you trying to sweet-talk me?<FFF6>Hmph! I'm not falling for that!<FFF5>
 8	0x21bb	pack/talk/KUTISAKE:0x24b0	I'm not interested in people with small<FFF6>mouths. Sorry... try someone else.<FFF5>
@@ -45,14 +45,14 @@ id	pos	psp	en
 43	0x287b	pack/talk/KUTISAKE:0x38e8	If you can speak that confidently,<FFF6>you have a mouth<FFF6>well-suited to lip service!<FFFB><FFF7>It could surpass mine someday!<FFF5>
 44	0x28ad	pack/talk/KUTISAKE:0x39c8	Kids today really are<FFF6>lacking in calcium.<FFFB><FFF7>You should eat more candy.<FFF5>
 45	0x28f2	pack/talk/KUTISAKE:0x3a58	There's no reason to yell at me!<FFF6>This is why I hate stupid brats!<FFF5>
-46	0x291a	pack/talk/KUTISAKE:0x3ae0	...My time has already passed... I<FFF6>wonder if I should just go into hiding.<FFF5>
+46	0x291a	pack/talk/KUTISAKE:0x3ae0	...My time has already passed...<FFF6>I wonder if I should<FFF6>just go into hiding.<FFF5>
 47	0x2956	pack/talk/KUTISAKE:0x3b78	I don't really like kids.<FFF6>They can be such smart-alecks...<FFFB><FFF7>Will you really grow into<FFF6>a handsome man someday? Mmm.<FFF5>
 48	0x299c	pack/talk/KUTISAKE:0x3c60	You pretend to be mature,<FFF6>but you've got a long way to go<FFF6>when it comes to dealing with women!<FFF5>
 49	0x29cd	pack/talk/KUTISAKE:0x3d20	Oh, stop... you're embarrassing me...!<FFF5>
 50	0x29eb	pack/talk/KUTISAKE:0x3d70	Is that the takenoko?<FFF6>I was active in the 70s... I don't<FFF6>know much about modern dances.<FFF5>
 51	0x2a25	pack/talk/KUTISAKE:0x3e20	Hmph! Your moves are best kept<FFF6>to yourself, if you ask me. Come back<FFF6>when you've had more practice!<FFF5>
 52	0x2a6c	pack/talk/KUTISAKE:0x3ee8	Ahaha... You're pretty good!<FFF6>But if it was a race, I'd win!<FFF5>
-53	0x2aa0	pack/talk/KUTISAKE:0x3f60	You seem pretty sure of yourself. I'm<FFF6>always surprised by kids these days.<FFF5>
+53	0x2aa0	pack/talk/KUTISAKE:0x3f60	You seem pretty sure of yourself.<FFF6>I'm always surprised<FFF6>by kids these days.<FFF5>
 54	0x2ad5	pack/talk/KUTISAKE:0x3ff8	You're one of those kids<FFF6>who never knows when to shut up!<FFFB><FFF7>How about if I slice your mouth<FFF6>off, hmmm? What then!?<FFF5>
 55	0x2afb	pack/talk/KUTISAKE:0x40e0	Um... Um, all I do is ask,<FFF6>"Am I beautiful?" you know...<FFFB><FFF7>...I'm not lying...<FFF5>
 56	0x2b3a	pack/talk/KUTISAKE:0x4180	Are you that curious to know<FFF6>what's under this mask?<FFFB><FFF7>Ahahah... That'll have<FFF6>to stay a secret.<FFF5>
@@ -107,7 +107,7 @@ id	pos	psp	en
 105	0x355c	pack/talk/KUTISAKE:0x5fe0	Wh-What's your problem?<FFF6>I think you've had a little<FFF6>too much to drink...<FFF5>
 106	0x3592	pack/talk/KUTISAKE:0x6078	That sudden yell really<FFF6>caught me off guard. Hahah...<FFF6>I can't stay mad, though.<FFF5>
 107	0x35c2	pack/talk/KUTISAKE:0x6118	Ooh! Can you make other things<FFF6>appear, too? I like people<FFF6>who are good with their hands!<FFF5>
-108	0x35f2	pack/talk/KUTISAKE:0x61d0	You really can do anything... Just<FFF6>don't conjure up anything I hate.<FFF5>
+108	0x35f2	pack/talk/KUTISAKE:0x61d0	You really can do anything...<FFF6>Just don't conjure up<FFF6>anything I hate.<FFF5>
 109	0x361c	pack/talk/KUTISAKE:0x6260	That's amazing! Hey,<FFF6>magic up some candy for me next time!<FFF5>
 110	0x3645	pack/talk/KUTISAKE:0x62d8	What an interesting story!<FFF6>C'mon, tell me what happens next!<FFF5>
 111	0x3669	pack/talk/KUTISAKE:0x6358	You must be really interested in me!<FFFB><FFF7>Give me something and maybe<FFF6>I'll tell you more about myself.<FFF1><FFF5>
@@ -119,7 +119,7 @@ id	pos	psp	en
 117	0x37b5	pack/talk/KUTISAKE:0x6780	...I don't think I get it as much<FFF6>as someone else would...<FFF5>
 118	0x37ea	pack/talk/KUTISAKE:0x67f8	Ahahah... It's been a while<FFF6>since I had such a nice time.<FFF5>
 119	0x3813	pack/talk/KUTISAKE:0x6870	Hahahah... You say such cute things!<FFF5>
-120	0x382a	pack/talk/KUTISAKE:0x68c0	Why don't we chat some more! I'm<FFF6>hoping you might give me a present!<FFF1><FFF5>
+120	0x382a	pack/talk/KUTISAKE:0x68c0	Why don't we chat some more!<FFF6>I'm hoping you might<FFF6>give me a present!<FFF1><FFF5>
 121	0x3852	pack/talk/KUTISAKE:0x6950	You want me?<FFF6>Teehee... What should I do...?<FFF5>
 122	0x3877	pack/talk/KUTISAKE:0x69a8	Your opening gambit was interesting.<FFF6>If you give something, I'll listen to<FFF6>whatever you really wanted to say.<FFF1><FFF5>
 123	0x38ae	pack/talk/KUTISAKE:0x6a88	You want my help, but you're still<FFF6>a kid... Let me think it over some.<FFF5>
@@ -172,7 +172,7 @@ id	pos	psp	en
 170	0x41e0	pack/talk/KUTISAKE:0x8758	If you think that'll make me forgive<FFF6>you, you have another thing coming!<FFFB><FFF7>Honestly, what a brat!<FFF6>You've made me mad... What are<FFF6>you going to give me to fix it!?<FFF1><FFF5>
 171	0x422e	pack/talk/KUTISAKE:0x88a0	You're my slave now! I'll need a gift<FFF6>to be interested in you, slave!<FFF1><FFF5>
 172	0x426b	pack/talk/KUTISAKE:0x8930	You're scheming something,<FFF6>aren't you...?<FFF5>
-173	0x427c	pack/talk/KUTISAKE:0x8988	Aren't you actually angry...? You<FFF6>are, right? I knew it... you're mad...<FFF5>
+173	0x427c	pack/talk/KUTISAKE:0x8988	Aren't you actually angry...?<FFF6>You are, right?<FFF6>I knew it... you're mad...<FFF5>
 174	0x42b7	pack/talk/KUTISAKE:0x8a20	Ahahah... I'll play nice<FFF6>with honest children.<FFF5>
 175	0x42db	pack/talk/KUTISAKE:0x8a80	You're a good kid... You're so cute,<FFF6>it makes me want to rip you apart and<FFF6>see your beautiful entrails. Ahaha...<FFF5>
 176	0x4311	pack/talk/KUTISAKE:0x8b68	Oh...! You have my sister's<FFF6>spell card... Don't make it<FFF6>into a weird Persona, okay?<FFEF>
@@ -198,7 +198,7 @@ id	pos	psp	en
 196	0x46b5	pack/talk/KUTISAKE:0x9560	If you forgive me,<FFF6>I'll give you my spell card...<FFEF>
 197	0x46d3	pack/talk/KUTISAKE:0x95c8	Oh my, what a handsome man...<FFF6>Hey, do you have anything<FFF6>against demons with big mouths...?<FFF5>
 198	0x4706	pack/talk/KUTISAKE:0x9680	Hey, listen!<FFF6>I haven't lived as a human in a while.<FFF6>That's why I want something.<FFF1><FFF5>
-199	0x473f	pack/talk/KUTISAKE:0x9728	I'll tell you now,<FFF6>I'm in a bad mood today! Try<FFF6>anything funny and I'll rip you apart!<FFF5>
+199	0x473f	pack/talk/KUTISAKE:0x9728	I'll tell you now, I'm in a bad mood<FFF6>today! Try anything funny<FFF6>and I'll rip you apart!<FFF5>
 200	0x477e	pack/talk/KUTISAKE:0x97d8	What a beautiful full moon! And here<FFF6>I am, the only demon girl stuck<FFF6>negotiating with humans... Sheesh!<FFFB><FFF7>So, got any presents for me?<FFF6>Ugh! You're so inconsiderate!<FFF6>Give me something!<FFF1><FFF5>
 201	0x47f5	pack/talk/KUTISAKE:0x9948	Wh-What a scary face...<FFF6>D-Don't cross that line, okay...?<FFF5>
 202	0x4820	pack/talk/KUTISAKE:0x99c0	Wh What a scary face... I-I don't<FFF6>think I'll be able to sleep tonight...<FFF5>

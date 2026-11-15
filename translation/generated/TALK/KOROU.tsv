@@ -45,12 +45,12 @@ id	pos	psp	en
 43	0x2930	pack/talk/KOROU:0x3a70	Heh! You've got a lot<FFF6>to learn if you're goin'<FFF6>pale in front of an ol' geezer!<FFF5>
 44	0x2962	pack/talk/KOROU:0x3b10	I ain't gonna eat ya! Stop starin'<FFF6>at me like a deer in headlights!<FFFD>に<FFF5>
 45	0x2989	pack/talk/KOROU:0x3ba0	Argh! I don't eat the likes of you!<FFF5>
-46	0x29b0	pack/talk/KOROU:0x3be8	There's nothin' to be scared of... I'm<FFF6>just a harmless old man! Heh heh heh!<FFF5>
+46	0x29b0	pack/talk/KOROU:0x3be8	There's nothin' to be scared of...<FFF6>I'm just a harmless old man!<FFF6>Heh heh heh!<FFF5>
 47	0x29e7	pack/talk/KOROU:0x3c88	Ho ho! Sounds like I've still got<FFF6>some dignity left in me, eh?<FFFD>ぬ<FFF5>
 48	0x2a1a	pack/talk/KOROU:0x3d10	You must have some real troubles if<FFF6>you're interested in old folks... Heh...<FFF5>
 49	0x2a4c	pack/talk/KOROU:0x3db0	Ho ho ho... You may be young,<FFF6>but doin' it with just<FFF6>anyone ain't healthy.<FFFD>ね<FFF5>
 50	0x2a81	pack/talk/KOROU:0x3e50	Now listen here! Stop that!<FFF6>You're makin' me sick! Quit ooglin' me!<FFF5>
-51	0x2ab5	pack/talk/KOROU:0x3ed8	Ain't ya got no manners!? Young'uns<FFF6>these days think everything's a joke!<FFFD>の<FFF5>
+51	0x2ab5	pack/talk/KOROU:0x3ed8	Ain't ya got no manners!?<FFF6>Young'uns these days<FFF6>think everything's a joke!<FFFD>の<FFF5>
 52	0x2af6	pack/talk/KOROU:0x3f70	Here, here, boy. I ain't interested<FFF6>in men. I don't know what I'm gonna<FFF6>do with you fawnin' all over me...<FFF5>
 53	0x2b2c	pack/talk/KOROU:0x4048	...I'm a man, and an old one at that.<FFF6>You need your eyes checked, son?<FFFD>は<FFF5>
 54	0x2b63	pack/talk/KOROU:0x40e0	Ho ho ho.<FFF5>
@@ -152,7 +152,7 @@ id	pos	psp	en
 150	0x3f83	pack/talk/KOROU:0x7970	Argh! Now I'm mad! You reckon you<FFF6>got bite to back up that bark, kid!?<FFFD>ア<FFF5>
 151	0x3fbd	pack/talk/KOROU:0x7a08	What a rude li'l lady! Looks like<FFF6>it's time to put ya over my knee!<FFF5>
 152	0x3ff7	pack/talk/KOROU:0x7a90	I'm bein' made fun of by a girl?<FFF6>*sigh* Oh how the mighty<FFF6>have fallen...<FFFD>イ<FFF5>
-153	0x4030	pack/talk/KOROU:0x7b28	Now what'd I do to deserve this? You<FFF6>young'uns are a frightful bunch...<FFF5>
+153	0x4030	pack/talk/KOROU:0x7b28	Now what'd I do to deserve this?<FFF6>You young'uns are<FFF6>a frightful bunch...<FFF5>
 154	0x4060	pack/talk/KOROU:0x7bb8	Hmm... Ain't that a pity.<FFF6>If young women like you knew<FFFB><FFF7>how to take care of their skin better,<FFF6>I mighta fallen for ya.<FFFD>ウ<FFF5>
 155	0x409a	pack/talk/KOROU:0x7ca8	Heh... Sometimes it's good to just<FFF6>enjoy life with the young'uns.<FFF5>
 156	0x40ca	pack/talk/KOROU:0x7d30	Hey! Women oughta be more virtuous!<FFFD>エ<FFF5>
@@ -249,7 +249,7 @@ id	pos	psp	en
 247	0x53bc	pack/talk/KOROU:0xb148	Hmph! <FFF0><FFF6>don't pale at negotiations like that!<FFFB><FFF7>Get too conceited,<FFF6>and even I'll get angry!<FFF5>
 248	0x542a	pack/talk/KOROU:0xb200	Well, if yer gonna take up<FFF6>that attitude, I have an idea!<FFF6>Gimme somethin'!<FFF1><FFF5>
 249	0x545d	pack/talk/KOROU:0xb298	...I'm an old man... An old fogey...<FFF5>
-250	0x5496	pack/talk/KOROU:0xb2e8	Kids these days are frightful... Just<FFF6>what do you think of the elderly?<FFF5>
+250	0x5496	pack/talk/KOROU:0xb2e8	Kids these days are frightful...<FFF6>Just what do you think<FFF6>of the elderly?<FFF5>
 251	0x54cc	pack/talk/KOROU:0xb378	If all the children out there were like<FFF6>you, it'd be a scary world indeed...<FFF6>Oh, heaven forbid...<FFF5>
 252	0x5517	pack/talk/KOROU:0xb440	Heh! What's with that attitude!?<FFFB><FFF7>Oh well. When ya get to be my age,<FFF6>you learn to roll with the punches.<FFF5>
 253	0x556b	pack/talk/KOROU:0xb518	Ho, ho! I see you're still<FFF6>in that rebellious stage.<FFF6>Hurry and grow up, would ya?<FFF5>
@@ -504,7 +504,7 @@ id	pos	psp	en
 502	0x882e	pack/talk/KOROU:0x13b58	Young'uns are scary these days...<FFF5>
 503	0x8857	pack/talk/KOROU:0x13ba0	Oh, you don't get it...?<FFF6>Well that really ticks me off!<FFF5>
 504	0x8884	pack/talk/KOROU:0x13c10	Hohoho! That's okay.<FFF5>
-505	0x88a3	pack/talk/KOROU:0x13c40	What's that supposed to mean!? You<FFF6>got no right to be testin' your elders!<FFF5>
+505	0x88a3	pack/talk/KOROU:0x13c40	What's that supposed to mean!?<FFF6>You got no right to be<FFF6>testin' your elders!<FFF5>
 506	0x88dc	pack/talk/KOROU:0x13cd8	Hohoho, I see through everything!<FFF5>
 507	0x8906	pack/talk/KOROU:0x13d20	Argh! You got the guts to keep up<FFF6>yer innocent little act!? Cut it out!<FFF5>
 508	0x892e	pack/talk/KOROU:0x13db0	So the true self is revealed! It's time<FFF6>to put this old man to the test!<FFF5>
@@ -627,7 +627,7 @@ id	pos	psp	en
 625	0x9f34	pack/talk/KOROU:0x17740	Oh, oh, ohhh...<FFF6>I'm old, can't ya be nice?<FFF5>
 626	0x9f68	pack/talk/KOROU:0x17798	...S-So you're a masochist<FFF6>as well, Missy?<FFF5>
 627	0x9f94	pack/talk/KOROU:0x177f0	I see, I see. That's good to hear...<FFF6>I'm glad there are reputable<FFF6>men still out there!<FFF5>
-628	0x9fc7	pack/talk/KOROU:0x178a0	Hohoho... "Women's suffrage," eh? It<FFF6>sounds fancy, but I'm rootin' for ya!<FFF5>
+628	0x9fc7	pack/talk/KOROU:0x178a0	Hohoho... "Women's suffrage," eh?<FFF6>It sounds fancy,<FFF6>but I'm rootin' for ya!<FFF5>
 629	0x9ffb	pack/talk/KOROU:0x17938	Hey! I was worried about ya.<FFF6>There's no need to put it like that!<FFF5>
 630	0xa02e	pack/talk/KOROU:0x179c0	Argh! Confidence like<FFF6>that'll lower your guard,<FFF6>and that's how ya get hurt!<FFF5>
 631	0xa05b	pack/talk/KOROU:0x17a58	Er... I'd like it if you'd talk<FFF6>to me a little longer...<FFF5>

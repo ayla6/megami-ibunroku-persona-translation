@@ -35,7 +35,7 @@ id	pos	psp	en
 33	1:0x1934	E3:33	Elly: That girl by the window...<FF03>She's still muttering to herself...<FF02><FF01>
 34	2:0x1308	E3:34	Student council president:<FF03>Whew... that was close.<FF02><FF04>See, I got in a fight.<FF03>The Vice-Principal almost caught me,<FF03>which would have been bad.<FF02><FF04>But I bet he won't find me here.<FF02><FF01>
 35	2:0x13a4	E3:35	Student council president:<FF03>You guys really do work hard.<FF02><FF04>Leave everything to your ol'<FF03>student council president<FF03>and run along, okay?<FF02><FF01>
-36	2:0x13ec	E3:36	Drama club member:<FF03>I heard a story about when Ms. Saeko<FF03>was in the drama club...<FF02><FF04>They say she fought<FF03>with her best friend over<FF03>who would play the Snow Queen.<FF02><FF04>I forget her last name,<FF03>but I think her first name was Tomomi.<FF02><FF04>There were tears in Ms. Saeko's<FF03>eyes when she told me about that.<FF02><FF01>
+36	2:0x13ec	E3:36	Drama club member:<FF03>I heard a story about when<FF03>Ms. Saeko was in the drama club...<FF02><FF04>They say she fought<FF03>with her best friend over<FF03>who would play the Snow Queen.<FF02><FF04>I forget her last name,<FF03>but I think her first name was Tomomi.<FF02><FF04>There were tears in Ms. Saeko's eyes<FF03>when she told me about that.<FF02><FF01>
 37	2:0x1470	E3:37	Drama club member:<FF03>It seems like there's a tragic legacy<FF03>behind the Snow Queen's mask.<FF02><FF04>Maybe I should write a play about it<FF03>once the town's back to normal.<FF02><FF01>
 38	2:0x14c0	E3:38	Yukino:<FF03>So our drama club's good enough<FF03>that it can win competitions?<FF02><FF01>
 39	2:0x14ec	E3:39	Yukino: Let's beat that<FF03>Night Queen for the sake<FF03>of the three tower guardians.<FF02><FF01>
@@ -102,8 +102,8 @@ id	pos	psp	en
 100	5:0x1b04	E3:102	Just kidding... No sweet nothings to<FF03>whisper to me after all those gifts?<FF02><FF04>You're at the right age<FF03>to study the subtleties<FF03>of men's and women's feelings.<FF02><FF04>What I'm trying to say is... I'm a girl!<FF02><FF01>
 101	6:0x183c	E3:103	Chemistry teacher: This is pretty<FF03>elaborate for a Culture Festival<FF03>stall. I'm impressed.<FF02><FF01>
 102	6:0x1870	E3:104	Chemistry teacher: This place sells<FF03>some pretty expensive stuff<FF03>for a Culture Festival stall.<FF02><FF04>And those are two<FF03>old-looking students...<FF02><FF01>
-103	6:0x18ac	E3:105	Turunkhamen: Hohoho... Welcome. What<FF03>manner of goods do you require?<FF02><FF01>
-104	6:0x18e4	E3:106	Turunkhamen: Hohoho... Welcome. What<FF03>manner of goods do you require?<FF02><FF01>
+103	6:0x18ac	E3:105	Turunkhamen: Hohoho... Welcome.<FF03>What manner of goods<FF03>do you require?<FF02><FF01>
+104	6:0x18e4	E3:106	Turunkhamen: Hohoho... Welcome.<FF03>What manner of goods<FF03>do you require?<FF02><FF01>
 105	6:0x191c	E3:107	Khamenturun: Hohohoho... I love gems<FF03>more than anything in this world.<FF02><FF04>I'll exchange my special<FF03>treasures for your gems.<FF03>Would you like to trade?<FF02><FF01>
 106	6:0x1988	E3:108	Khamenturun: Hohohoho... I love gems<FF03>more than anything in this world.<FF02><FF04>I'll exchange my special<FF03>treasures for your gems.<FF03>Would you like to trade?<FF02><FF01>
 107	6:0x19f4	E3:109	Yukino:<FF03>Wasn't Sennen Mannen-Do<FF03>a sweets shop?<FF02><FF01>
@@ -119,7 +119,7 @@ id	pos	psp	en
 117	7:0x1538	E3:119	Female student: What are we<FF03>going to do? There's no way out.<FF03>We're trapped in here!<FF02><FF04>The demons will get us<FF03>eventually anyways...<FF02><FF04>Tons of demons will invade<FF03>and we'll all be tortured to death!<FF02><FF01>
 118	7:0x15b0	E3:120	Female student:<FF03>Even if you defeat the Snow Queen,<FF03>there will still be demons left, right!?<FF02><FF04>We're sunk...<FF02><FF01>
 119	7:0x15f8	E3:121	Female student: Who's the one<FF03>who claimed the school was safe?<FF03>I wanna go home...<FF02><FF01>
-120	7:0x1630	E3:122	Female student:<FF03>Why can't we get outside yet?<FF02><FF04>Are we forced to just sit here<FF03>and wait until we freeze to death?<FF02><FF04>I'm not having any of that! There's<FF03>still a lot I want to accomplish in life!<FF02><FF01>
+120	7:0x1630	E3:122	Female student:<FF03>Why can't we get outside yet?<FF02><FF04>Are we forced to just sit here<FF03>and wait until we freeze to death?<FF02><FF04>I'm not having any of that!<FF03>There's still a lot I want<FF03>to accomplish in life!<FF02><FF01>
 121	7:0x169c	E3:123	Satori: We're sunk. We were<FF03>always going to die someday...<FF03>It's just been sped up a bit.<FF02><FF04>I get to go out<FF03>while I'm still beautiful,<FF03>so I thank the Snow Queen for that.<FF02><FF01>
 122	7:0x1704	E3:124	Satori: When I keep my eyes shut<FF03>like this, it's like everything's<FF03>stopped breathing.<FF02><FF04>It's so quiet. You know... I think<FF03>I'm starting... to get... slee... py...<FF02><FF01>
 123	7:0x1764	E3:125	Yukino:<FF03>Talk about an annoying bunch.<FF02><FF04>Let's go before they make me<FF03>as crazy as they are.<FF02><FF01>

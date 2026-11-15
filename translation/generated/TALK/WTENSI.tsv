@@ -396,7 +396,7 @@ id	pos	psp	en
 394	0x6cc1	pack/talk/WTENSI:0x10bc0	Unfortunately... this is not a game!<FFF5>
 395	0x6ce1	pack/talk/WTENSI:0x10c10	You will not escape after this!<FFF6>Now draw your weapon!<FFF5>
 396	0x6d0b	pack/talk/WTENSI:0x10c80	At last, you have stopped!<FFF6>Good heavens, did you<FFF6>never take music lessons!?<FFF5>
-397	0x6d42	pack/talk/WTENSI:0x10d18	Whew... That was a near thing... My<FFF6>wings were about to be jarred loose.<FFF5>
+397	0x6d42	pack/talk/WTENSI:0x10d18	Whew... That was a near thing...<FFF6>My wings were about<FFF6>to be jarred loose.<FFF5>
 398	0x6d6f	pack/talk/WTENSI:0x10db0	I let my guard down... I had not<FFF6>expected another form of assault...!<FFF5>
 399	0x6d92	pack/talk/WTENSI:0x10e40	I can only say that was marvelous!<FFF6>I was not aware humans like you<FFF6>still existed in this world!<FFF5>
 400	0x6dc7	pack/talk/WTENSI:0x10f00	I feel as though I am<FFF6>under your sway...<FFF5>
@@ -500,7 +500,7 @@ id	pos	psp	en
 498	0x7d45	pack/talk/WTENSI:0x14088	Were my words too<FFF6>difficult to understand?<FFF5>
 499	0x7d64	pack/talk/WTENSI:0x140e0	But your words are not<FFF6>worth reprimanding!<FFF5>
 500	0x7d86	pack/talk/WTENSI:0x14138	Perhaps from your point of view,<FFF6>that is the case...<FFF5>
-501	0x7dad	pack/talk/WTENSI:0x141a8	I am still in training. Withstanding<FFF6>insults is also part of my ordeal.<FFF5>
+501	0x7dad	pack/talk/WTENSI:0x141a8	I am still in training.<FFF6>Withstanding insults is<FFF6>also part of my ordeal.<FFF5>
 502	0x7de5	pack/talk/WTENSI:0x14238	I may not look it, but I am very<FFF6>familiar with modern youth's music!<FFF5>
 503	0x7e08	pack/talk/WTENSI:0x142c8	I only wanted a little, you see...<FFF5>
 504	0x7e2c	pack/talk/WTENSI:0x14310	Ahaha... It was a mere jest.<FFF5>
@@ -630,7 +630,7 @@ id	pos	psp	en
 628	0x91b8	pack/talk/WTENSI:0x18078	In your heart,<FFF6>you wished to talk, no? There is<FFF6>no need to pretend otherwise.<FFF5>
 629	0x91de	pack/talk/WTENSI:0x18118	You felt His wrath and yet remain<FFF6>defiant... You have sold your soul<FFF6>to the ones below, haven't you?<FFF5>
 630	0x920e	pack/talk/WTENSI:0x181e8	There is nothing left<FFF6>of your soul to be saved!<FFF5>
-631	0x9222	pack/talk/WTENSI:0x18248	This is how you are meant to be! Let<FFF6>us next work on fixing your speech!<FFF5>
+631	0x9222	pack/talk/WTENSI:0x18248	This is how you are meant to be!<FFF6>Let us next work on<FFF6>fixing your speech!<FFF5>
 632	0x9244	pack/talk/WTENSI:0x182e0	Ah, so you are<FFF6>in the midst of training!<FFF5>
 633	0x9258	pack/talk/WTENSI:0x18338	Ah... I am of the order<FFF6>of <FFF3>, you know...<FFF5>
 634	0x9276	pack/talk/WTENSI:0x18390	Why would you take<FFF6>that tone with me!?<FFF5>

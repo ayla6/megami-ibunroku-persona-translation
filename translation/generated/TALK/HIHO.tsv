@@ -41,7 +41,7 @@ id	pos	psp	en
 39	0x2756	pack/talk/HIHO:0x33d0	*sniff* I can smell lies, ho...<FFF6>You're a suspicious character!<FFFD>て<FFF5>
 40	0x278f	pack/talk/HIHO:0x3458	Hee-hoho! Everyone loves me, ho!<FFF5>
 41	0x27b0	pack/talk/HIHO:0x34a0	Putting two and two together, ho...<FFF6>Are you asking for<FFF6>my power, hee-ho?<FFFB><FFF7>Hee-hohohoho! Huh? No, ho?<FFFD>と<FFF5>
-42	0x2800	pack/talk/HIHO:0x3570	There's no reason to be scared, ho. I<FFF6>won't do bad things to a girl. Hee-ho.<FFF5>
+42	0x2800	pack/talk/HIHO:0x3570	There's no reason to be scared, ho.<FFF6>I won't do bad things to a girl.<FFF6>Hee-ho.<FFF5>
 43	0x2832	pack/talk/HIHO:0x3610	Huh... You're pretty smart, ho!<FFF6>Of course I don't bully the weak! Ho!<FFFD>な<FFF5>
 44	0x286b	pack/talk/HIHO:0x36a0	What-what? You're so weak, hee-ho!<FFF6>Sooo not my type!<FFF5>
 45	0x2896	pack/talk/HIHO:0x3710	Liar!<FFFD>に<FFF5>
@@ -411,7 +411,7 @@ id	pos	psp	en
 409	0x664b	pack/talk/HIHO:0xe170	You seem pretty well off too, hee-ho!<FFF5>
 410	0x6667	pack/talk/HIHO:0xe1c0	What!?<FFF6>And here I was being nice, hee-ho!<FFF5>
 411	0x6692	pack/talk/HIHO:0xe218	Don't play dumb, ho!<FFF6>I won't forgive you!<FFF5>
-412	0x66b5	pack/talk/HIHO:0xe270	T-Taking the offensive now? You've<FFF6>got type A blood, don't you, hee-ho...<FFF5>
+412	0x66b5	pack/talk/HIHO:0xe270	T-Taking the offensive now?<FFF6>You've got type A blood,<FFF6>don't you, hee-ho...<FFF5>
 413	0x66d8	pack/talk/HIHO:0xe308	No, I meant it, hee-ho! I-I'm gonna<FFF6>call you Ma'am from now on!<FFF5>
 414	0x6703	pack/talk/HIHO:0xe388	That was a lie, ho. Just a little test.<FFF6>You've got a lot to learn, hee-ho!<FFF5>
 415	0x6732	pack/talk/HIHO:0xe420	Well... Well of course, ho...<FFF6>So please don't do anything weird...<FFF5>
@@ -429,7 +429,7 @@ id	pos	psp	en
 427	0x68f0	pack/talk/HIHO:0xe948	Is that so? If you're against me,<FFF6>I won't go easy on you, ho!<FFF5>
 428	0x6916	pack/talk/HIHO:0xe9c8	That's right, ho!<FFF6>From now on, you serve me, hee-ho!<FFF5>
 429	0x6932	pack/talk/HIHO:0xea38	Don't play dumb, ho!<FFF6>I won't forgive you!<FFF5>
-430	0x6955	pack/talk/HIHO:0xea90	T-Taking the offensive now? You've<FFF6>got type A blood, don't you, hee-ho...<FFF5>
+430	0x6955	pack/talk/HIHO:0xea90	T-Taking the offensive now?<FFF6>You've got type A blood,<FFF6>don't you, hee-ho...<FFF5>
 431	0x6978	pack/talk/HIHO:0xeb28	Stop pretending, ho!<FFF6>We all know you're hee-head over<FFF6>hee-heels for me, ho!<FFF5>
 432	0x69b0	pack/talk/HIHO:0xebc0	Jealousy is ugly, ho!<FFF5>
 433	0x69bf	pack/talk/HIHO:0xebf0	You think so too, ho?<FFF5>
@@ -451,7 +451,7 @@ id	pos	psp	en
 449	0x6c40	pack/talk/HIHO:0xf3b8	A-An order...? Ho...? Does that mean<FFF6>I can leave now, hee-ho?<FFF5>
 450	0x6c73	pack/talk/HIHO:0xf438	Why can't you decide!? It's too good<FFF6>a deal to pass up, ho! I'm irritated!<FFF5>
 451	0x6ca6	pack/talk/HIHO:0xf4d0	First... Maybe you should do<FFF6>a hee-ho! Then... we'll fill the world<FFF6>with zombies! Good plan, ho!?<FFF5>
-452	0x6cf6	pack/talk/HIHO:0xf598	You're not happy with me, ho!? That's<FFF6>pretty conceited for a newcomer!<FFF5>
+452	0x6cf6	pack/talk/HIHO:0xf598	You're not happy with me, ho!?<FFF6>That's pretty conceited<FFF6>for a newcomer!<FFF5>
 453	0x6d20	pack/talk/HIHO:0xf628	Can't you understand, ho?<FFF6>It's just a pain in the butt, hee-ho.<FFF5>
 454	0x6d48	pack/talk/HIHO:0xf6a8	That's right, hee-ho. Demons don't<FFF6>die, so we never feel hee-hollow, ho!<FFF6>You're pretty smart.<FFF5>
 455	0x6d82	pack/talk/HIHO:0xf768	I...! I...! I was serious, ho!<FFF6>And yet you still...!<FFF5>
@@ -469,7 +469,7 @@ id	pos	psp	en
 467	0x6f59	pack/talk/HIHO:0xfc50	Are you stupid, ho? Would you mind<FFF6>dying for me? You suck! Really, ho!<FFF5>
 468	0x6f8c	pack/talk/HIHO:0xfce0	I don't think you're right in the head,<FFF6>Mister. You need some help, ho.<FFF5>
 469	0x6fb7	pack/talk/HIHO:0xfd70	Really!?<FFF6>How generous of you, hee-ho!<FFF5>
-470	0x6fd4	pack/talk/HIHO:0xfdc0	Then give me more, ho! Leave<FFF6>everything you've got with me, ho!<FFF5>
+470	0x6fd4	pack/talk/HIHO:0xfdc0	Then give me more, ho!<FFF6>Leave everything<FFF6>you've got with me, ho!<FFF5>
 471	0x6ff8	pack/talk/HIHO:0xfe40	Cheap, cheap cheap!<FFF6>You suck, hee-ho!<FFF5>
 472	0x7028	pack/talk/HIHO:0xfe90	I don't need moral rehabilitation, ho!<FFF6>Just gimme!<FFF5>
 473	0x704b	pack/talk/HIHO:0xfef8	Thanks, daddy! But I want it now!<FFF1><FFF5>
@@ -538,7 +538,7 @@ id	pos	psp	en
 536	0x7a7a	pack/talk/HIHO:0x11c88	That's right, that's right, ho!<FFF6>You finally get it, hee-ho!<FFF5>
 537	0x7a9e	pack/talk/HIHO:0x11d00	W-Well, I get it too, but...<FFF6>don't say it out loud, ho!<FFF5>
 538	0x7ad0	pack/talk/HIHO:0x11d70	Th-That's not true, ho... I'm a demon<FFF6>too, so... I-I'm scared, ho...<FFF5>
-539	0x7b02	pack/talk/HIHO:0x11e00	Hee-hey, ho! That was a joke! Don't<FFF6>look down on me like that, hee-ho!<FFF5>
+539	0x7b02	pack/talk/HIHO:0x11e00	Hee-hey, ho! That was a joke!<FFF6>Don't look down on me<FFF6>like that, hee-ho!<FFF5>
 540	0x7b33	pack/talk/HIHO:0x11e90	I was joking, ho.<FFF6>I'm not afraid of anything, hee-ho.<FFF5>
 541	0x7b67	pack/talk/HIHO:0x11f00	Heeee! Stop it! Stop it, ho!<FFF5>
 542	0x7b84	pack/talk/HIHO:0x11f40	Hee, I've got a good one!<FFF6>An old lady walks into a shop out<FFF6>the rain and says...<FFFB><FFF7>...Ho!? You already know this one!?<FFF6>You're good, hee-ho...<FFF5>
@@ -660,7 +660,7 @@ id	pos	psp	en
 658	0x8f44	pack/talk/HIHO:0x156f8	What are you saying, ho!?<FFF6>There's no need to yell!<FFF5>
 659	0x8f62	pack/talk/HIHO:0x15760	No... It's not your fault, ho...<FFF5>
 660	0x8f7b	pack/talk/HIHO:0x157a8	You're a super cool guy, Mister!<FFF5>
-661	0x8f91	pack/talk/HIHO:0x157f0	Ho? You're done screaming now? I<FFF6>guess that makes you cooler, hee-ho!<FFF5>
+661	0x8f91	pack/talk/HIHO:0x157f0	Ho? You're done screaming now?<FFF6>I guess that makes you<FFF6>cooler, hee-ho!<FFF5>
 662	0x8fba	pack/talk/HIHO:0x15880	Ho? C'mon!<FFF6>Keep screaming, ho! This sucks!<FFF5>
 663	0x8fe1	pack/talk/HIHO:0x158d8	That was amazing, ho! I haven't seen<FFF6>such incredible hee-hocus-pocus<FFF6>since I was born, ho!<FFF5>
 664	0x9015	pack/talk/HIHO:0x15990	Yeah! Yeah! That's incredible, ho!<FFF5>

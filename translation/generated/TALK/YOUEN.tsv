@@ -47,7 +47,7 @@ id	pos	psp	en
 45	0x2685	pack/talk/YOUEN:0x3718	Stop trying the obvious! Don't think<FFF6>I don't know what you're really after!<FFFD>に<FFF5>
 46	0x26ad	pack/talk/YOUEN:0x37b8	Yes! That's how things should be!<FFF6>Kneel before me!<FFF5>
 47	0x26d1	pack/talk/YOUEN:0x3820	Ahhh... Why am I so perfect?<FFF6>My own greatness frightens me...<FFFD>ぬ<FFF5>
-48	0x270a	pack/talk/YOUEN:0x38a0	You're hitting on a demon? What<FFF6>an odd boy... Still, you're a cute one!<FFF5>
+48	0x270a	pack/talk/YOUEN:0x38a0	You're hitting on a demon?<FFF6>What an odd boy...<FFF6>Still, you're a cute one!<FFF5>
 49	0x273a	pack/talk/YOUEN:0x3930	I... I guess I wouldn't mind<FFF6>having dinner with you...<FFFD>ね<FFF5>
 50	0x2765	pack/talk/YOUEN:0x39a8	Hey! I'm out of your league, kid!<FFF5>
 51	0x2783	pack/talk/YOUEN:0x39f0	I'm not the easy pickup<FFF6>you think I am!<FFFD>の<FFF5>
@@ -123,7 +123,7 @@ id	pos	psp	en
 121	0x3095	pack/talk/YOUEN:0x5820	Something seems fishy...<FFF6>Do you really mean what you say?<FFFD>づ<FFF5>
 122	0x30b8	pack/talk/YOUEN:0x5898	Whatever you say,<FFF6>you're still interested in me, right?<FFF6>With a figure like mine, you must be!<FFF5>
 123	0x30e5	pack/talk/YOUEN:0x5958	I don't really get it,<FFF6>but I can see you need my help!<FFFD>で<FFF5>
-124	0x3106	pack/talk/YOUEN:0x59d0	That story is nonsense! Anything<FFF6>nowadays can be proved by science!<FFF5>
+124	0x3106	pack/talk/YOUEN:0x59d0	That story is nonsense!<FFF6>Anything nowadays can<FFF6>be proved by science!<FFF5>
 125	0x3137	pack/talk/YOUEN:0x5a58	I have a story like that too! Honestly,<FFF6>don't you think it's so rude?<FFFD>ど<FFF5>
 126	0x316a	pack/talk/YOUEN:0x5ae8	N-No... stop it! Why'd you go<FFF6>and tell a story like that!?<FFF5>
 127	0x3183	pack/talk/YOUEN:0x5b60	I can't handle stories like that!<FFF6>Please stop!<FFFD>ば<FFF5>

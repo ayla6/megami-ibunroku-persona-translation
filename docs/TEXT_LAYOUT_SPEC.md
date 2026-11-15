@@ -813,6 +813,14 @@ Glue (what a break may not fall inside):
    one fifth of the box width: a balanced opening is not a clipped scrap.
    A rise of more than 2x after a trailing
   ellipsis or a mid-clause line is a fault of the same rank.
+- **A new sentence starts its line whole.** A line that ends on the first
+  word of a new sentence (`That story is nonsense! Anything / nowadays...`,
+  `Yosuke's / hurt!`) is a scrap of the same rank: inside the box it costs
+  more than an extra line (`Let's go back together! / Yosuke's hurt! / He
+  needs you, Chisato...`). The sentence boundary is the strongest break
+  viewers know (Gerber-Morón & Szarkowska 2018: 85-95%). An ellipsis ends a
+  sentence only when a capital follows (`I'm a zombie... but / you're cool
+  with that!?` goes on).
 - **Shape and line ends share one scale**: a rhythm point is worth 239²/2
   of shape (`SHAPE_POINT`), and a mid-clause end adds two rhythm points.
   Suffixes and the root use the same scale, so a very uneven block need not

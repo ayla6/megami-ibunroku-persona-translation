@@ -29,7 +29,7 @@ id	pos	psp	en
 27	0x24b7	pack/talk/MAYOERU:0x2c60	Uiii! Yahhhhh!<FFF5>
 28	0x24ce	pack/talk/MAYOERU:0x2c80	If man of flesh is <FFF3>'s<FFF6>friend, this world could be fun...<FFF5>
 29	0x24f8	pack/talk/MAYOERU:0x2cf8	Uuuurhh! Boring...!<FFF5>
-30	0x250d	pack/talk/MAYOERU:0x2d20	Urgh... No air... Thought<FFF6><FFF3> would die...<FFF5>
+30	0x250d	pack/talk/MAYOERU:0x2d20	Urgh... No air...<FFF6>Thought <FFF3><FFF6>would die...<FFF5>
 31	0x252a	pack/talk/MAYOERU:0x2d78	Uiii!<FFF6><FFF3>'s heart has warmed up!<FFF5>
 32	0x254a	pack/talk/MAYOERU:0x2db8	Man of flesh... <FFF3><FFF6>wants to hear more.<FFF5>
 33	0x256d	pack/talk/MAYOERU:0x2e08	Uuuurh! Do not tell stories<FFF6>of the flesh-having world!<FFF5>
@@ -110,7 +110,7 @@ id	pos	psp	en
 108	0x3305	pack/talk/MAYOERU:0x5230	Augh... S-So cold... P-Painful...<FFF5>
 109	0x3328	pack/talk/MAYOERU:0x5278	So mysterious... Heart feels warm...<FFF6>This is... fun.<FFF5>
 110	0x3354	pack/talk/MAYOERU:0x52e8	Would be able to talk more with mouth<FFF6>of flesh... Want... mouth...<FFF5>
-111	0x3383	pack/talk/MAYOERU:0x5370	Point understood... But <FFF3><FFF6>is cold. Give something warm.<FFF1><FFF5>
+111	0x3383	pack/talk/MAYOERU:0x5370	Point understood...<FFF6>But <FFF3> is cold.<FFF6>Give something warm.<FFF1><FFF5>
 112	0x33b6	pack/talk/MAYOERU:0x53e8	Uuuurhh! No need for body of flesh<FFF6>to be involved with <FFF3>!<FFF5>
 113	0x33df	pack/talk/MAYOERU:0x5460	Uuurh! Not interested in that story.<FFF6>Interested in warm! Give warmth!<FFF1><FFF5>
 114	0x3408	pack/talk/MAYOERU:0x54f0	Augh... Scary... Where is<FFF6>home of <FFF3>...?<FFF5>
@@ -207,7 +207,7 @@ id	pos	psp	en
 205	0x43d0	pack/talk/MAYOERU:0x7fd0	<FFF3> loves fleshlings now.<FFF6>Will listen to all their wishes.<FFEF>
 206	0x4403	pack/talk/MAYOERU:0x8048	Uuurghhh! Augh... Augh... Urrghhh!<FFEF>
 207	0x4433	pack/talk/MAYOERU:0x8090	...Want body of flesh, but not<FFF6>interested in bodies of no use!<FFEF>
-208	0x4463	pack/talk/MAYOERU:0x8110	...That good body of flesh... Watching<FFF6>makes <FFF3>very fascinated...<FFEF>
+208	0x4463	pack/talk/MAYOERU:0x8110	...That good body of flesh...<FFF6>Watching makes <FFF3>very<FFF6>fascinated...<FFEF>
 209	0x4493	pack/talk/MAYOERU:0x8198	<FFF3> wants money.<FFF6>Will be satisfied with <FFF8> yen.<FFEF>
 210	0x44b6	pack/talk/MAYOERU:0x81f8	Uiii! Those of flesh are good humans.<FFF5>
 211	0x44d2	pack/talk/MAYOERU:0x8248	Don't have any! Uuuurh!<FFF6>Those of flesh are liars!<FFF5>

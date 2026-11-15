@@ -92,7 +92,7 @@ id	pos	psp	en
 90	0x6bcc0	EBOOT:29d742	Yog-Sothoth Jr.: Ia Shub-Niggurath!<FFF6>Ia Yog-Sothoth!<FFFC> <FFFC> A ia ia ia iaaaaaaa!
 91	0x6bcfc	EBOOT:29d722	Mark: Shaddup!
 92	0x6bd10	EBOOT:29d6da	Yog-Sothoth Jr.: Iiiiiiiiaaaaaaa!
-93	0x6bd28	EBOOT:29d602	Harem Queen: Tchahahahaha! <FFFC> <FFFC> My<FFF6>paintings are the best in the world!<FFFB><FFF7>Now hurry up and die!
+93	0x6bd28	EBOOT:29d602	Harem Queen: Tchahahahaha!<FFF6><FFFC> <FFFC> My paintings are<FFF6>the best in the world!<FFFB><FFF7>Now hurry up and die!
 94	0x6bd8c	EBOOT:29d526	Maki: Please, Chisato! Stop!<FFFB><FFF7>If you insist on hurting everyone, I...<FFF6><FFFC> I... <FFFC> I'll have to fight you!
 95	0x6bdd8	EBOOT:29d446	Harem Queen: Tchahahahaaaaa!<FFFB><FFF7>That terrified face! That's the face!<FFFC><FFF6>That's it! God, I LOVE it!
 96	0x6be28	EBOOT:29d406	Harem Queen: N-No waaaaay...!
@@ -114,7 +114,7 @@ id	pos	psp	en
 112	0x6c0fc	EBOOT:29cbb2	Reiji: Spout that crap in hell. <FFFC><FFF6>I'll send you straight there...!
 113	0x6c124	EBOOT:29cb06	Nanjo: Kandori... <FFFC> We'll close<FFF6>the curtain on this farce,<FFF6>if that's what you wish!
 114	0x6c164	EBOOT:29c9aa	Kandori:<FFF6>Ngh... <FFFC> <FFFC> <FFFC> I refuse to accept this!<FFFC> I'm<FFF6>supposed to have transcended man!<FFFB><FFF7>Who am I!? <FFFC> <FFFC> I am Takahisa Kandori!<FFFC> <FFFC><FFF6>The man who transcended humanity!
-115	0x6c1d8	EBOOT:29c8e6	Kandori: Nrrrrrrrghaaaaaaa!?<FFFB><FFF7>Wh-What the... Something's<FFF6>forcing<FFFC> <FFFC> itself into me...!
+115	0x6c1d8	EBOOT:29c8e6	Kandori: Nrrrrrrrghaaaaaaa!?<FFFB><FFF7>Wh-What the... Something's forcing<FFFC><FFF6><FFFC> itself into me...!
 116	0x6c214	EBOOT:29c7da	Nyarlathotep's voice: Hohohoh... <FFFC><FFF6>Foolish man who has gone astray...<FFFB><FFF7>I shall give you the power you desire.
 117	0x6c258	EBOOT:29c7b2	Kandori: N-Nooooo!
 118	0x6c26c	EBOOT:29c786	Maki: Wh-What the!?
@@ -200,7 +200,7 @@ id	pos	psp	en
 199	0x65688	EBOOT:2a7d64	Gyahaha! Gyahaha! What's this!?<FFF6>You're over the card limit!<FFFC><FFF6>Throw some away!
 200	0x656c4	EBOOT:2a8370	Huh? <FFFC>You have too many cards.<FFFC><FFF6>C'mon, throw one of them away!
 201	0x656ec	EBOOT:2a8a1c	Why you little...!<FFFC><FFF6>You've got too many cards now!<FFF6>Keep the best and toss the rest!
-202	0x65718	EBOOT:2a887c	It seems thy limit is reached...<FFFC> My<FFF6>card is to be treated with respect.
+202	0x65718	EBOOT:2a887c	It seems thy limit is reached...<FFFC><FFF6>My card is to be treated<FFF6>with respect.
 203	0x6574c	EBOOT:2a87d4	Oh my, you're carrying too many...<FFFC><FFF6>If you want me, throw someone<FFF6>else's card away.
 204	0x65788	EBOOT:2a7f2c	...Are you an idiot?<FFFC><FFF6>You'd better remember<FFF6>how many cards you can carry!
 205	0x657c4	EBOOT:2a86ca	Wuuuut? <FFFC>You got too many cardz...<FFF6>Thro one of 'em away.
