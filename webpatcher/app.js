@@ -70,6 +70,8 @@ const stepOf = (row, source) => ({patch: row.patch,
  * directory, so the public site serves the files itself. */
 
 async function loadPatches() {
+  // cached like any file: a stale copy from another release is caught by
+  // checkRelease, which tells the user to reload
   const response = await fetch(PATCHES + 'manifest.tsv');
   if (!response.ok) {
     throw new Error(`no ${PATCHES}manifest.tsv (${response.status}) - copy the`
@@ -85,15 +87,36 @@ async function loadPatches() {
  * picked anything. */
 const patchCache = new Map();  // name -> Promise<File>
 
+/* A patch, from its gzipped copy when the site has one (the Pages deploy
+ * writes <patch>.gz; Pages sends .xdelta uncompressed), else the file itself
+ * (a local copy of dist/patches). A host that already decoded the .gz in
+ * transit hands over the patch itself, so the gzip magic decides. The
+ * manifest's SHA-256 is checked on the unpacked bytes either way. */
+async function fetchPatch(name, version) {
+  if (typeof DecompressionStream === 'function') {
+    try {
+      const packed = await fetch(PATCHES + name + '.gz' + version);
+      if (packed.ok) {
+        const blob = await packed.blob();
+        const magic = new Uint8Array(await blob.slice(0, 2).arrayBuffer());
+        if (magic[0] !== 0x1f || magic[1] !== 0x8b) return blob;
+        return await new Response(blob.stream().pipeThrough(new DecompressionStream('gzip'))).blob();
+      }
+    } catch (err) { /* fall back to the plain file */ }
+  }
+  const response = await fetch(PATCHES + name + version);
+  if (!response.ok) throw new Error(`cannot load ${name} (${response.status})`);
+  return response.blob();
+}
+
 function loadPatch(name) {
   let file = patchCache.get(name);
   if (!file) {
-    file = fetch(PATCHES + name).then(response => {
-      if (!response.ok) {
-        throw new Error(`cannot load ${name} (${response.status})`);
-      }
-      return response.blob();
-    }).then(blob => new File([blob], name)).catch(err => {
+    // the manifest's hash in the URL: a new release never gets an old
+    // cached copy of a patch that kept its name
+    const row = state.rows.find(item => item.patch === name);
+    const version = row && row.patch_sha256 ? `?sha=${row.patch_sha256.slice(0, 16)}` : '';
+    file = fetchPatch(name, version).then(blob => new File([blob], name)).catch(err => {
       patchCache.delete(name);  // a later attempt can retry
       throw err;
     });
@@ -108,10 +131,27 @@ function prefetchBase() {
 
 async function loadManifest() {
   const source = await loadPatches();
+  const rows = PatchPlan.rowsFrom(source.manifestText);
+  checkRelease(rows);          // before anything is kept: no buttons for a mismatch
   state.patches = source;
-  state.rows = PatchPlan.rowsFrom(source.manifestText);
+  state.rows = rows;
   state.graph = PatchPlan.index(state.rows);
   state.labels = state.graph.labels;
+}
+
+/* The page and its patches must be one release. The deployed page carries
+ * its release in <html data-release> (stamped with the title by
+ * tools/stamp_webpatcher.py); the manifest names it in its release column.
+ * A browser that kept an old copy of either gets told to reload instead of
+ * patching with a mismatched pair. An unstamped (local) page or manifest
+ * has nothing to compare. */
+function checkRelease(rows) {
+  const page = document.documentElement.dataset.release || '';
+  const patches = PatchPlan.releaseStamp(rows);
+  if (!page || page.startsWith('$') || page === 'local' || !patches || page === patches) return;
+  throw new Error(`This page (${page}) and its patches (${patches}) are from different`
+      + ' releases - your browser kept an old copy. Reload the page with Ctrl+Shift+R'
+      + ' (or clear this site\'s cache) before patching.');
 }
 
 const featureOf = label => FEATURES[label] || {name: label, description: ''};
@@ -1018,7 +1058,6 @@ window.patcher = {loadManifest, FEATURES, buildPlan, apply, selectedLabels,
 
 async function init() {
   ScratchSpace.clean();  // a closed tab could not finish deleting its output
-  prefetchBase();        // the largest patch; ready before a disc is picked
   // the memory and storage options are remembered from the first visit:
   // low-RAM mode starts from the device hint and CHD parts start kept
   const memory = savedMemory();
@@ -1119,6 +1158,7 @@ async function init() {
   }
   try {
     await loadManifest();
+    prefetchBase();        // the largest patch; ready before a disc is picked
     renderGrid();
     updateBanner();
     if (window.showDirectoryPicker) restoreFolder();

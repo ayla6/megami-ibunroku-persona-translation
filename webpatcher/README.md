@@ -160,6 +160,22 @@ produced the release patches) compiled to WebAssembly - see
   recorded once, when it is first saved (a link, or written into the disc
   folder); the
   latest 200 are kept, and the list can be cleared.
+- Patches travel gzipped: the Pages deploy writes `<patch>.gz` next to each
+  `.xdelta` (GitHub Pages sends `.xdelta` as uncompressed binary), and the
+  page fetches the `.gz` and unpacks it with `DecompressionStream` - about
+  5.4 MB for the whole release instead of 8.2 MB; the Rev 1 conversion
+  shrinks from 3.3 MB to 1.1 MB. Without a `.gz` (a local copy of
+  `dist/patches`) it fetches the plain file, and the manifest's SHA-256 is
+  checked on the unpacked bytes either way.
+- The page and its patches are always one release. The deployed page
+  carries its release in `<html data-release>` (stamped with the title by
+  `tools/stamp_webpatcher.py`) and the manifest names it in its `release`
+  column; when a browser kept an old copy of either, the page refuses to
+  patch and asks for a reload (Ctrl+Shift+R). Everything stays cached as
+  usual; each patch is fetched with `?sha=` and the start of its manifest
+  hash, which keeps it cached within a release but never hands a new
+  release an old file of the same name. An unstamped (local) page or
+  manifest has nothing to compare.
 - Downloads other than a PPF and its Rev 0 disc are named from the
   release, not from the file the user picked:
   the manifest's release stamp comes first (`2026-11-10`, or `2026-11-10-2`
