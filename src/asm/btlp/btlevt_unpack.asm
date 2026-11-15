@@ -68,10 +68,17 @@ btl_unpack_window:
     beqz    t1, btl_unpack_store
     nop
 btl_unpack_go:
-    lhu     v0, 0(a0)                   ; a slot that holds only 'FF 00 hi lo'
-    li      t1, BTLEVT_MARK             ; NAMES its text: the wording lives in
-    beq     v0, t1, btl_unpack_chain    ; the resident spill bank (btlp.py),
-    nop                                 ; where nothing counts its bytes
+    ;; a slot that holds only 'FF 00 hi lo' NAMES its text: the wording lives
+    ;; in the resident spill bank (btlp.py), where nothing counts its bytes.
+    ;; Read byte by byte: a packed string may start on any byte (no halfword
+    ;; alignment to pay for), and its first two bytes are never 00 FF - an
+    ;; escape 00 is never followed by an FF code byte.
+    lbu     v0, 0(a0)                   ; BTLEVT_MARK's low byte, 00
+    lbu     t1, 1(a0)                   ; and its high byte, FF
+    bnez    v0, btl_unpack_decode
+    li      v1, BTLEVT_MARK >> 8
+    beq     t1, v1, btl_unpack_chain
+    nop
 btl_unpack_decode:
     lw      t2, 36(sp)                  ; t2 = this window's destination
     addiu   t6, sp, 28                  ; t6 = empty-stack mark (byte stack grows down inside our frame)

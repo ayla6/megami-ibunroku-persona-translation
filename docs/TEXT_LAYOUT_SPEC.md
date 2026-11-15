@@ -679,9 +679,8 @@ Order of preference, highest first - a lower rule NEVER beats a higher one:
    (`College student with her boyfriend: / Hoo boy... / Know where the police
    station is? / My boyfriend crashed his motorcycle.`).
 5. **End lines where the sentence breathes**: full stop (0) > short ellipsis
-   beat (1) > comma/semicolon/colon (2) > mid-clause (4). Merely ending on a
-   connector is not a punctuation boundary and must not force a growing
-   triangle of short fragments. A line of codes alone (a name insert) ends
+   beat (1) > comma/semicolon/colon (2) > mid-clause (4). A line that ends on
+   a connector pays one rhythm point more (connectors bind forward). A line of codes alone (a name insert) ends
    mid-clause.
    An ellipsis normally ends its sentence (`A flower's life is short, ho... /
    That's why...`). The exception is a SHORT BEAT: one or two words, at
@@ -768,24 +767,39 @@ Glue (what a break may not fall inside):
   block still keeps it (`what's got / me so pissed off?`). Not after a
   connector (`look at / me` starts a phrase) or punctuation; `you, it, her`
   are subjects or possessives as often and are not in the set.
-- **Connectors bind BACKWARD**: `to, of, in, on, at, with, from, for, by, as,
-  and, or, but, nor, than, that, into, onto, about, over, under, off, upon,
-  without, through, toward(s), between, among, against, so, yet` end the
-  line they sit on. A line never STARTS with one
-  (the one exception: the connector's left neighbour is itself a break).
-  A comma, semicolon or colon boundary releases the connector: the clause
-  ends there, so the connector may start the next clause's line
-  (`C'mon, <FFF3>,<FFF6>if ya don't laugh...` keeps its comma break).
-- **A connector may OPEN the short phrase that closes its sentence**
-  (`He obviously ran off / with his girlfriend!`, `Mark: H-Hey! Did you
-  forget / about Maki's mom here?`): when a connector and at most three more
-  words end the sentence, a line may start on the connector, at one rhythm
-  point (`my presence a secret from / the young master...` keeps its
-  connector). `of` belongs to
-  the noun before it and opens one word at most (never `a hell / of a mouth
-  for a brat...`). It
-  is a soft break (one rhythm point on the line before it), so it only wins
-  where the backward-bound layout is worse.
+- **A verb that must take an object binds to it, ever so slightly**: a line
+  ending on a verb whose every sense is transitive (lexicon `vt` without
+  `vi`), with its object opening the next line, costs half a rhythm point
+  (`TRANSITIVE_END`: `we have to bring / the stone` pays, `I belong / here`
+  does not). A word that is also a noun or adjective counts as the verb only
+  behind a subject, `to` or an auxiliary (`I blame / the demons`; never `the
+  blame / is`).
+- **Question words open a clause** (`what, who, whom, whose, which, how,
+  why`): a line ending on a bare one costs what a subordinator's does
+  (`care too much / about what happens`, not `about what / happens` - unless
+  that saves a line).
+- **Connectors bind FORWARD, softly**: `to, of, in, on, at, with, from,
+  for, by, as, and, or, but, nor, than, that, into, onto, about, over,
+  under, off, upon, without, through, toward(s), between, among, against,
+  so, yet` open the phrase after them, so a line that ends on one costs a
+  rhythm point on top of its mid-clause end (`CONNECTOR_END`). This is the
+  subtitling standard and what viewers pick in eye-tracking tests
+  (Gerber-Morón & Szarkowska 2018: `the tech / to doctor a bit`, `vinyl /
+  in the burnt-out remains`, `find me / but there is no point`, each
+  preferred by about 70%). Soft, because a whole phrase on one line beats it
+  (`Mark: I feel sorry for / the rest of the Tailors crew, / but I got
+  places to be.`, `The spoiled son of / Inaba Dry Cleaning's owners.`).
+  - A connector carrying its own punctuation (`at?`, `so,`) ends its clause
+    and pays nothing.
+  - A connector that is also a verb PARTICLE (`on, off, over, in, about,
+    through, under`), and the adverb particles (`out, up, down, away, back,
+    around`), open a phrase only when one follows: an article,
+    possessive, pronoun, name or number, question word or quantifier, a
+    lexicon adjective or noun (`in the burnt-out remains`, `girl / in
+    black`, `over / something like this`), or a gerund after a preposition
+    (`no point / in trying`). Otherwise it is its verb's and is glued back
+    onto it (`might as well / go on calling it`, never `go / on calling
+    it`; `go get yourselves / checked out at Mikage Hospital`).
 - **Speech beside a speaker label may not stop mid-clause.** A label line
   that carries speech cut mid-clause (`Female student: Uh, isn't it / time
   you...`), a clipped scrap, or a tiny comma tail ranks above the line count:
@@ -818,10 +832,25 @@ Glue (what a break may not fall inside):
   carried timed pause keeps the boundary as its line break.
 - **Possessives bind to their noun softly** (`its their his her our your
   my`): a line may break between one and its noun (`at the end of her /
-  journey was`), at one rhythm point, so only a clearly better shape takes
-  it (`put my money / where my mouth is`, never `where my / mouth is`;
-  `the Tailors in your / hands while I'm gone` keeps its rectangle).
+  journey was`), at two rhythm points (`NOUN_SPLIT`, below), so only a
+  clearly better shape takes it (`put my money / where my mouth is`, never
+  `where my / mouth is`; `the Tailors in your hands / while I'm gone`).
   `a/an/the/this/these/those` stay glued.
+- **A noun binds to its modifiers softly** (`NOUN_SPLIT`, two rhythm
+  points, a possessive's too): inside a determiner's phrase, a break
+  between the noun and the words qualifying it pays (`the easiest way / to
+  track you down`, never `the easiest / way`; `stake your winnings / on an
+  Extra Game`; `unable to grasp / my existence`). A
+  modifier is an adjective, a determiner or possessive (`your car` is built
+  like `red car`), or a SINGULAR noun in front of a noun (`memory stick`;
+  never a plural - `the demons / attack` is a subject and its verb). The
+  determiner is what makes the chain a phrase: `you look happy / today` is a
+  predicate, and `that he / left` has no determiner at all (`he` is a
+  pronoun). Parts of speech come from `src/assets/lexicon/en_pos.tsv`: a
+  first cut of a Wiktionary extract by `tools/make_lexicon.py`, then edited
+  by hand (`he` is no noun, `you` no determiner). It is not regenerated; a
+  word the tables gain is added by hand, and a word missing from it has no
+  part of speech the flow knows.
 - **A standalone label costs no line end**: its colon is the label's, not a
   place the speech breathes, so a label alone on its line is ranked by the
   speech under it (spec 2.4).

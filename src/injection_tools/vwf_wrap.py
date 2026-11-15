@@ -351,13 +351,30 @@ def hyphen_heads(word):
 # article - the user's rule: "articles in the same line as the noun").
 ARTICLES = {'a', 'an', 'the', 'this', 'these', 'those', 'its', 'their',
             'his', 'her', 'our', 'your', 'my'}
-# CONNECTORS bind to the word BEFORE them: "go to | the station" - the line
-# ends on the connector instead of starting with it.
+# CONNECTORS bind to the phrase AFTER them: "go | to the station" - a line
+# starts on the connector, never ends on one (the subtitling standard, and
+# what viewers pick: "the tech | to doctor a bit", "vinyl | in the burnt-out
+# remains", "find me | but there is no point"). A connector that carries
+# its own punctuation ("at?", "so,") ends its clause and stays free.
 CONNECTORS = {'to', 'of', 'in', 'on', 'at', 'with', 'from', 'for', 'by',
               'as', 'and', 'or', 'but', 'nor', 'than', 'that', 'into',
               'onto', 'about', 'over', 'under', 'off', 'upon', 'without',
               'through', 'toward', 'towards', 'between', 'among', 'against',
               'so', 'yet'}
+# QUESTION WORDS open a clause the way a subordinator does ("about what |
+# happens", "don't know what | to do"): a line ending on a bare one pays
+# the same.
+QUESTION_WORDS = {'what', 'who', 'whom', 'whose', 'which', 'how', 'why'}
+# Connectors that are also a verb's PARTICLE ("go on calling", "come in
+# now"): one opens a phrase only when a noun phrase follows it (an article,
+# possessive, pronoun, name or number - "in the burnt-out remains", "on
+# Tuesday"); otherwise it belongs to its verb and binds BACK ("might as
+# well / go on calling it").
+# The adverb particles (out, up, down, ...) are no connectors but bind the
+# same way: "go get yourselves checked out / at Mikage Hospital", never
+# "checked / out at".
+PARTICLES = {'on', 'off', 'over', 'in', 'about', 'through', 'under',
+             'out', 'up', 'down', 'away', 'back', 'around'}
 # SUBORDINATORS open the clause they introduce, so they bind FORWARD, but
 # softly: "You should visit her | while you're there" - a line may begin
 # with one, and ends on one only when that saves a line (a marked break,
@@ -462,31 +479,163 @@ def ends_on_subordinator(text):
     when punctuation closes it ('while,') or an article makes it a noun
     ('for a while')."""
     words = re.sub(r'<[^>]+>', '', text).split()
-    if not words or words[-1].lower() not in SUBORDINATORS:
+    if not words or words[-1].lower() not in SUBORDINATORS | QUESTION_WORDS:
         return False
     return len(words) < 2 or words[-2].lower() not in PURE_ARTICLES
 
 
-CLOSING_PHRASE_WORDS = 3   # words a closing phrase may hold after its connector
+# Closed-class words that open a phrase: question words, quantifiers and
+# indefinite pronouns ("about | what happens", "over | something like this").
+PHRASE_OPENERS = {'what', 'who', 'whom', 'which', 'where', 'when', 'why', 'how',
+                  'whatever', 'whoever', 'all', 'each', 'every', 'some', 'any',
+                  'no', 'both', 'such', 'many', 'much', 'few', 'several', 'one',
+                  'something', 'anything', 'nothing', 'everything', 'someone',
+                  'anyone', 'everyone', 'no-one', 'somebody', 'anybody',
+                  'everybody', 'nobody'}
 
 
-def _closing_phrase(items, at):
-    """Does the connector at `at` open the short phrase that closes its
-    sentence ("ran off | with his girlfriend!", "Did you forget | about
-    Maki's mom here?")? The connector and at most CLOSING_PHRASE_WORDS more
-    words end the sentence; "of" belongs to the noun before it ("a hell of a
-    mouth"), so it opens one word at most. Such a phrase may stand alone on
-    a line: the break before it is a soft one (see Atom.lead)."""
-    con = _core_word(items[at][1]).rstrip(',;:').lower()
+# What a line that ends on a connector pays (rhythm points, on top of its
+# mid-clause end): the connector opens the phrase after it, and the reader
+# should meet it there - but softly: a whole noun phrase on one line beats
+# it ("I feel sorry for / the rest of the Tailors crew, / but I got places
+# to be.").
+CONNECTOR_END = 1
+# What a break between a noun and its modifiers costs ("in your / class",
+# "the easiest / way"): rhythm points on top of the mid-clause end.
+NOUN_SPLIT = 2
+
+
+@functools.lru_cache(maxsize=1 << 16)   # pure in the two texts; the layout asks per candidate line
+def ends_on_connector(text, nxt):
+    """Does the line end on a connector that opens the phrase starting with
+    nxt? (A particle that opens none is its verb's: "go on / calling".)"""
+    words = re.sub(r'<[^>]+>', '', text).split()
+    if not words:
+        return False
+    con = words[-1].lower()
     if con not in CONNECTORS:
         return False
-    words = 1 if con == 'of' else CLOSING_PHRASE_WORDS
-    for k in range(at, min(at + 1 + words, len(items))):
-        if items[k][0] != 'w' or (k > at and re.match(CLOSERS_RE, items[k][1])):
-            return 0
-        if sent_end(items[k][1]):
-            return k - at
-    return 0
+    return con not in PARTICLES or _opens_noun_phrase(con, nxt)
+
+
+# What a line that ends on a verb that must take an object pays, when its
+# object opens the next line ("we have to bring / the stone back"): half a
+# rhythm point, ever so slightly - the verb and its object are one clause.
+TRANSITIVE_END = 0.5
+# Words in front that make an ambiguous noun/verb a verb ("I blame", "to
+# bring", "would want").
+VERB_CUES = SUBJECTS | {'you', 'it', 'to', 'will', 'would', 'can', 'could',
+                        'should', 'must', 'might', 'may', 'shall', 'do',
+                        'does', 'did', "don't", "doesn't", "didn't", "can't",
+                        "won't", "wouldn't", "couldn't", "shouldn't", "i'll",
+                        "you'll", "we'll", "they'll", "let's"}
+
+
+@functools.lru_cache(maxsize=1 << 16)   # pure in the two texts; the layout asks per candidate line
+def ends_on_transitive(text, nxt):
+    """Does the line end on a verb that only ever takes an object, with the
+    object opening the next line? A word that is a noun too counts as a verb
+    only behind a subject, "to" or an auxiliary."""
+    words = re.sub(r'<[^>]+>', '', text).split()
+    if not words:
+        return False
+    w = words[-1].lower()
+    tags = lexicon().get(w, ())
+    if 'vt' not in tags or 'vi' in tags:
+        return False
+    if ('noun' in tags or 'adj' in tags) and (
+            len(words) < 2 or words[-2].lower() not in VERB_CUES):
+        return False
+    return _opens_noun_phrase('', nxt)
+
+
+def _opens_noun_phrase(con, word):
+    """Does word open the phrase of the particle-capable connector con: an
+    article/possessive, a pronoun, a name or number, a question word or
+    quantifier, an adjective or noun ("in | black"), or a gerund after a
+    preposition ("no point | in trying")? A gerund after on/off is the verb's
+    particle ("go on calling")."""
+    core = _core_word(word)
+    head = core.split(' ', 1)[0].rstrip('.,;:!?…"”’)').lower()
+    if head.endswith('ing') and len(head) > 4:
+        return con not in ('on', 'off')
+    return (head in ARTICLES or head in OBJECTS or head in ('you', 'it')
+            or head in PHRASE_OPENERS or core[:1].isupper()
+            or core[:1].isdigit()
+            or bool(lexicon().get(head, frozenset()) & {'adj', 'noun', 'det', 'pron'}))
+
+
+LEXICON_PATH = os.path.join(ROOT, 'src', 'assets', 'lexicon', 'en_pos.tsv')
+
+
+@functools.lru_cache(maxsize=1)
+def lexicon():
+    """{word: {part of speech}} (adj, adv, conj, det, noun, prep, pron,
+    verb), cut from a Wiktionary extract by tools/make_lexicon.py. A word
+    not in it has no part of speech the flow knows."""
+    try:
+        with open(LEXICON_PATH, encoding='utf-8') as f:
+            next(f)
+            return {w: frozenset(p.split(',')) for w, p in
+                    (line.rstrip('\n').split('\t') for line in f if line.strip())}
+    except OSError:
+        return {}
+
+
+def _determiner(word):
+    """An article, possessive or other determiner ("some", "no", "which")."""
+    w = word.lower()
+    return w in ARTICLES or 'det' in lexicon().get(w, ())
+
+
+def _modifier(word):
+    """A word that qualifies the noun after it: an adjective, a determiner
+    or possessive ("your car" is built like "red car"), or a SINGULAR noun -
+    a noun in front of a noun works as an adjective ("the memory | stick").
+    Not a plural: "the demons | attack" is a subject and its verb."""
+    w = word.lower()
+    tags = lexicon().get(w, ())
+    return (_determiner(w) or 'adj' in tags
+            or ('noun' in tags and not _plural(w)))
+
+
+def _plural(word):
+    """A plural noun form: the word minus -s/-es is a noun too."""
+    lex = lexicon()
+    return any(word.endswith(end) and 'noun' in lex.get(word[:-len(end)], ())
+               for end in ('s', 'es') if len(word) > len(end) + 1)
+
+
+def _splits_noun_phrase(items, k):
+    """Would a break before items[k] split a noun from the modifiers in
+    front of it - a determiner or possessive, and the adjectives or nouns
+    after it ("the easiest | way", "our whole | world", "in your | class",
+    "the memory | stick")? The determiner is what makes the chain a phrase:
+    "you look happy | today" is a predicate, not a phrase."""
+    nxt = _core_word(items[k][1])
+    if not nxt[:1].islower():
+        return False
+    noun = nxt.split(' ', 1)[0].rstrip('.,;:!?…"”’)')
+    lex = lexicon()
+    if 'noun' not in lex.get(noun.lower(), ()) or noun.lower() in CONNECTORS:
+        return False
+    # the words before the break, newest first, across the glued units
+    before = []
+    for it in items[k - 1::-1]:
+        if it[0] != 'w':
+            break
+        before.extend(re.sub(r'<[^>]+>', '', it[1]).split()[::-1])
+        if len(before) > 4:
+            break
+    if not before or before[0][-1:] in _PROCL_END + ',;:"”’)':
+        return False
+    for w in before:
+        w = _core_word(w).lower()
+        if _determiner(w):
+            return True
+        if not _modifier(w):
+            return False
+    return False
 
 
 def _glue_items(items):
@@ -509,29 +658,30 @@ def _glue_items(items):
             else:
                 out[i:i + 2] = [('w', word + ' ' + nxt[1])]
         i -= 1
-    # 2. connectors: left to right, glued onto the word they follow. A
-    # comma/semicolon/colon boundary releases the connector: clamping it to
-    # that word would erase the only break a clause boundary offers
-    # ("C'mon, <FFF3>,<FFF6>if ya don't laugh..." keeps its comma break).
-    glue = []
-    for at, it in enumerate(out):
-        prev = glue[-1][1] if glue and glue[-1][0] == 'w' else ''
-        prev_text = re.sub(r'<[^>]+>', '', prev).rstrip()
-        phrase = it[0] == 'w' and prev and _closing_phrase(out, at)
-        if phrase:
-            # one word after the connector is the old free lead ("the
-            # cause / of the phenomenon..."); a longer phrase pays a point
-            glue.append((it[0], it[1], -1 if phrase == 1 else -2))
-        elif (it[0] == 'w' and prev
-                and _core_word(it[1]).rstrip(',;:').lower() in CONNECTORS
-                and not sent_end(prev)
-                and not re.match(CLOSERS_RE, it[1])
-                and prev_text[-1:] not in ',;:'):
-            glue[-1] = ('w', prev + ' ' + it[1])
-        else:
-            glue.append(it)
-    out = glue
-    # 3. proper names: NOT glued - a line MAY break inside one, it just pays
+    # 2. verb particles: a particle-capable connector that opens no phrase
+    # is its verb's ("might as well / go on calling it"): glued back onto the
+    # verb. Every other connector stays free; a line that ends on one pays
+    # (flow_layout, CONNECTOR_END).
+    i = len(out) - 2
+    while i > 0:
+        kind, word = out[i][0], out[i][1]
+        nxt = out[i + 1]
+        con = _core_word(word).lower()
+        if (kind == 'w' and nxt[0] == 'w' and con in PARTICLES
+                and len(out[i]) == 2 and out[i - 1][0] == 'w'
+                and not re.match(CLOSERS_RE, nxt[1])
+                and not _opens_noun_phrase(con, nxt[1])
+                and not sent_end(out[i - 1][1])
+                and re.sub(r'<[^>]+>', '', out[i - 1][1]).rstrip()[-1:] not in ',;:'):
+            out[i - 1:i + 1] = [(out[i - 1][0], out[i - 1][1] + ' ' + word)
+                                + tuple(out[i - 1][2:])]
+        i -= 1
+    # 3. an adjective and its noun: soft, like a possessive and its noun
+    for k in range(1, len(out)):
+        if (out[k][0] == 'w' and len(out[k]) == 2 and out[k - 1][0] == 'w'
+                and _splits_noun_phrase(out, k)):
+            out[k] = ('w', out[k][1], -3)
+    # 4. proper names: NOT glued - a line MAY break inside one, it just pays
     # for it (the user's call: "not unbreakable, just very hard to break").
     # The break that would split a name is marked, and flow_layout ranks it
     # below every other cost but an overflow or an extra line. Last, so the
@@ -612,8 +762,8 @@ class Atom:
         # a line break here would split a PROPER NAME ("Ms. | Saeko"):
         # allowed, but ranked below everything else (see flow_layout)
         self.nbrk = False
-        # a line may START here, but at a price: a connector opening the
-        # phrase that closes its sentence ("with his girlfriend!")
+        # a line may START here, but at a price: the noun after its
+        # possessive or adjective ("where my | mouth", "the easiest | way")
         self.lead = False
 
 
@@ -733,8 +883,8 @@ def flow_model(items):
             a = Atom(text, join if k == 0 else '',
                      brk if k == 0 else inner, pen if k else 0,
                      True, k == len(pieces) - 1)
-            if k == 0 and marked in (-1, -2, -3):
-                a.lead = -marked
+            if k == 0 and marked == -3:
+                a.lead = 3
             elif k == 0 and marked:
                 a.nbrk = True
             seq.append(('a', a))
@@ -1105,16 +1255,21 @@ def flow_layout(atoms, width, measure, tail=1, want=None, box=BOX_LINES,
                 # got / me so pissed off?").
                 elif end0 == 4 and opens_on_object(text, nxt.text):
                     end0 += 1
-                # A possessive cut from its noun ("where my / mouth") is
-                # one rhythm point: a clearly better shape still takes it.
+                # A connector ends no line for free: it opens the phrase
+                # after it ("the tech / to doctor a bit").
+                if (not last and sc == 4 and not label_only
+                        and ends_on_connector(text, nxt.text)):
+                    end0 += CONNECTOR_END
+                # A verb that must take an object ends no line for free
+                # when the object opens the next one.
+                if (not last and sc == 4 and not label_only
+                        and ends_on_transitive(text, nxt.text)):
+                    end0 += TRANSITIVE_END
+                # A noun cut from its possessive or adjective ("where my /
+                # mouth", "the easiest / way") is one rhythm point: a clearly
+                # better shape still takes it.
                 if not last and nxt.lead == 3:
-                    end0 += 1
-                # A connector opening the phrase that closes its
-                # sentence is a soft break: one rhythm point on the line
-                # before it ("a secret from / the young master..." keeps
-                # its connector unless the lead buys a better block).
-                if not last and nxt.lead == 2:
-                    end0 += 1
+                    end0 += NOUN_SPLIT
                 # the next WORD (its pieces), for the comma tic below
                 word_end = None
                 if end0 == 2 and not last:
@@ -1505,7 +1660,7 @@ def _flow_lines(items, width=BOX_WIDTH, measure=text_width, newline=NEWLINE,
 
 
 RANK_NAMES = ('overflow', 'lines past the box', 'split words', 'split names',
-              'label scraps', 'lines', 'line ends and shape', 'connector leads')
+              'label scraps', 'lines', 'line ends and shape', 'noun phrase splits')
 
 
 def weigh(words, width=BOX_WIDTH, measure=text_width, tail=1, box=BOX_LINES):

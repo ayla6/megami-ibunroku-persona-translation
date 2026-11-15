@@ -512,7 +512,9 @@ CARD_NAMES = strlib.glossary('card')
 
 
 def parse_card(raw):
-    """Structured parse of a PSP intro-card box. Returns (name, nick, desc_words).
+    """Structured parse of a PSP intro-card box. Returns (name, nick,
+    desc_words, label): label is the PSP's own word for the nickname slot
+    ('Nickname'; the errata may respell it for one card).
     Layout: FF18 params, NAME [0029] 'Nickname' [0006] NICK [002a] DESC...
     Nickname-less cards (PSP staff/NPC cards): NAME DESC... with NAME from
     CARD_NAMES via the PSX side (handled by caller passing psx_name)."""
@@ -572,8 +574,11 @@ def parse_card(raw):
         name = ' '.join(s for s in segs[:i29]
                         if s != ' ' and not s.startswith(US_BRK + 'FF03')).strip()
         nick = ''
+        label = 'Nickname'
         if '<ICON0006>' in segs:
             i06 = segs.index('<ICON0006>')
+            label = ' '.join(s for s in segs[i29 + 1:i06]
+                             if s != ' ' and not s.startswith(US_BRK)).strip() or label
             nick = ' '.join(s for s in segs[i06 + 1:i2a]
                             if s != ' ' and not s.startswith(US_BRK + 'FF03')).strip()
         desc = []
@@ -593,7 +598,7 @@ def parse_card(raw):
         name = name.replace('…', '...')
         if not name:
             return None  # icon bytes without a title: not a decodable card
-        return name, nick.replace('…', '...'), words
+        return name, nick.replace('…', '...'), words, label
     return None
 
 
@@ -699,7 +704,7 @@ def parse_card_text(raw, psx_name):
     return name, '', desc
 
 
-def card_en(psx_raw, us_raw, name, nick, words):
+def card_en(psx_raw, us_raw, name, nick, words, label='Nickname'):
     """Build card en: PSX FF06 frame whose style comes from the PSP box
     head (FF18/FF06 + 0200/0300 -> <FF06><02>/<FF06><03>), PSP-owned tail
     waits/end, name/nick/desc flowed through the middle slots. Mid-box
@@ -732,7 +737,7 @@ def card_en(psx_raw, us_raw, name, nick, words):
     # the PSP spells the nickname slot with its own colon, and the label is
     # rebuilt from the card's parts (not copied), so the colon is spelled here:
     # 'Yukino Mayuzumi (Nickname: Yukino)' - it is part of the label.
-    body = ('%s (Nickname: %s)' % (name, nick) if nick else name).rstrip(':')
+    body = ('%s (%s: %s)' % (name, label, nick) if nick else name).rstrip(':')
     if nick and body.count(':') > 1:
         body = body.replace('::', ':')
     # ... and the description must not open with the label's colon: the PSP
@@ -795,15 +800,16 @@ def card_en(psx_raw, us_raw, name, nick, words):
         if (presses(compact) < presses(plain)
                 or (body.endswith(',') and presses(compact) == presses(plain))):
             out = compact
-    # THE FIRST LINE OF A CARD NEVER ENDS WITH A COLON: the nameplate is a
-    # name, and a colon there is our label machinery leaking into a card
-    # ("Yukino Mayuzumi (Nickname: Yukino):").
-    out = re.sub(r'^(<FF06><[0-9A-F]{2}>.*?):(?=<FF03>)', r'\1', out,
-                 count=1, flags=re.S)
     out = out.replace(' -  ', ' - ')
-    # ... and no colon on the nameplate line, whatever the flow appended: the
-    # name is a name, not a speaker label (the PSP has no colon there at all).
-    return re.sub(r'^(<FF06><[0-9A-F]{2}>[^<:]*):(?=<FF03>)', r'\1', out)
+    # THE NAMEPLATE LINE NEVER ENDS WITH A COLON: the nameplate is a name,
+    # and a colon after it is our label machinery leaking into a card
+    # ("Yukino Mayuzumi (Nickname: Yukino):"). Only after the WHOLE
+    # nameplate: a line that breaks inside it keeps the nickname's own colon
+    # ("Tsutomu Kurouri (Nickname: / Devil-Boy)").
+    m = re.match(r'(<FF06><[0-9A-F]{2}>)(.*?):(?=<FF03>)', out, re.S)
+    if m and m.group(2).strip() == body.strip():
+        out = m.group(1) + m.group(2) + out[m.end():]
+    return out
 
 
 def code_words(part):
@@ -1657,8 +1663,9 @@ def convert_entry(f, ei):
                 prev_lab = None
                 prev_ja = None
                 continue
-            name, nick, words = card
-            en = _clean(card_en(psx.box_bytes(k), us_raw, name, nick, words))
+            name, nick, words, *label = card
+            en = _clean(card_en(psx.box_bytes(k), us_raw, name, nick, words,
+                                *label))
             # A CARD SOURCE THAT IS STILL JAPANESE IS NOT A TRANSLATION, the
             # same rule the dialogue path applies below: PSP-US left some
             # profile cards untranslated, and building one here ships kana in

@@ -134,7 +134,7 @@ EVT_OUT = os.path.join(ROOT, 'build', 'btlevt.asm')
 EVT_OUT_PAIRS = os.path.join(ROOT, 'build', 'btlevt_pairs.asm')
 EVT_OUT_SLPS = os.path.join(ROOT, 'build', 'btlevt_slps.asm')
 EVT_CODES = list(range(0x01, 0x88)) + list(range(0xEA, 0xFF))  # never 88-E9, never FF
-EVT_ALIGN = 2
+EVT_ALIGN = 1   # btlevt_unpack reads a string's marker bytewise: any start
 # the spill homes: strings whose own slot could not hold them live in dead
 # SLPS fragments (deadfuncs.py 16 - the only build-time homes left in the
 # image; see addresses.inc BTLEVT_SPILL_*). The drawn string's unpack buffer

@@ -62,11 +62,15 @@ def weigh_page(page, measure):
     second = next((r for r in ranked[1:] if r[1] != best[1]), None)
     if second is None:
         return None
-    d = next(i for i, (a, b) in enumerate(zip(best[0], second[0])) if a != b)
-    margin = round(second[0][d] - best[0][d], 3)
+    # the first rank the two differ on; none at all is a dead heat, which
+    # the search's order decided
+    d = next((i for i, (a, b) in enumerate(zip(best[0], second[0])) if a != b),
+             None)
+    margin = 0 if d is None else round(second[0][d] - best[0][d], 3)
     return {'chosen': best[1], 'runner_up': second[1],
-            'decided_by': vwf_wrap.RANK_NAMES[d], 'margin': margin,
-            'close': d == 6 and margin < CLOSE,
+            'decided_by': 'a dead heat' if d is None else vwf_wrap.RANK_NAMES[d],
+            'margin': margin,
+            'close': d is None or (d == 6 and margin < CLOSE),
             'stored_differs': [' '.join(x.split()) for x in best[1]]
                               != [' '.join(x.split()) for x in page]}
 

@@ -7,14 +7,14 @@ id	pos	psp	en
 5	0x20e3	pack/talk/QSIRUBA:0x2270	*crackle* Wh-What d-d-did Q do?<FFF5>
 6	0x2103	pack/talk/QSIRUBA:0x22b0	*ring* *ring* I can<FFF6>almost-most-most believe it!<FFF5>
 7	0x2120	pack/talk/QSIRUBA:0x2318	Eeeeeeee! Q isn't the helpful<FFF6><FFF0> you think-ink-ink she is!<FFF5>
-8	0x214d	pack/talk/QSIRUBA:0x2390	*crackle* You-you-you're<FFF6>planning to sell Q off, aren't you...?<FFF5>
+8	0x214d	pack/talk/QSIRUBA:0x2390	*crackle* You-you-you're planning<FFF6>to sell Q off, aren't you...?<FFF5>
 9	0x2176	pack/talk/QSIRUBA:0x2410	Eeeeeeee! You-you-you really suck!<FFF6>Do me a fav-favor and shut up!<FFF5>
 10	0x21a2	pack/talk/QSIRUBA:0x2498	S-S-So you're a p-poltergeist too...<FFF6>Butthisplace is... Q's territory...<FFF5>
 11	0x21ce	pack/talk/QSIRUBA:0x2530	Heeheehee!<FFF6>S-So you're apoltergeisttoo!<FFF6>It's great to see a fellow poltergeist!<FFF5>
 12	0x21fa	pack/talk/QSIRUBA:0x25d0	*ring* *ring Y-Y-You want Q?<FFF6>Awwww, that'ssocuuuute!<FFF5>
 13	0x2223	pack/talk/QSIRUBA:0x2640	Eeeeeeeee! Q told you,<FFF6>she's not inter-inter-interested!<FFF5>
 14	0x2252	pack/talk/QSIRUBA:0x26b8	Heeheehee!<FFF6>That means youneedQ, right!?<FFF6>I feel pretty-pre-pretty good!<FFF5>
-15	0x2280	pack/talk/QSIRUBA:0x2748	Eeeeeeee! Q won't fall-f-fall for that<FFF6>kind of sweet talk!<FFF5>
+15	0x2280	pack/talk/QSIRUBA:0x2748	Eeeeeeee! Q won't fall-f-fall<FFF6>for that kind of sweet talk!<FFF5>
 16	0x22b2	pack/talk/QSIRUBA:0x27c0	*crackle*... You-you you're...<FFF6>scheming something... aren't you...?<FFF5>
 17	0x22dd	pack/talk/QSIRUBA:0x2848	Heeheehee! You-you know<FFF6>what to say tomakeQ happy!<FFF5>
 18	0x2305	pack/talk/QSIRUBA:0x28b0	*ring* *ring* You say some<FFF6>weirWEIRweird things, weirdo!<FFF5>
@@ -72,7 +72,7 @@ id	pos	psp	en
 70	0x2aaf	pack/talk/QSIRUBA:0x3ea8	Heeheehee! Can I take-ake-ake<FFF6>you up on thatttttt!?<FFF5>
 71	0x2aca	pack/talk/QSIRUBA:0x3f10	*ring* *ring* I can<FFF6>almost-most-most believe it!<FFF5>
 72	0x2ae7	pack/talk/QSIRUBA:0x3f78	Eeeeeeee! Q isn't the helpful<FFF6><FFF0> you think-ink-ink she is!<FFF5>
-73	0x2b14	pack/talk/QSIRUBA:0x3ff0	*crackle* You-you-you're<FFF6>planning to sell Q off, aren't you...?<FFF5>
+73	0x2b14	pack/talk/QSIRUBA:0x3ff0	*crackle* You-you-you're planning<FFF6>to sell Q off, aren't you...?<FFF5>
 74	0x2b3d	pack/talk/QSIRUBA:0x4070	*ring* *ring* You-you've<FFF6>gotafoul mouth, but it sounds<FFF6>delight-de-DEEElightfulll!<FFF5>
 75	0x2b6a	pack/talk/QSIRUBA:0x4118	Eeeeeee! Q doesn't like hearing<FFF6>that fromat-t-tanned girl!<FFF5>
 76	0x2b99	pack/talk/QSIRUBA:0x4190	*crackle* What-what's<FFF6>wrong with y-y-you...?<FFF5>
@@ -109,20 +109,20 @@ id	pos	psp	en
 107	0x3046	pack/talk/QSIRUBA:0x4f58	*ring* *ring* You-you're<FFF6>amazinggggg!<FFF5>
 108	0x3060	pack/talk/QSIRUBA:0x4fa8	*crackle* S-so-soooo<FFF6>suspiciouSSSS...<FFF6>Q is scare-care-cared...<FFF5>
 109	0x3088	pack/talk/QSIRUBA:0x5028	Heeheehee!<FFF6>Humans still-stilllll can can<FFF6>onlydochildish tricks like th-that!<FFF5>
-110	0x30b7	pack/talk/QSIRUBA:0x50c8	Q doesn't understand...<FFF6>butshe'sstill interested in<FFF6>stories like tha-thattttt!<FFF5>
-111	0x30e8	pack/talk/QSIRUBA:0x5168	*ring* *ring* You want to<FFF6>speak-sp-speak to Q? Then<FFF6>dosomethingthat will make Q hapPY!<FFF1><FFF5>
-112	0x311a	pack/talk/QSIRUBA:0x5218	Eeeeeeeee! That hasnothingto do with<FFF6>Q! Negotiate better-ter-terrrrr!<FFF1><FFF5>
+110	0x30b7	pack/talk/QSIRUBA:0x50c8	Q doesn't understand...<FFF6>butshe'sstill interested<FFF6>in stories like tha-thattttt!<FFF5>
+111	0x30e8	pack/talk/QSIRUBA:0x5168	*ring* *ring* You want<FFF6>to speak-sp-speak to Q? Then<FFF6>dosomethingthat will make Q hapPY!<FFF1><FFF5>
+112	0x311a	pack/talk/QSIRUBA:0x5218	Eeeeeeeee! That hasnothingto do<FFF6>with Q! Negotiate better-ter-terrrrr!<FFF1><FFF5>
 113	0x3153	pack/talk/QSIRUBA:0x52a8	Eeeeeeeee!<FFF6>I-I-If you-you want to talk to Q,<FFF6>give her some-something firstttt!<FFF1><FFF5>
 114	0x3189	pack/talk/QSIRUBA:0x5348	*crackle* Q doesn't want to-oo-oo<FFF6>hear a story like thaaaaaaatttttt...<FFF5>
 115	0x31ad	pack/talk/QSIRUBA:0x53d8	*crackle* Why are you tell-ell-elling<FFF6>Q this...? Itmakesher nervous...<FFF5>
 116	0x31db	pack/talk/QSIRUBA:0x5468	Heeheehee! You-you talk<FFF6>a lo-lot-lotttt! Q likes chatty people!<FFF5>
 117	0x320c	pack/talk/QSIRUBA:0x54e8	Heeheehee! Whataninteresting<FFF6>storyyyyy! It would be-be-be even<FFF6>better if you gave me something!<FFF1><FFF5>
-118	0x323b	pack/talk/QSIRUBA:0x55b0	*ring* *ring* Humans are so<FFF6>e-e-easy to understand-and! I'm<FFF6>get-get-getting interested in themmm!<FFF5>
+118	0x323b	pack/talk/QSIRUBA:0x55b0	*ring* *ring* Humans are<FFF6>so e-e-easy to understand-and! I'm<FFF6>get-get-getting interested in themmm!<FFF5>
 119	0x326a	pack/talk/QSIRUBA:0x5678	*ring* *ring* You w-w-wantttt Q?<FFF6>Then do something she likes!<FFF1><FFF5>
 120	0x329a	pack/talk/QSIRUBA:0x56f8	Eeeeeeeee! Q isn't interested in<FFF6>human-huma-humannnnnsssss!<FFF5>
-121	0x32c5	pack/talk/QSIRUBA:0x5770	Eeeeeeeee! If-if you-you want to<FFF6>negotiate-ate-ate with Q, give<FFF6>her somekindof present firsttttt!<FFF1><FFF5>
+121	0x32c5	pack/talk/QSIRUBA:0x5770	Eeeeeeeee! If-if you-you want<FFF6>to negotiate-ate-ate with Q, give<FFF6>her somekindof present firsttttt!<FFF1><FFF5>
 122	0x32fb	pack/talk/QSIRUBA:0x5838	*crackle* Q hasnointerest...<FFF6>in h-h-human-humansss...<FFF5>
-123	0x3324	pack/talk/QSIRUBA:0x58a8	*crackle* You want Q's help-elp-elp?<FFF6>She has abadfeeling<FFF6>about this-is-isss...<FFF5>
+123	0x3324	pack/talk/QSIRUBA:0x58a8	*crackle* You want Q's help-elp-elp?<FFF6>She has abadfeeling about<FFF6>this-is-isss...<FFF5>
 124	0x3358	pack/talk/QSIRUBA:0x5948	Heeheehee!<FFF6>Is Q still at-at-attractivvve?<FFF6>She's so embarrassed...<FFF5>
 125	0x3387	pack/talk/QSIRUBA:0x59d0	Q is happy youaskedher that...<FFF6>J-J-Just happyyyyy!<FFF5>
 126	0x33af	pack/talk/QSIRUBA:0x5a38	*ring* *ring* D-D-Do you<FFF6>want Q to get ang-angrrry?<FFF6>You-you're soWEIRD!<FFF5>
@@ -142,7 +142,7 @@ id	pos	psp	en
 140	0x360f	pack/talk/QSIRUBA:0x6198	Heeheehee!<FFF6>You-you're awe-awesomeeee!<FFF6>It's j-j-just what Q wanted!<FFF5>
 141	0x3641	pack/talk/QSIRUBA:0x6220	Heeheehee! Q had-ad-ad ffffFUN,<FFF6>so give me somethingggg!<FFF1><FFF5>
 142	0x3672	pack/talk/QSIRUBA:0x6298	*ring* *ring* Am<FFF6>I being asked outttt!?<FFF6>Qisawesome, is-isn't sheeee!?<FFF5>
-143	0x369d	pack/talk/QSIRUBA:0x6328	*ring* *ring* Listen to<FFF6>Q's deman-man-mands!<FFF1><FFF5>
+143	0x369d	pack/talk/QSIRUBA:0x6328	*ring* *ring* Listen<FFF6>to Q's deman-man-mands!<FFF1><FFF5>
 144	0x36cc	pack/talk/QSIRUBA:0x6388	Eeeeeeeee!<FFF6>Q isanelegant deeeemoooonnnn!<FFF6>That-hat's out of the question!<FFF5>
 145	0x3703	pack/talk/QSIRUBA:0x6420	Eeeeeeeee! If you wantsomethingfrom<FFF6>Q, give-ive-ive her somethingggg!<FFF1><FFF5>
 146	0x3735	pack/talk/QSIRUBA:0x64b0	*crackle* Q has<FFF6>a badfeelingabout thisssss...<FFF5>
@@ -170,11 +170,11 @@ id	pos	psp	en
 168	0x3a73	pack/talk/QSIRUBA:0x6ed8	Q will giveyouthis, so sh-sh-sheeee<FFF6>can go someWHERE elsssssse!<FFEF>
 169	0x3a92	pack/talk/QSIRUBA:0x6f58	Q thinks y-you-you're boring!<FFF6>So she's gonnagosomewhere elssssse!<FFEF>
 170	0x3abd	pack/talk/QSIRUBA:0x6fe0	Q thinks y-you-you're boring!<FFFB><FFF7>Q's gonna go some-somewhere fun,<FFF6>but at leastshe'llgive you thisssss!<FFEF>
-171	0x3aff	pack/talk/QSIRUBA:0x70b0	Q doesn't feeeeeel like<FFF6>it-it-it anymore! You-you<FFFB><FFF7>d-d-don't care about Q as long<FFF6>asyoug-g-gettt a card, huhhhh!?<FFEF>
-172	0x3b36	pack/talk/QSIRUBA:0x7198	Q will giveyoua card,<FFF6>b-b-but if you make it into<FFFB><FFF7>a w-w-weird PerSOna, she'll write<FFF6>Q on you-your hhhheeeaaadddd!<FFEF>
-173	0x3b64	pack/talk/QSIRUBA:0x7280	Soooo, Q doesn't wan-wan-want to<FFF6>fight youuuuu-uuu...<FFF6>She su-su-surrenders...<FFEF>
+171	0x3aff	pack/talk/QSIRUBA:0x70b0	Q doesn't feeeeeel like it-it-it<FFF6>anymore! You-you d-d-don't care<FFFB><FFF7>about Q as long asyoug-g-gettt<FFF6>a card, huhhhh!?<FFEF>
+172	0x3b36	pack/talk/QSIRUBA:0x7198	Q will giveyoua card, b-b-but if you<FFF6>make it into a w-w-weird PerSOna,<FFFB><FFF7>she'll write Q on you-your<FFF6>hhhheeeaaadddd!<FFEF>
+173	0x3b64	pack/talk/QSIRUBA:0x7280	Soooo, Q doesn't wan-wan-want<FFF6>to fight youuuuu-uuu...<FFF6>She su-su-surrenders...<FFEF>
 174	0x3b8f	pack/talk/QSIRUBA:0x7320	Q will giveyouher card... D-Don't<FFF6>hurttt her... l-l-let her ggggo...<FFEF>
-175	0x3bb5	pack/talk/QSIRUBA:0x73b0	Soooo, Q doesn't wan-wan-want to<FFF6>fight youuuuu-uuu...<FFEF>
+175	0x3bb5	pack/talk/QSIRUBA:0x73b0	Soooo, Q doesn't wan-wan-want<FFF6>to fight youuuuu-uuu...<FFEF>
 176	0x3bd4	pack/talk/QSIRUBA:0x7420	Q will giveyouthisssss. It's her way<FFF6>of-f-f-f showing respeccccct,<FFF6>so p-please take i-i-i-it!<FFEF>
 177	0x3bf6	pack/talk/QSIRUBA:0x74e0	*crackle* *crackle* I-Ifffff<FFF6>you-youuu want Q's card-ard-ard,<FFF6>Q will gi-gi-gi-give ittoyou...!<FFEF>
 178	0x3c2b	pack/talk/QSIRUBA:0x75a0	Q can go somewhere else-else-else,<FFF6>right...? She'll giveyouher cardddd...<FFEF>
@@ -191,7 +191,7 @@ id	pos	psp	en
 189	0x3e49	pack/talk/QSIRUBA:0x7c38	<FFEE>You-you're scary,<FFF6>but... Qisinterested...<FFF6>So she wants to negotiate-ate-ate...<FFF5>
 190	0x3e7a	pack/talk/QSIRUBA:0x7cd8	<FFEC>You-you're scary, but...<FFF6>you m-m-might give Q<FFF6>some-somethingggg...<FFF1><FFF5>
 191	0x3ea6	pack/talk/QSIRUBA:0x7d68	<FFEE>Q looOOOOVES humans! Let'shurryand<FFF6>neg-nego-negotiate-ate-ateeeee!<FFF5>
-192	0x3ed1	pack/talk/QSIRUBA:0x7df0	<FFEB>Q isn't friendly, butshewants to<FFF6>neg-negotiate with you-youuu!<FFF6>First, give her somethinggg!<FFF1><FFF5>
+192	0x3ed1	pack/talk/QSIRUBA:0x7df0	<FFEB>Q isn't friendly, butshewants<FFF6>to neg-negotiate with you-youuu!<FFF6>First, give her somethinggg!<FFF1><FFF5>
 193	0x3f0a	pack/talk/QSIRUBA:0x7eb0	<FFED>N-Notttt youuu! Q was-was<FFF6>calling some-someone elssssse!<FFF5>
 194	0x3f2f	pack/talk/QSIRUBA:0x7f28	<FFEC>Do-Don't make that face-ace-aceee...<FFF6>Q doesn't l-like itttt...<FFF5>
 195	0x3f52	pack/talk/QSIRUBA:0x7fa8	<FFEB>It's an awesome moon-oon-ooooooon!<FFF6>You-you canseeit, right!? Heeheehee!<FFF5>
@@ -206,7 +206,7 @@ id	pos	psp	en
 204	0x4103	pack/talk/QSIRUBA:0x8520	You-you're a scary human...<FFF6>butQis interest-interested-ted,<FFF6>so she'll listen to your requestttt!<FFEF>
 205	0x4139	pack/talk/QSIRUBA:0x85e8	You-you're awesommmme!<FFF6>Q will tr-treat you extra ni-niiiiIIICE!<FFF6>What is it you waaaantttt?<FFEF>
 206	0x4172	pack/talk/QSIRUBA:0x86a0	That makes no sen-sensssse!<FFF6>Q doesn't understandatall<FFF6>what you want with-with her!<FFEF>
-207	0x41a8	pack/talk/QSIRUBA:0x8748	You-you're useless at<FFF6>negotiatingggg with Q!<FFF6>Get more-more prac-practiceee!<FFEF>
+207	0x41a8	pack/talk/QSIRUBA:0x8748	You-you're useless<FFF6>at negotiatingggg with Q!<FFF6>Get more-more prac-practiceee!<FFEF>
 208	0x41e3	pack/talk/QSIRUBA:0x87e0	You-you're amazing, forahuman!<FFF6>Q is surprisedddd!<FFEF>
 209	0x4207	pack/talk/QSIRUBA:0x8848	Q wants money-money-moneyyyyy!<FFF6>Give her <FFF8> yennn!<FFEF>
 210	0x4223	pack/talk/QSIRUBA:0x88b0	Heeheehee! So happyyyyyy!<FFEF>
