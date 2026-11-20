@@ -441,7 +441,8 @@ function ppfNote(info) {
 /* The same lines as REM comments at the top of the cue, which emulators
  * skip. */
 function cueText(discName, labels) {
-  const rems = [`REM PATCHER ${releaseStamp(state.rows) || UNSTAMPED}`,
+  const rems = [`REM PATCHER https://ayla6.github.io/megami-ibunroku-persona-translation/`,
+                `REM VERSION ${releaseStamp(state.rows) || UNSTAMPED}`,
                 ...settingLines(labels).map(line => `REM MOD ${line}`)];
   return rems.join('\n') + `\nFILE "${discName.replace(/"/g, '')}" BINARY\n` + CUE_BODY;
 }
