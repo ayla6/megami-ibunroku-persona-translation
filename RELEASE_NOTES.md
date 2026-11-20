@@ -1,3 +1,11 @@
+# 2026-11-21
+- Shows when a skill misses to not confuse you if it missed or if it was nulled or something.
+- Updated a few demon names to the more standard ones.
+  - Pyro Jack -> Jack-o'-Lantern
+  - Laksmi -> Lakshmi
+  - Ame no Uzume -> Ame-no-Uzume
+  - Seiryuu -> Seiryu
+
 # 2026-11-20
 - Reworked the patcher.
   - New patch format called p1mod.
