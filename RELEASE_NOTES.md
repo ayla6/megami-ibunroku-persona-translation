@@ -1,4 +1,4 @@
-# 2026-11-21
+# 2026-11-20-2
 - Shows when a skill misses to not confuse you if it missed or if it was nulled or something.
 - Updated a few demon names to the more standard ones.
   - Pyro Jack -> Jack-o'-Lantern
