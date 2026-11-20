@@ -389,6 +389,15 @@
       return out;
     }
 
+    /* Have the source read the sectors these spans hold before they are
+     * compared: a read costs a fixed fraction of a second on some devices
+     * whatever its size (a CHD's reader unpacks one block per read), so what
+     * a comparison is about to touch is asked for in a few requests. A source
+     * that reads cheaply has no prefetch, and nothing happens. */
+    async prefetch(spans) {
+      if (this.read.prefetch) await this.read.prefetch(spans);
+    }
+
     async writeUser(lba, data, sub) {
       if (!sub) sub = lba < this.sectors ? (await this.raw(lba)).slice(16, 20) : SUB_DATA;
       this.pending.delete(lba);
@@ -444,17 +453,21 @@
      * the source's own sector would regenerate into that same sector, so it
      * is left as the source has it (read in runs, not sector by sector). */
     async flush() {
-      const lbas = [...this.pending.keys()].sort((a, b) => a - b);
-      for (let i = 0; i < lbas.length;) {
-        let j = i + 1;
-        while (j < lbas.length && lbas[j] === lbas[j - 1] + 1 && j - i < 4096) j++;
-        const first = lbas[i];
-        const inSource = Math.max(0, Math.min(j - i, this.sourceSectors - first));
+      const runs = [];
+      for (const lba of [...this.pending.keys()].sort((a, b) => a - b)) {
+        const last = runs[runs.length - 1];
+        if (last && lba === last[1] && last[1] - last[0] < 4096) last[1]++;
+        else runs.push([lba, lba + 1]);
+      }
+      // every run's source before comparing it: read one block at a time, a
+      // CHD would cost a read per block on some devices
+      await this.prefetch(runs.map(([first, stop]) => [first * SECTOR, stop * SECTOR]));
+      for (const [first, stop] of runs) {
+        const inSource = Math.max(0, Math.min(stop - first, this.sourceSectors - first));
         const original = inSource ? await this.read(first * SECTOR, inSource * SECTOR) : null;
-        for (let k = i; k < j; k++) {
-          const lba = lbas[k];
+        for (let lba = first; lba < stop; lba++) {
           const {sub, data} = this.pending.get(lba);
-          const n = k - i;
+          const n = lba - first;
           if (n < inSource) {
             const at = n * SECTOR;
             const user = new Uint8Array(2048);
@@ -468,7 +481,6 @@
           }
           this.written.set(lba, makeForm1(lba, sub, data));
         }
-        i = j;
       }
       this.pending.clear();
     }
@@ -1025,10 +1037,16 @@
 
   /* The disc paths a set of layers edits, and their extents' byte spans on
    * the disc ([start, end) in 2352-byte sectors) - what a CHD must unpack
-   * before the merge reads them. */
+   * before the merge and the layout read them. The layout also reads the
+   * volume descriptor, its own tables and the directory sector each record it
+   * writes lives in: small, and known here. */
   async function touched(disc, layers) {
     const entries = await disc.entries();
-    const spans = [];
+    const spans = [[16 * SECTOR, 17 * SECTOR]];       // the volume descriptor
+    for (const path of LAYOUT_FILES) {
+      const entry = entries.get(path);
+      if (entry) spans.push([entry[0] * SECTOR, (entry[0] + Math.ceil(entry[1] / 2048)) * SECTOR]);
+    }
     const edits = new Map();          // path -> its edits, every layer's
     for (const layer of layers) {
       for (const f of layer.files) {
@@ -1047,7 +1065,9 @@
     for (const [path, fileEdits] of edits) {
       const entry = entries.get(path);
       if (!entry) continue;
-      const [ext, size] = entry;
+      const [ext, size, recLba] = entry;
+      // the directory sector holding the record the layout rewrites
+      spans.push([recLba * SECTOR, (recLba + 1) * SECTOR]);
       if (fileEdits.every(f => sparseEdit(f, size)) && rawLengths.get(size) < 2) {
         // a movie held by sector: only the sectors its edits land in
         const hit = new Set();

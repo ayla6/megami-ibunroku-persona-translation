@@ -13,12 +13,13 @@
  * - ppf: the changed sectors against the disc's own bytes; a selection that
  *   would grow the disc has no PPF (a PPF cannot change a file's size).
  *
- * A CHD is read only where the layers need it: the files they edit are
- * unpacked up front (in parallel, and kept in IndexedDB when the page's "Keep
- * CHD parts" option is on) - a movie edited in place only in the sectors its
- * edits land in (MODPACK.touched: the dub rewrites one in eight) - and
- * anything else the layout reads is unpacked on demand. A CHD can only take
- * a PPF.
+ * A CHD is read only where the layers need it, in a few large reads: the
+ * files they edit are unpacked up front (in parallel, and kept in IndexedDB
+ * when the page's "Keep CHD parts" option is on) - a movie edited in place
+ * only in the sectors its edits land in (MODPACK.touched: the dub rewrites
+ * one in eight) - and what the layout is about to compare is unpacked before
+ * it compares it (Disc.prefetch), so the layout does not pay a read per
+ * block. A CHD can only take a PPF.
  *
  * Message in:  {type: 'run', output: 'disc' | 'ppf', source, chd, keepChd,
  *               layers: [{name, file, hash, own}], selection, description}
@@ -120,6 +121,16 @@ class Parts {
     if (k < 0 || offset + length > this.spans[k][1]) return null;
     const from = this.at[k] + offset - this.spans[k][0];
     return this.data.subarray(from, from + length);
+  }
+  /* As much of [offset, end) as the span holding offset has: what is left of
+   * it, if any, comes from the next span - a read wider than one kept stretch
+   * is served stretch by stretch instead of being read from the CHD again. */
+  take(offset, end) {
+    const k = this.find(offset);
+    if (k < 0) return null;
+    const to = Math.min(end, this.spans[k][1]);
+    const from = this.at[k] + offset - this.spans[k][0];
+    return this.data.subarray(from, from + to - offset);
   }
 }
 
@@ -303,15 +314,25 @@ async function chdBlocks(file, chd, indices) {
 }
 
 /* A reader over a CHD: bytes from the unpacked parts when they hold the
- * request, else from the blocks holding it, unpacked here and cached. */
-function chdReader(chd, parts) {
+ * request, else from the blocks holding it, unpacked here and cached. A read
+ * is taken from the parts stretch by stretch (a read wider than one kept
+ * stretch, or crossing two, still takes what they hold), and only what they
+ * lack is unpacked - a read costs a fixed fraction of a second on some
+ * devices (chd.js readPlan), so a block the parts already hold is never read
+ * again. */
+function chdReader(chd, parts, file) {
   const blocks = new Map();
   const perBlock = chd.framesPerHunk * CHD.SECTOR;
-  return async (offset, length) => {
-    const kept = parts && parts.read(offset, length);
-    if (kept) return kept.slice();
+  const read = async (offset, length) => {
     const out = new Uint8Array(length);
-    for (let pos = offset; pos < offset + length;) {
+    const end = offset + length;
+    for (let pos = offset; pos < end;) {
+      const kept = parts && parts.take(pos, end);
+      if (kept) {
+        out.set(kept, pos - offset);
+        pos += kept.length;
+        continue;
+      }
       const index = Math.floor(pos / perBlock);
       let block = blocks.get(index);
       if (!block) {
@@ -319,12 +340,33 @@ function chdReader(chd, parts) {
         blocks.set(index, block);
       }
       const skip = pos - index * perBlock;
-      const take = Math.min(perBlock - skip, offset + length - pos);
+      const take = Math.min(perBlock - skip, end - pos);
       out.set(block.subarray(skip, skip + take), pos - offset);
       pos += take;
     }
     return out;
   };
+  /* Unpack the blocks these spans hold before they are read (Disc.prefetch):
+   * the reads below unpack one block each, and a read costs a fixed fraction
+   * of a second on some devices, so they are unpacked the way the merge
+   * unpacks its own - in the few large slices CHD.readPlan picks. */
+  read.prefetch = async spans => {
+    const indices = new Set();
+    for (const [start, end] of spans) {
+      for (const index of CHD.hunksFor(chd, start, end - start)) {
+        if (index >= chd.hunks) continue;             // a sector the image does not have
+        const from = index * perBlock;
+        if (parts && parts.read(from, perBlock)) continue;   // the parts hold it
+        if (!blocks.has(index)) indices.add(index);
+      }
+    }
+    if (!indices.size) return;
+    for (const [index, block] of await chdBlocks(file, chd,
+        [...indices].sort((a, b) => a - b))) {
+      blocks.set(index, block);
+    }
+  };
+  return read;
 }
 
 /* The base layer's source check failed while reading a CHD. */
@@ -364,7 +406,7 @@ async function run(msg) {
     const spans = mergeSpans(await MODPACK.touched(probe, layers), 0);
     const parts = await chdParts(msg.source, chd, spans, msg.keepChd);
     chdSha1 = chd.rawSha1;
-    read = chdReader(chd, parts);
+    read = chdReader(chd, parts, msg.source);
   } else {
     size = msg.source.size;
     read = async (offset, length) =>
