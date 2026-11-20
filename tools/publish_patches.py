@@ -8,7 +8,7 @@ script handles the release asset that mirror unpacks:
 
 - upload one persona-patches.zip (gh CLI, --no-release to skip) holding
   the manifest, the README and every patch: the tag defaults to
-  patches-YYYY-MM-DD, with -2, -3, ... appended when that day already has
+  YYYY-MM-DD, with -2, -3, ... appended when that day already has
   releases. The stamp is written into the manifest's release column before
   upload, and the web patcher uses it in the result filenames. Individual
   files stay in the zip so the page can fetch only the patches along the
@@ -45,7 +45,6 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / 'webpatcher'
 DIST = ROOT / 'dist' / 'patches'
 ARCHIVE_NAME = 'persona-patches.zip'
-RELEASE_PREFIX = 'patches-'
 RELEASE_NOTES = ROOT / 'RELEASE_NOTES.md'
 BUGS = ROOT / 'BUGS.md'
 
@@ -59,7 +58,7 @@ def next_release_tag(existing=(), today=None):
 
     A second release on the same day becomes -2, then -3, so the result
     filenames stamped by the web patcher stay distinct."""
-    base = RELEASE_PREFIX + (today or release_date())
+    base = release_date()
     if base not in existing:
         return base
     number = 2
@@ -109,7 +108,7 @@ def stamp_manifest(tag, directory=None):
     for column in ('version', 'bytes', 'sha1', 'release'):
         if column not in fields:
             fields.append(column)
-    version = tag.removeprefix(RELEASE_PREFIX)
+    version = tag
     for row in rows:
         row['release'] = tag
         row['version'] = version
@@ -261,7 +260,7 @@ def release_description(tag, notes_path=None, bugs_path=None):
     """The exact release's notes followed by the current bugs file."""
     notes_path = Path(notes_path) if notes_path is not None else RELEASE_NOTES
     bugs_path = Path(bugs_path) if bugs_path is not None else BUGS
-    version = tag.removeprefix(RELEASE_PREFIX)
+    version = tag
     notes = notes_path.read_text(encoding='utf-8')
     headings = list(re.finditer(r'^#\s+(.+?)\s*$', notes, re.MULTILINE))
     matches = [i for i, heading in enumerate(headings) if heading.group(1) == version]
@@ -291,7 +290,7 @@ def upload_release(tag, directory=None):
             run('gh', 'release', 'view', '--repo', GITHUB_REPO, tag,
                 capture=True)
         except subprocess.CalledProcessError:
-            label = tag.removeprefix(RELEASE_PREFIX)
+            label = tag
             run('gh', 'release', 'create', '--repo', GITHUB_REPO, tag, *assets,
                 '--title', f'{label}',
                  '--notes', description)
