@@ -1,232 +1,232 @@
 id	pos	psp	en
-0	0x2014	pack/talk/MAYOERU:0x2018	Man of flesh... How bizarre<FFF6>of you to want <FFF3>...<FFF5>
-1	0x203b	pack/talk/MAYOERU:0x2078	Uuuurh! <FFF3><FFF6>has nowhere to go...<FFF5>
-2	0x2060	pack/talk/MAYOERU:0x20b8	Uiii! Man of flesh...<FFF6><FFF3> is happy.<FFF5>
-3	0x2086	pack/talk/MAYOERU:0x2100	Man of flesh... What do you gain<FFF6>by challenging <FFF3>?<FFF5>
-4	0x20af	pack/talk/MAYOERU:0x2168	Uuuurh! I feel anger! <FFF3><FFF6>will make that body belong<FFF6>to <FFF3>!<FFF5>
+0	0x2014	pack/talk/MAYOERU:0x2018	Man of flesh...<FFFC><FFF6>How bizarre of you<FFF6>to want <FFF3>...<FFF5>
+1	0x203b	pack/talk/MAYOERU:0x2078	Uuuurh!<FFFC><FFF6><FFF3> has nowhere to go...<FFF5>
+2	0x2060	pack/talk/MAYOERU:0x20b8	Uiii!<FFFC><FFF6>Man of flesh... <FFF3> is happy.<FFF5>
+3	0x2086	pack/talk/MAYOERU:0x2100	Man of flesh...<FFFC> What do you gain<FFF6>by challenging <FFF3>?<FFF5>
+4	0x20af	pack/talk/MAYOERU:0x2168	Uuuurh!<FFFC> I feel anger!<FFF6><FFF3> will make that body<FFF6>belong to <FFF3>!<FFF5>
 5	0x20de	pack/talk/MAYOERU:0x21e0	Is it fun to threaten <FFF3><FFF6>with no place to call home...?<FFF5>
-6	0x2103	pack/talk/MAYOERU:0x2250	Never imagined being<FFF6>asked to join humans...<FFF6>Man of flesh, you have good soul.<FFF5>
-7	0x2130	pack/talk/MAYOERU:0x22f0	Uuurh! <FFF3> has pride too!<FFF5>
-8	0x2151	pack/talk/MAYOERU:0x2320	Augh... Those of flesh<FFF6>invite a <FFF0>...<FFF5>
-9	0x2175	pack/talk/MAYOERU:0x2370	Uuuuurh! Stop bad singing!<FFF6>This spirit will go insane!<FFF5>
-10	0x21a2	pack/talk/MAYOERU:0x23e0	Augh... Horrible voice, too horrible...<FFF6>Horrible things happen<FFF6>to <FFF0> too?<FFF5>
-11	0x21d2	pack/talk/MAYOERU:0x2478	Uiii! Songs are good...<FFF6>Reminds <FFF0> of being flesh!<FFF5>
-12	0x2201	pack/talk/MAYOERU:0x24e0	There is nothing <FFF3> cannot<FFF6>do. Having flesh must be inconvenient.<FFF5>
-13	0x2227	pack/talk/MAYOERU:0x2568	Uuuuurh! <FFF0> and humans are<FFF6>enemies. Cannot grant requests.<FFF5>
-14	0x2254	pack/talk/MAYOERU:0x25e0	Uiiii! Too many years since woman<FFF6>of flesh requested something!<FFF5>
-15	0x2283	pack/talk/MAYOERU:0x2660	Uuuurh! <FFF3> is no fool!<FFF6>Don't understand! Won't be deceived!<FFF5>
-16	0x22b2	pack/talk/MAYOERU:0x26d8	Augh... Frightful schemes... One of<FFF6>flesh... What are you scheming...?<FFF5>
-17	0x22e2	pack/talk/MAYOERU:0x2768	Uiii! <FFF3> is strong!<FFF6>Woman of flesh speaks correct.<FFF5>
-18	0x230b	pack/talk/MAYOERU:0x27d0	So cold here... Nothing to talk<FFF6>about... Envious of those with flesh...<FFF5>
-19	0x233b	pack/talk/MAYOERU:0x2860	Woman of flesh is lying! <FFF3><FFF6>will pull out tongue, take it!<FFF5>
-20	0x2365	pack/talk/MAYOERU:0x28d8	Uiii! Became smarter!<FFF6>Smart is good in world of deceased!<FFF5>
-21	0x2394	pack/talk/MAYOERU:0x2950	Well done, woman of flesh.<FFF6>You knew <FFF3>'s strength!<FFF5>
-22	0x23bb	pack/talk/MAYOERU:0x29b8	Uuurh! Quiet! No reason to believe<FFF6>what woman of flesh says!<FFF5>
-23	0x23f9	pack/talk/MAYOERU:0x2a38	Uiii! <FFF3> is strong!<FFF6>Be more scared, woman of flesh!<FFF5>
-24	0x2425	pack/talk/MAYOERU:0x2aa0	So cold here... Want to<FFF6>be somewhere warm...<FFF6>Woman of flesh's body looks warm...<FFF5>
-25	0x2453	pack/talk/MAYOERU:0x2b48	Uuuurh! <FFF3> not interested<FFF6>in man of flesh! Except to possess...<FFF5>
-26	0x2485	pack/talk/MAYOERU:0x2bc8	Augh... <FFF3><FFF6>is without physical form...<FFF6>Has man of flesh lost his mind...?<FFF5>
-27	0x24b7	pack/talk/MAYOERU:0x2c60	Uiii! Yahhhhh!<FFF5>
-28	0x24ce	pack/talk/MAYOERU:0x2c80	If man of flesh is <FFF3>'s<FFF6>friend, this world could be fun...<FFF5>
-29	0x24f8	pack/talk/MAYOERU:0x2cf8	Uuuurhh! Boring...!<FFF5>
-30	0x250d	pack/talk/MAYOERU:0x2d20	Urgh... No air...<FFF6>Thought <FFF3><FFF6>would die...<FFF5>
-31	0x252a	pack/talk/MAYOERU:0x2d78	Uiii!<FFF6><FFF3>'s heart has warmed up!<FFF5>
-32	0x254a	pack/talk/MAYOERU:0x2db8	Man of flesh... <FFF3><FFF6>wants to hear more.<FFF5>
-33	0x256d	pack/talk/MAYOERU:0x2e08	Uuuurh! Do not tell stories<FFF6>of the flesh-having world!<FFF5>
-34	0x2598	pack/talk/MAYOERU:0x2e78	It's so cold here... Even casual<FFF6>greeting adds happiness.<FFF5>
+6	0x2103	pack/talk/MAYOERU:0x2250	Never imagined<L{> being<FFF6>asked <}><S{> being asked <}>to<L{> join humans...<FFF6>Man <}><S{> join<FFF6>humans... Man <}>of flesh, you have good soul.<FFF5>
+7	0x2130	pack/talk/MAYOERU:0x22f0	Uuurh!<FFFC><FFF6><FFF3> has pride too!<FFF5>
+8	0x2151	pack/talk/MAYOERU:0x2320	Augh...<FFFC><FFF6>Those of flesh invite a <FFF0>...<FFF5>
+9	0x2175	pack/talk/MAYOERU:0x2370	Uuuuurh!<FFFC><FFF6>Stop bad<L{> singing!<FFF6>This <}><S{> singing! This <}>spirit will go insane!<FFF5>
+10	0x21a2	pack/talk/MAYOERU:0x23e0	<L{>Augh...<FFFC> Horrible <}><S{>Augh...<FFFC><FFF6>Horrible <}>voice, too horrible...<FFFC><FFF6>Horrible things<L{> happen<FFF6>to <}><S{> happen to <}><FFF0> too?<FFF5>
+11	0x21d2	pack/talk/MAYOERU:0x2478	Uiii!<FFFC><FFF6>Songs are good...<FFFC><FFF6>Reminds <FFF0> of being flesh!<FFF5>
+12	0x2201	pack/talk/MAYOERU:0x24e0	There is nothing <FFF3><L{> cannot<FFF6>do. Having <}><S{> cannot do.<FFF6>Having <}>flesh must be inconvenient.<FFF5>
+13	0x2227	pack/talk/MAYOERU:0x2568	Uuuuurh!<FFFC><FFF6><FFF0> and humans are enemies.<FFF6>Cannot grant requests.<FFF5>
+14	0x2254	pack/talk/MAYOERU:0x25e0	Uiiii!<FFFC><FFF6>Too many years since woman<FFF6>of flesh requested something!<FFF5>
+15	0x2283	pack/talk/MAYOERU:0x2660	Uuuurh!<FFFC> <FFF3> is no fool!<FFF6>Don’t understand! Won’t be deceived!<FFF5>
+16	0x22b2	pack/talk/MAYOERU:0x26d8	Augh...<FFFC><FFF6>Frightful schemes... One of flesh...<FFF6>What are you scheming...?<FFF5>
+17	0x22e2	pack/talk/MAYOERU:0x2768	Uiii!<FFFC> <FFF3> is strong!<FFF6>Woman of flesh speaks correct.<FFF5>
+18	0x230b	pack/talk/MAYOERU:0x27d0	So cold here...<FFFC><FFF6>Nothing to talk about...<FFFC><FFF6>Envious of those with flesh...<FFF5>
+19	0x233b	pack/talk/MAYOERU:0x2860	Woman of flesh is<L{> lying!<FFFC> <FFF3><FFF6>will <}><S{> lying!<FFFC><FFF6><FFF3> will <}>pull out tongue, take it!<FFF5>
+20	0x2365	pack/talk/MAYOERU:0x28d8	Uiii!<FFFC><FFF6>Became smarter!<FFF6>Smart is good in world of deceased!<FFF5>
+21	0x2394	pack/talk/MAYOERU:0x2950	Well done, woman of flesh.<FFF6>You knew <FFF3>’s strength!<FFF5>
+22	0x23bb	pack/talk/MAYOERU:0x29b8	Uuurh!<FFFC> Quiet!<FFFC><FFF6>No reason to believe<FFF6>what woman of flesh says!<FFF5>
+23	0x23f9	pack/talk/MAYOERU:0x2a38	Uiii!<FFFC> <FFF3> is strong!<FFF6>Be more scared, woman of flesh!<FFF5>
+24	0x2425	pack/talk/MAYOERU:0x2aa0	So cold<L{> here...<FFF6>Want <}><S{> here... Want <}>to be somewhere warm...<FFFC><FFF6>Woman of flesh’s body looks warm...<FFF5>
+25	0x2453	pack/talk/MAYOERU:0x2b48	Uuuurh!<FFFC> <FFF3><FFF6>not interested in man of flesh!<FFF6>Except to possess...<FFF5>
+26	0x2485	pack/talk/MAYOERU:0x2bc8	<L{>Augh...<FFFC> <FFF3><FFF6>is <}><S{>Augh...<FFFC><FFF6><FFF3> is <}>without physical form...<FFFC><FFF6>Has man of flesh lost his mind...?<FFF5>
+27	0x24b7	pack/talk/MAYOERU:0x2c60	Uiii!<FFFC><FFF6>Yahhhhh!<FFF5>
+28	0x24ce	pack/talk/MAYOERU:0x2c80	If man of flesh is<L{> <FFF3>’s<FFF6>friend, this <}><S{> <FFF3>’s friend,<FFF6>this <}>world could be fun...<FFF5>
+29	0x24f8	pack/talk/MAYOERU:0x2cf8	Uuuurhh!<FFFC><FFF6>Boring...!<FFF5>
+30	0x250d	pack/talk/MAYOERU:0x2d20	Urgh...<FFFC> No air...<FFFC><FFF6>Thought <FFF3> would die...<FFF5>
+31	0x252a	pack/talk/MAYOERU:0x2d78	Uiii!<FFFC><FFF6><FFF3>’s heart has warmed up!<FFF5>
+32	0x254a	pack/talk/MAYOERU:0x2db8	Man of flesh...<FFFC><FFF6><FFF3> wants to hear more.<FFF5>
+33	0x256d	pack/talk/MAYOERU:0x2e08	Uuuurh!<FFFC><FFF6>Do not tell stories<FFF6>of the flesh-having world!<FFF5>
+34	0x2598	pack/talk/MAYOERU:0x2e78	It’s so cold here...<FFFC><FFF6>Even casual<L{> greeting<FFF6>adds <}><S{> greeting adds <}>happiness.<FFF5>
 35	0x25c4	pack/talk/MAYOERU:0x2ef0	<FFF3> had a childhood too...<FFF6>It is memory most treasured.<FFF5>
-36	0x25ef	pack/talk/MAYOERU:0x2f60	Uuuuurh! What are you doing!?<FFF6><FFF3> is angry!<FFF5>
-37	0x2614	pack/talk/MAYOERU:0x2fb8	Man of flesh... Is it fun<FFF6>to surprise <FFF3>...?<FFF5>
-38	0x2638	pack/talk/MAYOERU:0x3010	When still alive, <FFF3><FFF6>might have had a house...<FFF6>Somewhere to call home...<FFF5>
-39	0x2669	pack/talk/MAYOERU:0x30a0	Uuuurghh! <FFF3> wants body<FFF6>of flesh! Place for soul to stay!<FFF5>
-40	0x269a	pack/talk/MAYOERU:0x3118	Uiii! Might be warm to have that...<FFF6>Will be happy if so.<FFF5>
+36	0x25ef	pack/talk/MAYOERU:0x2f60	Uuuuurh!<FFFC><FFF6>What are you doing!?<FFF6><FFF3> is angry!<FFF5>
+37	0x2614	pack/talk/MAYOERU:0x2fb8	Man of flesh...<FFFC><FFF6>Is it fun to surprise <FFF3>...?<FFF5>
+38	0x2638	pack/talk/MAYOERU:0x3010	When still alive, <FFF3><FFF6>might have had a house...<FFFC><FFF6>Somewhere to call home...<FFF5>
+39	0x2669	pack/talk/MAYOERU:0x30a0	Uuuurghh!<FFFC><FFF6><FFF3> wants body of flesh!<FFF6>Place for soul to stay!<FFF5>
+40	0x269a	pack/talk/MAYOERU:0x3118	Uiii!<FFFC><FFF6>Might be warm to have that...<FFF6>Will be happy if so.<FFF5>
 41	0x26c4	pack/talk/MAYOERU:0x3190	What man of flesh says may be right.<FFF6>Good luck. Here is hoping.<FFF5>
-42	0x26f5	pack/talk/MAYOERU:0x3210	Uuuurgh! Easy to say anything!<FFF6>How rash when not so strong!<FFF5>
-43	0x272b	pack/talk/MAYOERU:0x3288	Uiii! So energetic!<FFF6>Those with flesh should be.<FFF5>
-44	0x2756	pack/talk/MAYOERU:0x32e8	Man of flesh... Voice is heard<FFF6>without yelling. But loud voice is nice.<FFF5>
-45	0x2787	pack/talk/MAYOERU:0x3378	Uuuurgh! <FFF3> is invincible!<FFF6>Man of flesh... No forgiveness.<FFF5>
-46	0x27b3	pack/talk/MAYOERU:0x33f0	Augh... S... So... cold...<FFF6><FFF3> did nothing wrong...<FFF5>
-47	0x27d9	pack/talk/MAYOERU:0x3458	If man of flesh dies,<FFF6>he becomes like <FFF3>...<FFF6>But it's so cold and dark here...<FFF5>
-48	0x280d	pack/talk/MAYOERU:0x34f8	Do not take body of flesh<FFF6>for granted! <FFF3> can tell<FFF6>immediately when body of flesh lies!<FFF5>
-49	0x2842	pack/talk/MAYOERU:0x35a8	Uiii! Man of flesh is right!<FFF6><FFF3> is "awesome"!<FFF5>
-50	0x286d	pack/talk/MAYOERU:0x3608	<FFF3> sees... That dance<FFF6>is popular in world of living...<FFF6><FFF3> wants to dance too...<FFF5>
-51	0x289f	pack/talk/MAYOERU:0x36a8	Uuurhh! Don't show off body of flesh!<FFF6>Uurhhh! Hits where it hurts!<FFF5>
-52	0x28d6	pack/talk/MAYOERU:0x3730	Not bad for having physical body,<FFF6>man of flesh! But even easier<FFF6>to dance once death takes that away!<FFF5>
+42	0x26f5	pack/talk/MAYOERU:0x3210	Uuuurgh!<FFFC><FFF6>Easy to say anything!<FFF6>How rash when not so strong!<FFF5>
+43	0x272b	pack/talk/MAYOERU:0x3288	<L{>Uiii!<FFFC> So energetic!<FFF6>Those <}><S{>Uiii!<FFFC><FFF6>So energetic! Those <}>with flesh should be.<FFF5>
+44	0x2756	pack/talk/MAYOERU:0x32e8	Man of flesh...<FFFC><FFF6>Voice is heard without yelling.<FFF6>But loud voice is nice.<FFF5>
+45	0x2787	pack/talk/MAYOERU:0x3378	Uuuurgh!<FFFC><FFF6><FFF3> is invincible!<FFF6>Man of flesh... No forgiveness.<FFF5>
+46	0x27b3	pack/talk/MAYOERU:0x33f0	Augh...<FFFC> S... So...<L{> cold...<FFF6><FFF3> did <}><S{> cold... <FFF3><FFF6>did <}>nothing wrong...<FFF5>
+47	0x27d9	pack/talk/MAYOERU:0x3458	If man of flesh dies,<FFF6>he becomes like <FFF3>...<FFF6>But it’s so cold and dark here...<FFF5>
+48	0x280d	pack/talk/MAYOERU:0x34f8	Do not take body of<L{> flesh<FFF6>for granted! <FFF3> <}><S{> flesh for granted!<FFF6><FFF3> <}>can<L{> tell<FFF6>immediately when <}><S{> tell immediately<FFF6>when <}>body of flesh lies!<FFF5>
+49	0x2842	pack/talk/MAYOERU:0x35a8	<L{>Uiii!<FFFC> Man <}><S{>Uiii!<FFFC><FFF6>Man <}>of flesh is right!<FFF6><FFF3> is “awesome”!<FFF5>
+50	0x286d	pack/talk/MAYOERU:0x3608	<FFF3><L{> sees...<FFFC> That dance<FFF6>is <}><S{> sees...<FFFC><FFF6>That dance is <}>popular in world of living...<FFF6><FFF3> wants to dance too...<FFF5>
+51	0x289f	pack/talk/MAYOERU:0x36a8	Uuurhh!<FFFC><FFF6>Don’t show off body of flesh!<FFFC><FFF6>Uurhhh!<FFFC> Hits where it hurts!<FFF5>
+52	0x28d6	pack/talk/MAYOERU:0x3730	Not bad for having physical body,<FFF6>man of flesh!<FFFC> But even<L{> easier<FFF6>to dance once <}><S{> easier to dance<FFF6>once <}>death takes that away!<FFF5>
 53	0x290d	pack/talk/MAYOERU:0x3800	Interesting, man of flesh!<FFF6>Though it was a new saying.<FFF5>
-54	0x2934	pack/talk/MAYOERU:0x3870	Uuur! Man of flesh dares<FFF6>to oppose <FFF3>!?<FFF6>Will teach limits of flesh!<FFF5>
-55	0x2964	pack/talk/MAYOERU:0x38f8	Augh... P-Pain... Dangerous...<FFF6>Should <FFF3> run away...?<FFF5>
+54	0x2934	pack/talk/MAYOERU:0x3870	<L{>Uuur!<FFFC> Man <}><S{>Uuur!<FFFC><FFF6>Man <}>of flesh<L{> dares<FFF6>to oppose <FFF3>!?<FFF6>Will <}><S{> dares to oppose<FFF6><FFF3>!? Will <}>teach limits of flesh!<FFF5>
+55	0x2964	pack/talk/MAYOERU:0x38f8	Augh...<FFFC> P-Pain... Dangerous...<FFF6>Should <FFF3> run away...?<FFF5>
 56	0x298e	pack/talk/MAYOERU:0x3968	Eyes make <FFF3> feel warm...<FFF6>Gaze more.<FFF5>
-57	0x29b6	pack/talk/MAYOERU:0x39b0	Uuurgh! Gaze of black eyes is pain!<FFF6>Stop looking, dark one!<FFF5>
-58	0x29e5	pack/talk/MAYOERU:0x3a28	Reminds of days past...<FFF6>Wonder how that girl is doing...?<FFF5>
-59	0x2a07	pack/talk/MAYOERU:0x3aa0	That story brings delight!<FFF6>The world of living does have fun...<FFF5>
-60	0x2a39	pack/talk/MAYOERU:0x3b20	Uuuurhh! Don't lie, man of flesh!<FFF6>Don't look down on <FFF3>!<FFF5>
-61	0x2a67	pack/talk/MAYOERU:0x3b90	Uiii! That's something to talk about!<FFF6>Should trick the recently departed.<FFF5>
-62	0x2a97	pack/talk/MAYOERU:0x3c28	Uuuurhh! <FFF3> fears nothing!<FFF6>Urrhh! Don't underestimate!<FFF5>
-63	0x2acb	pack/talk/MAYOERU:0x3c98	Augh... C-Cold... P-Pain...<FFF5>
-64	0x2af0	pack/talk/MAYOERU:0x3cd0	Uii... Woman of flesh tell stories<FFF6>like that? Not smart...<FFF5>
+57	0x29b6	pack/talk/MAYOERU:0x39b0	Uuurgh!<FFFC><FFF6>Gaze of black eyes is pain!<FFF6>Stop looking, dark one!<FFF5>
+58	0x29e5	pack/talk/MAYOERU:0x3a28	Reminds of days past...<FFFC><FFF6>Wonder how that girl is doing...?<FFF5>
+59	0x2a07	pack/talk/MAYOERU:0x3aa0	That story brings delight!<FFFC><FFF6>The world of living does have fun...<FFF5>
+60	0x2a39	pack/talk/MAYOERU:0x3b20	Uuuurhh!<FFFC> Don’t lie, man of flesh!<FFF6>Don’t look down on <FFF3>!<FFF5>
+61	0x2a67	pack/talk/MAYOERU:0x3b90	Uiii!<FFFC><FFF6>That’s something to talk about!<FFF6>Should trick the recently departed.<FFF5>
+62	0x2a97	pack/talk/MAYOERU:0x3c28	Uuuurhh!<FFFC><L{> <FFF3> fears nothing!<FFF6>Urrhh!<FFFC> <}><S{> <FFF3><FFF6>fears nothing! Urrhh!<FFFC> <}>Don’t underestimate!<FFF5>
+63	0x2acb	pack/talk/MAYOERU:0x3c98	Augh...<FFFC> C-Cold... P-Pain...<FFF5>
+64	0x2af0	pack/talk/MAYOERU:0x3cd0	Uii...<FFFC><FFF6>Woman of flesh tell stories like that?<FFF6>Not smart...<FFF5>
 65	0x2b22	pack/talk/MAYOERU:0x3d48	Woman of flesh has great voice.<FFF6>Hurry and die so she can sing<FFF6>with <FFF3> in the after-life.<FFF5>
-66	0x2b52	pack/talk/MAYOERU:0x3df8	Uuurhh! Stop bad singing!<FFF6>Getting even colder now!<FFF5>
-67	0x2b7b	pack/talk/MAYOERU:0x3e60	Uiiii! Songs are wonderful...<FFF6>Willpower is restored.<FFF5>
-68	0x2ba4	pack/talk/MAYOERU:0x3ed0	Woman of flesh... What nerve<FFF6>have you? <FFF3><FFF6>is different from those of flesh.<FFF5>
-69	0x2bd5	pack/talk/MAYOERU:0x3f68	Uuuurhh! <FFF3> has pride too!<FFF6>Say things like that to flesh children!<FFF5>
-70	0x2c0d	pack/talk/MAYOERU:0x3ff0	<FFF3> had a mother once...<FFF6>Been long time since thought<FFF6>crossed mind...<FFF5>
+66	0x2b52	pack/talk/MAYOERU:0x3df8	Uuurhh!<FFFC><FFF6>Stop bad<L{> singing!<FFF6>Getting <}><S{> singing! Getting <}>even colder now!<FFF5>
+67	0x2b7b	pack/talk/MAYOERU:0x3e60	Uiiii!<FFFC><FFF6>Songs are wonderful...<FFFC><FFF6>Willpower is restored.<FFF5>
+68	0x2ba4	pack/talk/MAYOERU:0x3ed0	Woman of flesh...<FFFC><FFF6>What nerve have you? <FFF3><FFF6>is different from those of flesh.<FFF5>
+69	0x2bd5	pack/talk/MAYOERU:0x3f68	Uuuurhh!<FFFC> <FFF3> has pride too!<FFFC><FFF6>Say things like that to flesh children!<FFF5>
+70	0x2c0d	pack/talk/MAYOERU:0x3ff0	<FFF3> had a mother once...<FFF6>Been long time since<L{> thought<FFF6>crossed <}><S{> thought crossed <}>mind...<FFF5>
 71	0x2c3c	pack/talk/MAYOERU:0x4078	Seduced by woman of flesh...<FFF6>Maybe being lost not so bad...<FFF5>
-72	0x2c5f	pack/talk/MAYOERU:0x40f0	Uuuurhh! <FFF3><FFF6>knows what it must do! That isn't it!<FFF5>
-73	0x2c90	pack/talk/MAYOERU:0x4158	<FFF3> is omnipotent...<FFF6>but cannot do work of flesh...<FFF6>Still, good to be invited.<FFF5>
-74	0x2cc7	pack/talk/MAYOERU:0x41f8	Slander... Those of flesh slander<FFF6>quite often... <FFF3> will not.<FFF5>
+72	0x2c5f	pack/talk/MAYOERU:0x40f0	Uuuurhh!<FFFC> <FFF3><FFF6>knows what it must do!<FFFC> That isn’t it!<FFF5>
+73	0x2c90	pack/talk/MAYOERU:0x4158	<FFF3> is<L{> omnipotent...<FFF6>but cannot do <}><S{> omnipotent... but cannot<FFF6>do <}>work of<L{> flesh...<FFF6>Still, <}><S{> flesh... Still, <}>good to be invited.<FFF5>
+74	0x2cc7	pack/talk/MAYOERU:0x41f8	Slander...<FFFC><FFF6>Those of flesh slander quite often...<FFF6><FFF3> will not.<FFF5>
 75	0x2cf5	pack/talk/MAYOERU:0x4278	Do not be false, being of flesh!<FFF5>
-76	0x2d0c	pack/talk/MAYOERU:0x42c0	Augh... S-So cold... P-Painful...<FFF5>
+76	0x2d0c	pack/talk/MAYOERU:0x42c0	Augh...<FFFC><FFF6>S-So cold... P-Painful...<FFF5>
 77	0x2d30	pack/talk/MAYOERU:0x4308	Fun with opposite sex is privilege<FFF6>of those with flesh. Perhaps<FFF6>those without can relive old days...<FFF5>
-78	0x2d68	pack/talk/MAYOERU:0x43d8	Uuuurhhh! What do you want<FFF6>from <FFF3>? Can't tell!<FFF5>
-79	0x2d94	pack/talk/MAYOERU:0x4438	Uiii! Thought it was impossible<FFF6>to score with woman of flesh!<FFF5>
-80	0x2dc0	pack/talk/MAYOERU:0x44b8	Woman of flesh... If the present is so<FFF6>painful, die, and become <FFF3>.<FFF5>
-81	0x2df5	pack/talk/MAYOERU:0x4540	Uurh... Be glad for having<FFF6>flesh, woman! <FFF3><FFF6>will take if it not wanted!<FFF5>
-82	0x2e27	pack/talk/MAYOERU:0x45d0	Augh... S-Seems so cold...<FFF6>Isn't it cold for bodies of flesh too...?<FFF5>
-83	0x2e53	pack/talk/MAYOERU:0x4660	Woman of flesh... <FFF3> has<FFF6>nothing to lose. Threats are useless.<FFF5>
+78	0x2d68	pack/talk/MAYOERU:0x43d8	Uuuurhhh!<FFFC><FFF6>What do you want from <FFF3>?<FFFC><FFF6>Can’t tell!<FFF5>
+79	0x2d94	pack/talk/MAYOERU:0x4438	Uiii!<FFFC><FFF6>Thought it was impossible<FFF6>to score with woman of flesh!<FFF5>
+80	0x2dc0	pack/talk/MAYOERU:0x44b8	Woman of flesh...<FFFC> If the present<L{> is so<FFF6>painful, <}><S{> is<FFF6>so painful, <}>die, and become <FFF3>.<FFF5>
+81	0x2df5	pack/talk/MAYOERU:0x4540	Uurh...<FFFC> Be glad for<L{> having<FFF6>flesh, woman! <FFF3><FFF6>will <}><S{> having flesh, woman!<FFF6><FFF3> will <}>take if it not wanted!<FFF5>
+82	0x2e27	pack/talk/MAYOERU:0x45d0	Augh...<FFFC> S-Seems so cold...<FFF6>Isn’t it cold for bodies of flesh too...?<FFF5>
+83	0x2e53	pack/talk/MAYOERU:0x4660	Woman of flesh...<FFFC><FFF6><FFF3> has nothing to lose.<FFF6>Threats are useless.<FFF5>
 84	0x2e81	pack/talk/MAYOERU:0x46e0	<FFF3> is invincible!<FFF6>Has nothing to lose!<FFF6>Craving a body of flesh!<FFF5>
-85	0x2eb2	pack/talk/MAYOERU:0x4760	Augh... Is it fun to threaten<FFF6><FFF3>?<FFF5>
-86	0x2ed0	pack/talk/MAYOERU:0x47a8	Stop taunting <FFF3>!<FFF6>This is no different than<FFF6>when <FFF3> was alive!<FFF5>
-87	0x2f02	pack/talk/MAYOERU:0x4828	Augh... So cold...<FFF6>Should <FFF3> run away?<FFF5>
-88	0x2f2f	pack/talk/MAYOERU:0x4878	Uiiii! It feels good to be teased...<FFF6><FFF3> feels awakened...<FFF5>
+85	0x2eb2	pack/talk/MAYOERU:0x4760	Augh...<FFFC><FFF6>Is it fun to threaten <FFF3>?<FFF5>
+86	0x2ed0	pack/talk/MAYOERU:0x47a8	Stop taunting <FFF3>!<FFFC><FFF6>This is no different than<FFF6>when <FFF3> was alive!<FFF5>
+87	0x2f02	pack/talk/MAYOERU:0x4828	<L{>Augh...<FFFC> So cold...<FFF6>Should <}><S{>Augh...<FFFC><FFF6>So cold... Should <}><FFF3> run away?<FFF5>
+88	0x2f2f	pack/talk/MAYOERU:0x4878	Uiiii!<FFFC> It feels good to be teased...<FFFC><FFF6><FFF3> feels awakened...<FFF5>
 89	0x2f6a	pack/talk/MAYOERU:0x48f0	Woman of flesh speaks the truth...<FFFB><FFF7>Maybe woman of flesh knows<FFF6>where <FFF3> must return to...<FFF5>
-90	0x2faf	pack/talk/MAYOERU:0x49a8	What does woman of flesh know<FFF6>of <FFF3>!? Uuuurhhh!<FFF6>Woman of flesh is so impudent!<FFF5>
-91	0x2fe9	pack/talk/MAYOERU:0x4a48	Brain of flesh is smart. It also<FFF6>looks well-pickled and delicious...<FFF5>
-92	0x3018	pack/talk/MAYOERU:0x4ad8	Uuuurhh! <FFF3> is matured!<FFF6>Say things like that to flesh children!<FFF5>
-93	0x3051	pack/talk/MAYOERU:0x4b58	Augh... S-Scared... Sh-Should run...?<FFF5>
-94	0x307a	pack/talk/MAYOERU:0x4ba8	<FFF3> had a mother once...<FFF6>Been long time since thought<FFF6>crossed mind...<FFF5>
-95	0x30a9	pack/talk/MAYOERU:0x4c30	Woman of flesh... It is cold<FFF6>to tell stories of the living...<FFF5>
-96	0x30d3	pack/talk/MAYOERU:0x4cb0	Uuurhh! Ignored! Cruelty!<FFF6>Not warm of heart for being of flesh!<FFF5>
-97	0x310b	pack/talk/MAYOERU:0x4d30	Augh... C-Cold...<FFF6>This place is too cold too...<FFF5>
-98	0x3131	pack/talk/MAYOERU:0x4d90	Man of flesh... Be someone for a lost<FFF6><FFF3> to speak with...<FFF5>
-99	0x315a	pack/talk/MAYOERU:0x4e08	Uuurhh! Ignored! Cruelty!<FFF6>Not warm of heart for being of flesh!<FFF5>
-100	0x3192	pack/talk/MAYOERU:0x4e88	Augh... Wh-Where is this...?<FFF6>So many cold bodies of flesh...<FFF5>
-101	0x31c7	pack/talk/MAYOERU:0x4f08	Man of flesh... That body looks<FFF6>energetic. <FFF3> wants it!<FFF5>
-102	0x31f5	pack/talk/MAYOERU:0x4f78	Uuuurhh! <FFF3><FFF6>won't be scared! Not until<FFF6><FFF3> finds body of flesh!<FFF5>
-103	0x3227	pack/talk/MAYOERU:0x4ff8	Augh... <FFF3> is just lost...<FFF6>Why get in the way...?<FFF5>
-104	0x3253	pack/talk/MAYOERU:0x5060	Uuuurhh!<FFF6>Quiet, man of flesh! Curses upon you!<FFF5>
-105	0x3280	pack/talk/MAYOERU:0x50c0	Augh... Man of flesh has gone insane...<FFF5>
+90	0x2faf	pack/talk/MAYOERU:0x49a8	What does woman of<L{> flesh know<FFF6>of <FFF3>!?<FFFC> Uuuurhhh!<FFFC><FFF6>Woman <}><S{> flesh<FFF6>know of <FFF3>!?<FFFC><FFF6>Uuuurhhh!<FFFC> Woman <}>of flesh is so impudent!<FFF5>
+91	0x2fe9	pack/talk/MAYOERU:0x4a48	Brain of flesh is smart.<FFF6>It also looks<L{> well-pickled<FFF6>and <}><S{> well-pickled and <}>delicious...<FFF5>
+92	0x3018	pack/talk/MAYOERU:0x4ad8	Uuuurhh!<FFFC> <FFF3> is matured!<FFFC><FFF6>Say things like that to flesh children!<FFF5>
+93	0x3051	pack/talk/MAYOERU:0x4b58	Augh...<FFFC> S-Scared... Sh-Should run...?<FFF5>
+94	0x307a	pack/talk/MAYOERU:0x4ba8	<FFF3> had a mother once...<FFF6>Been long time since<L{> thought<FFF6>crossed <}><S{> thought crossed <}>mind...<FFF5>
+95	0x30a9	pack/talk/MAYOERU:0x4c30	Woman of flesh...<FFFC><FFF6>It is cold to tell stories of the living...<FFF5>
+96	0x30d3	pack/talk/MAYOERU:0x4cb0	Uuurhh!<FFFC> Ignored!<FFFC> Cruelty!<FFFC><FFF6>Not warm of heart for being of flesh!<FFF5>
+97	0x310b	pack/talk/MAYOERU:0x4d30	Augh...<FFFC><L{> C-Cold...<FFF6>This <}><S{> C-Cold... This <}>place is too cold too...<FFF5>
+98	0x3131	pack/talk/MAYOERU:0x4d90	Man of flesh...<FFFC><FFF6>Be someone for a lost<FFF6><FFF3> to speak with...<FFF5>
+99	0x315a	pack/talk/MAYOERU:0x4e08	Uuurhh!<FFFC> Ignored!<FFFC> Cruelty!<FFFC><FFF6>Not warm of heart for being of flesh!<FFF5>
+100	0x3192	pack/talk/MAYOERU:0x4e88	Augh...<FFFC> Wh-Where is this...?<FFF6>So many cold bodies of flesh...<FFF5>
+101	0x31c7	pack/talk/MAYOERU:0x4f08	Man of flesh...<FFFC><FFF6>That body looks energetic.<FFF6><FFF3> wants it!<FFF5>
+102	0x31f5	pack/talk/MAYOERU:0x4f78	Uuuurhh!<FFFC><L{> <FFF3><FFF6>won’t <}><S{> <FFF3> won’t <}>be<L{> scared! Not until<FFF6><FFF3> finds body <}><S{> scared!<FFF6>Not until <FFF3> finds<FFF6>body <}>of flesh!<FFF5>
+103	0x3227	pack/talk/MAYOERU:0x4ff8	Augh...<FFFC><FFF6><FFF3> is just lost...<FFFC><FFF6>Why get in the way...?<FFF5>
+104	0x3253	pack/talk/MAYOERU:0x5060	Uuuurhh!<FFFC><FFF6>Quiet, man of flesh! Curses upon you!<FFF5>
+105	0x3280	pack/talk/MAYOERU:0x50c0	Augh...<FFFC><FFF6>Man of flesh has gone insane...<FFF5>
 106	0x32a1	pack/talk/MAYOERU:0x5110	Is that greeting of those with flesh?<FFF6>Weird... Not the same as remembered...<FFF5>
-107	0x32d5	pack/talk/MAYOERU:0x51b0	So cold here... Nothing amusing...<FFF6>Envious of man of flesh...<FFF5>
-108	0x3305	pack/talk/MAYOERU:0x5230	Augh... S-So cold... P-Painful...<FFF5>
-109	0x3328	pack/talk/MAYOERU:0x5278	So mysterious... Heart feels warm...<FFF6>This is... fun.<FFF5>
-110	0x3354	pack/talk/MAYOERU:0x52e8	Would be able to talk more with mouth<FFF6>of flesh... Want... mouth...<FFF5>
-111	0x3383	pack/talk/MAYOERU:0x5370	Point understood...<FFF6>But <FFF3> is cold.<FFF6>Give something warm.<FFF1><FFF5>
-112	0x33b6	pack/talk/MAYOERU:0x53e8	Uuuurhh! No need for body of flesh<FFF6>to be involved with <FFF3>!<FFF5>
-113	0x33df	pack/talk/MAYOERU:0x5460	Uuurh! Not interested in that story.<FFF6>Interested in warm! Give warmth!<FFF1><FFF5>
-114	0x3408	pack/talk/MAYOERU:0x54f0	Augh... Scary... Where is<FFF6>home of <FFF3>...?<FFF5>
-115	0x3428	pack/talk/MAYOERU:0x5540	Aughhh... It has nothing<FFF6>to do with <FFF3>...<FFF5>
+107	0x32d5	pack/talk/MAYOERU:0x51b0	So cold here...<FFFC><FFF6>Nothing amusing...<FFFC><FFF6>Envious of man of flesh...<FFF5>
+108	0x3305	pack/talk/MAYOERU:0x5230	Augh...<FFFC><FFF6>S-So cold... P-Painful...<FFF5>
+109	0x3328	pack/talk/MAYOERU:0x5278	So mysterious...<FFFC><FFF6>Heart feels warm... This is... fun.<FFF5>
+110	0x3354	pack/talk/MAYOERU:0x52e8	Would be able to talk<L{> more with mouth<FFF6>of <}><S{> more<FFF6>with mouth of <}>flesh... Want... mouth...<FFF5>
+111	0x3383	pack/talk/MAYOERU:0x5370	Point<L{> understood...<FFF6>But <}><S{> understood... But <}><FFF3><L{> is cold.<FFF6>Give <}><S{> is<FFF6>cold. Give <}>something warm.<FFF1><FFF5>
+112	0x33b6	pack/talk/MAYOERU:0x53e8	Uuuurhh!<FFFC><FFF6>No need for body of flesh to be<FFF6>involved with <FFF3>!<FFF5>
+113	0x33df	pack/talk/MAYOERU:0x5460	Uuurh!<FFFC><FFF6>Not interested in that story.<FFF6>Interested in warm! Give warmth!<FFF1><FFF5>
+114	0x3408	pack/talk/MAYOERU:0x54f0	Augh...<FFFC> Scary...<FFF6>Where is home of <FFF3>...?<FFF5>
+115	0x3428	pack/talk/MAYOERU:0x5540	Aughhh...<FFFC><FFF6>It has nothing to<L{> do<FFF6>with <}><S{> do with <}><FFF3>...<FFF5>
 116	0x3447	pack/talk/MAYOERU:0x5598	<FFF3> is glad to have<FFF6>spoken with those of flesh.<FFF5>
-117	0x346a	pack/talk/MAYOERU:0x55f8	Uiii!<FFF6>Words of flesh-havers are useful!<FFF5>
-118	0x3492	pack/talk/MAYOERU:0x5648	Might be good...<FFF6>But there is long road ahead.<FFF5>
+117	0x346a	pack/talk/MAYOERU:0x55f8	Uiii!<FFFC><FFF6>Words of flesh-havers are useful!<FFF5>
+118	0x3492	pack/talk/MAYOERU:0x5648	Might be<L{> good...<FFF6>But there is <}><S{> good... But there<FFF6>is <}>long road ahead.<FFF5>
 119	0x34af	pack/talk/MAYOERU:0x56a8	If lend help to those of flesh,<FFF6>perhaps home will be found...<FFF5>
-120	0x34ce	pack/talk/MAYOERU:0x5728	Uuuurhh! Those of flesh should<FFF6>not get involved with <FFF3>!<FFF5>
+120	0x34ce	pack/talk/MAYOERU:0x5728	Uuuurhh!<FFFC><FFF6>Those of flesh should not get<FFF6>involved with <FFF3>!<FFF5>
 121	0x34f7	pack/talk/MAYOERU:0x5798	<FFF3> does not want to help!<FFF5>
 122	0x350c	pack/talk/MAYOERU:0x57d0	Will <FFF3> be able<FFF6>to help those of flesh...?<FFF5>
-123	0x3524	pack/talk/MAYOERU:0x5828	Augh... <FFF3> is just lost...<FFF5>
+123	0x3524	pack/talk/MAYOERU:0x5828	Augh...<FFFC><FFF6><FFF3> is just lost...<FFF5>
 124	0x3543	pack/talk/MAYOERU:0x5860	Flesh-havers want <FFF0> help!?<FFF6>So glad, so warm...<FFF5>
-125	0x3563	pack/talk/MAYOERU:0x58c0	<FFF3> will prove useful!<FFF6>Truthfully!<FFF5>
-126	0x3582	pack/talk/MAYOERU:0x5908	Those of flesh dare<FFF6>anger <FFF3>?<FFF6>Man of flesh is bizarre...<FFF5>
-127	0x35aa	pack/talk/MAYOERU:0x5978	Those of flesh... <FFF3><FFF6>will accept something to show<FFF6>how much fleshlings like <FFF3>.<FFF1><FFF5>
-128	0x35d8	pack/talk/MAYOERU:0x5a18	Uuuurhhh! Taunting <FFF3>!?<FFF6>Never forgive!<FFF5>
-129	0x35fc	pack/talk/MAYOERU:0x5a68	Uuurrhh! <FFF3> is angry!<FFF6>Time frame to beg for life shrinking.<FFF1><FFF5>
-130	0x3631	pack/talk/MAYOERU:0x5ae0	Augh... Fleshlings seem strong...<FFF5>
-131	0x364d	pack/talk/MAYOERU:0x5b28	Augh... Was teased...<FFF6><FFF3> is just lost...<FFF5>
+125	0x3563	pack/talk/MAYOERU:0x58c0	<FFF3> will prove useful!<FFFC><FFF6>Truthfully!<FFF5>
+126	0x3582	pack/talk/MAYOERU:0x5908	Those of flesh<L{> dare<FFF6>anger <}><S{> dare anger <}><FFF3>?<FFF6>Man of flesh is bizarre...<FFF5>
+127	0x35aa	pack/talk/MAYOERU:0x5978	Those of flesh...<FFFC> <FFF3><FFF6>will accept something to<L{> show<FFF6>how much fleshlings <}><S{> show how much<FFF6>fleshlings <}>like <FFF3>.<FFF1><FFF5>
+128	0x35d8	pack/talk/MAYOERU:0x5a18	Uuuurhhh!<FFFC><FFF6>Taunting<L{> <FFF3>!?<FFF6>Never <}><S{> <FFF3>!? Never <}>forgive!<FFF5>
+129	0x35fc	pack/talk/MAYOERU:0x5a68	Uuurrhh!<FFFC> <FFF3> is angry!<FFF6>Time frame to beg for life shrinking.<FFF1><FFF5>
+130	0x3631	pack/talk/MAYOERU:0x5ae0	Augh...<FFFC><FFF6>Fleshlings seem strong...<FFF5>
+131	0x364d	pack/talk/MAYOERU:0x5b28	Augh...<FFFC><FFF6>Was<L{> teased...<FFF6><FFF3> <}><S{> teased... <FFF3> <}>is just lost...<FFF5>
 132	0x3674	pack/talk/MAYOERU:0x5b78	<FFF3> wants to be in good<FFF6>mood always... Will not get angry.<FFF5>
 133	0x3696	pack/talk/MAYOERU:0x5bf0	<FFF3> is not of living flesh.<FFF6>This is why emotional expressions<FFF6>by those of flesh are fun.<FFF5>
 134	0x36c9	pack/talk/MAYOERU:0x5ca0	Man of flesh, improve feats more.<FFF6><FFF3> will look forward.<FFF5>
 135	0x36f5	pack/talk/MAYOERU:0x5d10	Feats of flesh-havers are intriguing.<FFF6><FFF3> cannot perform feats...<FFF6>Will take something instead.<FFF1><FFF5>
-136	0x3732	pack/talk/MAYOERU:0x5dd0	Uuuuurh! So what?<FFF6>Was boring and unpleasant!<FFF5>
-137	0x375f	pack/talk/MAYOERU:0x5e30	Do those of flesh want to see<FFF6>the anger of <FFF3>!?<FFF6>Now, make up for leading astray!<FFF1><FFF5>
-138	0x378f	pack/talk/MAYOERU:0x5ed8	Augh... Cold for some reason...<FFF6>The flesh-havers' lives are cold...<FFF5>
-139	0x37ba	pack/talk/MAYOERU:0x5f60	S-So cold... Not warm being with<FFF6>those of flesh... Should go home...<FFF5>
-140	0x37e5	pack/talk/MAYOERU:0x5ff0	Those of flesh bring delight!<FFF6><FFF3> should find<FFF6>place for self too!<FFF5>
+136	0x3732	pack/talk/MAYOERU:0x5dd0	Uuuuurh!<FFFC><FFF6>So what? Was boring and unpleasant!<FFF5>
+137	0x375f	pack/talk/MAYOERU:0x5e30	Do those of flesh want to see<FFF6>the anger of <FFF3>!?<FFFC><FFF6>Now, make up for leading astray!<FFF1><FFF5>
+138	0x378f	pack/talk/MAYOERU:0x5ed8	Augh...<FFFC><FFF6>Cold for some reason...<FFFC><FFF6>The flesh-havers’ lives are cold...<FFF5>
+139	0x37ba	pack/talk/MAYOERU:0x5f60	S-So cold...<FFFC> Not warm being with<FFF6>those of flesh... Should go home...<FFF5>
+140	0x37e5	pack/talk/MAYOERU:0x5ff0	Those of flesh bring delight!<FFFC><FFF6><FFF3><L{> should find<FFF6>place <}><S{> should<FFF6>find place <}>for self too!<FFF5>
 141	0x3813	pack/talk/MAYOERU:0x6070	Good going! Do more!<FFF6><FFF3> will watch.<FFF5>
-142	0x3837	pack/talk/MAYOERU:0x60b8	<FFF3> is<FFF6>interested in those of flesh...<FFF6>Might be good to accept invitation.<FFF5>
+142	0x3837	pack/talk/MAYOERU:0x60b8	<FFF3><L{> is<FFF6>interested <}><S{> is interested <}>in those<L{> of flesh...<FFF6>Might <}><S{> of<FFF6>flesh... Might <}>be good to accept invitation.<FFF5>
 143	0x3861	pack/talk/MAYOERU:0x6150	Will spend time with those of flesh,<FFF6>but <FFF3> has request too.<FFF1><FFF5>
-144	0x388c	pack/talk/MAYOERU:0x61d0	Uuuurh! <FFF3> is <FFF0>.<FFF6>Incomptabible with flesh-havers!<FFF5>
-145	0x38b3	pack/talk/MAYOERU:0x6238	<FFF3> is looking for place<FFF6>to belong! Have no time to give<FFF6>to those of flesh! Buy own time!<FFF1><FFF5>
-146	0x38e9	pack/talk/MAYOERU:0x62f0	Augh... Those of flesh are sly...<FFF6>This may be a trap...<FFF5>
-147	0x3912	pack/talk/MAYOERU:0x6360	Augh... Cannot understand actions<FFF6>of those of flesh... Urgh... Painful.<FFF5>
-148	0x3943	pack/talk/MAYOERU:0x63f0	Uiiii!<FFF6>Need <FFF3>'s help!? So happy!<FFF5>
-149	0x396f	pack/talk/MAYOERU:0x6438	<FFF3> loves seduction.<FFF6>Those of flesh,<FFF6>let us seduce together!<FFF5>
-150	0x399d	pack/talk/MAYOERU:0x64b0	<FFF3> won't prey on the weak.<FFF6>Those of flesh, be relieved.<FFF5>
+144	0x388c	pack/talk/MAYOERU:0x61d0	<L{>Uuuurh!<FFFC> <FFF3> <}><S{>Uuuurh!<FFFC><FFF6><FFF3> <}>is <FFF0>.<FFF6>Incomptabible with flesh-havers!<FFF5>
+145	0x38b3	pack/talk/MAYOERU:0x6238	<FFF3> is looking for place<FFF6>to belong!<FFFC> Have no time to give<FFF6>to those of flesh! Buy own time!<FFF1><FFF5>
+146	0x38e9	pack/talk/MAYOERU:0x62f0	Augh...<FFFC><FFF6>Those of flesh are sly...<FFFC><FFF6>This may be a trap...<FFF5>
+147	0x3912	pack/talk/MAYOERU:0x6360	<L{>Augh...<FFFC> Cannot <}><S{>Augh...<FFFC><FFF6>Cannot <}>understand actions<FFF6>of those of flesh...<FFFC> Urgh...<FFFC> Painful.<FFF5>
+148	0x3943	pack/talk/MAYOERU:0x63f0	Uiiii!<FFFC><FFF6>Need <FFF3>’s help!?<FFFC> So happy!<FFF5>
+149	0x396f	pack/talk/MAYOERU:0x6438	<FFF3> loves seduction.<FFF6>Those of<L{> flesh,<FFF6>let <}><S{> flesh, let <}>us seduce together!<FFF5>
+150	0x399d	pack/talk/MAYOERU:0x64b0	<FFF3> won’t prey on the weak.<FFF6>Those of flesh, be relieved.<FFF5>
 151	0x39c9	pack/talk/MAYOERU:0x6520	Those of flesh say good things.<FFF6><FFF3> likes you.<FFF6>Will accept something.<FFF1><FFF5>
-152	0x39fa	pack/talk/MAYOERU:0x65b0	Uuuuurh!<FFF6><FFF3> won't allow lies!<FFF5>
+152	0x39fa	pack/talk/MAYOERU:0x65b0	Uuuuurh!<FFFC><FFF6><FFF3> won’t allow lies!<FFF5>
 153	0x3a17	pack/talk/MAYOERU:0x65f0	Doubtful if really means that!<FFF6>Those of flesh take blame<FFF6>for having no guarantee!<FFF1><FFF5>
-154	0x3a45	pack/talk/MAYOERU:0x6698	Augh... <FFF3> is a good<FFF6><FFF0>... Am being teased?<FFF5>
-155	0x3a6d	pack/talk/MAYOERU:0x66f0	Augh... Actions of the flesh-havers<FFF6>always have a catch...<FFF5>
-156	0x3a96	pack/talk/MAYOERU:0x6768	<FFF3> is good!<FFF6>Those of flesh know well! Say more!<FFF5>
-157	0x3acc	pack/talk/MAYOERU:0x67c8	Even <FFF3> is embarrassed to<FFF6>be praised so much... But still happy!<FFF5>
+154	0x3a45	pack/talk/MAYOERU:0x6698	Augh...<FFFC><FFF6><FFF3> is a good <FFF0>...<FFFC><FFF6>Am being teased?<FFF5>
+155	0x3a6d	pack/talk/MAYOERU:0x66f0	Augh...<FFFC><FFF6>Actions of the flesh-havers<FFF6>always have a catch...<FFF5>
+156	0x3a96	pack/talk/MAYOERU:0x6768	<FFF3> is good!<FFFC><FFF6>Those of flesh know well! Say more!<FFF5>
+157	0x3acc	pack/talk/MAYOERU:0x67c8	Even <FFF3> is embarrassed<FFF6>to be praised so<L{> much...<FFFC><FFF6>But <}><S{> much...<FFFC> But <}>still happy!<FFF5>
 158	0x3af8	pack/talk/MAYOERU:0x6848	Those of flesh carry spell card<FFF6>of <FFF3>... Take care of it.<FFEF>
 159	0x3b21	pack/talk/MAYOERU:0x68c0	Will give this. Take good care of it.<FFEF>
-160	0x3b34	pack/talk/MAYOERU:0x6910	...<FFF3><FFF6>will wander once again...<FFEF>
+160	0x3b34	pack/talk/MAYOERU:0x6910	...<FFF3><FFFC><FFF6>will wander once again...<FFEF>
 161	0x3b4f	pack/talk/MAYOERU:0x6950	<FFF3> has<FFF6>different affinity, so no.<FFF5>
-162	0x3b68	pack/talk/MAYOERU:0x6998	<FFF3> is interested in those of<FFF6>flesh, but doesn't like weak ones.<FFEF>
+162	0x3b68	pack/talk/MAYOERU:0x6998	<FFF3> is interested in those of<FFF6>flesh, but doesn’t like weak ones.<FFEF>
 163	0x3b8f	pack/talk/MAYOERU:0x6a18	Will give this to commemorate meeting.<FFF6>Take good care of it.<FFEF>
 164	0x3bb3	pack/talk/MAYOERU:0x6a98	Well then, time to part ways...<FFF6><FFF3> will begin<FFF6>another journey to be lost.<FFEF>
 165	0x3bdd	pack/talk/MAYOERU:0x6b30	<FFF3> likes those of flesh,<FFF6>so will give this as well.<FFEF>
 166	0x3c03	pack/talk/MAYOERU:0x6b98	<FFF3> is busy<FFF6>looking for places to be...<FFEF>
-167	0x3c23	pack/talk/MAYOERU:0x6be8	<FFF3> has a place to call home<FFF6>again! Take good care of card...<FFEF>
-168	0x3c4e	pack/talk/MAYOERU:0x6c60	Augh... Augh... Forgive with this...<FFEF>
+167	0x3c23	pack/talk/MAYOERU:0x6be8	<FFF3> has a place<FFF6>to call home again!<FFFC><FFF6>Take good care of card...<FFEF>
+168	0x3c4e	pack/talk/MAYOERU:0x6c60	Augh...<FFFC> Augh... Forgive with this...<FFEF>
 169	0x3c72	pack/talk/MAYOERU:0x6cb0	<FFF3> is bored!<FFF6>More fun being lost!<FFF5>
-170	0x3c94	pack/talk/MAYOERU:0x6cf8	Being lost is more exciting! Will give<FFF6>this so <FFF3> can leave!<FFEF>
-171	0x3cc0	pack/talk/MAYOERU:0x6d70	Thinking back... Been some time<FFF6>since made this angry!<FFF6>Feel kind of relieved now...<FFEF>
-172	0x3cf3	pack/talk/MAYOERU:0x6e18	Wonder why? Well, good.<FFF6>Will give spell card!<FFEF>
+170	0x3c94	pack/talk/MAYOERU:0x6cf8	Being lost is more exciting!<FFFC><FFF6>Will give this<L{> so<FFF6><FFF3> <}><S{> so <FFF3> <}>can leave!<FFEF>
+171	0x3cc0	pack/talk/MAYOERU:0x6d70	Thinking back...<FFFC><FFF6>Been some time since made this angry!<FFF6>Feel kind of relieved now...<FFEF>
+172	0x3cf3	pack/talk/MAYOERU:0x6e18	Wonder why?<FFFC><FFF6>Well, good. Will give spell card!<FFEF>
 173	0x3d19	pack/talk/MAYOERU:0x6e78	Maybe become warm Persona<FFF6>if go with those of flesh...<FFEF>
 174	0x3d43	pack/talk/MAYOERU:0x6ee8	Giving spell card... make into Persona<FFF6>that has home to return to...<FFEF>
-175	0x3d78	pack/talk/MAYOERU:0x6f78	Augh... <FFF3><FFF6>will not face flesh-havers in battle...<FFEF>
+175	0x3d78	pack/talk/MAYOERU:0x6f78	Augh...<FFFC> <FFF3><FFF6>will not face flesh-havers in battle...<FFEF>
 176	0x3d9a	pack/talk/MAYOERU:0x6fe0	Will give this to those of flesh.<FFF6>Take good care of it.<FFEF>
 177	0x3dbd	pack/talk/MAYOERU:0x7050	What can be done for those of flesh<FFF6>to let <FFF3> leave safely?<FFEF>
-178	0x3de6	pack/talk/MAYOERU:0x70c8	Will give <FFF3> 's spell card.<FFF6>No more cold things please...<FFEF>
-179	0x3e11	pack/talk/MAYOERU:0x7140	Augh... So envious!<FFF6>That body looks so warm...<FFFB><FFF7><FFF3> wants<FFF6>flesh body suddenly!<FFF5>
+178	0x3de6	pack/talk/MAYOERU:0x70c8	Will give <FFF3> ’s spell card.<FFFC><FFF6>No more cold things please...<FFEF>
+179	0x3e11	pack/talk/MAYOERU:0x7140	Augh... So envious!<FFF6>That body looks so warm...<FFFB><FFF7><FFF3><L{> wants<FFF6>flesh <}><S{> wants flesh <}>body suddenly!<FFF5>
 180	0x3e5b	pack/talk/MAYOERU:0x71e0	Those of flesh must have something<FFF6>warm... <FFF3> wants...<FFF1><FFF5>
-181	0x3e8d	pack/talk/MAYOERU:0x7250	That body looks so warm...<FFF6>But it isn't <FFF3>'s!<FFFB><FFF7><FFF3> is in bad mood now!<FFF6>Those of flesh to blame!<FFF5>
-182	0x3eda	pack/talk/MAYOERU:0x7310	That body looks so warm...<FFF6>But it isn't <FFF3>'s!<FFFB><FFF7>Uuuuuurh!<FFF6>Am angry now! Give something!<FFF1><FFF5>
-183	0x3f24	pack/talk/MAYOERU:0x73c0	Augh... Something's different<FFF6>in the air... No moon...<FFFB><FFF7>This place doesn't feel good...<FFF6>Wonder if should wander again...<FFF5>
-184	0x3f75	pack/talk/MAYOERU:0x74b8	<FFF3> used to be of living<FFF6>flesh too... Was very nice flesh...<FFFB><FFF7>Are all flesh-havers<FFF6>scary these days?<FFF5>
-185	0x3fc2	pack/talk/MAYOERU:0x7580	So pleasant... The world is much<FFF6>warmer with those of flesh around.<FFF5>
-186	0x3ff0	pack/talk/MAYOERU:0x7608	Uiiiiii! Was able to converse with<FFF6>those of living flesh! Feel so happy...<FFF6>Was worth getting lost.<FFF5>
+181	0x3e8d	pack/talk/MAYOERU:0x7250	That body looks so warm...<FFF6>But it isn’t <FFF3>’s!<FFFB><FFF7><FFF3> is in bad mood now!<FFF6>Those of flesh to blame!<FFF5>
+182	0x3eda	pack/talk/MAYOERU:0x7310	That body looks so warm...<FFF6>But it isn’t <FFF3>’s!<FFFB><FFF7>Uuuuuurh!<FFFC><FFF6>Am angry now! Give something!<FFF1><FFF5>
+183	0x3f24	pack/talk/MAYOERU:0x73c0	Augh...<FFFC><FFF6>Something’s different in the<L{> air...<FFF6>No <}><S{> air... No <}>moon...<FFFB><FFF7>This place doesn’t feel good...<FFFC><FFF6>Wonder if should wander again...<FFF5>
+184	0x3f75	pack/talk/MAYOERU:0x74b8	<FFF3> used to be<FFF6>of living flesh too...<FFFC><FFF6>Was very nice flesh...<FFFB><FFF7>Are all<L{> flesh-havers<FFF6>scary <}><S{> flesh-havers scary <}>these days?<FFF5>
+185	0x3fc2	pack/talk/MAYOERU:0x7580	So pleasant...<FFFC><FFF6>The world is much warmer<FFF6>with those of flesh around.<FFF5>
+186	0x3ff0	pack/talk/MAYOERU:0x7608	Uiiiiii! Was able to<L{> converse with<FFF6>those <}><S{> converse<FFF6>with those <}>of living<L{> flesh! Feel <}><S{> flesh!<FFF6>Feel <}>so<L{> happy...<FFF6>Was <}><S{> happy... Was <}>worth getting lost.<FFF5>
 187	0x402c	pack/talk/MAYOERU:0x76d0	No fair! Such nice bodies of flesh!<FFFB><FFF7>Annoyed! But... will still hear out.<FFF5>
 188	0x407b	pack/talk/MAYOERU:0x7768	<FFED>No fair! Such nice bodies of flesh!<FFFB><FFF7>Pissed off!<FFF6>Give something and will negotiate.<FFF1><FFF5>
-189	0x40cf	pack/talk/MAYOERU:0x7818	<FFEC>Wants to talk with those of flesh.<FFF6>That's why called for you...<FFF6>Don't do cold things though...<FFF5>
-190	0x40fd	pack/talk/MAYOERU:0x78d8	<FFEE>Those of flesh answered...<FFF6>Looks warm. But should wait<FFF6>and see what happens...<FFF5>
+189	0x40cf	pack/talk/MAYOERU:0x7818	<FFEC>Wants to talk with those of flesh.<FFF6>That’s why called for you...<FFF6>Don’t do cold things though...<FFF5>
+190	0x40fd	pack/talk/MAYOERU:0x78d8	<FFEE>Those of flesh<L{> answered...<FFFC><FFF6>Looks warm.<FFFC> But <}><S{> answered...<FFFC> Looks warm.<FFFC><FFF6>But <}>should<L{> wait<FFF6>and <}><S{> wait and <}>see what happens...<FFF5>
 191	0x4139	pack/talk/MAYOERU:0x7978	<FFEE>Those of flesh seem fun!<FFF6><FFF3> wants to learn more!<FFF5>
-192	0x416b	pack/talk/MAYOERU:0x79e0	<FFEB>The warmth of flesh is enjoyable!<FFF6><FFF3> is thankful!<FFF5>
-193	0x41a2	pack/talk/MAYOERU:0x7a48	<FFEC>Uuuuurh! Augh... Uuuurh!<FFF6>Augh... Feel like going insane...<FFF5>
-194	0x41df	pack/talk/MAYOERU:0x7ac0	<FFED>Answered in relaxed manner...<FFF6>What do you think <FFF3> is!?<FFFB><FFF7><FFEC>Hm... Maybe thinking that already...<FFF5>
-195	0x4229	pack/talk/MAYOERU:0x7b80	<FFEB>Happy and annoyed... <FFF3><FFF6>fails to understand fleshlings!<FFF5>
+192	0x416b	pack/talk/MAYOERU:0x79e0	<FFEB>The warmth of flesh is enjoyable!<FFFC><FFF6><FFF3> is thankful!<FFF5>
+193	0x41a2	pack/talk/MAYOERU:0x7a48	<FFEC>Uuuuurh!<FFFC> Augh...<FFFC><FFF6>Uuuurh!<FFFC><L{> Augh...<FFFC><FFF6>Feel <}><S{> Augh...<FFFC> Feel <}>like going insane...<FFF5>
+194	0x41df	pack/talk/MAYOERU:0x7ac0	<FFED>Answered in relaxed manner...<FFFC><FFF6>What do you think <FFF3> is!?<FFFB><FFF7><FFEC>Hm...<FFFC><FFF6>Maybe thinking that already...<FFF5>
+195	0x4229	pack/talk/MAYOERU:0x7b80	<FFEB>Happy and annoyed...<FFFC> <FFF3><FFF6>fails to understand fleshlings!<FFF5>
 196	0x425a	pack/talk/MAYOERU:0x7bf0	<FFED><FFF3> is happy and angry!<FFF6>Those of flesh... Give something.<FFF1><FFF5>
-197	0x4284	pack/talk/MAYOERU:0x7c68	<FFEC>Augh... But why does <FFF3>'s<FFF6>heart dance in happiness...?<FFF5>
-198	0x42ad	pack/talk/MAYOERU:0x7cd8	<FFEB><FFF3> isn't a masochist,<FFF6>but being scared feels good...<FFF5>
+197	0x4284	pack/talk/MAYOERU:0x7c68	<FFEC>Augh...<FFFC><FFF6>But why does <FFF3>’s<FFF6>heart dance in happiness...?<FFF5>
+198	0x42ad	pack/talk/MAYOERU:0x7cd8	<FFEB><FFF3> isn’t a masochist,<FFF6>but being scared feels good...<FFF5>
 199	0x42d6	pack/talk/MAYOERU:0x7d48	<FFF3> likes fleshlings now.<FFF6>Will listen to flesh-haver wishes.<FFEF>
-200	0x4305	pack/talk/MAYOERU:0x7dc0	Uuurrhhh!<FFF6>Hate those of flesh! Will possess them!<FFEF>
-201	0x4338	pack/talk/MAYOERU:0x7e28	Augh... Augh... Want to go home...<FFEF>
+200	0x4305	pack/talk/MAYOERU:0x7dc0	Uuurrhhh!<FFFC><FFF6>Hate those of flesh! Will possess them!<FFEF>
+201	0x4338	pack/talk/MAYOERU:0x7e28	Augh...<FFFC> Augh...<FFFC><FFF6>Want to go home...<FFEF>
 202	0x435b	pack/talk/MAYOERU:0x7e70	<FFF3> is so happy...<FFEF>
-203	0x436c	pack/talk/MAYOERU:0x7e98	Hate those of flesh. But slightly<FFF6>interested. What do fleshlings want?<FFEF>
-204	0x43a0	pack/talk/MAYOERU:0x7f28	Augh... Augh... Will listen<FFF6>to what the fleshlings say...<FFF6>What do you want <FFF3> to do?<FFEF>
+203	0x436c	pack/talk/MAYOERU:0x7e98	Hate those of flesh.<FFF6>But slightly interested.<FFF6>What do fleshlings want?<FFEF>
+204	0x43a0	pack/talk/MAYOERU:0x7f28	Augh...<FFFC><L{> Augh...<FFFC> Will listen<FFF6>to <}><S{> Augh...<FFFC><FFF6>Will listen to <}>what the fleshlings say...<FFFC><FFF6>What do you want <FFF3> to do?<FFEF>
 205	0x43d0	pack/talk/MAYOERU:0x7fd0	<FFF3> loves fleshlings now.<FFF6>Will listen to all their wishes.<FFEF>
-206	0x4403	pack/talk/MAYOERU:0x8048	Uuurghhh! Augh... Augh... Urrghhh!<FFEF>
-207	0x4433	pack/talk/MAYOERU:0x8090	...Want body of flesh, but not<FFF6>interested in bodies of no use!<FFEF>
-208	0x4463	pack/talk/MAYOERU:0x8110	...That good body of flesh...<FFF6>Watching makes <FFF3>very<FFF6>fascinated...<FFEF>
+206	0x4403	pack/talk/MAYOERU:0x8048	Uuurghhh!<FFFC> Augh... Augh... Urrghhh!<FFEF>
+207	0x4433	pack/talk/MAYOERU:0x8090	...Want body of<L{> flesh, but not<FFF6>interested <}><S{> flesh,<FFF6>but not interested <}>in bodies of no use!<FFEF>
+208	0x4463	pack/talk/MAYOERU:0x8110	...That good body of<L{> flesh...<FFFC><FFF6>Watching makes <FFF3>very<FFF6>fascinated...<FFEF><}><S{> flesh...<FFFC> Watching makes<FFF6><FFF3>very fascinated...<FFEF><}>
 209	0x4493	pack/talk/MAYOERU:0x8198	<FFF3> wants money.<FFF6>Will be satisfied with <FFF8> yen.<FFEF>
-210	0x44b6	pack/talk/MAYOERU:0x81f8	Uiii! Those of flesh are good humans.<FFF5>
-211	0x44d2	pack/talk/MAYOERU:0x8248	Don't have any! Uuuurh!<FFF6>Those of flesh are liars!<FFF5>
-212	0x44fe	pack/talk/MAYOERU:0x82b0	Augh... Nothing to be done<FFF6>if fleshlings are poor...<FFF5>
-213	0x4520	pack/talk/MAYOERU:0x8320	Don't underestimate <FFF3>!<FFF5>
-214	0x4532	pack/talk/MAYOERU:0x8350	Augh... But <FFF3> is<FFF6>so hungry...<FFF5>
+210	0x44b6	pack/talk/MAYOERU:0x81f8	Uiii!<FFFC><FFF6>Those of flesh are good humans.<FFF5>
+211	0x44d2	pack/talk/MAYOERU:0x8248	Don’t have any!<FFFC><FFF6>Uuuurh! Those of flesh are liars!<FFF5>
+212	0x44fe	pack/talk/MAYOERU:0x82b0	Augh...<FFFC><FFF6>Nothing to be<L{> done<FFF6>if <}><S{> done if <}>fleshlings are poor...<FFF5>
+213	0x4520	pack/talk/MAYOERU:0x8320	Don’t underestimate <FFF3>!<FFF5>
+214	0x4532	pack/talk/MAYOERU:0x8350	Augh...<FFFC><FFF6>But <FFF3> is so hungry...<FFF5>
 215	0x454a	pack/talk/MAYOERU:0x8390	<FFF3> wants life stones.<FFF6>Will be satisfied with one.<FFEF>
-216	0x456d	pack/talk/MAYOERU:0x83f8	Uiiii! <FFF3> loves fleshlings.<FFF5>
-217	0x4589	pack/talk/MAYOERU:0x8430	Don't have any!? Are those of flesh<FFF6>idiots? Yes, must be idiots.<FFF5>
-218	0x45ba	pack/talk/MAYOERU:0x84b8	Augh... Nothing to be done<FFF6>if fleshlings don't have any...<FFF5>
-219	0x45dc	pack/talk/MAYOERU:0x8530	Those of flesh!<FFF6>Don't underestimate <FFF3>!<FFF5>
-220	0x45fa	pack/talk/MAYOERU:0x8580	No...? But might have<FFF6>given money to <FFF3>...<FFF6>Should look forward to next time.<FFF5>
+216	0x456d	pack/talk/MAYOERU:0x83f8	Uiiii!<FFFC><FFF6><FFF3> loves fleshlings.<FFF5>
+217	0x4589	pack/talk/MAYOERU:0x8430	Don’t have any!?<FFF6>Are those of flesh idiots?<FFF6>Yes, must be idiots.<FFF5>
+218	0x45ba	pack/talk/MAYOERU:0x84b8	Augh...<FFFC> Nothing to be done<FFF6>if fleshlings don’t have any...<FFF5>
+219	0x45dc	pack/talk/MAYOERU:0x8530	Those of flesh!<FFF6>Don’t underestimate <FFF3>!<FFF5>
+220	0x45fa	pack/talk/MAYOERU:0x8580	No...?<FFFC> But might<L{> have<FFF6>given money <}><S{> have given<FFF6>money <}>to <FFF3>...<FFF6>Should look forward to next time.<FFF5>
 221	0x4626	pack/talk/MAYOERU:0x8618	<FFF3> wants a gem.<FFF6>Wants <FFF4>.<FFEF>
-222	0x4644	pack/talk/MAYOERU:0x8648	Uiiii! <FFF3> likes those of<FFF6>living flesh! Will love you!<FFF5>
-223	0x4670	pack/talk/MAYOERU:0x86b8	Okay... Those of flesh are weird.<FFF5>
+222	0x4644	pack/talk/MAYOERU:0x8648	<L{>Uiiii!<FFFC><FFF6><FFF3> likes <}><S{>Uiiii!<FFFC> <FFF3><FFF6>likes <}>those of<L{> living<FFF6>flesh! <}><S{> living flesh! <}>Will love you!<FFF5>
+223	0x4670	pack/talk/MAYOERU:0x86b8	Okay...<FFFC><FFF6>Those of flesh are weird.<FFF5>
 224	0x4684	pack/talk/MAYOERU:0x8700	Those of flesh are so greedy!<FFF5>
 225	0x469d	pack/talk/MAYOERU:0x8740	Those of flesh must<FFF6>love <FFF4>!<FFF5>
 226	0x46ba	pack/talk/MAYOERU:0x8778	<FFF3> wants<FFF6>the vital energy of living flesh.<FFF6>Will be satisfied with single serving.<FFEF>
-227	0x46e4	pack/talk/MAYOERU:0x8820	Uiiii! So warm! So delicious!<FFF5>
+227	0x46e4	pack/talk/MAYOERU:0x8820	Uiiii!<FFFC><FFF6>So warm! So delicious!<FFF5>
 228	0x470b	pack/talk/MAYOERU:0x8860	Those of flesh think it is not possible<FFF6>for <FFF0>!? Nasty humans!<FFF5>
-229	0x4733	pack/talk/MAYOERU:0x88e0	Just wanted a little...<FFF6><FFF3> is saddened...<FFF5>
+229	0x4733	pack/talk/MAYOERU:0x88e0	Just wanted a little...<FFFC><FFF6><FFF3> is saddened...<FFF5>
 230	0x4755	pack/talk/MAYOERU:0x8938	Just wanted a little...<FFF6><FFF3> is saddened...<FFF5>

@@ -1,0 +1,2 @@
+file	order	line	if	unless	note
+ADV	150	.include "adv.asm"			--mods=game-end-goes-to-the-title-screen: GAME END at an Agastya tree goes straight to the title screen

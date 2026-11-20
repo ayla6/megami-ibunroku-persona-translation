@@ -1,0 +1,5 @@
+file	order	line	if	unless	note
+SLPS	190	.include "slps.asm"			--mods=unified-save-menu: CardSave hook to ADV's serial stamp
+ADV	130	.include "adv.asm"			--mods=unified-save-menu: one 14-row panel, no card-choice screen
+OPEN	30	.include "build/mod_save_assets.asm"			shared retail ADV frame art for the title list
+OPEN_EXE	40	.include "open.asm"			--mods=unified-save-menu: 14 rows in the title's load list

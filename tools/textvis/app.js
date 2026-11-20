@@ -8,26 +8,62 @@ const FONT_FALLBACK="AAAAAAAAAAAAAAAAAAAAAGBgYGBgYGBgYABgYAAAAABsbCRIAAAAAAAAAAA
 let ADV=Uint8Array.from(atob(WIDTH_FALLBACK),c=>c.charCodeAt(0));
 let FONT=Uint8Array.from(atob(FONT_FALLBACK),c=>c.charCodeAt(0));
 let ORIG=null, GMAP={};
+// THE FONT EDITION (docs/TEXT_LAYOUT_SPEC.md, "Font editions"): large, small,
+// or both - the large edition drawn as usual and the small one under it.
+// A row carries every edition's layout (<LFF03> breaks only in large,
+// <SFF03> only in small, <L{>...<}> / <S{>...<}> wording one edition alone
+// has); editionText reads one edition back, as vwf_wrap.edition_text does.
+let EDITION='large';
+try{ EDITION=localStorage.getItem('textvis.edition')||'large'; }catch(e){}
+const primaryEdition=()=>EDITION==='both'?'large':EDITION;
+function editionText(s, edition){
+  if(!s||(s.indexOf('<L')<0&&s.indexOf('<S')<0)) return s;
+  const letter=edition==='small'?'S':'L';
+  s=s.replace(/<([LS])\{>([\s\S]*?)<\}>/g,(m,l,t)=>l===letter?t:'');
+  return s.replace(/(?:<[LS][0-9A-F]{2,4}>)+/g,(run,off,all)=>{
+    const own=(run.match(/<([LS])([0-9A-F]{2,4})>/g)||[])
+      .filter(c=>c[1]===letter).map(c=>'<'+c.slice(2)).join('');
+    if(own) return own;
+    const before=all[off-1], after=all[off+run.length];
+    return (before&&before!==' '&&before!=='>'&&after&&after!==' '&&after!=='<')?' ':'';
+  });
+}
+// each edition's glyphs and advances (the page draws a choice grid itself,
+// in every edition it shows); useFont makes one the current face
+const FONTS={};
+function useFont(edition){
+  const f=FONTS[edition]||FALLBACK;
+  ADV=f.adv; FONT=f.font; EXTRA=f.extra; SPELL=f.spell; CUSTOM=f.custom||{};
+}
 function loadFont(){
-  return fetch('/font').then(r=>r.ok?r.json():Promise.reject())
-    .then(d=>{ADV=Uint8Array.from(atob(d.widths),c=>c.charCodeAt(0));
-              FONT=Uint8Array.from(atob(d.font),c=>c.charCodeAt(0));
+  const want=EDITION==='both'?['large','small']:[primaryEdition()];
+  return Promise.all(want.map(ed=>fetch('/font?edition='+ed).then(r=>r.ok?r.json():Promise.reject())
+    .then(d=>{FONTS[ed]={adv:Uint8Array.from(atob(d.widths),c=>c.charCodeAt(0)),
+                         font:Uint8Array.from(atob(d.font),c=>c.charCodeAt(0)),
+                         extra:d.extra, custom:d.custom, spell:d.spell, sheetError:d.sheet_error};
               if(d.orig){
                 ORIG=Uint8Array.from(atob(d.orig),c=>c.charCodeAt(0));
                 GMAP=d.map||{};
-              }
-              render();})
+              }})))
+    .then(()=>{
+      useFont(primaryEdition());
+      document.getElementById('edition').title=FONTS[primaryEdition()]?.sheetError||'';
+      render();
+    })
     .catch(()=>{});
 }
 const BOX=239, SCROLL_ROWS=3;
-const EXTRA={'…':0x7F,'＊':0x80,'￥':0x81};
-const SPELL={'＊':'*','’':"'",'‘':"'",'“':'"','”':'"','–':'-','—':'-','−':'-','＞':'>'};
+const FALLBACK={adv:ADV, font:FONT, extra:{'…':0x7F,'❤':0x80,'￥':0x81},
+                spell:{'＊':'*','’':"'",'‘':"'",'“':'"','”':'"','–':'-','—':'-','−':'-','＞':'>','＜':'<'}};
+let {extra:EXTRA, spell:SPELL}=FALLBACK;
+let CUSTOM={};
 function fold(ch){return SPELL[ch]||ch}
 function code(ch){const c=fold(ch);const o=c.codePointAt(0);
   if(o>=0x20&&o<=0x7E)return o;
   if(EXTRA[c]!==undefined)return EXTRA[c];
   return null}
-function cw(ch){const k=code(ch);return k===null?16:ADV[k-0x20]}
+function cw(ch){const custom=CUSTOM[fold(ch)]; if(custom)return custom[0];
+  const k=code(ch);return k===null?16:ADV[k-0x20]}
 // control codes and their parameter bytes (a name insert's あ, <FFFD>'s
 // branch character - "ヌ" in the demon lines) never print and never measure.
 const CODE_PARAM=/<FFFD>.|<FF(07|08|0F)>あ|<[^>]+>/g;
@@ -36,7 +72,7 @@ const CODE_PARAM=/<FFFD>.|<FF(07|08|0F)>あ|<[^>]+>/g;
 // player's name slot. The list preview uses it; the editor and the sources
 // show the literal codes.
 function pretty(s){
-  return s
+  return editionText(s, primaryEdition())
     .replace(/<FFFD>(.)/g, '⏸$1')
     .replace(/<FF(07|08|0F)>(あ|<[^>]*>)?/g, (m, k) => k === '08' ? '{nick}' : '{name}')
     .replace(/<FFF6>/g, '\\n')
@@ -127,7 +163,8 @@ function choiceViolations(fit, meta, cells){
 }
 
 // ---- drawing the real font ----
-const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const cv=document.getElementById('cv');
+let ctx=cv.getContext('2d');      // the canvas being drawn (renderChoice may switch it)
 function drawOrig(ch,x,y,z,color){
   // THE RETAIL JAPANESE FONT: 16x16 1-bpp, 32 bytes per glyph, MSB is the
   // leftmost pixel. Only characters the English font has no cell for reach
@@ -147,10 +184,11 @@ function drawOrig(ch,x,y,z,color){
 }
 function drawGlyph(ch,x,y,z,color){
   const k=code(ch);
-  if(k===null)return drawOrig(ch,x,y,z,color);
-  const adv=ADV[k-0x20];
+  const custom=CUSTOM[fold(ch)];
+  if(k===null&&!custom)return drawOrig(ch,x,y,z,color);
+  const adv=custom?custom[0]:ADV[k-0x20];
   ctx.fillStyle=color;
-  for(let r=0;r<16;r++){const bits=FONT[(k-0x20)*16+r];
+  for(let r=0;r<16;r++){const bits=custom?custom[1][r]:FONT[(k-0x20)*16+r];
     if(!bits)continue;
     for(let b=0;b<8;b++)if(bits&(0x80>>b))ctx.fillRect(x+b*z,y+r*z,z,z)}
   return adv*z;              // THE PEN SCALES WITH THE PIXELS
@@ -163,19 +201,26 @@ function drawLine(line,x,y,z,color,shadow){
   }
   return px-x;
 }
-function renderChoice(text, z, shadow, guides){
+function renderChoice(text, z, shadow, guides, canvas=cv, quiet=false){
   // The choice row is only the option block: the prompt (and its arming
   // <FF03><FF0E>) is the row above, drawn here as the box's first line so the
-  // options start where the engine's cursor does (row*16 + 0xB4).
+  // options start where the engine's cursor does (row*16 + 0xB4). `canvas`
+  // and the current face (useFont) pick where and in which edition; a
+  // `quiet` draw (the second edition) leaves the line table and status alone.
+  ctx=canvas.getContext('2d');
+  try{ drawChoice(text, z, shadow, guides, canvas, quiet); }
+  finally{ ctx=cv.getContext('2d'); }
+}
+function drawChoice(text, z, shadow, guides, canvas, quiet){
   const meta=CUR.choice;
   const cells=choiceCells(text);
   const fit=choiceFit(cells, meta.width||0);
   const PADX=4, PADY=6, ROWS=3;
   const shown=Math.max(ROWS, 1+fit.rows);
   const W=(BOX+16)*z, H=(shown*16+PADY*2)*z;
-  cv.width=W; cv.height=H; cv.style.width=W+'px'; cv.style.height=H+'px';
+  canvas.width=W; canvas.height=H; canvas.style.width=W+'px'; canvas.style.height=H+'px';
   const wrap=document.getElementById('cvwrap');
-  if(wrap && wrap.style) wrap.style.minHeight=(H+2)+'px';
+  if(!quiet && wrap && wrap.style) wrap.style.minHeight=(H+2)+'px';
   ctx.clearRect(0,0,W,H);
   ctx.fillStyle='#0b1a10'; ctx.fillRect(0,0,W,H);
   if(guides){
@@ -203,6 +248,7 @@ function renderChoice(text, z, shadow, guides){
       rows.push([`${i+1}.${c+1}`, end, cell, end>cap]);
     });
   });
+  if(quiet) return;
   const tb=document.getElementById('lines'); tb.innerHTML='';
   for(const [tag,w,l,over] of rows){
     tb.insertAdjacentHTML('beforeend',
@@ -228,13 +274,24 @@ let RSEQ=0, RT=null;
 function render(){
   const text=$('src').value;
   const z=Math.max(1, Math.round(+$('zoom').value));
-  if(CUR && CUR.choice){ $('headwrap').hidden=true; $('nowhead').hidden=true; $('wdiff').hidden=true; renderChoice(text, z, $('shadow').checked, $('guides').checked); return; }
+  if(CUR && CUR.choice){
+    $('headwrap').hidden=true; $('nowhead').hidden=true; $('wdiff').hidden=true;
+    for(const el of document.querySelectorAll('.small-ed')) el.hidden = EDITION!=='both';
+    renderChoice(editionText(text, primaryEdition()), z, $('shadow').checked, $('guides').checked);
+    // both editions: the small grid under the large one, in its own face
+    if(EDITION==='both' && FONTS.small){
+      useFont('small');
+      try{ renderChoice(editionText(text, 'small'), z, $('shadow').checked, $('guides').checked, $('cv2'), true); }
+      finally{ useFont(primaryEdition()); }
+    }
+    return;
+  }
   clearTimeout(RT);
   RT=setTimeout(()=>renderServer(text), 150);
 }
-async function fetchRender(text, flow, weigh=true){
+async function fetchRender(text, flow, weigh=true, edition=primaryEdition()){
   const r=await fetch('/render',{method:'POST',headers:{'Content-Type':'application/json'},
-                                 body:JSON.stringify({rel:CUR?CUR.rel:'', text, flow, weigh})});
+                                 body:JSON.stringify({rel:CUR?CUR.rel:'', text, flow, weigh, edition})});
   const d=await r.json();
   if(!r.ok) throw new Error(d.error||'render failed');
   return d;
@@ -303,11 +360,18 @@ async function showWeigh(d, z, shadow, guides, seq){
       box.hidden=false;
       box.insertAdjacentHTML('beforeend', `<div class="wk">${label}</div>`);
       const c=document.createElement('canvas'); box.appendChild(c);
+      const cp=document.createElement('button');
+      cp.className='btn'; cp.textContent='copy lines';
+      cp.title='this layout as lines with widths, with the stored one above it';
+      cp.style.alignSelf='flex-start';
+      box.appendChild(cp);
       try{
         const r=await fetchRender(lines.join(brk), false, false);
         if(seq!==RSEQ) return;
         drawPages(c, r, z, shadow, guides);
-      }catch(e){}
+        cp.onclick=()=>copyText(`${rowHead()}\n${LAST_NOW?linesText(LAST_NOW)+'\n':''}`+
+                                `${label.replace(/<[^>]+>/g,'')}:\n${linesText(r)}`);
+      }catch(e){ cp.remove(); }
     }
   }
 }
@@ -352,6 +416,13 @@ async function renderServer(text){
   if(seq!==RSEQ) return;
   LAST_NOW=d; LAST_HEAD=null;
   drawPages(cv, d, z, shadow, guides);
+  // both editions: the small one under the large one, in each column (HEAD
+  // and now), from the same text
+  for(const el of document.querySelectorAll('.small-ed')) el.hidden = EDITION!=='both';
+  if(EDITION==='both'){
+    fetchRender(text, !CUR, false, 'small')
+      .then(o=>{ if(seq===RSEQ) drawPages($('cv2'), o, z, shadow, guides); }).catch(()=>{});
+  }
   const wrap=$('cvwrap'); if(wrap && wrap.style) wrap.style.minHeight=(cv.height*z+2)+'px';
   const tb=$('lines'); tb.innerHTML='';
   const found=[], notes=[];
@@ -384,6 +455,10 @@ async function renderServer(text){
     show(true);
     LAST_HEAD=h;
     drawPages($('cvh'), h, z, shadow, guides);
+    if(EDITION==='both'){
+      fetchRender(CUR.head, false, false, 'small')
+        .then(o=>{ if(seq===RSEQ) drawPages($('cvh2'), o, z, shadow, guides); }).catch(()=>{});
+    }
     $('wdiff').innerHTML=wordDiff(CUR.head, text);
   } else show(false);
 }
@@ -428,12 +503,59 @@ const words = r => (r._w !== undefined && r._wt === r[3]) ? r._w : (r._wt = r[3]
 // is searched too)
 const flat = t => t.replace(/<FF0[1234]>|<FFF[5-7]>|<FFFB>|<FFEF>/g, ' ')
                    .replace(/<FF05><[0-9A-F]{2}><[0-9A-F]{2}>/g, '').replace(/\s+/g, ' ');
+// curly quotes search as their straight forms, either way round
+const plainQuotes = t => t.replace(/[\u2018\u2019\u201B\u2032]/g, "'").replace(/[\u201C\u201D\u201F\u2033]/g, '"');
 const hay = r => (r._h !== undefined && r._ht === r[3] + r[5]) ? r._h
   : (r._ht = r[3] + r[5],
-     r._h = (flat(r[3]) + '\u0000' + r[3] + ' ' + r[5] + ' ' + r[0] + ' ' + r[1] + ' ' + r[2]).toLowerCase());
+     r._h = plainQuotes(flat(r[3]) + '\u0000' + r[3] + ' ' + r[5] + ' ' + r[0] + ' ' + r[1] + ' ' + r[2]).toLowerCase());
+// RANDOM ORDER: the shuffle button gives every row a random key and the list
+// sorts by it until the button is pressed again (a second press reshuffles,
+// a long press - or shift-click - goes back to table order)
+let SHUF = null;
+// repeat folding (see collapseRepeats): on unless the viewer was told off
+let DUPT = true;
+try{ DUPT = localStorage.getItem('textvis.dupes') !== '0'; }catch(e){}
+function shuffled(list){
+  if(!SHUF) return list;
+  const key = r => { const k = r[0] + '\u0000' + r[2]; if(!SHUF.has(k)) SHUF.set(k, Math.random()); return SHUF.get(k); };
+  return list.slice().sort((a, b) => key(a) - key(b));
+}
 function matches(q){
+  return collapseRepeats(shuffled(filterRows(q)));
+}
+// REPEATED WORDING IS ONE ENTRY: the same text ships scene after scene (the
+// Agastya Tree's three lines stand in every save room), so a list that paints
+// every copy is mostly copies. Identical wording folds onto its first row,
+// whose badge opens the rest in place; the key carries the state and the note
+// so a manual row is never hidden behind an untouched one.
+let FOLDED = 0;
+function repeatKey(r){ return r[3] + '\u0000' + r[4] + '\u0000' + r[5]; }
+function collapseRepeats(list){
+  if(!DUPT){
+    for(const r of list){ r._copies = null; r._foldedBy = null; }
+    FOLDED = 0;
+    return list;
+  }
+  const seen = new Map(), out = [];
+  for(const r of list){
+    const lead = seen.get(repeatKey(r));
+    if(lead){
+      r._copies = null;
+      r._foldedBy = lead;
+      (lead._copies || (lead._copies = [])).push(r);
+      continue;
+    }
+    r._copies = null;
+    r._foldedBy = null;
+    seen.set(repeatKey(r), r);
+    out.push(r);
+  }
+  FOLDED = list.length - out.length;
+  return out;
+}
+function filterRows(q){
   const longonly = $('longonly').checked;
-  const needle = q.toLowerCase().replace(/\s+/g, ' ');
+  const needle = plainQuotes(q).toLowerCase().replace(/\s+/g, ' ');
   return ROWS.filter(r => {
     const [rel, id, pos, text, state, note, man] = r;
     if(FAM !== 'ALL' && !rel.startsWith(FAM)) return false;
@@ -467,10 +589,15 @@ function stateTag(state){
 }
 function rowHtml(rec){
   const [rel, id, pos, text, state, note] = rec;
+  const copies = rec._copies || [];
   return `<div class="k"><span class="fam">${esc(rel)}</span> #${esc(id)}${stateTag(state)}` +
          `${note ? '<span class="tag n">note</span>' : ''}<span class="pg"> · ${esc(pos)}</span>` +
+         (copies.length ? `<span class="tag d" data-act="copies" title="this wording is in ${copies.length + 1} rows — open the other locations">×${copies.length + 1}</span>` : '') +
          `<button class="mini" data-act="find" title="open this row and search the PSP text for it">psp</button></div>` +
-         `<div class="t">${esc(pretty(text)) || esc(note)}</div>`;
+         `<div class="t">${esc(pretty(text)) || esc(note)}</div>` +
+         (copies.length ? `<div class="copies">` + copies.map((c, i) =>
+           `<div class="copy" data-i="${i}" title="open this copy"><span class="fam">${esc(c[0])}</span> #${esc(c[1])}` +
+           `<span class="pg"> · ${esc(c[2])}</span></div>`).join('') + `</div>` : '');
 }
 function hitHtml(h){
   const [reg, rel, id, pos, text] = h;
@@ -503,6 +630,7 @@ function updateCount(){
   if(MODE === 'rows'){
     c.textContent = `${SHOWN.length} row${SHOWN.length === 1 ? '' : 's'}` +
                     (FAM === 'ALL' ? '' : ` in ${FAM}`) +
+                    (FOLDED ? ` · ${FOLDED} repeat${FOLDED === 1 ? '' : 's'} folded` : '') +
                     (PAINTED < SHOWN.length ? ` · ${PAINTED} shown` : '');
   } else {
     const q = $('filt').value.trim();
@@ -523,7 +651,11 @@ function appendRows(){
       const rec = SHOWN[i];
       d.innerHTML = rowHtml(rec);
       d.onclick = e => {
-        const hit = e.target && e.target.closest && e.target.closest('[data-act="find"]');
+        const t = e.target;
+        if(t.closest && t.closest('[data-act="copies"]')){ d.classList.toggle('open'); return; }
+        const copy = t.closest && t.closest('.copy');
+        if(copy && rec._copies){ const c = rec._copies[+copy.dataset.i]; if(c) pick(c); return; }
+        const hit = t.closest && t.closest('[data-act="find"]');
         if(hit) pick(rec).then(ok => { if(ok) findMatches(); });
         else pick(rec);
       };
@@ -559,7 +691,7 @@ function updateDirty(){
   if(DIRTY) setStatus('unsaved');
 }
 function confirmDiscard(){
-  return !DIRTY || confirm('Discard unsaved edits to this row?');
+  return !(DIRTY || ERRDIRTY) || confirm('Discard unsaved edits to this row?');
 }
 function fillSources(d){
   const man = d.man, gen = d.gen;
@@ -577,12 +709,127 @@ function fillSources(d){
   $('src_psp').textContent = lines.length ? lines.join('\n\n') : '(no PSP source for this row)';
   $('src_ja').textContent = d.ja || '(no PSX Japanese at this pos)';
 }
+// ---- the row's PSP errata: edited here, previewed as you type, saved to
+// translation/psp_errata.tsv (the port applies them at the row's one write) ----
+let ERR = [], ERRDIRTY = false, ERRT = null, ERRSEQ = 0;
+function fillErrata(d){
+  const e = d.errata;
+  $('errata').hidden = !e;
+  $('errmeta').textContent = e ? `${e.rel} · ${e.pos}` : '(this row names no single PSP-US line)';
+  ERR = e ? e.rows.map(r => ({find: r.find, replace: r.replace, note: r.note || ''})) : [];
+  ERRDIRTY = false;
+  drawErrRows();
+  errPreview();
+}
+function drawErrRows(){
+  const box = $('errrows'); box.innerHTML = '';
+  ERR.forEach((r, i) => {
+    const row = document.createElement('div'); row.className = 'errrow';
+    for(const k of ['find', 'replace', 'note']){
+      const inp = document.createElement('input');
+      inp.value = r[k]; inp.placeholder = k; inp.spellcheck = false; inp.dataset.i = i;
+      inp.oninput = () => { r[k] = inp.value; errChanged(); };
+      row.appendChild(inp);
+    }
+    const del = document.createElement('button');
+    del.className = 'btn'; del.textContent = '✕'; del.title = 'remove this errata';
+    del.onclick = () => { ERR.splice(i, 1); drawErrRows(); errChanged(); };
+    row.appendChild(del);
+    box.appendChild(row);
+  });
+}
+function errChanged(){
+  ERRDIRTY = true;
+  $('errata').classList.add('dirty');
+  $('errsave').disabled = false;
+  errPreview();
+}
+function errPreview(){
+  clearTimeout(ERRT);
+  $('errata').classList.toggle('dirty', ERRDIRTY);
+  $('errsave').disabled = !ERRDIRTY;
+  if(!CUR || !CUR.errata) return;
+  if(!ERRDIRTY){
+    $('errline').textContent = CUR.errata.rows.length ? '' : CUR.errata.raw;
+    $('errstat').textContent = CUR.errata.rows.length ? '' : 'no errata on this line';
+    $('errprevk').hidden = true; $('cve').hidden = true;
+    if(CUR.errata.rows.length) errFetch();
+    return;
+  }
+  ERRT = setTimeout(errFetch, 150);
+}
+async function errFetch(){
+  const seq = ++ERRSEQ;
+  const z = Math.max(1, Math.round(+$('zoom').value));
+  try{
+    const r = await fetch('/errata/preview', {method:'POST', headers:{'Content-Type':'application/json'},
+                                              body: JSON.stringify({rel: CUR.rel, pos: CUR.pos, rows: ERR})});
+    const d = await r.json();
+    if(seq !== ERRSEQ) return;
+    if(!r.ok) throw new Error(d.error || 'preview failed');
+    $('errline').textContent = d.applied;
+    const notes = [];
+    if(d.manual) notes.push('a manual row ships instead: errata change only the generated row');
+    if(d.missed.length) notes.push(`not placed in the row's English (the port will): ${d.missed.join(' · ')}`);
+    $('errstat').innerHTML = notes.length ? `<span class="warn">${esc(notes.join(' · '))}</span>`
+                                          : (ERRDIRTY ? 'unsaved' : '');
+    const show = ERRDIRTY;
+    $('errprevk').hidden = !show; $('cve').hidden = !show;
+    if(show){
+      const pr = await fetchRender(d.en, false, false);
+      if(seq !== ERRSEQ) return;
+      drawPages($('cve'), pr, z, $('shadow').checked, $('guides').checked);
+    }
+  }catch(e){
+    if(seq !== ERRSEQ) return;
+    $('errstat').innerHTML = `<span class="warn">${esc(e.message || e)}</span>`;
+  }
+}
+async function saveErrata(){
+  if(!CUR || !CUR.errata) return;
+  try{
+    const r = await fetch('/errata', {method:'POST', headers:{'Content-Type':'application/json'},
+                                      body: JSON.stringify({rel: CUR.rel, pos: CUR.pos, rows: ERR})});
+    const d = await r.json();
+    if(!r.ok) throw new Error(d.error || 'save failed');
+    CUR.errata = d.errata;
+    ERRDIRTY = false;
+    $('errata').classList.remove('dirty');
+    $('errsave').disabled = true;
+    $('errstat').textContent = 'saved to translation/psp_errata.tsv — the next port writes the row';
+  }catch(e){ $('errstat').innerHTML = `<span class="warn">${esc(e.message || e)}</span>`; }
+}
+$('erradd').onclick = () => { ERR.push({find: '', replace: '', note: ''}); drawErrRows(); ERRDIRTY = true; errPreview();
+  const ins = $('errrows').querySelectorAll('input'); if(ins.length) ins[ins.length - 3].focus(); };
+$('errsave').onclick = saveErrata;
+$('shuffle').onclick = e => {
+  SHUF = e.shiftKey && SHUF ? null : new Map();
+  $('shuffle').classList.toggle('on', !!SHUF);
+  $('shuffle').textContent = SHUF ? 'reshuffle' : 'shuffle';
+  if(MODE === 'rows'){ SHOWN = matches($('filt').value.trim()); renderList(); }
+  setStatus(SHUF ? 'random order (shift-click: table order)' : 'table order');
+};
+$('reload').onclick = async () => {
+  if(!confirmDiscard()) return;
+  setStatus('reloading…');
+  try{
+    const r = await fetch('/reload', {method:'POST'});
+    const d = await r.json();
+    if(!r.ok) throw new Error(d.error || 'reload failed');
+    await loadFont();
+    await loadRows();
+    if(CUR){ DIRTY = false; ERRDIRTY = false; await pick([CUR.rel, '', CUR.pos]); }
+    setStatus(`reloaded: ${d.rows} rows, ${d.modules} modules`);
+  }catch(e){ setStatus(String(e.message || e), true); }
+};
+
 function setDetail(d){
   CUR = d;
   const id = (d.gen && d.gen.id) || (d.man && d.man.id) || '';
   $('locid').textContent = `${d.rel}  #${id}  ·  pos ${d.pos}`;
   $('badge').innerHTML = stateTag(d.state);
   fillSources(d);
+  fillErrata(d);
   updateDirty();
 }
 async function pick(rec){
@@ -627,6 +874,19 @@ function refreshListRow(d){
   rec[5] = (d.man && d.man.note) || '';
   rec[6] = d.man ? 1 : 0;
   if(MODE !== 'rows') return;
+  // a folded row's wording just changed, so its group is not one text
+  // anymore: re-fold the list and keep the scroll where the reader had it
+  if(rec._copies || rec._foldedBy){
+    const top = $('list').scrollTop;
+    SHOWN = matches($('filt').value.trim());
+    renderList();
+    // paint on until the row the reader had is within reach again
+    while(PAINTED < SHOWN.length && $('list').scrollTop < top - 1){
+      appendRows();
+      $('list').scrollTop = top;
+    }
+    return;
+  }
   const el = ROW_EL.get(keyOf(rec));
   if(el) el.innerHTML = rowHtml(rec);
 }
@@ -767,6 +1027,7 @@ function setMode(m){
   for(const b of document.querySelectorAll('.mode')) b.classList.toggle('on', b.dataset.mode === m);
   $('fam').style.display = m === 'rows' ? '' : 'none';
   $('manfilt').style.display = m === 'rows' ? '' : 'none';
+  $('dupeslab').style.display = m === 'rows' ? '' : 'none';
   const f = $('filt');
   f.value = '';
   f.placeholder = m === 'rows' ? 'filter rows…' : 'search PSP US + JP text…';
@@ -778,7 +1039,8 @@ function setMode(m){
 async function stepRow(step){
   if(!SHOWN.length) return;
   if(MODE === 'rows'){
-    const cur = CUR ? SHOWN.findIndex(r => r[0] === CUR.rel && r[2] === CUR.pos) : -1;
+    const here = CUR && ROWS.find(r => r[0] === CUR.rel && r[2] === CUR.pos);
+    const cur = here ? SHOWN.findIndex(r => r === here || r === here._foldedBy) : -1;
     const i = Math.max(0, Math.min(SHOWN.length - 1, cur + step));
     await pick(SHOWN[i]);
     scrollRowIntoView(i);
@@ -839,11 +1101,24 @@ $('manfilt').onchange = async e => {
   if(MODE === 'rows'){
     SHOWN = matches($('filt').value.trim());
     // the closest calls first
-    if(MANF === 'close') SHOWN.sort((a, b) => CLOSEM.get(a[0] + '\u0000' + a[2]) - CLOSEM.get(b[0] + '\u0000' + b[2]));
+    if(MANF === 'close' && !SHUF) SHOWN.sort((a, b) => CLOSEM.get(a[0] + '\u0000' + a[2]) - CLOSEM.get(b[0] + '\u0000' + b[2]));
     renderList();
   }
 };
+$('edition').value = EDITION;
+$('edition').onchange = e => {
+  EDITION = e.target.value;
+  try{ localStorage.setItem('textvis.edition', EDITION); }catch(err){}
+  loadFont();                       // the primary edition's glyphs, then a redraw
+  if(MODE === 'rows') renderList();
+};
 $('longonly').onchange = () => { if(MODE === 'rows'){ SHOWN = matches($('filt').value.trim()); renderList(); } };
+$('dupes').checked = DUPT;
+$('dupes').onchange = () => {
+  DUPT = $('dupes').checked;
+  try{ localStorage.setItem('textvis.dupes', DUPT ? '1' : '0'); }catch(e){}
+  if(MODE === 'rows'){ SHOWN = matches($('filt').value.trim()); renderList(); }
+};
 for(const b of document.querySelectorAll('.mode')) b.onclick = () => setMode(b.dataset.mode);
 $('save').onclick = saveDraft;
 $('copylines').onclick = () => { if(LAST_NOW) copyText(`${rowHead()}\n${linesText(LAST_NOW)}`); };
@@ -854,6 +1129,21 @@ $('copydiff').onclick = () => {
     : `${rowHead()}\n(same as HEAD)\n${linesText(LAST_NOW)}`);
 };
 $('find').onclick = findMatches;
+// the selected words read as one thing ("all-you-can-eat dinner"): added
+// to translation/phrases.tsv, then the box and the flow's picture redrawn
+$('phrase').onclick = async () => {
+  const src = $('src'), sel = src.value.slice(src.selectionStart, src.selectionEnd);
+  if(!sel.trim()){ $('stat').innerHTML = '<span class="warn">select the words to keep together first</span>'; return; }
+  try{
+    const r = await fetch('/phrases', {method:'POST', headers:{'Content-Type':'application/json'},
+                                       body:JSON.stringify({phrase: sel, note: CUR ? `${CUR.rel} ${CUR.pos}` : ''})});
+    const d = await r.json();
+    if(!r.ok) throw new Error(d.error || 'not added');
+    render();
+    const b = $('phrase'); b.textContent = 'kept: ' + d.phrase;
+    setTimeout(() => { b.textContent = 'keep together'; }, 2000);
+  }catch(e){ $('stat').innerHTML = `<span class="warn">${esc(e.message || e)}</span>`; }
+};
 $('copy').onclick = () => { if(CUR) copyText(`${CUR.rel} ${CUR.pos}`); };
 $('copyt').onclick = () => { if(CUR) copyText(CUR.initial); };
 const srcEl = $('src');
@@ -903,7 +1193,7 @@ document.addEventListener('keydown', e => {
   e.preventDefault();
   stepRow(step);
 });
-window.addEventListener('beforeunload', e => { if(DIRTY){ e.preventDefault(); e.returnValue = ''; } });
+window.addEventListener('beforeunload', e => { if(DIRTY || ERRDIRTY){ e.preventDefault(); e.returnValue = ''; } });
 for(const id of ['zoom', 'shadow', 'guides']) $(id).oninput = render;
 
 // ---- boot ----

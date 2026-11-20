@@ -1,11 +1,9 @@
 kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
-meta	matches_sha1	f30a0459c68ea1449edc3bdb920f520db063dd2d								
-meta	names:SLPS	3cc5ae5a6e5c80115b26d17cd82652a8b061f5f9								
+meta	matches_sha1	da39a3ee5e6b4b0d3255bfef95601890afd80709								
+meta	names:SLPS	c1f608d13c6fcd4e347c4564acb2b45c738827b2								
 meta	psx:BTLP	b2cba081ee71bd645969ec85ee11dc6ac18f2976								
 meta	psx:SLPS	cafb3ce55eeec214553b9bf6d56843d65a8137cf								
-meta	rule_sha1	d0486cf61764b5e49f785cbc0465e9f4b7f5c8d3								
-meta	us:EBOOT	08e9592c6d19ae1a355f016b6664408be61089e4								
-meta	us:pack	86d50612b907ee92ace1eeda1fd346674bbebf80								
+meta	rule_sha1	d0928b35f627038fd6d53816c788d6f51c67578b								
+meta	us:EBOOT	b232ccaccfad6704ba3a2c203f70c9fdaafcf7d9								
+meta	us:pack	50cc994e94736dd2d025c6a2f9a3d18633880ead								
 meta	version	1								
-match			BTLP	0x6dd54	boot	29b132		reward		
-match			BTLP	0x6dd60	boot	29b110		reward		

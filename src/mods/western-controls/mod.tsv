@@ -1,0 +1,7 @@
+name	Western controls
+description	Western controls for controller TYPE 1: Cross confirms and Circle cancels, Triangle and Square swapped, as in the American release (the run button follows Cancel, so it moves to Circle). Not tested extensively.
+default	no
+always	no
+release	yes
+requires	base
+requires	english-translation

@@ -1,0 +1,5 @@
+file	order	line	if	unless	note
+BTLP	320	.include "btlp.asm"			--mods=debug-tools: Start opens the battle debug menu
+BTLP	330	.include "btlp_guard.asm"			--mods=debug-tools: the primitive pool is checked every frame; the first broken one stops the game
+OPEN_EXE	60	.include "open.asm"			--mods=debug-tools: L1/L2/R1/R2/Select on the title start endings 0-4
+END_EXE	40	.include "end.asm"			--mods=debug-tools: R1 fast-forwards an ending, Start skips its movies

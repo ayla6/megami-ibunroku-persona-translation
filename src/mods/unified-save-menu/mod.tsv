@@ -1,0 +1,7 @@
+name	Unified save menu
+description	Merges the slot 1 and slot 2 menus into one, so that you don't have to worry about which one to select. Requires "speed up on memory card access" to not feel like a slog.
+default	no
+always	no
+release	yes
+requires	base
+integrates	latin-alphabet	Uses proportional spacing for saved names when the small-font VWF kit is enabled.

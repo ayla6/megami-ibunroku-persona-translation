@@ -1,0 +1,5 @@
+name	Upper-right movement
+description	Up now moves to the upper right instead of the upper left.
+default	no
+always	no
+release	yes

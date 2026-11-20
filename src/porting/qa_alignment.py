@@ -1,0 +1,155 @@
+"""QA worklist: suspect PSX<->US pairs in the PSP port tables.
+
+Two detectors, both targeting the "confidently wrong English" bug class
+(shifted pairs in box-count-mismatched entries, shared-text misfires):
+
+1. unreviewed pairs of entries whose PSX/JP/US box counts differ (the 47/2
+   bug class: a PSX box silently binds the neighbor's US box; same speaker,
+   so no speaker-mismatch flag fires);
+2. one English text serving visibly different Japanese (a shifted pair
+   reusing the neighbor's US box is the usual cause).
+
+Prints each suspect with its PSX Japanese and the English it would inject;
+a human either extends align_fix.tsv (repoint or gap, see
+repair_alignment.py) or accepts the pair in src/porting/accept.tsv.
+
+Usage: python src/porting/qa_alignment.py
+"""
+import collections
+import csv
+import difflib
+import os
+import re
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
+import toolbelt  # noqa: E402
+import etext  # noqa: E402
+from text import load_psp  # noqa: E402
+from port_story import psx_entries  # noqa: E402
+
+ALIGN = os.path.join(toolbelt.MAPPINGS, 'align.tsv')
+FIX = os.path.join(toolbelt.SOURCE_MAPPINGS, 'align_fix.tsv')
+GEN = os.path.join(ROOT, 'translation', 'generated', 'ADV')
+
+
+def box_counts(f):
+    psx = psx_entries(f)
+    jp = load_psp(f, 'jp')
+    us = load_psp(f, 'us')
+    bad = {}
+    for ei in range(len(psx)):
+        n, nj, nu = len(psx[ei].boxes), len(jp.entries[ei].boxes), len(us.entries[ei].boxes)
+        if not (n == nj == nu):
+            bad[ei] = (n, nj, nu)
+    return bad
+
+
+def generated_rows(f):
+    """(entry, box, en) for the generated ADV table.
+
+    Generated rows are keyed by `pos` ('entry:offset'), not by box index;
+    resolve the offset against the PSX entry so the natural align.tsv key
+    (file, entry, psx_box) can be used.
+    """
+    psx = psx_entries(f)
+    out = []
+    path = os.path.join(GEN, f + '.tsv')
+    if not os.path.exists(path):
+        return out
+    for r in csv.reader(open(path, encoding='utf-8'), delimiter='\t'):
+        if not r or r[0] == 'id' or len(r) < 4:
+            continue
+        try:
+            entry_s, off_s = r[1].split(':', 1)
+            ei, off = int(entry_s), int(off_s, 16)
+        except ValueError:
+            continue
+        if ei >= len(psx):
+            continue
+        k = next((i for i, (s, _e) in enumerate(psx[ei].boxes) if s == off), None)
+        if k is not None:
+            out.append((ei, k, r[3]))
+    return out
+
+
+def divergent_ja():
+    """Second detector: one English text serving visibly different Japanese
+    (the 47/2 bug signature: a shifted pair reuses the neighbor's US box).
+    Legit shared text has identical JA; anything else is suspect."""
+    def en_norm(s):
+        s = re.sub(r'<FF[0-9A-F]{2}>|<[0-9A-F]{2}>|<[0-9A-F]{4}>', ' ', s)
+        return re.sub(r'\s+', ' ', s).strip().lower()
+
+    def ja_norm(s):
+        s = re.sub(r'<FF[0-9A-F]{2}>|<[0-9A-F]{2}>|<[0-9A-F]{4}>', '', s)
+        return re.sub(r'[\s\u3000]', '', s)
+
+    groups = collections.defaultdict(lambda: collections.defaultdict(list))
+    for f in ('E0', 'E1', 'E2', 'E3'):
+        psx = psx_entries(f)
+        for ei, k, en in generated_rows(f):
+            en = en_norm(en)
+            if len(en) > 15:
+                ja = etext.decode(psx[ei].box_bytes(k))
+                groups[en][ja_norm(ja)].append((f, ei, k))
+    n = 0
+    for en, jas in sorted(groups.items()):
+        if len(jas) < 2:
+            continue
+        # real bugs have low JA similarity across groups; minor rewordings
+        # (same scene, one kana difference) are benign
+        reps = list(jas)
+        worst = min(
+            difflib.SequenceMatcher(None, reps[i], reps[j]).ratio()
+            for i in range(len(reps)) for j in range(i + 1, len(reps)))
+        if worst >= 0.5:
+            continue
+        n += 1
+        print(f'== shared EN, divergent JA (sim {worst:.2f}): {en[:80]}')
+        for ja, locs in jas.items():
+            print(f'   {len(locs)}x {ja[:60]}  e.g. {locs[0][0]}/{locs[0][1]}/{locs[0][2]}')
+    print(f'{n} shared-EN texts with divergent JA')
+
+
+def main():
+    fixed = set()
+    for r in csv.reader(open(FIX, encoding='utf-8'), delimiter='\t'):
+        if len(r) >= 3 and r[0] and r[2].isdigit():
+            fixed.add((r[0], int(r[1]), int(r[2])))
+    pairs = {}
+    for r in csv.reader(open(ALIGN, encoding='utf-8'), delimiter='\t'):
+        if not r or r[0] == 'file' or len(r) < 6 or not r[2].isdigit():
+            continue
+        pairs[(r[0], int(r[1]), int(r[2]))] = r
+    suspect = 0
+    for f in ('E0', 'E1', 'E2', 'E3'):
+        bad = box_counts(f)
+        gen = {(ei, k): en for ei, k, en in generated_rows(f)}
+        psx = psx_entries(f)
+        for ei in sorted(bad):
+            for k in range(len(psx[ei].boxes)):
+                en = gen.get((ei, k))
+                if not en:
+                    continue
+                key = (f, ei, k)
+                if key in fixed:
+                    continue
+                r = pairs.get(key)
+                if not r or r[5] != 'ok':
+                    continue
+                ja = etext.decode(psx[ei].box_bytes(k))
+                suspect += 1
+                print(f'== {f}/{ei}/{k} (boxes psx/jp/us={bad[ei]}) pairs->us {r[4]}')
+                print(f'   ja: {ja[:100]}')
+                print(f'   en: {en[:100]}')
+    print(f'{suspect} unreviewed pairs in box-count-mismatched entries')
+    print()
+    divergent_ja()
+
+
+if __name__ == '__main__':
+    sys.stdout.reconfigure(encoding='utf-8')
+    main()

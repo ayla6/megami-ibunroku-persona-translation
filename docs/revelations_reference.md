@@ -2,7 +2,7 @@
 
 User-supplied reference disc: `data/discs/Revelations - Persona (USA)/Persona (USA).bin`
 (git-ignored, like all disc data). Extracted to `scratch/revel/data/` with the
-`src/extraction_tools/psx/extract.py` logic, bypassing the disc guard.
+`src/extraction/psx/extract.py` logic, bypassing the disc guard.
 
 ## Layout
 

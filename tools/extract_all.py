@@ -8,14 +8,14 @@
 
 Stages (each is a repo tool; this only runs them in order and fails loud):
 
-  psx   src/extraction_tools/psx/extract_text_all.py
+  psx   src/extraction/psx/extract_text_all.py
         -> data/extracted_text/psx/<rel>.tsv
-  psp   src/extraction_tools/psp/eboot.py
+  psp   src/extraction/psp/eboot.py
         -> data/extracted_text/psp_{jp,us}/EBOOT.tsv
-        src/extraction_tools/psp/text.py cache|talk-slots|dng
-        src/extraction_tools/psp/end_images.py transcript (ENDALL: pixels, transcribed)
+        src/extraction/psp/text.py cache|talk-slots|dng
+        src/extraction/psp/end_images.py transcript (ENDALL: pixels, transcribed)
         -> data/extracted_text/psp_{jp,us}/pack/...
-  maps  src/extraction_tools/matching/boot_pairs.py --apply
+  maps  src/porting/boot_pairs.py --apply
         -> translation/generated_mappings/psp_pairs.tsv (the PSP-US <-> PSP-JP unit pairs)
 
 Every stage rewrites its outputs from the discs; nothing is incremental,
@@ -28,13 +28,13 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STAGES = {
-    'psx': [('src/extraction_tools/psx/extract_text_all.py', ())],
-    'psp': [('src/extraction_tools/psp/eboot.py', ()),
-            ('src/extraction_tools/psp/text.py', ('cache',)),
-            ('src/extraction_tools/psp/text.py', ('talk-slots',)),
-            ('src/extraction_tools/psp/text.py', ('dng',)),
-            ('src/extraction_tools/psp/end_images.py', ('transcript',))],
-    'maps': [('src/extraction_tools/matching/boot_pairs.py', ('--apply',))],
+    'psx': [('src/extraction/psx/extract_text_all.py', ())],
+    'psp': [('src/extraction/psp/eboot.py', ()),
+            ('src/extraction/psp/text.py', ('cache',)),
+            ('src/extraction/psp/text.py', ('talk-slots',)),
+            ('src/extraction/psp/text.py', ('dng',)),
+            ('src/extraction/psp/end_images.py', ('transcript',))],
+    'maps': [('src/porting/boot_pairs.py', ('--apply',))],
 }
 ORDER = ('psx', 'psp', 'maps')
 

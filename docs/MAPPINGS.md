@@ -10,7 +10,7 @@ requires game inputs. When committing a regeneration, include the updated
 `translation/generated_mappings/` files; other build products stay in `build/`
 and remain ignored.
 
-| File | Producer in `src/extraction_tools/matching/` |
+| File | Producer in `src/porting/` |
 |---|---|
 | `align.tsv` | `align.py`: PSX ADV E0–E3 and both PSP story trees |
 | `map_jp_psx.tsv`, `map_us_jp.tsv` | `split_maps.py`: projections of `align.tsv` |
@@ -24,6 +24,8 @@ and remain ignored.
 | `answers_port_plan.tsv` | `answers_port_plan.py`: answer and answer-slot source locators |
 | `eboot_twin_port_plan.tsv` | `eboot_twin_plan.py`: boot-string PSX key to PSP-US EBOOT offset, including the notice/control consumer proofs |
 | `reward_notice_port_plan.tsv` | `reward_notice.py`: corroborated reward notice to PSP-US EBOOT record |
+| `fmv_dub.tsv` | set by ear in `src/mods/english-dub/dub_editor.py` (no generator): per spoken movie, the PSP-US movie and the piece of its English laid onto the JP movie, with its fades |
+| `battle_voice.tsv` | `src/mods/english-dub/battle_voice.py derive`: per Persona call of a party member's battle bank (B/PS.BIN entry, sub-sequence, VAG), the PSP SE_PRS bank that is its English, matched by the PSP-JP takes |
 
 Pair generation requires raw JP BOOT, US EBOOT, PSX SLPS/S2D/BTLP files and
 independently ported EBOOT provenance in the corresponding generated tables.
@@ -52,7 +54,7 @@ discovering new ones requires a fresh capture.
 
 ## Authored structural inputs
 
-These files live in `src/extraction_tools/matching/`.
+These files live in `src/porting/`.
 
 | File | Purpose / consumer |
 |---|---|
@@ -74,7 +76,7 @@ cells designate gaps. Neither tool reconstructs these authored inputs.
 
 ## Glyphs and wording
 
-- `src/extraction_tools/psp_glyphs.tsv`: the shared PSP glyph table for both regions.
+- `src/extraction/psp_glyphs.tsv`: the shared PSP glyph table for both regions.
 - `translation/manual/terms.tsv`: the `domain/key/en/note` wording dictionary,
   read by `strlib` through `toolbelt.GLOSSARY`.
 

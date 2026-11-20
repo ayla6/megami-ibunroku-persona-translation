@@ -1,0 +1,55 @@
+when	action	target	arguments
+always	tables	-	
+port	font	-	
+port	run	port.py	
+always	font	-	
+SF_VWF	run	smallfont_vwf.py	build
+port	run	etext.py	dump
+port	run	talk.py	dump
+always	mkdir	ADV	
+always	mkdir	previews	
+verify	run	tstatus.py	qa
+verify	run	tstatus.py	status
+always	run	etext.py	build
+always	run	title_gfx.py	
+always	run	menu_gfx.py	
+always	run	name_grid.py	
+always	run	title_vwf.py	
+always	run	name_gfx.py	
+always	run	s2d.py	build
+always	run	giftmsg.py	
+always	run	sysmsg.py	build
+always	run	slps.py	build
+always	run	partynames.py	
+always	run	btlfont.py	
+always	run	btlstat.py	
+always	run	scriptmsg.py	
+always	run	shops.py	
+always	run	estoma.py	
+always	run	menutext.py	
+always	run	descs.py	build
+always	run	demons.py	build
+always	run	name_tails.py	build
+always	run	affinity.py	build
+always	run	fusionmsg.py	
+always	run	statmsg.py	
+always	run	cfgtext.py	
+always	run	runtext.py	
+always	run	dngnames.py	
+always	run	dngpacks.py	build
+always	run	dngspill.py	
+always	run	personas.py	build
+always	run	btlp.py	build
+always	run	btlui.py	
+always	run	btlcmd.py	
+always	run	opentext.py	
+always	run	choices.py	build
+always	run	smallfont_pages.py	
+SF_VWF	run	smallfont_vwf.py	build
+always	mkdir	TALK	
+always	mkdir	EXE	
+always	mkdir	ADV	
+always	run	save_ui.py	
+verify	run	talktl.py	qa
+always	run	talk.py	build
+always	run	etctalk.py	build

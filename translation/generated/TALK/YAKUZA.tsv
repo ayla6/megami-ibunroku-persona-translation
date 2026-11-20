@@ -1,291 +1,291 @@
 id	pos	psp	en
-0	0x2014	pack/talk/YAKUZA:0x2018	If you're travelin' with me, you better<FFF6>be ready to cross the gates of hell...<FFF5>
-1	0x204f	pack/talk/YAKUZA:0x20b8	You want a fist in yer face, punk!?<FFF6>I don't trust no empty suits like<FFF6>you who get interested in yakuza!<FFF5>
-2	0x2085	pack/talk/YAKUZA:0x2188	Hey kid! You got a lot of guts talkin'<FFF6>to those who walk the bloody path.<FFF5>
+0	0x2014	pack/talk/YAKUZA:0x2018	If you’re travelin’ with me, you better<FFF6>be ready to cross the gates of hell...<FFF5>
+1	0x204f	pack/talk/YAKUZA:0x20b8	You want a fist in yer face, punk!?<FFF6>I don’t trust no empty suits like you<FFF6>who get interested in yakuza!<FFF5>
+2	0x2085	pack/talk/YAKUZA:0x2188	Hey kid!<FFFC><FFF6>You got a lot of guts talkin’<FFF6>to those who walk the bloody path.<FFF5>
 3	0x20c1	pack/talk/YAKUZA:0x2220	Ha, right, punk... Oh well.<FFF6>I guess yer more manly than some<FFF6>weak-ass dude with no spirit.<FFF5>
-4	0x20f4	pack/talk/YAKUZA:0x22d8	You better cut the crap, kid. Or do<FFF6>you wanna see what hell looks like!?<FFF5>
-5	0x211f	pack/talk/YAKUZA:0x2370	I'm being made fun of by<FFF6>a buncha regular Joes...<FFF6>Maybe it's time to retire...<FFF5>
-6	0x2146	pack/talk/YAKUZA:0x2410	If you're travelin' with me, you better<FFF6>be ready to cross the gates of hell...<FFF5>
-7	0x2181	pack/talk/YAKUZA:0x24b0	In our world, we've got duty and<FFF6>formalities. You can't ignore that!<FFF5>
-8	0x21ba	pack/talk/YAKUZA:0x2540	I've exchanged cups with the Boss...<FFF6>I won't hurt a civvy...<FFF5>
-9	0x21e4	pack/talk/YAKUZA:0x25c0	You wanna get decked!?<FFF6>No man sings before me!<FFF5>
-10	0x2218	pack/talk/YAKUZA:0x2620	You're singing... in front of me...<FFF6>I guess honor is really dead...<FFF5>
+4	0x20f4	pack/talk/YAKUZA:0x22d8	You better cut the crap, kid.<FFF6>Or do you wanna<L{> see<FFF6>what <}><S{> see what <}>hell looks like!?<FFF5>
+5	0x211f	pack/talk/YAKUZA:0x2370	I’m being made fun of by<FFF6>a buncha regular Joes...<FFFC><FFF6>Maybe it’s time to retire...<FFF5>
+6	0x2146	pack/talk/YAKUZA:0x2410	If you’re travelin’ with me, you better<FFF6>be ready to cross the gates of hell...<FFF5>
+7	0x2181	pack/talk/YAKUZA:0x24b0	In our<L{> world, we’ve got<FFF6>duty <}><S{> world,<FFF6>we’ve got duty <}>and formalities.<FFFC><FFF6>You can’t ignore that!<FFF5>
+8	0x21ba	pack/talk/YAKUZA:0x2540	I’ve exchanged cups with the Boss...<FFFC><FFF6>I won’t hurt a civvy...<FFF5>
+9	0x21e4	pack/talk/YAKUZA:0x25c0	You wanna get decked!?<FFFC><FFF6>No man sings before me!<FFF5>
+10	0x2218	pack/talk/YAKUZA:0x2620	You’re singing... in front of me...<FFFC><FFF6>I guess honor is really dead...<FFF5>
 11	0x2240	pack/talk/YAKUZA:0x26a8	That song reminds me<FFF6>of myself in my younger days.<FFF6>I see the shadow of a yakuza in you.<FFF5>
-12	0x2274	pack/talk/YAKUZA:0x2758	If you're travelin' with me, you better<FFF6>be ready to cross the gates of hell...<FFF5>
-13	0x22af	pack/talk/YAKUZA:0x27f8	You wanna be a yakuza wife?<FFF6>You can't! If ya stay happy,<FFF6>you just keep mindin' the law!<FFF5>
-14	0x22ec	pack/talk/YAKUZA:0x28a8	Hahaha, You're crazy to come lookin'<FFF6>for help from a yakuza, girl!<FFF5>
-15	0x2322	pack/talk/YAKUZA:0x2930	Whaddaya think you're doing!?<FFF6>Yakuza aren't dumb enough<FFF6>to fall for some broad's con job!<FFF5>
-16	0x2355	pack/talk/YAKUZA:0x29e8	You tryin' to get on our good side?<FFF6>You ain't an undercover cop, are ya?<FFF5>
-17	0x2382	pack/talk/YAKUZA:0x2a80	Hahaha! The gang world doesn't<FFF6>move on empty compliments.<FFF5>
-18	0x23b2	pack/talk/YAKUZA:0x2af8	You're interesting. In our world, it's<FFF6>the smooth talkers that make their<FFF6>way to the top... If they stay alive...<FFF5>
-19	0x23f1	pack/talk/YAKUZA:0x2be0	You better cut the crap, lady!<FFF6>Yakuza aren't dumb enough<FFF6>to fall for some broad's con job!<FFF5>
-20	0x2422	pack/talk/YAKUZA:0x2c98	You tryin' to con a yakuza!? Hahaha!<FFF6>Damn shame that you're a woman.<FFF5>
-21	0x2457	pack/talk/YAKUZA:0x2d28	Don't worry.<FFF6>Yakuza don't hurt the civvies.<FFF5>
-22	0x247d	pack/talk/YAKUZA:0x2d80	Whaddaya gettin' all excited about!?<FFF6>I don't give you law-abidin'<FFF6>citizens a second thought!<FFF5>
-23	0x24b3	pack/talk/YAKUZA:0x2e40	Hahaha!<FFF6>Yakuza never bruise a woman's face.<FFF5>
-24	0x24e4	pack/talk/YAKUZA:0x2e98	You sniff too much product?<FFF6>Look real close, I'm a man.<FFF5>
-25	0x251a	pack/talk/YAKUZA:0x2f08	What're you thinking!? Yakuza don't<FFF6>drink tea with you nobodies!<FFF5>
+12	0x2274	pack/talk/YAKUZA:0x2758	If you’re travelin’ with me, you better<FFF6>be ready to cross the gates of hell...<FFF5>
+13	0x22af	pack/talk/YAKUZA:0x27f8	You wanna be a yakuza wife?<FFFC><FFF6>You can’t! If ya stay happy,<FFF6>you just keep mindin’ the law!<FFF5>
+14	0x22ec	pack/talk/YAKUZA:0x28a8	Hahaha, You’re crazy to<L{> come lookin’<FFF6>for <}><S{> come<FFF6>lookin’ for <}>help from a yakuza, girl!<FFF5>
+15	0x2322	pack/talk/YAKUZA:0x2930	Whaddaya think you’re doing!?<FFF6>Yakuza aren’t dumb enough<FFF6>to fall for some broad’s con job!<FFF5>
+16	0x2355	pack/talk/YAKUZA:0x29e8	You tryin’ to get on our good side?<FFFC><FFF6>You ain’t an undercover cop, are ya?<FFF5>
+17	0x2382	pack/talk/YAKUZA:0x2a80	Hahaha!<FFFC><FFF6>The gang world doesn’t<FFF6>move on empty compliments.<FFF5>
+18	0x23b2	pack/talk/YAKUZA:0x2af8	You’re interesting. In our<L{> world, it’s<FFF6>the <}><S{> world,<FFF6>it’s the <}>smooth talkers that<L{> make their<FFF6>way <}><S{> make<FFF6>their way <}>to the top... If they stay alive...<FFF5>
+19	0x23f1	pack/talk/YAKUZA:0x2be0	You better cut the crap, lady!<FFF6>Yakuza aren’t dumb enough<FFF6>to fall for some broad’s con job!<FFF5>
+20	0x2422	pack/talk/YAKUZA:0x2c98	You tryin’ to con a yakuza!? Hahaha!<FFF6>Damn shame that you’re a woman.<FFF5>
+21	0x2457	pack/talk/YAKUZA:0x2d28	Don’t worry.<FFF6>Yakuza don’t hurt the civvies.<FFF5>
+22	0x247d	pack/talk/YAKUZA:0x2d80	Whaddaya gettin’ all excited about!?<FFF6>I don’t give you law-abidin’<FFF6>citizens a second thought!<FFF5>
+23	0x24b3	pack/talk/YAKUZA:0x2e40	Hahaha!<FFFC><FFF6>Yakuza never bruise a woman’s face.<FFF5>
+24	0x24e4	pack/talk/YAKUZA:0x2e98	You sniff too much product?<FFFC><FFF6>Look real close, I’m a man.<FFF5>
+25	0x251a	pack/talk/YAKUZA:0x2f08	What’re you thinking!?<FFF6>Yakuza don’t drink<L{> tea<FFF6>with <}><S{> tea with <}>you nobodies!<FFF5>
 26	0x2555	pack/talk/YAKUZA:0x2f90	You should get that checked out...<FFF5>
-27	0x2569	pack/talk/YAKUZA:0x2fd8	You better quit with the jokes<FFF6>while I'm still smilin'.<FFF5>
-28	0x2599	pack/talk/YAKUZA:0x3048	Heh, funny. Yakuza gotta have<FFF6>a sense of humor too, ya know.<FFF5>
-29	0x25d2	pack/talk/YAKUZA:0x30c8	You better cut the crap!<FFF6>I've killed guys for tellin'<FFF6>better jokes than that!<FFF5>
+27	0x2569	pack/talk/YAKUZA:0x2fd8	You better quit with the jokes<FFF6>while I’m still smilin’.<FFF5>
+28	0x2599	pack/talk/YAKUZA:0x3048	Heh, funny.<FFF6>Yakuza gotta have a sense<FFF6>of humor too, ya know.<FFF5>
+29	0x25d2	pack/talk/YAKUZA:0x30c8	You better cut the crap!<FFF6>I’ve killed guys for tellin’<FFF6>better jokes than that!<FFF5>
 30	0x260b	pack/talk/YAKUZA:0x3168	SAD DUMMY, APPARENTLY.<FFF5>
-31	0x261c	pack/talk/YAKUZA:0x3198	You're funny.<FFF6>Who's your manager? I'll buy him out.<FFF5>
-32	0x264c	pack/talk/YAKUZA:0x3200	You wanna talk with a yakuza?<FFF6>Guess there's some<FFF6>real crazies out there.<FFF5>
+31	0x261c	pack/talk/YAKUZA:0x3198	You’re funny.<FFF6>Who’s your manager? I’ll buy him out.<FFF5>
+32	0x264c	pack/talk/YAKUZA:0x3200	You wanna talk with a yakuza?<FFFC><FFF6>Guess there’s<L{> some<FFF6>real <}><S{> some real <}>crazies out there.<FFF5>
 33	0x2679	pack/talk/YAKUZA:0x3298	Pipe down a bit, will ya?<FFF5>
-34	0x2689	pack/talk/YAKUZA:0x32d0	Haha, a yakuza and a civvy talkin'<FFF6>to each other like old friends!<FFF6>Times must be good.<FFF5>
-35	0x26bd	pack/talk/YAKUZA:0x3380	If you're set on followin' the law,<FFF6>you better quit bein' stupid.<FFF6>Idiots don't last long out there.<FFF5>
-36	0x26f7	pack/talk/YAKUZA:0x3448	You don't like having all ten fingers?<FFF6>Or maybe we'll go straight<FFF6>to the dirt nap.<FFF5>
-37	0x2730	pack/talk/YAKUZA:0x34f0	I'm being made fun<FFF6>of by a buncha damn kids...<FFF6>Maybe it's time to retire...<FFF5>
-38	0x2757	pack/talk/YAKUZA:0x3588	You're pretty understanding<FFF6>for a civilian. I don't use<FFF6>my head when I don't have to.<FFF5>
-39	0x278e	pack/talk/YAKUZA:0x3638	Don't mess with a yakuza!<FFF6>Bribes are against the code!<FFF5>
-40	0x27c1	pack/talk/YAKUZA:0x36a8	Hahaha! In this world, you gotta<FFF6>take while the takin's good.<FFF5>
-41	0x27f2	pack/talk/YAKUZA:0x3728	You're quite a looker.<FFF6>When you become a politican,<FFF6>take care of us, alright?<FFF5>
+34	0x2689	pack/talk/YAKUZA:0x32d0	Haha, a yakuza and a civvy talkin’<FFF6>to each other like old friends!<FFF6>Times must be good.<FFF5>
+35	0x26bd	pack/talk/YAKUZA:0x3380	If you’re set on followin’ the law,<FFF6>you better quit bein’ stupid.<FFF6>Idiots don’t last long out there.<FFF5>
+36	0x26f7	pack/talk/YAKUZA:0x3448	You don’t like having all ten fingers?<FFFC><FFF6>Or maybe we’ll go<L{> straight<FFF6>to <}><S{> straight to <}>the dirt nap.<FFF5>
+37	0x2730	pack/talk/YAKUZA:0x34f0	I’m being made<L{> fun of by<FFF6>a <}><S{> fun<FFF6>of by a <}>buncha damn kids...<FFFC><FFF6>Maybe it’s time to retire...<FFF5>
+38	0x2757	pack/talk/YAKUZA:0x3588	You’re pretty understanding<FFF6>for a<L{> civilian. I <}><S{> civilian.<FFF6>I <}>don’t<L{> use<FFF6>my <}><S{> use my <}>head when I don’t have to.<FFF5>
+39	0x278e	pack/talk/YAKUZA:0x3638	Don’t mess with a yakuza!<FFF6>Bribes are against the code!<FFF5>
+40	0x27c1	pack/talk/YAKUZA:0x36a8	<L{>Hahaha!<FFF6>In <}><S{>Hahaha! In <}>this<L{> world, you gotta<FFF6>take <}><S{> world,<FFF6>you gotta take <}>while the takin’s good.<FFF5>
+41	0x27f2	pack/talk/YAKUZA:0x3728	You’re quite a looker.<FFF6>When you become a politican,<FFF6>take care of us, alright?<FFF5>
 42	0x2827	pack/talk/YAKUZA:0x37c8	Pipe down a bit, will ya?<FFF5>
-43	0x283a	pack/talk/YAKUZA:0x3800	Hahaha! You have a big head,<FFF6>and you talk big too! Too funny, man.<FFF5>
-44	0x286e	pack/talk/YAKUZA:0x3888	You've got balls, kid.<FFF6>Maybe you'd be a good yakuza.<FFF5>
-45	0x2893	pack/talk/YAKUZA:0x38f8	Hey, you wanna take a peek at hell?<FFF6>If I don't use my sword once in a while,<FFF6>the blade'll start cryin'.<FFF5>
-46	0x28c7	pack/talk/YAKUZA:0x39c8	I ain't no civvy...<FFF6>If you're from another gang...<FFF5>
-47	0x28e9	pack/talk/YAKUZA:0x3a30	Kid, one day I'll hand<FFF6>you a cup personally!<FFF5>
-48	0x290d	pack/talk/YAKUZA:0x3a90	You must be ready to live in hell<FFF6>if you're makin' fun of a yakuza, kid!<FFF5>
-49	0x294c	pack/talk/YAKUZA:0x3b28	Hahaha! All demons who walk<FFF6>the gangster's path end up like me.<FFF5>
-50	0x297c	pack/talk/YAKUZA:0x3ba8	You're pretty good. We could<FFF6>use a singer or two in our crew.<FFF5>
-51	0x29b4	pack/talk/YAKUZA:0x3c28	What an eyesore.<FFF6>I better swat this fly with my sword.<FFF5>
-52	0x29d8	pack/talk/YAKUZA:0x3c98	Hahaha! You're still young, kid.<FFF6>Go back and train s'more.<FFF5>
+43	0x283a	pack/talk/YAKUZA:0x3800	Hahaha!<FFFC> You have a big head,<FFF6>and you talk big too! Too funny, man.<FFF5>
+44	0x286e	pack/talk/YAKUZA:0x3888	You’ve got balls, kid.<FFF6>Maybe you’d be a good yakuza.<FFF5>
+45	0x2893	pack/talk/YAKUZA:0x38f8	Hey, you wanna take a peek at hell?<FFF6>If I don’t use my sword once in a while,<FFF6>the blade’ll start cryin’.<FFF5>
+46	0x28c7	pack/talk/YAKUZA:0x39c8	I ain’t no civvy...<FFFC><FFF6>If you’re from another gang...<FFF5>
+47	0x28e9	pack/talk/YAKUZA:0x3a30	Kid, one day I’ll hand<FFF6>you a cup personally!<FFF5>
+48	0x290d	pack/talk/YAKUZA:0x3a90	You must be ready to live in hell<FFF6>if you’re makin’ fun of a yakuza, kid!<FFF5>
+49	0x294c	pack/talk/YAKUZA:0x3b28	Hahaha!<FFFC><FFF6>All demons who walk the gangster’s<FFF6>path end up like me.<FFF5>
+50	0x297c	pack/talk/YAKUZA:0x3ba8	You’re pretty good.<FFF6>We could use a<L{> singer<FFF6>or <}><S{> singer or <}>two in our crew.<FFF5>
+51	0x29b4	pack/talk/YAKUZA:0x3c28	What an eyesore.<FFFC><FFF6>I better swat this fly with my sword.<FFF5>
+52	0x29d8	pack/talk/YAKUZA:0x3c98	Hahaha! You’re still young, kid.<FFF6>Go back and train s’more.<FFF5>
 53	0x2a03	pack/talk/YAKUZA:0x3d10	Ha, right, punk... Oh well.<FFF6>I guess yer more manly than some<FFF6>weak-ass dude with no spirit.<FFF5>
-54	0x2a37	pack/talk/YAKUZA:0x3dc8	You better cut the crap, kid. Or do<FFF6>you wanna see what hell looks like!?<FFF5>
-55	0x2a5f	pack/talk/YAKUZA:0x3e60	I'm being made fun of by<FFF6>a buncha regular Joes...<FFF6>Maybe it's time to retire...<FFF5>
-56	0x2a84	pack/talk/YAKUZA:0x3f00	You've got your eyes set on<FFF6>a yakuza? You've got more guts<FFF6>than most punks out there.<FFF5>
-57	0x2ac0	pack/talk/YAKUZA:0x3fb0	You're glarin' at a yakuza.<FFF6>You must want to meet Buddha!<FFF5>
-58	0x2aea	pack/talk/YAKUZA:0x4028	Hahaha! You're creepin' me out with<FFF6>that weird stare. Lighten up, kid.<FFF5>
-59	0x2b1b	pack/talk/YAKUZA:0x40b8	You're interesting. In our world, it's<FFF6>the smooth talkers that make their<FFF6>way to the top... If they stay alive...<FFF5>
-60	0x2b5a	pack/talk/YAKUZA:0x41a0	You better cut the crap!<FFF6>Yakuza aren't patient enough<FFF6>to listen to human BS all day!<FFF5>
-61	0x2b8e	pack/talk/YAKUZA:0x4250	Hahaha! It's pretty bold<FFF6>to try and con a yakuza.<FFF5>
-62	0x2bb8	pack/talk/YAKUZA:0x42b8	You messin' with a yakuza?<FFF6>Well my gun's scarier than your BS.<FFF5>
+54	0x2a37	pack/talk/YAKUZA:0x3dc8	You better cut the crap, kid.<FFF6>Or do you wanna<L{> see<FFF6>what <}><S{> see what <}>hell looks like!?<FFF5>
+55	0x2a5f	pack/talk/YAKUZA:0x3e60	I’m being made fun of by<FFF6>a buncha regular Joes...<FFFC><FFF6>Maybe it’s time to retire...<FFF5>
+56	0x2a84	pack/talk/YAKUZA:0x3f00	You’ve got your eyes set<L{> on<FFF6>a yakuza?<FFFC> You’ve <}><S{> on a yakuza?<FFFC><FFF6>You’ve <}>got more guts<FFF6>than most punks out there.<FFF5>
+57	0x2ac0	pack/talk/YAKUZA:0x3fb0	You’re glarin’ at a yakuza.<FFF6>You must want to meet Buddha!<FFF5>
+58	0x2aea	pack/talk/YAKUZA:0x4028	Hahaha!<FFFC><FFF6>You’re creepin’ me out with that<FFF6>weird stare. Lighten up, kid.<FFF5>
+59	0x2b1b	pack/talk/YAKUZA:0x40b8	You’re interesting. In our<L{> world, it’s<FFF6>the <}><S{> world,<FFF6>it’s the <}>smooth talkers that<L{> make their<FFF6>way <}><S{> make<FFF6>their way <}>to the top... If they stay alive...<FFF5>
+60	0x2b5a	pack/talk/YAKUZA:0x41a0	You better cut the crap!<FFF6>Yakuza aren’t patient enough<FFF6>to listen to human BS all day!<FFF5>
+61	0x2b8e	pack/talk/YAKUZA:0x4250	Hahaha!<FFFC><FFF6>It’s pretty bold to<L{> try<FFF6>and <}><S{> try and <}>con a yakuza.<FFF5>
+62	0x2bb8	pack/talk/YAKUZA:0x42b8	You messin’ with a yakuza?<FFFC><FFF6>Well my gun’s scarier than your BS.<FFF5>
 63	0x2bf3	pack/talk/YAKUZA:0x4338	...Even us yakuza have weaknesses...<FFF5>
-64	0x2c19	pack/talk/YAKUZA:0x4388	Hahaha! You really are a civilian<FFF6>lady. You say some cute things.<FFF5>
-65	0x2c4a	pack/talk/YAKUZA:0x4410	Your singing reminds me of this lady<FFF6>I knew who ran a bar...<FFF6>I think maybe I'm in love.<FFF5>
-66	0x2c79	pack/talk/YAKUZA:0x44c0	You lookin' for trouble!? We don't let<FFF6>women sing with that kinda language!<FFF5>
+64	0x2c19	pack/talk/YAKUZA:0x4388	Hahaha!<FFFC><FFF6>You really are a civilian lady.<FFF6>You say some cute things.<FFF5>
+65	0x2c4a	pack/talk/YAKUZA:0x4410	Your singing reminds me of this lady<FFF6>I knew who ran a bar...<FFF6>I think maybe I’m in love.<FFF5>
+66	0x2c79	pack/talk/YAKUZA:0x44c0	You lookin’ for trouble!?<FFF6>We don’t let women sing<FFF6>with that kinda language!<FFF5>
 67	0x2cac	pack/talk/YAKUZA:0x4558	Hey! Nice voice ya got there.<FFF5>
-68	0x2cbb	pack/talk/YAKUZA:0x4598	You're crazy... Look kid,<FFF6>quit takin' whatever you're on.<FFF6>Your kids'll thank you for it someday.<FFF5>
+68	0x2cbb	pack/talk/YAKUZA:0x4598	You’re<L{> crazy...<FFFC> Look kid,<FFF6>quit <}><S{> crazy...<FFFC><FFF6>Look kid, quit <}>takin’ whatever you’re on.<FFF6>Your kids’ll thank you for it someday.<FFF5>
 69	0x2cef	pack/talk/YAKUZA:0x4660	The hell you doing!?<FFF6>To caress a yakuza is to mock him!<FFF5>
-70	0x2d26	pack/talk/YAKUZA:0x46d0	Man, this is something.<FFF6>But I guess it ain't bad to be treated<FFF6>like a normal demon sometimes.<FFF5>
-71	0x2d67	pack/talk/YAKUZA:0x4790	If you're gonna take me to the gates<FFF6>of hell, you better be able to carry<FFF6>the burden of my karma...<FFF5>
-72	0x2da3	pack/talk/YAKUZA:0x4858	In our world, we've got duty and<FFF6>formalities. You can't ignore that!<FFF5>
-73	0x2ddb	pack/talk/YAKUZA:0x48e8	Lady, you got a lot of guts talkin'<FFF6>to those who walk the bloody path.<FFF5>
-74	0x2e14	pack/talk/YAKUZA:0x4978	You've got a strong heart<FFF6>for a woman. Maybe you'd make<FFF6>a good yakuza wife.<FFF5>
-75	0x2e48	pack/talk/YAKUZA:0x4a10	Think you're ready to see nirvana?<FFF6>I bet Buddha's pretty lonely.<FFF5>
-76	0x2e75	pack/talk/YAKUZA:0x4a98	Are you made? If you're from<FFF6>some other gang, then...<FFF5>
-77	0x2e97	pack/talk/YAKUZA:0x4b08	You got as much sex appeal<FFF6>as my left toe. I'd love to see<FFF6>the suckers that fall for you.<FFF5>
-78	0x2ec9	pack/talk/YAKUZA:0x4bc0	Shut up! We don't deal with no<FFF6>law-abiding women folk!<FFF5>
-79	0x2ef8	pack/talk/YAKUZA:0x4c30	Hahaha! It's been true throughout<FFF6>the ages! Women are always<FFF6>attracted to the scent of evil!<FFF5>
-80	0x2f2a	pack/talk/YAKUZA:0x4cf0	If I just ignored you, I'd be putting<FFF6>my rep on the line. Leave it to me.<FFF5>
-81	0x2f61	pack/talk/YAKUZA:0x4d88	This biz ain't a charity. You must<FFF6>not have done your homework.<FFF5>
-82	0x2f8d	pack/talk/YAKUZA:0x4e08	...There was a time when they<FFF6>called me an atrocity...<FFF6>But compared to you...<FFF5>
-83	0x2fc5	pack/talk/YAKUZA:0x4ea8	You beat me at my own game...<FFF6>You'd definitely make<FFF6>a good yakuza wife.<FFF5>
-84	0x3000	pack/talk/YAKUZA:0x4f38	You plan on dying soon?<FFF6>I could speed up the process for ya.<FFF5>
-85	0x3029	pack/talk/YAKUZA:0x4fb8	I ain't no civvy...<FFF6>If you're from another gang...<FFF5>
-86	0x304e	pack/talk/YAKUZA:0x5020	Looks like you've got a deathwish.<FFF6>We say yakuza don't hurt outsiders,<FFF6>but that's just our front!<FFF5>
-87	0x3086	pack/talk/YAKUZA:0x50e8	You ain't a normal woman...<FFF6>Which gang you from?<FFF5>
-88	0x30ae	pack/talk/YAKUZA:0x5150	Hahaha!<FFF6>You're pretty confident! I like that!<FFF5>
-89	0x30dc	pack/talk/YAKUZA:0x51b0	You talkin' about yakuza?<FFF6>Maybe you'll turn out alright...<FFF5>
-90	0x3105	pack/talk/YAKUZA:0x5228	Shut your trap!<FFF6>Nothin' worse than a yappin' woman!<FFF5>
-91	0x3126	pack/talk/YAKUZA:0x5290	Hahaha! You're a powerful woman!<FFF6>Fitting of those manly words!<FFF5>
-92	0x315b	pack/talk/YAKUZA:0x5310	An outsider telling off a yakuza?<FFF6>That's pretty funny.<FFF5>
-93	0x3193	pack/talk/YAKUZA:0x5380	You tellin' off a yakuza?<FFF6>Naw, that'd be impossible...<FFF5>
-94	0x31b6	pack/talk/YAKUZA:0x53f0	Hahaha! No matter what century,<FFF6>women never cease their meddling.<FFF5>
-95	0x31e4	pack/talk/YAKUZA:0x5478	A law-abiding citizen and a student<FFF6>on top of that--you really shouldn't<FFF6>be hanging out with me. Go on home.<FFF5>
-96	0x321c	pack/talk/YAKUZA:0x5558	When you talk, you look<FFF6>the other person in the eyes.<FFF6>Don't tell me you didn't know that.<FFF5>
-97	0x3253	pack/talk/YAKUZA:0x5610	I'm being coaxed into something<FFF6>by a girl... Maybe it's time to retire...<FFF5>
-98	0x3278	pack/talk/YAKUZA:0x56a8	A law-abiding citizen and a student<FFF6>on top of that--you really shouldn't<FFF6>be hanging out with me. Go on home.<FFF5>
-99	0x32b0	pack/talk/YAKUZA:0x5788	When you talk, you look<FFF6>the other person in the eyes.<FFF6>Don't tell me you didn't know that!<FFF5>
-100	0x32e7	pack/talk/YAKUZA:0x5840	You tryin' to be a lone wolf?<FFF6>If I got bit by a kid, I'd lose respect...<FFF5>
-101	0x3321	pack/talk/YAKUZA:0x58d8	You beat me at my own game...<FFF6>You're a pretty capable punk.<FFF5>
-102	0x3356	pack/talk/YAKUZA:0x5950	You wanna get outta here?<FFF6>I could do that for ya...<FFF5>
-103	0x3386	pack/talk/YAKUZA:0x59b8	I ain't no civvy...<FFF6>If you're from another gang...<FFF5>
-104	0x33aa	pack/talk/YAKUZA:0x5a20	You wanna get your ass kicked!?<FFF6>Shut your trap before<FFF6>I make you scream!<FFF5>
+70	0x2d26	pack/talk/YAKUZA:0x46d0	Man, this is something.<FFFC><FFF6>But I guess it ain’t bad to be treated<FFF6>like a normal demon sometimes.<FFF5>
+71	0x2d67	pack/talk/YAKUZA:0x4790	If you’re gonna take me to the gates<FFF6>of hell, you better be able to carry<FFF6>the burden of my karma...<FFF5>
+72	0x2da3	pack/talk/YAKUZA:0x4858	In our<L{> world, we’ve got<FFF6>duty <}><S{> world,<FFF6>we’ve got duty <}>and formalities.<FFFC><FFF6>You can’t ignore that!<FFF5>
+73	0x2ddb	pack/talk/YAKUZA:0x48e8	Lady, you got a lot of guts talkin’<FFF6>to those who walk the bloody path.<FFF5>
+74	0x2e14	pack/talk/YAKUZA:0x4978	You’ve got a strong<L{> heart<FFF6>for <}><S{> heart for <}>a<L{> woman. Maybe <}><S{> woman.<FFF6>Maybe <}>you’d<L{> make<FFF6>a <}><S{> make a <}>good yakuza wife.<FFF5>
+75	0x2e48	pack/talk/YAKUZA:0x4a10	Think you’re ready to see nirvana?<FFF6>I bet Buddha’s pretty lonely.<FFF5>
+76	0x2e75	pack/talk/YAKUZA:0x4a98	Are you made?<FFF6>If you’re from<L{> some<FFF6>other <}><S{> some other <}>gang, then...<FFF5>
+77	0x2e97	pack/talk/YAKUZA:0x4b08	You got as much sex<L{> appeal<FFF6>as <}><S{> appeal as <}>my left<L{> toe. I’d <}><S{> toe.<FFF6>I’d <}>love to<L{> see<FFF6>the suckers that <}><S{> see the suckers<FFF6>that <}>fall for you.<FFF5>
+78	0x2ec9	pack/talk/YAKUZA:0x4bc0	Shut up!<FFF6>We don’t deal with no<FFF6>law-abiding women folk!<FFF5>
+79	0x2ef8	pack/talk/YAKUZA:0x4c30	<L{>Hahaha! It’s <}><S{>Hahaha!<FFF6>It’s <}>been true<L{> throughout<FFF6>the <}><S{> throughout the <}>ages!<L{> Women are always<FFF6>attracted <}><S{> Women<FFF6>are always attracted <}>to the scent of evil!<FFF5>
+80	0x2f2a	pack/talk/YAKUZA:0x4cf0	If I just ignored you, I’d be putting<FFF6>my rep on the line. Leave it to me.<FFF5>
+81	0x2f61	pack/talk/YAKUZA:0x4d88	This biz ain’t a charity.<FFF6>You must not<L{> have<FFF6>done <}><S{> have done <}>your homework.<FFF5>
+82	0x2f8d	pack/talk/YAKUZA:0x4e08	...There was a time<L{> when<FFF6>they <}><S{> when they <}>called<L{> me an atrocity...<FFF6>But <}><S{> me<FFF6>an atrocity... But <}>compared to you...<FFF5>
+83	0x2fc5	pack/talk/YAKUZA:0x4ea8	You beat me at my own game...<FFFC><FFF6>You’d definitely<L{> make<FFF6>a <}><S{> make a <}>good yakuza wife.<FFF5>
+84	0x3000	pack/talk/YAKUZA:0x4f38	You plan on dying soon?<FFFC><FFF6>I could speed up the process for ya.<FFF5>
+85	0x3029	pack/talk/YAKUZA:0x4fb8	I ain’t no civvy...<FFF6>If you’re from another gang...<FFF5>
+86	0x304e	pack/talk/YAKUZA:0x5020	Looks like you’ve got a deathwish.<FFF6>We say yakuza don’t hurt outsiders,<FFF6>but that’s just our front!<FFF5>
+87	0x3086	pack/talk/YAKUZA:0x50e8	You ain’t a normal woman...<FFFC><FFF6>Which gang you from?<FFF5>
+88	0x30ae	pack/talk/YAKUZA:0x5150	Hahaha!<FFFC><FFF6>You’re pretty confident! I like that!<FFF5>
+89	0x30dc	pack/talk/YAKUZA:0x51b0	You talkin’ about yakuza?<FFF6>Maybe you’ll turn out alright...<FFF5>
+90	0x3105	pack/talk/YAKUZA:0x5228	Shut your trap!<FFF6>Nothin’ worse than a yappin’ woman!<FFF5>
+91	0x3126	pack/talk/YAKUZA:0x5290	Hahaha! You’re a powerful woman!<FFF6>Fitting of those manly words!<FFF5>
+92	0x315b	pack/talk/YAKUZA:0x5310	An outsider telling off a yakuza?<FFF6>That’s pretty funny.<FFF5>
+93	0x3193	pack/talk/YAKUZA:0x5380	You tellin’ off a yakuza?<FFF6>Naw, that’d be impossible...<FFF5>
+94	0x31b6	pack/talk/YAKUZA:0x53f0	Hahaha!<FFFC> No matter what century,<FFF6>women never cease their meddling.<FFF5>
+95	0x31e4	pack/talk/YAKUZA:0x5478	A law-abiding citizen and a student<FFF6>on top of that--you really shouldn’t<FFF6>be hanging out with me. Go on home.<FFF5>
+96	0x321c	pack/talk/YAKUZA:0x5558	When you talk, you look<FFF6>the other person in the eyes.<FFF6>Don’t tell me you didn’t know that.<FFF5>
+97	0x3253	pack/talk/YAKUZA:0x5610	I’m being coaxed<L{> into<FFF6>something <}><S{> into something <}>by a girl...<FFFC><FFF6>Maybe it’s time to retire...<FFF5>
+98	0x3278	pack/talk/YAKUZA:0x56a8	A law-abiding citizen and a student<FFF6>on top of that--you really shouldn’t<FFF6>be hanging out with me. Go on home.<FFF5>
+99	0x32b0	pack/talk/YAKUZA:0x5788	When you talk, you look<FFF6>the other person in the eyes.<FFF6>Don’t tell me you didn’t know that!<FFF5>
+100	0x32e7	pack/talk/YAKUZA:0x5840	You tryin’ to be a lone wolf?<FFFC><FFF6>If I got bit by a kid, I’d lose respect...<FFF5>
+101	0x3321	pack/talk/YAKUZA:0x58d8	You beat me at my own game...<FFFC><FFF6>You’re a pretty capable punk.<FFF5>
+102	0x3356	pack/talk/YAKUZA:0x5950	You wanna get outta here?<FFFC><FFF6>I could do that for ya...<FFF5>
+103	0x3386	pack/talk/YAKUZA:0x59b8	I ain’t no civvy...<FFF6>If you’re from another gang...<FFF5>
+104	0x33aa	pack/talk/YAKUZA:0x5a20	You wanna get your ass kicked!?<FFF6>Shut your trap<L{> before<FFF6>I <}><S{> before I <}>make you scream!<FFF5>
 105	0x33dd	pack/talk/YAKUZA:0x5ab8	I told ya kid, drug use is life abuse.<FFF5>
-106	0x33fa	pack/talk/YAKUZA:0x5b08	Hahaha! If you're usin', kid,<FFF6>you oughta quit and get<FFF6>your ass to a doctor.<FFF5>
-107	0x342c	pack/talk/YAKUZA:0x5ba0	Interesting... You've got some<FFF6>real con-artist potential.<FFF5>
-108	0x3456	pack/talk/YAKUZA:0x5c18	I can't figure out some civilian<FFF6>trick... Times sure have changed...<FFF5>
-109	0x3489	pack/talk/YAKUZA:0x5ca8	You're an interesting kid,<FFF6>but if you're a student,<FFF6>shouldn't you be using your head?<FFF5>
-110	0x34bb	pack/talk/YAKUZA:0x5d58	You're a smart one.<FFF6>You know how to deal with us yakuza.<FFF1><FFF5>
-111	0x34fa	pack/talk/YAKUZA:0x5dd0	You wanna negotiate with a yakuza?<FFF6>Lemme tell ya the first step:<FFF6>hand over somethin' worth my time.<FFF1><FFF5>
-112	0x3538	pack/talk/YAKUZA:0x5ea0	I'm the type of guy who enjoys<FFF6>a moment of silence. Think that over.<FFF5>
-113	0x3570	pack/talk/YAKUZA:0x5f30	Hey, if you wanna talk,<FFF6>you gotta follow the rules!<FFF6>First, gimme whatchya got.<FFF1><FFF5>
-114	0x35ab	pack/talk/YAKUZA:0x5fd0	What does an outsider want<FFF6>with me...? I'm runnin'<FFF6>late for a ...meeting...<FFF5>
-115	0x35d4	pack/talk/YAKUZA:0x6068	If you're talkin' to a yakuza,<FFF6>you're not a real honest human,<FFF6>are ya? You. Gimme somethin'.<FFF1><FFF5>
-116	0x360e	pack/talk/YAKUZA:0x6128	You've got quite a mouth. Lemme know<FFF6>when you become a lawyer.<FFF5>
-117	0x3642	pack/talk/YAKUZA:0x61a8	Hahaha! You're pretty calm<FFF6>for bein' in front of a yakuza.<FFF6>Show me a token of your respect.<FFF1><FFF5>
-118	0x367c	pack/talk/YAKUZA:0x6268	You've got guts.<FFF6>You know how to deal with us yakuza.<FFF1><FFF5>
-119	0x36ba	pack/talk/YAKUZA:0x62d8	You wanna negotiate with a yakuza?<FFF6>Lemme tell ya the first step:<FFF6>hand over somethin' worth my time.<FFF1><FFF5>
+106	0x33fa	pack/talk/YAKUZA:0x5b08	Hahaha! If you’re usin’, kid,<FFF6>you oughta quit and get<FFF6>your ass to a doctor.<FFF5>
+107	0x342c	pack/talk/YAKUZA:0x5ba0	<L{>Interesting... You’ve <}><S{>Interesting...<FFF6>You’ve <}>got<L{> some<FFF6>real <}><S{> some real <}>con-artist potential.<FFF5>
+108	0x3456	pack/talk/YAKUZA:0x5c18	I can’t figure out some<L{> civilian<FFF6>trick... Times <}><S{> civilian trick...<FFF6>Times <}>sure have changed...<FFF5>
+109	0x3489	pack/talk/YAKUZA:0x5ca8	You’re an interesting kid,<FFF6>but if you’re a student,<FFF6>shouldn’t you be using your head?<FFF5>
+110	0x34bb	pack/talk/YAKUZA:0x5d58	You’re a smart one.<FFF6>You know how to deal with us yakuza.<FFF1><FFF5>
+111	0x34fa	pack/talk/YAKUZA:0x5dd0	You wanna negotiate with a yakuza?<FFF6>Lemme tell ya the first step:<FFF6>hand over somethin’ worth my time.<FFF1><FFF5>
+112	0x3538	pack/talk/YAKUZA:0x5ea0	I’m the type of guy who enjoys<FFF6>a moment of silence.<FFFC><FFF6>Think that over.<FFF5>
+113	0x3570	pack/talk/YAKUZA:0x5f30	Hey, if you wanna<L{> talk,<FFF6>you <}><S{> talk, you <}>gotta<L{> follow the rules!<FFF6>First, <}><S{> follow<FFF6>the rules! First, <}>gimme whatchya got.<FFF1><FFF5>
+114	0x35ab	pack/talk/YAKUZA:0x5fd0	What does an<L{> outsider<FFF6>want <}><S{> outsider want <}>with me...?<FFFC><FFF6>I’m runnin’ late for a ...meeting...<FFF5>
+115	0x35d4	pack/talk/YAKUZA:0x6068	If you’re talkin’ to a yakuza,<FFF6>you’re not a real honest human,<FFF6>are ya? You. Gimme somethin’.<FFF1><FFF5>
+116	0x360e	pack/talk/YAKUZA:0x6128	You’ve got quite a mouth.<FFF6>Lemme know when<L{> you<FFF6>become <}><S{> you become <}>a lawyer.<FFF5>
+117	0x3642	pack/talk/YAKUZA:0x61a8	Hahaha!<FFFC> You’re pretty calm<FFF6>for bein’ in front of a yakuza.<FFF6>Show me a token of your respect.<FFF1><FFF5>
+118	0x367c	pack/talk/YAKUZA:0x6268	You’ve got guts.<FFF6>You know how to deal with us yakuza.<FFF1><FFF5>
+119	0x36ba	pack/talk/YAKUZA:0x62d8	You wanna negotiate with a yakuza?<FFF6>Lemme tell ya the first step:<FFF6>hand over somethin’ worth my time.<FFF1><FFF5>
 120	0x36f8	pack/talk/YAKUZA:0x63a8	What the hell are you thinking?<FFF6>Try using that head of yours.<FFF5>
-121	0x3728	pack/talk/YAKUZA:0x6428	You don't think much, do ya kid!?<FFF6>It ain't wise to make fun<FFF6>of the yakuza!<FFF5>
-122	0x3749	pack/talk/YAKUZA:0x64c0	What does an outsider want<FFF6>with me...? I'm runnin'<FFF6>late for a ...meeting...<FFF5>
-123	0x3772	pack/talk/YAKUZA:0x6558	If you're talkin' to a yakuza,<FFF6>you're not a real honest human,<FFF6>are ya? You. Gimme somethin'.<FFF1><FFF5>
-124	0x37a9	pack/talk/YAKUZA:0x6618	You've got quite a mouth. Lemme know<FFF6>when you become a lawyer.<FFF5>
-125	0x37dd	pack/talk/YAKUZA:0x6698	Hahaha! You're pretty calm<FFF6>for bein' in front of a yakuza.<FFF6>Show me a token of your respect.<FFF1><FFF5>
+121	0x3728	pack/talk/YAKUZA:0x6428	You don’t think much, do ya kid!?<FFF6>It ain’t wise to make<L{> fun<FFF6>of <}><S{> fun of <}>the yakuza!<FFF5>
+122	0x3749	pack/talk/YAKUZA:0x64c0	What does an<L{> outsider<FFF6>want <}><S{> outsider want <}>with me...?<FFFC><FFF6>I’m runnin’ late for a ...meeting...<FFF5>
+123	0x3772	pack/talk/YAKUZA:0x6558	If you’re talkin’ to a yakuza,<FFF6>you’re not a real honest human,<FFF6>are ya? You. Gimme somethin’.<FFF1><FFF5>
+124	0x37a9	pack/talk/YAKUZA:0x6618	You’ve got quite a mouth.<FFF6>Lemme know when<L{> you<FFF6>become <}><S{> you become <}>a lawyer.<FFF5>
+125	0x37dd	pack/talk/YAKUZA:0x6698	Hahaha!<FFFC> You’re pretty calm<FFF6>for bein’ in front of a yakuza.<FFF6>Show me a token of your respect.<FFF1><FFF5>
 126	0x3817	pack/talk/YAKUZA:0x6758	You got guts, kid.<FFF6>Not too many civvies out there<FFF6>negotiate with us yakuza like that.<FFF5>
-127	0x3851	pack/talk/YAKUZA:0x6808	You've got balls to stand up<FFF6>to my anger, kid! I better test ya.<FFF1><FFF5>
-128	0x388e	pack/talk/YAKUZA:0x6890	You makin' fun of me!?<FFF6>Humans die pretty quickly, y'know!<FFF5>
-129	0x38bb	pack/talk/YAKUZA:0x6908	You lookin' to die?<FFF6>Well, before ya go, gimme your stuff.<FFF1><FFF5>
-130	0x38f0	pack/talk/YAKUZA:0x6980	What does an outsider want<FFF6>with me...? I'm runnin'<FFF6>late for a ...meeting...<FFF5>
-131	0x3919	pack/talk/YAKUZA:0x6a18	You makin' fun of me?<FFF6>That's crazy, man. Lemme test<FFF6>your brain: gimme somethin'.<FFF1><FFF5>
-132	0x3950	pack/talk/YAKUZA:0x6ac0	If you're a man, you gotta know<FFF6>how to suppress your anger.<FFF6>I ain't budgin'.<FFF5>
-133	0x3984	pack/talk/YAKUZA:0x6b60	You're tryin' to piss me off,<FFF6>but you're outta yer league. It'd be<FFF6>easier if ya just gave me somethin'.<FFF1><FFF5>
-134	0x39ba	pack/talk/YAKUZA:0x6c38	You're pretty good.<FFF6>Keep workin' your way to the top.<FFF5>
-135	0x39de	pack/talk/YAKUZA:0x6ca8	Bustin' out a performance<FFF6>in the middle of a chat<FFF6>with a yakuza? That's crazy.<FFFB><FFF7>I think you better give me somethin'.<FFF1><FFF5>
-136	0x3a16	pack/talk/YAKUZA:0x6d98	Cut the crap! Yakuza ain't the type<FFF6>to quit talkin' and watch a show!<FFF5>
-137	0x3a4c	pack/talk/YAKUZA:0x6e28	Knock it off, you're wastin' my time.<FFF6>Just get to the part where ya<FFF6>give me your valuables.<FFF1><FFF5>
-138	0x3a81	pack/talk/YAKUZA:0x6ee8	You're no good... You've got<FFF6>a problem or somethin'...<FFF5>
-139	0x3aad	pack/talk/YAKUZA:0x6f58	I don't get what you civvies are<FFF6>thinkin' these days. Lay it out plain.<FFF1><FFF5>
-140	0x3ae1	pack/talk/YAKUZA:0x6ff0	Don't make me laugh so much! I didn't<FFF6>think it'd be this hard to hold back!<FFF5>
-141	0x3b13	pack/talk/YAKUZA:0x7088	You're a quality peformer, kid.<FFF6>I like ya. When are you on again?<FFF5>
-142	0x3b4a	pack/talk/YAKUZA:0x7110	Straight up inviting a yakuza?<FFF6>What a crazy human. Maybe you'll be<FFF6>a big shot later in life.<FFF5>
-143	0x3b84	pack/talk/YAKUZA:0x71d0	You inviting me?<FFF6>I'll need somethin' fitting then.<FFF1><FFF5>
-144	0x3bbc	pack/talk/YAKUZA:0x7238	Don't underestimate the yakuza...<FFF6>We don't take well to bein' treated<FFF6>like family by the civvies.<FFF5>
-145	0x3bf7	pack/talk/YAKUZA:0x7300	You're sayin' I'm greedy!?<FFF6>You mock me!<FFF5>
-146	0x3c29	pack/talk/YAKUZA:0x7350	...I ain't interested in civvies...<FFF5>
-147	0x3c4a	pack/talk/YAKUZA:0x7398	...I ain't interested in civvies...<FFF6>'Course, goods are another story.<FFF1><FFF5>
-148	0x3c83	pack/talk/YAKUZA:0x7428	Real men let go of their greed.<FFF6>I ain't gonna budge on that, kid.<FFF5>
-149	0x3cb4	pack/talk/YAKUZA:0x74b0	Hahaha! Let the yakuza handle your<FFF6>problems. If you've got somethin' for<FFF6>me, maybe I'll see things your way.<FFF1><FFF5>
-150	0x3ce8	pack/talk/YAKUZA:0x7590	Don't be scared. Yakuza don't hurt<FFF6>outsiders, 'specially not women.<FFF5>
-151	0x3d25	pack/talk/YAKUZA:0x7618	Don't worry. Yakuza are nice<FFF6>guys once we get what we want.<FFF1><FFF5>
-152	0x3d59	pack/talk/YAKUZA:0x7698	Tryin' to get on my good side, girl!?<FFF6>I can't trust ya!<FFF5>
-153	0x3d8c	pack/talk/YAKUZA:0x7708	If you wanna get on my good side,<FFF6>start by followin'<FFF6>the yakuza tradition.<FFF1><FFF5>
-154	0x3dc4	pack/talk/YAKUZA:0x77a0	Maybe you're up to somethin',<FFF6>maybe you ain't. Either way, I don't<FFF6>trust anyone I ain't traded cups with.<FFF5>
-155	0x3dfa	pack/talk/YAKUZA:0x7878	In my experience, when people act<FFF6>like that, you can't trust 'em...<FFF5>
-156	0x3e1f	pack/talk/YAKUZA:0x7900	Don't worry, ain't nobody kinder<FFF6>to women than yakuza.<FFF6>We got big hearts.<FFF5>
-157	0x3e61	pack/talk/YAKUZA:0x7998	All yakuza are born with natural<FFF6>charm. You don't need to worry.<FFF5>
-158	0x3e91	pack/talk/YAKUZA:0x7a20	You have proof of our vow.<FFF6>You must make a Persona with a big<FFF6>heart and a strong sense of honor.<FFEF>
+127	0x3851	pack/talk/YAKUZA:0x6808	You’ve got balls to stand up<FFF6>to my anger, kid!<FFFC><FFF6>I better test ya.<FFF1><FFF5>
+128	0x388e	pack/talk/YAKUZA:0x6890	You makin’ fun of me!?<FFFC><FFF6>Humans die pretty quickly, y’know!<FFF5>
+129	0x38bb	pack/talk/YAKUZA:0x6908	You lookin’ to die?<FFFC><FFF6>Well, before ya go, gimme your stuff.<FFF1><FFF5>
+130	0x38f0	pack/talk/YAKUZA:0x6980	What does an<L{> outsider<FFF6>want <}><S{> outsider want <}>with me...?<FFFC><FFF6>I’m runnin’ late for a ...meeting...<FFF5>
+131	0x3919	pack/talk/YAKUZA:0x6a18	You makin’ fun of me? That’s<L{> crazy,<FFF6>man.<FFFC> Lemme <}><S{> crazy, man.<FFFC><FFF6>Lemme <}>test your<L{> brain:<FFF6>gimme <}><S{> brain: gimme <}>somethin’.<FFF1><FFF5>
+132	0x3950	pack/talk/YAKUZA:0x6ac0	If you’re a man, you gotta<L{> know<FFF6>how to suppress <}><S{> know how to<FFF6>suppress <}>your<L{> anger.<FFF6>I <}><S{> anger. I <}>ain’t budgin’.<FFF5>
+133	0x3984	pack/talk/YAKUZA:0x6b60	You’re tryin’ to piss me off,<FFF6>but you’re outta yer<L{> league.<FFFC> It’d be<FFF6>easier <}><S{> league.<FFFC><FFF6>It’d be easier <}>if ya just gave me somethin’.<FFF1><FFF5>
+134	0x39ba	pack/talk/YAKUZA:0x6c38	You’re pretty good.<FFF6>Keep workin’ your way to the top.<FFF5>
+135	0x39de	pack/talk/YAKUZA:0x6ca8	Bustin’ out a<L{> performance<FFF6>in <}><S{> performance in <}>the<L{> middle of <}><S{> middle<FFF6>of <}>a<L{> chat<FFF6>with <}><S{> chat with <}>a yakuza? That’s<L{> crazy.<FFFB><FFF7>I <}><S{> crazy.<FFF6>I <}>think you better give me somethin’.<FFF1><FFF5>
+136	0x3a16	pack/talk/YAKUZA:0x6d98	Cut the crap!<FFF6>Yakuza ain’t the type to quit<FFF6>talkin’ and watch a show!<FFF5>
+137	0x3a4c	pack/talk/YAKUZA:0x6e28	Knock it off, you’re wastin’ my time.<FFF6>Just get to the part where ya<FFF6>give me your valuables.<FFF1><FFF5>
+138	0x3a81	pack/talk/YAKUZA:0x6ee8	You’re no good...<FFF6>You’ve got a problem or somethin’...<FFF5>
+139	0x3aad	pack/talk/YAKUZA:0x6f58	I don’t get what you civvies are<FFF6>thinkin’ these days. Lay it out plain.<FFF1><FFF5>
+140	0x3ae1	pack/talk/YAKUZA:0x6ff0	Don’t make me laugh so much!<FFF6>I didn’t think it’d be<FFF6>this hard to hold back!<FFF5>
+141	0x3b13	pack/talk/YAKUZA:0x7088	You’re a quality peformer, kid.<FFF6>I like ya. When are you on again?<FFF5>
+142	0x3b4a	pack/talk/YAKUZA:0x7110	Straight up inviting a yakuza?<FFF6>What a crazy<L{> human. Maybe <}><S{> human.<FFF6>Maybe <}>you’ll<L{> be<FFF6>a <}><S{> be a <}>big shot later in life.<FFF5>
+143	0x3b84	pack/talk/YAKUZA:0x71d0	You inviting me?<FFFC><FFF6>I’ll need somethin’ fitting then.<FFF1><FFF5>
+144	0x3bbc	pack/talk/YAKUZA:0x7238	Don’t underestimate the yakuza...<FFF6>We don’t take well to bein’ treated<FFF6>like family by the civvies.<FFF5>
+145	0x3bf7	pack/talk/YAKUZA:0x7300	You’re sayin’ I’m<L{> greedy!?<FFF6>You <}><S{> greedy!? You <}>mock me!<FFF5>
+146	0x3c29	pack/talk/YAKUZA:0x7350	...I ain’t interested in civvies...<FFF5>
+147	0x3c4a	pack/talk/YAKUZA:0x7398	...I ain’t interested in civvies...<FFFC><FFF6>’Course, goods are another story.<FFF1><FFF5>
+148	0x3c83	pack/talk/YAKUZA:0x7428	Real men let go of their greed.<FFF6>I ain’t gonna budge on that, kid.<FFF5>
+149	0x3cb4	pack/talk/YAKUZA:0x74b0	Hahaha!<FFFC> Let the yakuza handle your<FFF6>problems. If you’ve got somethin’<L{> for<FFF6>me, maybe <}><S{> for me,<FFF6>maybe <}>I’ll see things your way.<FFF1><FFF5>
+150	0x3ce8	pack/talk/YAKUZA:0x7590	Don’t be scared.<FFFC><FFF6>Yakuza don’t hurt outsiders,<FFF6>’specially not women.<FFF5>
+151	0x3d25	pack/talk/YAKUZA:0x7618	Don’t worry.<FFF6>Yakuza are nice guys<FFF6>once we get what we want.<FFF1><FFF5>
+152	0x3d59	pack/talk/YAKUZA:0x7698	Tryin’ to get on my good side, girl!?<FFF6>I can’t trust ya!<FFF5>
+153	0x3d8c	pack/talk/YAKUZA:0x7708	If you wanna get on my good side,<FFF6>start by<L{> followin’<FFF6>the <}><S{> followin’ the <}>yakuza tradition.<FFF1><FFF5>
+154	0x3dc4	pack/talk/YAKUZA:0x77a0	Maybe you’re up to somethin’,<FFF6>maybe you ain’t.<FFFC> Either way, I don’t<FFF6>trust anyone I ain’t traded cups with.<FFF5>
+155	0x3dfa	pack/talk/YAKUZA:0x7878	In my experience, when people act<FFF6>like that, you can’t trust ’em...<FFF5>
+156	0x3e1f	pack/talk/YAKUZA:0x7900	Don’t worry, ain’t nobody<L{> kinder<FFF6>to women than yakuza.<FFF6>We <}><S{> kinder to women<FFF6>than yakuza. We <}>got big hearts.<FFF5>
+157	0x3e61	pack/talk/YAKUZA:0x7998	All yakuza are born with<L{> natural<FFF6>charm. You <}><S{> natural charm.<FFF6>You <}>don’t need to worry.<FFF5>
+158	0x3e91	pack/talk/YAKUZA:0x7a20	You have proof of our vow.<FFFC><FFF6>You must make a Persona with a<L{> big<FFF6>heart and <}><S{> big heart<FFF6>and <}>a strong sense of honor.<FFEF>
 159	0x3ed4	pack/talk/YAKUZA:0x7ae8	Alright, here ya go.<FFEF>
-160	0x3ee2	pack/talk/YAKUZA:0x7b18	In the end, you're just a civilian.<FFF6>You can't understand a yakuza...<FFEF>
+160	0x3ee2	pack/talk/YAKUZA:0x7b18	In the end, you’re just a civilian.<FFF6>You can’t understand a yakuza...<FFEF>
 161	0x3f08	pack/talk/YAKUZA:0x7ba8	You and I are too different.<FFEF>
-162	0x3f1a	pack/talk/YAKUZA:0x7be8	It's a cryin' shame,<FFF6>but I like being a yakuza. Come back<FFF6>when you've got more life experience.<FFEF>
+162	0x3f1a	pack/talk/YAKUZA:0x7be8	It’s a cryin’ shame,<FFF6>but I like being a yakuza. Come back<FFF6>when you’ve got more life experience.<FFEF>
 163	0x3f57	pack/talk/YAKUZA:0x7ca8	Well, I guess you can have this.<FFF6>Put it toward your training.<FFEF>
 164	0x3f77	pack/talk/YAKUZA:0x7d28	Ciao.<FFEF>
-165	0x3f80	pack/talk/YAKUZA:0x7d38	Hahaha! There's no need<FFF6>for either of us to hold back.<FFEF>
+165	0x3f80	pack/talk/YAKUZA:0x7d38	Hahaha!<FFF6>There’s no need for either<FFF6>of us to hold back.<FFEF>
 166	0x3fab	pack/talk/YAKUZA:0x7da8	Make the call! I wanna get outta here!<FFEF>
 167	0x3fce	pack/talk/YAKUZA:0x7df8	The card is proof of our vow.<FFF6>Make me a Persona with a big heart<FFF6>and a strong sense of honor.<FFEF>
-168	0x4009	pack/talk/YAKUZA:0x7eb8	I'll give you this. A pointless scuffle<FFF6>wouldn't benefit either of us.<FFEF>
-169	0x403b	pack/talk/YAKUZA:0x7f48	You lawful guys, go home and play<FFF6>Atlus video games. I'm going home too.<FFEF>
-170	0x4076	pack/talk/YAKUZA:0x7fe0	Lawful guys should stay<FFF6>home and play Atlus games.<FFFB><FFF7>I hear they're awesome.<FFF6>Put this toward your purchase.<FFEF>
-171	0x40ad	pack/talk/YAKUZA:0x80b8	I'll cut you with my blade! ...Wha!?<FFF6>It's chipped! Noooooooo! My baby!<FFEF>
-172	0x40ee	pack/talk/YAKUZA:0x8148	Grrr, screw this!<FFF6>Take my spell card and beat it!<FFEF>
+168	0x4009	pack/talk/YAKUZA:0x7eb8	I’ll give you this.<FFFC><FFF6>A pointless scuffle wouldn’t<FFF6>benefit either of us.<FFEF>
+169	0x403b	pack/talk/YAKUZA:0x7f48	You lawful guys, go home and play<FFF6>Atlus video games. I’m going home too.<FFEF>
+170	0x4076	pack/talk/YAKUZA:0x7fe0	Lawful guys should<L{> stay<FFF6>home <}><S{> stay home <}>and<L{> play Atlus games.<FFFB><FFF7>I <}><S{> play<FFF6>Atlus games. I <}>hear they’re awesome.<FFF6>Put this toward your purchase.<FFEF>
+171	0x40ad	pack/talk/YAKUZA:0x80b8	I’ll cut you with my blade!<FFFC><FFF6>...Wha!? It’s<L{> chipped!<FFFC><FFF6>Noooooooo!<FFFC> <}><S{> chipped!<FFFC> Noooooooo!<FFFC> <}>My baby!<FFEF>
+172	0x40ee	pack/talk/YAKUZA:0x8148	Grrr, screw this!<FFFC><FFF6>Take my spell card and beat it!<FFEF>
 173	0x4121	pack/talk/YAKUZA:0x81b0	...Unlike you, I can only<FFF6>exist in the shadows...<FFFB><FFF7>But there are times that I wish<FFF6>I could walk in the sunlight...<FFEF>
-174	0x4187	pack/talk/YAKUZA:0x8298	I'll entrust you with the dreams I<FFF6>gave up on... This is a yakuza's card.<FFF6>Take care of it...<FFEF>
+174	0x4187	pack/talk/YAKUZA:0x8298	I’ll entrust you with the dreams<L{> I<FFF6>gave up on... <}><S{> I gave up<FFF6>on... <}>This is a yakuza’s card.<FFF6>Take care of it...<FFEF>
 175	0x41c5	pack/talk/YAKUZA:0x8358	We yakuza demons have nothing<FFF6>to gain by waging war on humans...<FFEF>
-176	0x41fa	pack/talk/YAKUZA:0x83e0	I'll give you this, so maybe<FFF6>next time... Well... we might be<FFF6>enemies next time we meet...<FFEF>
-177	0x422d	pack/talk/YAKUZA:0x8498	Our hideout got<FFF6>raided by the coppers...<FFF6>A couple guys got put in the clink...<FFEF>
-178	0x4265	pack/talk/YAKUZA:0x8538	Let's negotiate like adults.<FFF6>I think you'd be happy with my card...<FFEF>
-179	0x429e	pack/talk/YAKUZA:0x85c0	What's a law-abiding human like you<FFF6>doing out on a moonless night?<FFF6>Answer me.<FFFD>　<FFF5>
-180	0x42da	pack/talk/YAKUZA:0x8660	Talk about careless... You gotta<FFF6>be careful on moonless nights.<FFF6>...Now pay up. That was good advice.<FFF1><FFF5>
-181	0x431c	pack/talk/YAKUZA:0x8730	Hey! Whaddaya doin' hangin' around<FFF6>a yakuza!? I'll crush you like a fly!<FFFD>あ<FFF5>
-182	0x4357	pack/talk/YAKUZA:0x87c8	What!? No greeting for a yakuza!?<FFF6>You may be an outsider, but that's<FFF6>an offense you'll have to pay for!<FFF1><FFF5>
+176	0x41fa	pack/talk/YAKUZA:0x83e0	I’ll give you<L{> this, so maybe<FFF6>next <}><S{> this,<FFF6>so maybe next <}>time...<L{> Well... we <}><S{> Well...<FFF6>we <}>might<L{> be<FFF6>enemies <}><S{> be enemies <}>next time we meet...<FFEF>
+177	0x422d	pack/talk/YAKUZA:0x8498	Our hideout got<L{> raided<FFF6>by <}><S{> raided by <}>the coppers...<FFFC><FFF6>A couple guys got put in the clink...<FFEF>
+178	0x4265	pack/talk/YAKUZA:0x8538	Let’s negotiate like adults.<FFFC><FFF6>I think you’d be happy with my card...<FFEF>
+179	0x429e	pack/talk/YAKUZA:0x85c0	What’s a law-abiding human like you<FFF6>doing out on a moonless<L{> night?<FFF6>Answer <}><S{> night? Answer <}>me.<FFFD>　<FFF5>
+180	0x42da	pack/talk/YAKUZA:0x8660	Talk about<L{> careless... You gotta<FFF6>be <}><S{> careless...<FFF6>You gotta be <}>careful on moonless nights.<FFF6>...Now pay up. That was good advice.<FFF1><FFF5>
+181	0x431c	pack/talk/YAKUZA:0x8730	Hey!<FFF6>Whaddaya doin’ hangin’<L{> around<FFF6>a yakuza!? I’ll <}><S{> around a yakuza!?<FFF6>I’ll <}>crush you like a fly!<FFFD>あ<FFF5>
+182	0x4357	pack/talk/YAKUZA:0x87c8	What!? No greeting for a yakuza!?<FFF6>You may be an outsider, but that’s<FFF6>an offense you’ll have to pay for!<FFF1><FFF5>
 183	0x4398	pack/talk/YAKUZA:0x88a0	Whaddaya want with me...?<FFF6>You kids should be at home<FFF6>sleeping or something...<FFFD>い<FFF5>
-184	0x43cb	pack/talk/YAKUZA:0x8940	Who are you...? It doesn't matter.<FFF6>I'll take whatever you got for me,<FFF6>and then you can be on your way.<FFF1><FFF5>
+184	0x43cb	pack/talk/YAKUZA:0x8940	Who are you...? It doesn’t matter.<FFF6>I’ll take whatever you got for me,<FFF6>and then you can be on your way.<FFF1><FFF5>
 185	0x43ff	pack/talk/YAKUZA:0x8a10	Well look at that!<FFF6>You only get to see a moon like<FFF6>this so many times in your life.<FFFD>う<FFF5>
 186	0x4436	pack/talk/YAKUZA:0x8ac0	Look at that! Swordsmen are<FFF6>their strongest under a full moon.<FFF6>I think you oughta pay tribute.<FFF1><FFF5>
-187	0x4473	pack/talk/YAKUZA:0x8b80	<FFED>You got guts answering the yakuza<FFF6>call, but a word of caution:<FFFB><FFF7>if it's just for show,<FFF6>Buddha's waitin' for ya!<FFFD>え<FFF5>
-188	0x44b3	pack/talk/YAKUZA:0x8c68	<FFEE>If you wanna pass through<FFF6>yakuza turf, there's a fee!<FFF1><FFF5>
-189	0x44f0	pack/talk/YAKUZA:0x8cd8	<FFEE>What's a law-abiding human like you<FFF6>doing out on a moonless night?<FFF6>Answer honestly, now.<FFFD>お<FFF5>
-190	0x452a	pack/talk/YAKUZA:0x8d90	<FFEC>If you're interested in yakuza,<FFF6>then you know... you oughta start<FFF6>payin' your protection dues.<FFF1><FFF5>
-191	0x4562	pack/talk/YAKUZA:0x8e58	<FFEB>Hey, I'm <FFF3>.<FFF6>I figured I could kill some time<FFF6>talkin' to you civvies.<FFFD>か<FFF5>
-192	0x459d	pack/talk/YAKUZA:0x8ee8	<FFEE>You look like you're pretty well-off!<FFF6>Share the wealth, would ya?<FFF1><FFF5>
-193	0x45d2	pack/talk/YAKUZA:0x8f70	<FFEC>You're not afraid of the yakuza?<FFF6>Any funny business and you'll end up<FFF6>with a knife in your back...<FFFD>き<FFF5>
-194	0x460b	pack/talk/YAKUZA:0x9040	<FFED>Hey, the greeting is supposed to come<FFF6>from the inferior to the superior.<FFF6>Now let's see some good faith!<FFF1><FFF5>
-195	0x4647	pack/talk/YAKUZA:0x9118	<FFED>Why would you show up to a yakuza<FFF6>gathering!? You tryin' to stray<FFF6>off the path of the righteous man?<FFFD>く<FFF5>
-196	0x467f	pack/talk/YAKUZA:0x91e8	<FFEB>...You guys are funny, showin' up<FFF6>to a yakuza gathering. Just pay<FFF6>the entry fee. I'll let ya off with that.<FFF1><FFF5>
-197	0x46c3	pack/talk/YAKUZA:0x92c8	<FFEB>Where've you been!? They asked me<FFF6>to play in the poker gang that<FFF6>the Tendo gang is hosting...<FFFB><FFF7>You gotta go for me!<FFFD>け<FFF5>
-198	0x4701	pack/talk/YAKUZA:0x93b8	<FFEC>You're putting a lotta pressure on<FFF6>a yakuza... So let's turn the tables.<FFF6>Gimme something.<FFF1><FFF5>
-199	0x473c	pack/talk/YAKUZA:0x9470	I like you! We should be brothers!<FFF6>Tell me what you're after.<FFEF>
-200	0x4774	pack/talk/YAKUZA:0x94f0	You messin' with me!?<FFF6>I ain't gonna calm down till I see blood!<FFEF>
-201	0x47a8	pack/talk/YAKUZA:0x9570	What...? You're not scared of<FFF6>the yakuza...? Of my crime family?<FFEF>
+187	0x4473	pack/talk/YAKUZA:0x8b80	<FFED>You got guts answering the<L{> yakuza<FFF6>call, but <}><S{> yakuza call,<FFF6>but <}>a word of<L{> caution:<FFFB><FFF7>if <}><S{> caution: if <}>it’s<L{> just for show,<FFF6>Buddha’s <}><S{> just<FFF6>for show, Buddha’s <}>waitin’ for ya!<FFFD>え<FFF5>
+188	0x44b3	pack/talk/YAKUZA:0x8c68	<FFEE>If you wanna pass through<FFF6>yakuza turf, there’s a fee!<FFF1><FFF5>
+189	0x44f0	pack/talk/YAKUZA:0x8cd8	<FFEE>What’s a law-abiding human like you<FFF6>doing out on a moonless night?<FFF6>Answer honestly, now.<FFFD>お<FFF5>
+190	0x452a	pack/talk/YAKUZA:0x8d90	<FFEC>If you’re interested in yakuza,<FFF6>then you know... you oughta start<FFF6>payin’ your protection dues.<FFF1><FFF5>
+191	0x4562	pack/talk/YAKUZA:0x8e58	<FFEB>Hey, I’m <FFF3>.<FFF6>I figured I could kill some time<FFF6>talkin’ to you civvies.<FFFD>か<FFF5>
+192	0x459d	pack/talk/YAKUZA:0x8ee8	<FFEE>You look like you’re pretty well-off!<FFF6>Share the wealth, would ya?<FFF1><FFF5>
+193	0x45d2	pack/talk/YAKUZA:0x8f70	<FFEC>You’re not afraid of the yakuza?<FFF6>Any funny business and you’ll end up<FFF6>with a knife in your back...<FFFD>き<FFF5>
+194	0x460b	pack/talk/YAKUZA:0x9040	<FFED>Hey, the greeting is supposed<L{> to come<FFF6>from <}><S{> to<FFF6>come from <}>the inferior to the superior.<FFF6>Now let’s see some good faith!<FFF1><FFF5>
+195	0x4647	pack/talk/YAKUZA:0x9118	<FFED>Why would you show up to a yakuza<FFF6>gathering!? You tryin’ to stray<FFF6>off the path of the righteous man?<FFFD>く<FFF5>
+196	0x467f	pack/talk/YAKUZA:0x91e8	<FFEB>...You guys are funny, showin’ up<FFF6>to a yakuza gathering. Just pay<FFF6>the entry fee. I’ll let ya off with that.<FFF1><FFF5>
+197	0x46c3	pack/talk/YAKUZA:0x92c8	<FFEB>Where’ve you<L{> been!?<FFF6>They <}><S{> been!? They <}>asked<L{> me to <}><S{> me<FFF6>to <}>play<L{> in<FFFB><FFF7>the <}><S{> in the <}>poker gang that the<L{> Tendo gang<FFF6>is <}><S{> Tendo<FFF6>gang is <}>hosting... You gotta go for me!<FFFD>け<FFF5>
+198	0x4701	pack/talk/YAKUZA:0x93b8	<FFEC>You’re putting a<L{> lotta pressure on<FFF6>a yakuza...<FFFC> So <}><S{> lotta<FFF6>pressure on a yakuza...<FFFC><FFF6>So <}>let’s turn the<L{> tables.<FFF6>Gimme <}><S{> tables. Gimme <}>something.<FFF1><FFF5>
+199	0x473c	pack/talk/YAKUZA:0x9470	I like you! We should be brothers!<FFF6>Tell me what you’re after.<FFEF>
+200	0x4774	pack/talk/YAKUZA:0x94f0	You messin’ with me!?<FFF6>I ain’t gonna calm down till I see blood!<FFEF>
+201	0x47a8	pack/talk/YAKUZA:0x9570	<L{>What...?<FFF6>You’re <}><S{>What...? You’re <}>not scared of the yakuza...?<FFFC><FFF6>Of my crime family?<FFEF>
 202	0x47d7	pack/talk/YAKUZA:0x95f8	Hahahaha! This is great! Hahaha!<FFEF>
-203	0x4805	pack/talk/YAKUZA:0x9640	It bothers me that you'd dare<FFF6>to underestimate the yakuza...<FFF6>but whatever. Whaddaya want?<FFEF>
-204	0x483e	pack/talk/YAKUZA:0x96f8	To tell ya the truth, I'm glad you're<FFF6>not my enemy. So tell me what ya want.<FFEF>
-205	0x4877	pack/talk/YAKUZA:0x9798	You're the spittin' image of a yakuza!<FFF6>I'd hand you a cup personally!<FFF6>So, what can I do ya for?<FFEF>
-206	0x48b1	pack/talk/YAKUZA:0x9858	If you're for real...<FFF6>then you handle things like a pro!<FFEF>
-207	0x48e4	pack/talk/YAKUZA:0x98d0	You're not quite enough to be<FFF6>one of my soldiers. You're too<FFF6>young to be messin' with yakuza.<FFEF>
-208	0x4922	pack/talk/YAKUZA:0x9990	You've got balls... Ya don't hear<FFF6>the civvies talk like that too often...<FFEF>
-209	0x495c	pack/talk/YAKUZA:0x9a28	Let's see the money. ￥<FFF8>.<FFEF>
-210	0x4977	pack/talk/YAKUZA:0x9a60	Kids today carry around too<FFF6>much money! But thanks, I'll take it.<FFF5>
-211	0x49a8	pack/talk/YAKUZA:0x9ae8	You screwin' with the yakuza!?<FFF6>If you wanna talk, I hope you've got<FFF6>your check book ready!<FFF5>
-212	0x49e0	pack/talk/YAKUZA:0x9ba0	What're ya spending your money on?<FFF6>If ya spend too much while you're<FFF6>young, you'll be sorry later in life.<FFF5>
-213	0x4a18	pack/talk/YAKUZA:0x9c78	You screwin' with the yakuza!?<FFF6>Ya better start followin' orders,<FFF6>or someone's gonna get hurt.<FFF5>
-214	0x4a4c	pack/talk/YAKUZA:0x9d38	You don't know how the yakuza<FFF6>really work, do ya?<FFF6>...Well you'll find out soon enough.<FFF5>
+203	0x4805	pack/talk/YAKUZA:0x9640	It bothers me that you’d dare<FFF6>to underestimate the yakuza...<FFF6>but whatever. Whaddaya want?<FFEF>
+204	0x483e	pack/talk/YAKUZA:0x96f8	To tell ya the truth,<FFF6>I’m glad you’re not my enemy.<FFFC><FFF6>So tell me what ya want.<FFEF>
+205	0x4877	pack/talk/YAKUZA:0x9798	You’re the spittin’ image of a yakuza!<FFFC><FFF6>I’d hand you a cup personally!<FFF6>So, what can I do ya for?<FFEF>
+206	0x48b1	pack/talk/YAKUZA:0x9858	If you’re for real...<FFF6>then you handle things like a pro!<FFEF>
+207	0x48e4	pack/talk/YAKUZA:0x98d0	You’re not quite enough to be<FFF6>one of my soldiers. You’re too<FFF6>young to be messin’ with yakuza.<FFEF>
+208	0x4922	pack/talk/YAKUZA:0x9990	You’ve got balls... Ya don’t hear<FFF6>the civvies talk like that too often...<FFEF>
+209	0x495c	pack/talk/YAKUZA:0x9a28	Let’s see the money. ￥<FFF8>.<FFEF>
+210	0x4977	pack/talk/YAKUZA:0x9a60	Kids today carry around too<L{> much<FFF6>money! But <}><S{> much money!<FFF6>But <}>thanks, I’ll take it.<FFF5>
+211	0x49a8	pack/talk/YAKUZA:0x9ae8	You screwin’ with the yakuza!?<FFF6>If you wanna talk, I<L{> hope you’ve got<FFF6>your <}><S{> hope<FFF6>you’ve got your <}>check book ready!<FFF5>
+212	0x49e0	pack/talk/YAKUZA:0x9ba0	What’re ya spending your money on?<FFFC><FFF6>If ya spend too much while<L{> you’re<FFF6>young, you’ll <}><S{> you’re young,<FFF6>you’ll <}>be sorry later in life.<FFF5>
+213	0x4a18	pack/talk/YAKUZA:0x9c78	You screwin’ with the yakuza!?<FFF6>Ya better start followin’ orders,<FFF6>or someone’s gonna get hurt.<FFF5>
+214	0x4a4c	pack/talk/YAKUZA:0x9d38	You don’t know how the yakuza<FFF6>really work, do ya?<FFFC><FFF6>...Well you’ll find out soon enough.<FFF5>
 215	0x4a8a	pack/talk/YAKUZA:0x9de8	Gimme a life stone. One oughta do.<FFEF>
-216	0x4aaa	pack/talk/YAKUZA:0x9e30	You civvies don't need stuff like this,<FFF6>so I'll take it off your hands. Thanks.<FFF5>
-217	0x4adb	pack/talk/YAKUZA:0x9ed0	You screwin' with the yakuza!?<FFF6>If you wanna talk, I hope you've got<FFF6>your life stones ready!<FFF5>
-218	0x4b15	pack/talk/YAKUZA:0x9f88	You oughta learn to carry life<FFF6>stones. They're important<FFF6>if ya wanna seal the deal.<FFF5>
-219	0x4b48	pack/talk/YAKUZA:0xa030	You screwin' with the yakuza!?<FFF6>Ya better start followin' orders,<FFFB><FFF7>or someone's gonna be<FFF6>sleepin' with the fishies.<FFF5>
-220	0x4b7f	pack/talk/YAKUZA:0xa118	What's a law-abidin' citizen<FFF6>gonna do with a life stone?<FFF6>Don't tell me you eat 'em...<FFF5>
-221	0x4bb3	pack/talk/YAKUZA:0xa1c8	I like gems.<FFF6>I'll take a <FFF4>.<FFEF>
-222	0x4bcf	pack/talk/YAKUZA:0xa200	You're an obedient kid.<FFF6>Keep it up, you'll go far in life.<FFF5>
-223	0x4bf2	pack/talk/YAKUZA:0xa278	Ya don't have it.<FFF5>
-224	0x4c01	pack/talk/YAKUZA:0xa2a0	You screwin' with the yakuza!?<FFF6>Ya better start followin' orders, or<FFF6>someone's gonna get found in a closet.<FFF5>
-225	0x4c39	pack/talk/YAKUZA:0xa378	You put that much value on jewels?<FFF6>Greed'll destroy you, kid.<FFF5>
-226	0x4c71	pack/talk/YAKUZA:0xa3f8	Lemme suck some life outta ya.<FFF6>I won't hurt ya too bad.<FFEF>
-227	0x4c94	pack/talk/YAKUZA:0xa468	I like civilian blood. It ain't dirty.<FFF5>
-228	0x4cb5	pack/talk/YAKUZA:0xa4b8	You screwin' with the yakuza!?<FFF6>You think I'm gonna<FFF6>defile ya or sometin'!?<FFF5>
-229	0x4cef	pack/talk/YAKUZA:0xa550	You got a cold? If I caught whatever<FFF6>you've got, I'd be in trouble...<FFF5>
-230	0x4d2a	pack/talk/YAKUZA:0xa5e0	I know a lotta humans don't<FFF6>make good on their debts.<FFF6>You must have it rough.<FFF5>
-231	0x4d61	pack/talk/YAKUZA:0xa680	That's pretty weak stuff.<FFF6>But I guess building a foundation<FFF6>is important, so keep at it.<FFF5>
+216	0x4aaa	pack/talk/YAKUZA:0x9e30	You civvies don’t need stuff like this,<FFF6>so I’ll take it off your hands. Thanks.<FFF5>
+217	0x4adb	pack/talk/YAKUZA:0x9ed0	You screwin’ with the yakuza!?<FFF6>If you wanna talk, I<L{> hope you’ve got<FFF6>your <}><S{> hope<FFF6>you’ve got your <}>life stones ready!<FFF5>
+218	0x4b15	pack/talk/YAKUZA:0x9f88	You oughta learn to carry<L{> life<FFF6>stones. They’re important<FFF6>if ya wanna <}><S{> life stones.<FFF6>They’re important if ya<FFF6>wanna <}>seal the deal.<FFF5>
+219	0x4b48	pack/talk/YAKUZA:0xa030	You screwin’ with the<L{> yakuza!?<FFF6>Ya better start <}><S{> yakuza!? Ya better<FFF6>start <}>followin’<L{> orders,<FFFB><FFF7>or someone’s gonna be<FFF6>sleepin’ <}><S{> orders, or someone’s<FFF6>gonna be sleepin’ <}>with the fishies.<FFF5>
+220	0x4b7f	pack/talk/YAKUZA:0xa118	What’s a law-abidin’<L{> citizen<FFF6>gonna <}><S{> citizen gonna <}>do<L{> with a <}><S{> with<FFF6>a <}>life<L{> stone?<FFF6>Don’t <}><S{> stone? Don’t <}>tell me you eat ’em...<FFF5>
+221	0x4bb3	pack/talk/YAKUZA:0xa1c8	I like<L{> gems.<FFF6>I’ll <}><S{> gems. I’ll <}>take a <FFF4>.<FFEF>
+222	0x4bcf	pack/talk/YAKUZA:0xa200	You’re an obedient kid.<FFF6>Keep it up, you’ll go far in life.<FFF5>
+223	0x4bf2	pack/talk/YAKUZA:0xa278	Ya don’t have it.<FFF5>
+224	0x4c01	pack/talk/YAKUZA:0xa2a0	You screwin’ with the yakuza!?<FFF6>Ya better start followin’<L{> orders, or<FFF6>someone’s <}><S{> orders,<FFF6>or someone’s <}>gonna get found in a closet.<FFF5>
+225	0x4c39	pack/talk/YAKUZA:0xa378	You put that much value on jewels?<FFFC><FFF6>Greed’ll destroy you, kid.<FFF5>
+226	0x4c71	pack/talk/YAKUZA:0xa3f8	Lemme suck some life outta ya.<FFF6>I won’t hurt ya too bad.<FFEF>
+227	0x4c94	pack/talk/YAKUZA:0xa468	I like civilian blood. It ain’t dirty.<FFF5>
+228	0x4cb5	pack/talk/YAKUZA:0xa4b8	You screwin’ with the yakuza!?<FFF6>You think I’m<L{> gonna<FFF6>defile <}><S{> gonna defile <}>ya or sometin’!?<FFF5>
+229	0x4cef	pack/talk/YAKUZA:0xa550	You got a cold?<FFFC><FFF6>If I caught whatever you’ve got,<FFF6>I’d be in trouble...<FFF5>
+230	0x4d2a	pack/talk/YAKUZA:0xa5e0	I know a lotta humans<L{> don’t<FFF6>make good on <}><S{> don’t make good<FFF6>on <}>their<L{> debts.<FFF6>You <}><S{> debts. You <}>must have it rough.<FFF5>
+231	0x4d61	pack/talk/YAKUZA:0xa680	That’s pretty weak stuff.<FFF6>But I guess building a foundation<FFF6>is important, so keep at it.<FFF5>
 232	0x4d9a	pack/talk/YAKUZA:0xa738	You got a death wish?<FFF5>
-233	0x4da9	pack/talk/YAKUZA:0xa768	I don't think you fully<FFF6>understand the situation here...<FFF6>You're not up to no good, are ya?<FFF5>
-234	0x4dd6	pack/talk/YAKUZA:0xa820	Then how's about I crush you,<FFF6>just like the doctor ordered!?<FFF5>
-235	0x4dfb	pack/talk/YAKUZA:0xa8a0	You're keepin' your cool. I guess I'll<FFF6>let ya off the hook for havin' guts.<FFF5>
-236	0x4e24	pack/talk/YAKUZA:0xa938	I like kids that are<FFF6>easy to understand.<FFF5>
-237	0x4e48	pack/talk/YAKUZA:0xa990	You're underestimating me, kid...<FFF5>
+233	0x4da9	pack/talk/YAKUZA:0xa768	I don’t think you fully<FFF6>understand the situation here...<FFF6>You’re not up to no good, are ya?<FFF5>
+234	0x4dd6	pack/talk/YAKUZA:0xa820	Then how’s about I crush you,<FFF6>just like the doctor ordered!?<FFF5>
+235	0x4dfb	pack/talk/YAKUZA:0xa8a0	You’re keepin’ your cool.<FFF6>I guess I’ll let ya off<FFF6>the hook for havin’ guts.<FFF5>
+236	0x4e24	pack/talk/YAKUZA:0xa938	I like kids that<L{> are<FFF6>easy <}><S{> are easy <}>to understand.<FFF5>
+237	0x4e48	pack/talk/YAKUZA:0xa990	You’re underestimating me, kid...<FFF5>
 238	0x4e67	pack/talk/YAKUZA:0xa9d8	You wanna get whacked!?<FFF5>
-239	0x4e80	pack/talk/YAKUZA:0xaa08	That's all you've got?<FFF6>C'mon, put a little more twist in it.<FFF5>
-240	0x4ea6	pack/talk/YAKUZA:0xaa88	You're pretty twisted, kid.<FFF6>Want me to straighten ya out!?<FFF5>
-241	0x4ecc	pack/talk/YAKUZA:0xab00	You're already bent outta shape<FFF6>for your age... You'll be just<FFF6>another good-for-nothing...<FFF5>
-242	0x4eec	pack/talk/YAKUZA:0xabb8	C'mon, sissy. Work harder.<FFF5>
-243	0x4f06	pack/talk/YAKUZA:0xabf0	If you think you're bein' cool,<FFF6>think again! I'm that demon!<FFF5>
-244	0x4f3f	pack/talk/YAKUZA:0xac70	You said it! I think I can trust ya!<FFF6>You've got balls of steel!<FFF5>
-245	0x4f6e	pack/talk/YAKUZA:0xacf0	Hmm... You're working a poor man's<FFF6>job, kid. This world's about money.<FFF6>Remember that.<FFF5>
-246	0x4fa7	pack/talk/YAKUZA:0xada0	Who're you checkin' out? Me?<FFF6>You ain't an undercover cop,<FFF6>are ya...?<FFF5>
-247	0x4fde	pack/talk/YAKUZA:0xae30	You must think you're really<FFF6>somebody, strollin' right into my<FFF6>workplace! I should kill you for sport!<FFF5>
-248	0x5017	pack/talk/YAKUZA:0xaf00	Hahaha! You're gonna go far, kid.<FFF5>
-249	0x5032	pack/talk/YAKUZA:0xaf48	So there's a man amongst<FFF6>you after all. You'd be just<FFF6>fine livin' the yakuza life.<FFF5>
-250	0x5068	pack/talk/YAKUZA:0xaff0	I ain't gonna let you off the hook with<FFF6>that kinda attitude! You may never<FFF6>have the chance to speak again!<FFF5>
-251	0x509e	pack/talk/YAKUZA:0xb0c8	If you're scared, then why'd<FFF6>you answer in the first place!?<FFF5>
-252	0x50c4	pack/talk/YAKUZA:0xb148	You're underestimating me, kid...<FFF5>
-253	0x50e3	pack/talk/YAKUZA:0xb190	You shouldn't talk like such a big<FFF6>shot, kid. Or do you wanna know how<FFF6>bad it hurts when ya get stabbed!?<FFF5>
-254	0x5117	pack/talk/YAKUZA:0xb268	You're talkin' big for a civilian!<FFF6>You think you can mess<FFF6>with a yakuza!?<FFF5>
-255	0x514d	pack/talk/YAKUZA:0xb300	Of course. It ain't easy<FFF6>to walk the yakuza path<FFF6>for you law-abiders.<FFF5>
-256	0x5177	pack/talk/YAKUZA:0xb390	What're you sayin, kid!?<FFF6>Mess with me, and you'll be<FFF6>leavin' in a body bag!<FFF5>
-257	0x51a9	pack/talk/YAKUZA:0xb428	You spoke... Hey, you ain't<FFF6>my real contact! You can go to hell<FFF6>for pullin' a fast one on a yakuza!<FFF5>
+239	0x4e80	pack/talk/YAKUZA:0xaa08	That’s all you’ve got?<FFF6>C’mon, put a little more twist in it.<FFF5>
+240	0x4ea6	pack/talk/YAKUZA:0xaa88	You’re pretty twisted, kid.<FFF6>Want me to straighten ya out!?<FFF5>
+241	0x4ecc	pack/talk/YAKUZA:0xab00	You’re already bent<L{> outta shape<FFF6>for <}><S{> outta<FFF6>shape for <}>your<L{> age...<FFFC> You’ll <}><S{> age...<FFFC><FFF6>You’ll <}>be<L{> just<FFF6>another <}><S{> just another <}>good-for-nothing...<FFF5>
+242	0x4eec	pack/talk/YAKUZA:0xabb8	C’mon, sissy.<FFFC><FFF6>Work harder.<FFF5>
+243	0x4f06	pack/talk/YAKUZA:0xabf0	If you think you’re bein’ cool,<FFF6>think again! I’m that demon!<FFF5>
+244	0x4f3f	pack/talk/YAKUZA:0xac70	You said it! I think I can trust ya!<FFF6>You’ve got balls of steel!<FFF5>
+245	0x4f6e	pack/talk/YAKUZA:0xacf0	Hmm... You’re working a poor<L{> man’s<FFF6>job, kid.<FFFC> This <}><S{> man’s job, kid.<FFFC><FFF6>This <}>world’s about<L{> money.<FFF6>Remember <}><S{> money. Remember <}>that.<FFF5>
+246	0x4fa7	pack/talk/YAKUZA:0xada0	Who’re you checkin’ out? Me?<FFFC><FFF6>You ain’t an undercover<L{> cop,<FFF6>are <}><S{> cop, are <}>ya...?<FFF5>
+247	0x4fde	pack/talk/YAKUZA:0xae30	You must think you’re<L{> really<FFF6>somebody, strollin’ <}><S{> really somebody,<FFF6>strollin’ <}>right into<L{> my<FFF6>workplace! I <}><S{> my workplace!<FFF6>I <}>should kill you for sport!<FFF5>
+248	0x5017	pack/talk/YAKUZA:0xaf00	Hahaha! You’re gonna go far, kid.<FFF5>
+249	0x5032	pack/talk/YAKUZA:0xaf48	So there’s a man<L{> amongst<FFF6>you <}><S{> amongst you <}>after<L{> all. You’d <}><S{> all.<FFF6>You’d <}>be<L{> just<FFF6>fine <}><S{> just fine <}>livin’ the yakuza life.<FFF5>
+250	0x5068	pack/talk/YAKUZA:0xaff0	I ain’t gonna let you off the<L{> hook with<FFF6>that <}><S{> hook<FFF6>with that <}>kinda attitude! You<L{> may never<FFF6>have <}><S{> may<FFF6>never have <}>the chance to speak again!<FFF5>
+251	0x509e	pack/talk/YAKUZA:0xb0c8	If you’re scared, then why’d<FFF6>you answer in the first place!?<FFF5>
+252	0x50c4	pack/talk/YAKUZA:0xb148	You’re underestimating me, kid...<FFF5>
+253	0x50e3	pack/talk/YAKUZA:0xb190	You shouldn’t talk like such a<L{> big<FFF6>shot, kid. <}><S{> big shot,<FFF6>kid. <}>Or do you wanna know<L{> how<FFF6>bad it <}><S{> how bad<FFF6>it <}>hurts when ya get stabbed!?<FFF5>
+254	0x5117	pack/talk/YAKUZA:0xb268	You’re talkin’ big for a civilian!<FFF6>You think you can<L{> mess<FFF6>with <}><S{> mess with <}>a yakuza!?<FFF5>
+255	0x514d	pack/talk/YAKUZA:0xb300	Of course.<FFF6>It ain’t easy to walk the yakuza<FFF6>path for you law-abiders.<FFF5>
+256	0x5177	pack/talk/YAKUZA:0xb390	What’re you sayin,<L{> kid!?<FFF6>Mess <}><S{> kid!? Mess <}>with<L{> me, and <}><S{> me,<FFF6>and <}>you’ll<L{> be<FFF6>leavin’ <}><S{> be leavin’ <}>in a body bag!<FFF5>
+257	0x51a9	pack/talk/YAKUZA:0xb428	You spoke... Hey, you ain’t<FFF6>my real contact!<FFFC> You can go to hell<FFF6>for pullin’ a fast one on a yakuza!<FFF5>
 258	0x51dd	pack/talk/YAKUZA:0xb4f0	Haha, I got the wrong guy, huh...<FFF5>
-259	0x51ff	pack/talk/YAKUZA:0xb538	I thought you were dead...<FFF6>This ain't real...<FFF5>
-260	0x521f	pack/talk/YAKUZA:0xb598	I thought you were dead...<FFF6>This ain't real...<FFF5>
+259	0x51ff	pack/talk/YAKUZA:0xb538	I thought you were dead...<FFFC><FFF6>This ain’t real...<FFF5>
+260	0x521f	pack/talk/YAKUZA:0xb598	I thought you were<L{> dead...<FFF6>This <}><S{> dead... This <}>ain’t real...<FFF5>
 261	0x5a28	YAKUZA:0	Getting donations.<FFF5>
 262	0x5a2e	YAKUZA:1	A stakeout.<FFF5>
 263	0x5a36	YAKUZA:2	Stab.<FFF5>
 264	0x5a3b	YAKUZA:3	Crush.<FFF5>
-265	0x5a40	YAKUZA:4	Don't crush.<FFF5>
+265	0x5a40	YAKUZA:4	Don’t crush.<FFF5>
 266	0x5a46	YAKUZA:5	What fly?<FFF5>
 267	0x5a50	YAKUZA:6	I understand.<FFF5>
 268	0x5a56	YAKUZA:7	I refuse.<FFF5>
-269	0x5a5c	YAKUZA:8	I'm not sleepy.<FFF5>
+269	0x5a5c	YAKUZA:8	I’m not sleepy.<FFF5>
 270	0x5a65	YAKUZA:9	True.<FFF5>
-271	0x5a6b	YAKUZA:10	You're kinda ugly.<FFF5>
+271	0x5a6b	YAKUZA:10	You’re kinda ugly.<FFF5>
 272	0x5a77	YAKUZA:11	I hate the moon.<FFF5>
-273	0x5a7f	YAKUZA:12	It's for show.<FFF5>
+273	0x5a7f	YAKUZA:12	It’s for show.<FFF5>
 274	0x5a87	YAKUZA:13	I stalk demons.<FFF5>
-275	0x5a94	YAKUZA:14	It's not for show.<FFF5>
+275	0x5a94	YAKUZA:14	It’s not for show.<FFF5>
 276	0x5a9e	YAKUZA:15	Getting donations.<FFF5>
 277	0x5aa4	YAKUZA:16	A stakeout.<FFF5>
 278	0x5aac	YAKUZA:17	A stroll.<FFF5>
 279	0x5ab2	YAKUZA:18	Give a response<FFF5>
-280	0x5abc	YAKUZA:19	Don't do that...<FFF5>
+280	0x5abc	YAKUZA:19	Don’t do that...<FFF5>
 281	0x5ac8	YAKUZA:20	Ignore<FFF5>
-282	0x5ad0	YAKUZA:21	I'm scared.<FFF5>
-283	0x5ada	YAKUZA:22	I'm not scared.<FFF5>
+282	0x5ad0	YAKUZA:21	I’m scared.<FFF5>
+283	0x5ada	YAKUZA:22	I’m not scared.<FFF5>
 284	0x5ae1	YAKUZA:23	Stab me.<FFF5>
 285	0x5ae7	YAKUZA:24	Me me a yakuza.<FFF5>
-286	0x5af2	YAKUZA:25	I won't go astray.<FFF5>
+286	0x5af2	YAKUZA:25	I won’t go astray.<FFF5>
 287	0x5afc	YAKUZA:26	Show me the way.<FFF5>
 288	0x5b06	YAKUZA:27	I understand.<FFF5>
 289	0x5b0c	YAKUZA:28	Wrong person.<FFF5>

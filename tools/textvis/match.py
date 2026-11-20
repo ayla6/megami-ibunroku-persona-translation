@@ -32,7 +32,7 @@ import re
 CJK = '\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uff01-\uff60'
 
 # PSP control codes carry parameter units; PARAM_LEN is the shared authority
-# (src/injection_tools/vwf_wrap.py) and is imported, never copied.
+# (src/injection/text/vwf_wrap.py) and is imported, never copied.
 from vwf_wrap import PARAM_LEN as _PARAM_LEN          # noqa: E402
 
 PARAM_LEN = {int(k, 16): v for k, v in _PARAM_LEN.items()}

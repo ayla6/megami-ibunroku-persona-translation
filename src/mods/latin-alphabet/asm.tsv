@@ -1,0 +1,85 @@
+file	order	line	if	unless	note
+-	90	.include "asm/vwf/smallfont_defs.asm"			small-font VWF engine constants (shared)
+-	100	.include "asm/vwf/sf_msg_name.asm"			message inserts: full item/skill/demon/Persona names
+-	110	.include "asm/vwf/msg_pace.asm"			dialogue pacing: MsgStep glyphs per call
+-	290	.include "asm/vwf/stat_label.asm"			the text stat labels' helper (macro)
+SLPS	10	.include "asm/vwf/sf_stubs.asm"	SF_VWF		the small-font kit's sorter stubs
+SLPS	20	.include "asm/vwf/sf_tab.asm"	SF_VWF		resident small-font tab-stop calculation
+SLPS	130	.include "asm/slps_005.00/persona_names.asm"			persona_name_copy: full-length Persona names for patched screens
+SLPS	140	.include "asm/slps_005.00/skill_names.asm"			skill_name_copy: full-length skill names for patched screens
+SLPS	160	.include "asm/slps_005.00/btl_trait_tail.asm"	SF_VWF		
+SLPS	220	.include "asm/slps_005.00/name_tab.asm"			
+SLPS	230	.include "asm/slps_005.00/name_ring.asm"			
+SLPS	240	.include "asm/slps_005.00/analyze_race_gap.asm"			ANALYZE "race: name" header gap (entered from BTLP)
+SLPS	250	.include "asm/slps_005.00/name_count.asm"			name-insert count glue: scan the 10-byte slot
+SLPS	260	.include "asm/vwf/vwf_slps.asm"			
+SLPS	270	.include "asm/slps_005.00/party_name_vwf.asm"			vwf_glyph_map wrapper: the party-name table is dialogue text
+SLPS	280	.include "asm/slps_005.00/aff_free.asm"			vwf_glyph_map + fusion messages in free affinity records
+ADV	20	.include "asm/adv/vwf_hooks.asm"			
+ADV	30	.include "asm/adv/msg_pace.asm"			MsgStep: two glyphs per 30 fps frame
+ADV	40	.include "asm/adv/smallfont.asm"			the smallfont VWF row (the ぞくせい line)
+ADV	50	.include "asm/adv/item_hook.asm"			DrawItemName: full item names (name_tails.py)            ; variable-width small-font row (the ぞくせい line)
+ADV	60	.include "asm/adv/msg_name.asm"			MsgStep inserts: full item/skill/demon/Persona names
+ADV	70	.include "asm/adv/cells_row.asm"			CellsWriteRow in place: sprite-cell rows carry advances
+ADV	80	.include "asm/adv/bar.asm"			the persona status/fusion bottom bar as one VWF row
+ADV	100	.include "asm/adv/pdata.asm"			the Velvet Room card page: VWF race/demon-name bar
+ADV	110	.include "asm/adv/chest_name.asm"			field item pickup: complete proportional name
+ADV	120	.include "asm/adv/draw_spell.asm"			DrawSpellName: full skill names in the skill rows
+BTLP	40	.include "asm/btlp/vwf_hooks.asm"			
+SLPS	175	.include "asm/btlp/msg_pace.asm"			two glyphs per battle/negotiation typing step; control tokens retain their own step
+BTLP	50	.include "asm/vwf/vwf_btlp_queue.asm"			btlp_act_queue (dead BTLP functions 0x800AAFEC, 0x800663F0, 0x8007D6CC)
+BTLP	60	.include "asm/btlp/persona_header.asm"			skill menu header: full Persona name, "Cost" label
+BTLP	70	.include "asm/btlp/prschg_names.asm"			PRS-CHG window: full Persona names
+BTLP	80	.include "asm/btlp/status_persona.asm"			command-stage member boards: full Persona names
+BTLP	90	.include "asm/btlp/board23_names.asm"			enemy-kind list: full arcana tag and VWF names
+BTLP	100	.include "asm/btlp/skill_menu.asm"			battle skill menu: 15-glyph names via skill_name_copy
+BTLP	110	.include "asm/btlp/stock_menu.asm"	SF_VWF		negotiation stock list: full Persona names
+BTLP	160	.include "asm/vwf/vwf_offer_btlp.asm"	SF_VWF		
+BTLP	170	.include "asm/vwf/vwf_offer_art.asm"	SF_VWF		the panel's v0 art selector sits in the dead span at 0x800ABD98
+BTLP	180	.include "asm/btlp/smallfont_vwf.asm"	SF_VWF		
+BTLP	200	.include "asm/btlp/analyze_trait.asm"	SF_VWF		complete affinity line: record head + pool tail
+BTLP	210	.include "asm/btlp/analyze_spells.asm"	SF_VWF		full-length spell names on the ANALYZE board
+BTLP	220	.include "asm/btlp/analyze_metric.asm"	SF_VWF		the bridge width lookup: tier-1 spaces on wide spell rows
+BTLP	230	.include "asm/btlp/orig_face.asm"	SF_VWF		the original font's metric lookup and marker centring
+BTLP	240	.include "asm/btlp/name_owners.asm"	SF_VWF		
+BTLP	260	.include "asm/btlp/name_lowercase.asm"			typed lowercase names in battle text (FFF9 ...)
+DNG	20	.include "asm/dng/vwf_hooks.asm"			
+DNG	30	.include "asm/dng/msg_pace.asm"			MsgStep: three glyphs per 20 fps frame
+DNG	40	.include "asm/dng/vwf_script.asm"			VWF for the dungeon script boxes (D0x files), glue in an extension of DNG.BIN
+DNG	50	.include "asm/dng/script_pace.asm"			dungeon script boxes: glyphs share their frame waits
+DNG	60	.include "asm/dng/smallfont.asm"			the smallfont VWF row (the ぞくせい line)
+DNG	70	.include "asm/dng/item_hook.asm"			DrawItemName: full item names (name_tails.py)            ; variable-width small-font row (the ぞくせい line)
+DNG	80	.include "asm/dng/msg_name.asm"			MsgStep inserts: full item/skill/demon/Persona names
+DNG	90	.include "asm/dng/bar.asm"			the persona status bottom bar as one VWF row
+DNG	110	.include "asm/dng/pdata.asm"			Persona Data page: full skill names + VWF race/name bar
+DNG	240	.include "asm/dng/map_title.asm"			map title shows the full PSP-US name (VWF, hugging strip)
+DNG	250	.include "asm/dng/field_title.asm"			held-START field title uses the same full names
+S2D	30	.include "asm/s2d/vwf_hooks.asm"			
+S2D	40	.include "asm/s2d/msg_pace.asm"			MsgStep: two glyphs per 30 fps frame
+S2D	130	.include "asm/s2d/vwf_text2.asm"			VWF for the overworld dialogue box (text-object interpreter 0x8009B2F4)
+S2D	140	.include "asm/s2d/text_pace.asm"			text objects: glyphs per call
+S2D	150	.include "asm/s2d/smallfont.asm"			the smallfont VWF row (the ぞくせい line)
+S2D	160	.include "asm/s2d/item_hook.asm"			DrawItemName: full item names (name_tails.py)            ; variable-width small-font row (the ぞくせい line)
+S2D	170	.include "asm/s2d/msg_name.asm"			MsgStep inserts: full item/skill/demon/Persona names
+S2D	180	.include "asm/s2d/bar.asm"			the persona status bottom bar as two VWF rows (the overworld status page)
+S2D	200	.include "asm/s2d/pdata.asm"			the Persona Data page: VWF race/demon-name bar (System -> Analyze)
+S2D	210	.include "asm/s2d/draw_spell.asm"			DrawSpellName: full skill names in the skill rows
+FONT	10	.include "asm/vwf/vwf_font.asm"			
+FONT	40	.include "asm/vwf/sf_font.asm"	SF_VWF		the small-font kit's resident anchor (gate + replays)
+ADV	190	.include "build/partynames_adv.asm"			name-insert opcodes: 8 characters instead of 5
+ADV	220	.include "build/fusionmsg_adv.asm"			generated by src/injection/field/fusionmsg.py (fusion message pointers)
+DNG	140	.include "build/partynames_dng.asm"			generated alphabet-dependent hooks
+DNG	200	.include "build/scriptmsg_dng.asm"			generated by src/injection/field/scriptmsg.py (effect wore off)
+S2D	50	.include "build/partynames_s2d.asm"			generated alphabet-dependent hooks
+DNG	130	.include "asm/dng/spill.asm"			spill redirect hook (patch LAST inside)
+NAME	20	.include "build/name_grid.asm"			Latin name entry
+NAME	21	.include "asm/name/latin_start.asm"			Latin name entry
+NAME	22	.include "asm/name/abc_only.asm"			Latin name entry
+NAME	23	.include "asm/name/ring.asm"			Latin name entry
+NAME	24	.include "asm/name/long_names.asm"			Latin name entry
+NAMEDT	20	.include "asm/namedt/tab_column.asm"			Latin name entry
+NAMEDT	21	.include "asm/namedt/name_fields.asm"			Latin name entry
+OPEN_EXE	35	.include "asm/compat/retail_load_names.asm"	SF_VWF	unified-save-menu	retail Load Game names: original-face VWF
+OPEN	20	.include "build/open_smallfont.asm"			generated by src/injection/graphics/menu_gfx.py (lowercase in the small font)
+DNG	120	.include "build/dng_spill.asm"			generated by src/injection/dungeon/dngspill.py (spill table+text)
+DNG	230	.include "build/dng_titles.asm"			generated by src/injection/dungeon/dngnames.py (map-title JA-match table + EN blob)

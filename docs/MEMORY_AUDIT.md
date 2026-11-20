@@ -15,7 +15,7 @@ RAM, VRAM and SPU RAM are separate address spaces. A finding in one says
 nothing about another. DMA and GPU/SPU transfers must be audited separately.
 
 - **Reviewed range**: a half-open `[start, end)` in
-  [`src/injection_tools/runtime-memory-map.tsv`](../src/injection_tools/runtime-memory-map.tsv).
+  [`src/pipeline/runtime-memory-map.tsv`](../src/pipeline/runtime-memory-map.tsv).
   `write_guard.py` fails the build if an assembled write overlaps one.
 - **Allocation**: one contiguous run of assembled statements in the listing,
   merged only when the same source file writes adjacent/overlapping bytes of
@@ -48,7 +48,7 @@ confirm them.
 Build with the variant under test, then:
 
 ```sh
-python src/injection_tools/memory_audit.py --all
+python src/pipeline/memory_audit.py --all
 ```
 
 `--image NAME` audits one image and can be repeated. `--all` writes a
@@ -118,7 +118,7 @@ range simply because a scan produced a lead.
 Every confirmed overlap gets a test. The useful tests check the rule, not one
 address: the lookup must work after the live writer runs, every index must be
 covered, and the directory or buffer must stay outside the protected range.
-`tools/tests/test_btlp_analyze_ownership.py`,
+`src/injection/battle/test_btlp_analyze_ownership.py`,
 `test_runtime_map.py` and `test_memory_audit.py` are the current examples.
 
 ## Zero-fill tails
@@ -142,9 +142,10 @@ specific owner documented, and the blanket row catches anything else.
 
 ## Current audit (all built images)
 
-`python src/injection_tools/memory_audit.py --all` covers every image the
-listing writes. The counts below are for a listing assembled with every QoL
-option defined (`--listing` of `armips main.asm` with each `QOL_*` label), so
+`python src/pipeline/memory_audit.py --all` covers every image the
+listing writes. The counts below are for a listing assembled with every mod
+defined (`--listing` of `armips build/main.asm` written for every mod, with
+each `MOD_*` label), so
 every option's writes are audited at once:
 
 | Image | Ranges | Indexed refs | Exact | Near stores | Near loads |
@@ -195,7 +196,7 @@ All exact leads are reviewed:
 - **SLPS event sector table** (`0x8004DFDC..0x8004E0DE`): 129 halfwords from
   `event_tables.asm`; reader `0x80015B74` indexes with `(s1 & 0xff) * 2`.
   Intended.
-- **QoL tables placed where retail readers point**: the `western` controller
+- **Mod tables placed where retail readers point**: the `western` controller
   page layouts (ADV `0x800B983C`, reader `0x8008C35C`; S2D `0x8009F6A8`,
   reader `0x80080814`), `encounters`' divisor table (DNG `0x80099ED0`,
   reader `0x800709EC`, the per-step roll), `run`'s pad-layout entry (DNG
@@ -285,16 +286,16 @@ board animates during a turn, so the demand still has to stay low: a row in
 borrowed scratch is filled before its board's first frame, so leftovers are
 never drawn.
 
-`tools/tests/test_prim_pool_borrowers.py` finds every patched BTLP instruction
+`src/mods/base/test_prim_pool_borrowers.py` finds every patched BTLP instruction
 that reaches a cursor and fails unless its source file is registered with a
 contract test. A contract test runs the game's own `BtlInitObjects`, then the
 patch at its heaviest, and checks that the pool is unchanged outside the slots
 taken and that every taken slot keeps its type
-(`test_qol_range.Range.test_borrowed_slots_keep_the_games_shape`).
+(`test_mod_range.Range.test_borrowed_slots_keep_the_games_shape`).
 
 ## Shared runtime scratch
 
-`src/asm/common/scratch_map.tsv` lists every region the patch writes at
+`src/mods/base/asm/common/scratch_map.tsv` lists every region the patch writes at
 runtime outside its own images (the resident path-table cache tail, the
 overlays' small-font tables and buffers), with its users. Two regions may
 overlap only when each names the other and the row says why they are never

@@ -1,0 +1,7 @@
+name	FMV translation
+description	The renderer that draws subtitles and translated text over the movies. It does nothing on its own: the English translation's movie subtitles and movie text turn it on.
+default	no
+always	no
+release	no
+requires	base
+marker	yes

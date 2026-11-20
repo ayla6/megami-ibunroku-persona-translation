@@ -1,0 +1,6 @@
+name	Attack range
+description	Shows the range of an attack on the battle floor while you pick its target. Yeah somewhat like the PSP version but with somewhat less info since it's just on the battle floor.
+default	yes
+always	no
+release	yes
+requires	base

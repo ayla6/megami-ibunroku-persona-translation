@@ -1,0 +1,5 @@
+name	Restore formation after ambushes
+description	When you get ambushed the game turns your party around and leaves it like that after the battle. This puts everyone back where they were before the ambush, even if you moved them during the fight.
+default	yes
+always	no
+release	yes

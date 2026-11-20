@@ -1,8 +1,8 @@
 kind	key	value	rel	pos	us_sub	us_pos	us_hi_pos	mode	split	speaker
-meta	matches_sha1	9caa1371215c986603c8628f50bd8b4b3810f878								
-meta	matching_inputs_sha1	c560d23dca4f2fd7294c2346af522abae476412c								
+meta	matches_sha1	53cef3f734aed3f7dd3289487d8a9d3b82f1edcd								
+meta	matching_inputs_sha1	9e89d940e9e7eb314a33cceb4fe6b3ab557d6e83								
 meta	psx:BTLP	b2cba081ee71bd645969ec85ee11dc6ac18f2976								
-meta	us:EBOOT	08e9592c6d19ae1a355f016b6664408be61089e4								
+meta	us:EBOOT	b232ccaccfad6704ba3a2c203f70c9fdaafcf7d9								
 meta	version	1								
 match			BTLP	0x6b650	btlevt	0x29ea02	0x29ea02	ok		Nanjo
 match			BTLP	0x6b66c	btlevt	0x29e9d2	0x29e9d2	ok		Yukino
@@ -77,7 +77,7 @@ match			BTLP	0x6c0fc	btlevt	0x29cbb2	0x29cbb2	ok		Reiji
 match			BTLP	0x6c124	btlevt	0x29cb06	0x29cb06	ok		Nanjo
 match			BTLP	0x6c164	btlevt	0x29c9aa	0x29ca5a	ok		Kandori
 match			BTLP	0x6c1d8	btlevt	0x29c8e6	0x29c922	ok		Kandori
-match			BTLP	0x6c214	btlevt	0x29c7da	0x29c868	ok		Nyarlathotep's voice
+match			BTLP	0x6c214	btlevt	0x29c7da	0x29c868	ok		Nyarlathotep\u2019s voice
 match			BTLP	0x6c258	btlevt	0x29c7b2	0x29c7b2	ok		Kandori
 match			BTLP	0x6c26c	btlevt	0x29c786	0x29c786	ok		Maki
 match			BTLP	0x6c27c	btlevt	0x29c75e	0x29c75e	ok		Mark

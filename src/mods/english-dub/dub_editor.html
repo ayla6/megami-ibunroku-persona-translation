@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dub editor</title>
+<style>
+  :root { --bg: #15171c; --panel: #1d2027; --line: #2c313b; --text: #e3e6ec; --dim: #8c94a3; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.4 system-ui, sans-serif;
+         display: flex; flex-direction: column; overflow: hidden; }
+  header { display: flex; gap: 8px; align-items: center; padding: 6px 10px; background: var(--panel);
+           border-bottom: 1px solid var(--line); flex: none; flex-wrap: wrap; }
+  select, button { background: #262a33; color: var(--text); border: 1px solid var(--line); border-radius: 5px;
+                   padding: 4px 10px; font: inherit; cursor: pointer; }
+  button:hover { border-color: var(--dim); }
+  button.save { border-color: #4fd08a; }
+  #clock { color: #ff4d6d; font-variant-numeric: tabular-nums; min-width: 64px; }
+  #status { color: var(--dim); margin-left: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #main { flex: 1; min-height: 0; overflow: auto; padding: 8px 10px; }
+  #row { display: flex; gap: 10px; align-items: flex-start; }
+  #left { flex: 1; min-width: 0; }
+  h2 { font-size: 12px; color: var(--dim); font-weight: 600; margin: 0 0 3px; }
+  canvas { display: block; width: 100%; background: #101216; border: 1px solid var(--line); border-radius: 4px; }
+  #movie-tl { height: 256px; }
+  #psp-tl { height: 160px; margin-top: 4px; }
+  #pic { width: 300px; flex: none; margin-top: 18px; }
+  video { width: 300px; height: 225px; background: #000; border-radius: 4px; object-fit: contain; display: block; }
+  #caption { min-height: 34px; margin-top: 4px; color: #fff; text-align: center; font: 13px/1.3 system-ui, sans-serif; }
+  #help { color: var(--dim); margin-top: 8px; }
+  .k { border: 1px solid var(--line); border-radius: 3px; padding: 0 4px; }
+</style>
+</head>
+<body>
+<header>
+  <select id="movie"></select>
+  <select id="goto" title="jump to a line"></select>
+  <button id="play-dub" title="Space">▶ Dub</button>
+  <button id="play-jp" title="J">▶ Japanese</button>
+  <button id="play-psp" title="P">▶ PSP</button>
+  <button id="stop" title="Esc">■</button>
+  <button id="add" title="A — a new line: the English from the PSP cursor, played at the movie cursor">+ Line</button>
+  <button id="del" title="Delete — the selected line goes">✕ Line</button>
+  <button id="undo" title="Ctrl+Z">↶ Undo</button>
+  <span id="clock">0.00 s</span>
+  <button class="save" id="save">Save</button>
+  <span id="status">loading…</span>
+</header>
+<div id="main">
+  <div id="row">
+    <div id="left">
+      <h2>Movie — subtitles · Japanese audio · the dub · the subtitles as the dub shows them (drag them) · each English piece where it plays (drag a piece to move it)</h2>
+      <canvas id="movie-tl"></canvas>
+    </div>
+    <div id="pic"><video id="video" muted playsinline preload="auto"></video><div id="caption"></div></div>
+  </div>
+  <h2 style="margin-top:8px">PSP English — the cut of each line: full volume between its start and end, fading in and out over the slopes</h2>
+  <canvas id="psp-tl"></canvas>
+  <div id="help">
+    In the PSP timeline drag a cut's <b>start</b> or <b>end</b> line, the top of a <b>slope</b> to set its fade, or the middle to take other audio.
+    In the movie timeline drag a piece to change when it plays, and a subtitle in the lane under the dub (its edges, or all of it) to time it for the dub build; the one showing is under the picture. Click sets the cursor (jumps there while playing).
+    Swipe / wheel scrolls (<span class="k">Shift</span> both timelines), pinch / <span class="k">Ctrl</span>+wheel zooms.
+    <span class="k">Space</span> dub · <span class="k">J</span> Japanese · <span class="k">P</span> PSP · <span class="k">Esc</span> stop.
+    <b>+ Line</b> (<span class="k">A</span>) adds a line: the English from the PSP cursor, played at the movie cursor; <b>✕ Line</b> (<span class="k">Delete</span>) removes the selected one; <span class="k">Ctrl</span>+<span class="k">Z</span> undoes.
+    The dub re-renders by itself; Save keeps it.
+  </div>
+</div>
+<audio id="audio"></audio>
+<script>
+const $ = id => document.getElementById(id);
+let M = null, dirty = false, renders = 0, pieces = [], sel = -1, undo = [], subSel = -1;
+const SUB_Y = 210, SUB_H = 18;                   // the dub subtitles' lane in the movie timeline
+let pxs = 60;                                     // pixels per second, both timelines
+const tl = { movie: { t0: 0, cursor: 0 }, psp: { t0: 0, cursor: 0 } };
+let playing = null, stopAt = null;               // 'dub' | 'jp' | 'psp'
+const r2 = v => Math.round(v * 100) / 100;
+
+function status(t) { $('status').textContent = t; }
+async function api(path, body) {
+  const r = await fetch(path, body ? { method: 'POST', body: JSON.stringify(body) } : {});
+  const j = await r.json();
+  if (!r.ok || j.error) throw new Error(j.error || r.statusText);
+  return j;
+}
+
+// ---------- loading
+async function init() {
+  const { movies } = await api('/api/movies');
+  $('movie').innerHTML = movies.map(m => `<option>${m}</option>`).join('');
+  $('movie').onchange = e => load(e.target.value).catch(err => status('error: ' + err.message));
+  await load(movies[0]);
+}
+async function load(mv) {
+  if (dirty && M && !confirm('Unsaved changes in ' + M.movie + ' — drop them?')) { $('movie').value = M.movie; return; }
+  status('loading ' + mv + '…');
+  M = await api('/api/movie?mv=' + mv);
+  $('movie').value = mv; dirty = false; sel = -1; subSel = -1; M.dub = null; videoKey = ''; undo = [];
+  labels(); goTo(0);
+  await render();
+}
+function subtitle(l) {
+  // the subtitle the line is said under: the most overlap with its JP span
+  let best = null, most = 0;
+  for (const s of M.jp) {
+    const o = Math.min(s.end, Math.max(l.jp_end, l.jp_start + 0.5)) - Math.max(s.start, l.jp_start);
+    if (o > most) { most = o; best = s; }
+  }
+  return best ? best.text : '(no subtitle)';
+}
+function labels() {
+  $('goto').innerHTML = M.lines.map((l, i) => `<option value="${i}">${i + 1}. ${subtitle(l).slice(0, 40)}</option>`).join('');
+  if (sel >= 0) $('goto').value = sel;
+}
+$('goto').onchange = e => goTo(+e.target.value);
+function goTo(i) {
+  const l = M.lines[i]; sel = i; $('goto').value = i;
+  tl.movie.t0 = Math.max(0, l.jp_start - l.en_lead - 1.5); tl.psp.t0 = Math.max(0, l.en_start - l.en_lead - 1.5);
+  tl.movie.cursor = Math.max(0, l.jp_start - l.en_lead); tl.psp.cursor = Math.max(0, l.en_start - l.en_lead);
+  frame('dub', tl.movie.cursor); draw();
+}
+
+// ---------- geometry: one line's cut, in both timelines
+function cut(l) {                                 // PSP times
+  return { f0: l.en_start - l.en_lead, a: l.en_start, b: l.en_end, f1: l.en_end + l.en_trail };
+}
+function placed(l) {                              // the same, in movie time
+  const d = l.jp_start - l.en_start, c = cut(l);
+  return { f0: c.f0 + d, a: c.a + d, b: c.b + d, f1: c.f1 + d };
+}
+
+// ---------- drawing
+function setup(c) {
+  const r = c.getBoundingClientRect(), dpr = devicePixelRatio || 1;
+  c.width = Math.round(r.width * dpr); c.height = Math.round(r.height * dpr);
+  const g = c.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return { g, w: r.width, h: r.height };
+}
+const X = (v, t) => (t - v.t0) * pxs;
+const T = (v, x) => v.t0 + x / pxs;
+function wave(g, w, data, v, top, height, col) {
+  if (!data) return;
+  g.fillStyle = col;
+  const mid = top + height / 2;
+  for (let i = Math.max(0, Math.floor(v.t0 / data.hop)); i < Math.min(data.peaks.length, T(v, w) / data.hop); i++) {
+    const a = data.peaks[i] / 100 * height / 2;
+    g.fillRect(X(v, i * data.hop), mid - a, Math.max(1, data.hop * pxs), 2 * a);
+  }
+}
+function shape(g, v, c, top, bottom, col, chosen) {
+  // the cut as a volume envelope: slopes up, flat at full volume, slopes down
+  g.beginPath();
+  g.moveTo(X(v, c.f0), bottom); g.lineTo(X(v, c.a), top); g.lineTo(X(v, c.b), top); g.lineTo(X(v, c.f1), bottom);
+  g.closePath(); g.fillStyle = col; g.fill();
+  g.strokeStyle = chosen ? '#ffffff' : 'rgba(255,255,255,0.45)'; g.lineWidth = chosen ? 2 : 1; g.stroke();
+}
+function ticks(g, w, h, v) {
+  g.fillStyle = '#8c94a3'; g.font = '10px system-ui';
+  const step = pxs > 150 ? 0.5 : pxs > 40 ? 1 : 5;
+  for (let t = Math.ceil(v.t0 / step) * step; X(v, t) < w; t += step) {
+    g.fillRect(X(v, t), h - 5, 1, 5); g.fillText(t.toFixed(step < 1 ? 1 : 0) + 's', X(v, t) + 2, h - 6);
+  }
+}
+function head(g, h, v, live) {
+  const x = X(v, v.cursor), col = live ? '#ff4d6d' : '#ffffff';
+  g.fillStyle = col; g.fillRect(x - (live ? 1.5 : 1), 0, live ? 3 : 2, h);
+  g.beginPath(); g.moveTo(x - 6, 0); g.lineTo(x + 6, 0); g.lineTo(x, 9); g.fill();
+}
+function draw() {
+  if (!M) return;
+  const live = !$('audio').paused;
+  // movie timeline
+  let { g, w, h } = setup($('movie-tl')), v = tl.movie;
+  const subBox = (a, b, y, fill, ink, text, chosen) => {
+    g.fillStyle = fill; g.fillRect(X(v, a), y, (b - a) * pxs, SUB_H);
+    if (chosen) { g.strokeStyle = '#ffffff'; g.lineWidth = 1; g.strokeRect(X(v, a) + 0.5, y + 0.5, (b - a) * pxs - 1, SUB_H - 1); }
+    g.save(); g.beginPath(); g.rect(X(v, a), y, (b - a) * pxs, SUB_H); g.clip();
+    g.fillStyle = ink; g.font = '12px system-ui'; g.fillText(text, X(v, a) + 4, y + 13); g.restore();
+  };
+  for (const s of M.jp) subBox(s.start, s.end, 0, 'rgba(232,194,90,0.20)', '#e8c25a', s.text, false);
+  M.subs.forEach((s, k) => subBox(s.dub_start, s.dub_end, SUB_Y, 'rgba(95,168,255,0.22)', '#9cc8ff', s.text, k === subSel));
+  g.fillStyle = '#8c94a3'; g.font = '10px system-ui';
+  g.fillText('Japanese', 4, 34); g.fillText('dub', 4, 126);
+  wave(g, w, M.jp, v, 24, 88, '#59627a');
+  wave(g, w, M.dub, v, 116, 88, '#5fa8ff');
+  M.lines.forEach((l, i) => {
+    shape(g, v, placed(l), 22, SUB_Y - 4, i === sel ? 'rgba(79,208,138,0.22)' : 'rgba(79,208,138,0.10)', i === sel);
+    g.fillStyle = '#4fd08a'; g.font = '11px system-ui'; g.fillText(String(i + 1), X(v, l.jp_start) + 3, 34);
+  });
+  head(g, h, v, live && playing !== 'psp');
+  ticks(g, w, h, v);
+  // PSP timeline
+  ({ g, w, h } = setup($('psp-tl'))); v = tl.psp;
+  wave(g, w, M.en, v, 10, h - 30, '#59627a');
+  M.lines.forEach((l, i) => {
+    const c = cut(l);
+    shape(g, v, c, 6, h - 14, i === sel ? 'rgba(79,208,138,0.22)' : 'rgba(79,208,138,0.10)', i === sel);
+    for (const [t, col] of [[c.a, '#4fd08a'], [c.b, '#ff9a4d']]) { g.fillStyle = col; g.fillRect(X(v, t) - 1, 6, 2, h - 20); }
+    for (const t of [c.f0, c.f1]) { g.fillStyle = '#ffffff'; g.beginPath(); g.arc(X(v, t), h - 14, 4, 0, 7); g.fill(); }
+    g.fillStyle = '#4fd08a'; g.font = '11px system-ui'; g.fillText(String(i + 1), X(v, c.a) + 3, 18);
+  });
+  head(g, h, v, live && playing === 'psp');
+  ticks(g, w, h, v);
+  $('clock').textContent = (playing === 'psp' ? tl.psp.cursor : tl.movie.cursor).toFixed(2) + ' s';
+  // the subtitle showing at the cursor: the dub's timing, or the JP's for the JP
+  const t = tl.movie.cursor, jp = playing === 'jp';
+  const on = playing === 'psp' ? null
+    : jp ? M.jp.find(s => s.start <= t && t < s.end)
+    : M.subs.find(s => s.dub_start <= t && t < s.dub_end);
+  $('caption').textContent = on ? on.text : '';
+}
+window.addEventListener('resize', draw);
+
+// ---------- editing
+const state = () => JSON.stringify({ lines: M.lines, subs: M.subs });
+function snap() { undo.push(state()); if (undo.length > 200) undo.shift(); }
+function changed() {
+  dirty = true; draw(); clearTimeout(changed.timer);
+  changed.timer = setTimeout(() => render().catch(e => status('error: ' + e.message)), 300);
+}
+function edited(i) {
+  M.lines[i].manual = true; sel = i; $('goto').value = i; changed();
+}
+function addLine() {
+  // a line no subtitle holds (a shout): the English from the PSP cursor,
+  // played at the movie cursor
+  snap();
+  const es = r2(tl.psp.cursor), js = r2(tl.movie.cursor), len = 1.5;
+  const l = { line: -1, cut: false, manual: true, jp_start: js, jp_end: r2(js + len), en_start: es,
+              en_end: r2(es + len), en_lead: 0.3, en_trail: 0.5, mute_from: 0, mute_to: 0 };
+  M.lines.push(l);
+  M.lines.sort((a, b) => a.jp_start - b.jp_start || a.en_start - b.en_start);
+  sel = M.lines.indexOf(l); labels(); changed();
+}
+function deleteLine() {
+  if (sel < 0) return status('select a line first (click it)');
+  if (M.lines.length === 1) return status('a movie keeps at least one line');
+  snap(); M.lines.splice(sel, 1); sel = Math.min(sel, M.lines.length - 1); labels(); changed();
+}
+function undoLast() {
+  if (!undo.length) return status('nothing to undo');
+  const u = JSON.parse(undo.pop());
+  M.lines = u.lines; M.subs = u.subs; sel = Math.min(sel, M.lines.length - 1); labels(); changed();
+}
+$('add').onclick = addLine;
+$('del').onclick = deleteLine;
+$('undo').onclick = undoLast;
+function grab(which, x, y) {
+  // what is under the mouse: a handle of a cut, the body of one, a dub
+  // subtitle's edge or the subtitle, or nothing
+  const v = tl[which];
+  let best = null;
+  if (which === 'movie' && y >= SUB_Y && y < SUB_Y + SUB_H) {
+    M.subs.forEach((s, n) => {
+      for (const [k, t] of [['sub_start', s.dub_start], ['sub_end', s.dub_end]]) {
+        const d = Math.abs(X(v, t) - x);
+        if (d <= 5 && (!best || d < best.d)) best = { sub: n, k, d };
+      }
+      if (!best && X(v, s.dub_start) < x && x < X(v, s.dub_end)) best = { sub: n, k: 'sub_body', d: 99 };
+    });
+    return best;
+  }
+  M.lines.forEach((l, i) => {
+    const c = which === 'psp' ? cut(l) : placed(l);
+    const handles = which === 'psp'
+      ? [['fade_in', c.f0], ['start', c.a], ['end', c.b], ['fade_out', c.f1]] : [];
+    for (const [k, t] of handles) {
+      const d = Math.abs(X(v, t) - x);
+      if (d <= 7 && (!best || d < best.d)) best = { i, k, d };
+    }
+    if (!best && X(v, c.a) < x && x < X(v, c.b)) best = { i, k: 'body', d: 99 };
+  });
+  return best;
+}
+let drag = null;
+for (const [id, which] of [['movie-tl', 'movie'], ['psp-tl', 'psp']]) {
+  const c = $(id);
+  c.addEventListener('mousedown', e => {
+    const hit = grab(which, e.offsetX, e.offsetY);
+    drag = { which, x0: e.offsetX, t0: tl[which].t0, moved: false, hit,
+             start: !hit ? null : JSON.parse(JSON.stringify(hit.sub !== undefined ? M.subs[hit.sub] : M.lines[hit.i])),
+             before: state() };
+    if (hit && hit.sub !== undefined) { subSel = hit.sub; draw(); }
+    else if (hit) { sel = hit.i; $('goto').value = hit.i; draw(); }
+  });
+  c.addEventListener('mousemove', e => {
+    const hit = grab(which, e.offsetX, e.offsetY);
+    c.style.cursor = !hit ? 'crosshair' : hit.k.endsWith('body') ? 'grab' : 'ew-resize';
+  });
+  c.addEventListener('dblclick', e => { tl[which].cursor = T(tl[which], e.offsetX); play(which === 'psp' ? 'psp' : 'dub'); });
+  c.addEventListener('wheel', e => {
+    e.preventDefault();
+    const v = tl[which], other = tl[which === 'psp' ? 'movie' : 'psp'];
+    if (e.ctrlKey || e.metaKey) {
+      const t = T(v, e.offsetX), ot = T(other, e.offsetX);
+      pxs = Math.min(600, Math.max(15, pxs * Math.exp(-e.deltaY * 0.01)));
+      v.t0 = Math.max(0, t - e.offsetX / pxs); other.t0 = Math.max(0, ot - e.offsetX / pxs);
+    } else {
+      const d = (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY) / pxs;
+      v.t0 = Math.max(0, v.t0 + d); if (e.shiftKey) other.t0 = Math.max(0, other.t0 + d);
+    }
+    draw();
+  }, { passive: false });
+}
+window.addEventListener('mousemove', e => {
+  if (!drag) return;
+  const c = drag.which === 'psp' ? $('psp-tl') : $('movie-tl');
+  const x = e.clientX - c.getBoundingClientRect().left, dt = (x - drag.x0) / pxs;
+  if (Math.abs(x - drag.x0) > 2) drag.moved = true;
+  if (!drag.moved) return;
+  if (drag.hit && !drag.snapped) { undo.push(drag.before); drag.snapped = true; }
+  if (!drag.hit) { tl[drag.which].t0 = Math.max(0, drag.t0 - dt); draw(); return; }
+  if (drag.hit.sub !== undefined) {
+    // a subtitle's timing in the dub build: nothing to re-render
+    const u = M.subs[drag.hit.sub], s = drag.start;
+    if (drag.hit.k === 'sub_body') { u.dub_start = r2(s.dub_start + dt); u.dub_end = r2(s.dub_end + dt); }
+    else if (drag.hit.k === 'sub_start') u.dub_start = r2(Math.min(s.dub_end - 0.1, s.dub_start + dt));
+    else u.dub_end = r2(Math.max(s.dub_start + 0.1, s.dub_end + dt));
+    dirty = true; draw(); return;
+  }
+  const l = M.lines[drag.hit.i], s = drag.start;
+  if (drag.which === 'movie') {
+    l.jp_start = r2(s.jp_start + dt);                          // when it plays
+  } else if (drag.hit.k === 'body') {
+    l.en_start = r2(s.en_start + dt); l.en_end = r2(s.en_end + dt);   // other audio, same place
+  } else if (drag.hit.k === 'start') {
+    // the start moves, the words stay where they are in the movie
+    const a = Math.min(s.en_end - 0.05, s.en_start + dt);
+    l.en_start = r2(a); l.jp_start = r2(s.jp_start + (a - s.en_start));
+  } else if (drag.hit.k === 'end') {
+    l.en_end = r2(Math.max(s.en_start + 0.05, s.en_end + dt));
+  } else if (drag.hit.k === 'fade_in') {
+    l.en_lead = r2(Math.max(0, s.en_lead - dt));
+  } else if (drag.hit.k === 'fade_out') {
+    l.en_trail = r2(Math.max(0, s.en_trail + dt));
+  }
+  edited(drag.hit.i);
+});
+window.addEventListener('mouseup', e => {
+  if (drag && !drag.moved) {
+    const c = drag.which === 'psp' ? $('psp-tl') : $('movie-tl'), v = tl[drag.which];
+    v.cursor = T(v, e.clientX - c.getBoundingClientRect().left);
+    const a = $('audio'), here = drag.which === 'psp' ? playing === 'psp' : playing && playing !== 'psp';
+    if (!a.paused && here) { a.currentTime = v.cursor; }
+    else frame(drag.which === 'psp' ? 'psp' : 'dub', v.cursor);
+    draw();
+  }
+  if (drag && drag.moved && drag.hit && drag.hit.sub === undefined) labels();   // a moved piece may play in another order now
+  drag = null;
+});
+
+// ---------- render, save
+async function render() {
+  status('updating the dub…');
+  const r = await api('/api/render', { movie: M.movie, psp: M.psp, lines: M.lines });
+  M.dub = r.view; pieces = r.pieces; renders++;
+  draw(); status((dirty ? 'not saved — ' : '') + M.movie + ' from PSP ' + M.psp);
+}
+$('save').onclick = async () => {
+  try {
+    const r = await api('/api/save', { movie: M.movie, psp: M.psp, lines: M.lines, subs: M.subs });
+    M.lines = r.lines; M.subs = r.subs; dirty = false; sel = Math.min(sel, M.lines.length - 1); labels(); draw(); status('saved — ' + M.movie + ' from PSP ' + M.psp);
+  } catch (e) { status('error: ' + e.message); }
+};
+window.addEventListener('beforeunload', e => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+// ---------- playing, with the picture kept in time
+let videoKey = '';
+function video(which) {
+  const v = $('video'), key = (which === 'psp' ? 'psp:' + M.psp : 'jp:' + M.movie);
+  if (key !== videoKey) {
+    videoKey = key;
+    v.src = which === 'psp' ? `/video?which=psp&psp=${M.psp}&mv=${M.movie}` : `/video?which=jp&mv=${M.movie}`;
+  }
+  return v;
+}
+function frame(which, t) {
+  const v = video(which), seek = () => { v.pause(); v.currentTime = Math.max(0, t); };
+  v.readyState >= 1 ? seek() : v.addEventListener('loadedmetadata', seek, { once: true });
+}
+function play(which) {
+  const a = $('audio');
+  if (!a.paused && playing === which) { a.pause(); return; }      // the same button pauses
+  const src = which === 'psp' ? 'en' : which;
+  const url = `/audio?mv=${M.movie}&which=${src}&psp=${M.psp}&v=${which === 'dub' ? renders : 0}`;
+  const from = which === 'psp' ? tl.psp.cursor : tl.movie.cursor;
+  playing = which; video(which); stopAt = null;
+  const go = () => { a.currentTime = Math.max(0, from); a.play(); };
+  if (a.getAttribute('src') !== url) { a.setAttribute('src', url); a.addEventListener('loadedmetadata', go, { once: true }); }
+  else go();
+}
+$('play-dub').onclick = () => play('dub');
+$('play-jp').onclick = () => play('jp');
+$('play-psp').onclick = () => play('psp');
+$('stop').onclick = () => $('audio').pause();
+$('audio').addEventListener('pause', () => { $('video').pause(); draw(); });
+(function follow() {
+  const a = $('audio'), v = $('video');
+  if (!a.paused && playing) {
+    if (Math.abs(v.currentTime - a.currentTime) > 0.08) v.currentTime = a.currentTime;
+    if (v.paused) v.play().catch(() => {});
+    const view = playing === 'psp' ? tl.psp : tl.movie;
+    view.cursor = a.currentTime;
+    const w = $('movie-tl').getBoundingClientRect().width;
+    if (X(view, view.cursor) > w * 0.85 || X(view, view.cursor) < 0) view.t0 = Math.max(0, view.cursor - w * 0.15 / pxs);
+    draw();
+  }
+  requestAnimationFrame(follow);
+})();
+window.addEventListener('keydown', e => {
+  if (e.target.tagName === 'SELECT') return;
+  if (e.code === 'Space') { e.preventDefault(); play('dub'); }
+  else if (e.key === 'j') play('jp');
+  else if (e.key === 'p') play('psp');
+  else if (e.key === 'Escape') $('audio').pause();
+  else if (e.key === 'a') addLine();
+  else if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); deleteLine(); }
+  else if (e.key === 'z' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); undoLast(); }
+});
+init().catch(e => status('error: ' + e.message));
+</script>
+</body>
+</html>

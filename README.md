@@ -22,36 +22,26 @@ This is a hard fork of [Redeted/megami-ibunroku-persona-ps1-translation](https:/
 ## Play it
 
 You need an original Japanese copy of *Megami Ibunroku Persona* (SLPS-00500),
-Revision 0 or Revision 1, as a single-track `.bin`. No game data is
+Revision 0, as a single-track `.bin`. No game data is
 included in this repository.
 
 You can just use the webpatcher at [ayla6.github.io/megami-ibunroku-persona-translation](https://ayla6.github.io/megami-ibunroku-persona-translation)
 
-You can also download it from releases and do it by hand with xdelta3, but it's torture:
+You can also download it from releases and apply it by hand, from a checkout
+of this repository (base, alphabet, English, then the mods you want; the
+release README lists their order and requirements):
 
 ```sh
-# Rev 1 only; skip for a Rev 0 disc.
-xdelta3 -d -s "Megami Ibunroku Persona (Japan) (Rev 1).bin" \
-    rev1-to-rev0.xdelta persona-rev0.bin
-# Base translation, then each option you want, in this order.
-xdelta3 -d -s persona-rev0.bin rev0-to-base.xdelta persona-base.bin
-xdelta3 -n -d -s persona-base.bin add-mark.xdelta persona-mark.bin
-xdelta3 -n -d -s persona-mark.bin add-battlespeed.xdelta persona-mark-battlespeed.bin
-xdelta3 -n -d -s persona-mark-battlespeed.bin add-rewards.xdelta persona-mark-battlespeed-rewards.bin
-xdelta3 -n -d -s persona-mark-battlespeed-rewards.bin add-encounters.xdelta persona-mark-battlespeed-rewards-encounters.bin
-xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters.bin add-run.xdelta persona-mark-battlespeed-rewards-encounters-run.bin
-# (with Western controls applied first, use add-run-western.xdelta instead)
-xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run.bin add-upright.xdelta persona-mark-battlespeed-rewards-encounters-run-upright.bin
-xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-upright.bin add-skipfmv.xdelta persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv.bin
-xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv.bin add-saves.xdelta persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv-saves.bin
-xdelta3 -n -d -s persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv-saves.bin add-60fps-saves.xdelta persona-mark-battlespeed-rewards-encounters-run-upright-skipfmv-saves-60fps.bin
+python src/pipeline/modpack.py apply persona-tl.bin \
+    --source "Megami Ibunroku Persona (Japan).bin" \
+    base.p1mod latin-alphabet.p1mod english-translation.p1mod unified-save-menu.p1mod black-mark.p1mod battle-speedup.p1mod
 ```
 
 ## Extra patches
 
 | Patch | What it does |
 | --- | --- |
-| Save menu | Merges the slot 1 and slot 2 menus into one, so that you don't have to worry about which one to select. Requires "speed up on memory card access" to not feel like a slog. |
+| Unified save menu | Merges the slot 1 and slot 2 menus into one, so that you don't have to worry about which one to select. Requires "speed up on memory card access" to not feel like a slog. |
 | Black Mark | Makes Masao Inaba black. Uses a custom sprite so that he's both black and still wears his original outfit. Doesn't change the script. |
 | Battle speedup | Doubles the speed of summons and skill effects in battle. |
 | 60 FPS | Interpolates frames to get the dungeons to 60fps and the map to 30fps. Only does it when you're actively moving around. Needs overclocking. |
@@ -82,11 +72,7 @@ please do! I'm not great with this kind of edit, or really any graphical edits a
   for the sake of not having to cut characters while still not overflowing.
 - Almost everything is allowed its full-length text (almost).
 - FMV subtitles and the opening quote / ending poem overlays, rendered in-engine
-  rather than by re-encoding the videos. It can slightly drop the fps in some
-  frames, and the moon fading definitely will, so I recommend running it
-  with an overclock, alongside the 60fps patch so that it doesn't make
-  some areas run faster than they should (or without it so you can have it
-  running faster lol).
+  rather than by re-encoding the videos.
 
 ## Why and how?
 
@@ -126,8 +112,8 @@ documentation. Or just throw a robot at it.
 python -m pip install -r requirements.txt
 python src/setup_external_tools.py            # armips
 python tools/prepare_data.py                  # optional: extract the discs first
-python src/injection_tools/build.py           # patched disc in dist/
-python src/injection_tools/build.py --qol=... # separate QoL image
+python src/pipeline/build.py           # patched disc in dist/
+python src/pipeline/build.py --mods=... # the translation with the mods you name
 ```
 
 ## Credits and license
@@ -136,8 +122,8 @@ python src/injection_tools/build.py --qol=... # separate QoL image
 - [Redeted](https://github.com/Redeted/megami-ibunroku-persona-ps1-translation):
   the project this was forked from, and the origin of the variable-width
   text, the 60fps and easy-mode patches.
-- The [web patcher](webpatcher/CREDITS.md) runs the real xdelta3 compiled to
-  WebAssembly; its licenses and provenance are there.
+- The [web patcher](webpatcher/CREDITS.md)'s CHD reader follows libchdr and
+  the LZMA SDK; its credits are there.
 
 The code in this repository is MIT (see [LICENSE](LICENSE)). The game, its
 translation and its assets belong to their respective owners.

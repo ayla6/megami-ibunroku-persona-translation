@@ -17,8 +17,8 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-sys.path.insert(0, os.path.join(ROOT, 'src', 'injection_tools'))
-sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
 import disc_data  # noqa: E402
 import fmv_subgen as fs  # noqa: E402
 import strlib  # noqa: E402

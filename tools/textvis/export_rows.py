@@ -10,11 +10,19 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'src'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
 import serve  # noqa: E402
 
 OUT = os.path.join(HERE, "rows.json")
-rows = serve.rows()
-open(OUT, "w", encoding="utf-8").write(
-    json.dumps(rows, ensure_ascii=False, separators=(",", ":")))
-print(f"{OUT}: {len(rows)} rows, {os.path.getsize(OUT)} bytes")
+
+
+def main():
+    rows = serve.rows()
+    open(OUT, "w", encoding="utf-8").write(
+        json.dumps(rows, ensure_ascii=False, separators=(",", ":")))
+    print(f"{OUT}: {len(rows)} rows, {os.path.getsize(OUT)} bytes")
+
+
+if __name__ == "__main__":
+    main()

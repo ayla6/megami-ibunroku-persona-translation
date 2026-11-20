@@ -7,7 +7,7 @@ choice lists) uses a 4bpp 256×256 page with 8×12 cells: glyph `g` is at row
 `g // 31`, column `g % 31`. Each character byte already identifies a glyph;
 there are no free codes or Latin alphabet in the retail page.
 
-- **`SF_LATIN`** — `src/injection_tools/smallfont_lc.py` draws `a..z` over
+- **`SF_LATIN`** — `src/injection/fonts/smallfont_lc.py` draws `a..z` over
   26 rare hiragana plus `'` and `.`. The alphabet uses the low bytes of
   full-width `ａ..ｚ`, because name entry stores only the low byte of a typed
   character. These cells make English readable through the retail renderer.
@@ -127,7 +127,7 @@ hand-picked neighbour.
 The same screen is linked into several overlays: ADV, DNG and S2D each carry
 a copy of `PersonaDataDraw`'s bar tail, `StatusPersonaNames`, `CellsWriteRow`
 and `DrawSpellName` (DNG's skill row is compiled with different defines).
-`tools/tests/test_overlay_clones.py` fingerprints those retail copies by
+`src/mods/base/test_overlay_clones.py` fingerprints those retail copies by
 instruction shape (data literals masked) and fails when a copy exists that
 is not a declared, rewritten patch site; a new clone is a build-visible
 decision instead of a screen that silently stays retail.
@@ -136,7 +136,7 @@ The script VM (`MsgStep` cases 9-12: item, skill, demon, Persona inserts)
 is linked into ADV, DNG and S2D too, and each copy resolved only the
 record's ten-glyph head. All three now divert the case to a stub that
 copies the complete FF-terminated name into the overlay's scratch and
-enters the insert loop with `left = 0xFF`; `tools/tests/test_msg_name_inserts.py`
+enters the insert loop with `left = 0xFF`; `src/injection/resident/test_msg_name_inserts.py`
 executes each overlay's stubs on the R3000 and checks every translated row
 reaches the loop intact. S2D carries the identical VM, so a new overlay
 with the same cases is a stub to add, not a screen to leave truncated.
@@ -199,8 +199,8 @@ same producer-owned VWF path. Rows without a consumer stay Japanese and
 - Regenerate derived translations and font products with their owning
   tools (`port.py`, `make_vwf_font.py`, `smallfont_vwf.py build`), never by
   restoring them from Git. The authored art
-  (`src/asm/font/sheet.png`, `src/assets/fonts/smallfont_page_modified.png`,
-  `src/assets/fonts/smallfont_page_compact.png`) is preserved; keep
+  (`src/mods/latin-alphabet/assets/fonts/sheet.png`, `src/mods/latin-alphabet/assets/fonts/smallfont_page_modified.png`,
+  `src/mods/latin-alphabet/assets/fonts/smallfont_page_compact.png`) is preserved; keep
   working-tree edits.
 - Scroll order, choice gates, and nameplate rules are specified in
   [TEXT_LAYOUT_SPEC.md](TEXT_LAYOUT_SPEC.md). Family porters own their
@@ -229,7 +229,7 @@ playtest. Run `smallfont_vwf.py verify` after assembly for disc-file readback.
 
 ## Editing and measuring the compact face
 
-See [`src/assets/fonts/README.md`](../src/assets/fonts/README.md) for the
+See [`src/mods/latin-alphabet/assets/fonts/README.md`](../src/mods/latin-alphabet/assets/fonts/README.md) for the
 Latin-only editable sheet, generated cell index and live stage/width report.
 The compact face is authored art with its own measured advances; the regular
 face is unchanged. Builds never overwrite either authored PNG.

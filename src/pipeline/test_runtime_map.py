@@ -1,0 +1,36 @@
+"""Indexed runtime references are leads, not inferred array extents."""
+from pathlib import Path
+import struct
+import sys
+import unittest
+
+ROOT = Path(__file__).resolve().parents[2]
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
+import runtime_map
+
+
+class RuntimeMap(unittest.TestCase):
+    def test_indexed_store_and_reader(self):
+        # lui at,0x8010; addiu at,at,-0x7c44; addu at,at,v0; sw v1,0(at)
+        code = struct.pack('<4I', 0x3c018010, 0x242183bc, 0x00220821, 0xac230000)
+        self.assertEqual(list(runtime_map.candidates(code, 0x80010000)),
+                         [(0x8001000c, 0x800f83bc, 'sw', 2)])
+
+    def test_real_graphics_pointer_array_is_found(self):
+        if not runtime_map.DEFAULT.exists():
+            self.skipTest('requires extracted rev-0 BTLP')
+        hits = list(runtime_map.candidates(runtime_map.DEFAULT.read_bytes()))
+        self.assertIn((0x80081b84, 0x800f83bc, 'sw', 2), hits)
+        self.assertIn((0x8007773c, 0x800f7ed8, 'sw', 4), hits)
+
+    def test_register_replacement_is_not_an_indexed_base(self):
+        # A load replaces the LUI result before the later ADDIU/ADDU.
+        code = struct.pack('<5I', 0x3c02800d, 0x9042d50c, 0x24420001,
+                           0x00551021, 0x94420006)
+        self.assertEqual(list(runtime_map.candidates(code)), [])
+
+
+if __name__ == '__main__':
+    unittest.main()

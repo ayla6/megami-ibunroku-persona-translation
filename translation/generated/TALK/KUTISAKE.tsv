@@ -1,250 +1,250 @@
 id	pos	psp	en
-0	0x2014	pack/talk/KUTISAKE:0x2018	You're right... I'm still young, too.<FFF6>It makes me think.<FFF5>
-1	0x2041	pack/talk/KUTISAKE:0x2090	Hmph! What do you think you're up<FFF6>to? As if you know how I've suffered!<FFF5>
-2	0x2075	pack/talk/KUTISAKE:0x2120	I knew it!<FFF6>You're interested in me, aren't you?<FFFB><FFF7>Let me guess... You're attracted<FFF6>to women with large mouths!<FFF5>
-3	0x20b7	pack/talk/KUTISAKE:0x2200	Goodness, you're rather confident.<FFF6>Wanna put that to the test later on?<FFF5>
-4	0x20e9	pack/talk/KUTISAKE:0x2290	The nerve, taunting me!<FFF6>Don't make me take off this mask!<FFF5>
-5	0x2113	pack/talk/KUTISAKE:0x2308	Wh-What's wrong with you...?<FFF6>Don't you know how to<FFF6>speak to a lady...?<FFF5>
-6	0x2149	pack/talk/KUTISAKE:0x2398	Do you really need my help?<FFFB><FFF7>Aren't you just trying<FFF6>to join our group?<FFF5>
-7	0x2182	pack/talk/KUTISAKE:0x2428	Are you trying to sweet-talk me?<FFF6>Hmph! I'm not falling for that!<FFF5>
-8	0x21bb	pack/talk/KUTISAKE:0x24b0	I'm not interested in people with small<FFF6>mouths. Sorry... try someone else.<FFF5>
-9	0x21f9	pack/talk/KUTISAKE:0x2548	What an amazing voice... It's so good,<FFF6>I kind of hate it! Let's see what it<FFF6>sounds like when it's screaming!<FFF5>
-10	0x2234	pack/talk/KUTISAKE:0x2628	Stop singing... I hate music.<FFF5>
-11	0x224e	pack/talk/KUTISAKE:0x2668	Wow, that's a great voice. You know,<FFF6>I was a good singer in my day, too.<FFF5>
-12	0x2273	pack/talk/KUTISAKE:0x2700	Well... you're not using any product in<FFF6>your hair, at least. I'll think about it.<FFF5>
-13	0x22a8	pack/talk/KUTISAKE:0x27a8	Hmph! I bet you've rehearsed<FFF6>those lines before on other demons!<FFFB><FFF7>You disgust me!<FFF5>
-14	0x22ec	pack/talk/KUTISAKE:0x2850	Another favor? It seems like<FFF6>everyone's been coming to me.<FFFB><FFF7>Ahaha... Beauty can be a sin.<FFF5>
-15	0x2328	pack/talk/KUTISAKE:0x2908	Don't you have any pride!?<FFF6>I hate women like you!<FFF5>
-16	0x2351	pack/talk/KUTISAKE:0x2970	Come on, cut that out... It's creepy.<FFF5>
-17	0x2372	pack/talk/KUTISAKE:0x29c0	Yes! Exactly! The homely and<FFF6>the plain must kneel before me!<FFF5>
-18	0x23a5	pack/talk/KUTISAKE:0x2a40	Hmm... I usually don't believe people<FFF6>unless they tell me I'm beautiful...<FFFB><FFF7>Well, maybe just this once,<FFF6>I'll let it go and believe you.<FFF5>
-19	0x23f6	pack/talk/KUTISAKE:0x2b50	You're lying your ass off!<FFF6>Don't make me slice you<FFF6>to ribbons with my box cutter!<FFF5>
-20	0x2422	pack/talk/KUTISAKE:0x2bf8	Goodness... You want to spend time<FFF6>with me so badly you'll lie to do it?<FFFB><FFF7>Ahaha... I've still got it.<FFF5>
-21	0x2464	pack/talk/KUTISAKE:0x2cc8	Ah, you seem to know your limitations.<FFFB><FFF7>That's a very important thing<FFF6>to get by in this world.<FFF5>
-22	0x24ae	pack/talk/KUTISAKE:0x2d88	What's your problem!? You make me<FFF6>sound like a monster or something!<FFF6>Now I'm really ticked off!<FFF5>
-23	0x24d9	pack/talk/KUTISAKE:0x2e48	That's right!<FFF6>Next time, bring me candy!<FFF5>
-24	0x250a	pack/talk/KUTISAKE:0x2ea0	Huh? How old are you?<FFF6>Ick... You're still a kid...<FFFB><FFF7>Your arrogance is jaw-closing.<FFF5>
-25	0x2557	pack/talk/KUTISAKE:0x2f48	What does a brat like you want<FFF6>with me!? You're not my type!<FFF5>
+0	0x2014	pack/talk/KUTISAKE:0x2018	You’re right...<FFFC><FFF6>I’m still young, too.<FFFC><FFF6>It makes me think.<FFF5>
+1	0x2041	pack/talk/KUTISAKE:0x2090	<L{>Hmph!<FFF6>What <}><S{>Hmph! What <}>do you think you’re up to?<FFF6>As if you know how I’ve suffered!<FFF5>
+2	0x2075	pack/talk/KUTISAKE:0x2120	I knew it!<FFFC><FFF6>You’re interested in me, aren’t you?<FFFB><FFF7>Let me guess... You’re attracted<FFF6>to women with large mouths!<FFF5>
+3	0x20b7	pack/talk/KUTISAKE:0x2200	Goodness, you’re rather confident.<FFFC><FFF6>Wanna put that to the test later on?<FFF5>
+4	0x20e9	pack/talk/KUTISAKE:0x2290	The nerve, taunting me!<FFFC><FFF6>Don’t make me take off this mask!<FFF5>
+5	0x2113	pack/talk/KUTISAKE:0x2308	Wh-What’s wrong with you...?<FFFC><FFF6>Don’t you know how<L{> to<FFF6>speak <}><S{> to speak <}>to a lady...?<FFF5>
+6	0x2149	pack/talk/KUTISAKE:0x2398	Do you really need my help?<FFFC><FFFB><FFF7>Aren’t you just<L{> trying<FFF6>to <}><S{> trying to <}>join our group?<FFF5>
+7	0x2182	pack/talk/KUTISAKE:0x2428	Are you trying to sweet-talk me?<FFF6>Hmph! I’m not falling for that!<FFF5>
+8	0x21bb	pack/talk/KUTISAKE:0x24b0	I’m not interested in people with small<FFF6>mouths. Sorry... try someone else.<FFF5>
+9	0x21f9	pack/talk/KUTISAKE:0x2548	What an amazing<L{> voice...<FFFC> It’s <}><S{> voice...<FFFC><FFF6>It’s <}>so<L{> good,<FFF6>I <}><S{> good, I <}>kind of hate it! Let’s<L{> see what it<FFF6>sounds <}><S{> see<FFF6>what it sounds <}>like when it’s screaming!<FFF5>
+10	0x2234	pack/talk/KUTISAKE:0x2628	Stop singing...<FFFC><FFF6>I hate music.<FFF5>
+11	0x224e	pack/talk/KUTISAKE:0x2668	Wow, that’s a great voice.<FFFC> You know,<FFF6>I was a good singer in my day, too.<FFF5>
+12	0x2273	pack/talk/KUTISAKE:0x2700	<L{>Well...<FFFC><FFF6>you’re <}><S{>Well...<FFFC> you’re <}>not using any<L{> product in<FFF6>your <}><S{> product<FFF6>in your <}>hair, at least. I’ll think about it.<FFF5>
+13	0x22a8	pack/talk/KUTISAKE:0x27a8	Hmph!<FFFC><FFF6>I bet you’ve rehearsed those lines<FFF6>before on other demons!<FFFB><FFF7>You disgust me!<FFF5>
+14	0x22ec	pack/talk/KUTISAKE:0x2850	Another favor?<FFF6>It seems like everyone’s<FFF6>been coming to me.<FFFB><FFF7>Ahaha...<FFFC><FFF6>Beauty can be a sin.<FFF5>
+15	0x2328	pack/talk/KUTISAKE:0x2908	Don’t you have any pride!?<FFFC><FFF6>I hate women like you!<FFF5>
+16	0x2351	pack/talk/KUTISAKE:0x2970	Come on, cut that out...<FFFC><FFF6>It’s creepy.<FFF5>
+17	0x2372	pack/talk/KUTISAKE:0x29c0	Yes! Exactly!<FFF6>The homely and the plain<FFF6>must kneel before me!<FFF5>
+18	0x23a5	pack/talk/KUTISAKE:0x2a40	Hmm...<FFFC> I usually don’t believe people<FFF6>unless they tell me I’m beautiful...<FFFB><FFF7>Well, maybe just this once,<FFF6>I’ll let it go and believe you.<FFF5>
+19	0x23f6	pack/talk/KUTISAKE:0x2b50	You’re lying your ass off!<FFFC><FFF6>Don’t make me slice you<FFF6>to ribbons with my box cutter!<FFF5>
+20	0x2422	pack/talk/KUTISAKE:0x2bf8	Goodness...<FFFC><FFF6>You want to spend time with me<FFF6>so badly you’ll lie to do it?<FFFB><FFF7>Ahaha...<FFFC><FFF6>I’ve still got it.<FFF5>
+21	0x2464	pack/talk/KUTISAKE:0x2cc8	Ah, you seem to know your limitations.<FFFB><FFF7>That’s a very important thing<FFF6>to get by in this world.<FFF5>
+22	0x24ae	pack/talk/KUTISAKE:0x2d88	What’s your problem!?<FFF6>You make me sound like a<L{> monster or<FFF6>something!<FFFC> <}><S{> monster<FFF6>or something!<FFFC> <}>Now I’m really ticked off!<FFF5>
+23	0x24d9	pack/talk/KUTISAKE:0x2e48	That’s right!<FFFC><FFF6>Next time, bring me candy!<FFF5>
+24	0x250a	pack/talk/KUTISAKE:0x2ea0	Huh? How old are you?<FFF6>Ick... You’re still a kid...<FFFB><FFF7>Your arrogance is jaw-closing.<FFF5>
+25	0x2557	pack/talk/KUTISAKE:0x2f48	What does a brat<L{> like<FFF6>you <}><S{> like you <}>want with me!?<FFFC><FFF6>You’re not my type!<FFF5>
 26	0x257b	pack/talk/KUTISAKE:0x2fc8	Dummy.<FFF5>
-27	0x2584	pack/talk/KUTISAKE:0x2fd8	Am I beautiful!?<FFFB><FFF7>I'm beautiful, right!?<FFFB><FFF7>That's right! I AM beautiful!<FFF5>
-28	0x25b0	pack/talk/KUTISAKE:0x3068	Ahaha... You're cute.<FFFB><FFF7>It's a corny joke, but it's nice that<FFF6>you're trying to get my attention.<FFF5>
-29	0x25ec	pack/talk/KUTISAKE:0x3128	Hey! My mouth hurts when I laugh!<FFF6>You better not be doing<FFF6>that on purpose!<FFF5>
+27	0x2584	pack/talk/KUTISAKE:0x2fd8	Am I beautiful!?<FFFB><FFF7>I’m beautiful, right!?<FFFB><FFF7>That’s right! I AM beautiful!<FFF5>
+28	0x25b0	pack/talk/KUTISAKE:0x3068	Ahaha...<FFFC><FFF6>You’re cute.<FFFB><FFF7>It’s a corny joke, but it’s<L{> nice that<FFF6>you’re <}><S{> nice<FFF6>that you’re <}>trying to get my attention.<FFF5>
+29	0x25ec	pack/talk/KUTISAKE:0x3128	<L{>Hey!<FFFC> My <}><S{>Hey!<FFFC><FFF6>My <}>mouth hurts when I laugh!<FFFC><FFF6>You better not be<L{> doing<FFF6>that <}><S{> doing that <}>on purpose!<FFF5>
 30	0x261e	pack/talk/KUTISAKE:0x31c0	Laaaaame...<FFF5>
-31	0x262f	pack/talk/KUTISAKE:0x31d8	That was pretty funny!<FFF6>Not as funny as your face, though.<FFF5>
-32	0x2653	pack/talk/KUTISAKE:0x3250	Me?<FFF6>Let's see... I've been in a fix lately.<FFF6>Kids are too careful nowadays.<FFF5>
-33	0x2681	pack/talk/KUTISAKE:0x32e8	Hmmm... I haven't had much luck<FFF6>capturing kids lately.<FFFB><FFF7>So I'll capture you instead...!<FFF5>
-34	0x26bb	pack/talk/KUTISAKE:0x3398	Umm, well... Rumor has<FFF6>it that humans who hit<FFF6>on demons are extra delicious!<FFF5>
-35	0x26ec	pack/talk/KUTISAKE:0x3438	Awww, how cute...<FFF6>Trying to get my attention<FFF6>with a cheap gag like that...<FFF5>
-36	0x2714	pack/talk/KUTISAKE:0x34d0	Uh, what's wrong with you? Are you<FFF6>an idiot or something? How childish!<FFF5>
-37	0x2747	pack/talk/KUTISAKE:0x3560	Wh-What was that for...? That was<FFF6>close. My mask almost slid off...<FFF5>
+31	0x262f	pack/talk/KUTISAKE:0x31d8	That was pretty funny!<FFFC><FFF6>Not as funny as your face, though.<FFF5>
+32	0x2653	pack/talk/KUTISAKE:0x3250	Me?<FFFC><FFF6>Let’s see... I’ve been in a fix lately.<FFF6>Kids are too careful nowadays.<FFF5>
+33	0x2681	pack/talk/KUTISAKE:0x32e8	Hmmm...<FFFC><FFF6>I haven’t had much luck<FFF6>capturing kids lately.<FFFB><FFF7>So I’ll capture you instead...!<FFF5>
+34	0x26bb	pack/talk/KUTISAKE:0x3398	Umm,<L{> well...<FFFC><FFF6>Rumor <}><S{> well...<FFFC> Rumor <}>has it that<L{> humans who <}><S{> humans<FFF6>who <}>hit<L{> on<FFF6>demons <}><S{> on demons <}>are extra delicious!<FFF5>
+35	0x26ec	pack/talk/KUTISAKE:0x3438	Awww, how cute...<FFFC><FFF6>Trying to get my attention<FFF6>with a cheap gag like that...<FFF5>
+36	0x2714	pack/talk/KUTISAKE:0x34d0	Uh, what’s wrong with you?<FFF6>Are you an idiot or something?<FFF6>How childish!<FFF5>
+37	0x2747	pack/talk/KUTISAKE:0x3560	Wh-What was that for...?<FFFC><FFF6>That was<L{> close.<FFF6>My <}><S{> close. My <}>mask almost slid off...<FFF5>
 38	0x2781	pack/talk/KUTISAKE:0x35e8	Is that a present?<FFF6>For me? Hurry up and gimme!<FFF5>
-39	0x27a3	pack/talk/KUTISAKE:0x3648	Hey!<FFF6>You think this is going to sway me!?<FFFB><FFF7>You didn't give this much thought,<FFF6>did you? What I want is candy!<FFF5>
-40	0x27e4	pack/talk/KUTISAKE:0x3720	Oh, my! It's been a while since I was<FFF6>given a gift... How delightful!<FFF5>
-41	0x280a	pack/talk/KUTISAKE:0x37b0	That speech was amazing! You must<FFF6>have practiced in front of a mirror.<FFF6>I like a man who works hard!<FFF5>
-42	0x2845	pack/talk/KUTISAKE:0x3878	You talk big for a little kid!<FFF6>What a smart-aleck...<FFF5>
-43	0x287b	pack/talk/KUTISAKE:0x38e8	If you can speak that confidently,<FFF6>you have a mouth<FFF6>well-suited to lip service!<FFFB><FFF7>It could surpass mine someday!<FFF5>
-44	0x28ad	pack/talk/KUTISAKE:0x39c8	Kids today really are<FFF6>lacking in calcium.<FFFB><FFF7>You should eat more candy.<FFF5>
-45	0x28f2	pack/talk/KUTISAKE:0x3a58	There's no reason to yell at me!<FFF6>This is why I hate stupid brats!<FFF5>
-46	0x291a	pack/talk/KUTISAKE:0x3ae0	...My time has already passed...<FFF6>I wonder if I should<FFF6>just go into hiding.<FFF5>
-47	0x2956	pack/talk/KUTISAKE:0x3b78	I don't really like kids.<FFF6>They can be such smart-alecks...<FFFB><FFF7>Will you really grow into<FFF6>a handsome man someday? Mmm.<FFF5>
-48	0x299c	pack/talk/KUTISAKE:0x3c60	You pretend to be mature,<FFF6>but you've got a long way to go<FFF6>when it comes to dealing with women!<FFF5>
-49	0x29cd	pack/talk/KUTISAKE:0x3d20	Oh, stop... you're embarrassing me...!<FFF5>
-50	0x29eb	pack/talk/KUTISAKE:0x3d70	Is that the takenoko?<FFF6>I was active in the 70s... I don't<FFF6>know much about modern dances.<FFF5>
-51	0x2a25	pack/talk/KUTISAKE:0x3e20	Hmph! Your moves are best kept<FFF6>to yourself, if you ask me. Come back<FFF6>when you've had more practice!<FFF5>
-52	0x2a6c	pack/talk/KUTISAKE:0x3ee8	Ahaha... You're pretty good!<FFF6>But if it was a race, I'd win!<FFF5>
-53	0x2aa0	pack/talk/KUTISAKE:0x3f60	You seem pretty sure of yourself.<FFF6>I'm always surprised<FFF6>by kids these days.<FFF5>
-54	0x2ad5	pack/talk/KUTISAKE:0x3ff8	You're one of those kids<FFF6>who never knows when to shut up!<FFFB><FFF7>How about if I slice your mouth<FFF6>off, hmmm? What then!?<FFF5>
-55	0x2afb	pack/talk/KUTISAKE:0x40e0	Um... Um, all I do is ask,<FFF6>"Am I beautiful?" you know...<FFFB><FFF7>...I'm not lying...<FFF5>
-56	0x2b3a	pack/talk/KUTISAKE:0x4180	Are you that curious to know<FFF6>what's under this mask?<FFFB><FFF7>Ahahah... That'll have<FFF6>to stay a secret.<FFF5>
-57	0x2b75	pack/talk/KUTISAKE:0x4240	What's with that look?<FFF6>It's getting on my nerves a little!<FFF5>
-58	0x2b9a	pack/talk/KUTISAKE:0x42b8	Hahah... I can tell you're enraptured.<FFF6>It's not for nothing that they say<FFF6>beauty can be a sin.<FFF5>
-59	0x2bd1	pack/talk/KUTISAKE:0x4378	You sure can hype yourself up...<FFF6>it's really something. You're<FFF6>an interesting kid, you know that?<FFF5>
-60	0x2c0d	pack/talk/KUTISAKE:0x4440	Hmph! Talking without<FFF6>thinking is a terrible thing...<FFF6>Don't make me slit that mouth apart!<FFF5>
-61	0x2c49	pack/talk/KUTISAKE:0x44f8	Ahahah... You don't have to lie<FFF6>just because you're embarrassed.<FFF6>Lots of people are interested in me.<FFF5>
-62	0x2c8a	pack/talk/KUTISAKE:0x45c8	Hmph! The only creepy thing<FFF6>here is your face!<FFF5>
-63	0x2cb0	pack/talk/KUTISAKE:0x4628	N-No! Stop it!<FFF6>Why did you tell me that!?<FFF5>
-64	0x2ccd	pack/talk/KUTISAKE:0x4680	I was the talk of the town,<FFF6>back in the day. I'd like to slit<FFF6>your mouth and make you famous, too.<FFF5>
-65	0x2d06	pack/talk/KUTISAKE:0x4748	Wow, you have a wonderful voice.<FFF6>But if you slit your mouth wider,<FFFB><FFF7>you could achieve an even<FFF6>greater range...<FFF5>
-66	0x2d41	pack/talk/KUTISAKE:0x4828	You can out-sing me<FFF6>with that tiny mouth...?<FFF6>I don't know how I feel about that!<FFF5>
-67	0x2d72	pack/talk/KUTISAKE:0x48d0	Wow, that's a great voice you have.<FFF6>Listening to you calms me down.<FFF5>
-68	0x2d9a	pack/talk/KUTISAKE:0x4958	Now that's an interesting tactic!<FFF6>I like playing house, too.<FFF5>
-69	0x2dc1	pack/talk/KUTISAKE:0x49d8	Hey! Who do you think I am!?<FFF6>Cut it out already!<FFF5>
-70	0x2dee	pack/talk/KUTISAKE:0x4a40	Strange... I feel so nostalgic all<FFF6>of a sudden. I'm glad I met you.<FFF5>
-71	0x2e26	pack/talk/KUTISAKE:0x4ac8	Huh...? Do you really need me?<FFF6>Don't you just want to be<FFF6>one of my sisters?<FFF5>
-72	0x2e66	pack/talk/KUTISAKE:0x4b60	Hmph! I have my pride, you know!<FFF6>I'd sooner cut my mouth even wider<FFF6>than put myself in your care!<FFF5>
-73	0x2ea2	pack/talk/KUTISAKE:0x4c28	Recently, I didn't even have anyone<FFF6>to ask, "Am I beautiful?"<FFFB><FFF7>so I was getting lonely.<FFF6>You've made me a happy woman!<FFF5>
-74	0x2ede	pack/talk/KUTISAKE:0x4d18	Honestly... Kids your age are getting<FFF6>way too precocious. Though I was like<FFF6>that too when I was a delinquent...<FFF5>
-75	0x2f2b	pack/talk/KUTISAKE:0x4df8	Hey! Watch your mouth! What's with<FFF6>you? Don't sass me, little girl!<FFF5>
-76	0x2f6b	pack/talk/KUTISAKE:0x4e80	Th-That's not true... Oh God... *sob*<FFF5>
-77	0x2f8f	pack/talk/KUTISAKE:0x4ed0	Are you actually trying<FFF6>to seduce me...? Huh...<FFF6>I can't bring myself to hate you.<FFF5>
-78	0x2fcb	pack/talk/KUTISAKE:0x4f78	Oh, is that so?<FFF6>Then feel the caress...<FFF6>of my box cutter on your face!<FFF5>
-79	0x3004	pack/talk/KUTISAKE:0x5008	Ahahah... That's so cute.<FFF5>
-80	0x301c	pack/talk/KUTISAKE:0x5040	I didn't think there was anyone out<FFF6>there with a fate worse than mine...<FFFB><FFF7>I feel for you from the bottom<FFF6>of my heart.<FFF5>
-81	0x304d	pack/talk/KUTISAKE:0x5130	Hmph! Boy, did you choose the wrong<FFF6>person to try that on! I love nothing<FFF6>more than making spoiled brats cry!<FFF5>
-82	0x3094	pack/talk/KUTISAKE:0x5210	Yeesh, stop crying...<FFF6>Your bad luck will rub off on me.<FFF5>
-83	0x30b8	pack/talk/KUTISAKE:0x5280	Wow...! You're pretty self-confident!<FFF6>People like you interest me.<FFF5>
-84	0x30ed	pack/talk/KUTISAKE:0x5308	Hmph! Don't act all high and mighty<FFF6>when you're really all talk! I'll give<FFF6>your fresh mouth a good slashing!<FFF5>
-85	0x3135	pack/talk/KUTISAKE:0x53e8	You seem pretty certain...<FFF6>*gasp* You're not carrying<FFF6>any hair product, are you...?<FFF5>
-86	0x3176	pack/talk/KUTISAKE:0x5490	What a foulmouthed young lady!<FFF6>As a demon governing mouths,<FFF6>I can't allow it!<FFF5>
-87	0x31b6	pack/talk/KUTISAKE:0x5530	I... I'm sorry...<FFF5>
-88	0x31c8	pack/talk/KUTISAKE:0x5558	Ahahah... An argument, eh?<FFF6>I never lose.<FFF5>
-89	0x31ec	pack/talk/KUTISAKE:0x55b0	Huh... You have a good head<FFF6>on your shoulders. I'm impressed.<FFF5>
-90	0x3219	pack/talk/KUTISAKE:0x5630	Hmph! That smooth talk<FFF6>doesn't fool me! You can't<FFF6>possibly understand my pain!<FFF5>
-91	0x325f	pack/talk/KUTISAKE:0x56d0	So what it comes down to is...<FFF6>you want my spell card, right?<FFF6>Hahah... it's not easy being popular.<FFF5>
-92	0x32a3	pack/talk/KUTISAKE:0x5798	Hey! Will you stop trying<FFF6>to act like an adult?<FFFB><FFF7>Face it--you're just a brat!<FFF6>And I must say, it's pissing me off!<FFF5>
-93	0x32ec	pack/talk/KUTISAKE:0x5880	Is that so...? All right, I apologize...<FFF5>
-94	0x3306	pack/talk/KUTISAKE:0x58d8	It's been a while since I had<FFF6>a tongue-lashing like that!<FFF6>Hey, do it again!<FFF5>
-95	0x3336	pack/talk/KUTISAKE:0x5978	So that's how you wanna<FFF6>play it, huh? Alright,<FFF6>let's see who has more guts!<FFF5>
-96	0x335f	pack/talk/KUTISAKE:0x5a10	Hey! Look at me! If you don't look,<FFF6>how can you tell if I'm pretty or not!?<FFF5>
-97	0x3395	pack/talk/KUTISAKE:0x5aa8	If a kid like this won't take me<FFF6>seriously, I think I'm sunk...<FFF5>
-98	0x33c1	pack/talk/KUTISAKE:0x5b28	Oh, so that's how it's going to be?<FFF6>Well, okay then. I'll join<FFF6>in this little battle of wills.<FFF5>
-99	0x33f4	pack/talk/KUTISAKE:0x5be8	Hey! Look at me! If you don't look,<FFF6>how can you tell if I'm pretty or not!?<FFF5>
-100	0x342a	pack/talk/KUTISAKE:0x5c80	If a kid like this won't take me<FFF6>seriously, I think I'm sunk...<FFF5>
-101	0x3456	pack/talk/KUTISAKE:0x5d00	Wow...! You're pretty self-confident!<FFF6>Hmm... People like you interest me.<FFF5>
-102	0x3497	pack/talk/KUTISAKE:0x5d98	Hmph! Don't act all high and mighty<FFF6>when you're really all talk! I'll give<FFF6>your fresh mouth a good slashing!<FFF5>
-103	0x34dd	pack/talk/KUTISAKE:0x5e78	You seem pretty certain...<FFF6>*gasp* You're not carrying<FFF6>any hair product, are you...?<FFF5>
-104	0x3524	pack/talk/KUTISAKE:0x5f20	Quiet, you! What are you trying<FFF6>to say!? You've got a mouth,<FFF6>don't you? Then speak properly!<FFF5>
-105	0x355c	pack/talk/KUTISAKE:0x5fe0	Wh-What's your problem?<FFF6>I think you've had a little<FFF6>too much to drink...<FFF5>
-106	0x3592	pack/talk/KUTISAKE:0x6078	That sudden yell really<FFF6>caught me off guard. Hahah...<FFF6>I can't stay mad, though.<FFF5>
-107	0x35c2	pack/talk/KUTISAKE:0x6118	Ooh! Can you make other things<FFF6>appear, too? I like people<FFF6>who are good with their hands!<FFF5>
-108	0x35f2	pack/talk/KUTISAKE:0x61d0	You really can do anything...<FFF6>Just don't conjure up<FFF6>anything I hate.<FFF5>
-109	0x361c	pack/talk/KUTISAKE:0x6260	That's amazing! Hey,<FFF6>magic up some candy for me next time!<FFF5>
-110	0x3645	pack/talk/KUTISAKE:0x62d8	What an interesting story!<FFF6>C'mon, tell me what happens next!<FFF5>
-111	0x3669	pack/talk/KUTISAKE:0x6358	You must be really interested in me!<FFFB><FFF7>Give me something and maybe<FFF6>I'll tell you more about myself.<FFF1><FFF5>
-112	0x36bc	pack/talk/KUTISAKE:0x6420	I'll listen to you, but isn't there<FFF6>something you need to do first?<FFF1><FFF5>
-113	0x36e5	pack/talk/KUTISAKE:0x64b0	This is no fun at all... What a letdown.<FFF5>
-114	0x3704	pack/talk/KUTISAKE:0x6508	Will you stop bitching<FFF6>about petty stuff like that!?<FFFB><FFF7>Honestly, what a stupid child!<FFF6>You made me angry... What are<FFF6>you going to give me to fix it!?<FFF1><FFF5>
-115	0x3752	pack/talk/KUTISAKE:0x6638	Will you quit yapping!?<FFF6>You made me angry... What are<FFF6>you going to give me to fix it!?<FFF1><FFF5>
-116	0x3785	pack/talk/KUTISAKE:0x66e8	I don't like that look of yours...<FFF6>Are you under something's control...?<FFF5>
-117	0x37b5	pack/talk/KUTISAKE:0x6780	...I don't think I get it as much<FFF6>as someone else would...<FFF5>
-118	0x37ea	pack/talk/KUTISAKE:0x67f8	Ahahah... It's been a while<FFF6>since I had such a nice time.<FFF5>
-119	0x3813	pack/talk/KUTISAKE:0x6870	Hahahah... You say such cute things!<FFF5>
-120	0x382a	pack/talk/KUTISAKE:0x68c0	Why don't we chat some more!<FFF6>I'm hoping you might<FFF6>give me a present!<FFF1><FFF5>
-121	0x3852	pack/talk/KUTISAKE:0x6950	You want me?<FFF6>Teehee... What should I do...?<FFF5>
-122	0x3877	pack/talk/KUTISAKE:0x69a8	Your opening gambit was interesting.<FFF6>If you give something, I'll listen to<FFF6>whatever you really wanted to say.<FFF1><FFF5>
-123	0x38ae	pack/talk/KUTISAKE:0x6a88	You want my help, but you're still<FFF6>a kid... Let me think it over some.<FFF5>
-124	0x38e7	pack/talk/KUTISAKE:0x6b18	I have no interest<FFF6>at all in kids like you.<FFF5>
-125	0x3904	pack/talk/KUTISAKE:0x6b70	That was too... ordinary!<FFF6>You need to do something<FFF6>that'll get my heart racing!<FFF5>
-126	0x3933	pack/talk/KUTISAKE:0x6c10	Hmph! What a lame tactic.<FFF6>I'm a <FFF0> <FFF3>, you know.<FFFB><FFF7>If you really want my help,<FFF6>you'll listen to my commands!<FFF1><FFF5>
-127	0x399b	pack/talk/KUTISAKE:0x6ce8	I feel like... there's something<FFF6>behind all this...<FFF5>
-128	0x39ac	pack/talk/KUTISAKE:0x6d50	Aren't you a human...? You shouldn't<FFF6>ask for help from demons...<FFF5>
-129	0x39dc	pack/talk/KUTISAKE:0x6dd8	If you have a favor to ask,<FFF6>some advice: don't come to me.<FFF6>Ask some other demon...<FFF5>
-130	0x3a03	pack/talk/KUTISAKE:0x6e80	Ahahah... Now, what should I do...?<FFF5>
-131	0x3a18	pack/talk/KUTISAKE:0x6ec8	Ahahaha! You need me?<FFF6>What a kind thing to say!<FFF5>
-132	0x3a43	pack/talk/KUTISAKE:0x6f28	Why are you acting that way?<FFF6>Are you deliberately<FFF6>trying to make me angry?<FFFB><FFF7>There's something up your sleeve...<FFF5>
-133	0x3a7b	pack/talk/KUTISAKE:0x7008	There's no point in trying<FFF6>to make me angry. But I admit,<FFF6>you have a talent for it.<FFF5>
-134	0x3ab4	pack/talk/KUTISAKE:0x70b0	That won't get you anywhere.<FFF6>There are better ways<FFF6>to pique people's interest.<FFF1><FFF5>
-135	0x3aec	pack/talk/KUTISAKE:0x7150	How dare you make fun of me!?<FFF6>I hope you're prepared!<FFF5>
-136	0x3b11	pack/talk/KUTISAKE:0x71c0	Argh, you make me so mad!<FFF6>Though if you didn't... I wouldn't<FFF6>take any pleasure in killing you!<FFF5>
-137	0x3b45	pack/talk/KUTISAKE:0x7280	How dare you make a fool out of me!?<FFF6>Now I'm mad! And I won't calm down<FFF6>unless you give me something!<FFF1><FFF5>
-138	0x3b84	pack/talk/KUTISAKE:0x7350	You must be making fun of me...<FFF6>You're so cruel...<FFF5>
-139	0x3ba5	pack/talk/KUTISAKE:0x73b8	This isn't how negotiations<FFF6>usually go...<FFF5>
-140	0x3bc5	pack/talk/KUTISAKE:0x7410	Wh-What the...? I can't figure out<FFF6>what your negotiation strategy is...<FFF5>
-141	0x3be8	pack/talk/KUTISAKE:0x74a0	Nice attitude... You must be very<FFF6>sure of yourself! I like that!<FFF5>
-142	0x3c1a	pack/talk/KUTISAKE:0x7528	Sure, do whatever you want! I bet<FFF6>you have no idea how scary I am!<FFFB><FFF7>Ask your older sister about me<FFF6>when you get home... Hahaha!<FFF6>You'll be surprised!<FFF5>
-143	0x3c89	pack/talk/KUTISAKE:0x7658	Ahaha... You're trying to figure<FFF6>out what I like, aren't you?<FFF6>That's so adorable!<FFF5>
-144	0x3cb4	pack/talk/KUTISAKE:0x7700	Hmmm? Are you an aspiring<FFF6>performer? Make sure to mention me<FFF6>when you hit the big time.<FFF5>
-145	0x3ce7	pack/talk/KUTISAKE:0x77b0	You're not very good at this,<FFF6>are you? We'll try again once<FFF6>you've had more practice.<FFFB><FFF7>I'm looking forward to it!<FFF5>
-146	0x3d20	pack/talk/KUTISAKE:0x7898	I feel like something's missing...<FFF6>I can give you tips, but it'll cost you!<FFF1><FFF5>
-147	0x3d5e	pack/talk/KUTISAKE:0x7938	...What was that? It was so lame,<FFF6>I think you deserve to die for it!<FFF5>
-148	0x3d8f	pack/talk/KUTISAKE:0x79c8	...What was that? You suck so bad<FFF6>there's no hope for you! For your<FFF6>next trick, I think you should die!<FFFB><FFF7>...Wait... Give me something first!<FFF1><FFF5>
-149	0x3ded	pack/talk/KUTISAKE:0x7ae8	You want money for THAT!?<FFF6>Hmph, you got some nerve!<FFF6>You should pay me instead!<FFF1><FFF5>
-150	0x3e27	pack/talk/KUTISAKE:0x7b88	What is that...? I don't get it...<FFF5>
-151	0x3e43	pack/talk/KUTISAKE:0x7bd0	Is that some dangerous sorcery<FFF6>ritual? It's got nothing<FFF6>to do with me, right...?<FFF5>
-152	0x3e76	pack/talk/KUTISAKE:0x7c78	Ahahah... That went quite well.<FFF6>You're very attractive.<FFF5>
-153	0x3e9d	pack/talk/KUTISAKE:0x7ce8	That was amazing! I wonder<FFF6>if I should learn something, too...?<FFF5>
-154	0x3ebf	pack/talk/KUTISAKE:0x7d68	You really are a talented child.<FFF6>I'm having lots of fun...<FFFB><FFF7>...And I'd have even more if you<FFF6>gave me something, you know?<FFF1><FFF5>
-155	0x3f0e	pack/talk/KUTISAKE:0x7e60	Hahah... Is it all right<FFF6>if I leave my mask on?<FFF5>
-156	0x3f30	pack/talk/KUTISAKE:0x7ec0	You're just a kid... But who knows?<FFF6>It might be a good way to kill time.<FFFB><FFF7>Alright, I'll hang around. But you'd<FFF6>better give me something in return!<FFF1><FFF5>
-157	0x3f8b	pack/talk/KUTISAKE:0x7fe8	Are you trying to hit on me?<FFF6>That's fine, but I like<FFF6>someone who's generous!<FFF1><FFF5>
-158	0x3fc8	pack/talk/KUTISAKE:0x8088	Are you making fun of me!?<FFF6>I can't stand that in brats like you!<FFF5>
-159	0x3fed	pack/talk/KUTISAKE:0x8110	I'm not stupid! You think I'd betray<FFF6>my sisters just for that!?<FFFB><FFF7>Honestly, what a brat!<FFF6>You've made me mad... What are<FFF6>you going to give me to fix it!?<FFF1><FFF5>
-160	0x4048	pack/talk/KUTISAKE:0x8248	What're you doing? Wait... you're not<FFF6>trying to seduce me, are you!?<FFFB><FFF7>If the other demons find out<FFF6>you seduced me, they'll mob you!<FFF6>I'll keep quiet, though... for a price...<FFF1><FFF5>
-161	0x40ae	pack/talk/KUTISAKE:0x83a8	Hey, what's wrong?<FFF6>I haven't done anything...<FFF5>
-162	0x40d0	pack/talk/KUTISAKE:0x8408	Hey, wait a second...<FFF6>Even after hearing that story,<FFF6>I-I-don't know what to do...<FFF5>
+39	0x27a3	pack/talk/KUTISAKE:0x3648	<L{>Hey!<FFF6>You <}><S{>Hey! You <}>think this is going to sway<L{> me!?<FFFB><FFF7>You <}><S{> me!?<FFF6>You <}>didn’t give this much thought,<FFF6>did you?<FFFC> What I want is candy!<FFF5>
+40	0x27e4	pack/talk/KUTISAKE:0x3720	Oh, my!<FFFC><FFF6>It’s been a while since I<L{> was<FFF6>given <}><S{> was given <}>a<L{> gift...<FFFC> How <}><S{> gift...<FFFC><FFF6>How <}>delightful!<FFF5>
+41	0x280a	pack/talk/KUTISAKE:0x37b0	That speech was amazing!<FFFC><FFF6>You must have practiced in<L{> front of<FFF6>a <}><S{> front<FFF6>of a <}>mirror. I like a man who works hard!<FFF5>
+42	0x2845	pack/talk/KUTISAKE:0x3878	You talk big for a little kid!<FFFC><FFF6>What a smart-aleck...<FFF5>
+43	0x287b	pack/talk/KUTISAKE:0x38e8	If you can speak that<L{> confidently,<FFF6>you have <}><S{> confidently, you<FFF6>have <}>a<L{> mouth<FFF6>well-suited <}><S{> mouth well-suited <}>to lip<L{> service!<FFFB><FFF7>It <}><S{> service!<FFF6>It <}>could surpass mine someday!<FFF5>
+44	0x28ad	pack/talk/KUTISAKE:0x39c8	Kids today really<L{> are<FFF6>lacking <}><S{> are lacking <}>in calcium.<FFFB><FFF7>You should eat more candy.<FFF5>
+45	0x28f2	pack/talk/KUTISAKE:0x3a58	There’s no reason to yell at me!<FFFC><FFF6>This is why I hate stupid brats!<FFF5>
+46	0x291a	pack/talk/KUTISAKE:0x3ae0	...My time has already passed...<FFFC><FFF6>I wonder if I<L{> should<FFF6>just <}><S{> should just <}>go into hiding.<FFF5>
+47	0x2956	pack/talk/KUTISAKE:0x3b78	I don’t really like<L{> kids.<FFF6>They <}><S{> kids. They <}>can be<L{> such smart-alecks...<FFFB><FFF7>Will <}><S{> such<FFF6>smart-alecks... Will <}>you really<L{> grow into<FFF6>a <}><S{> grow<FFF6>into a <}>handsome man someday? Mmm.<FFF5>
+48	0x299c	pack/talk/KUTISAKE:0x3c60	You pretend to be mature,<FFF6>but you’ve got a long way to go<FFF6>when it comes to dealing with women!<FFF5>
+49	0x29cd	pack/talk/KUTISAKE:0x3d20	Oh, stop... you’re embarrassing me...!<FFF5>
+50	0x29eb	pack/talk/KUTISAKE:0x3d70	Is that the takenoko?<FFF6>I was active in the<L{> 70s... I don’t<FFF6>know <}><S{> 70s...<FFF6>I don’t know <}>much about modern dances.<FFF5>
+51	0x2a25	pack/talk/KUTISAKE:0x3e20	Hmph!<FFFC> Your moves are<L{> best kept<FFF6>to <}><S{> best<FFF6>kept to <}>yourself, if you ask<L{> me. Come back<FFF6>when <}><S{> me.<FFF6>Come back when <}>you’ve had more practice!<FFF5>
+52	0x2a6c	pack/talk/KUTISAKE:0x3ee8	Ahaha... You’re pretty good!<FFF6>But if it was a race, I’d win!<FFF5>
+53	0x2aa0	pack/talk/KUTISAKE:0x3f60	You seem pretty sure of yourself.<FFF6>I’m always<L{> surprised<FFF6>by <}><S{> surprised by <}>kids these days.<FFF5>
+54	0x2ad5	pack/talk/KUTISAKE:0x3ff8	You’re one of those<L{> kids<FFF6>who <}><S{> kids who <}>never<L{> knows when <}><S{> knows<FFF6>when <}>to shut<L{> up!<FFFB><FFF7>How <}><S{> up! How <}>about if I<L{> slice your mouth<FFF6>off, <}><S{> slice<FFF6>your mouth off, <}>hmmm? What then!?<FFF5>
+55	0x2afb	pack/talk/KUTISAKE:0x40e0	Um... Um, all I do is ask,<FFF6>“Am I beautiful?” you know...<FFFC><FFFB><FFF7>...I’m not lying...<FFF5>
+56	0x2b3a	pack/talk/KUTISAKE:0x4180	Are you that curious to know<FFF6>what’s under this mask?<FFFB><FFF7>Ahahah...<FFFC><FFF6>That’ll have to stay a secret.<FFF5>
+57	0x2b75	pack/talk/KUTISAKE:0x4240	What’s with that look?<FFFC><FFF6>It’s getting on my nerves a little!<FFF5>
+58	0x2b9a	pack/talk/KUTISAKE:0x42b8	Hahah...<FFFC> I can tell you’re enraptured.<FFF6>It’s not for nothing that they say<FFF6>beauty can be a sin.<FFF5>
+59	0x2bd1	pack/talk/KUTISAKE:0x4378	You sure can hype yourself up...<FFF6>it’s really<L{> something. You’re<FFF6>an <}><S{> something.<FFF6>You’re an <}>interesting kid, you know that?<FFF5>
+60	0x2c0d	pack/talk/KUTISAKE:0x4440	Hmph!<FFFC> Talking without thinking<FFF6>is a terrible thing...<FFFC><FFF6>Don’t make me slit that mouth apart!<FFF5>
+61	0x2c49	pack/talk/KUTISAKE:0x44f8	Ahahah...<FFFC> You don’t have to lie<FFF6>just because you’re embarrassed.<FFF6>Lots of people are interested in me.<FFF5>
+62	0x2c8a	pack/talk/KUTISAKE:0x45c8	Hmph!<FFFC><FFF6>The only creepy<L{> thing<FFF6>here <}><S{> thing here <}>is your face!<FFF5>
+63	0x2cb0	pack/talk/KUTISAKE:0x4628	N-No! Stop<L{> it!<FFF6>Why <}><S{> it! Why <}>did you tell me that!?<FFF5>
+64	0x2ccd	pack/talk/KUTISAKE:0x4680	I was the talk of the town,<FFF6>back in the day. I’d like to slit<FFF6>your mouth and make you famous, too.<FFF5>
+65	0x2d06	pack/talk/KUTISAKE:0x4748	Wow, you have a wonderful voice.<FFFC><FFF6>But if you slit your mouth<L{> wider,<FFFB><FFF7>you <}><S{> wider,<FFF6>you <}>could achieve an<L{> even<FFF6>greater <}><S{> even greater <}>range...<FFF5>
+66	0x2d41	pack/talk/KUTISAKE:0x4828	You can out-sing me<FFF6>with that tiny mouth...?<FFFC><FFF6>I don’t know how I feel about that!<FFF5>
+67	0x2d72	pack/talk/KUTISAKE:0x48d0	Wow, that’s a great voice you have.<FFFC><FFF6>Listening to you calms me down.<FFF5>
+68	0x2d9a	pack/talk/KUTISAKE:0x4958	Now that’s an interesting tactic!<FFFC><FFF6>I like playing house, too.<FFF5>
+69	0x2dc1	pack/talk/KUTISAKE:0x49d8	Hey!<FFFC><FFF6>Who do you think I am!?<FFFC><FFF6>Cut it out already!<FFF5>
+70	0x2dee	pack/talk/KUTISAKE:0x4a40	Strange...<FFFC><FFF6>I feel so nostalgic all of a sudden.<FFFC><FFF6>I’m glad I met you.<FFF5>
+71	0x2e26	pack/talk/KUTISAKE:0x4ac8	Huh...?<FFFC> Do you really need me?<FFF6>Don’t you just want to be<FFF6>one of my sisters?<FFF5>
+72	0x2e66	pack/talk/KUTISAKE:0x4b60	Hmph! I have my pride, you know!<FFF6>I’d sooner cut my mouth even wider<FFF6>than put myself in your care!<FFF5>
+73	0x2ea2	pack/talk/KUTISAKE:0x4c28	Recently, I didn’t even have anyone<FFF6>to ask, “Am I<L{> beautiful?”<FFF6>so <}><S{> beautiful?” so <}>I was<L{> getting lonely.<FFFC><FFFB><FFF7>You’ve <}><S{> getting<FFF6>lonely.<FFFC> You’ve <}>made me a happy woman!<FFF5>
+74	0x2ede	pack/talk/KUTISAKE:0x4d18	Honestly...<FFFC> Kids your age are getting<FFF6>way too precocious. Though I was like<FFF6>that too when I was a delinquent...<FFF5>
+75	0x2f2b	pack/talk/KUTISAKE:0x4df8	Hey! Watch your mouth!<FFF6>What’s with<L{> you?<FFF6>Don’t <}><S{> you? Don’t <}>sass me, little girl!<FFF5>
+76	0x2f6b	pack/talk/KUTISAKE:0x4e80	Th-That’s not true...<FFFC> Oh God... *sob*<FFF5>
+77	0x2f8f	pack/talk/KUTISAKE:0x4ed0	Are you actually<L{> trying<FFF6>to <}><S{> trying to <}>seduce<L{> me...? Huh...<FFFC><FFF6>I <}><S{> me...?<FFF6>Huh...<FFFC> I <}>can’t bring myself to hate you.<FFF5>
+78	0x2fcb	pack/talk/KUTISAKE:0x4f78	Oh, is that so?<FFFC><FFF6>Then feel the caress...<FFF6>of my box cutter on your face!<FFF5>
+79	0x3004	pack/talk/KUTISAKE:0x5008	Ahahah...<FFFC><FFF6>That’s so cute.<FFF5>
+80	0x301c	pack/talk/KUTISAKE:0x5040	I didn’t think there was anyone<L{> out<FFF6>there with <}><S{> out there<FFF6>with <}>a fate worse than<L{> mine...<FFFC><FFFB><FFF7>I feel for <}><S{> mine...<FFFC> I feel<FFF6>for <}>you from the<L{> bottom<FFF6>of <}><S{> bottom of <}>my heart.<FFF5>
+81	0x304d	pack/talk/KUTISAKE:0x5130	Hmph!<FFFC> Boy, did you choose the wrong<FFF6>person to try that on! I love nothing<FFF6>more than making spoiled brats cry!<FFF5>
+82	0x3094	pack/talk/KUTISAKE:0x5210	Yeesh, stop crying...<FFFC><FFF6>Your bad luck will rub off on me.<FFF5>
+83	0x30b8	pack/talk/KUTISAKE:0x5280	Wow...!<FFFC><FFF6>You’re pretty self-confident!<FFFC><FFF6>People like you interest me.<FFF5>
+84	0x30ed	pack/talk/KUTISAKE:0x5308	Hmph!<FFFC> Don’t act all high<L{> and mighty<FFF6>when <}><S{> and<FFF6>mighty when <}>you’re really all<L{> talk! I’ll give<FFF6>your <}><S{> talk!<FFF6>I’ll give your <}>fresh mouth a good slashing!<FFF5>
+85	0x3135	pack/talk/KUTISAKE:0x53e8	You seem pretty<L{> certain...<FFF6>*gasp* You’re not carrying<FFF6>any <}><S{> certain... *gasp* You’re<FFF6>not carrying any <}>hair product, are you...?<FFF5>
+86	0x3176	pack/talk/KUTISAKE:0x5490	What a foulmouthed young lady!<FFF6>As a demon governing mouths,<FFF6>I can’t allow it!<FFF5>
+87	0x31b6	pack/talk/KUTISAKE:0x5530	I...<FFFC><FFF6>I’m sorry...<FFF5>
+88	0x31c8	pack/talk/KUTISAKE:0x5558	Ahahah...<FFFC><FFF6>An argument, eh? I never lose.<FFF5>
+89	0x31ec	pack/talk/KUTISAKE:0x55b0	Huh...<FFFC><FFF6>You have a good head<L{> on<FFF6>your shoulders. I’m <}><S{> on your shoulders.<FFF6>I’m <}>impressed.<FFF5>
+90	0x3219	pack/talk/KUTISAKE:0x5630	Hmph!<FFFC><FFF6>That smooth talk doesn’t fool<L{> me! You<FFF6>can’t <}><S{> me!<FFF6>You can’t <}>possibly understand my pain!<FFF5>
+91	0x325f	pack/talk/KUTISAKE:0x56d0	So what it comes down to is...<FFF6>you want my spell card, right?<FFF6>Hahah... it’s not easy being popular.<FFF5>
+92	0x32a3	pack/talk/KUTISAKE:0x5798	Hey!<FFFC> Will you stop<L{> trying<FFF6>to <}><S{> trying to <}>act<L{> like an adult?<FFFB><FFF7>Face <}><S{> like<FFF6>an adult? Face <}>it--you’re just a brat!<FFF6>And I must say, it’s pissing me off!<FFF5>
+93	0x32ec	pack/talk/KUTISAKE:0x5880	Is that so...?<FFFC><FFF6>All right, I apologize...<FFF5>
+94	0x3306	pack/talk/KUTISAKE:0x58d8	It’s been a while since I had<FFF6>a tongue-lashing like that!<FFFC><FFF6>Hey, do it again!<FFF5>
+95	0x3336	pack/talk/KUTISAKE:0x5978	So that’s how you<L{> wanna<FFF6>play <}><S{> wanna play <}>it, huh?<FFFC><FFF6>Alright, let’s see who has more guts!<FFF5>
+96	0x335f	pack/talk/KUTISAKE:0x5a10	Hey! Look at me! If you don’t look,<FFF6>how can you tell if I’m pretty or not!?<FFF5>
+97	0x3395	pack/talk/KUTISAKE:0x5aa8	If a kid like this won’t take<L{> me<FFF6>seriously, I <}><S{> me seriously,<FFF6>I <}>think I’m sunk...<FFF5>
+98	0x33c1	pack/talk/KUTISAKE:0x5b28	Oh, so that’s how it’s going to be?<FFFC><FFF6>Well, okay then.<FFFC><FFF6>I’ll join in this little battle of wills.<FFF5>
+99	0x33f4	pack/talk/KUTISAKE:0x5be8	Hey! Look at me! If you don’t look,<FFF6>how can you tell if I’m pretty or not!?<FFF5>
+100	0x342a	pack/talk/KUTISAKE:0x5c80	If a kid like this won’t take<L{> me<FFF6>seriously, I <}><S{> me seriously,<FFF6>I <}>think I’m sunk...<FFF5>
+101	0x3456	pack/talk/KUTISAKE:0x5d00	<L{>Wow...!<FFFC><FFF6>You’re <}><S{>Wow...!<FFFC> You’re <}>pretty<L{> self-confident!<FFF6>Hmm...<FFFC> People <}><S{> self-confident! Hmm...<FFFC><FFF6>People <}>like you interest me.<FFF5>
+102	0x3497	pack/talk/KUTISAKE:0x5d98	Hmph!<FFFC> Don’t act all high<L{> and mighty<FFF6>when <}><S{> and<FFF6>mighty when <}>you’re really all<L{> talk! I’ll give<FFF6>your <}><S{> talk!<FFF6>I’ll give your <}>fresh mouth a good slashing!<FFF5>
+103	0x34dd	pack/talk/KUTISAKE:0x5e78	You seem pretty<L{> certain...<FFF6>*gasp* You’re not carrying<FFF6>any <}><S{> certain... *gasp* You’re<FFF6>not carrying any <}>hair product, are you...?<FFF5>
+104	0x3524	pack/talk/KUTISAKE:0x5f20	Quiet, you! What are you<L{> trying<FFF6>to say!? You’ve <}><S{> trying to say!?<FFF6>You’ve <}>got a<L{> mouth,<FFF6>don’t you? Then <}><S{> mouth, don’t you?<FFF6>Then <}>speak properly!<FFF5>
+105	0x355c	pack/talk/KUTISAKE:0x5fe0	Wh-What’s your problem?<FFFC><FFF6>I think you’ve had a little<FFF6>too much to drink...<FFF5>
+106	0x3592	pack/talk/KUTISAKE:0x6078	That sudden yell<L{> really<FFF6>caught <}><S{> really caught <}>me<L{> off guard. Hahah...<FFFC><FFF6>I <}><S{> off<FFF6>guard. Hahah...<FFFC> I <}>can’t stay mad, though.<FFF5>
+107	0x35c2	pack/talk/KUTISAKE:0x6118	Ooh! Can you make other<L{> things<FFF6>appear, too? <}><S{> things appear,<FFF6>too? <}>I like<L{> people<FFF6>who are good <}><S{> people who are<FFF6>good <}>with their hands!<FFF5>
+108	0x35f2	pack/talk/KUTISAKE:0x61d0	You really can do anything...<FFFC><FFF6>Just don’t conjure<L{> up<FFF6>anything <}><S{> up anything <}>I hate.<FFF5>
+109	0x361c	pack/talk/KUTISAKE:0x6260	That’s<L{> amazing!<FFFC><FFF6>Hey, magic <}><S{> amazing!<FFFC> Hey,<FFF6>magic <}>up some<L{> candy<FFF6>for <}><S{> candy for <}>me next time!<FFF5>
+110	0x3645	pack/talk/KUTISAKE:0x62d8	What an interesting story!<FFF6>C’mon, tell me what happens next! ❤<FFF5>
+111	0x3669	pack/talk/KUTISAKE:0x6358	You must be really interested in me! ❤<FFFB><FFF7>Give me something and maybe<FFF6>I’ll tell you more about myself.<FFF1><FFF5>
+112	0x36bc	pack/talk/KUTISAKE:0x6420	I’ll listen to you, but isn’t there<FFF6>something you need to do first?<FFF1><FFF5>
+113	0x36e5	pack/talk/KUTISAKE:0x64b0	This is no fun at all...<FFFC><FFF6>What a letdown.<FFF5>
+114	0x3704	pack/talk/KUTISAKE:0x6508	Will you stop bitching about<FFF6>petty stuff like that!?<FFFB><FFF7>Honestly, what a stupid child!<FFF6>You made me<L{> angry... What are<FFF6>you <}><S{> angry...<FFF6>What are you <}>going to give me to fix it!?<FFF1><FFF5>
+115	0x3752	pack/talk/KUTISAKE:0x6638	Will you quit yapping!?<FFF6>You made me<L{> angry... What are<FFF6>you <}><S{> angry...<FFF6>What are you <}>going to give me to fix it!?<FFF1><FFF5>
+116	0x3785	pack/talk/KUTISAKE:0x66e8	I don’t like that look of yours...<FFFC><FFF6>Are you under something’s control...?<FFF5>
+117	0x37b5	pack/talk/KUTISAKE:0x6780	...I don’t think I get it as much<FFF6>as someone else would...<FFF5>
+118	0x37ea	pack/talk/KUTISAKE:0x67f8	Ahahah...<FFFC> It’s been a while<FFF6>since I had such a nice time.<FFF5>
+119	0x3813	pack/talk/KUTISAKE:0x6870	Hahahah...<FFFC><FFF6>You say such cute things!<FFF5>
+120	0x382a	pack/talk/KUTISAKE:0x68c0	Why don’t we chat some more!<FFF6>I’m hoping you<L{> might<FFF6>give <}><S{> might give <}>me a present!<FFF1><FFF5>
+121	0x3852	pack/talk/KUTISAKE:0x6950	You want me?<FFFC><FFF6>Teehee...<FFFC><FFF6>What should I do...?<FFF5>
+122	0x3877	pack/talk/KUTISAKE:0x69a8	Your opening gambit was interesting.<FFF6>If you give something, I’ll<L{> listen to<FFF6>whatever <}><S{> listen<FFF6>to whatever <}>you really wanted to say.<FFF1><FFF5>
+123	0x38ae	pack/talk/KUTISAKE:0x6a88	You want my<L{> help,<FFF6>but <}><S{> help, but <}>you’re still a kid...<FFFC><FFF6>Let me think it over some.<FFF5>
+124	0x38e7	pack/talk/KUTISAKE:0x6b18	I have no<L{> interest<FFF6>at <}><S{> interest at <}>all in kids like you.<FFF5>
+125	0x3904	pack/talk/KUTISAKE:0x6b70	That was too... ordinary!<FFF6>You need to do something<FFF6>that’ll get my heart racing!<FFF5>
+126	0x3933	pack/talk/KUTISAKE:0x6c10	Hmph!<FFFC> What a lame tactic.<FFF6>I’m a <FFF0> <FFF3>, you know.<FFFB><FFF7>If you really want my help,<FFF6>you’ll listen to my commands!<FFF1><FFF5>
+127	0x399b	pack/talk/KUTISAKE:0x6ce8	I feel like... there’s something<FFF6>behind all this...<FFF5>
+128	0x39ac	pack/talk/KUTISAKE:0x6d50	Aren’t you a human...?<FFFC><FFF6>You shouldn’t<L{> ask<FFF6>for <}><S{> ask for <}>help from demons...<FFF5>
+129	0x39dc	pack/talk/KUTISAKE:0x6dd8	If you have a favor to<L{> ask,<FFF6>some advice: don’t <}><S{> ask, some advice:<FFF6>don’t <}>come to<L{> me.<FFF6>Ask <}><S{> me. Ask <}>some other demon...<FFF5>
+130	0x3a03	pack/talk/KUTISAKE:0x6e80	Ahahah...<FFFC><FFF6>Now, what should I do...?<FFF5>
+131	0x3a18	pack/talk/KUTISAKE:0x6ec8	<L{>Ahahaha!<FFFC> You <}><S{>Ahahaha!<FFFC><FFF6>You <}>need<L{> me?<FFF6>What <}><S{> me? What <}>a kind thing to say!<FFF5>
+132	0x3a43	pack/talk/KUTISAKE:0x6f28	Why are you acting that way?<FFF6>Are you<L{> deliberately<FFF6>trying <}><S{> deliberately trying <}>to make<L{> me angry?<FFFB><FFF7>There’s <}><S{> me<FFF6>angry? There’s <}>something up your sleeve...<FFF5>
+133	0x3a7b	pack/talk/KUTISAKE:0x7008	There’s no point in trying<FFF6>to make me angry.<FFFC><FFF6>But I admit, you have a talent for it.<FFF5>
+134	0x3ab4	pack/talk/KUTISAKE:0x70b0	That won’t get you anywhere.<FFF6>There are better ways<FFF6>to pique people’s interest.<FFF1><FFF5>
+135	0x3aec	pack/talk/KUTISAKE:0x7150	How dare you make fun of me!?<FFFC><FFF6>I hope you’re prepared!<FFF5>
+136	0x3b11	pack/talk/KUTISAKE:0x71c0	Argh, you make me so mad!<FFFC><FFF6>Though if you didn’t...<FFFC> I wouldn’t<FFF6>take any pleasure in killing you!<FFF5>
+137	0x3b45	pack/talk/KUTISAKE:0x7280	How dare you make a fool out of me!?<FFFC><FFF6>Now I’m mad! And I won’t calm down<FFF6>unless you give me something!<FFF1><FFF5>
+138	0x3b84	pack/talk/KUTISAKE:0x7350	You must be making fun of me...<FFF6>You’re so cruel...<FFF5>
+139	0x3ba5	pack/talk/KUTISAKE:0x73b8	This isn’t how<L{> negotiations<FFF6>usually <}><S{> negotiations usually <}>go...<FFF5>
+140	0x3bc5	pack/talk/KUTISAKE:0x7410	Wh-What the...?<FFFC><FFF6>I can’t figure out what your<FFF6>negotiation strategy is...<FFF5>
+141	0x3be8	pack/talk/KUTISAKE:0x74a0	Nice attitude...<FFFC><FFF6>You must be very sure of yourself!<FFFC><FFF6>I like that!<FFF5>
+142	0x3c1a	pack/talk/KUTISAKE:0x7528	Sure, do whatever you want!<FFF6>I bet you have no<L{> idea<FFF6>how <}><S{> idea how <}>scary I am!<FFFB><FFF7>Ask your older sister<FFF6>about me when you get home...<FFFC><FFF6>Hahaha!<FFFC> You’ll be surprised!<FFF5>
+143	0x3c89	pack/talk/KUTISAKE:0x7658	<L{>Ahaha...<FFFC> You’re <}><S{>Ahaha...<FFFC><FFF6>You’re <}>trying to figure<L{> out<FFF6>what <}><S{> out what <}>I<L{> like, aren’t you?<FFF6>That’s <}><S{> like,<FFF6>aren’t you? That’s <}>so adorable! ❤<FFF5>
+144	0x3cb4	pack/talk/KUTISAKE:0x7700	Hmmm? Are you an<L{> aspiring<FFF6>performer? Make <}><S{> aspiring performer?<FFF6>Make <}>sure to mention me<FFF6>when you hit the big time.<FFF5>
+145	0x3ce7	pack/talk/KUTISAKE:0x77b0	You’re not very good at<L{> this,<FFF6>are you?<FFFC><FFFB><FFF7>We’ll <}><S{> this, are you?<FFFC><FFF6>We’ll <}>try again once you’ve<L{> had more<FFF6>practice. <}><S{> had<FFF6>more practice. <}>I’m looking forward to it!<FFF5>
+146	0x3d20	pack/talk/KUTISAKE:0x7898	I feel like something’s missing...<FFFC><FFF6>I can give you tips, but it’ll cost you!<FFF1><FFF5>
+147	0x3d5e	pack/talk/KUTISAKE:0x7938	...What was that?<FFFC> It was so lame,<FFF6>I think you deserve to die for it!<FFF5>
+148	0x3d8f	pack/talk/KUTISAKE:0x79c8	...What was that?<FFFC> You suck so<L{> bad<FFF6>there’s no <}><S{> bad there’s<FFF6>no <}>hope for you! For<L{> your<FFF6>next trick, I <}><S{> your next trick,<FFF6>I <}>think you should die!<FFFB><FFF7>...Wait... Give me something first!<FFF1><FFF5>
+149	0x3ded	pack/talk/KUTISAKE:0x7ae8	You want money for THAT!?<FFFC><FFF6>Hmph, you got some nerve!<FFFC><FFF6>You should pay me instead!<FFF1><FFF5>
+150	0x3e27	pack/talk/KUTISAKE:0x7b88	What is that...?<FFFC><FFF6>I don’t get it...<FFF5>
+151	0x3e43	pack/talk/KUTISAKE:0x7bd0	Is that some dangerous<L{> sorcery<FFF6>ritual?<FFFC> It’s <}><S{> sorcery ritual?<FFFC><FFF6>It’s <}>got<L{> nothing<FFF6>to <}><S{> nothing to <}>do with me, right...?<FFF5>
+152	0x3e76	pack/talk/KUTISAKE:0x7c78	Ahahah...<FFFC><FFF6>That went quite well.<FFF6>You’re very attractive.<FFF5>
+153	0x3e9d	pack/talk/KUTISAKE:0x7ce8	That was amazing!<FFFC><FFF6>I wonder if I<L{> should<FFF6>learn <}><S{> should learn <}>something, too...?<FFF5>
+154	0x3ebf	pack/talk/KUTISAKE:0x7d68	You really are a talented child.<FFF6>I’m having lots of fun...<FFFB><FFF7>...And I’d have even more if you<L{> gave<FFF6>me something, <}><S{> gave me<FFF6>something, <}>you know?<FFF1><FFF5>
+155	0x3f0e	pack/talk/KUTISAKE:0x7e60	Hahah...<FFFC><FFF6>Is it all right if I leave my mask on? ❤<FFF5>
+156	0x3f30	pack/talk/KUTISAKE:0x7ec0	You’re just a kid... But who knows?<FFF6>It might be a good way to kill time.<FFFB><FFF7>Alright, I’ll hang around.<FFF6>But you’d better give me<FFF6>something in return!<FFF1><FFF5>
+157	0x3f8b	pack/talk/KUTISAKE:0x7fe8	Are you trying to hit on<L{> me?<FFFC><FFF6>That’s fine, but <}><S{> me?<FFFC> That’s fine,<FFF6>but <}>I<L{> like<FFF6>someone <}><S{> like someone <}>who’s generous!<FFF1><FFF5>
+158	0x3fc8	pack/talk/KUTISAKE:0x8088	Are you making fun of me!?<FFFC><FFF6>I can’t stand that in brats like you!<FFF5>
+159	0x3fed	pack/talk/KUTISAKE:0x8110	I’m not stupid!<FFF6>You think I’d betray<FFF6>my sisters just for that!?<FFFB><FFF7>Honestly, what a brat!<FFF6>You’ve made me<L{> mad... What are<FFF6>you <}><S{> mad...<FFF6>What are you <}>going to give me to fix it!?<FFF1><FFF5>
+160	0x4048	pack/talk/KUTISAKE:0x8248	What’re you<L{> doing?<FFF6>Wait... you’re <}><S{> doing? Wait...<FFF6>you’re <}>not<L{> trying<FFF6>to <}><S{> trying to <}>seduce me, are you!?<FFFB><FFF7>If the other demons find out<FFF6>you seduced me, they’ll mob you!<FFF6>I’ll keep quiet, though... for a price...<FFF1><FFF5>
+161	0x40ae	pack/talk/KUTISAKE:0x83a8	Hey, what’s wrong?<FFFC><FFF6>I haven’t done anything...<FFF5>
+162	0x40d0	pack/talk/KUTISAKE:0x8408	Hey, wait a<L{> second...<FFF6>Even <}><S{> second... Even <}>after<L{> hearing that story,<FFF6>I-I-don’t <}><S{> hearing<FFF6>that story, I-I-don’t <}>know what to do...<FFF5>
 163	0x40fe	pack/talk/KUTISAKE:0x84b0	Ahahah...<FFF5>
-164	0x4105	pack/talk/KUTISAKE:0x84c8	Not bad! But you know what'd be even<FFF6>better? If you gave me something!<FFF1><FFF5>
-165	0x4125	pack/talk/KUTISAKE:0x8558	I think... I'm falling for you...!<FFF5>
-166	0x4146	pack/talk/KUTISAKE:0x85a0	You're good at making<FFF6>your way in life.<FFF5>
-167	0x4159	pack/talk/KUTISAKE:0x85f0	That's right! You understand<FFF6>how scary I am, don't you?<FFFB><FFF7>In that case, give me something!<FFF1><FFF5>
+164	0x4105	pack/talk/KUTISAKE:0x84c8	Not bad!<FFFC><FFF6>But you know what’d be even better?<FFF6>If you gave me something!<FFF1><FFF5>
+165	0x4125	pack/talk/KUTISAKE:0x8558	I think...<FFFC><FFF6>I’m falling for you...! ❤<FFF5>
+166	0x4146	pack/talk/KUTISAKE:0x85a0	You’re good at<L{> making<FFF6>your <}><S{> making your <}>way in life.<FFF5>
+167	0x4159	pack/talk/KUTISAKE:0x85f0	That’s right!<FFFC><FFF6>You understand how<L{> scary I am,<FFF6>don’t <}><S{> scary<FFF6>I am, don’t <}>you?<FFFB><FFF7>In that case, give me something!<FFF1><FFF5>
 168	0x419a	pack/talk/KUTISAKE:0x86a8	Smart kid.<FFF5>
-169	0x41a8	pack/talk/KUTISAKE:0x86c0	Why even say something so obvious!?<FFF6>You can't even approach<FFF6>my perfection!<FFF5>
-170	0x41e0	pack/talk/KUTISAKE:0x8758	If you think that'll make me forgive<FFF6>you, you have another thing coming!<FFFB><FFF7>Honestly, what a brat!<FFF6>You've made me mad... What are<FFF6>you going to give me to fix it!?<FFF1><FFF5>
-171	0x422e	pack/talk/KUTISAKE:0x88a0	You're my slave now! I'll need a gift<FFF6>to be interested in you, slave!<FFF1><FFF5>
-172	0x426b	pack/talk/KUTISAKE:0x8930	You're scheming something,<FFF6>aren't you...?<FFF5>
-173	0x427c	pack/talk/KUTISAKE:0x8988	Aren't you actually angry...?<FFF6>You are, right?<FFF6>I knew it... you're mad...<FFF5>
-174	0x42b7	pack/talk/KUTISAKE:0x8a20	Ahahah... I'll play nice<FFF6>with honest children.<FFF5>
-175	0x42db	pack/talk/KUTISAKE:0x8a80	You're a good kid... You're so cute,<FFF6>it makes me want to rip you apart and<FFF6>see your beautiful entrails. Ahaha...<FFF5>
-176	0x4311	pack/talk/KUTISAKE:0x8b68	Oh...! You have my sister's<FFF6>spell card... Don't make it<FFF6>into a weird Persona, okay?<FFEF>
-177	0x4350	pack/talk/KUTISAKE:0x8c10	Well then, I'll give you this.<FFEF>
+169	0x41a8	pack/talk/KUTISAKE:0x86c0	Why even say something so obvious!?<FFFC><FFF6>You can’t even<L{> approach<FFF6>my <}><S{> approach my <}>perfection!<FFF5>
+170	0x41e0	pack/talk/KUTISAKE:0x8758	If you think that’ll make me<L{> forgive<FFF6>you, you <}><S{> forgive you,<FFF6>you <}>have another thing coming!<FFFB><FFF7>Honestly, what a brat!<FFF6>You’ve made me<L{> mad... What are<FFF6>you <}><S{> mad...<FFF6>What are you <}>going to give me to fix it!?<FFF1><FFF5>
+171	0x422e	pack/talk/KUTISAKE:0x88a0	You’re my slave now!<FFFC><FFF6>I’ll need a gift to be<FFF6>interested in you, slave!<FFF1><FFF5>
+172	0x426b	pack/talk/KUTISAKE:0x8930	You’re scheming<L{> something,<FFF6>aren’t <}><S{> something, aren’t <}>you...?<FFF5>
+173	0x427c	pack/talk/KUTISAKE:0x8988	Aren’t you actually angry...?<FFF6>You are,<L{> right?<FFF6>I <}><S{> right? I <}>knew it... you’re mad...<FFF5>
+174	0x42b7	pack/talk/KUTISAKE:0x8a20	Ahahah...<FFFC><FFF6>I’ll play nice with honest children.<FFF5>
+175	0x42db	pack/talk/KUTISAKE:0x8a80	You’re a good kid... You’re so cute,<FFF6>it makes me want to rip you<L{> apart and<FFF6>see <}><S{> apart<FFF6>and see <}>your beautiful entrails. Ahaha...<FFF5>
+176	0x4311	pack/talk/KUTISAKE:0x8b68	Oh...!<FFFC> You have my<L{> sister’s<FFF6>spell card...<FFFC> Don’t <}><S{> sister’s spell card...<FFFC><FFF6>Don’t <}>make<L{> it<FFF6>into <}><S{> it into <}>a weird Persona, okay?<FFEF>
+177	0x4350	pack/talk/KUTISAKE:0x8c10	Well then, I’ll give you this.<FFEF>
 178	0x4362	pack/talk/KUTISAKE:0x8c50	What? Seriously!?<FFEF>
-179	0x4373	pack/talk/KUTISAKE:0x8c78	I'm Kuchisake-onna. I came about<FFF6>when a stupid student in Hokkaido<FFF6>made up my story on a radio program.<FFFB><FFF7>Not every demon has a cool origin.<FFF6>Mine really sucks.<FFEF>
-180	0x43e1	pack/talk/KUTISAKE:0x8db8	...I'm not that gullible.<FFFB><FFF7>Let's negotiate again<FFF6>when you're a little stronger.<FFEF>
+179	0x4373	pack/talk/KUTISAKE:0x8c78	I’m Kuchisake-onna. I came about<FFF6>when a stupid student in Hokkaido<FFF6>made up my story on a radio program.<FFFB><FFF7>Not every demon has a cool origin.<FFF6>Mine really sucks.<FFEF>
+180	0x43e1	pack/talk/KUTISAKE:0x8db8	...I’m not that gullible.<FFFB><FFF7>Let’s negotiate again<FFF6>when you’re a little stronger.<FFEF>
 181	0x4422	pack/talk/KUTISAKE:0x8e58	Well, anyway, take this to<FFF6>commemorate our meeting.<FFEF>
-182	0x4446	pack/talk/KUTISAKE:0x8ec0	Goodbye... I hope we meet again.<FFEF>
-183	0x445f	pack/talk/KUTISAKE:0x8f08	This isn't much... but take it.<FFF5>
-184	0x447c	pack/talk/KUTISAKE:0x8f48	I'm... busy, so I'll get going.<FFEF>
-185	0x4498	pack/talk/KUTISAKE:0x8f88	Even if I become a Persona, you<FFF6>better still tell me how beautiful I am,<FFF6>three times a day! Promise me!<FFEF>
-186	0x44d0	pack/talk/KUTISAKE:0x9058	Please! Forgive me! I'll give you this...<FFEF>
-187	0x44f0	pack/talk/KUTISAKE:0x90b0	I'm tired of negotiating with you!<FFF6>You never do anything interesting!<FFEF>
-188	0x4535	pack/talk/KUTISAKE:0x9140	I'm tired of negotiating with you!<FFF6>You're just a child...<FFF6>Take this and run along home now.<FFEF>
-189	0x4580	pack/talk/KUTISAKE:0x91f8	In exchange for this, I want candy!<FFF6>Huh...? You don't have any!?<FFF5>
-190	0x45b4	pack/talk/KUTISAKE:0x9280	You really piss me off! Ugh, screw it!<FFF6>Here, just take my spell card!<FFEF>
-191	0x45e6	pack/talk/KUTISAKE:0x9310	Wow... I think this is the first time<FFF6>I've negotiated with someone<FFF6>as strong and funny as you...<FFEF>
-192	0x461b	pack/talk/KUTISAKE:0x93d8	This is just a token of my gratitude...<FFF6>I hope you find it useful.<FFEF>
-193	0x4647	pack/talk/KUTISAKE:0x9460	I can't fight you...<FFEF>
-194	0x4662	pack/talk/KUTISAKE:0x9490	This is for you...<FFF6>Please take good care of it...<FFEF>
-195	0x4684	pack/talk/KUTISAKE:0x94f8	But... will you let me go,<FFF6>no strings attached...?<FFEF>
-196	0x46b5	pack/talk/KUTISAKE:0x9560	If you forgive me,<FFF6>I'll give you my spell card...<FFEF>
-197	0x46d3	pack/talk/KUTISAKE:0x95c8	Oh my, what a handsome man...<FFF6>Hey, do you have anything<FFF6>against demons with big mouths...?<FFF5>
-198	0x4706	pack/talk/KUTISAKE:0x9680	Hey, listen!<FFF6>I haven't lived as a human in a while.<FFF6>That's why I want something.<FFF1><FFF5>
-199	0x473f	pack/talk/KUTISAKE:0x9728	I'll tell you now, I'm in a bad mood<FFF6>today! Try anything funny<FFF6>and I'll rip you apart!<FFF5>
-200	0x477e	pack/talk/KUTISAKE:0x97d8	What a beautiful full moon! And here<FFF6>I am, the only demon girl stuck<FFF6>negotiating with humans... Sheesh!<FFFB><FFF7>So, got any presents for me?<FFF6>Ugh! You're so inconsiderate!<FFF6>Give me something!<FFF1><FFF5>
-201	0x47f5	pack/talk/KUTISAKE:0x9948	Wh-What a scary face...<FFF6>D-Don't cross that line, okay...?<FFF5>
-202	0x4820	pack/talk/KUTISAKE:0x99c0	Wh What a scary face... I-I don't<FFF6>think I'll be able to sleep tonight...<FFF5>
-203	0x484a	pack/talk/KUTISAKE:0x9a58	Nights with a full moon<FFF6>get me so excited!<FFF6>I wish they could go on forever!<FFF5>
-204	0x487f	pack/talk/KUTISAKE:0x9af0	It's a full moon... Haha... Hah...<FFF6>If I can get something from you,<FFF6>I'll have no complaints.<FFF1><FFF5>
-205	0x48be	pack/talk/KUTISAKE:0x9bb0	<FFED>I would've been happier<FFF6>if you'd talked to me first!<FFF6>You're such a sissy.<FFF5>
-206	0x48f5	pack/talk/KUTISAKE:0x9c48	<FFEE>That's... kind of a letdown...<FFFB><FFF7>Oh well. If you give me something, I'll<FFF6>still listen to what you have to say.<FFF1><FFF5>
-207	0x4939	pack/talk/KUTISAKE:0x9d28	<FFEE>You... You have the scent<FFF6>of blood on you...<FFFB><FFF7>Ugh... I always get the weird ones...<FFF5>
-208	0x4973	pack/talk/KUTISAKE:0x9dd8	<FFEC>You... You have the scent<FFF6>of blood on you...<FFFB><FFF7>Look, let's talk. There's no need<FFF6>to do anything creepy...<FFF5>
-209	0x49b9	pack/talk/KUTISAKE:0x9eb0	<FFEE>You... me... Our meeting like<FFF6>this could be destiny.<FFFB><FFF7>How about a little something<FFF6>to mark the occasion? Please...?<FFF1><FFF5>
-210	0x4a06	pack/talk/KUTISAKE:0x9fa0	<FFEB>Oh! What a handsome man...<FFF6>Now's my chance! Let's negotiate!<FFF5>
-211	0x4a3b	pack/talk/KUTISAKE:0xa020	<FFEC>I-If you kill me, my sisters won't<FFF6>take it lying down! Got it...?<FFF5>
-212	0x4a6f	pack/talk/KUTISAKE:0xa0a8	<FFED>You look like you've<FFF6>killed demons before...<FFFB><FFF7>Depending how this negotiation goes,<FFF6>I might not forgive you for that...<FFF5>
-213	0x4aa8	pack/talk/KUTISAKE:0xa198	<FFED>Hey! What's the big idea,<FFF6>answering my call!?<FFFB><FFF7>There's no way you're good enough<FFF6>for me! Maybe it'd be a different<FFF6>story if you had a gift, but...<FFF1><FFF5>
-214	0x4b03	pack/talk/KUTISAKE:0xa2c8	<FFEB>Why'd YOU respond?<FFF6>I'm not interested in children without<FFF6>an ounce of brains. Hahahah...<FFF5>
-215	0x4b40	pack/talk/KUTISAKE:0xa380	<FFEB>I feel so odd... Please do whatever<FFF6>you want with me! I don't care what!<FFF5>
-216	0x4b7a	pack/talk/KUTISAKE:0xa418	<FFEC>I-I'm scared of you...<FFF6>but I'm also hoping for something...<FFF6>What's gotten into me...?<FFF5>
-217	0x4bb5	pack/talk/KUTISAKE:0xa4c8	You're pretty interesting! So what is<FFF6>it you want? I'm in the mood to listen.<FFEF>
-218	0x4be9	pack/talk/KUTISAKE:0xa568	Even if I keep hanging around you,<FFF6>I doubt I'll get anything out of it!<FFF6>I feel like I've wasted my time!<FFEF>
+182	0x4446	pack/talk/KUTISAKE:0x8ec0	Goodbye...<FFFC><FFF6>I hope we meet again.<FFEF>
+183	0x445f	pack/talk/KUTISAKE:0x8f08	This isn’t much...<FFFC><FFF6>but take it.<FFF5>
+184	0x447c	pack/talk/KUTISAKE:0x8f48	I’m...<FFFC><FFF6>busy, so I’ll get going.<FFEF>
+185	0x4498	pack/talk/KUTISAKE:0x8f88	Even if I become a<L{> Persona, you<FFF6>better <}><S{> Persona,<FFF6>you better <}>still tell me how beautiful I am,<FFF6>three times a day!<FFFC> Promise me!<FFEF>
+186	0x44d0	pack/talk/KUTISAKE:0x9058	Please!<FFFC><FFF6>Forgive me!<FFFC> I’ll give you this...<FFEF>
+187	0x44f0	pack/talk/KUTISAKE:0x90b0	I’m tired of negotiating with you!<FFF6>You never do anything interesting!<FFEF>
+188	0x4535	pack/talk/KUTISAKE:0x9140	I’m tired of negotiating with you!<FFF6>You’re just a child...<FFF6>Take this and run along home now.<FFEF>
+189	0x4580	pack/talk/KUTISAKE:0x91f8	In exchange for this, I want candy!<FFFC><FFF6>Huh...?<FFFC> You don’t have any!?<FFF5>
+190	0x45b4	pack/talk/KUTISAKE:0x9280	You really piss me off! Ugh, screw it!<FFFC><FFF6>Here, just take my spell card!<FFEF>
+191	0x45e6	pack/talk/KUTISAKE:0x9310	Wow...<FFFC> I think this is the first time<FFF6>I’ve negotiated with someone<FFF6>as strong and funny as you...<FFEF>
+192	0x461b	pack/talk/KUTISAKE:0x93d8	This is just a token of my gratitude...<FFFC><FFF6>I hope you find it useful.<FFEF>
+193	0x4647	pack/talk/KUTISAKE:0x9460	I can’t fight you...<FFEF>
+194	0x4662	pack/talk/KUTISAKE:0x9490	This is for you...<FFFC><FFF6>Please take good care of it...<FFEF>
+195	0x4684	pack/talk/KUTISAKE:0x94f8	<L{>But...<FFFC> will <}><S{>But...<FFFC><FFF6>will <}>you let me<L{> go,<FFF6>no <}><S{> go, no <}>strings attached...?<FFEF>
+196	0x46b5	pack/talk/KUTISAKE:0x9560	If you forgive me,<FFF6>I’ll give you my spell card...<FFEF>
+197	0x46d3	pack/talk/KUTISAKE:0x95c8	Oh my, what a handsome man...<FFFC><FFF6>Hey, do you have anything<FFF6>against demons with big mouths...?<FFF5>
+198	0x4706	pack/talk/KUTISAKE:0x9680	Hey, listen!<FFF6>I haven’t lived as a human in a while.<FFF6>That’s why I want something.<FFF1><FFF5>
+199	0x473f	pack/talk/KUTISAKE:0x9728	I’ll tell you<L{> now,<FFF6>I’m <}><S{> now, I’m <}>in a bad mood<L{> today!<FFFC> Try<FFF6>anything <}><S{> today!<FFFC><FFF6>Try anything <}>funny and I’ll rip you apart!<FFF5>
+200	0x477e	pack/talk/KUTISAKE:0x97d8	What a beautiful full<L{> moon! And here<FFF6>I <}><S{> moon!<FFF6>And here I <}>am, the only demon<L{> girl stuck<FFF6>negotiating <}><S{> girl<FFF6>stuck negotiating <}>with humans... Sheesh!<FFFB><FFF7>So, got any presents for me?<FFF6>Ugh! You’re so inconsiderate!<FFF6>Give me something!<FFF1><FFF5>
+201	0x47f5	pack/talk/KUTISAKE:0x9948	Wh-What a scary face...<FFFC><FFF6>D-Don’t cross that line, okay...?<FFF5>
+202	0x4820	pack/talk/KUTISAKE:0x99c0	Wh What a scary face...<FFFC><FFF6>I-I don’t think I’ll<L{> be<FFF6>able <}><S{> be able <}>to sleep tonight...<FFF5>
+203	0x484a	pack/talk/KUTISAKE:0x9a58	Nights with a full<L{> moon<FFF6>get <}><S{> moon get <}>me so excited!<FFFC><FFF6>I wish they could go on forever!<FFF5>
+204	0x487f	pack/talk/KUTISAKE:0x9af0	It’s a full moon...<FFFC> Haha...<FFFC> Hah...<FFF6>If I can get something from you,<FFF6>I’ll have no complaints.<FFF1><FFF5>
+205	0x48be	pack/talk/KUTISAKE:0x9bb0	<FFED>I would’ve been happier<FFF6>if you’d talked to me first!<FFFC><FFF6>You’re such a sissy.<FFF5>
+206	0x48f5	pack/talk/KUTISAKE:0x9c48	<FFEE>That’s...<FFFC><FFF6>kind of a letdown...<FFFB><FFF7>Oh<L{> well.<FFF6>If <}><S{> well. If <}>you give me<L{> something, I’ll still<FFF6>listen <}><S{> something,<FFF6>I’ll still listen <}>to what you have to say.<FFF1><FFF5>
+207	0x4939	pack/talk/KUTISAKE:0x9d28	<FFEE>You... You have the<L{> scent<FFF6>of <}><S{> scent of <}>blood on you...<FFFC><FFFB><FFF7>Ugh... I always get the weird ones...<FFF5>
+208	0x4973	pack/talk/KUTISAKE:0x9dd8	<FFEC>You... You have the<L{> scent<FFF6>of <}><S{> scent of <}>blood on you...<FFFB><FFF7>Look, let’s talk.<FFF6>There’s no need to<L{> do<FFF6>anything <}><S{> do anything <}>creepy...<FFF5>
+209	0x49b9	pack/talk/KUTISAKE:0x9eb0	<FFEE>You...<FFFC> me... Our meeting like<FFF6>this could be destiny.<FFFB><FFF7>How about a little something<FFF6>to mark the occasion? Please...?<FFF1><FFF5>
+210	0x4a06	pack/talk/KUTISAKE:0x9fa0	<FFEB>Oh! What a handsome man...<FFFC><FFF6>Now’s my chance!<FFFC><FFF6>Let’s negotiate!<FFF5>
+211	0x4a3b	pack/talk/KUTISAKE:0xa020	<FFEC>I-If you kill me, my sisters won’t<FFF6>take it lying down!<FFFC> Got it...?<FFF5>
+212	0x4a6f	pack/talk/KUTISAKE:0xa0a8	<FFED>You look like you’ve<L{> killed<FFF6>demons before...<FFFC><FFFB><FFF7>Depending <}><S{> killed demons before...<FFFC><FFF6>Depending <}>how this negotiation goes,<FFF6>I might not forgive you for that...<FFF5>
+213	0x4aa8	pack/talk/KUTISAKE:0xa198	<FFED>Hey!<FFFC><FFF6>What’s the big<L{> idea,<FFF6>answering <}><S{> idea, answering <}>my call!?<FFFB><FFF7>There’s no way you’re good<L{> enough<FFF6>for me! Maybe <}><S{> enough for me!<FFF6>Maybe <}>it’d be a<L{> different<FFF6>story <}><S{> different story <}>if<L{> you had <}><S{> you<FFF6>had <}>a gift, but...<FFF1><FFF5>
+214	0x4b03	pack/talk/KUTISAKE:0xa2c8	<FFEB>Why’d YOU respond?<FFF6>I’m not interested in<L{> children without<FFF6>an <}><S{> children<FFF6>without an <}>ounce of brains. Hahahah...<FFF5>
+215	0x4b40	pack/talk/KUTISAKE:0xa380	<FFEB>I feel so odd...<FFFC><FFF6>Please do whatever you want with me!<FFFC><FFF6>I don’t care what!<FFF5>
+216	0x4b7a	pack/talk/KUTISAKE:0xa418	<FFEC>I-I’m scared of<L{> you...<FFF6>but <}><S{> you... but <}>I’m also<L{> hoping for something...<FFF6>What’s <}><S{> hoping<FFF6>for something... What’s <}>gotten into me...?<FFF5>
+217	0x4bb5	pack/talk/KUTISAKE:0xa4c8	You’re pretty interesting!<FFFC><FFF6>So what is it you want?<FFF6>I’m in the mood to listen.<FFEF>
+218	0x4be9	pack/talk/KUTISAKE:0xa568	Even if I keep hanging around you,<FFF6>I doubt I’ll get anything out of it!<FFFC><FFF6>I feel like I’ve wasted my time!<FFEF>
 219	0x4c23	pack/talk/KUTISAKE:0xa640	...I guess I should go now...<FFEF>
-220	0x4c4c	pack/talk/KUTISAKE:0xa680	Haha... That was lots of fun.<FFF6>You're good at pleasing demons.<FFEF>
-221	0x4c82	pack/talk/KUTISAKE:0xa700	I'm a little ticked off, but maybe<FFF6>this is fate, too... What do you want?<FFEF>
-222	0x4cb0	pack/talk/KUTISAKE:0xa798	...I'll listen.<FFF6>There's no need to be cruel...<FFEF>
-223	0x4cd7	pack/talk/KUTISAKE:0xa7f8	Ahahah... I'm glad I ran into you.<FFF6>Whatever you want, it's yours!<FFEF>
-224	0x4d08	pack/talk/KUTISAKE:0xa880	Ugh! I'm pissed off AND I got<FFF6>the chills! What the hell!<FFFB><FFF7>What did I ever do to you!?<FFF6>I'm beautiful!<FFEF>
-225	0x4d58	pack/talk/KUTISAKE:0xa950	There's no point in negotiating any<FFF6>more. It's not like I have all the time<FFF6>in the world to waste with you.<FFEF>
-226	0x4d94	pack/talk/KUTISAKE:0xaa28	This is great, but... scary, too...<FFF6>Maybe it'd be best if I just<FFF6>did what you asked...<FFEF>
-227	0x4dc2	pack/talk/KUTISAKE:0xaad8	Let's see, I want... <FFF8> yen.<FFEF>
-228	0x4ddb	pack/talk/KUTISAKE:0xab10	Ahahah... Thanks.<FFF5>
-229	0x4dec	pack/talk/KUTISAKE:0xab38	Hey!?<FFF6>You don't even have THAT much!?<FFF6>Your wallet is like postwar Japan...<FFF5>
-230	0x4e1e	pack/talk/KUTISAKE:0xabd0	Hey! If you can't even afford that,<FFF6>how do you expect to negotiate<FFF6>with demons!?<FFF5>
-231	0x4e4e	pack/talk/KUTISAKE:0xac78	What's the use<FFF6>hoarding all that money?<FFF6>It'll all be mine eventually anyway!<FFF5>
-232	0x4e84	pack/talk/KUTISAKE:0xad18	...If you didn't want to negotiate,<FFF6>you should've said so at the start...<FFF5>
+220	0x4c4c	pack/talk/KUTISAKE:0xa680	Haha... That was lots of fun.<FFF6>You’re good at pleasing demons.<FFEF>
+221	0x4c82	pack/talk/KUTISAKE:0xa700	I’m a little ticked off,<FFF6>but maybe this is fate, too...<FFFC><FFF6>What do you want?<FFEF>
+222	0x4cb0	pack/talk/KUTISAKE:0xa798	...I’ll listen.<FFFC><FFF6>There’s no need to be cruel...<FFEF>
+223	0x4cd7	pack/talk/KUTISAKE:0xa7f8	Ahahah...<FFFC> I’m glad I ran into you.<FFF6>Whatever you want, it’s yours!<FFEF>
+224	0x4d08	pack/talk/KUTISAKE:0xa880	Ugh!<FFFC><FFF6>I’m pissed off AND I got the chills!<FFF6>What the hell!<FFFB><FFF7>What did I ever do to<L{> you!?<FFF6>I’m <}><S{> you!? I’m <}>beautiful!<FFEF>
+225	0x4d58	pack/talk/KUTISAKE:0xa950	There’s no point in negotiating<L{> any<FFF6>more. It’s <}><S{> any more.<FFF6>It’s <}>not like I have all the time<FFF6>in the world to waste with you.<FFEF>
+226	0x4d94	pack/talk/KUTISAKE:0xaa28	This is great, but... scary,<L{> too...<FFF6>Maybe it’d be <}><S{> too... Maybe it’d<FFF6>be <}>best if I<L{> just<FFF6>did <}><S{> just did <}>what you asked...<FFEF>
+227	0x4dc2	pack/talk/KUTISAKE:0xaad8	Let’s see, I want... <FFF8> yen.<FFEF>
+228	0x4ddb	pack/talk/KUTISAKE:0xab10	Ahahah...<FFFC><FFF6>Thanks.<FFF5>
+229	0x4dec	pack/talk/KUTISAKE:0xab38	<L{>Hey!?<FFF6>You <}><S{>Hey!? You <}>don’t even have THAT much!?<FFFC><FFF6>Your wallet is like postwar Japan...<FFF5>
+230	0x4e1e	pack/talk/KUTISAKE:0xabd0	<L{>Hey! If <}><S{>Hey!<FFF6>If <}>you can’t even afford<L{> that,<FFF6>how do you <}><S{> that, how do<FFF6>you <}>expect to<L{> negotiate<FFF6>with <}><S{> negotiate with <}>demons!?<FFF5>
+231	0x4e4e	pack/talk/KUTISAKE:0xac78	What’s the<L{> use<FFF6>hoarding <}><S{> use hoarding <}>all that money?<FFFC><FFF6>It’ll all be mine eventually anyway!<FFF5>
+232	0x4e84	pack/talk/KUTISAKE:0xad18	...If you didn’t want to negotiate,<FFF6>you should’ve said so at the start...<FFF5>
 233	0x4eb6	pack/talk/KUTISAKE:0xadb0	I want a life stone...<FFEF>
-234	0x4ec8	pack/talk/KUTISAKE:0xade0	It's not as good as candy,<FFF6>but this stone is still delicious...<FFF5>
-235	0x4efb	pack/talk/KUTISAKE:0xae60	What!? It's just common sense<FFF6>to carry life stones with you!<FFF5>
-236	0x4f1d	pack/talk/KUTISAKE:0xaee0	Wait, you were negotiating with me<FFF6>and you didn't have ANY life stones!?<FFF6>Oooh, you make me soooo mad!<FFF5>
-237	0x4f4f	pack/talk/KUTISAKE:0xafb0	What did you say!? Giving you<FFF6>a life stone would just be wasting it!<FFF5>
-238	0x4f71	pack/talk/KUTISAKE:0xb040	You were negotiating without any life<FFF6>stones? You've gotta be kidding me...<FFF6>I don't believe this...<FFF5>
-239	0x4fa3	pack/talk/KUTISAKE:0xb108	Ahahah... I know you have<FFF6>a <FFF4>... I want one!<FFEF>
-240	0x4fd1	pack/talk/KUTISAKE:0xb168	This shine... No matter how I look<FFF6>at it, it's still so marvelous...<FFF5>
-241	0x4ff1	pack/talk/KUTISAKE:0xb1f8	Hey! Doesn't that seem unfair to you?<FFF5>
-242	0x5010	pack/talk/KUTISAKE:0xb248	Oh, really... Then I'll just<FFF6>have to take it by force!<FFF5>
-243	0x5034	pack/talk/KUTISAKE:0xb2b8	...I didn't want it anyway.<FFF6>I prefer candy.<FFF5>
-244	0x505d	pack/talk/KUTISAKE:0xb310	I want your life... Even just a little<FFF6>bit will be fine. C'mon... just a sip?<FFEF>
-245	0x5095	pack/talk/KUTISAKE:0xb3b0	Ahahah... Your vital energy<FFF6>is delicious!<FFF5>
-246	0x50b9	pack/talk/KUTISAKE:0xb408	Oh my... Are you scared of me?<FFF6>I'm even scarier to children<FFF6>who don't listen!<FFF5>
-247	0x50eb	pack/talk/KUTISAKE:0xb4a8	No way... I know I have a large mouth,<FFF6>but that's so cruel! You're terrible!<FFF5>
-248	0x5117	pack/talk/KUTISAKE:0xb548	No way... I know I have a large mouth,<FFF6>but that's so cruel! You're terrible!<FFF5>
+234	0x4ec8	pack/talk/KUTISAKE:0xade0	It’s not as good as candy,<FFF6>but this stone is still delicious...<FFF5>
+235	0x4efb	pack/talk/KUTISAKE:0xae60	What!?<FFFC><FFF6>It’s just common sense<FFF6>to carry life stones with you!<FFF5>
+236	0x4f1d	pack/talk/KUTISAKE:0xaee0	Wait, you were negotiating with me<FFF6>and you didn’t have ANY life stones!?<FFFC><FFF6>Oooh, you make me soooo mad!<FFF5>
+237	0x4f4f	pack/talk/KUTISAKE:0xafb0	What did you say!?<FFFC><FFF6>Giving you a life stone<FFF6>would just be wasting it!<FFF5>
+238	0x4f71	pack/talk/KUTISAKE:0xb040	You were negotiating without any life<FFF6>stones?<FFFC> You’ve gotta be kidding me...<FFFC><FFF6>I don’t believe this...<FFF5>
+239	0x4fa3	pack/talk/KUTISAKE:0xb108	Ahahah...<FFFC> I know you have<FFF6>a <FFF4>...<FFFC><FFF6>I want one!<FFEF>
+240	0x4fd1	pack/talk/KUTISAKE:0xb168	This shine...<FFFC><FFF6>No matter how I look at it,<FFF6>it’s still so marvelous...<FFF5>
+241	0x4ff1	pack/talk/KUTISAKE:0xb1f8	Hey!<FFFC><FFF6>Doesn’t that seem unfair to you?<FFF5>
+242	0x5010	pack/talk/KUTISAKE:0xb248	Oh, really...<FFFC><FFF6>Then I’ll just<L{> have<FFF6>to <}><S{> have to <}>take it by force!<FFF5>
+243	0x5034	pack/talk/KUTISAKE:0xb2b8	...I didn’t want it anyway.<FFFC><FFF6>I prefer candy.<FFF5>
+244	0x505d	pack/talk/KUTISAKE:0xb310	I want your life... Even just a<L{> little<FFF6>bit will be <}><S{> little bit will<FFF6>be <}>fine. C’mon... just a sip?<FFEF>
+245	0x5095	pack/talk/KUTISAKE:0xb3b0	Ahahah...<FFFC><FFF6>Your vital energy is delicious!<FFF5>
+246	0x50b9	pack/talk/KUTISAKE:0xb408	Oh my...<FFFC> Are you scared of me?<FFFC><FFF6>I’m even scarier to children<FFF6>who don’t listen!<FFF5>
+247	0x50eb	pack/talk/KUTISAKE:0xb4a8	No way...<FFFC><FFF6>I know I have a large mouth,<FFF6>but that’s so cruel! You’re terrible!<FFF5>
+248	0x5117	pack/talk/KUTISAKE:0xb548	No way... I know I have a large mouth,<FFF6>but that’s so cruel! You’re terrible!<FFF5>

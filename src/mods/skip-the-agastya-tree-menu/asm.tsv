@@ -1,0 +1,2 @@
+file	order	line	if	unless	note
+ADV	140	.include "adv.asm"			--mods=skip-the-agastya-tree-menu: an Agastya tree opens the save list directly

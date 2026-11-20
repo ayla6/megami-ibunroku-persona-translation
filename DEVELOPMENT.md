@@ -2,11 +2,22 @@
 
 ## Repository layout
 
-- `src/asm/` contains the PSX patches and assembly sources.
-- `src/injection_tools/` contains PSX translation-table, graphics, and build tools.
-- `src/extraction_tools/psx/` extracts and inventories PSX disc data.
-- `src/extraction_tools/psp/` reads PSP game text, BOOT tables, and ending images.
-- `src/extraction_tools/matching/` aligns PSX text with PSP-JP/PSP-US and produces
+- `src/mods/` holds every mod, one folder each (src/mods/README.md); `base/`
+  is the engine, with every overlay's assembly in `base/asm/` and `main.asm`.
+- `src/pipeline/` builds: `build.py`, the disc writer, the step cache, the
+  P1MOD layers, the write guard and the memory maps.
+- `src/injection/` turns translation/ into the game's files, one folder per
+  area: `formats/` (the game's file and text codecs), `text/` (wrapping and
+  the translation tables), `fonts/`, `graphics/`, `resident/` (SLPS_005.00),
+  `battle/`, `field/`, `dungeon/`, `overworld/`, `other/`.
+- `src/research/` holds disassembly and live-debugging helpers, outside the
+  build.
+- `src/toolpath.py` puts every tool folder on sys.path, so tools import each
+  other by name; tests sit next to what they test and run with
+  `python tools/run_tests.py [NAME]`.
+- `src/extraction/psx/` extracts and inventories PSX disc data.
+- `src/extraction/psp/` reads PSP game text, BOOT tables, and ending images.
+- `src/porting/` aligns PSX text with PSP-JP/PSP-US and produces
   correspondence maps or ported text. Matching is its own stage because it needs
   data from both platforms.
 - `tools/` contains manually-run tools (not part of the build): `textview.py`,
@@ -20,15 +31,15 @@
   PSP-US side of every item and each side's own row id (`--no-jp` drops the
   PSP-JP pair); it reuses textview's matched items and only lays them out.
 - `external_tools/` is ignored local storage for third-party executables such as
-  armips. `src/video_font/` contains the tracked font files used for
+  armips. `src/mods/english-translation/fmv/assets/video_font/` contains the tracked font files used for
   subtitle rendering.
 - `translation/manual/` is the human work queue, one table per disc file on the
   canonical schema (`id pos psp en note`); `translation/generated/` is the
   machine-ported text (`id pos psp en`). See docs/TEXT_ARCHITECTURE.md.
 - `translation/generated/` contains PSX-ready text grouped by target: `ADV/`,
   `TALK/`, `SLPS_005.00/`, `S2D.BIN/`, and `FMV/`. Do not hand-edit generated files.
-- `src/extraction_tools/psp_glyphs.tsv` contains the authored PSP character table;
-  `src/extraction_tools/matching/*.tsv` contains reviewed structural source inputs.
+- `src/extraction/psp_glyphs.tsv` contains the authored PSP character table;
+  `src/porting/*.tsv` contains reviewed structural source inputs.
 - `translation/generated_mappings/` contains tracked, generated correspondence snapshots. Port/build recreate
   missing products; see [docs/MAPPINGS.md](docs/MAPPINGS.md) for producers and prerequisites.
 - `data/extracted_text/` is an ignored local cache of decoded PSP text, separate from alignment and ports.
@@ -39,9 +50,9 @@
 ## Build
 
 ```sh
-python src/injection_tools/build.py             # build and patch the PSX image
-python src/injection_tools/build.py --no-disc   # assemble without writing a disc image
-python src/injection_tools/build.py --qol       # separate QoL image
+python src/pipeline/build.py             # build and patch the PSX image
+python src/pipeline/build.py --no-disc   # assemble without writing a disc image
+python src/pipeline/build.py --mods       # the default mods on top of the translation
 ```
 
 The build prefers the original image at
@@ -49,9 +60,9 @@ The build prefers the original image at
 when it is absent, the first Rev 0 image recognized anywhere under `data/discs/`
 is used, so a dump can be dropped in that folder under any name. `--image PATH`
 still names one explicitly. A missing or incomplete `data/psx/` is extracted from
-that image with `src/extraction_tools/psx/extract.py`.
+that image with `src/extraction/psx/extract.py`.
 
-A porting build (the default; `--no-port` skips it) also reads
+A porting build (`--port`; off by default) also reads
 `data/psp_us/`. If the tree is missing, the build recognizes a PSP-US ISO under
 `data/discs/` by its ISO9660 volume and `PSP_GAME/PARAM.SFO` DISC_ID and extracts
 it. `data/psp_jp/` is needed only to capture or refresh the source plans (and to
@@ -75,7 +86,7 @@ folder. `pyeboot` is included for decrypting the PSP-US BOOT image.
 
 ## Text and build behavior
 
-The build runs `src/extraction_tools/matching/port.py` before consuming generated
+The build runs `src/porting/port.py` before consuming generated
 translations. Family porters refresh their source extracts, regenerate wording,
 and remove superseded empty manual gaps; populated manual English takes priority.
 
@@ -95,12 +106,12 @@ line count) stay exactly where they are. Nothing else may decide a line break. C
 with:
 
 ```sh
-python src/injection_tools/vwf_wrap.py "text"
-python src/injection_tools/vwf_wrap.py --check "text"
+python src/injection/text/vwf_wrap.py "text"
+python src/injection/text/vwf_wrap.py --check "text"
 ```
 
-The event parser/rebuilder is `src/injection_tools/efile.py`; the event text dump,
-merge, and build commands are in `src/injection_tools/etext.py`. `etext.py check`
+The event parser/rebuilder is `src/injection/formats/efile.py`; the event text dump,
+merge, and build commands are in `src/injection/formats/etext.py`. `etext.py check`
 and the build QA (`tstatus.py qa`, `talktl.py qa`) validate round-trips, empty manual cells,
 control codes, and text widths.
 
@@ -110,17 +121,17 @@ These commands use extracted PSP trees under `data/psp_jp/` and `data/psp_us/`.
 US BOOT extraction requires `pyeboot` to decrypt `EBOOT.BIN`.
 
 ```sh
-python src/extraction_tools/psp/boot.py extract
-python src/extraction_tools/psp/text.py cache
-python src/injection_tools/choices.py sync-boot
-python src/extraction_tools/matching/boot_s2dnames.py
-python src/extraction_tools/matching/align.py
-python src/extraction_tools/matching/split_maps.py split
-python src/extraction_tools/matching/port_story.py --bulk --apply
-python src/extraction_tools/matching/port_talk.py
+python src/extraction/psp/boot.py extract
+python src/extraction/psp/text.py cache
+python src/injection/resident/choices.py sync-boot
+python src/porting/boot_s2dnames.py
+python src/porting/align.py
+python src/porting/split_maps.py split
+python src/porting/port_story.py --bulk --apply
+python src/porting/port_talk.py
 ```
 
-PSX extraction is provided by `src/extraction_tools/psx/extract.py`; PSP extraction
+PSX extraction is provided by `src/extraction/psx/extract.py`; PSP extraction
 and PSX↔PSP matching are separate tools. Generated maps go in `translation/generated_mappings/`,
 reviewed source maps beside the matching tools, decoded text caches in
 `data/extracted_text/`, and build-ready ports in `translation/generated/`.
@@ -136,7 +147,7 @@ or matching rule invalidates its plan, and the porter fails instead of guessing.
 
 ## Disc image patching
 
-`src/injection_tools/build_disc.py` writes changed PSX files in their original
+`src/pipeline/build_disc.py` writes changed PSX files in their original
 sectors when they fit, otherwise moves them into freed extents and updates
 ISO9660 and game file tables. Retail packs its files without gaps, so when the
 moved files would not fit, untouched files that duplicate another file sector

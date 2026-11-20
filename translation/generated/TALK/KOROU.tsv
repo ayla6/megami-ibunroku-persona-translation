@@ -1,724 +1,724 @@
 id	pos	psp	en
-0	0x2014	pack/talk/KOROU:0x2018	What are ya expectin' from an old<FFF6>man like me? You're an odd one.<FFF5>
-1	0x204d	pack/talk/KOROU:0x20a0	I'm glad ya think so, but I'm past<FFF6>my prime... I can't help you.<FFFD>　<FFF5>
-2	0x208d	pack/talk/KOROU:0x2128	Argh, whaddaya want from<FFF6>an old man!? Look at a demon<FFF6>before ya open yer trap.<FFF5>
-3	0x20c9	pack/talk/KOROU:0x21c8	Hey! If yer tryin' to make<FFF6>friends with demons,<FFF6>ya better be upfront with 'em!<FFFD>あ<FFF5>
-4	0x20fd	pack/talk/KOROU:0x2270	Ho ho! Ya want my card ya say?<FFF6>Hmmm?<FFFD>い<FFF5>
-5	0x2133	pack/talk/KOROU:0x22c0	Ho ho! No matter how old ya get,<FFF6>it's nice to be counted on!<FFF5>
-6	0x2165	pack/talk/KOROU:0x2340	Heh... The closer ya come to yer<FFF6>death bed, the easier it gets<FFFB><FFF7>to forgive. The mistakes<FFF6>of youth don't bother me.<FFF5>
-7	0x219f	pack/talk/KOROU:0x2428	Ho ho! I'm like a stone wall.<FFF6>You couldn't break me if ya tried!<FFFD>う<FFF5>
-8	0x21d5	pack/talk/KOROU:0x24b0	Argh! It don't take much to rough<FFF6>up you high-spirited youths!<FFF6>Ya got no backbone!<FFFD>え<FFF5>
-9	0x2202	pack/talk/KOROU:0x2560	I got my pride too!<FFF6>My back may be givin' out,<FFF6>but I accept your challenge!<FFF5>
-10	0x2239	pack/talk/KOROU:0x25f8	I'm old... All I want is to live out<FFF6>the rest of my days like a hermit...<FFF5>
-11	0x226a	pack/talk/KOROU:0x2690	Y-You wouldn't...<FFF6>You wouldn't torment<FFF6>a defenseless old man, would ya?<FFFD>お<FFF5>
-12	0x22a2	pack/talk/KOROU:0x2728	Ho ho! Never thought I'd be<FFF6>gettin' called out at this age!<FFF5>
-13	0x22d2	pack/talk/KOROU:0x27a0	You're sure into strange things...<FFF6>What good you think an old<FFF6>man like me can do for ya?<FFFD>か<FFF5>
-14	0x230e	pack/talk/KOROU:0x2858	I just want to live in peace!<FFF6>Please, leave me be!<FFF5>
-15	0x2340	pack/talk/KOROU:0x28c0	Argh! I may be old, but I'm still<FFF6>a <FFF0>! I'm free to pick my work!<FFFD>き<FFF5>
-16	0x237d	pack/talk/KOROU:0x2948	I know yer just tryin' to sweet<FFF6>talk yer way into my good favor...<FFF5>
-17	0x23ac	pack/talk/KOROU:0x29d0	You'd be takin' a loss if you<FFF6>hired an old man like me...<FFF6>You're up to no good...<FFFD>く<FFF5>
-18	0x23e8	pack/talk/KOROU:0x2a78	Argh! This is terrible! There's a limit<FFF6>to bein' tone-deaf, boy!<FFF5>
+0	0x2014	pack/talk/KOROU:0x2018	What are ya expectin’<FFF6>from an old man like me?<FFFC><FFF6>You’re an odd one.<FFF5>
+1	0x204d	pack/talk/KOROU:0x20a0	I’m glad ya think so,<FFF6>but I’m past my prime...<FFFC><FFF6>I can’t help you.<FFFD>　<FFF5>
+2	0x208d	pack/talk/KOROU:0x2128	Argh, whaddaya want<L{> from<FFF6>an <}><S{> from an <}>old<L{> man!? Look <}><S{> man!?<FFF6>Look <}>at a<L{> demon<FFF6>before <}><S{> demon before <}>ya open yer trap.<FFF5>
+3	0x20c9	pack/talk/KOROU:0x21c8	<L{>Hey! If <}><S{>Hey!<FFF6>If <}>yer tryin’ to<L{> make<FFF6>friends with demons,<FFF6>ya <}><S{> make friends with<FFF6>demons, ya <}>better be upfront with ’em!<FFFD>あ<FFF5>
+4	0x20fd	pack/talk/KOROU:0x2270	Ho ho! Ya want my card ya<L{> say?<FFF6>Hmmm?<FFFD>い<FFF5><}><S{> say? Hmmm?<FFFD>い<FFF5><}>
+5	0x2133	pack/talk/KOROU:0x22c0	Ho ho! No matter how old ya get,<FFF6>it’s nice to be counted on!<FFF5>
+6	0x2165	pack/talk/KOROU:0x2340	Heh...<FFFC> The closer ya come to<L{> yer<FFF6>death bed, the <}><S{> yer death bed,<FFF6>the <}>easier it<L{> gets<FFFB><FFF7>to forgive. The mistakes<FFF6>of <}><S{> gets to forgive.<FFF6>The mistakes of <}>youth don’t bother me.<FFF5>
+7	0x219f	pack/talk/KOROU:0x2428	Ho ho!<FFFC> I’m like a stone wall.<FFF6>You couldn’t break me if ya tried!<FFFD>う<FFF5>
+8	0x21d5	pack/talk/KOROU:0x24b0	<L{>Argh!<FFFC> It <}><S{>Argh!<FFFC><FFF6>It <}>don’t take much to<L{> rough<FFF6>up you high-spirited youths!<FFF6>Ya <}><S{> rough up you<FFF6>high-spirited youths! Ya <}>got no backbone!<FFFD>え<FFF5>
+9	0x2202	pack/talk/KOROU:0x2560	I got my pride too!<FFFC><FFF6>My back may be givin’ out,<FFF6>but I accept your challenge!<FFF5>
+10	0x2239	pack/talk/KOROU:0x25f8	I’m old...<FFFC><FFF6>All I want is to live out the rest<FFF6>of my days like a hermit...<FFF5>
+11	0x226a	pack/talk/KOROU:0x2690	Y-You<L{> wouldn’t...<FFF6>You <}><S{> wouldn’t... You <}>wouldn’t torment<FFF6>a defenseless old man, would ya?<FFFD>お<FFF5>
+12	0x22a2	pack/talk/KOROU:0x2728	Ho ho!<FFFC><FFF6>Never thought I’d be gettin’<FFF6>called out at this age!<FFF5>
+13	0x22d2	pack/talk/KOROU:0x27a0	You’re sure into strange things...<FFF6>What good you think an old<FFF6>man like me can do for ya?<FFFD>か<FFF5>
+14	0x230e	pack/talk/KOROU:0x2858	I just want to live in peace!<FFFC><FFF6>Please, leave me be!<FFF5>
+15	0x2340	pack/talk/KOROU:0x28c0	Argh!<FFFC><FFF6>I may be old, but I’m still a <FFF0>!<FFF6>I’m free to pick my work!<FFFD>き<FFF5>
+16	0x237d	pack/talk/KOROU:0x2948	I know yer just tryin’ to sweet<FFF6>talk yer way into my good favor...<FFF5>
+17	0x23ac	pack/talk/KOROU:0x29d0	You’d be takin’ a loss if you hired<FFF6>an old man like<L{> me...<FFF6>You’re <}><S{> me... You’re <}>up to no good...<FFFD>く<FFF5>
+18	0x23e8	pack/talk/KOROU:0x2a78	<L{>Argh!<FFFC> This <}><S{>Argh!<FFFC><FFF6>This <}>is terrible!<FFFC><FFF6>There’s a limit to<L{> bein’<FFF6>tone-deaf, <}><S{> bein’ tone-deaf, <}>boy!<FFF5>
 19	0x2417	pack/talk/KOROU:0x2b00	I hate this song...<FFF6>It brings back bad memories...<FFFD>け<FFF5>
-20	0x243f	pack/talk/KOROU:0x2b70	What is that voice...? Maybe that's<FFF6>why I've got this headache...<FFF5>
-21	0x246b	pack/talk/KOROU:0x2bf8	What a terrible voice... How do ya<FFF6>stay sane listenin' to yourself talk?<FFFD>こ<FFF5>
-22	0x24a4	pack/talk/KOROU:0x2c90	Ho, ho! That a song about havin'<FFF6>a false sense of courage?<FFF6>How delightful.<FFF5>
-23	0x24d6	pack/talk/KOROU:0x2d28	That there's a good song. Your tone<FFF6>has a way of makin' a listener happy!<FFFD>さ<FFF5>
-24	0x24fd	pack/talk/KOROU:0x2dc0	There're tons of other demons<FFF6>more worthy of listenin'<FFF6>to a talented one like you...<FFFB><FFF7>I don't know why you'd be<FFF6>chirpin' at an old fool like me...<FFF5>
-25	0x256e	pack/talk/KOROU:0x2ee8	They say the healthiest trees<FFF6>provide the best shelter,<FFFB><FFF7>don't they? What're ya doin'<FFF6>here with me then, eh, Missy?<FFFD>し<FFF5>
-26	0x25b3	pack/talk/KOROU:0x2fd8	You still plannin' on crackin'<FFF6>the whip on this dyin' old body!?<FFF6>What a cruel little girl you are!<FFFD>す<FFF5>
-27	0x25f1	pack/talk/KOROU:0x30a8	You're relyin' too much on others...<FFF6>Young'uns nowadays are so lazy!<FFFB><FFF7>They don't know<FFF6>what hardship means!<FFF5>
-28	0x2625	pack/talk/KOROU:0x3180	Heh... So there's even a yen's<FFF6>worth to this old man?<FFFD>せ<FFF5>
-29	0x265b	pack/talk/KOROU:0x31f0	Shucks, I'm happy! I just can't refuse<FFF6>the siren call of a sweet young lady.<FFF5>
-30	0x2695	pack/talk/KOROU:0x3290	Flattery don't give me any warm<FFF6>fuzzies... Just makes me angry!<FFF5>
-31	0x26c6	pack/talk/KOROU:0x3310	Hm... You're...<FFF6>quite a looker, you are...<FFFD>そ<FFF5>
-32	0x26ef	pack/talk/KOROU:0x3370	Human girl... Whaddaya think<FFF6>you're gonna get outta<FFF6>bein' on my good side?<FFFD>た<FFF5>
-33	0x2724	pack/talk/KOROU:0x3410	You're waggin' your tail now...<FFF6>But sometimes a dog bites<FFF6>the hand that feeds it...<FFF5>
-34	0x2750	pack/talk/KOROU:0x34b8	Ho, ho! You're lettin' me drain<FFF6>your life, so I might as well.<FFF6>Otherwise I'd be wastin' yer offer.<FFFD>ち<FFF5>
-35	0x2785	pack/talk/KOROU:0x3588	Ho ho! What a charming<FFF6>young lady we have here!<FFF5>
-36	0x27aa	pack/talk/KOROU:0x35e8	Ho ho! You tryin' to pull<FFF6>one over on me? You've got too<FFF6>much time on your hands, Missy.<FFFD>つ<FFF5>
-37	0x27e2	pack/talk/KOROU:0x36a0	Heh! I must say, I tip my hat<FFF6>to the imagination you humans have.<FFF5>
-38	0x2818	pack/talk/KOROU:0x3728	Everything you're sayin' is<FFF6>a baseless lie! Nothin' worse than<FFF6>youngsters lyin' through their teeth!<FFF5>
-39	0x2854	pack/talk/KOROU:0x37f8	Sounds like you've got some ulterior<FFF6>motives... How much fun could it be<FFF6>to prank a geezer like me, Missy?<FFFD>て<FFF5>
-40	0x2893	pack/talk/KOROU:0x38d8	Now ya've done it. That goes far and<FFF6>beyond a normal pack of lies, heh!<FFF5>
-41	0x28c8	pack/talk/KOROU:0x3968	Ho ho! I'm right as rain if I've got<FFF6>some candy to suck on.<FFFD>と<FFF5>
-42	0x28fc	pack/talk/KOROU:0x39e8	Look at that face! It's like<FFF6>you've lost... Hrmm... What was it?<FFFD>な<FFF5>
-43	0x2930	pack/talk/KOROU:0x3a70	Heh! You've got a lot<FFF6>to learn if you're goin'<FFF6>pale in front of an ol' geezer!<FFF5>
-44	0x2962	pack/talk/KOROU:0x3b10	I ain't gonna eat ya! Stop starin'<FFF6>at me like a deer in headlights!<FFFD>に<FFF5>
-45	0x2989	pack/talk/KOROU:0x3ba0	Argh! I don't eat the likes of you!<FFF5>
-46	0x29b0	pack/talk/KOROU:0x3be8	There's nothin' to be scared of...<FFF6>I'm just a harmless old man!<FFF6>Heh heh heh!<FFF5>
-47	0x29e7	pack/talk/KOROU:0x3c88	Ho ho! Sounds like I've still got<FFF6>some dignity left in me, eh?<FFFD>ぬ<FFF5>
-48	0x2a1a	pack/talk/KOROU:0x3d10	You must have some real troubles if<FFF6>you're interested in old folks... Heh...<FFF5>
-49	0x2a4c	pack/talk/KOROU:0x3db0	Ho ho ho... You may be young,<FFF6>but doin' it with just<FFF6>anyone ain't healthy.<FFFD>ね<FFF5>
-50	0x2a81	pack/talk/KOROU:0x3e50	Now listen here! Stop that!<FFF6>You're makin' me sick! Quit ooglin' me!<FFF5>
-51	0x2ab5	pack/talk/KOROU:0x3ed8	Ain't ya got no manners!?<FFF6>Young'uns these days<FFF6>think everything's a joke!<FFFD>の<FFF5>
-52	0x2af6	pack/talk/KOROU:0x3f70	Here, here, boy. I ain't interested<FFF6>in men. I don't know what I'm gonna<FFF6>do with you fawnin' all over me...<FFF5>
-53	0x2b2c	pack/talk/KOROU:0x4048	...I'm a man, and an old one at that.<FFF6>You need your eyes checked, son?<FFFD>は<FFF5>
+20	0x243f	pack/talk/KOROU:0x2b70	What is that voice...?<FFFC><FFF6>Maybe that’s why I’ve<L{> got<FFF6>this <}><S{> got this <}>headache...<FFF5>
+21	0x246b	pack/talk/KOROU:0x2bf8	What a terrible voice... How do ya<FFF6>stay sane listenin’ to yourself talk?<FFFD>こ<FFF5>
+22	0x24a4	pack/talk/KOROU:0x2c90	Ho, ho!<FFF6>That a song about havin’ a<L{> false<FFF6>sense of <}><S{> false sense<FFF6>of <}>courage?<FFFC> How delightful.<FFF5>
+23	0x24d6	pack/talk/KOROU:0x2d28	That there’s a good song.<FFF6>Your tone has a way<FFF6>of makin’ a listener happy!<FFFD>さ<FFF5>
+24	0x24fd	pack/talk/KOROU:0x2dc0	There’re tons of other demons<FFF6>more worthy of listenin’<FFF6>to a talented one like you...<FFFB><FFF7>I don’t know why you’d be<FFF6>chirpin’ at an old fool like me...<FFF5>
+25	0x256e	pack/talk/KOROU:0x2ee8	They say the healthiest<L{> trees<FFF6>provide the <}><S{> trees provide<FFF6>the <}>best shelter, don’t<L{> they?<FFFB><FFF7>What’re ya doin’ <}><S{> they? What’re ya<FFF6>doin’ <}>here with<L{> me<FFF6>then, <}><S{> me then, <}>eh, Missy?<FFFD>し<FFF5>
+26	0x25b3	pack/talk/KOROU:0x2fd8	You still plannin’ on crackin’<FFF6>the whip on this dyin’ old body!?<FFF6>What a cruel little girl you are!<FFFD>す<FFF5>
+27	0x25f1	pack/talk/KOROU:0x30a8	You’re relyin’ too much on others...<FFF6>Young’uns nowadays are so<L{> lazy!<FFFB><FFF7>They <}><S{> lazy!<FFF6>They <}>don’t<L{> know<FFF6>what <}><S{> know what <}>hardship means!<FFF5>
+28	0x2625	pack/talk/KOROU:0x3180	Heh... So there’s even a yen’s<FFF6>worth to this old man?<FFFD>せ<FFF5>
+29	0x265b	pack/talk/KOROU:0x31f0	Shucks, I’m happy!<FFFC><FFF6>I just can’t refuse the siren<FFF6>call of a sweet young lady.<FFF5>
+30	0x2695	pack/talk/KOROU:0x3290	Flattery don’t give<L{> me<FFF6>any <}><S{> me any <}>warm fuzzies...<FFFC><FFF6>Just makes me angry!<FFF5>
+31	0x26c6	pack/talk/KOROU:0x3310	Hm...<FFFC><L{> You’re...<FFF6>quite <}><S{> You’re... quite <}>a looker, you are...<FFFD>そ<FFF5>
+32	0x26ef	pack/talk/KOROU:0x3370	Human girl... Whaddaya<L{> think<FFF6>you’re gonna get outta<FFF6>bein’ <}><S{> think you’re gonna<FFF6>get outta bein’ <}>on my good side?<FFFD>た<FFF5>
+33	0x2724	pack/talk/KOROU:0x3410	You’re waggin’ your tail now...<FFFC><FFF6>But sometimes a dog bites<FFF6>the hand that feeds it...<FFF5>
+34	0x2750	pack/talk/KOROU:0x34b8	Ho, ho! You’re lettin’ me<L{> drain<FFF6>your life, so <}><S{> drain your life,<FFF6>so <}>I might as well.<FFF6>Otherwise I’d be wastin’ yer offer.<FFFD>ち<FFF5>
+35	0x2785	pack/talk/KOROU:0x3588	Ho ho!<FFFC><FFF6>What a charming young lady<FFF6>we have here!<FFF5>
+36	0x27aa	pack/talk/KOROU:0x35e8	Ho ho! You tryin’ to pull one<L{> over<FFF6>on me? You’ve <}><S{> over on me?<FFF6>You’ve <}>got too much time<FFF6>on your hands, Missy.<FFFD>つ<FFF5>
+37	0x27e2	pack/talk/KOROU:0x36a0	Heh!<FFFC><FFF6>I must say, I tip my hat to<FFF6>the imagination you humans have.<FFF5>
+38	0x2818	pack/talk/KOROU:0x3728	Everything you’re sayin’<L{> is<FFF6>a <}><S{> is a <}>baseless<L{> lie!<FFFC> Nothin’ <}><S{> lie!<FFFC><FFF6>Nothin’ <}>worse<L{> than<FFF6>youngsters lyin’ <}><S{> than youngsters<FFF6>lyin’ <}>through their teeth!<FFF5>
+39	0x2854	pack/talk/KOROU:0x37f8	Sounds like you’ve got some ulterior<FFF6>motives... How much fun could it be<FFF6>to prank a geezer like me, Missy?<FFFD>て<FFF5>
+40	0x2893	pack/talk/KOROU:0x38d8	Now ya’ve done it.<FFF6>That goes far and beyond<FFF6>a normal pack of lies, heh!<FFF5>
+41	0x28c8	pack/talk/KOROU:0x3968	Ho ho!<FFF6>I’m right as rain if I’ve got<FFF6>some candy to suck on.<FFFD>と<FFF5>
+42	0x28fc	pack/talk/KOROU:0x39e8	Look at that face!<FFF6>It’s like you’ve lost...<L{> Hrmm...<FFF6>What <}><S{> Hrmm... What <}>was it?<FFFD>な<FFF5>
+43	0x2930	pack/talk/KOROU:0x3a70	Heh!<FFFC><FFF6>You’ve got a lot to learn if<L{> you’re<FFF6>goin’ pale <}><S{> you’re goin’<FFF6>pale <}>in front of an ol’ geezer!<FFF5>
+44	0x2962	pack/talk/KOROU:0x3b10	I ain’t gonna eat ya!<FFF6>Stop starin’ at me like<FFF6>a deer in headlights!<FFFD>に<FFF5>
+45	0x2989	pack/talk/KOROU:0x3ba0	Argh!<FFFC><FFF6>I don’t eat the likes of you!<FFF5>
+46	0x29b0	pack/talk/KOROU:0x3be8	There’s nothin’ to be scared of...<FFF6>I’m just a harmless old<L{> man!<FFFC><FFF6>Heh <}><S{> man!<FFFC> Heh <}>heh heh!<FFF5>
+47	0x29e7	pack/talk/KOROU:0x3c88	Ho ho!<FFF6>Sounds like I’ve still<FFF6>got some dignity left in me, eh?<FFFD>ぬ<FFF5>
+48	0x2a1a	pack/talk/KOROU:0x3d10	You must have some real<L{> troubles if<FFF6>you’re <}><S{> troubles<FFF6>if you’re <}>interested in old folks...<FFFC> Heh...<FFF5>
+49	0x2a4c	pack/talk/KOROU:0x3db0	Ho ho ho... You may be<L{> young,<FFF6>but doin’ it <}><S{> young, but doin’<FFF6>it <}>with<L{> just<FFF6>anyone <}><S{> just anyone <}>ain’t healthy.<FFFD>ね<FFF5>
+50	0x2a81	pack/talk/KOROU:0x3e50	Now listen here! Stop that!<FFFC><FFF6>You’re makin’ me sick!<FFFC><FFF6>Quit ooglin’ me!<FFF5>
+51	0x2ab5	pack/talk/KOROU:0x3ed8	Ain’t ya got no manners!?<FFF6>Young’uns these days<FFF6>think everything’s a joke!<FFFD>の<FFF5>
+52	0x2af6	pack/talk/KOROU:0x3f70	Here, here, boy. I ain’t<L{> interested<FFF6>in men. I <}><S{> interested in men.<FFF6>I <}>don’t know what I’m<L{> gonna<FFF6>do with <}><S{> gonna do<FFF6>with <}>you fawnin’ all over me...<FFF5>
+53	0x2b2c	pack/talk/KOROU:0x4048	...I’m a man, and an old one at that.<FFF6>You need your eyes checked, son?<FFFD>は<FFF5>
 54	0x2b63	pack/talk/KOROU:0x40e0	Ho ho ho.<FFF5>
 55	0x2b71	pack/talk/KOROU:0x40f8	Ho ho ho.<FFF5>
-56	0x2b7f	pack/talk/KOROU:0x4110	Ho, ho! I'm havin' trouble<FFF6>holdin' back my laughter.<FFF6>You're pleasant for a human.<FFF5>
-57	0x2bb5	pack/talk/KOROU:0x41b8	Ho ho! You're an interesting one!<FFF6>You some kinda comedian actor?<FFFD>ひ<FFF5>
-58	0x2bee	pack/talk/KOROU:0x4240	It's so dry... I'd rather<FFF6>be basking in the sun!<FFF5>
-59	0x2c1e	pack/talk/KOROU:0x42a8	What's with that act? It's downright<FFF6>colorless! Do something about it!<FFFD>ふ<FFF5>
-60	0x2c4d	pack/talk/KOROU:0x4340	Ho ho... My stomach's all unsettled...<FFF5>
-61	0x2c72	pack/talk/KOROU:0x4390	Whoa, I almost dislocated<FFF6>my jaw there. How frightful...<FFF5>
-62	0x2c9b	pack/talk/KOROU:0x4408	Heh! You're a fun fella.<FFF6>That's a life worth livin'.<FFF5>
-63	0x2cd1	pack/talk/KOROU:0x4478	Ho ho ho... I can't stop laughin'.<FFF6>You stop it for me!<FFFD>へ<FFF5>
-64	0x2d05	pack/talk/KOROU:0x44f0	I'm always up for a good chat.<FFF6>Say... Do ya wanna talk about me?<FFFD>ほ<FFF5>
-65	0x2d42	pack/talk/KOROU:0x4578	It's gotta be hard findin' a subject<FFF6>worth talkin' about with an old man.<FFF6>What a considerate child you are.<FFF5>
-66	0x2d7b	pack/talk/KOROU:0x4650	Argh! So nonchalant! You just gonna<FFF6>sit in lukewarm water yer whole life!?<FFFD>ま<FFF5>
-67	0x2db9	pack/talk/KOROU:0x46f0	You just take life as it comes,<FFF6>don't ya!? You need to train yer<FFF6>guts out, or death'll come knockin'!<FFF5>
-68	0x2df4	pack/talk/KOROU:0x47c0	Heh... I got this tendancy<FFF6>to get all worked up...<FFF6>Small talk is downright relaxin'.<FFF5>
-69	0x2e34	pack/talk/KOROU:0x4870	Ho ho ho! You're a kitten that just<FFF6>opened its eyes. You don't know<FFF6>anythin' 'bout this world.<FFFD>み<FFF5>
-70	0x2e72	pack/talk/KOROU:0x4938	Heh! Not good enough, child...<FFF6>Get older, and things'll<FFF6>stop surprising you.<FFFD>む<FFF5>
-71	0x2ead	pack/talk/KOROU:0x49d8	Ho ho! You're quite young, aren't ya?<FFF6>Good, I happen to like children.<FFF5>
-72	0x2ee0	pack/talk/KOROU:0x4a68	Argh! It'll be a cold day in hell<FFF6>before ya carve out my liver, fellas!<FFF5>
-73	0x2f08	pack/talk/KOROU:0x4af8	Argh! You ain't comin' anywhere<FFF6>near the hairs on my ass!<FFFD>め<FFF5>
-74	0x2f36	pack/talk/KOROU:0x4b70	Don't bully us geriatrics...<FFF6>How am I supposed to stand up<FFF6>to ya if I can hardly stand?<FFF5>
-75	0x2f66	pack/talk/KOROU:0x4c20	Well I'll be! Wh-What're ya<FFF6>gonna do about my liver...?<FFFD>も<FFF5>
-76	0x2f9f	pack/talk/KOROU:0x4c98	Youngsters these days have<FFF6>all sorts of useful gadgets...<FFF6>I'm green with envy.<FFF5>
-77	0x2fda	pack/talk/KOROU:0x4d38	Those're all things an old man's<FFF6>pocket change couldn't buy...<FFF6>Don't ya got anythin' a tad cheaper?<FFFD>や<FFF5>
-78	0x301a	pack/talk/KOROU:0x4e08	You may as well be givin' me<FFF6>a solar powered lantern!<FFF6>Don't ya got anythin' useful?<FFFD>ゆ<FFF5>
-79	0x3056	pack/talk/KOROU:0x4eb8	I've gotten picky in my old age!<FFF6>This wouldn't even make for garnish!<FFF5>
-80	0x308a	pack/talk/KOROU:0x4f48	Ho ho! The pie in the sky<FFF6>became real food!<FFFD>よ<FFF5>
-81	0x30c3	pack/talk/KOROU:0x4fa8	Heh! This'll be useful. I'm grateful.<FFF5>
-82	0x30f4	pack/talk/KOROU:0x4ff8	Ho, ho, young people sure love<FFF6>talkin'. Well, they say it's best<FFF6>to leave life to the young at heart.<FFF5>
-83	0x312b	pack/talk/KOROU:0x50c8	You've got fire in your speech...<FFF6>Glad you've got passion,<FFF6>but be careful ya don't get burned.<FFFD>ら<FFF5>
-84	0x3166	pack/talk/KOROU:0x5190	It's always the bad speakers<FFF6>who babble on and on! I'm sick of this!<FFF5>
-85	0x3198	pack/talk/KOROU:0x5220	You talk too much! I've been around<FFF6>much longer than you, ya hear!<FFFD>り<FFF5>
-86	0x31d5	pack/talk/KOROU:0x52b0	Ho, ho! I see you're burnin' up,<FFF6>young man. Like oil paper by a flame!<FFF5>
-87	0x320f	pack/talk/KOROU:0x5340	Ho, ho! You were born talkin'<FFF6>instead of cryin', weren't ya?<FFFD>る<FFF5>
-88	0x3242	pack/talk/KOROU:0x53c0	Never imagined bein' yelled<FFF6>at by a greenhorn like you.<FFFB><FFF7>How much greener is the grass<FFF6>over there, anyway?<FFFD>れ<FFF5>
-89	0x3279	pack/talk/KOROU:0x5498	Heh... Lookin' at you reminds me<FFF6>of my younger days.<FFFB><FFF7>You're more conceited than I ever<FFF6>was, but I'll let that slide.<FFF5>
-90	0x32dc	pack/talk/KOROU:0x5588	You ain't gotta yell! I'm right here!<FFF6>And my hearin's just fine, ya know!<FFF5>
-91	0x330d	pack/talk/KOROU:0x5620	Look how you're treatin' your elders!<FFF6>If ya don't got manners,<FFF6>you won't get anywhere in life!<FFFD>ろ<FFF5>
+56	0x2b7f	pack/talk/KOROU:0x4110	Ho,<L{> ho!<FFFC> I’m <}><S{> ho!<FFFC><FFF6>I’m <}>havin’<L{> trouble<FFF6>holdin’ back my laughter.<FFF6>You’re <}><S{> trouble holdin’ back<FFF6>my laughter. You’re <}>pleasant for a human.<FFF5>
+57	0x2bb5	pack/talk/KOROU:0x41b8	Ho ho! You’re an interesting one!<FFF6>You some kinda comedian actor?<FFFD>ひ<FFF5>
+58	0x2bee	pack/talk/KOROU:0x4240	It’s so dry...<FFFC><FFF6>I’d rather be basking in the sun!<FFF5>
+59	0x2c1e	pack/talk/KOROU:0x42a8	What’s with that act?<FFFC><FFF6>It’s downright colorless!<FFF6>Do something about it!<FFFD>ふ<FFF5>
+60	0x2c4d	pack/talk/KOROU:0x4340	Ho ho...<FFFC><FFF6>My stomach’s all unsettled...<FFF5>
+61	0x2c72	pack/talk/KOROU:0x4390	Whoa, I almost<L{> dislocated<FFF6>my <}><S{> dislocated my <}>jaw<L{> there. How <}><S{> there.<FFF6>How <}>frightful...<FFF5>
+62	0x2c9b	pack/talk/KOROU:0x4408	Heh!<FFFC><FFF6>You’re a fun fella.<FFFC><FFF6>That’s a life worth livin’.<FFF5>
+63	0x2cd1	pack/talk/KOROU:0x4478	Ho ho ho...<FFFC><FFF6>I can’t stop<L{> laughin’.<FFF6>You <}><S{> laughin’. You <}>stop it for me!<FFFD>へ<FFF5>
+64	0x2d05	pack/talk/KOROU:0x44f0	I’m always up for a good chat.<FFF6>Say... Do ya wanna talk about me?<FFFD>ほ<FFF5>
+65	0x2d42	pack/talk/KOROU:0x4578	It’s gotta be hard findin’ a<L{> subject<FFF6>worth talkin’ <}><S{> subject worth<FFF6>talkin’ <}>about with an old man.<FFFC><FFF6>What a considerate child you are.<FFF5>
+66	0x2d7b	pack/talk/KOROU:0x4650	Argh!<FFFC> So nonchalant!<FFF6>You just gonna sit in lukewarm<FFF6>water yer whole life!?<FFFD>ま<FFF5>
+67	0x2db9	pack/talk/KOROU:0x46f0	You just take life as it comes,<L{> don’t<FFF6>ya!?<FFFC> You <}><S{> don’t ya!?<FFFC><FFF6>You <}>need to train yer guts out,<FFF6>or death’ll come knockin’!<FFF5>
+68	0x2df4	pack/talk/KOROU:0x47c0	<L{>Heh...<FFFC> I <}><S{>Heh...<FFFC><FFF6>I <}>got this<L{> tendancy<FFF6>to <}><S{> tendancy to <}>get all worked up...<FFFC><FFF6>Small talk is downright relaxin’.<FFF5>
+69	0x2e34	pack/talk/KOROU:0x4870	Ho ho<L{> ho! You’re <}><S{> ho!<FFF6>You’re <}>a kitten that<L{> just<FFF6>opened <}><S{> just opened <}>its<L{> eyes. You <}><S{> eyes.<FFF6>You <}>don’t<L{> know<FFF6>anythin’ <}><S{> know anythin’ <}>’bout this world.<FFFD>み<FFF5>
+70	0x2e72	pack/talk/KOROU:0x4938	Heh! Not good enough,<L{> child...<FFF6>Get older, and things’ll<FFF6>stop <}><S{> child... Get older,<FFF6>and things’ll stop <}>surprising you.<FFFD>む<FFF5>
+71	0x2ead	pack/talk/KOROU:0x49d8	Ho ho!<FFFC><FFF6>You’re quite young, aren’t ya?<FFFC><FFF6>Good, I happen to like children.<FFF5>
+72	0x2ee0	pack/talk/KOROU:0x4a68	Argh!<FFFC><FFF6>It’ll be a cold day in hell before<FFF6>ya carve out my liver, fellas!<FFF5>
+73	0x2f08	pack/talk/KOROU:0x4af8	Argh!<FFF6>You ain’t comin’ anywhere<FFF6>near the hairs on my ass!<FFFD>め<FFF5>
+74	0x2f36	pack/talk/KOROU:0x4b70	Don’t bully us geriatrics...<FFFC><FFF6>How am I supposed to stand up<FFF6>to ya if I can hardly stand?<FFF5>
+75	0x2f66	pack/talk/KOROU:0x4c20	Well I’ll be!<FFF6>Wh-What’re ya<L{> gonna<FFF6>do <}><S{> gonna do <}>about my liver...?<FFFD>も<FFF5>
+76	0x2f9f	pack/talk/KOROU:0x4c98	Youngsters these days have<FFF6>all sorts of useful gadgets...<FFFC><FFF6>I’m green with envy.<FFF5>
+77	0x2fda	pack/talk/KOROU:0x4d38	Those’re all things an old man’s<FFF6>pocket change couldn’t buy...<FFF6>Don’t ya got anythin’ a tad cheaper?<FFFD>や<FFF5>
+78	0x301a	pack/talk/KOROU:0x4e08	You may as well be givin’ me<FFF6>a solar powered lantern!<FFF6>Don’t ya got anythin’ useful?<FFFD>ゆ<FFF5>
+79	0x3056	pack/talk/KOROU:0x4eb8	I’ve gotten picky in my old age!<FFF6>This wouldn’t even make for garnish!<FFF5>
+80	0x308a	pack/talk/KOROU:0x4f48	Ho<L{> ho!<FFF6>The <}><S{> ho! The <}>pie in the sky became real food!<FFFD>よ<FFF5>
+81	0x30c3	pack/talk/KOROU:0x4fa8	Heh!<FFFC><FFF6>This’ll be useful. I’m grateful.<FFF5>
+82	0x30f4	pack/talk/KOROU:0x4ff8	Ho, ho, young people sure<L{> love<FFF6>talkin’. Well, <}><S{> love talkin’.<FFF6>Well, <}>they say it’s<L{> best<FFF6>to leave life <}><S{> best to leave<FFF6>life <}>to the young at heart.<FFF5>
+83	0x312b	pack/talk/KOROU:0x50c8	You’ve got fire in your speech...<FFF6>Glad you’ve got passion,<FFF6>but be careful ya don’t get burned.<FFFD>ら<FFF5>
+84	0x3166	pack/talk/KOROU:0x5190	It’s always the bad speakers<FFF6>who babble on and on!<FFFC><FFF6>I’m sick of this!<FFF5>
+85	0x3198	pack/talk/KOROU:0x5220	You talk too much!<FFF6>I’ve been around much<FFF6>longer than you, ya hear!<FFFD>り<FFF5>
+86	0x31d5	pack/talk/KOROU:0x52b0	Ho, ho!<FFFC><FFF6>I see you’re burnin’ up, young man.<FFFC><FFF6>Like oil paper by a flame!<FFF5>
+87	0x320f	pack/talk/KOROU:0x5340	Ho, ho!<FFF6>You were born talkin’<FFF6>instead of cryin’, weren’t ya?<FFFD>る<FFF5>
+88	0x3242	pack/talk/KOROU:0x53c0	Never imagined bein’ yelled<FFF6>at by a greenhorn like<L{> you.<FFFB><FFF7>How much greener <}><S{> you. How much<FFF6>greener <}>is the<L{> grass<FFF6>over <}><S{> grass over <}>there, anyway?<FFFD>れ<FFF5>
+89	0x3279	pack/talk/KOROU:0x5498	Heh...<FFFC><FFF6>Lookin’ at you reminds me<FFF6>of my younger days.<FFFB><FFF7>You’re more conceited than I<L{> ever<FFF6>was, but <}><S{> ever was,<FFF6>but <}>I’ll let that slide.<FFF5>
+90	0x32dc	pack/talk/KOROU:0x5588	You ain’t gotta yell! I’m right here!<FFF6>And my hearin’s just fine, ya know!<FFF5>
+91	0x330d	pack/talk/KOROU:0x5620	Look how you’re treatin’ your elders!<FFF6>If ya don’t got manners,<FFF6>you won’t get anywhere in life!<FFFD>ろ<FFF5>
 92	0x334a	pack/talk/KOROU:0x56e8	Hey, child... Is it that much fun<FFF6>to yell at your elders?<FFFD>わ<FFF5>
-93	0x3376	pack/talk/KOROU:0x5760	You're supposed to treat your elders<FFF6>kindly, yet here you are... My heart<FFF6>nearly jumped outta my chest...<FFF5>
-94	0x33b2	pack/talk/KOROU:0x5838	Heh! It's obvious, boy!<FFF6>You're tryin' to test me, ain't ya?<FFFD>を<FFF5>
-95	0x33ea	pack/talk/KOROU:0x58b8	It's regrettable, but I've gotten more<FFF6>and more shameless over the years.<FFF6>That won't phase me.<FFF5>
-96	0x341f	pack/talk/KOROU:0x5978	Hey! I can see right through<FFF6>to your true motives!<FFF5>
-97	0x3454	pack/talk/KOROU:0x59e0	Sarcasm, eh!?<FFF6>You've got a mean spirit, human!<FFF6>I'll knock some sense into ya!<FFFD>ん<FFF5>
-98	0x3494	pack/talk/KOROU:0x5a80	Ho, ho! You agree, don't ya?<FFF6>I may be old, but I'm still a <FFF0>.<FFF5>
-99	0x34c5	pack/talk/KOROU:0x5b00	Heh! I'm gettin' on in years.<FFF6>Say whatever ya darn well please.<FFFD>が<FFF5>
-100	0x34fe	pack/talk/KOROU:0x5b88	What a goofy dance. It don't look<FFF6>anythin' like the moves that were<FFF6>all the rage when I was groovin'.<FFF5>
-101	0x353c	pack/talk/KOROU:0x5c58	Ah, you know how to twist those hips!<FFF6>Just be careful ya don't<FFF6>strain yer back too much.<FFFD>ぎ<FFF5>
-102	0x3572	pack/talk/KOROU:0x5d10	Stop jigglin' around! Ya look like<FFF6>a darned, childish fool! It's annoying!<FFF5>
-103	0x35a5	pack/talk/KOROU:0x5da8	Argh! You ain't even got a handle<FFF6>on the basics! I'll teach ya!<FFFD>ぐ<FFF5>
-104	0x35d5	pack/talk/KOROU:0x5e30	So you kids still know what real<FFF6>dancin' is, eh? I'm impressed.<FFF5>
-105	0x3611	pack/talk/KOROU:0x5eb0	Ho, ho! Back in my day, I had quite<FFF6>the jump n' jive! Danced all the time!<FFFD>げ<FFF5>
-106	0x364c	pack/talk/KOROU:0x5f50	Heh... The closer ya come to yer<FFF6>death bed, the easier it gets<FFFB><FFF7>to forgive. The mistakes<FFF6>of youth don't bother me.<FFF5>
-107	0x3686	pack/talk/KOROU:0x6038	Ho ho! I'm like a stone wall.<FFF6>You couldn't break me if ya tried!<FFFD>ご<FFF5>
-108	0x36ba	pack/talk/KOROU:0x60c0	Argh! It don't take much to rough<FFF6>up you high-spirited youths!<FFF6>Ya got no backbone!<FFFD>ざ<FFF5>
-109	0x36e7	pack/talk/KOROU:0x6170	I got my pride too!<FFF6>My back may be givin' out,<FFF6>but I accept your challenge!<FFF5>
-110	0x371a	pack/talk/KOROU:0x6208	I'm old... All I want is to live out<FFF6>the rest of my days like a hermit...<FFF5>
-111	0x374a	pack/talk/KOROU:0x62a0	Y-You wouldn't...<FFF6>You wouldn't torment<FFF6>a defenseless old man, would ya?<FFFD>じ<FFF5>
-112	0x378a	pack/talk/KOROU:0x6338	Heh... You tryin' to count<FFF6>my wrinkles or somethin'?<FFFD>ず<FFF5>
-113	0x37c0	pack/talk/KOROU:0x63a8	You got passion in that gaze, son!<FFF6>...'Course, I'd like it better<FFF6>if ya were a lady...<FFF5>
-114	0x37fb	pack/talk/KOROU:0x6458	Now stop that! Yer makin' me<FFF6>downright uncomfortable!<FFFD>ぜ<FFF5>
-115	0x3820	pack/talk/KOROU:0x64c8	How rude! Ya shouldn't stare right<FFF6>into someone's eyes like that!<FFF5>
-116	0x3858	pack/talk/KOROU:0x6550	For such a young mind,<FFF6>you've got some good concentration!<FFF6>Color me impressed!<FFF5>
-117	0x388b	pack/talk/KOROU:0x65f0	Ho, ho! What are ya expectin' to find<FFF6>from inspectin' an old man like me?<FFFD>ぞ<FFF5>
-118	0x38c6	pack/talk/KOROU:0x6688	Ho, ho!<FFF6>You tryin' to pull one over on me?<FFF6>You got too much time on your hands!<FFF5>
-119	0x38fa	pack/talk/KOROU:0x6728	I'd heard you humans were<FFF6>two-faced, but I never imagined this.<FFF6>How many faces you got, anyway?<FFFD>だ<FFF5>
-120	0x393c	pack/talk/KOROU:0x67f0	Everything you're sayin' is<FFF6>a baseless lie! Nothin' worse than<FFF6>youngsters lyin' through their teeth!<FFFD>ぢ<FFF5>
-121	0x397b	pack/talk/KOROU:0x68c0	Argh! Your story's got<FFF6>more holes than swiss cheese!<FFF6>I won't fall for that malarky!<FFF5>
-122	0x39b3	pack/talk/KOROU:0x6968	Now ya've done it. That goes far and<FFF6>beyond a normal pack of lies, heh!<FFFD>づ<FFF5>
-123	0x39f0	pack/talk/KOROU:0x6a00	Ho, ho! This is like watchin' the great<FFF6>comedians of yesteryear!<FFF6>I'm satisfied!<FFF5>
-124	0x3a21	pack/talk/KOROU:0x6aa0	Hey! What would ya have done<FFF6>if my heart went and stopped cold!?<FFFD>で<FFF5>
-125	0x3a4f	pack/talk/KOROU:0x6b28	Argh! Did ya think that would give me<FFF6>the willies? Whatchya need is drama!<FFF5>
+93	0x3376	pack/talk/KOROU:0x5760	You’re supposed to<L{> treat your elders<FFF6>kindly, <}><S{> treat<FFF6>your elders kindly, <}>yet here you<L{> are... My heart<FFF6>nearly <}><S{> are...<FFF6>My heart nearly <}>jumped outta my chest...<FFF5>
+94	0x33b2	pack/talk/KOROU:0x5838	Heh! It’s obvious, boy!<FFF6>You’re tryin’ to test me, ain’t ya?<FFFD>を<FFF5>
+95	0x33ea	pack/talk/KOROU:0x58b8	It’s regrettable, but I’ve gotten more<FFF6>and more shameless over the years.<FFFC><FFF6>That won’t phase me.<FFF5>
+96	0x341f	pack/talk/KOROU:0x5978	Hey!<FFFC><FFF6>I can see right through<FFF6>to your true motives!<FFF5>
+97	0x3454	pack/talk/KOROU:0x59e0	Sarcasm,<L{> eh!?<FFF6>You’ve <}><S{> eh!? You’ve <}>got a mean<L{> spirit, human!<FFF6>I’ll <}><S{> spirit,<FFF6>human! I’ll <}>knock some sense into ya!<FFFD>ん<FFF5>
+98	0x3494	pack/talk/KOROU:0x5a80	Ho,<L{> ho!<FFFC> You <}><S{> ho!<FFFC><FFF6>You <}>agree, don’t ya?<FFF6>I may be old, but I’m still a <FFF0>.<FFF5>
+99	0x34c5	pack/talk/KOROU:0x5b00	Heh! I’m gettin’ on in years.<FFF6>Say whatever ya darn well please.<FFFD>が<FFF5>
+100	0x34fe	pack/talk/KOROU:0x5b88	What a goofy<L{> dance.<FFFC> It <}><S{> dance.<FFFC><FFF6>It <}>don’t<L{> look<FFF6>anythin’ <}><S{> look anythin’ <}>like the moves<L{> that were<FFF6>all <}><S{> that<FFF6>were all <}>the rage when I was groovin’.<FFF5>
+101	0x353c	pack/talk/KOROU:0x5c58	Ah, you know how to twist those hips!<FFF6>Just be careful ya don’t<FFF6>strain yer back too much.<FFFD>ぎ<FFF5>
+102	0x3572	pack/talk/KOROU:0x5d10	Stop jigglin’<L{> around!<FFF6>Ya <}><S{> around! Ya <}>look like a darned,<FFF6>childish fool! It’s annoying!<FFF5>
+103	0x35a5	pack/talk/KOROU:0x5da8	Argh!<FFFC><FFF6>You ain’t even got a<L{> handle<FFF6>on <}><S{> handle on <}>the<L{> basics! I’ll <}><S{> basics!<FFF6>I’ll <}>teach ya!<FFFD>ぐ<FFF5>
+104	0x35d5	pack/talk/KOROU:0x5e30	So you kids still know what real<FFF6>dancin’ is, eh? I’m impressed.<FFF5>
+105	0x3611	pack/talk/KOROU:0x5eb0	Ho, ho!<FFFC><FFF6>Back in my day, I had quite<FFF6>the jump n’ jive! Danced all the time!<FFFD>げ<FFF5>
+106	0x364c	pack/talk/KOROU:0x5f50	Heh...<FFFC> The closer ya come to<L{> yer<FFF6>death bed, the <}><S{> yer death bed,<FFF6>the <}>easier it<L{> gets<FFFB><FFF7>to forgive. The mistakes<FFF6>of <}><S{> gets to forgive.<FFF6>The mistakes of <}>youth don’t bother me.<FFF5>
+107	0x3686	pack/talk/KOROU:0x6038	Ho ho! I’m like a stone wall.<FFF6>You couldn’t break me if ya tried!<FFFD>ご<FFF5>
+108	0x36ba	pack/talk/KOROU:0x60c0	<L{>Argh!<FFFC> It <}><S{>Argh!<FFFC><FFF6>It <}>don’t take much to<L{> rough<FFF6>up you high-spirited youths!<FFF6>Ya <}><S{> rough up you<FFF6>high-spirited youths! Ya <}>got no backbone!<FFFD>ざ<FFF5>
+109	0x36e7	pack/talk/KOROU:0x6170	I got my pride too!<FFFC><FFF6>My back may be givin’ out,<FFF6>but I accept your challenge!<FFF5>
+110	0x371a	pack/talk/KOROU:0x6208	I’m old...<FFFC><FFF6>All I want is to live out the rest<FFF6>of my days like a hermit...<FFF5>
+111	0x374a	pack/talk/KOROU:0x62a0	Y-You<L{> wouldn’t...<FFF6>You <}><S{> wouldn’t... You <}>wouldn’t torment<FFF6>a defenseless old man, would ya?<FFFD>じ<FFF5>
+112	0x378a	pack/talk/KOROU:0x6338	Heh... You tryin’ to count<FFF6>my wrinkles or somethin’?<FFFD>ず<FFF5>
+113	0x37c0	pack/talk/KOROU:0x63a8	You got passion in that gaze, son!<FFFC><FFF6>...’Course, I’d like it better<FFF6>if ya were a lady...<FFF5>
+114	0x37fb	pack/talk/KOROU:0x6458	Now stop that!<FFF6>Yer makin’ me<L{> downright<FFF6>uncomfortable!<FFFD>ぜ<FFF5><}><S{> downright uncomfortable!<FFFD>ぜ<FFF5><}>
+115	0x3820	pack/talk/KOROU:0x64c8	How rude!<FFFC><FFF6>Ya shouldn’t stare right<FFF6>into someone’s eyes like that!<FFF5>
+116	0x3858	pack/talk/KOROU:0x6550	For such a young mind,<FFF6>you’ve got some good concentration!<FFFC><FFF6>Color me impressed!<FFF5>
+117	0x388b	pack/talk/KOROU:0x65f0	Ho, ho!<FFF6>What are ya expectin’ to find<FFF6>from inspectin’ an old man like me?<FFFD>ぞ<FFF5>
+118	0x38c6	pack/talk/KOROU:0x6688	Ho,<L{> ho!<FFF6>You <}><S{> ho! You <}>tryin’ to pull one over on me?<FFFC><FFF6>You got too much time on your hands!<FFF5>
+119	0x38fa	pack/talk/KOROU:0x6728	I’d heard you humans<L{> were<FFF6>two-faced, but <}><S{> were two-faced,<FFF6>but <}>I never imagined this.<FFF6>How many faces you got, anyway?<FFFD>だ<FFF5>
+120	0x393c	pack/talk/KOROU:0x67f0	Everything you’re sayin’<L{> is<FFF6>a <}><S{> is a <}>baseless<L{> lie! Nothin’ <}><S{> lie!<FFF6>Nothin’ <}>worse<L{> than<FFF6>youngsters lyin’ <}><S{> than youngsters<FFF6>lyin’ <}>through their teeth!<FFFD>ぢ<FFF5>
+121	0x397b	pack/talk/KOROU:0x68c0	<L{>Argh!<FFFC> Your <}><S{>Argh!<FFFC><FFF6>Your <}>story’s<L{> got<FFF6>more <}><S{> got more <}>holes than<L{> swiss cheese!<FFFC><FFF6>I <}><S{> swiss<FFF6>cheese!<FFFC> I <}>won’t fall for that malarky!<FFF5>
+122	0x39b3	pack/talk/KOROU:0x6968	Now ya’ve done it.<FFF6>That goes far and beyond<FFF6>a normal pack of lies, heh!<FFFD>づ<FFF5>
+123	0x39f0	pack/talk/KOROU:0x6a00	Ho,<L{> ho!<FFFC> This <}><S{> ho!<FFFC><FFF6>This <}>is like watchin’ the<L{> great<FFF6>comedians of yesteryear!<FFF6>I’m <}><S{> great comedians<FFF6>of yesteryear! I’m <}>satisfied!<FFF5>
+124	0x3a21	pack/talk/KOROU:0x6aa0	Hey!<FFF6>What would ya have done<FFF6>if my heart went and stopped cold!?<FFFD>で<FFF5>
+125	0x3a4f	pack/talk/KOROU:0x6b28	Argh!<FFFC><FFF6>Did ya think that would give me<FFF6>the willies?<FFFC> Whatchya need is drama!<FFF5>
 126	0x3a85	pack/talk/KOROU:0x6bc0	That story was downright eerie.<FFF6>Why do human girls like<FFF6>those kinda stories?<FFFD>ぺ<FFF5>
-127	0x3ac2	pack/talk/KOROU:0x6c60	Boy, that story really curdles my<FFF6>blood. ...The world's a scary place.<FFF5>
-128	0x3afd	pack/talk/KOROU:0x6cf0	Heh! When ya get this old,<FFF6>there ain't nothin' left to scare ya.<FFFD>ぽ<FFF5>
-129	0x3b32	pack/talk/KOROU:0x6d78	You enjoy those kinds of stories?<FFF6>Still a child, I see. Ho ho ho...<FFF5>
-130	0x3b66	pack/talk/KOROU:0x6e00	Ho, ho, you've got great posture<FFF6>for a singer. Prettier than a picture.<FFF5>
-131	0x3b90	pack/talk/KOROU:0x6e90	You're sittin' pretty in that<FFF6>mediocre range now, but someday<FFF6>you'll rival the nightingale's song.<FFFD>ぁ<FFF5>
-132	0x3bce	pack/talk/KOROU:0x6f60	Argh! This is terrible!<FFF6>There's a limit to bein' tone-deaf!<FFF5>
+127	0x3ac2	pack/talk/KOROU:0x6c60	Boy, that story<L{> really<FFF6>curdles <}><S{> really curdles <}>my blood.<FFFC><FFF6>...The world’s a scary place.<FFF5>
+128	0x3afd	pack/talk/KOROU:0x6cf0	Heh! When ya get this old,<FFF6>there ain’t nothin’ left to scare ya.<FFFD>ぽ<FFF5>
+129	0x3b32	pack/talk/KOROU:0x6d78	You enjoy those kinds of stories?<FFFC><FFF6>Still a child, I see. Ho ho ho...<FFF5>
+130	0x3b66	pack/talk/KOROU:0x6e00	Ho, ho, you’ve got great<FFF6>posture for a singer.<FFFC><FFF6>Prettier than a picture.<FFF5>
+131	0x3b90	pack/talk/KOROU:0x6e90	You’re sittin’ pretty in that<FFF6>mediocre range now, but someday<FFF6>you’ll rival the nightingale’s song.<FFFD>ぁ<FFF5>
+132	0x3bce	pack/talk/KOROU:0x6f60	Argh!<FFFC><FFF6>This is terrible!<FFFC><FFF6>There’s a limit to bein’ tone-deaf!<FFF5>
 133	0x3bfd	pack/talk/KOROU:0x6fd8	I hate this song...<FFF6>It brings back bad memories...<FFFD>ぃ<FFF5>
-134	0x3c25	pack/talk/KOROU:0x7048	Oooh! That there's a beautiful voice!<FFF6>You take good care of it, y'hear?<FFF5>
-135	0x3c5c	pack/talk/KOROU:0x70d8	That there's a good song. Your tone<FFF6>has a way of makin' a listener happy!<FFFD>ぅ<FFF5>
-136	0x3c8a	pack/talk/KOROU:0x7170	Hmm? I'm well past my prime, Missy.<FFF6>You need seein' lenses?<FFFD>ぇ<FFF5>
-137	0x3cc4	pack/talk/KOROU:0x71f0	Ho ho ho, you should be sayin'<FFF6>stuff like that to yer children.<FFF5>
-138	0x3cf7	pack/talk/KOROU:0x7270	Hey, I still got my wits about me!<FFF6>Don't treat me like a toddler!<FFF5>
-139	0x3d27	pack/talk/KOROU:0x72f8	Argh! Poke fun at me, will ya!?<FFF6>Girl or not, I won't hold back!<FFFD>ぉ<FFF5>
-140	0x3d5d	pack/talk/KOROU:0x7380	Ho, ho, sounds like I still got it if<FFF6>you're mistakin' me for a youngster.<FFF5>
-141	0x3d90	pack/talk/KOROU:0x7418	You're like an angel, Missy.<FFF6>You keep that heart<FFF6>of yours pure now, y'hear?<FFFD>っ<FFF5>
-142	0x3dca	pack/talk/KOROU:0x74b8	Ho ho! Never thought I'd be<FFF6>gettin' called out at this age!<FFF5>
-143	0x3dfa	pack/talk/KOROU:0x7530	You're sure into strange things...<FFF6>What good you think an old<FFF6>man like me can do for ya?<FFFD>ゃ<FFF5>
-144	0x3e33	pack/talk/KOROU:0x75e8	I just want to live in peace!<FFF6>Please, leave me be!<FFF5>
-145	0x3e68	pack/talk/KOROU:0x7650	Argh! I may be old, but I'm still<FFF6>a <FFF0>! I'm free to pick my work!<FFFD>ゅ<FFF5>
-146	0x3ea5	pack/talk/KOROU:0x76d8	Heh! It's good to be a <FFF0>!<FFF6>I'm still popular, even at this age!<FFF5>
-147	0x3edb	pack/talk/KOROU:0x7758	You'd be takin' a loss if you<FFF6>hired an old man like me...<FFF6>You're up to no good...<FFFD>ょ<FFF5>
-148	0x3f15	pack/talk/KOROU:0x7800	I'm just an old man waitin' for death<FFF6>to point his bony finger and take me.<FFF6>You get kicks outta criticizin' me?<FFFD>ゎ<FFF5>
-149	0x3f4d	pack/talk/KOROU:0x78e8	Ho, ho! It'll take more than a few<FFF6>ugly words to get under my skin.<FFF5>
-150	0x3f83	pack/talk/KOROU:0x7970	Argh! Now I'm mad! You reckon you<FFF6>got bite to back up that bark, kid!?<FFFD>ア<FFF5>
-151	0x3fbd	pack/talk/KOROU:0x7a08	What a rude li'l lady! Looks like<FFF6>it's time to put ya over my knee!<FFF5>
-152	0x3ff7	pack/talk/KOROU:0x7a90	I'm bein' made fun of by a girl?<FFF6>*sigh* Oh how the mighty<FFF6>have fallen...<FFFD>イ<FFF5>
-153	0x4030	pack/talk/KOROU:0x7b28	Now what'd I do to deserve this?<FFF6>You young'uns are<FFF6>a frightful bunch...<FFF5>
-154	0x4060	pack/talk/KOROU:0x7bb8	Hmm... Ain't that a pity.<FFF6>If young women like you knew<FFFB><FFF7>how to take care of their skin better,<FFF6>I mighta fallen for ya.<FFFD>ウ<FFF5>
-155	0x409a	pack/talk/KOROU:0x7ca8	Heh... Sometimes it's good to just<FFF6>enjoy life with the young'uns.<FFF5>
+134	0x3c25	pack/talk/KOROU:0x7048	Oooh! That there’s a beautiful voice!<FFF6>You take good care of it, y’hear?<FFF5>
+135	0x3c5c	pack/talk/KOROU:0x70d8	That there’s a good song.<FFF6>Your tone has a way<FFF6>of makin’ a listener happy!<FFFD>ぅ<FFF5>
+136	0x3c8a	pack/talk/KOROU:0x7170	Hmm?<FFFC> I’m well past my prime, Missy.<FFF6>You need seein’ lenses?<FFFD>ぇ<FFF5>
+137	0x3cc4	pack/talk/KOROU:0x71f0	Ho ho ho, you should be sayin’<FFF6>stuff like that to yer children.<FFF5>
+138	0x3cf7	pack/talk/KOROU:0x7270	Hey, I still got my wits about me!<FFFC><FFF6>Don’t treat me like a toddler!<FFF5>
+139	0x3d27	pack/talk/KOROU:0x72f8	Argh!<FFFC> Poke fun at me, will ya!?<FFF6>Girl or not, I won’t hold back!<FFFD>ぉ<FFF5>
+140	0x3d5d	pack/talk/KOROU:0x7380	Ho, ho, sounds like I still got<L{> it if<FFF6>you’re <}><S{> it<FFF6>if you’re <}>mistakin’ me for a youngster.<FFF5>
+141	0x3d90	pack/talk/KOROU:0x7418	You’re like an angel, Missy.<FFF6>You keep that heart<FFF6>of yours pure now, y’hear?<FFFD>っ<FFF5>
+142	0x3dca	pack/talk/KOROU:0x74b8	Ho ho!<FFFC><FFF6>Never thought I’d be gettin’<FFF6>called out at this age!<FFF5>
+143	0x3dfa	pack/talk/KOROU:0x7530	You’re sure into strange things...<FFF6>What good you think an old<FFF6>man like me can do for ya?<FFFD>ゃ<FFF5>
+144	0x3e33	pack/talk/KOROU:0x75e8	I just want to live in peace!<FFFC><FFF6>Please, leave me be!<FFF5>
+145	0x3e68	pack/talk/KOROU:0x7650	Argh!<FFFC><FFF6>I may be old, but I’m still a <FFF0>!<FFF6>I’m free to pick my work!<FFFD>ゅ<FFF5>
+146	0x3ea5	pack/talk/KOROU:0x76d8	Heh!<FFFC> It’s good to be a <FFF0>!<FFF6>I’m still popular, even at this age!<FFF5>
+147	0x3edb	pack/talk/KOROU:0x7758	You’d be takin’ a loss if you hired<FFF6>an old man like<L{> me...<FFF6>You’re <}><S{> me... You’re <}>up to no good...<FFFD>ょ<FFF5>
+148	0x3f15	pack/talk/KOROU:0x7800	I’m just an old man waitin’ for death<FFF6>to point his bony finger and take me.<FFF6>You get kicks outta criticizin’ me?<FFFD>ゎ<FFF5>
+149	0x3f4d	pack/talk/KOROU:0x78e8	Ho, ho!<FFFC><FFF6>It’ll take more than a few<FFF6>ugly words to get under my skin.<FFF5>
+150	0x3f83	pack/talk/KOROU:0x7970	Argh! Now I’m mad!<FFF6>You reckon you got bite<FFF6>to back up that bark, kid!?<FFFD>ア<FFF5>
+151	0x3fbd	pack/talk/KOROU:0x7a08	What a rude li’l lady!<FFFC><FFF6>Looks like it’s time<FFF6>to put ya over my knee!<FFF5>
+152	0x3ff7	pack/talk/KOROU:0x7a90	I’m bein’ made fun of by a girl?<FFF6>*sigh* Oh how the<L{> mighty<FFF6>have <}><S{> mighty have <}>fallen...<FFFD>イ<FFF5>
+153	0x4030	pack/talk/KOROU:0x7b28	Now what’d I do to deserve this?<FFFC><FFF6>You young’uns<L{> are<FFF6>a <}><S{> are a <}>frightful bunch...<FFF5>
+154	0x4060	pack/talk/KOROU:0x7bb8	Hmm...<FFFC> Ain’t that a<L{> pity.<FFF6>If <}><S{> pity. If <}>young<L{> women like <}><S{> women<FFF6>like <}>you<L{> knew<FFFB><FFF7>how <}><S{> knew how <}>to take care<L{> of their <}><S{> of<FFF6>their <}>skin<L{> better,<FFF6>I <}><S{> better, I <}>mighta fallen for ya.<FFFD>ウ<FFF5>
+155	0x409a	pack/talk/KOROU:0x7ca8	Heh...<FFFC><FFF6>Sometimes it’s good to just<FFF6>enjoy life with the young’uns.<FFF5>
 156	0x40ca	pack/talk/KOROU:0x7d30	Hey! Women oughta be more virtuous!<FFFD>エ<FFF5>
-157	0x40fb	pack/talk/KOROU:0x7d80	Argh! You're just a little girl!<FFF6>You ain't supposed to be flirtin'<FFF6>like that 'til you're older!<FFF5>
-158	0x4136	pack/talk/KOROU:0x7e40	At my age, there ain't much use<FFF6>expressing those kinds of feelings,<FFF6>if ya catch my drift! Ho ho ho!<FFF5>
-159	0x416b	pack/talk/KOROU:0x7f08	Ho ho! Well, they do say love<FFF6>transcends age, don't they?<FFF6>Guess it's true!<FFFD>オ<FFF5>
-160	0x41a0	pack/talk/KOROU:0x7fa8	The wheel of fortune gives<FFF6>most everyone their chance.<FFF6>You just gotta be patient.<FFF5>
-161	0x41c9	pack/talk/KOROU:0x8050	Hey now, you'll get your slice<FFF6>of the pie someday.<FFF6>No sense cryin' about it.<FFFD>カ<FFF5>
-162	0x4202	pack/talk/KOROU:0x80f0	Argh! You've come of age, haven't<FFF6>ya? Stop clingin' to yer elders!<FFF6>You need to be independent!<FFFD>キ<FFF5>
-163	0x4238	pack/talk/KOROU:0x81b8	I don't wanna hear it! Whinin' about<FFF6>things won't change anything!<FFF5>
-164	0x426e	pack/talk/KOROU:0x8240	The human world is full of hardship...<FFF6>Don't lose hope...<FFF5>
-165	0x42aa	pack/talk/KOROU:0x82b8	The human world seems like<FFF6>a tough place... I don't wanna<FFF6>eat cold meals at this age...<FFFD>ク<FFF5>
-166	0x42e5	pack/talk/KOROU:0x8370	Ho ho ho. Sorry, Missy, but you ain't<FFF6>got the face for makin' threats.<FFFD>ケ<FFF5>
-167	0x4319	pack/talk/KOROU:0x8408	Ho ho! For such a sweet face,<FFF6>you sure say some scary things.<FFF5>
-168	0x4349	pack/talk/KOROU:0x8488	Argh! You tryin'<FFF6>to put the pressure on me!?<FFF6>You're a little uppity for my tastes!<FFF5>
-169	0x437e	pack/talk/KOROU:0x8530	Argh! I've got my pride to consider!<FFF6>I won't lose to a young'un like you!<FFFD>コ<FFF5>
-170	0x43b7	pack/talk/KOROU:0x85c8	Wh-What...? I'm just an old man<FFF6>who's about outta fuel...<FFF5>
-171	0x43e7	pack/talk/KOROU:0x8640	...I didn't do nothin' wrong, did I?<FFFD>サ<FFF5>
-172	0x4415	pack/talk/KOROU:0x8690	Hey! Don't take that arrogant tone<FFF6>with me, young lady!<FFF5>
-173	0x4435	pack/talk/KOROU:0x8700	Argh! Nothin' worse<FFF6>than punk kids like you!<FFFD>シ<FFF5>
+157	0x40fb	pack/talk/KOROU:0x7d80	Argh! You’re just a little girl!<FFFC><FFF6>You ain’t supposed to be flirtin’<FFF6>like that ’til you’re older!<FFF5>
+158	0x4136	pack/talk/KOROU:0x7e40	At my age, there ain’t much use<FFF6>expressing those kinds of feelings,<FFF6>if ya catch my drift! Ho ho ho!<FFF5>
+159	0x416b	pack/talk/KOROU:0x7f08	Ho ho!<FFFC><FFF6>Well, they do say love<L{> transcends<FFF6>age, don’t <}><S{> transcends age,<FFF6>don’t <}>they? Guess it’s true!<FFFD>オ<FFF5>
+160	0x41a0	pack/talk/KOROU:0x7fa8	The wheel of fortune gives<FFF6>most everyone their chance.<FFFC><FFF6>You just gotta be patient.<FFF5>
+161	0x41c9	pack/talk/KOROU:0x8050	Hey now, you’ll get your<L{> slice<FFF6>of <}><S{> slice of <}>the<L{> pie someday.<FFF6>No <}><S{> pie<FFF6>someday. No <}>sense cryin’ about it.<FFFD>カ<FFF5>
+162	0x4202	pack/talk/KOROU:0x80f0	Argh!<FFFC> You’ve come of age,<L{> haven’t<FFF6>ya? Stop <}><S{> haven’t ya?<FFF6>Stop <}>clingin’ to yer elders!<FFF6>You need to be independent!<FFFD>キ<FFF5>
+163	0x4238	pack/talk/KOROU:0x81b8	I don’t wanna hear it!<FFF6>Whinin’ about things<FFF6>won’t change anything!<FFF5>
+164	0x426e	pack/talk/KOROU:0x8240	The human world is full of hardship...<FFFC><FFF6>Don’t lose hope...<FFF5>
+165	0x42aa	pack/talk/KOROU:0x82b8	The human world seems<L{> like<FFF6>a <}><S{> like a <}>tough<L{> place... I <}><S{> place...<FFF6>I <}>don’t<L{> wanna<FFF6>eat <}><S{> wanna eat <}>cold meals at this age...<FFFD>ク<FFF5>
+166	0x42e5	pack/talk/KOROU:0x8370	Ho ho ho. Sorry, Missy,<FFF6>but you ain’t got the face<FFF6>for makin’ threats.<FFFD>ケ<FFF5>
+167	0x4319	pack/talk/KOROU:0x8408	Ho ho!<FFFC> For such a sweet face,<FFF6>you sure say some scary things.<FFF5>
+168	0x4349	pack/talk/KOROU:0x8488	<L{>Argh! You <}><S{>Argh!<FFF6>You <}>tryin’ to<L{> put<FFF6>the <}><S{> put the <}>pressure on me!?<FFFC><FFF6>You’re a little uppity for my tastes!<FFF5>
+169	0x437e	pack/talk/KOROU:0x8530	Argh!<FFFC> I’ve got my pride to consider!<FFF6>I won’t lose to a young’un like you!<FFFD>コ<FFF5>
+170	0x43b7	pack/talk/KOROU:0x85c8	Wh-What...?<FFFC><FFF6>I’m just an old man<FFF6>who’s about outta fuel...<FFF5>
+171	0x43e7	pack/talk/KOROU:0x8640	...I didn’t do nothin’ wrong, did I?<FFFD>サ<FFF5>
+172	0x4415	pack/talk/KOROU:0x8690	Hey!<FFFC><FFF6>Don’t take that arrogant tone<FFF6>with me, young lady!<FFF5>
+173	0x4435	pack/talk/KOROU:0x8700	Argh!<FFF6>Nothin’<L{> worse<FFF6>than <}><S{> worse than <}>punk kids like you!<FFFD>シ<FFF5>
 174	0x4468	pack/talk/KOROU:0x8760	You some kinda sadist?<FFF6>...Now that I think about it,<FFF6>you do have the look...<FFFD>ス<FFF5>
-175	0x44a0	pack/talk/KOROU:0x8800	...I'm just an old fart.<FFF6>Now quit pesterin' me.<FFF5>
-176	0x44ce	pack/talk/KOROU:0x8860	Ho ho! With an attitude like that,<FFF6>ain't no boy in his right mind<FFF6>gonna marry you!<FFFD>セ<FFF5>
-177	0x4506	pack/talk/KOROU:0x8910	Ho, ho! You've got spunk,<FFF6>don't ya!? This'll be fun.<FFF5>
-178	0x453d	pack/talk/KOROU:0x8980	Ho ho ho... You're never too old<FFF6>to learn from someone else's mistakes.<FFF5>
-179	0x4575	pack/talk/KOROU:0x8a10	Heh, despite how ya look, you've got<FFF6>a level head on those shoulders.<FFF5>
-180	0x45a5	pack/talk/KOROU:0x8aa0	I've been around a hundred times<FFF6>longer than you!<FFF6>Of course I know that!<FFF5>
-181	0x45e0	pack/talk/KOROU:0x8b38	Argh! Stop worrying about<FFF6>this old demon and start<FFF6>worrying about yourself!<FFFD>ソ<FFF5>
-182	0x461b	pack/talk/KOROU:0x8bd8	Ho, ho! Seems like the master<FFF6>is learning from the pupil now!<FFFD>タ<FFF5>
-183	0x464e	pack/talk/KOROU:0x8c58	Not everything is black and white.<FFF6>You've got a lot to learn.<FFF5>
-184	0x4688	pack/talk/KOROU:0x8cd8	Hey! Why do I have<FFF6>to eat the leftovers!?<FFFD>チ<FFF5>
-185	0x46b7	pack/talk/KOROU:0x8d30	Hey! Just 'cause you're in<FFF6>a bad mood doesn't mean ya<FFF6>should take it out on us demons!<FFF5>
-186	0x46eb	pack/talk/KOROU:0x8de0	I don't remember doin' anything<FFF6>that called for a scornin'...<FFF5>
-187	0x4715	pack/talk/KOROU:0x8e60	Wh-What, all of a sudden you... Boy,<FFF6>human girls are all kinds of scary.<FFF5>
-188	0x473b	pack/talk/KOROU:0x8ef8	Ho, ho! You're drillin' for oil,<FFF6>but this old man's all dried up.<FFF5>
-189	0x4769	pack/talk/KOROU:0x8f80	Ho, ho! Makes me feel like<FFF6>we're in school or somethin'.<FFFD>ツ<FFF5>
-190	0x47a1	pack/talk/KOROU:0x8ff8	You, with the short hair... Chat with<FFF6>this old man for just a bit, Missy.<FFF5>
-191	0x47d8	pack/talk/KOROU:0x9090	Ho ho ho, you think you're<FFF6>ignoring me, but you've got me<FFF6>in your thoughts, I reckon!<FFFD>テ<FFF5>
-192	0x4810	pack/talk/KOROU:0x9140	Argh!<FFF6>So I ain't even worth lookin' at!? Fine!<FFF5>
-193	0x483d	pack/talk/KOROU:0x91a0	Hey! Do I look like a rat or<FFF6>somethin'!? Pay some attention to me!<FFFD>ト<FFF5>
-194	0x486f	pack/talk/KOROU:0x9230	So ya got no business with<FFF6>this old geezer, eh? I'm gettin'<FFF6>thrown away like yesterday's trash...<FFFD>ナ<FFF5>
-195	0x48a5	pack/talk/KOROU:0x92f8	Can't even look at an old man like me,<FFF6>can ya? 'Suppose I'm doomed to<FFF6>fade away without a single to notice...<FFF5>
-196	0x48e1	pack/talk/KOROU:0x93d8	Ho, ho! The man of virtue never<FFF6>courts danger, eh? But see here now,<FFF6>lemme tell ya somethin' 'bout virtue...<FFFD>ニ<FFF5>
-197	0x491c	pack/talk/KOROU:0x94b8	You're just too shy to talk,<FFF6>ain't ya? Hohoho...<FFF5>
-198	0x494b	pack/talk/KOROU:0x9520	Argh!<FFF6>So I ain't even worth lookin' at!? Fine!<FFF5>
-199	0x4978	pack/talk/KOROU:0x9580	Hey! Do I look like a rat or<FFF6>somethin'!? Pay some attention to me!<FFFD>ヌ<FFF5>
-200	0x49aa	pack/talk/KOROU:0x9610	So ya got no business with<FFF6>this old geezer, eh? I'm gettin'<FFF6>thrown away like yesterday's trash...<FFFD>ネ<FFF5>
-201	0x49de	pack/talk/KOROU:0x96d8	Can't even look at an old man like me,<FFF6>can ya? 'Suppose I'm doomed to<FFF6>fade away without a single to notice...<FFF5>
-202	0x4a1a	pack/talk/KOROU:0x97b8	Hohoho, how do ya expect<FFF6>to hold a sword over yer head<FFF6>if you can hardly pick one up?<FFFD>ノ<FFF5>
-203	0x4a50	pack/talk/KOROU:0x9868	You've got a nice menace in<FFF6>that voice of yours. If that's yer<FFF6>natural voice, treasure it, y'hear?<FFF5>
-204	0x4a8f	pack/talk/KOROU:0x9930	Argh! You tryin'<FFF6>to put the pressure on me!?<FFF6>You're a little uppity for my tastes!<FFF5>
-205	0x4ac4	pack/talk/KOROU:0x99d8	Argh! I've got my pride to consider!<FFF6>I won't lose to a young'un like you!<FFFD>ハ<FFF5>
-206	0x4afd	pack/talk/KOROU:0x9a70	Wh-What...? I'm just an old man<FFF6>who's about outta fuel...<FFF5>
-207	0x4b2d	pack/talk/KOROU:0x9ae8	...I didn't do nothin' wrong, did I?<FFFD>ヒ<FFF5>
-208	0x4b4e	pack/talk/KOROU:0x9b38	Shut up! What a snotty young man!<FFF5>
-209	0x4b7c	pack/talk/KOROU:0x9b80	Hey! You're tryin' to play me<FFF6>for a fool because I'm old!<FFFD>フ<FFF5>
-210	0x4bb2	pack/talk/KOROU:0x9bf8	Wh-What the...? Ain't ya got<FFF6>the will to negotiate with me?<FFFD>ヘ<FFF5>
-211	0x4be5	pack/talk/KOROU:0x9c78	Good heavens...<FFF6>It's dangerous to stick your<FFF6>nose into the affairs of demons...<FFF5>
-212	0x4c1f	pack/talk/KOROU:0x9d18	Ho, ho!<FFF6>It's great to see you so full of spirit.<FFF6>I'm feelin' younger just watchin' ya!<FFF5>
-213	0x4c59	pack/talk/KOROU:0x9dc8	Ho, ho! That yell had some oomph<FFF6>to it! But what did it mean?<FFFD>ホ<FFF5>
-214	0x4c96	pack/talk/KOROU:0x9e48	Hohoho, nice technique.<FFF6>Where'd ya learn to do that?<FFFD>マ<FFF5>
-215	0x4ccf	pack/talk/KOROU:0x9eb8	Now ain't that mysterious?<FFF6>...I'd like to know how ya did that.<FFF5>
-216	0x4d02	pack/talk/KOROU:0x9f38	You use such mysterious magic...<FFF6>I ain't so good at dealin'<FFF6>with your type...<FFF5>
-217	0x4d36	pack/talk/KOROU:0x9fd8	Wh-What the!?<FFF6>You're tryin' to shake me down...<FFFD>ミ<FFF5>
-218	0x4d5a	pack/talk/KOROU:0xa040	Hohoho! Thanks for takin'<FFF6>the time to entertain an old man.<FFFD>ム<FFF5>
-219	0x4d8e	pack/talk/KOROU:0xa0c0	You're an excellent magician! You<FFF6>should come down to my retirement<FFF6>home, they'd love ya there!<FFF5>
+175	0x44a0	pack/talk/KOROU:0x8800	...I’m just an old<L{> fart.<FFFC><FFF6>Now <}><S{> fart.<FFFC> Now <}>quit pesterin’ me.<FFF5>
+176	0x44ce	pack/talk/KOROU:0x8860	Ho ho! With an attitude like that,<FFF6>ain’t no boy in his right mind<FFF6>gonna marry you!<FFFD>セ<FFF5>
+177	0x4506	pack/talk/KOROU:0x8910	Ho, ho! You’ve got spunk, don’t ya!?<FFFC><FFF6>This’ll be fun.<FFF5>
+178	0x453d	pack/talk/KOROU:0x8980	Ho ho ho... You’re never too old<FFF6>to learn from someone else’s mistakes.<FFF5>
+179	0x4575	pack/talk/KOROU:0x8a10	Heh, despite how ya look, you’ve got<FFF6>a level head on those shoulders.<FFF5>
+180	0x45a5	pack/talk/KOROU:0x8aa0	I’ve been around a hundred<L{> times<FFF6>longer than you!<FFFC><FFF6>Of <}><S{> times longer<FFF6>than you!<FFFC> Of <}>course I know that!<FFF5>
+181	0x45e0	pack/talk/KOROU:0x8b38	Argh!<FFF6>Stop worrying about this old demon<FFF6>and start worrying about yourself!<FFFD>ソ<FFF5>
+182	0x461b	pack/talk/KOROU:0x8bd8	Ho, ho!<FFF6>Seems like the master<FFF6>is learning from the pupil now!<FFFD>タ<FFF5>
+183	0x464e	pack/talk/KOROU:0x8c58	Not everything is black and white.<FFF6>You’ve got a lot to learn.<FFF5>
+184	0x4688	pack/talk/KOROU:0x8cd8	<L{>Hey!<FFF6>Why <}><S{>Hey! Why <}>do I have to eat the leftovers!?<FFFD>チ<FFF5>
+185	0x46b7	pack/talk/KOROU:0x8d30	<L{>Hey!<FFFC> Just <}><S{>Hey!<FFFC><FFF6>Just <}>’cause you’re<L{> in<FFF6>a <}><S{> in a <}>bad mood<L{> doesn’t mean ya<FFF6>should <}><S{> doesn’t<FFF6>mean ya should <}>take it out on us demons!<FFF5>
+186	0x46eb	pack/talk/KOROU:0x8de0	I don’t remember doin’ anything<FFF6>that called for a scornin’...<FFF5>
+187	0x4715	pack/talk/KOROU:0x8e60	Wh-What, all of a sudden<L{> you...<FFFC> Boy,<FFF6>human <}><S{> you...<FFFC><FFF6>Boy, human <}>girls are all kinds of scary.<FFF5>
+188	0x473b	pack/talk/KOROU:0x8ef8	Ho, ho! You’re drillin’ for oil,<FFF6>but this old man’s all dried up.<FFF5>
+189	0x4769	pack/talk/KOROU:0x8f80	Ho, ho!<FFF6>Makes me feel like<FFF6>we’re in school or somethin’.<FFFD>ツ<FFF5>
+190	0x47a1	pack/talk/KOROU:0x8ff8	You, with the short hair...<FFFC><FFF6>Chat with this old man<FFF6>for just a bit, Missy.<FFF5>
+191	0x47d8	pack/talk/KOROU:0x9090	Ho ho ho, you think<L{> you’re<FFF6>ignoring me, but <}><S{> you’re ignoring me,<FFF6>but <}>you’ve got<L{> me<FFF6>in your <}><S{> me in<FFF6>your <}>thoughts, I reckon!<FFFD>テ<FFF5>
+192	0x4810	pack/talk/KOROU:0x9140	<L{>Argh!<FFF6>So <}><S{>Argh! So <}>I ain’t even worth lookin’<L{> at!?<FFFC> Fine!<FFF5><}><S{> at!?<FFFC><FFF6>Fine!<FFF5><}>
+193	0x483d	pack/talk/KOROU:0x91a0	Hey!<FFFC><FFF6>Do I look like a rat or somethin’!?<FFF6>Pay some attention to me!<FFFD>ト<FFF5>
+194	0x486f	pack/talk/KOROU:0x9230	So ya got no business<L{> with<FFF6>this <}><S{> with this <}>old<L{> geezer, eh? <}><S{> geezer,<FFF6>eh? <}>I’m<L{> gettin’<FFF6>thrown away like <}><S{> gettin’ thrown away<FFF6>like <}>yesterday’s trash...<FFFD>ナ<FFF5>
+195	0x48a5	pack/talk/KOROU:0x92f8	Can’t even look at an old man like me,<FFF6>can ya?<FFFC> ’Suppose I’m doomed<L{> to<FFF6>fade away without <}><S{> to fade away<FFF6>without <}>a single to notice...<FFF5>
+196	0x48e1	pack/talk/KOROU:0x93d8	Ho, ho! The man of virtue never<FFF6>courts danger, eh? But see here now,<FFF6>lemme tell ya somethin’ ’bout virtue...<FFFD>ニ<FFF5>
+197	0x491c	pack/talk/KOROU:0x94b8	You’re just too shy to talk, ain’t ya?<FFFC><FFF6>Hohoho...<FFF5>
+198	0x494b	pack/talk/KOROU:0x9520	<L{>Argh!<FFF6>So <}><S{>Argh! So <}>I ain’t even worth lookin’<L{> at!?<FFFC> Fine!<FFF5><}><S{> at!?<FFFC><FFF6>Fine!<FFF5><}>
+199	0x4978	pack/talk/KOROU:0x9580	Hey!<FFFC><FFF6>Do I look like a rat or somethin’!?<FFF6>Pay some attention to me!<FFFD>ヌ<FFF5>
+200	0x49aa	pack/talk/KOROU:0x9610	So ya got no business<L{> with<FFF6>this <}><S{> with this <}>old<L{> geezer, eh? <}><S{> geezer,<FFF6>eh? <}>I’m<L{> gettin’<FFF6>thrown away like <}><S{> gettin’ thrown away<FFF6>like <}>yesterday’s trash...<FFFD>ネ<FFF5>
+201	0x49de	pack/talk/KOROU:0x96d8	Can’t even look at an old man like me,<FFF6>can ya?<FFFC> ’Suppose I’m doomed<L{> to<FFF6>fade away without <}><S{> to fade away<FFF6>without <}>a single to notice...<FFF5>
+202	0x4a1a	pack/talk/KOROU:0x97b8	Hohoho, how do ya<L{> expect<FFF6>to hold a <}><S{> expect to hold<FFF6>a <}>sword over yer<L{> head<FFF6>if you can <}><S{> head if you<FFF6>can <}>hardly pick one up?<FFFD>ノ<FFF5>
+203	0x4a50	pack/talk/KOROU:0x9868	You’ve got a nice menace<L{> in<FFF6>that voice of <}><S{> in that voice<FFF6>of <}>yours. If that’s<L{> yer<FFF6>natural voice, treasure <}><S{> yer natural voice,<FFF6>treasure <}>it, y’hear?<FFF5>
+204	0x4a8f	pack/talk/KOROU:0x9930	<L{>Argh! You <}><S{>Argh!<FFF6>You <}>tryin’ to<L{> put<FFF6>the <}><S{> put the <}>pressure on me!?<FFFC><FFF6>You’re a little uppity for my tastes!<FFF5>
+205	0x4ac4	pack/talk/KOROU:0x99d8	Argh!<FFFC> I’ve got my pride to consider!<FFF6>I won’t lose to a young’un like you!<FFFD>ハ<FFF5>
+206	0x4afd	pack/talk/KOROU:0x9a70	Wh-What...?<FFFC><FFF6>I’m just an old man<FFF6>who’s about outta fuel...<FFF5>
+207	0x4b2d	pack/talk/KOROU:0x9ae8	...I didn’t do nothin’ wrong, did I?<FFFD>ヒ<FFF5>
+208	0x4b4e	pack/talk/KOROU:0x9b38	Shut up!<FFFC><FFF6>What a snotty young man!<FFF5>
+209	0x4b7c	pack/talk/KOROU:0x9b80	Hey!<FFF6>You’re tryin’ to play me<FFF6>for a fool because I’m old!<FFFD>フ<FFF5>
+210	0x4bb2	pack/talk/KOROU:0x9bf8	Wh-What the...?<FFF6>Ain’t ya got the will<FFF6>to negotiate with me?<FFFD>ヘ<FFF5>
+211	0x4be5	pack/talk/KOROU:0x9c78	Good heavens...<FFFC><FFF6>It’s dangerous to stick your nose<FFF6>into the affairs of demons...<FFF5>
+212	0x4c1f	pack/talk/KOROU:0x9d18	Ho, ho!<FFF6>It’s great to see you so full of spirit.<FFFC><FFF6>I’m feelin’ younger just watchin’ ya!<FFF5>
+213	0x4c59	pack/talk/KOROU:0x9dc8	Ho,<L{> ho!<FFF6>That <}><S{> ho! That <}>yell had some oomph to it!<FFF6>But what did it mean?<FFFD>ホ<FFF5>
+214	0x4c96	pack/talk/KOROU:0x9e48	Hohoho, nice technique.<FFF6>Where’d ya learn to do that?<FFFD>マ<FFF5>
+215	0x4ccf	pack/talk/KOROU:0x9eb8	Now ain’t that mysterious?<FFFC><FFF6>...I’d like to know how ya did that.<FFF5>
+216	0x4d02	pack/talk/KOROU:0x9f38	You use such mysterious magic...<FFFC><FFF6>I ain’t so good at<L{> dealin’<FFF6>with <}><S{> dealin’ with <}>your type...<FFF5>
+217	0x4d36	pack/talk/KOROU:0x9fd8	Wh-What the!?<FFF6>You’re tryin’ to shake me down...<FFFD>ミ<FFF5>
+218	0x4d5a	pack/talk/KOROU:0xa040	Hohoho!<FFF6>Thanks for takin’<FFF6>the time to entertain an old man.<FFFD>ム<FFF5>
+219	0x4d8e	pack/talk/KOROU:0xa0c0	You’re an excellent<L{> magician!<FFFC> You<FFF6>should <}><S{> magician!<FFFC><FFF6>You should <}>come down to my retirement<FFF6>home, they’d love ya there!<FFF5>
 220	0x4dc6	pack/talk/KOROU:0xa180	Hohoho, I see, I see.<FFF6>Human stories can be useful.<FFF5>
-221	0x4dfa	pack/talk/KOROU:0xa1e8	Humans enjoy talking<FFF6>about things like that?<FFF6>Hrmm... I learned somethin' new.<FFF5>
-222	0x4e31	pack/talk/KOROU:0xa288	You've got a big mouth, so you've got<FFF6>a big wallet too, right? I hope You<FFF6>can spare your elder some change.<FFF1><FFF5>
-223	0x4e6e	pack/talk/KOROU:0xa368	Argh! Hush up!<FFF6>I ain't interested in that!<FFF5>
-224	0x4e96	pack/talk/KOROU:0xa3c0	What!? I'm retiring soon!<FFF6>Just leave me be!<FFF5>
-225	0x4ec5	pack/talk/KOROU:0xa418	You talk too much! Old people<FFF6>get tired just listenin', ya know!<FFFB><FFF7>Argh! I'm chargin' you a listenin' fee!<FFF1><FFF5>
-226	0x4f14	pack/talk/KOROU:0xa4f0	Your negotiation technique<FFF6>is givin' away your plans...<FFF5>
-227	0x4f38	pack/talk/KOROU:0xa560	...You're givin' off a real<FFF6>suspicious smell here...<FFF5>
-228	0x4f72	pack/talk/KOROU:0xa5d0	Hohoho! You say such interesting<FFF6>things! You're quite the talker.<FFF5>
-229	0x4fa3	pack/talk/KOROU:0xa658	It don't matter what subject we're on,<FFF6>I love talkin' to young'uns.<FFF5>
-230	0x4fd2	pack/talk/KOROU:0xa6e0	You're willing to deal with<FFF6>an old geezer like me? How nice.<FFF5>
+221	0x4dfa	pack/talk/KOROU:0xa1e8	Humans enjoy talking<L{> about<FFF6>things like <}><S{> about things<FFF6>like <}>that?<L{> Hrmm...<FFF6>I <}><S{> Hrmm... I <}>learned somethin’ new.<FFF5>
+222	0x4e31	pack/talk/KOROU:0xa288	You’ve got a big mouth, so you’ve got<FFF6>a big wallet too, right?<FFFC> I hope You<FFF6>can spare your elder some change.<FFF1><FFF5>
+223	0x4e6e	pack/talk/KOROU:0xa368	Argh! Hush up!<FFFC><FFF6>I ain’t interested in that!<FFF5>
+224	0x4e96	pack/talk/KOROU:0xa3c0	What!? I’m retiring<L{> soon!<FFFC><FFF6>Just <}><S{> soon!<FFFC> Just <}>leave me be!<FFF5>
+225	0x4ec5	pack/talk/KOROU:0xa418	You talk too much!<FFF6>Old people get<L{> tired<FFF6>just <}><S{> tired just <}>listenin’, ya know!<FFFB><FFF7>Argh! I’m chargin’ you a listenin’ fee!<FFF1><FFF5>
+226	0x4f14	pack/talk/KOROU:0xa4f0	Your negotiation technique<FFF6>is givin’ away your plans...<FFF5>
+227	0x4f38	pack/talk/KOROU:0xa560	...You’re givin’ off a real<FFF6>suspicious smell here...<FFF5>
+228	0x4f72	pack/talk/KOROU:0xa5d0	<L{>Hohoho!<FFF6>You <}><S{>Hohoho! You <}>say such interesting things!<FFFC><FFF6>You’re quite the talker.<FFF5>
+229	0x4fa3	pack/talk/KOROU:0xa658	It don’t matter what subject we’re on,<FFF6>I love talkin’ to young’uns.<FFF5>
+230	0x4fd2	pack/talk/KOROU:0xa6e0	You’re willing to deal with<FFF6>an old geezer like me?<FFFC> How nice.<FFF5>
 231	0x5003	pack/talk/KOROU:0xa760	Hohoho, never thought an old geezer<FFF6>like me could still be of some use.<FFF5>
-232	0x5033	pack/talk/KOROU:0xa7f0	Well now, if you're invitin' me along,<FFF6>I must still be in my prime!<FFF5>
-233	0x5066	pack/talk/KOROU:0xa878	Ho, ho! I can't give ya my power with<FFF6>negotiation techniques like that...<FFFB><FFF7>Now maybe if ya surprised me, it'd be<FFF6>another story. It just so happens<FFF6>there's somethin' I'm hankerin' for...<FFF1><FFF5>
-234	0x50d7	pack/talk/KOROU:0xa9f0	Argh!<FFF6>I don't like this negotiation one bit!<FFFB><FFF7>In fact, I hate it! So gimme somethin'!<FFF1><FFF5>
-235	0x512f	pack/talk/KOROU:0xaaa0	What!? I'm retiring soon!<FFF6>Just leave me be!<FFF5>
-236	0x515e	pack/talk/KOROU:0xaaf8	What's that!? If you want my power,<FFF6>hand over the goods!<FFF1><FFF5>
-237	0x5193	pack/talk/KOROU:0xab70	I'm an old man... Just a geezer, really.<FFF6>I don't want anythin' too dangerous...<FFF5>
-238	0x51c5	pack/talk/KOROU:0xac10	I got a bad feeling 'bout ya<FFF6>in my knees... This old man won't<FFF6>be much use to you anyway...<FFF5>
-239	0x51fb	pack/talk/KOROU:0xacc8	It ain't a good thing when a human<FFF6>asks for a favor...<FFF5>
-240	0x5224	pack/talk/KOROU:0xad38	Ho, ho! My warrior blood is boiling!<FFF5>
-241	0x5245	pack/talk/KOROU:0xad88	You said it! Even if yer lyin',<FFF6>I'm happy as a pickle in vinegar.<FFF5>
-242	0x5273	pack/talk/KOROU:0xae10	You want me to lend ya some power?<FFF6>I'm sure ya do,<FFF6>but hold your horses...<FFF5>
-243	0x52aa	pack/talk/KOROU:0xaea8	Hoho, just goes to show how young<FFF6>ya are if you're usin'<FFF6>techniques like that.<FFF5>
-244	0x52db	pack/talk/KOROU:0xaf48	You think you're controlling<FFF6>the negotiation like that?<FFF6>If so, you've got a lot to learn.<FFF5>
-245	0x5328	pack/talk/KOROU:0xb000	Ho, ho. Such nice weather...<FFFB><FFF7>Really, it's so nice out.<FFFB><FFF7>Give me somethin'.<FFF1><FFF5>
-246	0x5369	pack/talk/KOROU:0xb0a0	What's with you!?<FFF6>You think I'm senile, don't ya!?<FFFB><FFF7>Argh! What an annoying brat!<FFF5>
-247	0x53bc	pack/talk/KOROU:0xb148	Hmph! <FFF0><FFF6>don't pale at negotiations like that!<FFFB><FFF7>Get too conceited,<FFF6>and even I'll get angry!<FFF5>
-248	0x542a	pack/talk/KOROU:0xb200	Well, if yer gonna take up<FFF6>that attitude, I have an idea!<FFF6>Gimme somethin'!<FFF1><FFF5>
-249	0x545d	pack/talk/KOROU:0xb298	...I'm an old man... An old fogey...<FFF5>
-250	0x5496	pack/talk/KOROU:0xb2e8	Kids these days are frightful...<FFF6>Just what do you think<FFF6>of the elderly?<FFF5>
-251	0x54cc	pack/talk/KOROU:0xb378	If all the children out there were like<FFF6>you, it'd be a scary world indeed...<FFF6>Oh, heaven forbid...<FFF5>
-252	0x5517	pack/talk/KOROU:0xb440	Heh! What's with that attitude!?<FFFB><FFF7>Oh well. When ya get to be my age,<FFF6>you learn to roll with the punches.<FFF5>
-253	0x556b	pack/talk/KOROU:0xb518	Ho, ho! I see you're still<FFF6>in that rebellious stage.<FFF6>Hurry and grow up, would ya?<FFF5>
-254	0x55a1	pack/talk/KOROU:0xb5c0	I ain't got much time left.<FFF6>I figure it's best to not get upset<FFF6>and just enjoy the winter of my life.<FFFB><FFF7>I know!<FFF6>Maybe I'll have you help me out.<FFF1><FFF5>
-255	0x5602	pack/talk/KOROU:0xb6e8	Ho, ho! You need to work<FFF6>on your timing a little,<FFF6>but that'll pass for an act.<FFF5>
-256	0x5637	pack/talk/KOROU:0xb788	Ho ho! You a comedian?<FFFB><FFF7>It's a tough world out there for<FFF6>jokesters, but don't lose heart, boy.<FFF5>
-257	0x568a	pack/talk/KOROU:0xb848	I acknowledge that as a real class<FFF6>act! So gimme my approval fee! Heh!<FFF1><FFF5>
-258	0x56bf	pack/talk/KOROU:0xb8d8	Well, that was different!<FFF6>Lousy, but different!<FFFB><FFF7>And here I was lookin'<FFF6>forward to a comedy show!<FFF5>
-259	0x5712	pack/talk/KOROU:0xb9a0	Argh! This just ain't right! Stop!<FFF5>
-260	0x5738	pack/talk/KOROU:0xb9e8	Argh!<FFF6>I don't like this negotiation one bit!<FFFB><FFF7>In fact, I hate it! So gimme somethin'!<FFF1><FFF5>
-261	0x57a2	pack/talk/KOROU:0xba98	Nice weather we're havin'... I didn't<FFF6>see anything, so just lemme be...<FFF5>
-262	0x57dc	pack/talk/KOROU:0xbb28	Meddle not in the affairs of crazy<FFF6>people... Boy, too scary...<FFF5>
-263	0x57ff	pack/talk/KOROU:0xbba8	Ho ho ho! That's a humdinger! Hohoho.<FFF5>
-264	0x582a	pack/talk/KOROU:0xbbf8	This negotiation technique's called<FFF6>"entertainment," right?<FFF6>Do it some more!<FFF5>
-265	0x585b	pack/talk/KOROU:0xbc98	That was nice! Thanks for<FFF6>showing that to me! Hohoho!<FFF5>
-266	0x588a	pack/talk/KOROU:0xbd08	Well, my motto's always been not<FFF6>to let opportunity pass me by.<FFF6>I'm ready to go.<FFF5>
-267	0x58bf	pack/talk/KOROU:0xbdb0	I gotta hand it to ya,<FFF6>your negotiation technique is<FFFB><FFF7>fascinating... But what're yer<FFF6>plans for this old man?<FFF5>
-268	0x590b	pack/talk/KOROU:0xbe88	Ho, ho! You plan on seducing a man<FFF6>of my experience? That just won't do.<FFF1><FFF5>
-269	0x595f	pack/talk/KOROU:0xbf20	I'm a <FFF0> warrior! If I fell<FFF6>to human temptation, I couldn't look<FFF6>my compatriots in the face again!<FFF5>
-270	0x599e	pack/talk/KOROU:0xbfe8	I ain't got no interest<FFF6>in tasteless crap like that!<FFF6>Go talk to some other demon!<FFF5>
-271	0x59d7	pack/talk/KOROU:0xc090	Argh! There's a right way to do<FFF6>everything! Do ya get that?<FFF1><FFF5>
-272	0x5a09	pack/talk/KOROU:0xc110	An invitation? Hmm... Can't say I'm<FFF6>interested, but lately, ya don't know<FFF6>what they'll do if ya turn 'em down...<FFF5>
-273	0x5a61	pack/talk/KOROU:0xc1f8	Now hold on a minute...<FFF6>I've got this bad feelin'...<FFF6>Like I'm walkin' right into your trap...<FFF5>
-274	0x5a9c	pack/talk/KOROU:0xc2b8	...I... I got some urgent business that<FFF6>needs attendin'. Maybe next time.<FFF5>
-275	0x5acd	pack/talk/KOROU:0xc350	Do you need me that much?<FFF6>Hohoho! I'm happy to know that!<FFF5>
-276	0x5afe	pack/talk/KOROU:0xc3c8	I ain't worthy of techniques like that.<FFF6>But I'm happy ya used it...<FFF5>
-277	0x5b37	pack/talk/KOROU:0xc450	Hohoho! What a grand feeling!<FFF6>I'm climbing up the stairway of life!<FFF5>
-278	0x5b64	pack/talk/KOROU:0xc4d8	You ain't much for lucky, are ya,<FFF6>Missy? Well, I'm in a good mood,<FFF6>so you got nothin' to worry about.<FFF5>
-279	0x5b9e	pack/talk/KOROU:0xc5a8	Ho, ho! You're a fine young lady.<FFF6>You know how to respect your elders.<FFF5>
-280	0x5bd1	pack/talk/KOROU:0xc638	Argh! Women who try to lead men on<FFF6>are deplorable! Deplorable, I say!<FFF5>
-281	0x5bff	pack/talk/KOROU:0xc6c8	Quiet, you! Little girls should<FFF6>be off playin' house or somethin'!<FFF5>
-282	0x5c32	pack/talk/KOROU:0xc750	If you understand how dreadful I am,<FFF6>then gimme somethin'<FFF6>and be on yer way!<FFF1><FFF5>
-283	0x5c64	pack/talk/KOROU:0xc7f0	I'm havin' trouble believin'<FFF6>that was really from yer heart...<FFF5>
-284	0x5c8d	pack/talk/KOROU:0xc870	...You seem rather humble,<FFF6>but I smell somethin'...<FFF5>
-285	0x5cb7	pack/talk/KOROU:0xc8d8	You said it! Even if yer lyin',<FFF6>I'm happy as a pickle in vinegar.<FFF5>
-286	0x5ce7	pack/talk/KOROU:0xc960	Hohoho! I really am good, ain't I?<FFF5>
-287	0x5d17	pack/talk/KOROU:0xc9a8	Heh! You've got the art of survival<FFF6>down pat, kiddo! I won't make any<FFF6>sudden moves, so don't worry.<FFF5>
-288	0x5d4e	pack/talk/KOROU:0xca70	What? You already got my spell card,<FFF6>don'tcha? Take care of it, y'hear?<FFEF>
-289	0x5d85	pack/talk/KOROU:0xcb00	I'll give this to ya.<FFEF>
-290	0x5d9d	pack/talk/KOROU:0xcb30	What's that? So in the end,<FFF6>you didn't have business<FFF6>with an old man anyway.<FFEF>
-291	0x5dc6	pack/talk/KOROU:0xcbd0	I'm a different breed altogether.<FFEF>
-292	0x5dde	pack/talk/KOROU:0xcc18	Well ain't that a zinger? You don't<FFF6>got what it takes. Keep on training.<FFEF>
-293	0x5e1a	pack/talk/KOROU:0xccb0	Well, ain't nothin' you can do about it.<FFF6>I'll give you this instead.<FFEF>
-294	0x5e48	pack/talk/KOROU:0xcd40	It's about time we went our separate<FFF6>ways. It's sad, but such is fate.<FFF6>Take care o' yourselves now.<FFEF>
-295	0x5e82	pack/talk/KOROU:0xce08	Here's some allowance, youngster.<FFF6>Don't spend it all in one place.<FFEF>
-296	0x5ea5	pack/talk/KOROU:0xce90	I'm tired... Mind if I skidaddle?<FFEF>
-297	0x5ec5	pack/talk/KOROU:0xced8	My back may not be in the best<FFF6>shape, but I'm still active.<FFFB><FFF7>My spell card's kinda old,<FFF6>but you better not put it in storage.<FFEF>
-298	0x5f1e	pack/talk/KOROU:0xcfd8	Urgh... I'm gettin' pains...<FFF6>I better get home. G-G-Goodbye...<FFEF>
-299	0x5f55	pack/talk/KOROU:0xd058	Aw, knock it off! Humans are much<FFF6>more boring than I coulda thought!<FFF6>I'm hittin' the road!<FFEF>
-300	0x5f8c	pack/talk/KOROU:0xd110	Aw, knock it off! Humans are much<FFF6>more boring than I coulda thought!<FFFB><FFF7>If I give ya this, I can go, right!?<FFEF>
-301	0x5fd7	pack/talk/KOROU:0xd1e8	Hrrnng... I'm feelin' dizzy...<FFF6>You're a real whippersnapper,<FFF6>raisin' my blood pressure like that!<FFEF>
-302	0x6015	pack/talk/KOROU:0xd2b0	But, I guess it's okay.<FFF6>Even meetings by chance are<FFF6>meetings of fate. ...Take my card.<FFEF>
-303	0x6050	pack/talk/KOROU:0xd360	You may be able<FFF6>to forge a new path...<FFEF>
+232	0x5033	pack/talk/KOROU:0xa7f0	Well now, if you’re invitin’ me along,<FFF6>I must still be in my prime!<FFF5>
+233	0x5066	pack/talk/KOROU:0xa878	Ho, ho!<FFF6>I can’t give ya my power with<FFF6>negotiation techniques like that...<FFFB><FFF7>Now maybe if ya surprised<L{> me, it’d be<FFF6>another <}><S{> me,<FFF6>it’d be another <}>story. It just so happens<FFF6>there’s somethin’ I’m hankerin’ for...<FFF1><FFF5>
+234	0x50d7	pack/talk/KOROU:0xa9f0	Argh!<FFFC><FFF6>I don’t like this negotiation one bit!<FFFB><FFF7>In fact, I hate it! So gimme somethin’!<FFF1><FFF5>
+235	0x512f	pack/talk/KOROU:0xaaa0	What!? I’m retiring<L{> soon!<FFFC><FFF6>Just <}><S{> soon!<FFFC> Just <}>leave me be!<FFF5>
+236	0x515e	pack/talk/KOROU:0xaaf8	What’s that!?<FFFC><FFF6>If you want my power,<FFF6>hand over the goods!<FFF1><FFF5>
+237	0x5193	pack/talk/KOROU:0xab70	I’m an old man...<FFFC><FFF6>Just a geezer, really.<FFFC><FFF6>I don’t want anythin’ too dangerous...<FFF5>
+238	0x51c5	pack/talk/KOROU:0xac10	I got a bad feeling ’bout<L{> ya<FFF6>in <}><S{> ya in <}>my<L{> knees...<FFFC> This <}><S{> knees...<FFFC><FFF6>This <}>old man<L{> won’t<FFF6>be <}><S{> won’t be <}>much<L{> use to <}><S{> use<FFF6>to <}>you anyway...<FFF5>
+239	0x51fb	pack/talk/KOROU:0xacc8	It ain’t a good thing when a human<FFF6>asks for a favor...<FFF5>
+240	0x5224	pack/talk/KOROU:0xad38	Ho, ho!<FFFC><FFF6>My warrior blood is boiling!<FFF5>
+241	0x5245	pack/talk/KOROU:0xad88	You said it! Even if yer lyin’,<FFF6>I’m happy as a pickle in vinegar.<FFF5>
+242	0x5273	pack/talk/KOROU:0xae10	You want me to lend ya some power?<FFF6>I’m sure ya<L{> do,<FFF6>but <}><S{> do, but <}>hold your horses...<FFF5>
+243	0x52aa	pack/talk/KOROU:0xaea8	Hoho, just goes to show how<L{> young<FFF6>ya are <}><S{> young ya<FFF6>are <}>if you’re<L{> usin’<FFF6>techniques <}><S{> usin’ techniques <}>like that.<FFF5>
+244	0x52db	pack/talk/KOROU:0xaf48	You think you’re controlling<FFF6>the negotiation like that?<FFF6>If so, you’ve got a lot to learn.<FFF5>
+245	0x5328	pack/talk/KOROU:0xb000	Ho, ho. Such nice weather...<FFFB><FFF7>Really, it’s so nice out.<FFFB><FFF7>Give me somethin’.<FFF1><FFF5>
+246	0x5369	pack/talk/KOROU:0xb0a0	What’s with you!?<FFF6>You think I’m senile, don’t ya!?<FFFB><FFF7>Argh! What an annoying brat!<FFF5>
+247	0x53bc	pack/talk/KOROU:0xb148	Hmph!<FFFC> <FFF0><FFF6>don’t pale at negotiations like that!<FFFB><FFF7>Get too<L{> conceited,<FFF6>and <}><S{> conceited, and <}>even I’ll get angry!<FFF5>
+248	0x542a	pack/talk/KOROU:0xb200	Well, if yer gonna take<L{> up<FFF6>that attitude, I <}><S{> up that attitude,<FFF6>I <}>have an<L{> idea!<FFFC><FFF6>Gimme <}><S{> idea!<FFFC> Gimme <}>somethin’!<FFF1><FFF5>
+249	0x545d	pack/talk/KOROU:0xb298	...I’m an old man... An old fogey...<FFF5>
+250	0x5496	pack/talk/KOROU:0xb2e8	Kids these days are frightful...<FFF6>Just what do you<L{> think<FFF6>of <}><S{> think of <}>the elderly?<FFF5>
+251	0x54cc	pack/talk/KOROU:0xb378	If all the children out there were like<FFF6>you, it’d be a scary world indeed...<FFF6>Oh, heaven forbid...<FFF5>
+252	0x5517	pack/talk/KOROU:0xb440	Heh! What’s with that attitude!?<FFFB><FFF7>Oh well. When ya get to be my age,<FFF6>you learn to roll with the punches.<FFF5>
+253	0x556b	pack/talk/KOROU:0xb518	Ho, ho!<FFF6>I see you’re still in that<L{> rebellious<FFF6>stage.<FFFC> Hurry <}><S{> rebellious stage.<FFFC><FFF6>Hurry <}>and grow up, would ya?<FFF5>
+254	0x55a1	pack/talk/KOROU:0xb5c0	I ain’t got much time left.<FFF6>I figure it’s best to not get upset<FFF6>and just enjoy the winter of my life.<FFFB><FFF7>I<L{> know!<FFF6>Maybe <}><S{> know! Maybe <}>I’ll have you help me out.<FFF1><FFF5>
+255	0x5602	pack/talk/KOROU:0xb6e8	Ho, ho!<FFFC><FFF6>You need to work on your<L{> timing<FFF6>a little, but <}><S{> timing a little,<FFF6>but <}>that’ll pass for an act.<FFF5>
+256	0x5637	pack/talk/KOROU:0xb788	Ho ho! You a comedian?<FFFB><FFF7>It’s a tough world out there<L{> for<FFF6>jokesters, but <}><S{> for jokesters,<FFF6>but <}>don’t lose heart, boy.<FFF5>
+257	0x568a	pack/talk/KOROU:0xb848	I acknowledge that as a real<L{> class<FFF6>act! So <}><S{> class act!<FFF6>So <}>gimme my approval fee! Heh!<FFF1><FFF5>
+258	0x56bf	pack/talk/KOROU:0xb8d8	Well, that was different!<FFFC><FFF6>Lousy, but different!<FFFB><FFF7>And here I was lookin’<FFF6>forward to a comedy show!<FFF5>
+259	0x5712	pack/talk/KOROU:0xb9a0	Argh! This just ain’t right!<FFFC> Stop!<FFF5>
+260	0x5738	pack/talk/KOROU:0xb9e8	<L{>Argh!<FFF6>I <}><S{>Argh! I <}>don’t like this negotiation one bit!<FFFB><FFF7>In fact, I hate it! So gimme somethin’!<FFF1><FFF5>
+261	0x57a2	pack/talk/KOROU:0xba98	Nice weather we’re<L{> havin’... I didn’t<FFF6>see <}><S{> havin’...<FFF6>I didn’t see <}>anything, so just lemme be...<FFF5>
+262	0x57dc	pack/talk/KOROU:0xbb28	Meddle not in the<L{> affairs<FFF6>of <}><S{> affairs of <}>crazy people...<FFFC><FFF6>Boy, too scary...<FFF5>
+263	0x57ff	pack/talk/KOROU:0xbba8	Ho ho ho! That’s a humdinger!<FFFC> Hohoho.<FFF5>
+264	0x582a	pack/talk/KOROU:0xbbf8	This negotiation technique’s called<FFF6>“entertainment,” right?<FFFC><FFF6>Do it some more!<FFF5>
+265	0x585b	pack/talk/KOROU:0xbc98	That was nice!<FFFC><FFF6>Thanks for showing that to<L{> me!<FFF6>Hohoho!<FFF5><}><S{> me! Hohoho!<FFF5><}>
+266	0x588a	pack/talk/KOROU:0xbd08	Well, my motto’s always been not to let<FFF6>opportunity pass me<L{> by.<FFFC><FFF6>I’m <}><S{> by.<FFFC> I’m <}>ready to go.<FFF5>
+267	0x58bf	pack/talk/KOROU:0xbdb0	I gotta hand it to<L{> ya,<FFF6>your negotiation <}><S{> ya, your<FFF6>negotiation <}>technique<L{> is<FFFB><FFF7>fascinating... But <}><S{> is fascinating...<FFF6>But <}>what’re<L{> yer<FFF6>plans <}><S{> yer plans <}>for this old man?<FFF5>
+268	0x590b	pack/talk/KOROU:0xbe88	Ho, ho!<FFF6>You plan on seducing a<L{> man of<FFF6>my <}><S{> man<FFF6>of my <}>experience? That just won’t do.<FFF1><FFF5>
+269	0x595f	pack/talk/KOROU:0xbf20	I’m a <FFF0><L{> warrior!<FFFC> If <}><S{> warrior!<FFFC><FFF6>If <}>I<L{> fell<FFF6>to <}><S{> fell to <}>human temptation, I<L{> couldn’t look<FFF6>my <}><S{> couldn’t<FFF6>look my <}>compatriots in the face again!<FFF5>
+270	0x599e	pack/talk/KOROU:0xbfe8	I ain’t got no<L{> interest<FFF6>in <}><S{> interest in <}>tasteless<L{> crap like that!<FFF6>Go <}><S{> crap<FFF6>like that! Go <}>talk to some other demon!<FFF5>
+271	0x59d7	pack/talk/KOROU:0xc090	Argh!<FFF6>There’s a right way to do everything!<FFFC><FFF6>Do ya get that?<FFF1><FFF5>
+272	0x5a09	pack/talk/KOROU:0xc110	An invitation?<FFFC> Hmm... Can’t<L{> say I’m<FFF6>interested, <}><S{> say<FFF6>I’m interested, <}>but lately, ya<L{> don’t know<FFF6>what <}><S{> don’t<FFF6>know what <}>they’ll do if ya turn ’em down...<FFF5>
+273	0x5a61	pack/talk/KOROU:0xc1f8	Now hold on a minute...<FFFC><FFF6>I’ve got this bad feelin’...<FFFC><FFF6>Like I’m walkin’ right into your trap...<FFF5>
+274	0x5a9c	pack/talk/KOROU:0xc2b8	...I... I got some urgent<L{> business that<FFF6>needs <}><S{> business<FFF6>that needs <}>attendin’. Maybe next time.<FFF5>
+275	0x5acd	pack/talk/KOROU:0xc350	Do you need me that much?<FFFC><FFF6>Hohoho! I’m happy to know that!<FFF5>
+276	0x5afe	pack/talk/KOROU:0xc3c8	I ain’t worthy of techniques like that.<FFFC><FFF6>But I’m happy ya used it...<FFF5>
+277	0x5b37	pack/talk/KOROU:0xc450	Hohoho! What a grand feeling!<FFFC><FFF6>I’m climbing up the stairway of life!<FFF5>
+278	0x5b64	pack/talk/KOROU:0xc4d8	You ain’t much for lucky, are<L{> ya,<FFF6>Missy?<FFFC> Well, <}><S{> ya, Missy?<FFFC><FFF6>Well, <}>I’m in a good mood,<FFF6>so you got nothin’ to worry about.<FFF5>
+279	0x5b9e	pack/talk/KOROU:0xc5a8	Ho, ho! You’re a fine young lady.<FFF6>You know how to respect your elders.<FFF5>
+280	0x5bd1	pack/talk/KOROU:0xc638	Argh!<FFFC><FFF6>Women who try to lead men<L{> on are<FFF6>deplorable! <}><S{> on<FFF6>are deplorable! <}>Deplorable, I say!<FFF5>
+281	0x5bff	pack/talk/KOROU:0xc6c8	Quiet, you!<FFFC><FFF6>Little girls should be off<FFF6>playin’ house or somethin’!<FFF5>
+282	0x5c32	pack/talk/KOROU:0xc750	If you understand how dreadful I am,<FFF6>then gimme<L{> somethin’<FFF6>and <}><S{> somethin’ and <}>be on yer way!<FFF1><FFF5>
+283	0x5c64	pack/talk/KOROU:0xc7f0	I’m havin’ trouble believin’<FFF6>that was really from yer heart...<FFF5>
+284	0x5c8d	pack/talk/KOROU:0xc870	...You seem rather humble,<FFF6>but I smell somethin’...<FFF5>
+285	0x5cb7	pack/talk/KOROU:0xc8d8	You said it! Even if yer lyin’,<FFF6>I’m happy as a pickle in vinegar.<FFF5>
+286	0x5ce7	pack/talk/KOROU:0xc960	Hohoho! I really am good, ain’t I?<FFF5>
+287	0x5d17	pack/talk/KOROU:0xc9a8	Heh! You’ve got the art of<L{> survival<FFF6>down pat, <}><S{> survival down<FFF6>pat, <}>kiddo!<FFFC> I won’t make<L{> any<FFF6>sudden moves, so <}><S{> any sudden moves,<FFF6>so <}>don’t worry.<FFF5>
+288	0x5d4e	pack/talk/KOROU:0xca70	What? You already got my spell card,<FFF6>don’tcha? Take care of it, y’hear?<FFEF>
+289	0x5d85	pack/talk/KOROU:0xcb00	I’ll give this to ya.<FFEF>
+290	0x5d9d	pack/talk/KOROU:0xcb30	What’s that? So in the end,<FFF6>you didn’t have business<FFF6>with an old man anyway.<FFEF>
+291	0x5dc6	pack/talk/KOROU:0xcbd0	I’m a different breed altogether.<FFEF>
+292	0x5dde	pack/talk/KOROU:0xcc18	Well ain’t that a zinger?<FFF6>You don’t got what it takes.<FFF6>Keep on training.<FFEF>
+293	0x5e1a	pack/talk/KOROU:0xccb0	Well, ain’t nothin’ you can do about it.<FFFC><FFF6>I’ll give you this instead.<FFEF>
+294	0x5e48	pack/talk/KOROU:0xcd40	It’s about time we went our<L{> separate<FFF6>ways.<FFFC> It’s <}><S{> separate ways.<FFFC><FFF6>It’s <}>sad, but such is fate.<FFFC><FFF6>Take care o’ yourselves now.<FFEF>
+295	0x5e82	pack/talk/KOROU:0xce08	Here’s some allowance, youngster.<FFF6>Don’t spend it all in one place.<FFEF>
+296	0x5ea5	pack/talk/KOROU:0xce90	I’m tired...<FFFC><FFF6>Mind if I skidaddle?<FFEF>
+297	0x5ec5	pack/talk/KOROU:0xced8	My back may not be in the<L{> best<FFF6>shape, but <}><S{> best shape,<FFF6>but <}>I’m still active.<FFFB><FFF7>My spell card’s kinda old,<FFF6>but you better not put it in storage.<FFEF>
+298	0x5f1e	pack/talk/KOROU:0xcfd8	Urgh...<FFFC> I’m gettin’ pains...<FFF6>I better get home. G-G-Goodbye...<FFEF>
+299	0x5f55	pack/talk/KOROU:0xd058	Aw, knock it off!<FFF6>Humans are much more<L{> boring than<FFF6>I <}><S{> boring<FFF6>than I <}>coulda thought! I’m hittin’ the road!<FFEF>
+300	0x5f8c	pack/talk/KOROU:0xd110	Aw, knock it off!<FFF6>Humans are much more<FFF6>boring than I coulda thought!<FFFB><FFF7>If I give ya this, I can go, right!?<FFEF>
+301	0x5fd7	pack/talk/KOROU:0xd1e8	Hrrnng... I’m feelin’ dizzy...<FFF6>You’re a real whippersnapper,<FFF6>raisin’ my blood pressure like that!<FFEF>
+302	0x6015	pack/talk/KOROU:0xd2b0	But, I guess it’s okay.<FFF6>Even meetings by chance are<FFF6>meetings of fate.<FFFC> ...Take my card.<FFEF>
+303	0x6050	pack/talk/KOROU:0xd360	You may be<L{> able<FFF6>to <}><S{> able to <}>forge a new path...<FFEF>
 304	0x6079	pack/talk/KOROU:0xd3b0	So, take my spell card.<FFEF>
-305	0x6098	pack/talk/KOROU:0xd3e0	...I don't want to hafta fight you.<FFEF>
-306	0x60ba	pack/talk/KOROU:0xd428	It ain't an easy world to get by in<FFF6>for you humans. I'm worried about ya,<FFF6>so take this with you...<FFEF>
-307	0x6114	pack/talk/KOROU:0xd4f0	Argh! M-My back...! I'm done for...<FFEF>
-308	0x6154	pack/talk/KOROU:0xd538	I ain't gonna defy ya. I'll give ya<FFF6>my spell card if ya just lemme go...<FFEF>
-309	0x6191	pack/talk/KOROU:0xd5d0	Ho, ho! Quite a surprise to find<FFF6>humans in a place like this.<FFFB><FFF7>But what are ya doin' here without<FFF6>the moonlight as your guide?<FFFD>メ<FFF5>
-310	0x61fa	pack/talk/KOROU:0xd6d8	If this shows up, it's a bug.<FFF5>
-311	0x6209	pack/talk/KOROU:0xd718	Ho ho ho, didn't expect to find<FFF6>anyone out walkin' with me here...<FFFB><FFF7>It's lonely without a moon, ain't it?<FFF6>I'll keep ya company, but how 'bout<FFF6>somethin' to make it worth my while?<FFF1><FFF5>
-312	0x627d	pack/talk/KOROU:0xd880	Hey! This path is private!<FFF6>Ya'll are trespassing if ya<FFF6>ain't got permission!<FFFB><FFF7>Hm... And yer human, too!<FFF6>Ugh, this is deplorable!<FFFD>モ<FFF5>
-313	0x62ee	pack/talk/KOROU:0xd988	Hey! This is my walkin' path!<FFF6>I don't need no humans trashin' it!<FFF5>
-314	0x6323	pack/talk/KOROU:0xda10	Hey! This is my strollin' path!<FFF6>You need my permission to be here!<FFFB><FFF7>Ya wanna pass, then pay the toll!<FFF1><FFF5>
-315	0x638c	pack/talk/KOROU:0xdae0	Without the moon... us old folks can't<FFF6>see the ground so well. Makes it<FFF6>hard to take evening strolls...<FFFB><FFF7>...Why does the moon disappear?<FFFD>ヤ<FFF5>
-316	0x63f1	pack/talk/KOROU:0xdbf8	If this shows up, it's a bug.<FFF5>
-317	0x6400	pack/talk/KOROU:0xdc38	I ain't anybody suspicious...<FFF6>just an old geezer...<FFF6>Please don't hurt me...<FFF5>
-318	0x643a	pack/talk/KOROU:0xdcd0	It's best to watch the moon with some<FFF6>snacks in hand! Just when I figured<FFF6>that out, you showed up!<FFFB><FFF7>You must be heaven sent...<FFF6>so you've got some for me, right?<FFFD>ユ<FFF5>
-319	0x64b0	pack/talk/KOROU:0xde18	Well, wouldya look at that! The moon's<FFF6>lookin' mighty fine tonight!<FFFB><FFF7>It's such an inspiration. Feels good<FFF6>to be alive at times like these.<FFF5>
-320	0x6514	pack/talk/KOROU:0xdf30	Ho, ho! An unsuspecting human's<FFF6>been caught in my net!<FFFB><FFF7>Welcome to the darkness<FFF6>of the netherworld!<FFF6>If ya want out, give me somethin'!<FFF1><FFF5>
-321	0x6588	pack/talk/KOROU:0xe040	<FFED>Eh? A human? Please,<FFF6>no boring stories! Hm...<FFFB><FFF7>But if ya manage to impress me,<FFF6>maybe you'll get my card.<FFFD>ヨ<FFF5>
-322	0x65f1	pack/talk/KOROU:0xe118	<FFEE>This is peculiar... It ain't like me<FFF6>to talk to humans, but...<FFF5>
-323	0x6622	pack/talk/KOROU:0xe198	<FFED>What? I thought I'd found company,<FFF6>but it was just some wayward humans!<FFFB><FFF7>I'll negotiate with ya, but ya better<FFF6>make it worth my while with sometin'!<FFF1><FFF5>
-324	0x6684	pack/talk/KOROU:0xe2c8	<FFEE>I'm reachin' out to ya<FFF6>because I've got a question...<FFF6>Gimme yer best answer.<FFFB><FFF7>What do you think of moonless<FFF6>nights like tonight, human?<FFFD>ラ<FFF5>
-325	0x66f8	pack/talk/KOROU:0xe3e0	If this shows up, it's a bug.<FFF5>
-326	0x670d	pack/talk/KOROU:0xe420	<FFEC>Why are ya meanderin' around<FFF6>in my territory? I don't get it.<FFF5>
-327	0x6742	pack/talk/KOROU:0xe4a0	<FFEB>Oooh! You here to keep me<FFF6>company? Perfect!<FFFB><FFF7>Luck is with me today! Why don't ya<FFF6>tell me a story? Make it interesting!<FFFD>リ<FFF5>
-328	0x67ae	pack/talk/KOROU:0xe598	<FFEE>Ooh! Ooh! You mind keepin' me<FFF6>company for a bit?<FFF6>Sorry to trouble you.<FFFB><FFF7>I don't have much to offer at my age,<FFF6>but I'll negotiate with ya on faith.<FFF5>
-329	0x6828	pack/talk/KOROU:0xe6c0	<FFEE>Heh, you've got<FFF6>a nice face for a human.<FFFB><FFF7>Maybe you'll be a saint someday!<FFF6>Hohoho!<FFF5>
-330	0x688d	pack/talk/KOROU:0xe768	<FFED>Hey! Ain't ya got manners!?<FFF6>The first greeting comes<FFF6>from the younger or the inferior!<FFFB><FFF7>Wh-Whatchya starin' at?<FFF6>Cat got yer tongue?<FFFD>ル<FFF5>
-331	0x68ed	pack/talk/KOROU:0xe878	If this shows up, it's a bug.<FFF5>
-332	0x6901	pack/talk/KOROU:0xe8b8	<FFED>...! So it WAS a human! So that's<FFF6>why I felt queasy! Now I'm havin'<FFF6>mixed emotions, no thanks to you!<FFF5>
-333	0x6961	pack/talk/KOROU:0xe988	<FFEB>Hee hee! Another victim ensnared<FFF6>by the moon's charms!<FFFB><FFF7>You're already fish in a bucket.<FFF6>If you've got last words, I'll hear 'em.<FFFD>レ<FFF5>
-334	0x69d3	pack/talk/KOROU:0xea98	<FFEB>Take a gander at the moon!<FFF6>It's such a beautiful night!<FFFB><FFF7>It really makes the spirit flow over,<FFF6>even in an old fogey like me!<FFF5>
-335	0x6a4b	pack/talk/KOROU:0xeb98	<FFEB>Hee hee! Another victim ensnared<FFF6>by the moon's charms!<FFFB><FFF7>I'm feelin' generous tonight.<FFF6>I'll take somethin' other than yer life.<FFF1><FFF5>
-336	0x6ac0	pack/talk/KOROU:0xeca0	<FFEC>...Eh? I thought you were an old<FFF6>acquaintance. ...Who goes there?<FFFD>ロ<FFF5>
-337	0x6af6	pack/talk/KOROU:0xed30	If this shows up, it's a bug.<FFF5>
-338	0x6b0a	pack/talk/KOROU:0xed70	<FFEB>...Eh? I thought you were an old<FFF6>acquaintance. Seems I'm mistaken.<FFFB><FFF7>I don't know you<FFF6>from Adam... Hohoho...<FFF5>
-339	0x6b6d	pack/talk/KOROU:0xee50	Ooh! A life of servitude is a life well<FFF6>lived. You got any wishes?<FFEF>
-340	0x6ba1	pack/talk/KOROU:0xeed8	Argh! I'm blowin' my top!<FFF6>You ready to put up your dukes!?<FFEF>
-341	0x6bd1	pack/talk/KOROU:0xef50	Yeargh! It's a demon!<FFF6>Ya know what they say,<FFF6>he who runs fights another day!<FFEF>
-342	0x6c00	pack/talk/KOROU:0xeff0	Hohoho!<FFF6>Not every day ya laugh this much!<FFEF>
-343	0x6c37	pack/talk/KOROU:0xf048	Still! This is a pain! Let's pick<FFF6>up the pace on this negotiation!<FFFB><FFF7>Come on, don't just<FFF6>stand there all slack-jawed!<FFF6>Hurry up and state yer business!<FFEF>
-344	0x6ca0	pack/talk/KOROU:0xf178	Still! Why you usin' techniques<FFF6>like that on me...?<FFFB><FFF7>No matter how old I get, I don't<FFF6>understand humans any better.<FFF6>Whaddaya want from me?<FFEF>
-345	0x6d11	pack/talk/KOROU:0xf290	Ho, ho!<FFF6>That was hospitality at its finest!<FFF6>You're as sincere as they come!<FFFB><FFF7>Alright, to show my gratitude,<FFF6>I'll return the favor!<FFEF>
-346	0x6d89	pack/talk/KOROU:0xf398	What the...!? Why's an old-timer<FFF6>like me gotta go through with this!?<FFEF>
-347	0x6dbd	pack/talk/KOROU:0xf428	Your negotiation style's a bit<FFF6>immature! Try it again later.<FFEF>
-348	0x6dfe	pack/talk/KOROU:0xf4a8	Hmmm... Maybe if I went with you,<FFF6>I'd have a peaceful life.<FFF6>Perhaps it's time to give over...<FFEF>
-349	0x6e3e	pack/talk/KOROU:0xf568	Well... Hmm... What should I ask for...?<FFFB><FFF7>I guess I'll take my share<FFF6>of the money. ￥<FFF8>.<FFEF>
-350	0x6e8b	pack/talk/KOROU:0xf618	Ho, ho! You make it seem like<FFF6>money really does grow on trees!<FFF5>
-351	0x6eb9	pack/talk/KOROU:0xf698	Empty pockets, eh?!<FFF6>You're hopeless... But I guess<FFF6>ya can't give what ya ain't got...<FFF5>
-352	0x6ef4	pack/talk/KOROU:0xf748	Hey! You're comin' up short!<FFF6>Lyin' never pays!<FFF5>
-353	0x6f22	pack/talk/KOROU:0xf7a8	What a waste... Yer supposed to be<FFF6>savin' money at your age, ain't ya?<FFF5>
-354	0x6f43	pack/talk/KOROU:0xf838	Nobody likes emptyin' their wallet...<FFF6>But ya still gotta do it!<FFF5>
-355	0x6f77	pack/talk/KOROU:0xf8b8	Let's see... I think I'll take<FFF6>a delicious life stone. One oughta do.<FFEF>
-356	0x6faa	pack/talk/KOROU:0xf948	Ho ho!<FFF6>You're well-behaved for your age.<FFF5>
-357	0x6fce	pack/talk/KOROU:0xf9a0	You ain't got the goods!?<FFF6>Anyone who'd negotiate without<FFF6>life stones is a real terror...<FFF5>
-358	0x700e	pack/talk/KOROU:0xfa58	Hey! You're comin' up short!<FFF6>Lyin' never pays!<FFF5>
-359	0x703b	pack/talk/KOROU:0xfab8	You don't get it, do ya? There ain't<FFF6>no door a life stone can't open.<FFF6>Ya best keep that in mind.<FFF5>
-360	0x7074	pack/talk/KOROU:0xfb80	Nobody likes emptyin' their wallet...<FFF6>But ya still gotta do it!<FFF5>
-361	0x70a8	pack/talk/KOROU:0xfc00	I ain't no profiteer, but I'd like<FFF6>a <FFF4> very much.<FFEF>
-362	0x70ce	pack/talk/KOROU:0xfc68	You'll give it to me? I guess<FFF6>anything's worth a shot. Hohoho.<FFF5>
+305	0x6098	pack/talk/KOROU:0xd3e0	...I don’t want to hafta fight you.<FFEF>
+306	0x60ba	pack/talk/KOROU:0xd428	It ain’t an easy world to get by<L{> in<FFF6>for you humans.<FFFC> <}><S{> in for you<FFF6>humans.<FFFC> <}>I’m worried about ya,<FFF6>so take this with you...<FFEF>
+307	0x6114	pack/talk/KOROU:0xd4f0	Argh! M-My back...! I’m done for...<FFEF>
+308	0x6154	pack/talk/KOROU:0xd538	I ain’t gonna defy ya.<FFFC><FFF6>I’ll give ya my spell card if ya<FFF6>just lemme go...<FFEF>
+309	0x6191	pack/talk/KOROU:0xd5d0	Ho, ho!<FFF6>Quite a surprise to find<FFF6>humans in a place like this.<FFFB><FFF7>But what are ya doin’<L{> here without<FFF6>the <}><S{> here<FFF6>without the <}>moonlight as your guide?<FFFD>メ<FFF5>
+310	0x61fa	pack/talk/KOROU:0xd6d8	If this shows up, it’s a bug.<FFF5>
+311	0x6209	pack/talk/KOROU:0xd718	Ho ho ho, didn’t expect to find<FFF6>anyone out walkin’ with me here...<FFFB><FFF7>It’s lonely without a moon, ain’t it?<FFF6>I’ll keep ya company, but how ’bout<FFF6>somethin’ to make it worth my while?<FFF1><FFF5>
+312	0x627d	pack/talk/KOROU:0xd880	Hey! This path is private!<FFF6>Ya’ll are trespassing if ya<FFF6>ain’t got permission!<FFFB><FFF7>Hm... And yer human, too!<FFF6>Ugh, this is deplorable!<FFFD>モ<FFF5>
+313	0x62ee	pack/talk/KOROU:0xd988	Hey! This is my walkin’ path!<FFFC><FFF6>I don’t need no humans trashin’ it!<FFF5>
+314	0x6323	pack/talk/KOROU:0xda10	Hey! This is my strollin’ path!<FFFC><FFF6>You need my permission to be here!<FFFB><FFF7>Ya wanna pass, then pay the toll!<FFF1><FFF5>
+315	0x638c	pack/talk/KOROU:0xdae0	Without the moon... us old<L{> folks can’t<FFF6>see <}><S{> folks<FFF6>can’t see <}>the ground so<L{> well. Makes it<FFF6>hard <}><S{> well.<FFF6>Makes it hard <}>to take evening strolls...<FFFB><FFF7>...Why does the moon disappear?<FFFD>ヤ<FFF5>
+316	0x63f1	pack/talk/KOROU:0xdbf8	If this shows up, it’s a bug.<FFF5>
+317	0x6400	pack/talk/KOROU:0xdc38	I ain’t anybody suspicious...<FFF6>just an old<L{> geezer...<FFF6>Please <}><S{> geezer... Please <}>don’t hurt me...<FFF5>
+318	0x643a	pack/talk/KOROU:0xdcd0	It’s best to watch the moon with some<FFF6>snacks in hand! Just when I figured<FFF6>that out, you showed up!<FFFB><FFF7>You must be heaven sent...<FFF6>so you’ve got some for me, right?<FFFD>ユ<FFF5>
+319	0x64b0	pack/talk/KOROU:0xde18	Well, wouldya look at that!<FFFC><FFF6>The moon’s<L{> lookin’<FFF6>mighty <}><S{> lookin’ mighty <}>fine tonight!<FFFB><FFF7>It’s such an inspiration.<FFFC><FFF6>Feels good to be<L{> alive<FFF6>at <}><S{> alive at <}>times like these.<FFF5>
+320	0x6514	pack/talk/KOROU:0xdf30	Ho, ho!<FFFC><FFF6>An unsuspecting human’s<FFF6>been caught in my net!<FFFB><FFF7>Welcome to the darkness<FFF6>of the netherworld!<FFFC><FFF6>If ya want out, give me somethin’!<FFF1><FFF5>
+321	0x6588	pack/talk/KOROU:0xe040	<FFED>Eh?<FFFC><FFF6>A human?<FFFC><FFF6>Please, no boring stories! Hm...<FFFB><FFF7>But if ya manage to impress me,<FFF6>maybe you’ll get my card.<FFFD>ヨ<FFF5>
+322	0x65f1	pack/talk/KOROU:0xe118	<FFEE>This is peculiar...<FFFC><FFF6>It ain’t like me to<L{> talk<FFF6>to <}><S{> talk to <}>humans, but...<FFF5>
+323	0x6622	pack/talk/KOROU:0xe198	<FFED>What?<FFFC> I thought I’d found company,<FFF6>but it was just some wayward humans!<FFFB><FFF7>I’ll negotiate with ya, but ya better<FFF6>make it worth my while with sometin’!<FFF1><FFF5>
+324	0x6684	pack/talk/KOROU:0xe2c8	<FFEE>I’m reachin’ out to<L{> ya<FFF6>because <}><S{> ya because <}>I’ve<L{> got a question...<FFF6>Gimme <}><S{> got<FFF6>a question... Gimme <}>yer best answer.<FFFB><FFF7>What do you think of moonless<FFF6>nights like tonight, human?<FFFD>ラ<FFF5>
+325	0x66f8	pack/talk/KOROU:0xe3e0	If this shows up, it’s a bug.<FFF5>
+326	0x670d	pack/talk/KOROU:0xe420	<FFEC>Why are ya meanderin’ around<FFF6>in my territory?<FFFC> I don’t get it.<FFF5>
+327	0x6742	pack/talk/KOROU:0xe4a0	<FFEB>Oooh! You here to keep me company?<FFFC><FFF6>Perfect!<FFFB><FFF7>Luck is with me today!<FFF6>Why don’t ya tell me a story?<FFF6>Make it interesting!<FFFD>リ<FFF5>
+328	0x67ae	pack/talk/KOROU:0xe598	<FFEE>Ooh! Ooh!<FFFC><FFF6>You mind keepin’ me<L{> company<FFF6>for <}><S{> company for <}>a<L{> bit?<FFFC> Sorry <}><S{> bit?<FFFC><FFF6>Sorry <}>to trouble you.<FFFB><FFF7>I don’t have much to offer at my age,<FFF6>but I’ll negotiate with ya on faith.<FFF5>
+329	0x6828	pack/talk/KOROU:0xe6c0	<FFEE>Heh, you’ve<L{> got<FFF6>a <}><S{> got a <}>nice face for a human.<FFFB><FFF7>Maybe you’ll be a saint<L{> someday!<FFF6>Hohoho!<FFF5><}><S{> someday! Hohoho!<FFF5><}>
+330	0x688d	pack/talk/KOROU:0xe768	<FFED>Hey!<FFFC> Ain’t ya got manners!?<FFFC><FFF6>The first greeting comes<FFF6>from the younger or the inferior!<FFFC><FFFB><FFF7>Wh-Whatchya starin’ at?<FFF6>Cat got yer tongue?<FFFD>ル<FFF5>
+331	0x68ed	pack/talk/KOROU:0xe878	If this shows up, it’s a bug.<FFF5>
+332	0x6901	pack/talk/KOROU:0xe8b8	<FFED>...!<FFFC> So it WAS a human! So<L{> that’s<FFF6>why <}><S{> that’s why <}>I<L{> felt queasy! <}><S{> felt<FFF6>queasy! <}>Now I’m<L{> havin’<FFF6>mixed emotions, no <}><S{> havin’ mixed emotions,<FFF6>no <}>thanks to you!<FFF5>
+333	0x6961	pack/talk/KOROU:0xe988	<FFEB>Hee hee!<FFF6>Another victim ensnared<FFF6>by the moon’s charms!<FFFB><FFF7>You’re already fish in a bucket.<FFF6>If you’ve got last words, I’ll hear ’em.<FFFD>レ<FFF5>
+334	0x69d3	pack/talk/KOROU:0xea98	<FFEB>Take a gander at the moon!<FFF6>It’s such a beautiful night!<FFFB><FFF7>It really makes the spirit flow over,<FFF6>even in an old fogey like me!<FFF5>
+335	0x6a4b	pack/talk/KOROU:0xeb98	<FFEB>Hee hee!<FFFC><FFF6>Another victim ensnared<FFF6>by the moon’s charms!<FFFB><FFF7>I’m feelin’ generous tonight.<FFFC><FFF6>I’ll take somethin’ other than yer life.<FFF1><FFF5>
+336	0x6ac0	pack/talk/KOROU:0xeca0	<FFEC>...Eh?<FFFC><FFF6>I thought you were an<L{> old<FFF6>acquaintance. ...Who <}><S{> old acquaintance.<FFF6>...Who <}>goes there?<FFFD>ロ<FFF5>
+337	0x6af6	pack/talk/KOROU:0xed30	If this shows up, it’s a bug.<FFF5>
+338	0x6b0a	pack/talk/KOROU:0xed70	<FFEB>...Eh?<FFFC><FFF6>I thought you were an<L{> old<FFF6>acquaintance. Seems <}><S{> old acquaintance.<FFF6>Seems <}>I’m mistaken.<FFFB><FFF7>I don’t know<L{> you<FFF6>from <}><S{> you from <}>Adam...<FFFC> Hohoho...<FFF5>
+339	0x6b6d	pack/talk/KOROU:0xee50	Ooh!<FFF6>A life of servitude is a life well lived.<FFF6>You got any wishes?<FFEF>
+340	0x6ba1	pack/talk/KOROU:0xeed8	Argh! I’m blowin’ my top!<FFFC><FFF6>You ready to put up your dukes!?<FFEF>
+341	0x6bd1	pack/talk/KOROU:0xef50	<L{>Yeargh!<FFFC><FFF6>It’s <}><S{>Yeargh!<FFFC> It’s <}>a<L{> demon!<FFFC> Ya <}><S{> demon!<FFFC><FFF6>Ya <}>know what they say,<FFF6>he who runs fights another day!<FFEF>
+342	0x6c00	pack/talk/KOROU:0xeff0	Hohoho!<FFFC><FFF6>Not every day ya laugh this much!<FFEF>
+343	0x6c37	pack/talk/KOROU:0xf048	Still! This is a pain!<FFF6>Let’s pick up the<L{> pace<FFF6>on <}><S{> pace on <}>this negotiation!<FFFB><FFF7>Come on, don’t just<FFF6>stand there all slack-jawed!<FFF6>Hurry up and state yer business!<FFEF>
+344	0x6ca0	pack/talk/KOROU:0xf178	Still!<FFF6>Why you usin’ techniques<FFF6>like that on me...?<FFFB><FFF7>No matter how old I<L{> get, I don’t<FFF6>understand <}><S{> get,<FFF6>I don’t understand <}>humans any better.<FFFC><FFF6>Whaddaya want from me?<FFEF>
+345	0x6d11	pack/talk/KOROU:0xf290	Ho,<L{> ho!<FFF6>That <}><S{> ho! That <}>was hospitality at its finest!<FFF6>You’re as sincere as they come!<FFFB><FFF7>Alright, to show my gratitude,<FFF6>I’ll return the favor!<FFEF>
+346	0x6d89	pack/talk/KOROU:0xf398	What the...!?<FFF6>Why’s an<L{> old-timer like<FFF6>me <}><S{> old-timer<FFF6>like me <}>gotta go through with this!?<FFEF>
+347	0x6dbd	pack/talk/KOROU:0xf428	Your negotiation style’s a<L{> bit<FFF6>immature!<FFFC> Try <}><S{> bit immature!<FFFC><FFF6>Try <}>it again later.<FFEF>
+348	0x6dfe	pack/talk/KOROU:0xf4a8	Hmmm...<FFFC> Maybe if I went with you,<FFF6>I’d have a peaceful life.<FFFC><FFF6>Perhaps it’s time to give over...<FFEF>
+349	0x6e3e	pack/talk/KOROU:0xf568	Well... Hmm... What should I ask for...?<FFFB><FFF7>I guess I’ll take my share<FFF6>of the money. ￥<FFF8>.<FFEF>
+350	0x6e8b	pack/talk/KOROU:0xf618	Ho, ho!<FFFC><FFF6>You make it seem like money<FFF6>really does grow on trees!<FFF5>
+351	0x6eb9	pack/talk/KOROU:0xf698	Empty pockets,<L{> eh?!<FFF6>You’re hopeless...<FFFC> But <}><S{> eh?! You’re hopeless...<FFFC><FFF6>But <}>I<L{> guess<FFF6>ya <}><S{> guess ya <}>can’t<L{> give what <}><S{> give<FFF6>what <}>ya ain’t got...<FFF5>
+352	0x6ef4	pack/talk/KOROU:0xf748	Hey! You’re comin’ up short!<FFFC><FFF6>Lyin’ never pays!<FFF5>
+353	0x6f22	pack/talk/KOROU:0xf7a8	What a waste...<FFFC><FFF6>Yer supposed to be savin’<FFF6>money at your age, ain’t ya?<FFF5>
+354	0x6f43	pack/talk/KOROU:0xf838	Nobody likes emptyin’ their wallet...<FFFC><FFF6>But ya still gotta do it!<FFF5>
+355	0x6f77	pack/talk/KOROU:0xf8b8	Let’s see...<FFFC><FFF6>I think I’ll take a delicious life stone.<FFFC><FFF6>One oughta do.<FFEF>
+356	0x6faa	pack/talk/KOROU:0xf948	Ho ho!<FFFC><FFF6>You’re well-behaved for your age.<FFF5>
+357	0x6fce	pack/talk/KOROU:0xf9a0	You ain’t got the goods!?<FFFC><FFF6>Anyone who’d negotiate without life<FFF6>stones is a real terror...<FFF5>
+358	0x700e	pack/talk/KOROU:0xfa58	Hey! You’re comin’ up short!<FFFC><FFF6>Lyin’ never pays!<FFF5>
+359	0x703b	pack/talk/KOROU:0xfab8	You don’t get it, do ya?<FFFC><FFF6>There ain’t no door a life<L{> stone<FFF6>can’t open. Ya <}><S{> stone can’t open.<FFF6>Ya <}>best keep that in mind.<FFF5>
+360	0x7074	pack/talk/KOROU:0xfb80	Nobody likes emptyin’ their wallet...<FFFC><FFF6>But ya still gotta do it!<FFF5>
+361	0x70a8	pack/talk/KOROU:0xfc00	I ain’t no profiteer, but I’d like<FFF6>a <FFF4> very much.<FFEF>
+362	0x70ce	pack/talk/KOROU:0xfc68	You’ll give it to me?<FFFC><FFF6>I guess anything’s worth a<L{> shot.<FFF6>Hohoho.<FFF5><}><S{> shot. Hohoho.<FFF5><}>
 363	0x70ff	pack/talk/KOROU:0xfce8	It was my mistake.<FFF5>
-364	0x710f	pack/talk/KOROU:0xfd10	Ho ho ho!<FFF6>I was just tryin' to be a bit ambitious.<FFF6>Don't pay this old man no heed.<FFF5>
-365	0x7145	pack/talk/KOROU:0xfdb8	Argh! What a waste!<FFF6>You tryin' to make a mockery<FFF6>of livin' within your means!?<FFF5>
-366	0x7178	pack/talk/KOROU:0xfe58	Lemme see... I'll take food over<FFF6>flowers any day. Gimme some life.<FFEF>
-367	0x71ad	pack/talk/KOROU:0xfee0	Ho ho! How delicious! I better not<FFF6>over-eat. Gives me indigestion!<FFF5>
-368	0x71e1	pack/talk/KOROU:0xff68	Eh? You feelin' alright? You gotta<FFF6>take better care of yourself.<FFF5>
-369	0x720d	pack/talk/KOROU:0xfff0	Argh! Ya won't let me take any!?<FFF6>You shouldn't be so finicky!<FFF5>
-370	0x723c	pack/talk/KOROU:0x10070	Really!? Well, I understand<FFF6>the need to be modest!<FFF5>
-371	0x7269	pack/talk/KOROU:0x100d8	What's that!? Ya say there're things<FFF6>even I can't accomplish? Intriguing!<FFF5>
-372	0x729e	pack/talk/KOROU:0x10170	I'm old. I shouldn't strain myself...<FFF5>
-373	0x72c5	pack/talk/KOROU:0x101c0	That's right! Gimme the details,<FFF6>and I'll give ya my ear.<FFF5>
-374	0x72f6	pack/talk/KOROU:0x10238	Hohoho, you've got some fine pickins.<FFF6>Maybe it's worth complyin' with you...<FFF5>
-375	0x732d	pack/talk/KOROU:0x102d8	Hey! Ain't no worse negotiation<FFF6>tactic than bribery!<FFF5>
-376	0x735c	pack/talk/KOROU:0x10348	What ya gettin' all excited about!?<FFF6>I never said I'd give ya my spell card!<FFF5>
-377	0x7391	pack/talk/KOROU:0x103e0	Heh, I'm glad yer honest.<FFF5>
-378	0x73b0	pack/talk/KOROU:0x10418	Eh? You don't need it?<FFF6>Well yer no fun...<FFF5>
-379	0x73d5	pack/talk/KOROU:0x10470	Argh! You don't get it!<FFF6>That won't effect me in the slightest!<FFF5>
-380	0x7402	pack/talk/KOROU:0x104f0	Ah, you haven't taken<FFF6>the first step toward spirituality.<FFF6>Not that I blame ya at your age.<FFF5>
-381	0x7432	pack/talk/KOROU:0x105a8	Wh-Whatchya plannin' on rippin'!?<FFF6>I don't understand you<FFF6>scary humans at all...<FFF5>
-382	0x746d	pack/talk/KOROU:0x10648	*nod* You're a good, earnest lad.<FFF5>
+364	0x710f	pack/talk/KOROU:0xfd10	Ho ho ho!<FFF6>I was just tryin’ to be a bit ambitious.<FFFC><FFF6>Don’t pay this old man no heed.<FFF5>
+365	0x7145	pack/talk/KOROU:0xfdb8	Argh! What a waste!<FFFC><FFF6>You tryin’ to make a mockery<FFF6>of livin’ within your means!?<FFF5>
+366	0x7178	pack/talk/KOROU:0xfe58	Lemme see...<FFFC><FFF6>I’ll take food over flowers any day.<FFF6>Gimme some life.<FFEF>
+367	0x71ad	pack/talk/KOROU:0xfee0	Ho ho! How delicious!<FFF6>I better not<L{> over-eat.<FFF6>Gives <}><S{> over-eat. Gives <}>me indigestion!<FFF5>
+368	0x71e1	pack/talk/KOROU:0xff68	Eh? You feelin’ alright?<FFF6>You gotta take<L{> better<FFF6>care <}><S{> better care <}>of yourself.<FFF5>
+369	0x720d	pack/talk/KOROU:0xfff0	Argh! Ya won’t let me take any!?<FFFC><FFF6>You shouldn’t be so finicky!<FFF5>
+370	0x723c	pack/talk/KOROU:0x10070	Really!?<FFFC><FFF6>Well, I<L{> understand<FFF6>the <}><S{> understand the <}>need to be modest!<FFF5>
+371	0x7269	pack/talk/KOROU:0x100d8	What’s that!?<FFF6>Ya say there’re things even<FFF6>I can’t accomplish?<FFFC> Intriguing!<FFF5>
+372	0x729e	pack/talk/KOROU:0x10170	I’m old.<FFFC><FFF6>I shouldn’t strain myself...<FFF5>
+373	0x72c5	pack/talk/KOROU:0x101c0	That’s right!<FFFC><FFF6>Gimme the<L{> details,<FFF6>and <}><S{> details, and <}>I’ll give ya my ear.<FFF5>
+374	0x72f6	pack/talk/KOROU:0x10238	Hohoho, you’ve got some fine pickins.<FFF6>Maybe it’s worth complyin’ with you...<FFF5>
+375	0x732d	pack/talk/KOROU:0x102d8	Hey!<FFFC><FFF6>Ain’t no worse<L{> negotiation<FFF6>tactic than <}><S{> negotiation tactic<FFF6>than <}>bribery!<FFF5>
+376	0x735c	pack/talk/KOROU:0x10348	What ya gettin’ all excited about!?<FFFC><FFF6>I never said I’d give ya my spell card!<FFF5>
+377	0x7391	pack/talk/KOROU:0x103e0	Heh, I’m glad yer honest.<FFF5>
+378	0x73b0	pack/talk/KOROU:0x10418	Eh? You don’t need<L{> it?<FFF6>Well <}><S{> it? Well <}>yer no fun...<FFF5>
+379	0x73d5	pack/talk/KOROU:0x10470	Argh!<FFFC><FFF6>You don’t get it!<FFFC><FFF6>That won’t effect me in the slightest!<FFF5>
+380	0x7402	pack/talk/KOROU:0x104f0	Ah, you haven’t<L{> taken the <}><S{> taken<FFF6>the <}>first<L{> step<FFF6>toward <}><S{> step toward <}>spirituality.<FFFC><FFF6>Not that I blame ya at your age.<FFF5>
+381	0x7432	pack/talk/KOROU:0x105a8	Wh-Whatchya plannin’ on rippin’!?<FFFC><FFF6>I don’t understand you<FFF6>scary humans at all...<FFF5>
+382	0x746d	pack/talk/KOROU:0x10648	*nod* You’re a good, earnest lad.<FFF5>
 383	0x7493	pack/talk/KOROU:0x10690	Argh! Fine then!<FFF5>
-384	0x74aa	pack/talk/KOROU:0x106b8	Eh? I'm losin' interest here.<FFF5>
-385	0x74c3	pack/talk/KOROU:0x106f8	If I'm just a number<FFF6>for yer body count,<FFF6>I ain't goin' down without a fight!<FFF5>
-386	0x74f6	pack/talk/KOROU:0x10798	Ugh... What do you think<FFF6>you're doin'? You're scarin'<FFF6>the daylights outta me...<FFF5>
+384	0x74aa	pack/talk/KOROU:0x106b8	Eh?<FFFC><FFF6>I’m losin’ interest here.<FFF5>
+385	0x74c3	pack/talk/KOROU:0x106f8	If I’m just a<L{> number<FFF6>for <}><S{> number for <}>yer body count,<FFF6>I ain’t goin’ down without a fight!<FFF5>
+386	0x74f6	pack/talk/KOROU:0x10798	Ugh...<FFFC> What do you<L{> think<FFF6>you’re doin’?<FFFC> You’re scarin’<FFF6>the <}><S{> think you’re doin’?<FFFC><FFF6>You’re scarin’ the <}>daylights outta me...<FFF5>
 387	0x7528	pack/talk/KOROU:0x10838	Oh, that was a joke? Ya got me!<FFF6>You looked so real. Hohoho.<FFF5>
 388	0x755e	pack/talk/KOROU:0x108b0	I thought I was retired,<FFF6>but duty calls me yet again...*sigh*<FFF5>
-389	0x7596	pack/talk/KOROU:0x10930	You plannin' on cookin' me?<FFF6>Demons ain't so edible.<FFF6>So what're you planning...?<FFF5>
-390	0x75d3	pack/talk/KOROU:0x109d0	Ho, ho! You want to hear<FFF6>the ramblings of an old man?<FFF6>Sure! I'll indulge ya.<FFF5>
-391	0x7605	pack/talk/KOROU:0x10a70	Oh... You knew... Well roll me<FFF6>in corn flour and call me dinner.<FFF6>I got upset over nothin'.<FFF5>
-392	0x7630	pack/talk/KOROU:0x10b28	What!? I ain't protected by the law!?<FFF5>
-393	0x765d	pack/talk/KOROU:0x10b78	Argh! Discrimination is evil!<FFF6>Especially like that!<FFF5>
-394	0x7686	pack/talk/KOROU:0x10be0	Ho, ho! Sounds like I read<FFF6>into it too much. My apologies.<FFF5>
-395	0x76b9	pack/talk/KOROU:0x10c58	Is that so? It's fine then.<FFF5>
-396	0x76d3	pack/talk/KOROU:0x10c90	Don't ask questions<FFF6>of a closed mouth...<FFF6>The world's full of scary things...<FFF5>
-397	0x7706	pack/talk/KOROU:0x10d30	*sigh* I ain't dealin' with a child<FFF6>that can't understand me.<FFF5>
-398	0x7731	pack/talk/KOROU:0x10db0	You could be singin' a cappella for all<FFF6>I care. It don't change your rhythm!<FFF5>
-399	0x775c	pack/talk/KOROU:0x10e50	Hrm... That one wasn't too bad.<FFF6>Kinda soothing.<FFF5>
-400	0x778c	pack/talk/KOROU:0x10eb0	On top of that,<FFF6>you've got a short fuse.<FFF6>...I can't handle all this malarky.<FFF5>
-401	0x77bc	pack/talk/KOROU:0x10f50	So ya did lose your marbles...<FFF6>Poor thing...<FFF5>
-402	0x77e2	pack/talk/KOROU:0x10fb0	Hey! Smile all you want,<FFF6>but it's insincere. And your<FFF6>horrible voice is still horrible!<FFF5>
-403	0x780c	pack/talk/KOROU:0x11060	Hoho! That's good, that's good.<FFF5>
-404	0x7828	pack/talk/KOROU:0x110a0	Hmph! It's rough dealin'<FFF6>with simpletons who get<FFF6>fixated on one thing!<FFF5>
-405	0x784e	pack/talk/KOROU:0x11130	Eh? You're done already?<FFF6>That's a shame.<FFF5>
-406	0x7874	pack/talk/KOROU:0x11188	Hmph... Such obvious brown-nosin'...<FFF5>
-407	0x788d	pack/talk/KOROU:0x111d8	I'm sorry to say it,<FFF6>but I think I'm too old to help you.<FFF5>
-408	0x78c2	pack/talk/KOROU:0x11250	Hohoho, so you let the wind carry you<FFF6>where it will, eh? That's interesting.<FFF5>
+389	0x7596	pack/talk/KOROU:0x10930	You plannin’ on cookin’ me?<FFF6>Demons ain’t so edible.<FFF6>So what’re you planning...?<FFF5>
+390	0x75d3	pack/talk/KOROU:0x109d0	Ho, ho!<FFF6>You want to hear the ramblings<FFF6>of an old man? Sure! I’ll indulge ya.<FFF5>
+391	0x7605	pack/talk/KOROU:0x10a70	<L{>Oh...<FFFC> You <}><S{>Oh...<FFFC><FFF6>You <}>knew... Well roll<L{> me<FFF6>in <}><S{> me in <}>corn flour<L{> and call <}><S{> and<FFF6>call <}>me<L{> dinner.<FFF6>I <}><S{> dinner. I <}>got upset over nothin’.<FFF5>
+392	0x7630	pack/talk/KOROU:0x10b28	What!?<FFFC><FFF6>I ain’t protected by the law!?<FFF5>
+393	0x765d	pack/talk/KOROU:0x10b78	Argh!<FFFC><FFF6>Discrimination is<L{> evil!<FFF6>Especially <}><S{> evil! Especially <}>like that!<FFF5>
+394	0x7686	pack/talk/KOROU:0x10be0	Ho,<L{> ho!<FFF6>Sounds <}><S{> ho! Sounds <}>like I read into it too much.<FFFC><FFF6>My apologies.<FFF5>
+395	0x76b9	pack/talk/KOROU:0x10c58	Is that so?<FFFC><FFF6>It’s fine then.<FFF5>
+396	0x76d3	pack/talk/KOROU:0x10c90	Don’t ask<L{> questions<FFF6>of <}><S{> questions of <}>a closed mouth...<FFFC><FFF6>The world’s full of scary things...<FFF5>
+397	0x7706	pack/talk/KOROU:0x10d30	*sigh* I ain’t dealin’ with a child<FFF6>that can’t understand me.<FFF5>
+398	0x7731	pack/talk/KOROU:0x10db0	You could be singin’ a cappella for all<FFF6>I care. It don’t change your rhythm!<FFF5>
+399	0x775c	pack/talk/KOROU:0x10e50	Hrm... That one wasn’t too bad.<FFF6>Kinda soothing.<FFF5>
+400	0x778c	pack/talk/KOROU:0x10eb0	On top of<L{> that,<FFF6>you’ve <}><S{> that, you’ve <}>got a short fuse.<FFFC><FFF6>...I can’t handle all this malarky.<FFF5>
+401	0x77bc	pack/talk/KOROU:0x10f50	So ya did lose your<L{> marbles...<FFF6>Poor <}><S{> marbles... Poor <}>thing...<FFF5>
+402	0x77e2	pack/talk/KOROU:0x10fb0	<L{>Hey!<FFFC> Smile <}><S{>Hey!<FFFC><FFF6>Smile <}>all you<L{> want,<FFF6>but <}><S{> want, but <}>it’s<L{> insincere. And your<FFF6>horrible <}><S{> insincere.<FFF6>And your horrible <}>voice is still horrible!<FFF5>
+403	0x780c	pack/talk/KOROU:0x11060	Hoho! That’s good, that’s good.<FFF5>
+404	0x7828	pack/talk/KOROU:0x110a0	Hmph!<FFFC><FFF6>It’s rough dealin’ with simpletons<FFF6>who get fixated on one thing!<FFF5>
+405	0x784e	pack/talk/KOROU:0x11130	Eh?<FFFC><FFF6>You’re done already? That’s a shame.<FFF5>
+406	0x7874	pack/talk/KOROU:0x11188	Hmph...<FFFC><FFF6>Such obvious brown-nosin’...<FFF5>
+407	0x788d	pack/talk/KOROU:0x111d8	I’m sorry to say it,<FFF6>but I think I’m too old to help you.<FFF5>
+408	0x78c2	pack/talk/KOROU:0x11250	Hohoho, so you let the wind carry you<FFF6>where it will, eh? That’s interesting.<FFF5>
 409	0x78f1	pack/talk/KOROU:0x112f0	So now that ya know,<FFF6>you should back out while ya can.<FFF5>
-410	0x790a	pack/talk/KOROU:0x11360	Hmm...? You speak your mind,<FFF6>don't ya?<FFFB><FFF7>But still, you're here to negotiate<FFF6>with me, aren't ya? Bet I'm right.<FFF5>
-411	0x7961	pack/talk/KOROU:0x11440	Argh!<FFF6>What an unruly whippersnapper!<FFF6>Time to bring out the wooden spoon!<FFF5>
-412	0x7991	pack/talk/KOROU:0x114d8	Ho, ho! Missy, you know just<FFF6>how to flatter a demon!<FFF5>
-413	0x79c2	pack/talk/KOROU:0x11548	What...? That's all I am...?<FFF5>
-414	0x79dd	pack/talk/KOROU:0x11588	Hey! If I'm less than straw, then who<FFF6>are you to come beggin' for favors!?<FFF5>
-415	0x7a11	pack/talk/KOROU:0x11620	Are you a fool!? I was talkin'<FFF6>about the rarest kind of beauty!<FFF5>
-416	0x7a3d	pack/talk/KOROU:0x116a0	Hohoho. It's a good thing you're cute,<FFF6>'cause you're downright dumb.<FFF5>
-417	0x7a72	pack/talk/KOROU:0x11730	Ho, ho! Figuring out the meaning<FFF6>of my words takes skill.<FFF5>
-418	0x7aa4	pack/talk/KOROU:0x117a8	What!? So what if it was sarcasm,<FFF6>no need to get all blustered over it!<FFF5>
-419	0x7ad1	pack/talk/KOROU:0x11838	Oh... That all? Well roll me in corn<FFF6>flour and call me dinner.<FFF6>I got upset over nothin'.<FFF5>
-420	0x7b04	pack/talk/KOROU:0x118f0	Hm, you won't do nothin'?<FFF5>
-421	0x7b18	pack/talk/KOROU:0x11928	I can't trust you just like that.<FFF6>You must be up to somethin'...<FFF5>
-422	0x7b42	pack/talk/KOROU:0x119b0	Wh-What are you plannin' to eat?<FFF6>You wouldn't feast on my soul,<FFF6>would ya...?<FFF5>
-423	0x7b76	pack/talk/KOROU:0x11a50	Hohoho! I'm happy to hear that.<FFF5>
-424	0x7b97	pack/talk/KOROU:0x11a90	Argh! It's a matter of fact!<FFF6>Stop your jibberjabberin'!<FFF5>
-425	0x7bc1	pack/talk/KOROU:0x11b00	Ho, ho! We're like peas in a pod.<FFF5>
-426	0x7be7	pack/talk/KOROU:0x11b48	Oh, you're busy? So much<FFF6>for takin' you some place nice...<FFF5>
-427	0x7c17	pack/talk/KOROU:0x11bc0	You're so busy that you're beggin'<FFF6>me... The human world must be tough...<FFF5>
-428	0x7c4b	pack/talk/KOROU:0x11c58	You got nerves of steel or somethin'?<FFF6>Modern women give me the willies...<FFF5>
-429	0x7c6c	pack/talk/KOROU:0x11cf0	...Then it's okay.<FFF5>
-430	0x7c80	pack/talk/KOROU:0x11d18	Argh! What a rude young lady!<FFF6>I've had it up to here!<FFF5>
-431	0x7caf	pack/talk/KOROU:0x11d88	Hohoho! I'll take anything I can get.<FFF5>
-432	0x7cde	pack/talk/KOROU:0x11dd8	Argh! It's got a different meaning!<FFF6>Back to the books with you!<FFF5>
-433	0x7d0b	pack/talk/KOROU:0x11e58	That's right... But with a demeanor<FFF6>like that... This is pretty fishy...<FFF5>
-434	0x7d41	pack/talk/KOROU:0x11ef0	That ain't quite right.<FFF5>
-435	0x7d4e	pack/talk/KOROU:0x11f20	Ho, ho! You lost your memory?<FFF6>Well, start lookin' for it.<FFF5>
-436	0x7d82	pack/talk/KOROU:0x11f98	Hey! Why'd you stop!?<FFF6>Couldn't keep up with your lies!?<FFF5>
-437	0x7db0	pack/talk/KOROU:0x12008	Hmm... It IS up to me. I apologize.<FFF5>
-438	0x7de1	pack/talk/KOROU:0x12050	That was rude to the deer?<FFF6>Well, then I apologize to 'em.<FFF5>
-439	0x7e01	pack/talk/KOROU:0x120c8	Hohohoho, that's right.<FFF5>
-440	0x7e1d	pack/talk/KOROU:0x120f8	You're a little too obedient.<FFF6>I think this is goin' a little too well...<FFF5>
-441	0x7e4d	pack/talk/KOROU:0x12190	Oh, so that WAS a lie.<FFF6>In the end, I'm just an old fogey...<FFF5>
+410	0x790a	pack/talk/KOROU:0x11360	<L{>Hmm...?<FFFC><FFF6>You <}><S{>Hmm...?<FFFC> You <}>speak your mind, don’t ya?<FFFB><FFF7>But still, you’re here to<L{> negotiate<FFF6>with me, aren’t <}><S{> negotiate with me,<FFF6>aren’t <}>ya?<FFFC> Bet I’m right.<FFF5>
+411	0x7961	pack/talk/KOROU:0x11440	<L{>Argh!<FFF6>What <}><S{>Argh! What <}>an unruly whippersnapper!<FFFC><FFF6>Time to bring out the wooden spoon!<FFF5>
+412	0x7991	pack/talk/KOROU:0x114d8	Ho, ho!<FFFC><FFF6>Missy, you know just<FFF6>how to flatter a demon!<FFF5>
+413	0x79c2	pack/talk/KOROU:0x11548	What...?<FFFC><FFF6>That’s all I am...?<FFF5>
+414	0x79dd	pack/talk/KOROU:0x11588	Hey!<FFFC><FFF6>If I’m less than straw, then who are<FFF6>you to come beggin’ for favors!?<FFF5>
+415	0x7a11	pack/talk/KOROU:0x11620	Are you a fool!?<FFFC><FFF6>I was talkin’ about<FFF6>the rarest kind of beauty!<FFF5>
+416	0x7a3d	pack/talk/KOROU:0x116a0	Hohoho.<FFFC><FFF6>It’s a good thing you’re cute,<FFF6>’cause you’re downright dumb.<FFF5>
+417	0x7a72	pack/talk/KOROU:0x11730	Ho, ho!<FFF6>Figuring out the meaning<FFF6>of my words takes skill.<FFF5>
+418	0x7aa4	pack/talk/KOROU:0x117a8	What!?<FFFC> So what if it was sarcasm,<FFF6>no need to get all blustered over it!<FFF5>
+419	0x7ad1	pack/talk/KOROU:0x11838	Oh... That all?<FFF6>Well roll me in corn flour<L{> and call<FFF6>me <}><S{> and<FFF6>call me <}>dinner. I got upset over nothin’.<FFF5>
+420	0x7b04	pack/talk/KOROU:0x118f0	Hm, you won’t do nothin’?<FFF5>
+421	0x7b18	pack/talk/KOROU:0x11928	I can’t trust you just like that.<FFFC><FFF6>You must be up to somethin’...<FFF5>
+422	0x7b42	pack/talk/KOROU:0x119b0	Wh-What are you plannin’ to eat?<FFF6>You wouldn’t feast on my<L{> soul,<FFF6>would <}><S{> soul, would <}>ya...?<FFF5>
+423	0x7b76	pack/talk/KOROU:0x11a50	Hohoho! I’m happy to hear that.<FFF5>
+424	0x7b97	pack/talk/KOROU:0x11a90	Argh! It’s a matter of fact!<FFFC><FFF6>Stop your jibberjabberin’!<FFF5>
+425	0x7bc1	pack/talk/KOROU:0x11b00	Ho, ho! We’re like peas in a pod.<FFF5>
+426	0x7be7	pack/talk/KOROU:0x11b48	Oh, you’re busy?<FFFC><FFF6>So much for<L{> takin’<FFF6>you <}><S{> takin’ you <}>some place nice...<FFF5>
+427	0x7c17	pack/talk/KOROU:0x11bc0	You’re so busy<L{> that<FFF6>you’re <}><S{> that you’re <}>beggin’ me...<FFFC><FFF6>The human world must be tough...<FFF5>
+428	0x7c4b	pack/talk/KOROU:0x11c58	You got nerves of steel or somethin’?<FFFC><FFF6>Modern women give me the willies...<FFF5>
+429	0x7c6c	pack/talk/KOROU:0x11cf0	...Then it’s okay.<FFF5>
+430	0x7c80	pack/talk/KOROU:0x11d18	Argh! What a rude young lady!<FFFC><FFF6>I’ve had it up to here!<FFF5>
+431	0x7caf	pack/talk/KOROU:0x11d88	Hohoho! I’ll take anything I can get.<FFF5>
+432	0x7cde	pack/talk/KOROU:0x11dd8	Argh! It’s got a different meaning!<FFFC><FFF6>Back to the books with you!<FFF5>
+433	0x7d0b	pack/talk/KOROU:0x11e58	That’s right... But with a demeanor<FFF6>like that... This is pretty fishy...<FFF5>
+434	0x7d41	pack/talk/KOROU:0x11ef0	That ain’t quite right.<FFF5>
+435	0x7d4e	pack/talk/KOROU:0x11f20	Ho, ho!<FFFC> You lost your memory?<FFFC><FFF6>Well, start lookin’ for it.<FFF5>
+436	0x7d82	pack/talk/KOROU:0x11f98	Hey!<FFFC> Why’d you stop!?<FFF6>Couldn’t keep up with your lies!?<FFF5>
+437	0x7db0	pack/talk/KOROU:0x12008	Hmm...<FFFC><FFF6>It IS up to me.<FFFC><FFF6>I apologize.<FFF5>
+438	0x7de1	pack/talk/KOROU:0x12050	That was rude to the deer?<FFFC><FFF6>Well, then I apologize to ’em.<FFF5>
+439	0x7e01	pack/talk/KOROU:0x120c8	Hohohoho, that’s right.<FFF5>
+440	0x7e1d	pack/talk/KOROU:0x120f8	You’re a little too obedient.<FFFC><FFF6>I think this is goin’ a little too well...<FFF5>
+441	0x7e4d	pack/talk/KOROU:0x12190	Oh, so that WAS a lie.<FFFC><FFF6>In the end, I’m just an old fogey...<FFF5>
 442	0x7e7a	pack/talk/KOROU:0x12208	Yer right.<FFF5>
-443	0x7e8c	pack/talk/KOROU:0x12220	...That ain't good...<FFF5>
-444	0x7ea2	pack/talk/KOROU:0x12250	Argh! Sure, you're fine with it,<FFF6>but I'm the one who's done for!<FFF5>
-445	0x7ecb	pack/talk/KOROU:0x122d8	Oh, you ain't half bad after all.<FFF6>Obedient kids are the best kind.<FFF5>
-446	0x7f05	pack/talk/KOROU:0x12360	I don't care much for kids who ignore<FFF6>the teachings of their elders.<FFF5>
-447	0x7f2f	pack/talk/KOROU:0x123f0	You don't get it! I ain't gonna bother<FFF6>with kids who treat the words<FFF6>of the elderly like trash!<FFF5>
-448	0x7f5f	pack/talk/KOROU:0x124b0	...Er, I wasn't expectin'<FFF6>a straight answer...<FFF5>
-449	0x7f82	pack/talk/KOROU:0x12510	...You're fine with men!?<FFF6>Well, in my day, that wouldn't fly...<FFF5>
-450	0x7fb4	pack/talk/KOROU:0x12590	Exactly! I agree!<FFF5>
-451	0x7fe2	pack/talk/KOROU:0x125b8	Ho, ho! That joke's a classic.<FFF6>You're quite the entertainer!<FFF5>
-452	0x800e	pack/talk/KOROU:0x12638	You ain't makin' sense!<FFF6>Who're you callin' Mrs. Kawasaki!?<FFF5>
-453	0x8033	pack/talk/KOROU:0x126b0	Not sure I get that joke...<FFF6>I think you told it wrong...<FFF5>
-454	0x805b	pack/talk/KOROU:0x12728	Wha...? What's that?<FFF5>
-455	0x8072	pack/talk/KOROU:0x12758	What're you sayin'!? If that's really<FFF6>what ya want, I'll turn ya red!<FFF5>
-456	0x80a8	pack/talk/KOROU:0x127e8	Unfortunately, it doesn't<FFF6>turn green very easily...<FFF5>
-457	0x80d0	pack/talk/KOROU:0x12850	Don't... hoho! Say... That...!<FFF6>Hoho! Stop... hoho! Me... Hohohoho!<FFF5>
-458	0x8103	pack/talk/KOROU:0x128d8	Urgh! Rah! My laughing stopped!<FFF5>
-459	0x8125	pack/talk/KOROU:0x12918	I'm in pain and you're joking around!?<FFF6>You inconsiderate good-for-nothin'!<FFF5>
-460	0x8157	pack/talk/KOROU:0x129b0	Ack! I can't do anything<FFF6>shameful from now on!<FFF5>
-461	0x817e	pack/talk/KOROU:0x12a10	...That so? Fine by me, as long as we<FFF6>aren't talking about my weakness...<FFF5>
-462	0x81a8	pack/talk/KOROU:0x12aa8	...Don't say tragic things like that...<FFF5>
-463	0x81cc	pack/talk/KOROU:0x12af8	No! That's not good!<FFF6>I'll fix ya right up!<FFF5>
+443	0x7e8c	pack/talk/KOROU:0x12220	...That ain’t good...<FFF5>
+444	0x7ea2	pack/talk/KOROU:0x12250	Argh!<FFFC><FFF6>Sure, you’re fine with it,<FFF6>but I’m the one who’s done for!<FFF5>
+445	0x7ecb	pack/talk/KOROU:0x122d8	Oh, you ain’t half bad after all.<FFFC><FFF6>Obedient kids are the best kind.<FFF5>
+446	0x7f05	pack/talk/KOROU:0x12360	I don’t care much for kids who ignore<FFF6>the teachings of their elders.<FFF5>
+447	0x7f2f	pack/talk/KOROU:0x123f0	You don’t get<L{> it!<FFFC> I <}><S{> it!<FFFC><FFF6>I <}>ain’t gonna<L{> bother<FFF6>with <}><S{> bother with <}>kids who<L{> treat the words<FFF6>of <}><S{> treat<FFF6>the words of <}>the elderly like trash!<FFF5>
+448	0x7f5f	pack/talk/KOROU:0x124b0	...Er, I wasn’t<L{> expectin’<FFF6>a <}><S{> expectin’ a <}>straight answer...<FFF5>
+449	0x7f82	pack/talk/KOROU:0x12510	...You’re fine with men!?<FFF6>Well, in my day, that wouldn’t fly...<FFF5>
+450	0x7fb4	pack/talk/KOROU:0x12590	Exactly!<FFFC><FFF6>I agree!<FFF5>
+451	0x7fe2	pack/talk/KOROU:0x125b8	Ho, ho! That joke’s a classic.<FFFC><FFF6>You’re quite the entertainer!<FFF5>
+452	0x800e	pack/talk/KOROU:0x12638	You ain’t makin’ sense!<FFFC><FFF6>Who’re you callin’ Mrs. Kawasaki!?<FFF5>
+453	0x8033	pack/talk/KOROU:0x126b0	Not sure I get that joke...<FFFC><FFF6>I think you told it wrong...<FFF5>
+454	0x805b	pack/talk/KOROU:0x12728	Wha...?<FFFC><FFF6>What’s that?<FFF5>
+455	0x8072	pack/talk/KOROU:0x12758	What’re you sayin’!?<FFFC><FFF6>If that’s really what ya want,<FFF6>I’ll turn ya red!<FFF5>
+456	0x80a8	pack/talk/KOROU:0x127e8	Unfortunately, it doesn’t<FFF6>turn green very easily...<FFF5>
+457	0x80d0	pack/talk/KOROU:0x12850	Don’t... hoho! Say... That...!<FFF6>Hoho! Stop... hoho! Me... Hohohoho!<FFF5>
+458	0x8103	pack/talk/KOROU:0x128d8	Urgh!<FFFC><FFF6>Rah!<FFFC><FFF6>My laughing stopped!<FFF5>
+459	0x8125	pack/talk/KOROU:0x12918	I’m in pain and you’re joking around!?<FFFC><FFF6>You inconsiderate good-for-nothin’!<FFF5>
+460	0x8157	pack/talk/KOROU:0x129b0	Ack!<FFFC><FFF6>I can’t do<L{> anything<FFF6>shameful <}><S{> anything shameful <}>from now on!<FFF5>
+461	0x817e	pack/talk/KOROU:0x12a10	...That so?<FFFC><FFF6>Fine by me, as long as we aren’t<FFF6>talking about my weakness...<FFF5>
+462	0x81a8	pack/talk/KOROU:0x12aa8	...Don’t say tragic things like that...<FFF5>
+463	0x81cc	pack/talk/KOROU:0x12af8	No! That’s not good!<FFFC><FFF6>I’ll fix ya right up!<FFF5>
 464	0x81f7	pack/talk/KOROU:0x12b50	True, but I still prefer a hot bath.<FFF5>
 465	0x8226	pack/talk/KOROU:0x12ba0	No, you are.<FFF6>You need to be more aware of things!<FFF5>
-466	0x8257	pack/talk/KOROU:0x12c08	Ho, ho! You know how to play<FFF6>the relaxed card!<FFF5>
-467	0x827e	pack/talk/KOROU:0x12c68	Hey! You can't have that kinda<FFF6>attitude if you're gonna carry<FFF6>the weight of the world someday!<FFF5>
+466	0x8257	pack/talk/KOROU:0x12c08	Ho, ho!<FFFC><FFF6>You know how to<L{> play<FFF6>the <}><S{> play the <}>relaxed card!<FFF5>
+467	0x827e	pack/talk/KOROU:0x12c68	Hey!<FFFC> You can’t have that kinda<FFF6>attitude if you’re gonna carry<FFF6>the weight of the world someday!<FFF5>
 468	0x82b0	pack/talk/KOROU:0x12d28	...Why ya gotta be so violent<FFF6>toward an old man...?<FFF5>
-469	0x82dc	pack/talk/KOROU:0x12d90	Urgh... Blast, I'm all shook up.<FFF6>You got me there.<FFF5>
-470	0x830d	pack/talk/KOROU:0x12df8	Argh! Give it your best shot!<FFF5>
-471	0x832e	pack/talk/KOROU:0x12e38	...Don't say that. Pull 'em...<FFF5>
-472	0x8352	pack/talk/KOROU:0x12e78	You really want the hair on my ass!?<FFF6>Whatchya gonna do, sniff 'em...?<FFF5>
-473	0x8384	pack/talk/KOROU:0x12f08	You'll pull 'em out over my dead body!<FFF5>
+469	0x82dc	pack/talk/KOROU:0x12d90	Urgh...<FFFC><FFF6>Blast, I’m all shook<L{> up.<FFF6>You <}><S{> up. You <}>got me there.<FFF5>
+470	0x830d	pack/talk/KOROU:0x12df8	Argh!<FFFC><FFF6>Give it your best shot!<FFF5>
+471	0x832e	pack/talk/KOROU:0x12e38	...Don’t say that.<FFFC><FFF6>Pull ’em...<FFF5>
+472	0x8352	pack/talk/KOROU:0x12e78	You really want the hair on my ass!?<FFFC><FFF6>Whatchya gonna do, sniff ’em...?<FFF5>
+473	0x8384	pack/talk/KOROU:0x12f08	You’ll pull ’em out over my dead body!<FFF5>
 474	0x83aa	pack/talk/KOROU:0x12f58	No, no. Livers are better as sashimi.<FFF5>
-475	0x83dc	pack/talk/KOROU:0x12fa8	If you cool off any more than this,<FFF6>I'll lose what little vigor I've got...<FFF5>
-476	0x840b	pack/talk/KOROU:0x13040	Why'd you rub!?<FFF5>
-477	0x841c	pack/talk/KOROU:0x13060	Oh, well if you ain't got any,<FFF6>then I don't need it.<FFF5>
-478	0x8436	pack/talk/KOROU:0x130d0	Argh! What's with that attitude!?<FFF6>The customer is always right!<FFF5>
-479	0x8468	pack/talk/KOROU:0x13150	Who's... that...?<FFF5>
-480	0x847d	pack/talk/KOROU:0x13178	Nothin' quite like<FFF6>sittin' at the kotatsu<FFF6>and snackin' on tangerines...<FFF5>
-481	0x849a	pack/talk/KOROU:0x13208	I ain't good with animals,<FFF6>but I've got a soft spot for kitties.<FFF5>
+475	0x83dc	pack/talk/KOROU:0x12fa8	If you cool off any more than this,<FFF6>I’ll lose what little vigor I’ve got...<FFF5>
+476	0x840b	pack/talk/KOROU:0x13040	Why’d you rub!?<FFF5>
+477	0x841c	pack/talk/KOROU:0x13060	Oh, well if you ain’t got any,<FFF6>then I don’t need it.<FFF5>
+478	0x8436	pack/talk/KOROU:0x130d0	Argh!<FFFC><FFF6>What’s with that attitude!?<FFF6>The customer is always right!<FFF5>
+479	0x8468	pack/talk/KOROU:0x13150	Who’s...<FFFC><FFF6>that...?<FFF5>
+480	0x847d	pack/talk/KOROU:0x13178	Nothin’ quite<L{> like<FFF6>sittin’ <}><S{> like sittin’ <}>at the kotatsu<FFF6>and snackin’ on tangerines...<FFF5>
+481	0x849a	pack/talk/KOROU:0x13208	I ain’t good with animals,<FFF6>but I’ve got a soft spot for kitties.<FFF5>
 482	0x84c0	pack/talk/KOROU:0x13290	I hate cats!<FFF5>
-483	0x84d1	pack/talk/KOROU:0x132b0	...Looks like I'll be able to bite you!<FFF5>
-484	0x84fd	pack/talk/KOROU:0x13300	Of course!<FFF6>You don't know any proverbs!?<FFF5>
-485	0x851c	pack/talk/KOROU:0x13358	Well, of course... I don't think<FFF6>I'd try that, even if you asked...<FFF5>
+483	0x84d1	pack/talk/KOROU:0x132b0	...Looks like I’ll be able to bite you!<FFF5>
+484	0x84fd	pack/talk/KOROU:0x13300	Of course!<FFFC><FFF6>You don’t know any proverbs!?<FFF5>
+485	0x851c	pack/talk/KOROU:0x13358	Well, of course... I don’t<L{> think<FFF6>I’d <}><S{> think I’d <}>try<L{> that, even <}><S{> that,<FFF6>even <}>if you asked...<FFF5>
 486	0x8549	pack/talk/KOROU:0x133e0	Ooh! It looks really good close up!<FFF5>
-487	0x8573	pack/talk/KOROU:0x13428	Hohoho. You're an honest one.<FFF6>I'm rootin' for ya.<FFF5>
-488	0x85a5	pack/talk/KOROU:0x13490	Hey! I haven't sunk low enough<FFF6>to allow some kid to tell me off!<FFF5>
-489	0x85d4	pack/talk/KOROU:0x13518	Hohoho! You're so aggressive,<FFF6>I don't feel the need to get angry!<FFF5>
-490	0x860d	pack/talk/KOROU:0x135a0	Argh! Your lips just keep on flappin'!<FFF6>I'll turn 'em black and blue!<FFF5>
-491	0x863d	pack/talk/KOROU:0x13630	...Seems you aren't all talk...<FFF5>
-492	0x8662	pack/talk/KOROU:0x13670	I couldn't look my ancestors<FFF6>in the face if I let this mockery slide!<FFF6>You need to be punished, child!<FFF5>
-493	0x86a4	pack/talk/KOROU:0x13740	Of course. Don't take me so literally.<FFF5>
-494	0x86c9	pack/talk/KOROU:0x13790	Ho, ho! What an outrageous story!<FFF6>I can see why you're a good talker.<FFF5>
-495	0x8701	pack/talk/KOROU:0x13820	Hohoho. You're surprised too?<FFF5>
-496	0x8726	pack/talk/KOROU:0x13860	I hope it rains... This drought's<FFF6>makin' me anxious...<FFF5>
-497	0x8756	pack/talk/KOROU:0x138d0	It rains all the time!<FFF6>...Well, it hasn't been lately.<FFF5>
-498	0x878a	pack/talk/KOROU:0x13940	That's right.<FFF6>All you had to do was apologize.<FFF5>
-499	0x87a2	pack/talk/KOROU:0x139a0	That's right. All you had to do was<FFF6>apologize. Not that you can get<FFF6>by on good manners your whole life...<FFF5>
-500	0x87d7	pack/talk/KOROU:0x13a78	Argh!<FFF6>This is beyond passin' or failin'!<FFF6>You've let down the human race!<FFF5>
-501	0x880a	pack/talk/KOROU:0x13b10	Young'uns are scary these days...<FFF5>
-502	0x882e	pack/talk/KOROU:0x13b58	Young'uns are scary these days...<FFF5>
-503	0x8857	pack/talk/KOROU:0x13ba0	Oh, you don't get it...?<FFF6>Well that really ticks me off!<FFF5>
-504	0x8884	pack/talk/KOROU:0x13c10	Hohoho! That's okay.<FFF5>
-505	0x88a3	pack/talk/KOROU:0x13c40	What's that supposed to mean!?<FFF6>You got no right to be<FFF6>testin' your elders!<FFF5>
+487	0x8573	pack/talk/KOROU:0x13428	Hohoho.<FFFC><FFF6>You’re an honest<L{> one.<FFF6>I’m <}><S{> one. I’m <}>rootin’ for ya.<FFF5>
+488	0x85a5	pack/talk/KOROU:0x13490	Hey!<FFFC><FFF6>I haven’t sunk low enough<FFF6>to allow some kid to tell me off!<FFF5>
+489	0x85d4	pack/talk/KOROU:0x13518	Hohoho!<FFFC> You’re so aggressive,<FFF6>I don’t feel the need to get angry!<FFF5>
+490	0x860d	pack/talk/KOROU:0x135a0	Argh!<FFFC><FFF6>Your lips just keep on flappin’!<FFF6>I’ll turn ’em black and blue!<FFF5>
+491	0x863d	pack/talk/KOROU:0x13630	...Seems you aren’t all talk...<FFF5>
+492	0x8662	pack/talk/KOROU:0x13670	I couldn’t look my ancestors<FFF6>in the face if I let this mockery slide!<FFFC><FFF6>You need to be punished, child!<FFF5>
+493	0x86a4	pack/talk/KOROU:0x13740	Of course. Don’t take me so literally.<FFF5>
+494	0x86c9	pack/talk/KOROU:0x13790	Ho, ho!<FFFC> What an outrageous story!<FFF6>I can see why you’re a good talker.<FFF5>
+495	0x8701	pack/talk/KOROU:0x13820	Hohoho. You’re surprised too?<FFF5>
+496	0x8726	pack/talk/KOROU:0x13860	I hope it rains...<FFFC><FFF6>This drought’s makin’ me anxious...<FFF5>
+497	0x8756	pack/talk/KOROU:0x138d0	It rains all the time!<FFF6>...Well, it hasn’t been lately.<FFF5>
+498	0x878a	pack/talk/KOROU:0x13940	That’s right.<FFF6>All you had to do was apologize.<FFF5>
+499	0x87a2	pack/talk/KOROU:0x139a0	That’s right. All you had to do was<FFF6>apologize. Not that you can get by<FFF6>on good manners your whole life...<FFF5>
+500	0x87d7	pack/talk/KOROU:0x13a78	<L{>Argh!<FFF6>This <}><S{>Argh! This <}>is beyond passin’ or failin’!<FFF6>You’ve let down the human race!<FFF5>
+501	0x880a	pack/talk/KOROU:0x13b10	Young’uns are scary these days...<FFF5>
+502	0x882e	pack/talk/KOROU:0x13b58	Young’uns are scary these days...<FFF5>
+503	0x8857	pack/talk/KOROU:0x13ba0	Oh, you don’t get it...?<FFF6>Well that really ticks me off!<FFF5>
+504	0x8884	pack/talk/KOROU:0x13c10	Hohoho!<FFFC><FFF6>That’s okay.<FFF5>
+505	0x88a3	pack/talk/KOROU:0x13c40	What’s that supposed to mean!?<FFFC><FFF6>You got no right to<L{> be<FFF6>testin’ <}><S{> be testin’ <}>your elders!<FFF5>
 506	0x88dc	pack/talk/KOROU:0x13cd8	Hohoho, I see through everything!<FFF5>
-507	0x8906	pack/talk/KOROU:0x13d20	Argh! You got the guts to keep up<FFF6>yer innocent little act!? Cut it out!<FFF5>
-508	0x892e	pack/talk/KOROU:0x13db0	So the true self is revealed! It's time<FFF6>to put this old man to the test!<FFF5>
-509	0x8968	pack/talk/KOROU:0x13e48	That's cents.<FFF5>
-510	0x8998	pack/talk/KOROU:0x13e68	No matter what you say,<FFF6>it's useless on me now.<FFF5>
-511	0x89b8	pack/talk/KOROU:0x13ec8	Hey! That wasn't sarcastic!<FFF6>I'm not so easily fooled!<FFF5>
-512	0x89e9	pack/talk/KOROU:0x13f38	Ho, ho!<FFF6>I haven't been aging for nothing.<FFF5>
-513	0x8a1c	pack/talk/KOROU:0x13f90	If I had time, I'd coach ya<FFF6>through it, but... Maybe next time.<FFF5>
-514	0x8a52	pack/talk/KOROU:0x14010	Is that how you treat someone<FFF6>who's genuinely worried about you!?<FFF5>
-515	0x8a86	pack/talk/KOROU:0x14098	Is that so...? Well that ain't<FFF6>much different than me...<FFF5>
-516	0x8aaf	pack/talk/KOROU:0x14110	Ready? Take a good look!<FFF6>...... ...... I'm gettin' all stiff. I quit.<FFF5>
-517	0x8aef	pack/talk/KOROU:0x141a0	I was ready to give ya a helpin' hand.<FFF6>You're a damn fool of a boy!<FFF5>
+507	0x8906	pack/talk/KOROU:0x13d20	Argh!<FFFC><FFF6>You got the guts to keep up yer<FFF6>innocent little act!? Cut it out!<FFF5>
+508	0x892e	pack/talk/KOROU:0x13db0	So the true self is revealed!<FFFC><FFF6>It’s time to put this old<L{> man<FFF6>to <}><S{> man to <}>the test!<FFF5>
+509	0x8968	pack/talk/KOROU:0x13e48	That’s cents.<FFF5>
+510	0x8998	pack/talk/KOROU:0x13e68	No matter what you say,<FFF6>it’s useless on me now.<FFF5>
+511	0x89b8	pack/talk/KOROU:0x13ec8	Hey!<FFFC><FFF6>That wasn’t sarcastic!<FFF6>I’m not so easily fooled!<FFF5>
+512	0x89e9	pack/talk/KOROU:0x13f38	Ho, ho!<FFFC><FFF6>I haven’t been aging for nothing.<FFF5>
+513	0x8a1c	pack/talk/KOROU:0x13f90	If I had time, I’d<L{> coach<FFF6>ya <}><S{> coach ya <}>through it, but...<FFFC><FFF6>Maybe next time.<FFF5>
+514	0x8a52	pack/talk/KOROU:0x14010	Is that how you treat someone<FFF6>who’s genuinely worried about you!?<FFF5>
+515	0x8a86	pack/talk/KOROU:0x14098	Is that so...?<FFFC><FFF6>Well that ain’t<L{> much<FFF6>different <}><S{> much different <}>than me...<FFF5>
+516	0x8aaf	pack/talk/KOROU:0x14110	Ready? Take a good look!<FFF6>...... ...... I’m gettin’ all stiff. I quit.<FFF5>
+517	0x8aef	pack/talk/KOROU:0x141a0	I was ready to give ya a helpin’ hand.<FFF6>You’re a damn fool of a boy!<FFF5>
 518	0x8b25	pack/talk/KOROU:0x14228	...Look at me...<FFF5>
-519	0x8b47	pack/talk/KOROU:0x14250	You wanna hear my stories!?<FFF6>I'll give ya all the stories ya want<FFF6>when we're finished negotiating here.<FFF5>
-520	0x8b7e	pack/talk/KOROU:0x14320	Well... Sometimes less is more...<FFF5>
+519	0x8b47	pack/talk/KOROU:0x14250	You wanna hear my stories!?<FFFC><FFF6>I’ll give ya all the stories ya want<FFF6>when we’re finished negotiating here.<FFF5>
+520	0x8b7e	pack/talk/KOROU:0x14320	Well...<FFFC><FFF6>Sometimes less is more...<FFF5>
 521	0x8ba7	pack/talk/KOROU:0x14368	There, there, young man.<FFF6>Give an old man his time in the sun.<FFF5>
-522	0x8bd6	pack/talk/KOROU:0x143e8	Hohoho. It's pointless.<FFF6>I'm in a state of spiritual awakening.<FFF5>
-523	0x8c0d	pack/talk/KOROU:0x14468	Argh! You don't get it,<FFF6>do you!? It's useless!<FFF5>
-524	0x8c39	pack/talk/KOROU:0x144c8	Whatchya plannin' on rippin'!?<FFF6>There ain't nothin' here to rip...<FFF5>
-525	0x8c72	pack/talk/KOROU:0x14550	Argh! Fine then!<FFF5>
-526	0x8c8d	pack/talk/KOROU:0x14578	You're fessin' up already? Just when<FFF6>my blood pressure was spikin'...<FFF5>
-527	0x8cc2	pack/talk/KOROU:0x14608	Whaddaya mean by that!?<FFF6>You're one arrogant kid.<FFF5>
-528	0x8cf7	pack/talk/KOROU:0x14670	If I'm just a number<FFF6>for yer body count,<FFF6>I ain't goin' down without a fight!<FFF5>
-529	0x8d2a	pack/talk/KOROU:0x14710	Ugh... What do you think<FFF6>you're doin'? You're scarin'<FFF6>the daylights outta me...<FFF5>
+522	0x8bd6	pack/talk/KOROU:0x143e8	Hohoho. It’s pointless.<FFFC><FFF6>I’m in a state of spiritual awakening.<FFF5>
+523	0x8c0d	pack/talk/KOROU:0x14468	Argh!<FFFC><FFF6>You don’t get it, do<L{> you!?<FFF6>It’s <}><S{> you!? It’s <}>useless!<FFF5>
+524	0x8c39	pack/talk/KOROU:0x144c8	Whatchya plannin’ on rippin’!?<FFFC><FFF6>There ain’t nothin’ here to rip...<FFF5>
+525	0x8c72	pack/talk/KOROU:0x14550	Argh!<FFFC><FFF6>Fine then!<FFF5>
+526	0x8c8d	pack/talk/KOROU:0x14578	You’re fessin’ up already?<FFFC><FFF6>Just when my blood<L{> pressure<FFF6>was <}><S{> pressure was <}>spikin’...<FFF5>
+527	0x8cc2	pack/talk/KOROU:0x14608	Whaddaya mean by that!?<FFFC><FFF6>You’re one arrogant kid.<FFF5>
+528	0x8cf7	pack/talk/KOROU:0x14670	If I’m just a<L{> number<FFF6>for <}><S{> number for <}>yer body count,<FFF6>I ain’t goin’ down without a fight!<FFF5>
+529	0x8d2a	pack/talk/KOROU:0x14710	Ugh...<FFFC> What do you<L{> think<FFF6>you’re doin’?<FFFC> You’re scarin’<FFF6>the <}><S{> think you’re doin’?<FFFC><FFF6>You’re scarin’ the <}>daylights outta me...<FFF5>
 530	0x8d5c	pack/talk/KOROU:0x147b0	Oh, that was a joke? Ya got me!<FFF6>You looked so real. Hohoho.<FFF5>
-531	0x8d92	pack/talk/KOROU:0x14828	Why you lookin' for that?<FFF6>You'll get one soon enough.<FFF5>
-532	0x8dc7	pack/talk/KOROU:0x14898	Which means... You don't<FFF6>mean you like me, do ya?<FFF5>
-533	0x8dec	pack/talk/KOROU:0x14900	Which means... Ho, ho! You're sniffin'<FFF6>out my weakness, aren't ya!?<FFF5>
+531	0x8d92	pack/talk/KOROU:0x14828	Why you lookin’ for that?<FFFC><FFF6>You’ll get one soon enough.<FFF5>
+532	0x8dc7	pack/talk/KOROU:0x14898	Which means...<FFFC><FFF6>You don’t mean you like me, do ya?<FFF5>
+533	0x8dec	pack/talk/KOROU:0x14900	Which means...<FFFC> Ho, ho!<FFFC><FFF6>You’re sniffin’<L{> out my weakness,<FFF6>aren’t <}><S{> out<FFF6>my weakness, aren’t <}>ya!?<FFF5>
 534	0x8e1b	pack/talk/KOROU:0x14988	I told ya not to look,<FFF6>so why are you looking!?<FFF5>
-535	0x8e3d	pack/talk/KOROU:0x149e8	Er... You don't need to do that...<FFF5>
-536	0x8e52	pack/talk/KOROU:0x14a30	R-Right there.<FFF6>That's the spot! ...Ooh!<FFF5>
-537	0x8e7c	pack/talk/KOROU:0x14a80	You're good at eggin' on the elderly,<FFF6>ain't ya!? ...Good to know...<FFF5>
-538	0x8eb1	pack/talk/KOROU:0x14b08	Your humility betrays you...<FFF6>You're up to no good...<FFF5>
-539	0x8ee4	pack/talk/KOROU:0x14b78	Hey! That ain't the right answer!<FFF6>You're supposed to sing<FFF6>my praises there!<FFF5>
-540	0x8f12	pack/talk/KOROU:0x14c10	That's a lie! I know you're two-faced!<FFF5>
+535	0x8e3d	pack/talk/KOROU:0x149e8	Er...<FFFC><FFF6>You don’t need to do that...<FFF5>
+536	0x8e52	pack/talk/KOROU:0x14a30	R-Right<L{> there.<FFF6>That’s <}><S{> there. That’s <}>the spot! ...Ooh!<FFF5>
+537	0x8e7c	pack/talk/KOROU:0x14a80	You’re good at eggin’ on the elderly,<FFF6>ain’t ya!?<FFFC> ...Good to know...<FFF5>
+538	0x8eb1	pack/talk/KOROU:0x14b08	Your humility betrays you...<FFF6>You’re up to no good...<FFF5>
+539	0x8ee4	pack/talk/KOROU:0x14b78	Hey! That ain’t the right answer!<FFFC><FFF6>You’re supposed to<L{> sing<FFF6>my <}><S{> sing my <}>praises there!<FFF5>
+540	0x8f12	pack/talk/KOROU:0x14c10	That’s a lie!<FFFC><FFF6>I know you’re two-faced!<FFF5>
 541	0x8f3e	pack/talk/KOROU:0x14c60	Ho ho... You can tell such monstrous<FFF6>lies with only two faces?<FFF6>Humans are clever indeed...<FFF5>
-542	0x8f75	pack/talk/KOROU:0x14d18	That's some fuzzy math...<FFF6>Don't tell me humans' faces<FFF6>split with every lie...<FFF5>
-543	0x8fac	pack/talk/KOROU:0x14db8	If that's what you think,<FFF6>then I don't care anymore.<FFF5>
-544	0x8fcc	pack/talk/KOROU:0x14e28	Quit nitpickin'! You're just tryin'<FFF6>to find fault with everything!<FFF5>
-545	0x8ff8	pack/talk/KOROU:0x14eb0	Hrm, if you examine them with<FFF6>a keener eye, it'll be different...<FFF6>This is a doozy.<FFF5>
-546	0x902f	pack/talk/KOROU:0x14f58	Hey! Talkin' big is fine, but no lying!<FFF6>Lying is for lowlifes!<FFF5>
-547	0x905f	pack/talk/KOROU:0x14fd8	Ho, ho! You'll come back? Well... I'll be.<FFF5>
-548	0x9093	pack/talk/KOROU:0x15030	You're not makin'<FFF6>much conversation here...<FFF5>
-549	0x90a3	pack/talk/KOROU:0x15088	That's downright irresponsible!<FFF5>
-550	0x90bf	pack/talk/KOROU:0x150c8	Good idea! I'll stop my heart,<FFF6>and you tell me a scary story!<FFF5>
-551	0x90ec	pack/talk/KOROU:0x15148	Why an elbow? I don't understand<FFF6>the western style...<FFF5>
-552	0x9112	pack/talk/KOROU:0x151b8	I see... So you mean everything<FFF6>is a learning experience.<FFF5>
-553	0x913d	pack/talk/KOROU:0x15230	You mean you WANT to face<FFF6>a situation like that? ...I don't get it.<FFF5>
+542	0x8f75	pack/talk/KOROU:0x14d18	That’s some fuzzy math...<FFFC><FFF6>Don’t tell me humans’ faces<FFF6>split with every lie...<FFF5>
+543	0x8fac	pack/talk/KOROU:0x14db8	If that’s what you think,<FFF6>then I don’t care anymore.<FFF5>
+544	0x8fcc	pack/talk/KOROU:0x14e28	Quit nitpickin’!<FFFC><FFF6>You’re just tryin’ to find<FFF6>fault with everything!<FFF5>
+545	0x8ff8	pack/talk/KOROU:0x14eb0	Hrm, if you examine them<L{> with<FFF6>a keener eye, <}><S{> with a keener<FFF6>eye, <}>it’ll be<L{> different...<FFFC><FFF6>This <}><S{> different...<FFFC> This <}>is a doozy.<FFF5>
+546	0x902f	pack/talk/KOROU:0x14f58	Hey!<FFFC><FFF6>Talkin’ big is fine, but no lying!<FFF6>Lying is for lowlifes!<FFF5>
+547	0x905f	pack/talk/KOROU:0x14fd8	Ho, ho! You’ll come back? Well... I’ll be.<FFF5>
+548	0x9093	pack/talk/KOROU:0x15030	You’re not makin’<FFF6>much conversation here...<FFF5>
+549	0x90a3	pack/talk/KOROU:0x15088	That’s downright irresponsible!<FFF5>
+550	0x90bf	pack/talk/KOROU:0x150c8	Good idea!<FFFC> I’ll stop my heart,<FFF6>and you tell me a scary story!<FFF5>
+551	0x90ec	pack/talk/KOROU:0x15148	Why an elbow?<FFFC><FFF6>I don’t<L{> understand<FFF6>the <}><S{> understand the <}>western style...<FFF5>
+552	0x9112	pack/talk/KOROU:0x151b8	I see...<FFFC><FFF6>So you mean everything<FFF6>is a learning experience.<FFF5>
+553	0x913d	pack/talk/KOROU:0x15230	You mean you WANT to face<FFF6>a situation like that? ...I don’t get it.<FFF5>
 554	0x9171	pack/talk/KOROU:0x152b8	Oh, is that so?<FFF5>
-555	0x9185	pack/talk/KOROU:0x152d8	Huh? You suspicious of me?!<FFF6>What a rude little lady!<FFF5>
-556	0x91ae	pack/talk/KOROU:0x15348	To tell you the truth, there is one<FFF6>thing I'm scared of. But it's a secret.<FFF5>
-557	0x91dd	pack/talk/KOROU:0x153e0	Ho, ho! I haven't been<FFF6>growin' old for no reason!<FFF5>
-558	0x920d	pack/talk/KOROU:0x15448	Hohoho.<FFF6>So you've got a nice personality too.<FFF6>Maybe you'll be the next Marilyn.<FFF5>
-559	0x923e	pack/talk/KOROU:0x154e8	Ho, ho! That was a bald-faced lie.<FFF6>You should start over<FFF6>with voice lessons.<FFF5>
-560	0x9276	pack/talk/KOROU:0x15588	Hrm... Maybe in 300 more years.<FFF5>
-561	0x9294	pack/talk/KOROU:0x155c8	Not that! Noooooooo!<FFF5>
-562	0x92b7	pack/talk/KOROU:0x155f8	What a twisted young lady...<FFF6>I think it'll be best if we just<FFF6>stop the negotiations right here...<FFF5>
-563	0x92ed	pack/talk/KOROU:0x156c0	That song changes<FFF6>key in funny places...<FFFB><FFF7>I don't know who wrote it, but isn't<FFF6>that bad for its marketability?<FFF5>
-564	0x9345	pack/talk/KOROU:0x157a0	Hrm... Now that's a song<FFF6>you can take pride in!<FFF5>
+555	0x9185	pack/talk/KOROU:0x152d8	Huh? You suspicious of me?!<FFFC><FFF6>What a rude little lady!<FFF5>
+556	0x91ae	pack/talk/KOROU:0x15348	To tell you the truth,<FFF6>there is one thing I’m scared of.<FFFC><FFF6>But it’s a secret.<FFF5>
+557	0x91dd	pack/talk/KOROU:0x153e0	Ho, ho!<FFFC><FFF6>I haven’t been<L{> growin’<FFF6>old <}><S{> growin’ old <}>for no reason!<FFF5>
+558	0x920d	pack/talk/KOROU:0x15448	Hohoho.<FFF6>So you’ve got a nice personality too.<FFF6>Maybe you’ll be the next Marilyn.<FFF5>
+559	0x923e	pack/talk/KOROU:0x154e8	Ho, ho!<FFFC> That was a bald-faced lie.<FFF6>You should start<L{> over<FFF6>with <}><S{> over with <}>voice lessons.<FFF5>
+560	0x9276	pack/talk/KOROU:0x15588	Hrm...<FFFC><FFF6>Maybe in 300 more years.<FFF5>
+561	0x9294	pack/talk/KOROU:0x155c8	Not that!<FFFC><FFF6>Noooooooo!<FFF5>
+562	0x92b7	pack/talk/KOROU:0x155f8	What a twisted young lady...<FFFC><FFF6>I think it’ll be best if we<L{> just stop<FFF6>the <}><S{> just<FFF6>stop the <}>negotiations right here...<FFF5>
+563	0x92ed	pack/talk/KOROU:0x156c0	That song<L{> changes<FFF6>key <}><S{> changes key <}>in funny places...<FFFB><FFF7>I don’t know who wrote<L{> it, but isn’t<FFF6>that <}><S{> it,<FFF6>but isn’t that <}>bad for its marketability?<FFF5>
+564	0x9345	pack/talk/KOROU:0x157a0	Hrm... Now that’s a song<FFF6>you can take pride in!<FFF5>
 565	0x9376	pack/talk/KOROU:0x15800	I only speak the truth.<FFF5>
-566	0x9396	pack/talk/KOROU:0x15830	What is this new-fangled thing?<FFF6>A silver plate?<FFF6>Some kinda mirror, maybe?<FFFB><FFF7>You think I'm serious?<FFF6>I know what a CD is, dagnabbit!<FFF5>
-567	0x93ee	pack/talk/KOROU:0x15938	Is... Is that so...? Well, I'm a more<FFF6>old fashioned <FFF0>, so...<FFF5>
-568	0x9419	pack/talk/KOROU:0x159b8	I-Is that so!? I may be<FFF6>an old fashioned <FFF0>,<FFF6>but I can still hold my own!<FFF5>
-569	0x9447	pack/talk/KOROU:0x15a50	You makin' fun of my age!?<FFF6>I got news for ya, I ain't that old yet!<FFF5>
-570	0x9476	pack/talk/KOROU:0x15ad8	I s'pose I did let my temper flare<FFF6>up a bit there... I apologize,<FFF6>so let's let bygones be bygones.<FFF5>
+566	0x9396	pack/talk/KOROU:0x15830	What is this new-fangled thing?<FFF6>A silver<L{> plate?<FFF6>Some <}><S{> plate? Some <}>kinda mirror, maybe?<FFFB><FFF7>You think I’m serious?<FFF6>I know what a CD is, dagnabbit!<FFF5>
+567	0x93ee	pack/talk/KOROU:0x15938	Is... Is that<L{> so...?<FFF6>Well, I’m <}><S{> so...? Well,<FFF6>I’m <}>a more<L{> old<FFF6>fashioned <}><S{> old fashioned <}><FFF0>, so...<FFF5>
+568	0x9419	pack/talk/KOROU:0x159b8	I-Is that so!?<FFFC><FFF6>I may be an old fashioned <FFF0>,<FFF6>but I can still hold my own!<FFF5>
+569	0x9447	pack/talk/KOROU:0x15a50	You makin’ fun of my age!?<FFF6>I got news for ya, I ain’t that old yet!<FFF5>
+570	0x9476	pack/talk/KOROU:0x15ad8	I s’pose I did let my<L{> temper flare<FFF6>up <}><S{> temper<FFF6>flare up <}>a bit there... I apologize,<FFF6>so let’s let bygones be bygones.<FFF5>
 571	0x94ad	pack/talk/KOROU:0x15ba0	Sorry about that.<FFF6>No need to get angry now.<FFF5>
-572	0x94cf	pack/talk/KOROU:0x15bf8	You makin' fun of my age!?<FFF6>I got news for ya, I ain't that old yet!<FFF5>
-573	0x9500	pack/talk/KOROU:0x15c80	That's how it should be!<FFF6>Girls should be sweet and obedient.<FFF5>
-574	0x952d	pack/talk/KOROU:0x15d00	I can't believe that...<FFF6>If you ain't an angel,<FFF6>I can't trust humans anymore...<FFF5>
-575	0x9563	pack/talk/KOROU:0x15da0	Well, angels are stubborn and prissy,<FFF6>even if they are messengers of God.<FFFB><FFF7>'Course, I'm talkin' about<FFF6>the general definition here.<FFF5>
-576	0x95d9	pack/talk/KOROU:0x15ea8	I thought I'd retired, but looks like<FFF6>I've got more work to do... *sigh*<FFF5>
-577	0x9616	pack/talk/KOROU:0x15f40	Materials? What's your plan for me,<FFF6>Missy? You aren't gonna eat me...<FFF5>
-578	0x964c	pack/talk/KOROU:0x15fd0	You actually want to hear<FFF6>the ramblings of an old man, Missy?<FFF6>How commendable...<FFF5>
-579	0x9685	pack/talk/KOROU:0x16078	Argh!<FFF6>You sayin' I ain't got the right!?<FFF6>Hmph! Quit yer tomfoolery!<FFF5>
-580	0x96bf	pack/talk/KOROU:0x16100	What are you sayin'!? The world is<FFF6>all brother and sister, ain't we!?<FFFB><FFF7>Then you gotta be friendly<FFF6>to demons too, Missy.<FFF5>
-581	0x9716	pack/talk/KOROU:0x161f0	You shouldn't discriminate just<FFF6>'cause I'm a demon... Don't they teach<FFF6>you that in school...?<FFF5>
-582	0x974d	pack/talk/KOROU:0x162b0	Ho, ho! I'm happy as a ripe plum!<FFF6>You're a nice little lady.<FFF5>
-583	0x9782	pack/talk/KOROU:0x16330	...Of course. Long as yer with me,<FFF6>you'll see benefits.<FFF5>
-584	0x97b3	pack/talk/KOROU:0x163a0	...So who's got the short straw<FFF6>here? Me...?<FFF5>
+572	0x94cf	pack/talk/KOROU:0x15bf8	You makin’ fun of my age!?<FFFC><FFF6>I got news for ya, I ain’t that old yet!<FFF5>
+573	0x9500	pack/talk/KOROU:0x15c80	That’s how it should be!<FFFC><FFF6>Girls should be sweet and obedient.<FFF5>
+574	0x952d	pack/talk/KOROU:0x15d00	I can’t believe that...<FFFC><FFF6>If you ain’t an angel,<FFF6>I can’t trust humans anymore...<FFF5>
+575	0x9563	pack/talk/KOROU:0x15da0	Well, angels are stubborn and prissy,<FFF6>even if they are messengers of God.<FFFB><FFF7>’Course, I’m talkin’ about<FFF6>the general definition here.<FFF5>
+576	0x95d9	pack/talk/KOROU:0x15ea8	I thought I’d retired, but looks like<FFF6>I’ve got more work to do... *sigh*<FFF5>
+577	0x9616	pack/talk/KOROU:0x15f40	Materials? What’s your plan for me,<FFF6>Missy? You aren’t gonna eat me...<FFF5>
+578	0x964c	pack/talk/KOROU:0x15fd0	You actually want to<L{> hear<FFF6>the ramblings of <}><S{> hear the ramblings<FFF6>of <}>an old man,<L{> Missy?<FFFC><FFF6>How <}><S{> Missy?<FFFC> How <}>commendable...<FFF5>
+579	0x9685	pack/talk/KOROU:0x16078	<L{>Argh!<FFF6>You <}><S{>Argh! You <}>sayin’ I ain’t got the right!?<FFFC><FFF6>Hmph! Quit yer tomfoolery!<FFF5>
+580	0x96bf	pack/talk/KOROU:0x16100	What are you sayin’!?<FFFC><FFF6>The world is all brother<FFF6>and sister, ain’t we!?<FFFB><FFF7>Then you gotta be friendly<FFF6>to demons too, Missy.<FFF5>
+581	0x9716	pack/talk/KOROU:0x161f0	You shouldn’t<L{> discriminate just<FFF6>’cause <}><S{> discriminate<FFF6>just ’cause <}>I’m a<L{> demon...<FFFC> Don’t <}><S{> demon...<FFFC><FFF6>Don’t <}>they<L{> teach<FFF6>you <}><S{> teach you <}>that in school...?<FFF5>
+582	0x974d	pack/talk/KOROU:0x162b0	Ho, ho!<FFFC><FFF6>I’m happy as a ripe plum!<FFF6>You’re a nice little lady.<FFF5>
+583	0x9782	pack/talk/KOROU:0x16330	...Of<L{> course. Long <}><S{> course.<FFF6>Long <}>as yer with<L{> me,<FFF6>you’ll <}><S{> me, you’ll <}>see benefits.<FFF5>
+584	0x97b3	pack/talk/KOROU:0x163a0	...So who’s got the short straw<L{> here?<FFFC><FFF6>Me...?<FFF5><}><S{> here?<FFFC> Me...?<FFF5><}>
 585	0x97e1	pack/talk/KOROU:0x16400	...What a lady...<FFF5>
-586	0x97fc	pack/talk/KOROU:0x16428	Ho, ho! If you're happy, so am I!<FFF5>
-587	0x982f	pack/talk/KOROU:0x16470	If you're bored, then do<FFF6>somethin' else! Why waste time!?<FFF5>
-588	0x9862	pack/talk/KOROU:0x164e8	Argh! I can't take it any longer!<FFF6>I won't forgive ya,<FFF6>even if you're beggin' for it!<FFF5>
-589	0x988d	pack/talk/KOROU:0x16598	That's right.<FFF6>All ya had to do was apologize.<FFF5>
-590	0x98a5	pack/talk/KOROU:0x165f8	The old man isn't even<FFF6>in the picture, eh...?<FFF5>
-591	0x98c0	pack/talk/KOROU:0x16658	It's nice to be worried about...<FFF6>You're a kind young lady, Missy.<FFF5>
+586	0x97fc	pack/talk/KOROU:0x16428	Ho, ho!<FFFC><FFF6>If you’re happy, so am I!<FFF5>
+587	0x982f	pack/talk/KOROU:0x16470	If you’re<L{> bored,<FFF6>then <}><S{> bored, then <}>do somethin’ else!<FFFC><FFF6>Why waste time!?<FFF5>
+588	0x9862	pack/talk/KOROU:0x164e8	Argh! I can’t take it any longer!<FFFC><FFF6>I won’t forgive ya,<FFF6>even if you’re beggin’ for it!<FFF5>
+589	0x988d	pack/talk/KOROU:0x16598	That’s right.<FFF6>All ya had to do was apologize.<FFF5>
+590	0x98a5	pack/talk/KOROU:0x165f8	The old man isn’t<L{> even<FFF6>in <}><S{> even in <}>the picture, eh...?<FFF5>
+591	0x98c0	pack/talk/KOROU:0x16658	It’s nice to be worried about...<FFFC><FFF6>You’re a kind young lady, Missy.<FFF5>
 592	0x98f2	pack/talk/KOROU:0x166e0	Reassurance like that just<FFF6>makes me miserable now...<FFF5>
-593	0x9913	pack/talk/KOROU:0x16750	You're goin' that far!? Then I'll dig<FFF6>up my ol' supremacy and show you!<FFF5>
-594	0x9947	pack/talk/KOROU:0x167e0	Eh? You say they've got skin-care<FFF6>products these days?<FFF6>That's somethin'.<FFF5>
-595	0x9980	pack/talk/KOROU:0x16878	Burnin' your skin with the sun sounds<FFF6>like crazy talk to us demons.<FFF5>
-596	0x99b8	pack/talk/KOROU:0x16900	No, no. That's your charm. I like it.<FFF5>
-597	0x99ee	pack/talk/KOROU:0x16950	It is! I like pure, Japanese girls!<FFF5>
-598	0x9a1d	pack/talk/KOROU:0x16998	Think you get it?<FFF6>Women do have two sides, after all...<FFF5>
-599	0x9a42	pack/talk/KOROU:0x16a08	...Alright, I admit,<FFF6>I'm just an old-fashioned demon...<FFF5>
-600	0x9a69	pack/talk/KOROU:0x16a80	That's true, but...<FFF6>you're pretty calm.<FFF5>
-601	0x9a89	pack/talk/KOROU:0x16ad0	I know that. I'm just happy<FFF6>to feel my heart throb<FFF6>for the first time in forever.<FFF5>
-602	0x9ac3	pack/talk/KOROU:0x16b78	No! It won't work! Love between<FFF6>a human and a <FFF0> is taboo.<FFF6>We'd have a terrible split...<FFF5>
-603	0x9b01	pack/talk/KOROU:0x16c28	Good girl. When that day comes,<FFF6>I'll be sure and deliver it to ya.<FFF5>
-604	0x9b33	pack/talk/KOROU:0x16cb0	Hey! Don't get picky now!<FFFB><FFF7>There are plenty of demons out there<FFF6>havin' a tougher go of it than you!<FFF5>
-605	0x9b80	pack/talk/KOROU:0x16d78	What a high-maintenance girl...<FFF6>Tell ya what, I'll make a cake if ya<FFF6>stop the waterworks.<FFF5>
-606	0x9bb1	pack/talk/KOROU:0x16e30	That was a firm reply, but are you<FFF6>really independent? I'm worried...<FFF5>
-607	0x9be2	pack/talk/KOROU:0x16ec0	If you say this is how you like it,<FFF6>then I'm gonna stop caring!<FFF5>
-608	0x9c0f	pack/talk/KOROU:0x16f40	I understand wanting to shelter<FFF6>a child, but people gotta grow, too.<FFF5>
-609	0x9c47	pack/talk/KOROU:0x16fd0	Ooh! Just like you said! There's<FFF6>a food called bagels! Eastern and<FFF6>western cultures can be so diverse!<FFF5>
-610	0x9c84	pack/talk/KOROU:0x170a0	Hey! I ain't Japanese! I'm a demon!<FFF5>
-611	0x9cb8	pack/talk/KOROU:0x170e8	What's makin' that 'ding' sound?<FFF6>Is there a monk with a bell<FFF6>trapped in there...?<FFF5>
-612	0x9cef	pack/talk/KOROU:0x17190	Hohoho, it wouldn't be so hard if you<FFF6>could say it yourself.<FFF6>You're a strange little lady.<FFF5>
-613	0x9d26	pack/talk/KOROU:0x17248	Well, that's how it is.<FFF5>
-614	0x9d35	pack/talk/KOROU:0x17278	Nope, not always.<FFF6>Even if they're small,<FFF6>an aura of strength is deceiving.<FFF5>
-615	0x9d76	pack/talk/KOROU:0x17310	Argh! Missy, you've said all<FFF6>that I can take. I've had it with ya!<FFF5>
-616	0x9dab	pack/talk/KOROU:0x17398	I ain't got so much pride...<FFF5>
-617	0x9dd4	pack/talk/KOROU:0x173d8	If you're just gonna end up<FFF6>apologizing, why'd you use<FFF6>that tactic in the first place!?<FFF5>
-618	0x9dfe	pack/talk/KOROU:0x17488	Why!? A good demon like me<FFF6>is hard to come by!<FFF5>
-619	0x9e2e	pack/talk/KOROU:0x174e8	Well, I AM a demon,<FFF6>but we're not all bad, ya know.<FFF5>
-620	0x9e5b	pack/talk/KOROU:0x17550	*sigh* Come on now,<FFF6>don't tease the elderly.<FFF5>
-621	0x9e87	pack/talk/KOROU:0x175b0	...You're a genuine bully...<FFF5>
-622	0x9ea5	pack/talk/KOROU:0x175f0	Hey! I hate bullying!<FFF5>
+593	0x9913	pack/talk/KOROU:0x16750	You’re goin’ that far!?<FFFC><FFF6>Then I’ll dig up my ol’<FFF6>supremacy and show you!<FFF5>
+594	0x9947	pack/talk/KOROU:0x167e0	<L{>Eh? You <}><S{>Eh?<FFF6>You <}>say they’ve got skin-care<FFF6>products these<L{> days?<FFF6>That’s <}><S{> days? That’s <}>somethin’.<FFF5>
+595	0x9980	pack/talk/KOROU:0x16878	Burnin’ your skin with the sun sounds<FFF6>like crazy talk to us demons.<FFF5>
+596	0x99b8	pack/talk/KOROU:0x16900	No, no. That’s your charm. I like it.<FFF5>
+597	0x99ee	pack/talk/KOROU:0x16950	It is!<FFFC><FFF6>I like pure, Japanese girls!<FFF5>
+598	0x9a1d	pack/talk/KOROU:0x16998	Think you get it?<FFFC><FFF6>Women do have two sides, after all...<FFF5>
+599	0x9a42	pack/talk/KOROU:0x16a08	...Alright, I admit,<FFF6>I’m just an old-fashioned demon...<FFF5>
+600	0x9a69	pack/talk/KOROU:0x16a80	That’s true, but...<FFFC><FFF6>you’re pretty calm.<FFF5>
+601	0x9a89	pack/talk/KOROU:0x16ad0	I know that.<FFF6>I’m just happy to feel my heart throb<FFF6>for the first time in forever.<FFF5>
+602	0x9ac3	pack/talk/KOROU:0x16b78	No! It won’t work!<FFFC><FFF6>Love between a human and a <FFF0><FFF6>is taboo. We’d have a terrible split...<FFF5>
+603	0x9b01	pack/talk/KOROU:0x16c28	Good girl. When that day comes,<FFF6>I’ll be sure and deliver it to ya.<FFF5>
+604	0x9b33	pack/talk/KOROU:0x16cb0	Hey! Don’t get picky now!<FFFB><FFF7>There are plenty of demons out there<FFF6>havin’ a tougher go of it than you!<FFF5>
+605	0x9b80	pack/talk/KOROU:0x16d78	What a high-maintenance girl...<FFFC><FFF6>Tell ya what, I’ll make a cake if ya<FFF6>stop the waterworks.<FFF5>
+606	0x9bb1	pack/talk/KOROU:0x16e30	That was a firm reply,<FFF6>but are you really independent?<FFFC><FFF6>I’m worried...<FFF5>
+607	0x9be2	pack/talk/KOROU:0x16ec0	If you say this is how you like it,<FFF6>then I’m gonna stop caring!<FFF5>
+608	0x9c0f	pack/talk/KOROU:0x16f40	I understand wanting to<L{> shelter<FFF6>a child, but <}><S{> shelter a child,<FFF6>but <}>people gotta grow, too.<FFF5>
+609	0x9c47	pack/talk/KOROU:0x16fd0	Ooh! Just like you<L{> said! There’s<FFF6>a <}><S{> said!<FFF6>There’s a <}>food called bagels!<L{> Eastern and<FFF6>western <}><S{> Eastern<FFF6>and western <}>cultures can be so diverse!<FFF5>
+610	0x9c84	pack/talk/KOROU:0x170a0	Hey!<FFFC><FFF6>I ain’t Japanese! I’m a demon!<FFF5>
+611	0x9cb8	pack/talk/KOROU:0x170e8	What’s makin’ that ’ding’ sound?<FFF6>Is there a monk with a bell<FFF6>trapped in there...?<FFF5>
+612	0x9cef	pack/talk/KOROU:0x17190	Hohoho, it wouldn’t be so hard if you<FFF6>could say it yourself.<FFF6>You’re a strange little lady.<FFF5>
+613	0x9d26	pack/talk/KOROU:0x17248	Well, that’s how it is.<FFF5>
+614	0x9d35	pack/talk/KOROU:0x17278	Nope, not<L{> always.<FFF6>Even <}><S{> always. Even <}>if they’re small,<FFF6>an aura of strength is deceiving.<FFF5>
+615	0x9d76	pack/talk/KOROU:0x17310	Argh!<FFFC><FFF6>Missy, you’ve said all that I can take.<FFF6>I’ve had it with ya!<FFF5>
+616	0x9dab	pack/talk/KOROU:0x17398	I ain’t got so much pride...<FFF5>
+617	0x9dd4	pack/talk/KOROU:0x173d8	If you’re just gonna end<L{> up<FFF6>apologizing, why’d <}><S{> up apologizing,<FFF6>why’d <}>you<L{> use<FFF6>that tactic in <}><S{> use that tactic<FFF6>in <}>the first place!?<FFF5>
+618	0x9dfe	pack/talk/KOROU:0x17488	Why!?<FFFC><FFF6>A good demon like<L{> me<FFF6>is <}><S{> me is <}>hard to come by!<FFF5>
+619	0x9e2e	pack/talk/KOROU:0x174e8	Well, I AM a demon,<FFF6>but we’re not all bad, ya know.<FFF5>
+620	0x9e5b	pack/talk/KOROU:0x17550	*sigh* Come on now,<FFF6>don’t tease the elderly.<FFF5>
+621	0x9e87	pack/talk/KOROU:0x175b0	...You’re a genuine bully...<FFF5>
+622	0x9ea5	pack/talk/KOROU:0x175f0	Hey!<FFFC><FFF6>I hate bullying!<FFF5>
 623	0x9ecf	pack/talk/KOROU:0x17620	Ho, ho! I always wanted to be a bully!<FFF6>Take that! And that! And that too!<FFF5>
-624	0x9f00	pack/talk/KOROU:0x176b8	Ho, ho! You're on fire! I see<FFF6>you're quite an accomplished bully!<FFF5>
-625	0x9f34	pack/talk/KOROU:0x17740	Oh, oh, ohhh...<FFF6>I'm old, can't ya be nice?<FFF5>
-626	0x9f68	pack/talk/KOROU:0x17798	...S-So you're a masochist<FFF6>as well, Missy?<FFF5>
-627	0x9f94	pack/talk/KOROU:0x177f0	I see, I see. That's good to hear...<FFF6>I'm glad there are reputable<FFF6>men still out there!<FFF5>
-628	0x9fc7	pack/talk/KOROU:0x178a0	Hohoho... "Women's suffrage," eh?<FFF6>It sounds fancy,<FFF6>but I'm rootin' for ya!<FFF5>
-629	0x9ffb	pack/talk/KOROU:0x17938	Hey! I was worried about ya.<FFF6>There's no need to put it like that!<FFF5>
-630	0xa02e	pack/talk/KOROU:0x179c0	Argh! Confidence like<FFF6>that'll lower your guard,<FFF6>and that's how ya get hurt!<FFF5>
-631	0xa05b	pack/talk/KOROU:0x17a58	Er... I'd like it if you'd talk<FFF6>to me a little longer...<FFF5>
-632	0xa082	pack/talk/KOROU:0x17ad0	I must be gettin' old if a little<FFF6>missy is concerned about me...<FFF5>
-633	0xa0b6	pack/talk/KOROU:0x17b58	Hohoho! You like being<FFF6>considered a greenhorn, Missy!?<FFF5>
-634	0xa0e7	pack/talk/KOROU:0x17bc8	That was just a figure of speech.<FFF6>I wasn't callin' ya a rookie.<FFF5>
-635	0xa122	pack/talk/KOROU:0x17c48	Whatchya ignoring me for...?<FFF6>What a capricious girl...<FFF5>
-636	0xa14a	pack/talk/KOROU:0x17cb8	Hoho! I like anything<FFF6>that goes well with liquor!<FFF5>
-637	0xa17e	pack/talk/KOROU:0x17d20	Yes, I hate 'em! Although I might be<FFF6>interested in a pickled girl! Hohoho!<FFF5>
-638	0xa1b3	pack/talk/KOROU:0x17db8	Stew? Are you understandin'<FFF6>the words that are comin'<FFF6>outta my mouth!?<FFF5>
-639	0xa1e6	pack/talk/KOROU:0x17e48	Ho, ho! Are you embarrassed?<FFF6>You are quite a maiden.<FFF5>
-640	0xa212	pack/talk/KOROU:0x17eb8	Why'd you get all huffy?<FFF6>I don't understand girls lately...<FFF5>
-641	0xa23d	pack/talk/KOROU:0x17f30	That's right. I'm just dandy.<FFF5>
-642	0xa26f	pack/talk/KOROU:0x17f70	Hey! If you're gonna deny it,<FFF6>keep right on ignoring me!<FFF5>
-643	0xa299	pack/talk/KOROU:0x17fe8	This is quite a shy girl we have here.<FFF6>That's a rarity these days.<FFF5>
-644	0xa2cb	pack/talk/KOROU:0x18070	Argh! I'm takin' notice!<FFF5>
-645	0xa2f0	pack/talk/KOROU:0x180a8	Come now, Missy, you gotta<FFF6>be a little more amiable.<FFF6>Drop that temper of yours.<FFF5>
-646	0xa322	pack/talk/KOROU:0x18148	...And you're still ignoring me...<FFF6>I'm gonna go sulk.<FFF5>
-647	0xa354	pack/talk/KOROU:0x181b8	Hey! I haven't rotted yet!<FFF6>Stop tryin' to classify me!<FFF5>
-648	0xa388	pack/talk/KOROU:0x18228	That's right! I've still got wood to<FFF6>burn! I feel more confident already,<FFF6>thanks to you!<FFF5>
-649	0xa3c2	pack/talk/KOROU:0x182e0	Just as you say... I don't have<FFF6>any passion left to burn...<FFF5>
-650	0xa3f2	pack/talk/KOROU:0x18358	That's right! You're a man of virtue!<FFF6>But let's leave it at that...<FFF5>
-651	0xa41f	pack/talk/KOROU:0x183e0	...Th-That ain't what I meant...<FFF6>Don't be offended...<FFF5>
+624	0x9f00	pack/talk/KOROU:0x176b8	Ho,<L{> ho!<FFFC> You’re <}><S{> ho!<FFFC><FFF6>You’re <}>on fire!<FFF6>I see you’re<L{> quite<FFF6>an <}><S{> quite an <}>accomplished bully!<FFF5>
+625	0x9f34	pack/talk/KOROU:0x17740	Oh, oh, ohhh...<FFFC><FFF6>I’m old, can’t ya be nice?<FFF5>
+626	0x9f68	pack/talk/KOROU:0x17798	...S-So you’re a<L{> masochist<FFF6>as <}><S{> masochist as <}>well, Missy?<FFF5>
+627	0x9f94	pack/talk/KOROU:0x177f0	I see, I see. That’s good to hear...<FFFC><FFF6>I’m glad there are reputable<FFF6>men still out there!<FFF5>
+628	0x9fc7	pack/talk/KOROU:0x178a0	Hohoho... “Women’s suffrage,” eh?<FFFC><FFF6>It sounds<L{> fancy,<FFF6>but <}><S{> fancy, but <}>I’m rootin’ for ya!<FFF5>
+629	0x9ffb	pack/talk/KOROU:0x17938	Hey!<FFFC> I was worried about ya.<FFF6>There’s no need to put it like that!<FFF5>
+630	0xa02e	pack/talk/KOROU:0x179c0	Argh!<FFFC><FFF6>Confidence like that’ll lower<L{> your<FFF6>guard, and <}><S{> your guard,<FFF6>and <}>that’s how ya get hurt!<FFF5>
+631	0xa05b	pack/talk/KOROU:0x17a58	Er...<FFFC><FFF6>I’d like it if you’d talk<FFF6>to me a little longer...<FFF5>
+632	0xa082	pack/talk/KOROU:0x17ad0	I must be gettin’ old if a little<FFF6>missy is concerned about me...<FFF5>
+633	0xa0b6	pack/talk/KOROU:0x17b58	Hohoho!<FFFC><FFF6>You like being considered<FFF6>a greenhorn, Missy!?<FFF5>
+634	0xa0e7	pack/talk/KOROU:0x17bc8	That was just a figure of speech.<FFF6>I wasn’t callin’ ya a rookie.<FFF5>
+635	0xa122	pack/talk/KOROU:0x17c48	Whatchya ignoring me for...?<FFFC><FFF6>What a capricious girl...<FFF5>
+636	0xa14a	pack/talk/KOROU:0x17cb8	Hoho!<FFFC><FFF6>I like anything that<L{> goes<FFF6>well <}><S{> goes well <}>with liquor!<FFF5>
+637	0xa17e	pack/talk/KOROU:0x17d20	Yes, I hate ’em!<FFF6>Although I might be interested<FFF6>in a pickled girl! Hohoho!<FFF5>
+638	0xa1b3	pack/talk/KOROU:0x17db8	Stew?<FFFC><FFF6>Are you understandin’ the words<FFF6>that are comin’ outta my mouth!?<FFF5>
+639	0xa1e6	pack/talk/KOROU:0x17e48	Ho, ho!<FFFC><FFF6>Are you embarrassed?<FFF6>You are quite a maiden.<FFF5>
+640	0xa212	pack/talk/KOROU:0x17eb8	Why’d you get all huffy?<FFFC><FFF6>I don’t understand girls lately...<FFF5>
+641	0xa23d	pack/talk/KOROU:0x17f30	That’s right.<FFFC><FFF6>I’m just dandy.<FFF5>
+642	0xa26f	pack/talk/KOROU:0x17f70	Hey!<FFFC><FFF6>If you’re gonna deny it,<FFF6>keep right on ignoring me!<FFF5>
+643	0xa299	pack/talk/KOROU:0x17fe8	This is quite a shy girl we have here.<FFF6>That’s a rarity these days.<FFF5>
+644	0xa2cb	pack/talk/KOROU:0x18070	Argh!<FFFC><FFF6>I’m takin’ notice!<FFF5>
+645	0xa2f0	pack/talk/KOROU:0x180a8	Come now, Missy, you<L{> gotta<FFF6>be <}><S{> gotta be <}>a<L{> little more amiable.<FFF6>Drop <}><S{> little<FFF6>more amiable. Drop <}>that temper of yours.<FFF5>
+646	0xa322	pack/talk/KOROU:0x18148	...And you’re still ignoring me...<FFF6>I’m gonna go sulk.<FFF5>
+647	0xa354	pack/talk/KOROU:0x181b8	Hey!<FFFC> I haven’t rotted yet!<FFF6>Stop tryin’ to classify me!<FFF5>
+648	0xa388	pack/talk/KOROU:0x18228	That’s right! I’ve still got wood<L{> to<FFF6>burn!<FFFC> I <}><S{> to burn!<FFFC><FFF6>I <}>feel more confident already,<FFF6>thanks to you!<FFF5>
+649	0xa3c2	pack/talk/KOROU:0x182e0	Just as you<L{> say...<FFFC> I <}><S{> say...<FFFC><FFF6>I <}>don’t<L{> have<FFF6>any <}><S{> have any <}>passion left to burn...<FFF5>
+650	0xa3f2	pack/talk/KOROU:0x18358	That’s right! You’re a man of virtue!<FFFC><FFF6>But let’s leave it at that...<FFF5>
+651	0xa41f	pack/talk/KOROU:0x183e0	...Th-That ain’t what I meant...<FFFC><FFF6>Don’t be offended...<FFF5>
 652	0xa44b	pack/talk/KOROU:0x18450	...Never mind...<FFF5>
-653	0xa468	pack/talk/KOROU:0x18478	If ya don't like it, never mind...<FFF5>
-654	0xa48f	pack/talk/KOROU:0x184c0	...You got bad eyes...? Or is it...?<FFF5>
-655	0xa4bd	pack/talk/KOROU:0x18510	I'm a rat!? I won't stand for this!<FFF5>
-656	0xa4f0	pack/talk/KOROU:0x18558	There are some<FFF6>cruel humans out there...<FFF5>
-657	0xa510	pack/talk/KOROU:0x185b0	If I were reborn, I'd have<FFF6>another life like this...? Noooo!<FFF5>
-658	0xa546	pack/talk/KOROU:0x18630	Is that so!? I'm glad to hear there's<FFF6>a second life. Makes me happy.<FFF5>
-659	0xa575	pack/talk/KOROU:0x186c0	Ugh! Wh-What are you doing!?<FFF5>
-660	0xa590	pack/talk/KOROU:0x18700	Blergh... Wh-Why'd you deck me<FFF6>outta the blue like that...?<FFF5>
-661	0xa5be	pack/talk/KOROU:0x18778	S-Stop that, please! I beg of ya!<FFF5>
+653	0xa468	pack/talk/KOROU:0x18478	If ya don’t like it, never mind...<FFF5>
+654	0xa48f	pack/talk/KOROU:0x184c0	...You got bad eyes...?<FFFC> Or is it...?<FFF5>
+655	0xa4bd	pack/talk/KOROU:0x18510	I’m a rat!?<FFFC><FFF6>I won’t stand for this!<FFF5>
+656	0xa4f0	pack/talk/KOROU:0x18558	There are<L{> some<FFF6>cruel <}><S{> some cruel <}>humans out there...<FFF5>
+657	0xa510	pack/talk/KOROU:0x185b0	If I were reborn, I’d have<FFF6>another life like this...?<FFFC> Noooo!<FFF5>
+658	0xa546	pack/talk/KOROU:0x18630	Is that so!?<FFFC><FFF6>I’m glad to hear there’s a second life.<FFF6>Makes me happy.<FFF5>
+659	0xa575	pack/talk/KOROU:0x186c0	Ugh!<FFFC><FFF6>Wh-What are you doing!?<FFF5>
+660	0xa590	pack/talk/KOROU:0x18700	Blergh...<FFFC><FFF6>Wh-Why’d you deck me<FFF6>outta the blue like that...?<FFF5>
+661	0xa5be	pack/talk/KOROU:0x18778	S-Stop that, please!<FFFC><FFF6>I beg of ya!<FFF5>
 662	0xa5e4	pack/talk/KOROU:0x187c0	I-I apologize... Pretend ya<FFF6>never heard that...<FFF5>
-663	0xa614	pack/talk/KOROU:0x18820	All you have to do is apologize,<FFF6>but you're too much of a big shot<FFF6>to do that...? I don't like you...<FFF5>
-664	0xa650	pack/talk/KOROU:0x188f0	You've pushed me too far! Now it's<FFF6>the pride of the <FFF0>we're dealin'<FFF6>with! I've got myself a challenge!<FFF5>
-665	0xa686	pack/talk/KOROU:0x189c0	No matter what you say...<FFF6>I was born a demon, and there's<FFF6>nothin' that can change that...<FFF5>
-666	0xa6bc	pack/talk/KOROU:0x18a78	That's right! Exactly! Ya can't judge<FFF6>something by good or evil alone!<FFF5>
-667	0xa6ee	pack/talk/KOROU:0x18b08	If it's got nothin' to do with me, then<FFF6>leave me out of it... Catch my drift?<FFF5>
-668	0xa71f	pack/talk/KOROU:0x18ba8	...I was bein' set up?<FFF5>
-669	0xa73c	pack/talk/KOROU:0x18bd8	Hohoho! See, just as I thought.<FFF6>You can't fool these eagle eyes.<FFF5>
-670	0xa771	pack/talk/KOROU:0x18c60	I-I get it... I-I'll listen...<FFF6>You don't have to scream...<FFF5>
-671	0xa7a8	pack/talk/KOROU:0x18cd8	So THAT'S your negotiation<FFF6>technique? There sure are<FFF6>strange humans out there.<FFF5>
-672	0xa7e0	pack/talk/KOROU:0x18d78	Which means... you're just an oddball!<FFF6>Someone do sometin' about this guy!<FFF5>
-673	0xa813	pack/talk/KOROU:0x18e10	Is that so...? Still, you're quite<FFF6>the annoying young man...<FFF5>
-674	0xa83b	pack/talk/KOROU:0x18e90	Hrrmm... "Die..." I'm gonna die!?<FFF5>
-675	0xa867	pack/talk/KOROU:0x18ed8	Hrm... I'm hungry...?<FFF6>Give me a card... I don't know.<FFF5>
+663	0xa614	pack/talk/KOROU:0x18820	All you have to do is<L{> apologize,<FFF6>but you’re too <}><S{> apologize, but you’re<FFF6>too <}>much of a big<L{> shot<FFF6>to <}><S{> shot to <}>do<L{> that...?<FFFC> I <}><S{> that...?<FFFC><FFF6>I <}>don’t like you...<FFF5>
+664	0xa650	pack/talk/KOROU:0x188f0	You’ve pushed me too<L{> far! Now it’s<FFF6>the <}><S{> far!<FFF6>Now it’s the <}>pride of the<L{> <FFF0>we’re dealin’<FFF6>with! <}><S{> <FFF0>we’re<FFF6>dealin’ with! <}>I’ve got myself a challenge!<FFF5>
+665	0xa686	pack/talk/KOROU:0x189c0	No matter what you say...<FFFC><FFF6>I was born a demon, and<L{> there’s<FFF6>nothin’ that <}><S{> there’s nothin’<FFF6>that <}>can change that...<FFF5>
+666	0xa6bc	pack/talk/KOROU:0x18a78	That’s right!<FFFC> Exactly!<FFF6>Ya can’t judge something<FFF6>by good or evil alone!<FFF5>
+667	0xa6ee	pack/talk/KOROU:0x18b08	If it’s got nothin’ to do with me,<FFF6>then leave me out of it...<FFFC><FFF6>Catch my drift?<FFF5>
+668	0xa71f	pack/talk/KOROU:0x18ba8	...I was bein’ set up?<FFF5>
+669	0xa73c	pack/talk/KOROU:0x18bd8	Hohoho!<FFFC> See, just as I thought.<FFF6>You can’t fool these eagle eyes.<FFF5>
+670	0xa771	pack/talk/KOROU:0x18c60	I-I get it...<FFFC><FFF6>I-I’ll listen...<FFFC><FFF6>You don’t have to scream...<FFF5>
+671	0xa7a8	pack/talk/KOROU:0x18cd8	So THAT’S your<L{> negotiation<FFF6>technique?<FFFC> There <}><S{> negotiation technique?<FFFC><FFF6>There <}>sure<L{> are<FFF6>strange <}><S{> are strange <}>humans out there.<FFF5>
+672	0xa7e0	pack/talk/KOROU:0x18d78	Which means...<FFFC> you’re just an oddball!<FFF6>Someone do sometin’ about this guy!<FFF5>
+673	0xa813	pack/talk/KOROU:0x18e10	Is that so...?<FFFC><FFF6>Still, you’re quite<FFF6>the annoying young man...<FFF5>
+674	0xa83b	pack/talk/KOROU:0x18e90	Hrrmm...<FFFC><FFF6>“Die...”<FFFC><FFF6>I’m gonna die!?<FFF5>
+675	0xa867	pack/talk/KOROU:0x18ed8	<L{>Hrm...<FFFC> I’m hungry...?<FFF6>Give <}><S{>Hrm...<FFFC><FFF6>I’m hungry...? Give <}>me a card... I don’t know.<FFF5>
 676	0xa895	pack/talk/KOROU:0x18f48	...How primitive...<FFF5>
-677	0xa8b5	pack/talk/KOROU:0x18f70	...You're pretty stingy...<FFF5>
-678	0xa8d2	pack/talk/KOROU:0x18fa8	...Well, you cast your line,<FFF6>and now I'm hooked. Please, tell me...<FFF5>
-679	0xa909	pack/talk/KOROU:0x19030	Oooh! Excellent move!<FFF6>That one was incredible!<FFFB><FFF7>If you showed me more things like<FFF6>that, I wouldn't need to know!<FFF5>
-680	0xa970	pack/talk/KOROU:0x19118	Wh-What the!? What in tarnation<FFF6>are you yelling for!?<FFF5>
-681	0xa99e	pack/talk/KOROU:0x19188	Th-That wasn't it...?<FFF6>Sorry, didn't mean to be suspicious.<FFF6>Will you keep going?<FFF5>
-682	0xa9d9	pack/talk/KOROU:0x19228	Hoho. You're like a carriage horse.<FFF6>Being dedicated is a good thing.<FFF5>
-683	0xaa0e	pack/talk/KOROU:0x192b8	Why...? Nothing good comes<FFF6>from living a rebellious life.<FFF5>
-684	0xaa39	pack/talk/KOROU:0x19330	That makes me happy. You look<FFF6>like a lie, but you're a good kid.<FFF5>
-685	0xaa72	pack/talk/KOROU:0x193b8	Hmph! You have all<FFF6>the free time in the world!<FFF6>If you don't want to, say so!<FFF5>
-686	0xaaa9	pack/talk/KOROU:0x19458	Ho, ho! Then let's negotiate!<FFF5>
-687	0xaacf	pack/talk/KOROU:0x19498	I'm not so much a demon<FFF6>as I am a <FFF0>...<FFF5>
+677	0xa8b5	pack/talk/KOROU:0x18f70	...You’re pretty stingy...<FFF5>
+678	0xa8d2	pack/talk/KOROU:0x18fa8	...Well, you cast your line,<FFF6>and now I’m hooked. Please, tell me...<FFF5>
+679	0xa909	pack/talk/KOROU:0x19030	Oooh! Excellent move!<FFF6>That one was incredible!<FFFB><FFF7>If you showed me more<L{> things<FFF6>like that, I <}><S{> things like that,<FFF6>I <}>wouldn’t need to know!<FFF5>
+680	0xa970	pack/talk/KOROU:0x19118	Wh-What the!?<FFFC><FFF6>What in tarnation<L{> are<FFF6>you <}><S{> are you <}>yelling for!?<FFF5>
+681	0xa99e	pack/talk/KOROU:0x19188	Th-That wasn’t it...?<FFFC><FFF6>Sorry, didn’t mean to be suspicious.<FFFC><FFF6>Will you keep going?<FFF5>
+682	0xa9d9	pack/talk/KOROU:0x19228	Hoho. You’re like a carriage horse.<FFFC><FFF6>Being dedicated is a good thing.<FFF5>
+683	0xaa0e	pack/talk/KOROU:0x192b8	Why...?<FFFC><FFF6>Nothing good comes<FFF6>from living a rebellious life.<FFF5>
+684	0xaa39	pack/talk/KOROU:0x19330	That makes me happy.<FFFC><FFF6>You look like a<L{> lie,<FFF6>but <}><S{> lie, but <}>you’re a good kid.<FFF5>
+685	0xaa72	pack/talk/KOROU:0x193b8	<L{>Hmph!<FFFC> You <}><S{>Hmph!<FFFC><FFF6>You <}>have<L{> all<FFF6>the <}><S{> all the <}>free time in the world!<FFF6>If you don’t want to, say so!<FFF5>
+686	0xaaa9	pack/talk/KOROU:0x19458	Ho, ho!<FFFC><FFF6>Then let’s negotiate!<FFF5>
+687	0xaacf	pack/talk/KOROU:0x19498	I’m not so much a demon<FFF6>as I am a <FFF0>...<FFF5>
 688	0xaafd	pack/talk/KOROU:0x194e8	I happen to be on a stroll too.<FFF6>I think you and I could get along.<FFF5>
-689	0xab30	pack/talk/KOROU:0x19570	It's too late now.<FFF6>No sense cryin' over spilt milk.<FFFB><FFF7>Be careful next time.<FFF5>
-690	0xab73	pack/talk/KOROU:0x19608	What are you complaining about?<FFF6>It's first come, first serve<FFF6>for things like this.<FFF5>
-691	0xab9f	pack/talk/KOROU:0x196b0	Ahhhh! Stop it! It's gonna stink like<FFF6>humans...! Noooo, it's done for!<FFF5>
-692	0xabd8	pack/talk/KOROU:0x19740	Hey! That's a child's answer!<FFF6>Don't toy with me!<FFF5>
-693	0xac0c	pack/talk/KOROU:0x197a8	Is that so!? That's downright cruel!<FFF6>But I want to eat it too...<FFF5>
-694	0xac3e	pack/talk/KOROU:0x19830	...I don't get it...<FFF5>
-695	0xac5c	pack/talk/KOROU:0x19860	The more ya have to suck out,<FFF6>the more flavorful it gets!<FFF6>That's dried squid! Delicious, I say!<FFF5>
-696	0xac96	pack/talk/KOROU:0x19920	Hey! My teeth ain't what they used<FFF6>to be! I can't eat such hard food!<FFF5>
-697	0xacc8	pack/talk/KOROU:0x199b0	I don't need that.<FFF5>
-698	0xacdd	pack/talk/KOROU:0x199d8	Hey! It's obvious ya don't wanna!<FFF5>
-699	0xad08	pack/talk/KOROU:0x19a20	That's right.<FFF6>Now there's a good attitude.<FFF5>
-700	0xad38	pack/talk/KOROU:0x19a78	If you're just gonna ignore me,<FFF6>why'd you answer my first question!?<FFF6>I don't understand...<FFF5>
-701	0xad6d	pack/talk/KOROU:0x19b30	Ho ho. You young'uns don't<FFF6>understand the emotion<FFF6>of a moonless night.<FFF5>
-702	0xada1	pack/talk/KOROU:0x19bc0	A moonless night makes<FFF6>surprise attacks easy...<FFF6>You're plannin' somethin'...<FFF5>
-703	0xadd6	pack/talk/KOROU:0x19c60	That's really strange.<FFF6>You and I both have more to learn.<FFF5>
-704	0xae0c	pack/talk/KOROU:0x19cd8	...I've never played this game<FFF6>you're goin' on about...<FFF5>
-705	0xae39	pack/talk/KOROU:0x19d48	...I've heard of that before,<FFF6>but where...?<FFF5>
-706	0xae65	pack/talk/KOROU:0x19da0	You're mischief.<FFF6>You don't have to tease me, do ya?<FFF6>Come on, do somethin'.<FFF5>
-707	0xae9e	pack/talk/KOROU:0x19e38	Argh! You ain't gonna listen!?<FFFB><FFF7>Time to put a rebellious boy<FFF6>in his place!<FFF5>
-708	0xaeee	pack/talk/KOROU:0x19ed0	You're obedient...<FFF6>But after seein' those eyes<FFF6>of yours, I can't trust ya...<FFF5>
-709	0xaf2a	pack/talk/KOROU:0x19f70	Hey!<FFF6>You're not supposed to interrupt!<FFFB><FFF7>If ya can't wait for someone to finish<FFF6>talkin', I'll have to punish you!<FFF5>
-710	0xaf7e	pack/talk/KOROU:0x1a058	Ho, ho! How brazenly you speak!<FFF6>Interesting! Let's negotiate.<FFF5>
-711	0xafb6	pack/talk/KOROU:0x1a0d8	I'll give ya the ol' one-two!<FFF6>Don't be talkin' that hogwash!<FFF5>
+689	0xab30	pack/talk/KOROU:0x19570	It’s too late now.<FFF6>No sense cryin’ over spilt milk.<FFFB><FFF7>Be careful next time.<FFF5>
+690	0xab73	pack/talk/KOROU:0x19608	What are you complaining about?<FFFC><FFF6>It’s first come, first serve<FFF6>for things like this.<FFF5>
+691	0xab9f	pack/talk/KOROU:0x196b0	<L{>Ahhhh!<FFFC> Stop it!<FFF6>It’s <}><S{>Ahhhh!<FFFC><FFF6>Stop it! It’s <}>gonna stink like humans...!<FFFC><FFF6>Noooo, it’s done for!<FFF5>
+692	0xabd8	pack/talk/KOROU:0x19740	Hey! That’s a child’s answer!<FFFC><FFF6>Don’t toy with me!<FFF5>
+693	0xac0c	pack/talk/KOROU:0x197a8	Is that so!? That’s downright cruel!<FFFC><FFF6>But I want to eat it too...<FFF5>
+694	0xac3e	pack/talk/KOROU:0x19830	...I don’t get it...<FFF5>
+695	0xac5c	pack/talk/KOROU:0x19860	The more ya have to suck out,<FFF6>the more flavorful it gets!<FFFC><FFF6>That’s dried squid! Delicious, I say!<FFF5>
+696	0xac96	pack/talk/KOROU:0x19920	<L{>Hey!<FFF6>My <}><S{>Hey! My <}>teeth ain’t what they used to be!<FFFC><FFF6>I can’t eat such hard food!<FFF5>
+697	0xacc8	pack/talk/KOROU:0x199b0	I don’t need that.<FFF5>
+698	0xacdd	pack/talk/KOROU:0x199d8	Hey!<FFFC><FFF6>It’s obvious ya don’t wanna!<FFF5>
+699	0xad08	pack/talk/KOROU:0x19a20	That’s right.<FFFC><FFF6>Now there’s a good attitude.<FFF5>
+700	0xad38	pack/talk/KOROU:0x19a78	If you’re just gonna ignore me,<FFF6>why’d you answer my first question!?<FFFC><FFF6>I don’t understand...<FFF5>
+701	0xad6d	pack/talk/KOROU:0x19b30	Ho ho.<FFF6>You young’uns don’t understand<FFF6>the emotion of a moonless night.<FFF5>
+702	0xada1	pack/talk/KOROU:0x19bc0	A moonless night makes<FFF6>surprise attacks easy...<FFFC><FFF6>You’re plannin’ somethin’...<FFF5>
+703	0xadd6	pack/talk/KOROU:0x19c60	That’s really strange.<FFFC><FFF6>You and I both have more to learn.<FFF5>
+704	0xae0c	pack/talk/KOROU:0x19cd8	...I’ve never played this game<FFF6>you’re goin’ on about...<FFF5>
+705	0xae39	pack/talk/KOROU:0x19d48	...I’ve heard of that<L{> before,<FFF6>but <}><S{> before, but <}>where...?<FFF5>
+706	0xae65	pack/talk/KOROU:0x19da0	You’re mischief.<FFF6>You don’t have to tease me, do ya?<FFFC><FFF6>Come on, do somethin’.<FFF5>
+707	0xae9e	pack/talk/KOROU:0x19e38	Argh!<FFFC><FFF6>You ain’t gonna listen!?<FFFB><FFF7>Time to put a rebellious<L{> boy<FFF6>in <}><S{> boy in <}>his place!<FFF5>
+708	0xaeee	pack/talk/KOROU:0x19ed0	You’re obedient...<FFFC><FFF6>But after seein’ those eyes of yours,<FFF6>I can’t trust ya...<FFF5>
+709	0xaf2a	pack/talk/KOROU:0x19f70	Hey!<FFFC><FFF6>You’re not supposed to interrupt!<FFFB><FFF7>If ya can’t wait for someone to finish<FFF6>talkin’, I’ll have to punish you!<FFF5>
+710	0xaf7e	pack/talk/KOROU:0x1a058	Ho, ho! How brazenly you speak!<FFF6>Interesting! Let’s negotiate.<FFF5>
+711	0xafb6	pack/talk/KOROU:0x1a0d8	I’ll give ya the ol’ one-two!<FFFC><FFF6>Don’t be talkin’ that hogwash!<FFF5>
 712	0xafe9	pack/talk/KOROU:0x1a158	...Oh well.<FFF5>
-713	0xb000	pack/talk/KOROU:0x1a170	That's right! Now that I think<FFF6>about it, I feel like we've met before...<FFFB><FFF7>Sorry, all you humans look alike...<FFF5>
-714	0xb05e	pack/talk/KOROU:0x1a250	Ho, ho! It's just a human.<FFF6>I got all worried over nothin'.<FFF5>
-715	0xb090	pack/talk/KOROU:0x1a2c8	...Yer really a demon?<FFF6>You smell sorta human...<FFF5>
+713	0xb000	pack/talk/KOROU:0x1a170	That’s<L{> right!<FFF6>Now <}><S{> right! Now <}>that I think about it,<FFF6>I feel like we’ve met before...<FFFB><FFF7>Sorry, all you humans look alike...<FFF5>
+714	0xb05e	pack/talk/KOROU:0x1a250	Ho, ho! It’s just a human.<FFFC><FFF6>I got all worried over nothin’.<FFF5>
+715	0xb090	pack/talk/KOROU:0x1a2c8	...Yer really a demon?<FFFC><FFF6>You smell sorta human...<FFF5>
 716	0xb0be	pack/talk/KOROU:0x1a328	...Yer really a demon?<FFF6>You smell sorta human...<FFF5>
-717	0xb8c8	KOROU:0	That's not true.<FFF5>
+717	0xb8c8	KOROU:0	That’s not true.<FFF5>
 718	0xb8d2	KOROU:1	You have a role.<FFF5>
-719	0xb8e0	KOROU:2	I'll put you to use.<FFF5>
+719	0xb8e0	KOROU:2	I’ll put you to use.<FFF5>
 720	0xb8ee	KOROU:3	Persuade more<FFF5>
 721	0xb8f9	KOROU:4	Give a treasure<FFF5>
 722	0xb906	KOROU:5	Give a treasure<FFF5>
@@ -731,18 +731,18 @@ id	pos	psp	en
 729	0xb93f	KOROU:12	Make noise<FFF5>
 730	0xb948	KOROU:13	Yeah? Fight me then.<FFF5>
 731	0xb957	KOROU:14	Exactly.<FFF5>
-732	0xb960	KOROU:15	I'll torment you.<FFF5>
-733	0xb966	KOROU:16	I won't torment you.<FFF5>
-734	0xb973	KOROU:17	It's a joke.<FFF5>
+732	0xb960	KOROU:15	I’ll torment you.<FFF5>
+733	0xb966	KOROU:16	I won’t torment you.<FFF5>
+734	0xb973	KOROU:17	It’s a joke.<FFF5>
 735	0xb97b	KOROU:18	Work.<FFF5>
 736	0xb981	KOROU:19	Materials.<FFF5>
 737	0xb987	KOROU:20	Company.<FFF5>
-738	0xb98f	KOROU:21	That's true.<FFF5>
-739	0xb99a	KOROU:22	You're not free.<FFF5>
+738	0xb98f	KOROU:21	That’s true.<FFF5>
+739	0xb99a	KOROU:22	You’re not free.<FFF5>
 740	0xb9a7	KOROU:23	You have no rights.<FFF5>
 741	0xb9b5	KOROU:24	I have no plans.<FFF5>
 742	0xb9c1	KOROU:25	I have no plans.<FFF5>
-743	0xb9cd	KOROU:26	I won't tell.<FFF5>
+743	0xb9cd	KOROU:26	I won’t tell.<FFF5>
 744	0xb9d4	KOROU:27	Sing again<FFF5>
 745	0xb9df	KOROU:28	Sing a cappella<FFF5>
 746	0xb9ea	KOROU:29	Sing another song<FFF5>
@@ -752,95 +752,95 @@ id	pos	psp	en
 750	0xba05	KOROU:33	Sing again<FFF5>
 751	0xba10	KOROU:34	Sing again<FFF5>
 752	0xba1b	KOROU:35	Sing another song<FFF5>
-753	0xba26	KOROU:36	You're attractive.<FFF5>
-754	0xba32	KOROU:37	You're strong.<FFF5>
+753	0xba26	KOROU:36	You’re attractive.<FFF5>
+754	0xba32	KOROU:37	You’re strong.<FFF5>
 755	0xba3f	KOROU:38	It was by chance.<FFF5>
 756	0xba49	KOROU:39	Then never mind.<FFF5>
 757	0xba52	KOROU:40	Then never mind.<FFF5>
 758	0xba5b	KOROU:41	But please.<FFF5>
 759	0xba68	KOROU:42	More than straw.<FFF5>
-760	0xba70	KOROU:43	Straw's worth.<FFF5>
+760	0xba70	KOROU:43	Straw’s worth.<FFF5>
 761	0xba7a	KOROU:44	Less than straw.<FFF5>
 762	0xba82	KOROU:45	Hee hee!<FFF5>
 763	0xba8a	KOROU:46	Hee hee!<FFF5>
-764	0xba92	KOROU:47	What'd you say!?<FFF5>
-765	0xba9f	KOROU:48	What'd you say!?<FFF5>
+764	0xba92	KOROU:47	What’d you say!?<FFF5>
+765	0xba9f	KOROU:48	What’d you say!?<FFF5>
 766	0xbaac	KOROU:49	I want your card.<FFF5>
-767	0xbabb	KOROU:50	I won't do anything.<FFF5>
-768	0xbac3	KOROU:51	I won't do anything.<FFF5>
+767	0xbabb	KOROU:50	I won’t do anything.<FFF5>
+768	0xbac3	KOROU:51	I won’t do anything.<FFF5>
 769	0xbacb	KOROU:52	Thanks for the meal.<FFF5>
-770	0xbad3	KOROU:53	I'm not lying.<FFF5>
-771	0xbadc	KOROU:54	I'm not lying.<FFF5>
+770	0xbad3	KOROU:53	I’m not lying.<FFF5>
+771	0xbadc	KOROU:54	I’m not lying.<FFF5>
 772	0xbae5	KOROU:55	I have time.<FFF5>
-773	0xbaeb	KOROU:56	I don't have time.<FFF5>
+773	0xbaeb	KOROU:56	I don’t have time.<FFF5>
 774	0xbaf4	KOROU:57	Give me time!<FFF5>
-775	0xbb00	KOROU:58	It's fun.<FFF5>
+775	0xbb00	KOROU:58	It’s fun.<FFF5>
 776	0xbb0c	KOROU:59	I have no plans.<FFF5>
 777	0xbb18	KOROU:60	What a funny face.<FFF5>
 778	0xbb24	KOROU:61	You want more?<FFF5>
-779	0xbb30	KOROU:62	I don't have candy.<FFF5>
+779	0xbb30	KOROU:62	I don’t have candy.<FFF5>
 780	0xbb3c	KOROU:63	Heart.<FFF5>
 781	0xbb40	KOROU:64	The lottery.<FFF5>
 782	0xbb46	KOROU:65	My memory.<FFF5>
-783	0xbb4d	KOROU:66	Okay! I'll stop.<FFF5>
-784	0xbb58	KOROU:67	It's all on you!<FFF5>
-785	0xbb64	KOROU:68	That's rude.<FFF5>
+783	0xbb4d	KOROU:66	Okay! I’ll stop.<FFF5>
+784	0xbb58	KOROU:67	It’s all on you!<FFF5>
+785	0xbb64	KOROU:68	That’s rude.<FFF5>
 786	0xbb72	KOROU:69	You do.<FFF5>
 787	0xbb77	KOROU:70	You do.<FFF5>
 788	0xbb7c	KOROU:71	That was a lie.<FFF5>
-789	0xbb86	KOROU:72	That's my business.<FFF5>
+789	0xbb86	KOROU:72	That’s my business.<FFF5>
 790	0xbb93	KOROU:73	Too late.<FFF5>
-791	0xbb9d	KOROU:74	You're still young.<FFF5>
+791	0xbb9d	KOROU:74	You’re still young.<FFF5>
 792	0xbba7	KOROU:75	Apologize<FFF5>
 793	0xbbac	KOROU:76	Flirt more<FFF5>
 794	0xbbb5	KOROU:77	Flirt more<FFF5>
 795	0xbbbe	KOROU:78	I have good eyes.<FFF5>
 796	0xbbc5	KOROU:79	Gender is pointless.<FFF5>
-797	0xbbd4	KOROU:80	It's not about age.<FFF5>
+797	0xbbd4	KOROU:80	It’s not about age.<FFF5>
 798	0xbbe3	KOROU:81	Really, Ms.Kawasaki?<FFF5>
 799	0xbbf1	KOROU:82	Really, Ms.Kawasaki?<FFF5>
-800	0xbbff	KOROU:83	I'm not a tabloid.<FFF5>
+800	0xbbff	KOROU:83	I’m not a tabloid.<FFF5>
 801	0xbc0c	KOROU:84	Make it blue.<FFF5>
 802	0xbc13	KOROU:85	Make it red.<FFF5>
 803	0xbc1a	KOROU:86	Make it green.<FFF5>
 804	0xbc21	KOROU:87	No way.<FFF5>
 805	0xbc2a	KOROU:88	A salt and battery.<FFF5>
 806	0xbc35	KOROU:89	Whine and cheese.<FFF5>
-807	0xbc40	KOROU:90	'Course I do.<FFF5>
-808	0xbc4b	KOROU:91	'Course I do.<FFF5>
+807	0xbc40	KOROU:90	’Course I do.<FFF5>
+808	0xbc4b	KOROU:91	’Course I do.<FFF5>
 809	0xbc56	KOROU:92	Never did.<FFF5>
-810	0xbc62	KOROU:93	It's a good bath.<FFF5>
-811	0xbc6a	KOROU:94	It's good for you.<FFF5>
-812	0xbc78	KOROU:95	That's not true.<FFF5>
+810	0xbc62	KOROU:93	It’s a good bath.<FFF5>
+811	0xbc6a	KOROU:94	It’s good for you.<FFF5>
+812	0xbc78	KOROU:95	That’s not true.<FFF5>
 813	0xbc83	KOROU:96	No need to know.<FFF5>
 814	0xbc92	KOROU:97	No need to know.<FFF5>
-815	0xbca1	KOROU:98	I'm just spiritless.<FFF5>
-816	0xbcb0	KOROU:99	I'll kill you!<FFF5>
-817	0xbcb8	KOROU:100	I'll kill you!<FFF5>
-818	0xbcc0	KOROU:101	I don't need hairs.<FFF5>
-819	0xbccd	KOROU:102	I'll yank 'em out!<FFF5>
-820	0xbcdb	KOROU:103	I'll yank 'em out!<FFF5>
+815	0xbca1	KOROU:98	I’m just spiritless.<FFF5>
+816	0xbcb0	KOROU:99	I’ll kill you!<FFF5>
+817	0xbcb8	KOROU:100	I’ll kill you!<FFF5>
+818	0xbcc0	KOROU:101	I don’t need hairs.<FFF5>
+819	0xbccd	KOROU:102	I’ll yank ’em out!<FFF5>
+820	0xbcdb	KOROU:103	I’ll yank ’em out!<FFF5>
 821	0xbce9	KOROU:104	Soup, maybe?<FFF5>
-822	0xbcf2	KOROU:105	I'll cool them.<FFF5>
-823	0xbcfc	KOROU:106	I'll rub them.<FFF5>
+822	0xbcf2	KOROU:105	I’ll cool them.<FFF5>
+823	0xbcfc	KOROU:106	I’ll rub them.<FFF5>
 824	0xbd04	KOROU:107	Unfortunately, no.<FFF5>
-825	0xbd0f	KOROU:108	Then don't buy it.<FFF5>
+825	0xbd0f	KOROU:108	Then don’t buy it.<FFF5>
 826	0xbd19	KOROU:109	If only Yamaoka...<FFF5>
 827	0xbd25	KOROU:110	I have a kotatsu.<FFF5>
 828	0xbd2d	KOROU:111	I have a cat.<FFF5>
 829	0xbd34	KOROU:112	I have a cat.<FFF5>
 830	0xbd3b	KOROU:113	I have dentures.<FFF5>
-831	0xbd45	KOROU:114	I can't eat this.<FFF5>
-832	0xbd4f	KOROU:115	I can't eat this.<FFF5>
-833	0xbd59	KOROU:116	It's delicious.<FFF5>
-834	0xbd64	KOROU:117	You're right.<FFF5>
+831	0xbd45	KOROU:114	I can’t eat this.<FFF5>
+832	0xbd4f	KOROU:115	I can’t eat this.<FFF5>
+833	0xbd59	KOROU:116	It’s delicious.<FFF5>
+834	0xbd64	KOROU:117	You’re right.<FFF5>
 835	0xbd6a	KOROU:118	You too.<FFF5>
 836	0xbd72	KOROU:119	I refuse.<FFF5>
 837	0xbd77	KOROU:120	Age matters not.<FFF5>
-838	0xbd82	KOROU:121	So you're invalid...<FFF5>
-839	0xbd90	KOROU:122	So you're invalid...<FFF5>
+838	0xbd82	KOROU:121	So you’re invalid...<FFF5>
+839	0xbd90	KOROU:122	So you’re invalid...<FFF5>
 840	0xbd9e	KOROU:123	No.<FFF5>
-841	0xbda4	KOROU:124	That's right.<FFF5>
+841	0xbda4	KOROU:124	That’s right.<FFF5>
 842	0xbda9	KOROU:125	Clear skies.<FFF5>
 843	0xbdb0	KOROU:126	Cloudy skies.<FFF5>
 844	0xbdb6	KOROU:127	Rain.<FFF5>
@@ -853,15 +853,15 @@ id	pos	psp	en
 851	0xbde5	KOROU:134	No.<FFF5>
 852	0xbdeb	KOROU:135	You found me out.<FFF5>
 853	0xbdf5	KOROU:136	You found me out.<FFF5>
-854	0xbdff	KOROU:137	I'm honored.<FFF5>
-855	0xbe07	KOROU:138	You can't do it.<FFF5>
+854	0xbdff	KOROU:137	I’m honored.<FFF5>
+855	0xbe07	KOROU:138	You can’t do it.<FFF5>
 856	0xbe17	KOROU:139	Need spare change?<FFF5>
 857	0xbe20	KOROU:140	What a fool...<FFF5>
 858	0xbe29	KOROU:141	What a fool...<FFF5>
 859	0xbe32	KOROU:142	I am humbled.<FFF5>
 860	0xbe3b	KOROU:143	Oh yeah.<FFF5>
-861	0xbe4a	KOROU:144	I'm not like you.<FFF5>
-862	0xbe56	KOROU:145	I'm not like you.<FFF5>
+861	0xbe4a	KOROU:144	I’m not like you.<FFF5>
+862	0xbe56	KOROU:145	I’m not like you.<FFF5>
 863	0xbe62	KOROU:146	Learn<FFF5>
 864	0xbe68	KOROU:147	Refuse<FFF5>
 865	0xbe6d	KOROU:148	Ignore<FFF5>
@@ -870,34 +870,34 @@ id	pos	psp	en
 868	0xbe91	KOROU:151	Ignore<FFF5>
 869	0xbe99	KOROU:152	Hey, hey, hey!<FFF5>
 870	0xbea3	KOROU:153	Hey, hey, hey!<FFF5>
-871	0xbead	KOROU:154	I'll rip you.<FFF5>
-872	0xbeb3	KOROU:155	I'll test you!<FFF5>
+871	0xbead	KOROU:154	I’ll rip you.<FFF5>
+872	0xbeb3	KOROU:155	I’ll test you!<FFF5>
 873	0xbebe	KOROU:156	Damn, you found out!<FFF5>
 874	0xbecd	KOROU:157	Damn, you found out!<FFF5>
-875	0xbedc	KOROU:158	I'll torment you.<FFF5>
-876	0xbee5	KOROU:159	I'll spare you.<FFF5>
-877	0xbef3	KOROU:160	It's a joke.<FFF5>
+875	0xbedc	KOROU:158	I’ll torment you.<FFF5>
+876	0xbee5	KOROU:159	I’ll spare you.<FFF5>
+877	0xbef3	KOROU:160	It’s a joke.<FFF5>
 878	0xbefb	KOROU:161	Yeah, exactly.<FFF5>
-879	0xbf06	KOROU:162	That's not it.<FFF5>
-880	0xbf10	KOROU:163	That's not it.<FFF5>
+879	0xbf06	KOROU:162	That’s not it.<FFF5>
+880	0xbf10	KOROU:163	That’s not it.<FFF5>
 881	0xbf1a	KOROU:164	Gaze harder<FFF5>
-882	0xbf24	KOROU:165	I'll scratch ya.<FFF5>
-883	0xbf2d	KOROU:166	I'll scratch ya.<FFF5>
-884	0xbf36	KOROU:167	That's not true.<FFF5>
-885	0xbf40	KOROU:168	That's not true.<FFF5>
+882	0xbf24	KOROU:165	I’ll scratch ya.<FFF5>
+883	0xbf2d	KOROU:166	I’ll scratch ya.<FFF5>
+884	0xbf36	KOROU:167	That’s not true.<FFF5>
+885	0xbf40	KOROU:168	That’s not true.<FFF5>
 886	0xbf4a	KOROU:169	Well, yeah.<FFF5>
 887	0xbf52	KOROU:170	One.<FFF5>
 888	0xbf58	KOROU:171	Two.<FFF5>
 889	0xbf5e	KOROU:172	Three and a third.<FFF5>
-890	0xbf6b	KOROU:173	I'm fine with that!<FFF5>
-891	0xbf77	KOROU:174	I'm just embellishing!<FFF5>
-892	0xbf85	KOROU:175	I'm just embellishing!<FFF5>
+890	0xbf6b	KOROU:173	I’m fine with that!<FFF5>
+891	0xbf77	KOROU:174	I’m just embellishing!<FFF5>
+892	0xbf85	KOROU:175	I’m just embellishing!<FFF5>
 893	0xbf93	KOROU:176	Just this one.<FFF5>
 894	0xbf9a	KOROU:177	51,670,000,000.<FFF5>
 895	0xbfaa	KOROU:178	24/7.<FFF5>
-896	0xbfb5	KOROU:179	I'll call for help.<FFF5>
-897	0xbfc1	KOROU:180	I'll perform CPR.<FFF5>
-898	0xbfcf	KOROU:181	How 'bout an elbow?<FFF5>
+896	0xbfb5	KOROU:179	I’ll call for help.<FFF5>
+897	0xbfc1	KOROU:180	I’ll perform CPR.<FFF5>
+898	0xbfcf	KOROU:181	How ’bout an elbow?<FFF5>
 899	0xbfdb	KOROU:182	Curiosity.<FFF5>
 900	0xbfe8	KOROU:183	Respect.<FFF5>
 901	0xbff3	KOROU:184	No reason.<FFF5>
@@ -915,12 +915,12 @@ id	pos	psp	en
 913	0xc076	KOROU:196	Recommend a CD<FFF5>
 914	0xc083	KOROU:197	You look too young.<FFF5>
 915	0xc090	KOROU:198	You look too young.<FFF5>
-916	0xc09d	KOROU:199	You're not happy?<FFF5>
+916	0xc09d	KOROU:199	You’re not happy?<FFF5>
 917	0xc0ab	KOROU:200	No need to be upset.<FFF5>
-918	0xc0b6	KOROU:201	You're not happy?<FFF5>
-919	0xc0c3	KOROU:202	You're not happy?<FFF5>
-920	0xc0d0	KOROU:203	I'll treasure it.<FFF5>
-921	0xc0da	KOROU:204	I'm not pure.<FFF5>
+918	0xc0b6	KOROU:201	You’re not happy?<FFF5>
+919	0xc0c3	KOROU:202	You’re not happy?<FFF5>
+920	0xc0d0	KOROU:203	I’ll treasure it.<FFF5>
+921	0xc0da	KOROU:204	I’m not pure.<FFF5>
 922	0xc0ea	KOROU:205	Are angels good?<FFF5>
 923	0xc0fb	KOROU:206	Work.<FFF5>
 924	0xc101	KOROU:207	Materials.<FFF5>
@@ -928,44 +928,44 @@ id	pos	psp	en
 926	0xc10f	KOROU:209	Few demons are free.<FFF5>
 927	0xc11f	KOROU:210	You have no choice.<FFF5>
 928	0xc12e	KOROU:211	You have no choice.<FFF5>
-929	0xc13d	KOROU:212	That's not true.<FFF5>
-930	0xc149	KOROU:213	That's not true.<FFF5>
-931	0xc155	KOROU:214	I won't lose.<FFF5>
-932	0xc162	KOROU:215	It's way fun.<FFF5>
+929	0xc13d	KOROU:212	That’s not true.<FFF5>
+930	0xc149	KOROU:213	That’s not true.<FFF5>
+931	0xc155	KOROU:214	I won’t lose.<FFF5>
+932	0xc162	KOROU:215	It’s way fun.<FFF5>
 933	0xc16b	KOROU:216	Is that fun?<FFF5>
-934	0xc174	KOROU:217	It's boring!<FFF5>
+934	0xc174	KOROU:217	It’s boring!<FFF5>
 935	0xc17d	KOROU:218	Your breath smells!<FFF5>
-936	0xc189	KOROU:219	I'm sorry.<FFF5>
-937	0xc193	KOROU:220	It'll be nice out.<FFF5>
-938	0xc1a3	KOROU:221	That's not true.<FFF5>
-939	0xc1af	KOROU:222	That's not true.<FFF5>
-940	0xc1bb	KOROU:223	It's buried.<FFF5>
-941	0xc1c7	KOROU:224	It's healthy.<FFF5>
-942	0xc1d5	KOROU:225	You don't like tans?<FFF5>
-943	0xc1e4	KOROU:226	I'm hiding freckles.<FFF5>
-944	0xc1f3	KOROU:227	That's not true!<FFF5>
+936	0xc189	KOROU:219	I’m sorry.<FFF5>
+937	0xc193	KOROU:220	It’ll be nice out.<FFF5>
+938	0xc1a3	KOROU:221	That’s not true.<FFF5>
+939	0xc1af	KOROU:222	That’s not true.<FFF5>
+940	0xc1bb	KOROU:223	It’s buried.<FFF5>
+941	0xc1c7	KOROU:224	It’s healthy.<FFF5>
+942	0xc1d5	KOROU:225	You don’t like tans?<FFF5>
+943	0xc1e4	KOROU:226	I’m hiding freckles.<FFF5>
+944	0xc1f3	KOROU:227	That’s not true!<FFF5>
 945	0xc1ff	KOROU:228	Okay.<FFF5>
 946	0xc205	KOROU:229	Too old fashioned.<FFF5>
-947	0xc210	KOROU:230	You're right.<FFF5>
-948	0xc216	KOROU:231	It's not love?<FFF5>
-949	0xc220	KOROU:232	You're in love.<FFF5>
+947	0xc210	KOROU:230	You’re right.<FFF5>
+948	0xc216	KOROU:231	It’s not love?<FFF5>
+949	0xc220	KOROU:232	You’re in love.<FFF5>
 950	0xc22c	KOROU:233	Okay.<FFF5>
 951	0xc232	KOROU:234	I hate pie.<FFF5>
 952	0xc23f	KOROU:235	I hate pie.<FFF5>
 953	0xc24c	KOROU:236	Okay.<FFF5>
 954	0xc252	KOROU:237	What, no!<FFF5>
 955	0xc25c	KOROU:238	What, no!<FFF5>
-956	0xc266	KOROU:239	There's bagels!<FFF5>
-957	0xc272	KOROU:240	There's ochazuke!<FFF5>
+956	0xc266	KOROU:239	There’s bagels!<FFF5>
+957	0xc272	KOROU:240	There’s ochazuke!<FFF5>
 958	0xc281	KOROU:241	Use a microwave.<FFF5>
-959	0xc291	KOROU:242	Because I'm cute?<FFF5>
-960	0xc29d	KOROU:243	Because I'm small?<FFF5>
-961	0xc2a8	KOROU:244	Because I'm small?<FFF5>
+959	0xc291	KOROU:242	Because I’m cute?<FFF5>
+960	0xc29d	KOROU:243	Because I’m small?<FFF5>
+961	0xc2a8	KOROU:244	Because I’m small?<FFF5>
 962	0xc2b3	KOROU:245	Hey, you wanna die?<FFF5>
 963	0xc2c1	KOROU:246	Hey, you wanna die?<FFF5>
-964	0xc2cf	KOROU:247	I'm sorry.<FFF5>
-965	0xc2d9	KOROU:248	You shouldn't exist.<FFF5>
-966	0xc2e8	KOROU:249	You shouldn't exist.<FFF5>
+964	0xc2cf	KOROU:247	I’m sorry.<FFF5>
+965	0xc2d9	KOROU:248	You shouldn’t exist.<FFF5>
+966	0xc2e8	KOROU:249	You shouldn’t exist.<FFF5>
 967	0xc2f7	KOROU:250	That was a lie.<FFF5>
 968	0xc301	KOROU:251	Bully more<FFF5>
 969	0xc30c	KOROU:252	Take the bullying<FFF5>
@@ -974,19 +974,19 @@ id	pos	psp	en
 972	0xc327	KOROU:255	Bully more<FFF5>
 973	0xc332	KOROU:256	Take the bullying<FFF5>
 974	0xc33a	KOROU:257	There is...<FFF5>
-975	0xc343	KOROU:258	I won't marry.<FFF5>
-976	0xc350	KOROU:259	That's my business.<FFF5>
-977	0xc35e	KOROU:260	...I'm fine.<FFF5>
-978	0xc36e	KOROU:261	I'll do that.<FFF5>
-979	0xc375	KOROU:262	I can't ignore it.<FFF5>
+975	0xc343	KOROU:258	I won’t marry.<FFF5>
+976	0xc350	KOROU:259	That’s my business.<FFF5>
+977	0xc35e	KOROU:260	...I’m fine.<FFF5>
+978	0xc36e	KOROU:261	I’ll do that.<FFF5>
+979	0xc375	KOROU:262	I can’t ignore it.<FFF5>
 980	0xc382	KOROU:263	Hehehe...<FFF5>
-981	0xc389	KOROU:264	Don't screw with me!<FFF5>
+981	0xc389	KOROU:264	Don’t screw with me!<FFF5>
 982	0xc395	KOROU:265	Now, where to go?<FFF5>
-983	0xc3a4	KOROU:266	You don't like sake?<FFF5>
-984	0xc3b0	KOROU:267	Pickles aren't good?<FFF5>
-985	0xc3bd	KOROU:268	You don't like stew?<FFF5>
+983	0xc3a4	KOROU:266	You don’t like sake?<FFF5>
+984	0xc3b0	KOROU:267	Pickles aren’t good?<FFF5>
+985	0xc3bd	KOROU:268	You don’t like stew?<FFF5>
 986	0xc3c9	KOROU:269	...Cut it out.<FFF5>
-987	0xc3d1	KOROU:270	Don't screw with me!<FFF5>
+987	0xc3d1	KOROU:270	Don’t screw with me!<FFF5>
 988	0xc3dd	KOROU:271	Yeah.<FFF5>
 989	0xc3e1	KOROU:272	No.<FFF5>
 990	0xc3e7	KOROU:273	The weather is...<FFF5>
@@ -999,37 +999,37 @@ id	pos	psp	en
 997	0xc42f	KOROU:280	Me.<FFF5>
 998	0xc437	KOROU:281	Taunt me and die.<FFF5>
 999	0xc445	KOROU:282	Keep talking.<FFF5>
-1000	0xc44e	KOROU:283	Can't hear ya.<FFF5>
+1000	0xc44e	KOROU:283	Can’t hear ya.<FFF5>
 1001	0xc457	KOROU:284	Just like a rat.<FFF5>
 1002	0xc464	KOROU:285	Just like a rat.<FFF5>
-1003	0xc471	KOROU:286	That's right.<FFF5>
-1004	0xc476	KOROU:287	I'll reuse it.<FFF5>
-1005	0xc484	KOROU:288	I'll reuse it.<FFF5>
+1003	0xc471	KOROU:286	That’s right.<FFF5>
+1004	0xc476	KOROU:287	I’ll reuse it.<FFF5>
+1005	0xc484	KOROU:288	I’ll reuse it.<FFF5>
 1006	0xc492	KOROU:289	Lone wolf kick<FFF5>
 1007	0xc49e	KOROU:290	Lone wolf punch<FFF5>
 1008	0xc4aa	KOROU:291	Lone wolf suplex<FFF5>
 1009	0xc4b9	KOROU:292	More threats<FFF5>
-1010	0xc4c1	KOROU:293	Don't apologize<FFF5>
-1011	0xc4c8	KOROU:294	Don't apologize<FFF5>
-1012	0xc4cf	KOROU:295	You're evil.<FFF5>
-1013	0xc4dd	KOROU:296	It's irrelevant.<FFF5>
-1014	0xc4ec	KOROU:297	It's irrelevant.<FFF5>
-1015	0xc4fb	KOROU:298	Yeah, that's right.<FFF5>
-1016	0xc504	KOROU:299	Yeah, that's right.<FFF5>
+1010	0xc4c1	KOROU:293	Don’t apologize<FFF5>
+1011	0xc4c8	KOROU:294	Don’t apologize<FFF5>
+1012	0xc4cf	KOROU:295	You’re evil.<FFF5>
+1013	0xc4dd	KOROU:296	It’s irrelevant.<FFF5>
+1014	0xc4ec	KOROU:297	It’s irrelevant.<FFF5>
+1015	0xc4fb	KOROU:298	Yeah, that’s right.<FFF5>
+1016	0xc504	KOROU:299	Yeah, that’s right.<FFF5>
 1017	0xc50d	KOROU:300	Listen to me yell!<FFF5>
 1018	0xc51b	KOROU:301	So what?<FFF5>
 1019	0xc526	KOROU:302	Nope.<FFF5>
-1020	0xc52b	KOROU:303	I don't know.<FFF5>
+1020	0xc52b	KOROU:303	I don’t know.<FFF5>
 1021	0xc533	KOROU:304	Think about it.<FFF5>
 1022	0xc53e	KOROU:305	Think about it.<FFF5>
-1023	0xc549	KOROU:306	It's meaningless.<FFF5>
-1024	0xc556	KOROU:307	Don't tell<FFF5>
-1025	0xc55d	KOROU:308	Don't tell<FFF5>
+1023	0xc549	KOROU:306	It’s meaningless.<FFF5>
+1024	0xc556	KOROU:307	Don’t tell<FFF5>
+1025	0xc55d	KOROU:308	Don’t tell<FFF5>
 1026	0xc564	KOROU:309	Continue the trick<FFF5>
 1027	0xc56f	KOROU:310	Yell<FFF5>
 1028	0xc574	KOROU:311	Ignore<FFF5>
 1029	0xc57c	KOROU:312	Continue the trick<FFF5>
-1030	0xc587	KOROU:313	Can't hear ya.<FFF5>
+1030	0xc587	KOROU:313	Can’t hear ya.<FFF5>
 1031	0xc590	KOROU:314	If I have time.<FFF5>
 1032	0xc59b	KOROU:315	If I have time.<FFF5>
 1033	0xc5a6	KOROU:316	Talk with demons.<FFF5>
@@ -1038,8 +1038,8 @@ id	pos	psp	en
 1036	0xc5c1	KOROU:319	Stay calm<FFF5>
 1037	0xc5c7	KOROU:320	Get angry<FFF5>
 1038	0xc5cc	KOROU:321	Ignore and continue<FFF5>
-1039	0xc5d7	KOROU:322	You're just shy.<FFF5>
-1040	0xc5e3	KOROU:323	It's being eaten.<FFF5>
+1039	0xc5d7	KOROU:322	You’re just shy.<FFF5>
+1040	0xc5e3	KOROU:323	It’s being eaten.<FFF5>
 1041	0xc5ee	KOROU:324	Due to the sun...<FFF5>
 1042	0xc5fd	KOROU:325	Dried squid<FFF5>
 1043	0xc602	KOROU:326	Rice crackers<FFF5>
@@ -1047,7 +1047,7 @@ id	pos	psp	en
 1045	0xc610	KOROU:328	Be humble<FFF5>
 1046	0xc61a	KOROU:329	Be humble<FFF5>
 1047	0xc624	KOROU:330	Ignore<FFF5>
-1048	0xc62c	KOROU:331	I'm lonely.<FFF5>
+1048	0xc62c	KOROU:331	I’m lonely.<FFF5>
 1049	0xc632	KOROU:332	I feel good.<FFF5>
 1050	0xc639	KOROU:333	This is strange.<FFF5>
 1051	0xc647	KOROU:334	The latest games.<FFF5>
@@ -1058,6 +1058,6 @@ id	pos	psp	en
 1056	0xc67b	KOROU:339	Ignore<FFF5>
 1057	0xc683	KOROU:340	Give me a card.<FFF5>
 1058	0xc68d	KOROU:341	Give me something.<FFF5>
-1059	0xc694	KOROU:342	Let's negotiate.<FFF5>
+1059	0xc694	KOROU:342	Let’s negotiate.<FFF5>
 1060	0xc69d	KOROU:343	<FFFA>.<FFF5>
 1061	0xc6a1	KOROU:344	Human.<FFF5>

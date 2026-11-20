@@ -1,0 +1,6 @@
+name	Skip the Agastya tree menu
+description	Opens the save list right away at an Agastya tree, without the SAVE / GAME END choice. Cancel leaves the tree.
+default	no
+always	no
+release	yes
+requires	base

@@ -1,0 +1,7 @@
+name	Fast forward battle animations
+description	Toggled by pressing Start during the battle animations. Way faster than just double speed.
+author	Redeted
+default	yes
+always	no
+release	yes
+requires	base

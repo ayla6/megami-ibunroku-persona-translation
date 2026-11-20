@@ -6,7 +6,7 @@ transcribed. Generated images stay in `/tmp`, never in the repository.
 ## PSP ending text images
 
 The U.S. PSP `pack/end/ENDALL.BIN` GIM archive holds the ending text panels and
-the staff roll. `python src/extraction_tools/psp/end_images.py gim <dir>`
+the staff roll. `python src/extraction/psp/end_images.py gim <dir>`
 writes all 116 standalone GIMs byte-for-byte; `get <entries> <dir>` converts
 entries to PNG (ENDALL has a 16-byte container header before each GIM; the
 image data starts at the frame offset in the GIM header).
@@ -34,14 +34,14 @@ Entries #50–58 repeat #81–90's original-staff text in another layout; #33–
 #60–80 and #93–96 are the PSP remake and U.S. localization staff; #27–30 are
 shadow/mask graphics.
 
-`src/extraction_tools/matching/endtext_map.tsv` maps transcript lines to PS1
+`src/porting/endtext_map.tsv` maps transcript lines to PS1
 `EXE/END.BIN` TIM pages (`first_line`/`end_line` slice an entry; several rows
 for one page join in order; a row with no entry is a page the PSP lacks).
-The PSP text is images, so nothing is generated: `src/injection_tools/endtext.py`
+The PSP text is images, so nothing is generated: `src/injection/other/endtext.py`
 cuts the transcription into pages itself when it draws them. The pages the
 PSP lacks are written in `translation/manual/ending/pages.tsv`
 (`page | about | text` - filled text also replaces a PSP page; empty keeps
-the Japanese picture). `src/injection_tools/endtext.py` renders `build/EXE/END.BIN` and previews in
+the Japanese picture). `src/injection/other/endtext.py` renders `build/EXE/END.BIN` and previews in
 `build/previews/endtext/`. Layouts: `c` centred prose, `p` profile (name,
 then paragraph), `n` credits (the retail roll's two columns: job titles right-aligned, names
 beside them), `l` the roll's logo sheet (the names under Direction and Art
@@ -51,15 +51,18 @@ Vocal and Debug, and two pages appended to END.BIN after the roll for the PSP
 release's U.S. localization staff (executive producer to project
 coordinator, translators, editors - from the PSP-US roll's #94/#95 screens;
 its voice recording and QA are left out). `end_exe/roll.asm` shows them in
-every ending with the roll, before the Presented By card. The
-names in the white-on-transparent GIMs only show composited onto black. `--qol=debug`
-starts any ending from the title (src/asm/qol/README.md). The PS1 credits pages for
+every ending with the roll, before the Presented By card. A `--mods=english-dub`
+build adds the English voice cast after them
+(`translation/manual/ending/dub_pages.tsv`, `endtext.py --dub`; build.py
+runs `endtext.py` per variant). The
+names in the white-on-transparent GIMs only show composited onto black. `--mods=debug-tools`
+starts any ending from the title (src/mods/debug-tools/README.md). The PS1 credits pages for
 Voice Act, Velvet Room Vocal and Debug have no PSP counterpart. The poem tails from
 entries #25/#26 became the ending-movie poem overlays
 (`translation/manual/fmv/poems.tsv`, laid out in
-`src/injection_tools/fmv_layout.py`, rendered in-engine).
+`src/mods/fmv-translation/fmv_layout.py`, rendered in-engine).
 
-The PSP quote is extractable glyph data: `src/extraction_tools/psp/boot.py
+The PSP quote is extractable glyph data: `src/extraction/psp/boot.py
 extract` writes separate JP/US quote caches and the PSX target table
 `translation/generated/fmv/opening.tsv` (`port_quote.py`) from `BOOT.BIN`.
 

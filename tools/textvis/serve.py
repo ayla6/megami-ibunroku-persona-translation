@@ -15,15 +15,28 @@ translation/manual/ with the row's psp and note kept.
                               and the choice grid when the row is an <FF0E>
                               option table entry (a queued over-limit row
                               starts from the draft in its note)
+  POST /reload                the project's modules imported afresh and every
+                              cache dropped (the page's reload button)
+  POST /errata {rel,pos,rows} the row's PSP line's errata, replaced in
+                              translation/psp_errata.tsv (the port applies them)
+  POST /errata/preview {rel,pos,rows}  the row as those errata would make
+                              it: the stored English re-edited and each box
+                              laid out by the porter's flow (a picture; the
+                              port writes the row)
   POST /save {rel,pos,en}     the human's manual override (Ctrl+S in the page);
                               a choice row is laid out first, so the save
                               cannot write a grid the build would refuse
+  POST /phrases {phrase,note} words read as one thing, appended to
+                              translation/phrases.tsv (a break inside them
+                              costs what a name split does)
   GET  /psp?q=&region=&limit= search the PSP-US and PSP-JP extracts
   GET  /psp/unit?region=&rel=&id=  one PSP unit, its neighbours, its twin
-  GET  /font                  the build's VWF font + the retail FONT.BIN and
+  GET  /font?edition=          a font edition's VWF font (large by default) + the retail FONT.BIN and
                               its glyph map (the missing-character fallback)
   GET  /count                 how many rows the tables hold
-  POST /render {rel,text,flow} the text as the game draws it, page by page:
+  POST /render {rel,text,flow,edition} the text as the game draws it in a font
+                               edition (a row carrying every edition's layout is
+                               read as that one's), page by page:
                               vwf_render's compositor model (ink, shadow,
                               inserts, the engine's own wrap) and
                               vwf_wrap.shape_report's findings - the porter's
@@ -36,15 +49,17 @@ translation/manual/ with the row's psp and note kept.
                               (build/close_calls.tsv, close_calls.py):
                               {rows: [rel, pos, margin], missing}
 """
+import os
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'src'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
 import base64
 import csv
 import glob
 import importlib
 import json
-import os
 import re
 import subprocess
-import sys
 import urllib.parse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
@@ -53,12 +68,12 @@ ROOT = os.path.dirname(os.path.dirname(HERE))
 GEN = os.path.join(ROOT, "translation", "generated")
 MAN = os.path.join(ROOT, "translation", "manual")
 PAGE = os.path.join(HERE, "index.html")
-FONT_DIR = os.path.join(ROOT, "src", "asm", "font")
+FONT_DIR = os.path.join(ROOT, "src", "mods", "latin-alphabet", "assets", "fonts")
 # THE RETAIL JAPANESE FONT: the textbox's own 16x16 1-bpp FONT.BIN and the
 # glyph map that names each slot. The page uses it for every character the
 # English VWF font has no cell for.
 ORIG_FONT = os.path.join(ROOT, "data", "psx", "FONT.BIN")
-FONT_MAP = os.path.join(ROOT, "src", "injection_tools", "font_map.tsv")
+FONT_MAP = os.path.join(ROOT, "src", "injection", "formats", "font_map.tsv")
 
 _font = {"stamp": None, "json": None}
 _orig = {"stamp": None, "data": None}
@@ -68,12 +83,74 @@ _align = {"key": None, "map": {}}
 _choices = {"stamp": None, "map": {}}
 
 
+def font_payload(edition: str) -> bytes:
+    """The built face and its exact character-to-code and spelling maps."""
+    font_builder = importlib.import_module("make_vwf_font")
+    fb = toolpath.font_path("font", edition)
+    wb = toolpath.font_path("width", edition)
+    paths = (fb, wb, ORIG_FONT, FONT_MAP, font_builder.SHEET_CHARACTERS,
+             font_builder.RECLAIMED_KANJI, os.path.join(FONT_DIR, font_builder.EDITIONS[edition][0]))
+    stamp = (edition, *tuple(
+        (os.stat(p).st_mtime_ns, os.stat(p).st_size) if os.path.exists(p) else None
+        for p in paths
+    ))
+    if _font["stamp"] == stamp:
+        return _font["json"]
+    with open(fb, "rb") as source:
+        rows = source.read()
+    with open(wb, "rb") as source:
+        widths = source.read()
+    if len(widths) != font_builder.TOP - font_builder.FIRST + 1 or len(rows) != 16 * len(widths):
+        raise ValueError("Font tables do not match the sheet character list. Build the fonts and reload Textvis.")
+    extra = font_builder.EXTRA_CODE
+    atlas = font_builder.atlas_glyphs(edition)
+    custom = {ch: [atlas[slot][-1], list(atlas[slot][:16])]
+              for ch, slot in font_builder.ATLAS_CODE.items()}
+    drawn = extra.keys() | custom.keys()
+    folds = {ch: dest for ch, dest in font_builder.SPELL.items() if ch not in drawn}
+    folds.update({ch: dest for ch, dest in (("＞", ">"), ("＜", "<")) if ch not in drawn})
+    data = {"font": base64.b64encode(rows).decode(),
+            "widths": base64.b64encode(widths).decode(),
+            "extra": extra, "custom": custom, "spell": folds, "sheet_error": font_builder.SHEET_ERROR}
+    try:
+        ofont, gmap = orig_font()
+        data["orig"] = base64.b64encode(ofont).decode()
+        data["map"] = gmap
+    except OSError:
+        pass
+    result = json.dumps(data, ensure_ascii=False).encode()
+    _font.update(stamp=stamp, json=result)
+    return result
+
+
 def tb():
     """toolbelt, imported once: it is the only reader/writer of the tables."""
     if "toolbelt" not in globals():
-        sys.path.insert(0, os.path.join(ROOT, "src", "injection_tools"))
         globals()["toolbelt"] = importlib.import_module("toolbelt")
     return globals()["toolbelt"]
+
+
+def reload_all():
+    """The reload button: the project's own modules (the porter's rules, the
+    readers) imported afresh and every cache dropped, so the page shows the
+    code and tables on disk now without restarting the server."""
+    srcs = (os.path.join(ROOT, "src"), os.path.join(ROOT, "tools"))
+    mods = [m for m in list(sys.modules.values())
+            if getattr(m, "__file__", None) and m.__name__ != __name__
+            and os.path.abspath(m.__file__).startswith(srcs)]
+    for m in mods:
+        sys.modules.pop(m.__name__, None)
+    globals().pop("toolbelt", None)
+    _font.update(stamp=None, json=None)
+    _orig.update(stamp=None, data=None)
+    _cache.update(stamp=None, rows=[])
+    _psp.clear()
+    _align.update(key=None, map={})
+    _choices.update(stamp=None, map={})
+    _errata_targets.clear()
+    _renders.clear()
+    tb()
+    return len(mods)
 
 
 def tables(base, cols):
@@ -157,8 +234,8 @@ def rows():
     rels = {rel for _base, rel, _path in found}
     out = []
     for rel in sorted(rels):
-        gen = {r["pos"]: r for r in tb_.read_generated(rel, optional=True)}
-        man = {r["pos"]: r for r in tb_.read_manual(rel, optional=True)}
+        gen = {r["pos"]: r for r in tb_._raw_generated(rel, optional=True)}
+        man = {r["pos"]: r for r in tb_._raw_manual(rel, optional=True)}
         order = list(gen)
         order += [p for p in man if p not in gen]
         ja = None
@@ -189,20 +266,23 @@ def rows():
 
 
 def psp_text(toolbelt, loc):
-    """The PSP-US wording a row's `psp` names.
+    """The PSP-US wording a row's `psp` names, as the PSP has it (the
+    psp_errata.tsv corrections not applied: the row shows those).
 
-    Two spellings: a unit locator ("pack/talk/KEMONO:0xd118", resolved by
-    toolbelt.psp_wording) and a FAMILY locator ("E0:149" - the ADV porter's
-    own box index, which is the row's id in that extract).
+    Two spellings: a unit locator ("pack/talk/KEMONO:0xd118", "BASKET:49" -
+    an answer slot - resolved by toolbelt.psp_wording) and a FAMILY locator
+    ("E0:149" - the ADV porter's own box index, which is the row's id in
+    that extract).
     """
-    w = toolbelt.psp_wording(loc)
+    w = toolbelt.psp_wording(loc, errata=False)
     if w:
         return w.strip()
     if ":" not in loc:
         return ""
     name, num = loc.split(":", 1)
     try:
-        for row in toolbelt.read_extracted("psp_us", toolbelt.psp_rel(name)):
+        for row in toolbelt.read_extracted("psp_us", toolbelt.psp_rel(name),
+                                           errata=False):
             if str(row.get("id")) == num.strip():
                 return (row.get("text") or "").strip()
     except Exception:
@@ -230,9 +310,9 @@ def row_detail(rel, pos):
     shorten, and retyping it before editing is work the viewer can spare them.
     The row keeps its `queue` state (manual en is still empty)."""
     tb_ = tb()
-    gen = next((r for r in tb_.read_generated(rel, optional=True)
+    gen = next((r for r in tb_._raw_generated(rel, optional=True)
                 if r["pos"] == pos), None)
-    man = next((r for r in tb_.read_manual(rel, optional=True)
+    man = next((r for r in tb_._raw_manual(rel, optional=True)
                 if r["pos"] == pos), None)
     ja = ja_text(tb_.psx_text_of(rel), pos)
     man_en = (man or {}).get("en", "")
@@ -251,10 +331,14 @@ def row_detail(rel, pos):
         head = shipped_at("HEAD").get((rel, pos))
     except ValueError:
         head = None
+    try:
+        errata = errata_for((gen or {}).get("psp", ""))
+    except Exception:
+        errata = None
     return {"rel": rel, "pos": pos, "ja": ja, "state": state,
             "initial": initial, "head": head, "gen": slim(tb_, gen),
             "man": slim(tb_, man, with_note=True),
-            "choice": choice_grid(rel, pos)}
+            "choice": choice_grid(rel, pos), "errata": errata}
 
 
 def choice_grid(rel, pos):
@@ -271,7 +355,6 @@ def choice_grid(rel, pos):
         return None
     stamp = (os.stat(path).st_mtime_ns, os.stat(path).st_size)
     if _choices["stamp"] != stamp:
-        sys.path.insert(0, os.path.join(ROOT, "src", "injection_tools"))
         import choices
         orig = choices.original()
         _choices["rows"] = {hex(r["ptr"] - choices.BASE): r for r in orig}
@@ -324,7 +407,9 @@ def psp_files(region):
     cached = _psp.get(region)
     if cached and cached["stamp"] == stamp:
         return cached
-    files = {rel: tb_.read_extracted(key, rel, optional=True)
+    # the PSP text as the PSP has it: psp_errata.tsv corrections are the
+    # rows', not the source's
+    files = {rel: tb_.read_extracted(key, rel, optional=True, errata=False)
              for rel, _path in found}
     cached = {"stamp": stamp, "files": files,
               "lower": {rel: [r["text"].lower() for r in rs]
@@ -337,7 +422,6 @@ def psp_glyphs():
     """The PSP's glyph table, so a parameter decoded as a character can be
     turned back into the bytes it stands for (match.Glyphs)."""
     if "glyphs" not in globals():
-        sys.path.insert(0, os.path.join(ROOT, "src", "extraction_tools", "psp"))
         from codec import jp_map
         import match
         globals()["match"] = match
@@ -481,10 +565,10 @@ def save_manual(rel, pos, en):
     the same canonical column set and end-code rule every writer uses.
     """
     tb_ = tb()
-    rows_ = [dict(r) for r in tb_.read_manual(rel, optional=True)]
+    rows_ = [dict(r) for r in tb_._raw_manual(rel, optional=True)]
     row = next((r for r in rows_ if r["pos"] == pos), None)
     if row is None:
-        gen = next((r for r in tb_.read_generated(rel, optional=True)
+        gen = next((r for r in tb_._raw_generated(rel, optional=True)
                     if r["pos"] == pos), None)
         used = {r["id"] for r in rows_ if str(r["id"]).isdigit()}
         n = 0
@@ -499,18 +583,228 @@ def save_manual(rel, pos, en):
     return row_detail(rel, pos)
 
 
+# ---------------------------------------------------------------------------
+# the row's PSP errata (translation/psp_errata.tsv): read, previewed, saved
+# ---------------------------------------------------------------------------
+
+def errata_target(psp):
+    """(rel, pos) of the one PSP-US line a row's `psp` pointer names - the
+    line its errata rows correct - or None (no pointer, a merged row)."""
+    tb_ = tb()
+    parts = [x.strip() for x in (psp or "").split(",") if x.strip()]
+    if len(parts) != 1 or ":" not in parts[0]:
+        return None
+    name, loc = parts[0].split(":", 1)
+    rel = tb_.psp_rel(name)
+    rows_ = tb_.read_extracted("psp_us", rel, optional=True, errata=False)
+    if re.fullmatch(r"pack/E\d", rel):
+        hit = next((r for r in rows_ if str(r["id"]) == loc), None)
+    elif rel.startswith("pack/talk/") and loc.isdigit():
+        hit = next((r for r in rows_ if r.get("entry") == "1"
+                    and r["box"] == loc), None)
+    else:
+        want = tb_.psp_loc(loc)
+        hit = next((r for r in rows_ if tb_.psp_loc(r["pos"]) == want), None)
+    return (rel, hit["pos"], hit["text"]) if hit else None
+
+
+def _errata_line_target(psp):
+    """errata_target for an errata row's own pointer (cached per file)."""
+    if psp not in _errata_targets:
+        t = errata_target(psp)
+        _errata_targets[psp] = t[:2] if t else None
+    return _errata_targets[psp]
+
+
+_errata_targets = {}
+
+
+def errata_for(psp):
+    """{target, raw, rows} of the errata naming the row's PSP line: `raw` is
+    the line as the PSP has it, `rows` [{psp, find, replace, note}] in file
+    order (the order they apply)."""
+    t = errata_target(psp)
+    if not t:
+        return None
+    rel, pos, raw = t
+    rows_ = [r for r in read_errata()
+             if _errata_line_target(r["psp"]) == (rel, pos)]
+    return {"rel": rel, "pos": pos, "raw": raw, "rows": rows_}
+
+
+def read_errata():
+    with open(tb().ERRATA, encoding="utf-8") as f:
+        lines = f.read().split("\n")
+    head = lines[0].split("\t")
+    return [dict(zip(head, l.split("\t"))) for l in lines[1:] if l.strip()]
+
+
+def errata_apply(raw, rows_):
+    """The PSP line with `rows_` applied in order, as the readers apply them:
+    each `find` must be there exactly once when its turn comes."""
+    text = raw
+    for i, r in enumerate(rows_):
+        if not r["find"]:
+            raise ValueError(f"errata {i + 1}: find is empty")
+        if text.count(r["find"]) != 1:
+            raise ValueError(f"errata {i + 1}: {r['find']!r} is not in the "
+                             f"PSP line exactly once")
+        text = text.replace(r["find"], r["replace"])
+    return text
+
+
+def _loose(s):
+    """A regex for s that ignores where the lines break: the porter rewraps
+    the PSP line, so a space, a line move or a speaker-label break of the
+    PSP side may be any of them in the row."""
+    out = []
+    for tok in re.split(r"(\s+|<FF03>|<FFF6>)", s):
+        if not tok:
+            continue
+        out.append(r"(?:\s|<FF03>|<FFF6>)+" if re.fullmatch(r"\s+|<FF03>|<FFF6>", tok)
+                   else re.escape(tok))
+    return "".join(out)
+
+
+def errata_preview(rel, pos, rows_):
+    """What the row would be with `rows_` as its PSP line's errata: the
+    stored English with the old errata taken back and the new ones put in
+    (break-insensitive), each box laid out again by the porter's flow. The
+    port writes the real row; this is its picture, not its write."""
+    d = row_detail(rel, pos)
+    gen = d["gen"]
+    info = errata_for(gen["psp"] if gen else "")
+    if not info:
+        raise ValueError("this row names no single PSP-US line")
+    for r in rows_:
+        if any(c in r["find"] + r["replace"] + r.get("note", "")
+               for c in "\t\n\r"):
+            raise ValueError("no tab or newline in an errata field")
+    applied = errata_apply(info["raw"], rows_)
+    en = gen["en"]
+    missed = []
+    edits = [(r["replace"], r["find"]) for r in reversed(info["rows"])]
+    edits += [(r["find"], r["replace"]) for r in rows_]
+    for find, replace in edits:
+        if find == replace:
+            continue
+        pat = _loose(find)
+        if not re.search(pat, en):
+            missed.append(find)
+            continue
+        en = re.sub(pat, lambda _m: replace, en, count=1)
+    return {"applied": applied, "en": reflow(rel, en, gen["en"]), "missed": missed,
+            "manual": d["state"] == "manual"}
+
+
+_BOX_SPLIT = re.compile(r"((?:<FF02>)?<FF04>|(?:<FFFB>)?<FFF7>)")
+_TAIL = re.compile(r"(?:<FF02>|<FF01>|<FFF5>|<FFEF>|<FFFB>|<FFF1>|<FFFD>.)*$")
+
+
+def reflow(rel, en, before):
+    """Each box of en whose words differ from `before`'s laid out again by
+    vwf_wrap's flow (the porter's), its own codes kept; the other boxes and a
+    choice table stay as stored. A box the edit makes too long for the
+    flow's box is the port's to page."""
+    vw, measure = inj("vwf_wrap"), measure_for(rel)
+    parts = _BOX_SPLIT.split(en)
+    old = _BOX_SPLIT.split(before)
+    words_of = lambda b: re.sub(r"<FF03>|<FFF6>", " ", b).split()
+    for i in range(0, len(parts), 2):
+        box = parts[i]
+        if "<FF0E>" in box or (i < len(old) and words_of(old[i]) == words_of(box)):
+            continue
+        tail = _TAIL.search(box).group(0)
+        body = box[:len(box) - len(tail)]
+        brk = "<FFF6>" if "<FFF6>" in body or rel.startswith(("BTLP", "TALK")) else "<FF03>"
+        words = re.sub(r"<FF03>|<FFF6>", " ", body).split()
+        if len(words) < 2:
+            continue
+        ranked = vw.weigh(words, measure=measure)
+        if ranked:
+            parts[i] = brk.join(ranked[0][1]) + tail
+    return "".join(parts)
+
+
+def add_phrase(text, note=""):
+    """Append a phrase to translation/phrases.tsv: words the flow reads as
+    one thing, so a break inside them costs what a name split does
+    (docs/TEXT_LAYOUT_SPEC.md rule 3). Codes in the selection are word
+    gaps. Returns the phrase as written; one already listed is not added
+    twice."""
+    vw = inj("vwf_wrap")
+    phrase = " ".join(re.sub(r"<[^>]+>", " ", text).split())
+    note = " ".join(note.split())
+    seq = tuple(vw._phrase_word(w) for w in phrase.split())
+    if len([w for w in seq if w]) < 2:
+        raise ValueError("a phrase is two words or more")
+    if seq in vw.phrases():
+        return phrase
+    path = vw.PHRASES_PATH
+    fresh = not os.path.exists(path)
+    with open(path, "a", encoding="utf-8", newline="") as f:
+        if fresh:
+            f.write("phrase\tnote\n")
+        elif not open(path, "rb").read().endswith(b"\n"):
+            f.write("\n")
+        f.write(f"{phrase}\t{note}\n")
+    return phrase
+
+
+def save_errata(rel, pos, rows_):
+    """Replace the errata of the row's PSP line with `rows_` in
+    translation/psp_errata.tsv (in place of the old ones, else at the end);
+    every other errata row stays exactly as it is."""
+    d = row_detail(rel, pos)
+    gen = d["gen"]
+    info = errata_for(gen["psp"] if gen else "")
+    if not info:
+        raise ValueError("this row names no single PSP-US line")
+    errata_apply(info["raw"], rows_)
+    tb_ = tb()
+    target = (info["rel"], info["pos"])
+    if info["rows"]:
+        spell = info["rows"][0]["psp"]
+    elif re.fullmatch(r"pack/E\d", info["rel"]):
+        spell = gen["psp"]
+    else:
+        spell = f"{tb_.psp_name(info['rel'])}:{info['pos']}"
+    with open(tb_.ERRATA, encoding="utf-8") as f:
+        lines = f.read().rstrip("\n").split("\n")
+    new = ["\t".join((spell, r["find"], r["replace"], r.get("note", "")))
+           for r in rows_]
+    out, placed = [lines[0]], False
+    for l in lines[1:]:
+        psp = l.split("\t", 1)[0]
+        if l.strip() and _errata_line_target(psp) == target:
+            if not placed:
+                out += new
+                placed = True
+            continue
+        out.append(l)
+    if not placed:
+        out += new
+    with open(tb_.ERRATA, "w", encoding="utf-8") as f:
+        f.write("\n".join(out) + "\n")
+    # the readers cache the corrected lines
+    for cache in ("_PSP_INDEX", "_EXTRACT_CACHE"):
+        getattr(tb_, cache).clear()
+    for k in [k for k in tb_._ERRATA_CACHE if k not in ("table", "resolved")]:
+        del tb_._ERRATA_CACHE[k]
+    return errata_for(gen["psp"])
+
+
 def inj(name):
-    """A module from src/injection_tools (the porter's own code)."""
+    """A tool module by name (the porter's own code; src/toolpath.py)."""
     tb()
     return importlib.import_module(name)
 
 
 def cc():
-    """close_calls (src/extraction_tools/matching): the page weighing the
+    """close_calls (src/porting): the page weighing the
     port writes build/close_calls.tsv with - the open row is weighed with the
     same code."""
     tb()
-    sys.path.insert(0, os.path.join(ROOT, "src", "extraction_tools", "matching"))
     return importlib.import_module("close_calls")
 
 
@@ -538,20 +832,27 @@ def flow_text(text):
 _renders = {}
 
 
-def render(rel, text, flow=False, weigh=True):
+def render(rel, text, flow=False, weigh=True, edition=None):
     """The page model the viewer draws (see /render), cached per input: the
     page asks again for every keystroke and for the HEAD column. `weigh`
-    adds the close calls (the main box only)."""
-    key = (rel, text, flow, weigh, row_tables()[1])
+    adds the close calls (the main box only). `edition` is the font edition
+    to lay the text out and draw it in (a row carrying every edition's
+    layout is read as that one's; docs/TEXT_LAYOUT_SPEC.md "Font editions")."""
+    vw = inj("vwf_wrap")
+    edition = edition or toolpath.FONT_EDITION
+    if edition not in toolpath.FONT_EDITIONS:
+        raise ValueError(f'edition is one of {", ".join(toolpath.FONT_EDITIONS)}')
+    key = (rel, text, flow, weigh, edition, row_tables()[1], vw.phrases_stamp())
     if key not in _renders:
         if len(_renders) > 256:
             _renders.clear()
-        _renders[key] = _render(rel, text, flow, weigh)
+        with vw.measured_as(edition):
+            _renders[key] = dict(_render(rel, vw.edition_text(text, edition), flow, weigh),
+                                 edition=edition)
     return _renders[key]
 
 
 def _render(rel, text, flow, weigh):
-    sys.path.insert(0, os.path.join(ROOT, "tools"))
     shape = importlib.import_module("textshape")
     vr = inj("vwf_render")
     measure = measure_for(rel)
@@ -728,36 +1029,10 @@ class Handler(BaseHTTPRequestHandler):
                     self.send(200, "application/json",
                               json.dumps(unit, ensure_ascii=False).encode())
             elif url.path == "/font":
-                # THE FONT COMES FROM THE DISC BUILD, LIVE: the page draws the
-                # real 1-bpp glyphs, so it asks for the current vwf_font.bin
-                # and vwf_width.bin instead of trusting a copy baked into the
-                # page. The retail 16x16 FONT.BIN and its glyph map ride along
-                # as the fallback for every character the English font lacks.
-                fb = os.path.join(FONT_DIR, "vwf_font.bin")
-                wb = os.path.join(FONT_DIR, "vwf_width.bin")
-                stamp = [os.path.getmtime(fb), os.path.getsize(fb),
-                         os.path.getmtime(wb), os.path.getsize(wb)]
-                for p in (ORIG_FONT, FONT_MAP):
-                    try:
-                        st = os.stat(p)
-                        stamp += [st.st_mtime, st.st_size]
-                    except OSError:
-                        stamp += [0, 0]
-                stamp = tuple(stamp)
-                if _font["stamp"] != stamp:
-                    data = {
-                        "font": base64.b64encode(open(fb, "rb").read()).decode(),
-                        "widths": base64.b64encode(open(wb, "rb").read()).decode(),
-                    }
-                    try:
-                        ofont, gmap = orig_font()
-                        data["orig"] = base64.b64encode(ofont).decode()
-                        data["map"] = gmap
-                    except OSError:
-                        pass                       # no retail font: boxes only
-                    _font["json"] = json.dumps(data, ensure_ascii=False).encode()
-                    _font["stamp"] = stamp
-                self.send(200, "application/json", _font["json"])
+                edition = (q.get("edition") or [toolpath.FONT_EDITION])[0]
+                if edition not in toolpath.FONT_EDITIONS:
+                    edition = toolpath.FONT_EDITION
+                self.send(200, "application/json", font_payload(edition))
             elif url.path == "/changed":
                 try:
                     hit = changed(one("ref", "HEAD"))
@@ -785,9 +1060,56 @@ class Handler(BaseHTTPRequestHandler):
                 body = json.loads(self.rfile.read(n).decode("utf-8"))
                 self.send(200, "application/json", json.dumps(
                     render(str(body.get("rel") or ""), str(body.get("text") or ""),
-                           bool(body.get("flow")), body.get("weigh", True) is not False),
+                           bool(body.get("flow")), body.get("weigh", True) is not False,
+                           body.get("edition") or None),
                     ensure_ascii=False).encode())
             except Exception as exc:
+                self.send(400, "application/json",
+                          json.dumps({"error": str(exc)}).encode())
+            return
+        if url.path == "/reload":
+            try:
+                n = reload_all()
+                self.send(200, "application/json",
+                          json.dumps({"modules": n, "rows": len(rows())}).encode())
+            except Exception as exc:
+                self.send(500, "application/json",
+                          json.dumps({"error": str(exc)}).encode())
+            return
+        if url.path in ("/errata", "/errata/preview"):
+            try:
+                n = int(self.headers.get("Content-Length") or 0)
+                if n <= 0 or n > 1_000_000:
+                    raise ValueError("bad Content-Length")
+                body = json.loads(self.rfile.read(n).decode("utf-8"))
+                rel = str(body.get("rel") or "").strip()
+                pos = str(body.get("pos") or "").strip()
+                if not valid_rel(rel):
+                    raise ValueError("no such table")
+                rows_ = [{"find": str(r.get("find") or ""),
+                          "replace": str(r.get("replace") or ""),
+                          "note": str(r.get("note") or "")}
+                         for r in body.get("rows") or []]
+                if url.path == "/errata":
+                    out = {"errata": save_errata(rel, pos, rows_)}
+                else:
+                    out = errata_preview(rel, pos, rows_)
+                self.send(200, "application/json",
+                          json.dumps(out, ensure_ascii=False).encode())
+            except (ValueError, SystemExit) as exc:
+                self.send(400, "application/json",
+                          json.dumps({"error": str(exc)}).encode())
+            return
+        if url.path == "/phrases":
+            try:
+                n = int(self.headers.get("Content-Length") or 0)
+                if n <= 0 or n > 10_000:
+                    raise ValueError("bad Content-Length")
+                body = json.loads(self.rfile.read(n).decode("utf-8"))
+                phrase = add_phrase(str(body.get("phrase") or ""), str(body.get("note") or ""))
+                self.send(200, "application/json",
+                          json.dumps({"phrase": phrase}, ensure_ascii=False).encode())
+            except ValueError as exc:
                 self.send(400, "application/json",
                           json.dumps({"error": str(exc)}).encode())
             return

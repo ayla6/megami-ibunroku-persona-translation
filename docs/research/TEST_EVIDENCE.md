@@ -4,13 +4,13 @@ The Python suite includes source-data checks, builder unit tests, assembled
 MIPS execution, and disc/patch tooling tests. These check different layers;
 passing one layer does not establish in-game behavior.
 
-- The bounded CPU in `tools/tests/mips_cpu.py` models integer instructions,
+- The bounded CPU in `src/research/mips_cpu.py` models integer instructions,
   load and branch delays, but not GPU execution, BIOS behavior, DMA timing,
   or instruction cycle timing. Individual tests model the services they need.
 - A mocked `LoadImage` must not assume the pixels were copied at the call:
   GPU work can retain the source until completion. `test_s2d_label_strip.py`
   exercises deferred reads through `DrawSync`, including a 15-cell strip on
-  the 12-cell compositor ring. `test_qol_saves.py` also checks its upload
+  the 12-cell compositor ring. `test_mod_saves.py` also checks its upload
   sources at the sync. These models do not emulate the complete GPU queue.
 - Many runtime tests consume files already in `build/`; they do not establish
   those files are current, nor that a disc contains them. Assemble the intended

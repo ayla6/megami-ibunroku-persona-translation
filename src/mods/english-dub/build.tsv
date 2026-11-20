@@ -1,0 +1,8 @@
+phase	action	target	arguments
+ending	arguments	-	--dub
+restore-disabled	call	fmv_dub.py:retail	
+restore	call	battle_voice.py:retail	
+build	run	fmv_dub.py	build
+verify	run	fmv_dub.py	verify
+build	run	battle_voice.py	build
+verify	run	battle_voice.py	verify

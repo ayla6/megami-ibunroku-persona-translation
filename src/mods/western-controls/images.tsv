@@ -1,0 +1,2 @@
+file	format	entry	member	image	mode	width	height
+BTLP.BIN	mes-image	0x7e044	0	indicator.png	indexed	64	24

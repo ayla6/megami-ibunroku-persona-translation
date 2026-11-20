@@ -1,0 +1,7 @@
+name	60 FPS
+description	Interpolates frames to get the dungeons to 60fps and the map to 30fps. Only does it when you're actively moving around. Needs overclocking (to like 190-200% to be completely smooth).
+author	Redeted
+default	no
+always	no
+release	yes
+requires	base

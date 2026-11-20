@@ -1,0 +1,6 @@
+name	English dub
+description	The FMVs and battle lines are now the PSP's dub.
+default	no
+always	no
+release	yes
+integrates	english-translation(subtitles=on)	With movie subtitles on, the subtitles follow the dub's timing.

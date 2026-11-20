@@ -1,0 +1,291 @@
+"""Shared typography rules and regressions measured from extracted sources."""
+import csv
+import itertools
+from pathlib import Path
+import random
+import re
+import sys
+import unittest
+
+ROOT = Path(__file__).resolve().parents[3]
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
+import vwf_wrap as wrap
+import port_controls
+import port_story as story
+
+
+class FlowRules(unittest.TestCase):
+    def test_card_word_gap_retry_keeps_words_whole_and_uses_fewest_lines(self):
+        items = [('w', w) for w in 'alpha the beta gamma'.split()]
+        result = wrap.flow_lines(items, width=11, measure=len, tail=0, word_gaps=True)
+        self.assertEqual([v for k, v in result if k == 't'], ['alpha the', 'beta gamma'])
+        hyphen = wrap.flow_lines([('w', 'alpha-beta')], width=6, measure=len,
+                                 tail=0, word_gaps=True)
+        self.assertEqual([v for k, v in hyphen if k == 't'], ['alpha-beta'])
+
+    def test_separate_card_nameplate_beats_dash_when_whole_word_gaps_fit(self):
+        entry = story.psx_entries('E0')[3]
+        index = next(i for i, (off, _end) in enumerate(entry.boxes) if off == 0x174c)
+        with wrap.measured_as('large'):
+            large = story.convert_entry('E0', 3)[0][index][2]
+        with wrap.measured_as('small'):
+            small = story.convert_entry('E0', 3)[0][index][2]
+            self.assertNotIn(' - ', small)
+            self.assertNotIn('<FF02><FF03>', small)
+            self.assertEqual(len(small.split('<FF03>')), 3)
+            self.assertIn(' the<FF03>others.', small)
+            self.assertTrue(all(wrap.text_width(line) <= 239 + (i == 2)
+                                for i, line in enumerate(small.split('<FF03>'))))
+        self.assertEqual(small.split('<FF03>')[0], large.split(' - ')[0])
+        self.assertTrue(small.endswith('<FF06><00><FF02><FF01>'))
+        merged = wrap.merge_editions({'large': large, 'small': small})
+        self.assertIsNotNone(merged)
+        self.assertEqual(wrap.edition_text(merged, 'small'), small)
+        self.assertEqual(wrap.edition_text(merged, 'large'), large)
+
+    def test_label_only_does_not_win_from_a_shorter_shape_sum(self):
+        text = "Clerk: Uh-oh... You're not a robber, are you? I don't like bad boys, heehee."
+        lines = wrap.wrap(text).split('<FF03>')
+        self.assertEqual(lines, ["Clerk: Uh-oh...", "You're not a robber, are you?",
+                                 "I don't like bad boys, heehee."])
+        self.assertNotIn('label-fragment', wrap.shape_report(lines)[1])
+
+    def test_mid_clause_cut_beside_the_name_never_buys_a_line(self):
+        # Spec 2.4: the label's line may start speech that stops mid-clause
+        # when doing so saves a line, but at an equal line count the name
+        # stands alone.
+        words = [('w', w) for w in 'Nanjo: That happened while you were hospitalized.'.split()]
+
+        def lines(width):
+            return [v for k, v in wrap.flow_lines(words, width=width,
+                                                  measure=len, tail=0) if k == 't']
+        self.assertEqual(lines(28), ['Nanjo: That happened',
+                                     'while you were hospitalized.'])
+        self.assertEqual(lines(42), ['Nanjo:',
+                                     'That happened while you were hospitalized.'])
+
+    def test_existing_sentence_pause_is_not_duplicated(self):
+        items = [('w', 'H-Huh?'), ('u', 'FF052000'), ('w', 'Hey,'),
+                 ('w', 'what happened?')]
+        ja = 'あっ？<FF05><20><00><FF03>何だよ<FF02><FF01>'
+        out = story.sentence_pauses(items, ja)
+        self.assertEqual(sum(k == 'u' and v.startswith('FF05') for k, v in out), 1)
+        self.assertEqual(out[2], ('u', 'STRUCT03'))
+
+    def test_balance_can_outweigh_extra_mid_clause_break(self):
+        text = 'I mean, no one used the subway anyways, but having fewer hangouts kinda sucks.'
+        self.assertEqual(wrap.wrap(text).split('<FF03>'), [
+            'I mean, no one used the subway', 'anyways, but having fewer',
+            'hangouts kinda sucks.'])
+
+    def test_pause_before_ellipsis_preserves_boundary_and_player_scroll(self):
+        items = [('w', 'there.'), ('u', 'FF052000'), ('u', 'FF03'),
+                 ('w', '...I'), ('w', 'continue.')]
+        text = story.reflow(None, items)[0]
+        self.assertNotIn('>...I', text)
+        self.assertIn('...I', text)
+        self.assertEqual(story._clean('there.<FF03>...I'), 'there.<FF03>...I')
+        source = ('First line<FF02><FF04>Second line<FF03>'
+                  'Third line.<FF05><20><00><FF03>...Fourth line<FF02><FF01>')
+        result = story.merge_boxes(source, joins=[True])
+        self.assertIn('<FF05><20><00><FF02><FF03>...Fourth', result)
+        self.assertNotIn('<FF04>', result)
+        self.assertEqual(story.merge_boxes(source, joins=[False]), source)
+
+    def test_balanced_opening_beats_comma_scrap(self):
+        for text, expected in (
+            ('Brown: Man, do I ever love this suspense! Just wait until I get my shining moment!',
+             ['Brown: Man, do I ever love', 'this suspense! Just wait',
+              'until I get my shining moment!']),
+            ('Yukino: Hey, how come all the vendors at every weapon shop have the same face?',
+             ['Yukino: Hey, how come all', 'the vendors at every weapon',
+              'shop have the same face?']),
+        ):
+            with self.subTest(text=text):
+                self.assertEqual(wrap.wrap(text).split('<FF03>'), expected)
+
+    def test_balanced_shape_is_a_cost_not_a_reward_for_wide_first_lines(self):
+        self.assertLess(2 * wrap.fullness(100), wrap.fullness(180) + wrap.fullness(20))
+
+    def test_commas_and_semicolons_close_proper_name_runs(self):
+        self.assertFalse(wrap._caps_word('Example,'))
+        self.assertFalse(wrap._caps_word('Example;'))
+        self.assertTrue(wrap._caps_word('Example'))
+
+    def test_punctuation_boundary_releases_a_connector(self):
+        # A comma/semicolon/colon boundary is a real break: the connector may
+        # start the next clause's line instead of being clamped to the word.
+        items = wrap._glue_items([('w', w) for w in
+                                  ["C'mon,", '<FFF3>,', 'if', 'ya']])
+        self.assertIn(('w', 'if'), [it[:2] for it in items])
+        items = wrap._glue_items([('w', w) for w in ['go', 'to', 'town']])
+        self.assertIn(('w', 'go to'), [it[:2] for it in items])
+
+    def test_closer_split_off_a_code_run_never_starts_a_line(self):
+        pieces = wrap.word_pieces('<FF07><00>?')
+        self.assertEqual(''.join(p[0] for p in pieces), '<FF07><00>?')
+        self.assertFalse(pieces[-1][1])
+        text = wrap.wrap('Nanjo: What should we do, <FF07><00>? '
+                         'It may be a trap. Should we go in?')
+        self.assertIn('<FF07><00>?', text)
+        self.assertNotRegex(text, r'<FF03>\s*[.,!?;:»)\]]')
+
+    def test_short_quoted_terms_have_soft_protection(self):
+        items = wrap._glue_items([('w', w) for w in 'stop saying "young master." please'.split()])
+        close = next(it for it in items if it[1] == 'master."')
+        self.assertTrue(close[2])
+
+    def test_marked_title_is_structural_but_marked_prose_is_not(self):
+        self.assertTrue(port_controls.is_heading('＞ Example Title'))
+        self.assertFalse(port_controls.is_heading('＞ This is ordinary prose'))
+
+    def test_entire_shape_matches_exhaustive_optimum(self):
+        rng = random.Random(107)
+        for _ in range(20):
+            words = ['x' * rng.randint(2, 14) for _ in range(7)]
+            atoms = [a for _k, a in wrap.flow_model([('w', w) for w in words])]
+            atoms[-1].fin = True
+            spans = wrap.flow_layout(atoms, 25, len, tail=0)
+
+            def cost(cuts):
+                points = (0, *cuts, len(words))
+                widths = [len(' '.join(words[a:b])) for a, b in zip(points, points[1:])]
+                if max(widths) > 25:
+                    return None
+                rhythm = 2 * (len(widths) - 1)
+                extra = 0
+                for i, (a, b) in enumerate(zip(widths, widths[1:])):
+                    if i == len(widths) - 2 and b * 2 < a:
+                        extra += (a - 2*b) ** 2
+                    elif b * 10 > a * 14:
+                        extra += (b-a) ** 2
+                shape = extra + sum(w*w for w in widths) + wrap.STEP_COST * sum(
+                    (b-a)**2 * (2 if b > a else 1) for a, b in zip(widths, widths[1:]))
+                return len(widths), rhythm, shape
+
+            costs = [c for n in range(len(words))
+                     for cuts in itertools.combinations(range(1, len(words)), n)
+                     if (c := cost(cuts)) is not None]
+            self.assertEqual(cost(tuple(j+1 for _i, j in spans[:-1])), min(costs))
+
+
+class ReportedLayouts(unittest.TestCase):
+    CASES = {'balanced': ('E2', 65, 0x132C), 'long_label': ('E0', 19, 0x190C),
+             'student': ('E2', 10, 0x1550), 'short_speech': ('E0', 11, 0x14FC),
+             'comma_card': ('E0', 11, 0x1510), 'title': ('E0', 6, 0x1458),
+             'taper': ('E0', 10, 0x1414), 'whole_speech': ('E2', 32, 0x1678),
+             'quote': ('E2', 32, 0x1574), 'bare_card': ('E0', 57, 0x1FC0),
+             'nickname': ('E0', 4, 0x1480), 'opening_tail': ('E0', 0, 0x1CF8),
+             'opening_taper': ('E0', 0, 0x1D54), 'greeting': ('E0', 0, 0x1E58)}
+
+    @classmethod
+    def setUpClass(cls):
+        entries = {}
+        cls.result = {}
+        for key, (f, e, pos) in cls.CASES.items():
+            if (f, e) not in entries:
+                entries[f, e] = story.convert_entry(f, e)[0]
+            entry = story.psx_entries(f)[e]
+            i = next(i for i, (off, _end) in enumerate(entry.boxes) if off == pos)
+            cls.result[key] = entries[f, e][i][2]
+
+    def lines(self, key):
+        return [re.sub(r'<[^>]+>', '', line) for line in self.result[key].split('<FF03>')]
+
+    def test_comma_separated_names_balance_in_two_lines(self):
+        lines = self.lines('balanced')
+        self.assertEqual(len(lines), 2)
+        self.assertEqual(len(lines[0].split()), 4)
+        self.assertTrue(lines[0].endswith(','))
+        self.assertLess(abs(wrap.text_width(lines[0])-wrap.text_width(lines[1])), 20)
+
+    def test_labels_do_not_steal_one_word_from_the_speech(self):
+        # A label may start the speech on its own line when that saves a line
+        # and the speech stops on a beat (spec 2.4); it never takes a bare
+        # word off the next line.
+        for key in ('long_label', 'student', 'short_speech', 'whole_speech'):
+            self.assertRegex(self.lines(key)[0], r'(?::|\.\.\.|[.!?])$',
+                             self.result[key])
+            self.assertNotIn('<FF02><FF03>', self.result[key])
+
+    def test_authored_comma_is_not_replaced_with_a_dash(self):
+        text = self.result['comma_card']
+        self.assertNotIn(' - ', text)
+        self.assertIn(',', self.lines('comma_card')[0])
+        self.assertEqual(len(self.lines('comma_card')), 3)
+
+    def test_nickname_can_split_at_hyphen_only_to_save_the_scroll(self):
+        text = self.result['nickname']
+        self.assertEqual(len(self.lines('nickname')), 3)
+        self.assertIn('Nickname:', text)
+        self.assertIn('-<FF03>', text)
+        self.assertNotIn('<FF02><FF03>', text)
+
+    def test_title_keeps_its_own_line_without_a_scroll(self):
+        page = self.result['title'].split('<FF04>')[0]
+        self.assertEqual(page.count('<FF03>'), 2)
+        self.assertNotIn('<FF02><FF03>', page)
+        self.assertEqual(len(page.split('<FF03>')[0].split()), 2)
+
+    def test_three_line_block_does_not_have_a_hollow_middle(self):
+        widths = [wrap.text_width(line) for line in self.lines('taper')]
+        self.assertEqual(len(widths), 3)
+        self.assertGreaterEqual(widths[0], widths[1])
+        self.assertGreaterEqual(widths[1], widths[2])
+
+    def test_short_quoted_term_is_not_split(self):
+        self.assertNotRegex(self.result['quote'], r'"[^"<]*<FF03>[^"<]*"')
+
+    def test_comma_does_not_strand_the_opening_vocative(self):
+        lines = self.result['opening_tail'].split('<FF04>')[-1].split('<FF03>')
+        self.assertEqual([len(re.sub(r'<[^>]+>', '', line).split()) for line in lines], [5, 4])
+        widths = [wrap.text_width(line) for line in lines]
+        self.assertLess(abs(widths[0] - widths[1]), 20)
+
+    def test_opening_block_uses_fewest_lines_and_tapers(self):
+        # The comma after "future, exactly," releases "but": the block now
+        # fits two lines (238/184 px) instead of a three-line dip.
+        lines = self.result['opening_taper'].split('<FF04>')[1].split('<FF03>')
+        self.assertEqual([len(re.sub(r'<[^>]+>', '', line).split()) for line in lines], [6, 5])
+        widths = [wrap.text_width(line) for line in lines]
+        self.assertEqual(len(widths), 2)
+        self.assertGreaterEqual(widths[0], widths[1])
+
+    def test_greeting_still_breaks_at_its_sentence_boundary(self):
+        lines = self.lines('greeting')
+        self.assertEqual(len(lines), 2)
+        self.assertTrue(lines[0].endswith('!'))
+        self.assertEqual(len(lines[0].split()), 4)
+
+    def test_actual_limits_are_not_silently_relaxed(self):
+        for key, text in self.result.items():
+            self.assertTrue(text)
+            for region in re.split(r'<FF0[124]>', text):
+                lines = region.split('<FF03>')
+                for i, line in enumerate(lines):
+                    self.assertLessEqual(wrap.text_width(line), 240 if i == len(lines)-1 else 239,
+                                         (key, line))
+
+    def test_card_wording_is_preserved_from_the_extracted_psp_source(self):
+        # Names and complete wording come from the actual extraction, never
+        # a hand-written fixture or an abbreviated nickname field.
+        with (ROOT / 'translation/generated/ADV/E0.tsv').open() as f:
+            generated = {r['pos']: r for r in csv.DictReader(f, delimiter='\t')}
+        with (ROOT / 'data/extracted_text/psp_us/pack/E0.tsv').open() as f:
+            sources = {r['id']: r['text'] for r in csv.DictReader(f, delimiter='\t')}
+
+        def plain(text):
+            text = re.sub(r'-<FF03>', '-', text)
+            text = re.sub(r'<[^>]+>', ' ', text).replace('＞', '').replace(' - ', ' ')
+            return ' '.join(text.split())
+
+        for key in ('comma_card', 'bare_card', 'nickname'):
+            _f, e, pos = self.CASES[key]
+            pointer = generated[f'{e}:{pos:#x}']['psp'].split(':')[1]
+            self.assertEqual(plain(self.result[key]), plain(sources[pointer]))
+
+
+if __name__ == '__main__':
+    unittest.main()

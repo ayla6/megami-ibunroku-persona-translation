@@ -1,0 +1,13 @@
+name	English translation
+description	The English translation of Megami Ibunroku Persona for the original Rev 0 disc, applied over the base and Latin alphabet layers.
+default	yes
+always	yes
+release	yes
+requires	base
+requires	latin-alphabet
+option	font	large	Large font	Large pretty font that I adore. Requires some slight adjustments to fit some texts and has more scrolls.
+option	font	small	Small font	Smaller less pretty font that I think is fine. Requires no tweaking to the text to fit anything and has almost no added scrolls to the text.
+option	subtitles	on	Subtitles	Subtitles for the FMVs.	requires=fmv-translation
+option	subtitles	off	No subtitles	No subtitles for the FMVs. Are you using the dub?
+warning	I would recommend you to not turn this off for obvious reasons.
+translation	yes

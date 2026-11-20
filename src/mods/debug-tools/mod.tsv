@@ -1,0 +1,6 @@
+name	Debug tools
+description	Battle debug menu: press Select on either controller in battle; on the title L1/L2/R1/R2/Select start endings 0-4, R1 held fast-forwards an ending and Start skips its movies; battles check their primitive pool every frame and stop on the first broken one (red square at the top left).
+default	no
+always	no
+release	no
+requires	base

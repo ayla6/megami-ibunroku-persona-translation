@@ -1,0 +1,5 @@
+name	Black Mark
+description	Makes Masao Inaba black. It uses a custom sprite I made for him so that he's both black and still wears his original outfit. Doesn't change the script.
+default	no
+always	no
+release	yes

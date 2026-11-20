@@ -249,7 +249,7 @@ per-line table construction. Zero-alpha lines skip the glyph walk entirely.
 
 ### Compiled additive ink
 
-`src/injection_tools/fmv_ink.py` positions the unchanged glyph pixels at
+`src/mods/fmv-translation/fmv_ink.py` positions the unchanged glyph pixels at
 build time. Each pixel references an interned expression: the positive
 `(gray, coverage)` contributions of all glyphs covering it, in source draw
 order. At runtime each distinct expression is evaluated once at the current
@@ -398,7 +398,7 @@ somewhat better but still has glitches, with the same approximately 12 FPS
 minimum. The geometry correction is QA-tested; a fully correct fade or
 sustained native 15 FPS is not claimed.
 
-`tools/tests/test_fmv_renderer.py` executes the assembled loops with
+`src/mods/fmv-translation/test_fmv_renderer.py` executes the assembled loops with
 R3000 load and branch delays, checks every destination alignment and run
 tails against exact RGB bytes, and checks small opacity steps in both
 directions. It also checks compiled ink against scalar reference pixels in
@@ -426,19 +426,9 @@ before: 4% more instructions, 39% fewer RAM loads, half the stores. The
 patch and ink tests still pass byte-exact. This too is a load/store
 profile, not an in-game FPS measurement.
 
-In-game evidence for `5d81310`: the user reports the moon transition's minimum
-improving from about 8 FPS to 12 FPS. Some opening-start hiccups remain.
-For `78410bf`, the user confirms identical
-appearance but the same approximately 12 FPS minimum: its reduced RAM-load
-count does not demonstrate an in-game FPS improvement. The user reports CPU
-overclocking resolves the transition slowdown. Sustained 15 FPS at stock
-CPU speed is not yet demonstrated; stock-speed performance remains distinct
-from the optional 60 FPS/overclocked configuration.
-
-Latest in-game evidence, including the uniform-zoom and idle-poll changes:
-the user still observes approximately 12 FPS at worst and remaining fade
-glitches, with some visual improvement. This is the accepted checkpoint,
-not a completed fade fix or a native 15 FPS result.
+Current in-game evidence: the user reports subtitle playback, including the
+moon transition, running essentially at full speed without CPU overclocking.
+Subtitles do not require an overclock.
 
 GPU drawing still cannot produce 24 bpp colors (its primitives write 15-bit
 halfwords that the display would read as packed 24-bit bytes), so the *pixel
@@ -460,9 +450,9 @@ burns the table into `scratch/fmv_preview/<MV>_<tag>.mp4` to watch.
 
 ### Where the timing/picture data comes from
 
-`src/extraction_tools/fmv_frames.py measure` decodes the movies (ffmpeg -
+`src/mods/fmv-translation/fmv_frames.py measure` decodes the movies (ffmpeg -
 extraction only, never needed to build) and measures, per movie, into
-`src/assets/fmv/`:
+`src/mods/fmv-translation/assets/`:
 
 - `<MV>.png` - the clean plate frame (full frame; cropping is a build concern
   because the build knows the new text's size),
@@ -499,19 +489,21 @@ compare it byte for byte with the committed files.
 The curves were validated frame-for-frame against the original's behaviour
 (MV1C: black card to 459, a linear 460-489 moon fade; MV1E: text 47-70 in,
 205-228 out with the filter; MV25: 24-46 in, 167-188 out). Layout (cards,
-bands, pins, poem rects) lives in `src/injection_tools/fmv_layout.py`; the
+bands, pins, poem rects) lives in `src/mods/fmv-translation/fmv_layout.py`; the
 wording comes from `translation/generated/fmv/opening.tsv` and
 `translation/manual/fmv/poems.tsv` verbatim (the poem's lines are re-flowed to
 this font's width - wording untouched).
 
 ### Glyph data
 
-- Glyph atlas (speech/paste entries): 95 printable ASCII glyphs rendered at build time with the same
+- Glyph atlas (speech/paste entries): printable ASCII and `‘’“”` rendered at build time with the same
   pipeline the burned text used (`PublicSans-Medium.ttf`, 3x supersample +
   LANCZOS downscale, white text over a dilated black outline), packed as
   per-glyph row spans - `(y, nruns, then (x0, len, len x (gray, cov)) per
   run, 0xFF ends the glyph)` - so the renderer only touches ink pixels.
-  Exact same look as the burned version, including antialiasing.
+  The size is `grid_size(FONT_PX, 3)`: the one nearest 14 px whose x-height
+  is whole pixels (13.3 px, x-height 7), drawn on a baseline on a pixel row,
+  so the lowercase's edges stay sharp; advances are the unhinted outline's.
 - Text + timing: per movie, a list of entries `(start_frame, end_frame,
   nlines, flags, band geometry, patch/scale/alpha pointers, lines)`. Frames
   are 0-based 15 fps stream frames; the hook compares against
@@ -550,7 +542,7 @@ window (0x1F9C0), refuses a full MOVIE.EXE blob that would reach
 The endings play MV1B, MV1E, MV1F, MV25 and MV26 with END.EXE's own copy of
 the player (`EndPlayMovie`), not MOVIE.EXE, so the renderer has a third
 driver (`frame_entry_end` 0x80160020, `poll_entry_end` 0x80160028,
-`trueframe_end` 0x80161FA0; `src/asm/movie_exe/subs_boot_end.asm`). Its
+`trueframe_end` 0x80161FA0; `src/mods/fmv-translation/subs_boot_end.asm`). Its
 blob holds only the entries of the movies END.EXE's five scripts play
 (`fmv_subgen.end_movies()` reads their opcode-7 arguments). END.EXE's
 staging areas (0x80140000, 0x80180000, 0x801C0000, 0x801D0000) overlap

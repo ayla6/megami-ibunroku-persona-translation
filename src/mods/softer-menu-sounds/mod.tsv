@@ -1,0 +1,7 @@
+name	Softer menu sounds
+description	Adjusts the volume of menu navigation, confirm and back sounds.
+default	no
+always	no
+release	yes
+requires	base
+range	level	0	100	1	75	Volume (%)	build/step_cache/menu-sounds/values.tsv

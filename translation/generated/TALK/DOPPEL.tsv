@@ -11,96 +11,96 @@ id	pos	psp	en
 9	0x20c8	pack/talk/DOPPEL:0x2180	＞ <FFF3> sang a song.<FFF5>
 10	0x20da	pack/talk/DOPPEL:0x21a8	＞ <FFF3> sang a song.<FFF5>
 11	0x20ec	pack/talk/DOPPEL:0x21d0	＞ <FFF3> sang a song.<FFF5>
-12	0x20fe	pack/talk/DOPPEL:0x21f8	I can't do much for you, but I promise<FFF6>our time together will be exciting.<FFF6>So c'mon, lend me your strength!<FFF5>
-13	0x213a	pack/talk/DOPPEL:0x22d0	Humans live the way<FFF6>they want, right? It would<FFFB><FFF7>be nice if you could put aside<FFF6>our differences and help me out.<FFF5>
-14	0x2179	pack/talk/DOPPEL:0x23b0	Ahahahahaha! I can only do so much<FFF6>on my own. So I'd like your help!<FFF5>
-15	0x21a7	pack/talk/DOPPEL:0x2440	Many artists have been captivated<FFF6>by you. I don't see why, though!<FFF5>
+12	0x20fe	pack/talk/DOPPEL:0x21f8	I can’t do much for you, but I promise<FFF6>our time together will be exciting.<FFF6>So c’mon, lend me your strength!<FFF5>
+13	0x213a	pack/talk/DOPPEL:0x22d0	Humans live the<L{> way<FFF6>they <}><S{> way they <}>want,<L{> right? It would<FFFB><FFF7>be <}><S{> right?<FFF6>It would be <}>nice if you could put aside<FFF6>our differences and help me out.<FFF5>
+14	0x2179	pack/talk/DOPPEL:0x23b0	Ahahahahaha!<FFF6>I can only do so much on my own.<FFF6>So I’d like your help!<FFF5>
+15	0x21a7	pack/talk/DOPPEL:0x2440	Many artists have been captivated<FFF6>by you. I don’t see why, though!<FFF5>
 16	0x21dc	pack/talk/DOPPEL:0x24c8	Hey, how can I get power like yours?<FFF6>I really, really want it...<FFF5>
-17	0x2211	pack/talk/DOPPEL:0x2550	Are you Maki Sonomura?<FFF6>I could tell right off!<FFF6>You have a unique aura about you...<FFF5>
-18	0x2248	pack/talk/DOPPEL:0x25f8	Hmm... I think your mother's grandpa<FFF6>is your guardian angel.<FFF6>He's really strong!<FFF5>
+17	0x2211	pack/talk/DOPPEL:0x2550	Are you Maki Sonomura?<FFFC><FFF6>I could tell right off!<FFF6>You have a unique aura about you...<FFF5>
+18	0x2248	pack/talk/DOPPEL:0x25f8	Hmm... I think your mother’s<L{> grandpa<FFF6>is your <}><S{> grandpa is<FFF6>your <}>guardian<L{> angel.<FFF6>He’s <}><S{> angel. He’s <}>really strong!<FFF5>
 19	0x2281	pack/talk/DOPPEL:0x26a0	Want to know the truth?<FFF6>The ones behind all this...<FFF6>are really aliens. Or not!<FFF5>
-20	0x22bb	pack/talk/DOPPEL:0x2740	If you do what I say,<FFF6>by some miracle a bronze statue<FFF6>of you will be erected!<FFF5>
+20	0x22bb	pack/talk/DOPPEL:0x2740	If you do what I<L{> say,<FFF6>by <}><S{> say, by <}>some<L{> miracle a <}><S{> miracle<FFF6>a <}>bronze<L{> statue<FFF6>of <}><S{> statue of <}>you will be erected!<FFF5>
 21	0x22f2	pack/talk/DOPPEL:0x27e0	I got lost and wandered here...<FFF6>Please forgive me!<FFF5>
-22	0x231e	pack/talk/DOPPEL:0x2848	A-A human! D-Don't come near me!<FFF5>
+22	0x231e	pack/talk/DOPPEL:0x2848	A-A human! D-Don’t come near me!<FFF5>
 23	0x233b	pack/talk/DOPPEL:0x2890	Ahahahahaha! Please... spare me!<FFF5>
-24	0x2357	pack/talk/DOPPEL:0x28d8	So you're a human? So what! C'mon,<FFF6>baby, let's play a symphony of love!<FFF5>
+24	0x2357	pack/talk/DOPPEL:0x28d8	So you’re a human? So what! C’mon,<FFF6>baby, let’s play a symphony of love!<FFF5>
 25	0x2398	pack/talk/DOPPEL:0x2968	Bullshit!<FFF5>
 26	0x23a2	pack/talk/DOPPEL:0x2980	Oh no... oh, no, no, no...<FFF5>
-27	0x23ac	pack/talk/DOPPEL:0x29b8	Heeheehee! You and me could<FFF6>have some good times together!<FFF5>
-28	0x23dc	pack/talk/DOPPEL:0x2a30	Alright, what's the difference<FFF6>between a rottweiler and a poodle?<FFFB><FFF7>They're two totally different<FFF6>breeds! Get it?<FFF5>
-29	0x2411	pack/talk/DOPPEL:0x2b10	Hell no, Hidehiko! You're not going to<FFF6>make me mimic something that awful,<FFF6>are you? Have a heart!<FFF5>
-30	0x2443	pack/talk/DOPPEL:0x2bd8	Sheesh... You're really going<FFF6>to make me mimic a weapons-grade<FFF6>joke like that...?<FFF5>
-31	0x246e	pack/talk/DOPPEL:0x2c80	What do you do<FFF6>if you're on a horse and you<FFF6>see a giraffe and lion next to you?<FFFB><FFF7>Get off the carousel! C'mon, laugh!<FFF5>
-32	0x249b	pack/talk/DOPPEL:0x2d68	How've you been? I heard you're on<FFF6>a roll. Not me, it's been pretty slow.<FFF5>
-33	0x24ca	pack/talk/DOPPEL:0x2e00	Man, it's hot out! I like summer, but<FFF6>not this kind of... Ugh, screw this!<FFF5>
-34	0x2501	pack/talk/DOPPEL:0x2e98	So, got any crushes?<FFF6>Yeah, there's been someone<FFF6>on my mind, too. Heeheehee...<FFF5>
-35	0x2537	pack/talk/DOPPEL:0x2f38	Blrgh... Urrrrgh... *puke* That<FFF6>surprised you, didn't it!?<FFF5>
+27	0x23ac	pack/talk/DOPPEL:0x29b8	Heeheehee!<FFF6>You and me could have<FFF6>some good times together!<FFF5>
+28	0x23dc	pack/talk/DOPPEL:0x2a30	Alright, what’s the<L{> difference<FFF6>between a <}><S{> difference between<FFF6>a <}>rottweiler and a<L{> poodle?<FFFB><FFF7>They’re two totally different<FFF6>breeds! <}><S{> poodle? They’re two<FFF6>totally different breeds! <}>Get it?<FFF5>
+29	0x2411	pack/talk/DOPPEL:0x2b10	Hell no, Hidehiko! You’re not<L{> going to<FFF6>make <}><S{> going<FFF6>to make <}>me mimic something that awful,<FFF6>are you? Have a heart!<FFF5>
+30	0x2443	pack/talk/DOPPEL:0x2bd8	Sheesh...<FFFC><FFF6>You’re really going to make me mimic<FFF6>a weapons-grade joke like that...?<FFF5>
+31	0x246e	pack/talk/DOPPEL:0x2c80	What do you<L{> do<FFF6>if <}><S{> do if <}>you’re on a horse<L{> and you<FFF6>see <}><S{> and<FFF6>you see <}>a giraffe and lion next to<L{> you?<FFFB><FFF7>Get <}><S{> you?<FFF6>Get <}>off the carousel! C’mon, laugh!<FFF5>
+32	0x249b	pack/talk/DOPPEL:0x2d68	How’ve you<L{> been?<FFF6>I <}><S{> been? I <}>heard you’re on a roll.<FFF6>Not me, it’s been pretty slow.<FFF5>
+33	0x24ca	pack/talk/DOPPEL:0x2e00	Man, it’s hot out! I like summer,<FFF6>but not this kind<L{> of...<FFFC><FFF6>Ugh, <}><S{> of...<FFFC> Ugh, <}>screw this!<FFF5>
+34	0x2501	pack/talk/DOPPEL:0x2e98	So, got any crushes?<FFF6>Yeah, there’s been someone<FFF6>on my mind, too. Heeheehee...<FFF5>
+35	0x2537	pack/talk/DOPPEL:0x2f38	Blrgh... Urrrrgh... *puke* That<FFF6>surprised you, didn’t it!?<FFF5>
 36	0x2566	pack/talk/DOPPEL:0x2fb0	BOO! Heh, you fell for it.<FFF6>...Just kidding, moron!<FFF5>
-37	0x2598	pack/talk/DOPPEL:0x3018	Dude... I can't possibly mimic<FFF6>something like that...<FFF6>What should I do?<FFF5>
-38	0x25bf	pack/talk/DOPPEL:0x30a8	This is just a down payment.<FFF6>Do you want land? Stocks? Hmph!<FFF6>I'll give you a photo of myself!<FFF5>
+37	0x2598	pack/talk/DOPPEL:0x3018	<L{>Dude...<FFFC> I <}><S{>Dude...<FFFC><FFF6>I <}>can’t possibly<L{> mimic<FFF6>something <}><S{> mimic something <}>like that...<FFFC><FFF6>What should I do?<FFF5>
+38	0x25bf	pack/talk/DOPPEL:0x30a8	This is just a down payment.<FFF6>Do you want land? Stocks?<FFFC> Hmph!<FFF6>I’ll give you a photo of myself!<FFF5>
 39	0x25f5	pack/talk/DOPPEL:0x3168	I refuse!<FFF5>
-40	0x25fc	pack/talk/DOPPEL:0x3180	I'll give you a coin whose front<FFF6>and back are reversed.<FFF6>I even signed it.<FFF5>
-41	0x2629	pack/talk/DOPPEL:0x3218	Are you happy with your station<FFF6>in life? That way is<FFF6>the epitome of foolishness!<FFFB><FFF7>I'll grasp true happiness on my own!<FFF5>
+40	0x25fc	pack/talk/DOPPEL:0x3180	I’ll give you a coin whose front<FFF6>and back are<L{> reversed.<FFF6>I <}><S{> reversed. I <}>even signed it.<FFF5>
+41	0x2629	pack/talk/DOPPEL:0x3218	Are you happy with your<L{> station<FFF6>in life? That <}><S{> station in life?<FFF6>That <}>way<L{> is<FFF6>the <}><S{> is the <}>epitome of<L{> foolishness!<FFFB><FFF7>I’ll <}><S{> foolishness!<FFF6>I’ll <}>grasp true happiness on my own!<FFF5>
 42	0x2667	pack/talk/DOPPEL:0x3308	Hell no!<FFF5>
-43	0x2670	pack/talk/DOPPEL:0x3320	The masses must act, or their station<FFF6>in life will never change!<FFF5>
-44	0x26a0	pack/talk/DOPPEL:0x33a8	You're an utter imbecile!<FFF6>But don't worry about it.<FFF5>
-45	0x26ba	pack/talk/DOPPEL:0x3410	I've never known such a dunce!<FFF6>You think you're a match for me!?<FFF5>
+43	0x2670	pack/talk/DOPPEL:0x3320	The masses must<L{> act, or <}><S{> act,<FFF6>or <}>their<L{> station<FFF6>in <}><S{> station in <}>life will never change!<FFF5>
+44	0x26a0	pack/talk/DOPPEL:0x33a8	You’re an utter imbecile!<FFFC><FFF6>But don’t worry about it.<FFF5>
+45	0x26ba	pack/talk/DOPPEL:0x3410	I’ve never known such a dunce!<FFF6>You think you’re a match for me!?<FFF5>
 46	0x26d5	pack/talk/DOPPEL:0x3498	Hmph... What a cretin...<FFF5>
 47	0x26e1	pack/talk/DOPPEL:0x34d0	Your egotism is... stunning.<FFF5>
-48	0x26ff	pack/talk/DOPPEL:0x3510	There's definitely no comparison<FFF6>between demons and your kind.<FFF5>
+48	0x26ff	pack/talk/DOPPEL:0x3510	There’s definitely no comparison<FFF6>between demons and your kind.<FFF5>
 49	0x272a	pack/talk/DOPPEL:0x3590	I know...<FFF5>
-50	0x2734	pack/talk/DOPPEL:0x35a8	＞ <FFF3> showed<FFF6>off his smooth moves.<FFF5>
+50	0x2734	pack/talk/DOPPEL:0x35a8	＞ <FFF3> showed off<FFF6>his smooth moves.<FFF5>
 51	0x2750	pack/talk/DOPPEL:0x35f0	＞ <FFF3> danced crazy!<FFF5>
 52	0x2766	pack/talk/DOPPEL:0x3618	＞ <FFF3> danced happily.<FFF5>
-53	0x277e	pack/talk/DOPPEL:0x3640	You think you're bad? Then try me!<FFF5>
+53	0x277e	pack/talk/DOPPEL:0x3640	You think you’re bad? Then try me!<FFF5>
 54	0x2788	pack/talk/DOPPEL:0x3688	You want some of this!?<FFF5>
-55	0x2794	pack/talk/DOPPEL:0x36b8	Hey! I'm right here...<FFF5>
+55	0x2794	pack/talk/DOPPEL:0x36b8	Hey! I’m right here...<FFF5>
 56	0x279e	pack/talk/DOPPEL:0x36e8	＞ <FFF3> stared<FFF6>passionately at Masao.<FFF5>
 57	0x27bb	pack/talk/DOPPEL:0x3730	＞ <FFF3> glared at Masao!<FFF5>
 58	0x27d6	pack/talk/DOPPEL:0x3760	＞ <FFF3> stared<FFF6>flirtatiously at Masao!<FFF5>
-59	0x27f6	pack/talk/DOPPEL:0x37a8	I'm actually a prince<FFF6>of the human world,<FFF6>studying abroad in the underworld!<FFF5>
+59	0x27f6	pack/talk/DOPPEL:0x37a8	I’m actually a<L{> prince<FFF6>of <}><S{> prince of <}>the human world,<FFF6>studying abroad in the underworld!<FFF5>
 60	0x2821	pack/talk/DOPPEL:0x3848	Ah, my dear child... Masao Inaba!<FFF6>Ugh, va te faire foutre!<FFF5>
-61	0x2852	pack/talk/DOPPEL:0x38c0	I'm in this amazing demon form<FFF6>'cause I got cursed!<FFF5>
-62	0x2880	pack/talk/DOPPEL:0x3928	If you see 11:11:11 on the clock<FFF6>on three straight days,<FFF6>the door won't open!<FFF5>
+61	0x2852	pack/talk/DOPPEL:0x38c0	I’m in this amazing demon form<FFF6>’cause I got cursed!<FFF5>
+62	0x2880	pack/talk/DOPPEL:0x3928	If you see 11:11:11 on the<L{> clock<FFF6>on three <}><S{> clock on<FFF6>three <}>straight<L{> days,<FFF6>the <}><S{> days, the <}>door won’t open!<FFF5>
 63	0x28bc	pack/talk/DOPPEL:0x39c8	Oh my God...<FFF5>
-64	0x28d0	pack/talk/DOPPEL:0x39e8	Heheh... I know that's not true.<FFF5>
-65	0x28e8	pack/talk/DOPPEL:0x3a30	＞ <FFF3> sang a chic,<FFF6>touching American bossa nova.<FFF5>
-66	0x2915	pack/talk/DOPPEL:0x3a90	I'm not as bad a singer as you!<FFF6>How rude!<FFF5>
-67	0x2943	pack/talk/DOPPEL:0x3ae8	Oh, this is wonderful! Thank you for<FFF6>singing that lovely song just for me.<FFF5>
+64	0x28d0	pack/talk/DOPPEL:0x39e8	Heheh...<FFFC><FFF6>I know that’s not true.<FFF5>
+65	0x28e8	pack/talk/DOPPEL:0x3a30	＞ <FFF3> sang a chic, touching<FFF6>American bossa nova.<FFF5>
+66	0x2915	pack/talk/DOPPEL:0x3a90	I’m not as bad a singer as<L{> you!<FFF6>How <}><S{> you! How <}>rude!<FFF5>
+67	0x2943	pack/talk/DOPPEL:0x3ae8	Oh, this is wonderful!<FFF6>Thank you for singing<FFF6>that lovely song just for me.<FFF5>
 68	0x2973	pack/talk/DOPPEL:0x3b80	There, there, little Eriko... Play nice.<FFF5>
-69	0x2995	pack/talk/DOPPEL:0x3bd8	Yes? Would you like some milk?<FFF6>...I can't keep this up!<FFF5>
-70	0x29c9	pack/talk/DOPPEL:0x3c48	Heehee...That's a dear.<FFF5>
-71	0x29de	pack/talk/DOPPEL:0x3c78	You're a very capable human.<FFF6>Won't you take on a job<FFF6>as my bodyguard?<FFF5>
+69	0x2995	pack/talk/DOPPEL:0x3bd8	Yes?<FFFC><FFF6>Would you like some milk?<FFF6>...I can’t keep this up!<FFF5>
+70	0x29c9	pack/talk/DOPPEL:0x3c48	Heehee...That’s a dear.<FFF5>
+71	0x29de	pack/talk/DOPPEL:0x3c78	You’re a very capable human.<FFF6>Won’t you take on a<L{> job<FFF6>as <}><S{> job as <}>my bodyguard?<FFF5>
 72	0x2a10	pack/talk/DOPPEL:0x3d08	What did you just say...? I refuse.<FFF5>
-73	0x2a35	pack/talk/DOPPEL:0x3d50	Ahahah... What should I do?<FFF5>
-74	0x2a4c	pack/talk/DOPPEL:0x3d88	I may have a smart mouth,<FFF6>but I'm really a good girl!<FFF5>
-75	0x2a79	pack/talk/DOPPEL:0x3df8	It smells kind of funny around here!<FFF6>And that style is like,<FFF6>PRE-prehistoric! What a dork!<FFF5>
-76	0x2aaf	pack/talk/DOPPEL:0x3eb0	You're seriously willing to be<FFF6>seen outside looking like that?<FFF5>
+73	0x2a35	pack/talk/DOPPEL:0x3d50	Ahahah...<FFFC><FFF6>What should I do?<FFF5>
+74	0x2a4c	pack/talk/DOPPEL:0x3d88	I may have a smart mouth,<FFF6>but I’m really a good girl!<FFF5>
+75	0x2a79	pack/talk/DOPPEL:0x3df8	It smells kind of funny around here!<FFF6>And that style is<L{> like,<FFF6>PRE-prehistoric! What <}><S{> like, PRE-prehistoric!<FFF6>What <}>a dork!<FFF5>
+76	0x2aaf	pack/talk/DOPPEL:0x3eb0	You’re seriously willing to be<FFF6>seen outside looking like that?<FFF5>
 77	0x2ac2	pack/talk/DOPPEL:0x3f30	Ooooh, my chest is sore...<FFF6>Maybe if you gave it a little rub...?<FFF5>
-78	0x2af2	pack/talk/DOPPEL:0x3fb8	Hey! Don't make that face!<FFF5>
-79	0x2b0d	pack/talk/DOPPEL:0x3ff0	Y'know... I'm usually really innocent...<FFF6>But today? I'm feeling daring.<FFF5>
-80	0x2b3c	pack/talk/DOPPEL:0x4080	My daddy was abducted by a UFO...<FFF6>My mom joined an evil cult...Now<FFFB><FFF7>I've been taken apart and put<FFF6>back together as a cyborg...<FFF5>
-81	0x2b7e	pack/talk/DOPPEL:0x4180	Won't someone buy my matches...?<FFF6>If I don't sell any, Papa will beat me...<FFF5>
-82	0x2bae	pack/talk/DOPPEL:0x4218	I'm the oldest of 23 brothers<FFF6>and sisters... I have to eat them all...<FFF5>
-83	0x2be1	pack/talk/DOPPEL:0x42a8	I'd watch out if I were you... I'm nice<FFF6>and calm now, but I go nuts in a snap.<FFF5>
-84	0x2c1b	pack/talk/DOPPEL:0x4348	You're not gonna do what I say!?<FFF6>Don't make me blow your brains out!<FFF5>
+78	0x2af2	pack/talk/DOPPEL:0x3fb8	Hey! Don’t make that face!<FFF5>
+79	0x2b0d	pack/talk/DOPPEL:0x3ff0	Y’know... I’m usually really innocent...<FFF6>But today? I’m feeling daring.<FFF5>
+80	0x2b3c	pack/talk/DOPPEL:0x4080	My daddy was abducted by a<L{> UFO...<FFF6>My mom joined <}><S{> UFO... My mom<FFF6>joined <}>an evil<L{> cult...Now<FFFB><FFF7>I’ve <}><S{> cult...Now I’ve <}>been<L{> taken apart <}><S{> taken<FFF6>apart <}>and put<L{> back<FFF6>together <}><S{> back together <}>as a cyborg...<FFF5>
+81	0x2b7e	pack/talk/DOPPEL:0x4180	Won’t someone buy my matches...?<FFF6>If I don’t sell any, Papa will beat me...<FFF5>
+82	0x2bae	pack/talk/DOPPEL:0x4218	I’m the oldest of 23<L{> brothers<FFF6>and sisters... I <}><S{> brothers and sisters...<FFF6>I <}>have to eat them all...<FFF5>
+83	0x2be1	pack/talk/DOPPEL:0x42a8	I’d watch out if I were you... I’m nice<FFF6>and calm now, but I go nuts in a snap.<FFF5>
+84	0x2c1b	pack/talk/DOPPEL:0x4348	You’re not gonna do what I say!?<FFF6>Don’t make me blow your brains out!<FFF5>
 85	0x2c48	pack/talk/DOPPEL:0x43d8	My hobby is collecting<FFF6>severed demon heads...<FFF5>
-86	0x2c6f	pack/talk/DOPPEL:0x4438	Hmph! It's true what they say...<FFF6>A human's bark is worse than its bite!<FFF5>
-87	0x2c91	pack/talk/DOPPEL:0x44c8	You'll be calling ME a demon soon.<FFF5>
-88	0x2cb8	pack/talk/DOPPEL:0x4510	Who the hell do you<FFF6>think you're talking to?<FFF6>I hate rudeness worse than anything!<FFF5>
-89	0x2cee	pack/talk/DOPPEL:0x45b8	Y'know, I've been thinking<FFF6>about the difference<FFF6>between humans and demons...<FFFB><FFF7>And it's useless. There isn't any.<FFF5>
-90	0x2d23	pack/talk/DOPPEL:0x4698	It's better to stay in bed than to go<FFF6>through life half-assed. There's too<FFF6>many people like that already.<FFF5>
-91	0x2d58	pack/talk/DOPPEL:0x4770	Your actions have no worth.<FFF6>I'm so smart!<FFF5>
-92	0x2d8a	pack/talk/DOPPEL:0x47c8	Stay quiet for once and listen<FFF6>to what others have to say!<FFFB><FFF7>And don't you make fun of them,<FFF6>or I'll make you regret it!<FFF5>
-93	0x2db1	pack/talk/DOPPEL:0x48b8	Stop whining... No one likes it...<FFF5>
-94	0x2dca	pack/talk/DOPPEL:0x4900	Haha... who knows?<FFF5>
+86	0x2c6f	pack/talk/DOPPEL:0x4438	Hmph! It’s true what they say...<FFF6>A human’s bark is worse than its bite!<FFF5>
+87	0x2c91	pack/talk/DOPPEL:0x44c8	You’ll be calling ME a demon soon.<FFF5>
+88	0x2cb8	pack/talk/DOPPEL:0x4510	Who the hell do<L{> you<FFF6>think <}><S{> you think <}>you’re<L{> talking to?<FFF6>I <}><S{> talking<FFF6>to? I <}>hate rudeness worse than anything!<FFF5>
+89	0x2cee	pack/talk/DOPPEL:0x45b8	Y’know, I’ve been<L{> thinking<FFF6>about the difference<FFF6>between <}><S{> thinking about<FFF6>the difference between <}>humans<L{> and demons...<FFFB><FFF7>And <}><S{> and<FFF6>demons... And <}>it’s useless. There isn’t any.<FFF5>
+90	0x2d23	pack/talk/DOPPEL:0x4698	It’s better to stay in<L{> bed than to<FFF6>go <}><S{> bed<FFF6>than to go <}>through life<L{> half-assed. There’s<FFF6>too <}><S{> half-assed.<FFF6>There’s too <}>many people like that already.<FFF5>
+91	0x2d58	pack/talk/DOPPEL:0x4770	Your actions have no<L{> worth.<FFF6>I’m <}><S{> worth. I’m <}>so smart!<FFF5>
+92	0x2d8a	pack/talk/DOPPEL:0x47c8	Stay quiet for once and<L{> listen<FFF6>to what others <}><S{> listen to what<FFF6>others <}>have to<L{> say!<FFFB><FFF7>And <}><S{> say! And <}>don’t you<L{> make fun <}><S{> make<FFF6>fun <}>of<L{> them,<FFF6>or <}><S{> them, or <}>I’ll make you regret it!<FFF5>
+93	0x2db1	pack/talk/DOPPEL:0x48b8	Stop whining...<FFFC><FFF6>No one likes it...<FFF5>
+94	0x2dca	pack/talk/DOPPEL:0x4900	Haha...<FFFC><FFF6>who knows?<FFF5>
 95	0x2ddb	pack/talk/DOPPEL:0x4928	......<FFF5>
 96	0x2dfb	pack/talk/DOPPEL:0x4938	......<FFF5>
 97	0x2e1b	pack/talk/DOPPEL:0x4948	......<FFF5>
 98	0x2e3b	pack/talk/DOPPEL:0x4958	......<FFF5>
 99	0x2e5b	pack/talk/DOPPEL:0x4968	......<FFF5>
 100	0x2e7b	pack/talk/DOPPEL:0x4978	......<FFF5>
-101	0x2e9b	pack/talk/DOPPEL:0x4988	This isn't your lucky day... I'll take<FFF6>your eyes last... So go to hell!<FFF5>
+101	0x2e9b	pack/talk/DOPPEL:0x4988	This isn’t your lucky<L{> day... I’ll take<FFF6>your <}><S{> day...<FFF6>I’ll take your <}>eyes last... So go to hell!<FFF5>
 102	0x2ed0	pack/talk/DOPPEL:0x4a18	Sounds like you wanna die!<FFF5>
 103	0x2edd	pack/talk/DOPPEL:0x4a50	Leave me alone...<FFF5>
 104	0x2eea	pack/talk/DOPPEL:0x4a78	Rrrrrwwaaaaaoooarrr!<FFF5>
@@ -109,124 +109,124 @@ id	pos	psp	en
 107	0x2f0f	pack/talk/DOPPEL:0x4af8	Wow!<FFF5>
 108	0x2f17	pack/talk/DOPPEL:0x4b08	...So what?<FFF5>
 109	0x2f22	pack/talk/DOPPEL:0x4b20	I spin the top with the power<FFF6>of my chi alone...<FFF5>
-110	0x2f46	pack/talk/DOPPEL:0x4b88	You're exceptionally talented.<FFF6>I'm going to study your manner<FFF6>of speaking... It rather interests me.<FFF5>
-111	0x2f73	pack/talk/DOPPEL:0x4c58	You're exceptionally talented.<FFF6>I'm going to study your manner<FFF6>of speaking... It rather interests me.<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
-112	0x2fd3	pack/talk/DOPPEL:0x4db8	That isn't even worth mimicking!<FFF6>Can't you say anything<FFF6>to pique my curiosity a bit!?<FFF5>
-113	0x3006	pack/talk/DOPPEL:0x4e68	Even a copycat has its pride,<FFF6>you know! I refuse to mimic<FFF6>something so cheap!<FFF5>
-114	0x303b	pack/talk/DOPPEL:0x4f08	What do you hope to gain,<FFF6>saying that stuff to a double?<FFF6>I can't tell what you're thinking...<FFF5>
-115	0x306d	pack/talk/DOPPEL:0x4fc8	What do you hope to gain,<FFF6>saying that stuff to a double?<FFF6>I can't tell what you're thinking...<FFF5>
-116	0x309f	pack/talk/DOPPEL:0x5088	What a bizarre story...<FFF6>You've already surpassed<FFF6>my expectations!<FFF5>
-117	0x30db	pack/talk/DOPPEL:0x5110	What a bizarre story...<FFF6>You've already surpassed<FFF6>my expectations!<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
-118	0x314e	pack/talk/DOPPEL:0x5228	You're exceptionally talented.<FFF6>I'm going to study your method of<FFF6>expression... It rather interests me.<FFF5>
-119	0x317d	pack/talk/DOPPEL:0x52f8	You're exceptionally talented.<FFF6>I'm going to study your method of<FFF6>expression... It rather interests me.<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
-120	0x31df	pack/talk/DOPPEL:0x5460	That isn't even worth mimicking!<FFF6>Can't you do anything<FFF6>to pique my curiosity a bit!?<FFF5>
-121	0x3214	pack/talk/DOPPEL:0x5510	Even a copycat has its pride,<FFF6>you know! I refuse to mimic<FFF6>something so cheap!<FFF5>
-122	0x3249	pack/talk/DOPPEL:0x55b0	So, you plan to harness a double's<FFF6>power... To do what, exactly? I can't<FFF6>figure out what you're thinking...<FFF5>
-123	0x327f	pack/talk/DOPPEL:0x5688	So, you plan to harness a double's<FFF6>power... To do what, exactly? I can't<FFF6>figure out what you're thinking...<FFF5>
-124	0x32b5	pack/talk/DOPPEL:0x5760	You're trying to borrow a double's<FFF6>power...? You've already<FFF6>surpassed my expectations!<FFF5>
-125	0x32f5	pack/talk/DOPPEL:0x5810	You're trying to borrow a double's<FFF6>power...? You've already<FFF6>surpassed my expectations!<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
-126	0x336c	pack/talk/DOPPEL:0x5958	You're exceptionally talented.<FFF6>I'm going to study your expressions...<FFF6>They rather interest me.<FFF5>
-127	0x3399	pack/talk/DOPPEL:0x5a18	You're exceptionally talented.<FFF6>I'm going to study your expressions...<FFF6>They rather interest me.<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
-128	0x33f9	pack/talk/DOPPEL:0x5b70	That isn't even worth mimicking!<FFF6>Can't you do anything<FFF6>to pique my curiosity a bit!?<FFF5>
-129	0x342e	pack/talk/DOPPEL:0x5c20	Even a copycat has its pride,<FFF6>you know! I refuse to mimic<FFF6>something so cheap!<FFF5>
-130	0x3463	pack/talk/DOPPEL:0x5cc0	What do you hope to gain,<FFF6>taunting a double?<FFF6>I can't tell what you're thinking...<FFF5>
-131	0x3493	pack/talk/DOPPEL:0x5d68	What do you hope to gain,<FFF6>taunting a double?<FFF6>I can't tell what you're thinking...<FFF5>
-132	0x34c3	pack/talk/DOPPEL:0x5e10	You're taunting a double...?<FFF6>You've already surpassed<FFF6>my expectations!<FFF5>
-133	0x34ff	pack/talk/DOPPEL:0x5ea0	You're taunting a double...?<FFF6>You've already surpassed<FFF6>my expectations!<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
-134	0x3572	pack/talk/DOPPEL:0x5fc8	You're exceptionally talented. I'm<FFF6>going to study the way you perform<FFF6>your tricks... It rather interests me.<FFF5>
-135	0x35a1	pack/talk/DOPPEL:0x60a8	You're exceptionally talented. I'm<FFF6>going to study the way you perform<FFF6>your tricks... It rather interests me.<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
-136	0x3603	pack/talk/DOPPEL:0x6218	That isn't even worth mimicking!<FFF6>Don't you have any tricks that<FFF6>would pique my curiosity a bit!?<FFF5>
-137	0x3636	pack/talk/DOPPEL:0x62e0	Even a copycat has its pride,<FFF6>you know! I refuse to mimic<FFF6>something so cheap!<FFF5>
-138	0x366b	pack/talk/DOPPEL:0x6380	What do you hope to gain,<FFF6>showing those tricks to a double?<FFF6>I can't tell what you're thinking...<FFF5>
-139	0x369c	pack/talk/DOPPEL:0x6448	What do you hope to gain,<FFF6>showing those tricks to a double?<FFF6>I can't tell what you're thinking...<FFF5>
-140	0x36cd	pack/talk/DOPPEL:0x6510	You did a trick for a double like me!?<FFF6>You've already surpassed<FFF6>my expectations!<FFF5>
-141	0x3708	pack/talk/DOPPEL:0x65b8	You did a trick for a double like me!?<FFF6>You've already surpassed<FFF6>my expectations!<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
-142	0x377a	pack/talk/DOPPEL:0x66f0	You're exceptionally talented.<FFF6>I'm going to study your methods of<FFF6>seduction... They rather interest me.<FFF5>
-143	0x37ac	pack/talk/DOPPEL:0x67c0	You're exceptionally talented.<FFF6>I'm going to study your methods of<FFF6>seduction... They rather interest me.<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
-144	0x3811	pack/talk/DOPPEL:0x6928	That isn't even worth mimicking!<FFF6>Can't you seduce me in a way<FFF6>that piques my curiosity a bit!?<FFF5>
-145	0x3846	pack/talk/DOPPEL:0x69e8	Even a copycat has its pride,<FFF6>you know! I refuse to mimic<FFF6>something so cheap!<FFF5>
-146	0x387d	pack/talk/DOPPEL:0x6a88	What do you hope to gain,<FFF6>seducing a double like me?<FFF6>I can't tell what you're thinking...<FFF5>
-147	0x38ad	pack/talk/DOPPEL:0x6b40	What do you hope to gain,<FFF6>seducing a double like me?<FFF6>I can't tell what you're thinking...<FFF5>
-148	0x38dd	pack/talk/DOPPEL:0x6bf8	You're trying to seduce a double!?<FFF6>You've already surpassed<FFF6>my expectations!<FFF5>
-149	0x3919	pack/talk/DOPPEL:0x6c98	You're trying to seduce a double!?<FFF6>You've already surpassed<FFF6>my expectations!<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
-150	0x398c	pack/talk/DOPPEL:0x6dc8	You're exceptionally talented. I'm<FFF6>going to study your way of currying<FFF6>favor... It rather interests me.<FFF5>
-151	0x39ba	pack/talk/DOPPEL:0x6e98	You're exceptionally talented. I'm<FFF6>going to study your way of currying<FFF6>favor... It rather interests me.<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
-152	0x3a1b	pack/talk/DOPPEL:0x7000	That isn't even worth mimicking!<FFF6>Can't you butter me up in a way<FFF6>that piques my curiosity a bit!?<FFF5>
-153	0x3a4e	pack/talk/DOPPEL:0x70c8	Even a copycat has its pride,<FFF6>you know! I refuse to mimic<FFF6>something so cheap!<FFF5>
-154	0x3a84	pack/talk/DOPPEL:0x7168	What do you hope to gain,<FFF6>buttering up a double?<FFF6>I can't tell what you're thinking...<FFF5>
-155	0x3ab6	pack/talk/DOPPEL:0x7218	What do you hope to gain,<FFF6>buttering up a double?<FFF6>I can't tell what you're thinking...<FFF5>
-156	0x3ae8	pack/talk/DOPPEL:0x72c8	You're buttering up a double!?<FFF6>You've already surpassed<FFF6>my expectations!<FFF5>
-157	0x3b25	pack/talk/DOPPEL:0x7360	You're buttering up a double!?<FFF6>You've already surpassed<FFF6>my expectations!<FFFB><FFF7>Oh, I almost forgot<FFF6>to make my demands.<FFF6>That's the most important part!<FFF1><FFF5>
-158	0x3b99	pack/talk/DOPPEL:0x7488	You already have my card...<FFF6>I have no further interest in you.<FFEF>
+110	0x2f46	pack/talk/DOPPEL:0x4b88	You’re exceptionally talented.<FFF6>I’m going to study your manner<FFF6>of speaking... It rather interests me.<FFF5>
+111	0x2f73	pack/talk/DOPPEL:0x4c58	You’re exceptionally talented.<FFF6>I’m going to study your manner<FFF6>of speaking... It rather interests me.<FFFB><FFF7>Oh, I almost<L{> forgot<FFF6>to <}><S{> forgot to <}>make my demands.<FFF6>That’s the most important part!<FFF1><FFF5>
+112	0x2fd3	pack/talk/DOPPEL:0x4db8	That isn’t even worth mimicking!<FFF6>Can’t you say anything<FFF6>to pique my curiosity a bit!?<FFF5>
+113	0x3006	pack/talk/DOPPEL:0x4e68	Even a copycat<L{> has<FFF6>its <}><S{> has its <}>pride, you know!<FFF6>I refuse to mimic something so cheap!<FFF5>
+114	0x303b	pack/talk/DOPPEL:0x4f08	What do you hope to gain,<FFF6>saying that stuff to a double?<FFF6>I can’t tell what you’re thinking...<FFF5>
+115	0x306d	pack/talk/DOPPEL:0x4fc8	What do you hope to gain,<FFF6>saying that stuff to a double?<FFF6>I can’t tell what you’re thinking...<FFF5>
+116	0x309f	pack/talk/DOPPEL:0x5088	What a bizarre story...<FFFC><FFF6>You’ve already surpassed<FFF6>my expectations!<FFF5>
+117	0x30db	pack/talk/DOPPEL:0x5110	What a bizarre story...<FFFC><FFF6>You’ve already surpassed<FFF6>my expectations!<FFFB><FFF7>Oh, I almost<L{> forgot<FFF6>to <}><S{> forgot to <}>make my demands.<FFF6>That’s the most important part!<FFF1><FFF5>
+118	0x314e	pack/talk/DOPPEL:0x5228	You’re exceptionally talented.<FFF6>I’m going to study your<L{> method of<FFF6>expression... <}><S{> method<FFF6>of expression... <}>It rather interests me.<FFF5>
+119	0x317d	pack/talk/DOPPEL:0x52f8	You’re exceptionally talented.<FFF6>I’m going to study your<L{> method of<FFF6>expression... <}><S{> method<FFF6>of expression... <}>It rather interests me.<FFFB><FFF7>Oh, I almost<L{> forgot<FFF6>to <}><S{> forgot to <}>make my demands.<FFF6>That’s the most important part!<FFF1><FFF5>
+120	0x31df	pack/talk/DOPPEL:0x5460	That isn’t even worth mimicking!<FFF6>Can’t you do anything<FFF6>to pique my curiosity a bit!?<FFF5>
+121	0x3214	pack/talk/DOPPEL:0x5510	Even a copycat<L{> has<FFF6>its <}><S{> has its <}>pride, you know!<FFF6>I refuse to mimic something so cheap!<FFF5>
+122	0x3249	pack/talk/DOPPEL:0x55b0	So, you plan to harness a<L{> double’s<FFF6>power... To <}><S{> double’s power...<FFF6>To <}>do what,<L{> exactly? I can’t<FFF6>figure <}><S{> exactly?<FFF6>I can’t figure <}>out what you’re thinking...<FFF5>
+123	0x327f	pack/talk/DOPPEL:0x5688	So, you plan to harness a<L{> double’s<FFF6>power... To <}><S{> double’s power...<FFF6>To <}>do what,<L{> exactly? I can’t<FFF6>figure <}><S{> exactly?<FFF6>I can’t figure <}>out what you’re thinking...<FFF5>
+124	0x32b5	pack/talk/DOPPEL:0x5760	You’re trying to borrow a double’s<FFF6>power...?<FFFC> You’ve already<FFF6>surpassed my expectations!<FFF5>
+125	0x32f5	pack/talk/DOPPEL:0x5810	You’re trying to borrow a double’s<FFF6>power...?<FFFC> You’ve already<FFF6>surpassed my expectations!<FFFB><FFF7>Oh, I almost<L{> forgot<FFF6>to <}><S{> forgot to <}>make my demands.<FFF6>That’s the most important part!<FFF1><FFF5>
+126	0x336c	pack/talk/DOPPEL:0x5958	You’re exceptionally talented.<FFF6>I’m going to study your expressions...<FFF6>They rather interest me.<FFF5>
+127	0x3399	pack/talk/DOPPEL:0x5a18	You’re exceptionally talented.<FFF6>I’m going to study your expressions...<FFF6>They rather interest me.<FFFB><FFF7>Oh, I almost<L{> forgot<FFF6>to <}><S{> forgot to <}>make my demands.<FFF6>That’s the most important part!<FFF1><FFF5>
+128	0x33f9	pack/talk/DOPPEL:0x5b70	That isn’t even worth mimicking!<FFF6>Can’t you do anything<FFF6>to pique my curiosity a bit!?<FFF5>
+129	0x342e	pack/talk/DOPPEL:0x5c20	Even a copycat<L{> has<FFF6>its <}><S{> has its <}>pride, you know!<FFF6>I refuse to mimic something so cheap!<FFF5>
+130	0x3463	pack/talk/DOPPEL:0x5cc0	What do you hope to gain,<FFF6>taunting a double?<FFF6>I can’t tell what you’re thinking...<FFF5>
+131	0x3493	pack/talk/DOPPEL:0x5d68	What do you hope to gain,<FFF6>taunting a double?<FFF6>I can’t tell what you’re thinking...<FFF5>
+132	0x34c3	pack/talk/DOPPEL:0x5e10	You’re taunting a double...?<FFF6>You’ve already surpassed<FFF6>my expectations!<FFF5>
+133	0x34ff	pack/talk/DOPPEL:0x5ea0	You’re taunting a double...?<FFF6>You’ve already surpassed<FFF6>my expectations!<FFFB><FFF7>Oh, I almost<L{> forgot<FFF6>to <}><S{> forgot to <}>make my demands.<FFF6>That’s the most important part!<FFF1><FFF5>
+134	0x3572	pack/talk/DOPPEL:0x5fc8	You’re exceptionally<L{> talented. I’m<FFF6>going <}><S{> talented.<FFF6>I’m going <}>to study the way you perform<FFF6>your tricks... It rather interests me.<FFF5>
+135	0x35a1	pack/talk/DOPPEL:0x60a8	You’re exceptionally<L{> talented. I’m<FFF6>going <}><S{> talented.<FFF6>I’m going <}>to study the way you perform<FFF6>your tricks... It rather interests me.<FFFB><FFF7>Oh, I almost<L{> forgot<FFF6>to <}><S{> forgot to <}>make my demands.<FFF6>That’s the most important part!<FFF1><FFF5>
+136	0x3603	pack/talk/DOPPEL:0x6218	That isn’t even worth mimicking!<FFF6>Don’t you have any tricks<L{> that<FFF6>would pique <}><S{> that would<FFF6>pique <}>my curiosity a bit!?<FFF5>
+137	0x3636	pack/talk/DOPPEL:0x62e0	Even a copycat<L{> has<FFF6>its <}><S{> has its <}>pride, you know!<FFF6>I refuse to mimic something so cheap!<FFF5>
+138	0x366b	pack/talk/DOPPEL:0x6380	What do you hope to gain,<FFF6>showing those tricks to a double?<FFF6>I can’t tell what you’re thinking...<FFF5>
+139	0x369c	pack/talk/DOPPEL:0x6448	What do you hope to gain,<FFF6>showing those tricks to a double?<FFF6>I can’t tell what you’re thinking...<FFF5>
+140	0x36cd	pack/talk/DOPPEL:0x6510	You did a trick for a double like me!?<FFF6>You’ve already surpassed<FFF6>my expectations!<FFF5>
+141	0x3708	pack/talk/DOPPEL:0x65b8	You did a trick for a double like me!?<FFF6>You’ve already surpassed<FFF6>my expectations!<FFFB><FFF7>Oh, I almost<L{> forgot<FFF6>to <}><S{> forgot to <}>make my demands.<FFF6>That’s the most important part!<FFF1><FFF5>
+142	0x377a	pack/talk/DOPPEL:0x66f0	You’re exceptionally talented.<FFF6>I’m going to study your<L{> methods of<FFF6>seduction... <}><S{> methods<FFF6>of seduction... <}>They rather interest me.<FFF5>
+143	0x37ac	pack/talk/DOPPEL:0x67c0	You’re exceptionally talented.<FFF6>I’m going to study your<L{> methods of<FFF6>seduction... <}><S{> methods<FFF6>of seduction... <}>They rather interest me.<FFFB><FFF7>Oh, I almost<L{> forgot<FFF6>to <}><S{> forgot to <}>make my demands.<FFF6>That’s the most important part!<FFF1><FFF5>
+144	0x3811	pack/talk/DOPPEL:0x6928	That isn’t even worth mimicking!<FFF6>Can’t you seduce me in a way<FFF6>that piques my curiosity a bit!?<FFF5>
+145	0x3846	pack/talk/DOPPEL:0x69e8	Even a copycat<L{> has<FFF6>its <}><S{> has its <}>pride, you know!<FFF6>I refuse to mimic something so cheap!<FFF5>
+146	0x387d	pack/talk/DOPPEL:0x6a88	What do you hope to gain,<FFF6>seducing a double like me?<FFF6>I can’t tell what you’re thinking...<FFF5>
+147	0x38ad	pack/talk/DOPPEL:0x6b40	What do you hope to gain,<FFF6>seducing a double like me?<FFF6>I can’t tell what you’re thinking...<FFF5>
+148	0x38dd	pack/talk/DOPPEL:0x6bf8	You’re trying to seduce a double!?<FFF6>You’ve already surpassed<FFF6>my expectations!<FFF5>
+149	0x3919	pack/talk/DOPPEL:0x6c98	You’re trying to seduce a double!?<FFF6>You’ve already surpassed<FFF6>my expectations!<FFFB><FFF7>Oh, I almost<L{> forgot<FFF6>to <}><S{> forgot to <}>make my demands.<FFF6>That’s the most important part!<FFF1><FFF5>
+150	0x398c	pack/talk/DOPPEL:0x6dc8	You’re exceptionally<L{> talented. I’m<FFF6>going <}><S{> talented.<FFF6>I’m going <}>to study your way<L{> of currying<FFF6>favor... <}><S{> of<FFF6>currying favor... <}>It rather interests me.<FFF5>
+151	0x39ba	pack/talk/DOPPEL:0x6e98	You’re exceptionally<L{> talented. I’m<FFF6>going <}><S{> talented.<FFF6>I’m going <}>to study your way<L{> of currying<FFF6>favor... <}><S{> of<FFF6>currying favor... <}>It rather interests me.<FFFB><FFF7>Oh, I almost<L{> forgot<FFF6>to <}><S{> forgot to <}>make my demands.<FFF6>That’s the most important part!<FFF1><FFF5>
+152	0x3a1b	pack/talk/DOPPEL:0x7000	That isn’t even worth mimicking!<FFF6>Can’t you butter me up in a way<FFF6>that piques my curiosity a bit!?<FFF5>
+153	0x3a4e	pack/talk/DOPPEL:0x70c8	Even a copycat<L{> has<FFF6>its <}><S{> has its <}>pride, you know!<FFF6>I refuse to mimic something so cheap!<FFF5>
+154	0x3a84	pack/talk/DOPPEL:0x7168	What do you hope to gain,<FFF6>buttering up a double?<FFF6>I can’t tell what you’re thinking...<FFF5>
+155	0x3ab6	pack/talk/DOPPEL:0x7218	What do you hope to gain,<FFF6>buttering up a double?<FFF6>I can’t tell what you’re thinking...<FFF5>
+156	0x3ae8	pack/talk/DOPPEL:0x72c8	You’re buttering up a double!?<FFF6>You’ve already surpassed<FFF6>my expectations!<FFF5>
+157	0x3b25	pack/talk/DOPPEL:0x7360	You’re buttering up a double!?<FFF6>You’ve already surpassed<FFF6>my expectations!<FFFB><FFF7>Oh, I almost<L{> forgot<FFF6>to <}><S{> forgot to <}>make my demands.<FFF6>That’s the most important part!<FFF1><FFF5>
+158	0x3b99	pack/talk/DOPPEL:0x7488	You already have my card...<FFFC><FFF6>I have no further interest in you.<FFEF>
 159	0x3bbf	pack/talk/DOPPEL:0x7508	Take this...<FFEF>
 160	0x3bd1	pack/talk/DOPPEL:0x7528	...I see...<FFEF>
-161	0x3be6	pack/talk/DOPPEL:0x7540	You can't use it...<FFEF>
-162	0x3bef	pack/talk/DOPPEL:0x7568	You're too weak to have it...<FFEF>
+161	0x3be6	pack/talk/DOPPEL:0x7540	You can’t use it...<FFEF>
+162	0x3bef	pack/talk/DOPPEL:0x7568	You’re too weak to have it...<FFEF>
 163	0x3c15	pack/talk/DOPPEL:0x75a8	Then take this, at least...<FFEF>
-164	0x3c25	pack/talk/DOPPEL:0x75e0	Well then, it's time for us to part...<FFEF>
+164	0x3c25	pack/talk/DOPPEL:0x75e0	Well then, it’s time for us to part...<FFEF>
 165	0x3c33	pack/talk/DOPPEL:0x7630	This is good for you. Take it...<FFEF>
-166	0x3c4d	pack/talk/DOPPEL:0x7678	I'll be going now...<FFEF>
-167	0x3c57	pack/talk/DOPPEL:0x76a8	It doesn't seem right,<FFF6>giving you a double's card, but feel<FFF6>free to make a Persona or whatever...<FFEF>
-168	0x3c91	pack/talk/DOPPEL:0x7770	It seems I still need more training...<FFF6>Let us meet again after I've had<FFF6>more training as a double...<FFEF>
-169	0x3cd5	pack/talk/DOPPEL:0x7840	I'll be going my own way now.<FFF6>There's someone else<FFF6>whose double I have to be!<FFEF>
-170	0x3cfb	pack/talk/DOPPEL:0x78e0	I'm off to be someone else's double...<FFF6>Here, take this and keep on trying!<FFEF>
-171	0x3d32	pack/talk/DOPPEL:0x7978	I enjoyed that. It would be a waste<FFF6>for you to come away with nothing...<FFFB><FFF7>So please accept<FFF6>my card as a memento!<FFEF>
-172	0x3da2	pack/talk/DOPPEL:0x7a60	If you weren't satisfied,<FFF6>feel free to throw the card away!<FFF6>I won't mind at all!<FFEF>
-173	0x3ddd	pack/talk/DOPPEL:0x7b08	I'm not allowed to fight you...<FFF6>It's because I'm your double...<FFF6>And you are mine...<FFEF>
-174	0x3e1f	pack/talk/DOPPEL:0x7bb0	It's natural for doubles<FFF6>to merge together as one...<FFF6>I'll give you my card...<FFEF>
-175	0x3e5f	pack/talk/DOPPEL:0x7c50	I can't fight you...<FFF6>I'm your double, after all...<FFEF>
-176	0x3e92	pack/talk/DOPPEL:0x7cb8	Here... a gift from your alter ego...<FFF6>I'd like you to take it...<FFEF>
-177	0x3eba	pack/talk/DOPPEL:0x7d40	Ironically, as your double, I know<FFF6>all too well that I cannot escape...<FFEF>
-178	0x3ef8	pack/talk/DOPPEL:0x7dd0	I also know that you'll spare<FFF6>my life if I give you my card...<FFEF>
-179	0x3f35	pack/talk/DOPPEL:0x7e50	Yo, <FFFA>! How's it goin'?<FFF6>Let's get down to negotiations!<FFF5>
+166	0x3c4d	pack/talk/DOPPEL:0x7678	I’ll be going now...<FFEF>
+167	0x3c57	pack/talk/DOPPEL:0x76a8	It doesn’t seem right,<FFF6>giving you a double’s card, but feel<FFF6>free to make a Persona or whatever...<FFEF>
+168	0x3c91	pack/talk/DOPPEL:0x7770	It seems I still need more training...<FFF6>Let us meet again after I’ve had<FFF6>more training as a double...<FFEF>
+169	0x3cd5	pack/talk/DOPPEL:0x7840	I’ll be going my own way now.<FFF6>There’s someone else<FFF6>whose double I have to be!<FFEF>
+170	0x3cfb	pack/talk/DOPPEL:0x78e0	I’m off to be someone else’s double...<FFFC><FFF6>Here, take this and keep on trying!<FFEF>
+171	0x3d32	pack/talk/DOPPEL:0x7978	I enjoyed that.<FFF6>It would be a waste for you<FFF6>to come away with nothing...<FFFB><FFF7>So please<L{> accept<FFF6>my <}><S{> accept my <}>card as a memento!<FFEF>
+172	0x3da2	pack/talk/DOPPEL:0x7a60	If you weren’t<L{> satisfied,<FFF6>feel <}><S{> satisfied, feel <}>free<L{> to throw <}><S{> to<FFF6>throw <}>the card<L{> away!<FFF6>I <}><S{> away! I <}>won’t mind at all!<FFEF>
+173	0x3ddd	pack/talk/DOPPEL:0x7b08	I’m not allowed to fight you...<FFFC><FFF6>It’s because I’m your double...<FFF6>And you are mine...<FFEF>
+174	0x3e1f	pack/talk/DOPPEL:0x7bb0	It’s natural for doubles<FFF6>to merge together as one...<FFFC><FFF6>I’ll give you my card...<FFEF>
+175	0x3e5f	pack/talk/DOPPEL:0x7c50	I can’t fight you...<FFFC><FFF6>I’m your double, after all...<FFEF>
+176	0x3e92	pack/talk/DOPPEL:0x7cb8	Here... a gift from your alter ego...<FFF6>I’d like you to take it...<FFEF>
+177	0x3eba	pack/talk/DOPPEL:0x7d40	Ironically, as your<L{> double, I know<FFF6>all <}><S{> double,<FFF6>I know all <}>too well that I cannot escape...<FFEF>
+178	0x3ef8	pack/talk/DOPPEL:0x7dd0	I also know that you’ll spare<FFF6>my life if I give you my card...<FFEF>
+179	0x3f35	pack/talk/DOPPEL:0x7e50	Yo, <FFFA>! How’s it goin’?<FFF6>Let’s get down to negotiations!<FFF5>
 180	0x3f5f	pack/talk/DOPPEL:0x7ec0	Yo <FFFA>, how you been?<FFF6>You got anything for your alter ego?<FFF1><FFF5>
-181	0x3f8d	pack/talk/DOPPEL:0x7f38	For a guy who's my double, you don't<FFF6>stand out much... Shall we settle<FFF6>for good which of us is the true self?<FFF5>
-182	0x3fca	pack/talk/DOPPEL:0x8018	So you're my alter ego...?<FFF6>I'll make you pay for being a killjoy!<FFF1><FFF5>
-183	0x3fff	pack/talk/DOPPEL:0x80a0	How ominous to encounter<FFF6>my own double...<FFF5>
+181	0x3f8d	pack/talk/DOPPEL:0x7f38	For a guy who’s my<L{> double, you don’t<FFF6>stand <}><S{> double,<FFF6>you don’t stand <}>out much... Shall we settle<FFF6>for good which of us is the true self?<FFF5>
+182	0x3fca	pack/talk/DOPPEL:0x8018	So you’re my alter ego...?<FFFC><FFF6>I’ll make you pay for being a killjoy!<FFF1><FFF5>
+183	0x3fff	pack/talk/DOPPEL:0x80a0	How ominous to<L{> encounter<FFF6>my <}><S{> encounter my <}>own double...<FFF5>
 184	0x4024	pack/talk/DOPPEL:0x80f8	I had a bad feeling about this...<FFF6>but then, you are my double...<FFF5>
-185	0x404b	pack/talk/DOPPEL:0x8180	I never thought I'd meet my alter ego.<FFF6>It really is a small world...<FFF5>
-186	0x407e	pack/talk/DOPPEL:0x8210	If you're my double, I don't need<FFF6>to be shy! Gimme something!<FFF1><FFF5>
+185	0x404b	pack/talk/DOPPEL:0x8180	I never thought I’d meet my alter ego.<FFF6>It really is a small world...<FFF5>
+186	0x407e	pack/talk/DOPPEL:0x8210	If you’re my<L{> double,<FFF6>I <}><S{> double, I <}>don’t need to be shy!<FFFC><FFF6>Gimme something!<FFF1><FFF5>
 187	0x40b2	pack/talk/DOPPEL:0x8290	<FFED>The moon shall be our witness...<FFF6>Let us determine who is the true <FFFA>...<FFF5>
-188	0x40dd	pack/talk/DOPPEL:0x8320	<FFEE>So if you're me, you should be able<FFF6>to grant this request of mine...<FFF1><FFF5>
-189	0x4104	pack/talk/DOPPEL:0x83b0	<FFEC>The new moon is in the sky,<FFF6>and you're not afraid... That's<FFF6>the difference between you and me...<FFF5>
-190	0x4137	pack/talk/DOPPEL:0x8478	<FFEE>You're trying to negotiate with your<FFF6>double? Well, give me something, and<FFF6>maybe I can put my feelings aside...<FFF1><FFF5>
-191	0x4175	pack/talk/DOPPEL:0x8560	<FFEE>Hello, <FFFA>! I am <FFFA>too!<FFF6>It's amazing, but true!<FFF5>
+188	0x40dd	pack/talk/DOPPEL:0x8320	<FFEE>So if you’re me, you should be able<FFF6>to grant this request of mine...<FFF1><FFF5>
+189	0x4104	pack/talk/DOPPEL:0x83b0	<FFEC>The new moon is in the sky,<FFF6>and you’re not<L{> afraid... That’s<FFF6>the <}><S{> afraid...<FFF6>That’s the <}>difference between you and me...<FFF5>
+190	0x4137	pack/talk/DOPPEL:0x8478	<FFEE>You’re trying to negotiate<L{> with your<FFF6>double?<FFFC> <}><S{> with<FFF6>your double?<FFFC> <}>Well, give me<L{> something, and<FFF6>maybe <}><S{> something,<FFF6>and maybe <}>I can put my feelings aside...<FFF1><FFF5>
+191	0x4175	pack/talk/DOPPEL:0x8560	<FFEE>Hello, <FFFA>! I am <FFFA>too!<FFFC><FFF6>It’s amazing, but true!<FFF5>
 192	0x419e	pack/talk/DOPPEL:0x85c0	<FFEB>Hello, <FFFA>! I am <FFFA>too!<FFF6>Give me a memento of our meeting!<FFF1><FFF5>
-193	0x41cb	pack/talk/DOPPEL:0x8638	<FFEC>Ah! I had an uneasy feeling about<FFF6>this... So you were my double.<FFF6>I wonder if this, too, is fate...<FFF5>
-194	0x4203	pack/talk/DOPPEL:0x8700	<FFED>I'm in a very foul mood...<FFF6>As my double, couldn't<FFF6>you give me something?<FFF1><FFF5>
-195	0x423f	pack/talk/DOPPEL:0x8798	<FFEB>You certainly don't stand out much<FFF6>for someone who's my double.<FFFB><FFF7>Let's see once and for all<FFF6>who the true self is!<FFF5>
-196	0x427d	pack/talk/DOPPEL:0x8880	<FFED>If you're my double, then there's no<FFF6>need for modesty! Give me a gift!<FFF1><FFF5>
-197	0x42b5	pack/talk/DOPPEL:0x8918	<FFEC>You're my double...? I don't know<FFF6>about this... How is it going to end...?<FFF5>
-198	0x42f3	pack/talk/DOPPEL:0x89b0	<FFEB>If you're my double,<FFF6>I may as well ask... Give me something.<FFF1><FFF5>
-199	0x4329	pack/talk/DOPPEL:0x8a30	...I thank you, as your double, for<FFF6>the chance to experience something<FFF6>so rare... Tell me what you desire.<FFEF>
-200	0x436a	pack/talk/DOPPEL:0x8b08	...Absurd! I don't want to share<FFF6>my experiences as a double with you!<FFF6>Of all the nerve!<FFEF>
-201	0x43a5	pack/talk/DOPPEL:0x8bb8	You're a dreadful thing... Not even I,<FFF6>your double, can understand...<FFEF>
+193	0x41cb	pack/talk/DOPPEL:0x8638	<FFEC>Ah! I had an uneasy feeling<L{> about<FFF6>this... So <}><S{> about this...<FFF6>So <}>you were my double.<FFF6>I wonder if this, too, is fate...<FFF5>
+194	0x4203	pack/talk/DOPPEL:0x8700	<FFED>I’m in a very foul<L{> mood...<FFF6>As <}><S{> mood... As <}>my<L{> double, couldn’t<FFF6>you <}><S{> double,<FFF6>couldn’t you <}>give me something?<FFF1><FFF5>
+195	0x423f	pack/talk/DOPPEL:0x8798	<FFEB>You certainly don’t stand out much<FFF6>for someone who’s my<L{> double.<FFFB><FFF7>Let’s see once <}><S{> double. Let’s see<FFF6>once <}>and for<L{> all<FFF6>who <}><S{> all who <}>the true self is!<FFF5>
+196	0x427d	pack/talk/DOPPEL:0x8880	<FFED>If you’re my<L{> double, then<FFF6>there’s <}><S{> double,<FFF6>then there’s <}>no need for modesty!<FFFC><FFF6>Give me a gift!<FFF1><FFF5>
+197	0x42b5	pack/talk/DOPPEL:0x8918	<FFEC>You’re my double...?<FFF6>I don’t know about this...<FFF6>How is it going to end...?<FFF5>
+198	0x42f3	pack/talk/DOPPEL:0x89b0	<FFEB>If you’re my<L{> double,<FFF6>I <}><S{> double, I <}>may as well ask...<FFFC><FFF6>Give me something.<FFF1><FFF5>
+199	0x4329	pack/talk/DOPPEL:0x8a30	...I thank you, as your<L{> double, for<FFF6>the <}><S{> double,<FFF6>for the <}>chance to experience something<FFF6>so rare... Tell me what you desire.<FFEF>
+200	0x436a	pack/talk/DOPPEL:0x8b08	<L{>...Absurd! I <}><S{>...Absurd!<FFF6>I <}>don’t want to<L{> share<FFF6>my experiences as <}><S{> share my experiences<FFF6>as <}>a double with<L{> you!<FFF6>Of <}><S{> you! Of <}>all the nerve!<FFEF>
+201	0x43a5	pack/talk/DOPPEL:0x8bb8	You’re a dreadful thing... Not even I,<FFF6>your double, can understand...<FFEF>
 202	0x43d2	pack/talk/DOPPEL:0x8c48	...It was pleasant, the time I spent<FFF6>as your double. I quite enjoyed it!<FFEF>
-203	0x440c	pack/talk/DOPPEL:0x8ce0	It wasn't so remarkable<FFF6>an experience, being your double...<FFF6>but oh well. Tell me what you want.<FFEF>
-204	0x4446	pack/talk/DOPPEL:0x8da0	You're a dreadful thing... Not even I,<FFF6>your double, can understand...<FFFB><FFF7>Still... you did pique my curiosity...<FFF6>Tell me what you desire...<FFEF>
+203	0x440c	pack/talk/DOPPEL:0x8ce0	It wasn’t so<L{> remarkable<FFF6>an experience, being <}><S{> remarkable an experience,<FFF6>being <}>your<L{> double...<FFF6>but <}><S{> double... but <}>oh<L{> well.<FFFC> Tell <}><S{> well.<FFFC><FFF6>Tell <}>me what you want.<FFEF>
+204	0x4446	pack/talk/DOPPEL:0x8da0	You’re a dreadful thing... Not even I,<FFF6>your double, can understand...<FFFC><FFFB><FFF7>Still... you did pique my curiosity...<FFFC><FFF6>Tell me what you desire...<FFEF>
 205	0x44ae	pack/talk/DOPPEL:0x8eb8	...It was pleasant, the time I spent<FFF6>as your double. I quite enjoyed it!<FFFB><FFF7>I thank you for the chance<FFF6>to experience something so rare...<FFF6>If I can grant you anything, I will.<FFEF>
-206	0x4529	pack/talk/DOPPEL:0x9018	...I've never felt this way before<FFF6>in my time as a double...<FFF6>What could it mean?<FFEF>
-207	0x4565	pack/talk/DOPPEL:0x90c0	On the whole, that was delightful...<FFF6>But it was so childish, I question<FFF6>whether it was even worth it!<FFEF>
-208	0x45a2	pack/talk/DOPPEL:0x9190	My encounter with you gave me<FFF6>a small taste of the unknown...<FFF6>I'm in awe.<FFEF>
+206	0x4529	pack/talk/DOPPEL:0x9018	...I’ve never felt this way<L{> before<FFF6>in my <}><S{> before in<FFF6>my <}>time as a<L{> double...<FFF6>What <}><S{> double... What <}>could it mean?<FFEF>
+207	0x4565	pack/talk/DOPPEL:0x90c0	On the whole, that was delightful...<FFF6>But it was so<L{> childish, I question<FFF6>whether <}><S{> childish,<FFF6>I question whether <}>it was even worth it!<FFEF>
+208	0x45a2	pack/talk/DOPPEL:0x9190	My encounter with you gave me<FFF6>a small taste of the<L{> unknown...<FFF6>I’m <}><S{> unknown... I’m <}>in awe.<FFEF>
 209	0x45e3	pack/talk/DOPPEL:0x9228	I request... <FFF8> yen...<FFEF>
-210	0x45f6	pack/talk/DOPPEL:0x9258	I appreciate your understanding<FFF6>of a double's needs.<FFF5>
-211	0x4612	pack/talk/DOPPEL:0x92c8	I have no intentions of becoming<FFF6>a poor person's alter ego!<FFF5>
-212	0x4633	pack/talk/DOPPEL:0x9340	...What did you use all that money on?<FFF6>I'm not impressed by<FFF6>your wasteful ways.<FFF5>
-213	0x466a	pack/talk/DOPPEL:0x93e0	I have no intentions of becoming<FFF6>a stingy person's alter ego!<FFF5>
-214	0x468a	pack/talk/DOPPEL:0x9460	You don't understand<FFF6>the terror of a double...<FFF6>But you'll realize it someday.<FFF5>
-215	0x46c4	pack/talk/DOPPEL:0x9500	Well then, my request is...<FFF6>one life stone.<FFEF>
-216	0x46df	pack/talk/DOPPEL:0x9558	I appreciate your understanding<FFF6>of a double's needs.<FFF5>
-217	0x46fb	pack/talk/DOPPEL:0x95c8	I have no intentions of being<FFF6>the alter ego of a fool who doesn't<FFF6>even carry any life stones!<FFF5>
-218	0x4725	pack/talk/DOPPEL:0x9688	What did you use the life stones<FFF6>on...? I'm not impressed<FFF6>by your wasteful ways.<FFF5>
-219	0x475d	pack/talk/DOPPEL:0x9730	I have no intentions of becoming<FFF6>a stingy person's alter ego!<FFF5>
-220	0x477d	pack/talk/DOPPEL:0x97b0	You don't understand<FFF6>the terror of a double...<FFF6>But you'll realize it someday.<FFF5>
+210	0x45f6	pack/talk/DOPPEL:0x9258	I appreciate your understanding<FFF6>of a double’s needs.<FFF5>
+211	0x4612	pack/talk/DOPPEL:0x92c8	I have no intentions of becoming<FFF6>a poor person’s alter ego!<FFF5>
+212	0x4633	pack/talk/DOPPEL:0x9340	...What did you use all that money on?<FFF6>I’m not impressed<L{> by<FFF6>your <}><S{> by your <}>wasteful ways.<FFF5>
+213	0x466a	pack/talk/DOPPEL:0x93e0	I have no intentions of becoming<FFF6>a stingy person’s alter ego!<FFF5>
+214	0x468a	pack/talk/DOPPEL:0x9460	You don’t<L{> understand<FFF6>the terror of <}><S{> understand the terror<FFF6>of <}>a<L{> double...<FFFC><FFF6>But <}><S{> double...<FFFC> But <}>you’ll realize it someday.<FFF5>
+215	0x46c4	pack/talk/DOPPEL:0x9500	Well then, my request<L{> is...<FFF6>one <}><S{> is... one <}>life stone.<FFEF>
+216	0x46df	pack/talk/DOPPEL:0x9558	I appreciate your understanding<FFF6>of a double’s needs.<FFF5>
+217	0x46fb	pack/talk/DOPPEL:0x95c8	I have no intentions of being<FFF6>the alter ego of a fool who doesn’t<FFF6>even carry any life stones!<FFF5>
+218	0x4725	pack/talk/DOPPEL:0x9688	What did you use the life<L{> stones<FFF6>on...? I’m <}><S{> stones on...?<FFF6>I’m <}>not<L{> impressed<FFF6>by <}><S{> impressed by <}>your wasteful ways.<FFF5>
+219	0x475d	pack/talk/DOPPEL:0x9730	I have no intentions of becoming<FFF6>a stingy person’s alter ego!<FFF5>
+220	0x477d	pack/talk/DOPPEL:0x97b0	You don’t<L{> understand<FFF6>the terror of <}><S{> understand the terror<FFF6>of <}>a<L{> double...<FFFC><FFF6>But <}><S{> double...<FFFC> But <}>you’ll realize it someday.<FFF5>
 221	0x47b7	pack/talk/DOPPEL:0x9850	Well then, my request is...<FFF6>a <FFF4>...<FFEF>
-222	0x47d3	pack/talk/DOPPEL:0x9898	I appreciate your understanding<FFF6>of a double's needs.<FFF5>
-223	0x47ef	pack/talk/DOPPEL:0x9908	You don't have any.<FFF5>
-224	0x47f8	pack/talk/DOPPEL:0x9930	You'll come to know<FFF6>the terror of a double!<FFF5>
-225	0x481c	pack/talk/DOPPEL:0x9988	What a strong will! You're truly<FFF6>worthy of being my double!<FFF5>
+222	0x47d3	pack/talk/DOPPEL:0x9898	I appreciate your understanding<FFF6>of a double’s needs.<FFF5>
+223	0x47ef	pack/talk/DOPPEL:0x9908	You don’t have any.<FFF5>
+224	0x47f8	pack/talk/DOPPEL:0x9930	You’ll come to<L{> know<FFF6>the <}><S{> know the <}>terror of a double!<FFF5>
+225	0x481c	pack/talk/DOPPEL:0x9988	What a strong will!<FFF6>You’re truly<L{> worthy<FFF6>of <}><S{> worthy of <}>being my double!<FFF5>
 226	0x4845	pack/talk/DOPPEL:0x9a00	Well then, my request is...<FFF6>some of your energy.<FFEF>
-227	0x4859	pack/talk/DOPPEL:0x9a68	No one knows how delicious your<FFF6>energy is more than your alter ego...<FFF5>
-228	0x4891	pack/talk/DOPPEL:0x9af8	You're rejecting me? Me, your<FFF6>double!? You fool of an alter ego!<FFF5>
-229	0x48c8	pack/talk/DOPPEL:0x9b80	You're rejecting me? Me,<FFF6>your double!? I don't understand...<FFF5>
-230	0x48fc	pack/talk/DOPPEL:0x9c00	You're rejecting me? Me,<FFF6>your double!? I don't understand...<FFF5>
+227	0x4859	pack/talk/DOPPEL:0x9a68	No one knows how delicious<L{> your<FFF6>energy is <}><S{> your energy<FFF6>is <}>more than your alter ego...<FFF5>
+228	0x4891	pack/talk/DOPPEL:0x9af8	You’re rejecting me?<FFF6>Me, your<L{> double!?<FFF6>You <}><S{> double!? You <}>fool of an alter ego!<FFF5>
+229	0x48c8	pack/talk/DOPPEL:0x9b80	You’re rejecting<L{> me? Me,<FFF6>your <}><S{> me?<FFF6>Me, your <}>double!? I don’t understand...<FFF5>
+230	0x48fc	pack/talk/DOPPEL:0x9c00	You’re rejecting<L{> me? Me,<FFF6>your <}><S{> me?<FFF6>Me, your <}>double!? I don’t understand...<FFF5>

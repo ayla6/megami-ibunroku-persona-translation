@@ -1,0 +1,2 @@
+file	order	line	if	unless	note
+BTLP	300	.include "btlp.asm"		fast-forward-battle-animations	--mods=battle-speedup: summons / skill effects at double speed

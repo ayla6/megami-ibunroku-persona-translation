@@ -1,0 +1,3 @@
+file	order	line	if	unless	note
+DNG	260	.include "dng.asm"			--mods=60-fps: 60 fps dungeon
+S2D	240	.include "s2d.asm"			--mods=60-fps: 60 fps overworld

@@ -5,9 +5,9 @@
 *first-release* binaries this project patches (`data/psx/`, `build/`), using the
 Python MIPS+GTE simulator in `scratch/perf/`. Findings are updated as they land.
 
-**Scope of any resulting patch: the QoL build only** (`src/asm/qol/`, behind a
-define, like `fps60_dng.asm` / `fps60_s2d.asm`). The translation release must not
-change behaviour; the QoL disc is where render-speed work belongs.
+**Scope of any resulting patch: a mod** (`src/mods/`, behind a define, like
+`src/mods/60-fps/dng.asm` / `s2d.asm`). The translation must not change
+behaviour; a mod is where render-speed work belongs.
 
 ## TL;DR
 
@@ -29,7 +29,7 @@ on that work:
   frame is 18 ms today).
 
 The change is in the divided builder/divider (`0x80034D20` / `0x8002A6E8`) and the
-decision is already computed there (the four vertex depths vs `H/2`). It is a QoL
+decision is already computed there (the four vertex depths vs `H/2`). It is a mod
 patch. It is not byte-identical: it removes the subdivision seams the current
 output has (sub-texel; invisible in practice). Section 6.2 has the details and the
 verification plan.
@@ -38,10 +38,10 @@ verification plan.
 
 ## 0. The question
 
-The 60 fps patch (`src/asm/qol/fps60_dng.asm`, `fps60_s2d.asm`) draws interpolated
+The 60 fps patch (`src/mods/60-fps/dng.asm`, `s2d.asm`) draws interpolated
 sub-frames between the game's original logic ticks. It needs each *drawn* frame to
 cost less than one vblank (16.7 ms) to actually present 60 fps. Measured in
-`src/asm/qol/README.md` at stock CPU speed:
+`src/mods/60-fps/README.md` at stock CPU speed:
 
 | scene | what happens at stock CPU | what 181% overclock gives |
 |---|---|---|
@@ -330,7 +330,7 @@ divider (0x8002A6E8):
 Equivalently the pre-test could sit in the DIV builder (`0x80034D20`) right after
 helper A, before the scratch bookkeeping and the four helper calls - that also
 saves the 32-instruction vertex copy, helper B/C and the divider's frame for the
-common case. Either way the change is in the QoL build only.
+common case. Either way the change is in a mod only.
 
 Measured effect if the near/mid bands stopped subdividing (same frames, same
 geometry, using the per-quad numbers above):
@@ -381,8 +381,8 @@ because the pieces tile. The fast path removes both. It is not byte-identical, a
 the difference is "the texture stops wobbling by a texel or two" - visible only if
 you go looking for it, and in the direction of being more correct.
 
-This is a QoL-build patch (`src/asm/qol/`), not a base-game change - the same
-discipline as `fps60_dng.asm`, which already changes what is presented (extra
+This is a mod (`src/mods/`), not a base-game change - the same
+discipline as `src/mods/60-fps/dng.asm`, which already changes what is presented (extra
 interpolated frames) without touching game logic. If byte-identical output is a
 hard requirement anyway, the strict alternatives are: keep the subdivision but
 make it cheaper (section 7), which wins much less, or verify on the emulator that
@@ -428,7 +428,7 @@ the overworld's own map TMD (`S2D.BIN` +0x3C014: 9 objects, 571 polygons): the
 simple path costs **~100 cycles per polygon** in the simulator.
 
 3300 polygons x 100 cycles = 330k cycles = 10 ms in the simulator, but the
-measured cost is 25 ms (`src/asm/qol/README.md`, BMarket: 1.5 of 2.1 vblanks in
+measured cost is 25 ms (`src/mods/60-fps/README.md`, BMarket: 1.5 of 2.1 vblanks in
 the object loop). The gap is GTE stall time my simulator only approximates - the
 polygon loop does five point transforms per polygon (`RTPT` + two `RTPS`) and each
 one has a 15-23 cycle result latency the real pipeline interlocks on. Taking the

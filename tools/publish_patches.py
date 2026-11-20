@@ -25,15 +25,17 @@ A finished build can upload the release directly:
 
     python tools/build_patches.py --publish-release
 """
+import os
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
 
 import argparse
 import csv
 import json
-import os
 import re
 import shutil
 import subprocess
-import sys
 import tempfile
 import time
 import zipfile
@@ -84,11 +86,16 @@ def existing_release_tags():
 
 
 def stamp_manifest(tag, directory=None):
-    """Write the release tag into the manifest's release column.
+    """Write the release tag into the manifest's release column, and the
+    release's version (the tag without its prefix) into its version column
+    and every layer's version row - mods have no version of their own, the
+    release they ship in is theirs.
 
     The tag is only known when publishing, after the release was built, so
-    this is the one place that stamps it. Older manifests gain the column;
-    every existing column and row is preserved."""
+    this is the one place that stamps it. A stamped layer's size and SHA-1
+    are written again; every other column and row is preserved."""
+    import build_patches
+    import modpack
     directory = Path(directory) if directory else DIST
     manifest = directory / 'manifest.tsv'
     if not manifest.is_file():
@@ -99,10 +106,17 @@ def stamp_manifest(tag, directory=None):
         if not fields:
             raise SystemExit(f'{manifest} has no header')
         rows = list(reader)
-    if 'release' not in fields:
-        fields.append('release')
+    for column in ('version', 'bytes', 'sha1', 'release'):
+        if column not in fields:
+            fields.append(column)
+    version = tag.removeprefix(RELEASE_PREFIX)
     for row in rows:
         row['release'] = tag
+        row['version'] = version
+        layer = directory / row['layer']
+        modpack.stamp(str(layer), version)
+        row['bytes'] = str(layer.stat().st_size)
+        row['sha1'] = build_patches.sha1(layer)
     temporary = None
     try:
         with tempfile.NamedTemporaryFile(
@@ -121,12 +135,8 @@ def stamp_manifest(tag, directory=None):
 
 
 def complete_release_size():
-    """How many patch files a complete release has.
-
-    The count is derived from the release graph, never typed: one rev
-    conversion per original revision, one file per in-place option, and one
-    file per size-changer anchor."""
-    sys.path.insert(0, str(ROOT / 'tools'))
+    """How many layers a complete release has: the base and one per release
+    mod."""
     import build_patches
     return len(build_patches.release_file_names())
 
@@ -155,27 +165,30 @@ def run(*cmd, capture=False):
 
 
 def release_is_complete(directory=None):
-    """A complete release has one manifest row per patch file.
-
-    The old per-combination manifest repeats patch names; that is not a
-    complete release of this layout and must not be uploaded over it.
-    """
+    """A complete release has one manifest row per layer: the base and every
+    release mod - each file present and matching its SHA-1. An older
+    manifest without the required layer records is incomplete."""
     directory = Path(directory) if directory else DIST
     manifest = directory / 'manifest.tsv'
     if not manifest.is_file():
         return False
     with open(manifest, encoding='utf-8', newline='') as source:
         reader = csv.DictReader(source, delimiter='\t')
-        fields = set(reader.fieldnames or ())
-        rows = [row for row in reader if row.get('patch')]
-    # One row per patch file, with the graph columns a chain needs. The
-    # `verified` column records the sampled selections that exercised each
-    # step; it is part of the layout even when a particular step has none.
-    if not {'adds', 'anchor', 'order', 'choices', 'verified'} <= fields:
+        if 'layer' not in (reader.fieldnames or ()):
+            return False
+        rows = list(reader)
+    import build_patches
+    names = [row['layer'] for row in rows]
+    if names != build_patches.release_file_names() or 'choices' not in rows[0]:
         return False
-    names = {row['patch'] for row in rows}
-    return (len(names) == complete_release_size()
-            and len(rows) == len(names))
+    if any(row.get('state') != 'verified' for row in rows):
+        # a release still building (or stopped by a failed check)
+        return False
+    for row in rows:
+        path = directory / row['layer']
+        if not path.is_file() or build_patches.sha1(path) != row['sha1']:
+            return False
+    return len(set(names)) == len(names)
 
 
 def sync_local_patches(directory=None):
@@ -185,7 +198,6 @@ def sync_local_patches(directory=None):
     A symlink to dist/patches is a valid setup for the patches: local
     serving then always sees the current release, so there is nothing to
     copy."""
-    sys.path.insert(0, str(ROOT / 'tools'))
     import generate_features
     generate_features.generate(target=SITE / 'features.js')
     directory = Path(directory) if directory else DIST
@@ -193,7 +205,7 @@ def sync_local_patches(directory=None):
     local.mkdir(exist_ok=True)
     if local.resolve() == directory.resolve():
         return
-    for stale in local.glob('*.xdelta'):
+    for stale in [*local.glob('*.xdelta'), *local.glob('*.gz'), *local.glob('*.p1mod')]:
         if not (directory / stale.name).is_file():
             stale.unlink()
     for path in directory.iterdir():
@@ -210,10 +222,11 @@ def release_files(directory=None):
 
 
 def write_archive(destination, directory=None):
-    """One zip with the same files, for people applying xdelta by hand.
+    """One zip with the same files, for people applying the layers by hand
+    (src/pipeline/modpack.py apply).
 
     The web patcher does not use this: it reads manifest.tsv and then only
-    the patches along the chosen chain, which a zip would make impossible
+    the layers of the chosen selection, which a zip would make impossible
     without downloading and unpacking all of them in the browser.
     """
     directory = directory or DIST
@@ -309,8 +322,7 @@ def deploy_site(tag):
               ' "Deploy web patcher" from the Actions tab')
 
 
-def publish(tag=None, *, directory=None, release=True,
-            allow_incomplete=False):
+def publish(tag=None, *, directory=None, release=True):
     """Upload the release and refresh the local copy of the patches.
 
     This is the single entry point used by the CLI and by
@@ -323,11 +335,12 @@ def publish(tag=None, *, directory=None, release=True,
         tag = next_release_tag(
             existing_release_tags() if release else ())
     if release:
-        if not release_is_complete(directory) and not allow_incomplete:
+        if not release_is_complete(directory):
             raise SystemExit(
-                f'{directory / "manifest.tsv"} does not list a complete'
-                f' release ({complete_release_size()} patch files) - rerun'
-                ' the release build, or pass --allow-incomplete')
+                f'{directory / "manifest.tsv"} is not a finished, verified release'
+                f' (every one of its {complete_release_size()} layers present, matching its'
+                ' hash and marked verified) - a release still building, or stopped by a'
+                ' failed check, is never published; rerun the release build')
     stamp_manifest(tag, directory)
     if release:
         if upload_release(tag, directory) == 'updated':
@@ -344,8 +357,6 @@ def parse_args(argv=None):
     parser.add_argument('--no-release', dest='release', action='store_false',
                         help="don't upload the release; only refresh"
                              ' webpatcher/patches for local serving')
-    parser.add_argument('--allow-incomplete', action='store_true',
-                        help='upload the release even if it is not complete')
     parser.add_argument('--tag', default=None,
                         help='release tag (default: patches-YYYY-MM-DD,'
                              ' then -2, -3, ... for another release that day)')
@@ -354,8 +365,7 @@ def parse_args(argv=None):
 
 def main(argv=None):
     args = parse_args(argv)
-    publish(tag=args.tag, release=args.release,
-            allow_incomplete=args.allow_incomplete)
+    publish(tag=args.tag, release=args.release)
 
 
 if __name__ == '__main__':

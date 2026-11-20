@@ -6,7 +6,7 @@ one do not establish free space in another. Ranges are half-open where known.
 The reference decomp is **JP rev 1**, while this project patches **rev 0**;
 its addresses below are leads, not validated rev-0 allocations.
 
-`src/injection_tools/runtime-memory-map.tsv` is the machine-readable set of reviewed protected
+`src/pipeline/runtime-memory-map.tsv` is the machine-readable set of reviewed protected
 ranges. `write_guard.py` checks every assembled write against those ranges
 for the named image, including zero fills, and fails on overlap. This only
 guards mapped ranges at assembly time; it cannot observe arbitrary runtime CPU
@@ -21,7 +21,7 @@ a protected range.
 
 | Owner | Space | Location / lifetime | Evidence |
 | --- | --- | --- | --- |
-| Battle 16-pixel string staging | RAM | glyph counter `0x800EBE44`, glyph ring begins `0x800EBE48`; shared with retail battle uploads | `src/asm/vwf/vwf_btlp_str16.asm`, `vwf_btlp_str16_act.asm` |
+| Battle 16-pixel string staging | RAM | glyph counter `0x800EBE44`, glyph ring begins `0x800EBE48`; shared with retail battle uploads | `src/mods/latin-alphabet/asm/vwf/vwf_btlp_str16.asm`, `vwf_btlp_str16_act.asm` |
 | Battle command strings | VRAM | each cell: x = `0x380 + 2*descriptor.x + 4*cell`, y = `0x150 + descriptor.y`, size 4 halfwords by 16 pixels | `vwf_btlp_str16_act.asm` |
 | Battle interpreter text | VRAM | each cell: x = `text.tex_x + 4*(P % 15)`, y = `text.tex_y + 16*(P / 15)`; 4 halfwords by 16 pixels | `vwf_btlp_activate.asm` |
 | Enemy species graphics pointers | RAM | `0x800F83BC..0x800F86DC` (200 pointers); **not free**, even where currently zero | rev-0 indexed store at `0x80081B74..0x80081B84`; reads at `0x800846F8..0x80084704` and `0x80084800..0x80084810`; rev-1 `g_btl_species_gfx` has size `0x320` |

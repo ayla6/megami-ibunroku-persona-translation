@@ -2,7 +2,7 @@
 
 ## Current boundaries
 
-- `src/extraction_tools/matching/port.py` regenerates the canonical generated
+- `src/porting/port.py` regenerates the canonical generated
   translations from the PSX data, PSP-US data and the tracked source plans in
   `translation/generated_mappings/`. It does not read PSP-JP text when the plans
   for a porter exist: `port.py` appends `--without-psp-jp` to that porter's
@@ -15,19 +15,19 @@
   operation that still needs both PSP regions. `port.py` refuses a stale plan
   (changed inputs or matching rules) instead of silently dropping or guessing a
   row.
-- `src/injection_tools/build.py --no-port` builds the current translation
-  tables without either PSP disc, PSP text extracts, or the decrypted US BOOT
+- `src/pipeline/build.py` (porting is off by default) builds the current
+  translation tables without either PSP disc, PSP text extracts, or the decrypted US BOOT
   cache. It still requires the retail PSX data and tracked translation inputs.
   Dungeon titles, party names, battle commands and CONTACT personalities use
   the canonical generated/manual rows for their PSX files. A port with both
   PSP regions refreshes the latter three from the proven PSP tables via
   `psp_build_sources.py`; a US-only port retains their existing rows. To
-  regenerate them independently, run `python src/injection_tools/psp_build_sources.py`
+  regenerate them independently, run `python src/porting/psp_build_sources.py`
   with both PSP regions and the US EBOOT text extract available.
 - Assembly inputs, including the overlay name-tail banks and dungeon-title
-  table, are generated during the build even with `--no-port`; they do not
+  table, are generated during every build, with or without `--port`; they do not
   depend on a pre-existing `build/` directory.
-- `python src/extraction_tools/psp/eboot.py --us-only` refreshes the US EBOOT
+- `python src/extraction/psp/eboot.py --us-only` refreshes the US EBOOT
   extract without opening the Japanese BOOT. Running it without the option
   retains the existing two-region extraction behavior.
 - `port_talk.py` ports from the PSX and PSP-US TALK files without reading
@@ -43,7 +43,7 @@ Two general checks run on every assembly, not on selected rows or screens:
   reading a stale register and silently falling back to retail.
 - `build.py` passes `armips -temp build/armips-main.lst` (and
   `build/armips-subs.lst` for the subtitle renderer) and then runs
-  `src/injection_tools/write_guard.py check --listing ...`. The listing is the
+  `src/pipeline/write_guard.py check --listing ...`. The listing is the
   complete account of emitted bytes: virtual address, source line and the
   surrounding `.open`/`.create`. The guard requires every output under
   `build/`, no output opened twice, and no non-padding write covered by a later
@@ -53,7 +53,7 @@ Two general checks run on every assembly, not on selected rows or screens:
   byte of the built file that differs from its input must appear on a listed
   write. PS-X EXE `t_size` must equal file size minus the `0x800` header.
 - Limits are the `X_OUTPUT` / `X_IMAGE_LIMIT` pairs in
-  `src/asm/common/addresses.inc`. An output without a declared limit may not
+  `src/mods/base/asm/common/addresses.inc`. An output without a declared limit may not
   grow past its retail input; declaring the limit is how growth is allowed.
   This is the single place a new output must be registered.
 - `tools/verify_disc.py` audits the finished image against a baseline image:
@@ -69,8 +69,20 @@ Two general checks run on every assembly, not on selected rows or screens:
   so each link is checked and the chain ends at the base translation, which
   is checked against retail.
 
+Movies (`.STR`) are the one kind of file `build/` holds as raw 2352-byte
+sectors (their XA audio sectors are Form 2): `build_disc.py` writes them in
+place, sector for sector, and both the placement hash and `verify_disc.py`
+compare them from each sector's subheader on. Two movies built with the same
+bytes are written once and share an extent, which the audit accepts for files
+the builder wrote there.
+
+The translation presence scan reports fixed battle-message capacity fallbacks
+separately. It requires an immovable source record, encoded text extending
+into the next fixed record or past the zone, and an exact retail-byte match
+in the finished disc. Missing or corrupted translations still fail.
+
 `build_disc.py` also writes `<image>.placement.tsv`, the record of every file
-it packed (path, extent, size, SHA-256 of exactly the bytes written). Passing
+it packed (path, extent, size, SHA-1 of exactly the bytes written). Passing
 `--placement` to `verify_disc.py` audits the image against that record instead
 of walking `build/`, and `--side-files DIR` points at the small builder report
 files (`dng_spill.asm`, the draft tables) copied alongside it. The image is
@@ -78,377 +90,231 @@ then self-describing: the same verification runs on a finished release disc
 with no build tree in sight, and it can run while the tree is being rebuilt.
 
 ```sh
-python src/injection_tools/write_guard.py check --listing build/armips-main.lst
+python src/pipeline/write_guard.py check --listing build/armips-main.lst
 python tools/verify_disc.py dist/Persona-TL.bin
 python tools/verify_disc.py disc.bin --placement disc.bin.placement.tsv --side-files snap
 ```
 
 ## Incremental builds
 
-`build.py --incremental` caches character-table generation, dialogue-font
-generation and FMV subtitle-data generation. Each step has explicit inputs
-and outputs; it is reused only if the input fingerprint and all output hashes
-match the previous successful run. The FMV key includes Pillow and FreeType
-versions. The manifests under `build/.step-cache/` record individual source
-hashes as well as the input fingerprint and output hashes. An input change,
-edited or missing output, or a failed run regenerates the step; inputs that
-change during a step do not get a reusable stamp. A non-incremental build
-always regenerates these steps and refreshes their stamps. `--incremental` does not skip
-porting; combine it with `--no-port` when the existing translation tables are
-the intended input. Assembly, placement verification and disc creation still
-run for each selected patch set. Builds sharing one `build/` directory must not
-run concurrently.
+Text/font preparation excludes Python test modules and the PNG assets and
+manifests declared by mod images.tsv files. Those images are compiled and
+checked after assembly by their own cache. Editing a mod image therefore
+does not regenerate dialogue, fonts, movies or ending text. Alphabet font
+assets, production Python and assembly sources remain preparation inputs.
 
-`build.py '--variants=base;saves;saves,60fps'` performs common preparation
+Three optional-patch steps cache themselves in every build, `--clean` or not,
+because their inputs almost never change: Black Mark's re-encoded MES.BIN
+(`images/black-mark/MES.BIN`/`.tsv`, keyed on source archive bytes, images.tsv,
+the declared PNGs and the shared image compiler; verification checks the
+validated cached output) and each dubbed movie (`fmv-dub/<MV>.STR`/`.tsv`, keyed on fmv_dub's
+code, the movie's retail sectors, its PSP track and its map row; `fmv_dub.py
+verify` skips the XA decode of bytes it already passed), and the English
+battle calls (`battle-voice/PS.BIN`/`.tsv`, keyed on battle_voice's code, the
+retail B/PS.BIN, the call map and the PSP-US calls; `battle_voice.py verify`
+skips the decode likewise). All three live under
+`build/step_cache/` and serve normal builds and `tools/build_patches.py`.
+
+`build.py` keeps verified text/font preparation for each configuration under
+`build/step_cache/preparation/`. Its key covers source files, translation,
+retail/extracted data, interpreter and library versions, font edition,
+and feature gates. Movie data, renderer assembly and packing use a separate
+cache keyed by renderer choices, so changing subtitles reuses text and fonts.
+Generated character tables and
+font products are outputs, never their own inputs. The smaller character-table,
+dialogue-font and FMV-data caches also remain available on preparation misses.
+
+Preparation records only products it wrote, plus the declared products of
+those smaller caches. Shared content-addressed blobs use copy-on-write clones
+where supported. A hit verifies every cached blob and restores missing or
+edited products; switching configurations removes products owned only by the
+previous preparation. Inputs that change during generation do not receive a
+reusable manifest. Ending pages also have a separate cache for the dub and ordinary
+cast variants. Ending preview PNGs are generated only by explicitly running
+`endtext.py --previews`.
+
+File digests persist across processes in `build/step_cache/file-digests.tsv`.
+Reuse requires matching device, inode, size, modification time and change time;
+a same-size edit with a preserved modification time still invalidates the hash.
+`--clean` regenerates preparation and ending pages. `--port` always runs the
+porters and preparation. Assembly, binary write guards, placement verification
+and requested disc creation still run for every patch set. Builds sharing one
+`build/` directory must not run concurrently.
+
+On systems with sufficient writable `/dev/shm` space, main assembly writes
+its binaries into a temporary RAM workspace. After successful assembly, only
+changed results replace live build files; unchanged files retain their inode
+and timestamps. Stable output aliases resolve back to live files afterwards,
+so retained listings remain usable by the write guard. If RAM staging is not
+available, ordinary assembly output is used. Assembler errors leave live files
+unchanged while RAM staging is active. Source and output bounds are checked
+through canonical paths, including aliases.
+
+Variant cleanup runs in the build process. The shared image compiler restores
+declared image regions while preserving other edits to their files; MES
+reconstruction is left to assembly. Selected mods' images.tsv declarations
+are applied and verified after assembly. Voice overrides are removed between
+variants. Movie audio keys use subtitle cue timing,
+not wording; battle-call keys use map contents rather than translation-tree
+locations. Equivalent language tiers therefore share audio caches.
+
+Release composition checks merge the same byte spans and validate the same
+source digests and bounds without constructing discarded conflict reports.
+Interactive/CLI merging retains those reports by default.
+
+`build.py '--variants=base;unified-save-menu;unified-save-menu,60-fps'` performs common preparation
 once, then independently assembles and verifies each combination and writes
 `dist/Persona-TL-base.bin`, `dist/Persona-TL-saves.bin`, and
-`dist/Persona-TL-saves-60fps.bin` with corresponding CUE files. Patch names are
-the same as `--qol`; `base` means no QoL patches. Quote the argument to keep
+`dist/Persona-TL-saves-60fps.bin` with corresponding CUE files. Names are
+the same as `--mods` (the mods' names); `base` means no mods beyond the translation. Quote the argument to keep
 the shell from interpreting semicolons. Batch mode rejects `--no-disc`,
-`--qol` and `--no-qol` to avoid ambiguous or overwritten results. Combine
-with `--no-port` and `--incremental` where appropriate. The shared `build/`
+`--mods` and `--no-mods` to avoid ambiguous or overwritten results. Combine
+with `--port` (and `--clean`) where appropriate. The shared `build/`
 tree holds the **last** variant after the command; the distinct disc images
 hold each result. As with separate builds, each image is made from the original
 disc and each variant runs the placement checks and the post-assembly builders
-that depend on its assembled outputs; builders that do not depend on the QoL
+that depend on its assembled outputs; builders that do not depend on the mod
 choice run once during preparation.
+
+The optional `softer-menu-sounds` mod scales note velocities for the shared
+field/ADV menu navigation, confirm and back cues, with a configurable integer
+range of 0–100%, defaulting to 75%. These are MIDI velocity percentages,
+not calibrated acoustic loudness. Six cue roles are analyzed; the navigation, confirm and default back cues
+are selected, while the softer open/back-alternate cue keeps its level.
+Their identities come from the common
+input helpers, cursor code and ADV's sequence-table addressing. Complete
+matching event streams cover their overworld and other shared copies.
+Audio previews are opt-in: run
+`python src/mods/softer-menu-sounds/analyze.py` explicitly. Normal game and
+patch builds never run the analyzer. It renders dry previews using the retail SEQ notes and shared VAB
+ADPCM samples, pitch and gains, and writes relative level and spectral metrics.
+It is a comparison aid, not SPU emulation: ADSR, reverb and interpolation differ
+from the game. Timing, pitch, programs and other bytes are preserved by the
+patch. The cached TSV edit map includes the selected level in its key;
+variant cleanup reverses only the recorded velocity edits.
+
+To rebuild one configured optional patch without rebuilding the release:
+
+```sh
+python tools/build_patch.py softer-menu-sounds
+```
+
+This builds its baseline and the selected mod, verifies their delta and
+serialized layer, and writes `dist/single-patches/<mod>.p1mod`. It does not
+update the complete release manifest. The default tier is English;
+`--tier=base` or `--tier=alphabet` builds against those foundations instead.
+Discrete choices remain configured at build time. Numeric ranges are stored
+in the layer with their bounds, step and default, plus original byte values.
+The patchers calculate the requested value at apply time, so one layer covers
+the entire range. For example, use `--choose 'softer-menu-sounds(level=63)'`
+with either command-line patcher. The browser offers a slider and number field.
+The configured layer carries input checks for its baseline files.
 
 ## Release patches
 
-`python tools/build_patches.py` produces a complete xdelta3 release in
-`dist/patches/` (`--output` chooses another directory). It needs `xdelta3`
-(installed by `python src/setup_external_tools.py`, or available on PATH), the
-Redump Rev 0 and Rev 1 single-track BINs (or `--rev0` and `--rev1` paths), and
-the ordinary build dependencies. The script defaults to `--no-port` and
-incremental asset preparation; `--port` explicitly refreshes translations
-first and rebuilds every variant patch. A release directory written by the
-old per-combination layout is refused: move it away before the first build
-of this layout.
+`python tools/build_patches.py` produces a complete release in
+`dist/patches/` (`--output` chooses another directory): P1MOD layers
+(see [MOD_ENGINE.md](MOD_ENGINE.md) for the format), a `manifest.tsv` and a
+generated `README.txt`. Only the original Rev 0 disc is patched.
 
-Every patch is plain VCDIFF (RFC 3284): xdelta3 encodes with `-S none` and
-`tools/sizedelta.py` writes no secondary compression either. The patches are
-about a sixth larger than with xdelta3's LZMA sections (the base patch is
-3.7 MB instead of 3.1 MB), and in exchange anything that reads RFC 3284 can
-follow their instructions without xdelta3: the web patcher builds a PPF
-straight from them, without applying a patch. A recorded patch whose header
-carries the secondary-compression bit is from an older encoder and is
-re-encoded instead of reused.
+- `base.p1mod`: retail to the language-neutral base.
+- `latin-alphabet.p1mod`: base to the alphabet engines, fonts and name entry.
+- `english-translation.p1mod`: alphabet to English at its defaults.
+- `<name>.p1mod`: one per optional mod, with conditional parts for higher
+  tiers, choices and interacting mods. Apply layers after their requirements.
 
-The ten release choices are save UI, Mark artwork, battle speed, 60 fps,
-double battle rewards, half random encounters, Western controls, running in
-dungeons, Upper Right movement and Start-to-skip movies. Rewards and encounters ship
-as separate options, so someone can take one without the other. Debug is not
-included.
+The foundations check the SHA-1 of their input files. Base and alphabet
+build in separate processes, with English cells emptied at the translation
+reader. Base also omits alphabet assembly. Builder bounds and fatal assembler
+warnings remain active in production. Native-tier assembly write guards also
+run in production. The full English write audit runs with build verification.
 
-The release ships fourteen patch files and fourteen manifest rows - one row per
-file, never one per combination. `rev1-to-rev0.xdelta` and
-`rev0-to-base.xdelta` convert the retail disc to the base translation;
-every option is an `add-<option>.xdelta`.
+This command produces and verifies all release files by default.
+It builds individual mods, overlapping pairs, alternate choices and the
+known compatibility recipes in each mod's `compatibility.tsv`. Shared format
+encoders run through `english-translation/preparation.tsv`; source QA and
+assembled readbacks are deferred for these production trees. Compatibility
+lives inside mod layers, without separate pair files.
 
-In-place options come first in solver order, one file each, encoded from the
-base translation: Mark, battle speed, rewards, encounters, run, upright and
-skipfmv are `add-<option>.xdelta`. Their patches keep every offset and the
-image size, so they compose over one another by same-offset copies, as long
-as no two of them write the same 2 KB disc sector: each raw sector's EDC/ECC
-is a literal of the patch that last wrote it, so a patch encoded without
-another option's bytes rewrites that sector's checksums for a disc without
-them. Options that share a sector are partners (`PARTNERS` in
-`tools/build_patches.py`), and the later one has an encoding for every subset
-of its earlier partners, used when that subset is applied:
+Default verification includes foundation
+readbacks, comparisons of combined native builds with merged layers,
+higher-order interaction discovery, and final browser/standalone disc/PPF
+parity. The manifest uses `testing` during final checks and becomes `verified`
+only after they pass. Publishing requires verified files.
+Use `--no-verify-release` for explicit production-only output marked `untested`.
 
-- `add-fastforward-battlespeed.xdelta` handles their shared battle sector;
-- `range` shares battle sectors with both, so it has encodings over neither,
-  either, and both (`add-range-battlespeed-fastforward.xdelta`).
+Intermediate parts stay uncompressed in memory. Each completed layer is
+compressed once, then read back and compared with its staged parts. The
+manifest is empty until the complete set has been written. Intermediate
+native trees contain only changed game files. Identical files share immutable
+blobs under `build/step_cache/tree-blobs/` through hard links (with a clone
+fallback). Live build files remain independent, so later assembly cannot
+change snapshots. Dependency-scoped native snapshots are reused only after
+checking their input key, contents and inventory. `--recheck` bypasses that
+reuse and requests full verification. No disc is made per patch combination;
+only explicit final verification makes a native comparison image.
 
-A size-changer can also have in-place partners; its encodings cover their
-subsets over each preceding size-changer layout.
+Unified save menu requires base and works without the translation. Latin
+alphabet owns the retail title's proportional saved-name writer and the
+separate compatibility includes for unified save menu's geometry and metrics.
+Those compatibility writes are active only with the small-font VWF kit.
 
-The partner is an in-place option applied first (listed first in
-`tools/release_options.json`, whose order is the apply order). The release
-build compares every option's solo disc with the base translation file by
-file and stops when two options that are not partners change the same file
-sector, so a new overlap is caught on the first build rather than only by
-the sample that happens to combine them.
-
-Size-changing options come last: the save menu is `add-saves.xdelta`, 60 fps
-is `add-60fps.xdelta` without the save menu or `add-60fps-saves.xdelta` with
-it. A size-changer is assembled one-shot from retail, exactly like
-`build.py --qol=...`; building it on the base translation would extend the
-image instead of using retail's free space (`saves` alone is about 2 MB
-larger that way) and would not produce the disc the option really builds.
-Applying it rewrites the source layout into the canonical one-shot layout,
-and its same-offset copies carry the earlier in-place edits along.
-
-Every `add-` patch is applied over discs it was not encoded from, so none
-may copy a byte that another option can change. xdelta's matcher is free to
-use a same-content decoy - a zero run in one file for a different file -
-which silently dropped skipfmv's edits in `EXE/MOVIE.EXE` when `add-saves`
-was encoded with plain xdelta3, and wrote a wrong ECC byte into a BTLP.BIN
-sector `range` and `battlespeed` share when `add-range-battlespeed` was (a
-decoy that `western` or `mark` changes). Plain xdelta3 encodes only the two
-conversions (`rev1-to-rev0`, `rev0-to-base`), which are only ever applied to
-the exact disc they were encoded from.
-
-- A size-changer moves files, so it is written by `tools/sizedelta.py`: each
-  target byte is copied from its true preimage (the same file and offset in
-  the source layout) and every other byte is a literal.
-- An in-place patch is encoded by `masked_delta`: xdelta3 over copies of the
-  source and target whose sectors outside D (the sectors the option changes)
-  hold the same random bytes. Outside D the matcher can only copy the random
-  bytes back from their own position; inside D it keeps all its matching, so
-  `add-mark.xdelta` stays under 1 MB. Such a patch has no window checksums
-  or source hash (they would describe the random bytes). A copy can still
-  run on into the random bytes by coincidence, so each encoding must decode
-  the real source to the target exactly and pass `decoy_free`: decoded over
-  the source with every sector outside D replaced by fresh random bytes, it
-  must give those bytes back in place and the target's sectors inside D. A
-  patch that passes is correct over any disc whose sectors in D are the
-  source's, which the sector-overlap check guarantees for every chain. After
-  `MASKED_TRIES` failed encodings the patch falls back to `sizedelta`.
-
-A row names the option it adds (`adds`), the size-changers it was encoded
-against (`anchor`), its fixed apply position (`order`), and the canonical
-state it produces (`choices`). The web patcher in `webpatcher/` derives the
-chain from those four fields: selected options in `order`, picking the most
-specific `adds` row whose `anchor` is already applied. No combination list
-exists in the manifest or the page.
-
-The build assembles the canonical states - the base translation, the four
-size-changer layouts (none, `saves`, `60fps`, `saves+60fps`, each laid out
-one-shot from retail), each in-place option on its own, and each partnered
-pair (`western`+`run`, `battlespeed`+`range`, `western`+`saves`) - and then a
-sample of real selections (the three expected-popular combinations and
-`--sample` seeded random ones), each built once from retail for the
-byte-for-byte comparison. That is sixteen canonical builds plus six sample
-builds by default, not 512.
-
-#### Why the graph looks like this (invariants other agents must keep)
-
-- **Solver order**: in-place options first (CHOICES order), then
-  size-changers. In-place patches keep every offset and the image size, so
-  their copies are same-offset and compose over earlier in-place edits;
-  one file per option is enough. A size-changer's insertion shifts every
-  offset after it, so it must come after the in-place edits that should
-  ride along, and each size-changer is encoded against the layout built
-  before it - that is the whole reason for the order and for anchor
-  files. Compositions that do not hold stop the build (see the sampling
-  check below); they are never worked around.
-- **ISO record sizes are whole sectors**: `build_disc` records the same
-  allocation length in each ISO file record that `FSIZE.DAT` stores, and
-  normalizes every record even when the file itself did not change. The
-  game resolves files through `FSECT.DAT`/`FSIZE.DAT`; the ISO byte count is
-  only metadata. An in-place option keeps the file's sector allocation, so
-  the directory sector - and its EDC/ECC - is byte-identical regardless of
-  which in-place options are selected. Without this, a size-changer's
-  literal EDC (which no delta can recompute) would describe the canonical
-  build but not a decorated chain, and the sampled comparison would be off
-  by that checksum even though every data byte matched.
-- **File layout**: one file per in-place option, plus one file per
-  (size-changer, subset of earlier size-changers). With m size-changers
-  that is 2^m size-changer layouts and one file per size-changer per
-  subset; in-place options never multiply. Adding an in-place option
-  costs one file; adding a size-changer doubles its own anchor rows.
-- **Size-changers are assembled from retail**: a size-changer variant is
-  laid out from retail in one pass, so its bytes match a one-shot
-  `build.py --qol=...` build. The base translation has already used its
-  own free space, so building the option on top of it would extend the
-  image and produce a disc the option never builds. In-place variants are
-  written onto a reflink clone of the base translation (their patches keep
-  the layout), so `build_disc` rewrites only the files the option
-  changes.
-- **Hashes only where they describe a real disc**: the revision
-  conversions and the base translation record whole-image
-  `source_sha256`/`target_sha256`, because their inputs are exactly a
-  retail or translated disc. The two revision rows also record
-  `source_chd_sha1`: the raw SHA-1 a chdman CHD of that original disc
-  carries in its header (each sector as a 2448-byte frame with zero
-  subcode, the track padded to 4 frames), which is how the web patcher
-  recognises a CHD without unpacking it. An add- row's source is whatever the player's
-  earlier options made it, so its hash columns stay empty; there is no one
-  canonical hash for a decorated disc. The runtime checks each patch
-  file's SHA-256 (`patch_sha256`) and every step's output size, and uses
-  xdelta's own window checksums when the applied set is exactly the row's
-  canonical source. On a decorated disc it decodes with `-n`, because
-  in-place decorations never change the size.
-- **The chain is verified by sampling**: each sampled selection is built
-  as a real one-shot disc from retail, the published chain is applied
-  exactly the way the web patcher applies it, and the result must match
-  that disc byte for byte. The manifest's `verified` column records the
-  selections that exercised each row; rows no sample exercised are named
-  in the build summary. That is the residual risk sampling accepts, and
-  it covers patch composition, not in-game behavior (that is the audits
-  and in-game QA).
-- **In-place classifications are checked**: each solo variant classified
-  in-place must preserve the base image length, file extents and sizes, and
-  directory extents. A relocation into free space can change layout without
-  changing image length. `SIZE_CHANGERS` is conservative: an option may be
-  listed even when its solo build keeps the same layout, since combinations
-  can still change it. Changes to the classification affect the whole graph.
+The manifest has one row per layer: `layer`, `kind` (base / option),
+`label`, `choices`, `requires`, `version`, `state`, `bytes`, `sha1`,
+`build_key` and `release`. Requirements are component labels, without
+individual versions; the release has one version. The base row also carries
+`source_bytes` and `source_chd_sha1` for disc identification. Unchanged
+production outputs can be reused; a verification request requires verified
+status or runs the checks. Stale output files are removed.
 
 #### Adding a release option (checklist)
 
-1. Implement the patch and add it to `QOL_PATCHES` in
-   `src/injection_tools/build.py` (with its verify gates).
-2. Add it to `CHOICES` in `tools/build_patches.py`. If its build changes
-   file placement or size, also add it to `SIZE_CHANGERS` - an in-place
-   classification that changes the solo layout stops the build.
-3. Add its wording to `tools/release_options.json` (label, name,
-   description - the single source of option wording: `CHOICES` derives
-   from it, the release README is generated from it, and the Pages
-   workflow builds the web patcher's `features.js` from it; tests enforce
-   coverage and generator output).
-4. Everything else derives: file names, manifest rows, the release
-   completeness count, the webpatcher grid and chains. Update the
-   hardcoded expectations in `tools/tests/test_build_patches.py` if a
-   count moved.
-5. Rebuild from scratch: the fingerprint changes, every canonical state
-   is re-assembled and audited, and the sampled selections are rebuilt
-   and their chains compared. Adding an in-place option costs one
-   canonical state and one file; adding a size-changer adds 2^(m-1)
-   canonical layouts and doubles its own anchor rows, the only part that
-   grows exponentially.
+1. Make its folder `src/mods/<name>/`, named after the mod's name, with its
+   assembly, its `asm.tsv` (where each of its files goes in which disc
+   file's block: `src/pipeline/asm_main.py` writes `build/main.asm` from the
+   mods that are on) and its `mod.tsv` (label, name, description,
+   `requires` rows, default, always, release, its choices;
+   `src/pipeline/mods.py` documents each key) - the single source of
+   its wording: `build.py --mods`, the release README, the layer and the web
+   patcher's generated `features.js` all read it.
+2. Everything else derives: layer names, manifest rows, compat pairs, the
+   webpatcher grid.
 
 `--publish-release` (formerly `--publish-web`) uploads the `--output`
 directory (default `dist/patches`) to a GitHub release as one
-`persona-patches.zip` holding the patch files, `manifest.tsv` and
-`README.txt`: manual xdelta users download the zip directly. The release
-tag is `patches-YYYY-MM-DD`; a second release that day becomes `-2`, then
-`-3`, so releases are never silently clobbered. The tag is written into
-the manifest's `release` column and therefore into the web patcher's
-result filenames. The upload targets the repository named by
-`RELEASE_REPO` in `webpatcher/app.js`, since `origin` is not GitHub.
+`persona-patches.zip` holding the layers, `manifest.tsv` and `README.txt`:
+anyone applying the layers by hand (`src/pipeline/modpack.py apply`)
+downloads the zip directly. The release tag is `patches-YYYY-MM-DD`; a
+second release that day becomes `-2`, then `-3`, so releases are never
+silently clobbered. The tag is written into the manifest's `release` column
+and therefore into the web patcher's result filenames. The upload targets
+the repository named by `RELEASE_REPO` in `webpatcher/app.js`, since
+`origin` is not GitHub.
 
 The web patcher site itself deploys from this repository through
 `.github/workflows/pages.yml` on every push to `main`, on every published
 release, and on demand. Before uploading the artifact, the workflow
 downloads the release's zip and unpacks it into `webpatcher/patches`
-(git-ignored), so the site serves the patches from its own origin: a page
-on `github.io` cannot fetch release assets, since github.com answers those
-downloads without CORS headers. No build step, second repository or
-`gh-pages` branch is involved. Enable it once under Settings -> Pages ->
+(git-ignored), so the site serves the layers from its own origin: a page on
+`github.io` cannot fetch release assets, since github.com answers those
+downloads without CORS headers. Enable it once under Settings -> Pages ->
 Build and deployment -> Source -> GitHub Actions; the project site is
 `https://<owner>.github.io/<repo>/`.
 
-Common preparation runs once, and so do the variant-independent outputs: the
-save-UI armips inputs, the TALK and ending builders, and their inventory unit
-tests read only the translation and retail data, so they are generated and
-checked before the first variant instead of once per variant. Each variant is
-then injected and assembled on the shared `build/` tree, which is the only
-sequential stage. Every image is written onto a clone of the staged retail
-disc, exactly as the matching `build.py --qol=...` command writes it, so a
-release target is the same bytes as the build a developer can reproduce by
-hand. Parent variants are only delta sources; because unchanged file
-contents still match between two variants, the patches stay small even when
-the two images place those files at different extents. The audit compares
-every image with retail, the same baseline an ordinary build uses.
-
-As soon as the variant's disc image exists, its placement record and the few
-builder report files are copied into a slot-private snapshot, and from there
-everything - the disc audit, the xdelta encode, the check-only decode,
-hashing and publication - runs in a worker pool (`--workers`, default 3),
-pipelined behind the assembly of the next variant. The audit reads the
-snapshot, not the tree the next variant is already rewriting, so it is
-race-free and costs nothing on the sequential path. Layer variants keep their
-images as hardlinked delta sources for their children.
-
-Mark artwork is generated and verified once per run. Every later variant gets
-a restored copy only after its hash matches the verified cache, so byte
-identical artwork does not need the same pixel decode again. If a Mark input
-(the art in `src/assets/mark/black`, its producer, or the retail scenes)
-changes mid-run, the run stops and names the changed files: every variant
-built so far carries the old artwork, so a release that mixed both would be
-silently wrong.
-Every xdelta is decoded in check-only mode (`xdelta3 -d -J`): every target
-window is reconstructed and its checksum verified, but no decoded image is
-written or read back, which removes two full disc-image passes per patch.
-The Rev 1 conversion is completed first, followed by the base translation:
-its disc audit and `rev0-to-base.xdelta` publication finish before any option
-variant is assembled. On resume, an existing base patch is decoded and its
-source and target hashes are checked before any option work. Option patch
-audits and encoding may then run concurrently with later option assemblies.
-Each patch is published to `dist/patches/` immediately - there is no
-staging directory, and each patch is verified before its file appears.
-The manifest records each patch file's SHA-256, the source/output sizes,
-the whole-image hashes of the revision conversions and the base translation
-(the only rows whose inputs are a real disc), the sampled selections that
-exercised each row, and the build fingerprint that produced it.
-
-Reruns are incremental. A completed release rerun verifies its recorded
-patches and builds nothing. A missing or invalidated patch rebuilds only
-the canonical state it belongs to: a canonical image not assembled this
-run is reconstructed by decoding its verified patch (`rev0-to-base`, then
-the add- steps), so a rebuilt child still has its parent's exact bytes
-without rebuilding that parent. A rebuilt row clears its `verified`
-selections, so only the samples that use it are rebuilt and compared
-again.
-Any input change (source, translation, game data) invalidates the affected
-build keys, and inputs that change mid-run abort the run rather than
-stamping unverified patches. The fingerprint deliberately watches only
-what feeds the disc - `src/`, `translation/`, the extracted data, and the
-two scripts it runs - so unrelated churn in `tools/tests/` never
-invalidates a running release. The Rev 1 to Rev 0 conversion never depends
-on build inputs and is reused across any same-source run. A release is
-complete when its manifest lists all 18 steps across the 18 patch files.
-
-The run's scratch images live in a private workspace that is deleted on
-exit. It prefers the system temp directory (tmpfs on most Linux systems) when
-it can hold the run's peak, then `build/`. Only the staged retail copy, the
-base translation and the states another patch is encoded from (the partners
-and the size-changer layouts) are kept for the whole run; every other option
-state is deleted once its audit and encode are done, the next build waits
-while `IN_FLIGHT` (2) of them are still in progress, one masked encoding runs
-at a time, and the sample check holds one disc and two chain slots - nine
-images (6.3 GB) in all. When the temp directory cannot hold that but can hold
-it with a shallower pipeline, the pipeline narrows to one in-flight state
-(eight images) and the run stays on tmpfs; only when even that does not fit
-does the workspace go to `build/`.
-`PERSONA_BUILD_SCRATCH` names the parent directory explicitly. The retail
-image is staged there once, so the source disc is read once rather than once
-per variant. On a reflink filesystem (btrfs) image clones share their
-unchanged extents and cost almost no data blocks. Builds sharing `build/`
-must not run together.
-
-The sample check never needs the workspace. Each sample is checked as soon
-as `build.main` has built it (the after-variant hook): audited, its chain
-decoded through two slots that hold a whole image per step, compared, and
-deleted, so one sample disc and the two slots are all that exist at once.
-They go to a private directory in the system temp directory when it has
-room for the three (even when the workspace itself did not fit there), and
-to the workspace otherwise. The last step of each chain is hashed as it
-streams out of xdelta and is never written; only a failed sample decodes it
-to a file, to name the sectors that differ. A state rebuilt from an already-published patch is
-decoded into the temp directory the same way, and only the 4 KB blocks that
-differ from its parent are written, into a reflink clone of the parent in
-the workspace.
-
 ### Browser patcher
 
-`webpatcher/` is a static page that applies a release in the browser: the
-disc revision is identified by applying `rev1-to-rev0` (or `rev0-to-base`)
-in xdelta's check-only mode, then the chain (`rev1-to-rev0` when needed,
-`rev0-to-base`, then each chosen option's `add-*` in the manifest's order)
-is decoded by the real xdelta3 3.2.2 compiled to WebAssembly (see
-`webpatcher/vendor/README.md`). `webpatcher/plan.js` derives the chain from
-the manifest's `adds`/`anchor`/`order`/`choices` columns alone, picking the
-most specific `add-` file whose anchor is already applied. Every step is
-checked before the next applies: the patch file's SHA-256 must match the
-manifest, xdelta's own window checksums run when the applied options are
-exactly the row's canonical source, and a decorated disc is decoded with
-`-n` (the release build proved that exact decode over the maximally
-decorated parent) with the output size checked. The page also generates a
-correct single-track `.cue` for
-the patched image, and names both downloads from the release
+`webpatcher/` is a static page that applies a release in the browser. The
+disc is recognised from the manifest (a `.bin` by its size, a CHD by its
+header's raw SHA-1; a Rev 1 disc is named and refused), the selected layers
+are merged and laid out by `webpatcher/modpack.js`, and the result is either
+the patched disc (a Blob of slices of the player's file with the changed
+sectors in between) or a PPF of the changed sectors. Every layer's SHA-1
+is checked against the manifest, and the base layer checks every file it
+changes. The page also generates a correct single-track `.cue` for the
+patched image, and names the download from the release
 (`Persona-TL-2026-11-10.bin`, `Persona-TL-2026-11-10-2-saves-mark.bin`,
-...): the manifest's release stamp names the release, then the chosen
-labels follow, instead of reusing the file name the user picked. The name
-carries no revision: the Rev 1 step already converts the source to Rev 0,
-so the output is Rev 0 either way. Which options exist comes from the manifest; what each
-one is called and what it does lives in `tools/release_options.json`,
-the single source of option wording. `app.js` reads the generated
-`features.js` (written by `tools/generate_features.py`, run by the Pages
-workflow) keyed by the manifest label, and the test suite fails if a
-release choice has no entry there. See `webpatcher/README.md` for
-assembly and hosting.
+...) instead of reusing the file name the user picked. See
+`webpatcher/README.md` for the details and for hosting.
 
 ## Source plans
 
@@ -459,14 +325,14 @@ PSP-US inputs and the matching rule files before replay. Recapture a plan with
 its producer when those rules or the correspondence inputs change:
 
 ```sh
-python src/extraction_tools/matching/s2d_port_plan.py
-python src/extraction_tools/matching/dng_port_plan.py
-python src/extraction_tools/matching/story_port_plan.py
-python src/extraction_tools/matching/btlevt_port_plan.py
-python src/extraction_tools/matching/dngnames.py plan
-python src/extraction_tools/matching/answers_port_plan.py
-python src/extraction_tools/matching/eboot_twin_plan.py
-python src/extraction_tools/matching/reward_notice.py
+python src/porting/s2d_port_plan.py
+python src/porting/dng_port_plan.py
+python src/porting/story_port_plan.py
+python src/porting/btlevt_port_plan.py
+python src/porting/dngnames.py plan
+python src/porting/answers_port_plan.py
+python src/porting/eboot_twin_plan.py
+python src/porting/reward_notice.py
 ```
 
 A plan freezes the correspondences a two-region pass found; discovering new
@@ -480,5 +346,11 @@ reward-notice plan digests only the item-name rows it reads from
 `generated/SLPS_005.00.tsv`, not the whole table, so an unrelated row change
 does not stale it.
 
-The batch command and release patch builder share common preparation within
-one process; each variant still receives the ordinary assembly and QA checks.
+The batch command and release patch builder reuse verified preparation across
+processes and configurations; each variant still receives the ordinary assembly and QA checks.
+
+Release movie comparisons use bounded views of sector bodies, ignoring the
+same 16-byte headers as raw_body without constructing whole copied streams.
+The changed-file read cache has a 512 MiB hard cap so a dubbed-movie variant
+can remain cached across scans. The retained files are still checked against
+file signatures, and content changes invalidate those entries.

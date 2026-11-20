@@ -1,0 +1,7 @@
+name	Run in dungeons
+description	Hold Cross to run in dungeons.
+default	yes
+always	no
+release	yes
+requires	base
+range	speed	2	4	1	2	Run speed (×)	src/mods/run-in-dungeons/values.tsv

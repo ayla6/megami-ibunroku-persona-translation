@@ -17,7 +17,8 @@ import os
 import signal
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
 import textview as tv  # noqa: E402
 
 # (column prefix, Item attribute)

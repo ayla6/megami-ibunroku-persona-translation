@@ -41,12 +41,21 @@ main{display:grid;grid-template-columns:340px 1fr;flex:1;min-height:0;overflow:h
 .tag.n{color:var(--albedo-muted,#999)}
 .tag.us{color:var(--albedo-accent,#6cf)}
 .tag.jp{color:#c58cf0}
+/* repeated wording: identical rows fold onto the first one, whose badge
+   opens the other locations in place */
+.tag.d{cursor:pointer;color:var(--albedo-muted,#999);border-style:dashed}
+.row.open .tag.d{color:var(--albedo-accent,#6cf);border-style:solid}
+#pick .chk{font-size:11px;color:var(--albedo-muted,#999)}
 #list{overflow-y:auto;flex:1;min-height:0}
 .row{padding:6px 12px;border-bottom:1px solid var(--albedo-border,#222);cursor:pointer;font-size:12px}
 .row:hover{background:var(--albedo-surface,#1c1c1c)}
 .row .k{color:var(--albedo-faint,#777);font-size:11px;font-family:var(--albedo-mono,monospace);
         display:flex;align-items:center;gap:4px}
 .row .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .copies{display:none;margin:4px 0 0 8px;padding-left:8px;border-left:1px solid var(--albedo-border,#333)}
+.row.open .copies{display:block}
+.copy{padding:2px 0;font:11px/1.5 var(--albedo-mono,monospace);color:var(--albedo-faint,#777)}
+.copy:hover{color:inherit}
 /* the per-row "psp" button: a hover affordance, not a layout change -
    the row keeps its height and the button only takes a click on itself */
 .mini{margin-left:auto;padding:0 5px;border-radius:4px;font:9px/1.5 inherit;cursor:pointer;
@@ -120,6 +129,17 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--albe
 #sbs .col{display:flex;flex-direction:column;gap:4px;min-width:0}
 #sbs h2{margin:0}
 #wdiff del{color:var(--albedo-danger,#e5534b);text-decoration:line-through}
+#errata{display:flex;flex-direction:column;gap:6px;border:1px solid var(--albedo-border,#333);
+        border-radius:8px;padding:8px 10px;background:var(--albedo-surface,#161616)}
+#errrows{display:flex;flex-direction:column;gap:4px}
+#errrows:empty{display:none}
+.errrow{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:6px}
+.errrow input{min-width:0;padding:4px 6px;border-radius:6px;font:12px/1.4 var(--albedo-mono,monospace);
+              border:1px solid var(--albedo-border,#333);background:var(--albedo-bg,#111);color:inherit}
+.errrow input.bad{border-color:var(--albedo-danger,#e5534b)}
+#errata.dirty{border-color:#e8c15a}
+#errata .wk{font-size:11px;color:var(--albedo-muted,#999)}
+@media (max-width:700px){.errrow{grid-template-columns:1fr auto}}
 #wdiff ins{color:var(--albedo-added,#3fa66a);text-decoration:none;font-weight:600}
 </style></head><body>
 <main>
@@ -127,7 +147,9 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--albe
     <div id="pick">
       <div id="modes">
         <button class="mode on" data-mode="rows">rows</button>
-        <button class="mode" data-mode="psp">psp search</button>
+        <button class="mode" data-mode="psp" hidden>psp search</button>
+        <button id="shuffle" class="btn" title="list the rows in a random order (again: reshuffle; shift-click: table order)">shuffle</button>
+        <button id="reload" class="btn" title="reload the tables, the errata and the porter's rules from disk">reload</button>
       </div>
       <select id="fam"></select>
       <select id="manfilt" title="filter by manual entries">
@@ -140,6 +162,7 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--albe
         <option value="close">close calls (the runner-up nearly won)</option>
       </select>
       <input id="filt" placeholder="filter rows…" autocomplete="off" spellcheck="false">
+      <label class="chk" id="dupeslab" title="rows whose wording is exactly the same are listed once; the ×N badge opens the other locations in place"><input id="dupes" type="checkbox" checked> collapse repeats</label>
       <div id="count" class="sub"></div>
     </div>
     <div id="list"></div>
@@ -151,6 +174,7 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--albe
       <span id="savestat" class="sub"></span>
       <span style="margin-left:auto"></span>
       <button id="save" class="btn primary" disabled title="write this draft to translation/manual (Ctrl+S)">save</button>
+      <button id="phrase" class="btn" title="select words in the text, then keep them together: they go to translation/phrases.tsv and a line break inside them costs what splitting a name does">keep together</button>
       <button id="copy" class="btn" title="copy the row's locator">copy</button>
       <button id="copyt" class="btn" title="copy the row's stored text">copy text</button>
     </div>
@@ -159,6 +183,8 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--albe
       <label>zoom <input id="zoom" type="range" min="1" max="5" value="3"></label>
       <label><input id="shadow" type="checkbox" checked> shadow</label>
       <label><input id="guides" type="checkbox" checked> guides</label>
+      <label title="the font edition the box is laid out and drawn in; both draws the small edition under the large one">edition
+        <select id="edition"><option value="large">large font</option><option value="small">small font</option><option value="both">both</option></select></label>
       <label><input id="longonly" type="checkbox" checked> 3+ words only</label>
       <span class="sub">codes are literal: &lt;FF03&gt; line · &lt;FF04&gt; box · &lt;FF02&gt; scroll/dismiss</span>
       <span id="stat"></span>
@@ -167,10 +193,12 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--albe
       <div id="headwrap" class="col" hidden>
         <h2>at HEAD — the last commit</h2>
         <div class="cvbox"><canvas id="cvh" width="800" height="100"></canvas></div>
+        <div class="cvbox small-ed" hidden><canvas id="cvh2" width="800" height="100"></canvas></div>
       </div>
       <div class="col">
         <h2 id="nowhead" hidden>now — the working tree / your draft</h2>
         <div id="cvwrap"><canvas id="cv" width="800" height="300"></canvas></div>
+        <div class="cvbox small-ed" hidden><canvas id="cv2" width="800" height="300"></canvas></div>
       </div>
     </div>
     <div class="tools"><button id="copylines" class="btn" title="the box as lines, each with its width in px">copy lines</button>
@@ -178,13 +206,27 @@ h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--albe
     <pre id="wdiff" hidden></pre>
     <div id="weigh" hidden></div>
     <div id="ref" hidden></div>
-    <h2>psp matches</h2>
-    <div class="matchbar">
+    <h2 hidden>psp matches</h2>
+    <div class="matchbar" hidden>
       <button id="find" class="btn primary" disabled
               title="search the PSP-US and PSP-JP text for this row">find psp</button>
       <span id="matchstat" class="sub">search the PSP text for this row's wording</span>
     </div>
-    <div id="matches"></div>
+    <div id="matches" hidden></div>
+    <h2>psp errata <span id="errmeta" class="sub"></span></h2>
+    <div id="errata" hidden>
+      <div id="errrows"></div>
+      <div class="tools">
+        <button id="erradd" class="btn" title="a new find/replace on this row's PSP line">+ errata</button>
+        <button id="errsave" class="btn primary" disabled
+                title="write these to translation/psp_errata.tsv (the port applies them)">save errata</button>
+        <span id="errstat" class="sub"></span>
+      </div>
+      <span class="wk">the PSP line with these errata</span>
+      <pre id="errline"></pre>
+      <span class="wk" id="errprevk">the row with these errata (the flow's layout; the port writes the row)</span>
+      <div class="cvbox"><canvas id="cve" width="800" height="100"></canvas></div>
+    </div>
     <h2>lines as stored</h2>
     <table id="lines"></table>
     <h2>sources — read-only, codes as stored</h2>

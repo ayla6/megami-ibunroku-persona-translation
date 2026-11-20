@@ -1,11 +1,11 @@
 movie	start_s	end_s	text	note
 MV11	43.26	44.36	Welcome.	
-MV11	44.76	46.41	It's a pleasure to meet you.	
-MV11	47.66	49.18	I am Philemon.	the script goes on ", a dweller between consciousness and unconsciousness", which the voice does not say
-MV11	50.74	53.20	And now, a simple test:	
-MV11	54.94	59.88	Can you state your name?	
+MV11	44.76	46.41	It’s a pleasure to meet you.	
+MV11	47.66	49.18	I am Philemon,	
+MV11	50.20	53.20	a dweller between consciousness\nand unconsciousness.	
+MV11	54.94	59.0	And now, a simple test:\ncan you state your name?	
 MV12	3.30	4.50	Splendid.	
-MV12	5.34	9.46	There aren't many who can remember\ntheir identity when in this domain.	
+MV12	5.34	9.46	There aren’t many who can remember\ntheir identity when in this domain.	
 MV12	10.80	12.66	It seems you passed that test.	
 MV12	14.64	15.84	But tell me this:	
 MV12	16.24	20.12	are you aware of the many and varied\nselves you harbor within you?	
@@ -27,11 +27,11 @@ MV13	12.34	16.93	As you have seen for yourselves,\nevents are moving in an unexp
 MV13	17.52	22.34	Only those with a strong will are capable\nof stopping the flow that has gone awry.	
 MV13	23.82	27.53	From here on, a number of paths\nwill present themselves to you.	
 MV13	28.28	32.04	Down each of them,\nyou will witness the karma of those you meet.	
-MV13	33.02	38.54	But whatever path you choose, remember\nthat the choice was yours and no one else's.	
+MV13	33.02	38.54	But whatever path you choose, remember\nthat the choice was yours and no one else’s.	
 MV14	6.58	7.82	How are you, friends?	
 MV14	8.52	10.76	Just as you thought,	
 MV14	11.16	13.64	this world is a counterfeit of your own.	
-MV14	14.98	18.52	It is this world where Kandori's ambitions lie.	
+MV14	14.98	18.52	It is this world where Kandori’s ambitions lie.	
 MV14	20.02	21.48	If you pursue him,	
 MV14	21.88	24.85	you will eventually discover\nthe nature of this world	
 MV14	25.25	27.43	and how to return to your home world.	
@@ -43,9 +43,9 @@ MV14	48.00	50.88	But, the gate has a guardian.
 MV14	51.30	52.94	Look for the Expel Mirror.	
 MV15	6.04	7.70	Well done in returning here.	
 MV15	8.84	11.90	I see my faith in you was not misplaced.	
-MV15	14.12	19.00	The Alaya Cavern behind this shrine leads\nto the sea of all mankind's souls.	
+MV15	14.12	19.00	The Alaya Cavern behind this shrine leads\nto the sea of all mankind’s souls.	
 MV15	21.16	24.24	All souls are born there\nand someday return there.	
-MV15	26.42	30.24	Maki Sonomura's soul is about\nto return to that sea right now.	
+MV15	26.42	30.24	Maki Sonomura’s soul is about\nto return to that sea right now.	
 MV15	32.02	35.30	It calls for you and for her ideal self.	
 MV15	36.52	37.90	Now go!	
 MV15	39.02	42.20	Only those who have been\ncalled may enter that cavern.	
@@ -54,26 +54,26 @@ MV16	6.68	8.00	A moment, please.
 MV16	9.08	10.86	You are angry and frustrated,	
 MV16	11.26	13.68	but that will not rescue your teacher.	
 MV16	15.14	18.14	There is only one way to do that:\nthe demon mirror.	
-MV16	18.54	23.96	It can remove the source of the mask's curse.	
+MV16	18.54	23.96	It can remove the source of the mask’s curse.	
 MV16	25.34	29.22	However, the Snow Queen has shattered it.	
 MV16	29.62	32.94	The twelve shards are scattered\namongst three towers.	
 MV16	35.00	37.24	Take this mirror frame with you.	
 MV16	38.80	41.14	Fit the mirror shards you find into it.	
 MV16	42.50	45.56	If you gather enough shards\nto reflect your teacher,	
 MV16	46.36	47.56	she can be saved.	
-MV16	48.47	50.06	There isn't much time left.	
+MV16	48.47	50.06	There isn’t much time left.	
 MV16	50.46	53.48	I pray for your success.	
 MV17	6.32	7.92	How are you doing, friends?	
 MV17	9.34	11.42	This is a world of dreams,	
-MV17	11.82	15.44	ruled by the Persona Hypnos\nof this tower's master.	
-MV17	16.86	22.06	Hypnos is currently trapping people's souls\nand confining them in the dream world.	
+MV17	11.82	15.44	ruled by the Persona Hypnos\nof this tower’s master.	
+MV17	16.86	22.06	Hypnos is currently trapping people’s souls\nand confining them in the dream world.	
 MV17	23.62	27.94	Thus, this is a crossroad\nbetween the dream world and reality.	
 MV17	30.10	33.39	Either go to the dream world\nand awaken the people there	
 MV17	34.06	36.56	or continue forth and defeat Hypnos -	
 MV17	37.66	39.10	the choice is yours.	
 MV17	40.26	43.66	But remember:\nthere is a limit to the time you are given.	
 MV1B	7.56	9.18	Nothing more need be said.	
-MV1B	11.20	14.55	I'm sure you have all discovered\nby now your true selves.	
+MV1B	11.20	14.55	I’m sure you have all discovered\nby now your true selves.	
 MV1B	16.44	19.30	The smiles you wear\nare no longer false masks.	
 MV1B	21.52	25.84	You may find yourselves troubled\nor suffering or lost in the future,	
 MV1B	26.24	27.95	but there is nothing to fear.	

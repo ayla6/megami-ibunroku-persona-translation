@@ -2,8 +2,8 @@
 
 The text tables under `translation/` and `data/extracted_text/` share
 paths, schemas, and lifecycle helpers in
-`src/injection_tools/toolbelt.py` (reading/writing/merging/validating) and
-`src/injection_tools/strlib.py` (encoding-adjacent helpers) — no script may
+`src/injection/text/toolbelt.py` (reading/writing/merging/validating) and
+`src/injection/formats/strlib.py` (encoding-adjacent helpers) — no script may
 hand-roll TSV parsing, file placement, or merging.
 
 ## Layout: one TSV per real disc file
@@ -55,13 +55,13 @@ prompt, choice or pause ends the batch, so one press satisfies one prompt.
 
 | Interpreter | Text | Batch | Notes |
 |---|---|---|---|
-| `MsgStep` (ADV / DNG / S2D) | event and E-file dialogue, menus | 2 per call at 30 fps (ADV, S2D), 3 at 20 fps (DNG) | `delay` reloads from `speed` after each glyph; [`vwf/msg_pace.asm`](../src/asm/vwf/msg_pace.asm) |
-| `FieldRunScript` (DNG) | dungeon script boxes (D0x) | 3 on Fast, 2 on Normal / Slow | the batch shares the setting's frames; [`dng/script_pace.asm`](../src/asm/dng/script_pace.asm) |
-| text objects (S2D, 0x8009B2F4) | overworld comments, banner, area labels | 2 per call | a finished delay reads again in the same call; [`s2d/text_pace.asm`](../src/asm/s2d/text_pace.asm) |
+| `MsgStep` (ADV / DNG / S2D) | event and E-file dialogue, menus | 2 per call at 30 fps (ADV, S2D), 3 at 20 fps (DNG) | `delay` reloads from `speed` after each glyph; [`vwf/msg_pace.asm`](../src/mods/latin-alphabet/asm/vwf/msg_pace.asm) |
+| `FieldRunScript` (DNG) | dungeon script boxes (D0x) | 3 on Fast, 2 on Normal / Slow | the batch shares the setting's frames; [`dng/script_pace.asm`](../src/mods/latin-alphabet/asm/dng/script_pace.asm) |
+| text objects (S2D, 0x8009B2F4) | overworld comments, banner, area labels | 2 per call | a finished delay reads again in the same call; [`s2d/text_pace.asm`](../src/mods/latin-alphabet/asm/s2d/text_pace.asm) |
 
 At Fast, `MsgStep` and the script boxes both print one glyph per vsync, so a
 dungeon's 20 fps frame no longer makes its text slower than ADV's.
-`tools/tests/test_text_pace.py` runs each patched interpreter and counts
+`src/mods/base/test_text_pace.py` runs each patched interpreter and counts
 glyphs per call.
 
 ## Battle configuration and controller boards
@@ -289,7 +289,7 @@ encoding, and patch helpers; family builders own binary structure and placement.
 
 ## Current workflow and ownership
 
-`src/extraction_tools/matching/port.py` is the port entry point used by
+`src/porting/port.py` is the port entry point used by
 `build.py`. It prepares correspondence maps, builds the font advances used
 for wrapping, refreshes extracts and shared tables, then runs family
 porters. Its declared write sets determine execution waves: porters writing
@@ -359,7 +359,7 @@ file. Working BOOT tables, bank chains, and BE-record caches live in
 `data/cache/`; generated alignments live in `translation/generated_mappings/`. See
 [MAPPINGS.md](MAPPINGS.md) for their producers and prerequisites.
 
-`src/injection_tools/build.py` coordinates family builders including
+`src/pipeline/build.py` coordinates family builders including
 `etext.py`, `talk.py`/`etctalk.py`, `slps.py`, `s2d.py`, `btlp.py`, and
 `dngpacks.py`, plus specialized tables, graphics, fonts, and overlays.
 Assembly outputs are patched into the disc by `build_disc.py`.
@@ -384,7 +384,7 @@ contribute entries. Both redirect paths compare six words, advance by 28 bytes,
 and read the pointer at +24, with R3000 load delays respected. The glyph-entry
 fallback replaces an already-consumed first glyph with the spill's first glyph;
 a leading control code returns without drawing so the interpreter handles it.
-`tools/tests/test_dng_spill_layout.py` executes both assembled paths with load
+`src/injection/dungeon/test_dng_spill_layout.py` executes both assembled paths with load
 and branch delays, checks all alignments, and checks every spilled occurrence
 against the built pack and table.
 

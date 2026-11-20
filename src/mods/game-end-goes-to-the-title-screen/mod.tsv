@@ -1,0 +1,6 @@
+name	GAME END goes to the title screen
+description	Choosing GAME END at an Agastya tree takes you straight back to the title screen. Without it the game tells you to turn off the power and goes back to the game.
+default	yes
+always	no
+release	yes
+requires	base

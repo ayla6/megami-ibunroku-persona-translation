@@ -1,0 +1,3 @@
+phase	action	target	arguments
+restore	call	menu_sounds.py:retail	
+build	run	menu_sounds.py	build --percent {level}

@@ -2,12 +2,11 @@
 /* Persona translation web patcher - page logic.
  *
  * The release output (dist/patches/) is served next to this page as
- * patches/ (manifest.tsv + the .xdelta files): the Pages workflow unpacks
+ * patches/ (manifest.tsv + the .p1mod layers): the Pages workflow unpacks
  * it from the release zip, and local testing copies or symlinks it. The
- * manifest drives everything: which options exist, which patch file each
- * option needs for the current size-changer anchors, the chain order, and
- * how each step is verified. plan.js derives that graph; this file only
- * renders it and names the result. Nothing here is hardcoded per release.
+ * manifest drives everything: the base layer, which options exist (its
+ * option rows, in apply order) and every layer's SHA-1. worker.js applies
+ * the layers (modpack.js). Nothing here is hardcoded per release.
  */
 
 const PATCHES = 'patches/';
@@ -15,40 +14,134 @@ const RELEASE_REPO = 'ayla6/megami-ibunroku-persona-translation';  // 'owner/rep
 /* The downloaded image is named from the release, never from the file the
  * user picked (which may be a dump name, a hash, or just wrong). The
  * manifest's release stamp names the release, so results from two releases
- * never share a filename. A Rev 1 source is converted to Rev 0 on the way
- * in, so the result carries no source-revision suffix. */
+ * never share a filename. */
 const OUTPUT_NAME = 'Persona-TL';
-/* Same cue convention as src/injection_tools/build_disc.py. */
+/* Same cue convention as src/pipeline/build_disc.py. */
 const CUE_BODY = '  TRACK 01 MODE2/2352\n    INDEX 01 00:00:00\n';
 
 /* What each manifest option is called and what it does: generated into
- * features.js by tools/generate_features.py from tools/release_options.json
- * (the single place option wording lives - the release README reads the
- * same file). Edit the JSON, never this table; the Pages workflow and
- * tools/publish_patches.py run the generator for you. An option missing
- * from the JSON still works; it just shows its internal label. */
+ * features.js by tools/generate_features.py from each mod's
+ * src/mods/<mod>/mod.tsv (the single place mod wording lives - the release
+ * README and the layers carry the same). Edit the mod.tsv, never this table;
+ * the Pages workflow and tools/publish_patches.py run the generator for you.
+ * An option missing from it still works; it just shows its internal label. */
 const FEATURES = globalThis.FEATURES || {};
+/* Mods were once known by short labels (`saves`); remembered selections and
+ * history from then are read through this map (generated with FEATURES). */
+const RENAMES = globalThis.FEATURE_RENAMES || {};
+const renamed = label => RENAMES[label] || label;
 
-const {BASE_PATCH, REV1_PATCH} = PatchPlan;
-const REV_LABEL = ['Rev 0', 'Rev 1'];
+/* Only the Rev 0 disc is patched. A Rev 1 .bin is recognised by its size
+ * so the page can say what is wrong instead of just "not the original". */
+const REV1_BYTES = 699672960;
+
+/* The manifest: one row per layer (layer, kind, label, choices, requires,
+ * version, bytes, sha1, ...; the base row also has the original disc's
+ * source_bytes and source_chd_sha1). requires is the labels of the mods the
+ * layer needs, comma-separated; version is the release (mods have no version
+ * of their own). */
+function rowsFrom(text) {
+  const lines = text.split(/\r?\n/).filter(line => line.trim());
+  const header = (lines.shift() || '').split('\t');
+  if (!header.includes('layer') || !header.includes('choices')) {
+    throw new Error('this release manifest is from an older patcher - reload the page'
+        + ' with Ctrl+Shift+R');
+  }
+  return lines.map(line => {
+    const cells = line.split('\t');
+    return Object.fromEntries(header.map((name, k) => [name, cells[k] || '']));
+  });
+}
+
+const requirementsOf = row => (row.requires || '').split(',').filter(Boolean);
+
+/* The option labels an option needs, directly or through another option
+ * (the base layer is always applied, so it is never one of them). */
+function neededOptions(label, seen = new Set()) {
+  const row = state.rows.find(item => item.kind === 'option' && item.label === label);
+  const own = state.ownMods.find(mod => mod.name === label);
+  for (const need of row ? requirementsOf(row) : own ? own.requires : []) {
+    if ((state.labels.includes(need) || state.ownMods.some(mod => mod.name === need))
+        && !seen.has(need)) {
+      seen.add(need);
+      neededOptions(need, seen);
+    }
+  }
+  return seen;
+}
+
+/* Dependencies stay blue regardless of selection. Ticking a mod enables
+ * and locks what it needs until its dependents are off; automatically
+ * enabled dependencies then go off again. */
+function followRequirements(changed) {
+  const boxes = [...document.querySelectorAll('#choices input.mod')];
+  if (changed && changed.classList.contains('mod')) {
+    delete changed.dataset.auto;          // a click makes it the user's own
+  }
+  const manual = boxes.filter(item => item.checked && !item.dataset.auto);
+  const ownManual = state.ownMods.filter(mod => mod.on && !mod.auto);
+  const dependencies = new Set([
+    ...state.rows.flatMap(requirementsOf),
+    ...state.ownMods.flatMap(mod => mod.requires),
+  ]);
+  const needed = new Set([
+    ...manual.flatMap(item => [...neededOptions(item.value)]),
+    ...ownManual.flatMap(mod => [...neededOptions(mod.name)]),
+  ]);
+  for (const mod of state.ownMods) {
+    if (!ownManual.includes(mod)) {
+      mod.on = needed.has(mod.name);
+      mod.auto = mod.on;
+    }
+    mod.required = needed.has(mod.name);
+  }
+  for (const control of document.querySelectorAll('#own-mods [data-mod]')) {
+    const mod = state.ownMods.find(item => item.name === control.dataset.mod);
+    if (mod) {
+      control.disabled = mod.required;
+      if (control.type === 'checkbox') {
+        control.checked = mod.on;
+        control.closest('label').classList.toggle('auto', dependencies.has(mod.name));
+      }
+    }
+  }
+  for (const item of boxes.filter(box => !manual.includes(box))) {
+    item.checked = needed.has(item.value);
+    if (item.checked) item.dataset.auto = '1'; else delete item.dataset.auto;
+  }
+  for (const item of boxes) {
+    item.disabled = needed.has(item.value);
+  }
+  for (const item of document.querySelectorAll('#choices input')) {
+    item.closest('.chip').classList.toggle('auto', dependencies.has(item.value));
+  }
+  refreshSettings();
+}
+
+const releaseStamp = rows => (rows.find(row => row.release) || {}).release || '';
+/* A release the build has not verified yet (building: layers still being
+ * made; testing: its checks running) - only ever served locally. */
+const unverified = rows => [...new Set(rows.map(row => row.state || 'verified'))]
+    .filter(state => state !== 'verified');
+const baseRow = () => state.rows.find(row => row.kind === 'base');
 
 const $ = id => document.getElementById(id);
 
 const state = {
   rows: [],
-  graph: null,           // PatchPlan.index(rows)
   labels: [],            // option labels, in apply order
-  patches: null,         // {manifestText}
+  ranges: {},            // numeric settings declared by the actual layer headers
   source: null,
   fromFolder: false,     // the source was chosen from the disc folder's list
   folder: null,          // the disc folder (File System Access API)
-  rev: null,             // detected revision (0 or 1), null until checked
+  rev: null,             // 0 once the disc is recognised as Rev 0, null until checked
   identifying: false,
   identifyRun: 0,
   identifyWork: null,    // promise for the run in flight
   identifySource: null,  // file that run is about
   identifyError: null,   // why the last run failed, if it did
   running: false,
+  ownMods: [],           // [{file, blob, on, name, title, version, requires}]
 };
 
 function status(message, isError) {
@@ -56,12 +149,6 @@ function status(message, isError) {
   element.textContent = message;
   element.className = isError ? 'error' : '';
 }
-
-const stepOf = (row, source) => ({patch: row.patch,
-                                  adds: row.adds || '',
-                                  source,
-                                  expectBytes: Number(row.target_bytes),
-                                  patchHash: row.patch_sha256});
 
 /* Patches come from patches/ next to the page, which is the only way a
  * static page can read them: github.com serves release downloads without
@@ -80,63 +167,51 @@ async function loadPatches() {
   return {manifestText: await response.text()};
 }
 
-/* The release is only a few MB in total and the base patch is reused for
- * every disc, so keep each fetched patch for this visit: identifying a disc,
- * applying it, and applying again never download the same file twice. The
- * page also starts the base patch as soon as it loads, before the user has
- * picked anything. */
-const patchCache = new Map();  // name -> Promise<File>
+/* The release is a few MB and the base layer is used for every disc, so
+ * each fetched layer is kept for this visit, and the base starts loading as
+ * soon as the page does. A layer is already gzip; the worker checks its
+ * SHA-1 against the manifest. */
+const layerCache = new Map();  // name -> Promise<Blob>
 
-/* A patch, from its gzipped copy when the site has one (the Pages deploy
- * writes <patch>.gz; Pages sends .xdelta uncompressed), else the file itself
- * (a local copy of dist/patches). A host that already decoded the .gz in
- * transit hands over the patch itself, so the gzip magic decides. The
- * manifest's SHA-256 is checked on the unpacked bytes either way. */
-async function fetchPatch(name, version) {
-  if (typeof DecompressionStream === 'function') {
-    try {
-      const packed = await fetch(PATCHES + name + '.gz' + version);
-      if (packed.ok) {
-        const blob = await packed.blob();
-        const magic = new Uint8Array(await blob.slice(0, 2).arrayBuffer());
-        if (magic[0] !== 0x1f || magic[1] !== 0x8b) return blob;
-        return await new Response(blob.stream().pipeThrough(new DecompressionStream('gzip'))).blob();
-      }
-    } catch (err) { /* fall back to the plain file */ }
-  }
-  const response = await fetch(PATCHES + name + version);
-  if (!response.ok) throw new Error(`cannot load ${name} (${response.status})`);
-  return response.blob();
-}
-
-function loadPatch(name) {
-  let file = patchCache.get(name);
+function loadLayer(name) {
+  let file = layerCache.get(name);
   if (!file) {
     // the manifest's hash in the URL: a new release never gets an old
-    // cached copy of a patch that kept its name
-    const row = state.rows.find(item => item.patch === name);
-    const version = row && row.patch_sha256 ? `?sha=${row.patch_sha256.slice(0, 16)}` : '';
-    file = fetchPatch(name, version).then(blob => new File([blob], name)).catch(err => {
-      patchCache.delete(name);  // a later attempt can retry
+    // cached copy of a layer that kept its name
+    const row = state.rows.find(item => item.layer === name);
+    const checksum = row && row.sha1;
+    const version = checksum ? `?sha=${checksum.slice(0, 16)}` : '';
+    file = fetch(PATCHES + name + version).then(response => {
+      if (!response.ok) throw new Error(`cannot load ${name} (${response.status})`);
+      return response.blob();
+    }).catch(err => {
+      layerCache.delete(name);  // a later attempt can retry
       throw err;
     });
-    patchCache.set(name, file);
+    layerCache.set(name, file);
   }
   return file;
 }
 
 function prefetchBase() {
-  loadPatch(BASE_PATCH).catch(() => {});  // identify/apply reports the error
+  const base = baseRow();
+  if (base) loadLayer(base.layer).catch(() => {});  // a run reports the error
 }
 
 async function loadManifest() {
   const source = await loadPatches();
-  const rows = PatchPlan.rowsFrom(source.manifestText);
+  const rows = rowsFrom(source.manifestText);
   checkRelease(rows);          // before anything is kept: no buttons for a mismatch
-  state.patches = source;
+  if (!rows.some(row => row.kind === 'base')) throw new Error('the release has no base layer');
   state.rows = rows;
-  state.graph = PatchPlan.index(state.rows);
-  state.labels = state.graph.labels;
+  state.labels = rows.filter(row => row.kind === 'option').map(row => row.label);
+  state.ranges = {};
+  await Promise.all(rows.filter(row => (FEATURES[renamed(row.label)]?.ranges || []).length)
+    .map(async row => {
+      const file = await loadLayer(row.layer);
+      const head = layerHeader(new TextDecoder().decode(await file.slice(0, 65536).arrayBuffer()));
+      state.ranges[row.label] = head.ranges;
+    }));
 }
 
 /* The page and its patches must be one release. The deployed page carries
@@ -147,43 +222,108 @@ async function loadManifest() {
  * has nothing to compare. */
 function checkRelease(rows) {
   const page = document.documentElement.dataset.release || '';
-  const patches = PatchPlan.releaseStamp(rows);
+  const patches = releaseStamp(rows);
   if (!page || page.startsWith('$') || page === 'local' || !patches || page === patches) return;
   throw new Error(`This page (${page}) and its patches (${patches}) are from different`
       + ' releases - your browser kept an old copy. Reload the page with Ctrl+Shift+R'
       + ' (or clear this site\'s cache) before patching.');
 }
 
-const featureOf = label => FEATURES[label] || {name: label, description: ''};
+const featureOf = label => {
+  const feature = FEATURES[renamed(label)] || {name: label, description: ''};
+  return Object.hasOwn(state.ranges, label) ? {...feature, ranges: state.ranges[label]} : feature;
+};
 const displayName = label => featureOf(label).name;
 
+/* Each mod's choices in the manifest: its tokens, each option group's
+ * first being its default. */
+const choicesOf = label => ((state.rows.find(row => row.label === label) || {}).choices || '')
+    .split(',').filter(Boolean);
+
+function defaultTokens(label) {
+  const first = new Map();
+  for (const token of choicesOf(label)) {
+    if (token.includes('=') && !first.has(token.split('=')[0])) first.set(token.split('=')[0], token);
+  }
+  return [...first.values(), ...(featureOf(label).ranges || []).map(r => `${r.key}=${r.default}`)];
+}
+
+/* The tokens picked under a mod's entry (its radios and extra boxes). */
+function pickedTokens(label) {
+  const inputs = [...document.querySelectorAll(`.sub-choices[data-label="${label}"] input:checked`)];
+  const ranges = [...document.querySelectorAll(`.sub-choices[data-label="${label}"] input[data-parameter]`)];
+  const tokens = [...inputs.map(input => input.value), ...ranges.map(input => `${input.dataset.parameter}=${input.value}`)];
+  return tokens.length ? tokens : defaultTokens(label);
+}
+
+/* The selection as a build names it: every ticked mod in the manifest's
+ * order, `slug(tokens)` where its choices are not its defaults; the base
+ * only when its choices are not the defaults. These strings are
+ * what the PPF note, the history and the output name carry. */
 function selectedLabels() {
-  return PatchPlan.ordered(state.graph, [...document.querySelectorAll(
-      '#choices input:checked')].map(box => box.value));
-}
-
-/* The chain: rev1 -> rev0 if the user has a Rev 1 disc (obligatory), then
- * rev0-to-base, then one add- patch per selected option in apply order.
- * PatchPlan picks the file each option needs from `anchor`; nothing about
- * the options themselves is hardcoded here. */
-function buildPlan(rev, labels = selectedLabels()) {
-  const plan = PatchPlan.plan(state.graph, rev, labels);
-  return {
-    steps: plan.steps.map(step => stepOf(step.row, step.source)),
-    patchNames: plan.patchNames,
-    sourceExpect: plan.sourceExpect,
+  const picked = new Set([...document.querySelectorAll('#choices input.mod:checked')]
+      .map(box => box.value));
+  const item = label => {
+    const tokens = pickedTokens(label);
+    const plain = defaultTokens(label);
+    const same = tokens.length === plain.length && tokens.every(t => plain.includes(t));
+    return same ? label : `${label}(${tokens.join(',')})`;
   };
+  const base = baseRow() ? item(baseRow().label) : '';
+  return [...(base && base !== baseRow().label ? [base] : []),
+          ...state.labels.filter(label => picked.has(label)).map(item)];
 }
 
-/* `ppf` set: the worker builds a PPF instead of a disc and answers
- * {ppf, blob} (blob: the Rev 0 disc it patches, for a Rev 1 source). */
-async function apply(source, rev, scratchName, useScratch, ppf, ppfDescription,
-                     labels = selectedLabels(), rev0Handle = null) {
-  const plan = buildPlan(rev, labels);
-  const patchFiles = [];
-  for (const name of plan.patchNames) {
-    status(`Fetching ${name}`);
-    patchFiles.push({name, file: await loadPatch(name)});
+/* {label: tokens} for a selection's strings, every layer it applies at its
+ * defaults unless named (MODPACK.selected). */
+function selectionOf(items) {
+  const out = {};
+  if (baseRow()) out[baseRow().label] = defaultTokens(baseRow().label);
+  for (const [label, tokens] of MODPACK.parseMods(items.join(','))) {
+    out[label] = tokens.length ? tokens : defaultTokens(label);
+  }
+  return out;
+}
+
+/* The layers for a selection: base, then the selected alphabet, translation and mods
+ * in the manifest's order. Which parts of each apply - an option, what one
+ * mod carries for another - the worker picks from the selection. */
+function planLayers(items = selectedLabels()) {
+  const base = baseRow();
+  if (base && modBox(base.label) && !isOn(base.label)) {
+    throw new Error(`${displayName(base.label)} is off: every layer of this release is`
+        + ' built on top of it, so there is no disc without it');
+  }
+  const selection = selectionOf(items);
+  const rows = [baseRow(), ...state.rows.filter(row => row.kind === 'option'
+                                                && row.label in selection)];
+  for (const row of rows) {
+    for (const need of requirementsOf(row)) {
+      if (!(need in selection)) {
+        throw new Error(`${displayName(row.label)} needs ${displayName(need)}, which this`
+            + ' selection leaves out');
+      }
+    }
+  }
+  return {layers: rows.map(row => ({name: row.layer, hash: row.sha1})), selection};
+}
+
+/* `ppf` set: the worker builds a PPF instead of a disc. */
+async function apply(source, ppf, ppfDescription, labels = selectedLabels()) {
+  const layers = [];
+  const plan = planLayers(labels);
+  for (const layer of plan.layers) {
+    status(`Fetching ${layer.name}`);
+    layers.push({...layer, file: await loadLayer(layer.name)});
+  }
+  for (const mod of state.ownMods.filter(mod => mod.on)) {
+    for (const need of mod.requires) {
+      if (!(need in plan.selection) && !state.ownMods.some(o => o.on && o.name === need)) {
+        throw new Error(`${mod.title || mod.name} needs ${displayName(need)}, which this`
+            + ' selection leaves out');
+      }
+    }
+    layers.push({name: mod.file, file: mod.blob, hash: null, own: true});
   }
   status('working...');
   const worker = new Worker('worker.js');
@@ -192,21 +332,17 @@ async function apply(source, rev, scratchName, useScratch, ppf, ppfDescription,
       worker.onmessage = event => {
         const msg = event.data;
         if (msg.type === 'progress') status(msg.message + '...');
-        else if (msg.type === 'done') resolve(msg);
-        else if (msg.type === 'ppf-done') {
-          resolve({ppf: msg.ppf, blob: msg.rev0, scratchDir: null, onDisk: false});
-        } else if (msg.type === 'error') reject(new Error(msg.message));
+        else if (msg.type === 'done') resolve({blob: msg.blob});
+        else if (msg.type === 'ppf-done') resolve({ppf: msg.ppf});
+        else if (msg.type === 'error') reject(new Error(msg.message));
       };
       worker.onerror = event => {
         reject(new Error(event.message || 'patch worker failed to start'));
       };
-      worker.postMessage(ppf
-          ? {type: 'ppf', source, patchFiles, steps: plan.steps,
-             sourceExpect: plan.sourceExpect, description: ppfDescription,
-             chd: isChd(source), keepChd: $('keep-chd').checked, rev0Handle}
-          : {type: 'apply', source, patchFiles, steps: plan.steps,
-             sourceExpect: plan.sourceExpect, keepScratch: resultScratch,
-             scratchName, useScratch});
+      worker.postMessage({type: 'run', output: ppf ? 'ppf' : 'disc', source, layers,
+                          selection: plan.selection,
+                          chd: isChd(source), keepChd: $('keep-chd').checked,
+                          description: ppfDescription});
     });
   } finally {
     worker.terminate();
@@ -214,8 +350,11 @@ async function apply(source, rev, scratchName, useScratch, ppf, ppfDescription,
 }
 
 function outputBase(labels) {
-  const stamp = PatchPlan.releaseStamp(state.rows);
-  return [OUTPUT_NAME, ...(stamp ? [stamp] : []), ...labels].join('-');
+  const stamp = releaseStamp(state.rows);
+  // `english-translation(font=small)` names the file as english-small
+  const named = labels.map(item => item.replace(/\((.*)\)$/, (_all, tokens) =>
+      '-' + tokens.split(',').map(token => token.split('=').pop()).join('-')));
+  return [OUTPUT_NAME, ...(stamp ? [stamp] : []), ...named].join('-');
 }
 
 function downloadLink(url, name, isDisc) {
@@ -225,10 +364,7 @@ function downloadLink(url, name, isDisc) {
   anchor.download = name;
   anchor.textContent = name;
   if (isDisc) {
-    anchor.addEventListener('click', () => {
-      downloadClickedAt = Date.now();
-      resultDownloaded = true;
-    });
+    anchor.addEventListener('click', () => { resultDownloaded = true; });
   }
   p.appendChild(anchor);
   return p;
@@ -236,65 +372,9 @@ function downloadLink(url, name, isDisc) {
 
 /* Object URLs keep their Blob alive until revoked. Revoke the previous
  * run's result when the new one replaces it, so patching a second disc does
- * not leave the first patched disc in memory. When the result came from
- * OPFS, drop its scratch directory too - but only after the new result is
- * installed, because the File is backed by that directory. */
+ * not keep the first result alive. */
 let resultUrls = [];
-let resultScratch = null;
-let resultLock = null;
 let resultDownloaded = false;
-let downloadClickedAt = 0;
-
-/* A page showing a result holds a Web Lock named after its scratch
- * directory. The page sweep and the worker both remove only unlocked
- * directories, so a closed or crashed tab is cleaned up on the next visit or
- * run without touching a second tab's download. The timestamp in the name
- * lets the cleanup age it first. */
-
-/* null when Web Locks are unavailable (the worker then ages directories
- * instead), false when this page could not take the lock, or a handle. */
-async function holdScratch(name) {
-  if (!navigator.locks || !navigator.locks.request) return null;
-  let release;
-  const held = new Promise(resolve => { release = resolve; });
-  let markReady;
-  const ready = new Promise(resolve => { markReady = resolve; });
-  let granted = false;
-  try {
-    navigator.locks.request(name, () => {
-      granted = true;
-      markReady();
-      return held;
-    }).catch(() => markReady());
-    await ready;
-  } catch (err) {
-    granted = false;
-  }
-  if (!granted) {
-    release();
-    return false;
-  }
-  return {name, release};
-}
-
-function releaseScratch(lock) {
-  if (lock) lock.release();
-}
-
-async function dropScratch(name) {
-  if (!name || !navigator.storage || !navigator.storage.getDirectory) return;
-  try {
-    const root = await navigator.storage.getDirectory();
-    await root.removeEntry(name, {recursive: true});
-  } catch (err) {}
-}
-
-/* Build PPF on a Rev 1 disc hands back the Rev 0 disc the PPF patches. It
- * carries the Redump name of the Rev 0 dump, so it is the same disc a Rev 0
- * owner has, and every later PPF is built from it. */
-const REV0_NAME = 'Megami Ibunroku Persona - Be Your True Mind (Japan)';
-const REV0_NOTE = "PPF patches don't work on differently sized discs, please"
-    + ' use this disc instead for now and future repatches.';
 
 /* An emulator finds a PPF by the disc's own file name, so the PPF is named
  * after the disc it patches; which release and options it holds goes in
@@ -307,21 +387,18 @@ const stem = name => name.replace(/\.[^./\\]*$/, '');
 const UNSTAMPED = 'unstamped';
 
 function ppfNote(info) {
-  const lines = [PatchPlan.releaseStamp(state.rows) || UNSTAMPED, ...info.labels];
+  const lines = [releaseStamp(state.rows) || UNSTAMPED, ...info.labels];
   return new Blob([lines.join('\n') + '\n'], {type: 'text/plain'});
 }
 
-/* `done.blob` is the disc to download (the patched disc, or for a PPF built
- * from Rev 1 the Rev 0 disc it patches); `done.ppf` the PPF, if one was
- * built, named after the disc it patches, with a note of what it holds. */
-function showResult(base, done, lock, info) {
+/* `done.blob` is the patched disc; `done.ppf` the PPF, named after the disc
+ * it patches, with a note of what it holds. */
+function showResult(base, done, info) {
   const files = [];   // [blob, name]
   if (done.ppf) {
-    const disc = done.blob ? REV0_NAME : stem(info.sourceName);
-    const ppfName = disc + '.ppf';
+    const ppfName = stem(info.sourceName) + '.ppf';
     files.push([done.ppf, ppfName]);
     files.push([ppfNote(info), ppfName + '.txt']);
-    if (done.blob) files.push([done.blob, disc + '.bin']);
   } else {
     files.push([done.blob, base + '.bin']);
   }
@@ -333,17 +410,12 @@ function showResult(base, done, lock, info) {
   }
 
   for (const url of resultUrls) URL.revokeObjectURL(url);
-  const previousScratch = resultScratch;
-  const previousLock = resultLock;
-  resultScratch = done.scratchDir || null;
-  resultLock = resultScratch ? lock : null;
   resultDownloaded = false;
-  downloadClickedAt = 0;  // a new result has not been downloaded yet
   resultUrls = [];
   const entry = {at: new Date().toISOString(),
-                 release: PatchPlan.releaseStamp(state.rows),
+                 release: releaseStamp(state.rows),
                  options: info.labels, kind: done.ppf ? 'ppf' : 'disc',
-                 source: REV_LABEL[info.rev], file: files[0][1]};
+                 source: 'Rev 0', file: files[0][1]};
   let recorded = false;
   const record = () => {   // once per result, however it is saved
     if (!recorded) addHistory(entry);
@@ -359,10 +431,7 @@ function showResult(base, done, lock, info) {
     return link;
   });
   $('results').replaceChildren(...links);
-  $('scratch-warning').hidden = !done.scratchDir;
-  if (previousScratch) dropScratch(previousScratch);
-  releaseScratch(previousLock);
-  status(done.ppf && done.blob ? REV0_NOTE : 'Here it is :D');
+  status('Here it is :D');
 }
 
 /* A PPF this patcher wrote: PPF 3.0 whose description (bytes 6..56) is a
@@ -374,11 +443,9 @@ function ownPpf(head) {
 }
 
 /* Build PPF with a disc from the disc folder (Chrome, Edge): the PPF and
- * its note are written next to the disc - nothing to download. From a Rev
- * 1 disc the PPF patches the Rev 0 copy: the copy already in the folder,
- * or a new one written there with it. A PPF this patcher did not write is
- * never overwritten, and one that already holds this release and these
- * options is left alone. */
+ * its note are written next to the disc - nothing to download. A PPF this
+ * patcher did not write is never overwritten, and one that already holds
+ * this release and these options is left alone. */
 const PPF_DISC_KEY = 'patcher.ppf-disc';
 
 function rememberPpfDisc(name) {
@@ -398,10 +465,6 @@ async function fileIn(folder, name) {
 }
 
 
-const cueFor = binName =>
-    new Blob([`FILE "${binName.replace(/"/g, '')}" BINARY\n` + CUE_BODY],
-             {type: 'application/octet-stream'});
-
 async function writeInFolder(folder, files) {
   for (const [blob, name] of files) {
     status(`Saving ${name}`);
@@ -411,22 +474,10 @@ async function writeInFolder(folder, files) {
   }
 }
 
-async function ppfIntoFolder(rev, labels) {
+async function ppfIntoFolder(labels) {
   const folder = await writableFolder();
-  let source = state.source;
-  let sourceRev = rev;
-  if (rev === 1) {
-    // the Rev 0 copy made before, when it is there, is what the PPF patches
-    const copy = await fileIn(folder, REV0_NAME + '.bin');
-    if (copy) {
-      status(`Checking ${copy.name}`);
-      if ((await identify(copy)).rev === 0) {
-        source = copy;
-        sourceRev = 0;
-      }
-    }
-  }
-  const discName = sourceRev === 1 ? REV0_NAME + '.bin' : source.name;
+  const source = state.source;
+  const discName = source.name;
   const ppfName = stem(discName) + '.ppf';
   const noteName = ppfName + '.txt';
   const existing = await fileIn(folder, ppfName);
@@ -434,7 +485,7 @@ async function ppfIntoFolder(rev, labels) {
     throw new Error(`${ppfName} in ${folder.name} is not a Persona translation PPF;`
         + ' it was left alone');
   }
-  const stamp = PatchPlan.releaseStamp(state.rows);
+  const stamp = releaseStamp(state.rows);
   const note = await fileIn(folder, noteName);
   if (note && existing && stamp) {
     // the first line is the release; options follow, one per line
@@ -446,24 +497,13 @@ async function ppfIntoFolder(rev, labels) {
       return;
     }
   }
-  // from Rev 1 the Rev 0 disc is written by the worker straight into its
-  // file, its .cue first (a tiny file, so it is there whatever happens)
-  let rev0Handle = null;
-  if (sourceRev === 1) {
-    await writeInFolder(folder, [[cueFor(REV0_NAME + '.bin'), REV0_NAME + '.cue']]);
-    rev0Handle = await folder.getFileHandle(REV0_NAME + '.bin', {create: true});
-  }
-  const done = await apply(source, sourceRev, null, false, true, outputBase(labels), labels,
-                           rev0Handle);
+  const done = await apply(source, true, outputBase(labels), labels);
   await writeInFolder(folder, [[done.ppf, ppfName], [ppfNote({labels}), noteName]]);
   rememberPpfDisc(discName);       // the disc chosen from now on
   addHistory({at: new Date().toISOString(), release: stamp, options: labels,
-              kind: 'ppf', source: REV_LABEL[rev], file: ppfName});
+              kind: 'ppf', source: 'Rev 0', file: ppfName});
   $('results').replaceChildren();
-  status(rev0Handle
-      ? `The PPF was placed alongside the selected disc, together with the Rev 0 disc`
-        + ` it patches (${REV0_NAME}.bin). ${REV0_NOTE}`
-      : `The PPF was placed alongside the selected disc (${discName}).`);
+  status(`The PPF was placed alongside the selected disc (${discName}).`);
 }
 
 /* The disc folder (Chrome, Edge). Picked once and kept as a handle in
@@ -472,15 +512,20 @@ async function ppfIntoFolder(rev, labels) {
  * different one. Blocked storage just means picking every time. */
 const FOLDER_STORE = 'handles';
 const FOLDER_KEY = 'ppf-folder';
+const MOD_STORE = 'mods';
 
-function folderDb(mode, use) {
+function folderDb(mode, use, storeName = FOLDER_STORE) {
   return new Promise((resolve, reject) => {
-    const open = indexedDB.open('patcher', 1);
-    open.onupgradeneeded = () => open.result.createObjectStore(FOLDER_STORE);
+    const open = indexedDB.open('patcher', 2);
+    open.onupgradeneeded = () => {
+      for (const name of [FOLDER_STORE, MOD_STORE]) {
+        if (!open.result.objectStoreNames.contains(name)) open.result.createObjectStore(name);
+      }
+    };
     open.onerror = () => reject(open.error);
     open.onsuccess = () => {
       const db = open.result;
-      const request = use(db.transaction(FOLDER_STORE, mode).objectStore(FOLDER_STORE));
+      const request = use(db.transaction(storeName, mode).objectStore(storeName));
       request.onsuccess = () => { resolve(request.result); db.close(); };
       request.onerror = () => { reject(request.error); db.close(); };
     };
@@ -503,6 +548,7 @@ async function pickFolder() {
     await folderDb('readwrite', store => store.put(folder, FOLDER_KEY));
   } catch (err) { /* not remembered: the next save asks again */ }
   state.folder = folder;
+  delete $('change-folder').dataset.allow;
   showFolder(folder);
   return folder;
 }
@@ -525,16 +571,24 @@ function showFolder(folder) {
   $('change-folder').textContent = folder ? 'Change folder' : 'Choose folder';
 }
 
+function folderNeedsPermission(folder) {
+  showFolder(folder);
+  $('folder-name').textContent = `${folder.name} (permission required)`;
+  $('change-folder').textContent = 'Allow access';
+  $('change-folder').dataset.allow = '1';
+  $('folder-discs').hidden = false;
+  $('folder-discs').textContent = `Click Allow access to use ${folder.name} again.`;
+}
+
 /* The disc folder (Chrome, Edge) comes first: the page lists the Megami
  * Ibunroku Persona discs in it - a .bin by its size, a .chd by the raw
  * SHA-1 in its 124-byte header, so other games never show up - and picks
  * the one used last. A PPF built from a disc chosen here is saved next to
  * it at once. */
 async function discsIn(folder) {
-  const sizes = new Map(state.rows.filter(row => row.patch === BASE_PATCH || row.patch === REV1_PATCH)
-      .map(row => [Number(row.source_bytes), row.patch === BASE_PATCH ? 0 : 1]));
-  const hashes = new Map(state.rows.filter(row => row.source_chd_sha1)
-      .map(row => [row.source_chd_sha1, row.patch === BASE_PATCH ? 0 : 1]));
+  const base = baseRow();
+  const sizes = new Map([[Number(base.source_bytes), 0]]);
+  const hashes = new Map(base.source_chd_sha1 ? [[base.source_chd_sha1, 0]] : []);
   const found = [];
   const all = [];              // every .bin and .chd, for the search
   for await (const [name, handle] of folder.entries()) {
@@ -579,7 +633,7 @@ function discPicker(all, discs) {
     item.type = 'button';
     item.className = 'file-choice' + (file.name === current ? ' picked' : '');
     item.setAttribute('aria-pressed', file.name === current);
-    item.textContent = file.name + (revOf.has(file.name) ? ` - ${REV_LABEL[revOf.get(file.name)]}` : '');
+    item.textContent = file.name + (revOf.has(file.name) ? ' - Rev 0' : '');
     item.addEventListener('click', async () => setSource(await file.handle.getFile(), true));
     return item;
   };
@@ -624,6 +678,10 @@ async function loadFolder(folder, fresh = false) {
   try {
     ({discs, all} = await discsIn(folder));
   } catch (err) {
+    if (err.name === 'NotAllowedError' || err.name === 'SecurityError') {
+      folderNeedsPermission(folder);
+      return;
+    }
     box.textContent = err.message;
     return;
   }
@@ -686,10 +744,7 @@ async function restoreFolder() {
   state.folder = folder;
   showFolder(folder);
   if (await folder.queryPermission({mode: 'readwrite'}) === 'granted') return loadFolder(folder);
-  $('change-folder').textContent = 'Allow access';
-  $('change-folder').dataset.allow = '1';
-  $('folder-discs').hidden = false;
-  $('folder-discs').textContent = `Click Allow access to use ${folder.name} again.`;
+  folderNeedsPermission(folder);
 }
 
 /* A file from the picker: when the disc folder holds the same file, it is
@@ -742,7 +797,7 @@ function clearHistory() {
 let noteRelease = null;
 
 function updateBanner() {
-  const stamp = PatchPlan.releaseStamp(state.rows);
+  const stamp = releaseStamp(state.rows);
   const last = noteRelease || (readHistory()[0] || {}).release || '';
   const old = stamp && last && last !== UNSTAMPED && last !== stamp;
   $('update-banner').hidden = !old;
@@ -761,8 +816,7 @@ function renderHistory() {
     const when = new Date(item.at);
     const date = isNaN(when) ? '' : when.toLocaleString();
     const options = (item.options || []).length
-        ? item.options.map(label => featureOf(label).name)
-            .join(', ')
+        ? item.options.map(describeItem).join(', ')
         : 'no options';
     row.textContent = `${date} - ${item.release || 'unstamped release'} - `
         + `${item.kind === 'ppf' ? 'PPF' : 'disc'} from ${item.source || '?'}`
@@ -771,82 +825,139 @@ function renderHistory() {
   }));
 }
 
-async function deleteResult() {
-  const scratch = resultScratch;
-  const lock = resultLock;
-  for (const url of resultUrls) URL.revokeObjectURL(url);
-  resultUrls = [];
-  resultScratch = null;
-  resultLock = null;
-  resultDownloaded = false;
-  downloadClickedAt = 0;
-  $('results').replaceChildren();
-  $('scratch-warning').hidden = true;
-  if (scratch) await dropScratch(scratch);
-  releaseScratch(lock);
-  status('Patched disc deleted from browser storage.');
-}
-
 /* Ask before leaving while there is something to lose: a patch run still in
  * flight, a finished disc that has not been downloaded, or an OPFS copy that
  * the user may still want to delete. The browser shows its own wording. */
 window.addEventListener('beforeunload', event => {
-  const pending = state.running
-      || (resultUrls.length && (!resultDownloaded || resultScratch));
+  const pending = state.running || (resultUrls.length && !resultDownloaded);
   if (!pending) return;
   event.preventDefault();
   event.returnValue = '';
 });
 
-/* A tab that goes away for good should not leave its scratch file behind.
- * If a download started less than a minute ago it may still be reading that
- * file, so leave it: the next visit or run removes the orphan once the lock
- * is gone. */
-window.addEventListener('pagehide', event => {
-  if (event.persisted || !resultScratch) return;
-  if (downloadClickedAt && Date.now() - downloadClickedAt < 60 * 1000) return;
-  dropScratch(resultScratch);
-});
+/* A selection string for people: the mod's name, then its picked choices'
+ * names (`English translation (Small font)`). */
+function describeItem(item) {
+  const [[shortLabel, tokens] = [item, []]] = MODPACK.parseMods(item);
+  const label = renamed(shortLabel);
+  const named = (featureOf(label).choices || []);
+  const parts = tokens.map(token => (named.find(c => c.token === token) || {name: token}).name);
+  return displayName(label) + (parts.length ? ` (${parts.join(', ')})` : '');
+}
 
 const SAVED_KEY = 'patcher.selected';
 
+/* Remembered: the ticked mods and every mod's picked tokens. */
 function saveSelection() {
   try {
-    const checked = [...document.querySelectorAll('#choices input:checked')]
-        .map(box => box.value);
-    localStorage.setItem(SAVED_KEY, JSON.stringify(checked));
+    // needed mods follow from the ticked ones, so only those are kept
+    const checked = [...document.querySelectorAll('#choices input.mod:checked')]
+        .filter(box => !box.dataset.auto).map(box => box.value);
+    const choices = {};
+    for (const sub of document.querySelectorAll('.sub-choices')) {
+      choices[sub.dataset.label] = pickedTokens(sub.dataset.label);
+    }
+    localStorage.setItem(SAVED_KEY, JSON.stringify({mods: checked, choices, layers: 3}));
   } catch (err) { /* storage blocked: the choice just isn't remembered */ }
 }
 
 const sameOptions = (a, b) => a.length === b.length && a.every(label => b.includes(label));
 
 /* Tick the options remembered from the last patch run; labels that no
- * longer exist are ignored. */
+ * longer exist are ignored. With nothing remembered, the options marked
+ * `default` in their mod.tsv start ticked, each at its default choices. */
 function restoreSelection() {
+  let saved = null;
   try {
-    const saved = JSON.parse(localStorage.getItem(SAVED_KEY) || '[]');
-    if (!Array.isArray(saved)) return;
-    for (const box of document.querySelectorAll('#choices input')) {
-      box.checked = saved.includes(box.value);
+    const raw = localStorage.getItem(SAVED_KEY);
+    saved = raw === null ? null : JSON.parse(raw);
+  } catch (err) { /* storage blocked: the defaults apply */ }
+  if (Array.isArray(saved)) saved = {mods: saved, choices: {}};   // before choices
+  if (saved && saved.layers !== 3 && baseRow()?.label === 'base') {
+    saved.mods = [...(saved.mods || []), 'english-translation'];
+  }
+  if (saved) {
+    saved = {mods: (saved.mods || []).map(renamed),
+             choices: Object.fromEntries(Object.entries(saved.choices || {})
+                 .map(([label, tokens]) => [renamed(label), tokens]))};
+  }
+  for (const box of document.querySelectorAll('#choices input.mod')) {
+    box.checked = saved ? saved.mods.includes(box.value) : !!featureOf(box.value).default;
+  }
+  for (const sub of document.querySelectorAll('.sub-choices')) {
+    const label = sub.dataset.label;
+    const remembered = saved && saved.choices && saved.choices[label];
+    const want = new Set(remembered && remembered.length ? remembered : defaultTokens(label));
+    const inputs = [...sub.querySelectorAll('input')];
+    for (const input of inputs) input.checked = want.has(input.value);
+    for (const input of inputs.filter(i => i.dataset.parameter)) {
+      const token = [...want].find(t => t.startsWith(input.dataset.parameter + '='));
+      if (token) { input.value = token.split('=')[1]; input.dispatchEvent(new Event('change')); }
     }
-  } catch (err) { /* nothing saved, or storage blocked */ }
+    // a remembered option that no longer exists: its group falls back to its default
+    for (const group of new Set(inputs.filter(i => i.type === 'radio').map(i => i.name))) {
+      const radios = inputs.filter(i => i.name === group);
+      if (!radios.some(i => i.checked)) radios[0].checked = true;
+    }
+  }
+  followRequirements(null);
 }
 
-function renderGrid() {
-  const grid = $('choices');
-  // FEATURES order, so the checkboxes stay where they are regardless of how
-  // the manifest's patch names happen to sort; anything unlisted follows.
-  const shown = [...Object.keys(FEATURES).filter(label => state.labels.includes(label)),
-                ...state.labels.filter(label => !FEATURES[label])];
-  grid.replaceChildren(...shown.map(label => {
-    const info = featureOf(label);
+/* A mod's choices under it: a radio per option of each group, a box per
+ * extra, named from features.js (the manifest's tokens decide which exist). */
+function subChoices(label) {
+  const ranges = featureOf(label).ranges || [];
+  const tokens = choicesOf(label).filter(t => !ranges.some(r => t.startsWith(r.key + '=')));
+  if (!tokens.length && !ranges.length) return null;
+  const named = featureOf(label).choices || [];
+  const box = document.createElement('div');
+  box.className = 'sub-choices';
+  box.dataset.label = label;
+  for (const setting of ranges) {
     const item = document.createElement('label');
-    item.className = 'choice';
-    const box = document.createElement('input');
-    box.type = 'checkbox';
-    box.value = label;
+    const title = document.createElement('span');
+    title.textContent = setting.name;
+    const slider = document.createElement('input');
+    slider.type = 'range';
+    const number = document.createElement('input');
+    number.type = 'number';
+    number.dataset.parameter = setting.key;
+    number.id = `${label}-${setting.key}-number`;
+    number.name = `${label}:${setting.key}`;
+    slider.id = `${label}-${setting.key}-slider`;
+    slider.name = `${label}:${setting.key}:slider`;
+    for (const input of [slider, number]) {
+      input.min = setting.minimum; input.max = setting.maximum; input.step = setting.step;
+      input.value = setting.default;
+      input.setAttribute('aria-label', setting.name);
+      input.addEventListener('change', () => {
+        const parsed = Number(input.value);
+        const value = Number.isFinite(parsed) ? Math.min(setting.maximum, Math.max(setting.minimum,
+          setting.minimum + Math.round((parsed - setting.minimum) / setting.step) * setting.step)) : setting.default;
+        number.value = slider.value = value;
+      });
+    }
+    slider.addEventListener('input', () => { number.value = slider.value; });
+    item.append(title, slider, number);
+    box.append(item);
+  }
+  const shownGroup = new Set();
+  for (const token of tokens) {
+    const info = named.find(c => c.token === token) || {token, name: token, description: '',
+                                                        group: token.includes('=') ? token.split('=')[0] : ''};
+    if (info.group && !shownGroup.has(info.group)) {
+      shownGroup.add(info.group);
+      const head = document.createElement('p');
+      head.className = 'group';
+      head.textContent = info.group.replace(/-/g, ' ');
+      box.append(head);
+    }
+    const item = document.createElement('label');
+    const input = document.createElement('input');
+    input.type = info.group ? 'radio' : 'checkbox';
+    if (info.group) input.name = `${label}:${info.group}`;
+    input.value = token;
     const text = document.createElement('span');
-    text.className = 'choice-text';
     const name = document.createElement('span');
     name.className = 'choice-name';
     name.textContent = info.name;
@@ -857,17 +968,147 @@ function renderGrid() {
       note.textContent = info.description;
       text.append(document.createElement('br'), note);
     }
-    item.append(box, text);
-    return item;
-  }));
+    item.append(input, text);
+    box.append(item);
+  }
+  return box;
+}
+
+/* Mods: one toggle each, the translation first (on, with its warning when
+ * turned off). Settings: a card per mod that is on and has choices; a card is built once and hidden while its mod is off. */
+function renderGrid() {
+  // Foundation components follow dependency order; ordinary mods follow
+  // FEATURES order, with unlisted mods last.
+  const components = state.rows.filter(row => state.labels.includes(row.label)
+      && featureOf(row.label).always).map(row => row.label);
+  const shown = [...components,
+                ...Object.keys(FEATURES).filter(label => state.labels.includes(label)
+                    && !components.includes(label)),
+                ...state.labels.filter(label => !FEATURES[label] && !components.includes(label))];
+  const chip = (label, className) => {
+    const info = featureOf(label);
+    const item = document.createElement('label');
+    item.className = 'chip';
+    const description = [info.description, info.author ? `Author: ${info.author}` : ''].filter(Boolean).join('\n');
+    if (description) item.title = description;
+    const box = document.createElement('input');
+    box.type = 'checkbox';
+    box.className = className;
+    box.value = label;
+    item.append(box, info.name);
+    if (!description) return item;
+    // phones have no hover: the info button shows the description under the toggles
+    const about = document.createElement('button');
+    about.type = 'button';
+    about.className = 'info';
+    about.textContent = 'i';
+    about.setAttribute('aria-label', `About ${info.name}`);
+    about.addEventListener('click', event => {
+      event.preventDefault();          // inside the label: never toggles the mod
+      const shown = $('chip-about');
+      const same = !shown.hidden && shown.dataset.label === label;
+      shown.hidden = same;
+      shown.dataset.label = label;
+      shown.textContent = `${info.name}: ${description}`;
+      for (const integration of info.integrates || []) {
+        const note = document.createElement('p');
+        note.textContent = `Dependency: ${describeItem(integration.with)}. ${integration.text}`;
+        if (!itemOn(integration.with)) {
+          const enable = document.createElement('button');
+          enable.type = 'button';
+          enable.textContent = 'Enable';
+          enable.addEventListener('click', () => {
+            enableItem(integration.with);
+            enable.remove();
+          });
+          note.append(' ', enable);
+        }
+        shown.append(note);
+      }
+    });
+    const wrap = document.createElement('span');
+    wrap.className = 'chip-wrap';
+    wrap.append(item, about);
+    return wrap;
+  };
+  const base = baseRow();
+  const baseChip = base && chip(base.label, 'base');
+  if (baseChip) {
+    (baseChip.querySelector('.chip') || baseChip).classList.add('must');
+    baseChip.querySelector('input').checked = true;
+    baseChip.querySelector('input').disabled = true;
+  }
+  $('choices').replaceChildren(...(baseChip ? [baseChip] : []),
+                               ...shown.map(label => chip(label, 'mod')));
+  $('settings').replaceChildren(...[...(base ? [base.label] : []), ...shown]
+      .map(settingCard).filter(Boolean));
   restoreSelection();
+  $('choices').onchange = event => {
+    if (event.target.classList.contains('base')) refreshSettings();
+    else followRequirements(event.target);
+  };
+  $('settings').onchange = () => refreshSettings();
   $('choices-box').hidden = false;
 }
 
-/* Identifying the disc (which may still be downloading its patch) does not
- * disable Apply: a click waits for that run to finish. */
-/* Build disc cannot take a CHD: xdelta3 patches only a raw .bin, and a CHD
- * would have to be unpacked whole. The button stays clickable (a disabled
+/* Settings cards contain the mod's choices. Dependency notes live in its info panel. */
+function settingCard(label) {
+  const info = featureOf(label);
+  const sub = subChoices(label);
+  if (!sub) return null;
+  const card = document.createElement('div');
+  card.className = 'setting';
+  card.dataset.label = label;
+  const title = document.createElement('h3');
+  title.textContent = info.name;
+  card.append(title);
+  if (sub) card.append(sub);
+  return card;
+}
+
+const modBox = label => document.querySelector(`#choices input[value="${label}"]`);
+const isOn = label => !!(modBox(label) && modBox(label).checked);
+
+/* `slug` or `slug(token,...)` already on. */
+function itemOn(item) {
+  const [[label, tokens] = [item, []]] = MODPACK.parseMods(item);
+  return isOn(label) && tokens.every(token => pickedTokens(label).includes(token));
+}
+
+function enableItem(item) {
+  const [[label, tokens] = [item, []]] = MODPACK.parseMods(item);
+  const box = modBox(label);
+  if (!box) return;
+  box.checked = true;
+  for (const token of tokens) {
+    const input = document.querySelector(
+        `.sub-choices[data-label="${label}"] input[value="${token}"]`);
+    if (input) input.checked = true;
+  }
+  followRequirements(box);
+}
+
+function refreshSettings() {
+  for (const card of document.querySelectorAll('#settings .setting')) {
+    card.hidden = !isOn(card.dataset.label);
+  }
+  $('settings-box').hidden = ![...document.querySelectorAll('#settings .setting')]
+      .some(card => !card.hidden);
+  const warnings = state.rows.filter(row => !isOn(row.label) && featureOf(row.label).warning)
+      .map(row => featureOf(row.label).warning);
+  const base = baseRow();
+  if (base && !isOn(base.label) && !featureOf(base.label).warning) {
+    warnings.unshift(`${displayName(base.label)} cannot be turned off.`);
+  }
+  $('base-warning').hidden = !warnings.length;
+  $('base-warning').textContent = warnings.join(' ');
+
+}
+
+/* Identifying the disc does not disable Apply: a click waits for that run
+ * to finish. */
+/* Build disc cannot take a CHD: the result is the player's .bin with the
+ * changed sectors in between, and a CHD would have to be unpacked whole. The button stays clickable (a disabled
  * one gets no hover or click) but looks unavailable, and both hovering and
  * clicking say why. */
 const CHD_DISC_WARNING = "Build disc can't use a CHD: it would have to unpack the"
@@ -883,72 +1124,29 @@ function refreshApply() {
   $('build-ppf').disabled = disabled;
 }
 
-/* The release patches that prove which original disc this is: applying
- * rev1-to-rev0 in check-only mode succeeds only on Rev 1, and rev0-to-base
- * only on Rev 0. The manifest records each patch's source size; the worker
- * runs the matching one and reads the exit status. */
-function revisionExpectations() {
-  const expect = [];
-  const baseRow = state.rows.find(row => row.patch === BASE_PATCH);
-  const revRow = state.rows.find(row => row.patch === REV1_PATCH);
-  if (baseRow) {
-    expect.push({rev: 0, bytes: Number(baseRow.source_bytes),
-                 patch: BASE_PATCH, label: REV_LABEL[0]});
-  }
-  if (revRow) {
-    expect.push({rev: 1, bytes: Number(revRow.source_bytes),
-                 patch: REV1_PATCH, label: REV_LABEL[1]});
-  }
-  return expect;
-}
-
 const isChd = file => !!file && /\.chd$/i.test(file.name);
 
-/* A CHD is identified by its header alone: the raw SHA-1 chdman records for
- * the disc inside, against the one the release computed from each original
- * disc (`source_chd_sha1`). Only a Rev 0 CHD can take a PPF: from Rev 1 the
- * PPF patches a converted Rev 0 disc, which is a .bin. */
-async function identifyChd(source) {
-  const readAt = async (offset, length) =>
-      new Uint8Array(await source.slice(offset, offset + length).arrayBuffer());
-  const chd = await CHD.open(readAt);
-  const known = state.rows.filter(row => row.source_chd_sha1);
-  if (!known.length) {
-    throw new Error('this release cannot recognise CHD files yet - use the .bin');
-  }
-  const row = known.find(item => item.source_chd_sha1 === chd.rawSha1);
-  if (!row) {
-    throw new Error("this CHD's disc is not the original Megami Ibunroku Persona"
-        + ' (Rev 0 or Rev 1) - it may be a different or modified dump');
-  }
-  if (row.patch === REV1_PATCH) {
-    throw new Error('this is a Rev 1 CHD; a PPF needs the Rev 0 disc - pick the'
-        + ' Rev 1 .bin to get a Rev 0 copy, or a Rev 0 CHD');
-  }
-  return {rev: 0};
-}
-
+/* Which disc this is, from what the manifest records about the original:
+ * a .bin by its size, a CHD by the raw SHA-1 in its header. The base layer
+ * checks every file it changes when a run applies it, so a dump of the
+ * right size with the wrong contents is refused there. */
 async function identify(source) {
-  if (isChd(source)) return identifyChd(source);
-  const expect = revisionExpectations();
-  /* Only the patch for the candidate with this file's size can apply, so
-   * don't download the other revision's patch. */
-  for (const entry of expect.filter(entry => entry.bytes === source.size)) {
-    status(`Fetching ${entry.patch} to identify the disc`);
-    entry.file = await loadPatch(entry.patch);
+  const base = baseRow();
+  if (isChd(source)) {
+    const sha1 = await CHD.headerSha1(async (offset, length) =>
+        new Uint8Array(await source.slice(offset, offset + length).arrayBuffer()));
+    if (!base.source_chd_sha1 || sha1 === base.source_chd_sha1) return {rev: 0};
+    throw new Error("this CHD's disc is not the original Megami Ibunroku Persona"
+        + ' Rev 0 - it may be Rev 1, or a different or modified dump');
   }
-  const worker = new Worker('worker.js');
-  return new Promise((resolve, reject) => {
-    worker.onmessage = event => {
-      const msg = event.data;
-      if (msg.type === 'identified') resolve(msg);
-      else if (msg.type === 'error') reject(new Error(msg.message));
-    };
-    worker.onerror = event => {
-      reject(new Error(event.message || 'Patch worker failed to start'));
-    };
-    worker.postMessage({type: 'identify', source, expect});
-  }).finally(() => worker.terminate());
+  if (source.size === Number(base.source_bytes)) return {rev: 0};
+  if (source.size === REV1_BYTES) {
+    throw new Error('this is the Rev 1 disc; the patch needs the Rev 0 disc'
+        + ' (the first release of SLPS-00500)');
+  }
+  throw new Error(`the selected file is ${source.size.toLocaleString()} bytes but the`
+      + ` original disc is ${Number(base.source_bytes).toLocaleString()} bytes - select`
+      + ' the Rev 0 .bin image, not the .cue');
 }
 
 /* Start (or join) the identification run for the current file. Apply awaits
@@ -972,7 +1170,7 @@ async function maybeIdentify() {
       const found = await identify(source);
       if (run === state.identifyRun) {
         state.rev = found.rev;
-        status(`${REV_LABEL[found.rev]} disc detected`);
+        status('Rev 0 disc detected');
       }
     } catch (err) {
       if (run === state.identifyRun) {
@@ -1000,27 +1198,6 @@ async function ensureRevision() {
   return state.rev;
 }
 
-/* MEMFS is the default: a computer can hold the chain in its tab and never
- * writes a disc image to browser storage. Low-RAM mode moves the output to
- * OPFS instead; it is opt-in, and turned on automatically only where memory
- * is likely tight (Android, or a device that reports under 4 GB). */
-const LOW_RAM_GB = 4;
-
-function lowMemoryHint() {
-  const data = navigator.userAgentData;
-  if ((data && data.platform === 'Android')
-      || /Android/i.test(navigator.userAgent || '')) {
-    return 'this is an Android device';
-  }
-  const reported = navigator.deviceMemory;
-  if (typeof reported === 'number' && reported < LOW_RAM_GB) {
-    return `this browser reports about ${reported} GB of memory`;
-  }
-  return null;
-}
-
-let autoMemoryHint = null;
-
 const MEMORY_KEY = 'patcher.memory';
 
 function savedMemory() {
@@ -1034,9 +1211,8 @@ function savedMemory() {
 
 function saveMemory() {
   try {
-    localStorage.setItem(MEMORY_KEY, JSON.stringify(
-        {lowRam: $('low-ram').checked, keepChd: $('keep-chd').checked}));
-  } catch (err) { /* storage blocked: the boxes just aren't remembered */ }
+    localStorage.setItem(MEMORY_KEY, JSON.stringify({keepChd: $('keep-chd').checked}));
+  } catch (err) { /* storage blocked: the box just isn't remembered */ }
 }
 
 /* The CHD parts the worker keeps (worker.js, PART_DB) - the whole store. */
@@ -1044,38 +1220,129 @@ function dropChdParts() {
   try { indexedDB.deleteDatabase('patcher-chd'); } catch (err) {}
 }
 
-function setMemoryNote(text) {
-  const note = $('low-ram-note');
-  note.hidden = !text;
-  note.textContent = text || '';
-}
-
-/* The automatic reason only applies to the checkbox the page set; a manual
- * change clears it. A run that asked for browser storage and did not get it
- * says so, because that run stayed in memory. */
-function refreshMemoryNote(fellBack) {
-  if (fellBack) {
-    setMemoryNote(
-        'Browser storage is not available here, so this run used memory instead.');
-  } else {
-    setMemoryNote(autoMemoryHint
-        ? `Turned on automatically because ${autoMemoryHint}.` : '');
+/* Your own mods: .p1mod layers loaded from a file, kept in IndexedDB (the
+ * `mods` store, keyed by file name) and applied after the release's mods at
+ * their default choices. A layer is built against one release's discs; one
+ * whose version row names another release gets a warning, not a refusal
+ * (the merge itself refuses a layer that does not fit). Blocked storage
+ * keeps a loaded mod for this visit only. */
+function layerHeader(text) {
+  const head = {name: '', title: '', author: '', version: '', requires: [], ranges: []};
+  if (!text.startsWith('P1MOD')) throw new Error('not a .p1mod layer');
+  for (const line of text.split('\n').slice(1)) {
+    if (line.startsWith('--\t')) break;
+    const [kind, value] = line.split('\t');
+    if (kind === 'range') {
+      const [, , bounds, name] = line.split('\t');
+      const [minimum, maximum, step, defaultValue] = bounds.split(',').map(Number);
+      head.ranges.push({key: value, minimum, maximum, step, default: defaultValue, name});
+    } else if (kind === 'requires') head.requires.push(value);
+    else if (kind in head) head[kind] = value;
   }
+  if (!head.name) throw new Error('the layer names no mod');
+  return head;
 }
 
-window.patcher = {loadManifest, FEATURES, buildPlan, apply, selectedLabels,
-                  state, lowMemoryHint};  // tests
+async function readOwnMod(file, blob, on = true) {
+  const head = layerHeader(new TextDecoder().decode(
+      new Uint8Array(await blob.slice(0, 65536).arrayBuffer())));
+  return {file, blob, on, ...head};
+}
+
+async function loadOwnMods() {
+  state.ownMods = [];
+  try {
+    const keys = await folderDb('readonly', store => store.getAllKeys(), MOD_STORE);
+    const values = await folderDb('readonly', store => store.getAll(), MOD_STORE);
+    for (let i = 0; i < keys.length; i++) {
+      try {
+        state.ownMods.push(await readOwnMod(keys[i], values[i].blob, values[i].on));
+      } catch (err) {
+        status(`${keys[i]}: ${err.message}`, true);
+      }
+    }
+  } catch (err) { /* storage blocked: nothing kept */ }
+  renderOwnMods();
+}
+
+async function keepOwnMod(mod) {
+  try {
+    await folderDb('readwrite', store => store.put({blob: mod.blob, on: mod.on && !mod.auto}, mod.file),
+                   MOD_STORE);
+  } catch (err) { /* kept for this visit only */ }
+}
+
+async function addOwnMods(files) {
+  for (const file of files) {
+    try {
+      const mod = await readOwnMod(file.name, file);
+      if (state.rows.some(row => row.label === mod.name)) {
+        throw new Error(`${mod.name} is one of this release's own mods - tick it above`);
+      }
+      state.ownMods = state.ownMods.filter(other => other.file !== mod.file).concat(mod);
+      await keepOwnMod(mod);
+    } catch (err) {
+      status(`${file.name}: ${err.message}`, true);
+    }
+  }
+  renderOwnMods();
+}
+
+async function removeOwnMod(file) {
+  state.ownMods = state.ownMods.filter(mod => mod.file !== file);
+  try {
+    await folderDb('readwrite', store => store.delete(file), MOD_STORE);
+  } catch (err) {}
+  renderOwnMods();
+}
+
+function renderOwnMods() {
+  followRequirements(null);
+  const release = baseRow() ? baseRow().version : '';
+  $('own-mods').replaceChildren(...state.ownMods.map(mod => {
+    const item = document.createElement('li');
+    const label = document.createElement('label');
+    const box = document.createElement('input');
+    box.type = 'checkbox';
+    box.checked = mod.on;
+    box.disabled = mod.required;
+    box.dataset.mod = mod.name;
+    box.addEventListener('change', () => {
+      mod.on = box.checked;
+      delete mod.auto;
+      keepOwnMod(mod);
+      followRequirements(null);
+    });
+    label.append(box, ` ${mod.title || mod.name} (${mod.file})`);
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.textContent = 'Remove';
+    remove.disabled = mod.required;
+    remove.dataset.mod = mod.name;
+    remove.addEventListener('click', () => removeOwnMod(mod.file));
+    item.append(label, ' ', remove);
+    if (mod.author) {
+      const credit = document.createElement('p');
+      credit.textContent = `Author: ${mod.author}`;
+      item.append(credit);
+    }
+    if (release && mod.version && mod.version !== release) {
+      const warn = document.createElement('span');
+      warn.className = 'warning';
+      warn.textContent = ` made for ${mod.version}, this is ${release} - it may not apply`;
+      item.append(warn);
+    }
+    return item;
+  }));
+}
+
+window.patcher = {loadManifest, FEATURES, planLayers, apply, selectedLabels, state};  // tests
 
 async function init() {
-  ScratchSpace.clean();  // a closed tab could not finish deleting its output
-  // the memory and storage options are remembered from the first visit:
-  // low-RAM mode starts from the device hint and CHD parts start kept
+  // the storage option is remembered from the first visit: CHD parts start kept
   const memory = savedMemory();
-  autoMemoryHint = memory ? null : lowMemoryHint();
-  $('low-ram').checked = memory ? !!memory.lowRam : !!autoMemoryHint;
   $('keep-chd').checked = memory ? memory.keepChd !== false : true;
-  if (!memory) saveMemory();     // the starting choices, written at once
-  refreshMemoryNote(false);
+  if (!memory) saveMemory();     // the starting choice, written at once
   // kept parts should survive storage pressure: ask for persistent storage
   // (Chrome decides without a prompt, by how the site is used)
   const persist = () => {
@@ -1089,14 +1356,12 @@ async function init() {
     if (!$('keep-chd').checked) dropChdParts();
     persist();
   });
-  $('low-ram').addEventListener('change', () => {
-    autoMemoryHint = null;
-    saveMemory();
-    refreshMemoryNote(false);
-  });
   $('source').addEventListener('change', () => pickedFile($('source').files[0] || null));
-  $('delete-scratch').addEventListener('click', deleteResult);
   $('clear-history').addEventListener('click', clearHistory);
+  $('own-mod-file').addEventListener('change', async () => {
+    await addOwnMods([...$('own-mod-file').files]);
+    $('own-mod-file').value = '';
+  });
   renderHistory();
   $('apply').addEventListener('click', () => run(false));
   $('build-ppf').addEventListener('click', () => run(true));
@@ -1128,42 +1393,32 @@ async function init() {
     saveSelection();
     state.running = true;
     refreshApply();
-    let lock = null;
     try {
+      if (state.fromFolder && state.folder) {
+        const access = {mode: ppf ? 'readwrite' : 'read'};
+        let permission = await state.folder.queryPermission(access);
+        if (permission !== 'granted') permission = await state.folder.requestPermission(access);
+        if (permission !== 'granted') {
+          folderNeedsPermission(state.folder);
+          throw new Error(`Allow access to ${state.folder.name}, then build again.`);
+        }
+        delete $('change-folder').dataset.allow;
+        showFolder(state.folder);
+      }
       // The disc may still be identified (its patch may still be
       // downloading). Wait for that run instead of refusing the click.
       const rev = await ensureRevision();
       if (rev === null) {
-        throw new Error(state.identifyError
-            || 'this disc is neither Rev 0 nor Rev 1, so it cannot be patched');
+        throw new Error(state.identifyError || 'this is not the Rev 0 disc, so it cannot be patched');
       }
       // Name the download from the selection this run applied, not from
       // whatever the boxes say by the time the worker finishes.
       const labels = selectedLabels();
       // a disc from the disc folder: the PPF goes next to it, no downloads
-      if (ppf && state.fromFolder && state.folder) return await ppfIntoFolder(rev, labels);
-      // a PPF never holds a disc image, so it needs no scratch space
-      const lowRam = !ppf && $('low-ram').checked;
-      let scratch = lowRam ? ScratchSpace.name(Date.now()) : null;
-      if (lowRam) lock = await holdScratch(scratch);
-      const useScratch = lowRam && lock !== false;
-      if (!useScratch) {
-        // Either memory is fine (the default) or the page could not hold the
-        // lock that protects an OPFS directory from another tab's orphan
-        // cleanup; both run in memory.
-        scratch = null;
-        lock = null;
-      }
-      const done = await apply(state.source, rev, scratch, useScratch, ppf,
-                               outputBase(labels));
-      const keep = done.scratchDir ? lock : null;
-      if (!keep) releaseScratch(lock);
-      lock = null;  // showResult owns the lock from here
-      if (!ppf) refreshMemoryNote(lowRam && !done.onDisk);
-      showResult(outputBase(labels), done, keep,
-                       {labels, rev, sourceName: state.source.name});
+      if (ppf && state.fromFolder && state.folder) return await ppfIntoFolder(labels);
+      const done = await apply(state.source, ppf, outputBase(labels), labels);
+      showResult(outputBase(labels), done, {labels, sourceName: state.source.name});
     } catch (err) {
-      releaseScratch(lock);
       status(err.message, true);
     } finally {
       state.running = false;
@@ -1174,9 +1429,14 @@ async function init() {
     await loadManifest();
     prefetchBase();        // the largest patch; ready before a disc is picked
     renderGrid();
+    await loadOwnMods();
     updateBanner();
     if (window.showDirectoryPicker) restoreFolder();
-    status(`Hello :D - there are ${state.labels.length} options`);
+    const pending = unverified(state.rows);
+    const readyUntested = pending.length === 1 && pending[0] === 'untested';
+    status(readyUntested ? `Hello :D - there are ${state.labels.length} options`
+        : pending.length ? `Local test: this release is still ${pending.join('/')}`
+        : `Hello :D - there are ${state.labels.length} options`, pending.length > 0 && !readyUntested);
   } catch (err) {
     status(err.message, true);
   }

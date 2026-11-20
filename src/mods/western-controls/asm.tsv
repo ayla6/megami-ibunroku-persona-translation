@@ -1,0 +1,15 @@
+file	order	line	if	unless	note
+-	120	.include "layout.asm"			the western_layout macro (--mods=western-controls invokes it per overlay)
+SLPS	200	.include "slps.asm"			--mods=western-controls: PadRead swaps Circle/Cross and Triangle/Square for TYPE 1
+ADV	180	western_layout ADV_PAD_LAYOUTS, 0			--mods=western-controls: the controller page names the swapped buttons
+ADV	181	western_button_cells_hook ADV_WESTERN_CELLS_RETURN, 0x800E			shared button artwork follows TYPE 1 in every menu map
+ADV	182	western_physical_icons ADV_WESTERN_PHYSICAL_ICONS, 0x800E			controller settings retain their physical key icons
+BTLP	270	.include "btlp.asm"			--mods=western-controls: the Controls page icons
+DNG	280	.include "dng_layout.asm"			the controller page names the swapped buttons (run owns the cancel entry)
+DNG	281	western_button_cells_hook DNG_WESTERN_CELLS_RETURN, 0x800E			shared button artwork follows TYPE 1 in every menu map
+DNG	282	western_physical_icons DNG_WESTERN_PHYSICAL_ICONS, 0x800E			controller settings retain their physical key icons
+S2D	270	western_layout S2D_PAD_LAYOUTS, 0			--mods=western-controls: the controller page names the swapped buttons
+S2D	271	western_button_cells_hook S2D_WESTERN_CELLS_RETURN, 0x8010			shared button artwork follows TYPE 1 in every menu map
+S2D	272	western_physical_icons S2D_WESTERN_PHYSICAL_ICONS, 0x8010			controller settings retain their physical key icons
+OPEN_EXE	30	.include "open.asm"			--mods=western-controls: the title and its load list test swapped buttons
+CASINO	10	.include "casino.asm"			minigames preserve physical button assignments and native legends

@@ -1,0 +1,6 @@
+name	Halve encounters
+description	Halves the rate of random encounters. Like everything else in this section, this is an option. In this case, if you want an easier game. This is not the intended original experience of the game!
+author	Redeted
+default	no
+always	no
+release	yes

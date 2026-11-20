@@ -3,6 +3,10 @@ translation/manual/fmv/subtitles.tsv.
 
   python tools/fmv_retime.py            rewrite the table
   python tools/fmv_retime.py --dry      print what it would write
+  python tools/fmv_retime.py --dub      time the dub's own rows to the English
+                                        voice (fmv_dub.py's map), in place:
+                                        translation/manual/fmv/dub_subtitles.tsv
+                                        (derive_dub; with --dry, print it)
 
 Run by hand, not by the build: the table stays the one source the build
 reads (fmv_subgen). Each row's wording is kept verbatim; its timing, its
@@ -41,8 +45,10 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-sys.path.insert(0, os.path.join(ROOT, 'src', 'injection_tools'))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
 import disc_data  # noqa: E402
+import etext  # noqa: E402
 import fmv_subgen  # noqa: E402
 import strlib  # noqa: E402
 import vwf_wrap  # noqa: E402
@@ -81,6 +87,9 @@ CPS = 17              # characters per second a subtitle should not exceed
 MIN_SHOW = 1.2        # s a subtitle stays at least
 LINGER = 0.3          # s a subtitle stays after its voice stops
 PASSES = 5            # passes at most until the table stops changing
+ALIGN_WEIGHT = 20     # cost of a cut a whole voiced time away from its character share, against log(pause / PAUSE)
+JP_WEIGHT = 2       # cost per s a row starts away from its Japanese start
+JP_REACH = 1.0        # s past which that cost stops growing
 LEAD = 0.4            # s a subtitle too fast to read may come in before its voice
 GAP = 2 * fmv_subgen.FADE / fmv_subgen.FPS   # s: fade-out and fade-in never cross
 
@@ -123,13 +132,31 @@ def voice_band_db(image, lba, sectors):
                           '-map', '0:a', '-ar', str(RATE), '-ac', '1',
                           '-f', 's16le', 'pipe:1'],
                          input=raw, capture_output=True, check=True).stdout
-    a = np.frombuffer(pcm, dtype=np.int16).astype(np.float32) / 32768
+    return band_db(np.frombuffer(pcm, dtype=np.int16).astype(np.float32) / 32768)
+
+
+def band_power(a):
+    """Power of mono RATE-Hz audio's voice band, one value per HOP."""
     n, h = int(WIN * RATE), int(HOP * RATE)
     freqs = np.fft.rfftfreq(n, 1 / RATE)
     band = (freqs >= BAND[0]) & (freqs <= BAND[1])
     frames = np.lib.stride_tricks.sliding_window_view(a, n)[::h] * np.hanning(n)
-    power = np.abs(np.fft.rfft(frames, axis=1)) ** 2
-    return 10 * np.log10(power[:, band].sum(axis=1) + 1e-12)
+    return (np.abs(np.fft.rfft(frames, axis=1)) ** 2)[:, band].sum(axis=1)
+
+
+def band_db(a):
+    """Loudness (dB) of mono RATE-Hz audio's voice band, one value per HOP."""
+    return 10 * np.log10(band_power(a) + 1e-12)
+
+
+def centre_db(stereo):
+    """Loudness (dB) of the voice band of what sits in the centre of a stereo
+    track: the mid's power less the side's. The voice is mixed mono, the
+    score wide, so the score under it mostly cancels (the PSP movies' score
+    is as loud as their voice)."""
+    mid = band_power(stereo.mean(axis=1))
+    side = band_power((stereo[:, 0] - stereo[:, 1]) / 2)
+    return 10 * np.log10(np.maximum(mid - side, 0) + 1e-6)
 
 
 def quiet_floor(db):
@@ -406,6 +433,71 @@ def derive():
     return out
 
 
+def align(sizes, jp, voice):
+    """[(start, end)] per row: the voice's stretches cut into len(sizes)
+    runs in order. English speech runs at an even pace, so a row's share of
+    the characters is its share of the voiced time; each cut sits in a pause,
+    the longer the pause the likelier, near where the characters put it and
+    near the row's Japanese start `jp` (the PSP dub keeps its lines within
+    about half a second of the Japanese; the pull stops growing at JP_REACH,
+    so a piece the English lengthens - MV11's Philemon - is not dragged
+    back). Fewer stretches than rows: the longest splits in half until there
+    are enough."""
+    voice = list(voice)
+    while len(voice) < len(sizes):
+        k = max(range(len(voice)), key=lambda j: voice[j][1] - voice[j][0])
+        a, b = voice[k]
+        voice[k:k + 1] = [(a, (a + b) / 2), ((a + b) / 2, b)]
+    dur = np.cumsum([0.0] + [b - a for a, b in voice])
+    want = np.cumsum([0.0] + list(sizes)) / sum(sizes)
+    n, rows = len(voice), len(sizes)
+
+    def cost(i, k):              # row i starts at stretch k
+        gap = max(voice[k][0] - voice[k - 1][1], HOP)
+        return (ALIGN_WEIGHT * abs(dur[k] / dur[-1] - want[i])
+                + JP_WEIGHT * min(abs(voice[k][0] - jp[i]), JP_REACH)
+                - np.log(gap / PAUSE))
+    best = {(0, 0): (0.0, [])}   # (rows placed, stretches used) -> (cost, starts)
+    for i in range(1, rows):
+        nxt = {}
+        for (_i, k0), (c, starts) in best.items():
+            for k in range(k0 + 1, n - (rows - i) + 1):
+                cand = (c + cost(i, k), starts + [k])
+                if (i, k) not in nxt or cand[0] < nxt[(i, k)][0]:
+                    nxt[(i, k)] = cand
+        best = nxt
+    starts = [0] + min(best.values())[1] + [n]
+    return [(voice[a][0], voice[b - 1][1]) for a, b in zip(starts, starts[1:])]
+
+
+def derive_dub():
+    """[(movie, row, start_s, end_s)]: the dub's own subtitle rows
+    (dub_subtitles.tsv, what the English voice says) as they are, timed to
+    the English voice of the dub (fmv_dub.py's map): the voice found in the
+    centre of each piece of the PSP track (centre_db), at its place in the
+    movie, the rows aligned to it (align) and timed by the same rules
+    (time_movie)."""
+    import fmv_dub
+    rows = [r for r in strlib.tsv_rows(fmv_subgen.DUB_SUBTITLES,
+                                       required=('movie', 'start_s', 'end_s', 'text'))
+            if etext.has_text(r['text'])]
+    out = []
+    for mv, (psp, lines) in sorted(fmv_dub.read_map().items()):
+        jp = [float(r['start_s']) for r in rows if r['movie'] == mv]
+        mine = [' '.join(r['text'].replace('\\n', ' ').split()) for r in rows if r['movie'] == mv]
+        if not mine:
+            continue
+        db = centre_db(fmv_dub.psp_track(psp, RATE))
+        floor = quiet_floor(db)
+        voice = []
+        for at, p0, p1, *_v in fmv_dub.placements(lines):
+            voice += [(t0 + at - p0, t1 + at - p0) for t0, t1 in voiced(db, floor, p0, p1)]
+        subs = list(zip(mine, align([len(t) for t in mine], jp, sorted(voice))))
+        for k, (start, end) in enumerate(time_movie(subs)):
+            out.append((mv, k, round(start, 2), round(end, 2)))
+    return out
+
+
 def write(subs):
     with open(SOURCE, 'w', encoding='utf-8', newline='\n') as f:
         f.write('movie\tstart_s\tend_s\ttext\tnote\n')
@@ -414,6 +506,34 @@ def write(subs):
 
 
 def main():
+    if '--dub' in sys.argv:
+        subs = derive_dub()
+        if '--dry' in sys.argv:
+            text = {}
+            for r in strlib.tsv_rows(fmv_subgen.DUB_SUBTITLES, required=('movie', 'text')):
+                if etext.has_text(r['text']):
+                    text.setdefault(r['movie'], []).append(r)
+            for m, k, a, b in subs:
+                r = text[m][k]
+                print(f"{m} {a:6.2f}-{b:6.2f}  (JP {float(r['start_s']):6.2f}-{float(r['end_s']):6.2f})  "
+                      f"{r['text'].replace(chr(92) + 'n', ' / ')}")
+            return
+        timed = {(m, k): (a, b) for m, k, a, b in subs}
+        rows, seen = [], {}
+        for r in strlib.tsv_rows(fmv_subgen.DUB_SUBTITLES, required=fmv_subgen.SUBTITLE_COLS):
+            if etext.has_text(r['text']):
+                k = seen[r['movie']] = seen.get(r['movie'], -1) + 1
+                if (r['movie'], k) in timed:
+                    a, b = timed[(r['movie'], k)]
+                    r['start_s'], r['end_s'] = f'{a:.2f}', f'{b:.2f}'
+            rows.append(r)
+        with open(fmv_subgen.DUB_SUBTITLES, 'w', encoding='utf-8', newline='\n') as f:
+            f.write('\t'.join(fmv_subgen.SUBTITLE_COLS) + '\n')
+            for r in rows:
+                f.write('\t'.join(r[c] for c in fmv_subgen.SUBTITLE_COLS) + '\n')
+        print(f'fmv_retime: {len(subs)} dub subtitles timed in '
+              f'{os.path.relpath(fmv_subgen.DUB_SUBTITLES, ROOT)}')
+        return
     if '--dry' in sys.argv:
         for m, a, b, lines, _n in derive():
             print(f'{m} {a:6.2f}-{b:6.2f}  {" / ".join(lines)}')

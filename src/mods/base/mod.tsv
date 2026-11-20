@@ -1,0 +1,7 @@
+name	Base
+description	The language-neutral engine every translation stands on: the overlay hooks, relocated and bounded text, the free space they use, and the build itself.
+default	yes
+always	yes
+release	yes
+option	negotiation-inset	on	Correct negotiation inset	Align negotiation text with the normal dialogue inset.
+option	negotiation-inset	off	Original negotiation inset	Use the original negotiation text inset.

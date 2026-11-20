@@ -25,7 +25,8 @@ import struct
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, 'src', 'injection_tools'))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
 import talk  # noqa: E402
 import etext  # noqa: E402
 

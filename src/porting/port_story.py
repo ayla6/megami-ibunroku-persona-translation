@@ -1,0 +1,2584 @@
+"""Port PSP-US story text into PSX event boxes (etext-compatible en strings).
+
+Golden rule: the PSP-US box owns the words and pagination; the PSX-JA box
+is the alignment key (which box maps where). It supplies no runtime codes
+or positions in the English stream. Name insert kinds belong to PSP wording.
+No JA wording enters en.
+  - PSP FF1B first line -> 'Label: ' prefix (verbatim). Later identical FF1B
+    lines are dropped; differing ones are flagged.
+  - PSP FF18/FF19 formatting (+1 param, +0044 after 0200/0300) is dropped;
+    FF11 retains its position; FF1A variables use port_codes.ADV_VARIABLES;
+    FF02 waits / FF04 pages ride verbatim; FF03 lines merge into width flow.
+  - PSP FF05 pauses ride verbatim with US durations; PSP FF07/08/0F name
+    markers retain their PSP kind and gain the protagonist parameter;
+    PSP FF0E choices ride with PSP's own value
+    byte; PSP FF18/FF06 card heads map to the PSX FF06 frame style. JA
+    codes never render.
+  - Pure-dot US words are dropped when PSP has FF05 pauses (the pauses ARE
+    the beat); kept otherwise.
+  - Intro cards (FF06 portrait boxes) take a custom path (PSP-mapped frame).
+
+  python src/porting/port_story.py E0 0        convert entry, print rows + QA
+  python src/porting/port_story.py E0 0 --apply
+                                             write the generated PSX/ADV/E0.tsv port table
+"""
+import csv
+import os
+import re
+import struct
+import sys
+
+# Deterministic output: set/dict iteration order otherwise leaks the
+# per-process hash seed into row content. Same seed as build.py.
+# Seed re-exec ONLY as a script: an import must never hijack the host
+# process.
+if __name__ == '__main__' and os.environ.get('PYTHONHASHSEED') != '0':
+    os.environ['PYTHONHASHSEED'] = '0'
+    os.execvpe(sys.executable, [sys.executable] + sys.argv, os.environ)
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
+import toolbelt  # noqa: E402
+import etext  # noqa: E402
+import strlib  # noqa: E402
+import efile  # noqa: E402
+import vwf_wrap  # noqa: E402
+import tstatus  # noqa: E402 (classify_deviations: the audit shares QA's gate)
+from text import load_psp  # noqa: E402
+from codec import US_MAP  # noqa: E402
+import story_port_plan  # noqa: E402
+
+ALIGN = os.path.join(toolbelt.MAPPINGS, 'align.tsv')
+
+# PSP param rules (empirical, JP/US agreement)
+DROP1 = {0x05, 0x06, 0x18, 0x19, 0x1A}
+# Brackets, caption marks and bullets are visible glyphs in US_MAP, not
+# invisible icons. They pass through the same decoder as every other glyph.
+# PSX param sizes in DECODED chars
+PSX_PARAMS = {'FF05': 2, 'FF06': 1, 'FF0E': 1, 'FF0F': 1}
+# Japanese poker headings are structural labels, not speaker names. PSP-US
+# supplies their exact English text in the word stream, so don't synthesize
+# a second label from the PSX caption.
+HAND_LABELS = strlib.glossary('hand')
+# glossary JA names verified to match PSP spellings (labels + cards)
+GLOSS_OK = strlib.glossary('name')
+
+
+def collect_labels():
+    """PSP-US speaker labels derived from story boxes; no cache writes."""
+    from text import load_psp
+    from codec import decode_box
+    labels = set()
+    for file in ('E0', 'E1', 'E2', 'E3', 'E4'):
+        for entry in load_psp(file, 'us').entries:
+            for i in range(len(entry.boxes)):
+                decoded = decode_box(entry.box_bytes(i), holes=[])
+                for match in re.finditer(r'<FF1B>([^<]*)', decoded):
+                    label = match.group(1).strip()
+                    if label and '[' not in label:
+                        labels.add(label)
+    return labels
+
+
+def psp_names():
+    """JA label -> PSP EN, for glossary characters whose EN appears as a US
+    label, plus verified extras. Cached."""
+    if psp_names.cache is None:
+        import tstatus
+        tstatus.load_glossary()
+        labs = set()
+        p = os.path.join(toolbelt.MAPPINGS, 'labels.tsv')
+        if os.path.exists(p):
+            for row in strlib.tsv_rows(p, required=('label',)):
+                labs.add(row['label'])
+        else:
+            labs = collect_labels()
+            os.makedirs(os.path.dirname(p), exist_ok=True)
+            with open(p, 'w', encoding='utf-8', newline='\n') as out:
+                out.write('label\n')
+                out.writelines(label + '\n' for label in sorted(labs))
+        m = dict(GLOSS_OK)
+        for ja, (en, cat) in tstatus.GLOSS.items():
+            if cat in ('character', 'speaker label') and en in labs:
+                m.setdefault(ja, en)
+        # verified extras (PSP uses given name / nickname form)
+        m.update(strlib.glossary('name_extra'))
+        psp_names.cache = m
+    return psp_names.cache
+
+
+psp_names.cache = None
+
+
+def accepted_pairs():
+    """{(file, entry, box)} reviewed-good reattributions (keep US label)."""
+    if accepted_pairs.cache is None:
+        accepted_pairs.cache = set()
+        p = os.path.join(toolbelt.SOURCE_MAPPINGS, 'accept.tsv')
+        if os.path.exists(p):
+            for f in strlib.tsv_fields(p, 3):
+                accepted_pairs.cache.add((f[0], int(f[1]), int(f[2])))
+    return accepted_pairs.cache
+
+
+accepted_pairs.cache = None
+
+
+# Sentinel prefix marking PSP-US structure breaks inside the word stream
+# (FF02 wait / FF03 line / FF04 page). PSP owns pagination: JA breaks are
+# dropped, PSP breaks are kept. Private-use char, never collides with text.
+US_BRK = ''
+
+
+# A PSP pause sentinel in the word stream: FF05 and its two duration bytes,
+# then the gaps the source had around it - 'B' a space before the pause, 'A'
+# one after it (in that order, either may be absent). Where the gap sits
+# decides where the space lands in the English box: 'SHUT UP! <FF05><2000>
+# <FF07>...' keeps it before the pause, '<FF05><2000> Silence!' after it.
+PAUSE_WORD = re.compile(re.escape(US_BRK) + r'FF05[0-9A-F]{4}B?A?\Z')
+
+
+def us_parts(raw, ja=None):
+    """Segments [(label_or_None, words)] split at differing FF1B lines.
+    PSP structure breaks ride inside the word stream as US_BRK sentinels."""
+    segments = []
+    curlabel = None
+    words = []
+    flags = []
+    cur = ''
+    i = 0
+    n = len(raw)
+
+    def flush():
+        nonlocal cur
+        if cur:
+            # no quote/apostrophe splitting: punctuation stays glued to its
+            # word exactly as PSP authored it ("young master.", y'know).
+            # The width flow wraps whole words; a quote
+            # never strands alone unless PSP spaced it that way.
+            words.append(cur.replace('…', '...'))
+            cur = ''
+
+    def boundary(label):
+        nonlocal curlabel, words
+        flush()
+        if curlabel is None:
+            curlabel = label
+        elif label != curlabel:
+            segments.append((curlabel, words))
+            words = []
+            curlabel = label
+            # NOTE: no flag: mid-box speaker breaks are handled structurally
+            # (FF03 + 'Name: '), labels come straight from PSP data.
+
+    spaced = False      # the last unit was a space
+    while i + 1 < n:
+        if raw[i] == 0xFF:
+            op = raw[i + 1]
+            i += 2
+            # Only an op that puts something in the word stream (break, pause,
+            # name insert, choice prompt, label) splits a word. An invisible op
+            # is dropped here (styling, parameter bytes, terminators): the text
+            # either side of one is adjacent on screen and stays ONE word, so a
+            # plate inside PSP's own quotes can never open a gap
+            # ('"' + plate + 'Persona' + '"' + '?' -> '"Persona"?', never
+            # '"Persona "?'). Real spaces still split below.
+            if op in (0x01, 0x02, 0x03, 0x04, 0x05, 0x07, 0x08, 0x0E, 0x0F, 0x11, 0x1A, 0x1B):
+                flush()
+            if op == 0x01:
+                words.append(US_BRK + 'FF01')
+            elif op in (0x02, 0x03, 0x04):
+                # PSP pagination/lineation: kept verbatim (JA breaks are
+                # dropped instead). Rides the word stream as a sentinel.
+                structural = False
+                if op == 0x03:
+                    from port_controls import is_heading
+                    start = next((j for j in range(len(words)-1, -1, -1)
+                                  if words[j].startswith(US_BRK)), -1)
+                    structural = is_heading(' '.join(words[start + 1:]))
+                words.append(US_BRK + ('STRUCT03' if structural else 'FF%02X' % op))
+            elif op == 0x1B:
+                # the label runs to its line break, and a name insert is part
+                # of it: '<FF1B><FF08>'s voice<FF03>' is the label
+                # "<name>'s voice", not an empty label before speech that
+                # opens on a name
+                lab = []
+                while i + 1 < n:
+                    if raw[i] == 0xFF:
+                        if raw[i + 1] in (0x07, 0x08, 0x0F):
+                            lab.append('<FF%02X><01>' % raw[i + 1])
+                            i += 2
+                            continue
+                        break
+                    u = struct.unpack_from('>H', raw, i)[0]
+                    i += 2
+                    ch = US_MAP.get(u, '')
+                    if ch:
+                        lab.append(ch)
+                    else:
+                        flags.append('unmapped-label:%04x' % u)
+                boundary(''.join(lab).strip().replace('…', '...') or None)
+            elif op == 0x05:
+                # PSP pause with US duration: kept verbatim, rides the word
+                # stream as a sentinel (pauses are US-authoritative; JA
+                # pauses never enter the English text).
+                if i + 1 < n and raw[i] != 0xFF:
+                    param = struct.unpack_from('>H', raw, i)[0]
+                    i += 2
+                    # the gaps the source has around the pause, in the order
+                    # they sit: 'B' a space before it, 'A' one after (a space
+                    # after is seen when the next character is read). The
+                    # side matters: 'SHUT UP! <FF05><2000><FF07>...' keeps
+                    # its gap before the pause, "<FF05><2000> Silence!" after.
+                    words.append('%sFF05%04X%s' % (US_BRK, param,
+                                                  'B' if spaced else ''))
+            elif op in (0x07, 0x08, 0x0F):
+                # PSP name insertion: kept as a position marker. The name
+                # code is synthesized here (not at its JA slot), so
+                # surrounding words keep PSP order ("awake, <name>!", not
+                # "<name>awake,!").
+                words.append('%sNAME%02X' % (US_BRK, op))
+            elif op == 0x11:
+                words.append(US_BRK + 'INSERT<FF11>')
+            elif op == 0x1A:
+                if i + 1 < n and raw[i] != 0xFF:
+                    param = struct.unpack_from('>H', raw, i)[0]
+                    i += 2
+                    from port_codes import adv_variable
+                    try:
+                        words.append(US_BRK + 'INSERT' + adv_variable(param))
+                    except ValueError as ex:
+                        flags.append(str(ex))
+                else:
+                    flags.append('unmapped-variable')
+            elif op == 0x0E:
+                # PSP choice prompt: kept as a position marker with PSP's
+                # own value byte (FF0E LO 00; LO matches JA in all but 3
+                # rows where PSP deliberately differs, plus 2 rows where
+                # JA has no prompt at all and dropping it lost the choice).
+                if i + 1 < n:
+                    words.append('%sFF0E%02X%02X' % (US_BRK, raw[i], raw[i + 1]))
+                    i += 2
+            elif op in DROP1:
+                if i + 1 < n and raw[i] != 0xFF:
+                    first = struct.unpack_from('>H', raw, i)[0]
+                    i += 2
+                    if first in (0x0200, 0x0300) and i + 1 < n and raw[i] != 0xFF:
+                        second = struct.unpack_from('>H', raw, i)[0]
+                        if second == 0x0044:
+                            i += 2
+            else:
+                flags.append('unsupported-psp-control:FF%02X' % op)
+            spaced = False
+            continue
+        u = struct.unpack_from('>H', raw, i)[0]
+        i += 2
+        ch = US_MAP.get(u, '')
+        spaced = ch == ' '
+        if ch == ' ':
+            flush()
+            if words and PAUSE_WORD.fullmatch(words[-1]):
+                words[-1] += 'A'
+        elif ch:
+            cur += ch
+        else:
+            flags.append('unmapped:%04x' % u)
+    flush()
+    segments.append((curlabel, words))
+    if ja is not None:
+        from port_controls import adapt_buttons
+        # Adapt the whole reference sequence, not each page independently:
+        # the same physical button can have different uses in one message.
+        joined = ' \ue001 '.join(' '.join(ws) for _label, ws in segments)
+        adapted = adapt_buttons(joined, ja).split(' \ue001 ')
+        segments = [(label, text.split(' ') if text else [])
+                    for (label, _ws), text in zip(segments, adapted)]
+        import port_derive
+        # Head furniture that the PSX does not draw must not consume wrapping
+        # width. Structural caption breaks were identified above, before its
+        # visible markers are removed.
+        segments = [(label, [clean for word in ws
+                             if (clean := port_derive.head_marks(word, ja))])
+                    for label, ws in segments]
+    return segments, flags
+
+
+# PSX param sizes in RAW bytes (must match tstatus.PARAM_LEN!)
+PSX_PBYTES = {0x05: 2, 0x06: 1, 0x07: 1, 0x08: 1, 0x0E: 1, 0x0F: 1,
+              0x11: 0, 0x12: 0}
+
+
+def psx_tok_raw(raw):
+    """Param-aware token list over RAW box bytes: ('t', decoded text) /
+    ('c', code token with params as <XX> raw-byte tokens)."""
+    toks = []
+    pos = 0
+    i = 0
+    n = len(raw)
+    cur = bytearray()
+    while i < n:
+        c = raw[i]
+        if c == 0xFF and i + 1 < n:
+            op = raw[i + 1]
+            if cur:
+                toks.append(('t', etext.decode(bytes(cur))))
+                cur = bytearray()
+            if op < 0x20:
+                nb = PSX_PBYTES.get(op, 0)
+                params = raw[i + 2:i + 2 + nb]
+                toks.append(('c', '<FF%02X>' % op + ''.join('<%02X>' % b for b in params)))
+                i += 2 + nb
+            else:
+                # command byte (>=0x20): keep raw, attach as code
+                toks.append(('c', '<FF%02X>' % op))
+                i += 2
+        elif 0x80 <= c <= 0x87 and i + 1 < n:
+            cur += bytes(raw[i:i + 2])
+            i += 2
+        else:
+            cur.append(c)
+            i += 1
+    if cur:
+        toks.append(('t', etext.decode(bytes(cur))))
+    return toks
+
+
+def split_label(toks):
+    """Pull a leading JA 'X：' label off the first text token. Returns (label_ja, toks)."""
+    for i, (kind, val) in enumerate(toks):
+        if kind == 't' and val:
+            m = re.match(r'^([^<]{1,12}：)', val)
+            if m:
+                toks[i] = ('t', val[m.end():])
+                return m.group(1), toks
+            return None, toks
+    return None, toks
+
+
+def jp_mid_labels(toks):
+    """Mid-box JA speaker labels, in box order (the leading one is already
+    stripped by split_label). A label is a text token starting with 'X：'
+    (1-12 chars, fullwidth colon: the same shape split_label accepts).
+    EN mid-box restatements keep their name iff one of these exists."""
+    out = []
+    for kind, val in toks:
+        if kind == 't' and val:
+            m = re.match(r'^([^<]{1,12}：)', val)
+            if m:
+                out.append(m.group(1))
+    return out
+
+
+def label_words(label):
+    """Speaker-label words with the colon glued to the tail word
+    (College student with her boyfriend:). The label is ONE typographic
+    unit: a name must never break across lines ("Glasses-wearing" hanging
+    over "schoolgirl: Um... hello."). So it flows as a single atom whenever
+    it fits the box - it then either shares line 1 or takes the line whole,
+    exactly like any other word. Only a label wider than the box itself
+    falls back to wrapping at word gaps, and even then the colon stays
+    glued to its own word (it never strands alone: E0/19 in game).
+    Never shorten: all words kept."""
+    ws = [w for w in label.split(' ') if w]
+    if not ws:
+        return []
+    ws[-1] += ':'
+    if vwf_wrap.text_width(' '.join(ws)) <= vwf_wrap.BOX_WIDTH:
+        return [('w', ' '.join(ws))]
+    return [('w', w) for w in ws]
+
+
+# Words that look sentence-final but aren't (abbreviations, initials):
+# waits/pages snap to real sentence ends so fragments never strand
+# ("that little | ghost girl!"). Defined in the shared engine - the same
+# predicate decides where a line ends, where a page turns and where a wait
+# is allowed to cut.
+sent_end = vwf_wrap.sent_end
+
+
+def reflow(first_label, items, joins=None):
+    """Lay out the PSP stream in source order, without a Japanese skeleton.
+
+    Code translation precedes this function. Only prose line breaks and
+    width-based wrapping are presentation; inline controls stay between the
+    source words that surround them. Returns (en, used, flags).
+    """
+    flags = []
+    # normalize PSP break sentinels to ('u', code) items (they are not words)
+    norm = []
+    for it in items:
+        if it[0] == 'w' and isinstance(it[1], str) and it[1].startswith(US_BRK):
+            norm.append(('u', it[1][len(US_BRK):]))
+        else:
+            norm.append(it)
+    items = norm
+    used = sum(it[0] == 'w' for it in items)
+    parts = []
+    flow_items = []
+    tail = 'empty'
+    dirty = False
+    if first_label:
+        # The label is one prose atom; shared flow can put it on its own
+        # line when that avoids a clipped speech fragment without adding
+        # lines. A prompt that does not fit
+        # on one line is gated by vwf_wrap.choice_breaks instead: no options
+        # until the player presses, then one scroll.
+        flow_items.extend(label_words(first_label))
+        tail = 'other'
+        dirty = True
+    # (wrapping policy lives in vwf_wrap.flow_lines; the item stream
+    # below only positions words, breaks and inline codes.)
+    glue = False  # dropped PSP FF03 after a hyphen fragment: the next word
+    # rejoins spaceless (PSP hyphen wraps, same rule as port_talk)
+    # parts tail state for conditional header breaks (casino sections):
+    # a header breaks unless the output is empty or already break-ended.
+    # (flow_items/tail/dirty already carry the speaker atom above, if any.)
+    def fire(ak, av):
+        # One positioned fire -> flow items: flush, break/code, spacing.
+        # Speaker labels flow as words with the colon glued to the tail word.
+        nonlocal dirty, tail, glue
+        glue = False
+        if ak == 'b':
+            flow_items.append(('b', '<FF03>'))
+            tail = 'break'
+            dirty = False
+            if av:
+                flow_items.extend(label_words(av))
+                tail = 'other'
+                dirty = True
+        elif av == 'STRUCT03':
+            flow_items.append(('b', '<FF03>'))
+            tail = 'break'
+            dirty = False
+        elif av == 'FF03':
+            # A PSP LINE BREAK IN PROSE IS NOT OURS (spec 2): it is where the
+            # PSP's 16px glyphs ran out, so the English reflows and the flow
+            # places every break. Structural instruction captions keep their
+            # own break. After a hyphen fragment the
+            # next word glues spaceless (bunny-<FF03>girls).
+            # A source line break after a pause is a word boundary, even if
+            # the next word starts with an ellipsis. Retain that information
+            # while allowing the shared flow to choose its own break.
+            if flow_items and flow_items[-1][0] == 'g':
+                flow_items[-1] = (*flow_items[-1][:2], True)
+            from port_controls import is_heading
+            last_break = next((i for i in range(len(flow_items) - 1, -1, -1)
+                               if flow_items[i][0] == 'b'), -1)
+            caption = ' '.join(v for k, v, *_ in flow_items[last_break + 1:]
+                               if k == 'w')
+            if is_heading(caption):
+                flow_items.append(('b', '<FF03>'))
+                tail = 'break'
+                dirty = False
+            elif (flow_items and flow_items[-1][0] == 'w'
+                    and flow_items[-1][1].endswith('-')):
+                glue = True
+        elif av in ('FF02', 'FF04'):
+            flow_items.append(('b', '<%s>' % av))
+            tail = 'break'
+            dirty = False
+        elif av.startswith('NAME'):
+            code = '<FF%s><01>' % av[4:6]
+            flow_items.append(('s', code))
+            dirty = True
+        elif av.startswith('INSERT'):
+            flow_items.append(('s', av[len('INSERT'):]))
+            dirty = True
+        elif av.startswith('FF05'):
+            # the source's own gaps around the pause: where each one sat
+            # decides where the space lands (a line break beside it sets the
+            # after-gap below, a leading gap is dropped at a line start)
+            gaps = av[8:]
+            flow_items.append(('g', '<FF05><%s><%s>' % (av[4:6], av[6:8]),
+                               'A' in gaps, 'B' in gaps))
+            dirty = True
+        elif av.startswith('FF0E'):
+            flow_items.append(('b', '<FF0E><%s>' % av[4:6]))
+            dirty = False
+        elif av == 'FF01':
+            flow_items.append(('b', '<FF01>'))
+        else:
+            raise SystemExit('port_story: unexpected stream code %r' % av)
+    for kind, val in items:
+        if kind == 'w':
+            if glue and flow_items and flow_items[-1][0] == 'w':
+                if val.strip(',.!?;:\'"').lower() in ('or', 'and', 'nor', 'but', 'yet'):
+                    flow_items.append(('w', val))
+                else:
+                    flow_items[-1] = ('w', flow_items[-1][1] + val)
+                glue = False
+            else:
+                flow_items.append(('w', val))
+            dirty = True
+        elif kind == 'h':
+            flow_items.append(('h', val))    # the original's line ends here
+        else:
+            fire(kind, val)
+    # A box the merge may join onto the one before shares that box's three
+    # lines: its layout must leave the join room (box_joins; unknown = any
+    # boundary may join).
+    for k, v in vwf_wrap.flow_lines(flow_items, vwf_wrap.BOX_WIDTH,
+                                    vwf_wrap.text_width, '<FF03>',
+                                    joinable=joins if joins is not None
+                                    else True):
+        parts.append(v)
+    # THE choice rule (vwf_wrap.choice_breaks): the options start on their
+    # own line - every assembly point goes through it, no copy of the rule
+    en = vwf_wrap.choice_breaks(''.join(parts), brk='<FF03>')
+    return en, used, flags
+
+
+# Nickname-less PSP staff/NPC cards: PSX JA name slot -> US name.
+# (The US text then continues with the desc; leading name words stripped.)
+CARD_NAMES = strlib.glossary('card')
+
+
+def parse_card(raw):
+    """Structured parse of a PSP intro-card box. Returns (name, nick,
+    desc_words, label): label is the PSP's own word for the nickname slot
+    ('Nickname'; the errata may respell it for one card).
+    Layout: FF18 params, NAME [0029] 'Nickname' [0006] NICK [002a] DESC...
+    Nickname-less cards (PSP staff/NPC cards): NAME DESC... with NAME from
+    CARD_NAMES via the PSX side (handled by caller passing psx_name)."""
+    ICONS = {0x0029, 0x0006, 0x002a}
+    segs = []  # text segments split by icons
+    cur = ''
+    i = 0
+    n = len(raw)
+
+    def flush():
+        nonlocal cur
+        if cur.strip():
+            segs.append(cur.strip())
+            cur = ''
+
+    while i + 1 < n:
+        if raw[i] == 0xFF:
+            op = raw[i + 1]
+            i += 2
+            flush()
+            if op in (0x07, 0x08, 0x0F):
+                # name marker: preserved so the JA name code lands here
+                segs.append('%sNAME%02X' % (US_BRK, op))
+                continue
+            if op == 0x03:
+                # PSP line break rides as a sentinel so card_en's reflow
+                # can glue it spaceless after '-' (PSP hyphen wraps);
+                # joining it away here baked "part- time".
+                segs.append('%sFF03' % US_BRK)
+                continue
+            if op in DROP1:
+                if i + 1 < n and raw[i] != 0xFF:
+                    first = struct.unpack_from('>H', raw, i)[0]
+                    i += 2
+                    if first in (0x0200, 0x0300) and i + 1 < n and raw[i] != 0xFF:
+                        second = struct.unpack_from('>H', raw, i)[0]
+                        if second == 0x0044:
+                            i += 2
+            continue
+        u = struct.unpack_from('>H', raw, i)[0]
+        i += 2
+        if u in ICONS:
+            flush()
+            segs.append('<ICON%04x>' % u)
+            continue
+        ch = US_MAP.get(u, '')
+        if ch == ' ':
+            flush()
+            segs.append(' ')
+        elif ch:
+            cur += ch
+    flush()
+    # segs: [name, <ICON0029>, 'Nickname', <ICON0006>, nick, <ICON002a>, desc...]
+    if '<ICON0029>' in segs and '<ICON002a>' in segs:
+        i29 = segs.index('<ICON0029>')
+        i2a = segs.index('<ICON002a>')
+        name = ' '.join(s for s in segs[:i29]
+                        if s != ' ' and not s.startswith(US_BRK + 'FF03')).strip()
+        nick = ''
+        label = 'Nickname'
+        if '<ICON0006>' in segs:
+            i06 = segs.index('<ICON0006>')
+            label = ' '.join(s for s in segs[i29 + 1:i06]
+                             if s != ' ' and not s.startswith(US_BRK)).strip() or label
+            nick = ' '.join(s for s in segs[i06 + 1:i2a]
+                            if s != ' ' and not s.startswith(US_BRK + 'FF03')).strip()
+        desc = []
+        for s in segs[i2a + 1:]:
+            if s == ' ':
+                desc.append('')
+            elif s.startswith('<ICON'):
+                continue
+            elif s.startswith(US_BRK):
+                desc.append(s)
+            else:
+                desc.append(s)
+        words = []
+        for d in ' '.join(desc).replace('…', '...').split(' '):
+            if d:
+                words.append(d)
+        name = name.replace('…', '...')
+        if not name:
+            return None  # icon bytes without a title: not a decodable card
+        return name, nick.replace('…', '...'), words, label
+    return None
+
+
+def parse_card_simple(raw, psx_name):
+    """Nickname-less staff/NPC card: NAME DESC... Name from CARD_NAMES via the
+    PSX JA name slot; desc = US text minus leading name words."""
+    if psx_name not in CARD_NAMES:
+        return None
+    name = CARD_NAMES[psx_name]
+    words, cur = [], ''
+    i, n = 0, len(raw)
+
+    def flush():
+        nonlocal cur
+        if cur.strip():
+            words.append(cur.strip())
+            cur = ''
+
+    while i + 1 < n:
+        if raw[i] == 0xFF:
+            op = raw[i + 1]
+            i += 2
+            flush()
+            if op in (0x07, 0x08, 0x0F):
+                # name marker: preserved so the JA name code lands here
+                words.append('%sNAME%02X' % (US_BRK, op))
+                continue
+            if op in DROP1:
+                if i + 1 < n and raw[i] != 0xFF:
+                    first = struct.unpack_from('>H', raw, i)[0]
+                    i += 2
+                    if first in (0x0200, 0x0300) and i + 1 < n and raw[i] != 0xFF:
+                        second = struct.unpack_from('>H', raw, i)[0]
+                        if second == 0x0044:
+                            i += 2
+            continue
+        u = struct.unpack_from('>H', raw, i)[0]
+        i += 2
+        if u in (0x0029, 0x0006, 0x002a):
+            flush()
+            continue
+        ch = US_MAP.get(u, '')
+        if ch == ' ':
+            flush()
+        elif ch:
+            cur += ch
+        else:
+            return None  # unknown unit: not safe to strip blindly
+    flush()
+    flat = ' '.join(words).replace('…', '...')
+    want = name.split(' ')
+    got = flat.split(' ')
+    if [g.lower().rstrip(',:') for g in got[:len(want)]] != [w.lower() for w in want]:
+        return None
+    rest = got[len(want):]
+    # An inline source description can follow the name's comma on the SAME
+    # line. Keep that authored punctuation; it is not a synthesized dash.
+    suffix = ',' if got[len(want) - 1].endswith(',') else ''
+    return name + suffix, '', rest
+
+
+def parse_card_text(raw, psx_name):
+    """Plain-text style card (FF06-headed US box, no FF18 portrait/icons):
+    title line + description lines. The title must resolve to a known card
+    name (via CARD_NAMES from the PSX JA slot or its EN value); otherwise
+    this is not a card pair and None is returned."""
+    if raw[:2] != b'\xff\x06':
+        return None
+    segments, flags = us_parts(raw)
+    if any('unmapped' in fl for fl in flags):
+        return None  # title/desc use codes outside the solved map
+    chunks, cur = [], []
+    for _lab, words in segments:
+        for x in words:
+            if isinstance(x, str) and x.startswith(US_BRK):
+                if cur:
+                    chunks.append(' '.join(cur))
+                    cur = []
+            else:
+                cur.append(x)
+    if cur:
+        chunks.append(' '.join(cur))
+    chunks = [c.replace('…', '...').strip(' .') for c in chunks if c.strip(' .')]
+    if not chunks:
+        return None
+    title = chunks[0].lstrip('. ').strip()
+    names = dict(CARD_NAMES)
+    if psx_name in names and title.lower().startswith(names[psx_name].lower()):
+        name = names[psx_name]
+    elif title in names.values():
+        name = title
+    else:
+        return None
+    # THE SOURCE'S BREAKS SURVIVE THE PARSE: chunks were split at every break,
+    # so joining them with a space threw the author's lines away and the flow
+    # then re-broke the card wherever it liked. Each chunk after the title is
+    # one source line, and the sentinel between them keeps it that way.
+    desc = []
+    for c in chunks[1:]:
+        if desc:
+            desc.append(US_BRK + 'FF03')
+        desc.extend(w for w in c.split(' ') if w)
+    return name, '', desc
+
+
+def card_en(psx_raw, us_raw, name, nick, words, label='Nickname'):
+    """Build card en: PSX FF06 frame whose style comes from the PSP box
+    head (FF18/FF06 + 0200/0300 -> <FF06><02>/<FF06><03>), PSP-owned tail
+    waits/end, name/nick/desc flowed through the middle slots. Mid-box
+    codes are PSP's own markers; JA codes never enter (JA text runs only
+    apportion the PSP words, a layout heuristic).
+    (The PSX-JA head agrees in every paired row, but the value is read
+    from the PSP bytes here, not copied from the Japanese.)"""
+    style = '03' if (len(us_raw) > 3 and us_raw[0] == 0xFF
+                     and us_raw[1] in (0x18, 0x06) and us_raw[2] == 0x03) else '02'
+    head = '<FF06><%s>' % style
+    # tail: PSP's own frame close + waits/end. Both card kinds close with a
+    # four-byte frame code: portrait cards FF18 0000, plain-text cards
+    # FF06 0000. Either maps to the PSX frame close <FF06><00>; every card
+    # ends FF02 FF01, same bytes both sides.
+    tail = ''
+    i = len(us_raw)
+    while i - 2 >= 0 and us_raw[i - 2] == 0xFF and us_raw[i - 1] in (0x01, 0x02):
+        tail = '<FF%02X>' % us_raw[i - 1] + tail
+        i -= 2
+    if i - 4 >= 0 and us_raw[i - 4:i] in (bytes((0xFF, 0x18, 0x00, 0x00)),
+                                          bytes((0xFF, 0x06, 0x00, 0x00))):
+        tail = '<FF06><00>' + tail
+        i -= 4
+    if '<FF01>' not in tail:
+        tail += '<FF01>'
+    toks = [t for t in psx_tok_raw(psx_raw) if t[0] == 't']
+    # THE CARD'S HEAD IS A NAMEPLATE, NOT A SPEAKER LABEL: the PSP writes the
+    # name alone on its line ("＞ Saeko Takami"), with NO colon - a colon here
+    # is our invention and does not exist in either script.
+    # the PSP spells the nickname slot with its own colon, and the label is
+    # rebuilt from the card's parts (not copied), so the colon is spelled here:
+    # 'Yukino Mayuzumi (Nickname: Yukino)' - it is part of the label.
+    body = ('%s (%s: %s)' % (name, label, nick) if nick else name).rstrip(':')
+    if nick and body.count(':') > 1:
+        body = body.replace('::', ':')
+    # ... and the description must not open with the label's colon: the PSP
+    # head and the parsed title can each contribute one, and a line that
+    # begins with ':' is never right.
+    words = [w for w in (words or []) if w]
+    for idx, w in enumerate(words):
+        if w.startswith(US_BRK):
+            continue                     # a break sentinel: keep, look further
+        if w.startswith(':'):
+            rest = w.lstrip(':')
+            if rest:
+                words[idx] = rest
+            else:
+                del words[idx]
+        break
+    # Prefer the separate source nameplate when it costs no additional press.
+    # Otherwise try one flowing card: an authored comma stays a comma; the
+    # parenthesized nickname needs only a space; a bare name needs the dash
+    # separator. A long nickname header may wrap (including at a hyphen) when
+    # that saves a scroll, never merely for shape. No wording is shortened.
+    def desc_text():
+        """The description as text with its codes spelled back: a US_BRK
+        sentinel carries either a code ('FF03') or a name slot ('NAME07',
+        which is <FF07> plus its parameter)."""
+        out, buf = [], []
+        for w in list(words):
+            if not w:
+                continue
+            if w.startswith(US_BRK):
+                if buf:
+                    out.append(' '.join(buf))
+                    buf = []
+                code = w[len(US_BRK):]
+                if code.startswith('NAME'):
+                    out.append('<FF%s><01>' % code[4:6])
+                elif code.startswith('FF'):
+                    out.append('<' + code + '>')
+            else:
+                buf.append(w)
+        if buf:
+            out.append(' '.join(buf))
+        return ' '.join(out)
+
+    head_fits = vwf_wrap.text_width(body) + 3 <= vwf_wrap.BOX_WIDTH
+
+    def build(inline, word_gaps=False):
+        # ONE layout pass and ONE pagination for the whole card (head included):
+        # separate pagination could produce two scrolls in one box.
+        separator = ' ' if nick or body.endswith(',') else ' - '
+        laid = (layout_box(body + separator + desc_text()) if inline
+                 else layout_box(desc_text(), head=body, word_gaps=word_gaps))
+        return _clean(paginate(head + laid + tail)[0])
+
+    plain = build(False)
+    presses = lambda s: s.count('<FF02>')
+    if presses(plain) > presses(tail):
+        relaxed = build(False, word_gaps=True)
+        lines = relaxed.split('<FF03>')
+        if (presses(relaxed) < presses(plain)
+                and all(vwf_wrap.text_width(line) <= vwf_wrap.BOX_WIDTH + int(i == len(lines) - 1)
+                        for i, line in enumerate(lines))):
+            plain = relaxed
+    out = plain
+    if head_fits or nick:
+        compact = build(True)
+        if (presses(compact) < presses(plain)
+                or (body.endswith(',') and presses(compact) == presses(plain))):
+            out = compact
+    out = out.replace(' -  ', ' - ')
+    # THE NAMEPLATE LINE NEVER ENDS WITH A COLON: the nameplate is a name,
+    # and a colon after it is our label machinery leaking into a card
+    # ("Yukino Mayuzumi (Nickname: Yukino):"). Only after the WHOLE
+    # nameplate: a line that breaks inside it keeps the nickname's own colon
+    # ("Tsutomu Kurouri (Nickname: / Devil-Boy)").
+    m = re.match(r'(<FF06><[0-9A-F]{2}>)(.*?):(?=<FF03>)', out, re.S)
+    if m and m.group(2).strip() == body.strip():
+        out = m.group(1) + m.group(2) + out[m.end():]
+    return out
+
+
+def code_words(part):
+    """Words of `part`, keeping every control code glued to its PARAMETER
+    bytes (vwf_wrap.PARAM_LEN is the authority: FF05 x2, FF06/07/08/0E/0F x1).
+    A param may be a whole character - <FF0E>'s choice param is a SPACE -
+    so plain word splitting would eat it and the next code would be misread
+    as the param (sysmsg: '[charset] non-ASCII bytes in text: 01')."""
+    import re as _re
+    import vwf_wrap as _v
+    toks, i, word = [], 0, ''
+    while i < len(part):
+        m = _re.match(r'<FF([0-9A-F]{2})>', part[i:])
+        if m:
+            code = part[i:i + m.end()]
+            i += m.end()
+            n = _v.PARAM_LEN.get(m.group(1), 0)
+            for _ in range(n):
+                mm = _re.match(r'<[0-9A-F]{2}>', part[i:])
+                step = mm.end() if mm else 1
+                code += part[i:i + step]
+                i += step
+            word += code
+            continue
+        if part[i] == ' ':
+            if word:
+                toks.append(word)
+                word = ''
+            i += 1
+            continue
+        word += part[i]
+        i += 1
+    if word:
+        toks.append(word)
+    return toks
+
+
+def flow_words(part, first=False, last=False):
+    """`code_words(part)` with a timed pause its OWN flow item.
+
+    The flow knows a pause is zero-width and carries its one word gap on the
+    side the source put it, but a pause riding inside a word token is laid out
+    as text: it prints a gap before AND after (run it twice, as _rejoin does,
+    and 'Although...<pause> Wait' becomes 'Although...<pause> Wait' with two
+    blanks - playtested). The sides are read off `part`: a space before a
+    pause is its B gap, one after it the A gap. A pause at a chunk edge
+    stands where this string's line break was, and that break may be
+    re-placed, so it takes the gap on the side away from the break - the two
+    words must not run together when the flow joins them. `first`/`last` say
+    the chunk has the box's own start/end on that side (a leading gap is
+    dropped at a line start, a trailing one is a blank).
+    """
+    import vwf_wrap as _v
+    toks = [w for w in code_words(part) if w]
+    out = []
+    for ti, tok in enumerate(toks):
+        pos = 0
+        for m in _v.PAUSE_CODE.finditer(tok):
+            text = tok[pos:m.start()]
+            if text:
+                out.append(('w', text))
+            before = bool(m.start() == 0 and not (ti == 0 and first))
+            after = bool(m.end() == len(tok)
+                         and not (ti == len(toks) - 1 and last))
+            # Inside one token the source glued the pause to both words
+            # ('Hmm<pause>m'): no space was there, and none is invented.
+            out.append(('g', m.group(0), after, before))
+            pos = m.end()
+        text = tok[pos:]
+        if text:
+            out.append(('w', text))
+    return out
+
+
+def layout_box(en, brk=None, head=None, word_gaps=False):
+    """THE textbox layout - the one entry every producer calls (boot_btlmsg,
+    port_lastresort, any family that has a box in hand). Nothing about a box's
+    layout is decided anywhere else: the label rule at EVERY box head
+    (label_words), LINE BREAKS as reflow output (the source's breaks belong to
+    its own box - they are stripped to spaces and vwf_wrap.flow_lines re-places
+    them at the width), the structure codes kept as deliberate breaks, the
+    edge-blank rule, choice breaks, and the pagination. `brk` is the family's
+    line-break code (<FF03> the dialogue engines, <FFF6> the battle one - FFF6
+    really is BTLP's line move, not FF03; FF06 is colour and never a break).
+    Returns '' when no layout fits the box - a row that cannot lay out is a
+    draft, never a wrong box."""
+    import re as _re
+    import vwf_wrap as _v
+    if brk is None:
+        brk = vwf_wrap.NEWLINE
+    # A CARD'S HEAD IS ITS OWN LINE and it must be part of the SAME layout
+    # pass: laying the description out separately and then paginating the
+    # pair paginated twice, which put two scrolls in one box (E0 #46).
+    head_items = ([('w', w) for w in code_words(head) if w] + [('b', brk)]
+                  if head else [])
+    # A NAMEPLATE is one construct in two spellings: the PSX writes
+    # '<FF1B>name<FF03>', the PSP writes its own head decoration plus the
+    # name and the same break ('￥N' - '￥N＜' in the JP - then the name).
+    # Both become the same label here; the decoration is not wording.
+    LAB = _re.compile(r'^\s*(?:<FF1B>([^<]*)|￥N[＞＜]?([^<]*?))(<FF03>)')
+    # THE BOX'S TAIL IS ITS OWN: the dismissal wait and the end code
+    # ('<FF02><FF01>') are what make the box WAIT for a press. The layout
+    # splits the text into parts and only words become lines, so preserve
+    # the tail after the last word separately.
+    tail = ''
+    m = _re.search(r'((?:<FF0?[124]>|<FFEF>|<FFF5>)+)\s*$', en)
+    if m:
+        tail = m.group(1).replace(' ', '')
+        en = en[:m.start()]
+
+    items = list(head_items)
+    for part in _re.split(r'(<FF0[124]>|<FFF5>|<FFEF>|<FFFB><FFF7>)', en):
+        if not part:
+            continue
+        if _re.fullmatch(r'<FF[0-9A-F]{2}>|<FFFB><FFF7>', part):
+            items.append(('b', part))
+            continue
+        m = LAB.match(part)
+        if m:
+            label = (m.group(1) or m.group(2) or '').strip()
+            if label:
+                # THE SPEAKER LABEL IS PROSE, NOT A FORCED NAMEPLATE. The PSP
+                # prints every name on a line of its own ('<FF1B>name<FF03>');
+                # that is PSP furniture, not this box's structure. The
+                # PSX writes the name inline (南条：俺のと交換でいいんだな？,
+                # 6,200 rows against 453) and so do we: the label is ONE atom
+                # (label_words) that shares line 1 and never splits.
+                items.extend(label_words(label))
+            part = part[m.end():]
+        else:
+            # THE SAME NAMEPLATE, INLINE. The families whose PSX row writes
+            # the speaker inline (dng, BTLP) carry 'Name: ' where the coded
+            # families carry '<FF1B>name<FF03>'; the label is the same
+            # construct and takes the same one-atom rule (§4.2) - a
+            # multi-word name never breaks apart and the colon never starts
+            # the next line.
+            import port_derive as _pd
+            label, rest = _pd.inline_label(part)
+            if label:
+                items.extend(label_words(label))
+                part = rest
+        # PROSE LINE BREAKS ARE THE FLOW'S. The PSP's own breaks in a
+        # sentence are where ITS 16px glyphs ran out, not a layout decision:
+        # reflow them to this box's width. What IS
+        # structural keeps its own line: a card's nameplate (port_story's
+        # card path) or a paired instruction caption. Everything else reflows.
+        from port_controls import is_heading
+        chunks = _re.split(r'<FF03>|<FFF6>', part)
+        for i, chunk in enumerate(chunks):
+            items.extend(flow_words(chunk, first=(i == 0 and not items),
+                                    last=(i == len(chunks) - 1)))
+            if i < len(chunks) - 1 and is_heading(chunk):
+                items.append(('b', brk))
+    out = ''.join(v for _k, v in _v.flow_lines(
+        items, _v.BOX_WIDTH, newline=brk,
+        tail=1, word_gaps=word_gaps))
+    out = _v.clean_edges(out)
+    out = _v.choice_breaks(out, brk=brk)
+    if brk == '<FFF6>':
+        # BTLP/BTLEVT: the interpreter's full-page wait IS the scroll, so
+        # the family's page skeleton is all pagination inserts. A battle box
+        # holds FOUR lines - three visible, the fourth scrolled in by its
+        # own <FFF6> (windowtype.c: WIN_LAST 0x2C is the third 15-cell row)
+        # - so a page is four lines, not three. Chunking at three wrote the
+        # PSX corpus' never-used '<FFFB><FFF7><FFF6>' for a four-line box,
+        # and that line code after the page moved the pen off the page's
+        # first row.
+        out = paginate(out, line=brk, page='<FFFB><FFF7>',
+                       wait='<FFFB><FFF7>', per=4)[0]
+    else:
+        out = paginate(out)[0]
+    # the box's own tail (dismissal wait + end code) rides after the layout
+    if tail and not out.rstrip().endswith(tail):
+        out = out.rstrip() + tail
+    return out
+
+
+def paginate(en, line='<FF03>', page='<FF04>', wait='<FF02>', per=3):
+    """Keep the AUTHORED boxes; add only what the English needs.
+
+    The PSP script draws a fresh box where the writer asked for one - often
+    repeating the speaker name first - and that split is the author's
+    pagination. The <FF04> boundaries come from the source and are never
+    merged away.
+
+    What is NOT the author's is the scroll count: a box shows 3 lines and may
+    scroll ONCE to the next 3. The Japanese page marks cannot be
+    trusted for that - they were placed for 3 lines of 16px glyphs, so after
+    the English reflow they land mid-sentence - so the waits are re-placed by
+    our own line count: chunk 1 visible, chunk 2 one <FF02> scroll, chunk 3+
+    a new box (<FF02><FF04>).
+
+    `per` is the lines one page holds: the dialogue box's 3 (+1 scroll row),
+    and the battle box's 4 (its own <FFF6> scrolls the fourth row in, so the
+    page marker needs no line code after it).
+
+    Returns (text, invented, nonsent): invented = advances added, nonsent =
+    of those, cuts not at a sentence end (the caller reports that loudly).
+    """
+    # THE BOX'S TAIL IS THE SCRIPT'S, NOT OURS. Pagination protects the
+    # dismissal tail - the wait the script wrote (if any) and the end code -
+    # from being counted as text, then puts it back exactly as written. It
+    # never invents a wait: a box closed by a timed '<FF05>' pause has no
+    # press in the source, so it gets none here.
+    m = re.search(r'((?:' + re.escape(wait) + r')*)(<FF01>|<FFEF>|<FFF5>)\s*$',
+                  en)
+    tail_wait = m.group(1) if m else ''
+    tail_end = m.group(2) if m else ''
+    if m:
+        en = en[:m.start()]
+    out = []
+    invented = nonsent = 0
+    first = True
+    for box in en.split(page):
+        # THE BOX TAIL IS NOT TEXT: the dismissal '<FF02><FF01>' must not be
+        # counted as a 4th chunk (that invented a scroll for a 3-line box).
+        # The handler lifted it above; clean any stray copy here.
+        body = re.sub(r'(?:' + re.escape(wait) + r')*(<FF01>|<FFEF>|<FFF5>)'
+                      + r'\s*$', r'\1', box)
+        body = body.replace(wait, line)
+        body = re.sub('(' + re.escape(line) + ')+', line, body)
+        chunks = [c.strip() for c in body.split(line) if c.strip()]
+        for ci in range(0, len(chunks), per):
+            if not first:
+                invented += 1
+                prev = re.sub(r'<[^>]+>', '', chunks[ci - 1]).rstrip()
+                word = prev.split(' ')[-1] if prev else ''
+                if not sent_end(word):
+                    nonsent += 1
+                # chunk 2 of a box is its one scroll; everything else starts
+                # a new box - including the next AUTHORED box. THE ORDER IS THE
+                # ENGINE'S: '<FF02><FF03>' scrolls and moves the pen to the new
+                # last line, and the PSX corpus spells it that way 1,796 times
+                # against 17 of the reverse. '<FF03><FF02>' leaves the pen at
+                # the end of the line above, appending scrolled text to it.
+                if per == 3:
+                    out.append(wait + (line if ci == 3 else page))
+                else:
+                    # a page's lines already carry their own line moves (the
+                    # battle box's <FFF6> scrolls the fourth row in), so the
+                    # page marker is the whole separator - the PSX corpus
+                    # never writes a line code after it
+                    out.append(page)
+            out.append(line.join(chunks[ci:ci + per]))
+            first = False
+    s = ''.join(out)
+    s = re.sub('(' + re.escape(wait) + ')+', wait, s)
+    s = re.sub('(' + re.escape(page) + ')+', page, s)
+
+    # A CODE'S PARAMETER IS NOT TRIM-ABLE WHITESPACE. <FF0E>'s one parameter is
+    # a SPACE in the PSP script ('...<FF0E> <FF01>'), and the edge-blank rule
+    # ate it - the encoder then read the next byte as the parameter and the
+    # build failed with '[charset] non-ASCII bytes in text: 01'.
+    def _fix_params(txt):
+        out, i2 = [], 0
+        while i2 < len(txt):
+            m2 = re.match(r'<FF([0-9A-Fa-f]{2})>', txt[i2:])
+            if m2:
+                code = m2.group(1).upper()
+                out.append(m2.group(0))
+                i2 += m2.end()
+                need = vwf_wrap.PARAM_LEN.get(code, 0)
+                if need:
+                    rest = txt[i2:]
+                    if not rest or rest.startswith('<FF'):
+                        out.append(' ' * need)
+                    else:
+                        out.append(rest[:need])
+                        i2 += need
+                continue
+            out.append(txt[i2])
+            i2 += 1
+        return ''.join(out)
+    s = _fix_params(s)
+
+    # A BOX ENDS WITH THE DISMISSAL THE SCRIPT WROTE: '<FF02><FF01>' for a
+    # press, or just '<FF01>' behind a timed '<FF05>' pause. The tail was
+    # lifted above and goes back verbatim; pagination never invents a wait.
+    s = re.sub(r'(?:' + re.escape(line) + r')+\s*$', '', s)
+    if '<FF0E>' in s:
+        # A CHOICE ROW ENDS WITH ITS OPTION BLOCK: '<FF0E><param><FF01>' - the
+        # JP writes exactly that, and a wait after the block stops the options
+        # from arming. The prompt wait goes BEFORE the block, as
+        # '<FF02><FF03>'.
+        s = re.sub(r'(<FF0E>.?)' + r'(?:' + re.escape(wait) + r')+', r'\1', s)
+        # the line before the block is not ours to invent either: keep the
+        # wait only if the caller (the JP's own shape) put one there.
+        head, _, rest = s.partition('<FF0E>')
+        kept = bool(re.search(r'(?:' + re.escape(wait) + r')+\s*$', head))
+        head = re.sub(r'(?:' + re.escape(line) + r')+\s*$', '', head)
+        head = re.sub(r'(?:' + re.escape(wait) + r')+\s*$', '', head)
+        s = head + (wait if kept else '') + line + '<FF0E>' + rest
+    # ... and no empty line in front of the DISMISSAL wait. It must be that
+    # wait exactly: a line code before a SCROLL wait is what moves the pen to
+    # the next line; without it, the scroll appends text to the line above
+    # instead of redrawing.
+    # (no line code belongs in front of a wait at all: the wait carries the
+    # break, '<FF02><FF03>' - see the scroll note above)
+    if tail_end:
+        # The script's own tail goes back verbatim. A choice row's option
+        # block arms on FF01 alone; a wait before it would stop the options
+        # from arming, so that branch never keeps one.
+        s = s.rstrip() + ('' if '<FF0E>' in s else tail_wait) + tail_end
+
+    # A CHOICE OPTION STARTS ITS OWN LINE (the QA gate holds exactly this
+    # rule): run it LAST, on the finished text, so the result is a fixed point.
+    s = vwf_wrap.choice_breaks(s, brk=line)
+    return s, invented, nonsent
+
+
+def _ja_breaks_after(ja, n):
+    """Does the Japanese break its line right after its n-th sentence end
+    ("ゆきの：おばさん！<FF03>…よかった" breaks after the first)? The label's
+    colon is no sentence end; closing brackets ride with their mark."""
+    t = re.sub(r'^[^<：]{1,12}：', '', ja or '')
+    t = re.sub(r'<FF0[5-9A-F]>(?:<[0-9A-F]{2}>)*', '', t)
+    count = 0
+    for m in re.finditer(r'[！？。!?]+[」』）)]*', t):
+        count += 1
+        if count == n:
+            return t[m.end():].startswith(('<FF03>', '<FF02><FF03>'))
+    return False
+
+
+def _rejoin(first, second, line, ja=None):
+    """The lines of two joined boxes, laid out as ONE box.
+
+    Once the press between them is gone the boundary is just a word gap, so
+    the pair takes the flow's best three-line shape (`Mark: / But that
+    voice... That's Maki's mom, / I'm dead sure... Isn't it?`), not the first
+    box's lines with the second stacked under them. A box that opens on a
+    timed pause keeps its boundary as a line break: the beat is the
+    Japanese's line (sentence_pauses). A re-layout that would not fit three
+    lines keeps the plain join."""
+    if re.match(r'\s*<FF05>', second[0]):
+        return first + second
+    laid = layout_box(' '.join(first + second))
+    if not laid or re.search(r'<FF0[24]>', laid):
+        return first + second
+    lines = [x for x in laid.split(line) if x.strip()]
+    if len(lines) > 3:
+        return first + second
+    # THE SEAM IS WORTH A POINT: the two were the PSP's own boxes, so a
+    # layout that keeps their boundary as a line break is preferred unless
+    # running across it is clearly better ("Mark: Say what!? Huh...? / So
+    # you're the dude with the scar / on his head...", never "Huh...? So
+    # you're / the dude with..."). Both are ranked by the flow's own scale.
+    seam = len(' '.join(first).split())
+    ends = []
+    for x in lines:
+        ends.append((ends[-1] if ends else 0) + len(x.split()))
+    if seam in ends:
+        return lines
+    ranked = vwf_wrap.weigh(' '.join(first + second).split(' '))
+    best = next((r for r, ls in ranked
+                 if tuple(' '.join(x.split()) for x in ls)
+                 == tuple(' '.join(x.split()) for x in lines)), None)
+    for r, ls in ranked:
+        at, cut = 0, set()
+        for x in ls:
+            at += len(x.split())
+            cut.add(at)
+        if seam in cut and len(ls) <= 3:
+            # a first box that ends its sentence WHERE THE JAPANESE BREAKS
+            # ITS LINE is the original's own sentence line ("Yukino: Lady! /
+            # Whew... she only passed out." - the JA breaks after おばさん！):
+            # our boxes follow the Japanese, so it is worth far more than a
+            # box the PSP alone ended
+            sentences = sum(1 for w in ' '.join(first).split() if vwf_wrap.sent_end(w))
+            worth = (SENTENCE_SEAM_POINTS
+                     if vwf_wrap.sent_end(first[-1]) and _ja_breaks_after(ja, sentences)
+                     else SEAM_POINTS)
+            if (best and r[:6] == best[:6] and r[6] - best[6] < worth
+                    and _cuts(ls) <= _cuts(lines)):
+                return ls
+            break
+    return lines
+
+
+def _cuts(lines):
+    """Mid-clause line ends of a layout, the label's line counting twice:
+    the seam never buys one ("Girl in black: No way, Jose! I don't /
+    listen..." keeps "No way, Jose! / I don't listen to anybody but my /
+    Daddy!...")."""
+    n = 0
+    for i, x in enumerate(lines[:-1]):
+        if vwf_wrap.stop_cost(x) == 4:
+            label = i == 0 and re.match(r'\s*' + vwf_wrap.LABEL_RE,
+                                        vwf_wrap.label_plain(x))
+            n += 2 if label else 1
+    return n
+
+
+SEAM_POINTS = 1.0   # what a joined box's seam is worth as a line break
+SENTENCE_SEAM_POINTS = 8.0   # ... when it ends a sentence where the Japanese breaks its line
+
+
+def merge_boxes(s, line='<FF03>', page='<FF04>', wait='<FF02>', min_boxes=1,
+                joins=None, ja=None, seams=None):
+    """JOIN TWO AUTHORED BOXES WHEN THE JOIN IS FREE.
+
+    The PSP's boxes are the author's and are kept - but two of them often fit
+    one box between them, and then the break buys the player a press for
+    nothing. A join is free when
+    neither box scrolls and the pair fits the box's three lines, AND the box
+    count stays in [psx boxes, psp boxes]: never fewer boxes than the PSX
+    draws for the same speech. Nothing is re-flowed and no scroll is invented.
+
+    `joins` (box_joins: one flag per box boundary) names WHICH boundaries the
+    PSX does not draw, read off the PSP-JP and PSX-JP texts. When it is given
+    and the box count still matches, only those boundaries may join (each
+    still needs the free-join test); otherwise the joins fall at the tail.
+    `seams` (psp_line_beats: one flag per box boundary) names the boundaries
+    both originals end a line on: a pair joined there keeps its two boxes'
+    lines when they stack to three ("Ayase: Umm." / "Persona! Persona! /
+    Please come here!").
+    """
+    ends = ('<FF01>', '<FFEF>', '<FFF5>')
+    # The script's own dismissal tail (a wait, if it wrote one, then the end
+    # code) is kept verbatim; re-adding a wait here would invent an input.
+    mterm = re.search(r'((?:' + re.escape(wait) + r')*)(<FF01>|<FFEF>|<FFF5>)\s*$', s)
+    tail_wait = (wait if mterm and mterm.group(1) else '')
+    tail = ''
+    for e in ends:                      # the row's end code stays at the very end
+        if s.rstrip().endswith(e):
+            tail = e
+            s = s[:s.rstrip().rfind(e)]
+            break
+    # THE OPTION BLOCK IS NOT SCROLLED TEXT. '<FF0E>' arms on a line of its
+    # own, and the wait in front of it is that line's gate, not a scroll of
+    # the box - reading it as scroll content made every choice box look
+    # unjoinable ('not scr'), so a prompt whose JP is ONE box stayed two
+    # (Yuka: "Um, I hate to ask, but..." / question, two presses where the JP
+    # scrolls once). Protect the block, join, then put it back.
+    block = ''
+    m = re.search(r'((?:' + re.escape(wait) + r'|' + re.escape(line) + r')*'
+                  r'<FF0E>(?:<[0-9A-F]{2}>)?)', s)
+    if m:
+        block = m.group(1)
+        s = s[:m.start()] + '\x01CHOICE\x01' + s[m.end():]
+    boxes = []
+    splitter = '(' + re.escape(line) + '|' + re.escape(wait) + ')'
+    for b in s.split(page):
+        vis, scr, after = [], [], False
+        for seg in re.split(splitter, b):
+            if seg == line:
+                continue
+            if seg == wait:
+                after = True
+                continue
+            t = seg
+            for e in ends:
+                t = t.replace(e, '')
+            if not t.strip():
+                continue
+            (scr if after else vis).append(t.strip())
+        if vis or scr:
+            boxes.append((vis, scr))
+    if joins is not None and len(joins) + 1 != len(boxes):
+        joins = None
+    if seams is not None and len(seams) + 1 != len(boxes):
+        seams = None
+    merged = []
+    for bi, (vis, scr) in enumerate(boxes):
+        can_join = (merged and (joins[bi - 1] if joins is not None
+                                else len(merged) >= min_boxes)
+                    and not scr and not merged[-1][1])
+        combined = merged[-1][0] + vis if can_join else []
+        # A source pause at the edge of a full visible box can retain its
+        # timing before the player's scroll. Never place FF03 before FF02:
+        # that would move/scroll the pen before the player presses.
+        if (len(combined) == 4
+                and re.search(r'<FF05><[0-9A-F]{2}><[0-9A-F]{2}>\s*$', combined[2])
+                and re.match(r'\s*(?:\.\.|…)', combined[3])):
+            merged[-1] = (combined[:3], combined[3:])
+            continue
+        joined = (merged
+                  and (joins[bi - 1] if joins is not None
+                       else len(merged) >= min_boxes)   # never below the PSX
+                  and not scr and not merged[-1][1])
+        if joined:
+            pages = (ja or '').split('<FF04>')
+            jp_page = pages[min(len(merged) - 1, len(pages) - 1)]
+            stacked = len(merged[-1][0]) + len(vis) <= 3
+            # the pair is laid out as one box (_rejoin). Where the two boxes'
+            # own lines would stack past three, it still joins when the
+            # re-layout fits three and the JP draws the speech with no
+            # press inside ("Yukino: / I know I couldn't take being cooped
+            # up / in the hospital..." + "Let's go cheer her up!", JP
+            # 耐えられないね<FF05><20><00>みんなで): a JP press is a beat
+            # the join would take away
+            pressed = '<FF02>' in re.sub(r'(?:<FF02>)*(?:<FF01>|<FFEF>|<FFF5>)?\s*$', '', jp_page)
+            if stacked and seams is not None and seams[bi - 1]:
+                # both originals end a line here: the boxes' own lines stand
+                merged[-1] = (merged[-1][0] + list(vis), [])
+                continue
+            if stacked or not pressed:
+                laid = _rejoin(merged[-1][0], vis, line, jp_page)
+                if len(laid) <= 3:
+                    merged[-1] = (laid, [])
+                    continue
+        merged.append((list(vis), list(scr)))
+    out = []
+    for vis, scr in merged:
+        body = line.join(vis)
+        if scr:
+            # '<FF02><FF03>' - the engine's order: scroll first, then the pen
+            # moves to the new last line
+            body += wait + line + line.join(scr)
+        out.append(body)
+    res = (wait + page).join(out)
+    # A CHOICE ROW ENDS WITH ITS OPTION BLOCK: no dismissal wait after it (the
+    # wait would stop the options arming). A text box keeps the tail the
+    # script wrote - a press wait, or just the end code behind a timed pause.
+    res += (tail if block else tail_wait + tail)
+    return res.replace('\x01CHOICE\x01', block) if block else res
+
+
+def _page_text(t):
+    """A page's spoken text for box alignment: no codes, no speaker label
+    (PSX inline 'name：', PSP '<FF1B>name<FF03>'), width-normalised."""
+    import unicodedata
+    t = re.sub(r'^\s*<FF1B>[^<]*<FF03>', '', t)
+    t = re.sub(r'<[^>]*>|\[[0-9a-f]{4}\]', '', t)
+    t = re.sub(r'^[^：:]{1,16}[：:]', '', t.strip())
+    return re.sub(r'\s+', '', unicodedata.normalize('NFKC', t))
+
+
+def box_joins(ja, jraw):
+    """Which PSP box boundaries the PSX does not draw: [join?] per PSP-JP
+    boundary, or None when the texts do not prove it.
+
+    PSP-JP and PSX-JP are the same script, so their texts align; a PSP-JP
+    page boundary that lands on a PSX page boundary is kept, one that lands
+    inside a PSX page is a box the PSX draws as one. Every PSX boundary must
+    be matched by a PSP one, or nothing is decided (the PSP wrote fewer or
+    different boxes)."""
+    import difflib
+    from codec import decode_box
+    psx = [_page_text(p) for p in ja.split('<FF04>')]
+    jp = [_page_text(p) for p in
+          decode_box(jraw, jp_map(), holes=[]).split('<FF04>')]
+    psx = [p for p in psx if p]
+    jp = [p for p in jp if p]
+    if len(jp) < 2 or len(jp) <= len(psx):
+        return None
+    a, b = ''.join(jp), ''.join(psx)
+    sm = difflib.SequenceMatcher(None, a, b, autojunk=False)
+    if sm.ratio() < 0.6:
+        return None
+    blocks = sm.get_matching_blocks()
+
+    def at(p):
+        for a0, b0, size in blocks:
+            if size and a0 <= p <= a0 + size:
+                return b0 + p - a0
+        return None
+    ends, n = [], 0
+    for page in psx[:-1]:
+        n += len(page)
+        ends.append(n)
+    out, n = [], 0
+    for page in jp[:-1]:
+        n += len(page)
+        q = at(n)
+        if q is None:
+            return None
+        out.append(not any(abs(q - e) <= 1 for e in ends))
+    if out.count(False) != len(ends):
+        return None
+    return out
+
+
+JP_STOP = re.compile(r'[？！。?!]+')
+JP_PAUSE = re.compile(r'(<FF03>)?<FF05><([0-9A-F]{2})><([0-9A-F]{2})>(<FF03>)?')
+
+
+# THE PSP's LINE CAPACITY, in the large face's pixels (its own font's widths
+# are unknown): 99% of the PSP-US story lines it broke mid-box measure at or
+# under this, and a line plus the word after its break goes well past it.
+PSP_LINE_PX = 269
+# room left at a PSP line break (that capacity less the line and the next
+# word) from which the break was the writer's choice, not the line running
+# out; under it the measure cannot tell the two apart
+PSP_ROOM_PX = 20
+
+
+def _psp_room(line, nxt):
+    """How much room the PSP line had left for its next word (large face)."""
+    with vwf_wrap.measured_as(vwf_wrap.ROW_EDITION):
+        return PSP_LINE_PX - vwf_wrap.text_width(f'{line} {nxt}')
+
+
+# how close (a fraction of the page's text) an English sentence end must sit
+# to where a JP line ends for that line end to be placed on it
+JP_LINE_NEAR = 0.1
+
+
+def jp_line_beats(items, ja):
+    """items with the JP's own sentence lines put in where the two texts do
+    not count the same sentences (vwf_wrap.orig_sentence_lines gives up):
+    a JP first line of a beat's length is the opening beat, and
+    each JP line that ends on a sentence end (！？。...) is placed on the
+    English sentence end at the same place in the page - JP in glyph cells,
+    English in pixels - when one lies within JP_LINE_NEAR, as the original's
+    own line (('h', '')): `Brown: W-Wait! Hold up! / One more time! Please!?
+    / Mark screwed it up!` from `ちょ　ちょい待ち！<FF03>もう１回だけ！　な！
+    な？<FF03>マークが入ってたからだって！`, where な！　な？ is one English
+    "Please!?". A page with a page turn of its own is left alone."""
+    if '<FF04>' in ja:
+        return items
+    words = [i for i, it in enumerate(items) if it[0] == 'w']
+    if not words or vwf_wrap.orig_sentence_lines(ja, [items[i][1] for i in words]) is not None:
+        return items
+    flat = re.sub(r'^[^<：]{1,12}：', '', ja)
+    flat = re.sub(r'(?:<FF02>)*(?:<FF01>|<FFEF>|<FFF5>)?\s*$', '', flat)
+    flat = re.sub(r'(?:<FF02>)?<FF03>', '\n', flat)
+    flat = vwf_wrap._JA_CODES.sub('', flat)
+
+    def cells(t):
+        return len(t.replace('\n', '').replace('　', '').replace(' ', ''))
+    jp_total = cells(flat)
+    if not jp_total:
+        return items
+    ends, run, total = [], 0, sum(vwf_wrap.text_width(vwf_wrap._plain(items[i][1])) for i in words)
+    if not total:
+        return items
+    for n, i in enumerate(words[:-1]):
+        w = vwf_wrap._plain(items[i][1])
+        run += vwf_wrap.text_width(w)
+        if w and vwf_wrap.sent_end(w) and re.search(r'[.!?…]["”’)]*$', w):
+            ends.append((run / total, i))
+    marks = set()
+    # a JP first line of a beat's length (vwf_wrap.JA_BEAT characters, no
+    # mark needed: `んだよ`) is the opening beat: on the English opening
+    # sentence when that is a beat too (at most half the box) - `Mark:
+    # Huh? / Dude, that bandwagon has left / the station...`
+    first = flat.split('\n', 1)
+    # (one beat: no pause and no mark inside it - `森…<pause>　というと` is
+    # two, and the English lays its own out)
+    raw_first = re.split(r'(?:<FF02>)?<FF03>', re.sub(r'^[^<：]{1,12}：', '', ja), 1)[0]
+    one_beat = ('<FF05>' not in raw_first
+                and not vwf_wrap.JA_END.search(first[0].rstrip('　 ')[:-1]))
+    if (len(first) == 2 and one_beat and 0 < cells(first[0]) <= vwf_wrap.JA_BEAT
+            and ends):
+        i = ends[0][1]
+        head = ' '.join(vwf_wrap._plain(items[j][1]) for j in words if j <= i)
+        if vwf_wrap.text_width(head) * 2 <= vwf_wrap.BOX_WIDTH:
+            marks.add(i)
+    for m in re.finditer(r'\n', flat):
+        if not vwf_wrap.JA_END.search(flat[:m.start()].rstrip('　 ')[-3:]):
+            continue
+        at = cells(flat[:m.start()]) / jp_total
+        cand = [(abs(f - at), i) for f, i in ends if i not in marks]
+        if cand and min(cand)[0] <= JP_LINE_NEAR:
+            marks.add(min(cand)[1])
+    if not marks:
+        return items
+    out = []
+    for i, it in enumerate(items):
+        out.append(it)
+        if i in marks and not (i + 1 < len(items) and items[i + 1][0] == 'h'):
+            out.append(('h', ''))
+    return out
+
+
+def psp_line_beats(items, ja):
+    """(items, seams): the PSP's deliberate line ends, weighed.
+
+    A PSP line break is either the line running out or the writer's choice.
+    It was a choice when the next word still had room on the line
+    (PSP_ROOM_PX): `Who built it? For what purpose? / It never ceases to
+    fascinate me.`; `Persona! Persona! / Please come here!` breaks with room
+    for a whole sentence more. It was a choice too where the PSX page and the
+    PSP text have the same number of lines and the break ends one of them
+    (line n of one is line n of the other: `えっとぉ<FF03>ペルソナさま
+    ペルソナさま<FF03>おいでくださぁい`).
+    Such a break on an English sentence end is the original's own line
+    (('h', ''), as vwf_wrap.orig_beats): free, never an extra line or a
+    scroll. A sentence end the measure cannot settle (less room than
+    PSP_ROOM_PX) or a deliberate break on a clause mark (, ; : -- ...) is a
+    weak one (('h', 'weak')): the line after it is no rise.
+    `seams` flags each PSP box turn the writer chose on a sentence end (the
+    box turned with lines to spare, or both originals end a line there):
+    merge_boxes keeps the two boxes' lines when they join. A page with a
+    mid-box label or an option block is left alone."""
+    if '<FF04>' in ja or '<FF0E>' in ja:
+        return items, None
+    if any(k == 'b' or (k == 'u' and str(v).startswith('FF0E')) for k, v, *_ in items):
+        return items, None
+    t = re.sub(r'^[^<：]{1,12}：', '', ja)
+    t = re.sub(r'(?:<FF02>)*(?:<FF01>|<FFEF>|<FFF5>)?\s*$', '', t)
+    jp_lines = [x for x in re.split(r'(?:<FF02>)?<FF03>', t) if _page_text(x)]
+    lines, cur, turned, in_box = [], [], [], 0   # lines: (last word item, words, box turn after)
+    for i, (k, v, *_r) in enumerate(items):
+        if k == 'w':
+            cur.append(i)
+            continue
+        if k == 'u' and v in ('FF03', 'FF02', 'FF04', 'STRUCT03') and cur:
+            lines.append([cur[-1], cur, False, in_box])
+            cur = []
+            in_box += 1
+        if k == 'u' and v == 'FF04' and lines:
+            lines[-1][2] = True
+            in_box = 0
+    if cur:
+        lines.append([cur[-1], cur, False, in_box])
+    turns = [n for n, ln in enumerate(lines) if ln[2]]
+    if len(lines) < 2:
+        return items, [False] * len(turns)
+    aligned = len(lines) == len(jp_lines)
+    # where the sentences match one to one, the Japanese says which of them
+    # end its lines. A PSP break on another sentence end, inside a JP line
+    # whose English fits one line, is the PSP's alone (`Yamaoka! You
+    # bastards... / How DARE you!?` against `山岡！…… / きさまらぁ！！
+    # よくも！！`) and no evidence of a deliberate line; inside a JP line the
+    # English cannot hold on one, it is where the PSP chose to split it
+    # (`Eeeek! / Oooh, I've had it! / What is WRONG with this place!?`).
+    word_items = [i for i, it in enumerate(items) if it[0] == 'w']
+    jp_lines_at = vwf_wrap.orig_sentence_lines(ja, [items[i][1] for i in word_items])
+    psp_only = set()
+    if jp_lines_at is not None:
+        cuts = sorted(jp_lines_at) + [len(word_items) - 1]
+        start = 0
+        for cut in cuts:
+            span = word_items[start:cut + 1]
+            text = ' '.join(vwf_wrap._plain(items[i][1]) for i in span)
+            if span and vwf_wrap.text_width(text) <= vwf_wrap.BOX_WIDTH:
+                psp_only |= set(span[:-1])
+            start = cut + 1
+    marks, seams = {}, []
+    for n, (last, ws, turn, row) in enumerate(lines[:-1]):
+        word = vwf_wrap._plain(items[last][1])
+        text = ' '.join(vwf_wrap._plain(items[j][1]) for j in ws)
+        nxt = vwf_wrap._plain(items[lines[n + 1][1][0]][1])
+        room = _psp_room(text, nxt)
+        sentence = bool(re.search(r'[.!?…]["”’)]*$', word)) and vwf_wrap.sent_end(word)
+        clause = bool(re.search(r'(?:[,;:]|--|\.\.\.|…)["”’)]*$', word))
+        # a box turned with lines to spare (fewer than three) had room too
+        chosen = room >= PSP_ROOM_PX or (turn and row < 2)
+        if sentence and last in psp_only:
+            if turn:
+                seams.append(False)
+            continue
+        if turn:
+            seams.append(sentence and (chosen or aligned))
+            continue
+        if sentence and (chosen or aligned):
+            marks[last] = ''
+        elif (sentence and room >= 0) or (clause and chosen):
+            marks[last] = 'weak'
+    out = []
+    for i, it in enumerate(items):
+        out.append(it)
+        if i in marks:
+            out.append(('h', marks[i]))
+    return out, seams
+
+
+def _presses(en):
+    """The presses a laid-out box asks for: its scroll waits and box turns."""
+    return len(re.findall(r'<FF02>(?!<FF01>|$)|<FF04>', en))
+
+
+def sentence_pauses(items, ja, soft=False):
+    """Carry the PSX's timed beat BETWEEN sentences onto the English ones.
+
+    The PSX holds a timed pause where one sentence ends and the next begins
+    ('なんだそりゃ？<FF03><FF05><58><00>オイ　オマエ…'), the PSP drops it, and
+    the beat is what separates the two thoughts. For a pause that follows a
+    Japanese sentence end (？！。) with more words after it, the English
+    sentence end (a word ending . ! ?; a trailing ellipsis ends none) nearest
+    the same proportional place in the box takes the pause - measured in
+    glyph cells for the Japanese, in pixels for the English - when one lies
+    within a fifth of the box. Where the PSX broke the line around the pause,
+    the English breaks there too; the PSP's own box turn at that point is
+    that break. A pause in the middle of a clause is not carried, and a box
+    re-shaped by a mid-box label or an option block is left alone.
+    """
+    if '<FF04>' in ja or '<FF0E>' in ja:
+        return items
+    if any(k == 'b' or (k == 'u' and str(v).startswith('FF0E'))
+           for k, v, *_ in items):
+        return items
+    flat = re.sub(r'<(?!FF05>|FF03>|[0-9A-F]{2}>)[^>]+>', '', ja)
+    flat = re.sub(r'^[^：<]*：', '', flat)
+
+    def cells(t):
+        return len(re.sub(r'<[^>]+>', '', t).replace('　', '').replace(' ', ''))
+    jp_total = cells(flat)
+    words = [(i, w) for i, (k, w, *_r) in enumerate(items) if k == 'w']
+    if not jp_total or not words:
+        return items
+    en_total = sum(vwf_wrap.text_width(w) for _i, w in words)
+    ends, run = [], 0               # (place in the box, item, an ellipsis end)
+    for n, (i, w) in enumerate(words):
+        run += vwf_wrap.text_width(w)
+        if (n + 1 < len(words) and vwf_wrap.sent_end(w)
+                and re.search(r'[.!?][\'")\]”]*$', w)):
+            ends.append((run / en_total, i,
+                         bool(re.search(r'(?:\.\.|…)[\'")\]”]*$', w))))
+    out = list(items)
+    inserts = {}
+    timed = any(k == 'u' and str(v).startswith('FF05') for k, v, *_ in items)
+    for m in JP_PAUSE.finditer(flat):
+        before = flat[:m.start()]
+        # a beat: the pause follows a sentence end, or the PSX breaks its
+        # line at the pause ('わーったよ<FF05><58><00><FF03>') - the timed
+        # pause and the break together mark it, punctuation or not
+        stop = re.search(r'[？！。?!][」』）)]?$',
+                         re.sub(r'<[^>]+>', '', before).rstrip('　 '))
+        line = bool(m.group(1) or m.group(4))
+        if not stop and (not line or timed):
+            continue                # (a box the PSP times itself keeps its own)
+        if not cells(flat[m.end():]):
+            continue
+        at = cells(before) / jp_total
+        # an English sentence that trails off ('Okay, okay...') takes only
+        # a beat the PSX marks with its line break alone
+        cand = [(abs(f - at), i) for f, i, trails in ends
+                if i not in inserts and (not trails or not stop)]
+        # a beat only the line break marks has no sentence to anchor it, so
+        # the English end must sit closer (a fifth of the box, not two)
+        if not cand or min(cand)[0] > (0.4 if stop else 0.2):
+            continue
+        i = min(cand)[1]
+        j = i + 1
+        turn = False
+        existing_pause = None
+        # (the original's line marks, psp_line_beats' ('h', ..), sit among
+        # the codes after the word and are stepped over)
+        while j < len(out) and (out[j][0] == 'h' or out[j][0] == 'u' and (
+                out[j][1] in ('FF02', 'FF03', 'FF04', 'STRUCT03')
+                or str(out[j][1]).startswith('FF05'))):
+            if str(out[j][1]).startswith('FF05'):
+                existing_pause = j
+            turn = turn or out[j][1] in ('FF02', 'FF04')
+            j += 1
+        if existing_pause is not None:
+            # The PSP already supplies this beat at the same sentence
+            # boundary. Keep its duration and position; carry the PSX's line
+            # break at the pause (before or after it) after the PSP's pause,
+            # unless a box turn supplies it.
+            if line and not turn:
+                inserts[i] = (existing_pause + 1,
+                              [('h', '') if soft or not stop else ('u', 'STRUCT03')])
+            continue
+        j = i + 1
+        while j < len(out) and (out[j][0] == 'h' or out[j][0] == 'u'
+                                and out[j][1] in ('FF02', 'FF03', 'FF04')):
+            # the PSP's own box turn after the sentence IS the line break;
+            # its prose line break is not (the flow re-places those)
+            turn = turn or out[j][1] in ('FF02', 'FF04')
+            j += 1
+        # carried between two words, so the gap around it is theirs: the
+        # pause rides at the end of the word before it and the space after
+        # it is the source's own gap ('A', port_story's word-stream flag)
+        ins = [('u', 'FF05%s%sA' % (m.group(2), m.group(3)))]
+        # Where the PSX broke the line at the pause (before it or after it:
+        # 'うそ！<FF05><5E><00><FF03>そんなことって…'), so does the English -
+        # after the pause either way, a line cannot end between a word and
+        # its pause. A beat after a sentence end is a hard break unless
+        # `soft`: then, like a beat only the line break marks, it is the
+        # original's own line (('h', ''), vwf_wrap.orig_beats), free but
+        # never a line the box would not need. convert_entry takes the soft
+        # layout where the hard one costs a press (a scroll or a box): the
+        # JP may have broken only because its line was full.
+        if line and not turn:
+            ins.append(('u', 'STRUCT03') if stop and not soft else ('h', ''))
+        inserts[i] = (j, ins)
+    for i in sorted(inserts, reverse=True):
+        j, ins = inserts[i]
+        out[j:j] = ins
+    return out
+
+
+def ellipsis_pauses(en, ja, wait='<FF02>', page='<FF04>'):
+    """Carry the PSX's timed beat around an ellipsis onto the English one.
+
+    The PSX times some ellipses with <FF05> pauses ('ね<FF05><30><00>…
+    <FF05><15><00>私が'), and the PSP script drops them. Per box, when the
+    PSX page has exactly ONE ellipsis and it carries a pause, and the English
+    box has exactly one ellipsis and no pause of its own, the same pauses go
+    on the same sides of the English ellipsis. Any other count is left alone:
+    nothing is guessed. Pauses are zero-width, so the layout is unchanged."""
+    pause = r'<FF05><[0-9A-F]{2}><[0-9A-F]{2}>'
+    jp_pages = ja.split(page)
+    boxes = en.split(wait + page)
+    if len(jp_pages) != len(boxes):
+        return en
+    out = []
+    for box, jp in zip(boxes, jp_pages):
+        hits = list(re.finditer(r'(%s)?(?:…|\.\.)+(%s)?' % (pause, pause), jp))
+        dots = list(re.finditer(r'\.{3,}|…+', re.sub(r'<[^>]+>', lambda m: '\0' * len(m.group(0)), box)))
+        if (len(hits) == 1 and (hits[0].group(1) or hits[0].group(2))
+                and len(dots) == 1 and '<FF05>' not in box):
+            a, b = dots[0].span()
+            box = (box[:a] + (hits[0].group(1) or '') + box[a:b]
+                   + (hits[0].group(2) or '') + box[b:])
+        out.append(box)
+    return (wait + page).join(out)
+
+
+def _clean(en):
+    # NO LINE BEGINS WITH PUNCTUATION. A colon (a label's, most of all) that
+    # stranded at a line start belongs to the line above: "Saeko Takami:" then
+    # the description, never "Saeko Takami" / ": Homeroom teacher".'
+    en = re.sub(r'<FF03>: *', ':<FF03>', en)
+    en = re.sub(r'<FF03>([,;!?]|\.(?!\.)) *', r'\1<FF03>', en)
+    en = re.sub(r':{2,}', ':', en)
+
+    """Strip JA padding blanks around codes and box edges; the box must
+    open on text, never on blanks or a wait. Name inserts (FF07/08/0F)
+    render as words, so spaces around them are real English spacing and
+    must survive (stripping them glues the name to its neighbours:
+    "Mark:<name>found"). Pauses (FF05) keep their neighbours' spacing for
+    the same reason ("Mark: <pause> Dammit!", never "Mark:<pause>Dammit!").
+    vwf_wrap owns the rule (the reflow uses it too)."""
+    return vwf_wrap.clean_edges(en)
+
+
+_PSXC = {}
+_USPC = {}
+_JSPC = {}
+_ALIGN_IDX = None
+
+
+def psx_entries(f):
+    if f not in _PSXC:
+        _PSXC[f] = efile.load(os.path.join(ROOT, 'data', 'psx', 'ADV', f + '.BIN')).entries
+    return _PSXC[f]
+
+
+def usp_entries(f):
+    """The PSP-US entries of story file f, psp_errata.tsv applied to their
+    boxes (toolbelt.psp_errata). load_psp's cached container is copied, so
+    the alignment and the extract keep reading the PSP's own bytes."""
+    if f not in _USPC:
+        import copy
+        from codec import box_replace
+        entries = load_psp(f, 'us').entries
+        fixes = toolbelt.psp_errata(f'pack/{f}')
+        if fixes:
+            entries = copy.deepcopy(entries)
+            spots = {f'{e.index}:0x{s:x}': (e, k)
+                     for e in entries for k, (s, _e) in enumerate(e.boxes)}
+            for pos, find, replace in fixes:
+                if pos not in spots:
+                    toolbelt.fail(f'psp_errata.tsv: {f} {pos} names no PSP-US box')
+                e, k = spots[pos]
+                try:
+                    e.override[k] = box_replace(e.box_bytes(k), find, replace)
+                except ValueError as err:
+                    toolbelt.fail(f'psp_errata.tsv: {f} {pos}: {err}')
+        _USPC[f] = entries
+    return _USPC[f]
+
+
+def jsp_entries(f):
+    if f not in _JSPC:
+        _JSPC[f] = load_psp(f, 'jp').entries
+    return _JSPC[f]
+
+
+def align_idx():
+    global _ALIGN_IDX
+    if _ALIGN_IDX is None:
+        _ALIGN_IDX = {}
+        # header-keyed parse, list-shaped for the positional consumers
+        # below (row lists keep header order, so r[i] semantics hold);
+        # Reject header/row drift to prevent binding a row to the wrong fields.
+        cols = strlib.tsv_cols(ALIGN)
+        for row in strlib.tsv_rows(ALIGN, required=cols):
+            r = [row[c] for c in cols]
+            # generated rows carrying a duplicate-wording repair append the
+            # donor as a tuple (same shape align_fix's extended rows use)
+            src = None
+            if (len(r) >= 9 and row['src_file']
+                    and row['src_entry'].isdigit() and row['src_box'].isdigit()):
+                src = (row['src_file'], int(row['src_entry']), int(row['src_box']))
+            r = r[:6]
+            if src is not None:
+                r += ['', src]
+            if row['entry'].isdigit() and row['psx_box'] not in ('', 'None'):
+                _ALIGN_IDX.setdefault((row['file'], int(row['entry'])), {})[
+                    int(row['psx_box'])] = r
+        # manual alignment repairs win (repair_alignment.py): (file, entry, psx, jp, us)
+        # extended rows append (sfile, sentry, sbox): US text comes from there
+        fx = os.path.join(toolbelt.SOURCE_MAPPINGS, 'align_fix.tsv')
+        if os.path.exists(fx):
+            for n, line in enumerate(open(fx, encoding='utf-8').read().split('\n'), start=1):
+                if not line.strip():
+                    continue
+                r = line.rstrip('\r').split('\t')
+                if len(r) not in (5, 8):
+                    raise ValueError(f'{fx}:{n}: expected 5 or 8 fields, '
+                                     f'got {len(r)}: {line[:80]!r}')
+                if not r[2].isdigit():
+                    raise ValueError(f'{fx}:{n}: psx_box {r[2]!r} not a number')
+                f, ei, k = r[0], int(r[1]), int(r[2])
+                u = r[4] if len(r) > 4 and r[4] not in ('', 'None') else None
+                src = None
+                if len(r) >= 8 and r[5] and r[6].isdigit() and r[7].isdigit():
+                    src = (r[5], int(r[6]), int(r[7]))
+                jp = r[3] if len(r) > 3 and r[3] not in ('', 'None') else ''
+                row = [f, str(ei), str(k), jp, u if u is not None else '',
+                       'ok' if u is not None else 'gap-fixed', '']
+                if src is not None:
+                    row.append(src)
+                _ALIGN_IDX.setdefault((f, ei), {})[k] = row
+    return _ALIGN_IDX
+
+
+# Who's who (PSP descriptive labels + JA/EN names -> character)
+WHO = strlib.glossary('who')
+
+
+_JPM = None
+
+
+def jp_map():
+    global _JPM
+    if _JPM is None:
+        _JPM = {}
+        p = toolbelt.PSP_GLYPHS
+        for u, ch in strlib.tsv_fields(p, 2):
+            _JPM[int(u, 16)] = ch
+    return _JPM
+
+
+def jp_text(raw):
+    import difflib as _d  # noqa
+    from codec import decode_box
+    t = decode_box(raw, jp_map(), holes=[])   # markers visible; stripped below
+    t = re.sub(r'<FF[0-9A-F]{2}>|\[[0-9a-f]{4}\]', '', t)
+    return re.sub(r'\s+', '', t)
+
+
+def psx_text(raw):
+    t = etext.decode(raw)
+    t = re.sub(r'<FF[0-9A-F]{2}>|<G[0-9A-F]{3}>|<[0-9A-F]{2}>', '', t)
+    return re.sub(r'\s+', '', t)
+
+
+def textsim(a, b):
+    import difflib
+    if not a or not b:
+        return 0.0
+    return difflib.SequenceMatcher(None, a, b).ratio()
+
+
+def _live_slot(f, ei, psx, k):
+    import match_jp
+    psx_rel = 'ADV/' + f
+    t = match_jp.psx_id_twin(psx_rel, f'{ei}:{psx.boxes[k][0]:#x}')
+    if t is None:
+        return None
+    ut = match_jp.us_twin(match_jp.psx_jp_rel(psx_rel), t)
+    if ut is None:
+        return None
+    return f, int(ut['entry']), int(ut['box'])
+
+
+def _slot_pair(f, ei, psx, k):
+    """(us_raw, us_box) for a PSX box via the slot join, or None.
+
+    align.tsv is derived and this box has no 'ok' row in it. The PSP kept
+    the script's SLOTS, so this box's (entry, box) - +-2 for boxes the
+    build inserted or cut, validated by text overlap - names the same
+    line even where the PSP rewrote it (nameplates, full stops), and that
+    line's US twin holds the English. match_jp.psx_id_twin is the one
+    implementation; nothing here re-judges a pair. The PSP-JP lookup is
+    frozen as a text-free pointer (story_port_plan) for replay."""
+    found = story_port_plan.slot(
+        f, ei, psx.boxes[k][0], lambda: _live_slot(f, ei, psx, k))
+    if found is None:
+        return None
+    sfile, sei, sk = found
+    try:
+        return usp_entries(sfile)[sei].box_bytes(sk), sk
+    except Exception:
+        return None
+
+
+def convert_entry(f, ei):
+    psx = psx_entries(f)[ei]
+    usp = usp_entries(f)[ei]
+    by_psx = align_idx().get((f, ei), {})
+    # (invented scroll waits, of them cuts not at a sentence end) - totals for
+    # this entry; the waits themselves are in the emitted rows (<FF02>).
+    counts = [0, 0]
+    out = []
+    prev_lab = None  # last box's emitted speaker label (repeats are dropped)
+    prev_ja = None  # last box's JA speaker label (continuity corroboration)
+    for k in range(len(psx.boxes)):
+        ja = etext.decode(psx.box_bytes(k))
+        r = by_psx.get(k)
+        us_raw, u = None, None
+        if r is not None and r[5] == 'ok':
+            u = int(r[4]) if r[4] not in ('', 'None') else None
+            if len(r) > 7 and isinstance(r[7], tuple):
+                sfile, sei, sk = r[7]
+                us_raw = usp_entries(sfile)[sei].box_bytes(sk)
+                u = sk  # for messages below
+            else:
+                us_raw = usp.box_bytes(u)
+        else:
+            pair = _slot_pair(f, ei, psx, k)
+            if pair is None:
+                out.append((k, ja, None, 'no-pair:%s' % (r[5] if r else '?')))
+                prev_lab = None
+                prev_ja = None
+                continue
+            us_raw, u = pair
+        # card-mismatch: exactly one side is a portrait/style card. US cards
+        # are FF18 portraits or FF06-headed plain-text cards.
+        us_card = us_raw[:2] == b'\xff\x18' and len(us_raw) > 6 and us_raw[2:4] in (
+            b'\x02\x00', b'\x03\x00')
+        us_text_card = us_raw[:2] == b'\xff\x06'
+        if ja.startswith('<FF06>') != (us_card or us_text_card):
+            ja0 = etext.decode(psx.box_bytes(k))
+            out.append((k, ja0, None, 'card-mismatch'))
+            prev_lab = None
+            prev_ja = None
+            continue
+        # intro cards (FF06 portrait boxes) take the custom path
+        if ja.startswith('<FF06>'):
+            card = parse_card(us_raw)
+            if card is None:
+                # nickname-less staff card: resolve name via PSX JA slot
+                # (card-type prefix い/う stripped: 'い反谷教頭' -> '反谷教頭')
+                psx_name = None
+                for kind, val in psx_tok_raw(psx.box_bytes(k)):
+                    if kind == 't' and val.strip('　 '):
+                        psx_name = val.strip('　 ').split('（')[0].strip()
+                        if psx_name[:1] in ('い', 'う'):
+                            psx_name = psx_name[1:]
+                        break
+                if psx_name is not None:
+                    card = parse_card_simple(us_raw, psx_name)
+                if card is None and psx_name is not None:
+                    card = parse_card_text(us_raw, psx_name)
+            if card is None:
+                out.append((k, ja, None, 'card-parse-fail'))
+                prev_lab = None
+                prev_ja = None
+                continue
+            name, nick, words, *label = card
+            en = _clean(card_en(psx.box_bytes(k), us_raw, name, nick, words,
+                                *label))
+            # A CARD SOURCE THAT IS STILL JAPANESE IS NOT A TRANSLATION, the
+            # same rule the dialogue path applies below: PSP-US left some
+            # profile cards untranslated, and building one here ships kana in
+            # an `en` cell (then trips the width check). The box stays a gap.
+            import port_derive
+            if port_derive.still_japanese(en):
+                out.append((k, ja, None, ''))
+                prev_lab = None
+                prev_ja = None
+                continue
+            errs = []
+            for ln in re.split(r'<FF0[234]>', en):
+                plain = re.sub(r'<[^>]+>', '', ln)
+                if plain and vwf_wrap.text_width(plain) > vwf_wrap.BOX_WIDTH + 1:
+                    errs.append('wide:%dpx' % vwf_wrap.text_width(plain))
+                    break
+            out.append((k, ja, en, '; '.join(errs)))
+            prev_lab = None  # cards are name plates, not textbox labels
+            prev_ja = None
+            continue
+        segments, flags = us_parts(us_raw, ja=ja)
+        toks = psx_tok_raw(psx.box_bytes(k))
+        ja_label, toks = split_label(toks)
+        # A NAME INSERT IS A LABEL LIKE ANY NAME: "<FF08>あ：俺はお前さ" is
+        # spoken by the nickname, and the PSP says the same with its own
+        # label ("<FF1B><FF08><FF03>I'm you."), so the box shows "<name>:"
+        # like every speaker - never a box stripped of its speaker
+        if (ja_label is None and len(toks) > 1 and toks[0][0] == 'c'
+                and re.fullmatch(r'<FF0[78F]><[0-9A-F]{2}>', toks[0][1])
+                and toks[1][0] == 't' and toks[1][1].startswith('：')
+                and segments and segments[0][0]
+                and re.search(r'<FF0[78F]>', segments[0][0])):
+            ja_label = toks[0][1] + '：'
+            toks = [('t', toks[1][1][1:])] + toks[2:]
+        # hero grunt: the US speaker is the hero name-variable ({surname
+        # given} in braces: FF1B 002f..0030, inner glyphs unmapped) while
+        # the PSX box is spoken by the name insert itself (FF07+param, no
+        # literal label). Keep the PSX skeleton (name slot, colon, waits;
+        # nothing invented) and take the PSP-US body. Only this shape
+        # qualifies.
+        if ja_label is None and segments:
+            lab_codes = []
+            i = 2
+            if us_raw[:2] == b'\xff\x1b':
+                while i + 1 < len(us_raw) and us_raw[i] != 0xFF:
+                    lab_codes.append(struct.unpack_from('>H', us_raw, i)[0])
+                    i += 2
+            namevar = (len(lab_codes) > 2 and lab_codes[0] == 0x002f
+                       and lab_codes[-1] == 0x0030
+                       and all(US_MAP.get(u, '') == ''
+                               for u in lab_codes[1:-1]))
+            t0 = next((v for kd, v in toks if kd == 't' and v), '')
+            m = re.match(r'^(：+)', t0)
+            c0 = next((v for kd, v in toks if kd == 'c'), '')
+            if (namevar and m
+                    and re.fullmatch(r'<FF07><[0-9A-F]{2}>', c0)):
+                # Synthesize the protagonist parameter for the name label.
+                c0 = '<FF07><01>'
+                words = [w for _lab, w in segments for w in w
+                         if isinstance(w, str) and not w.startswith(US_BRK)]
+                body = ' '.join(words).strip()
+                codes = [t for kind, t in toks if kind == 'c']
+                tail = ''.join(c for c in codes[1:]
+                               if c.startswith(('<FF02>', '<FF01>')))
+                if body:
+                    en = _clean(c0 + m.group(1) + body
+                                + (tail if '<FF01>' in tail else tail + '<FF01>'))
+                    out.append((k, ja, en, ''))
+                    prev_lab = None  # name insert, no literal label shown
+                    prev_ja = None
+                    continue
+        # resolve first label: PSP > HAND/PSP-names fallback > none (PSP style)
+        first_lab = segments[0][0] if segments else None
+        if ja_label and not first_lab:
+            bare = ja_label.rstrip('：')
+            if bare in HAND_LABELS:
+                pass  # PSP-US heading words are emitted from its own stream
+            elif bare in psp_names():
+                first_lab = psp_names()[bare]
+            else:
+                flags.append('label-manual:%s' % ja_label)
+        # speaker-mismatch: both sides name different characters; arbitrate
+        # by content (PSX-JA vs JP-partner): same scene = PSP refinement,
+        # different scene = misalignment for manual review. accept.tsv holds
+        # reviewed-good pairs that keep their (reattributed) labels.
+        if ja_label and first_lab:
+            jb = ja_label.rstrip('：')
+            pn = psp_names()
+            wc = WHO.get(first_lab, first_lab)
+            wj = WHO.get(jb, pn.get(jb, jb))
+            if wc != wj and 'Girl' not in first_lab and (
+                    wc in pn.values() or wj in pn.values()
+                    or (jb in WHO and first_lab in WHO)):
+                if (f, ei, k) in accepted_pairs():
+                    pass  # reviewed reattribution; US label stands
+                else:
+                    try:
+                        jidx = int(r[3]) if len(r) > 3 and str(r[3]).isdigit() else None
+                        if jidx is None:
+                            flags.append('speaker-mismatch:%s>%s' % (jb, first_lab))
+                        else:
+                            def _same_scene():
+                                jent = jsp_entries(f)[ei]
+                                if jidx >= len(jent.boxes):
+                                    raise IndexError('JP box missing')
+                                jraw = jent.box_bytes(jidx)
+                                ptxt = psx_text(psx.box_bytes(k))
+                                return (textsim(ptxt, jp_text(jraw)) >= 0.45,
+                                        jraw)
+                            if story_port_plan.decide(
+                                    f, ei, k, jidx, _same_scene):
+                                pass  # same scene: PSP refinement, keep US label
+                            else:
+                                flags.append('speaker-mismatch:%s>%s' % (jb, first_lab))
+                    except story_port_plan.PlanError:
+                        raise
+                    except Exception as ex:
+                        flags.append('speaker-mismatch:%s>%s:arbitrate-err' % (jb, first_lab))
+        # Retail label presence wins: a PSX box with no speaker label shows
+        # none even when PSP labels every box of the run (continuations,
+        # choice prompts). Nulling first_lab here keeps mid-box restatements
+        # and lets width/pagination below reclaim the line.
+        if not ja_label and first_lab:
+            first_lab = None
+        # Keep dot-words even when the skeleton has FF05 pauses: the PSP
+        # draws both, and its wording is ported verbatim.
+        # flatten segments into items with breaks
+        items = []
+        # EN mid-box restatements keep their speaker name iff the JA box
+        # states one here too (positional, in box order): a PSP "Name:"
+        # with no JP "X：" behind it degrades to a bare break. Same rule
+        # as the box-leading presence check above, just per restatement.
+        ja_mid = jp_mid_labels(toks)
+        for si, (lab, w) in enumerate(segments):
+            if si > 0:
+                if lab is not None and ja_mid:
+                    ja_mid.pop(0)
+                elif lab is not None:
+                    lab = None
+                items.append(('b', lab))
+            for x in w:
+                if isinstance(x, str) and x.startswith(US_BRK):
+                    items.append(('u', x[len(US_BRK):]))
+                else:
+                    items.append(('w', x))
+        def finish(items_in):
+            # the Japanese's own sentence lines (vwf_wrap.orig_beats)
+            e2, used2, rf2 = reflow(first_lab, vwf_wrap.with_orig_breaks(items_in, ja),
+                                    joins=joins)
+            flags.extend(rf2)
+            if not e2.endswith('<FF01>'):
+                e2 += '<FF01>' if '<FF01>' not in e2 else ''
+            nwords = sum(1 for it in items_in if it[0] == 'w')
+            if used2 < nwords:
+                got = [it[1] for it in items_in if it[0] == 'w']
+                flags.append('leftover:%s' % ' '.join(got[used2:])[:80])
+            e2, inv1, nons1 = paginate(e2)
+            # Choice options must start their own line (same rule as tstatus
+            # QA): where their break goes is the pen's - vwf_wrap owns it
+            # (a mid-line pen needs its break ("me?Yes"), a full pre-line is
+            # already at line start and a break there skips a line: E0/1/1).
+            if '<FF0E>' in e2:
+                e2 = vwf_wrap.choice_breaks(e2)
+            # strip edge whitespace (JA padding blanks must not leak into EN)
+            e2 = _clean(e2)
+            # enforce can push a page to 4 lines: paginate again so waits split it
+            e2, inv2, nons2 = paginate(e2)
+            inv1 += inv2
+            nons1 += nons2
+            if inv1:
+                # The invented waits are IN the row (<FF02>), so the generated
+                # table already says what the box does; no per-box console
+                # line. cmd_bulk totals them per file and files the mid-
+                # sentence cuts under scratch/translation_reports/.
+                counts[0] += inv1
+                counts[1] += nons1
+            return e2
+
+        joins = None
+        if r is not None and r[5] == 'ok' and str(r[3]).isdigit():
+            jidx = int(r[3])
+
+            def _live_joins():
+                jent = jsp_entries(f)[ei]
+                if jidx >= len(jent.boxes):
+                    return None
+                return box_joins(ja, jent.box_bytes(jidx))
+            joins = story_port_plan.joins(f, ei, k, _live_joins)
+        items, seams = psp_line_beats(jp_line_beats(items, ja), ja)
+        hard = sentence_pauses(items, ja)
+        soft = sentence_pauses(items, ja, soft=True)
+        kept = (len(flags), list(counts))
+        en = finish(hard)
+        if soft != hard:
+            # the JP's line break at a carried pause, where it costs a press
+            # the box would not need otherwise (a scroll or a box), was only
+            # the JP's line running out: the soft layout
+            hard_flags, hard_counts = flags[kept[0]:], list(counts)
+            del flags[kept[0]:]
+            counts[:] = kept[1]
+            en_soft = finish(soft)
+            if _presses(en_soft) < _presses(en):
+                en = en_soft
+            else:
+                del flags[kept[0]:]
+                flags.extend(hard_flags)
+                counts[:] = hard_counts
+        if any('variable' in flag for flag in flags):
+            out.append((k, ja, None, '; '.join(flags)))
+            prev_lab = None
+            prev_ja = None
+            continue
+        # A FREE JOIN, DOWN TO THE PSX'S OWN COUNT AND NO FURTHER: the PSX draws
+        # this box as 1 + its own <FF04> pages, the PSP's boxes are kept unless
+        # the pair fits three lines (the count stays in
+        # [psx boxes, psp boxes], never smaller than either).
+        en = merge_boxes(en, min_boxes=1 + ja.count('<FF04>'), joins=joins, ja=ja,
+                         seams=seams)
+        # A carried beat that still lands on a box turn is the press itself:
+        # the player's button IS the pause there (sentence_pauses).
+        en = re.sub(r'(<FF02><FF04>)<FF05><[0-9A-F]{2}><[0-9A-F]{2}>', r'\1', en)
+        en = ellipsis_pauses(en, ja)
+        # THE OPTION BLOCK'S ARMING LINE IS THE LAYOUT'S, NOT THE JP'S. The
+        # JP's wait is a proxy for ITS prompt length; the English prompt is a
+        # different length, so copying the JP's wait either invents a press on
+        # a one-line prompt or leaves a two-line prompt to scroll by itself
+        # under the player. vwf_wrap.choice_breaks owns it: no wait when the prompt
+        # fits above the options, '<FF02>' when it does not (the corpus' own
+        # 463 '<FF02><FF03><FF0E>' rows) - no options until the player
+        # presses, then exactly one scroll.
+        if '<FF0E>' in en:      # an option always starts its own line
+            en = vwf_wrap.choice_breaks(en)
+        # THE PSP'S BOXES ARE THE AUTHOR'S (spec 3.1). A run of PSP boxes is
+        # KEPT, not re-flowed to the Japanese word positions or stripped of
+        # their waits. The PSX holds as many boxes as the text needs -
+        # the box count is free - so there is nothing to trade away. A PSP box
+        # whose English needs more than 3 lines scrolls ONCE (paginate owns
+        # that); nothing is stuffed or squeezed, and the line count the PSX
+        # shows is kept whenever the words fit without it.
+        # NOTE: line widths are QA's job (tstatus width warnings), never the
+        # porter's gate: over-wide textbox lines build as-is and are never
+        # shortened, skipped, or gapped. No width errors are recorded here.
+        out.append((k, ja, en, '; '.join(flags)))
+        prev_lab = first_lab
+        prev_ja = ja_label
+    return out, counts
+
+
+def _one(arg):
+    """Worker: convert one entry, return plain data."""
+    f, ei = arg
+    try:
+        rows, counts = convert_entry(f, ei)
+    except SystemExit as exc:
+        # a SystemExit kills a pool worker and leaves Pool.map waiting for
+        # it forever: hand it back as an error the parent re-raises
+        raise RuntimeError(f'{f} entry {ei}: {exc}') from None
+    return f, ei, rows, counts
+
+
+def laid_out_for_every_edition(entry_ids, jobs):
+    """_one over every entry, once per font edition, the two layouts of each
+    box merged into one row (vwf_wrap.merge_editions: <LFF03> / <SFF03>).
+    This process lays out ROW_EDITION; every other edition runs in fresh
+    worker processes started with its PERSONA_FONT, which load that face's
+    widths - no layout rule changes. A box whose layouts differ in more than
+    their separators, or that only one edition could lay out, keeps
+    ROW_EDITION's layout for both."""
+    import multiprocessing as mp
+    if toolpath.FONT_EDITION != vwf_wrap.ROW_EDITION:
+        raise SystemExit(f'port_story: lay rows out from the {vwf_wrap.ROW_EDITION} edition '
+                         f'(PERSONA_FONT is {toolpath.FONT_EDITION})')
+
+    def run(edition):
+        if edition == toolpath.FONT_EDITION:
+            if jobs > 1:
+                with mp.Pool(jobs) as pool:
+                    return pool.map(_one, entry_ids)
+            return [_one(a) for a in entry_ids]
+        previous = os.environ.get('PERSONA_FONT')
+        os.environ['PERSONA_FONT'] = edition
+        try:
+            with mp.get_context('spawn').Pool(max(jobs, 1)) as pool:
+                return pool.map(_one, entry_ids)
+        finally:
+            if previous is None:
+                os.environ.pop('PERSONA_FONT', None)
+            else:
+                os.environ['PERSONA_FONT'] = previous
+
+    layouts = {edition: run(edition) for edition in toolpath.FONT_EDITIONS}
+    merged_rows, kept, lettered = [], 0, 0
+    others = [e for e in toolpath.FONT_EDITIONS if e != vwf_wrap.ROW_EDITION]
+    for at, (f, ei, rows, counts) in enumerate(layouts[vwf_wrap.ROW_EDITION]):
+        theirs = {e: {k: en for k, _ja, en, errs in layouts[e][at][2] if en and not errs}
+                  for e in others}
+        out = []
+        for k, ja, en, errs in rows:
+            if en and not errs and all(k in theirs[e] for e in others):
+                one = vwf_wrap.merge_editions({vwf_wrap.ROW_EDITION: en,
+                                               **{e: theirs[e][k] for e in others}})
+                if one is None:
+                    kept += 1
+                elif one != en:
+                    lettered += 1
+                    en = one
+            elif en and not errs:
+                kept += 1
+            out.append((k, ja, en, errs))
+        merged_rows.append((f, ei, out, counts))
+    print(f'font editions: {lettered} boxes laid out per edition, {kept} keep the '
+          f'{vwf_wrap.ROW_EDITION} layout in every edition')
+    return merged_rows
+
+
+def psp_lookup(f):
+    """(entry, box) -> psp provenance pointer for one story file: the unit
+    in extracted_text/psp_us/pack/<E?>.tsv that supplied the English.
+
+    The pointer must name the same box the porter read, so it goes through
+    the same `align_idx()` table (generated align.tsv plus reviewed
+    align_fix overrides), including a cross-file source row. A box with no
+    binding keeps its own coordinate: provenance is the raw PSP-US slot
+    only when the porter fell back to the slot join."""
+    import toolbelt
+    idx = {(r['entry'], r['box']): r['id']
+           for r in toolbelt.read_extracted('psp_us', f'pack/{f}', optional=True)}
+    by_file = {}
+
+    def us_id(file, entry, box):
+        if file not in by_file:
+            by_file[file] = {
+                (r['entry'], r['box']): r['id']
+                for r in toolbelt.read_extracted(
+                    'psp_us', f'pack/{file}', optional=True)}
+        return by_file[file].get((str(entry), str(box)))
+
+    def get(entry, box):
+        e, b = str(entry), str(box)
+        r = align_idx().get((f, int(e)), {}).get(int(b)) if b.isdigit() else None
+        if r is not None and r[5] == 'ok':
+            if len(r) > 7 and isinstance(r[7], tuple):
+                sf, se, sb = r[7]
+                rid = us_id(sf, se, sb)
+                return f'{sf}:{rid}' if rid is not None else f'{sf}:'
+            rid = idx.get((e, r[4]))
+            return f'{f}:{rid}' if rid is not None else ''
+        rid = idx.get((e, b))
+        return f'{f}:{rid}' if rid is not None else ''
+    return get
+
+
+def store_generated(ports, replace_entry=None):
+    """Store PSP-derived English into the per-file tables (docs/
+    TEXT_ARCHITECTURE.md): pos = 'entry:boxstart' (archive sub-structure),
+    psp = the source unit's pointer, manual = the gap queue (auto-cleaned)."""
+    import toolbelt
+    import efile as _efile
+    by_file = {}
+    for f, e, b, ja, en in ports:
+        by_file.setdefault(f, []).append((e, b, ja, en))
+    n = 0
+    gap_jp = []
+    gap_width = []
+    for f, rows in by_file.items():
+        entries = _efile.load(os.path.join(ROOT, 'data', 'psx', 'ADV', f + '.BIN')).entries
+        psp_of = psp_lookup(f)
+        rel = f'ADV/{f}'
+        auto = []
+        for e, b, ja, en in rows:
+            if not (en or '').strip():
+                continue
+            # A SOURCE THAT IS STILL JAPANESE IS NOT A TRANSLATION. The
+            # PSP-US pack carries a few untranslated boxes (E1's Snow Queen
+            # and Agastya Tree lines are kana in the US build too), and a
+            # porter that stores one ships kana in an `en` cell - no charset
+            # can encode it and QA calls it an error. The box stays a gap
+            # (the PSX Japanese ships) until a real source fills it. Same
+            # rule, same matcher as the re-derivation net (port_derive).
+            import port_derive
+            if port_derive.HOLES.search(port_derive.ink_of(en)):
+                gap_jp.append((f, e, b))
+                continue
+            # THE PSP'S HEAD MARK IS FURNITURE and only THIS box's Japanese
+            # can justify one (port_derive.head_marks): the PSP opens a line with
+            # '＞', the PSX draws one only where its own bytes carry it. Doing
+            # it here - where the PSX Japanese is in hand - is what keeps the
+            # stored row right on the first pass instead of leaving it to the
+            # re-derivation net (which cannot see a box-index pointer).
+            en = port_derive.head_marks(en, ja)
+            s, _e = entries[e].boxes[b]
+            pos = f'{e}:{s:#x}'
+            # A row that still cannot lay itself out is the source's wording,
+            # so it becomes an over-limit draft (the Japanese ships) instead
+            # of stopping the build.
+            reason = port_derive.unlayable_note(en, placed=True)
+            if reason:
+                toolbelt.route_over(rel, pos, psp_of(e, b), en, reason)
+                gap_width.append(f'{f}/{e}/{b}: {reason}')
+                continue
+            row = {'pos': pos, 'en': en}
+            psp = psp_of(e, b)
+            if psp:                        # missing key keeps any existing pointer on upsert
+                row['psp'] = psp
+            auto.append(row)
+        n += toolbelt.upsert_generated(rel, auto)
+        # the gap queue: every box of the file that has no translation yet
+        spots = [f'{e}:{s:#x}'
+                 for e, ent in enumerate(entries) for s, _x in ent.boxes]
+        toolbelt.route_gaps(rel, spots)
+    if gap_jp:
+        # silence would look like a clean port: name what stayed Japanese
+        print('kept as gaps (source is still Japanese, not a translation): '
+              + ', '.join(f'{f}/{e}/{b}' for f, e, b in gap_jp))
+    if gap_width:
+        print('over-limit dialogue drafted to manual: '
+              + '; '.join(gap_width))
+    return n
+
+
+def cmd_bulk(apply=False, jobs=None):
+    import multiprocessing as mp
+    import efile as _efile
+    # The text caches must reflect the glyph map: regenerate when stale.
+    from text import PJ, PU, _stale, cmd_cache
+    regions = [('us', PU)]
+    if not os.environ.get(story_port_plan.REPLAY_ENV):
+        regions.append(('jp', PJ))
+    for region, pack in regions:
+        if any(_stale(toolbelt.ext_path(f'psp_{region}', f'pack/{file}'),
+                      os.path.join(pack, f'{file}.BIN'), toolbelt.PSP_GLYPHS)
+               for file in ('E0', 'E1', 'E2', 'E3', 'E4')):
+            # The extract keeps visible holes. The porter routes those to gaps.
+            cmd_cache(region, strict=False)
+    # preload shared read-only data before forking (CoW-shared with workers)
+    for f in ('E0', 'E1', 'E2', 'E3'):
+        psx_entries(f)
+        usp_entries(f)
+    align_idx()
+    entry_ids = [(f, ei) for f in ('E0', 'E1', 'E2', 'E3')
+                 for ei in range(len(psx_entries(f)))]
+    if jobs is None:
+        jobs = toolbelt.jobs()
+    results = laid_out_for_every_edition(entry_ids, jobs)
+    by_file = {}
+    waits = {}                      # f -> [invented scrolls, of them mid-sentence cuts]
+    for f, ei, rows, counts in results:
+        by_file.setdefault(f, []).append((ei, rows))
+        tally = waits.setdefault(f, [0, 0])
+        tally[0] += counts[0]
+        tally[1] += counts[1]
+    # identical-text reuse: a gap card byte-identical to clean port(s) adopts
+    # their English when all donors agree. Cards only (FF06 name+description
+    # units are context-free); dialogue lines can deictically differ between
+    # scenes even with identical bytes, so those stay gaps. The gap's own
+    # errors must be pairing failures (card-parse-fail, no-pair, unmapped
+    # US words); text problems are never papered over. E.g. a profile card
+    # duplicated across entries where only one US copy was translated.
+    _PAIR_ERRS = ('no-pair', 'card-parse-fail', 'unmapped')
+    donor_en = {}
+    donor_ok = {}
+    for f in ('E0', 'E1', 'E2', 'E3'):
+        for ei, rows in sorted(by_file.get(f, [])):
+            for k, ja, en, errs in rows:
+                if en and not errs:
+                    try:
+                        raw = bytes(psx_entries(f)[ei].box_bytes(k))
+                    except Exception:
+                        continue
+                    donor_en.setdefault(raw, set()).add(en)
+    for raw, ens in donor_en.items():
+        if len(ens) == 1 and raw[:2] == b'\xff\x06':
+            donor_ok[raw] = next(iter(ens))
+    n_borrowed = 0
+    fixed_rows = []
+    for f, ei, rows, counts in results:
+        new_rows = []
+        for k, ja, en, errs in rows:
+            if en is None and (not errs or errs.startswith(_PAIR_ERRS)):
+                try:
+                    raw = bytes(psx_entries(f)[ei].box_bytes(k))
+                except Exception:
+                    raw = None
+                if raw is not None and raw in donor_ok:
+                    print(f'--- {f}/{ei} box {k}: identical-text borrow')
+                    new_rows.append((k, ja, donor_ok[raw], ''))
+                    n_borrowed += 1
+                    continue
+            new_rows.append((k, ja, en, errs))
+        fixed_rows.append((f, ei, new_rows, counts))
+    results = fixed_rows
+    by_file = {}
+    for f, ei, rows, counts in results:
+        by_file.setdefault(f, []).append((ei, rows))
+    print(f'identical-text borrows: {n_borrowed}')
+    total_clean = total_gap = total_err = 0
+    ported_all = []
+    auto_dir = os.path.join(ROOT, 'scratch', 'translation_reports')  # diagnostics, not translation tables
+    os.makedirs(auto_dir, exist_ok=True)
+    errlog = open(os.path.join(auto_dir, 'story_errors.tsv'), 'w', encoding='utf-8')
+    errlog.write('file\tentry\tbox\terrors\tja\n')
+    for f in ('E0', 'E1', 'E2', 'E3'):
+        for ei, rows in sorted(by_file.get(f, [])):
+            for k, ja, en, errs in rows:
+                if en is None:
+                    total_gap += 1
+                elif errs:
+                    total_err += 1
+                    if total_err <= 15:
+                        print(f'--- {f}/{ei} box {k}: {errs[:100]}')
+                    errlog.write(f'{f}\t{ei}\t{k}\t{errs}\t{ja[:120]}\n')
+                if en is None or errs:
+                    continue
+                total_clean += 1
+                if apply:
+                    ported_all.append((f, ei, k, ja, en))
+        print(f'{f}: found {sum(1 for r in ported_all if r[0] == f)} clean PSP ports')
+    for f in ('E0', 'E1', 'E2', 'E3'):
+        inv, nons = waits.get(f, (0, 0))
+        if inv:
+            print(f'{f}: {inv} scroll waits placed by paginate (<FF02> in the rows)'
+                  + (f', {nons} cut mid-sentence' if nons else ''))
+    print(f'BULK: {total_clean} clean, {total_gap} gaps, {total_err} errors')
+    errlog.close()
+    print('errors listed in scratch/translation_reports/story_errors.tsv')
+    if apply:
+        n = store_generated(ported_all)
+        print(f'wrote {n} clean PSP-derived English rows under translation/generated/ADV/')
+        # Informational source differences, not a Japanese code-inventory
+        # gate. Source controls are translated before writing the row.
+        all_devs = {}
+        for f, ei, k, ja, en in ported_all:
+            devs, ok = tstatus.classify_deviations(ja, en)
+            if not ok:
+                all_devs[(f, ei, k)] = [('source-controls', ja, en)]
+            elif devs:
+                all_devs[(f, ei, k)] = devs
+        with open(os.path.join(auto_dir, 'psp_deviations.tsv'), 'w', encoding='utf-8', newline='\n') as o:
+            o.write('file\tentry\tbox\tkind\tja\ten\n')
+            for (f, ei, k), devs in sorted(all_devs.items()):
+                for kind, jt, et in devs:
+                    o.write(f'{f}\t{ei}\t{k}\t{kind}\t{jt}\t{et}\n')
+        print(f'wrote {len(all_devs)} rows with PSP-source control differences')
+        stale = os.path.join(auto_dir, 'name_inserts.tsv')
+        if os.path.exists(stale):
+            os.remove(stale)
+
+
+def main():
+    if len(sys.argv) > 1 and sys.argv[1] == '--bulk':
+        if '--without-psp-jp' in sys.argv:
+            os.environ[story_port_plan.REPLAY_ENV] = str(story_port_plan.PLAN)
+        cmd_bulk(apply='--apply' in sys.argv)
+        return
+    f, ei = sys.argv[1], int(sys.argv[2])
+    apply = '--apply' in sys.argv
+    verify = '--verify' in sys.argv
+    rows, counts = convert_entry(f, ei)
+    if counts[0]:
+        print(f'{f}/{ei}: {counts[0]} scroll waits placed by paginate '
+              f'(<FF02> in the rows), {counts[1]} cut mid-sentence')
+    nok = sum(1 for _, _, en, e in rows if en and not e)
+    print(f'{f}/{ei}: {nok}/{len(rows)} clean')
+    if verify:
+        tsv = os.path.join(ROOT, 'translation', 'generated', 'ADV', f'{f}.tsv')
+        cur = {}
+        if os.path.exists(tsv):
+            for row in strlib.tsv_rows(tsv, required=('entry', 'box', 'en')):
+                if row['entry'] == str(ei) and row['box'].isdigit():
+                    cur[int(row['box'])] = row['en']
+        ndiff = 0
+        for k, ja, en, errs in rows:
+            if en and not errs and k in cur and cur[k] != en:
+                ndiff += 1
+                print(f'--- box {k} DIFFERS from generated PSP text')
+                print(f'  table: {cur[k][:160]}')
+                print(f'  fresh: {en[:160]}')
+        print(f'verify: {ndiff} generated rows differ')
+        return
+    for k, ja, en, errs in rows:
+        if errs or en is None:
+            print(f'--- box {k}: {errs}')
+            print(f'  ja: {ja[:130]}')
+            print(f'  en: {(en or "")[:220]}')
+    if apply:
+        ports = [(f, ei, k, ja, en) for k, ja, en, errs in rows if en and not errs]
+        n = store_generated(ports, replace_entry=(f, ei))
+        print(f'updated generated PSP text for {f}/{ei}: {len(ports)} boxes ({n} total)')
+
+
+if __name__ == '__main__':
+    main()

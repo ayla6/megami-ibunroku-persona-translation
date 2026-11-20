@@ -1,0 +1,2 @@
+file	order	line	if	unless	note
+MOVIE_EXE	20	.include "movie.asm"			--mods=skip-movies: Start skips the movie that is playing

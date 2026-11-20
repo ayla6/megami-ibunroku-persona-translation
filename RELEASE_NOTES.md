@@ -1,3 +1,24 @@
+# 2026-11-20
+- Reworked the patcher.
+  - New patch format called p1mod.
+  - Separate Base, Latin Alphabet, English Translation and optional mod layers.
+- Small font version of the game that handles the text better because of the amount of space it's given.
+- Even further improved typography.
+  - Fixed some bugs with spaces being where they shouldn't and removed where they shouldn't.
+  - Fancy quotes!
+  - Just generally better wrapping.
+ - Restored speech hearts from the Japanese script.
+- Raiho and Reiho, incorrectly called that in the PSP translation, are now called Heeho and Heehoko.
+- Doubles battle and negotiation text speed. This should've been in the last update, but I forgot they had a different engine there.
+- You can now have the battle and negotiation text looks slightly more like the normal text boxes by having the same inset as them.
+- Run in Dungeons now supports integer speeds from 2× to 4×.
+- Added adjustable Softer Menu Sounds, defaulting to 75%.
+- Added Skip the Agastya Tree Menu, which opens the save list directly. Previously just came in with Unified Saves.
+- PSP Items (Clean Salt and Emergency Exit) and Skills (Estoma and Traesto), taken from Redeted.
+- PSP Dub! Both for FMVs and for the audios in battle.
+- You can now play with most of the other mods in Japanese if you so wish!
+- Fixed one missing line (dwell between consciousness and unconsciouness), caused by the timing in Japanese being a bit odd and me not speaking Japanese.
+
 # 2026-11-15
 - Much much better text wrapping in all areas!
 - Fixed some bugs in the text porting, including a certain character having wrong "Name:" things.
@@ -44,8 +65,8 @@
 - Faster FMV subtitle rendering! Even the moon transition is basically at fullspeed now without overclocking!
 - Possible fixes for possible bugs that could possibly affect real hardware. (Can't test that!)
 - Translated credits and missing subtitle hooks there. I'm so sorry they weren't there before.
-- From Redeted's work: the battlespeed QOL patch now let's you press Start to speedup the battle animations even more. Works way better with overclocking.
-- New QOL patch, Attack range, which lets you see your attack range for all skills, gun, sword and items.
+- From Redeted's work: the battlespeed MOD patch now let's you press Start to speedup the battle animations even more. Works way better with overclocking.
+- New MOD patch, Attack range, which lets you see your attack range for all skills, gun, sword and items.
 - See explanation choice in the casino is now positioned properly.
 
 # 2026-11-11-2
@@ -85,7 +106,7 @@
 - Fixed the Persona status screens showing the incorrect Persona names in some situations.
 - Fixed multiple different Persona status screens that were not using VWF.
 - Fixed a Persona status screen that was showing one line of gibberish for everything.
-- Added QOL patches: running in dungeons, allow skipping FMVs,
+- Added MOD patches: running in dungeons, allow skipping FMVs,
 and up as upper right movement in the isometric areas (like the PSP version had as an option).
 - Split the Double rewards and Halve encounters into two separate things.
 - Fixed some texts not being injected because they were too long.

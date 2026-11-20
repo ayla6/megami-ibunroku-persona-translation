@@ -1,0 +1,9 @@
+file	order	line	if	unless	note
+-	130	.include "pspitems.inc"			the PSP items and skills: shared constants (--mods=psp-items-and-skills)
+SLPS	210	.include "slps.asm"			--mods=psp-items-and-skills: Clean Salt / Emergency Exit / Estoma records, the entrance in saves
+ADV	160	.include "build/shops_adv.asm"			--mods=psp-items-and-skills: Clean Salt / Emergency Exit in the pharmacies (src/mods/psp-items-and-skills/shops.py)
+BTLP	340	.include "btlp.asm"			--mods=psp-items-and-skills: field-only skills are refused in battle
+DNG	310	.include "dng.asm"			--mods=psp-items-and-skills: Emergency Exit / Traesto warp, Clean Salt / Estoma
+S2D	260	.include "s2d.asm"			--mods=psp-items-and-skills: Clean Salt / Estoma on the overworld
+OPEN_EXE	50	.include "open.asm"			--mods=psp-items-and-skills: Continue restores the entrance and the Clean Salt timer
+-	131	.definelabel scriptmsg_item_8009a18c, 0x8009a18e		latin-alphabet	the "wore off" message's item id at its retail home: nothing relocates it without the alphabet (scriptmsg.py defines it then)

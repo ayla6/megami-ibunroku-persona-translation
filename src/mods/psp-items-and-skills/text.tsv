@@ -1,0 +1,7 @@
+rel	pos	ja	note
+SLPS_005.00	0x359ec	クリーンソルト	item 110: PSP-JP item 384
+SLPS_005.00	0x35a0c	ひじょうぐち	item 111: PSP-JP item 385, 非常口 in kana (item names have no kanji cells)
+SLPS_005.00	0x38e04	エストマ	skill 0x70: PSP-JP skill 242
+SLPS_005.00	0x3b134	低いレベルの敵を追い払う	item 110 description: over limit 256px/239px; 自分より低いレベルの敵を追い払う
+SLPS_005.00	0x3b148	ダンジョンの入口にワープする	item 111 description: over limit 240px/239px; ダンジョンの入り口にワープする
+SLPS_005.00	0x3a340	低いレベルの敵を追い払う	skill 0x70 description (Estoma): over limit 256px/239px; 自分より低いレベルの敵を追い払う

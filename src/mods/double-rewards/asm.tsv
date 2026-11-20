@@ -1,0 +1,2 @@
+file	order	line	if	unless	note
+BTLP	280	.include "btlp.asm"			--mods=double-rewards: EXP / P.P. / money after a battle x2

@@ -16,11 +16,12 @@ the PSX image and for `psp_us` when porting, so placing the discs in
 | `cache/` | BOOT bank chains, BE records, decoded tables | ignored; rebuildable |
 | `extracted_text/` | one canonical decoded TSV per real game file | ignored; rebuildable |
 | `psx/`, `psx_rev1/`, `psp_us/`, `psp_jp/`, `discs/` | local game files/images | ignored; provide your own |
+| `psp_audio/` | PSP-US movie audio, music and sound-bank waves, written by `src/extraction/psp/audio.py` | ignored; rebuildable |
 | `fonts/smallfont_page_retail.png` | retail font reference, written by `smallfont_vwf.py` | ignored; rebuildable |
 
 Authored extraction and alignment inputs are **source**, not generated
-mappings: `src/extraction_tools/psp_glyphs.tsv` is the authoritative PSP
-character table, and `src/extraction_tools/matching/*.tsv` holds reviewed
+mappings: `src/extraction/psp_glyphs.tsv` is the authoritative PSP
+character table, and `src/porting/*.tsv` holds reviewed
 structural correspondences. Their producers and consumers are in
 [MAPPINGS.md](MAPPINGS.md). Manual wording lives in `translation/manual/`,
 including `terms.tsv`. Never regenerate these source files as caches.

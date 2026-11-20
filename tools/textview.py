@@ -7,6 +7,11 @@
   python tools/textview.py missing [FILE] ...    the untranslated strings,
                                                  browsable, with their Japanese
 
+  --edition=large|small|both   which font edition's layout the translation
+                               side shows (large by default); `both` shows
+                               each edition's on its own line where they
+                               differ (docs/TEXT_LAYOUT_SPEC.md, "Font editions")
+
 `missing` is the work view for the gaps (see its -h below): one entry per
 untranslated target with the Japanese it came from laid out the way the
 game breaks it, the PSP Japanese and PSP English whenever a source is
@@ -45,8 +50,8 @@ import sys
 import unicodedata
 from collections import defaultdict
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
-    os.path.abspath(__file__))), 'src', 'injection_tools'))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
 import toolbelt   # noqa: E402
 
 ROOT = toolbelt.ROOT
@@ -116,9 +121,25 @@ def rows(region, rel):
     return toolbelt.read_extracted(region, rel, optional=True)
 
 
+# the font editions the translation side shows (main: --edition)
+EDITIONS = [toolpath.FONT_EDITIONS[0]]
+
+
 def trans_rows(rel):
-    return (toolbelt.read_generated(rel, optional=True),
-            toolbelt.read_manual(rel, optional=True))
+    """The rows as stored - every edition's layout - so the translation
+    side can show whichever editions EDITIONS names."""
+    return (toolbelt._raw_generated(rel, optional=True),
+            toolbelt._raw_manual(rel, optional=True))
+
+
+def edition_lines(label, text):
+    """[(label, text)]: one line where every shown edition reads the same,
+    else one per edition (`trans L`, `trans S`)."""
+    import vwf_wrap
+    texts = [(e, vwf_wrap.edition_text(text, e)) for e in EDITIONS]
+    if len({t for _e, t in texts}) == 1:
+        return [(label, texts[0][1])]
+    return [(f'{label} {vwf_wrap.EDITION_LETTER[e]}', t) for e, t in texts]
 
 
 def align_map(key):
@@ -377,7 +398,7 @@ _PAIRS = {}
 
 def pair_map(direction):
     """{pos: other pos} - the verified PSP-US <-> PSP-JP unit pairs
-    (src/extraction_tools/matching/boot_pairs.py), one map per direction:
+    (src/porting/boot_pairs.py), one map per direction:
     a byte position is a slot in ONE build's layout and can be a US slot
     in one pair and a JP slot in another, so the directions never share a
     key space. Only verified pairs are here - where a matcher did not
@@ -480,13 +501,15 @@ def render(it, title=''):
     trans = it.trans
     if trans.strip():
         who = 'manual' if (it.man and (it.man.get("en") or "").strip()) else 'generated'
-        out.append(f'  {"trans":<7}{YLW}●{OFF} {DIM}({who}){OFF} {paint(trans)}')
+        for label, text in edition_lines('trans', trans):
+            out.append(f'  {label:<7}{YLW}●{OFF} {DIM}({who}){OFF} {paint(text)}')
     elif it.target:
         out.append(f'  {"trans":<7}{RED}(empty){OFF}')
     else:
         out.append(f'  {"trans":<7}{DIM}(source, not a target){OFF}')
     if it.auto.strip() and it.auto != trans:
-        out.append(f'  {"auto":<7}{DIM}(superseded by the above){OFF} {paint(it.auto)}')
+        for label, text in edition_lines('auto', it.auto):
+            out.append(f'  {label:<7}{DIM}(superseded by the above){OFF} {paint(text)}')
     if it.note:
         out.append(f'  {"note":<7}{RED}{it.note}{OFF}')
     srcs = []
@@ -567,7 +590,9 @@ def cmd_find(needle):
         items = build_items(sd.get('psx'), sd.get('psp_jp'), sd.get('psp_us'))
         for it in items:
             hay = [(r['text'] or '').lower() for r in (it.psx, it.jp, it.us) if r]
-            hay += [(it.trans or '').lower(), it.note.lower()]
+            import vwf_wrap
+            hay += [vwf_wrap.edition_text(it.trans or '', e).lower() for e in EDITIONS]
+            hay += [it.note.lower()]
             if any(low in h for h in hay if h):
                 shown += 1
                 side = it.psx or it.us or it.jp
@@ -738,11 +763,10 @@ def missing_items(key):
 # ---------------------------------------------------------------------------
 # The matcher is not a viewer concern - a match is the `psp` pointer, and
 # the pointer is what the porters and builders read - so it lives in the
-# matching layer and this is only its front end. src/extraction_tools/
-# matching/match_jp.py is the one implementation; port_lastresort.py is
+# matching layer and this is only its front end. src/porting/match_jp.py
+# is the one implementation; port_lastresort.py is
 # what turns its answers into translation/ rows.
 
-sys.path.insert(0, os.path.join(ROOT, 'src', 'extraction_tools', 'matching'))
 import toolbelt  # noqa: E402
 import match_jp   # noqa: E402
 
@@ -850,7 +874,16 @@ def cmd_missing(name=None, start=0, limit=0, pick=None, flat=False,
 
 
 def main():
-    args = sys.argv[1:]
+    global EDITIONS
+    args = []
+    for a in sys.argv[1:]:
+        if a.startswith('--edition='):
+            want = a.split('=', 1)[1]
+            EDITIONS = list(toolpath.FONT_EDITIONS) if want == 'both' else [want]
+            if not set(EDITIONS) <= set(toolpath.FONT_EDITIONS):
+                sys.exit(f'textview: --edition is {", ".join(toolpath.FONT_EDITIONS)} or both')
+        else:
+            args.append(a)
     if not args or args[0] in ('-h', '--help', 'help'):
         print(__doc__)
         return

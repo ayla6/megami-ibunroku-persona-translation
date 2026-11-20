@@ -13,6 +13,9 @@ game files described in [DATA.md](DATA.md); none of them are tracked.
   `data/`, and what is tracked versus local-only.
 - [MEMORY_AUDIT.md](MEMORY_AUDIT.md) — how assembled allocations are compared
   with live retail RAM, how leads are resolved, and which ranges are protected.
+- [MOD_ENGINE.md](MOD_ENGINE.md) — the direction: the base patch as an engine,
+  the translation as its first mod, a file-level patch format merged before
+  touching the disc, fonts per language, and the small-font edition.
 
 ## Text system
 
@@ -23,6 +26,9 @@ game files described in [DATA.md](DATA.md); none of them are tracked.
   break, a box, a label, or a glyph: wrapping, pagination, and budgets.
 - [SMALLFONT.md](SMALLFONT.md) — the small-font kit: font page, subsystems,
   build variants, and the byte budgets behind them.
+- [FONT_EDITIONS.md](FONT_EDITIONS.md) — the dialogue font's two editions
+  (`large` / `small`): how to pick one, where its files live, how a row
+  carries both layouts, and how to check both.
 - [MAPPINGS.md](MAPPINGS.md) — the tracked correspondence snapshots under
   `translation/generated_mappings/`: who produces each file and what it
   needs to regenerate.
@@ -35,4 +41,10 @@ game files described in [DATA.md](DATA.md); none of them are tracked.
 - [revelations_reference.md](revelations_reference.md) — notes from the US
   Revelations: Persona disc, kept as a comparison reference.
 - [research/](research/) — investigations behind specific features (in-engine
-  FMV subtitles, 60 fps, renderer performance, ending panels).
+  FMV subtitles, 60 fps, renderer performance, ending panels, PSP audio).
+
+Contributor tools and validation notes:
+- [Asset extraction](ASSET_TOOLS.md)
+- [Test timings](TEST_TIMINGS.md)
+- [In-game checks to run later](IN_GAME_CHECKLIST.md)
+- [Remaining work](WORK_REMAINING.md)

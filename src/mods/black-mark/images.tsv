@@ -1,0 +1,8 @@
+file	format	entry	member	image	mode	width	height
+ADV/BST.BIN	bst	2	0	headshot.png	indexed	0	0
+B/P.BIN	battle	5	0	battle.png	indexed	0	0
+B/P.BIN	battle	15	0	battle_gun.png	indexed	0	0
+EXE/END.BIN	tim	0xa7804	0	ending.png	black-matte	0	0
+ADV/MES.BIN	mes	11	1	walk.png	indexed	0	0
+ADV/MES.BIN	mes	187	3	walk_variant.png	indexed	0	0
+ADV/MES.BIN	mes	18	4	mother.png	indexed	0	0

@@ -1,25 +1,803 @@
-psp	find	replace	note
-E3:167	The Result to the left of the screen	The Result to the right of the screen	Code Breaker: the PSX screen has RESULT on the right; PSX ja 規定回数は　画面右側の「ＲＥＳＵＬＴ」の個数分です
-E3:189	Add a coin.<FF02><FF04>＜During play＞<FF03>Rotate the four small reels to the<FF03>bottom.	Add a coin.<FF02><FF04>＜During play＞<FF03>Rotate the four small reels to the<FF03>right.	slots: the coin button (PSX ○) turns the right four; PSX ja 【○ボタン】＜ゲームスタート前＞コインを１枚ベットします＜大ドラム回転中＞小ドラムの右４つを回転させます
-E3:189	Remove a coin.<FF02><FF04>＜During play＞<FF03>Rotate the four small reels to the<FF03>right.	Remove a coin.<FF02><FF04>＜During play＞<FF03>Rotate the four small reels to the<FF03>bottom.	slots: the cancel button (PSX ×) turns the bottom four; PSX ja 【×ボタン】＜ゲームスタート前＞ベットしたコインをキャンセルします＜大ドラム回転中＞小ドラムの下４つを回転させます
-d13:c238	&sob& &sob&	*sob* *sob*	the PSP line spells *sob* with &; PSX ja 女性の声：うっ　うっ　うっ…
-E0:409	I could really use a hand, <FF07>!	<FF07>, I could really use a hand!	the PSX line opens on the name; PSX ja <FF0F><01>　早く手を貸して！
-E0:84	Nickname	Nick	the full nickname header (246 px) cannot fit a line: shortened for this card only, so its nameplate keeps its own line like every other card
-E0:531	Nickname	Nick	the same card again (see E0:84)
-pack/talk/SYOUJO:0x6508	all-the<FF03>boys	all-the-boys	the PSP drops the hyphen at its own line break, so the run reads "brings-all-the boys-to-the-yard"
-EBOOT:2c06d4	That's true, but...	True, but...	the choice grid cannot draw the PSP wording (248px of 239px)
-EBOOT:2c06d4	For everyone's sake.	For everyone.	the choice grid cannot draw the PSP wording (262px of 239px)
-EBOOT:29b1b8	<FF07> and friends were annihilated	The whole party was annihilated	the battle line cannot draw the PSP wording with an 8-letter name (266px of 240px)
-E0:253	Hmmmm?	Hmm?	the PSX asks in one line (お金をコインに替えますかぁ？); with "Hmm?" the question fits one line and its options follow without a press
-E0:1219	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
-E0:2284	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
-E0:2576	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
-E0:2725	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
-E2:1042	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
-E2:1859	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
-E3:465	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
-E3:566	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
-E3:650	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
-E3:735	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
-E3:836	That's okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)
-E1:1239	??	?	I'm just as confused as you are! it doesn't have two ?? in japanese
+psp	find	replace	note	edition
+E3:167	The Result to the left of the screen	The Result to the right of the screen	Code Breaker: the PSX screen has RESULT on the right; PSX ja 規定回数は　画面右側の「ＲＥＳＵＬＴ」の個数分です	
+E3:189	Add a coin.<FF02><FF04>＜During play＞<FF03>Rotate the four small reels to the<FF03>bottom.	Add a coin.<FF02><FF04>＜During play＞<FF03>Rotate the four small reels to the<FF03>right.	slots: the coin button (PSX ○) turns the right four; PSX ja 【○ボタン】＜ゲームスタート前＞コインを１枚ベットします＜大ドラム回転中＞小ドラムの右４つを回転させます	
+E3:189	Remove a coin.<FF02><FF04>＜During play＞<FF03>Rotate the four small reels to the<FF03>right.	Remove a coin.<FF02><FF04>＜During play＞<FF03>Rotate the four small reels to the<FF03>bottom.	slots: the cancel button (PSX ×) turns the bottom four; PSX ja 【×ボタン】＜ゲームスタート前＞ベットしたコインをキャンセルします＜大ドラム回転中＞小ドラムの下４つを回転させます	
+d13:c238	&sob& &sob&	*sob* *sob*	the PSP line spells *sob* with &; PSX ja 女性の声：うっ　うっ　うっ…	
+E0:409	I could really use a hand, <FF07>!	<FF07>, I could really use a hand!	the PSX line opens on the name; PSX ja <FF0F><01>　早く手を貸して！	
+E0:84	Nickname	Nick	the full nickname header (246 px) cannot fit a line: shortened for this card only, so its nameplate keeps its own line like every other card	l
+E0:531	Nickname	Nick	the same card again (see E0:84)	l
+pack/talk/SYOUJO:0x6508	all-the<FF03>boys	all-the-boys	the PSP drops the hyphen at its own line break, so the run reads "brings-all-the boys-to-the-yard"	
+EBOOT:2c06d4	That’s true, but...	True, but...	the choice grid cannot draw the PSP wording (248px of 239px)	l
+EBOOT:2c06d4	For everyone’s sake.	For everyone.	the choice grid cannot draw the PSP wording (262px of 239px)	l
+EBOOT:29b1b8	<FF07> and friends were annihilated	The whole party was annihilated	the battle line cannot draw the PSP wording with an 8-letter name (266px of 240px)	l
+E0:253	Hmmmm?	Hmm?	the PSX asks in one line (お金をコインに替えますかぁ？); with "Hmm?" the question fits one line and its options follow without a press	l
+E0:1219	That’s okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)	l
+E0:2284	That’s okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)	l
+E0:2576	That’s okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)	l
+E0:2725	That’s okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)	l
+E2:1042	That’s okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)	l
+E2:1859	That’s okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)	l
+E3:465	That’s okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)	l
+E3:566	That’s okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)	l
+E3:650	That’s okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)	l
+E3:735	That’s okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)	l
+E3:836	That’s okay, right?	Okay?	Trish's price question, the same in every shop: the PSX asks in one line (...かかるけど　いい？)	l
+E1:1239	??	?	I'm just as confused as you are! it doesn't have two ?? in japanese	
+E0:253	I’m your man.	I’m your man. ❤	the PSX line's heart (PSP-US drops it); PSX ja ませぇーこちらでは　お金とコインの交換を　行っておりますぅー♥
+E2:323	I’m your man.	I’m your man. ❤	the PSX line's heart (PSP-US drops it); PSX ja ませぇーこちらでは　お金とコインの交換を　行っておりますぅー♥
+E2:700	I’m your man.	I’m your man. ❤	the PSX line's heart (PSP-US drops it); PSX ja ませぇーこちらでは　お金とコインの交換を　行っておりますぅー♥
+E2:747	I’m your man.	I’m your man. ❤	the PSX line's heart (PSP-US drops it); PSX ja ませぇーこちらでは　お金とコインの交換を　行っておりますぅー♥
+E2:1348	I’m your man.	I’m your man. ❤	the PSX line's heart (PSP-US drops it); PSX ja ませぇーこちらでは　お金とコインの交換を　行っておりますぅー♥
+E2:1525	I’m your man.	I’m your man. ❤	the PSX line's heart (PSP-US drops it); PSX ja ませぇーこちらでは　お金とコインの交換を　行っておりますぅー♥
+E2:1729	I’m your man.	I’m your man. ❤	the PSX line's heart (PSP-US drops it); PSX ja ませぇーこちらでは　お金とコインの交換を　行っておりますぅー♥
+E3:157	I’m your man.	I’m your man. ❤	the PSX line's heart (PSP-US drops it); PSX ja ませぇーこちらでは　お金とコインの交換を　行っておりますぅー♥
+E0:1402	deep, huh?	deep, huh? ❤	the PSX line's heart (PSP-US drops it); PSX ja ブラウン：男と女の関係って…奧が深いのね♥	
+E0:1524	you dummy...	you dummy... ❤	the PSX line's heart (PSP-US drops it); PSX ja 内藤：…バカだなぁ　千里♥	
+E0:1526	okay Chi-Chi?	okay Chi-Chi? ❤	the PSX line's heart (PSP-US drops it); PSX ja う？そんな　悲しそうな顔しないで笑ってくれよ　な　ちいちゃん♥	
+E0:1527	”Chi-Chi”	”Chi-Chi ❤”	the PSX line's heart (PSP-US drops it); PSX ja マーク：ちいちゃん♥
+E1:49	around you and <FF07>.	around you and <FF07>. ❤	the PSX line's heart (PSP-US drops it); PSX ja ないよね　ねアヤセもついてく！！黛やがいたほうが　安心だもん♥	
+E1:52	Hehehe...	Hehehe... ❤	the PSX line's heart (PSP-US drops it); PSX ja いくつか渡されたのドサクサにまぎれて１つもらっちゃったエヘヘ♥	
+E1:175	C’mon, guys!	C’mon, guys! ❤	the PSX line's heart (PSP-US drops it); PSX ja ウン：おりょりょ？ったく　もぉ～♥ついて来て欲しいくせにぃ～♥
+E1:175	tagging along!	tagging along! ❤	the PSX line's heart (PSP-US drops it); PSX ja ウン：おりょりょ？ったく　もぉ～♥ついて来て欲しいくせにぃ～♥	
+E1:189	Omigosh!	Omigosh! ❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：キャ～～♥見て見て　あのヌイグルミ～♥ぷりちぃ～～♥♥	
+E1:189	those dolls!	those dolls! ❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：キャ～～♥見て見て　あのヌイグルミ～♥ぷりちぃ～～♥♥	
+E1:189	sooooo cute!	sooooo cute! ❤❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：キャ～～♥見て見て　あのヌイグルミ～♥ぷりちぃ～～♥♥	
+E1:214	with Tadashi!	with Tadashi! ❤	the PSX line's heart (PSP-US drops it); PSX ja 直な気持ちに気付いたのこれからは…ただしくんに　ついて行くわ♥	
+E1:215	by his side!	by his side! ❤	the PSX line's heart (PSP-US drops it); PSX ja たまきちゃん：こうしてそばにいられるだけで幸せ♥	
+E1:220	short, too!	short, too! ❤	the PSX line's heart (PSP-US drops it); PSX ja まきちゃんってけっこうカワイイねアヤセもショートにしようかな♥	
+E1:464	into my eyes...!	into my eyes...! ❤	the PSX line's heart (PSP-US drops it); PSX ja ただしくん：さぁボクの目を見てマイハニー♥	
+E1:465	I am, darling...!	I am, darling...! ❤	the PSX line's heart (PSP-US drops it); PSX ja たまきちゃん：うん♥	
+E1:469	in your eyes!	in your eyes! ❤	the PSX line's heart (PSP-US drops it); PSX ja たまきちゃん：あぁ私の瞳のなかにただしがいるのね♥	
+E1:716	gentleman!	gentleman! ❤	the PSX line's heart (PSP-US drops it); PSX ja ！まぁ　まぁなんてコトでございましょう！ちょっと　いいオトコ♥	
+E1:771	I’m at my weakest...	I’m at my weakest... ❤	the PSX line's heart (PSP-US drops it); PSX ja ホホホ！急いでワタクシの所までいらしてね！お待ちしてるわヨン♥
+E1:771	I’ll be waiting!	I’ll be waiting! ❤	the PSX line's heart (PSP-US drops it); PSX ja ホホホ！急いでワタクシの所までいらしてね！お待ちしてるわヨン♥
+E1:1155	We did it!	We did it! ❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：やったーーー♥	
+E1:1551	C’mon, honey...	C’mon, honey... ❤	the PSX line's heart (PSP-US drops it); PSX ja いらねぇって……おっと！きれいな顔に　涙は似合わないぜハニー♥
+E2:314	at least once...	at least once... ❤	the PSX line's heart (PSP-US drops it); PSX ja さんも　一度でいいから　たまきちゃんと口ゲンカしてみたいなあ♥	
+E2:790	so careless!?	so careless!? ❤	the PSX line's heart (PSP-US drops it); PSX ja ンの皆さまを悲しませるとこだったぜ！おれ様ってば　う・か・つ♥	
+E2:1466	I wanna be a Queen...	I wanna be a Queen... ❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：クイーンだってさ…アヤセも一度なってみたいなぁ♥	
+E2:1514	”the Satster”!	”the Satster”! ❤	the PSX line's heart (PSP-US drops it); PSX ja こそサトミタダシへ！おじさんのこと　サトちゃんって呼んでね～♥
+E2:1620	meeting you!	meeting you! ❤	the PSX line's heart (PSP-US drops it); PSX ja クイーン様ぁ～！お会いできるのを　楽しみにしておりましたぁ～♥	
+E2:1794	It’s soooo cute!	It’s soooo cute! ❤	the PSX line's heart (PSP-US drops it); PSX ja セ：きゃ～～！このオムツ　カエルがらじゃん！ぷりちぃ～～～～♥
+E3:63	soooo cute!	soooo cute! ❤	the PSX line's heart (PSP-US drops it); PSX ja 女子生徒：キャー　見て見てーこのワンピ　カワイー♥	
+E3:64	soooo cheap!	soooo cheap! ❤	the PSX line's heart (PSP-US drops it); PSX ja 女子生徒：キャー　見て見てーこのスカート　安ーい♥	
+E3:74	soooo cool!	soooo cool! ❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：ちょっと～これ　カッコイー♥	
+E3:584	soooo cool!	soooo cool! ❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：ちょっと～これ　カッコイー♥	
+E3:88	Sooooo cuuuute!	Sooooo cuuuute! ❤❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：キャー！カエルー！！ぷりちぃ～♥♥	
+E3:89	Buy it for me, Daddy!	Buy it for me, Daddy! ❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：このカエル欲しーパパ　買って買ってー♥	
+E3:100	Sooooo cuuuute!	Sooooo cuuuute! ❤	the PSX line's heart (PSP-US drops it); PSX ja カエル：いや～ん　ぷりちぃ～♥	
+E3:102	I’m a girl!	I’m a girl! ❤	the PSX line's heart (PSP-US drops it); PSX ja から男と女の心の機微を少しは学ぶといいすなわちカエルは女の子♥
+E3:111	Pleeeease!	Pleeeease! ❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：わお！きれーなホーセキねぇパパ　買って買って～♥	
+E3:112	all day...!	all day...! ❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：ヒカリモノって１日中見てても飽きないわぁ～♥	
+E3:221	at your wounds.	at your wounds. ❤	the PSX line's heart (PSP-US drops it); PSX ja 夏美先生：みんな　無事？どれどれちょっと　先生に見せてごらん♥	
+E3:226	at your wounds.	at your wounds. ❤	the PSX line's heart (PSP-US drops it); PSX ja 仕事お仕事みんな　無事？どれどれちょっと　先生に見せてごらん♥	
+E3:227	at your wounds.	at your wounds. ❤	the PSX line's heart (PSP-US drops it); PSX ja 仕事お仕事みんな　無事？どれどれちょっと　先生に見せてごらん♥	
+E3:348	okay?	okay? ❤	the PSX line's heart (PSP-US drops it); PSX ja ：ヒーホー！！そっかー　女の子は強いのかー……やさしくシテね♥	
+E3:373	& star”	& star ❤”	the PSX line's heart (PSP-US drops it); PSX ja らブツは飛び箱の右よ頼んだわ　１年生！！　　　演劇部のスタア♥
+E3:668	totally cute!	totally cute! ❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：ちょっと～これ　超　カワイー♥	
+E3:753	soooo charming!	soooo charming! ❤	the PSX line's heart (PSP-US drops it); PSX ja アヤセ：ちょっと～これ　ステキー！♥	
+pack/talk/BASKET:0x3c88	Sure thing!	Sure thing! ❤	the PSX line's heart (PSP-US drops it); PSX ja オッケーよ♥	
+pack/talk/BASKET:0x13dc8	the hoop!	the hoop! ❤	the PSX line's heart (PSP-US drops it); PSX ja でもいいんだけどよ、俺には、バスケットていう恋人がいるからな♥	
+pack/talk/ETC:0x3598	Take my card, hee-ho!	Take my card, hee-ho! ❤	the PSX line's heart (PSP-US drops it); PSX ja ーん…よーし！　ねえ、そこのキミ！ぼくのカード、もらってぇん♥	
+pack/talk/ETC:0x3bc0	Take my card, hee-ho!	Take my card, hee-ho! ❤	the PSX line's heart (PSP-US drops it); PSX ja ーん…よーし！　ねえ、そこのキミ！ぼくのカード、もらってぇん♥	
+pack/talk/ETC:0x41f8	Take my card, hee-ho!	Take my card, hee-ho! ❤	the PSX line's heart (PSP-US drops it); PSX ja ーん…よーし！　ねえ、そこのキミ！ぼくのカード、もらってぇん♥	
+pack/talk/ETC:0x4830	Take my card, hee-ho!	Take my card, hee-ho! ❤	the PSX line's heart (PSP-US drops it); PSX ja ーん…よーし！　ねえ、そこのキミ！ぼくのカード、もらってぇん♥	
+pack/talk/ETC:0x4e98	with you too!	with you too! ❤	the PSX line's heart (PSP-US drops it); PSX ja ー、いいなぁ…ねぇねぇ、アタシもカードでいいから、連れてって♥	
+pack/talk/ETC:0x64f8	with you too!	with you too! ❤	the PSX line's heart (PSP-US drops it); PSX ja いなぁ。ねぇ、アタシも連れてってよ。カードだけで、いいからさ♥	
+pack/talk/ETC:0x6920	Mr. Human!	Mr. Human! ❤	the PSX line's heart (PSP-US drops it); PSX ja ヒメ：やったぁ！じゃあ、大きなアタシと人間さん、また今度ねぇ♥	
+pack/talk/ETC:0x8648	Bye bye, now.	Bye bye, now. ❤	the PSX line's heart (PSP-US drops it); PSX ja サキュバス：それじゃ、アタシは別件まわるから♥	
+pack/talk/ETC:0x8c50	Ahaha!	Ahaha! ❤	the PSX line's heart (PSP-US drops it); PSX ja リリム：うふっ♥	
+pack/talk/GAKI:0x4618	know what to do!	know what to do! ❤	the PSX line's heart (PSP-US drops it); PSX ja ！　ぎゃーはっは！さすが　オレだぜ！もてすぎちゃって困るわぁ♥	
+pack/talk/HIHO:0x4f30	praise, ho...	praise, ho... ❤	the PSX line's heart (PSP-US drops it); PSX ja えへへっ！そんなにほめられたら、テレちゃう…キャ♥	
+pack/talk/HIHO:0x6aa0	come on over, ho!	come on over, ho! ❤	the PSX line's heart (PSP-US drops it); PSX ja じゃー、こっちに来て♥	
+pack/talk/HIHO:0x72f0	addicted... Ho...	addicted... Ho... ❤	the PSX line's heart (PSP-US drops it); PSX ja 初めてのケイケン…クセになりそぉ…ポッ♥	
+pack/talk/HIHO:0x89e8	Hee-hee.	Hee-hee. ❤	the PSX line's heart (PSP-US drops it); PSX ja まには、若いモンとも、こうやって話をせんとなぁ…きゃっきゃっ♥	
+pack/talk/HIHO:0x8bb8	Hee-ho?	Hee-ho? ❤	the PSX line's heart (PSP-US drops it); PSX ja デンジャラスな力を、かしてもいいけど…ほらほら、わかるでしょ♥	
+pack/talk/HIHO:0x8f98	Hee-ho!	Hee-ho! ❤	the PSX line's heart (PSP-US drops it); PSX ja 僕の力が欲しいの？キャッキャッ♥	
+pack/talk/HIHO:0x8fd0	hee-happy, ho!	hee-happy, ho! ❤	the PSX line's heart (PSP-US drops it); PSX ja ぼくってキミに必要な悪魔なんだね！嬉しいなぁ♥	
+pack/talk/HIHO:0x9838	some more!	some more! ❤	the PSX line's heart (PSP-US drops it); PSX ja ょー！　スゲー！なんか、どきどきしてるよ！もっとバカにしてぇ♥	
+pack/talk/HIHO:0xa3b8	What to do, hee-ho...?	What to do, hee-ho...? ❤	the PSX line's heart (PSP-US drops it); PSX ja えーっ、ぼくうぅ…こまっちゃうなぁ♥	
+pack/talk/HIHO:0xa3f8	<FF03>Ho...	<FF03>Ho... ❤	the PSX line's heart (PSP-US drops it); PSX ja アナタのとりこに、なっちゃいそう…ポッ♥	
+pack/talk/HIHO:0xacf8	all yours, ho!	all yours, ho! ❤	the PSX line's heart (PSP-US drops it); PSX ja ぼくのスペルカードを、あなた色に、そめてェん♥	
+pack/talk/HIHO:0xcd98	, hee-ho!	, hee-ho! ❤	the PSX line's heart (PSP-US drops it); PSX ja ぱぱぁ～ん！ぼく、ほしいのぉ♥	
+pack/talk/HIHO:0xf190	it, ho!	it, ho! ❤	the PSX line's heart (PSP-US drops it); PSX ja 分かったよ、パパ！おまかせしちゃうわぁん♥	
+pack/talk/HIHO:0x11870	a guy, ho.	a guy, ho. ❤	the PSX line's heart (PSP-US drops it); PSX ja 、ますます怪しーな！でも、ダメだよ、ぼく、男の子なんだも～ん♥	
+pack/talk/HIHO:0x130f8	in your arms, ho!	in your arms, ho! ❤	the PSX line's heart (PSP-US drops it); PSX ja 、大人しくぼくの言うことを、きくのだ！ぼくを、だっこして～ん♥	
+pack/talk/HIHO:0x13fb0	the one doing it...	the one doing it... ❤	the PSX line's heart (PSP-US drops it); PSX ja のぉ？でも、ぼく、おねえさまになら、いじめられても、いいっ…♥	
+pack/talk/HIHO:0x14790	the one doing it...	the one doing it... ❤	the PSX line's heart (PSP-US drops it); PSX ja のぉ？でも、ぼく、おねえさまになら、いじめられても、いいっ…♥	
+pack/talk/HIHO:0x16070	Ahhhh! Ho!	Ahhhh! Ho! ❤	the PSX line's heart (PSP-US drops it); PSX ja いや～ん！ポッ♥	
+pack/talk/KOSIKI:0x8120	my type...	my type... ❤	the PSX line's heart (PSP-US drops it); PSX ja そなた、ただ者ではないのう……わらわの好みじゃ♥	
+pack/talk/KOSIKI:0x8fc8	swallow thee right up!	swallow thee right up! ❤	the PSX line's heart (PSP-US drops it); PSX ja いのかえ？かわゆいことを申すのう！呑み込んでしまいたい位じゃ♥	
+pack/talk/KOSIKI:0xa948	beauty.	beauty. ❤	the PSX line's heart (PSP-US drops it); PSX ja 力と美とを兼ねそなえた、ペルソナに、してくりゃれ♥	
+pack/talk/KOSIKI:0xb568	take in a dance!	take in a dance! ❤	the PSX line's heart (PSP-US drops it); PSX ja ほほほほほほ！酒でも飲んで、舞など見せたい…そんな気分じゃ♥	
+pack/talk/KOSIKI:0xeb38	Just for tea...!	Just for tea...! ❤	the PSX line's heart (PSP-US drops it); PSX ja お茶だけじゃぞ♥	
+pack/talk/KOSIKI:0x12240	Just for tea!	Just for tea! ❤	the PSX line's heart (PSP-US drops it); PSX ja お茶だけじゃぞ♥	
+pack/talk/KUTISAKE:0x62d8	what happens next!	what happens next! ❤	the PSX line's heart (PSP-US drops it); PSX ja アンタの話、面白いわ！ねぇ、続きを聞かせてよ♥	
+pack/talk/KUTISAKE:0x6358	interested in me!	interested in me! ❤	the PSX line's heart (PSP-US drops it); PSX ja そんなこと、言ってくるなんて、よっぽど、私に興味があるのね♥	
+pack/talk/KUTISAKE:0x7658	so adorable!	so adorable! ❤	the PSX line's heart (PSP-US drops it); PSX ja ウフフ…私の好きなこと探してるのね…アンタ、かわいいわ♥	
+pack/talk/KUTISAKE:0x7e60	my mask on?	my mask on? ❤	the PSX line's heart (PSP-US drops it); PSX ja クスクス…ずっとマスクしてても、いいのかしら♥	
+pack/talk/KUTISAKE:0x8558	falling for you...!	falling for you...! ❤	the PSX line's heart (PSP-US drops it); PSX ja 私……アナタのとりこに、なっちゃいそう♥	
+pack/talk/KYOUKI:0x3f08	call me later.	call me later. ❤	the PSX line's heart (PSP-US drops it); PSX ja てめぇ…結構、可愛いじゃん。分かったよ、じゃあ、後でな…ポッ♥	
+pack/talk/KYOUKI:0x3f70	Sure thing...	Sure thing... ❤	the PSX line's heart (PSP-US drops it); PSX ja オッケーよ♥	
+pack/talk/KYOUKI:0x4a98	are you?	are you? ❤	the PSX line's heart (PSP-US drops it); PSX ja れ、まさか俺に、くれやがるとか言うんじゃ、ねーだろうな、おい♥	
+pack/talk/KYOUKI:0xfe38	tell you that!	tell you that! ❤	the PSX line's heart (PSP-US drops it); PSX ja …えっ？　何をかって…？キャー！そんなこと言えな～い♥	
+pack/talk/KYOUKI:0x12800	*blush*	*blush* ❤	the PSX line's heart (PSP-US drops it); PSX ja …あたし？ポッ♥	
+pack/talk/KYOUKI:0x15138	Oh!	Oh! ❤	the PSX line's heart (PSP-US drops it); PSX ja はう…♥	
+pack/talk/KYOUKI:0x15830	Oh!	Oh! ❤	the PSX line's heart (PSP-US drops it); PSX ja はう…♥	
+pack/talk/POLUTAR:0x88d0	to pound!	to pound! ❤	the PSX line's heart (PSP-US drops it); PSX ja え！　ちょっとドキドキしてきたよ～ん♥	
+pack/talk/SINSI:0x12c58	awesome!”	awesome! ❤”	the PSX line's heart (PSP-US drops it); PSX ja さんってステキよね…キャ♥
+pack/talk/SYOUJO:0x2570	up later!	up later! ❤	the PSX line's heart (PSP-US drops it); PSX ja その件については、考えてあげるけどぉ…アタシ、後払いって嫌い♥	
+pack/talk/SYOUJO:0x2aa8	up later!	up later! ❤	the PSX line's heart (PSP-US drops it); PSX ja その件については、考えてあげるけどぉ…アタシ、後払いって嫌い♥	
+pack/talk/SYOUJO:0x2c80	up later!	up later! ❤	the PSX line's heart (PSP-US drops it); PSX ja その件については、考えてあげるけどぉ…アタシ、後払いって嫌い♥	
+pack/talk/SYOUJO:0x60c8	up later!	up later! ❤	the PSX line's heart (PSP-US drops it); PSX ja その件については、考えてあげるけどぉ…アタシ、後払いって嫌い♥	
+pack/talk/TOILET:0x26b0	up later!	up later! ❤	the PSX line's heart (PSP-US drops it); PSX ja その件については、考えてあげるけどぉ…アタシ、後払いって嫌い♥	
+pack/talk/TOILET:0x2c48	up later!	up later! ❤	the PSX line's heart (PSP-US drops it); PSX ja その件については、考えてあげるけどぉ…アタシ、後払いって嫌い♥	
+pack/talk/TOILET:0x2ea0	up later!	up later! ❤	the PSX line's heart (PSP-US drops it); PSX ja その件については、考えてあげるけどぉ…アタシ、後払いって嫌い♥	
+pack/talk/TOILET:0x6708	up later!	up later! ❤	the PSX line's heart (PSP-US drops it); PSX ja その件については、考えてあげるけどぉ…アタシ、後払いって嫌い♥	
+pack/talk/SYOUJO:0x3260	be different!	be different! ❤	the PSX line's heart (PSP-US drops it); PSX ja お姉さんの話、アタシ、信じらんないよ。もち、何かくれれば、別♥	
+pack/talk/SYOUJO:0x35b8	so I don’t mind!	so I don’t mind! ❤	the PSX line's heart (PSP-US drops it); PSX ja ヘンな奴ー！でも、カッコイイからいっか♥
+pack/talk/SYOUJO:0x7eb8	so I don’t mind!	so I don’t mind! ❤	the PSX line's heart (PSP-US drops it); PSX ja お兄さんって、ヘンなヒトぉ！でも、カッコイイからいっか♥
+pack/talk/TOILET:0x3960	so I don’t mind!	so I don’t mind! ❤	the PSX line's heart (PSP-US drops it); PSX ja ふ～ん………いきなり、変なのぉ！でも、カッコイイからいっか♥
+pack/talk/TOILET:0x8798	so I don’t mind!	so I don’t mind! ❤	the PSX line's heart (PSP-US drops it); PSX ja お兄さんって、ヘンなヒトぉ！でも、カッコイイからいっか♥
+pack/talk/SYOUJO:0x4e50	next time!	next time! ❤	the PSX line's heart (PSP-US drops it); PSX ja わー、うまぁい！今度、アタシにも教えて♥	
+pack/talk/TOILET:0x5388	next time!	next time! ❤	the PSX line's heart (PSP-US drops it); PSX ja ふ～ん、上手いんだね！今度、アタシにも教えて♥	
+pack/talk/SYOUJO:0x5728	gave me something!	gave me something! ❤	the PSX line's heart (PSP-US drops it); PSX ja お兄さんの話、アタシ、信じらんないよ。もち、何かくれれば、別♥	
+pack/talk/TOILET:0x3528	gave me something!	gave me something! ❤	the PSX line's heart (PSP-US drops it); PSX ja シ、信じらんないなぁ。エヘヘヘヘヘ！もち、何かくれれば話は別♥	
+pack/talk/TOILET:0x5d78	gave me something!	gave me something! ❤	the PSX line's heart (PSP-US drops it); PSX ja お兄さんの話、アタシ、信じらんないよ。もち、何かくれれば、別♥	
+pack/talk/SYOUJO:0x6840	type!	type! ❤	the PSX line's heart (PSP-US drops it); PSX ja 実は結構、好みなの♥	
+pack/talk/SYOUJO:0x6f58	torment me!	torment me! ❤	the PSX line's heart (PSP-US drops it); PSX ja ああ………いたぶられるの、クセになっちゃいそう♥	
+pack/talk/TOILET:0x76b8	torment me!	torment me! ❤	the PSX line's heart (PSP-US drops it); PSX ja エヘヘ、エヘヘ！いたぶられるの、クセになっちゃいそう♥	
+pack/talk/SYOUJO:0x6fd8	Do that some more!	Do that some more! ❤	the PSX line's heart (PSP-US drops it); PSX ja は、悪い娘でした…だから、もっといじめてぇ♥	
+pack/talk/SYOUJO:0x7490	Scold me more!	Scold me more! ❤	the PSX line's heart (PSP-US drops it); PSX ja は、悪い娘でした…だから、もっと叱ってぇ♥	
+pack/talk/SYOUJO:0x7f30	people!	people! ❤	the PSX line's heart (PSP-US drops it); PSX ja イカレてるぅ！でも、危ない人って好き♥	
+pack/talk/TOILET:0x8810	people!	people! ❤	the PSX line's heart (PSP-US drops it); PSX ja エヘヘ、エヘヘ！イカレてるぅ！危ない人って好きだな♥	
+pack/talk/SYOUJO:0x81c8	new clothes!	new clothes! ❤	the PSX line's heart (PSP-US drops it); PSX ja の、かっこいい、お・に・い・さぁ～ん！魔術で新しい服出してぇ♥	
+pack/talk/SYOUJO:0x88f0	no frills!	no frills! ❤	the PSX line's heart (PSP-US drops it); PSX ja ストレートな交渉でオッケー♥	
+pack/talk/TOILET:0x9268	no frills!	no frills! ❤	the PSX line's heart (PSP-US drops it); PSX ja ストレートな交渉でオッケー♥	
+pack/talk/SYOUJO:0x8938	to me, too!	to me, too! ❤	the PSX line's heart (PSP-US drops it); PSX ja たいことは、バッチリ分かったからさ、アタシの言い分も聞いてね♥	
+pack/talk/TOILET:0x92b0	to me, too!	to me, too! ❤	the PSX line's heart (PSP-US drops it); PSX ja たいことは、バッチリ分かったからさ、アタシの言い分も聞いてね♥	
+pack/talk/SYOUJO:0x9448	thrilling negotiation!	thrilling negotiation! ❤	the PSX line's heart (PSP-US drops it); PSX ja こういう交渉って、とってもスリリングだね♥	
+pack/talk/SYOUJO:0x9500	I’m cute, huh?	I’m cute, huh? ❤	the PSX line's heart (PSP-US drops it); PSX ja しょ♥しょうがないなぁ、相手してあげるよ…なんか、ちょうだい♥
+pack/talk/SYOUJO:0x9500	something first!	something first! ❤	the PSX line's heart (PSP-US drops it); PSX ja しょ♥しょうがないなぁ、相手してあげるよ…なんか、ちょうだい♥	
+pack/talk/SYOUJO:0x9660	again sometime!	again sometime! ❤	the PSX line's heart (PSP-US drops it); PSX ja 失格でーす！でもいい線いってるから、また、挑戦してくださいね♥	
+pack/talk/TOILET:0xa000	again sometime!	again sometime! ❤	the PSX line's heart (PSP-US drops it); PSX ja 失格でーす！でもいい線いってるから、また、挑戦してくださいね♥	
+pack/talk/SYOUJO:0x9700	up first!	up first! ❤	the PSX line's heart (PSP-US drops it); PSX ja ん…イマイチだからアドバイスしてあげるよ！でも何か、払ってね♥	
+pack/talk/TOILET:0xa0a0	up first!	up first! ❤	the PSX line's heart (PSP-US drops it); PSX ja ん…イマイチだからアドバイスしてあげるよ！でも何か、払ってね♥	
+pack/talk/SYOUJO:0x9b30	fall for it!	fall for it! ❤	the PSX line's heart (PSP-US drops it); PSX ja へへへ…アタシが欲しいの？だまされちゃおうかな♥	
+pack/talk/TOILET:0xa4d0	fall for it!	fall for it! ❤	the PSX line's heart (PSP-US drops it); PSX ja ふ～ん…アタシが欲しいの？だまされちゃおうかな♥	
+pack/talk/SYOUJO:0x9f70	a good thing!	a good thing! ❤	the PSX line's heart (PSP-US drops it); PSX ja ずいぶん古い誘惑の手段ね！でも…そこがいいかもしれない♥	
+pack/talk/SYOUJO:0xa3d8	to pieces!	to pieces! ❤	the PSX line's heart (PSP-US drops it); PSX ja お許し下さいご主人様！て、言わないと、切り刻んじゃうよ♥	
+pack/talk/SYOUJO:0xa590	give you this!	give you this! ❤	the PSX line's heart (PSP-US drops it); PSX ja じゃ、これあげちゃう♥	
+pack/talk/TOILET:0xaee8	give you this!	give you this! ❤	the PSX line's heart (PSP-US drops it); PSX ja じゃ、これあげちゃう♥	
+pack/talk/SYOUJO:0xa7c8	weirdo demon!	weirdo demon! ❤	the PSX line's heart (PSP-US drops it); PSX ja 変なヤツと合体させたら、恨んじゃうからね♥	
+pack/talk/SYOUJO:0xab10	Persona you want!	Persona you want! ❤	the PSX line's heart (PSP-US drops it); PSX ja のスペルカード…アンタの好きなペルソナにしてオッケーだからね♥	
+pack/talk/TOILET:0xb4e0	Persona you want!	Persona you want! ❤	the PSX line's heart (PSP-US drops it); PSX ja のスペルカード…アンタの好きなペルソナにしてオッケーだからね♥	
+pack/talk/SYOUJO:0xb758	Eep!	Eep! ❤	the PSX line's heart (PSP-US drops it); PSX ja どきっ♥	
+pack/talk/TOILET:0xc130	Eep!	Eep! ❤	the PSX line's heart (PSP-US drops it); PSX ja どきっ♥	
+pack/talk/SYOUJO:0xc450	I’m so happy!	I’m so happy! ❤	the PSX line's heart (PSP-US drops it); PSX ja 嬉しいっ♥
+pack/talk/SYOUJO:0x11d80	I’m so happy!	I’m so happy! ❤	the PSX line's heart (PSP-US drops it); PSX ja あぁ、嬉しい♥
+pack/talk/SYOUJO:0x122c8	I’m so happy!	I’m so happy! ❤	the PSX line's heart (PSP-US drops it); PSX ja あぁ、嬉しい♥
+pack/talk/TOILET:0xce30	I’m so happy!	I’m so happy! ❤	the PSX line's heart (PSP-US drops it); PSX ja エヘヘ、エヘヘ！嬉しいっ♥
+pack/talk/TOILET:0x12c40	I’m so happy!	I’m so happy! ❤	the PSX line's heart (PSP-US drops it); PSX ja エヘヘ！　嬉しい♥
+pack/talk/TOILET:0x13260	I’m so happy!	I’m so happy! ❤	the PSX line's heart (PSP-US drops it); PSX ja エヘヘ！　嬉しい♥
+pack/talk/YOUEN:0x10a20	I’m so happy!	I’m so happy! ❤	the PSX line's heart (PSP-US drops it); PSX ja 嬉しい♥
+pack/talk/SYOUJO:0xc700	darling!	darling! ❤	the PSX line's heart (PSP-US drops it); PSX ja アタシ、ほしいな、ダーリン♥	
+pack/talk/TOILET:0xd0f0	darling!	darling! ❤	the PSX line's heart (PSP-US drops it); PSX ja アタシ、ほしいな、ダーリン♥	
+pack/talk/SYOUJO:0xc960	extra gentle!	extra gentle! ❤	the PSX line's heart (PSP-US drops it); PSX ja 優しくしてあげる♥	
+pack/talk/TOILET:0xd388	extra gentle!	extra gentle! ❤	the PSX line's heart (PSP-US drops it); PSX ja エヘヘ、エヘヘ！優しくしてあげる♥	
+pack/talk/SYOUJO:0xda18	Maki!	Maki! ❤	the PSX line's heart (PSP-US drops it); PSX ja なんか、マキ姉さんて、かわいいですね…♥	
+pack/talk/TOILET:0xe548	Maki!	Maki! ❤	the PSX line's heart (PSP-US drops it); PSX ja ふ～ん………なんか、マキ姉さんて、かわいいですね…♥	
+pack/talk/SYOUJO:0xddf0	so cute, miss!	so cute, miss! ❤	the PSX line's heart (PSP-US drops it); PSX ja 照れなくてもオッケー！お姉さんて、かわいいね♥	
+pack/talk/TOILET:0xe8f8	so cute, miss!	so cute, miss! ❤	the PSX line's heart (PSP-US drops it); PSX ja 照れなくてもオッケー！お姉さんて、かわいいね♥	
+pack/talk/SYOUJO:0xefe0	Thanks, mister!	Thanks, mister! ❤	the PSX line's heart (PSP-US drops it); PSX ja やったぁ！お兄さん、アリガト♥	
+pack/talk/TOILET:0xfb68	Thanks, mister!	Thanks, mister! ❤	the PSX line's heart (PSP-US drops it); PSX ja やったぁ！エヘヘ、エヘヘ！お兄さん、アリガト♥	
+pack/talk/SYOUJO:0xf6f8	cute after all!	cute after all! ❤	the PSX line's heart (PSP-US drops it); PSX ja いやーん、やっぱかわいいー♥	
+pack/talk/TOILET:0x10288	cute after all!	cute after all! ❤	the PSX line's heart (PSP-US drops it); PSX ja いやーん、やっぱ、かわいいー♥	
+pack/talk/SYOUJO:0xf738	kill you!	kill you! ❤	the PSX line's heart (PSP-US drops it); PSX ja こーいつぅ、ブッ殺しちゃうぞぉ♥	
+pack/talk/TOILET:0x102c8	kill you!	kill you! ❤	the PSX line's heart (PSP-US drops it); PSX ja こーいつぅ、ブッ殺しちゃうぞぉ♥	
+pack/talk/SYOUJO:0xf8e8	perv, mister!	perv, mister! ❤	the PSX line's heart (PSP-US drops it); PSX ja 気合い入るの？あ、なんか期待してるでしょ！お兄さんてエッチね♥	
+pack/talk/TOILET:0x104b8	perv, mister!	perv, mister! ❤	the PSX line's heart (PSP-US drops it); PSX ja 気合い入るの？あ、なんか期待してるでしょ！お兄さんてエッチね♥	
+pack/talk/SYOUJO:0x10078	I’m popular!	I’m popular! ❤	the PSX line's heart (PSP-US drops it); PSX ja で、そんなに見てるの？あ、もしかして…？アタシって、もてすぎ♥
+pack/talk/TOILET:0x10ca8	I’m popular!	I’m popular! ❤	the PSX line's heart (PSP-US drops it); PSX ja で、そんなに見てるの？あ、もしかして…？アタシって、もてすぎ♥
+pack/talk/SYOUJO:0x11490	all the time!	all the time! ❤	the PSX line's heart (PSP-US drops it); PSX ja 怖がってるだけじゃ、何も手に入らないよ♥	
+pack/talk/TOILET:0x12298	all the time!	all the time! ❤	the PSX line's heart (PSP-US drops it); PSX ja 怖がってるだけじゃ、何も手に入らないよ♥	
+pack/talk/SYOUJO:0x11638	bully them!	bully them! ❤	the PSX line's heart (PSP-US drops it); PSX ja でも、そういうケナゲな子って、イジメたくなっちゃうんだなぁ♥	
+pack/talk/TOILET:0x12458	bully them!	bully them! ❤	the PSX line's heart (PSP-US drops it); PSX ja でも、そういうケナゲな子って、イジメたくなっちゃうんだなぁ♥	
+pack/talk/SYOUJO:0x11cc8	Okay then, miss!	Okay then, miss! ❤	the PSX line's heart (PSP-US drops it); PSX ja あ、お姉さんって、そういう趣味の人なんだぁ！なら、オッケー♥	
+pack/talk/SYOUJO:0x12210	Okay then, miss!	Okay then, miss! ❤	the PSX line's heart (PSP-US drops it); PSX ja あ、お姉さんって、そういう趣味の人なんだぁ！なら、オッケー♥	
+pack/talk/TOILET:0x12b68	Okay then, miss!	Okay then, miss! ❤	the PSX line's heart (PSP-US drops it); PSX ja あ、お姉さんって、そういう趣味の人なんだぁ！なら、オッケー♥	
+pack/talk/TOILET:0x13188	Okay then, miss!	Okay then, miss! ❤	the PSX line's heart (PSP-US drops it); PSX ja あ、お姉さんって、そういう趣味の人なんだぁ！なら、オッケー♥	
+pack/talk/SYOUJO:0x13010	please.	please. ❤	the PSX line's heart (PSP-US drops it); PSX ja っ？　じゃあねぇ、スーツと靴とハンドバッグ！あとで、届けてね♥	
+pack/talk/TOILET:0x32c0	so cute!	so cute! ❤	the PSX line's heart (PSP-US drops it); PSX ja て、けっこう、だまされやすいでしょ。でも、純真で、かわいいよ♥	
+pack/talk/TOILET:0x3618	on the ball!	on the ball! ❤	the PSX line's heart (PSP-US drops it); PSX ja かってるじゃなーい！ものわかりがいい人って、アタシ、好きだよ♥	
+pack/talk/TOILET:0x7738	so bully me more!	so bully me more! ❤	the PSX line's heart (PSP-US drops it); PSX ja ヘヘ、エヘヘ！アタシは悪い娘でした…だから、もっといじめてぇ♥	
+pack/talk/TOILET:0x7d30	so scold me more!	so scold me more! ❤	the PSX line's heart (PSP-US drops it); PSX ja エヘヘ、エヘヘ！アタシは悪い娘でした…だから、もっと叱ってぇ♥	
+pack/talk/TOILET:0x8b08	new toilet!	new toilet! ❤	the PSX line's heart (PSP-US drops it); PSX ja かっこいい、お・に・い・さぁ～ん！魔術で新しい便器、出してぇ♥	
+pack/talk/TOILET:0xb120	up my drain!	up my drain! ❤	the PSX line's heart (PSP-US drops it); PSX ja まり大きいペルソナにはしないでね…便器につまると、大変だから♥	
+pack/talk/TOILET:0xd6d0	just like me!	just like me! ❤	the PSX line's heart (PSP-US drops it); PSX ja 兄さんも、けっこうな便秘なんだねぇ！エヘヘヘ！　アタシと一緒♥	
+pack/talk/TOILET:0x11d08	just like me!	just like me! ❤	the PSX line's heart (PSP-US drops it); PSX ja 姉さんも、けっこうな便秘なんだねぇ！エヘヘヘ！　アタシと一緒♥	
+pack/talk/TOILET:0x12f78	just like me!	just like me! ❤	the PSX line's heart (PSP-US drops it); PSX ja 姉さんも、けっこうな便秘なんだねぇ！エヘヘヘ！　アタシと一緒♥	
+pack/talk/TOILET:0x13b30	to trick you, mister!	to trick you, mister! ❤	the PSX line's heart (PSP-US drops it); PSX ja くすくす………お兄さんて、単純ね。すぐ、だまされるんだから♥	
+pack/talk/TOILET:0x140c8	later, okay?	later, okay? ❤	the PSX line's heart (PSP-US drops it); PSX ja エヘヘ、エヘヘ！水が飛び出るタイプがいいな！あとで、届けてね♥	
+pack/talk/YOUEN:0x2338	the test!	the test! ❤	the PSX line's heart (PSP-US drops it); PSX ja そう、そんなに自信があるの？試してみたいわぁ♥	
+pack/talk/YOUEN:0x4850	the test!	the test! ❤	the PSX line's heart (PSP-US drops it); PSX ja そう、そんなに自信があるの？試してみたいわぁ♥	
+pack/talk/YOUEN:0x5128	the test!	the test! ❤	the PSX line's heart (PSP-US drops it); PSX ja そう、そんなに自信があるの？試してみたいわぁ♥	
+pack/talk/YOUEN:0x6da0	the test!	the test! ❤	the PSX line's heart (PSP-US drops it); PSX ja そう、そんなに自信があるの？試してみたいわぁ♥	
+pack/talk/YOUEN:0x7da0	the test!	the test! ❤	the PSX line's heart (PSP-US drops it); PSX ja そう、そんなに自信があるの？試してみたいわぁ♥	
+pack/talk/YOUEN:0x38a0	cute one!	cute one! ❤	the PSX line's heart (PSP-US drops it); PSX ja 悪魔をナンパするなんて、アンタ、変な子ね。でも、かわいいわ♥	
+pack/talk/YOUEN:0x81e0	cute one!	cute one! ❤	the PSX line's heart (PSP-US drops it); PSX ja 変な子ね。でも、かわいいわ♥	
+pack/talk/YOUEN:0x4318	I want more!	I want more! ❤	the PSX line's heart (PSP-US drops it); PSX ja アンタって、お金持ちなの？もっと、欲しいわ♥	
+pack/talk/YOUEN:0x4468	a great day!	a great day! ❤	the PSX line's heart (PSP-US drops it); PSX ja プレゼントなんて、久しぶり…嬉しい♥	
+pack/talk/YOUEN:0x4ee8	we meet again!	we meet again! ❤	the PSX line's heart (PSP-US drops it); PSX ja キミって、上手いのねー！今度、私にも教えてよ♥	
+pack/talk/YOUEN:0x6888	Cute, though!	Cute, though! ❤	the PSX line's heart (PSP-US drops it); PSX ja 変な子ね。でも、かわいいわ♥	
+pack/talk/YOUEN:0x6a08	See you later, then!	See you later, then! ❤	the PSX line's heart (PSP-US drops it); PSX ja キャッ、ほんと？じゃあ、あとで♥	
+pack/talk/YOUEN:0x7260	I like it, though!	I like it, though! ❤	the PSX line's heart (PSP-US drops it); PSX ja こんなの初めて…でも、嬉しい♥	
+pack/talk/YOUEN:0x72d0	Bully me more!	Bully me more! ❤	the PSX line's heart (PSP-US drops it); PSX ja ごめんなさい、お姉様ぁ…もっといじめてぇ♥	
+pack/talk/YOUEN:0x7820	Bully me more!	Bully me more! ❤	the PSX line's heart (PSP-US drops it); PSX ja ごめんなさい、お姉様ぁ…もっといじめてぇ♥	
+pack/talk/YOUEN:0x8240	a man!	a man! ❤	the PSX line's heart (PSP-US drops it); PSX ja ンタって、イカレてるわ！でも、私、そういう人って、タイプなの♥	
+pack/talk/YOUEN:0x85a0	me more!	me more! ❤	the PSX line's heart (PSP-US drops it); PSX ja アンタの話、面白いわ！ねぇ、続きを聞かせてよ♥	
+pack/talk/YOUEN:0x8600	saying all that!	saying all that! ❤	the PSX line's heart (PSP-US drops it); PSX ja そんなこと、言ってくるなんて、よっぽど、私に興味があるのね♥	
+pack/talk/YOUEN:0x8680	for me first!	for me first! ❤	the PSX line's heart (PSP-US drops it); PSX ja 話を聞いてあげてもいいけど、その前に、することあるでしょ♥	
+pack/talk/YOUEN:0x9838	That’s so cute!	That’s so cute! ❤	the PSX line's heart (PSP-US drops it); PSX ja ウフフ…私の好きなこと探してるのね…アンタ、かわいいわ♥
+pack/talk/YOUEN:0x9d98	that again!	that again! ❤	the PSX line's heart (PSP-US drops it); PSX ja ウフフ…とてもいい感じよ。もう一度、お願いしたいわ♥	
+pack/talk/YOUEN:0xa4d8	Awesome!	Awesome! ❤	the PSX line's heart (PSP-US drops it); PSX ja いいわあ♥	
+pack/talk/YOUEN:0xa4f0	falling for you!	falling for you! ❤	the PSX line's heart (PSP-US drops it); PSX ja 私………アナタのとりこに、なっちゃいそうよ♥	
+pack/talk/YOUEN:0xa9f8	to shreds!	to shreds! ❤	the PSX line's heart (PSP-US drops it); PSX ja ほほほほほほ！さあ！　命ごいをなさい！でないと、切り刻むわよ♥	
+pack/talk/YOUEN:0xaae8	beautiful Persona!	beautiful Persona! ❤	the PSX line's heart (PSP-US drops it); PSX ja 私のスペルカードをもう、持ってるのね？綺麗なペルソナにしてね♥	
+pack/talk/YOUEN:0xadc8	meet again!	meet again! ❤	the PSX line's heart (PSP-US drops it); PSX ja じゃ、また会えるといいわね♥	
+pack/talk/YOUEN:0xaea0	beauty and brawn!	beauty and brawn! ❤	the PSX line's heart (PSP-US drops it); PSX ja はい、スペルカード。強くて美しい、ペルソナにしてね♥	
+pack/talk/YOUEN:0xdc20	nice of you!	nice of you! ❤	the PSX line's heart (PSP-US drops it); PSX ja ありがと…優しいのね♥	
+pack/talk/YOUEN:0x105e8	nice of you!	nice of you! ❤	the PSX line's heart (PSP-US drops it); PSX ja ありがと…優しいのね♥	
+pack/talk/YOUEN:0x10f48	nice of you!	nice of you! ❤	the PSX line's heart (PSP-US drops it); PSX ja ありがと…優しいのね♥	
+pack/talk/YOUEN:0xefa8	I understand!	I understand! ❤	the PSX line's heart (PSP-US drops it); PSX ja シャイなのね！でも、いいのよ！私、分かってるから♥	
+pack/talk/YOUEN:0xf0e0	It was a lie!	It was a lie! ❤	the PSX line's heart (PSP-US drops it); PSX ja そのとおり、ウソでーす♥	
+pack/talk/YOUEN:0xf298	my attention, huh?	my attention, huh? ❤	the PSX line's heart (PSP-US drops it); PSX ja ないの？あ、わかった！　そうやって、私の気を引くつもりでしょ♥	
+pack/talk/YOUEN:0xfa08	my attention, huh?	my attention, huh? ❤	the PSX line's heart (PSP-US drops it); PSX ja ないの？あ、わかった！　そうやって、私の気を引くつもりでしょ♥	
+pack/talk/YOUEN:0xf970	like that...!	like that...! ❤	the PSX line's heart (PSP-US drops it); PSX ja もう、バカにして♥	
+pack/talk/YOUEN:0x11000	what to say...!	what to say...! ❤	the PSX line's heart (PSP-US drops it); PSX ja もう…私…困るわ♥	
+pack/talk/YOUEN:0x111c0	Heeheehee.	Heeheehee. ❤	the PSX line's heart (PSP-US drops it); PSX ja かっわいい！後で、お姉さんが遊んであげる♥	
+pack/talk/YOUEN:0x11378	all modest.	all modest. ❤	the PSX line's heart (PSP-US drops it); PSX ja 鎌遜しちゃって♥	
+pack/talk/YOUEN:0x130b8	nice of you!	nice of you! ❤	the PSX line's heart (PSP-US drops it); PSX ja ありがと…アンタ、いいとこあるのね♥	
+pack/talk/YOUEN:0x14578	nice of you!	nice of you! ❤	the PSX line's heart (PSP-US drops it); PSX ja ありがと、優しいのね♥	
+pack/talk/YOUEN:0x13418	Ahaha!	Ahaha! ❤	the PSX line's heart (PSP-US drops it); PSX ja うふふ♥	
+pack/talk/YOUEN:0x13b48	Ahaha!	Ahaha! ❤	the PSX line's heart (PSP-US drops it); PSX ja うふふ♥	
+pack/talk/YOUEN:0x14518	a shy one!	a shy one! ❤	the PSX line's heart (PSP-US drops it); PSX ja くすっ…アンタって、シャイなのね♥	
+pack/talk/YOUEN:0x15090	who knows?	who knows? ❤	the PSX line's heart (PSP-US drops it); PSX ja え、私ですかぁ？さて、どうかしら♥	
+pack/talk/YOUEN:0x15170	say that!	say that! ❤	the PSX line's heart (PSP-US drops it); PSX ja は、障害があるの？くすくす……なんて、言ってみたかっただけよ♥	
+pack/talk/YOUEN:0x15458	Oh, my!	Oh, my! ❤	the PSX line's heart (PSP-US drops it); PSX ja きゃ♥	
+pack/talk/ZMBITYAN:0x2018	totally tubular!	totally tubular! ❤	the PSX line's heart (PSP-US drops it); PSX ja オ兄サンの言うごどよぐ分がんないけどぉ…なんが　いい感じぃ～♥	
+pack/talk/ZMBITYAN:0x2220	all talk, bro!	all talk, bro! ❤	the PSX line's heart (PSP-US drops it); PSX ja オ兄サンて　自信家なのねぇ…でも　口だけじゃ　だめだよ♥	
+pack/talk/ZMBITYAN:0x3738	all talk, bro!	all talk, bro! ❤	the PSX line's heart (PSP-US drops it); PSX ja オ兄サンて　自信家なのねぇ…でも　口だけじゃ　だめだよ♥	
+pack/talk/ZMBITYAN:0x3bb8	all talk, bro!	all talk, bro! ❤	the PSX line's heart (PSP-US drops it); PSX ja オ兄サンで　自信家なのねぇ…でも　口だげじゃ　だめだよ♥	
+pack/talk/ZMBITYAN:0x5378	all talk, bro!	all talk, bro! ❤	the PSX line's heart (PSP-US drops it); PSX ja オ兄サンて　自信家なのねぇ…でも　口だけじゃ　だめだよ♥	
+pack/talk/ZMBITYAN:0x4b30	all talk, dudette!	all talk, dudette! ❤	the PSX line's heart (PSP-US drops it); PSX ja オ姉サンて　自信家なのねぇ…でも　口だけじゃ　だめだよ♥	
+pack/talk/ZMBITYAN:0x2398	being invited?	being invited? ❤	the PSX line's heart (PSP-US drops it); PSX ja サンの言うごとよぐ分がんないけどぉ…アダシ　誘われてるみだい♥	
+pack/talk/ZMBITYAN:0x4550	being invited?	being invited? ❤	the PSX line's heart (PSP-US drops it); PSX ja サンの言うごとよぐ分がんないけどぉ…アダシ　誘われてるみだい♥	
+pack/talk/ZMBITYAN:0x2d10	let it slide!	let it slide! ❤	the PSX line's heart (PSP-US drops it); PSX ja 変なヤヅー！でも　ガッゴイイがらいっか♥	
+pack/talk/ZMBITYAN:0x38b8	<FF03>that!	<FF03>that! ❤	the PSX line's heart (PSP-US drops it); PSX ja ょっと性格悪いみたい！　でもアダシぞういうの　嫌いじゃないよ♥	
+pack/talk/ZMBITYAN:0x46f8	<FF03>that!	<FF03>that! ❤	the PSX line's heart (PSP-US drops it); PSX ja ょっと性格悪いみたい！　でもアダシぞういうの　嫌いじゃないよ♥	
+pack/talk/ZMBITYAN:0x3a58	next time!	next time! ❤	the PSX line's heart (PSP-US drops it); PSX ja オ兄サン　うまぁい！今度　アダシにも教えでぇ♥	
+pack/talk/ZMBITYAN:0x50d8	killer!	killer! ❤	the PSX line's heart (PSP-US drops it); PSX ja オ姉サンて…怒っでる顔が　ガッゴイイ♥	
+pack/talk/ZMBITYAN:0x5138	tell me.	tell me. ❤	the PSX line's heart (PSP-US drops it); PSX ja オ姉サン！用事だったら言っでくれで　オッケー♥	
+pack/talk/ZMBITYAN:0x5258	tell me.	tell me. ❤	the PSX line's heart (PSP-US drops it); PSX ja オ兄サン！用事だったら言っでくれで　オッケー♥	
+pack/talk/ZMBITYAN:0x55f8	dig that!	dig that! ❤	the PSX line's heart (PSP-US drops it); PSX ja イカレでるぅ！でも　危ない人っで好ぎ♥	
+pack/talk/ZMBITYAN:0x58e8	forever though!	forever though! ❤	the PSX line's heart (PSP-US drops it); PSX ja 言葉は　信用でぎないなぁ信じられるのは　物だけ♥	
+pack/talk/ZMBITYAN:0x64f8	totally radical!	totally radical! ❤	the PSX line's heart (PSP-US drops it); PSX ja とでも　よがったよ♥	
+pack/talk/ZMBITYAN:0x6b60	good actor!	good actor! ❤	the PSX line's heart (PSP-US drops it); PSX ja 演技が　上手ね♥	
+pack/talk/ZMBITYAN:0x6ec0	m’kay?	m’kay? ❤	the PSX line's heart (PSP-US drops it); PSX ja しょ？臭いで分がるのよ…早ぐ　お肌のギレイなペルソナにじでね♥
+pack/talk/ZMBITYAN:0x7060	getting buff!	getting buff! ❤	the PSX line's heart (PSP-US drops it); PSX ja シ　弱い人にはカードあげないんだった…もっと　自分を磨いでね♥	
+pack/talk/ZMBITYAN:0x7150	Ahahaha!	Ahahaha! ❤	the PSX line's heart (PSP-US drops it); PSX ja 次に会うどきは　アンダもゾンビに　なっでたりしてね♥	
+pack/talk/ZMBITYAN:0x7ac0	celebrate with?	celebrate with? ❤	the PSX line's heart (PSP-US drops it); PSX ja 久しぶりにぃ…人に会っだみたいなぁ…記念に　何が　ぢょうだい♥	
+pack/talk/ZMBITYAN:0x7e18	Wanna negotiate?	Wanna negotiate? ❤	the PSX line's heart (PSP-US drops it); PSX ja いい気分みたいなぁ…アンダ　アダシと交渉じてみない♥	
+pack/talk/ZMBITYAN:0x7e90	from someone!	from someone! ❤	the PSX line's heart (PSP-US drops it); PSX ja ーなごとがありぞうな予感するんだぁ…なんが　もらえたりしてね♥	
+pack/talk/ZMBITYAN:0x81a0	Eep!	Eep! ❤	the PSX line's heart (PSP-US drops it); PSX ja どぎっ♥	
+pack/talk/ZMBITYAN:0x8b80	yen!	yen! ❤	the PSX line's heart (PSP-US drops it); PSX ja アダシが　信じられるのはお金だけぇ…円ね♥	
+pack/talk/ZOMBIKO:0x54a0	skin, okay?	skin, okay? ❤	the PSX line's heart (PSP-US drops it); PSX ja でしょ？臭いで分かるのよ早く　お肌のキレイなペルソナにしてね♥	
+pack/talk/ZOMBIKO:0x5718	for you too!	for you too! ❤	the PSX line's heart (PSP-US drops it); PSX ja これも　あげるわね♥	
+EBOOT:29e1ca	reaaaally fascinating.	reaaaally fascinating. ❤	the PSX line's heart (PSP-US drops it); PSX ja おじさんたち　シッブイ～！アヤセ　しびれちゃーう♥	
+EBOOT:29d9d6	it’s adorable!	it’s adorable! ❤	the PSX line's heart (PSP-US drops it); PSX ja 麻希：か　かわいい～♥
+EBOOT:2ad1c0	I want something.	I want something. ❤	the PSX line's heart (PSP-US drops it); PSX ja 何か、ちょうだい♥	
+EBOOT:2ad1c0	Like, gimme an item!	Like, gimme an item! ❤	the PSX line's heart (PSP-US drops it); PSX ja 何か、ちょーだい♥	
+pack/talk/BASKET:0x186f8	Thank you!	Thank you! ❤	the PSX line's heart (PSP-US drops it); PSX ja ありがと♥	
+pack/talk/KEMONO:0x163e8	I want a card.	I want a card. ❤	the PSX line's heart (PSP-US drops it); PSX ja カード欲しいの♥	
+pack/talk/KEMONO:0x16408	I want something.	I want something. ❤	the PSX line's heart (PSP-US drops it); PSX ja 何かちょうだい♥	
+pack/talk/KEMONO:0x16430	There’s no reason.	There’s no reason. ❤	the PSX line's heart (PSP-US drops it); PSX ja 理由はないよ♥
+pack/talk/KEMONO:0x172f8	Right, huh?	Right, huh? ❤	the PSX line's heart (PSP-US drops it); PSX ja やっぱそうだろ♥	
+pack/talk/KOSIKI:0x17ac0	Don’t go.	Don’t go. ❤	the PSX line's heart (PSP-US drops it); PSX ja 帰っちゃいや♥
+pack/talk/KOUMAN:0x1cb80	Your spell card!	Your spell card! ❤	the PSX line's heart (PSP-US drops it); PSX ja スペルカード♥	
+pack/talk/KOUMAN:0x1cba8	Give me something!	Give me something! ❤	the PSX line's heart (PSP-US drops it); PSX ja 何か、ちょうだい♥	
+pack/talk/POLUTAR:0xaa70	I want your body!	I want your body! ❤	the PSX line's heart (PSP-US drops it); PSX ja キミのカラダ♥	
+pack/talk/WORM:0x15970	I want your card!	I want your card! ❤	the PSX line's heart (PSP-US drops it); PSX ja カード欲しいの♥	
+pack/talk/WORM:0x15998	Gimme something!	Gimme something! ❤	the PSX line's heart (PSP-US drops it); PSX ja 何かちょうだい♥	
+pack/talk/WORM:0x159c0	There’s no reason!	There’s no reason! ❤	the PSX line's heart (PSP-US drops it); PSX ja 理由はないよ♥
+pack/talk/WORM:0x16a60	I thought so!	I thought so! ❤	the PSX line's heart (PSP-US drops it); PSX ja やっぱそうだろ♥	
+pack/talk/YOUEN:0x179d0	Mistress!	Mistress! ❤	the PSX line's heart (PSP-US drops it); PSX ja お姉さまぁ♥	
+E1:771	See you soon! ♥	See you soon! ❤	the letter's heart is speech, not a card suit: the speech heart's own glyph; PSX ja お待ちしてるわヨン♥	
+EBOOT:277cf4	Instant Grave	Insta Grave	the one-line help bank (239 px) abbreviates the instant-kill lines	l
+EBOOT:277ed6	Instant Angel	Insta Angel	the one-line help bank (239 px) abbreviates the instant-kill lines	l
+EBOOT:2793aa	Instant kill;	Insta kill;	the one-line help bank (239 px) abbreviates the instant-kill lines	l
+EBOOT:27ac00	Instant Death	Insta Death	the one-line help bank (239 px) abbreviates the instant-kill lines	l
+EBOOT:27b05a	Instant Grave	Insta Grave	the one-line help bank (239 px) abbreviates the instant-kill lines	l
+EBOOT:27b0aa	Instant Grave	Insta Grave	the one-line help bank (239 px) abbreviates the instant-kill lines	l
+EBOOT:27b5ba	Instant Angel	Insta Angel	the one-line help bank (239 px) abbreviates the instant-kill lines	l
+EBOOT:27b60a	Instant Angel	Insta Angel	the one-line help bank (239 px) abbreviates the instant-kill lines	l
+E0:186	lines,while	lines, while	typo: the PSP line has no space after the comma	
+E0:274	lines,while	lines, while	typo: the PSP line has no space after the comma	
+E2:351	lines,while	lines, while	typo: the PSP line has no space after the comma	
+E2:720	lines,while	lines, while	typo: the PSP line has no space after the comma	
+E2:768	lines,while	lines, while	typo: the PSP line has no space after the comma	
+E2:1368	lines,while	lines, while	typo: the PSP line has no space after the comma	
+E2:1549	lines,while	lines, while	typo: the PSP line has no space after the comma	
+E2:1756	lines,while	lines, while	typo: the PSP line has no space after the comma	
+E3:188	lines,while	lines, while	typo: the PSP line has no space after the comma	
+EBOOT:2ca590	lines,while	lines, while	typo: the PSP line has no space after the comma	
+pack/talk/GAKI:0x5f00	negotiatons	negotiations	typo in the PSP line	
+pack/talk/KOSIKI:0xaa60	negotiatons	negotiations	typo in the PSP line	
+d00:239d4	locked. Could	locked.<FF02><FF04>Could	the PSX draws two boxes, the door then the girl; PSX ja 扉には鍵がかけられている<FF02><FF04>…あの少女は<FF03>幻だったのだろうか…？	
+EBOOT:2778c0	A frame	Frame	Large font makes it just slightly too long	l
+EBOOT:27acb4	 ability		Large font too long	l
+pack/E0:46	 ”	 “	Opening quotation mark
+pack/E0:117	 ”	 “	Opening quotation mark
+pack/E0:133	 ”	 “	Opening quotation mark
+pack/E0:141	 ”	 “	Opening quotation mark
+pack/E0:172	”T	“T	Opening quotation mark
+pack/E0:260	”T	“T	Opening quotation mark
+pack/E0:291	”s	“s	Opening quotation mark
+pack/E0:291	 ”	 “	Opening quotation mark
+pack/E0:292	 ”	 “	Opening quotation mark
+pack/E0:348	”G	“G	Opening quotation mark
+pack/E0:368	 ”	 “	Opening quotation mark
+pack/E0:395	 ”	 “	Opening quotation mark
+pack/E0:466	”T	“T	Opening quotation mark
+pack/E0:484	”N	“N	Opening quotation mark
+pack/E0:501	 ”	 “	Opening quotation mark
+pack/E0:533	 ”	 “	Opening quotation mark
+pack/E0:537	”T	“T	Opening quotation mark
+pack/E0:547	 ”	 “	Opening quotation mark
+pack/E0:552	 ”	 “	Opening quotation mark
+pack/E0:572	 ”	 “	Opening quotation mark
+pack/E0:576	”W	“W	Opening quotation mark
+pack/E0:633	”m	“m	Opening quotation mark
+pack/E0:633	 ”	 “	Opening quotation mark
+pack/E0:709	”L	“L	Opening quotation mark
+pack/E0:709	”P	“P	Opening quotation mark
+pack/E0:709	 ”	 “	Opening quotation mark
+pack/E0:757	 ”	 “	Opening quotation mark
+pack/E0:779	 ”	 “	Opening quotation mark
+pack/E0:991	 ”	 “	Opening quotation mark
+pack/E0:992	 ”	 “	Opening quotation mark
+pack/E0:993	 ”	 “	Opening quotation mark
+pack/E0:999	”T	“T	Opening quotation mark
+pack/E0:1012	 ”	 “	Opening quotation mark
+pack/E0:1014	 ”	 “	Opening quotation mark
+pack/E0:1187	 ”	 “	Opening quotation mark
+pack/E0:1230	 ”	 “	Opening quotation mark
+pack/E0:1242	 ”	 “	Opening quotation mark
+pack/E0:1296	”E	“E	Opening quotation mark
+pack/E0:1300	”E	“E	Opening quotation mark
+pack/E0:1303	 ”	 “	Opening quotation mark
+pack/E0:1321	 ”	 “	Opening quotation mark
+pack/E0:1355	 ”	 “	Opening quotation mark
+pack/E0:1357	 ”	 “	Opening quotation mark
+pack/E0:1406	”H	“H	Opening quotation mark
+pack/E0:1547	”g	“g	Opening quotation mark
+pack/E0:1547	”u	“u	Opening quotation mark
+pack/E0:1547	 ”	 “	Opening quotation mark
+pack/E0:1652	 ”	 “	Opening quotation mark
+pack/E0:1919	 ”	 “	Opening quotation mark
+pack/E0:2119	”I	“I	Opening quotation mark
+pack/E0:2164	 ”	 “	Opening quotation mark
+pack/E0:2272	 ”	 “	Opening quotation mark
+pack/E0:2292	 ”	 “	Opening quotation mark
+pack/E0:2328	 ”	 “	Opening quotation mark
+pack/E0:2355	 ”	 “	Opening quotation mark
+pack/E0:2418	 ”	 “	Opening quotation mark
+pack/E0:2555	”I	“I	Opening quotation mark
+pack/E0:2561	 ”	 “	Opening quotation mark
+pack/E0:2618	 ”	 “	Opening quotation mark
+pack/E0:2624	 ”	 “	Opening quotation mark
+pack/E0:2625	 ”	 “	Opening quotation mark
+pack/E0:2626	 ”	 “	Opening quotation mark
+pack/E0:2733	 ”	 “	Opening quotation mark
+pack/E0:2758	 ”	 “	Opening quotation mark
+pack/E0:2791	”A	“A	Opening quotation mark
+pack/E1:12	 ”	 “	Opening quotation mark
+pack/E1:18	”T	“T	Opening quotation mark
+pack/E1:39	 ”	 “	Opening quotation mark
+pack/E1:88	 ”	 “	Opening quotation mark
+pack/E1:92	 ”	 “	Opening quotation mark
+pack/E1:94	 ”	 “	Opening quotation mark
+pack/E1:128	 ”	 “	Opening quotation mark
+pack/E1:131	 ”	 “	Opening quotation mark
+pack/E1:191	 ”	 “	Opening quotation mark
+pack/E1:192	 ”	 “	Opening quotation mark
+pack/E1:194	 ”	 “	Opening quotation mark
+pack/E1:231	は”	は“	Opening quotation mark
+pack/E1:254	”T	“T	Opening quotation mark
+pack/E1:255	”雪	“雪	Opening quotation mark
+pack/E1:264	は”	は“	Opening quotation mark
+pack/E1:436	”C	“C	Opening quotation mark
+pack/E1:436	 ”	 “	Opening quotation mark
+pack/E1:461	”f	“f	Opening quotation mark
+pack/E1:492	 ”	 “	Opening quotation mark
+pack/E1:494	 ”	 “	Opening quotation mark
+pack/E1:523	 ”	 “	Opening quotation mark
+pack/E1:543	.”	.“	Opening quotation mark
+pack/E1:543	 ”	 “	Opening quotation mark
+pack/E1:544	”T	“T	Opening quotation mark
+pack/E1:552	”P	“P	Opening quotation mark
+pack/E1:600	 ”	 “	Opening quotation mark
+pack/E1:738	 ”	 “	Opening quotation mark
+pack/E1:742	 ”	 “	Opening quotation mark
+pack/E1:780	 ”	 “	Opening quotation mark
+pack/E1:782	 ”	 “	Opening quotation mark
+pack/E1:785	 ”	 “	Opening quotation mark
+pack/E1:866	 ”	 “	Opening quotation mark
+pack/E1:885	 ”	 “	Opening quotation mark
+pack/E1:913	 ”	 “	Opening quotation mark
+pack/E1:916	”I	“I	Opening quotation mark
+pack/E1:916	 ”	 “	Opening quotation mark
+pack/E1:917	”I	“I	Opening quotation mark
+pack/E1:917	 ”	 “	Opening quotation mark
+pack/E1:918	 ”	 “	Opening quotation mark
+pack/E1:923	”A	“A	Opening quotation mark
+pack/E1:1060	 ”	 “	Opening quotation mark
+pack/E1:1063	”E	“E	Opening quotation mark
+pack/E1:1066	 ”	 “	Opening quotation mark
+pack/E1:1072	”It	“It	Opening quotation mark
+pack/E1:1072	”If	“If	Opening quotation mark
+pack/E1:1072	”F	“F	Opening quotation mark
+pack/E1:1072	”W	“W	Opening quotation mark
+pack/E1:1072	”A	“A	Opening quotation mark
+pack/E1:1072	 ”	 “	Opening quotation mark
+pack/E1:1145	 ”	 “	Opening quotation mark
+pack/E1:1189	 ”	 “	Opening quotation mark
+pack/E1:1233	 ”	 “	Opening quotation mark
+pack/E1:1265	”I	“I	Opening quotation mark
+pack/E1:1266	”I	“I	Opening quotation mark
+pack/E1:1468	”I	“I	Opening quotation mark
+pack/E1:1477	”L	“L	Opening quotation mark
+pack/E2:4	 ”	 “	Opening quotation mark
+pack/E2:14	 ”	 “	Opening quotation mark
+pack/E2:36	 ”	 “	Opening quotation mark
+pack/E2:57	”G	“G	Opening quotation mark
+pack/E2:82	 ”	 “	Opening quotation mark
+pack/E2:83	 ”	 “	Opening quotation mark
+pack/E2:103	 ”	 “	Opening quotation mark
+pack/E2:121	 ”	 “	Opening quotation mark
+pack/E2:144	”Y	“Y	Opening quotation mark
+pack/E2:148	t ”	t “	Opening quotation mark
+pack/E2:148	 ”	 “	Opening quotation mark
+pack/E2:180	 ”	 “	Opening quotation mark
+pack/E2:192	”t	“t	Opening quotation mark
+pack/E2:226	 ”	 “	Opening quotation mark
+pack/E2:229	”M	“M	Opening quotation mark
+pack/E2:229	 ”	 “	Opening quotation mark
+pack/E2:242	 ”	 “	Opening quotation mark
+pack/E2:268	”P	“P	Opening quotation mark
+pack/E2:268	 ”	 “	Opening quotation mark
+pack/E2:337	”T	“T	Opening quotation mark
+pack/E2:391	 ”	 “	Opening quotation mark
+pack/E2:440	 ”	 “	Opening quotation mark
+pack/E2:458	 ”	 “	Opening quotation mark
+pack/E2:636	 ”	 “	Opening quotation mark
+pack/E2:706	”T	“T	Opening quotation mark
+pack/E2:754	”T	“T	Opening quotation mark
+pack/E2:1100	”T	“T	Opening quotation mark
+pack/E2:1103	.”	.“	Opening quotation mark
+pack/E2:1104	 ”	 “	Opening quotation mark
+pack/E2:1106	 ”	 “	Opening quotation mark
+pack/E2:1201	”P	“P	Opening quotation mark
+pack/E2:1314	 ”	 “	Opening quotation mark
+pack/E2:1325	 ”	 “	Opening quotation mark
+pack/E2:1347	 ”	 “	Opening quotation mark
+pack/E2:1354	”T	“T	Opening quotation mark
+pack/E2:1397	 ”	 “	Opening quotation mark
+pack/E2:1453	 ”	 “	Opening quotation mark
+pack/E2:1456	 ”	 “	Opening quotation mark
+pack/E2:1535	”T	“T	Opening quotation mark
+pack/E2:1569	 ”	 “	Opening quotation mark
+pack/E2:1630	 ”	 “	Opening quotation mark
+pack/E2:1728	 ”	 “	Opening quotation mark
+pack/E2:1742	”T	“T	Opening quotation mark
+pack/E2:1843	 ”	 “	Opening quotation mark
+pack/E2:1902	 ”	 “	Opening quotation mark
+pack/E3:86	 ”	 “	Opening quotation mark
+pack/E3:114	 ”	 “	Opening quotation mark
+pack/E3:135	 ”	 “	Opening quotation mark
+pack/E3:174	”T	“T	Opening quotation mark
+pack/E3:385	”S	“S	Opening quotation mark
+pack/E3:405	”A	“A	Opening quotation mark
+pack/E3:405	”The R	“The R	Opening quotation mark
+pack/E3:405	”T	“T	Opening quotation mark
+pack/E3:459	 ”	 “	Opening quotation mark
+pack/E3:473	 ”	 “	Opening quotation mark
+pack/E3:491	”E	“E	Opening quotation mark
+pack/E3:491	 ”	 “	Opening quotation mark
+pack/E3:550	 ”	 “	Opening quotation mark
+pack/E3:594	 ”	 “	Opening quotation mark
+pack/E3:634	 ”	 “	Opening quotation mark
+pack/E3:673	 ”	 “	Opening quotation mark
+pack/E3:719	 ”	 “	Opening quotation mark
+pack/E3:798	 ”	 “	Opening quotation mark
+pack/E3:802	 ”	 “	Opening quotation mark
+pack/E3:820	 ”	 “	Opening quotation mark
+pack/E4:576	 ”	 “	Opening quotation mark
+pack/E4:588	 ”	 “	Opening quotation mark
+pack/E4:600	 ”	 “	Opening quotation mark
+pack/E4:612	 ”	 “	Opening quotation mark
+pack/E4:624	 ”	 “	Opening quotation mark
+pack/E4:636	 ”	 “	Opening quotation mark
+pack/E4:648	 ”	 “	Opening quotation mark
+pack/E4:660	 ”	 “	Opening quotation mark
+pack/E4:672	 ”	 “	Opening quotation mark
+pack/E4:684	 ”	 “	Opening quotation mark
+pack/E4:696	 ”	 “	Opening quotation mark
+pack/E4:708	 ”	 “	Opening quotation mark
+pack/E4:720	 ”	 “	Opening quotation mark
+pack/E4:732	 ”	 “	Opening quotation mark
+pack/E4:744	 ”	 “	Opening quotation mark
+pack/E4:756	 ”	 “	Opening quotation mark
+pack/E4:768	 ”	 “	Opening quotation mark
+pack/E4:780	 ”	 “	Opening quotation mark
+pack/E4:792	 ”	 “	Opening quotation mark
+pack/E4:804	 ”	 “	Opening quotation mark
+pack/E4:816	 ”	 “	Opening quotation mark
+pack/E4:828	 ”	 “	Opening quotation mark
+pack/E4:840	 ”	 “	Opening quotation mark
+pack/E4:852	 ”	 “	Opening quotation mark
+pack/E4:864	 ”	 “	Opening quotation mark
+pack/E4:876	 ”	 “	Opening quotation mark
+pack/E4:888	 ”	 “	Opening quotation mark
+pack/E4:900	 ”	 “	Opening quotation mark
+pack/E4:912	 ”	 “	Opening quotation mark
+pack/E4:924	 ”	 “	Opening quotation mark
+pack/E4:936	 ”	 “	Opening quotation mark
+pack/E4:948	 ”	 “	Opening quotation mark
+pack/E4:1137	 ”	 “	Opening quotation mark
+pack/E4:1139	 ”	 “	Opening quotation mark
+pack/E4:1141	 ”	 “	Opening quotation mark
+pack/E4:1143	 ”	 “	Opening quotation mark
+pack/E4:1145	 ”	 “	Opening quotation mark
+pack/E4:1147	 ”	 “	Opening quotation mark
+pack/E4:1149	 ”	 “	Opening quotation mark
+pack/dng/d13:0xc354	 ”	 “	Opening quotation mark
+pack/dng/d18:0x21168	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xd574	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xd574	”H	“H	Opening quotation mark
+pack/dng/d0c:0xd804	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xd804	”H	“H	Opening quotation mark
+pack/dng/d0c:0xda94	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xda94	”H	“H	Opening quotation mark
+pack/dng/d0c:0xf0c4	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xf1a4	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xf284	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xf3a4	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xf4d4	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xf624	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xf744	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xf874	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xf9a4	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xfae4	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xfc14	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xfd44	 ”	 “	Opening quotation mark
+pack/dng/d0c:0xfe74	 ”	 “	Opening quotation mark
+pack/dng/d19:0xd634	 ”	 “	Opening quotation mark
+pack/dng/d19:0xd8e4	 ”	 “	Opening quotation mark
+pack/dng/d21:0x192f4	 ”	 “	Opening quotation mark
+pack/dng/d21:0x192f4	”Y	“Y	Opening quotation mark
+pack/end/ENDALL:0x168000	n”	n“	Opening quotation mark
+pack/end/ENDALL:0x1b8800	n”	n“	Opening quotation mark
+pack/talk/BASKET:0x9238	”O	“O	Opening quotation mark
+pack/talk/BASKET:0x9ad8	 ”	 “	Opening quotation mark
+pack/talk/BASKET:0xa030	 ”	 “	Opening quotation mark
+pack/talk/BASKET:0xce78	 ”	 “	Opening quotation mark
+pack/talk/BASKET:0xd758	 ”	 “	Opening quotation mark
+pack/talk/BASKET:0xfd68	 ”	 “	Opening quotation mark
+pack/talk/BASKET:0x10be8	 ”	 “	Opening quotation mark
+pack/talk/BASKET:0x11bf8	 ”	 “	Opening quotation mark
+pack/talk/BASKET:0x127e0	 ”	 “	Opening quotation mark
+pack/talk/BASKET:0x160f0	 ”	 “	Opening quotation mark
+pack/talk/BASKET:0x16860	 ”	 “	Opening quotation mark
+pack/talk/ETC:0x2d18	 ”	 “	Opening quotation mark
+pack/talk/ETC:0x6300	 ”	 “	Opening quotation mark
+pack/talk/GAKI:0x7600	 ”	 “	Opening quotation mark
+pack/talk/HIHO:0x3148	 ”	 “	Opening quotation mark
+pack/talk/HIHO:0x3790	 ”	 “	Opening quotation mark
+pack/talk/HIHO:0xce88	 ”	 “	Opening quotation mark
+pack/talk/HIHO:0xef68	 ”	 “	Opening quotation mark
+pack/talk/HIHO:0xf8a0	”T	“T	Opening quotation mark
+pack/talk/HIHO:0x10b80	”s	“s	Opening quotation mark
+pack/talk/HIHO:0x15b70	 ”	 “	Opening quotation mark
+pack/talk/KEMONO:0x109b8	 ”	 “	Opening quotation mark
+pack/talk/KOROU:0xbbf8	”e	“e	Opening quotation mark
+pack/talk/KOROU:0x178a0	 ”	 “	Opening quotation mark
+pack/talk/KOROU:0x18e90	 ”	 “	Opening quotation mark
+pack/talk/KOSIKI:0x5938	 ”	 “	Opening quotation mark
+pack/talk/KOSIKI:0xd320	 ”	 “	Opening quotation mark
+pack/talk/KOSIKI:0xe740	 ”	 “	Opening quotation mark
+pack/talk/KOSIKI:0xfaf8	 ”	 “	Opening quotation mark
+pack/talk/KOSIKI:0x11070	 ”	 “	Opening quotation mark
+pack/talk/KOSIKI:0x12e88	 ”	 “	Opening quotation mark
+pack/talk/KOSIKI:0x15cf0	 ”	 “	Opening quotation mark
+pack/talk/KOUMAN:0x7718	 ”	 “	Opening quotation mark
+pack/talk/KOUMAN:0xca00	 ”	 “	Opening quotation mark
+pack/talk/KOUMAN:0xce40	,”	,“	Opening quotation mark
+pack/talk/KOUMAN:0x12398	 ”	 “	Opening quotation mark
+pack/talk/KUTISAKE:0x40e0	 ”	 “	Opening quotation mark
+pack/talk/KUTISAKE:0x4c28	 ”	 “	Opening quotation mark
+pack/talk/KYOUKI:0xa018	 ”	 “	Opening quotation mark
+pack/talk/KYOUKI:0xd7e8	 ”	 “	Opening quotation mark
+pack/talk/KYOUKI:0xe3b8	 ”	 “	Opening quotation mark
+pack/talk/KYOUKI:0x12e58	”T	“T	Opening quotation mark
+pack/talk/KYOUKI:0x12e58	 ”	 “	Opening quotation mark
+pack/talk/KYOUKI:0x132b0	 ”	 “	Opening quotation mark
+pack/talk/KYOUKI:0x132b0	”T	“T	Opening quotation mark
+pack/talk/KYOUKI:0x16e18	 ”	 “	Opening quotation mark
+pack/talk/KYOUKI:0x17010	 ”	 “	Opening quotation mark
+pack/talk/KYOUKI:0x17848	 ”	 “	Opening quotation mark
+pack/talk/MAYOERU:0x35a8	 ”	 “	Opening quotation mark
+pack/talk/POLUTAR:0x68b8	 ”	 “	Opening quotation mark
+pack/talk/POLUTAR:0x87c8	 ”	 “	Opening quotation mark
+pack/talk/POLUTAR:0x9bb0	 ”	 “	Opening quotation mark
+pack/talk/POLUTAR:0x9d18	 ”	 “	Opening quotation mark
+pack/talk/SINSI:0x12c58	 ”	 “	Opening quotation mark
+pack/talk/SINSI:0x14488	 ”	 “	Opening quotation mark
+pack/talk/SINSI:0x170d0	 ”	 “	Opening quotation mark
+pack/talk/SLIME:0x6840	.”	.“	Opening quotation mark
+pack/talk/SYOUJO:0xa3d8	 ”	 “	Opening quotation mark
+pack/talk/SYOUJO:0xc3c8	”l	“l	Opening quotation mark
+pack/talk/SYOUJO:0xc3c8	 ”	 “	Opening quotation mark
+pack/talk/SYOUJO:0x105a8	 ”	 “	Opening quotation mark
+pack/talk/TENSI:0x7668	 ”	 “	Opening quotation mark
+pack/talk/TENSI:0x1ce70	 ”	 “	Opening quotation mark
+pack/talk/TINPRA:0x7c78	 ”	 “	Opening quotation mark
+pack/talk/TOILET:0xcda8	”l	“l	Opening quotation mark
+pack/talk/TOILET:0xcda8	 ”	 “	Opening quotation mark
+pack/talk/TOILET:0x11220	 ”	 “	Opening quotation mark
+pack/talk/TOILET:0x14b70	 ”	 “	Opening quotation mark
+pack/talk/WTENSI:0x7678	 ”	 “	Opening quotation mark
+pack/talk/WTENSI:0x1ce98	 ”	 “	Opening quotation mark
+pack/talk/YOUEN:0xeed8	 ”	 “	Opening quotation mark
+pack/talk/YOUEN:0x125d0	 ”	 “	Opening quotation mark
+pack/talk/YOUEN:0x12b30	 ”	 “	Opening quotation mark
+pack/talk/YOUEN:0x13f30	 ”	 “	Opening quotation mark
+pack/talk/YOUEN:0x14280	 ”	 “	Opening quotation mark
+pack/talk/ZMBITYAN:0x9290	 ”	 “	Opening quotation mark
+pack/talk/ZOMB_MAN:0x4208	”r	“r	Opening quotation mark
+EBOOT:0x2775dc	 ”	 “	Opening quotation mark
+EBOOT:0x277618	 ”	 “	Opening quotation mark
+EBOOT:0x277694	 ”	 “	Opening quotation mark
+EBOOT:0x28a07e	”The h	“The h	Opening quotation mark
+EBOOT:0x28a07e	 ”	 “	Opening quotation mark
+EBOOT:0x2a52d8	 ”	 “	Opening quotation mark
+EBOOT:0x2ab6be	”G	“G	Opening quotation mark
+EBOOT:0x2ab6be	 ”	 “	Opening quotation mark
+EBOOT:0x2ce276	”T	“T	Opening quotation mark
+EBOOT:0x2d21a0	 ”	 “	Opening quotation mark
+EBOOT:0x2d79f0	 ”	 “	Opening quotation mark
+EBOOT:0x2d7c6e	 ”	 “	Opening quotation mark
+EBOOT:0x2d7eee	 ”	 “	Opening quotation mark
+E1:771	”O	“O	Opening quotation mark
+E1:771	”It	“It	Opening quotation mark
+E1:771	”Y	“Y	Opening quotation mark
+E1:771	”A	“A	Opening quotation mark
+E1:771	”I’	“I’	Opening quotation mark
+E1:771	”I	“I	Opening quotation mark
+E1:771	”S	“S	Opening quotation mark
+E3:373	”G	“G	Opening quotation mark
+E3:373	 ’	 ‘	Opening quotation mark
+E3:373	”I	“I	Opening quotation mark
+YOUEN:0x14a30	”H	“H	Opening quotation mark
+YOUEN:0x14a30	 ”	 “	Opening quotation mark
+d19:0xcff4	”H	“H	Opening quotation mark
+d19:0xcff4	”T	“T	Opening quotation mark
+d19:0xcff4	”L	“L	Opening quotation mark
+d19:0xcff4	 ”	 “	Opening quotation mark
+d0c:0xdd64	”I	“I	Opening quotation mark
+d0c:0xdd64	”H	“H	Opening quotation mark
+d0c:0xdf14	”S	“S	Opening quotation mark
+d0c:0xdf14	”H	“H	Opening quotation mark
+d0c:0xe0e4	”V	“V	Opening quotation mark
+d0c:0xe0e4	”H	“H	Opening quotation mark
+d0c:0xe274	”B	“B	Opening quotation mark
+d0c:0xe274	”H	“H	Opening quotation mark
+d0c:0xe3f4	”I	“I	Opening quotation mark
+d0c:0xe3f4	”H	“H	Opening quotation mark
+d0c:0xe564	”I	“I	Opening quotation mark
+d0c:0xe564	 ”	 “	Opening quotation mark
+d0c:0xe564	”H	“H	Opening quotation mark
+d0c:0xe704	”T	“T	Opening quotation mark
+d0c:0xe704	”H	“H	Opening quotation mark
+d0c:0xe8a4	”T	“T	Opening quotation mark
+d0c:0xe8a4	”H	“H	Opening quotation mark
+d0c:0xea14	”O	“O	Opening quotation mark
+d0c:0xea14	”H	“H	Opening quotation mark
+d0c:0xeba4	”J	“J	Opening quotation mark
+d0c:0xeba4	”H	“H	Opening quotation mark
+d0c:0xed44	”V	“V	Opening quotation mark
+d0c:0xed44	”H	“H	Opening quotation mark
+d0c:0xef14	”W	“W	Opening quotation mark
+d0c:0xef14	”H	“H	Opening quotation mark
+E0:0	”<FF18>	“<FF18>	Opening quotation mark
+E1:182	<FF1B>Raiho<FF03>Hee-ho!<FF02>	<FF1B>Heeho<FF03>Hee-ho!<FF02>	the PSP misnames ヒーホーくん as Raiho, a separate Jack Frost character; restores the original PS1 identity	
+E1:182	<FF1B>Raiho<FF03>We transferred	<FF1B>Heeho<FF03>We transferred	see previous correction	
+E1:182	<FF1B>Reiho<FF03>Hee-ho! It	<FF1B>Heehoko<FF03>Hee-ho! It	the PSP misnames ヒホ子ちゃん as Reiho; restores the original PS1 identity	
+E1:182	<FF1B>Raiho<FF03>School is	<FF1B>Heeho<FF03>School is	see previous correction	
+E1:182	Reiho?<FF02><FF04>	Heehoko?<FF02><FF04>	see previous correction	
+E1:182	<FF1B>Reiho<FF03>Yeah... it	<FF1B>Heehoko<FF03>Yeah... it	see previous correction	
+E1:182	<FF1B>Raiho<FF03>Think we’	<FF1B>Heeho<FF03>Think we’	see previous correction	
+E1:182	<FF1B>Reiho<FF03>I doubt it	<FF1B>Heehoko<FF03>I doubt it	see previous correction	
+E1:182	<FF1B>Raiho<FF03>Hee-huh..	<FF1B>Heeho<FF03>Hee-huh..	see previous correction	
+E1:182	<FF1B>Raiho<FF03>Human girls	<FF1B>Heeho<FF03>Human girls	see previous correction	
+E1:182	<FF1B>Reiho<FF03>They aren	<FF1B>Heehoko<FF03>They aren	see previous correction	
+E1:183	<FF1B>Raiho<FF03>Hee-ho!<FF02>	<FF1B>Heeho<FF03>Hee-ho!<FF02>	see previous correction	
+E1:183	<FF1B>Raiho<FF03>Every time	<FF1B>Heeho<FF03>Every time	see previous correction	
+E1:183	<FF1B>Reiho<FF03>The mountain	<FF1B>Heehoko<FF03>The mountain	see previous correction	
+E1:183	<FF1B>Raiho<FF03>Hee-huh? 	<FF1B>Heeho<FF03>Hee-huh? 	see previous correction	
+E1:184	<FF1B>Reiho<FF03>Hee... Nothing	<FF1B>Heehoko<FF03>Hee... Nothing	see previous correction	
+E1:184	<FF1B>Raiho<FF03>Hee-ho! Wanna	<FF1B>Heeho<FF03>Hee-ho! Wanna	see previous correction	
+E1:184	<FF1B>Reiho<FF03>Hey, hee-	<FF1B>Heehoko<FF03>Hey, hee-	see previous correction	
+E1:1265	<FF1B>Raiho<FF03>Hee-ho! We	<FF1B>Heeho<FF03>Hee-ho! We	see previous correction	
+E1:1265	<FF1B>Reiho<FF03>She-ho was	<FF1B>Heehoko<FF03>She-ho was	see previous correction	
+E1:1265	<FF1B>Raiho<FF03>Nooo! What	<FF1B>Heeho<FF03>Nooo! What	see previous correction	
+E1:1265	<FF1B>Reiho<FF03>Work! Work	<FF1B>Heehoko<FF03>Work! Work	see previous correction	
+E1:1265	<FF1B>Raiho<FF03>So cold..	<FF1B>Heeho<FF03>So cold..	see previous correction	
+E1:1266	<FF1B>Reiho<FF03>Going up?	<FF1B>Heehoko<FF03>Going up?	see previous correction	
+E1:1266	<FF1B>Raiho<FF03>Hee, you 	<FF1B>Heeho<FF03>Hee, you 	see previous correction	
+E1:1266	<FF1B>Reiho<FF03>She-ho was	<FF1B>Heehoko<FF03>She-ho was	see previous correction	
+E1:1266	<FF1B>Raiho<FF03>Nooo! What	<FF1B>Heeho<FF03>Nooo! What	see previous correction	
+E1:1266	<FF1B>Reiho<FF03>Work! Work	<FF1B>Heehoko<FF03>Work! Work	see previous correction	
+E1:1266	<FF1B>Raiho<FF03>So cold..	<FF1B>Heeho<FF03>So cold..	see previous correction	
+E1:1267	<FF1B>Raiho<FF03>Why not exchange	<FF1B>Heeho<FF03>Why not exchange	see previous correction	
+E1:1269	<FF1B>Raiho<FF03>Hee-ho! Woah	<FF1B>Heeho<FF03>Hee-ho! Woah	see previous correction	
+E1:1269	<FF1B>Reiho<FF03>Hee! You’	<FF1B>Heehoko<FF03>Hee! You’	see previous correction	
+E1:1269	<FF1B>Raiho<FF03>That’s hee	<FF1B>Heeho<FF03>That’s hee	see previous correction	
+E1:1269	<FF1B>Reiho<FF03>Give it! 	<FF1B>Heehoko<FF03>Give it! 	see previous correction	
+E1:1269	<FF1B>Raiho<FF03>Ummm... Reiho	<FF1B>Heeho<FF03>Ummm... Reiho	see previous correction	
+E1:1269	Reiho... Our teacher	Heehoko... Our teacher	see previous correction	
+E1:1269	<FF1B>Reiho<FF03>Awww, human	<FF1B>Heehoko<FF03>Awww, human	see previous correction	
+E1:1269	<FF1B>Raiho<FF03>Hee-ho!<FF02>	<FF1B>Heeho<FF03>Hee-ho!<FF02>	see previous correction	
+E1:1269	<FF1B>Raiho<FF03>I’ll exchange	<FF1B>Heeho<FF03>I’ll exchange	see previous correction	
+E1:1270	<FF1B>Reiho<FF03>I hear-ho	<FF1B>Heehoko<FF03>I hear-ho	see previous correction	
+E1:1270	<FF1B>Raiho<FF03>I have five	<FF1B>Heeho<FF03>I have five	see previous correction	
+E1:1270	<FF1B>Reiho<FF03>So it’s one	<FF1B>Heehoko<FF03>So it’s one	see previous correction	
+E1:1270	<FF1B>Raiho<FF03>Think about	<FF1B>Heeho<FF03>Think about	see previous correction	
+E1:1270	<FF1B>Reiho<FF03>When you’	<FF1B>Heehoko<FF03>When you’	see previous correction	
+E1:1270	<FF1B>Raiho<FF03>If you want	<FF1B>Heeho<FF03>If you want	see previous correction	
+E1:1270	<FF1B>Reiho<FF03>Hee... All	<FF1B>Heehoko<FF03>Hee... All	see previous correction	
+E1:1271	<FF1B>Raiho<FF03>Hee-ho!<FF02>	<FF1B>Heeho<FF03>Hee-ho!<FF02>	see previous correction	
+E1:1272	<FF1B>Raiho<FF03>You want 	<FF1B>Heeho<FF03>You want 	see previous correction	
+E1:1273	<FF1B>Reiho<FF03>Are you sure	<FF1B>Heehoko<FF03>Are you sure	see previous correction	
+E1:1274	<FF1B>Reiho<FF03>You’re sure	<FF1B>Heehoko<FF03>You’re sure	see previous correction	
+E1:1275	<FF1B>Raiho<FF03>Hee-ho! Then	<FF1B>Heeho<FF03>Hee-ho! Then	see previous correction	
+E1:1275	<FF1B>Raiho<FF03>Hee-here’	<FF1B>Heeho<FF03>Hee-here’	see previous correction	
+E1:1277	<FF1B>Raiho<FF03>Hee-hokay	<FF1B>Heeho<FF03>Hee-hokay	see previous correction	
+E1:1285	<FF1B>Raiho<FF03>Hee-ho! Here	<FF1B>Heeho<FF03>Hee-ho! Here	see previous correction	
+E1:1295	<FF1B>Raiho<FF03>Hee-ho! Here	<FF1B>Heeho<FF03>Hee-ho! Here	see previous correction	
+E1:1305	<FF1B>Raiho<FF03>Hee-ho! Here	<FF1B>Heeho<FF03>Hee-ho! Here	see previous correction	
+E1:1315	<FF1B>Raiho<FF03>Hee-ho! Here	<FF1B>Heeho<FF03>Hee-ho! Here	see previous correction	
+E1:1325	<FF1B>Raiho<FF03>Hee-ho! Here	<FF1B>Heeho<FF03>Hee-ho! Here	see previous correction	
+E3:348	<FF1B>Reiho<FF03>Jab! Jab!	<FF1B>Heehoko<FF03>Jab! Jab!	see previous correction	
+E3:348	<FF1B>Raiho<FF03>There’s no	<FF1B>Heeho<FF03>There’s no	see previous correction	
+E3:348	<FF1B>Reiho<FF03>Hey! A sandbag	<FF1B>Heehoko<FF03>Hey! A sandbag	see previous correction	
+E3:348	<FF1B>Raiho<FF03>Hee-ho? Are	<FF1B>Heeho<FF03>Hee-ho? Are	see previous correction	
+E3:348	<FF1B>Reiho<FF03>Don’t you	<FF1B>Heehoko<FF03>Don’t you	see previous correction	
+E3:348	<FF1B>Raiho<FF03>Hee-ho! I	<FF1B>Heeho<FF03>Hee-ho! I	see previous correction	
+E3:348	<FF1B>Raiho<FF03>...Please	<FF1B>Heeho<FF03>...Please	see previous correction	
+E3:406	<FF1B>Reiho<FF03>Hee-ho! This	<FF1B>Heehoko<FF03>Hee-ho! This	see previous correction	
+E3:407	<FF1B>Raiho<FF03>Hee-ho! Hey	<FF1B>Heeho<FF03>Hee-ho! Hey	see previous correction	
+E3:408	<FF1B>Raiho<FF03>Will you 	<FF1B>Heeho<FF03>Will you 	see previous correction	
+E3:409	<FF1B>Raiho<FF03>Hee-ho! Just	<FF1B>Heeho<FF03>Hee-ho! Just	see previous correction	
+E3:409	<FF1B>Raiho<FF03>Well, friends	<FF1B>Heeho<FF03>Well, friends	see previous correction	
+E3:409	<FF1B>Raiho<FF03>I hee-know	<FF1B>Heeho<FF03>I hee-know	see previous correction	
+E3:410	<FF1B>Raiho<FF03>Want me-ho	<FF1B>Heeho<FF03>Want me-ho	see previous correction	
+E3:411	<FF1B>Reiho<FF03>Tch.<FF02>	<FF1B>Heehoko<FF03>Tch.<FF02>	see previous correction	
+E3:412	<FF1B>Raiho<FF03>Hee-ho! Well	<FF1B>Heeho<FF03>Hee-ho! Well	see previous correction	
+E3:413	<FF1B>Reiho<FF03>Tch.<FF02>	<FF1B>Heehoko<FF03>Tch.<FF02>	see previous correction	
+E3:429	<FF1B>Reiho<FF03>Hee-ho! This	<FF1B>Heehoko<FF03>Hee-ho! This	see previous correction	
+E3:430	<FF1B>Raiho<FF03>Hee-ho!<FF02>	<FF1B>Heeho<FF03>Hee-ho!<FF02>	see previous correction	
+E3:431	<FF1B>Raiho<FF03>Want me-ho	<FF1B>Heeho<FF03>Want me-ho	see previous correction	
+E3:432	<FF1B>Reiho<FF03>Tch.<FF02>	<FF1B>Heehoko<FF03>Tch.<FF02>	see previous correction	
+E3:433	<FF1B>Raiho<FF03>Hee-ho! Well	<FF1B>Heeho<FF03>Hee-ho! Well	see previous correction	
+E3:434	<FF1B>Reiho<FF03>Tch.<FF02>	<FF1B>Heehoko<FF03>Tch.<FF02>	see previous correction	

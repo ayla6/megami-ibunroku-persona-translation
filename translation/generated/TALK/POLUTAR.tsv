@@ -1,323 +1,323 @@
 id	pos	psp	en
-0	0x2014	pack/talk/POLUTAR:0x2018	Hyuk hyuk!<FFF6>I like the way you talk, mister.<FFFB><FFF7>It makes me wanna listen more. No lie!<FFFD>　<FFF5>
-1	0x2052	pack/talk/POLUTAR:0x20c8	Uuuurgh!<FFF6>That's not what I wanna hear!<FFF5>
-2	0x2070	pack/talk/POLUTAR:0x2118	Ooohehehe! You need me? A <FFF0>?<FFFD>あ<FFF5>
-3	0x2090	pack/talk/POLUTAR:0x2158	You're trying to taunt me<FFF6>like that...?<FFFB><FFF7>Hyuk hyuk! You're funny, mister!<FFF5>
+0	0x2014	pack/talk/POLUTAR:0x2018	Hyuk hyuk!<FFFC><FFF6>I like the way you talk, mister.<FFFB><FFF7>It makes me wanna listen more. No lie!<FFFD>　<FFF5>
+1	0x2052	pack/talk/POLUTAR:0x20c8	Uuuurgh!<FFFC><FFF6>That’s not what I wanna hear!<FFF5>
+2	0x2070	pack/talk/POLUTAR:0x2118	Ooohehehe!<FFFC><FFF6>You need me? A <FFF0>?<FFFD>あ<FFF5>
+3	0x2090	pack/talk/POLUTAR:0x2158	You’re trying to taunt<L{> me<FFF6>like <}><S{> me like <}>that...?<FFFB><FFF7>Hyuk hyuk! You’re funny, mister!<FFF5>
 4	0x20c9	pack/talk/POLUTAR:0x21f0	Uuurrrrgh! You wanna fight!?<FFFD>い<FFF5>
 5	0x20ea	pack/talk/POLUTAR:0x2230	Hyuk... Wh-What did I do...?<FFF5>
-6	0x210a	pack/talk/POLUTAR:0x2270	Hyuk hyuk! I think I'm starting<FFF6>to believe what you say...<FFF5>
-7	0x212e	pack/talk/POLUTAR:0x22e8	It's not easy to pick me up, you know!<FFF6>I'm not a cheap <FFF0>!<FFF5>
+6	0x210a	pack/talk/POLUTAR:0x2270	Hyuk hyuk!<FFFC><FFF6>I think I’m starting<FFF6>to believe what you say...<FFF5>
+7	0x212e	pack/talk/POLUTAR:0x22e8	It’s not easy to pick me up, you know!<FFF6>I’m not a cheap <FFF0>!<FFF5>
 8	0x214c	pack/talk/POLUTAR:0x2360	Hyuk... Your face is scary<FFF6>when you talk to me, mister...<FFFD>う<FFF5>
-9	0x2176	pack/talk/POLUTAR:0x23d8	Uuuurrrgh! My brain is rotting!<FFF6>I hate stuff that rots!<FFF5>
-10	0x21a1	pack/talk/POLUTAR:0x2448	Hyuk... Your throat's<FFF6>all messed up, mister...<FFF5>
-11	0x21bf	pack/talk/POLUTAR:0x24a8	Ooohehehe! You rock, mister!<FFF6>Encore! Encore! Sing another song!<FFFD>え<FFF5>
+9	0x2176	pack/talk/POLUTAR:0x23d8	Uuuurrrgh!<FFFC><FFF6>My brain is rotting!<FFFC><FFF6>I hate stuff that rots!<FFF5>
+10	0x21a1	pack/talk/POLUTAR:0x2448	Hyuk...<FFFC><FFF6>Your throat’s all messed up, mister...<FFF5>
+11	0x21bf	pack/talk/POLUTAR:0x24a8	Ooohehehe! You rock, mister!<FFFC><FFF6>Encore! Encore! Sing another song!<FFFD>え<FFF5>
 12	0x21f0	pack/talk/POLUTAR:0x2530	Why are you so desperate?<FFF6>Hyuk hyuk hyuk hyuk!<FFF5>
 13	0x2218	pack/talk/POLUTAR:0x2590	No way!<FFF5>
-14	0x221e	pack/talk/POLUTAR:0x25a0	You need me? Really?<FFF6>Yaaaaaay! I'm so happy!<FFF5>
-15	0x2249	pack/talk/POLUTAR:0x2600	Uuuurrrgh!<FFF6>I won't fall for your sweet talk, lady!<FFF5>
-16	0x2272	pack/talk/POLUTAR:0x2668	Eep... M-Miss... Are you<FFF6>scheming something...?<FFFD>お<FFF5>
-17	0x229f	pack/talk/POLUTAR:0x26d0	Ooohehehe! You really know how it<FFF6>feels to be a <FFF0>, lady.<FFFB><FFF7>Maybe you're a ghost too?<FFF5>
-18	0x22e5	pack/talk/POLUTAR:0x2778	Hyuk hyuk! You say some<FFF6>funny things sometimes, lady!<FFFB><FFF7>How do you come up with your jokes?<FFFD>か<FFF5>
-19	0x232e	pack/talk/POLUTAR:0x2838	There's no way that's true!<FFF6>You must be dumb! Stupidhead!<FFF5>
-20	0x235c	pack/talk/POLUTAR:0x28b0	Ooohehehe! I always knew it!<FFF6>I just had that feeling...<FFF5>
-21	0x2384	pack/talk/POLUTAR:0x2920	Hyuk hyuk! Why are you so scared?<FFF5>
-22	0x23a4	pack/talk/POLUTAR:0x2968	Uuuurrrrgh!<FFF6>You're even noisier than me!<FFF5>
-23	0x23c2	pack/talk/POLUTAR:0x29c0	Ooohehehe! I'm scary!<FFF6>Rarrr! Oooheeheeheeee!<FFF5>
-24	0x23db	pack/talk/POLUTAR:0x2a20	Hyuk hyuk! Mister, are you...<FFF6>an idiot? Are you? Huh?<FFFB><FFF7>How dumb can you be, hitting on me?<FFF6>Stupidhead! You're hopeless!<FFF5>
-25	0x2435	pack/talk/POLUTAR:0x2b10	Uuuurrrrgh! I'm a BOY!<FFF6>Don't mess with me, or I'll cut you!<FFFD>き<FFF5>
-26	0x2465	pack/talk/POLUTAR:0x2b90	Eeep... You're kidding, right...?<FFFB><FFF7>Could you say that stuff<FFF6>to Silvie instead of me...?<FFF5>
-27	0x24a1	pack/talk/POLUTAR:0x2c48	Ooohehehe! Good eye, mister! There's<FFFB><FFF7>no <FFF0> cuter than us!<FFF5>
-28	0x24dc	pack/talk/POLUTAR:0x2cc0	Hyuk hyuk! Your jokes are awesome,<FFF6>mister. They never get old!<FFF5>
-29	0x2508	pack/talk/POLUTAR:0x2d40	Was that supposed to be funny?<FFF6>Ooh... Urge to kill... rising...<FFF6>Go to hell!<FFF5>
-30	0x253c	pack/talk/POLUTAR:0x2dd8	Yikes... Th-That was real lame...<FFF5>
-31	0x2558	pack/talk/POLUTAR:0x2e20	Ooohehehe! Ooohehehe!<FFF6>Oooooheeeheeheee!<FFFD>く<FFF5>
-32	0x257a	pack/talk/POLUTAR:0x2e78	Hyuk hyuk! And then? And then?<FFF5>
-33	0x2594	pack/talk/POLUTAR:0x2eb8	So what? Just 'cause I'm a <FFF0><FFF6>doesn't mean I have time to waste!<FFF5>
+14	0x221e	pack/talk/POLUTAR:0x25a0	You need me? Really?<FFF6>Yaaaaaay! I’m so happy!<FFF5>
+15	0x2249	pack/talk/POLUTAR:0x2600	Uuuurrrgh!<FFF6>I won’t fall for your sweet talk, lady!<FFF5>
+16	0x2272	pack/talk/POLUTAR:0x2668	Eep...<FFFC> M-Miss... Are<L{> you<FFF6>scheming something...?<FFFD>お<FFF5><}><S{> you scheming<FFF6>something...?<FFFD>お<FFF5><}>
+17	0x229f	pack/talk/POLUTAR:0x26d0	Ooohehehe!<FFFC><FFF6>You really know how it feels<FFF6>to be a <FFF0>, lady.<FFFB><FFF7>Maybe you’re a ghost too?<FFF5>
+18	0x22e5	pack/talk/POLUTAR:0x2778	Hyuk hyuk!<FFFC><FFF6>You say some funny things<FFF6>sometimes, lady!<FFFB><FFF7>How do you come up with your jokes?<FFFD>か<FFF5>
+19	0x232e	pack/talk/POLUTAR:0x2838	There’s no way that’s true!<FFF6>You must be dumb! Stupidhead!<FFF5>
+20	0x235c	pack/talk/POLUTAR:0x28b0	<L{>Ooohehehe!<FFFC> I <}><S{>Ooohehehe!<FFFC><FFF6>I <}>always knew<L{> it!<FFF6>I <}><S{> it! I <}>just had that feeling...<FFF5>
+21	0x2384	pack/talk/POLUTAR:0x2920	Hyuk hyuk!<FFFC><FFF6>Why are you so scared?<FFF5>
+22	0x23a4	pack/talk/POLUTAR:0x2968	Uuuurrrrgh!<FFFC><FFF6>You’re even noisier than me!<FFF5>
+23	0x23c2	pack/talk/POLUTAR:0x29c0	Ooohehehe!<FFFC><FFF6>I’m scary! Rarrr! Oooheeheeheeee!<FFF5>
+24	0x23db	pack/talk/POLUTAR:0x2a20	Hyuk<L{> hyuk!<FFFC> Mister, <}><S{> hyuk!<FFFC><FFF6>Mister, <}>are<L{> you...<FFF6>an <}><S{> you... an <}>idiot? Are you? Huh?<FFFB><FFF7>How dumb can you be, hitting on me?<FFF6>Stupidhead! You’re hopeless!<FFF5>
+25	0x2435	pack/talk/POLUTAR:0x2b10	Uuuurrrrgh!<FFFC> I’m a BOY!<FFF6>Don’t mess with me, or I’ll cut you!<FFFD>き<FFF5>
+26	0x2465	pack/talk/POLUTAR:0x2b90	Eeep...<FFFC><FFF6>You’re kidding, right...?<FFFB><FFF7>Could you say that stuff<FFF6>to Silvie instead of me...?<FFF5>
+27	0x24a1	pack/talk/POLUTAR:0x2c48	Ooohehehe!<FFFC><FFF6>Good eye, mister! There’s<FFFB><FFF7>no <FFF0> cuter than us!<FFF5>
+28	0x24dc	pack/talk/POLUTAR:0x2cc0	Hyuk hyuk!<FFFC><FFF6>Your jokes are awesome, mister.<FFF6>They never get old!<FFF5>
+29	0x2508	pack/talk/POLUTAR:0x2d40	Was that supposed to be funny?<FFF6>Ooh... Urge to kill...<L{> rising...<FFF6>Go <}><S{> rising... Go <}>to hell!<FFF5>
+30	0x253c	pack/talk/POLUTAR:0x2dd8	Yikes...<FFFC><FFF6>Th-That was real lame...<FFF5>
+31	0x2558	pack/talk/POLUTAR:0x2e20	Ooohehehe!<FFFC><FFF6>Ooohehehe! Oooooheeeheeheee!<FFFD>く<FFF5>
+32	0x257a	pack/talk/POLUTAR:0x2e78	Hyuk hyuk!<FFFC><FFF6>And then? And then?<FFF5>
+33	0x2594	pack/talk/POLUTAR:0x2eb8	So what?<FFFC><FFF6>Just ’cause I’m a <FFF0> doesn’t<FFF6>mean I have time to waste!<FFF5>
 34	0x25b5	pack/talk/POLUTAR:0x2f38	Ooohehehe!<FFF6>I like pointless stories like that.<FFFD>け<FFF5>
-35	0x25db	pack/talk/POLUTAR:0x2fa0	Hyuk hyuk!<FFF6>You fell for it, just like I hoped!<FFF5>
-36	0x2601	pack/talk/POLUTAR:0x3000	Uuuurrrgh! What was that for,<FFF6>you brown-haired meanie!?<FFF5>
-37	0x262c	pack/talk/POLUTAR:0x3078	Yikes... What an old trick...<FFF6>That's not very good, mister.<FFFD>こ<FFF5>
-38	0x2654	pack/talk/POLUTAR:0x30f8	Hyuk hyuk! Huh? What's that?<FFF6>It looks even yummier<FFF6>than life stones!<FFF5>
-39	0x267d	pack/talk/POLUTAR:0x3188	Uuuurrrgh! Don't make fun of me,<FFF6>you rich jerk! I don't want that stuff!<FFFB><FFF7>I want something else!<FFF1><FFF5>
-40	0x26ce	pack/talk/POLUTAR:0x3250	Oooh, I like that. Are you gonna<FFF6>give it to me? Ooohehehe!<FFFD>さ<FFF5>
-41	0x26f0	pack/talk/POLUTAR:0x32d0	Hyuk hyuk! You must be a rationalist,<FFF6>mister. I like those guys.<FFF5>
-42	0x271d	pack/talk/POLUTAR:0x3358	Uuuurrrrgh! How dare you<FFF6>go on and on about <FFF0>!?<FFFD>し<FFF5>
-43	0x2745	pack/talk/POLUTAR:0x33c0	Ooohehehe! You're so right, mister!<FFF5>
-44	0x2760	pack/talk/POLUTAR:0x3408	Hyuk hyuk! Th-That was so cool...<FFF6>I wish I could say stuff like that.<FFF5>
-45	0x278c	pack/talk/POLUTAR:0x3498	Don't make fun of me you rich jerk!<FFF6>You're the one people should<FFF6>be making fun of!<FFF5>
-46	0x27b7	pack/talk/POLUTAR:0x3540	Eep...! I-I'm scared...!<FFFD>す<FFF5>
-47	0x27d4	pack/talk/POLUTAR:0x3578	Huh, so that's how people see us.<FFF6>I learned something new today!<FFFD>せ<FFF5>
-48	0x2801	pack/talk/POLUTAR:0x3600	Grrrr!<FFF6>Your face is already a disgrace!<FFF5>
-49	0x2829	pack/talk/POLUTAR:0x3650	Ooohehehe! Well said!<FFF6>La la la, la la la la laaa...<FFF5>
-50	0x284a	pack/talk/POLUTAR:0x36b8	Hyuk hyuk!<FFF6>So that's how they dance in Shibuya!<FFF5>
-51	0x286e	pack/talk/POLUTAR:0x3718	Huh? Don't try to dance<FFF6>when you can't even fly!<FFFB><FFF7>Just call it off, mister! There's no<FFF6>reason to push yourself too hard!<FFF5>
-52	0x28b6	pack/talk/POLUTAR:0x3810	Not bad, mister!<FFF6>But I'm waaaaaay better than you!<FFF5>
-53	0x28e1	pack/talk/POLUTAR:0x3878	Hyuk hyuk! Are you gonna come<FFF6>after me? Or should I go after you?<FFFD>そ<FFF5>
-54	0x2904	pack/talk/POLUTAR:0x3900	Uuuurrrrgh! Talk normal, idiot!<FFF5>
-55	0x2926	pack/talk/POLUTAR:0x3940	Eep... I'm scared,<FFF6>and I'm not even sure why!<FFF5>
-56	0x2941	pack/talk/POLUTAR:0x39a0	Hyuk hyuk! Aren't you staring<FFF6>at the wrong person, mister?<FFF5>
-57	0x296a	pack/talk/POLUTAR:0x3a18	Are you making fun of me?<FFF6>Do you think I'm a lowly <FFF0>!?<FFF6>Grrr... That's really annoying!<FFF5>
-58	0x2996	pack/talk/POLUTAR:0x3ac8	Ooohehehe! Do you need something<FFF6>from me? What is it? C'mon, tell me!<FFFD>た<FFF5>
-59	0x29c0	pack/talk/POLUTAR:0x3b58	Hyuk hyuk! Wow, I didn't know that!<FFF6>But it sounds so fake...<FFFD>ち<FFF5>
-60	0x29e9	pack/talk/POLUTAR:0x3bd8	There's no way that's true! Are you<FFF6>stupid mister? You big dummy!<FFF5>
-61	0x2a18	pack/talk/POLUTAR:0x3c60	Ooohehehe! I knew it!<FFF6>I just had this feeling...<FFF5>
-62	0x2a42	pack/talk/POLUTAR:0x3cc8	Uuuurrrrgh! I'm a <FFF0>!<FFF6>Don't make fun of us demons!<FFF5>
+35	0x25db	pack/talk/POLUTAR:0x2fa0	Hyuk hyuk!<FFFC><FFF6>You fell for it, just like I hoped!<FFF5>
+36	0x2601	pack/talk/POLUTAR:0x3000	Uuuurrrgh!<FFFC> What was that for,<FFF6>you brown-haired meanie!?<FFF5>
+37	0x262c	pack/talk/POLUTAR:0x3078	Yikes...<FFFC> What an old trick...<FFF6>That’s not very good, mister.<FFFD>こ<FFF5>
+38	0x2654	pack/talk/POLUTAR:0x30f8	Hyuk<L{> hyuk!<FFFC> Huh? <}><S{> hyuk!<FFFC><FFF6>Huh? <}>What’s that?<FFF6>It looks even<L{> yummier<FFF6>than <}><S{> yummier than <}>life stones!<FFF5>
+39	0x267d	pack/talk/POLUTAR:0x3188	Uuuurrrgh!<FFFC><FFF6>Don’t make fun of me, you rich jerk!<FFF6>I don’t want that stuff!<FFFB><FFF7>I want something else!<FFF1><FFF5>
+40	0x26ce	pack/talk/POLUTAR:0x3250	Oooh, I like that.<FFF6>Are you gonna give it to<L{> me?<FFF6>Ooohehehe!<FFFD>さ<FFF5><}><S{> me? Ooohehehe!<FFFD>さ<FFF5><}>
+41	0x26f0	pack/talk/POLUTAR:0x32d0	Hyuk hyuk!<FFFC><FFF6>You must be a rationalist, mister.<FFF6>I like those guys.<FFF5>
+42	0x271d	pack/talk/POLUTAR:0x3358	Uuuurrrrgh!<FFF6>How dare you go on<FFF6>and on about <FFF0>!?<FFFD>し<FFF5>
+43	0x2745	pack/talk/POLUTAR:0x33c0	Ooohehehe! You’re so right, mister!<FFF5>
+44	0x2760	pack/talk/POLUTAR:0x3408	Hyuk hyuk!<FFFC> Th-That was so cool...<FFFC><FFF6>I wish I could say stuff like that.<FFF5>
+45	0x278c	pack/talk/POLUTAR:0x3498	Don’t make fun of me you rich jerk!<FFFC><FFF6>You’re the one people should<FFF6>be making fun of!<FFF5>
+46	0x27b7	pack/talk/POLUTAR:0x3540	Eep...! I-I’m scared...!<FFFD>す<FFF5>
+47	0x27d4	pack/talk/POLUTAR:0x3578	Huh, so that’s how people see us.<FFF6>I learned something new today!<FFFD>せ<FFF5>
+48	0x2801	pack/talk/POLUTAR:0x3600	Grrrr!<FFFC><FFF6>Your face is already a disgrace!<FFF5>
+49	0x2829	pack/talk/POLUTAR:0x3650	Ooohehehe!<FFFC><FFF6>Well said! La la la, la la la la laaa...<FFF5>
+50	0x284a	pack/talk/POLUTAR:0x36b8	Hyuk hyuk!<FFFC><FFF6>So that’s how they dance in Shibuya!<FFF5>
+51	0x286e	pack/talk/POLUTAR:0x3718	Huh?<FFFC><FFF6>Don’t try to dance<FFF6>when you can’t even fly!<FFFB><FFF7>Just call it off, mister!<FFF6>There’s no reason to push<FFF6>yourself too hard!<FFF5>
+52	0x28b6	pack/talk/POLUTAR:0x3810	Not bad, mister!<FFFC><FFF6>But I’m waaaaaay better than you!<FFF5>
+53	0x28e1	pack/talk/POLUTAR:0x3878	Hyuk hyuk!<FFFC><FFF6>Are you gonna come after me?<FFF6>Or should I go after you?<FFFD>そ<FFF5>
+54	0x2904	pack/talk/POLUTAR:0x3900	Uuuurrrrgh!<FFFC><FFF6>Talk normal, idiot!<FFF5>
+55	0x2926	pack/talk/POLUTAR:0x3940	Eep...<FFFC><FFF6>I’m scared, and I’m not even sure why!<FFF5>
+56	0x2941	pack/talk/POLUTAR:0x39a0	Hyuk hyuk!<FFFC><FFF6>Aren’t you<L{> staring at<FFF6>the <}><S{> staring<FFF6>at the <}>wrong person, mister?<FFF5>
+57	0x296a	pack/talk/POLUTAR:0x3a18	Are you making fun of me?<FFF6>Do you think I’m a lowly <FFF0>!?<FFF6>Grrr... That’s really annoying!<FFF5>
+58	0x2996	pack/talk/POLUTAR:0x3ac8	Ooohehehe!<FFFC><FFF6>Do you need something from me?<FFF6>What is it? C’mon, tell me!<FFFD>た<FFF5>
+59	0x29c0	pack/talk/POLUTAR:0x3b58	Hyuk hyuk!<FFFC><FFF6>Wow, I didn’t know that!<FFF6>But it sounds so fake...<FFFD>ち<FFF5>
+60	0x29e9	pack/talk/POLUTAR:0x3bd8	There’s no way that’s true!<FFF6>Are you stupid<L{> mister?<FFF6>You <}><S{> mister? You <}>big dummy!<FFF5>
+61	0x2a18	pack/talk/POLUTAR:0x3c60	Ooohehehe!<FFFC><FFF6>I knew it! I just had this feeling...<FFF5>
+62	0x2a42	pack/talk/POLUTAR:0x3cc8	<L{>Uuuurrrrgh!<FFFC> I’m <}><S{>Uuuurrrrgh!<FFFC><FFF6>I’m <}>a <FFF0>!<FFF6>Don’t make fun of us demons!<FFF5>
 63	0x2a74	pack/talk/POLUTAR:0x3d30	Yikes... *shiver*<FFF5>
-64	0x2a93	pack/talk/POLUTAR:0x3d58	I'm scarier than that story!<FFF6>Hey, tell me another one.<FFFD>つ<FFF5>
-65	0x2ac0	pack/talk/POLUTAR:0x3dd0	Wow, lady!<FFF6>You have a cool American accent!<FFF6>Do you come from the same place I do?<FFF5>
-66	0x2af4	pack/talk/POLUTAR:0x3e78	Uuuurrrrgh! I don't like anything<FFF6>except rap! C'mon, drop some rhymes!<FFFD>て<FFF5>
-67	0x2b2d	pack/talk/POLUTAR:0x3f10	Ooohehehehe! That song's cute!<FFF5>
-68	0x2b56	pack/talk/POLUTAR:0x3f50	Hyuk hyuk! You say some<FFF6>pretty cute things, lady.<FFF5>
-69	0x2b86	pack/talk/POLUTAR:0x3fb8	Uuuurrrgh!<FFF6>I'm not a kid like you think I am!<FFF5>
-70	0x2bb5	pack/talk/POLUTAR:0x4018	Oooohehehehe! Wanna act like<FFF6>a baby, too? The more, the better!<FFFD>と<FFF5>
-71	0x2be9	pack/talk/POLUTAR:0x40a0	Hyuk hyuk! It must be tough for you<FFF6>too, lady. Maybe next time,<FFF6>if I'm free, I'll be up for it.<FFF5>
-72	0x2c24	pack/talk/POLUTAR:0x4160	It's not easy to pick me up, you know!<FFF6>I'm not a cheap <FFF0>!<FFF5>
-73	0x2c55	pack/talk/POLUTAR:0x41d8	Ooohehehe! I guess I'm still useful!<FFF6>Ooohehehehehehe!<FFF5>
-74	0x2c94	pack/talk/POLUTAR:0x4248	Hyuk hyuk! You've got style, lady!<FFFB><FFF7>No <FFF0> could ever<FFF6>say such horrible things!<FFF5>
-75	0x2cd8	pack/talk/POLUTAR:0x42e8	Don't make fun of me, you bimbo!<FFF5>
-76	0x2cf6	pack/talk/POLUTAR:0x4330	Eep... N-No way...<FFF6>I can't believe you went that far...<FFF5>
-77	0x2d1e	pack/talk/POLUTAR:0x43a0	Hyuk hyuk!<FFF6>What do you want with me, lady?<FFFB><FFF7>My spell card, maybe?<FFFD>な<FFF5>
-78	0x2d69	pack/talk/POLUTAR:0x4428	Uuuurrrgh!<FFF6>Wh-What do you want me to do!?<FFFB><FFF7>I don't understand! It's too hard!<FFF5>
-79	0x2db6	pack/talk/POLUTAR:0x44c8	Yay! Yaaaaay! Let's do it!<FFF6>You're the best, lady!<FFF5>
-80	0x2de4	pack/talk/POLUTAR:0x4530	Hyuk hyuk! You're a weird lady.<FFF6>There's drool coming out your eyes!<FFF5>
-81	0x2e10	pack/talk/POLUTAR:0x45b8	So what? Too much trouble!<FFF5>
+64	0x2a93	pack/talk/POLUTAR:0x3d58	I’m scarier than that story!<FFF6>Hey, tell me another one.<FFFD>つ<FFF5>
+65	0x2ac0	pack/talk/POLUTAR:0x3dd0	Wow, lady!<FFF6>You have a cool American accent!<FFFC><FFF6>Do you come from the same place I do?<FFF5>
+66	0x2af4	pack/talk/POLUTAR:0x3e78	Uuuurrrrgh!<FFF6>I don’t like anything except rap!<FFF6>C’mon, drop some rhymes!<FFFD>て<FFF5>
+67	0x2b2d	pack/talk/POLUTAR:0x3f10	Ooohehehehe! That song’s cute!<FFF5>
+68	0x2b56	pack/talk/POLUTAR:0x3f50	Hyuk hyuk!<FFF6>You say some<L{> pretty<FFF6>cute <}><S{> pretty cute <}>things, lady.<FFF5>
+69	0x2b86	pack/talk/POLUTAR:0x3fb8	Uuuurrrgh!<FFFC><FFF6>I’m not a kid like you think I am!<FFF5>
+70	0x2bb5	pack/talk/POLUTAR:0x4018	Oooohehehehe!<FFFC><FFF6>Wanna act like a baby, too?<FFF6>The more, the better!<FFFD>と<FFF5>
+71	0x2be9	pack/talk/POLUTAR:0x40a0	Hyuk hyuk! It must be tough for<L{> you<FFF6>too, lady. <}><S{> you too,<FFF6>lady. <}>Maybe next time,<FFF6>if I’m free, I’ll be up for it.<FFF5>
+72	0x2c24	pack/talk/POLUTAR:0x4160	It’s not easy to pick me up, you know!<FFFC><FFF6>I’m not a cheap <FFF0>!<FFF5>
+73	0x2c55	pack/talk/POLUTAR:0x41d8	<L{>Ooohehehe! I <}><S{>Ooohehehe!<FFF6>I <}>guess I’m still<L{> useful!<FFF6>Ooohehehehehehe!<FFF5><}><S{> useful! Ooohehehehehehe!<FFF5><}>
+74	0x2c94	pack/talk/POLUTAR:0x4248	Hyuk hyuk!<FFFC><FFF6>You’ve got style, lady!<FFFB><FFF7>No <FFF0> could ever say<FFF6>such horrible things!<FFF5>
+75	0x2cd8	pack/talk/POLUTAR:0x42e8	Don’t make fun of me, you bimbo!<FFF5>
+76	0x2cf6	pack/talk/POLUTAR:0x4330	<L{>Eep...<FFFC> N-No way...<FFF6>I <}><S{>Eep...<FFFC><FFF6>N-No way... I <}>can’t<L{> believe you <}><S{> believe<FFF6>you <}>went that far...<FFF5>
+77	0x2d1e	pack/talk/POLUTAR:0x43a0	Hyuk hyuk!<FFFC><FFF6>What do you want with me, lady?<FFFB><FFF7>My spell card, maybe?<FFFD>な<FFF5>
+78	0x2d69	pack/talk/POLUTAR:0x4428	Uuuurrrgh!<FFFC><FFF6>Wh-What do you want me to do!?<FFFB><FFF7>I don’t understand! It’s too hard!<FFF5>
+79	0x2db6	pack/talk/POLUTAR:0x44c8	Yay! Yaaaaay! Let’s do it!<FFF6>You’re the best, lady!<FFF5>
+80	0x2de4	pack/talk/POLUTAR:0x4530	Hyuk hyuk! You’re a weird lady.<FFF6>There’s drool coming out your eyes!<FFF5>
+81	0x2e10	pack/talk/POLUTAR:0x45b8	So what?<FFFC><FFF6>Too much trouble!<FFF5>
 82	0x2e2f	pack/talk/POLUTAR:0x45f0	Yikes... The human world<FFF6>is a scary place, huh...?<FFFD>に<FFF5>
-83	0x2e57	pack/talk/POLUTAR:0x4660	Hyuk hyuk! Does that mean<FFF6>you're gonna cut off my head?<FFFB><FFF7>Teeheehee... I don't even have a neck!<FFF5>
-84	0x2ea1	pack/talk/POLUTAR:0x4720	Uuuurrrgh! Don't make fun of me!<FFF6>You stupid, dumb, doodyhead!<FFF5>
+83	0x2e57	pack/talk/POLUTAR:0x4660	Hyuk hyuk!<FFFC><FFF6>Does that mean you’re gonna<FFF6>cut off my head?<FFFB><FFF7>Teeheehee... I don’t even have a neck!<FFF5>
+84	0x2ea1	pack/talk/POLUTAR:0x4720	<L{>Uuuurrrgh!<FFFC> Don’t <}><S{>Uuuurrrgh!<FFFC><FFF6>Don’t <}>make fun of me!<FFF6>You stupid, dumb, doodyhead!<FFF5>
 85	0x2ece	pack/talk/POLUTAR:0x47a0	Eeep... I-I see...<FFFD>ぬ<FFF5>
-86	0x2eea	pack/talk/POLUTAR:0x47d0	How could you say something like<FFF6>that!? That's just like a grown-up!<FFF6>You suck!<FFF5>
-87	0x2f18	pack/talk/POLUTAR:0x4870	Eep... Y-You don't hate me,<FFF6>do you, lady...?<FFF5>
-88	0x2f3f	pack/talk/POLUTAR:0x48d0	Ooohehehehe! Do it again! Again!<FFFD>ね<FFF5>
-89	0x2f67	pack/talk/POLUTAR:0x4918	Hyuk hyuk!<FFF6>You really know everything,<FFF6>huh lady? You're amazing!<FFFD>の<FFF5>
-90	0x2f95	pack/talk/POLUTAR:0x49a0	Just 'cause you're more grown up<FFF6>doesn't mean you can be cocky, lady!<FFF5>
-91	0x2fc0	pack/talk/POLUTAR:0x4a30	Ooohehehe! I knew that already!<FFFB><FFF7>I'm smart, huh? Ooohehehehe!<FFF5>
-92	0x2ff8	pack/talk/POLUTAR:0x4ab0	I'm a <FFF0>, you know!<FFF6>It's normal for us to do that stuff!<FFF5>
-93	0x3025	pack/talk/POLUTAR:0x4b20	Yikes... Okay... I understand...<FFF5>
-94	0x303d	pack/talk/POLUTAR:0x4b68	Ooohehehehe! I mean,<FFF6>I'm not even out of preschool yet!<FFF5>
-95	0x3066	pack/talk/POLUTAR:0x4bd8	Hey, lady. If you know neat stuff,<FFF6>let's talk! Please...?<FFFD>は<FFF5>
-96	0x3093	pack/talk/POLUTAR:0x4c50	What are you looking at!?<FFF6>Uuuurrrrgh! You're SO aggravating!<FFF5>
+86	0x2eea	pack/talk/POLUTAR:0x47d0	How could you say something<L{> like<FFF6>that!? That’s <}><S{> like that!?<FFF6>That’s <}>just like a<L{> grown-up!<FFF6>You <}><S{> grown-up! You <}>suck!<FFF5>
+87	0x2f18	pack/talk/POLUTAR:0x4870	Eep...<FFFC><FFF6>Y-You don’t hate me, do you, lady...?<FFF5>
+88	0x2f3f	pack/talk/POLUTAR:0x48d0	Ooohehehehe!<FFFC><FFF6>Do it again! Again!<FFFD>ね<FFF5>
+89	0x2f67	pack/talk/POLUTAR:0x4918	Hyuk hyuk!<FFFC><FFF6>You really know everything,<FFF6>huh lady? You’re amazing!<FFFD>の<FFF5>
+90	0x2f95	pack/talk/POLUTAR:0x49a0	Just ’cause you’re more grown up<FFF6>doesn’t mean you can be cocky, lady!<FFF5>
+91	0x2fc0	pack/talk/POLUTAR:0x4a30	Ooohehehe!<FFFC><FFF6>I knew that already!<FFFB><FFF7>I’m smart, huh? Ooohehehehe!<FFF5>
+92	0x2ff8	pack/talk/POLUTAR:0x4ab0	I’m a <FFF0>, you know!<FFF6>It’s normal for us to do that stuff!<FFF5>
+93	0x3025	pack/talk/POLUTAR:0x4b20	Yikes...<FFFC> Okay... I understand...<FFF5>
+94	0x303d	pack/talk/POLUTAR:0x4b68	<L{>Ooohehehehe!<FFFC> I mean,<FFF6>I’m <}><S{>Ooohehehehe!<FFFC><FFF6>I mean, I’m <}>not even out of preschool yet!<FFF5>
+95	0x3066	pack/talk/POLUTAR:0x4bd8	Hey, lady. If you know neat stuff,<FFF6>let’s talk! Please...?<FFFD>は<FFF5>
+96	0x3093	pack/talk/POLUTAR:0x4c50	What are you looking at!?<FFFC><FFF6>Uuuurrrrgh! You’re SO aggravating!<FFF5>
 97	0x30bc	pack/talk/POLUTAR:0x4cd0	D... Did I do something bad...?<FFF5>
-98	0x30da	pack/talk/POLUTAR:0x4d10	Hyuk hyuk! Hey, what is it? Tell me!<FFF5>
-99	0x30fa	pack/talk/POLUTAR:0x4d60	Uuuurrrrgh! What are you looking<FFF6>at? Don't make me kill you...!<FFFD>ひ<FFF5>
-100	0x311e	pack/talk/POLUTAR:0x4de8	Y-Yikes... Be honest with me, mister...<FFF6>You're gonna attack, aren't you...?<FFF5>
-101	0x314d	pack/talk/POLUTAR:0x4e80	Hyuk hyuk! You're pretty good<FFF6>at making cool threats, mister.<FFF5>
-102	0x3171	pack/talk/POLUTAR:0x4f00	Uuuurrrrgh!<FFF6>I'm not scared at all! You'll see!<FFF5>
-103	0x3196	pack/talk/POLUTAR:0x4f60	Eep... Th-That's not true...<FFF6>I can still come out on top!<FFF5>
-104	0x31c1	pack/talk/POLUTAR:0x4fd8	Uuuurrrrgh!<FFF6>Uuuurrrrgh! Uuuurrrrgh!<FFF5>
-105	0x31e3	pack/talk/POLUTAR:0x5020	Eep... eep... eeeeep...<FFF5>
-106	0x31ff	pack/talk/POLUTAR:0x5050	Oooohehehe!<FFF6>Oooohehehe! Oooohehehe!<FFF5>
-107	0x321b	pack/talk/POLUTAR:0x5098	Are you a magician, mister?<FFF6>C-Could you teach me<FFF6>a trick or two sometime...?<FFF5>
-108	0x324a	pack/talk/POLUTAR:0x5138	Eeep... Warlocks are scary...<FFF5>
-109	0x3268	pack/talk/POLUTAR:0x5178	Ooohehehe!<FFF6>Your tricks are the best, mister!<FFFB><FFF7>You're so good I bet Mr. Loki would<FFF6>get all jealous of you. Ooohehehehe!<FFF5>
-110	0x32af	pack/talk/POLUTAR:0x5268	Hyuk hyuk! I don't really get it,<FFF6>but that's an interesting story.<FFF5>
-111	0x32d4	pack/talk/POLUTAR:0x52f0	Hyuk hyuk!<FFF6>Human stories are so interesting...<FFFB><FFF7>Hey, you're in the mood to give me<FFF6>something just 'cause, right?<FFF1><FFF5>
-112	0x3313	pack/talk/POLUTAR:0x53d8	Uuuurrrrgh! So what!?<FFF6>Will you shut up already!?<FFF5>
-113	0x333b	pack/talk/POLUTAR:0x5440	Uuuurrrgh!<FFF6>I don't wanna hear a story like that!<FFF6>I want something physical!<FFF1><FFF5>
-114	0x336c	pack/talk/POLUTAR:0x54e0	Eep... I think... I've found the truth...<FFF5>
-115	0x3395	pack/talk/POLUTAR:0x5538	Eep...! That doesn't have<FFF6>anything to do with me...!<FFF5>
-116	0x33af	pack/talk/POLUTAR:0x55a8	Ooohehehe! I knew you'd try that!<FFFB><FFF7>Every <FFF0> has<FFF6>a good sixth sense.<FFF5>
-117	0x33e2	pack/talk/POLUTAR:0x5630	Ooohehehe!<FFF6>Humans say some fun things!<FFF5>
-118	0x3406	pack/talk/POLUTAR:0x5680	Hyuk hyuk! You can tell how strong<FFF6>I am!? You're amazing!<FFF5>
-119	0x342f	pack/talk/POLUTAR:0x56f8	You want my help!? Wow,<FFF6>what a surprise... Gimme something<FFF6>in return for surprising me like that.<FFF1><FFF5>
-120	0x346b	pack/talk/POLUTAR:0x57c0	Uuuurrrgh! I'm a <FFF0>!<FFF6>I can't help humans!<FFF5>
-121	0x349f	pack/talk/POLUTAR:0x5818	Uuuurrrgh! That's boring!<FFF6>You oughtta give me something!<FFF1><FFF5>
-122	0x34c8	pack/talk/POLUTAR:0x5890	Eep... Th-That has<FFF6>nothing to do with me...<FFF5>
-123	0x34e2	pack/talk/POLUTAR:0x58e8	Eep... I don't wanna...!<FFF5>
-124	0x34f6	pack/talk/POLUTAR:0x5920	Ooohehehehe!<FFF6>I don't get it, but it's still fun!<FFF5>
-125	0x3517	pack/talk/POLUTAR:0x5988	Ooohehehehe! It's great to be needed!<FFF5>
-126	0x3534	pack/talk/POLUTAR:0x59d8	Hyuk hyuk!<FFF6>Are you trying to make me mad?<FFFB><FFF7>Teehee... You're funny!<FFF5>
-127	0x3568	pack/talk/POLUTAR:0x5a60	Hyuk hyuk! I don't feel<FFF6>a thing from stuff like that.<FFFB><FFF7>C'mon, do something else!<FFF6>Please? Pretty please?<FFF5>
-128	0x35a4	pack/talk/POLUTAR:0x5b30	Uuuurrrgh! Don't make fun of me!<FFF5>
-129	0x35c3	pack/talk/POLUTAR:0x5b78	Uuuurrrgh! That's boring!<FFF6>You gotta give me something!<FFF1><FFF5>
-130	0x35ec	pack/talk/POLUTAR:0x5be8	Eep... Do you have fun<FFF6>doing stuff I don't like?<FFF5>
-131	0x360d	pack/talk/POLUTAR:0x5c50	Eep... The way you're treating me...<FFF6>Are you one of<FFF6>those dangerous humans?<FFF5>
-132	0x363c	pack/talk/POLUTAR:0x5ce8	Ooohehehehe!<FFF6>I don't get it, but it's still fun!<FFF5>
-133	0x365d	pack/talk/POLUTAR:0x5d50	Ooohehehehe! I figured out<FFF6>what you're trying to do!<FFFB><FFF7>I'm not gonna run away just<FFF6>'cause you did that, though.<FFF5>
-134	0x3696	pack/talk/POLUTAR:0x5e30	Hyuk hyuk!<FFF6>Hey, can you do anything else?<FFF5>
-135	0x36ba	pack/talk/POLUTAR:0x5e88	Hyuk hyuk!<FFF6>Alright, I'll let you give me something.<FFF1><FFF5>
-136	0x36de	pack/talk/POLUTAR:0x5ef8	Uuuurrrgh! Sooo booooring...<FFF5>
+98	0x30da	pack/talk/POLUTAR:0x4d10	Hyuk hyuk!<FFFC><FFF6>Hey, what is it? Tell me!<FFF5>
+99	0x30fa	pack/talk/POLUTAR:0x4d60	Uuuurrrrgh!<FFFC><FFF6>What are you looking at?<FFF6>Don’t make me kill you...!<FFFD>ひ<FFF5>
+100	0x311e	pack/talk/POLUTAR:0x4de8	Y-Yikes...<FFFC> Be honest with me, mister...<FFF6>You’re gonna attack, aren’t you...?<FFF5>
+101	0x314d	pack/talk/POLUTAR:0x4e80	Hyuk hyuk!<FFFC><FFF6>You’re pretty good at making<FFF6>cool threats, mister.<FFF5>
+102	0x3171	pack/talk/POLUTAR:0x4f00	Uuuurrrrgh! I’m not scared at all!<FFFC><FFF6>You’ll see!<FFF5>
+103	0x3196	pack/talk/POLUTAR:0x4f60	<L{>Eep...<FFFC><FFF6>Th-That’s <}><S{>Eep...<FFFC> Th-That’s <}>not true...<FFF6>I can still come out on top!<FFF5>
+104	0x31c1	pack/talk/POLUTAR:0x4fd8	Uuuurrrrgh!<FFFC><FFF6>Uuuurrrrgh!<FFFC><FFF6>Uuuurrrrgh!<FFF5>
+105	0x31e3	pack/talk/POLUTAR:0x5020	Eep...<FFFC> eep...<FFFC> eeeeep...<FFF5>
+106	0x31ff	pack/talk/POLUTAR:0x5050	Oooohehehe!<FFFC><FFF6>Oooohehehe!<FFFC><FFF6>Oooohehehe!<FFF5>
+107	0x321b	pack/talk/POLUTAR:0x5098	Are you a magician, mister?<FFFC><FFF6>C-Could you teach me<FFF6>a trick or two sometime...?<FFF5>
+108	0x324a	pack/talk/POLUTAR:0x5138	Eeep...<FFFC><FFF6>Warlocks are scary...<FFF5>
+109	0x3268	pack/talk/POLUTAR:0x5178	Ooohehehe!<FFFC><FFF6>Your tricks are the best, mister!<FFFB><FFF7>You’re so good I bet Mr. Loki would<FFF6>get all jealous of you. Ooohehehehe!<FFF5>
+110	0x32af	pack/talk/POLUTAR:0x5268	Hyuk hyuk!<FFFC> I don’t really get it,<FFF6>but that’s an interesting story.<FFF5>
+111	0x32d4	pack/talk/POLUTAR:0x52f0	Hyuk hyuk!<FFFC><FFF6>Human stories are so interesting...<FFFB><FFF7>Hey, you’re in the mood to give me<FFF6>something just ’cause, right?<FFF1><FFF5>
+112	0x3313	pack/talk/POLUTAR:0x53d8	Uuuurrrrgh!<FFFC><FFF6>So what!? Will you shut up already!?<FFF5>
+113	0x333b	pack/talk/POLUTAR:0x5440	Uuuurrrgh!<FFFC><FFF6>I don’t wanna hear a story like that!<FFF6>I want something physical!<FFF1><FFF5>
+114	0x336c	pack/talk/POLUTAR:0x54e0	Eep...<FFFC><FFF6>I think...<FFFC> I’ve found the truth...<FFF5>
+115	0x3395	pack/talk/POLUTAR:0x5538	Eep...!<FFFC><FFF6>That doesn’t<L{> have<FFF6>anything <}><S{> have anything <}>to do with me...!<FFF5>
+116	0x33af	pack/talk/POLUTAR:0x55a8	Ooohehehe! I knew you’d try that!<FFFB><FFF7>Every <FFF0><L{> has<FFF6>a <}><S{> has a <}>good sixth sense.<FFF5>
+117	0x33e2	pack/talk/POLUTAR:0x5630	Ooohehehe!<FFFC><FFF6>Humans say some fun things!<FFF5>
+118	0x3406	pack/talk/POLUTAR:0x5680	Hyuk hyuk!<FFFC><FFF6>You can tell how strong I am!?<FFF6>You’re amazing!<FFF5>
+119	0x342f	pack/talk/POLUTAR:0x56f8	You want my help!?<L{> Wow,<FFF6>what <}><S{> Wow, what <}>a<L{> surprise... Gimme something<FFF6>in return for <}><S{> surprise...<FFF6>Gimme something in return<FFF6>for <}>surprising me like that.<FFF1><FFF5>
+120	0x346b	pack/talk/POLUTAR:0x57c0	Uuuurrrgh!<FFFC><FFF6>I’m a <FFF0>!<FFFC><FFF6>I can’t help humans!<FFF5>
+121	0x349f	pack/talk/POLUTAR:0x5818	Uuuurrrgh! That’s boring!<FFFC><FFF6>You oughtta give me something!<FFF1><FFF5>
+122	0x34c8	pack/talk/POLUTAR:0x5890	Eep...<FFFC><FFF6>Th-That has nothing to do with me...<FFF5>
+123	0x34e2	pack/talk/POLUTAR:0x58e8	Eep...<FFFC><FFF6>I don’t wanna...!<FFF5>
+124	0x34f6	pack/talk/POLUTAR:0x5920	Ooohehehehe!<FFF6>I don’t get it, but it’s still fun!<FFF5>
+125	0x3517	pack/talk/POLUTAR:0x5988	Ooohehehehe!<FFFC><FFF6>It’s great to be needed!<FFF5>
+126	0x3534	pack/talk/POLUTAR:0x59d8	Hyuk hyuk!<FFFC><FFF6>Are you trying to make me mad?<FFFB><FFF7>Teehee... You’re funny!<FFF5>
+127	0x3568	pack/talk/POLUTAR:0x5a60	Hyuk hyuk!<FFFC><FFF6>I don’t feel a<L{> thing<FFF6>from <}><S{> thing from <}>stuff like that.<FFFB><FFF7>C’mon, do something else!<FFF6>Please? Pretty please?<FFF5>
+128	0x35a4	pack/talk/POLUTAR:0x5b30	Uuuurrrgh!<FFFC><FFF6>Don’t make fun of me!<FFF5>
+129	0x35c3	pack/talk/POLUTAR:0x5b78	Uuuurrrgh! That’s boring!<FFFC><FFF6>You gotta give me something!<FFF1><FFF5>
+130	0x35ec	pack/talk/POLUTAR:0x5be8	Eep...<FFFC><FFF6>Do you have fun<L{> doing<FFF6>stuff <}><S{> doing stuff <}>I don’t like?<FFF5>
+131	0x360d	pack/talk/POLUTAR:0x5c50	Eep...<FFFC><FFF6>The way you’re treating<L{> me...<FFFC> Are you<FFF6>one <}><S{> me...<FFFC><FFF6>Are you one <}>of those dangerous humans?<FFF5>
+132	0x363c	pack/talk/POLUTAR:0x5ce8	Ooohehehehe!<FFF6>I don’t get it, but it’s still fun!<FFF5>
+133	0x365d	pack/talk/POLUTAR:0x5d50	Ooohehehehe!<FFFC><FFF6>I figured<L{> out<FFF6>what <}><S{> out what <}>you’re trying to do!<FFFB><FFF7>I’m not gonna run away just<FFF6>’cause you did that, though.<FFF5>
+134	0x3696	pack/talk/POLUTAR:0x5e30	Hyuk hyuk!<FFFC><FFF6>Hey, can you do anything else?<FFF5>
+135	0x36ba	pack/talk/POLUTAR:0x5e88	Hyuk hyuk!<FFFC><FFF6>Alright, I’ll let you give me something.<FFF1><FFF5>
+136	0x36de	pack/talk/POLUTAR:0x5ef8	Uuuurrrgh!<FFFC><FFF6>Sooo booooring...<FFF5>
 137	0x36fd	pack/talk/POLUTAR:0x5f38	Uuuurrrgh! This is so boring,<FFF6>I hope you roll over and die!<FFFB><FFF7>But first, gimme something.<FFF1><FFF5>
-138	0x3733	pack/talk/POLUTAR:0x5ff0	Eep... What was that all about...?<FFF6>Is your brain still in your head?<FFF5>
-139	0x3759	pack/talk/POLUTAR:0x6080	Eeep... Are you one of those guys<FFF6>who's... not all there?<FFF5>
-140	0x377c	pack/talk/POLUTAR:0x60f8	Ooohehehe! This is sooo much fun!<FFF5>
-141	0x3798	pack/talk/POLUTAR:0x6140	Yaaaaaay! This is so fun!<FFF5>
-142	0x37b3	pack/talk/POLUTAR:0x6178	Hyuk hyuk! Awww, that's so cool!<FFF6>I wonder what I should do.<FFF5>
+138	0x3733	pack/talk/POLUTAR:0x5ff0	Eep...<FFFC><FFF6>What was that all about...?<FFFC><FFF6>Is your brain still in your head?<FFF5>
+139	0x3759	pack/talk/POLUTAR:0x6080	Eeep...<FFFC><FFF6>Are you one of those guys who’s...<FFFC><FFF6>not all there?<FFF5>
+140	0x377c	pack/talk/POLUTAR:0x60f8	Ooohehehe!<FFFC><FFF6>This is sooo much fun!<FFF5>
+141	0x3798	pack/talk/POLUTAR:0x6140	Yaaaaaay!<FFFC><FFF6>This is so fun!<FFF5>
+142	0x37b3	pack/talk/POLUTAR:0x6178	Hyuk hyuk!<FFFC><FFF6>Awww, that’s so cool!<FFF6>I wonder what I should do.<FFF5>
 143	0x37d7	pack/talk/POLUTAR:0x61f0	What should I do...?<FFF6>Okay, I got it! Listen to my request!<FFF1><FFF5>
-144	0x3801	pack/talk/POLUTAR:0x6268	Uuuurrrgh!<FFF6>You can't upset me that easy!<FFF5>
-145	0x3827	pack/talk/POLUTAR:0x62c0	Uuuurrrgh!<FFF6>I'm greedy, you know? Real greedy!<FFF1><FFF5>
-146	0x3853	pack/talk/POLUTAR:0x6320	Eep... I'm sweating a different kind<FFF6>of sweat than usual...<FFF5>
-147	0x3876	pack/talk/POLUTAR:0x6398	Eep... What's this feeling...?<FFF5>
-148	0x3898	pack/talk/POLUTAR:0x63d8	Ooohehehehe! Now you're talking!<FFF5>
-149	0x38b2	pack/talk/POLUTAR:0x6420	Ooohehehehe! I'm right on the edge<FFF6>of being seduced, huh!?<FFF5>
-150	0x38d7	pack/talk/POLUTAR:0x6498	That's riiiiight!<FFF6>You really know a lot about me!<FFF5>
-151	0x38ff	pack/talk/POLUTAR:0x6500	Hyuk hyuk! That's right.<FFF6>Don't you think so too?<FFFB><FFF7>Hmm... Well then... how about<FFF6>if you give me a present!<FFF1><FFF5>
-152	0x3943	pack/talk/POLUTAR:0x65d8	Uuuurrrgh!<FFF6>You don't mean that at all!<FFF5>
-153	0x3964	pack/talk/POLUTAR:0x6628	Uuuurrrgh! Then prove you meant it!<FFF1><FFF5>
-154	0x3994	pack/talk/POLUTAR:0x6678	Eeep... How do you know<FFF6>so much about me...?<FFF5>
-155	0x39bb	pack/talk/POLUTAR:0x66d8	Eep... I'm worried what happens next<FFF6>if you're flattering me this much...<FFF5>
-156	0x39dd	pack/talk/POLUTAR:0x6770	Ooohehehehe! I haven't been<FFF6>in this good of a mood in a while!<FFF5>
-157	0x3a03	pack/talk/POLUTAR:0x67f0	Ooohehehe! That's right! I'm amazing!<FFF5>
-158	0x3a23	pack/talk/POLUTAR:0x6840	Ohhh... You already have<FFF6>my spell card! Oooooheeheeheeeee!<FFF5>
-159	0x3a51	pack/talk/POLUTAR:0x68b8	I'm Polter Poltoleon.<FFF6>If you see this message,<FFF6>you'll go "ooohehehehe!" too!<FFEF>
-160	0x3a7e	pack/talk/POLUTAR:0x6958	Huhhh...? Aren't you<FFF6>weaker than me?<FFFB><FFF7>Haha, you're so lame!<FFF6>I'm not giving you my spell card!<FFEF>
-161	0x3ac7	pack/talk/POLUTAR:0x6a18	Huh!? C'mon, don't be so cruel...<FFEF>
-162	0x3ae8	pack/talk/POLUTAR:0x6a60	Alright! I'll give you this!<FFEF>
+144	0x3801	pack/talk/POLUTAR:0x6268	Uuuurrrgh!<FFFC><FFF6>You can’t upset me that easy!<FFF5>
+145	0x3827	pack/talk/POLUTAR:0x62c0	Uuuurrrgh!<FFFC><FFF6>I’m greedy, you know? Real greedy!<FFF1><FFF5>
+146	0x3853	pack/talk/POLUTAR:0x6320	Eep...<FFFC><FFF6>I’m sweating a different kind<FFF6>of sweat than usual...<FFF5>
+147	0x3876	pack/talk/POLUTAR:0x6398	Eep...<FFFC><FFF6>What’s this feeling...?<FFF5>
+148	0x3898	pack/talk/POLUTAR:0x63d8	Ooohehehehe!<FFFC><FFF6>Now you’re talking!<FFF5>
+149	0x38b2	pack/talk/POLUTAR:0x6420	Ooohehehehe!<FFFC><FFF6>I’m right on the edge<FFF6>of being seduced, huh!?<FFF5>
+150	0x38d7	pack/talk/POLUTAR:0x6498	That’s riiiiight!<FFFC><FFF6>You really know a lot about me!<FFF5>
+151	0x38ff	pack/talk/POLUTAR:0x6500	Hyuk hyuk!<FFFC><FFF6>That’s right. Don’t you think so too?<FFFB><FFF7>Hmm... Well then... how about<FFF6>if you give me a present!<FFF1><FFF5>
+152	0x3943	pack/talk/POLUTAR:0x65d8	Uuuurrrgh!<FFFC><FFF6>You don’t mean that at all!<FFF5>
+153	0x3964	pack/talk/POLUTAR:0x6628	Uuuurrrgh!<FFFC><FFF6>Then prove you meant it!<FFF1><FFF5>
+154	0x3994	pack/talk/POLUTAR:0x6678	Eeep...<FFFC><FFF6>How do you know so much about me...?<FFF5>
+155	0x39bb	pack/talk/POLUTAR:0x66d8	<L{>Eep...<FFFC><FFF6>I’m <}><S{>Eep...<FFFC> I’m <}>worried what<L{> happens next if<FFF6>you’re <}><S{> happens<FFF6>next if you’re <}>flattering me this much...<FFF5>
+156	0x39dd	pack/talk/POLUTAR:0x6770	Ooohehehehe!<FFFC><FFF6>I haven’t been in this good<FFF6>of a mood in a while!<FFF5>
+157	0x3a03	pack/talk/POLUTAR:0x67f0	Ooohehehe!<FFFC><FFF6>That’s right! I’m amazing!<FFF5>
+158	0x3a23	pack/talk/POLUTAR:0x6840	Ohhh... You already<L{> have<FFF6>my <}><S{> have my <}>spell<L{> card! Oooooheeheeheeeee!<FFF5><}><S{> card!<FFF6>Oooooheeheeheeeee!<FFF5><}>
+159	0x3a51	pack/talk/POLUTAR:0x68b8	I’m Polter Poltoleon.<FFF6>If you see this message,<FFF6>you’ll go “ooohehehehe!” too!<FFEF>
+160	0x3a7e	pack/talk/POLUTAR:0x6958	Huhhh...?<FFFC><FFF6>Aren’t you weaker than me?<FFFB><FFF7>Haha, you’re so lame!<FFF6>I’m not giving you my spell card!<FFEF>
+161	0x3ac7	pack/talk/POLUTAR:0x6a18	Huh!?<FFFC><FFF6>C’mon, don’t be so cruel...<FFEF>
+162	0x3ae8	pack/talk/POLUTAR:0x6a60	Alright!<FFFC><FFF6>I’ll give you this!<FFEF>
 163	0x3b00	pack/talk/POLUTAR:0x6aa0	This is for you too.<FFEF>
-164	0x3b0a	pack/talk/POLUTAR:0x6ad0	Um, well... I guess I'll give you this.<FFEF>
+164	0x3b0a	pack/talk/POLUTAR:0x6ad0	Um, well... I guess I’ll give you this.<FFEF>
 165	0x3b20	pack/talk/POLUTAR:0x6b20	See you later! Oooooheeheeheeeeee!<FFEF>
-166	0x3b33	pack/talk/POLUTAR:0x6b68	I gotta get going... A <FFF0> doesn't<FFF6>have much free time!<FFEF>
-167	0x3b60	pack/talk/POLUTAR:0x6bd8	I'll give you this if you forgive me...<FFEF>
-168	0x3b76	pack/talk/POLUTAR:0x6c28	I don't wanna talk<FFF6>to you anymore. Seeya!<FFEF>
-169	0x3b9c	pack/talk/POLUTAR:0x6c80	You're so finished. I'll give you this...<FFF6>Let's just say goodbye here.<FFEF>
-170	0x3bc1	pack/talk/POLUTAR:0x6d10	If I was gonna express how I'm feeling<FFF6>right now, I'd say...<FFF6>Uuuurrrgh! Seriously!<FFEF>
-171	0x3beb	pack/talk/POLUTAR:0x6db8	I'm glad to meet you... I mean,<FFF6>take good care of my card!<FFEF>
-172	0x3c1e	pack/talk/POLUTAR:0x6e30	I made up my mind! I'm coming too!<FFF6>But that's not really up to me, huh...?<FFEF>
-173	0x3c52	pack/talk/POLUTAR:0x6ec8	I don't like to fight.<FFF6>I'm tired of everyone getting hurt.<FFEF>
-174	0x3c75	pack/talk/POLUTAR:0x6f40	Instead... I'll give you this.<FFEF>
-175	0x3c8a	pack/talk/POLUTAR:0x6f80	Eep...! I'll give you my spell card!<FFF6>Just please let me go...<FFEF>
+166	0x3b33	pack/talk/POLUTAR:0x6b68	I gotta get going...<FFFC><FFF6>A <FFF0><L{> doesn’t<FFF6>have <}><S{> doesn’t have <}>much free time!<FFEF>
+167	0x3b60	pack/talk/POLUTAR:0x6bd8	I’ll give you this if you forgive me...<FFEF>
+168	0x3b76	pack/talk/POLUTAR:0x6c28	I don’t wanna<L{> talk<FFF6>to <}><S{> talk to <}>you anymore. Seeya!<FFEF>
+169	0x3b9c	pack/talk/POLUTAR:0x6c80	You’re so finished. I’ll give you this...<FFF6>Let’s just say goodbye here.<FFEF>
+170	0x3bc1	pack/talk/POLUTAR:0x6d10	If I was gonna express how I’m feeling<FFF6>right now, I’d<L{> say...<FFF6>Uuuurrrgh! <}><S{> say... Uuuurrrgh! <}>Seriously!<FFEF>
+171	0x3beb	pack/talk/POLUTAR:0x6db8	I’m glad to meet you...<FFFC><FFF6>I mean, take good care of my card!<FFEF>
+172	0x3c1e	pack/talk/POLUTAR:0x6e30	I made up my mind! I’m coming too!<FFFC><FFF6>But that’s not really up to me, huh...?<FFEF>
+173	0x3c52	pack/talk/POLUTAR:0x6ec8	I don’t like to fight.<FFF6>I’m tired of everyone getting hurt.<FFEF>
+174	0x3c75	pack/talk/POLUTAR:0x6f40	Instead...<FFFC><FFF6>I’ll give you this.<FFEF>
+175	0x3c8a	pack/talk/POLUTAR:0x6f80	Eep...!<FFFC><FFF6>I’ll give you my spell card!<FFF6>Just please let me go...<FFEF>
 176	0x3cba	pack/talk/POLUTAR:0x7000	Hyuk hyuk!<FFF6>Us and humans are pretty different!<FFF5>
-177	0x3ce3	pack/talk/POLUTAR:0x7060	Hyuk hyuk! I'm really curious now!<FFF6>Can you pique my interest...?<FFF1><FFF5>
-178	0x3d17	pack/talk/POLUTAR:0x70e8	Uuuurrrgh! Why did you answer,<FFF6>mister!? Now I'm all annoyed!<FFF5>
-179	0x3d46	pack/talk/POLUTAR:0x7168	Uuuurrrgh! If you want me to calm<FFF6>down, you have to gimme something!<FFF1><FFF5>
-180	0x3d74	pack/talk/POLUTAR:0x71f8	Eep... I called someone and it<FFF6>turns out they're really scary...<FFFB><FFF7>A-Am I... gonna get beat up...?<FFF6>Noooo! I don't want to!<FFF5>
-181	0x3dc9	pack/talk/POLUTAR:0x72f0	Eeep...! L-Let me make it clear...<FFFB><FFF7>I-I'm not good to eat...<FFF6>And I'm not crunchy in milk either...<FFF5>
-182	0x3e0f	pack/talk/POLUTAR:0x73b8	Ooohehehehe!<FFF6>I'm really happy right now!<FFF5>
-183	0x3e31	pack/talk/POLUTAR:0x7410	Ooohehehe! Let's play, mister! Okay?<FFF5>
-184	0x3e56	pack/talk/POLUTAR:0x7460	<FFEE>Uh-oh... humans! Hmm... I don't really<FFF6>wanna deal with them, but I don't<FFF6>feel like running away either.<FFF5>
-185	0x3e84	pack/talk/POLUTAR:0x7538	<FFED>Why are humans human!?<FFF6>I don't get it. And that annoys me,<FFF6>so gimme something!<FFF1><FFF5>
-186	0x3ec0	pack/talk/POLUTAR:0x75e0	<FFEC>Hyuk... For me, it's like how they<FFF6>say... curiosity trumps fear...<FFF5>
-187	0x3ef1	pack/talk/POLUTAR:0x7668	<FFEE>I felt like there was something<FFF6>I was drawn to... But I guess<FFF6>I'll hang around with you a while...<FFF5>
-188	0x3f22	pack/talk/POLUTAR:0x7730	<FFEE>I think tonight's the night<FFF6>I finally fall in love with humans!<FFF5>
-189	0x3f4c	pack/talk/POLUTAR:0x77b8	<FFEB>I want lots of kinds of friends. Hmm...<FFF6>Maybe humans would be good too...<FFF5>
-190	0x3f81	pack/talk/POLUTAR:0x7850	<FFEC>Who're you, mister...?<FFF6>Who!? Who are you, darn it...?<FFF5>
-191	0x3fb0	pack/talk/POLUTAR:0x78c0	<FFED>Eep... Th-That was scary!<FFF6>But I'm not gonna run!<FFF5>
-192	0x3fe3	pack/talk/POLUTAR:0x7928	<FFED>Ooohehehe! Haha... By the way,<FFF6>I'm pretty mad right now!<FFF5>
-193	0x4013	pack/talk/POLUTAR:0x79a0	<FFEB>What a great full moon!<FFF6>You just have to gimme something!<FFFB><FFF7>Teeheehee! There's lots of stuff<FFF6>I want... What should I ask for?<FFF1><FFF5>
-194	0x406d	pack/talk/POLUTAR:0x7aa0	<FFEB>I'm trembling... Is this excitement!?<FFF5>
-195	0x409b	pack/talk/POLUTAR:0x7af0	<FFEC>Hyuk... Humans are nice, right?<FFFB><FFF7>I don't have to be nervous, right?<FFF5>
+177	0x3ce3	pack/talk/POLUTAR:0x7060	Hyuk hyuk!<FFFC><FFF6>I’m really curious now!<FFF6>Can you pique my interest...?<FFF1><FFF5>
+178	0x3d17	pack/talk/POLUTAR:0x70e8	Uuuurrrgh!<FFFC><FFF6>Why did you answer, mister!?<FFF6>Now I’m all annoyed!<FFF5>
+179	0x3d46	pack/talk/POLUTAR:0x7168	Uuuurrrgh!<FFFC><FFF6>If you want me to calm down,<FFF6>you have to gimme something!<FFF1><FFF5>
+180	0x3d74	pack/talk/POLUTAR:0x71f8	Eep...<FFFC><FFF6>I called someone and it turns out<FFF6>they’re really scary...<FFFB><FFF7>A-Am I...<FFFC> gonna get beat up...?<FFFC><FFF6>Noooo! I don’t want to!<FFF5>
+181	0x3dc9	pack/talk/POLUTAR:0x72f0	Eeep...!<FFFC><FFF6>L-Let me make it clear...<FFFB><FFF7>I-I’m not good to eat...<FFF6>And I’m not crunchy in milk either...<FFF5>
+182	0x3e0f	pack/talk/POLUTAR:0x73b8	<L{>Ooohehehehe!<FFF6>I’m <}><S{>Ooohehehehe! I’m <}>really happy right now!<FFF5>
+183	0x3e31	pack/talk/POLUTAR:0x7410	Ooohehehe! Let’s play, mister! Okay?<FFF5>
+184	0x3e56	pack/talk/POLUTAR:0x7460	<FFEE>Uh-oh... humans!<L{> Hmm... <}><S{> Hmm...<FFF6>I don’t really wanna deal with them,<FFF6>but <}>I don’t<L{> really<FFF6>wanna deal with them, but I don’t<FFF6>feel <}><S{> feel <}>like running away either.<FFF5>
+185	0x3e84	pack/talk/POLUTAR:0x7538	<FFED>Why are humans<L{> human!?<FFF6>I <}><S{> human!? I <}>don’t get<L{> it. And <}><S{> it.<FFF6>And <}>that annoys<L{> me,<FFF6>so <}><S{> me, so <}>gimme something!<FFF1><FFF5>
+186	0x3ec0	pack/talk/POLUTAR:0x75e0	<FFEC>Hyuk...<FFFC><FFF6>For me, it’s like how they say...<FFF6>curiosity trumps fear...<FFF5>
+187	0x3ef1	pack/talk/POLUTAR:0x7668	<FFEE>I felt like there was something<FFF6>I was drawn to...<FFFC> But I guess<FFF6>I’ll hang around with you a while...<FFF5>
+188	0x3f22	pack/talk/POLUTAR:0x7730	<FFEE>I think tonight’s the<L{> night<FFF6>I finally fall <}><S{> night I finally<FFF6>fall <}>in love with humans!<FFF5>
+189	0x3f4c	pack/talk/POLUTAR:0x77b8	<FFEB>I want lots of kinds of<L{> friends. Hmm...<FFF6>Maybe <}><S{> friends.<FFF6>Hmm... Maybe <}>humans would be good too...<FFF5>
+190	0x3f81	pack/talk/POLUTAR:0x7850	<FFEC>Who’re you, mister...?<FFF6>Who!? Who are you, darn it...?<FFF5>
+191	0x3fb0	pack/talk/POLUTAR:0x78c0	<FFED>Eep...<FFFC><FFF6>Th-That was<L{> scary!<FFF6>But <}><S{> scary! But <}>I’m not gonna run!<FFF5>
+192	0x3fe3	pack/talk/POLUTAR:0x7928	<FFED>Ooohehehe!<FFFC><FFF6>Haha...<FFFC><FFF6>By the way, I’m pretty mad right now!<FFF5>
+193	0x4013	pack/talk/POLUTAR:0x79a0	<FFEB>What a great full moon!<FFF6>You just have to gimme<L{> something!<FFFB><FFF7>Teeheehee!<FFF6>There’s <}><S{> something!<FFFB><FFF7>Teeheehee! There’s <}>lots of stuff I want...<FFF6>What should I ask for?<FFF1><FFF5>
+194	0x406d	pack/talk/POLUTAR:0x7aa0	<FFEB>I’m trembling...<FFFC><FFF6>Is this excitement!?<FFF5>
+195	0x409b	pack/talk/POLUTAR:0x7af0	<FFEC>Hyuk...<FFFC><FFF6>Humans are nice, right?<FFFB><FFF7>I don’t have to be nervous, right?<FFF5>
 196	0x40d8	pack/talk/POLUTAR:0x7b80	Hyuk hyuk! Humans are interesting.<FFF6>What do you need from me?<FFEF>
-197	0x4102	pack/talk/POLUTAR:0x7c00	Uuuurrrgh! I don't like this kind<FFF6>of negotiation! I'm real mad now!<FFEF>
-198	0x4134	pack/talk/POLUTAR:0x7c88	Eep... Why are you doing that...?<FFF6>I'm scared...<FFEF>
-199	0x4164	pack/talk/POLUTAR:0x7ce8	Ooohehehehe! Ooohehehe!<FFF6>That was REALLY fun! I'm so happy!<FFEF>
+197	0x4102	pack/talk/POLUTAR:0x7c00	Uuuurrrgh!<FFFC><FFF6>I don’t like this kind of negotiation!<FFF6>I’m real mad now!<FFEF>
+198	0x4134	pack/talk/POLUTAR:0x7c88	Eep...<FFFC><FFF6>Why are you doing<L{> that...?<FFFC><FFF6>I’m <}><S{> that...?<FFFC> I’m <}>scared...<FFEF>
+199	0x4164	pack/talk/POLUTAR:0x7ce8	Ooohehehehe! Ooohehehe!<FFF6>That was REALLY fun! I’m so happy!<FFEF>
 200	0x4191	pack/talk/POLUTAR:0x7d60	So basically, you want me<FFF6>to do something, right!?<FFEF>
-201	0x41b9	pack/talk/POLUTAR:0x7dc8	Hyuk... So... uh...<FFF6>wh-what do you want from me...?<FFEF>
-202	0x41ed	pack/talk/POLUTAR:0x7e30	This is the most fun I ever had!<FFF6>I'll do whatever you want!<FFEF>
-203	0x421e	pack/talk/POLUTAR:0x7ea8	Eep... Ooohehehe! Hyuck hehehe!<FFF6>Teehee... hyuk hyuk hyuk...<FFEF>
-204	0x4249	pack/talk/POLUTAR:0x7f20	You call that negotiating!?<FFF6>I don't like stupidheads. Hahahah...<FFEF>
-205	0x4274	pack/talk/POLUTAR:0x7fa8	Hyuk... Humans are so amazing.<FFF6>I dunno what to say. Teehee!<FFEF>
+201	0x41b9	pack/talk/POLUTAR:0x7dc8	Hyuk...<FFFC> So...<L{> uh...<FFF6>wh-what do you <}><S{> uh... wh-what do<FFF6>you <}>want from me...?<FFEF>
+202	0x41ed	pack/talk/POLUTAR:0x7e30	This is the most fun I ever had!<FFF6>I’ll do whatever you want!<FFEF>
+203	0x421e	pack/talk/POLUTAR:0x7ea8	Eep...<FFFC><FFF6>Ooohehehe! Hyuck hehehe!<FFF6>Teehee... hyuk hyuk hyuk...<FFEF>
+204	0x4249	pack/talk/POLUTAR:0x7f20	You call that negotiating!?<FFF6>I don’t like stupidheads. Hahahah...<FFEF>
+205	0x4274	pack/talk/POLUTAR:0x7fa8	Hyuk...<FFFC><FFF6>Humans are so amazing.<FFF6>I dunno what to say. Teehee!<FFEF>
 206	0x429e	pack/talk/POLUTAR:0x8020	I want money. <FFF8> yen will be fine.<FFEF>
 207	0x42bb	pack/talk/POLUTAR:0x8068	Yaaaaaay!<FFF5>
-208	0x42c8	pack/talk/POLUTAR:0x8080	What!? You don't have any! Grrrr!<FFF5>
-209	0x42f2	pack/talk/POLUTAR:0x80c8	I'm gonna kill you.<FFF5>
+208	0x42c8	pack/talk/POLUTAR:0x8080	What!? You don’t have any! Grrrr!<FFF5>
+209	0x42f2	pack/talk/POLUTAR:0x80c8	I’m gonna kill you.<FFF5>
 210	0x42f8	pack/talk/POLUTAR:0x80f0	I want a life stone. Just one...<FFEF>
 211	0x431a	pack/talk/POLUTAR:0x8138	Yaaaaay! I got a life stone! Hooray!<FFF5>
-212	0x433c	pack/talk/POLUTAR:0x8188	Huh!? You don't have any!?<FFF6>You're a big dummy,<FFF6>aren't you? Stupid!<FFF5>
-213	0x4372	pack/talk/POLUTAR:0x8210	Don't make fun of me! I'll throw<FFF6>plates at you! I'll break windows!<FFF5>
-214	0x439a	pack/talk/POLUTAR:0x8298	I know you'll probably say no...<FFF6>but I want a <FFF4>...<FFEF>
-215	0x43bd	pack/talk/POLUTAR:0x8300	No way, seriously!? Yaaaaay!<FFF5>
-216	0x43de	pack/talk/POLUTAR:0x8340	Oh... you don't have any...<FFF6>Oops! Crud, I just broke<FFF6>a window somewhere.<FFF5>
-217	0x440f	pack/talk/POLUTAR:0x83d8	You're right, it's too bad...<FFF6>But I'm still gonna kill you.<FFF5>
-218	0x4433	pack/talk/POLUTAR:0x8450	Vital energy looks cool...<FFF6>Does it taste good? Let me try some!<FFEF>
+212	0x433c	pack/talk/POLUTAR:0x8188	Huh!? You don’t have any!?<FFFC><FFF6>You’re a big<L{> dummy,<FFF6>aren’t <}><S{> dummy, aren’t <}>you?<FFFC> Stupid!<FFF5>
+213	0x4372	pack/talk/POLUTAR:0x8210	Don’t make fun of me!<FFFC><FFF6>I’ll throw plates at<L{> you!<FFF6>I’ll <}><S{> you! I’ll <}>break windows!<FFF5>
+214	0x439a	pack/talk/POLUTAR:0x8298	I know you’ll probably say no...<FFFC><FFF6>but I want a <FFF4>...<FFEF>
+215	0x43bd	pack/talk/POLUTAR:0x8300	No way, seriously!?<FFFC> Yaaaaay!<FFF5>
+216	0x43de	pack/talk/POLUTAR:0x8340	Oh... you don’t have any... Oops!<FFF6>Crud, I just<L{> broke<FFF6>a <}><S{> broke a <}>window somewhere.<FFF5>
+217	0x440f	pack/talk/POLUTAR:0x83d8	You’re right, it’s too bad...<FFF6>But I’m still gonna kill you.<FFF5>
+218	0x4433	pack/talk/POLUTAR:0x8450	Vital energy looks cool...<FFFC><FFF6>Does it taste good? Let me try some!<FFEF>
 219	0x4464	pack/talk/POLUTAR:0x84d0	Th-This looks delicious... Chow time!<FFF5>
-220	0x4485	pack/talk/POLUTAR:0x8520	Huh...? I don't need any!?<FFF6>Ooohhhhh, you make me so mad!<FFF5>
-221	0x44ae	pack/talk/POLUTAR:0x8598	I'm so happy! Even if I don't<FFF6>have any ears... Ooohehehehe!<FFF5>
-222	0x44d3	pack/talk/POLUTAR:0x8610	Don't make fun of me!<FFF5>
-223	0x44db	pack/talk/POLUTAR:0x8640	Ooohehehehe! Ooohehehehe!<FFF6>Ooooooheeheeheeheeheeeee!<FFF5>
-224	0x4502	pack/talk/POLUTAR:0x86a8	Don't make fun of me!<FFF5>
-225	0x450a	pack/talk/POLUTAR:0x86d8	I'll buy it!<FFF5>
-226	0x4515	pack/talk/POLUTAR:0x86f8	Wow! You've got guts!<FFF5>
-227	0x4525	pack/talk/POLUTAR:0x8728	Don't make fun of me... Go to hell!<FFF5>
-228	0x4538	pack/talk/POLUTAR:0x8770	Wh-What...? Then what am<FFF6>I supposed to do?<FFF5>
-229	0x4558	pack/talk/POLUTAR:0x87c8	What? "Yaaaay"...?<FFF6>You can just roll over and die.<FFF5>
-230	0x457a	pack/talk/POLUTAR:0x8830	Yep, it's me. I don't get it,<FFF6>but that has a nice ring to it!<FFF5>
+220	0x4485	pack/talk/POLUTAR:0x8520	Huh...? I don’t need any!?<FFFC><FFF6>Ooohhhhh, you make me so mad!<FFF5>
+221	0x44ae	pack/talk/POLUTAR:0x8598	I’m so happy!<FFF6>Even if I don’t have any ears...<FFF6>Ooohehehehe!<FFF5>
+222	0x44d3	pack/talk/POLUTAR:0x8610	Don’t make fun of me!<FFF5>
+223	0x44db	pack/talk/POLUTAR:0x8640	Ooohehehehe!<FFFC><FFF6>Ooohehehehe!<FFFC><FFF6>Ooooooheeheeheeheeheeeee!<FFF5>
+224	0x4502	pack/talk/POLUTAR:0x86a8	Don’t make fun of me!<FFF5>
+225	0x450a	pack/talk/POLUTAR:0x86d8	I’ll buy it!<FFF5>
+226	0x4515	pack/talk/POLUTAR:0x86f8	Wow! You’ve got guts!<FFF5>
+227	0x4525	pack/talk/POLUTAR:0x8728	Don’t make fun of me... Go to hell!<FFF5>
+228	0x4538	pack/talk/POLUTAR:0x8770	Wh-What...?<FFFC><FFF6>Then what am I supposed to do?<FFF5>
+229	0x4558	pack/talk/POLUTAR:0x87c8	What?<FFFC> “Yaaaay”...?<FFF6>You can just roll over and die.<FFF5>
+230	0x457a	pack/talk/POLUTAR:0x8830	Yep, it’s me. I don’t get it,<FFF6>but that has a nice ring to it!<FFF5>
 231	0x45a1	pack/talk/POLUTAR:0x88b0	R-Really...?<FFF5>
-232	0x45ae	pack/talk/POLUTAR:0x88d0	Huh!? I-I think my heart's<FFF6>starting to pound!<FFF5>
-233	0x45cc	pack/talk/POLUTAR:0x8930	Turtles! Dogs! Cats! That's the stuff<FFF6>I like! Oops... I kinda drooled.<FFF5>
-234	0x4602	pack/talk/POLUTAR:0x89c0	That place is s-s-scary...<FFF6>I-It's a scary place... eep...<FFF5>
-235	0x4630	pack/talk/POLUTAR:0x8a38	What's that about?<FFF6>Hey, you liar! You can't talk in a pool!<FFF5>
+232	0x45ae	pack/talk/POLUTAR:0x88d0	Huh!?<FFFC><FFF6>I-I think my<L{> heart’s<FFF6>starting <}><S{> heart’s starting <}>to pound! ❤<FFF5>
+233	0x45cc	pack/talk/POLUTAR:0x8930	Turtles! Dogs!<L{> Cats!<FFF6>That’s <}><S{> Cats! That’s <}>the stuff I like!<FFF6>Oops... I kinda drooled.<FFF5>
+234	0x4602	pack/talk/POLUTAR:0x89c0	That place is s-s-scary...<FFF6>I-It’s a scary place... eep...<FFF5>
+235	0x4630	pack/talk/POLUTAR:0x8a38	What’s that about?<FFFC><FFF6>Hey, you liar! You can’t talk in a pool!<FFF5>
 236	0x4660	pack/talk/POLUTAR:0x8ab0	Oh, crud...<FFF5>
 237	0x4670	pack/talk/POLUTAR:0x8ac8	Phew...<FFF5>
-238	0x467f	pack/talk/POLUTAR:0x8ad8	What're you doing!?<FFF6>I was having so much fun doing that!<FFF5>
+238	0x467f	pack/talk/POLUTAR:0x8ad8	What’re you doing!?<FFFC><FFF6>I was having so much fun doing that!<FFF5>
 239	0x46a4	pack/talk/POLUTAR:0x8b50	Ooohehehehe! Ooooheeheeheeheeee!<FFF6>Oooooooheeeeheeeheeeheeeeeeee!<FFF5>
-240	0x46c8	pack/talk/POLUTAR:0x8bd0	Yep! You and me hit it off<FFF6>really good, mister!<FFF5>
-241	0x46f1	pack/talk/POLUTAR:0x8c30	Then why'd you tell me that!?<FFF5>
-242	0x4709	pack/talk/POLUTAR:0x8c70	WHAT!? I hate British people!<FFF5>
-243	0x472e	pack/talk/POLUTAR:0x8cb0	Awww... that finger's so cool...<FFFB><FFF7>I'm not allowed to do it...<FFF6>but it would be fun if I could!<FFF5>
-244	0x476e	pack/talk/POLUTAR:0x8d70	Huh!? Really!?<FFF6>C'mon, hurry up and gimme! Teehee!<FFF6>This is gonna be awesome!<FFF5>
-245	0x479a	pack/talk/POLUTAR:0x8e08	Awww, really...? Now I'm curious...<FFF6>Hmm... what could it be?<FFF5>
-246	0x47cb	pack/talk/POLUTAR:0x8e88	Huh...? Saying that stuff<FFF6>to a <FFF0>... Are you one of<FFF6>those people who lives on the edge?<FFF5>
-247	0x47ff	pack/talk/POLUTAR:0x8f38	Grrrrrr! Don't make fun of Germans!<FFF5>
-248	0x4824	pack/talk/POLUTAR:0x8f80	Eep... yikes... Someone help me...<FFF5>
-249	0x4845	pack/talk/POLUTAR:0x8fc8	Don't say that with such a straight<FFF6>face! Wow, you're an embarrassing<FFF6>human! Just go roll over and die.<FFF5>
-250	0x486b	pack/talk/POLUTAR:0x9098	R-Really...? Humans are scary...<FFF5>
-251	0x488b	pack/talk/POLUTAR:0x90e0	Huh? Minced meat? BBQ sauce?<FFF6>Meat sauce? Meaty meat?<FFF6>Hey, what's so meaty about that?<FFF5>
-252	0x48c4	pack/talk/POLUTAR:0x9190	Yep. I'll do it! I'm doing this!<FFF5>
-253	0x48dd	pack/talk/POLUTAR:0x91d8	N-No way... Do you like<FFF6>getting beat up...?<FFF5>
-254	0x48fb	pack/talk/POLUTAR:0x9230	Grrr! I hate when people say that!<FFF5>
-255	0x4923	pack/talk/POLUTAR:0x9278	Ooohehehehe! Isn't that cool!?<FFF6>Thumbing doesn't work on me!<FFF5>
-256	0x494d	pack/talk/POLUTAR:0x92f0	Huh...? What are you looking at,<FFF6>mister? You're such a pervert...<FFF5>
+240	0x46c8	pack/talk/POLUTAR:0x8bd0	Yep!<FFF6>You and me<L{> hit<FFF6>it <}><S{> hit it <}>off really good, mister!<FFF5>
+241	0x46f1	pack/talk/POLUTAR:0x8c30	Then why’d you tell me that!?<FFF5>
+242	0x4709	pack/talk/POLUTAR:0x8c70	WHAT!?<FFFC><FFF6>I hate British people!<FFF5>
+243	0x472e	pack/talk/POLUTAR:0x8cb0	Awww...<FFFC><FFF6>that finger’s so cool...<FFFB><FFF7>I’m not allowed to do it...<FFFC><FFF6>but it would be fun if I could!<FFF5>
+244	0x476e	pack/talk/POLUTAR:0x8d70	Huh!?<L{> Really!?<FFF6>C’mon, <}><S{> Really!? C’mon, <}>hurry up and<L{> gimme! Teehee!<FFF6>This <}><S{> gimme!<FFF6>Teehee! This <}>is gonna be awesome!<FFF5>
+245	0x479a	pack/talk/POLUTAR:0x8e08	Awww, really...? Now I’m<L{> curious...<FFF6>Hmm... what <}><S{> curious... Hmm...<FFF6>what <}>could it be?<FFF5>
+246	0x47cb	pack/talk/POLUTAR:0x8e88	<L{>Huh...?<FFFC> Saying <}><S{>Huh...?<FFFC><FFF6>Saying <}>that<L{> stuff<FFF6>to <}><S{> stuff to <}>a <FFF0>...<FFFC> Are<L{> you one of<FFF6>those <}><S{> you<FFF6>one of those <}>people who lives on the edge?<FFF5>
+247	0x47ff	pack/talk/POLUTAR:0x8f38	Grrrrrr!<FFFC><FFF6>Don’t make fun of Germans!<FFF5>
+248	0x4824	pack/talk/POLUTAR:0x8f80	Eep...<FFFC> yikes... Someone help me...<FFF5>
+249	0x4845	pack/talk/POLUTAR:0x8fc8	Don’t say that with such a<L{> straight<FFF6>face! Wow, <}><S{> straight face!<FFF6>Wow, <}>you’re an<L{> embarrassing<FFF6>human! Just <}><S{> embarrassing human!<FFF6>Just <}>go roll over and die.<FFF5>
+250	0x486b	pack/talk/POLUTAR:0x9098	R-Really...?<FFFC> Humans are scary...<FFF5>
+251	0x488b	pack/talk/POLUTAR:0x90e0	Huh?<FFFC> Minced meat? BBQ sauce?<FFF6>Meat sauce? Meaty meat?<FFFC><FFF6>Hey, what’s so meaty about that?<FFF5>
+252	0x48c4	pack/talk/POLUTAR:0x9190	Yep. I’ll do it! I’m doing this!<FFF5>
+253	0x48dd	pack/talk/POLUTAR:0x91d8	N-No way...<FFFC><FFF6>Do you like getting beat up...?<FFF5>
+254	0x48fb	pack/talk/POLUTAR:0x9230	Grrr!<FFFC><FFF6>I hate when people say that!<FFF5>
+255	0x4923	pack/talk/POLUTAR:0x9278	Ooohehehehe!<FFFC> Isn’t that cool!?<FFFC><FFF6>Thumbing doesn’t work on me!<FFF5>
+256	0x494d	pack/talk/POLUTAR:0x92f0	Huh...?<FFFC><FFF6>What are you looking at, mister?<FFFC><FFF6>You’re such a pervert...<FFF5>
 257	0x4976	pack/talk/POLUTAR:0x9378	Nuh-uh!<FFF5>
-258	0x497f	pack/talk/POLUTAR:0x9388	Ooohehehehe!<FFF6>I thought so! You can't fool me!<FFF5>
+258	0x497f	pack/talk/POLUTAR:0x9388	Ooohehehehe!<FFFC><FFF6>I thought so! You can’t fool me!<FFF5>
 259	0x49a6	pack/talk/POLUTAR:0x93e8	Yaaaaaay! I broke that plate!<FFF5>
-260	0x49c7	pack/talk/POLUTAR:0x9428	"What mask?" Don't make fun of me!<FFF5>
-261	0x49e6	pack/talk/POLUTAR:0x9470	Yep! This'll be a good partner for me.<FFF5>
-262	0x4a0d	pack/talk/POLUTAR:0x94c0	Don't make fun of me!<FFF6>Go back to America, lady!<FFF5>
-263	0x4a34	pack/talk/POLUTAR:0x9520	Who's that? I don't know anyone like<FFF6>that. Who could it be...?<FFF5>
-264	0x4a59	pack/talk/POLUTAR:0x95a0	...Hmm... If you're being this nice...<FFF6>Maybe you're up to something...<FFF5>
-265	0x4a96	pack/talk/POLUTAR:0x9630	You're kind of like a mommy, lady...<FFF5>
-266	0x4abc	pack/talk/POLUTAR:0x9680	Ooohehehehe! I'm so popular!<FFF5>
-267	0x4ad8	pack/talk/POLUTAR:0x96c0	Huuuh? What's that about...?<FFF6>You better not have been<FFF6>making fun of me!<FFF5>
-268	0x4b06	pack/talk/POLUTAR:0x9750	Eeep... I'll pass... My tummy's<FFF6>not feeling so good right now...<FFF5>
-269	0x4b2c	pack/talk/POLUTAR:0x97d8	Okay, I'll forget it.<FFF5>
-270	0x4b3a	pack/talk/POLUTAR:0x9808	Eeep... You're one mean lady...<FFF5>
+260	0x49c7	pack/talk/POLUTAR:0x9428	”What mask?”<FFFC><FFF6>Don’t make fun of me!<FFF5>
+261	0x49e6	pack/talk/POLUTAR:0x9470	Yep!<FFFC><FFF6>This’ll be a good partner for me.<FFF5>
+262	0x4a0d	pack/talk/POLUTAR:0x94c0	Don’t make fun of me!<FFFC><FFF6>Go back to America, lady!<FFF5>
+263	0x4a34	pack/talk/POLUTAR:0x9520	Who’s<L{> that?<FFF6>I <}><S{> that? I <}>don’t know anyone like that.<FFF6>Who could it be...?<FFF5>
+264	0x4a59	pack/talk/POLUTAR:0x95a0	...Hmm...<FFFC><FFF6>If you’re being this nice...<FFF6>Maybe you’re up to something...<FFF5>
+265	0x4a96	pack/talk/POLUTAR:0x9630	You’re kind of like a mommy, lady...<FFF5>
+266	0x4abc	pack/talk/POLUTAR:0x9680	Ooohehehehe!<FFFC><FFF6>I’m so popular!<FFF5>
+267	0x4ad8	pack/talk/POLUTAR:0x96c0	Huuuh? What’s that about...?<FFFC><FFF6>You better not have been<FFF6>making fun of me!<FFF5>
+268	0x4b06	pack/talk/POLUTAR:0x9750	<L{>Eeep...<FFFC> I’ll <}><S{>Eeep...<FFFC><FFF6>I’ll <}>pass...<FFFC><FFF6>My tummy’s not<L{> feeling<FFF6>so <}><S{> feeling so <}>good right now...<FFF5>
+269	0x4b2c	pack/talk/POLUTAR:0x97d8	Okay, I’ll forget it.<FFF5>
+270	0x4b3a	pack/talk/POLUTAR:0x9808	Eeep...<FFFC><FFF6>You’re one mean lady...<FFF5>
 271	0x4b55	pack/talk/POLUTAR:0x9848	Ohhhh, you were joking. Phew!<FFF5>
-272	0x4b71	pack/talk/POLUTAR:0x9888	Teehee! I'm so excited!<FFF5>
-273	0x4b8f	pack/talk/POLUTAR:0x98b8	Huh!? Why? Why won't you say it!?<FFF5>
-274	0x4bb6	pack/talk/POLUTAR:0x9900	Haha, that's not true at all! I think<FFF6>it'd be fun to go with you, lady.<FFF5>
+272	0x4b71	pack/talk/POLUTAR:0x9888	Teehee!<FFFC><FFF6>I’m so excited!<FFF5>
+273	0x4b8f	pack/talk/POLUTAR:0x98b8	Huh!? Why?<FFFC><FFF6>Why won’t you say it!?<FFF5>
+274	0x4bb6	pack/talk/POLUTAR:0x9900	Haha, that’s not true at all!<FFF6>I think it’d be fun to<L{> go<FFF6>with <}><S{> go with <}>you, lady.<FFF5>
 275	0x4be8	pack/talk/POLUTAR:0x9990	No way! That was totally amazing!<FFF5>
-276	0x4c02	pack/talk/POLUTAR:0x99d8	You know, I'm good<FFF6>at showing up in photos!<FFF5>
-277	0x4c25	pack/talk/POLUTAR:0x9a30	I've had it... I've completely lost it!<FFF5>
-278	0x4c40	pack/talk/POLUTAR:0x9a80	Don't make fun of me!<FFF6>Roll over and die!<FFF5>
-279	0x4c55	pack/talk/POLUTAR:0x9ad8	Hyuk hyuk! You've got bones, mister!<FFF5>
-280	0x4c6f	pack/talk/POLUTAR:0x9b28	Huh... Me too, then!<FFF5>
-281	0x4c84	pack/talk/POLUTAR:0x9b58	Humans are that poor?<FFF6>I never knew that...<FFF5>
-282	0x4cb2	pack/talk/POLUTAR:0x9bb0	I wonder if I failed...<FFF6>If I said "life stones,"<FFF6>maybe I could've gotten one...<FFF5>
-283	0x4cd3	pack/talk/POLUTAR:0x9c50	Huh!? You don't have any!?<FFF6>Whoa... Life stones are important<FFF6>when you wanna negotiate, you know.<FFF5>
-284	0x4d08	pack/talk/POLUTAR:0x9d18	I wonder if I failed... If I said "money,"<FFF6>maybe I could've gotten some...<FFF5>
-285	0x4d28	pack/talk/POLUTAR:0x9db0	I'm not surprised... they are gems and<FFF6>all... But I'm still kinda disappointed.<FFF5>
-286	0x4d56	pack/talk/POLUTAR:0x9e50	A-Are you saying you don't need me?<FFF6>You're a meanie...<FFF5>
-287	0x4d7e	pack/talk/POLUTAR:0x9ec0	Uuuurrrgh!<FFF6>Urgh, urgh, uuuurrrrrgggghhh!<FFFB><FFF7>Ooh, that had a cool rhythm...<FFF6>I'll give you my spell card!<FFEF>
-288	0x4dc8	pack/talk/POLUTAR:0x9f90	...Oh, that's right! I'll give you<FFF6>my spell card. If you make a Person<FFF6>with me, we can stay together!<FFEF>
-289	0x4e03	pack/talk/POLUTAR:0xa060	...Oh, that's right! I'll give you<FFF6>my spell card. If you make a Person<FFF6>with me, we can stay together!<FFEF>
+276	0x4c02	pack/talk/POLUTAR:0x99d8	You know, I’m good<FFF6>at showing up in photos!<FFF5>
+277	0x4c25	pack/talk/POLUTAR:0x9a30	I’ve had it...<FFFC><FFF6>I’ve completely lost it!<FFF5>
+278	0x4c40	pack/talk/POLUTAR:0x9a80	Don’t make fun of me!<FFFC><FFF6>Roll over and die!<FFF5>
+279	0x4c55	pack/talk/POLUTAR:0x9ad8	Hyuk hyuk!<FFFC><FFF6>You’ve got bones, mister!<FFF5>
+280	0x4c6f	pack/talk/POLUTAR:0x9b28	Huh...<FFFC><FFF6>Me too, then!<FFF5>
+281	0x4c84	pack/talk/POLUTAR:0x9b58	Humans are that poor?<FFFC><FFF6>I never knew that...<FFF5>
+282	0x4cb2	pack/talk/POLUTAR:0x9bb0	I wonder if I failed...<FFFC><FFF6>If I said “life stones,” maybe<FFF6>I could’ve gotten one...<FFF5>
+283	0x4cd3	pack/talk/POLUTAR:0x9c50	Huh!? You don’t have any!?<FFF6>Whoa... Life stones are important<FFF6>when you wanna negotiate, you know.<FFF5>
+284	0x4d08	pack/talk/POLUTAR:0x9d18	I wonder if I failed...<FFFC><FFF6>If I said “money,” maybe<FFF6>I could’ve gotten some...<FFF5>
+285	0x4d28	pack/talk/POLUTAR:0x9db0	I’m not<L{> surprised...<FFF6>they <}><S{> surprised... they <}>are gems and all...<FFFC><FFF6>But I’m still kinda disappointed.<FFF5>
+286	0x4d56	pack/talk/POLUTAR:0x9e50	A-Are you saying you don’t need me?<FFF6>You’re a meanie...<FFF5>
+287	0x4d7e	pack/talk/POLUTAR:0x9ec0	Uuuurrrgh!<FFFC><FFF6>Urgh, urgh, uuuurrrrrgggghhh!<FFFB><FFF7>Ooh, that had a cool rhythm...<FFF6>I’ll give you my spell card!<FFEF>
+288	0x4dc8	pack/talk/POLUTAR:0x9f90	...Oh, that’s right! I’ll give<L{> you<FFF6>my spell card.<FFFC> <}><S{> you my spell<FFF6>card.<FFFC> <}>If you make a<L{> Person<FFF6>with me, we <}><S{> Person with me,<FFF6>we <}>can stay together!<FFEF>
+289	0x4e03	pack/talk/POLUTAR:0xa060	...Oh, that’s right!<FFFC> I’ll give<L{> you<FFF6>my spell card. <}><S{> you my spell<FFF6>card. <}>If you make a<L{> Person<FFF6>with me, we <}><S{> Person with me,<FFF6>we <}>can stay together!<FFEF>
 290	0x5634	POLUTAR:0	Believe him<FFF5>
-291	0x563a	POLUTAR:1	Don't believe him<FFF5>
+291	0x563a	POLUTAR:1	Don’t believe him<FFF5>
 292	0x5641	POLUTAR:2	We need you.<FFF5>
-293	0x5648	POLUTAR:3	We don't need you.<FFF5>
+293	0x5648	POLUTAR:3	We don’t need you.<FFF5>
 294	0x5651	POLUTAR:4	Keep taunting<FFF5>
 295	0x565a	POLUTAR:5	Ignore him<FFF5>
 296	0x5662	POLUTAR:6	Smile<FFF5>
 297	0x5669	POLUTAR:7	Glare<FFF5>
 298	0x566e	POLUTAR:8	YMCYaaaay!<FFF5>
-299	0x5678	POLUTAR:9	Oh, it's you.<FFF5>
+299	0x5678	POLUTAR:9	Oh, it’s you.<FFF5>
 300	0x567e	POLUTAR:10	Nothing, really...<FFF5>
-301	0x5688	POLUTAR:11	I want your body!<FFF5>
-302	0x5693	POLUTAR:12	It's Hong Kong.<FFF5>
-303	0x569b	POLUTAR:13	It's a slum.<FFF5>
-304	0x56a2	POLUTAR:14	It's Kuala Lumpur.<FFF5>
+301	0x5688	POLUTAR:11	I want your body! ❤<FFF5>
+302	0x5693	POLUTAR:12	It’s Hong Kong.<FFF5>
+303	0x569b	POLUTAR:13	It’s a slum.<FFF5>
+304	0x56a2	POLUTAR:14	It’s Kuala Lumpur.<FFF5>
 305	0x56b0	POLUTAR:15	Try and stab me.<FFF5>
 306	0x56b9	POLUTAR:16	Stop it!<FFF5>
 307	0x56bf	POLUTAR:17	Stop its laughing<FFF5>
 308	0x56ca	POLUTAR:18	Leave it alone<FFF5>
-309	0x56d0	POLUTAR:19	Yeah, it's great.<FFF5>
-310	0x56d7	POLUTAR:20	It's not so great.<FFF5>
+309	0x56d0	POLUTAR:19	Yeah, it’s great.<FFF5>
+310	0x56d7	POLUTAR:20	It’s not so great.<FFF5>
 311	0x56df	POLUTAR:21	Give the peace sign<FFF5>
 312	0x56e6	POLUTAR:22	Give the bird<FFF5>
 313	0x56f1	POLUTAR:23	Later, I promise.<FFF5>
-314	0x56f9	POLUTAR:24	You don't get any.<FFF5>
-315	0x56fe	POLUTAR:25	You're a fool.<FFF5>
+314	0x56f9	POLUTAR:24	You don’t get any.<FFF5>
+315	0x56fe	POLUTAR:25	You’re a fool.<FFF5>
 316	0x570c	POLUTAR:26	*snort*<FFF5>
 317	0x5713	POLUTAR:27	Hmph! You coward!<FFF5>
-318	0x5721	POLUTAR:28	I'm nice.<FFF5>
+318	0x5721	POLUTAR:28	I’m nice.<FFF5>
 319	0x572d	POLUTAR:29	Then pay up.<FFF5>
 320	0x5738	POLUTAR:30	It was just sarcasm.<FFF5>
 321	0x5743	POLUTAR:31	Here I go!<FFF5>
@@ -334,16 +334,16 @@ id	pos	psp	en
 332	0x5791	POLUTAR:42	Komiya<FFF5>
 333	0x5796	POLUTAR:43	Okay!<FFF5>
 334	0x579e	POLUTAR:44	No!<FFF5>
-335	0x57a6	POLUTAR:45	That's right.<FFF5>
-336	0x57ad	POLUTAR:46	That's not it.<FFF5>
+335	0x57a6	POLUTAR:45	That’s right.<FFF5>
+336	0x57ad	POLUTAR:46	That’s not it.<FFF5>
 337	0x57b4	POLUTAR:47	So please, help me!<FFF5>
 338	0x57c0	POLUTAR:48	No worries.<FFF5>
-339	0x57ca	POLUTAR:49	That's right.<FFF5>
-340	0x57d2	POLUTAR:50	It's a joke.<FFF5>
+339	0x57ca	POLUTAR:49	That’s right.<FFF5>
+340	0x57d2	POLUTAR:50	It’s a joke.<FFF5>
 341	0x57dd	POLUTAR:51	Outta my face!<FFF5>
 342	0x57e8	POLUTAR:52	Never mind...<FFF5>
-343	0x57ed	POLUTAR:53	That's not true.<FFF5>
-344	0x57f7	POLUTAR:54	...Don't do it.<FFF5>
+343	0x57ed	POLUTAR:53	That’s not true.<FFF5>
+344	0x57f7	POLUTAR:54	...Don’t do it.<FFF5>
 345	0x57ff	POLUTAR:55	Talk about cameras<FFF5>
 346	0x5807	POLUTAR:56	Keep ignoring him<FFF5>
 347	0x5812	POLUTAR:57	Glance, then ignore<FFF5>

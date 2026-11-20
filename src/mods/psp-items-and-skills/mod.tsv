@@ -1,0 +1,7 @@
+name	PSP items and skills
+description	Clean Salt and Emergency Exit from the PSP version, sold in the Satomi Tadashi pharmacies, and the Persona skills Estoma and Traesto (fusing with those items teaches them too). Not tested here, I assume it's fine tho.
+author	Redeted
+default	no
+always	no
+release	yes
+requires	base

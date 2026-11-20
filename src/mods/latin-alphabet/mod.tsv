@@ -1,0 +1,6 @@
+name	Latin alphabet
+description	What an alphabet needs that kana and kanji do not: the variable-width text engines and small-font kit, full-length names and the other longer-text mechanics, the glyph pacing, an ABC-only name entry with 8-character names, and the fonts.
+default	yes
+always	yes
+release	yes
+requires	base

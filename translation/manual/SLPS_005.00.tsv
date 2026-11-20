@@ -3,8 +3,6 @@ id	pos	psp	en	note
 28	0x3aefc	EBOOT:278854	Recovers HP every turn	machine-translated; JP: 毎ターンＨＰ回復<FF01> | US: Restores a little HP each turn (all allies)
 29	0x3ad64	EBOOT:2794ac	Affinity-changing attack (all foes)	machine-translated; JP: 敵全　攻撃相性が変わる謎の攻撃<FF01> | US: Special Phys damage+Affinity change (area)
 34	0x3a044		???	same as JP; ja ？？？<FF01>
-48	0x3a384	EBOOT:27acb4	Restores Persona change (1 ally)	over limit 255px/239px; Restores Persona change ability (1 ally)
-142	0x3b104	EBOOT:2778c0	Frame that can hold 12 Mirror Shards	over limit 249px/239px; A frame that can hold 12 Mirror Shards
 145	0x3c9a4	EBOOT:26752c	KamakuraGongorou	over limit 17 chars/16 chars; Kamakura Gongorou
 146	0x3d061	EBOOT:27bba2	Repel: Fire / Weak: Force	machine-translated; JP: アギけいをはんしゃ　ぶつりまほうによわい | US: Repel: 50% Fire Weak: Electric, Nuclear, Gravity, Blast
 147	0x3d07a	EBOOT:27bca2	Repel: Ice / Weak: Force	machine-translated; JP: ブフけいをはんしゃ　ぶつりまほうによわい | US: Repel: 50% Ice Weak: Electric, Nuclear, Gravity, Blast

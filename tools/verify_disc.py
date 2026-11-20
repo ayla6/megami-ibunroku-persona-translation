@@ -17,7 +17,7 @@ normalized and up to the end code - trailing stray bytes are dead data
 the rebuild keeps by design). Any mismatch fails loud.
 
 With --placement, the builder's record of every file it wrote (path, extent,
-size, SHA-256) replaces the build/ tree walks, so a finished image can be
+size, SHA-1) replaces the build/ tree walks, so a finished image can be
 audited without the tree that produced it - safely in parallel with the
 next build. --side-files points at the builder's small report files
 (dng_spill.asm, the draft tables); it defaults to build/.
@@ -29,8 +29,8 @@ import struct
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, 'src', 'injection_tools'))
-sys.path.insert(0, os.path.join(ROOT, 'src', 'extraction_tools', 'psp'))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
 import toolbelt          # noqa: E402
 import etext             # noqa: E402
 import talk as talkt     # noqa: E402
@@ -53,6 +53,18 @@ class Disc:
         self.f.seek(lba * 2352)
         sec = self.f.read(2352)
         return sec[24:24 + 2048] if len(sec) == 2352 else sec
+
+    def user_run(self, lba: int, count: int) -> bytes:
+        """Read adjacent sectors together instead of seeking between images."""
+        self.f.seek(lba * 2352)
+        raw = self.f.read(count * 2352)
+        return b''.join(raw[at + 24:at + 2072]
+                        for at in range(0, len(raw), 2352))
+
+    def body(self, lba):
+        """A raw sector from its subheader on (movie files, build_disc.raw_body)."""
+        self.f.seek(lba * 2352 + 16)
+        return self.f.read(2352 - 16)
 
     def walk(self, lba, size, prefix=''):
         for path, ext, ext_size, *_rest in self.walk_records(prefix)[0]:
@@ -187,16 +199,29 @@ def _read_file(disc, ext, size):
     return b''.join(disc.user(ext + n) for n in range(_sectors(size)))[:size]
 
 
+def _is_raw(path, data=None):
+    """A movie file, held by build/ as raw 2352-byte sectors (build_disc.is_raw_file)."""
+    return path.upper().endswith('.STR') and (data is None or len(data) % 2352 == 0)
+
+
+def _read_raw(disc, ext, size):
+    return b''.join(disc.body(ext + n) for n in range(_sectors(size)))
+
+
+def _raw_body(data):
+    return b''.join(data[n + 16:n + 2352] for n in range(0, len(data), 2352))
+
+
 def _table_names(name):
     return name.lstrip('\\').split(';')[0].replace('\\', '/').upper()
 
 
 def read_placement(path):
-    """Parse the builder's placement TSV: (path, extent, size, sha256)."""
+    """Parse the builder's placement TSV: (path, extent, size, sha1)."""
     rows = []
     with open(path, encoding='utf-8') as source:
         header = source.readline().rstrip('\n').split('\t')
-        if header != ['path', 'extent', 'size', 'sha256']:
+        if header != ['path', 'extent', 'size', 'sha1']:
             raise ValueError(f'{path}: unrecognized placement header')
         for line in source:
             cells = line.rstrip('\n').split('\t')
@@ -257,8 +282,19 @@ def audit_structure(disc, original, build, placed=None):
             print(f'    {path}: {ext}..{ext + _sectors(size)}')
 
     # Files may share one extent exactly when each of them still reads its
-    # own retail bytes there: the disc builder points an untouched duplicate
-    # at its twin instead of keeping both copies.
+    # own retail bytes there - the disc builder points an untouched duplicate
+    # at its twin instead of keeping both copies - or is a file the builder
+    # wrote there (two movies with the same bytes are written once); level 1
+    # checks those bytes.
+    if placed is not None:
+        owned = {(path.upper(), ext) for path, ext, _size, _sha in placed}
+    else:
+        owned = set()
+        for root, _dirs, names in os.walk(build):
+            for name in names:
+                rel = os.path.relpath(os.path.join(root, name), build).replace(os.sep, '/').upper()
+                if rel in entries:
+                    owned.add((rel, entries[rel][0]))
     by_span = {}
     for path, ext, size, _rec in files:
         if size:
@@ -268,9 +304,10 @@ def audit_structure(disc, original, build, placed=None):
         if len(paths) > 1:
             checks += 1
             moved = [path for path in paths
-                     if path.upper() not in orig_entries
+                     if (path.upper(), start) not in owned and (
+                         path.upper() not in orig_entries
                      or _read_file(disc, start, entries[path.upper()][1])
-                     != _read_file(original, *orig_entries[path.upper()][:2])]
+                     != _read_file(original, *orig_entries[path.upper()][:2]))]
             if moved:
                 fails += 1
                 print(f'STRUCTURE FAIL: {", ".join(paths)} share {start}..{end},'
@@ -334,9 +371,9 @@ def audit_structure(disc, original, build, placed=None):
     try:
         names = [n.decode('ascii') for n in _read_file(
             disc, *entries['FNAME.DAT'][:2]).split(b'\0') if n]
-        # ISO file records carry whole-sector lengths, so a table's record
-        # may include zero padding past its live entries. The name count
-        # defines the table length; FSIZE.DAT itself already speaks sectors.
+        # The name count defines the table length (a table's record may
+        # still include zero padding past its live entries); FSIZE.DAT
+        # itself speaks whole sectors.
         count = len(names)
         fsect = _read_file(disc, *entries['FSECT.DAT'][:2])[:4 * count]
         fsize = _read_file(disc, *entries['FSIZE.DAT'][:2])[:4 * count]
@@ -418,7 +455,9 @@ def audit_structure(disc, original, build, placed=None):
                     data = source.read()
                 ext, size, _rec = entries[rel]
                 orig_ext, orig_size, _rec = orig_entries[rel]
-                if data == _read_file(original, orig_ext, orig_size):
+                if (_raw_body(data) == _read_raw(original, orig_ext, orig_size)
+                        if _is_raw(rel, data)
+                        else data == _read_file(original, orig_ext, orig_size)):
                     continue
                 changed_files += 1
                 allowed.update(range(ext, ext + _sectors(size)))
@@ -426,9 +465,18 @@ def audit_structure(disc, original, build, placed=None):
 
     checks += 1
     unexpected = []
-    for lba in range(min(original.sectors, disc.sectors)):
-        if disc.user(lba) != original.user(lba) and lba not in allowed:
-            unexpected.append(lba)
+    common = min(original.sectors, disc.sectors)
+    for start in range(0, common, 4096):
+        count = min(4096, common - start)
+        actual = disc.user_run(start, count)
+        expected = original.user_run(start, count)
+        if actual == expected:
+            continue
+        for n in range(count):
+            lba = start + n
+            at = n * SECTOR
+            if lba not in allowed and actual[at:at + SECTOR] != expected[at:at + SECTOR]:
+                unexpected.append(lba)
     # The volume may grow past retail. Appended bytes belong either to a
     # relocated file (already allowed) or to the builder's zeroed end padding.
     for lba in range(original.sectors, disc.sectors):
@@ -456,9 +504,9 @@ def level1(disc, build, entries, read_file, placed=None):
     bad = n = 0
     if placed is not None:
         for path, ext, size, sha in placed:
-            data = _read_file(disc, ext, size)
+            data = (_read_raw if _is_raw(path) else _read_file)(disc, ext, size)
             n += 1
-            if hashlib.sha256(data).hexdigest() != sha:
+            if hashlib.sha1(data).hexdigest() != sha:
                 bad += 1
                 print(f'MISMATCH {path}: disc bytes differ from the placement record')
         print(f'level 1: {n} placed files on the disc, {bad} byte mismatches')
@@ -470,11 +518,16 @@ def level1(disc, build, entries, read_file, placed=None):
                 if rel not in entries:
                     continue
                 data = open(local, 'rb').read()
-                got = read_file(rel)
                 n += 1
-                # ISO records carry whole-sector lengths; the build file
-                # itself is exact. Pad the build bytes with the zero fill the
-                # disc writer adds, then compare the recorded extent.
+                if _is_raw(rel, data):
+                    ext, size = entries[rel]
+                    if _raw_body(data) != _read_raw(disc, ext, size):
+                        bad += 1
+                        print(f'MISMATCH {rel}: raw sectors differ from the build')
+                    continue
+                got = read_file(rel)
+                # Pad the build bytes with any zero fill the recorded length
+                # carries past them, then compare the recorded extent.
                 if data.ljust(len(got), b'\0') != got:
                     bad += 1
                     print(f'MISMATCH {rel}: build {len(data)}B vs disc {len(got)}B')
@@ -499,7 +552,7 @@ def main():
     parser.add_argument('--no-text', action='store_true',
                         help='stop after the structure and level-1 byte checks; '
                              'the text read-back (levels 2 and 3) is identical for '
-                             'every QoL combination, so a release proves it once')
+                             'every mod combination, so a release proves it once')
     args = parser.parse_args()
     image = args.image
     build = os.path.join(ROOT, 'build')
@@ -524,11 +577,11 @@ def main():
     _n, bad = level1(disc, build, entries, read_file, placed)
     if args.no_text:
         # Every release variant carries the same translated files; only the
-        # QoL code overlays differ. The release therefore runs the text
+        # mods' code overlays differ. The release therefore runs the text
         # read-back once (on the base translation) and uses this switch for
         # the combinations, which still get the full structure and level-1
         # checks above.
-        print('level 2/3: skipped (--no-text); text is identical across QoL variants')
+        print('level 2/3: skipped (--no-text); text is identical across mod variants')
         if bad:
             sys.exit(1)
         print('disc-byte verification PASSED (structure and files)')
@@ -713,7 +766,7 @@ def party_names(read_file):
     """The STATUS header's table back from the disc: wording, case, every slot.
 
     It is the one translated table that is not a row in translation/ (its words
-    come from the PSP US build's own party list - src/injection_tools/
+    come from the PSP US build's own party list - src/injection/resident/
     partynames.py), so level 3's row walk never sees it: this is its evidence."""
     global fails, checks
     import partynames
@@ -752,13 +805,44 @@ def party_names(read_file):
     # its separator is ONE byte and must be half the retail full-width space:
     # the font's 8 px blank (make_vwf_font.WIDE_SPACE), not the 4 px word space.
     checks += 1
-    widths = open(os.path.join(ROOT, 'src', 'asm', 'font', 'vwf_width.bin'), 'rb').read()
+    widths = open(toolpath.font_path('width'), 'rb').read()
     adv = widths[0xEA - 0x88] if len(widths) > 0xEA - 0x88 else None
     if adv != 8:
         fails += 1
         print(f'NAME ROW FAIL: the separator byte 0xEA is {adv} px wide, want 8 (make_vwf_font WIDE_SPACE)')
     else:
         print('party names: the separator is the font\'s 8 px blank (half the 16 px glyph 0)')
+
+
+def retained_battle_messages(stock: bytes, built: bytes,
+                             rows: list[dict[str, str]]) -> set[str]:
+    """Fixed message slots whose proved capacity fallback still holds retail bytes.
+
+    An absent English string alone is never evidence of a fallback. The source
+    must be immovable, the encoded text must hit the next immovable record or
+    zone boundary, and its actual disc slot must match the retail record.
+    """
+    import btlp
+    import write_guard
+    references = btlp._zone_refs(stock, btlp.MSG_ZONE)
+    reads = write_guard.retail_reads(stock, btlp.B)
+    fixed = [(a, e) for a, e in btlp.msg_messages(stock)
+             if a not in references or any(lo < e and a < hi for lo, hi in reads)]
+    by_pos = {r['pos']: r for r in rows}
+    retained: set[str] = set()
+    for start, end in fixed:
+        pos = hex(start - btlp.B)
+        text = (by_pos.get(pos, {}).get('en') or '').strip()
+        if not text:
+            continue
+        encoded = etext.encode(btlp.msg_script(text), end=btlp.END)
+        limit = min([a for a, _e in fixed if a >= end] + [btlp.MSG_ZONE[1]])
+        if start + len(encoded) <= limit:
+            continue
+        first, last = start - btlp.B, end - btlp.B
+        if len(built) >= last and built[first:last] == stock[first:last]:
+            retained.add(pos)
+    return retained
 
 
 def level3(read_file, side_files=None):
@@ -780,7 +864,7 @@ def level3(read_file, side_files=None):
             fails += 1
             print('LEVEL 3 FAIL: SF_VWF is off and build/affinity_gated.tsv is '
                   'missing - the affinity builder names the rows the pool '
-                  'carries (rebuild: python src/injection_tools/affinity.py build)')
+                  'carries (rebuild: python src/injection/resident/affinity.py build)')
         else:
             for line in open(path, encoding='utf-8').read().split('\n')[1:]:
                 if line.strip():
@@ -804,6 +888,9 @@ def level3(read_file, side_files=None):
     # negotiation strings are packed when they start with the pack marker
     # (NEG_PACK_IDX) - everything else is placed as plain bytes
     d = btlp.data()
+    retained_messages = retained_battle_messages(d, read_file('BTLP.BIN'),
+                                                 tb.merged_rows('BTLP'))
+    retained_message_n = 0
     packed_pos = {hex(a - btlp.B) for a, _e in btlp.evt_messages(d)}
     for i, (a, _e) in enumerate(btlp.neg_strings(d)):
         if i in btlp.NEG_PACK_IDX:
@@ -840,6 +927,9 @@ def level3(read_file, side_files=None):
             if rel == 'SLPS_005.00' and r['pos'] in description_drafts:
                 description_draft_n += 1
                 continue
+            if rel == 'BTLP' and r['pos'] in retained_messages:
+                retained_message_n += 1
+                continue
             if rel == 'BTLP' and r['pos'] in board_unshipped:
                 board_unshipped_n += 1
                 continue
@@ -873,7 +963,7 @@ def level3(read_file, side_files=None):
             for _what, pats in forms:
                 # THE SMALL-FONT POOL IS IN ANOTHER FILE: its bytes are
                 # incbin'd into the three overlays (ADV/DNG/S2D, see
-                # src/asm/main.asm), because the row is composed by the
+                # src/mods/base/asm/main.asm), because the row is composed by the
                 # overlay's own VWF engine - so a pooled affinity line is
                 # present on the disc, just not in the file its row names.
                 # The record head sits in SLPS and the tail in the pool, so
@@ -898,6 +988,8 @@ def level3(read_file, side_files=None):
              f'records keep their Japanese' if gated_n or gated else '')
           + (f', {description_draft_n} human description draft(s) retained unshipped'
              if description_draft_n else '')
+          + (f', {retained_message_n} fixed-slot battle message(s) kept Japanese '
+             f'(capacity gate, retail bytes verified)' if retained_message_n else '')
           + (f', {board_unshipped_n} battle-board row(s) kept Japanese '
              f'(fit gate or no consumer)' if board_unshipped_n else ''))
 

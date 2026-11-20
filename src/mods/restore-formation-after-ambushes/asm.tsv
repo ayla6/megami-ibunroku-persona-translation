@@ -1,0 +1,2 @@
+file	order	line	if	unless	note
+BTLP	350	.include "btlp.asm"			--mods=restore-formation-after-ambushes: after an ambush the party stands as it did before it

@@ -64,14 +64,6 @@ jobs:
           gh release download ${TAG:+"$TAG"} --repo "$GITHUB_REPOSITORY" \
             --dir "$RUNNER_TEMP/release" --clobber --pattern 'persona-patches.zip'
           unzip -q "$RUNNER_TEMP/release/persona-patches.zip" -d webpatcher/patches
-      - name: Gzip the patches for the page
-        # Pages sends .xdelta as plain binary; the page fetches <patch>.gz and
-        # unpacks it with DecompressionStream (about a third smaller in all),
-        # falling back to the plain file, which stays for everyone else
-        run: |
-          for patch in webpatcher/patches/*.xdelta; do
-            gzip -9 -n -k -f "$patch"
-          done
       - name: Stamp the page with the patch release
         run: python3 tools/stamp_webpatcher.py webpatcher/index.html webpatcher/patches/manifest.tsv
       - name: Configure GitHub Pages

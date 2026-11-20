@@ -106,7 +106,7 @@ opentext	0x800a0134	Select the¦card slot
 opentext	0x800a0164	No card found	
 opentext	0x800a0180	Card error	
 opentext	0x800a0198	Card is not¦formatted	
-opentext	0x800a01cc	Loading data¦Don't remove¦the card	
+opentext	0x800a01cc	Loading data¦Don’t remove¦the card	
 opentext	0x800a0214	File 0 data¦is corrupted	
 opentext	0x800a0244	No save data	
 opentext	0x800a025c	Card is not¦inserted	
@@ -177,7 +177,7 @@ menu_gfx	112,156	ATK
 menu_gfx	136,156	HIT	
 menu_gfx	160,156	DEF	
 menu_gfx	184,156	EVA	
-fusionmsg	accident	Hmm... It seems there's been an<FF03>irregularity in the process...	
+fusionmsg	accident	Hmm... It seems there’s been an<FF03>irregularity in the process...	
 fusionmsg	result_pre	The resulting Persona is...	
 fusionmsg	result_after	.	
 fusionmsg	result_last	Please take good care of it...	
@@ -188,3 +188,20 @@ casinoprize	metal_card	MTL CARD
 party	アトラス	ATLUS	
 party	主人公	Hero	
 runtext	name	RUN/CANCEL	
+slot_button	96,48	SLOT 1	machine-translated; existing menu_gfx.py SLOTS wording moved verbatim; source review owed; ADVCMD.BIN slot button art (buttonlabel); OPEN.BIN's buttons draw the same, in key order
+slot_button	144,48	SLOT 2	machine-translated; existing menu_gfx.py SLOTS wording moved verbatim; source review owed; ADVCMD.BIN slot button art (buttonlabel); OPEN.BIN's buttons draw the same, in key order
+menu_cell	48,32	EXEC	machine-translated; existing menu_gfx.py CELLS wording moved verbatim; source review owed; ADVCMD.BIN label cell, dialogue VWF font
+menu_cell	96,32	SET	machine-translated; existing menu_gfx.py CELLS wording moved verbatim; source review owed; ADVCMD.BIN label cell, dialogue VWF font
+menu_tag	224,168	DATA	machine-translated; existing menu_gfx.py TAG wording moved verbatim; source review owed; ADVCMD.BIN UI page tag, three 8x12 cells
+btlstat	168,128	SWD	machine-translated; existing btlstat.py LABELS wording moved verbatim; source review owed; BF.BIN battle stat label atlas
+btlstat	192,128	HIT	machine-translated; existing btlstat.py LABELS wording moved verbatim; source review owed; BF.BIN battle stat label atlas
+btlstat	216,128	GUN	machine-translated; existing btlstat.py LABELS wording moved verbatim; source review owed; BF.BIN battle stat label atlas
+btlstat	144,144	DEF	machine-translated; existing btlstat.py LABELS wording moved verbatim; source review owed; BF.BIN battle stat label atlas
+btlstat	168,144	EVA	machine-translated; existing btlstat.py LABELS wording moved verbatim; source review owed; BF.BIN battle stat label atlas
+btlstat	192,144	MATK	machine-translated; existing btlstat.py LABELS wording moved verbatim; source review owed; BF.BIN battle stat label atlas
+btlstat	216,144	MDEF	machine-translated; existing btlstat.py LABELS wording moved verbatim; source review owed; BF.BIN battle stat label atlas
+btlstat	136,156	STR	machine-translated; existing btlstat.py LABELS wording moved verbatim; source review owed; BF.BIN battle stat label atlas
+btlstat	160,156	VIT	machine-translated; existing btlstat.py LABELS wording moved verbatim; source review owed; BF.BIN battle stat label atlas
+btlstat	184,156	DEX	machine-translated; existing btlstat.py LABELS wording moved verbatim; source review owed; BF.BIN battle stat label atlas
+btlstat	208,156	AGI	machine-translated; existing btlstat.py LABELS wording moved verbatim; source review owed; BF.BIN battle stat label atlas
+btlstat	136,168	LUK	machine-translated; existing btlstat.py LABELS wording moved verbatim; source review owed; BF.BIN battle stat label atlas

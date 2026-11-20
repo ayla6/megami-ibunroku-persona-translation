@@ -17,16 +17,17 @@
 !/RELEASE_NOTES.md
 !/contributors.md
 
-# patch source: assembly, injection, extraction, matching
+# patch source: the mods (assembly, assets), the pipeline, extraction,
+# porting and injection tools
 !/src/
-# Local armips scratch test, not part of the patch.
-/src/asm/_t.asm
 __pycache__/
 *.pyc
 
 # manually-run tools (not part of the build): the text navigator, the
 # disc verifier, the PSP-JP glyph derivation
 !/tools/
+# the textbox visualiser's offline copy of its rows (textvis/export_rows.py)
+/tools/textvis/rows.json
 
 # External binaries are downloaded locally; keep only a placeholder in Git.
 !/external_tools/
@@ -43,8 +44,8 @@ __pycache__/
 /translation/manual/work/*
 !/translation/manual/work/races_en.tsv
 
-# web patcher: static page plus the vendored xdelta3 wasm build. The release
-# patch files themselves (patches/) stay untracked, like dist/patches - the
+# web patcher: the static page. The release patch files themselves
+# (patches/) stay untracked, like dist/patches - the
 # rule has no trailing slash so it also covers a symlink to dist/patches.
 # The Pages workflow fills this directory from the release before packaging
 # the artifact, so the page serves the patches from its own origin.

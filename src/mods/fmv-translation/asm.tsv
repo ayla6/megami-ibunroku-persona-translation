@@ -1,0 +1,4 @@
+file	order	line	if	unless	note
+OPEN_EXE	20	.include "subs_boot_open.asm"			in-engine opening quote: hooks + blob
+MOVIE_EXE	30	.include "subs_boot.asm"			in-engine FMV subtitles: hooks + blob
+END_EXE	20	.include "subs_boot_end.asm"			in-engine FMV subtitles in the endings' movies: hooks + blob

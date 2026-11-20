@@ -1,4 +1,4 @@
-"""The part-of-speech lexicon the flow reads: src/assets/lexicon/en_pos.tsv.
+"""The part-of-speech lexicon the flow reads: src/porting/lexicon/en_pos.tsv.
 
   python tools/make_lexicon.py [kaikki-English-words.jsonl]
 
@@ -24,10 +24,11 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-sys.path.insert(0, os.path.join(ROOT, 'src', 'injection_tools'))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src'))
+import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
 import toolbelt  # noqa: E402
 
-OUT = os.path.join(ROOT, 'src', 'assets', 'lexicon', 'en_pos.tsv')
+OUT = os.path.join(ROOT, 'src', 'porting', 'lexicon', 'en_pos.tsv')
 # local only (external_tools is not committed): kaikki is not a download
 # the build may rely on
 SOURCE = os.path.join(ROOT, 'external_tools', 'kaikki',

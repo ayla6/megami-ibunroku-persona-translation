@@ -1,7 +1,7 @@
-# 60 fps feasibility (QoL build, not part of the translation release)
+# 60 fps feasibility (the 60 FPS mod, src/mods/60-fps/)
 
-Design doc and build status: `qol/README.md`. CORRECTION: `VSync(1)` returns immediately (no wait), so the
-live tests below were uncapped; the QoL build uses `VSync(0)` (next vblank).
+Design doc and build status: `src/mods/60-fps/README.md`. CORRECTION: `VSync(1)` returns immediately (no wait), so the
+live tests below were uncapped; the mod uses `VSync(0)` (next vblank).
 
 Investigated 2026-10-09 on the dungeon (DNG overlay, base 0x800643C4 = DNG.BIN offset 0).
 

@@ -1,0 +1,7 @@
+name	Skip movies
+description	Press Start to skip the currently playing movie.
+default	yes
+always	no
+release	yes
+requires	base
+requires	fmv-translation
