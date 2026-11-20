@@ -74,7 +74,11 @@ JavaScript twin of `src/pipeline/modpack.py` and `build_disc.py`.
   write is never overwritten.
 - The page and its layers must be one release: the page carries its
   release in `<html data-release>`, the manifest in its `release` column,
-  and a mismatch (a browser that kept an old copy) asks for a reload.
+  and a mismatch (a browser that kept an old copy) refreshes the site once
+  by itself. The manifest is always revalidated; the refresh refetches the
+  page and every script (the workers' too) with `cache: 'reload'` and opens
+  the page under a one-off `?fresh=` query. Storage's "Reload the patcher"
+  button does the same on demand, for phones without a hard reload.
 
 ## Assembling a release site
 

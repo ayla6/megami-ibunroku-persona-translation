@@ -157,9 +157,9 @@ function status(message, isError) {
  * directory, so the public site serves the files itself. */
 
 async function loadPatches() {
-  // cached like any file: a stale copy from another release is caught by
-  // checkRelease, which tells the user to reload
-  const response = await fetch(PATCHES + 'manifest.tsv');
+  // always revalidated, so checkRelease compares the page against the
+  // release the site serves now, not a copy the browser kept
+  const response = await fetch(PATCHES + 'manifest.tsv', {cache: 'no-cache'});
   if (!response.ok) {
     throw new Error(`no ${PATCHES}manifest.tsv (${response.status}) - copy the`
         + ' release files from dist/patches/ into webpatcher/patches/');
@@ -217,16 +217,53 @@ async function loadManifest() {
 /* The page and its patches must be one release. The deployed page carries
  * its release in <html data-release> (stamped with the title by
  * tools/stamp_webpatcher.py); the manifest names it in its release column.
- * A browser that kept an old copy of either gets told to reload instead of
- * patching with a mismatched pair. An unstamped (local) page or manifest
- * has nothing to compare. */
+ * A browser that kept an old copy of the page refreshes the site once on
+ * its own (refreshSite); if the pair still differs after that, it is told
+ * so instead of patching with a mismatched pair. An unstamped (local) page
+ * or manifest has nothing to compare. */
+const REFRESHED_KEY = 'patcher.refreshed';
+
 function checkRelease(rows) {
   const page = document.documentElement.dataset.release || '';
   const patches = releaseStamp(rows);
   if (!page || page.startsWith('$') || page === 'local' || !patches || page === patches) return;
+  let tried = null;
+  try { tried = sessionStorage.getItem(REFRESHED_KEY); } catch (err) {}
+  if (tried !== patches) {
+    try { sessionStorage.setItem(REFRESHED_KEY, patches); } catch (err) {}
+    refreshSite();
+    throw new Error(`Updating the page to ${patches}...`);
+  }
   throw new Error(`This page (${page}) and its patches (${patches}) are from different`
-      + ' releases - your browser kept an old copy. Reload the page with Ctrl+Shift+R'
+      + ' releases - your browser kept an old copy. Press "Reload the patcher" below'
       + ' (or clear this site\'s cache) before patching.');
+}
+
+/* A browser's own reload may answer from its cache, and a phone has no
+ * hard reload. This fetches the page and every script it and its workers
+ * load past the cache, which stores the fresh copies, then opens the page
+ * under a one-off query so the document itself cannot come from the cache
+ * either; init drops the query again. */
+const WORKER_SCRIPTS = ['worker.js', 'chdblocks.js', 'modpack.js', 'ppf.js', 'lzma.js',
+                        'inflate.js', 'chd.js'];
+const FRESH_PARAM = 'fresh';
+
+async function refreshSite() {
+  status('reloading the patcher...');
+  const page = new URL(location.href);
+  page.searchParams.delete(FRESH_PARAM);
+  const files = new Set([page.href, ...[...document.scripts].map(script => script.src)
+    .filter(Boolean), ...WORKER_SCRIPTS.map(name => new URL(name, page).href)]);
+  await Promise.all([...files].map(url => fetch(url, {cache: 'reload'}).catch(() => {})));
+  page.searchParams.set(FRESH_PARAM, Date.now().toString(36));
+  location.replace(page.href);
+}
+
+function dropFreshParam() {
+  const page = new URL(location.href);
+  if (!page.searchParams.has(FRESH_PARAM)) return;
+  page.searchParams.delete(FRESH_PARAM);
+  history.replaceState(history.state, '', page.href);
 }
 
 const featureOf = label => {
@@ -1419,6 +1456,7 @@ function renderOwnMods() {
 window.patcher = {loadManifest, FEATURES, planLayers, apply, selectedLabels, state};  // tests
 
 async function init() {
+  dropFreshParam();     // a refreshSite reload leaves the address as it was
   // the storage options are remembered from the first visit: CHD parts start
   // kept, low-RAM mode starts on where memory is likely tight
   dropStoredDisc();
@@ -1449,6 +1487,7 @@ async function init() {
   });
   $('source').addEventListener('change', () => pickedFile($('source').files[0] || null));
   $('clear-history').addEventListener('click', clearHistory);
+  $('refresh-site').addEventListener('click', refreshSite);
   $('own-mod-file').addEventListener('change', async () => {
     await addOwnMods([...$('own-mod-file').files]);
     $('own-mod-file').value = '';
