@@ -132,6 +132,8 @@ def port_all():
     # Shared correspondence inputs must exist before any reader/worker starts.
     from mappings import ensure
     ensure()
+    # Recreate the PSX source extracts independently of manual worklists.
+    must(toolpath.script('extract_text_all.py'), '--no-worklists')
     # the font FIRST: every wrap below measures in its advances
     must(toolpath.script('make_vwf_font.py'))
     must(toolpath.script('smallfont_vwf.py'), 'build')

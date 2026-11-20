@@ -424,6 +424,9 @@ def main(name, max_units=None, verbose=True):
     # TEXT_ARCHITECTURE.md) - a row without it is unprovenance, so every
     # row this porter writes names its unit, shipped or parked.
     uspans = psp_unit_spans(os.path.join(PUS, f'{name}.BIN'))
+    # Ensure the source extract exists before validating its errata.
+    from text import load_talk_slots
+    load_talk_slots(name, 'us')
     usrows = {r['pos']: r for r in toolbelt.read_extracted(
         'psp_us', f'pack/talk/{name}', optional=True) or []}
     usptr = {}

@@ -8,14 +8,14 @@ id	pos	psp	en
 6	0x3ba00	EBOOT:265a28	Urvashi
 7	0x3ba2c	EBOOT:265a74	Houri
 8	0x3ba58	EBOOT:265ac0	Skuld
-9	0x3ba84	EBOOT:265b0c	Laksmi
+9	0x3ba84	EBOOT:265b0c	Lakshmi
 10	0x3bab0	EBOOT:265b58	Verdandi
 11	0x3badc	EBOOT:265ba4	Usas
 12	0x3bb08	EBOOT:265bf0	Tensen Nyannyan
 13	0x3bb34	EBOOT:265c3c	Urdr
 14	0x3bb60	EBOOT:265c88	Hathor
 15	0x3bb8c	EBOOT:265cd4	Sati
-16	0x3bbb8	EBOOT:265d20	Ame no Uzume
+16	0x3bbb8	EBOOT:265d20	Ame-no-Uzume
 17	0x3bbe4	EBOOT:265d6c	Maso
 18	0x3bc10	EBOOT:265db8	Kali
 19	0x3bc3c	EBOOT:265e04	Ishtar
@@ -41,7 +41,7 @@ id	pos	psp	en
 39	0x3bfac	EBOOT:2663f4	Shouki
 40	0x3bfd8	EBOOT:266440	Aizen Myouou
 41	0x3c004	EBOOT:26648c	Yama
-42	0x3c030	EBOOT:2664d8	Pyro Jack
+42	0x3c030	EBOOT:2664d8	Jack-o'-Lantern
 43	0x3c05c	EBOOT:266524	Jack Frost
 44	0x3c088	EBOOT:266570	Pixie
 45	0x3c0b4	EBOOT:2665bc	Shiva
@@ -93,7 +93,7 @@ id	pos	psp	en
 91	0x3c89c	EBOOT:267364	Nike
 92	0x3c8c8	EBOOT:2673b0	Shokuin
 93	0x3c8f4	EBOOT:2673fc	Mucalinda
-94	0x3c920	EBOOT:267448	Seiryuu
+94	0x3c920	EBOOT:267448	Seiryu
 95	0x3c94c	EBOOT:267494	Illuyanka
 96	0x3c978	EBOOT:2674e0	Quetzalcoatl
 97	0x3c9d0	EBOOT:267578	Narukami
@@ -121,7 +121,7 @@ id	pos	psp	en
 119	0x32438	EBOOT:271e14	Polisun
 120	0x32470	EBOOT:271e6c	Dark Elf
 121	0x324a8	EBOOT:271ec4	Rusalka
-122	0x324e0	EBOOT:271f1c	Pyro Jack
+122	0x324e0	EBOOT:271f1c	Jack-o'-Lantern
 123	0x32518	EBOOT:271f74	Jack Frost
 124	0x32550	EBOOT:271fcc	Pixie
 125	0x32588	EBOOT:272024	Cherub
@@ -653,7 +653,7 @@ id	pos	psp	en
 651	0x378ec	EBOOT:26fdc0	Demon Gauntlet
 652	0x3790c	EBOOT:26fe00	Daybreak Gauntlet
 653	0x3792c	EBOOT:26fe40	Raime Gauntlet
-654	0x3794c	EBOOT:26fe80	Seiryuu Gauntlet
+654	0x3794c	EBOOT:26fe80	Seiryu Gauntlet
 655	0x3796c	EBOOT:26fec0	Jagd Guard
 656	0x3798c	EBOOT:26ff00	Sturm Guard
 657	0x379ac	EBOOT:26ff40	Caesar Guard

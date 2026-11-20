@@ -221,7 +221,30 @@ def gen_banner():
 
 
 def table_names(base, stride, count, off, length):
-    return be_padded_names(_boot.us_boot(), base, stride, count, off, length, US_MAP)
+    names = be_padded_names(_boot.us_boot(), base, stride, count, off, length, US_MAP)
+    if names is None:
+        return None
+    # Extracted strings can begin in the padding before the visible name.
+    # Associate an erratum with its containing record, then apply it to the
+    # decoded name only when that extracted string actually contains it.
+    import toolbelt
+    fixes = toolbelt.psp_errata('EBOOT')
+    raw = {toolbelt.psp_loc(r['pos']): r['text'].strip()
+           for r in toolbelt.read_extracted('psp_us', 'EBOOT', errata=False)}
+    for loc, find, replace in fixes:
+        try:
+            pos = int(loc, 16)
+        except ValueError:
+            continue
+        index = (pos - base) // stride
+        # An extracted string can start in padding immediately before a
+        # record; match the complete extracted text to disambiguate it.
+        source = raw.get(loc)
+        for candidate in (index, index + 1):
+            if 0 <= candidate < count and source == names[candidate]:
+                names[candidate] = toolbelt.errata_text('EBOOT', loc, names[candidate])
+                break
+    return names
 
 
 def le_names(base, stride, count):
