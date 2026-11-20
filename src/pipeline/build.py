@@ -5,11 +5,13 @@ Usage (from the project root):
 Output: build/ (intermediates) and dist/ (final patched BIN/CUE)
 --image: the original disc image (default: data/discs/Megami Ibunroku Persona - Be Your True Mind (Japan)/...). It
          must be the first release (not Rev 1): see image_check.py.
---mods: a build with mods, written to dist/Persona-TL-mods.bin/.cue instead. Mods are picked by their
-       label (src/mods/*/mod.tsv), e.g. `--mods=unified-save-menu,60-fps` (a space instead of `=` works too).
-       `--mods` alone selects the mods marked default; `--mods=LABEL,...` selects
-       only the named mods. `--mods=all` enables every mod and
-       `--no-mods=LABEL` excludes one. `--mods=list` lists them.
+Every build is written to dist/Persona-TL.bin/.cue, whatever its mods and font.
+--mods: the mods to build and what they require, by their slugs
+       (src/mods/*/mod.tsv), e.g. `--mods=english-translation,60-fps` (a space
+       instead of `=` works too). base, latin-alphabet and english-translation
+       are mods like the others: `--mods=60-fps` builds 60 fps on the base
+       alone, without the alphabet or English. Without --mods the build is
+       english-translation alone. `--mods=list` lists every mod and choice.
 --port: rerun PSP extraction/matching and trim worklists before building. Without it (the
         default) the current translation tables are built; every text/graphics builder,
         assembly and placement check still runs.
@@ -20,22 +22,59 @@ Output: build/ (intermediates) and dist/ (final patched BIN/CUE)
 --mods='english-translation(font=small)': a mod's choices, in parentheses
          after it (its mod.tsv; the first of each group is the default).
          The small font: every tool measures and draws with
-         small_serif.png, written to dist/Persona-TL-small.bin (-mods-small
-         with mods). `--mods=list` lists every mod and choice.
+         small_serif.png. `--mods=list` lists every mod and choice.
 --no-verify: leave out source QA, the checks that read assembled files back and
          the tests of assembled output (the release's variants: their output
          is compared with their layers instead).
---base-only: the language-neutral base without the Latin alphabet component.
---engine-only: the engine and Latin alphabet without English (the base mod, no English): every tool reads
-         build/engine-translation, translation/ with its English emptied
-         (engine_translation.py), so each row keeps its Japanese. Mods that
-         require english are refused. Written to dist/Persona-engine.bin.
 """
 import os
 from pathlib import Path
 import sys
-BASE_ONLY = '--base-only' in sys.argv
-ENGINE_ONLY = '--engine-only' in sys.argv or BASE_ONLY
+
+
+def _tiers_named(argv):
+    """The tiers (base, latin-alphabet, english-translation) a build turns
+    on: the mods --mods names and what they require, transitively; without
+    --mods, english-translation and what it requires."""
+    import mods as tier_mods
+    named = tier_mods.by_name()
+    picked = []
+    for i, arg in enumerate(argv):
+        if arg.split('=', 1)[0] != '--mods':
+            continue
+        text = arg.split('=', 1)[1] if '=' in arg else ''
+        if not text and i + 1 < len(argv) and not argv[i + 1].startswith('-'):
+            text = argv[i + 1]
+        try:
+            picked += tier_mods.parse_mods(text)
+        except ValueError:
+            return set()                # selected_mods() reports it
+    if not any(arg.split('=', 1)[0] == '--mods' for arg in argv):
+        picked = [('english-translation', '')]
+    if any(name not in named for name, _choice in picked):
+        return set()                    # selected_mods() reports it
+    by = tier_mods.by_label()
+    on = {named[name].label for name, _choice in picked}
+    todo = list(on)
+    while todo:
+        mod = by[todo.pop()]
+        choice = next((c for n, c in picked if named[n].label == mod.label and c), '')
+        for need in mod.needs(mod.pick(choice) if choice else mod.defaults()):
+            if need not in on:
+                on.add(need)
+                todo.append(need)
+    return {label for label in on if by[label].always}
+
+
+# --base-only / --engine-only are what the release tools pass for a tier;
+# a command line says the same by leaving the alphabet or English out of --mods
+_TIERS = _tiers_named(sys.argv[1:])
+BASE_ONLY = '--base-only' in sys.argv or 'latin-alphabet' not in _TIERS
+ENGINE_ONLY = '--engine-only' in sys.argv or BASE_ONLY or 'english-translation' not in _TIERS
+if BASE_ONLY and '--base-only' not in sys.argv:
+    sys.argv.append('--base-only')
+if ENGINE_ONLY and '--engine-only' not in sys.argv:
+    sys.argv.append('--engine-only')
 if BASE_ONLY:
     os.environ['PERSONA_BASE_ONLY'] = '1'
     sys.argv.extend(['--no-sf-vwf', '--no-sf-latin'])
@@ -67,30 +106,32 @@ if "--image" in sys.argv:
 # assembly in build/main.asm (asm_main.py writes it from the mods that are
 # on; the defines let a mod's files ask about another). A build names them by their names' slugs
 # (--mods=unified-save-menu), and a mod's choices in parentheses after it
-# (--mods=english-translation(font=small)); an always-on mod is named only for
-# its choices.
+# (--mods=english-translation(font=small)); an always-on tier is on only
+# when named or required (_tiers_named).
 import mods as _mods
 MODS = {mod.label: (mod.define, mod.description) for mod in _mods.options()}
-MODS_DEFAULT = [mod.label for mod in _mods.options() if mod.default]
 
 
 def _mod_args(argv):
-    """(option, [(name, picked)]) for every --mods / --no-mods argument:
-    each named mod with what its parentheses pick (mods.parse_mods)."""
+    """[(name, picked)] for every --mods argument: each named mod with what
+    its parentheses pick (mods.parse_mods)."""
+    out = []
     for i, arg in enumerate(argv):
         option = arg.split('=', 1)[0]
-        if option not in ('--mods', '--no-mods'):
+        if option == '--no-mods':
+            raise SystemExit('build.py: there is no --no-mods: --mods names every mod the build has')
+        if option != '--mods':
             continue
         names = arg.split('=', 1)[1] if '=' in arg else ''
         if not names and i + 1 < len(argv) and not argv[i + 1].startswith('-'):
             names = argv[i + 1]
+        if not names:
+            raise SystemExit('build.py: --mods needs the mods to build (`--mods=list` lists them)')
         try:
-            picked = _mods.parse_mods(names)
+            out += _mods.parse_mods(names)
         except ValueError as error:
             raise SystemExit(f'build.py: {error}')
-        if option == '--no-mods' and any(p for _n, p in picked):
-            raise SystemExit('build.py: --no-mods takes mod names, not their choices')
-        yield option, picked
+    return out
 
 
 def selected_options(argv=None):
@@ -99,13 +140,12 @@ def selected_options(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     out = {mod.label: mod.defaults() for mod in _mods.load() if mod.choices or mod.ranges}
     named = _mods.by_name()
-    for _option, picked in _mod_args(argv):
-        for name, choice in picked:
-            if choice and name in named:
-                try:
-                    out[named[name].label] = named[name].pick(choice)
-                except ValueError as error:
-                    raise SystemExit(f'build.py: {error}')
+    for name, choice in _mod_args(argv):
+        if choice and name in named:
+            try:
+                out[named[name].label] = named[name].pick(choice)
+            except ValueError as error:
+                raise SystemExit(f'build.py: {error}')
     return out
 
 
@@ -204,59 +244,41 @@ def timed(cmd, cwd):
 
 
 def selected_mods(argv=None):
-    """The labels of the mods a command line turns on, in apply order:
-    explicit names (or a bare --mods: the defaults), then exclusions. Names
-    are the mods' slugs; an always-on mod is only named for its choices
-    (`english-translation(font=small)`), which turns nothing on."""
+    """The labels of the option mods a command line names, in apply order
+    (the tiers are decided by _tiers_named). Names are the mods' slugs."""
     argv = sys.argv[1:] if argv is None else argv
     named = _mods.by_name()
-    enabled, disabled = set(), set()
-    for option, picked in _mod_args(argv):
-        names = [name for name, _choice in picked]
-        if names == ['list'] and option == '--mods':
-            for mod in _mods.load():
-                if mod.label in MODS and not mod.marker:
-                    print(f"{mod.slug}{' (default)' if mod.label in MODS_DEFAULT else ''}: {mod.description}")
-                for setting in mod.ranges:
-                    print(f"  {mod.slug}({setting.key}=VALUE): {setting.name}; "
-                          f"{setting.minimum}..{setting.maximum}, step {setting.step}, default {setting.default}")
-                for group, options in mod.groups().items():
-                    for o in options:
-                        first = ' (default)' if o is options[0] else ''
-                        print(f"  {mod.slug}({o.token}){first}: {o.description}")
-                for o in mod.choices:
-                    if not o.group:
-                        print(f"  {mod.slug}({o.token}): {o.description}")
-            raise SystemExit(0)
-        unknown = [n for n in names if n != 'all' and n not in named]
-        if unknown:
-            raise SystemExit(f"build.py: unknown mod {', '.join(unknown)}\n"
-                             f"  available: {', '.join(n for n, m in named.items() if (m.label in MODS or m.choices) and not m.marker)}, all"
-                             "\n  (`--mods=list` explains each)")
-        markers = [n for n in names if n in named and named[n].marker]
-        if markers:
-            raise SystemExit(f"build.py: {', '.join(markers)} is a dependency, never picked:"
-                             " it is on when a mod or a choice requires it")
-        always = [n for n, choice in picked if n in named and named[n].label not in MODS
-                  and not choice]
-        if always:
-            raise SystemExit(f"build.py: {', '.join(always)} is always on (name it only"
-                             " with its choices in parentheses)")
-        if option == '--no-mods' and not names:
-            raise SystemExit('build.py: --no-mods requires mod names (or all)')
-        mods_named = [named[n].label for n in names if n != 'all' and named[n].label in MODS]
-        only_choices = [n for n in names if n != 'all' and named[n].label not in MODS]
-        if option == '--mods' and not mods_named and 'all' not in names and not only_choices:
-            mods_named = MODS_DEFAULT
-        target = disabled if option == '--no-mods' else enabled
-        target.update([m.label for m in _mods.pickable()] if 'all' in names else mods_named)
-    return [name for name in MODS if name in enabled and name not in disabled]
+    picked = _mod_args(argv)
+    names = [name for name, _choice in picked]
+    if names == ['list']:
+        for mod in _mods.load():
+            if not mod.marker:
+                print(f"{mod.slug}: {mod.description}")
+            for setting in mod.ranges:
+                print(f"  {mod.slug}({setting.key}=VALUE): {setting.name}; "
+                      f"{setting.minimum}..{setting.maximum}, step {setting.step}, default {setting.default}")
+            for group, options in mod.groups().items():
+                for o in options:
+                    first = ' (default)' if o is options[0] else ''
+                    print(f"  {mod.slug}({o.token}){first}: {o.description}")
+            for o in mod.choices:
+                if not o.group:
+                    print(f"  {mod.slug}({o.token}): {o.description}")
+        raise SystemExit(0)
+    unknown = [n for n in names if n not in named]
+    if unknown:
+        raise SystemExit(f"build.py: unknown mod {', '.join(unknown)}\n"
+                         f"  available: {', '.join(n for n, m in named.items() if not m.marker)}"
+                         "\n  (`--mods=list` explains each)")
+    markers = [n for n in names if named[n].marker]
+    if markers:
+        raise SystemExit(f"build.py: {', '.join(markers)} is a dependency, never picked:"
+                         " it is on when a mod or a choice requires it")
+    on = {named[n].label for n in names}
+    return [name for name in MODS if name in on]
 
 
-MODDED = bool(selected_mods())
-PATCHED_IMAGE = os.path.join(ROOT, 'dist', ('Persona-engine' if ENGINE_ONLY
-                                           else 'Persona-TL-mods' if MODDED else 'Persona-TL')
-                             + ('' if FONT == toolpath.FONT_EDITIONS[0] else '-' + FONT) + '.bin')
+PATCHED_IMAGE = os.path.join(ROOT, 'dist', 'Persona-TL.bin')
 
 
 
@@ -297,8 +319,8 @@ def build_variants(argv):
         return [(selected_mods(argv), PATCHED_IMAGE)]
     if len(args) != 1:
         raise SystemExit('build.py: provide exactly one --variants=... option')
-    if any(a in ('--mods', '--no-mods') or a.startswith(('--mods=', '--no-mods=')) for a in argv):
-        raise SystemExit('build.py: --variants cannot be combined with --mods or --no-mods')
+    if any(a == '--mods' or a.startswith('--mods=') for a in argv):
+        raise SystemExit('build.py: --variants cannot be combined with --mods')
     if '--no-disc' in argv:
         raise SystemExit('build.py: --variants creates discs and cannot be combined with --no-disc')
     choices = args[0].split('=', 1)[1].split(';')
@@ -342,6 +364,8 @@ def assemble_variant(py, patches, disc_path, make_disc=True, source_image=None):
     mod = [x for name in patches for x in ('-definelabel', MODS[name][0], '1')]
     mod += ['-definelabel', 'BASE_NEGOTIATION_INSET',
             '1' if option_key('base', 'negotiation-inset') == 'on' else '0']
+    mod += ['-definelabel', 'BASE_SPELL_MISS',
+            '1' if option_key('base', 'spell-miss') == 'on' else '0']
     if FONT != 'large':
         mod += ['-definelabel', 'FONT_' + FONT.upper(), '1']
     listing = os.path.join(ROOT, 'build', 'armips-main.lst')

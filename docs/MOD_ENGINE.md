@@ -44,7 +44,7 @@ the script, but every Latin-script language this would get uses it.
 
 ### The engine build (today)
 
-`build.py --engine-only` builds the engine alone: every tool reads
+A build whose `--mods` leaves out `english-translation` (`build.py --mods=latin-alphabet,...`; the release tools pass `--engine-only`) builds the engine alone: every tool reads
 `build/engine-translation`, translation/ with its English emptied
 (`src/pipeline/engine_translation.py`: the `en` and `note` columns, and the
 `text` column of the ending pages and movie subtitles), so each row falls
@@ -52,7 +52,7 @@ back to its Japanese as an untranslated row does. translation/ is named in
 one place, `toolpath.TRANSLATION` (`PERSONA_TRANSLATION` overrides it), which
 is what makes the switch possible. This build contains base and alphabet.
 
-`build.py --base-only` also omits the alphabet assembly and disables its
+One that also leaves out `latin-alphabet` (`--mods=60-fps`; the release tools pass `--base-only`) also omits the alphabet assembly and disables its
 small-font gates. The name-entry binaries remain byte-identical to retail;
 the overlay census checks that alphabet-owned hooks remain retail too.
 Language-neutral relocation and bounds checks remain installed.

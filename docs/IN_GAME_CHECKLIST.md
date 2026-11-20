@@ -6,7 +6,7 @@ item when it has actually been played. Use normal gameplay, not save states.
 
 ## Current test build
 
-`dist/Persona-TL-mods.cue` / `.bin` contains the preferred eight mods,
+`dist/Persona-TL.cue` / `.bin` contains the preferred eight mods,
 large font and default 2× running. It includes the relocated battle typing
 hook and the CONTACT margin correction. Build and audit logs are
 `/tmp/persona-contact-uniform-margin-build.log` and `/tmp/persona-contact-uniform-margin-audit.log`. Western Controls, Softer Menu Sounds

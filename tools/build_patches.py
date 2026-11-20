@@ -159,7 +159,11 @@ def produce_recipe(source: modpack.Source, packs: dict[str, modpack.Pack], rev0:
         selected[label] = mods.by_label()[label].pick(picked)
     name = f'compatibility-{recipe.owner}-{number}'
     flags = {'base': ['--base-only'], 'alphabet': ['--engine-only'], 'english': []}[recipe.tier]
-    configured = ','.join([recipe.owner, *(
+    # the tiers are named: build.py turns on only the tiers a --mods list
+    # names or requires
+    configured = ','.join([*(mods.by_label()[label].slug for label in tier_labels
+                             if not any(label == l for l, _p in conditions)),
+                           recipe.owner, *(
         condition(mods.by_label()[label], mods.by_label()[label].pick(picked))
         if picked else label
         for label, picked in conditions
@@ -701,8 +705,12 @@ def child_trees(rev0: Path, mod: mods.Mod, tokens: list[str],
     """Build `variants` with the mod's choices `tokens` on, in a child
     process (a build's choices are fixed when it starts); each tree lands in
     TREES/<name>."""
+    # every tier named, as before: build.py turns on only the tiers a --mods
+    # list names or requires
+    tiers = [m.slug for m in mods.load() if m.always and m.label != mod.label]
     subprocess.run([sys.executable, str(Path(__file__)),
-                    f'--mods={mod.slug}({",".join(tokens)})', '--rev0', str(rev0), '--trees',
+                    '--mods=' + ','.join([*tiers, f'{mod.slug}({",".join(tokens)})']),
+                    '--rev0', str(rev0), '--trees',
                     ';'.join(f'{v.name}:{",".join(v.labels)}' for v in variants)],
                    check=True, cwd=ROOT)
 

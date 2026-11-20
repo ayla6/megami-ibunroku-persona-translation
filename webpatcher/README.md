@@ -43,18 +43,34 @@ JavaScript twin of `src/pipeline/modpack.py` and `build_disc.py`.
   sector gets fresh EDC/ECC). The result is the set of sectors that differ
   from the player's disc:
   - **Build disc**: a Blob made of slices of the player's own file with the
-    changed sectors in between. Nothing disc-sized is copied in memory or
-    written to browser storage; the browser reads it while downloading.
+    changed sectors in between. Nothing disc-sized is copied in memory; the
+    browser reads it while downloading. "I don't have enough RAM mode"
+    (on by itself on a first visit from Android or a browser reporting
+    under 4 GB) writes the disc to browser storage (OPFS) instead and lets
+    each changed sector go once written; that copy is deleted the next
+    time the page opens. Its `.cue` starts with `REM PATCHER <release>`
+    and one `REM MOD <layer>(<settings>)` line per layer.
   - **Build PPF**: the changed sectors against the disc's own bytes
     (`ppf.js`, PPF 3.0). A selection that would make the disc larger has no
     PPF, since a PPF cannot change a file's size.
+- A read of the player's file costs a fixed fraction of a second on some
+  devices (Chrome on Android) whatever its size, so a `.bin` is read in a
+  few large reads too: what the merge, the layout and the PPF are about to
+  read is asked for up front, in slices of up to 16 MB (`binReader`), and
+  the directory tree is read a depth at a time.
 - A CHD is read only where the layers need it: the files they edit are
   unpacked up front by a few block workers in parallel (`chdblocks.js`),
   anything else the layout reads is unpacked on demand. With "Keep CHD
   parts" on, what was unpacked is kept in IndexedDB, so the next PPF from
   that CHD is much faster. Build disc needs the `.bin`.
-- With a disc folder (Chrome, Edge), Build PPF writes the PPF and a note of
-  its release and options next to the disc; a PPF this patcher did not
+- The PPF's note (`<disc>.ppf.txt`) is the release on its first line, then
+  every layer applied with all of its settings, defaults included
+  (`english-translation(font=large,...)`), then `own <file>` per mod of
+  your own.
+- With a disc folder (Chrome, Edge), Build disc writes `<disc> (Modded).bin`
+  and its cue next to the disc as it goes (nothing held in memory or in
+  browser storage, nothing downloaded), and Build PPF writes the PPF and its
+  note next to the disc; a PPF this patcher did not
   write is never overwritten.
 - The page and its layers must be one release: the page carries its
   release in `<html data-release>`, the manifest in its `release` column,

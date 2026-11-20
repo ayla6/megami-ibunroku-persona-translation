@@ -746,28 +746,21 @@ class SavePatch(unittest.TestCase):
             if row == 0:
                 self.assertEqual(title.read(self.address('mod_o_kind') + 7, 1), 0)
 
-    def test_save_patch_is_opt_in_and_exclusions_win(self):
+    def test_save_patch_is_opt_in(self):
         import build
         self.assertEqual(build.selected_mods([]), [])
-        self.assertEqual(build.selected_mods(['--mods']), build.MODS_DEFAULT)
-        self.assertEqual(build.MODS_DEFAULT, [mod.label for mod in build._mods.pickable() if mod.default])
         self.assertEqual(build.selected_mods(['--mods=60-fps']), ['60-fps'])
         # in apply order, whatever order they are typed in
         self.assertEqual(build.selected_mods(['--mods=unified-save-menu,60-fps']),
                          [name for name in build.MODS if name in ('unified-save-menu', '60-fps')])
-        self.assertEqual(build.selected_mods(['--no-mods=unified-save-menu']), [])
-        self.assertEqual(build.selected_mods(['--mods=all', '--no-mods=unified-save-menu']),
-                         [name for name in build.MODS if name != 'unified-save-menu'
-                          and not build._mods.by_label()[name].marker])  # 'all' picks no marker
-        self.assertEqual(build.selected_mods(['--no-mods', 'unified-save-menu', '--mods', '60-fps']), ['60-fps'])
-        # an always-on mod named for its choices selects no mod; the build
-        # takes the choices through selected_options
+        self.assertEqual(build.selected_mods(['--mods', '60-fps']), ['60-fps'])
+        # a tier is not an option mod; its choices go through selected_options
         self.assertEqual(build.selected_mods(['--mods=english-translation(font=small)']), [])
         self.assertEqual(build.option_key('english-translation', 'font', build.selected_options(['--mods=english-translation(font=small)'])), 'small')
         self.assertEqual(build.option_key('english-translation', 'font', build.selected_options([])), 'large')
         self.assertEqual(build.selected_mods(['--mods=unified-save-menu,unified-save-menu']), ['unified-save-menu'])
-        for args in (['--no-mods'], ['--no-mods=typo'], ['--mods=typo'], ['--mods=saves'],
-                     ['--mods=english-translation']):
+        for args in (['--mods'], ['--no-mods=60-fps'], ['--mods=typo'], ['--mods=saves'],
+                     ['--mods=all']):
             with self.assertRaises(SystemExit):
                 build.selected_mods(args)
 

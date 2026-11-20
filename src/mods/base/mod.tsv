@@ -5,3 +5,5 @@ always	yes
 release	yes
 option	negotiation-inset	on	Correct negotiation inset	Align negotiation text with the normal dialogue inset.
 option	negotiation-inset	off	Original negotiation inset	Use the original negotiation text inset.
+option	spell-miss	on	Show spell misses	Show the MISS marker when a spell misses.
+option	spell-miss	off	Original spell misses	Leave missed spells without a marker.

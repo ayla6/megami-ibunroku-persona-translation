@@ -9,9 +9,14 @@
  * refused.
  *
  * - disc: the result is a Blob of slices of the player's own file with the
- *   changed sectors in between - nothing disc-sized is copied in memory.
+ *   changed sectors in between - nothing disc-sized is copied in memory. In
+ *   low-RAM mode (lowRam) the disc is written to browser storage (OPFS)
+ *   instead and the changed sectors let go as they are written.
  * - ppf: the changed sectors against the disc's own bytes; a selection that
  *   would grow the disc has no PPF (a PPF cannot change a file's size).
+ *
+ * A .bin is read the same way: what the merge, the layout and the PPF are
+ * about to read is asked for up front, in a few large reads (binReader).
  *
  * A CHD is read only where the layers need it, in a few large reads: the
  * files they edit are unpacked up front (in parallel, and kept in IndexedDB
@@ -22,12 +27,16 @@
  * block. A CHD can only take a PPF.
  *
  * Message in:  {type: 'run', output: 'disc' | 'ppf', source, chd, keepChd,
- *               layers: [{name, file, hash, own}], selection, description}
+ *               layers: [{name, file, hash, own}], selection, description,
+ *               lowRam, target}
+ *              target: a file handle in the disc folder that Build disc
+ *              writes the disc into (then nothing is held in memory)
  *              own: a mod loaded by the user (no manifest hash), after the release's
  *              selection: {label: option key ('' for a mod without options)},
  *              which parts of each layer apply (MODPACK.selected)
  * Message out: {type: 'progress', message}
- *              {type: 'done', blob, bytes}       // output 'disc'
+ *              {type: 'done', blob, bytes, stored}  // output 'disc'; stored: an OPFS file
+ *              {type: 'done', bytes, written}      // output 'disc' into target
  *              {type: 'ppf-done', ppf}           // output 'ppf'
  *              {type: 'error', message}
  */
@@ -369,6 +378,73 @@ function chdReader(chd, parts, file) {
   return read;
 }
 
+/* A reader over the .bin: bytes from what a prefetch read when it holds
+ * them, else read from the file. A read of the file costs a fixed fraction
+ * of a second on some devices whatever its size, so what the merge, the
+ * layout and the PPF are about to read is asked for up front (prefetch):
+ * read in slices of up to 16 MB that bridge gaps up to 4 MB, and only the
+ * asked-for stretches of each slice kept, not the bridged gaps. */
+const SLICE_GAP = 4 << 20;
+const SLICE_MOST = 16 << 20;
+
+function binReader(file) {
+  let parts = new Parts();
+  const fromFile = async (offset, length) =>
+      new Uint8Array(await file.slice(offset, offset + length).arrayBuffer());
+  const read = async (offset, length) => {
+    const out = new Uint8Array(length);
+    const end = offset + length;
+    for (let pos = offset; pos < end;) {
+      const kept = parts.take(pos, end);
+      if (kept) {
+        out.set(kept, pos - offset);
+        pos += kept.length;
+        continue;
+      }
+      // up to where the parts start holding bytes again
+      const next = parts.spans.find(([start]) => start > pos);
+      const to = next ? Math.min(end, next[0]) : end;
+      out.set(await fromFile(pos, to - pos), pos - offset);
+      pos = to;
+    }
+    return out;
+  };
+  read.prefetch = async spans => {
+    const wanted = mergeSpans(spans.map(([start, end]) => [start, Math.min(end, file.size)])
+        .filter(([start, end]) => start < end && !parts.read(start, end - start)), 0);
+    if (!wanted.length) return;
+    const slices = [];
+    for (const [start, end] of wanted) {
+      const last = slices[slices.length - 1];
+      if (last && start - last.end <= SLICE_GAP && end - last.start <= SLICE_MOST) {
+        last.end = end;
+        last.spans.push([start, end]);
+      } else slices.push({start, end, spans: [[start, end]]});
+    }
+    const pieces = [];
+    for (const slice of slices) {
+      const bytes = await fromFile(slice.start, slice.end - slice.start);
+      for (const [start, end] of slice.spans) {
+        pieces.push([start, bytes.slice(start - slice.start, end - slice.start)]);
+      }
+    }
+    // the new parts: what was held plus what was read
+    const all = mergeSpans(parts.spans.concat(pieces.map(([start, bytes]) =>
+        [start, start + bytes.length])), 0);
+    const data = new Uint8Array(all.reduce((n, [start, end]) => n + end - start, 0));
+    const grown = new Parts(all, data);
+    const put = (start, bytes) => {
+      const k = grown.find(start);
+      data.set(bytes, grown.at[k] + start - all[k][0]);
+    };
+    parts.spans.forEach(([start, end], k) => put(start, parts.data.subarray(parts.at[k],
+                                                                           parts.at[k] + end - start)));
+    for (const [start, bytes] of pieces) put(start, bytes);
+    parts = grown;
+  };
+  return read;
+}
+
 /* The base layer's source check failed while reading a CHD. */
 class SourceMismatch extends Error {
   constructor(message, chdSha1) {
@@ -409,8 +485,9 @@ async function run(msg) {
     read = chdReader(chd, parts, msg.source);
   } else {
     size = msg.source.size;
-    read = async (offset, length) =>
-        new Uint8Array(await msg.source.slice(offset, offset + length).arrayBuffer());
+    read = binReader(msg.source);
+    // the files the layers edit, read at once
+    await read.prefetch(await MODPACK.touched(MODPACK.source(read, size), layers));
   }
 
   postMessage({type: 'progress', message: 'Merging the layers'});
@@ -436,6 +513,7 @@ async function run(msg) {
     if (last && last.lba + last.sectors.length === lba) last.sectors.push(sector);
     else runs.push({lba, sectors: [sector]});
   }
+  plan.sectors.clear();            // the runs hold them now
   const joined = sectors => {
     const out = new Uint8Array(sectors.length * SECTOR);
     sectors.forEach((sector, k) => out.set(sector, k * SECTOR));
@@ -448,6 +526,11 @@ async function run(msg) {
           + ' do - use Build disc instead');
     }
     postMessage({type: 'progress', message: 'Writing the PPF'});
+    // every run's source bytes, and the block, in one request
+    if (read.prefetch) {
+      await read.prefetch([[PPF.BLOCK_AT, PPF.BLOCK_AT + PPF.BLOCK_BYTES],
+          ...runs.map(({lba, sectors}) => [lba * SECTOR, (lba + sectors.length) * SECTOR])]);
+    }
     const regions = [];
     for (const {lba, sectors} of runs) {
       const target = joined(sectors);
@@ -462,17 +545,110 @@ async function run(msg) {
 
   if (msg.chd) throw new Error('Build disc needs the .bin, not a CHD');
   postMessage({type: 'progress', message: 'Preparing the download'});
-  const parts = [];
+  // the disc in order: a stretch of the source, or a run of changed sectors
+  const pieces = [];
   let at = 0;
   for (const {lba, sectors} of runs) {
     const offset = lba * SECTOR;
-    if (offset > at) parts.push(msg.source.slice(at, Math.min(offset, size)));
-    parts.push(joined(sectors));
+    if (offset > at) pieces.push({from: at, to: Math.min(offset, size)});
+    pieces.push({sectors});
     at = offset + sectors.length * SECTOR;
   }
-  if (at < size) parts.push(msg.source.slice(at, size));
-  const blob = new Blob(parts, {type: 'application/octet-stream'});
+  if (at < size) pieces.push({from: at, to: size});
+  if (msg.target) {
+    postMessage({type: 'done', bytes: await discIntoFile(msg.source, pieces, msg.target),
+                 written: true});
+    return;
+  }
+  if (msg.lowRam) {
+    const file = await discInStorage(msg.source, pieces);
+    if (file) {
+      postMessage({type: 'done', blob: file, bytes: file.size, stored: true});
+      return;
+    }
+    postMessage({type: 'progress', message: 'Browser storage is not available here; keeping the disc in memory'});
+  }
+  const blob = new Blob(pieces.flatMap(piece => piece.sectors
+      || [msg.source.slice(piece.from, piece.to)]), {type: 'application/octet-stream'});
   postMessage({type: 'done', blob, bytes: blob.size});
+}
+
+/* The disc in order, each piece handed to `put`, each changed sector let go
+ * once it is put. The source is read through one 16 MB window, so the many
+ * small stretches between changed runs cost a read per window, not each. */
+const COPY_BYTES = 16 << 20;
+
+async function writeDisc(source, pieces, put, where) {
+  let at = 0;
+  let window = null, windowAt = 0;
+  for (const piece of pieces) {
+    if (!piece.sectors) {
+      for (let pos = piece.from; pos < piece.to;) {
+        if (!window || pos < windowAt || pos >= windowAt + window.length) {
+          postMessage({type: 'progress', message:
+              `Writing the disc ${where} (${Math.floor(at / (1 << 20))} MB)`});
+          windowAt = pos;
+          window = new Uint8Array(await source.slice(pos, Math.min(source.size, pos + COPY_BYTES))
+              .arrayBuffer());
+        }
+        const take = Math.min(piece.to, windowAt + window.length) - pos;
+        await put(window.slice(pos - windowAt, pos - windowAt + take), at);
+        at += take;
+        pos += take;
+      }
+    } else {
+      while (piece.sectors.length) {
+        const sector = piece.sectors.shift();
+        await put(sector, at);
+        at += sector.length;
+      }
+    }
+  }
+  return at;
+}
+
+/* Build disc with a disc folder: the disc written straight into the file the
+ * page made beside the player's disc (msg.target), nothing held as a Blob. */
+async function discIntoFile(source, pieces, handle) {
+  const writable = await handle.createWritable();
+  try {
+    const bytes = await writeDisc(source, pieces, bytes => writable.write(bytes), 'into the folder');
+    await writable.close();
+    return bytes;
+  } catch (err) {
+    await writable.abort().catch(() => {});
+    throw err;
+  }
+}
+
+/* Low-RAM mode: the patched disc written to the origin's private storage
+ * (OPFS) instead of being held as a Blob; the page hands over the stored
+ * file. One disc is kept at a time (OUTPUT_DIR, emptied by the page when it
+ * opens). null: no OPFS here. */
+const OUTPUT_DIR = 'patcher-output';
+
+async function discInStorage(source, pieces) {
+  let handle, access;
+  try {
+    const root = await navigator.storage.getDirectory();
+    const dir = await root.getDirectoryHandle(OUTPUT_DIR, {create: true});
+    handle = await dir.getFileHandle('disc.bin', {create: true});
+    access = await handle.createSyncAccessHandle();
+  } catch (err) {
+    return null;
+  }
+  try {
+    access.truncate(0);
+    await writeDisc(source, pieces, (bytes, at) => {
+      for (let done = 0; done < bytes.length;) {
+        done += access.write(bytes.subarray(done), {at: at + done});
+      }
+    }, 'to browser storage');
+    access.flush();
+  } finally {
+    access.close();
+  }
+  return handle.getFile();
 }
 
 self.onmessage = async event => {

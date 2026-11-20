@@ -35,12 +35,10 @@ build record, not a preference: it can be stale after a checkout or an
 aborted build, so do not read it as "the edition we care about". Pass
 `PERSONA_FONT` explicitly when a result must be tied to one face.
 
-Built discs carry the edition in the name:
-
-| edition | plain | with mods | engine-only |
-| --- | --- | --- | --- |
-| `large` | `dist/Persona-TL.bin` | `dist/Persona-TL-mods.bin` | `dist/Persona-engine.bin` |
-| `small` | `dist/Persona-TL-small.bin` | `dist/Persona-TL-mods-small.bin` | `dist/Persona-engine-small.bin` |
+Every build is written to `dist/Persona-TL.bin` (and `.cue`), whatever its
+edition and mods: the name does not say which edition a disc is, so check
+`build/font_edition` (toolpath.built_edition) or rebuild before measuring
+against a disc.
 
 ## Files
 

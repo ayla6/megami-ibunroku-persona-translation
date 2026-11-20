@@ -486,26 +486,48 @@
     }
 
     /* [path, extent, size, recordLba, recordOffset] for every file */
-    async walk(lba, size, prefix = '', out = []) {
-      for (let n = 0; n < Math.ceil(size / 2048); n++) {
-        const sec = await this.user(lba + n);
-        const view = new DataView(sec.buffer, sec.byteOffset);
-        let pos = 0;
-        while (pos < 2048) {
-          const recLen = sec[pos];
-          if (recLen === 0) break;
-          const ext = view.getUint32(pos + 2, true);
-          const extSize = view.getUint32(pos + 10, true);
-          const flags = sec[pos + 25];
-          const nameBytes = sec.subarray(pos + 33, pos + 33 + sec[pos + 32]);
-          if (!(nameBytes.length === 1 && nameBytes[0] <= 1)) {
-            const name = new TextDecoder('ascii').decode(nameBytes).split(';')[0];
-            if (flags & 2) await this.walk(ext, extSize, prefix + name + '/', out);
-            else out.push([prefix + name, ext, extSize, lba + n, pos]);
+    async walk(lba, size) {
+      // one depth of the tree at a time, every directory of it asked for in
+      // one request (Disc.prefetch), then the files in the tree's order
+      const records = new Map();     // directory lba -> [name, ext, size, isDir, recLba, recOff]
+      for (let level = [[lba, size]]; level.length;) {
+        await this.prefetch(level.map(([at, bytes]) =>
+            [at * SECTOR, (at + Math.ceil(bytes / 2048)) * SECTOR]));
+        const next = [];
+        for (const [at, bytes] of level) {
+          if (records.has(at)) continue;
+          const own = [];
+          records.set(at, own);
+          for (let n = 0; n < Math.ceil(bytes / 2048); n++) {
+            const sec = await this.user(at + n);
+            const view = new DataView(sec.buffer, sec.byteOffset);
+            let pos = 0;
+            while (pos < 2048) {
+              const recLen = sec[pos];
+              if (recLen === 0) break;
+              const ext = view.getUint32(pos + 2, true);
+              const extSize = view.getUint32(pos + 10, true);
+              const isDir = (sec[pos + 25] & 2) !== 0;
+              const nameBytes = sec.subarray(pos + 33, pos + 33 + sec[pos + 32]);
+              if (!(nameBytes.length === 1 && nameBytes[0] <= 1)) {
+                const name = new TextDecoder('ascii').decode(nameBytes).split(';')[0];
+                own.push([name, ext, extSize, isDir, at + n, pos]);
+                if (isDir) next.push([ext, extSize]);
+              }
+              pos += recLen;
+            }
           }
-          pos += recLen;
         }
+        level = next;
       }
+      const out = [];
+      const emit = (at, prefix) => {
+        for (const [name, ext, extSize, isDir, recLba, recOff] of records.get(at)) {
+          if (isDir) emit(ext, prefix + name + '/');
+          else out.push([prefix + name, ext, extSize, recLba, recOff]);
+        }
+      };
+      emit(lba, '');
       return out;
     }
 

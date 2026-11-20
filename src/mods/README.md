@@ -36,17 +36,12 @@ A mod's choices are named in parentheses after it:
 `--mods='english-translation(font=small,subtitles=off)'` (quote it for the
 shell); `--mods=list` lists every mod and choice.
 
-| | translation | with mods |
-|---|---|---|
-| command | `python src/pipeline/build.py` | `python src/pipeline/build.py --mods[=LABEL,...]` |
-| disc | `dist/Persona-TL.bin/.cue` | `dist/Persona-TL-mods.bin/.cue` |
-
-A bare `--mods` selects the mods marked `default` in their mod.tsv;
-`--mods=unified-save-menu` selects one explicitly (a space instead of `=` works too), and
-a named selection such as `--mods=60-fps` selects only the named mods.
-`--no-mods=unified-save-menu` excludes one from a larger selection, for example
-`--mods=all --no-mods=unified-save-menu`. Exclusions win regardless of order, and `all`
-works with either option. `--mods=list` lists every mod with its description.
+`python src/pipeline/build.py` builds `english-translation` alone;
+`--mods=LABEL,...` builds exactly the named mods and what they require
+(a space instead of `=` works too). `base`, `latin-alphabet` and
+`english-translation` are mods like the others: `--mods=60-fps` builds 60 fps
+on the base alone, `--mods=english-translation,60-fps` the translation with
+60 fps. Every build is written to `dist/Persona-TL.bin/.cue`.
 
 `build/` is shared and holds whichever variant was built last (armips
 rewrites every overlay from `data/psx/` on each run, so enabled and disabled

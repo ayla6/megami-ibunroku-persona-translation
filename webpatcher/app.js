@@ -309,7 +309,7 @@ function planLayers(items = selectedLabels()) {
 }
 
 /* `ppf` set: the worker builds a PPF instead of a disc. */
-async function apply(source, ppf, ppfDescription, labels = selectedLabels()) {
+async function apply(source, ppf, ppfDescription, labels = selectedLabels(), target = null) {
   const layers = [];
   const plan = planLayers(labels);
   for (const layer of plan.layers) {
@@ -332,7 +332,7 @@ async function apply(source, ppf, ppfDescription, labels = selectedLabels()) {
       worker.onmessage = event => {
         const msg = event.data;
         if (msg.type === 'progress') status(msg.message + '...');
-        else if (msg.type === 'done') resolve({blob: msg.blob});
+        else if (msg.type === 'done') resolve({blob: msg.blob, stored: !!msg.stored});
         else if (msg.type === 'ppf-done') resolve({ppf: msg.ppf});
         else if (msg.type === 'error') reject(new Error(msg.message));
       };
@@ -342,6 +342,7 @@ async function apply(source, ppf, ppfDescription, labels = selectedLabels()) {
       worker.postMessage({type: 'run', output: ppf ? 'ppf' : 'disc', source, layers,
                           selection: plan.selection,
                           chd: isChd(source), keepChd: $('keep-chd').checked,
+                          lowRam: $('low-ram').checked, target,
                           description: ppfDescription});
     });
   } finally {
@@ -381,31 +382,49 @@ let resultDownloaded = false;
  * its description field and in the manifest beside it. */
 const stem = name => name.replace(/\.[^./\\]*$/, '');
 
-/* Beside the PPF: the release, then one option label per line. A local
- * release has no stamp yet; its first line says so, so the first line is
- * always the release and never an option. */
+/* What a result holds, written beside it (the PPF's note, the disc's cue):
+ * the release, then every layer it applies, one per line, with every one
+ * of its settings - defaults too, so the note still says what was built
+ * when a later release changes a default - then each mod of your own as
+ * `own <file>`. A local release has no stamp yet; its first line says so,
+ * so the first line is always the release and never an option. */
 const UNSTAMPED = 'unstamped';
 
+function settingLines(labels) {
+  return [...Object.entries(selectionOf(labels)).map(([label, tokens]) =>
+              (tokens.length ? `${label}(${tokens.join(',')})` : label)),
+          ...state.ownMods.filter(mod => mod.on).map(mod => `own ${mod.file}`)];
+}
+
 function ppfNote(info) {
-  const lines = [releaseStamp(state.rows) || UNSTAMPED, ...info.labels];
+  const lines = [releaseStamp(state.rows) || UNSTAMPED, ...settingLines(info.labels)];
   return new Blob([lines.join('\n') + '\n'], {type: 'text/plain'});
 }
 
-/* `done.blob` is the patched disc; `done.ppf` the PPF, named after the disc
- * it patches, with a note of what it holds. */
-function showResult(base, done, info) {
+/* The same lines as REM comments at the top of the cue, which emulators
+ * skip. */
+function cueText(discName, labels) {
+  const rems = [`REM PATCHER ${releaseStamp(state.rows) || UNSTAMPED}`,
+                ...settingLines(labels).map(line => `REM MOD ${line}`)];
+  return rems.join('\n') + `\nFILE "${discName.replace(/"/g, '')}" BINARY\n` + CUE_BODY;
+}
+
+/* `done.blob` is the patched disc, `<disc> (Modded).bin` with its cue;
+ * `done.ppf` the PPF, named after the disc it patches, with a note of what
+ * it holds. */
+function showResult(done, info) {
   const files = [];   // [blob, name]
   if (done.ppf) {
     const ppfName = stem(info.sourceName) + '.ppf';
     files.push([done.ppf, ppfName]);
     files.push([ppfNote(info), ppfName + '.txt']);
   } else {
-    files.push([done.blob, base + '.bin']);
+    // the release and the settings are in its cue: the name stays the disc's
+    files.push([done.blob, stem(info.sourceName) + ' (Modded).bin']);
   }
   const disc = files.find(([, name]) => name.endsWith('.bin'));
   if (disc) {
-    files.push([new Blob([`FILE "${disc[1].replace(/"/g, '')}" BINARY\n` + CUE_BODY],
-                         {type: 'application/octet-stream'}),
+    files.push([new Blob([cueText(disc[1], info.labels)], {type: 'application/octet-stream'}),
                 stem(disc[1]) + '.cue']);
   }
 
@@ -491,7 +510,7 @@ async function ppfIntoFolder(labels) {
     // the first line is the release; options follow, one per line
     const [first = '', ...rest] = (await note.text()).split(/\r?\n/);
     if (first.trim() === stamp
-        && sameOptions(labels, rest.map(line => line.trim()).filter(Boolean))) {
+        && sameOptions(settingLines(labels), rest.map(line => line.trim()).filter(Boolean))) {
       $('results').replaceChildren();
       status(`${ppfName} is already ${stamp} with these options`);
       return;
@@ -504,6 +523,29 @@ async function ppfIntoFolder(labels) {
               kind: 'ppf', source: 'Rev 0', file: ppfName});
   $('results').replaceChildren();
   status(`The PPF was placed alongside the selected disc (${discName}).`);
+}
+
+/* Build disc with a disc from the disc folder: `<disc> (Modded).bin` and its
+ * cue are written next to it by the worker as it goes, so the disc is never
+ * held in memory or in browser storage, and nothing is downloaded. */
+async function discIntoFolder(labels) {
+  const folder = await writableFolder();
+  const discName = state.source.name;
+  const name = stem(discName) + ' (Modded).bin';
+  if (isChd(state.source)) throw new Error('Build disc needs the .bin, not a CHD');
+  const target = await folder.getFileHandle(name, {create: true});
+  try {
+    await apply(state.source, false, outputBase(labels), labels, target);
+  } catch (err) {
+    // a disc that did not finish is not left looking like one
+    await folder.removeEntry(name).catch(() => {});
+    throw err;
+  }
+  await writeInFolder(folder, [[new Blob([cueText(name, labels)]), stem(name) + '.cue']]);
+  addHistory({at: new Date().toISOString(), release: releaseStamp(state.rows), options: labels,
+              kind: 'disc', source: 'Rev 0', file: name});
+  $('results').replaceChildren();
+  status(`${name} was placed alongside the selected disc (${discName}).`);
 }
 
 /* The disc folder (Chrome, Edge). Picked once and kept as a handle in
@@ -578,6 +620,18 @@ function folderNeedsPermission(folder) {
   $('change-folder').dataset.allow = '1';
   $('folder-discs').hidden = false;
   $('folder-discs').textContent = `Click Allow access to use ${folder.name} again.`;
+}
+
+/* The browser may drop the permission while the page stays open: checked
+ * whenever the page is shown again, so the folder shows Allow access. A
+ * permission prompt needs a click, and only Allow access and the build
+ * buttons ask for it. */
+async function recheckFolder() {
+  const folder = state.folder;
+  if (!folder || $('change-folder').dataset.allow || state.running) return;
+  try {
+    if (await folder.queryPermission({mode: 'readwrite'}) !== 'granted') folderNeedsPermission(folder);
+  } catch (err) { /* the folder is gone: the next build says so */ }
 }
 
 /* The disc folder (Chrome, Edge) comes first: the page lists the Megami
@@ -1211,8 +1265,34 @@ function savedMemory() {
 
 function saveMemory() {
   try {
-    localStorage.setItem(MEMORY_KEY, JSON.stringify({keepChd: $('keep-chd').checked}));
+    localStorage.setItem(MEMORY_KEY, JSON.stringify({keepChd: $('keep-chd').checked,
+                                                     lowRam: $('low-ram').checked}));
   } catch (err) { /* storage blocked: the box just isn't remembered */ }
+}
+
+/* Low-RAM mode (worker.js, discInStorage) is turned on by itself on a first
+ * visit only where memory is likely tight: Android, or a browser that
+ * reports under 4 GB. */
+const LOW_RAM_GB = 4;
+
+function lowMemoryHint() {
+  const data = navigator.userAgentData;
+  if ((data && data.platform === 'Android') || /Android/i.test(navigator.userAgent || '')) {
+    return 'this is an Android device';
+  }
+  const reported = navigator.deviceMemory;
+  if (typeof reported === 'number' && reported < LOW_RAM_GB) {
+    return `this browser reports about ${reported} GB of memory`;
+  }
+  return null;
+}
+
+/* The disc low-RAM mode wrote (worker.js, OUTPUT_DIR): one at a time, gone
+ * when the page opens again. */
+async function dropStoredDisc() {
+  try {
+    await (await navigator.storage.getDirectory()).removeEntry('patcher-output', {recursive: true});
+  } catch (err) { /* nothing stored, or no OPFS */ }
 }
 
 /* The CHD parts the worker keeps (worker.js, PART_DB) - the whole store. */
@@ -1339,9 +1419,20 @@ function renderOwnMods() {
 window.patcher = {loadManifest, FEATURES, planLayers, apply, selectedLabels, state};  // tests
 
 async function init() {
-  // the storage option is remembered from the first visit: CHD parts start kept
+  // the storage options are remembered from the first visit: CHD parts start
+  // kept, low-RAM mode starts on where memory is likely tight
+  dropStoredDisc();
   const memory = savedMemory();
   $('keep-chd').checked = memory ? memory.keepChd !== false : true;
+  const hint = lowMemoryHint();
+  $('low-ram').checked = memory && 'lowRam' in memory ? !!memory.lowRam : !!hint;
+  const note = $('low-ram-note');
+  note.hidden = !(hint && $('low-ram').checked && !(memory && 'lowRam' in memory));
+  note.textContent = note.hidden ? '' : `Turned on by itself because ${hint}.`;
+  $('low-ram').addEventListener('change', () => {
+    note.hidden = true;
+    saveMemory();
+  });
   if (!memory) saveMemory();     // the starting choice, written at once
   // kept parts should survive storage pressure: ask for persistent storage
   // (Chrome decides without a prompt, by how the site is used)
@@ -1367,6 +1458,10 @@ async function init() {
   $('build-ppf').addEventListener('click', () => run(true));
   if (window.showDirectoryPicker) {
     showFolder(null);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') recheckFolder();
+    });
+    window.addEventListener('focus', recheckFolder);
     $('change-folder').addEventListener('click', async () => {
       try {
         // a remembered folder only needs its permission back (a click is
@@ -1395,7 +1490,7 @@ async function init() {
     refreshApply();
     try {
       if (state.fromFolder && state.folder) {
-        const access = {mode: ppf ? 'readwrite' : 'read'};
+        const access = {mode: 'readwrite'};
         let permission = await state.folder.queryPermission(access);
         if (permission !== 'granted') permission = await state.folder.requestPermission(access);
         if (permission !== 'granted') {
@@ -1416,8 +1511,10 @@ async function init() {
       const labels = selectedLabels();
       // a disc from the disc folder: the PPF goes next to it, no downloads
       if (ppf && state.fromFolder && state.folder) return await ppfIntoFolder(labels);
+      // and the disc too, written straight into the folder
+      if (state.fromFolder && state.folder) return await discIntoFolder(labels);
       const done = await apply(state.source, ppf, outputBase(labels), labels);
-      showResult(outputBase(labels), done, {labels, sourceName: state.source.name});
+      showResult(done, {labels, sourceName: state.source.name});
     } catch (err) {
       status(err.message, true);
     } finally {

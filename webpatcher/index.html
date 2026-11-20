@@ -157,6 +157,14 @@ Enable it on DuckStation by going Settings -&gt; Console -&gt; CD-ROM Emulation 
       <span class="choice-description">Keeps the parts of a CHD that building a PPF reads (about 30 MB) in browser storage, so the next PPF from it is much faster. Unticking it deletes them.</span>
     </span>
   </label>
+  <label class="choice">
+    <input type="checkbox" id="low-ram">
+    <span class="choice-text">
+      <span class="choice-name">I don't have enough RAM mode</span>
+      <span class="choice-description">Build disc writes the patched disc to browser storage instead of keeping its changed parts in memory. It's slower, but it lets low-memory devices build a disc. A PPF never holds the disc, so it doesn't need this.</span>
+    </span>
+  </label>
+  <p id="low-ram-note" hidden></p>
 </fieldset>
 
 <script src="features.js"></script>

@@ -43,9 +43,12 @@ def main() -> None:
     tier = {'base': 'base', 'alphabet': 'latin-alphabet', 'english': 'english-translation'}[args.tier]
     if tier not in requires:
         requires.append(tier)
-    baseline = [by_slug_label.slug for label in requires
-                if not (by_slug_label := mods.by_label()[label]).always
-                and not by_slug_label.marker]
+    # the tier is named: build.py turns on only the tiers a --mods list names
+    # or requires
+    baseline = [mods.by_label()[tier].slug] + [
+        by_slug_label.slug for label in requires
+        if not (by_slug_label := mods.by_label()[label]).always
+        and not by_slug_label.marker]
     flags = {'base': ['--base-only'], 'alphabet': ['--engine-only'], 'english': []}[args.tier]
     command = [sys.executable, str(ROOT / 'src/pipeline/build.py'), '--no-disc', *flags]
     source = modpack.Source(build.ORIGINAL_IMAGE)

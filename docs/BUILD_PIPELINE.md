@@ -167,8 +167,8 @@ once, then independently assembles and verifies each combination and writes
 `dist/Persona-TL-base.bin`, `dist/Persona-TL-saves.bin`, and
 `dist/Persona-TL-saves-60fps.bin` with corresponding CUE files. Names are
 the same as `--mods` (the mods' names); `base` means no mods beyond the translation. Quote the argument to keep
-the shell from interpreting semicolons. Batch mode rejects `--no-disc`,
-`--mods` and `--no-mods` to avoid ambiguous or overwritten results. Combine
+the shell from interpreting semicolons. Batch mode rejects `--no-disc`
+and `--mods` to avoid ambiguous or overwritten results. Combine
 with `--port` (and `--clean`) where appropriate. The shared `build/`
 tree holds the **last** variant after the command; the distinct disc images
 hold each result. As with separate builds, each image is made from the original
