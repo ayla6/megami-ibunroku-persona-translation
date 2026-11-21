@@ -99,6 +99,26 @@ def main(*, apply=True):
             continue
         rows.append({'pos': pos, 'en': en, 'psp': f'EBOOT:{off:x}'})
         occupied.add(pos)
+    # THE ROOM: a wording the message bank cannot hold (wider than its one
+    # row, or no bytes left where its references can reach) never becomes a
+    # generated row - it goes to manual as an over-limit draft here, at the
+    # row's only write. Freeing one row can make room for another, so ask
+    # again until every remaining row fits.
+    import btlp
+    bank = btlp.data()
+    by_pos = {r['pos']: r for r in toolbelt.merged_rows('BTLP')}
+    by_pos.update({r['pos']: r for r in rows})
+    for pos, *_rest in rejected:
+        by_pos.pop(pos, None)
+    while True:
+        mine = {r['pos']: r for r in rows}
+        over = {pos: why for pos, why in btlp.msg_over(bank, by_pos).items() if pos in mine}
+        if not over:
+            break
+        for pos, why in over.items():
+            rejected.append((pos, mine[pos]['psp'], mine[pos]['en'], why))
+            by_pos.pop(pos)
+        rows = [r for r in rows if r['pos'] not in over]
     if not apply:
         return
     for pos, psp, draft, why in rejected:

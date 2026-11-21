@@ -110,6 +110,9 @@ def refs(d, msgs):
                         i = None                    # label inside a message slot that must stay where it is
                     if i is not None and (w & 0xFFFF) == 0x800C and op == 9:
                         found[i].append(('code', B + 4 * (k + j), v))
+                if ((x >> 16) & 31 == rt and op in (*range(8, 16), *range(0x20, 0x27))) \
+                        or (op == 0 and (x >> 11) & 31 == rt):
+                    break                           # rt rewritten: the lui reaches no further
     return found
 
 
@@ -161,6 +164,11 @@ def _mem_addr(md, d, ins):
         if prev.mnemonic == 'lui' and prev.operands and \
                 prev.reg_name(prev.operands[0].reg) == base:
             return ((prev.operands[1].imm << 16) + mem.mem.disp) & 0xFFFFFFFF
+        if prev.operands and prev.operands[0].type == capstone.mips.MIPS_OP_REG \
+                and prev.reg_name(prev.operands[0].reg) == base \
+                and prev.mnemonic not in ('sb', 'sh', 'sw', 'swl', 'swr') \
+                and not prev.mnemonic.startswith(('b', 'j')):
+            return None                     # base rewritten after any earlier lui
     return None
 
 

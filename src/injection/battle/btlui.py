@@ -219,6 +219,9 @@ def guard_offer_retail(d):
                         if kind == 9 and imm & 0x8000:
                             imm -= 0x10000
                         targets.append((high + imm) & 0xffffffff)
+                    if (kind in (*range(8, 16), *range(0x20, 0x27)) and (nxt >> 16) & 31 == reg) \
+                            or (kind == 0 and (nxt >> 11) & 31 == reg):
+                        break           # reg rewritten: this lui reaches no further
             if any(lo <= target < hi for target in targets):
                 raise ValueError(f'btlui: reference to offer helper code at {pc:#x}')
             if active:

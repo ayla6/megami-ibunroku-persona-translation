@@ -665,7 +665,14 @@ def msg_script(text):
     return text
 
 
-def msg_build(d, rows_by_pos, body):
+def msg_plan(d, rows_by_pos):
+    """Where every message-box string goes, without writing anything.
+
+    -> (msgs, new, place, spilled, refs, over). `over` is {index: reason}
+    for each English row that cannot ship (wider than the one row, or no
+    room at its address or in any free range); those carry their Japanese
+    in `new`. The porter asks this before it writes a row, so a wording
+    that cannot ship goes to manual instead of the build (boot_btlmsg)."""
     msgs = []
     p = MSG_ZONE[0]
     while p < MSG_ZONE[1]:
@@ -677,7 +684,7 @@ def msg_build(d, rows_by_pos, body):
         p = e
     rf = _zone_refs(d, MSG_ZONE)
     new = {}
-    translated = 0
+    over = {}
     for i, (a, e) in enumerate(msgs):
         r = rows_by_pos.get(hex(a - B))
         t = laid((r['en'] if r else '').strip())
@@ -690,15 +697,12 @@ def msg_build(d, rows_by_pos, body):
             b = etext.encode(t, end=END)
         except ValueError as ex:
             toolbelt.fail(f'msg {i} {t!r}: {ex}')
-        if codes(b) != codes(orig):
-            pass        # a code difference is not a rendering problem
         w = vwf_wrap.text_width(t)
         if w > 240:
-            print(f'btlp: msg {i}: {w}px/240px; Japanese ships '
-                  '(one-row message exceeds its viewport)')
+            # one-row message wider than its viewport
+            over[i] = toolbelt.note_over(w, 240, 'px')
             new[i] = orig
             continue
-        translated += 1
         new[i] = b
     # no re-pointable reference, or retail code loading from it directly
     # (write_guard.retail_reads): it keeps its address
@@ -730,6 +734,11 @@ def msg_build(d, rows_by_pos, body):
                     out.append([e, z[1]])
         free[:] = out
 
+    def fall_back(i, n, room):
+        a, e = msgs[i]
+        over[i] = toolbelt.note_over(n, room, 'B')
+        new[i] = bytes(d[a - B:e - B])
+
     # Reserve every immovable source before any string grows into a neighbour.
     for i in fixed:
         a, e = msgs[i]
@@ -738,9 +747,7 @@ def msg_build(d, rows_by_pos, body):
         a, e = msgs[i]
         n = len(new[i])
         if a + n > e and not any(lo <= e and a + n <= hi for lo, hi in free):
-            new[i] = bytes(d[a - B:e - B])
-            print(f'btlp: msg {i}: no room at its fixed address for {n} bytes'
-                  f' - overflow, Japanese ships')
+            fall_back(i, n, e - a)          # no room at its fixed address
         elif a + n > e:
             carve(e, a + n)
         place[i] = a
@@ -749,9 +756,8 @@ def msg_build(d, rows_by_pos, body):
     for i in code:
         place[i] = take(free, len(new[i]))
         if place[i] is None:
-            a, e = msgs[i]
-            place[i], new[i] = a, bytes(d[a - B:e - B])
-            print(f'btlp: msg {i}: out of space - overflow, Japanese ships')
+            fall_back(i, len(new[i]), max((z[1] - z[0] for z in free), default=0))
+            place[i] = msgs[i][0]
     spilled = []
     for i in words:
         place[i] = take(free, len(new[i]))
@@ -759,10 +765,27 @@ def msg_build(d, rows_by_pos, body):
             place[i] = take(spill, len(new[i]))
             spilled.append(i)
             if place[i] is None:
-                a, e = msgs[i]
-                place[i], new[i] = a, bytes(d[a - B:e - B])
-                print(f'btlp: msg {i}: out of space (spill full) - '
-                      f'overflow, Japanese ships')
+                spilled.pop()
+                fall_back(i, len(new[i]), max((z[1] - z[0] for z in free + spill), default=0))
+                place[i] = msgs[i][0]
+    return msgs, new, place, spilled, rf, over
+
+
+def msg_over(d, rows_by_pos):
+    """{pos: reason} for the message-box rows that cannot ship."""
+    msgs, _new, _place, _spilled, _rf, over = msg_plan(d, rows_by_pos)
+    return {hex(msgs[i][0] - B): why for i, why in over.items()}
+
+
+def msg_build(d, rows_by_pos, body):
+    msgs, new, place, spilled, rf, over = msg_plan(d, rows_by_pos)
+    for i, why in sorted(over.items()):
+        # the porter routes a tool's wording that cannot ship to manual;
+        # what reaches here is a human's row: it is kept, the Japanese ships
+        print(f'btlp: msg {i} ({msgs[i][0] - B:#x}): {why} - the Japanese ships '
+              'until the manual row is shortened')
+    translated = sum(1 for i, (a, e) in enumerate(msgs)
+                     if i not in over and new[i] != bytes(d[a - B:e - B]))
     body.append(f'.org {MSG_ZONE[0]:#x}\n    .fill {MSG_ZONE[1] - MSG_ZONE[0]:#x}, 0')
     for i in range(len(msgs)):
         if i not in spilled:
@@ -778,7 +801,8 @@ def msg_build(d, rows_by_pos, body):
                        + '\n'.join(f'.org {place[i]:#x}\n    .byte '
                                    + ', '.join(f'0x{c:02X}' for c in new[i])
                                    for i in spilled) + '\n')
-    print(f'btlp msg: {translated}/{len(msgs)} translated, {len(spilled)} spilled')
+    print(f'btlp msg: {translated}/{len(msgs)} translated, {len(spilled)} spilled'
+          + (f', {len(over)} over their room' if over else ''))
     return translated
 
 

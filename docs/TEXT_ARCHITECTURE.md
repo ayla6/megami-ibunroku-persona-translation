@@ -311,7 +311,11 @@ the same table run sequentially.
   independent anchors when complete-unit order, every page's independently
   learned speaker, and meaningful controls all agree; ambiguous or incomplete
   gaps stay untranslated. Authored waits and page changes are preserved.
-- `boot_btlmsg.py`, `port_btlevt.py`, `port_btlneg.py`: BTLP rows. Plain
+- `boot_btlmsg.py`, `port_btlevt.py`, `port_btlneg.py`: BTLP rows. Each
+  porter asks its family's placement plan (`btlp.msg_plan` / `evt_accept`)
+  before writing: a wording wider than its row or with no room left in the
+  bank goes to manual as an over-limit draft at the row's only write, so
+  the build never drops a tool's wording to Japanese on its own. Plain
   negotiation notices may also be paired by `notice_consumer.py`: a unique
   exact JP record and relocated PSP pointer must have a unique matching
   regional executable-consumer fingerprint, with an adjacent independently

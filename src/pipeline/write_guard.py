@@ -427,6 +427,10 @@ def _pair_at(words, i):
         word = words[j]
         op = word >> 26
         if op not in (0x09, 0x0D) or ((word >> 21) & 31) != rt:
+            # an instruction that overwrites rt ends this lui's reach
+            if (op in (*range(0x08, 0x10), *range(0x20, 0x27)) and (word >> 16) & 31 == rt) \
+                    or (op == 0 and (word >> 11) & 31 == rt):
+                return None
             continue
         low = word & 0xFFFF
         if op == 0x09:
