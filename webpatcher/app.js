@@ -1308,19 +1308,10 @@ function saveMemory() {
   } catch (err) { /* storage blocked: the box just isn't remembered */ }
 }
 
-/* Low-RAM mode (worker.js, discInStorage) is turned on by itself on a first
- * visit only where memory is likely tight: Android, or a browser that
- * reports under 4 GB. */
-const LOW_RAM_GB = 4;
-
 function lowMemoryHint() {
   const data = navigator.userAgentData;
   if ((data && data.platform === 'Android') || /Android/i.test(navigator.userAgent || '')) {
     return 'this is an Android device';
-  }
-  const reported = navigator.deviceMemory;
-  if (typeof reported === 'number' && reported < LOW_RAM_GB) {
-    return `this browser reports about ${reported} GB of memory`;
   }
   return null;
 }
