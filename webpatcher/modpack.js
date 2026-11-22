@@ -272,7 +272,7 @@
       const percent = values.get(scale.parameter);
       const value = percent && scale.original ? Math.max(1, Math.floor((scale.original * percent + 50) / 100)) : 0;
       return {offset: scale.offset, bytes: new Uint8Array([value])};
-    })]}));
+    })], scales: []}));   // resolved into spans, as modpack.selected does: the merge sees byte edits
   }
 
   /* The layers merge() applies: every part of each pack whose condition
@@ -297,9 +297,19 @@
         }
       }
     }
-    return packs.flatMap(pack => pack.parts.filter(part => holds(part.when, chosen))
+    const layers = packs.flatMap(pack => pack.parts.filter(part => holds(part.when, chosen))
       .map((part, n) => ({name: pack.name + (part.when ? `[${part.when}]` : ''),
                           files: parameterFiles(pack, part.files, chosen[pack.name]), twins: n ? [] : pack.twins})));
+    // A range's byte is the player's value whatever a later mod's part wrote
+    // there: every setting is written again after all layers, as pure byte
+    // edits that never resize a file (modpack.selected).
+    const settings = packs.flatMap(pack => pack.parts.filter(part => holds(part.when, chosen))
+      .map(part => parameterFiles(pack, part.files.filter(file => (file.scales || []).length)
+                                    .map(file => ({...file, raw: false, before: 0, length: 0, source: null,
+                                                   spans: [], entries: []})), chosen[pack.name]))
+      .filter(files => files.length)
+      .map(files => ({name: pack.name + ' settings', files, twins: []})));
+    return [...layers, ...settings];
   }
 
   function mesTable(data) {

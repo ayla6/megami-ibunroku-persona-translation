@@ -43,7 +43,8 @@ def generate(target=TARGET):
                                                for i in mod.integrates]}
                                if mod.integrates else {}),
                             **({'ranges': [{'key': r.key, 'minimum': r.minimum, 'maximum': r.maximum,
-                                           'step': r.step, 'default': r.default, 'name': r.name}
+                                           'step': r.step, 'default': r.default, 'name': r.name,
+                                           **({'follows': r.follows} if r.follows else {})}
                                           for r in mod.ranges]} if mod.ranges else {}),
                             **({'choices': [{'token': c.token, 'group': c.group,
                                              'name': c.name, 'description': c.description}

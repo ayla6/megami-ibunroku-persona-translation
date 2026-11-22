@@ -735,16 +735,34 @@ DBG_END_VSYNC       equ 0x8008CA8C
 DBG_END_CAVE        equ 0x80083D60
 DBG_END_CAVE_END    equ 0x80083EF4
 ;; --mods=fast-forward-battle-animations (mods/fast-forward-battle-animations/btlp.asm): equ's live here, armips takes none inside .ifdef
-FF_RATE      equ 3                      ; battle ticks per shown frame while fast-forwarding (odd)
+FF_RATE      equ 3                      ; battle ticks per shown frame while fast-forwarding
 FF_START     equ 0x0800                 ; the toggle: START
 FF_ON        equ 0                      ; ff_vars: u8 fast-forward wanted
-FF_CNT       equ 1                      ; u8 tick within the group (0 = shown)
+FF_CNT       equ 1                      ; u8 the group's ticks still to come (0: this one draws)
 FF_HIDE      equ 2                      ; u8 this tick draws nothing
 FF_SHOW      equ 3                      ; u8 this tick waits for the vblank and shows a frame
 FF_OVER      equ 4                      ; u8 the battle is over: no fast-forward until the next one
+FF_ACTIONS   equ 5                      ; u8 with battle-speedup, its ranges (same offsets as BS_*): ticks per shown frame in a turn's other actions
+FF_SKILLS    equ 6                      ; u8 ... in summons and skills
+FF_ENTRY     equ 7                      ; u8 ... while the entry camera moves
+FF_MULT      equ 8                      ; u8 the fast-forward's multiple of those (range `rate`)
 FF_ICON_X    equ 296                    ; ">>": two 9x12 triangles at the top right
 FF_ICON_Y    equ 10
 FF_ICON_RGB  equ 0x20F0F0F0             ; POLY_F3, light grey
+;; --mods=battle-speedup (mods/battle-speedup/btlp.asm): bs_vars bytes
+BS_CNT       equ 1                      ; u8 the group's ticks still to come (0: this one draws)
+BS_HIDE      equ 2                      ; u8 this tick draws nothing
+BS_SHOW      equ 3                      ; u8 this tick waits for the vblank and shows a frame
+BS_ACTIONS   equ 5                      ; u8 ticks per shown frame in a turn's attacks and other actions (range `actions`)
+BS_SKILLS    equ 6                      ; u8 ... in summons and skills (range `skills`)
+BS_ENTRY     equ 7                      ; u8 ... while the entry camera moves (range `entry`)
+;; mods/battle-speedup/dng.asm and s2d.asm: the field -> battle transitions.
+;; Each lives in a dead copy of StatusSlotDraw (nothing in any image calls it;
+;; decomp sym.dng/sym.s2d), its first byte the `entry` range's copy (values.tsv).
+DNG_BSD_ADDR equ 0x8007DC34             ; DNG StatusSlotDraw (dead), 0x2DC bytes
+DNG_BSD_LIMIT equ 0x8007DF10
+S2D_BSD_ADDR equ 0x8006D99C             ; S2D StatusSlotDraw (dead), 0x2FC bytes
+S2D_BSD_LIMIT equ 0x8006DC98
 ;; --- BTLP's per-frame primitive pool (decomp src/btlp/objectinit.c) ---
 ;; BtlInitObjects tags every slot of six typed runs in both frame halves once
 ;; (SetSprt, SetTile, SetPolyFT4, SetPolyF4, SetPolyG4, SetLineG2); the game's
@@ -801,8 +819,8 @@ RNG_PARTY_RESET_GFX equ 0x800C7424      ; BtlPartyResetGfx: clears g_btl_reach a
 RNG_PARTY_RESET_CALL equ 0x800A7E54     ; its call right after, in the whole-party pick
 RNG_RGB_AREA     equ 0x001070B4         ; amber, 0x00BBGGRR (blue 10, green 70, red B4): the move's area
 RNG_RGB_TARGET   equ 0x002020E0         ; red: the cells of the fighters it would hit
-.if FF_RATE < 3 || (FF_RATE & 1) == 0
-    .error "FF_RATE must be odd and at least 3"
+.if FF_RATE < 2
+    .error "FF_RATE must be at least 2"
 .endif
 
 ;; --- EXE/MOVIE.EXE - Movie player EXE, t_addr 0x80080000 ---

@@ -13,17 +13,24 @@ reserved run block; the shared range writer and all patchers use that map.
 
 `mods/run-in-dungeons/dng.asm`, plus `runtext.py` writing `build/runtext_dng.asm`. The retail walk block at
 `0x80068F64` inside `FieldWalk` advances the view nine times per tile and draws a frame after each
-advance. The hook keeps all nine advances - the tile, the collision checks, the step counter and the
-landing position are unchanged - and draws only some of the frames: 5/4 frames at 2×, 3 frames at 3×, and
-3/2/2/2 frames at 4× over their repeating cycles. Every mask draws the final
-advance, and the average frame counts give the selected speed exactly. Every drawn frame still
-runs one `FieldFrame`, i.e. one 20 Hz tick, so the play clock and the animation counters keep their
-real rate. The mask alternates per run tile and returns to zero when the button is released.
+advance; the field's main loop then draws one more frame (`FieldUpdate`, then `FieldFrame`), so a
+retail tile costs ten frames. The hook keeps all nine advances - the tile, the collision checks, the
+step counter and the landing position are unchanged - and draws only some of the frames: 4 frames at
+2×, 3/2/2 frames at 3×, and 2/1 frames at 4× over their repeating cycles. No mask draws the final
+advance: the main loop's frame shows the endpoint, and with it the average frame counts give the
+selected speed exactly. Every drawn frame still runs one `FieldFrame`, i.e. one 20 Hz tick, so the
+play clock and the animation counters keep their real rate. The mask alternates per run tile and returns to zero when the button is released.
 
 `FieldTurn`'s nine-frame heading swing gets the same treatment: its per-frame `FieldFrame` call at
 `0x80069084` goes through a wrapper that draws only the frames the selected-speed mask covers while Cross
 is held, so turning is as fast as walking. Every heading step still runs and the final snap to the
-exact quarter is unchanged; without Cross the wrapper draws all nine frames and resets the mask.
+exact quarter is unchanged (the main loop's frame after the turn shows it); without Cross the wrapper draws all nine frames and resets the mask.
+
+A held direction does not chain fast turns. `FieldTurn`'s call to `FieldPauseBgm` (0x80069040)
+goes through `dngrun_turn_gate`: running, a fresh press of Left or Right turns at once, but while the
+direction stays held from the turn before, the next turn waits until 27 vblanks (a retail turn's nine
+frames) have passed since that one started, returning through `FieldTurn`'s epilogue meanwhile. A tap
+turns at the run speed; holding spins no faster than retail. Walking is never held back.
 
 The button is not a setting of its own. `runtext.py` appends one action to the controller page's own
 action-name table: the retail 19 pointers sit directly in front of `g_pad_layout_actions` with no room

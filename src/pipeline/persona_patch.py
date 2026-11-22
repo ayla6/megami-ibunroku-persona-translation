@@ -233,6 +233,7 @@ def selected(packs, selection):
         chosen[label] = set(tokens) | {t for t in defaults(next(p for p in packs if p['name'] == label))
                                        if t.split('=')[0] not in {x.split('=')[0] for x in tokens if '=' in x}}
     out = []
+    settings = []
     for pack in packs:
         named = {t for when, _f in pack['parts'] for label, toks in parse_mods(when)
                  if label == pack['name'] for t in toks}
@@ -255,14 +256,24 @@ def selected(packs, selection):
             if all(label in chosen and set(toks) <= chosen[label] for label, toks in parse_mods(when)):
                 import copy
                 files = copy.deepcopy(files)
+                chosen_bytes = []
                 for edit in files:
+                    if not edit.scales:
+                        continue
+                    again = Edit(edit.path, False, 0, 0)
                     for offset, parameter, original in edit.scales:
                         percent = values[parameter]
                         value = max(1, (original * percent + 50) // 100) if percent and original else 0
                         edit.spans.append((offset, bytes([value])))
+                        again.spans.append((offset, bytes([value])))
+                    edit.scales = []    # resolved into spans, as modpack.selected does
+                    chosen_bytes.append(again)
                 out.append((pack['name'], files, pack['twins'] if first else []))
+                if chosen_bytes:
+                    settings.append((pack['name'] + ' settings', chosen_bytes, []))
                 first = False
-    return out
+    # every setting again after all layers, as modpack.selected does
+    return out + settings
 
 
 # --- the disc ----------------------------------------------------------------------

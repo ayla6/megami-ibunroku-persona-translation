@@ -441,6 +441,36 @@ def selection_packs(packs: dict[str, modpack.Pack], selection: modpack.Selection
     return [packs[label] for label in release_labels() if label in selection and label in packs]
 
 
+def check_range_values(source: modpack.Source, packs: dict[str, modpack.Pack]) -> None:
+    """Every mod at once, each range at its maximum: every range byte holds
+    the player's value in the merged files, whatever a later mod's part
+    (built at the defaults) wrote there. The layer comparisons only see the
+    defaults, where a lost value looks right."""
+    import csv
+    selection = default_selection(CHOICE_ORDER)
+    expected: dict[tuple[str, int], int] = {}
+    for label, pack in packs.items():
+        mod = mods.by_label()[label]
+        if not mod.ranges:
+            continue
+        selection[label] = frozenset({t for t in selection[label]
+                                      if t.split('=')[0] not in {r.key for r in mod.ranges}}
+                                     | {f'{r.key}={r.maximum}' for r in mod.ranges})
+        for setting in mod.ranges:
+            with (Path(mods.ROOT) / setting.edits).open(newline='') as stream:
+                for row in csv.DictReader(stream, delimiter='\t'):
+                    if row['parameter'] == setting.key:
+                        scale = modpack.Scale(int(row['offset']), setting.key, int(row['original']))
+                        expected[(row['path'], scale.offset)] = scale.value(setting.maximum)
+    files = merged_files(source, packs, selection)
+    wrong = [f'{path}+{offset:#x}: {files[path][offset]} (want {value})'
+             for (path, offset), value in sorted(expected.items())
+             if path in files and files[path][offset] != value]
+    if wrong:
+        raise RuntimeError('release: a range value is lost after its layer: ' + '; '.join(wrong))
+    print(f'release: {len(expected)} range byte(s) hold their maximum with every mod on', flush=True)
+
+
 def merged_files(source: modpack.Source, packs: dict[str, modpack.Pack],
                  selection: modpack.Selection) -> dict[str, bytes]:
     # strict=False: the release merges a choice before it has built that
@@ -1016,6 +1046,7 @@ def build_release(rev0_in: str, output_in: str, *, port: bool = False, verify: b
                 if modpack.read_layer(str(target)) != pack:
                     raise RuntimeError(f'{label}: compressed layer differs from its staged parts')
             if verify:
+                check_range_values(source, packs)
                 write_outputs(output, rev0, key, 'testing')
                 check_browser_layout(rev0, [output / option_layer(label)
                                        for label in release_labels()], 'all',

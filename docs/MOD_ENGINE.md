@@ -197,6 +197,14 @@ much work for a disc anyone can replace with the right one.
   the same transforms after mod construction; an original value of 100 stores
   the selected integer directly. Run in Dungeons uses this for its 2–4 speed
   byte, while menu sounds use percentage scaling.
+- **Following ranges.** A range row may end with `follows=KEY`, naming an
+  earlier range of the same mod that follows nothing itself. A build that
+  does not name the follower gives it the followed range's value (the
+  nearest allowed one). On the page the follower moves with the followed
+  slider while the two are equal; set to a value of its own it keeps it
+  until it is set back. Only the page and the build read it (features.js);
+  a layer's `range` rows stay as they are. Battle speedup's `skills`,
+  `actions` and `entry` follow its `speed`, which writes no byte itself.
 - **Growth is not an edit.** A layer that makes a file longer records only
   the data it puts past the old end, never the zero padding; growing extends
   a file only when it is shorter, and only a shrinking layer truncates one.
@@ -219,8 +227,8 @@ much work for a disc anyone can replace with the right one.
 - **Parts for other mods.** Mod pairs whose layers write the same bytes are
   built together; where the pair differs from base + a + b, the difference
   ships as a part of the later mod, applied when the earlier one is on
-  (`battle-speedup` + `fast-forward-battle-animations`: fast-forward rewrites the frame function
-  whose second VSync battlespeed removes). Each one is an interaction still
+  (`battle-speedup` + `fast-forward-battle-animations`: both rewrite the frame function,
+  and with both on only fast-forward's rewrite, which runs the speeds too, is assembled). Each one is an interaction still
   to remove (below). The same goes for a choice of another mod: a mod whose
   layer, made over the large-font translation, does not give the small-font
   build gets a part applied while `english-translation(font=small)` is on.
@@ -340,9 +348,9 @@ nothing to do with each other. Two rules get there:
    additive by construction. Nothing is typed by hand; the registry decides.
 2. **Runtime checks for real overlaps.** Where one option changes code
    another rewrites, the rewrite keeps the changed instruction at its
-   address and reads it at runtime: fast-forward keeps the retail second
-   `jal VSync` at 0x800811B8 and checks whether battle-speedup has made it a
-   `nop`. Neither then needs to know about the other at build time.
+   address and reads it at runtime: battle-speedup's speeds are bytes in
+   fast-forward's frame engine (`ff_vars`, a fixed address) that the frame
+   reads every tick, so the speed setting is a byte edit, not a rebuild.
 
 ## Relocatable blocks (custom mods)
 

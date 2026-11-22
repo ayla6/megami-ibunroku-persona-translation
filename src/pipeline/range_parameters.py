@@ -17,6 +17,12 @@ class RangeSetting:
     default: int
     name: str
     edits: str = ''
+    follows: str = ''      # another range's key: takes its value until set on its own
+
+    def nearest(self, value: int) -> int:
+        """The allowed value closest to `value` (a followed range's value)."""
+        value = min(self.maximum, max(self.minimum, value))
+        return self.minimum + round((value - self.minimum) / self.step) * self.step
 
     def validate(self, text: str) -> int:
         if not text.isascii() or not text.isdecimal():

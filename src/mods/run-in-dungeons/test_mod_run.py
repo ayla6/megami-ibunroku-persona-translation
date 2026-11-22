@@ -3,7 +3,9 @@
 FieldWalk advances the view nine times per tile. Running must keep every
 advance (the tile, collision and landing position) and drop drawn frames
 only, so every tile still calls FieldStepView nine times and the play clock
-still ticks once per drawn frame.
+still ticks once per drawn frame. The field's main loop draws one frame after
+every step or turn, showing the endpoint, so a running mask leaves the final
+advance to it and the walk's frames plus that one give the selected speed.
 
 The button is an action on the game's own controller page, not a settings row.
 The page's action-name table gains a twentieth name and both field pad types
@@ -12,7 +14,7 @@ also cancels in TYPE 1; cancel is edge-triggered, so holding it to run does
 not fire it.
 
 FieldTurn swings the heading round in nine frames; holding Cross draws the
-same 5/4 masks there too, so turning is as fast as walking while the button
+same masks there too, so turning is as fast as walking while the button
 is down.
 """
 from pathlib import Path
@@ -222,9 +224,9 @@ class RunPatch(unittest.TestCase):
                     self.assertEqual(counts['tick'], 1)
                     self.assertEqual(counts['zone'], 1)
                     frames.append(counts['frame'])
-                # Five frames on the first tile, four on the next: 4.5 of nine.
-                self.assertEqual(frames, [5, 4, 5, 4])
-                self.assertEqual(sum(frames), 18)
+                # Four frames per tile; with the main loop's frame after
+                # each, five of retail's ten.
+                self.assertEqual(frames, [4, 4, 4, 4])
                 # The retail epilogue restored s0 and left s2/s1/v0/sp as retail.
                 self.assertEqual(cpu.r[REG['v0']], 0x2A)
                 self.assertEqual(cpu.r[REG['s0']], 0x11111111)
@@ -238,14 +240,14 @@ class RunPatch(unittest.TestCase):
                 bit = self.run_bit(layout)
                 cpu = self.cpu(layout=layout, held=bit)
                 calls = {}
-                self.assertEqual(self.walk_tile(cpu, calls)['frame'], 5)
+                self.assertEqual(self.walk_tile(cpu, calls)['frame'], 4)
                 cpu.write(HELD, 0)
                 self.assertEqual(self.walk_tile(cpu, calls)['frame'], 9)
                 cpu.write(HELD, bit)
-                self.assertEqual(self.walk_tile(cpu, calls)['frame'], 5)
+                self.assertEqual(self.walk_tile(cpu, calls)['frame'], 4)
 
     def test_all_speeds_preserve_steps_endpoints_and_exact_average(self):
-        for speed, expected in ((2, [5, 4]), (3, [3]), (4, [3, 2, 2, 2])):
+        for speed, expected in ((2, [4]), (3, [3, 2, 2]), (4, [2, 1])):
             with self.subTest(speed=speed):
                 cpu = self.cpu(held=0x40)
                 cpu.write(self.address('dng_run_speed'), speed, 1)
@@ -256,10 +258,12 @@ class RunPatch(unittest.TestCase):
                     self.assertEqual(counts['view'], 9)
                     self.assertEqual(counts['tick'], 1)
                     self.assertEqual(counts['zone'], 1)
-                    self.assertTrue(cpu.read(self.address('dng_run_mask'), 2) & (1 << 9))
+                    # the main loop's frame after the step shows the endpoint
+                    self.assertFalse(cpu.read(self.address('dng_run_mask'), 2) & (1 << 9))
                     frames.append(counts['frame'])
                 self.assertEqual(frames, expected)
-                self.assertEqual(sum(frames) * speed, 9 * len(expected))
+                # retail draws 9 + the loop's 1 per tile
+                self.assertEqual((sum(frames) + len(frames)) * speed, 10 * len(expected))
                 cpu.write(HELD, 0)
                 self.assertEqual(self.walk_tile(cpu, calls)['frame'], 9)
                 cpu.write(HELD, 0x40)
@@ -335,10 +339,9 @@ class RunPatch(unittest.TestCase):
 
     def test_turning_draws_the_run_masks_when_cross_is_held(self):
         cpu = self.cpu(held=0x40)
-        # The first turn takes the dense mask (five frames), the next the
-        # sparse one (four), exactly like the walk tiles.
+        # Four frames per turn at 2x, exactly like the walk tiles.
         self.assertEqual([self.turn_frames(cpu, 0x40) for _ in range(4)],
-                         [5, 4, 5, 4])
+                         [4, 4, 4, 4])
 
     def test_turning_without_cross_draws_every_frame_and_resets_the_mask(self):
         cpu = self.cpu(held=0)
@@ -346,7 +349,7 @@ class RunPatch(unittest.TestCase):
         self.assertEqual(cpu.read(self.address('dng_run_parity'), 1), 0)
 
     def test_turning_uses_each_selected_speed_and_preserves_return(self):
-        for speed, expected in ((2, [5, 4]), (3, [3]), (4, [3, 2, 2, 2])):
+        for speed, expected in ((2, [4]), (3, [3, 2, 2]), (4, [2, 1])):
             with self.subTest(speed=speed):
                 cpu = self.cpu(held=0x40)
                 cpu.write(self.address('dng_run_speed'), speed, 1)
@@ -357,7 +360,7 @@ class RunPatch(unittest.TestCase):
                 self.assertEqual(self.turn_frames(cpu, 0x40), expected[0])
 
 
-    def test_press_and_release_during_a_turn_still_draw_the_endpoint(self):
+    def test_press_and_release_during_a_turn_leave_the_endpoint_drawn(self):
         for speed in (2, 3, 4):
             for held in ([0]*4 + [0x40]*5, [0]*7 + [0x40]*2,
                          [0x40]*2 + [0] + [0x40]*6):
@@ -366,8 +369,10 @@ class RunPatch(unittest.TestCase):
                     cpu.write(self.address('dng_run_speed'), speed, 1)
                     frames = []
                     self.turn_frames(cpu, held, drawn_at=frames)
-                    self.assertIn(9, frames)
-                    self.assertTrue(cpu.read(self.address('dng_run_mask'), 2) & (1 << 9))
+                    # released at the last frame: drawn there; held: the
+                    # main loop's frame after the turn shows it
+                    self.assertEqual(9 in frames, held[-1] == 0)
+                    self.assertFalse(cpu.read(self.address('dng_run_mask'), 2) & (1 << 9))
                     self.assertEqual(cpu.r[REG['sp']], FRAME)
                     self.assertEqual(cpu.r[REG['ra']], SENTINEL)
 

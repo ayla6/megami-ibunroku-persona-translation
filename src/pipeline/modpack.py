@@ -706,6 +706,7 @@ def selected(layers: list[str | Pack | Layer],
                              f'{", ".join(missing)} - its layer was built without it')
     from dataclasses import replace
     layers = []
+    settings: list[Layer] = []
     for pack in packs:
         values = {r.key: r.default for r in pack.ranges}
         for token in chosen[pack.name]:
@@ -713,11 +714,19 @@ def selected(layers: list[str | Pack | Layer],
             if key in values:
                 values[key] = next(r for r in pack.ranges if r.key == key).validate(value)
         for layer in parts_for(pack, chosen):
-            layer.files = [replace(edit, spans=[*edit.spans, *(
+            chosen_bytes = [FileEdit(edit.path, False, 0, 0, spans=[
                 Span(scale.offset, bytes([scale.value(values[scale.parameter])]))
-                for scale in edit.scales)], scales=[]) for edit in layer.files]
+                for scale in edit.scales]) for edit in layer.files if edit.scales]
+            layer.files = [replace(edit, spans=[*edit.spans, *spans.spans], scales=[])
+                           if (spans := next((c for c in chosen_bytes if c.path == edit.path), None))
+                           else edit for edit in layer.files]
             layers.append(layer)
-    return layers
+            if chosen_bytes:
+                settings.append(Layer(f'{pack.name} settings', chosen_bytes))
+    # A range's byte is the player's value whatever a later mod's part wrote
+    # there (a pair part built at the defaults): every setting is written
+    # again after all layers, as pure byte edits that never resize a file.
+    return layers + settings
 
 
 def merge(source: Source, layers: list[str | Pack | Layer],

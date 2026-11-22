@@ -43,12 +43,13 @@ python src/pipeline/modpack.py apply persona-tl.bin \
 | --- | --- |
 | Unified save menu | Merges the slot 1 and slot 2 menus into one, so that you don't have to worry about which one to select. Requires "speed up on memory card access" to not feel like a slog. |
 | Black Mark | Makes Masao Inaba black. Uses a custom sprite so that he's both black and still wears his original outfit. Doesn't change the script. |
-| Battle speedup | Doubles the speed of summons and skill effects in battle. |
+| Battle speedup | Speeds up every battle turn (attacks, skills, summons, the enemies' actions) at 2-4x, and optionally the way into every battle (the screen shattering and the camera sweep). |
 | 60 FPS | Interpolates frames to get the dungeons to 60fps and the map to 30fps. Only does it when you're actively moving around. Needs overclocking. |
 | Double rewards | Doubles the EXP, Persona points and money you get after battles. |
 | Half encounters | Halves the rate of random encounters. |
 | Western controls | Swaps Circle and Cross, and Triangle and Square, in control scheme TYPE 1 (Cross confirms, Circle cancels), like the American release. TYPE 2 is untouched. With running in dungeons, you hold Circle (the cancel button) to run. |
-| Run in dungeons | Hold Cross to walk and turn at double speed in the 3D dungeons. The controller page lists it as RUN/CANCEL on Cross in both control schemes. |
+| Run in dungeons | Hold Cross to walk and turn at 2-4x speed in the 3D dungeons. The controller page lists it as RUN/CANCEL on Cross in both control schemes. |
+| Overworld run speed | The overworld map's own run at 2-4x walking (the original run is 2x). |
 | Upper-right movement | Forces Upward Movement Orientation to Upper Right: pressing Up walks to the upper right in the 2D rooms instead of the retail upper left. |
 | Skip movies | Press Start to skip the movie that is playing. This covers the story FMVs, Philemon's scenes among them; the opening quote and the Atlus logo already skip on Start. |
 

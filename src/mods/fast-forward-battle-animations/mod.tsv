@@ -5,3 +5,4 @@ default	yes
 always	no
 release	yes
 requires	base
+range	rate	2	6	1	3	Fast-forward (× the battle speed)	src/mods/fast-forward-battle-animations/values.tsv

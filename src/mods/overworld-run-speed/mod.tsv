@@ -1,0 +1,7 @@
+name	Overworld run speed
+description	The overworld map's own run, faster.
+default	no
+always	no
+release	yes
+requires	base
+range	speed	2	4	1	3	Run speed (×)	src/mods/overworld-run-speed/values.tsv

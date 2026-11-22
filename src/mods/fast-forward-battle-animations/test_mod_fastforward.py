@@ -3,12 +3,16 @@
 BtlDrawFrame runs on the R3000 model, tick after tick, with every library and
 battle call it makes stubbed and recorded. Off, each tick is retail's: VSync,
 PutDispEnv, PutDrawEnv of the frame's own DRAWENV, DrawOTag, in that order,
-for the alternating buffers. On, ticks run in groups of FF_RATE: only tick 0
+for the alternating buffers. On, ticks run in groups of FF_MULT (the `rate`
+range) times the turn's own speed (battle-speedup's): only tick 0
 waits for the vblank and shows a frame, ticks 1.. draw no object, build no
 arena or mesh and hand the GPU an empty drawing area, the last tick draws for
-real, and every tick still submits its ordering table. BtlDrawObjects' two
-hooks run on their own as well. Assembled with and without --mods=battle-speedup (which owns the
-half-rate second VSync).
+real, and every tick still submits its ordering table. A drawn tick flips the
+buffers, a hidden one keeps its buffer (and waits for its empty submit), so
+drawn ticks alternate buffers for any group size. With --mods=battle-speedup
+the same groups run its speeds: `skills` in the half-rate effects and
+`actions` in the rest of a turn, `entry` while the entry camera moves. BtlDrawObjects' two hooks run on their own as
+well. Assembled with and without --mods=battle-speedup.
 """
 from pathlib import Path
 import re
@@ -31,6 +35,7 @@ POOL = 0x80100000
 STRIDE = 0xE660
 PAD1_EDGE = 0x800F88F0
 STAGE, AUTO, HALF_RATE, VSYNC_COUNT = G - 0xF96, G + 0x2250, G - 0xF8D, G - 0xF6B
+INTRO_STEP = G - 0xF8F
 FRAME_INDEX, CLOSING = G - 0xF08, G - 0xF8C
 VSYNC, PUT_DISP, PUT_DRAW, DRAW_OTAG = 0x80025C98, 0x8002BD98, 0x8002BBC0, 0x8002BB4C
 STUBS = {0x8008EA70, 0x8008F05C, 0x8001950C, 0x8001B6DC, 0x8001B06C, 0x80018E2C,
@@ -80,6 +85,7 @@ class Battle:
             c.write(env + 4, (240 << 16) | 320)    # clip w 320, h 240
             c.write(env + 0x18, 1, 1)              # isbg
         self.calls = []
+        self.buffers = []                          # each tick's frame buffer
 
     def intercept(self, c):
         if c.pc not in STUBS:
@@ -109,12 +115,14 @@ class Battle:
         c.start(FRAME)
         c.run(SENTINEL, 20000, self.intercept)
         self.assertions(frame)
+        self.buffers.append(frame)
         return self.calls
 
     def assertions(self, frame):
         c = self.c
         assert c.r[REG['sp']] == 0x801FF000 and c.r[REG['s1']] == 0x5151
-        assert c.read(FRAME_INDEX, 1) == frame ^ 1          # buffers alternate every tick
+        hidden = any(e[0] == PUT_DRAW and e[2:] == (0x00010001, 0, 0) for e in self.calls)
+        assert c.read(FRAME_INDEX, 1) == frame ^ (0 if hidden else 1)   # a drawn tick flips
         env = POOL + frame * STRIDE
         assert (c.read(env), c.read(env + 4), c.read(env + 0x18, 1)) == \
             ((240 * frame) << 16, (240 << 16) | 320, 1)     # DRAWENV left as it was
@@ -127,7 +135,8 @@ class Battle:
         draw = next(e for e in calls if e[0] == PUT_DRAW)
         empty = draw[2:] == (0x00010001, 0, 0)
         assert empty or draw[3] == (240 << 16) | 320
-        assert tail[-2:] == [DRAW_OTAG, 0x8008E980]
+        assert tail[-2:] == [DRAW_OTAG, 0x8008E980] or (
+            empty and tail[-3:] == [DRAW_OTAG, 0x8002B5E8, 0x8008E980])  # hidden: DrawSync
         return ('shown+' if shown else '') + ('empty' if empty else 'drawn')
 
 
@@ -162,14 +171,72 @@ class FastForward(unittest.TestCase):
         kinds = [b.kind(b.tick()) for _ in range(3 * RATE)]
         group = ['shown+empty'] + ['empty'] * (RATE - 2) + ['drawn']
         self.assertEqual(kinds, group * 3)
-        # drawn ticks alternate buffers (RATE is odd), so none draws the one on screen
-        drawn = [i for i, k in enumerate(kinds) if k == 'drawn']
-        self.assertEqual({(d + 1) & 1 for d in drawn[::2]} & {(d + 1) & 1 for d in drawn[1::2]},
-                         set())
+        self.assert_drawn_alternate(b, kinds)
         # START again: the group in progress finishes first, then retail ticks
         kinds = [b.kind(b.tick(press=START if i == 0 else 0)) for i in range(RATE + 2)]
         self.assertEqual(kinds, ['shown+empty'] + ['empty'] * (RATE - 2) + ['drawn']
                          + ['shown+drawn'] * 2)
+
+    def assert_drawn_alternate(self, b, kinds):
+        """Each drawn tick draws the buffer the last drawn tick did not: the
+        one on screen is never drawn into."""
+        first = len(b.buffers) - len(kinds)
+        drawn = [b.buffers[first + i] for i, k in enumerate(kinds) if k.endswith('drawn')]
+        self.assertTrue(all(x != y for x, y in zip(drawn, drawn[1:])), drawn)
+
+    def speeds(self, b, actions=1, skills=1, entry=1, rate=None):
+        """battle-speedup's three ranges (ff_vars ACTIONS SKILLS ENTRY) and
+        this mod's `rate` (MULT)."""
+        for offset, value in ((5, actions), (6, skills), (7, entry), (8, rate)):
+            if value is not None:
+                b.c.write(self.sym['ff_vars'] + offset, value, 1)
+
+    def test_battle_speedup_groups_a_turn(self):
+        for speed in (2, 3, 4):
+            # the rest of a turn runs `actions`, the half-rate effects `skills`
+            for half_rate, wait, n in ((0, 1, speed), (1, 2, speed + 1)):
+                b = Battle(self.with_speed)
+                self.speeds(b, actions=speed, skills=speed + 1)
+                b.c.write(HALF_RATE, half_rate, 1)
+                kinds, waits = [], []
+                for _ in range(3 * n):
+                    b.c.write(VSYNC_COUNT, 0, 1)
+                    calls = b.tick(stage=2)
+                    kinds.append(b.kind(calls))
+                    waits.append([pc for pc, *_ in calls].count(VSYNC))
+                group = ['shown+empty'] + ['empty'] * (n - 2) + ['drawn']
+                self.assertEqual(kinds, group * 3)
+                self.assertEqual(waits, ([wait] + [0] * (n - 1)) * 3)   # retail's waits a shown frame
+                self.assert_drawn_alternate(b, kinds)
+                self.assertEqual([b.kind(b.tick(stage=1)) for _ in range(2)],
+                                 ['shown+drawn'] * 2)     # the command stage: retail ticks
+
+    def test_fast_forward_multiplies_the_battle_speed(self):
+        for speed, rate in ((1, RATE), (2, RATE), (4, 2), (2, 6)):
+            b = Battle(self.with_speed)
+            self.speeds(b, actions=speed, rate=rate)
+            for _ in range(speed):
+                b.tick()                                  # finish a turn group
+            b.tick(press=START)
+            for _ in range(speed - 1):
+                b.tick()
+            n = rate * speed
+            kinds = [b.kind(b.tick()) for _ in range(2 * n)]
+            self.assertEqual(kinds, (['shown+empty'] + ['empty'] * (n - 2) + ['drawn']) * 2)
+            self.assert_drawn_alternate(b, kinds)
+
+    def test_battle_speedup_groups_the_entry_camera(self):
+        b = Battle(self.with_speed)
+        self.speeds(b, actions=2, skills=2, entry=3)
+        b.c.write(INTRO_STEP, 4, 1)
+        kinds = [b.kind(b.tick(stage=0)) for _ in range(6)]
+        self.assertEqual(kinds, ['shown+empty', 'empty', 'drawn'] * 2)
+        b.c.write(INTRO_STEP, 0, 1)
+        self.assertEqual(b.kind(b.tick(stage=0)), 'shown+drawn')
+        b = Battle(self.with_speed)                      # `entry` 1: the retail camera
+        self.speeds(b, actions=3, skills=3, entry=1)
+        b.c.write(INTRO_STEP, 4, 1)
+        self.assertEqual([b.kind(b.tick(stage=0)) for _ in range(2)], ['shown+drawn'] * 2)
 
     def test_the_command_menu_ends_it_and_keeps_start(self):
         b = Battle(self.with_speed)
@@ -233,17 +300,17 @@ class FastForward(unittest.TestCase):
         prims = self.sym['ff_prims']
         first = b.c.read(entry)
         self.assertEqual(first, prims & 0xFFFFFF)
-        self.assertEqual(b.c.read(prims), 0x04000000 | (prims + 20) & 0xFFFFFF)
-        self.assertEqual(b.c.read(prims + 20), 0x04FFFFFF)
+        self.assertEqual(b.c.read(prims), 0x08FFFFFF)        # one packet, then the entry's list
         self.assertEqual(b.c.read(prims + 4) >> 24, 0x20)    # POLY_F3
+        self.assertEqual(b.c.read(prims + 20) >> 24, 0x20)   # and the second
 
-    def test_alone_it_keeps_the_half_rate_wait(self):
-        for image, waits in ((self.alone, 2), (self.with_speed, 1)):
+    def test_a_shown_tick_keeps_the_half_rate_wait(self):
+        for image in (self.alone, self.with_speed):
             b = Battle(image)
             b.c.write(HALF_RATE, 1, 1)
             b.c.write(VSYNC_COUNT, 0, 1)
             calls = b.tick()
-            self.assertEqual([pc for pc, *_ in calls].count(VSYNC), waits)
+            self.assertEqual([pc for pc, *_ in calls].count(VSYNC), 2)
 
     def hidden_flag(self, b, hidden):
         b.c.write(self.sym['ff_vars'] + 2, hidden, 1)

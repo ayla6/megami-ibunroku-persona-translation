@@ -26,6 +26,14 @@
 .org 0x8008B77C
     jal     s2dq_tick
 
+;; the step start 0x8008B2F4 (remaining = 0x1000, step vector, per-tick step): note that a step
+;; started. Counting on the remaining count going up between ticks would miss a step that ends in
+;; the tick it starts (a per-tick step of 0x1000, --mods=overworld-run-speed), where it reads 0 at
+;; every tick.
+.org 0x8008B380
+    jal     s2dq_stepped                        ; was lui at, 0x800B / sh s0, 0x1450(at)
+    nop
+
 ;; root transform build in the step / position tick: remember its position input (delay slot kept)
 .org 0x8008B4F4
     jal     s2dq_rec_root
@@ -104,12 +112,10 @@ s2dq_tick:
     slti    t2, t1, 18
     bnez    t2, @@snaph
     nop
-    lui     t4, 0x800B                          ; a new step started (remaining 0x800B144C went up): the map
-    lh      t4, 0x144C(t4)
-    lh      t5, 2(s1)                           ; step vector 0x800B143C -> move the previous root position
-    sh      t4, 2(s1)                           ; by it too, so the in-between frames continue smoothly
-    slt     t6, t5, t4
-    beqz    t6, @@noshift
+    lhu     t6, 2(s1)                           ; a new step started this tick (s2dq_stepped): the map
+    nop                                         ; re-centred by the step vector 0x800B143C -> move the
+    sh      zero, 2(s1)                         ; previous root position by it too, so the in-between
+    beqz    t6, @@noshift                       ; frames continue smoothly
     lui     t4, 0x800B
     addiu   t4, t4, 0x143C
     addiu   t3, s1, 0x14 + 36                   ; prev root position (words 9..11)
@@ -127,8 +133,9 @@ s2dq_tick:
     nop
     beqz    t0, @@store
     move    t9, zero                            ; t9 = OR of all differences
-    move    t1, zero                            ; words: jump above 480 -> no interpolation (a step moves the
-                                                ; root 160 / 320 per tick; a new step re-centres the map: 640)
+    move    t1, zero                            ; words: jump above one cell (640) -> no interpolation (a
+                                                ; step moves the root 160 / 320 per tick, a whole cell when
+                                                ; it takes one tick: --mods=overworld-run-speed at 4x)
 @@chkw:
     addu    t3, s1, t1
     lw      t4, 0x64(t3)
@@ -140,7 +147,7 @@ s2dq_tick:
     nop
     negu    t4, t4
 @@posw:
-    slti    t4, t4, 481
+    slti    t4, t4, 641
     beqz    t4, @@store
     addiu   t1, t1, 4
     slti    t2, t1, 60
@@ -300,6 +307,15 @@ s2dq_apply:
     addiu   sp, sp, 0x20
 
 ;; root build in the position tick: keep a copy of the position vector, then build as before
+;; the step start's store of the per-tick step (s0), and the step-started flag.
+s2dq_stepped:
+    lui     at, 0x800B
+    sh      s0, 0x1450(at)
+    la      t0, s2dq_vars
+    ori     t1, zero, 1
+    jr      ra
+    sh      t1, 2(t0)
+
 s2dq_rec_root:
     la      t0, s2dq_rootpos
     lw      t1, 0(a0)
@@ -425,7 +441,7 @@ s2dq_rootpos:
 s2dq_vars:
     .byte 0                                     ; +0 s2dq_sub
     .byte 0                                     ; +1 prev valid
-    .halfword 0                                 ; +2 step remaining of the previous tick
+    .halfword 0                                 ; +2 a step started since the last real tick (s2dq_stepped)
     .word 0                                     ; +4 T: vblank count of the last real tick
     .word 0                                     ; +8 k
     .word 0                                     ; +0xC vblank count when the current draw started

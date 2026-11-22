@@ -268,7 +268,11 @@ function dropFreshParam() {
 
 const featureOf = label => {
   const feature = FEATURES[renamed(label)] || {name: label, description: ''};
-  return Object.hasOwn(state.ranges, label) ? {...feature, ranges: state.ranges[label]} : feature;
+  if (!Object.hasOwn(state.ranges, label)) return feature;
+  // the layer's own bounds; which range follows which is the page's (features.js)
+  const ranges = state.ranges[label].map(range => ({
+    ...(feature.ranges || []).find(known => known.key === range.key), ...range}));
+  return {...feature, ranges};
 };
 const displayName = label => featureOf(label).name;
 
@@ -285,11 +289,16 @@ function defaultTokens(label) {
   return [...first.values(), ...(featureOf(label).ranges || []).map(r => `${r.key}=${r.default}`)];
 }
 
-/* The tokens picked under a mod's entry (its radios and extra boxes). */
+/* The tokens picked under a mod's entry (its radios, toggles and extra
+ * boxes). A toggle names its group either way: `GROUP=on` or `GROUP=off`. */
 function pickedTokens(label) {
-  const inputs = [...document.querySelectorAll(`.sub-choices[data-label="${label}"] input:checked`)];
-  const ranges = [...document.querySelectorAll(`.sub-choices[data-label="${label}"] input[data-parameter]`)];
-  const tokens = [...inputs.map(input => input.value), ...ranges.map(input => `${input.dataset.parameter}=${input.value}`)];
+  const sub = `.sub-choices[data-label="${label}"]`;
+  const inputs = [...document.querySelectorAll(`${sub} input:checked:not([data-toggle])`)];
+  const toggles = [...document.querySelectorAll(`${sub} input[data-toggle]`)];
+  const ranges = [...document.querySelectorAll(`${sub} input[data-parameter]`)];
+  const tokens = [...inputs.map(input => input.value),
+                  ...toggles.map(input => `${input.dataset.toggle}=${input.checked ? 'on' : 'off'}`),
+                  ...ranges.map(input => `${input.dataset.parameter}=${input.value}`)];
   return tokens.length ? tokens : defaultTokens(label);
 }
 
@@ -983,7 +992,10 @@ function restoreSelection() {
     const inputs = [...sub.querySelectorAll('input')];
     for (const input of inputs) input.checked = want.has(input.value);
     for (const input of inputs.filter(i => i.dataset.parameter)) {
-      const token = [...want].find(t => t.startsWith(input.dataset.parameter + '='));
+      // a remembered value that is no number (an option this range replaced,
+      // such as `entry=off`) is not this range's: it keeps its default
+      const token = [...want].find(t => t.startsWith(input.dataset.parameter + '=')
+                                       && /^\d+$/.test(t.split('=')[1]));
       if (token) { input.value = token.split('=')[1]; input.dispatchEvent(new Event('change')); }
     }
     // a remembered option that no longer exists: its group falls back to its default
@@ -995,8 +1007,10 @@ function restoreSelection() {
   followRequirements(null);
 }
 
-/* A mod's choices under it: a radio per option of each group, a box per
- * extra, named from features.js (the manifest's tokens decide which exist). */
+/* A mod's choices under it: a radio per option of each group, one toggle
+ * for a group that is exactly `on` / `off` (named after its `on` choice), a
+ * box per extra, named from features.js (the manifest's tokens decide which
+ * exist). */
 function subChoices(label) {
   const ranges = featureOf(label).ranges || [];
   const tokens = choicesOf(label).filter(t => !ranges.some(r => t.startsWith(r.key + '=')));
@@ -1033,11 +1047,19 @@ function subChoices(label) {
     item.append(title, slider, number);
     box.append(item);
   }
+  followRanges(box, label, ranges);
+  const groupOf = token => token.includes('=') ? token.split('=')[0] : '';
+  const isToggle = group => {
+    const keys = tokens.filter(t => groupOf(t) === group).map(t => t.split('=')[1]).sort();
+    return group && keys.length === 2 && keys[0] === 'off' && keys[1] === 'on';
+  };
   const shownGroup = new Set();
   for (const token of tokens) {
     const info = named.find(c => c.token === token) || {token, name: token, description: '',
-                                                        group: token.includes('=') ? token.split('=')[0] : ''};
-    if (info.group && !shownGroup.has(info.group)) {
+                                                        group: groupOf(token)};
+    const toggle = isToggle(info.group);
+    if (toggle && token !== `${info.group}=on`) continue;   // the toggle is its `on` choice
+    if (info.group && !toggle && !shownGroup.has(info.group)) {
       shownGroup.add(info.group);
       const head = document.createElement('p');
       head.className = 'group';
@@ -1046,8 +1068,9 @@ function subChoices(label) {
     }
     const item = document.createElement('label');
     const input = document.createElement('input');
-    input.type = info.group ? 'radio' : 'checkbox';
+    input.type = info.group && !toggle ? 'radio' : 'checkbox';
     if (info.group) input.name = `${label}:${info.group}`;
+    if (toggle) input.dataset.toggle = info.group;
     input.value = token;
     const text = document.createElement('span');
     const name = document.createElement('span');
@@ -1064,6 +1087,33 @@ function subChoices(label) {
     box.append(item);
   }
   return box;
+}
+
+/* A range that follows another (features.js `follows`) moves with it while
+ * the two are equal; one set to a value of its own keeps it, until it is set
+ * back to the other's. Saved choices restore in order, the followed range
+ * first, so a saved value of its own comes back as it was. */
+function followRanges(box, label, ranges) {
+  const field = (key, kind) => box.querySelector(`#${label}-${key}-${kind}`);
+  for (const leader of ranges) {
+    const followers = ranges.filter(range => range.follows === leader.key);
+    if (!followers.length) continue;
+    let previous = Number(field(leader.key, 'number').value);
+    const follow = () => {
+      const value = Number(field(leader.key, 'number').value);
+      for (const range of followers) {
+        const number = field(range.key, 'number');
+        if (Number(number.value) !== previous) continue;
+        const near = Math.min(range.maximum, Math.max(range.minimum, value));
+        number.value = field(range.key, 'slider').value = range.minimum
+            + Math.round((near - range.minimum) / range.step) * range.step;
+      }
+      previous = value;
+    };
+    field(leader.key, 'slider').addEventListener('input', follow);
+    field(leader.key, 'slider').addEventListener('change', follow);
+    field(leader.key, 'number').addEventListener('change', follow);
+  }
 }
 
 /* Mods: one toggle each, the translation first (on, with its warning when
@@ -1175,7 +1225,10 @@ function enableItem(item) {
   for (const token of tokens) {
     const input = document.querySelector(
         `.sub-choices[data-label="${label}"] input[value="${token}"]`);
+    const toggle = document.querySelector(
+        `.sub-choices[data-label="${label}"] input[data-toggle="${token.split('=')[0]}"]`);
     if (input) input.checked = true;
+    else if (toggle) toggle.checked = token.endsWith('=on');
   }
   followRequirements(box);
 }

@@ -22,7 +22,8 @@
 ;; kind choice), the 2D layer, the VRAM queues and the GPU submit of the
 ;; ordering table, so nothing the battle sends the GPU is ever dropped. What
 ;; changes is which ticks are drawn and shown. The ticks run in groups of
-;; FF_RATE:
+;; FF_MULT (the `rate` range, FF_RATE by default) times the turn's own speed
+;; (1, or battle-speedup's):
 ;;   tick 0   waits for the vblank and shows the frame the last group drew
 ;;   tick 1.. HIDDEN: no object is drawn (BtlDrawObjects' per-object handler
 ;;            call 0x80082A9C goes through ff_obj_draw, which returns at once;
@@ -35,17 +36,32 @@
 ;;            These ticks skip the GTE transforms and primitive building that
 ;;            make a battle tick expensive, so they cost logic time only.
 ;;   last     draws normally (into the back buffer); the next tick 0 shows it.
-;; The buffers alternate every tick as in retail, so packets and ordering
-;; tables are never rewritten while the GPU reads them; FF_RATE is odd, so
-;; the drawn ticks alternate buffers too and never draw into the one on
-;; screen. On/off takes effect at a group's tick 0 only, so every shown
+;; A drawn tick flips the buffers as in retail, so packets and ordering
+;; tables are never rewritten while the GPU reads them (see Buffers below).
+;; On/off takes effect at a group's tick 0 only, so every shown
 ;; frame is a finished one. The display then runs at up to 60 fps while the
-;; battle runs FF_RATE ticks per shown frame.
+;; battle runs that many ticks per shown frame.
 ;;
-;; --mods=battle-speedup drops retail's second VSync of the half-rate mode
-;; (mods/battle-speedup/btlp.asm, one nop at 0x800811B8). That address is inside
-;; the rewrite below, so with both options main.asm leaves that file out and
-;; the rewrite has no second wait; with fastforward alone the rewrite keeps it.
+;; With --mods=battle-speedup on, its own copy of this rewrite
+;; (mods/battle-speedup/btlp.asm) is left out and this one runs its speeds.
+;; A group's size is chosen at its tick 0 (ff_plan). While a turn plays out
+;; (BtlStageRound or AUTO; the command picker, the formation grid and a
+;; negotiation stay retail) it is FF_SKILLS in summons and skills and
+;; FF_ACTIONS in the rest of the turn (attacks, the enemies' actions, the
+;; messages); while the entry camera moves (g_btl_intro_step 4) FF_ENTRY;
+;; else 1. Fast-forwarding multiplies it by FF_MULT. The three speeds are 1
+;; unless battle-speedup's ranges write them (its values.tsv, at ff_vars'
+;; fixed address). A shown tick
+;; keeps retail's waits (the vblank count behind the half-rate second wait is
+;; reset on shown ticks only, so a group's own time counts), so N ticks per
+;; shown frame are N times retail speed, at retail's frame rate, with only
+;; one tick in N drawn.
+;;
+;; Buffers: a drawn tick flips g_btl_frame as retail; a hidden tick does not,
+;; so the next tick builds in the same buffer and a drawn tick always draws
+;; into the buffer that is not on screen, whatever the group size. A hidden
+;; tick pre-flips it and waits for its (empty) submit to finish (DrawSync)
+;; before the next tick rewrites that buffer's ordering table and packets.
 ;;
 ;; BtlDrawFrame is -O0 code (0x80080F14..0x8008136B); it is rewritten
 ;; compactly with the same calls in the same order, and the fast-forward lives
@@ -56,6 +72,7 @@
 ;;
 ;; Battle globals (decomp src/btlp/drawframe.c), from s0 = 0x800D0000:
 ;;   -0xF96 g_btl_stage   -0xF95 g_btl_step    -0xF92 g_btl_no_help  -0xF8D g_btl_half_rate
+;;   -0xF8F g_btl_intro_step (4: the entry camera moves; Rev 1 0x800CCA25 + 0x264C)
 ;;   -0xF8C g_btl_closing -0xF6D g_btl_frame_due -0xF6B g_btl_vsync_count
 ;;   -0xF68 g_btl_prim_pool  -0xF08 g_btl_frame  -0xF0C g_btl_interlace
 ;;   -0xF0B g_btl_blank_on_load  -0xF05 g_btl_auto_confirm
@@ -202,47 +219,49 @@
 @@no_delay:
     lhu     v0, -0xFA6(s0)
     lbu     v1, -0xF08(s0)
-    sb      zero, -0xF6B(s0)            ; g_btl_vsync_count = 0
     addiu   v0, v0, 1
     xori    v1, v1, 1
     sh      v0, -0xFA6(s0)              ; g_btl_tick++
     j       0x80081358                  ; the retail epilogue
-    sb      v1, -0xF08(s0)              ; g_btl_frame ^= 1
+    sb      v1, -0xF08(s0)              ; g_btl_frame ^= 1 (a hidden tick pre-flipped it)
 
 ;; At the frame start: FF_HIDE (no drawing) and FF_SHOW (vblank wait and
-;; display) for this tick, per the group it is in. Leaf.
+;; display) for this tick, per the group it is in. A group's size is chosen
+;; at its tick 0 (see the header): in a turn (ff_plan_turn) FF_SKILLS or
+;; FF_ACTIONS, during the entry camera FF_ENTRY, else 1 (no group: every
+;; tick drawn and shown, as retail); times FF_MULT while fast-forwarding
+;; (ff_plan_mult). FF_CNT counts the group's ticks still to come; the last
+;; one (0) draws. Leaf.
 ff_plan:
     lui     t0, hi(ff_vars)
+    lbu     t1, lo(ff_vars + FF_CNT)(t0)
     addiu   t0, t0, lo(ff_vars)
-    lbu     t1, FF_CNT(t0)
-    lbu     t2, FF_ON(t0)
-    bnez    t1, @@in_group
-    lbu     a0, -0xF96(s0)              ; g_btl_stage
+    bnez    t1, ff_plan_group
+    lbu     a0, -0xF96(s0)              ; (delay) g_btl_stage
     lbu     a1, 0x2250(s0)              ; AUTO
-    xori    a0, a0, 2
-    sltiu   a0, a0, 1                   ; 1 in BtlStageRound (stage 2)
-    or      a0, a0, a1
-    bnez    a0, @@turn
+    xori    a0, a0, 2                   ; 0 in BtlStageRound (stage 2)
+    beqz    a0, ff_plan_turn
+    lbu     v1, FF_SKILLS(t0)           ; (delay)
+    bnez    a1, ff_plan_turn
+    lbu     a0, -0xF8F(s0)              ; (delay) g_btl_intro_step
+    lbu     v1, FF_ENTRY(t0)
+    xori    a0, a0, 4                   ; 4: the entry camera is moving
+    beqz    a0, ff_plan_rate            ; (START only turns the fast-forward on in a turn)
     nop
-    move    t2, zero                    ; the turn is over: the fast-forward ends
-    sb      zero, FF_ON(t0)
-@@turn:
-    sb      t2, FF_CNT(t0)              ; tick 0, shown; on: a group starts,
-    sb      t2, FF_HIDE(t0)             ; and its tick 0 is hidden
+    ori     v1, zero, 1                 ; no group
+ff_plan_rate:
+    addiu   t1, v1, -1                  ; the group's ticks after this one
     ori     v0, zero, 1
-    jr      ra
-    sb      v0, FF_SHOW(t0)
-@@in_group:
-    addiu   t1, t1, 1
-    sltiu   at, t1, FF_RATE             ; still inside the group: hidden
-    bnez    at, @@counted
-    nop
-    move    t1, zero                    ; the group's last tick draws the next shown frame
-@@counted:
-    sb      t1, FF_CNT(t0)
-    sb      at, FF_HIDE(t0)
-    jr      ra
+    b       ff_plan_store
+    sb      v0, FF_SHOW(t0)             ; tick 0 is shown
+ff_plan_group:
+    addiu   t1, t1, -1
     sb      zero, FF_SHOW(t0)
+ff_plan_store:
+    sltu    at, zero, t1                ; ticks still to come: this one is hidden
+    sb      t1, FF_CNT(t0)
+    jr      ra
+    sb      at, FF_HIDE(t0)
 
 ;; The tail of the frame (a0 = the frame buffer): show, then submit this
 ;; tick's ordering table.
@@ -256,7 +275,6 @@ ff_present:
     nop
     beqz    v0, @@no_show
     nop
-.ifndef MOD_BATTLE_SPEEDUP
     lbu     v0, -0xF8D(s0)              ; g_btl_half_rate (30 fps effects) ...
     lbu     v1, -0xF6B(s0)              ; ... and no vblank counted since the last frame
     beqz    v0, @@one_wait
@@ -266,9 +284,9 @@ ff_present:
     jal     0x80025C98                  ; the retail second VSync(0)
     move    a0, zero
 @@one_wait:
-.endif
     jal     0x80025C98                  ; VSync(0)
     move    a0, zero
+    sb      zero, -0xF6B(s0)            ; g_btl_vsync_count = 0: counts from this frame
     jal     0x8002BD98                  ; PutDispEnv: the frame drawn last tick
     addiu   a0, s1, 0x5C
 @@no_show:
@@ -279,8 +297,11 @@ ff_present:
     nop
     jal     0x8002BBC0                  ; PutDrawEnv(the frame's own)
     move    a0, s1
-    b       @@submit
-    nop
+    ori     a0, zero, 0xD6C0
+    jal     0x8002BB4C                  ; DrawOTag
+    addu    a0, s1, a0
+    b       @@done
+    lw      ra, 0x24(sp)
 @@empty:
     lw      t3, 0(s1)                   ; clip x, y
     lw      t4, 4(s1)                   ; clip w, h
@@ -301,11 +322,16 @@ ff_present:
     sw      t3, 0(s1)                   ; the frame's DRAWENV as it was
     sw      t4, 4(s1)
     sb      t5, 0x18(s1)
-@@submit:
+    lbu     t3, -0xF08(s0)              ; g_btl_frame: the tail flips it, so a
     ori     a0, zero, 0xD6C0
+    xori    t3, t3, 1                   ; hidden tick pre-flips it and the next
+    sb      t3, -0xF08(s0)              ; tick builds in this same buffer
     jal     0x8002BB4C                  ; DrawOTag
     addu    a0, s1, a0
+    jal     0x8002B5E8                  ; DrawSync(0): before the next tick rewrites it
+    move    a0, zero
     lw      ra, 0x24(sp)
+@@done:
     lw      s1, 0x20(sp)
     jr      ra
     addiu   sp, sp, 0x28
@@ -335,17 +361,19 @@ ff_pad:
     lhu     v1, -0x7710(at)             ; g_btl_pad1_edge
     lbu     a0, -0xF96(s0)              ; g_btl_stage
     lbu     a1, 0x2250(s0)              ; AUTO
-    andi    v0, v1, FF_START
+    lui     t0, hi(ff_vars)
     xori    a0, a0, 2
     sltiu   a0, a0, 1                   ; 1 in BtlStageRound (stage 2)
-    beqz    v0, @@pad_done
     or      a0, a0, a1
-    beqz    a0, @@pad_done
-    lui     t0, hi(ff_vars)
+    bnez    a0, @@in_turn
+    andi    v0, v1, FF_START
+    jr      ra
+    sb      zero, lo(ff_vars + FF_ON)(t0) ; the turn is over: the fast-forward ends
+@@in_turn:
+    beqz    v0, @@pad_done
     lbu     v0, lo(ff_vars + FF_OVER)(t0)
     nop
     bnez    v0, @@pad_done              ; the battle is over: START is the game's
-    nop
     lbu     v0, lo(ff_vars + FF_ON)(t0)
     xori    v1, v1, FF_START
     sh      v1, -0x7710(at)
@@ -386,21 +414,56 @@ ff_battle_over:
 ;; nothing calls either (decomp src/btlp/frontpost.c; no jal, no pointer).
 .org 0x80065D88
 .area 0x80065E98 - 0x80065D88
+;; At the area's start, a fixed address: battle-speedup's ranges write the
+;; three speeds and this mod's `rate` range FF_MULT in the built file (the
+;; mods' values.tsv).
+ff_vars:
+    .byte   0, 0, 0, 0, 0               ; ON CNT HIDE SHOW OVER: BTLP is read anew every battle
+    .byte   1, 1, 1                     ; ACTIONS SKILLS ENTRY: no group unless battle-speedup's ranges set them
+    .byte   FF_RATE                     ; MULT: the `rate` range (values.tsv)
+.align 4
 ;; v0 = the handler, a0 = the object: a hidden tick draws no object.
 ff_obj_draw:
     lui     at, hi(ff_vars)
     lbu     at, lo(ff_vars + FF_HIDE)(at)
     nop
-    bnez    at, @@obj_hidden
+    beqz    at, @@obj_drawn
     nop
+    move    v0, ra                      ; hidden: straight back
+@@obj_drawn:
     jr      v0
-@@obj_hidden:
-    nop
-    jr      ra
     nop
 
-;; a0 = the frame buffer: while the fast-forward is on, link the two ">>"
-;; triangles of this buffer first into the last OT entry (the text sprites').
+;; ff_plan in a turn: FF_SKILLS in the half-rate effects (g_btl_half_rate:
+;; skills, the Persona's motion in a summon) and while a summon's cast
+;; circle (g_btl_hud_obj, -0xFF0(s0)) is shown (BTL_OBJ_HIDDEN, attr bit
+;; 30, clear: the circle, the pose, the Persona and its exit), else
+;; FF_ACTIONS; then FF_MULT times that while fast-forwarding.
+ff_plan_turn:                           ; v1 = FF_SKILLS
+    lbu     a0, -0xF8D(s0)              ; g_btl_half_rate
+    lw      a2, -0xFF0(s0)              ; g_btl_hud_obj
+    bnez    a0, @@mult
+    lbu     a0, FF_ON(t0)               ; (delay)
+    beqz    a2, @@actions
+    lw      a2, 0(a2)                   ; (delay) its attr (none: reads RAM word 0, unused)
+    nop
+    sll     a2, a2, 1                   ; BTL_OBJ_HIDDEN to the sign
+    bgez    a2, @@mult                  ; shown: the summon is running
+    nop
+@@actions:
+    lbu     v1, FF_ACTIONS(t0)
+@@mult:
+    lbu     a1, FF_MULT(t0)
+    beqz    a0, ff_plan_rate            ; a0 = FF_ON
+    nop
+    multu   v1, a1
+    j       ff_plan_rate
+    mflo    v1                          ; (delay)
+
+;; a0 = the frame buffer: while the fast-forward is on, link this buffer's
+;; ">>" packet first into the last OT entry (the text sprites'). An OT entry's
+;; tag has length 0, so its link is the packet's and the packet's address
+;; is the entry's.
 ff_icon:
     lui     t0, hi(ff_vars)
     lbu     v0, lo(ff_vars + FF_ON)(t0)
@@ -410,49 +473,42 @@ ff_icon:
     addu    a0, a0, v1                  ; the OT entry
     lui     a1, hi(ff_prims)
     addiu   a1, a1, lo(ff_prims)
-    sll     t1, t1, 3
-    sll     t2, t1, 2
-    addu    t1, t1, t2                  ; 40 bytes per buffer
-    addu    a1, a1, t1                  ; first triangle
-    addiu   a2, a1, 20                  ; second
-    lui     t3, 0x0400                  ; 4 words each
-    lui     t4, 0x00FF
-    ori     t4, t4, 0xFFFF
+    sll     t2, t1, 5
+    sll     t1, t1, 2
+    addu    t1, t1, t2                  ; 36 bytes per buffer
+    addu    a1, a1, t1
     lw      v0, 0(a0)
-    and     v1, a2, t4
-    or      v1, v1, t3
-    sw      v1, 0(a1)                   ; first -> second
-    and     v1, v0, t4
-    or      v1, v1, t3
-    sw      v1, 0(a2)                   ; second -> the entry's list
-    srl     v0, v0, 24
-    sll     v0, v0, 24
-    and     v1, a1, t4
-    or      v0, v0, v1
-    sw      v0, 0(a0)                   ; entry -> first
+    lui     t3, 0x0800                  ; 8 words: two POLY_F3
+    or      v0, v0, t3
+    sw      v0, 0(a1)                   ; packet -> the entry's list
+    sll     v1, a1, 8
+    srl     v1, v1, 8
+    sw      v1, 0(a0)                   ; entry -> packet
 @@icon_done:
     jr      ra
     nop
 
 .align 4
-ff_vars:
-    .byte   0, 0, 0, 0, 0               ; BTLP is read anew for every battle: off at the start
-.align 4
-ff_prims:                               ; buffer 0, buffer 1
-    .word   0x04FFFFFF, FF_ICON_RGB
+ff_prims:                               ; buffer 0, buffer 1: a tag and two POLY_F3
+    .word   0x08FFFFFF
+    .word   FF_ICON_RGB
     .word   (FF_ICON_Y << 16) | (FF_ICON_X + 0)
     .word   ((FF_ICON_Y + 12) << 16) | (FF_ICON_X + 0)
     .word   ((FF_ICON_Y + 6) << 16) | (FF_ICON_X + 9)
-    .word   0x04FFFFFF, FF_ICON_RGB
+    .word   FF_ICON_RGB
     .word   (FF_ICON_Y << 16) | (FF_ICON_X + 9)
     .word   ((FF_ICON_Y + 12) << 16) | (FF_ICON_X + 9)
     .word   ((FF_ICON_Y + 6) << 16) | (FF_ICON_X + 18)
-    .word   0x04FFFFFF, FF_ICON_RGB
+    .word   0x08FFFFFF
+    .word   FF_ICON_RGB
     .word   (FF_ICON_Y << 16) | (FF_ICON_X + 0)
     .word   ((FF_ICON_Y + 12) << 16) | (FF_ICON_X + 0)
     .word   ((FF_ICON_Y + 6) << 16) | (FF_ICON_X + 9)
-    .word   0x04FFFFFF, FF_ICON_RGB
+    .word   FF_ICON_RGB
     .word   (FF_ICON_Y << 16) | (FF_ICON_X + 9)
     .word   ((FF_ICON_Y + 12) << 16) | (FF_ICON_X + 9)
     .word   ((FF_ICON_Y + 6) << 16) | (FF_ICON_X + 18)
 .endarea
+.if ff_vars != 0x80065D88
+    .error "ff_vars moved: mods/battle-speedup/values.tsv writes its offsets"
+.endif

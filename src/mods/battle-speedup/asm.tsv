@@ -1,2 +1,4 @@
 file	order	line	if	unless	note
-BTLP	300	.include "btlp.asm"		fast-forward-battle-animations	--mods=battle-speedup: summons / skill effects at double speed
+BTLP	290	.include "btlp.asm"		fast-forward-battle-animations	--mods=battle-speedup: summons / skill effects (and optionally the entry camera) at the selected speed; fast-forward's own rewrite runs the speeds when it is on
+DNG	290	.include "dng.asm"			--mods=battle-speedup: the dungeon's battle transitions (shatter, wave) at the selected speed with the `entry` choice
+S2D	290	.include "s2d.asm"			--mods=battle-speedup: the overworld's battle transition at the selected speed with the `entry` choice

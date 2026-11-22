@@ -26,9 +26,13 @@ ticks only. A measured draw cost decides how many extra frames fit, so the game 
 - Fixed 2026-10-09 (user report: the world snapped back before each step, also with Up held): at the first
   tick of a step the overworld re-centres the map on the new cell: the root position jumps by the step
   vector 0x800B143C (0 -> 640 from standing, 160 -> 640 when walking on), and the map shift that cancels it
-  is not interpolated. Detection: the step's remaining counter 0x800B144C went up since the previous tick.
+  is not interpolated. Detection: the step start 0x8008B2F4 ran since the previous tick (its store of the
+  per-tick step at 0x8008B380 goes through `s2dq_stepped`, which sets a flag). The remaining counter
+  0x800B144C going up is not enough: a step that ends in the tick it starts (`overworld-run-speed` at
+  4x, a per-tick step of 0x1000) reads 0 at every tick.
   Then the previous root position is moved by the step vector too, so the in-between frame continues the
-  motion. Word jump threshold also lowered 0x1000 -> 480. Verified with Up held: drawn root positions
+  motion. Word jump threshold: 640, one cell (a jump above it is a warp and is not interpolated; a
+  one-tick step at overworld-run-speed's 4x moves the root a whole cell in a tick). Verified with Up held: drawn root positions
   560 480 400 320 240 160 | 720 640 560 ... (80 per frame, no backward frame).
 - Placement: the extension behind the S2D image holds the VWF glue at
   `S2D_GLUE_ADDR` (0x800BB200), the name spill at 0x800BB8F0, the 1-row VWF

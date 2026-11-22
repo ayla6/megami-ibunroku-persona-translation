@@ -77,8 +77,14 @@ async function main() {
             if (!count) throw Error('webpatcher: expected disc ended at ' + (offset + read));
             read += count;
           }
-          if (!expected.equals(Buffer.from(bytes.buffer, bytes.byteOffset, bytes.byteLength)))
-            throw Error('webpatcher: disc differs near offset ' + offset);
+          const got = Buffer.from(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+          if (!expected.equals(got)) {
+            let at = 0;
+            while (expected[at] === got[at]) at++;
+            const where = offset + at;
+            throw Error(`webpatcher: disc differs at offset ${where} (sector ${Math.floor(where / 2352)}`
+                        + ` byte ${where % 2352}): expected ${expected[at]}, got ${got[at]}`);
+          }
         } else fs.writeSync(out, bytes);
         offset += bytes.length;
       }

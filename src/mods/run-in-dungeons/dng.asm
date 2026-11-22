@@ -3,9 +3,13 @@
 ;; speed in 3D dungeons. The selected integer lives in dng_run_speed.
 ;;
 ;; Every tile and turn keeps all nine view/heading advances. Only drawn
-;; frames are skipped: 2x draws 5/4 frames, 3x draws 3, and 4x draws 3/2/2/2.
-;; Each mask includes the final advance. Every drawn frame still calls one
-;; FieldFrame, keeping game ticks and the play clock at their real rate.
+;; frames are skipped. The field's main loop draws one frame of its own after
+;; every step or turn (FieldUpdate, then FieldFrame), and that frame shows the
+;; final advance, so a tile costs the walk's frames plus that one (ten in
+;; retail). The masks leave the final advance to it: 2x draws 4 frames in the
+;; walk (5 with the loop's), 3x draws 3/2/2 (4/3/3), and 4x 2/1 (3/2). Every drawn
+;; frame still calls one FieldFrame, keeping game ticks and the play clock
+;; at their real rate.
 ;;
 ;; The button is the game's own run action, not a settings row of its own: the
 ;; controller page's action table gets one more action, and both field pad
@@ -30,6 +34,11 @@
 .definelabel dngrun_step_tick,   0x80069754    ; FieldStepTick()
 .definelabel dngrun_walk_done,   0x80069010    ; FieldWalk's common return
 .definelabel dngrun_scene_ptr,   0x800A10D8    ; g_scene; held pad is +0x6E504
+.definelabel dngrun_turn_start,  0x80069040    ; FieldTurn's jal FieldPauseBgm
+.definelabel dngrun_pause_bgm,   0x8006A6D0    ; FieldPauseBgm()
+.definelabel dngrun_turn_end,    0x800690D4    ; FieldTurn's epilogue
+.definelabel dngrun_vsync,       0x80025C98    ; VSync(n)
+DNGRUN_TURN_REPEAT equ 27                      ; vblanks: a retail turn's nine 3-vblank frames
 
 ;; The retail animation block: FieldStepBegin, 5x (StepView, Frame), the zone
 ;; tune, 4x (StepView, Frame), StepEnd, StepTick. The walk entry hooks it as a
@@ -43,6 +52,10 @@
 .org DNG_TURN_FRAME
     jal     dngrun_turn_frame
     nop
+;; FieldTurn's start (its call to FieldPauseBgm, s0-s3 and ra saved): a held
+;; direction repeats a running turn no faster than retail's (dngrun_turn_gate).
+.org dngrun_turn_start
+    jal     dngrun_turn_gate
 
 ;; PadDrawLayout: the action-name table now lives in the image extension (the
 ;; retail one has no room for a twentieth pointer).
@@ -74,6 +87,8 @@ dng_run_parity:
     .byte   0
 dng_run_mask:
     .halfword 0
+dng_run_turned:
+    .word   0                           ; vblank count when the last turn started
 ;; ---- the walk hook ---------------------------------------------------
 ;; Entry: s1 = FieldWalk's return argument (must reach the common return in
 ;; v0); s0 and s1 are FieldWalk's saved scratch; ra is FieldWalk's return
@@ -146,38 +161,41 @@ dngrun_walk:
     j       dngrun_walk_done
     move    v0, s1
 
-;; Select a complete-tile mask. Every mask draws the final advance, so a
-;; turn or tile always lands visibly at its exact endpoint. Over a cycle,
-;; 2x draws 5+4 frames, 3x draws 3, and 4x draws 3+2+2+2.
+;; Select a complete-tile mask. No mask draws the final advance: the main
+;; loop's frame after the step or turn shows the exact endpoint. Counting
+;; that frame, retail draws 10 per tile; 2x draws 5, 3x 4+3+3, and 4x 3+2.
+;; dng_run_parity is the position in the speed's cycle.
 dngrun_next_mask:
     la      t0, dng_run_speed
     lbu     t1, 0(t0)
     lbu     t2, 1(t0)
     ori     t3, zero, 3
     beq     t1, t3, @@triple
-    nop
     ori     t3, zero, 4
     beq     t1, t3, @@quadruple
     nop
-    andi    t2, t2, 1
-    xori    t3, t2, 1
-    sb      t3, 1(t0)
-    sll     t3, t3, 8
-    b       @@store
-    ori     v0, t3, 0x254
-@@triple:
     sb      zero, 1(t0)
     b       @@store
-    ori     v0, zero, 0x248
-@@quadruple:
-    andi    t2, t2, 3
+    ori     v0, zero, 0x154                 ; 2 4 6 8
+@@triple:
     addiu   t3, t2, 1
-    andi    t3, t3, 3
-    sb      t3, 1(t0)
-    ori     v0, zero, 0x210
-    bnez    t2, @@store
+    sltiu   at, t3, 3
+    bnez    at, @@triple_next
     nop
-    ori     v0, zero, 0x310
+    move    t3, zero
+@@triple_next:
+    sb      t3, 1(t0)
+    bnez    t2, @@store
+    ori     v0, zero, 0x048                 ; 3 6
+    b       @@store
+    ori     v0, zero, 0x094                 ; 2 4 7
+@@quadruple:
+    xori    t3, t2, 1
+    andi    t3, t3, 1
+    sb      t3, 1(t0)
+    bnez    t2, @@store
+    ori     v0, zero, 0x010                 ; 4
+    ori     v0, zero, 0x048                 ; 3 6
 @@store:
     sh      v0, 2(t0)
     jr      ra
@@ -234,6 +252,45 @@ dngrun_turn_frame:
     nop
 @@done:
     jr      ra
+    nop
+
+;; ---- FieldTurn's start -------------------------------------------------
+;; Running (Cross held), a turn starts at once on a fresh press of Left or
+;; Right; while the direction stays held from the turn before, the next one
+;; waits until DNGRUN_TURN_REPEAT vblanks (a retail turn's nine frames) have
+;; passed since that turn started, and FieldTurn returns through its own
+;; epilogue meanwhile (the main loop draws its frame and asks again). A tap
+;; turns at the run speed; a held direction spins no faster than retail.
+;; Walking keeps every turn as retail. Tail-calls FieldPauseBgm when the
+;; turn goes ahead, so FieldTurn carries on as retail.
+dngrun_turn_gate:
+    addiu   sp, sp, -0x18
+    sw      ra, 0x10(sp)
+    jal     dngrun_vsync
+    addiu   a0, zero, -1                        ; VSync(-1): the vblank count
+    lw      ra, 0x10(sp)
+    addiu   sp, sp, 0x18
+    la      t0, dng_run_turned
+    lw      t1, 0(t0)
+    lui     t2, ((dngrun_scene_ptr + 0x8000) >> 16) & 0xFFFF
+    lw      t2, (dngrun_scene_ptr & 0xFFFF)(t2)
+    lui     t3, 7
+    addu    t2, t2, t3
+    lw      t4, -0x1AFC(t2)                     ; scene->pad_held
+    lw      t5, -0x1AF8(t2)                     ; scene->pad_new
+    andi    t4, t4, 0x40                        ; Cross
+    beqz    t4, @@turn
+    andi    t5, t5, 0xA000                      ; (delay) a fresh Left or Right
+    bnez    t5, @@turn
+    subu    t1, v0, t1                          ; (delay) vblanks since the last turn
+    sltiu   at, t1, DNGRUN_TURN_REPEAT
+    beqz    at, @@turn
+    nop
+    j       dngrun_turn_end                     ; held, too soon: no turn this time
+    nop
+@@turn:
+    sw      v0, 0(t0)
+    j       dngrun_pause_bgm
     nop
 
 .if . > DNG_RUN_LIMIT

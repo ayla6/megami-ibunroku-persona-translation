@@ -151,11 +151,15 @@ class Mod:
         out.update({r.key: f"{r.key}={r.default}" for r in self.ranges})
         extras: set[str] = set()
         known = {c.token for c in self.choices}
+        values = {r.key: r.default for r in self.ranges}
+        named: set[str] = set()
         for name in filter(None, (n.strip() for n in picked.split(','))):
             parameter, sep, value = name.partition("=")
             setting = next((r for r in self.ranges if r.key == parameter), None)
             if setting and sep:
-                out[parameter] = f"{parameter}={setting.validate(value)}"
+                values[parameter] = setting.validate(value)
+                named.add(parameter)
+                out[parameter] = f"{parameter}={values[parameter]}"
                 continue
             if name not in known:
                 raise ValueError(f'{self.slug} has no choice {name}; it has '
@@ -165,6 +169,9 @@ class Mod:
                 out[group] = name
             else:
                 extras.add(name)
+        for r in self.ranges:              # a range not named takes the one it follows
+            if r.follows and r.key not in named:
+                out[r.key] = f"{r.key}={r.nearest(values[r.follows])}"
         return frozenset(out.values()) | frozenset(extras)
 
     @property
@@ -202,9 +209,13 @@ def _read(folder: str) -> Mod:
             key, sep, value = line.partition('\t')
             if key == 'range' and sep:
                 cells = value.split('\t')
-                if len(cells) != 7:
-                    raise ValueError(f'{path}:{number}: range is KEY MIN MAX STEP DEFAULT NAME EDITS')
-                setting = RangeSetting(cells[0], *(int(x) for x in cells[1:5]), cells[5], cells[6])
+                if len(cells) not in (7, 8) or len(cells) == 8 and not cells[7].startswith('follows='):
+                    raise ValueError(f'{path}:{number}: range is KEY MIN MAX STEP DEFAULT NAME EDITS [follows=KEY]')
+                follows = cells[7].removeprefix('follows=') if len(cells) == 8 else ''
+                if follows and not any(r.key == follows and not r.follows for r in ranges):
+                    raise ValueError(f'{path}:{number}: follows names no earlier range of its own')
+                setting = RangeSetting(cells[0], *(int(x) for x in cells[1:5]), cells[5], cells[6],
+                                       follows)
                 if setting.step <= 0 or setting.minimum > setting.maximum:
                     raise ValueError(f'{path}:{number}: invalid range bounds')
                 setting.validate(str(setting.default))

@@ -1,3 +1,7 @@
+# 2026-11-21
+- Fixed some texts that silently failed to inject. (Missing translations)
+- More mods that let you be faster, if you hate art like me.
+
 # 2026-11-20-2
 - Shows when a skill misses to not confuse you if it missed or if it was nulled or something.
 - Updated a few demon names to the more standard ones.
