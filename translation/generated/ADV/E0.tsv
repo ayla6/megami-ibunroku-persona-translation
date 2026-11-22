@@ -2853,3 +2853,5 @@ id	pos	psp	en
 2851	51:0x12058	E0:723	Nanjo: Are you sure<SFF03>you don’t<LFF03>want to bring Eriko with us?<FF02><FF03><FF0E><00><FF01>
 2852	55:0x147c0	E0:823	Mark: Yo <FF07><01>,<SFF03>are you<LFF03>seriously takin’ Ayase with us?<FF02><FF03><FF0E><00><FF01>
 2853	55:0x14830	E0:824	Mark:<LFF03>Yo <FF07><01>, are you seriously<FF03>not gonna take Ayase with us?<FF02><FF03><FF0E><00><FF01>
+2854	118:0x13ed8	E0:1725	Maki: ... <FF07><01>... Is that<FF03>really what you meant to say to Mai?<FF02><FF03><FF0E><23><FF01>
+2855	118:0x13f58	E0:1726	Maki: ...Okay. Then answer her again,<FF03>for real this time.<FF02><FF01>

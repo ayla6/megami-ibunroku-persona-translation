@@ -60,8 +60,7 @@ English build gets one:
   PSP-US scripts and writes `translation/generated_mappings/confirm_port_plan.tsv`,
   one row per confirmed answer. It skips a confirm that a PSX box already
   carries (E1/160's totem prompts) and skips anything that is not a
-  confirm at a branch head. That second rule leaves out the PSP's second try
-  at Mai's questions (E0/118), which is a gameplay change and not a confirm.
+  confirm at a branch head.
 - The added box is an ordinary row in `generated/ADV/E?.tsv` at pos
   `entry:0x1xxxx`, which is `escript.ADDED_BASE` (0x10000) plus the PSP box
   offset. An image is at most 0xFFF8 bytes, so no real box sits there.
@@ -77,6 +76,33 @@ English build gets one:
   does not confirm run the PSX's own tests. A planned confirm with no
   English is not hooked.
 - `tstatus qa` checks the added rows like any question box.
+
+### Retries the PSP adds
+
+E0/118: when any of Mai's three answers was wrong, the PSP has Maki ask
+"...Is that really what you meant to say to Mai?". "Yes, it was." takes the
+normal fail (Mr. Bear throws the party out); "On second thought..." clears
+the three flags and asks the questions again.
+
+- `src/porting/retry_port_plan.py` (a port step) finds a PSP flag-test chain
+  (`26 flag` per flag, each followed by `22 -> fail`) whose fail target
+  shows a box no PSX box carries, where the PSX has a chain with the same
+  flags. It writes every command reachable from that fail target to
+  `translation/generated_mappings/retry_port_plan.tsv`, until control comes
+  back to the chain or reaches another PSP chain with the same flags.
+- Its boxes are PSX boxes where one carries the PSP box's English, and
+  added boxes otherwise (`entry:0x1xxxx` rows, as for the confirms).
+- `etext build` (`escript.retry_hook`) points the PSX chain's fail jumps at
+  a block appended to the image, made of those commands. A jump back to
+  the PSP chain tests the PSX chain again. A jump to the other PSP chain
+  runs a copy of the PSX chain with its own outcomes, so a failure there
+  takes the PSX fail branch.
+- Maki's question asks the PSP's choice 35, which the PSX table does not
+  have. `choices.py` rebuilds the table four entries lower (`NEW_TABLE`),
+  so it covers every id `BOOT_MAP` names and still ends where the retail
+  table does. Every reader in ADV/DNG/S2D gets the new low half
+  (`build/choices_<file>.asm`). Choice 35's row sits at SLPS pos
+  `ADDED_POS + 35` (0x1000023).
 
 ## Print speed
 

@@ -22,6 +22,12 @@ and DualShock analog movement are not included in this particular build.
   No asks Mark's choice again, and Yes takes the chosen answer. Repeat for
   Elly (E0/51), Ayase (E0/55) and one Kei/Eriko help prompt (E1), where No
   turns the help down.
+- [x] Mai's questions (E0/118): a wrong answer makes Maki ask "...Is that
+  really what you meant to say to Mai?", and "On second thought..." asks all
+  three again. Confirmed in game by the user (2026-11-22, card 2 `2:S5`, a
+  Lv 42 save moved into Mai's room with her flags cleared).
+- [ ] Other choice menus still draw their options with the moved choice
+  table: a shop, the Agastya Tree, a dungeon yes/no.
 
 ## When DualShock movement is implemented
 

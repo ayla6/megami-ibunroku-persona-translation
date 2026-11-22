@@ -66,21 +66,21 @@ def rows(include_auto=True, reviewed=None):
                 yield n, entry.index, box, ja, en
 
 
-def confirm_rows():
-    """(file, pos, en) of every translated confirm prompt the PSP adds
-    (escript's plan; manual wins, as in etext.load_confirms)."""
+def added_rows():
+    """(file, pos, en) of every translated box the PSP adds (escript's plans;
+    manual wins, as in etext.load_hooks)."""
     import escript
     for n in etext.FILES:
-        plan = [c for c in escript.read_plan() if c.file == n]
-        if not plan:
+        boxes = [b for b in escript.added_boxes() if b.file == n]
+        if not boxes:
             continue
         rel = f'ADV/{n}'
         rows = {r['pos']: r.get('en', '') for r in toolbelt.read_generated(rel, optional=True)}
         rows.update({r['pos']: r['en'] for r in toolbelt.read_manual(rel, optional=True)
                      if etext.has_text(r.get('en', ''))})
-        for c in plan:
-            if etext.has_text(rows.get(c.pos, '')):
-                yield n, c.pos, rows[c.pos]
+        for b in boxes:
+            if etext.has_text(rows.get(b.pos, '')):
+                yield n, b.pos, rows[b.pos]
 
 
 def code_seq(b):
@@ -573,9 +573,9 @@ def cmd_qa(limit=40):
             if shown < limit:
                 print(f'{n}/{e}/{k} [{kind}] {msg}')
                 shown += 1
-    # the confirm prompts the PSP adds (escript) have no PSX box: judged on
-    # their own, a question box, so no label is required
-    for n, pos, en in confirm_rows():
+    # the boxes the PSP adds (escript) have no PSX box: judged on their own,
+    # with no label required (no Japanese box says whether one shows)
+    for n, pos, en in added_rows():
         total += 1
         for kind, msg in check('', en, want_label=None):
             counts[kind] += 1

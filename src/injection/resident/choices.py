@@ -9,6 +9,11 @@ Layout (RAM, resident main EXE; file offset = addr - 0x80010000 + 0x800):
   0x8004D760: 32 entries x 8 bytes: u32 pointer to the option string, then 4 bytes
               [rows, cols, width_chars, 0]   (the <FF0E> handler is at 0x800672AC)
   strings:    0x8004D430-0x8004D75D, options separated by <FF03>, ended by <FF01>.
+The English build rebuilds the table at NEW_TABLE with an entry for every id
+BOOT_MAP names (the PSP's choice 35 is past the PSX's 32): it grows down into
+the tail of the string pool and still ends at 0x8004D860, and every reader
+in ADV/DNG/S2D (rebase_sites) gets the new low half (build/choices_<file>.asm).
+An id the PSX table lacks has its row at pos ADDED_POS + idx.
 The strings are drawn by the dialogue text interpreter, so English goes through the dialogue VWF
 (variable width, ASCII + 0x68). The option grid is fixed: column 2 of a 2-column menu starts at
 (width_chars + 1) * 16 px, the cursor underline is width_chars * 16 px long.
@@ -51,6 +56,10 @@ BOOT_MAP = {
     21: [37, 38, 39, 40], 22: [35, 36], 23: [31, 32, 33, 34],
     24: [27, 30, 28, 29], 25: [25, 26], 26: [23, 24], 27: [21, 22],
     28: [19, 20], 29: [17, 18], 30: [15, 16], 31: [13, 14],
+    # PSP-only menus, which head the BOOT list in reverse id order (35, 34,
+    # 33, 32, then PS1 idx 31 down to 0). A ported box asks 35 (E0/118's
+    # retry, escript); 32-34 are menus no PSX script reaches.
+    35: [0, 1],
 }
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
@@ -65,6 +74,17 @@ ROOT = etext.ROOT
 TABLE = 0x8004D760
 COUNT = 32
 BASE = 0x80010000 - 0x800
+# The English table carries every choice id BOOT_MAP names. It grows down
+# into the tail of the Japanese string pool (the strings it covers are all
+# repacked - build checks), so it still ends where the retail one does and
+# every reader only needs its low half moved (rebase_sites).
+SIZE = max(BOOT_MAP) + 1
+NEW_TABLE = TABLE - 8 * (SIZE - COUNT)
+# The row pos of an id the PSX table does not have: past every SLPS offset.
+ADDED_POS = 0x1000000
+# The overlays that index the table: `lui at, 0x8005` / `addiu at, at,
+# lo(TABLE + field)` pairs, found by scanning the retail files.
+READERS = ('ADV', 'DNG', 'S2D')
 # The box the choice list is drawn into. roomsetup.c sets
 # g_bg_layers[4].h = 0x30 (three 16 px rows), and the prompt's arming line is
 # the first of them, so the list itself may occupy at most two rows. A 2x2
@@ -117,10 +137,49 @@ def original():
     return rows
 
 
+def added():
+    """Rows for the ids past the PSX table (BOOT_MAP): no Japanese, and a
+    shape from their option count - one column while it fits the box's
+    option rows, else the 2x2 grid."""
+    out = []
+    for k in range(COUNT, SIZE):
+        n = len(BOOT_MAP.get(k, ()))
+        if not n:
+            continue
+        shape = (n, 1) if n <= OPTION_ROWS else (2, 2)
+        out.append(dict(idx=k, ptr=None, params=bytes([shape[0], shape[1], 0, 0]),
+                        ja='', size=0, pos=ADDED_POS + k))
+    return out
+
+
+def pos_idx():
+    """{row pos offset: idx}: a PSX id's original string offset, an added
+    id's ADDED_POS + idx."""
+    out = {r['ptr'] - BASE: r['idx'] for r in original()}
+    out.update({r['pos']: r['idx'] for r in added()})
+    return out
+
+
+def rebase_sites():
+    """{overlay: [(va of the addiu, the table field it adds)]}: every
+    adjacent `lui at, 0x8005` / `addiu at, at, lo(TABLE + 0..7)` pair."""
+    out = {}
+    for name in READERS:
+        d = open(os.path.join(ROOT, 'data', 'psx', f'{name}.BIN'), 'rb').read()
+        sites = []
+        for o in range(0, len(d) - 7, 4):
+            lui, addiu = struct.unpack_from('<II', d, o)
+            field = (addiu & 0xFFFF) - (TABLE & 0xFFFF)
+            if lui == 0x3C018005 and addiu >> 16 == 0x2421 and 0 <= field < 8:
+                sites.append((toolbelt.file_va(name, o + 4), field))
+        out[name] = sites
+    return out
+
+
 def read_tsv():
     """{idx: en} merged over the canonical table (manual wins, toolbelt)."""
     import toolbelt
-    orig = {r['ptr'] - BASE: r['idx'] for r in original()}
+    orig = pos_idx()
     out = {}
     for r in toolbelt.merged_rows('SLPS_005.00'):
         i = orig.get(int(r['pos'], 16))
@@ -236,7 +295,7 @@ def layout(r, en):
 def auto_en():
     """{idx: en} from the canonical table (pos = original string address)."""
     import toolbelt
-    orig = {r['ptr'] - BASE: r['idx'] for r in original()}
+    orig = pos_idx()
     out = {}
     for r in toolbelt.merged_rows('SLPS_005.00'):
         i = orig.get(int(r['pos'], 16))
@@ -247,6 +306,7 @@ def auto_en():
 
 def build():
     orig = original()
+    extra = added()
     tsv = {int(r["idx"]): r["en"] for r in read_tsv()}
     auto = auto_en()
     for idx, text in auto.items():
@@ -254,7 +314,7 @@ def build():
             tsv[idx] = text
     placed = {}                                   # idx -> (bytes, rows, cols, width)
     free = list(FREE)
-    for r in orig:
+    for r in orig + extra:
         en = tsv.get(r['idx'], '').strip()
         if not etext.has_text(en):
             continue
@@ -262,10 +322,23 @@ def build():
             text, rn, cn, w = layout(r, en)
         except OverLimit as e:
             raise SystemExit(
-                f"choices: {r['idx']} ({hex(r['ptr'])}): {e} - shorten the "
+                f"choices: {r['idx']}: {e} - shorten the "
                 f"choice wording; the box cannot show all its options")
         placed[r['idx']] = (etext.encode(text), rn, cn, w)
-        free.append((r['ptr'], r['ptr'] + r['size']))     # its Japanese slot becomes free
+        if r['ptr'] is not None:
+            free.append((r['ptr'], slot_end(r)))  # its Japanese slot becomes free
+    # The table's own growth comes out of the pool, and no string it covers
+    # may still be in use.
+    for r in orig:
+        if r['idx'] not in placed and r['ptr'] < TABLE and r['ptr'] + r['size'] > NEW_TABLE:
+            raise SystemExit(f"choices: {r['idx']} is untranslated and its Japanese sits where "
+                             f"the table grows ({NEW_TABLE:#x}..{TABLE:#x})")
+    cut = []
+    for a, b in free:
+        for lo, hi in ((a, min(b, NEW_TABLE)), (max(a, TABLE), b)):
+            if hi > lo:
+                cut.append((lo, hi))
+    free = cut
     # first-fit decreasing into the free list (merge touching slots first)
     free.sort()
     merged = []
@@ -284,28 +357,56 @@ def build():
                 break
         else:
             raise SystemExit(f'choices: out of space for entry {idx} ({n} bytes)')
+    # every id of the table: an English entry, the retail one, or (an id no
+    # PSX script asks and no row fills) a copy of entry 0
+    entries = {}
+    for r in orig:
+        p = r['params']
+        entries[r['idx']] = (r['ptr'], p[0], p[1], p[2])
+    for idx, (b, rn, cn, w) in placed.items():
+        entries[idx] = (addr[idx], rn, cn, w)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, 'w', newline=NL) as o:
         o.write(';; generated by tools/choices.py build - do not edit' + NL)
-        o.write(';; English dialogue choices: strings repacked, pointer table + width bytes patched' + NL)
+        o.write(f';; English dialogue choices: strings repacked, the table rebuilt at {NEW_TABLE:#x} '
+                f'for ids 0-{SIZE - 1}' + NL)
         for r in orig:
             if r['idx'] in placed:
                 o.write(f".org {r['ptr']:#x}{NL}.fill {r['size']}, 0{NL}")
         for idx in sorted(placed):
-            b, rn, cn, w = placed[idx]
-            ro = next(r for r in orig if r['idx'] == idx)
+            b = placed[idx][0]
             o.write(f'; choice {idx}{NL}.org {addr[idx]:#x}{NL}')
             for i in range(0, len(b), 16):
                 o.write('.byte ' + ', '.join(f'0x{x:02X}' for x in b[i:i + 16]) + NL)
-            o.write(f'.org {TABLE + 8 * idx:#x}{NL}.word {addr[idx]:#x}{NL}')
-            rp, cp = ro['params'][0], ro['params'][1]
-            if rn != rp:
-                o.write(f'.org {TABLE + 8 * idx + 4:#x}{NL}.byte {rn}{NL}')
-            if cn != cp:
-                o.write(f'.org {TABLE + 8 * idx + 5:#x}{NL}.byte {cn}{NL}')
-            o.write(f'.org {TABLE + 8 * idx + 6:#x}{NL}.byte {w}{NL}')
+        o.write(f'.org {NEW_TABLE:#x}{NL}')
+        for idx in range(SIZE):
+            ptr, rn, cn, w = entries.get(idx, entries[0])
+            o.write(f'.word {ptr:#x}{NL}.byte {rn}, {cn}, {w}, 0   ; choice {idx}{NL}')
+    for name, sites in rebase_sites().items():
+        with open(overlay_out(name), 'w', newline=NL) as o:
+            o.write(f';; generated by tools/choices.py build - do not edit{NL}'
+                    f';; the choice table readers of {name}.BIN, moved to {NEW_TABLE:#x}{NL}')
+            for va, field in sites:
+                o.write(f'.org {va:#x}{NL}    addiu   at, at, {(NEW_TABLE + field) & 0xFFFF:#x} - 0x10000'
+                        f'   ; lo(choice table + {field}){NL}')
     used = sum(len(placed[i][0]) for i in placed)
-    print(f'choices: {len(placed)}/{COUNT} translated, {used} bytes placed -> {OUT}')
+    print(f'choices: {len(placed)}/{len(orig) + len(extra)} translated, {used} bytes placed, '
+          f'table at {NEW_TABLE:#x} -> {OUT}')
+
+
+def slot_end(r):
+    """Where a Japanese string's slot ends: past its zero alignment padding
+    (the strings start on 4-byte boundaries, and the pad belongs to nobody)."""
+    end = r['ptr'] + r['size']
+    pad = (-end) % 4
+    with open(os.path.join(ROOT, 'data', 'psx', 'SLPS_005.00'), 'rb') as f:
+        f.seek(end - BASE)
+        tail = f.read(pad)
+    return end + pad if not any(tail) else end
+
+
+def overlay_out(name):
+    return os.path.join(ROOT, 'build', f'choices_{name.lower()}.asm')
 
 
 def sync_boot():
@@ -340,10 +441,10 @@ def sync_boot():
                 # rules' opens its group), never wording: column 1 is padded
                 # to column 2 by layout, nothing else
                 opts[len(opts)] = text.strip()
-    orig = {r['idx']: r for r in original()}
+    orig = {r['idx']: r for r in original() + added()}
     rows = {}
     over = {}
-    for idx in range(COUNT):
+    for idx in sorted(orig):
         cells = []
         for oi in BOOT_MAP.get(idx, []):
             if oi not in opts:
@@ -365,21 +466,22 @@ def sync_boot():
                 rows[idx] = text
                 continue
         rows[idx] = ''
-    auto = [{'pos': hex(orig[idx]['ptr'] - BASE), 'en': text,
-             'psp': 'EBOOT:2c06ec'}
+    def pos(idx):
+        r = orig[idx]
+        return hex(r['ptr'] - BASE if r['ptr'] is not None else r['pos'])
+    auto = [{'pos': pos(idx), 'en': text, 'psp': 'EBOOT:2c06ec'}
             for idx, text in rows.items() if text]
     n = toolbelt.upsert_generated('SLPS_005.00', auto)
     routed = []
     for idx, (text, reason) in over.items():
-        pos = hex(orig[idx]['ptr'] - BASE)
-        if toolbelt.route_over('SLPS_005.00', pos, 'EBOOT:2c06ec', text, reason):
+        if toolbelt.route_over('SLPS_005.00', pos(idx), 'EBOOT:2c06ec', text, reason):
             routed.append(idx)
     print(f'choices: {n} rows -> {toolbelt.gen_path("SLPS_005.00")}')
     if routed:
         print(f'choices: {len(routed)} over limit -> manual: '
               + ', '.join(f'idx{i}' for i in sorted(routed)))
     n = sum(1 for v in rows.values() if v)
-    print(f'choices: {n}/{COUNT} rows from the BOOT table')
+    print(f'choices: {n}/{len(orig)} rows from the BOOT table')
 
 
 def purge_unverified():

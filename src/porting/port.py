@@ -158,8 +158,9 @@ def port_all():
     # PSP-US, retain their existing canonical rows instead of guessing.
     if os.path.exists(jp_boot):
         must(toolpath.script('psp_build_sources.py'))
-    # the PSP's confirm prompts the PSX lacks: port_story ports their boxes
+    # the PSP's confirm prompts and retries the PSX lacks: port_story ports their boxes
     must(os.path.join(HERE, 'confirm_port_plan.py'))
+    must(os.path.join(HERE, 'retry_port_plan.py'))
     # phase 2: the family PORTERS. Each derives rows for its own files into
     # its own tables; the last element of each entry says WHICH tables, and
     # that is what the schedule is built from - two porters that write the

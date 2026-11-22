@@ -2247,31 +2247,32 @@ def convert_entry(f, ei):
         out.append((k, ja, en, '; '.join(flags)))
         prev_lab = first_lab
         prev_ja = ja_label
-    for c in confirms():
+    for c in added_boxes():
         if c.file == f and c.entry == ei:
-            out.append(convert_confirm(f, ei, c, counts))
+            out.append(convert_added(f, ei, c, counts))
     return out, counts
 
 
-_CONFIRMS = None
+_ADDED = None
 
 
-def confirms():
-    """The PSP's confirm prompts the PSX lacks (escript's plan)."""
-    global _CONFIRMS
-    if _CONFIRMS is None:
-        _CONFIRMS = escript.read_plan()
-    return _CONFIRMS
+def added_boxes():
+    """The boxes the PSP has and the PSX lacks (escript's plans: confirm
+    prompts and retries)."""
+    global _ADDED
+    if _ADDED is None:
+        _ADDED = escript.added_boxes()
+    return _ADDED
 
 
-def convert_confirm(f, ei, c, counts):
-    """(c, '', en, errs) for a confirm prompt the PSP adds (escript): its
-    row is keyed by the plan row itself and stored at its added pos. No PSX
-    box stands behind it, so there is no Japanese to lay it out against,
-    and the PSP's own speaker label stays (the speaker is often not the
-    one who asked the choice)."""
+def convert_added(f, ei, c, counts):
+    """(c, '', en, errs) for a box the PSP adds (escript): its row is keyed
+    by the escript.Added itself and stored at its added pos. No PSX box
+    stands behind it, so there is no Japanese to lay it out against, and the
+    PSP's own speaker label stays (the speaker is often not the one who
+    asked the choice)."""
     usp = usp_entries(f)[ei]
-    start = c.confirm - escript.ADDED_BASE
+    start = c.offset - escript.ADDED_BASE
     k = next(i for i, (s, _e) in enumerate(usp.boxes) if s == start)
     segments, flags = us_parts(usp.box_bytes(k), ja=None)
     items = []
@@ -2430,7 +2431,7 @@ def store_generated(ports, replace_entry=None):
             # stored row right on the first pass instead of leaving it to the
             # re-derivation net (which cannot see a box-index pointer).
             en = port_derive.head_marks(en, ja)
-            if isinstance(b, escript.Confirm):
+            if isinstance(b, escript.Added):
                 pos = b.pos
             else:
                 s, _e = entries[e].boxes[b]
@@ -2444,7 +2445,7 @@ def store_generated(ports, replace_entry=None):
                 gap_width.append(f'{f}/{e}/{b}: {reason}')
                 continue
             row = {'pos': pos, 'en': en}
-            psp = b.psp if isinstance(b, escript.Confirm) else psp_of(e, b)
+            psp = b.psp if isinstance(b, escript.Added) else psp_of(e, b)
             if psp:                        # missing key keeps any existing pointer on upsert
                 row['psp'] = psp
             auto.append(row)
@@ -2575,7 +2576,7 @@ def cmd_bulk(apply=False, jobs=None):
         # gate. Source controls are translated before writing the row.
         all_devs = {}
         for f, ei, k, ja, en in ported_all:
-            if isinstance(k, escript.Confirm):
+            if isinstance(k, escript.Added):
                 continue        # an added box: no Japanese to differ from
             devs, ok = tstatus.classify_deviations(ja, en)
             if not ok:

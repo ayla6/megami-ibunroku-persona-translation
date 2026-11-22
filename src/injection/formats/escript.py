@@ -1,4 +1,4 @@
-"""ADV event-script commands, and the PSP's confirm prompts carried onto them.
+"""ADV event-script commands, and the PSP's confirm prompts and retries carried onto them.
 
 The script VM (references/persona-decomp src/adv/game/script.c): a command
 is `FF op a b` plus operands, `g_cmd_len[op]` bytes long, always 4-aligned.
@@ -38,6 +38,27 @@ only this and the PSX script), one row per confirmed answer:
     bust     the PSP's bust before the confirm, 'file place' hex ('0300'), or '-'
     no       'again' (ask the choice again) or the answer whose branch No takes
 The added box's English is an ordinary port row at the `confirm` pos.
+
+RETRIES. A PSP flag-test chain (`26 flag ->` per flag, each followed by `22
+-> fail`) can fail into a fragment the PSX does not have: E0/118's Maki
+asks whether you meant your answers to Mai, and "On second thought..."
+clears the flags and asks the questions again. Where the PSX has the same
+chain (same flags, same order), its fail jumps go to a block appended to
+the image that runs the PSP's fragment.
+translation/generated_mappings/retry_port_plan.tsv (written by
+src/porting/retry_port_plan.py), one row per block command, in order:
+    file     E0..E3
+    entry    event entry
+    flags    the chain's flags, hex, comma-separated ('4e,4f,50')
+    step     the command's index in the block
+    command  the command's first four bytes, hex (FF op a b)
+    target   ''            no operand word
+             step:N        block command N
+             box:<pos>     a PSX box, or an added box (its English is the row there)
+             chain         the PSX chain again (a failure comes back here)
+             retest        a copy of the PSX chain with its own targets (a
+                           failure takes the PSX's fail branch)
+    psp      for an added box, the PSP-US box its English comes from
 """
 from __future__ import annotations
 
@@ -64,7 +85,10 @@ OP_SAY: Final = 0x55
 OP_BUST: Final = 0x67
 OP_UNBUST: Final = 0x68
 OP_NOP: Final = 0x20
-BRANCHING: Final = frozenset({OP_JUMP, OP_ANSWER, OP_SAY})
+OP_FLAG_SET: Final = 0x24
+OP_FLAG_CLEAR: Final = 0x25
+OP_IF_FLAG: Final = 0x26
+BRANCHING: Final = frozenset({OP_JUMP, OP_ANSWER, OP_SAY, OP_IF_FLAG})
 YES: Final = 0
 NO: Final = 1
 # An added box's pos offset: an event image is at most 0xFFF8 bytes, so no
@@ -74,6 +98,8 @@ PLAN: Final = os.path.join(toolbelt.MAPPINGS, 'confirm_port_plan.tsv')
 PLAN_COLS: Final = ('file', 'entry', 'choice', 'prompt', 'answer', 'confirm',
                     'psp', 'bust', 'no')
 AGAIN: Final = 'again'
+RETRY_PLAN: Final = os.path.join(toolbelt.MAPPINGS, 'retry_port_plan.tsv')
+RETRY_COLS: Final = ('file', 'entry', 'flags', 'step', 'command', 'target', 'psp')
 
 
 class ScriptError(ValueError):
@@ -155,6 +181,23 @@ class Confirm:
     @property
     def pos(self) -> str:
         return f'{self.entry}:{self.confirm:#x}'
+
+    @property
+    def box(self) -> Added:
+        return Added(self.file, self.entry, self.confirm, self.psp)
+
+
+@dataclass(frozen=True)
+class Added:
+    """A box the PSP has and the PSX does not: its row is at `pos`."""
+    file: str
+    entry: int
+    offset: int             # ADDED_BASE + the PSP box offset
+    psp: str
+
+    @property
+    def pos(self) -> str:
+        return f'{self.entry}:{self.offset:#x}'
 
 
 def added(pos: str) -> bool:
@@ -394,3 +437,167 @@ def _block(s: Site, cs: list[Confirm]) -> Block:
         put((OP_SAY, 0, ('old', choice)))
         put((OP_JUMP, 0, ('label', 'ask')))
     return Block(items, labels)
+
+
+# --- retries ----------------------------------------------------------------
+
+@dataclass(frozen=True)
+class RetryStep:
+    file: str
+    entry: int
+    flags: tuple[int, ...]
+    step: int
+    raw: bytes              # FF op a b
+    target: str             # '' | step:N | box:<pos> | chain | retest
+    psp: str                # an added box's source, else ''
+
+    @property
+    def box(self) -> Added | None:
+        if not self.target.startswith('box:') or not added(self.target[4:]):
+            return None
+        return Added(self.file, self.entry, _pos(self.entry, self.target[4:]), self.psp)
+
+
+def read_retry_plan() -> list[RetryStep]:
+    if not os.path.exists(RETRY_PLAN):
+        return []
+    return [RetryStep(r['file'], int(r['entry']),
+                      tuple(int(f, 16) for f in r['flags'].split(',')),
+                      int(r['step']), bytes.fromhex(r['command']), r['target'], r['psp'])
+            for r in strlib.tsv_rows(RETRY_PLAN, required=RETRY_COLS)]
+
+
+def write_retry_plan(steps: list[RetryStep]) -> None:
+    lines = ['\t'.join(RETRY_COLS)]
+    for t in steps:
+        lines.append('\t'.join((t.file, str(t.entry), ','.join(f'{f:x}' for f in t.flags),
+                                str(t.step), t.raw.hex(), t.target, t.psp)))
+    os.makedirs(os.path.dirname(RETRY_PLAN), exist_ok=True)
+    with open(RETRY_PLAN, 'w', encoding='utf-8', newline='\n') as f:
+        f.write('\n'.join(lines) + '\n')
+
+
+def added_boxes() -> list[Added]:
+    """Every box the plans add, once each, in plan order."""
+    out: dict[tuple[str, str], Added] = {}
+    for c in read_plan():
+        out.setdefault((c.file, c.pos), c.box)
+    for t in read_retry_plan():
+        if t.box is not None:
+            out.setdefault((t.file, t.box.pos), t.box)
+    return list(out.values())
+
+
+@dataclass(frozen=True)
+class Chain:
+    """`26 flag -> next` per flag, each followed by `22 -> fail`; the last
+    flag's 26 goes to `success`."""
+    start: int
+    flags: tuple[int, ...]
+    fails: tuple[int, ...]          # offsets of the 22 commands
+    success: int
+    fail: int
+
+
+def chain_at(body: bytes, at: int, base: int = BASE) -> Chain | None:
+    """The longest flag-test chain whose first 26 is at `at`."""
+    flags, fails = [], []
+    fail = success = None
+    p = at
+    while True:
+        c = command_at(body, p, base)
+        if c is None or c.op != OP_IF_FLAG or c.target is None:
+            break
+        j = command_at(body, p + 8, base)
+        if j is None or j.op != OP_JUMP or j.target is None or (fail is not None and j.target != fail):
+            break
+        flags.append(struct.unpack_from('<H', c.raw, 2)[0])
+        fails.append(j.at)
+        fail, success = j.target, c.target
+        p = c.target
+        while (n := command_at(body, p, base)) is not None and n.op == OP_NOP:
+            p += 4
+    if len(flags) < 2 or fail is None or success is None:
+        return None
+    return Chain(at, tuple(flags), tuple(fails), success, fail)
+
+
+def chains(body: bytes, base: int = BASE) -> list[Chain]:
+    """Every maximal flag-test chain of an image."""
+    found = [c for at in range(0, len(body) - 16, 4) if (c := chain_at(body, at, base))]
+    inner = {f - 8 for c in found for f in c.fails[1:]}    # a later test's own 26
+    return [c for c in found if c.start not in inner]
+
+
+def retry_hook(body: bytes, steps: list[RetryStep], texts: dict[int, bytes]
+               ) -> Callable[[bytearray, Callable[[int], int]], None]:
+    """An efile.Entry.rebuild `extend` step for one entry's retries
+    (texts: {added box offset: encoded box})."""
+    by_flags: dict[tuple[int, ...], list[RetryStep]] = {}
+    for t in steps:
+        by_flags.setdefault(t.flags, []).append(t)
+    found = {}
+    for flags in by_flags:
+        hit = [c for c in chains(body) if c.flags == flags]
+        if len(hit) != 1:
+            raise ScriptError(f'flag chain {flags}: {len(hit)} in the PSX script (one expected)')
+        found[flags] = hit[0]
+    for t in steps:
+        if t.box is not None and t.box.offset not in texts:
+            raise ScriptError(f'{t.file}/{t.box.pos}: added box has no English')
+
+    def extend(out: bytearray, newpos: Callable[[int], int]) -> None:
+        while len(out) % 4:
+            out.append(0)
+        blocks = []
+        at = len(out)
+        for flags in sorted(by_flags):
+            ts = sorted(by_flags[flags], key=lambda t: t.step)
+            size = sum(8 if t.target else 4 for t in ts)
+            retest = any(t.target == 'retest' for t in ts)
+            blocks.append((flags, ts, at, at + size if retest else None))
+            at += size + (16 * len(flags) if retest else 0)
+        boxes: dict[int, int] = {}
+        pool = bytearray()
+        for _f, ts, _a, _r in blocks:
+            for t in ts:
+                if t.box is not None and t.box.offset not in boxes:
+                    boxes[t.box.offset] = at + len(pool)
+                    pool += texts[t.box.offset]
+                    while len(pool) % 4:
+                        pool.append(0)
+        for flags, ts, start, retest in blocks:
+            c = found[flags]
+            offsets, o = [], start
+            for t in ts:
+                offsets.append(o)
+                o += 8 if t.target else 4
+            for t in ts:
+                if not t.target:
+                    out += t.raw
+                    continue
+                kind, _sep, value = t.target.partition(':')
+                if kind == 'step':
+                    where = offsets[int(value)]
+                elif kind == 'box':
+                    off = _pos(t.entry, value)
+                    where = boxes[off] if off >= ADDED_BASE else newpos(off)
+                elif kind == 'chain':
+                    where = newpos(c.start)
+                elif kind == 'retest':
+                    where = retest
+                else:
+                    raise ScriptError(f'retry step {t.step}: target {t.target!r}')
+                out += t.raw + struct.pack('<I', BASE + where)
+            if retest is not None:
+                # the PSX chain with its own targets
+                for i, flag in enumerate(flags):
+                    nxt = retest + 16 * (i + 1)
+                    to = newpos(c.success) if i == len(flags) - 1 else nxt
+                    out += command(OP_IF_FLAG, flag & 0xFF, flag >> 8, BASE + to)
+                    out += command(OP_JUMP, target=BASE + newpos(c.fail))
+            for f in c.fails:
+                j = newpos(f)
+                out[j:j + 8] = command(OP_JUMP, target=BASE + start)
+        out += pool
+    return extend

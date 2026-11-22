@@ -330,7 +330,7 @@ def load_edits(n, tsvdir=None):
     rel = f'ADV/{n}'
     man = {r['pos']: r.get('en', '')
            for r in toolbelt.read_manual(rel, optional=True)}
-    added = {c.pos for c in escript.read_plan() if c.file == n}
+    added = {b.pos for b in escript.added_boxes() if b.file == n}
     for pos, text in man.items():
         if has_text(text) and pos not in pmap and pos not in added:
             raise SystemExit(f'translation/manual/ADV/{n}.tsv: pos {pos} is '
@@ -351,26 +351,38 @@ def load_edits(n, tsvdir=None):
     return edits
 
 
-def load_confirms(n):
+def load_hooks(n):
     """{entry: efile rebuild `extend` step} carrying the PSP's confirm prompts
-    (escript; translation/generated_mappings/confirm_port_plan.tsv). A
-    confirm box's English is the row at its added pos, manual winning like
-    any box; a planned confirm with no English is not hooked, so the PSX's
-    own choice runs unchanged."""
+    and retries (escript; translation/generated_mappings/confirm_port_plan.tsv
+    and retry_port_plan.tsv). An added box's English is the row at its added
+    pos, manual winning like any box; a planned confirm or retry with a box
+    that has no English is not hooked, so the PSX's own script runs there."""
     import toolbelt
     import vwf_wrap
     plan = [c for c in escript.read_plan() if c.file == n]
-    if not plan:
+    retry = [t for t in escript.read_retry_plan() if t.file == n]
+    if not plan and not retry:
         return {}
     rel = f'ADV/{n}'
     rows = {r['pos']: r.get('en', '') for r in toolbelt.read_generated(rel, optional=True)}
     rows.update({r['pos']: r['en'] for r in toolbelt.read_manual(rel, optional=True)
                  if has_text(r.get('en', ''))})
-    by_prompt = {}
-    for c in plan:
-        by_prompt.setdefault((c.entry, c.prompt), []).append(c)
+
+    def texts(boxes):
+        out = {}
+        for b in boxes:
+            try:
+                out[b.offset] = encode(vwf_wrap.edition_layout(rows[b.pos]))
+            except ValueError as ex:
+                raise SystemExit(f'{n}/{b.pos}: {ex}')
+        return out
+
     c = efile.load(path(n))
-    hooks, by_entry = {}, {}
+    steps = {}                                   # entry -> [extend]
+    by_prompt = {}
+    for x in plan:
+        by_prompt.setdefault((x.entry, x.prompt), []).append(x)
+    by_entry = {}
     for (entry, _prompt), confirms in sorted(by_prompt.items()):
         if not all(has_text(rows.get(x.pos, '')) for x in confirms):
             print(f'{n}/{entry}: confirm {", ".join(x.pos for x in confirms)} has no '
@@ -378,14 +390,26 @@ def load_confirms(n):
             continue
         by_entry.setdefault(entry, []).extend(confirms)
     for entry, confirms in by_entry.items():
-        texts = {}
-        for x in confirms:
-            try:
-                texts[x.confirm] = encode(vwf_wrap.edition_layout(rows[x.pos]))
-            except ValueError as ex:
-                raise SystemExit(f'{n}/{x.pos}: {ex}')
-        hooks[entry] = escript.hook(c.entries[entry].body, confirms, texts)
-    return hooks
+        steps.setdefault(entry, []).append(escript.hook(
+            c.entries[entry].body, confirms, texts(x.box for x in confirms)))
+    by_chain = {}
+    for t in retry:
+        by_chain.setdefault((t.entry, t.flags), []).append(t)
+    for (entry, _flags), ts in sorted(by_chain.items()):
+        boxes = [t.box for t in ts if t.box is not None]
+        if not all(has_text(rows.get(b.pos, '')) for b in boxes):
+            print(f'{n}/{entry}: retry box {", ".join(b.pos for b in boxes)} has no '
+                  f'English - the PSX flag test runs as it was')
+            continue
+        steps.setdefault(entry, []).append(escript.retry_hook(
+            c.entries[entry].body, ts, texts(boxes)))
+
+    def chained(fs):
+        def extend(out, newpos):
+            for one in fs:
+                one(out, newpos)
+        return extend
+    return {entry: chained(fs) for entry, fs in steps.items()}
 
 
 def cmd_layout(grow=False):
@@ -399,7 +423,7 @@ def cmd_layout(grow=False):
     for n in FILES:
         c = efile.load(path(n))
         edits = load_edits(n, tsvdir) if grow else {}
-        hooks = load_confirms(n) if grow else {}
+        hooks = load_hooks(n) if grow else {}
         slots = list(cur.get(n, []))
         for e in c.entries:
             orig = c.t[e.index + 1] - c.t[e.index]
@@ -434,7 +458,7 @@ def cmd_build(tsvdir, outdir, asm=None):
     for n in FILES:
         c = efile.load(path(n))
         edits = load_edits(n, tsvdir)
-        hooks = load_confirms(n)
+        hooks = load_hooks(n)
         out = os.path.join(outdir, f'{n}.BIN')
         slots = layout.get(n)
         if not edits and not slots:
@@ -465,7 +489,7 @@ def cmd_build(tsvdir, outdir, asm=None):
         for i in range(0, len(table), 16):
             lines.append('.halfword ' + ', '.join(str(v) for v in table[i:i + 16]))
         print(f'{n}: {sum(len(v) for v in edits.values())} boxes edited, '
-              f'{len(hooks)} entries with PSP confirm prompts, '
+              f'{len(hooks)} entries with PSP confirm prompts or retries, '
               f'{len(c.data)} -> {len(data)} bytes')
     with open(asm, 'w', encoding='utf-8', newline='\n') as f:
         f.write('\n'.join(lines) + '\n')
