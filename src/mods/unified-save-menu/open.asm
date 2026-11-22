@@ -214,14 +214,12 @@ mod_o_scan_next_card:
     bnez    t0, mod_o_scan_card
     nop
     move    s1, zero
-    ori     s2, zero, MOD_ROWS
-    move    s3, zero
-mod_o_newest:
+mod_o_check:                       ; a summary whose level is not 1..99 is not shown
     la      t0, mod_o_kind
     addu    t0, t0, s1
     lbu     t0, 0(t0)
     nop
-    beqz    t0, mod_o_newest_next
+    beqz    t0, mod_o_check_next
     nop
     ori     t0, zero, MOD_LIST_ROW
     multu   s1, t0
@@ -234,38 +232,17 @@ mod_o_newest:
     nop
     addiu   t1, t1, -1
     sltiu   t1, t1, 99
-    bnez    t1, mod_o_summary_valid
+    bnez    t1, mod_o_check_next
     nop
     la      t0, mod_o_kind
     addu    t0, t0, s1
-    sb      zero, 0(t0)            ; not displayable or eligible for newest selection
-    b       mod_o_newest_next
-    nop
-mod_o_summary_valid:
-    lhu     t1, MOD_SUM_SERIAL(t0)
-    ori     t2, zero, 0xFFFF
-    bne     t1, t2, mod_o_serial_valid
-    nop
-    move    t1, zero               ; unset serial follows the same rule as legacy zero
-mod_o_serial_valid:
-    ori     t2, zero, MOD_ROWS
-    beq     s2, t2, mod_o_choose
-    nop
-    sltu    t2, s3, t1
-    beqz    t2, mod_o_newest_next
-    nop
-mod_o_choose:
-    move    s3, t1
-    move    s2, s1
-mod_o_newest_next:
+    sb      zero, 0(t0)
+mod_o_check_next:
     addiu   s1, s1, 1
     sltiu   t0, s1, MOD_ROWS
-    bnez    t0, mod_o_newest
+    bnez    t0, mod_o_check
     nop
-    sltiu   t0, s2, MOD_ROWS
-    bnez    t0, mod_o_selected
-    nop
-    move    s2, zero
+    move    s2, zero                ; the cursor opens on the first row, as retail
 mod_o_selected:
     ori     t0, zero, MOD_ROWS_PER_CARD
     divu    s2, t0

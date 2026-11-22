@@ -4,19 +4,12 @@ Merges the slot 1 and slot 2 menus into one, so that you don't have to worry abo
 
 ## The save / load patch (opt in with `--mods=unified-save-menu`)
 
-`mods/unified-save-menu/slps.asm`, `mods/unified-save-menu/adv.asm` and `mods/unified-save-menu/open.asm`, with the addresses they share
+`mods/unified-save-menu/adv.asm` and `mods/unified-save-menu/open.asm`, with the addresses they share
 in `mods/unified-save-menu/saves.inc`. The reference decomp in `references/persona-decomp` describes this code (the
 save screen's `savescreen.c`, the card routines' `card.c` and the title's `title.c`); its addresses
 are for a different pressing of the disc, so every address here was found in this project's own
 binaries instead.
 
-* **Save serials for ordering.** `CardSave` stamps the highest serial found on the cards plus one
-  into the two spare summary bytes, before the block's XOR checksum. Serials are not displayed.
-  Legacy saves still load; zero/unset-serial ties retain scan order. FFFF is erased/unset metadata,
-  not an ordering number. The 16-bit field saturates at 65534 rather than wrapping to zero;
-  saves tied at that ceiling retain scan order. Existing FFFF stamps are treated as unsequenced,
-  so the next save recovers from the highest usable serial rather than perpetuating FFFF.
-  Both save kinds contribute to the maximum even when the normal save wins a shared display row.
 * **No memory card selection screen.** Each column identifies its card; save/delete adapters
   derive the physical card and local slot from the combined row. The retail argument loads and
   load-delay instruction remain intact. Every retail ADV rescan enters the two-card scanner.
@@ -24,7 +17,13 @@ binaries instead.
   A formatted card has fifteen usable blocks, so seven two-block saves fit; the second column is where
   the extra room comes from (the rows need a second card to be usable; DuckStation's Memory Card 2
   is off by default).
-* **The newest save is preselected** when the load list opens.
+* **The load list opens on the first row**, as retail. Saves are written exactly as retail
+  writes them; nothing is stamped into them.
+* **Card polls never overlap a card write.** The list polls a port every frame to notice a card
+  coming or going, and a poll leaves its `_card_info` running. A directory write the BIOS starts
+  on top of it (a new slot's room check, `CardCheckFree`, creates and erases a dummy file; saving;
+  deleting) fails, and the BIOS's own rollback of a failed create never returns. So each poll is
+  waited out (bounded) before the list goes on.
 
 Both screens use one 320×192 panel at y=40, with its bottom border at the visible screen edge,
 below the badge; no SLOT
@@ -51,17 +50,18 @@ unchanged. CPU tests reproduce the original 0xB400 corruption with the bad argum
 the corrected one is bounded. System-message warning/question layout waits once, clears the
 window, then shows the question and options without a second wait. No wording is changed.
 
-Summary tables and serial state borrow the bounded battle-decoder scratch at 0x80057400 while
-ADV is active; BTLP and ADV are mutually exclusive. The dialogue compositor ring starts after
-that scratch and is not borrowed. Every scan initializes the save state. The stamp adapter lives
-in retired ADV code, and the resident CardSave hook reaches it only while ADV is loaded (all
-retail CardSave calls are in ADV). Nothing uses 0x80055C10..0x80056000, the CD-system's globals.
+Summary tables borrow the bounded battle-decoder scratch at 0x80057400 while ADV is active;
+BTLP and ADV are mutually exclusive. ADV's item-pickup name block (latin-alphabet
+`adv/chest_name.asm`: an 8-byte cel header and `ITEM_NAME_MAXLEN` cells) sits at the scratch's
+start, so the tables begin after it (`MOD_SCRATCH`). The dialogue compositor ring starts after
+that scratch and is not borrowed. Every scan initializes the save state. Nothing uses
+0x80055C10..0x80056000, the CD-system's globals.
 The patch does not grow ADV into another sector or into its packet work area. Assembly bounds
 the scratch, retired code runs and both OPEN code/asset allocations.
 
-Bad ADV summaries remain occupied for overwrite handling but never supply display bytes or
-ordering serials. Both menus reject summary levels outside 1..99, including erased all-FF
-headers that pass retail's XOR checksum; those headers cannot win newest-save selection.
+Bad ADV summaries remain occupied for overwrite handling but never supply display bytes.
+Both menus reject summary levels outside 1..99, including erased all-FF headers that pass
+retail's XOR checksum.
 Failed scans leave empty rows. Title card-change events rebuild the combined
 list, clear stale text, and return to list state; a saved parent frame keeps nested error/reset
 calls from writing the wrong stack locals.
@@ -81,11 +81,8 @@ messages outside this patch. Broader card coverage still needs testing: save/ove
 on both cards (especially right-column slots), leave and reload, load a legacy save, cancel
 confirmation, and remove/reinsert a card.
 
-Newest-save regression coverage runs the ADV scanner, serial stamp and title selection together
-for successive writes to all fourteen rows. Fixtures include a checksum-valid erased header,
-a valid legacy FFFF serial, and both save kinds sharing one display row. Build-option tests cover
-opt-in selection and explicit exclusions; the default save-disabled assembly is checked against retail
-at the resident stamp, ADV cursor and title-entry hooks.
+Build-option tests cover opt-in selection and explicit exclusions; the default save-disabled
+assembly is checked against retail at the ADV cursor and title-entry hooks.
 Direct-entry tests execute the facility dispatcher through ready/missing/damaged cards, card
 removal, and accepted/declined formatting, and check that list Cancel never reopens a parent menu.
 The actual facility initialization call is checked separately: list setup precedes its first

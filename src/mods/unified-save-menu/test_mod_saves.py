@@ -32,6 +32,7 @@ class SavePatch(unittest.TestCase):
                   '.definelabel SLPS_FREE_END, 0x80056000',
                   '.definelabel BTLEVT_BUF_ADDR, 0x80057400',
                   '.definelabel BTLEVT_BUF_SIZE, 1024',
+                  '.definelabel ITEM_NAME_MAXLEN, 20',
                   'OPEN_ADDR equ 0x80180000',
                   f'.definelabel SUBS_OBLOB_END, {blob_end}']
         built_symbols = ROOT / 'build/persona.sym'
@@ -45,8 +46,9 @@ class SavePatch(unittest.TestCase):
                                       ('EXE/OPEN.EXE', 0x8007F800, 'open')]:
             dest = out / (patch + '.bin')
             cls.images.append((base, dest))
-            source += [f'.open "{ROOT / "data/psx" / original}", "{dest}", {base}',
-                       f'.include "../../unified-save-menu/{patch}.asm"']
+            source += [f'.open "{ROOT / "data/psx" / original}", "{dest}", {base}']
+            if patch != 'slps':             # the resident image is retail: no save hook in it
+                source += [f'.include "../../unified-save-menu/{patch}.asm"']
             if patch == 'adv':
                 # the direct Agastya entry is its own patch now; the tests
                 # below drive the facility through it, as a saves+agastya
@@ -60,7 +62,7 @@ class SavePatch(unittest.TestCase):
         # Armips omits include-guarded constant symbols from sym2. Ask the
         # assembler itself for the resolved runtime addresses, rather than
         # duplicating address arithmetic in the test.
-        probes = ('mod_serial', 'mod_kinds', 'mod_valid', 'mod_list')
+        probes = ('mod_kinds', 'mod_valid', 'mod_list')
         source += [f'.create "{out / "probes.bin"}", 0', '.word ' + ', '.join(probes), '.close']
         asm = out / 'test.asm'
         asm.write_text('\n'.join(source))
@@ -78,7 +80,7 @@ class SavePatch(unittest.TestCase):
                     cls.symbols[parts[1]] = int(parts[0], 16)
                 except ValueError:
                     pass
-        cls.symbols.update(zip(probes, struct.unpack('<4I', (out / 'probes.bin').read_bytes())))
+        cls.symbols.update(zip(probes, struct.unpack(f'<{len(probes)}I', (out / 'probes.bin').read_bytes())))
 
     @classmethod
     def tearDownClass(cls):
@@ -108,7 +110,7 @@ class SavePatch(unittest.TestCase):
         self.assertGreaterEqual(0x80080000 + len(opening) - 0x800,
                                 self.address('mod_o_end'))
         ranges = [
-            (0, 'build/SLPS_005.00', [(0x8001427C, 8), (0x80055C10, 0x3F0)]),
+            (0, 'build/SLPS_005.00', [(0x80055C10, 0x3F0)]),
             (1, 'build/ADV.BIN', [(0x8009AB40, 4), (0x8009AB58, 8),
                                  (0x8009B658, 4), (0x8009B748, 4), (0x8009BDB4, 4),
                                  (0x8009BCE8, 8), (0x8009BD34, 8)]),
@@ -208,7 +210,6 @@ class SavePatch(unittest.TestCase):
         cpu.run(0x80001000, intercept=intercept)
         self.assertEqual([(c, k) for c, k, _ in calls], [(0, 0), (0, 1), (1, 0), (1, 1)])
         self.assertEqual(len({d for _, _, d in calls}), 4)
-        self.assertEqual(cpu.read(self.address('mod_serial')), 27)
         self.assertEqual(cpu.r[29], 0x801FF000)
         for reg, value in saved.items():
             self.assertEqual(cpu.r[reg], value)
@@ -309,36 +310,6 @@ class SavePatch(unittest.TestCase):
                 p = self.sprite(row, cell)
                 self.assertEqual([cpu.read(p + k, 1) for k in (14, 15)], [u, 72])
 
-    def test_title_newest_selection_ignores_bad_or_failed_scans(self):
-        cpu = self.title_cpu()
-        calls = []
-
-        def intercept(c):
-            if c.pc == self.address('mod_o_screen'):
-                c.start(c.r[31])
-                return True
-            if c.pc in (0x80093708, 0x80087198):
-                c.r[2] = 0
-                c.start(c.r[31])
-                return True
-            if c.pc == 0x80087574:
-                card, kind, dest = c.r[4:7]
-                calls.append((card, kind))
-                for slot in range(7):
-                    c.write(dest + slot * 26 + 24, 10 * card + slot, 2)
-                c.r[2] = 0x407F if card else 0x7F  # card 2's last row is corrupt
-                c.start(c.r[31])
-                return True
-            return False
-
-        cpu.r[4] = 1
-        cpu.start(self.address('mod_o_build'))
-        cpu.run(0x80001000, intercept=intercept)
-        self.assertEqual(calls, [(0, 1), (1, 1)])
-        self.assertEqual(cpu.read(0x801D001C), 1)
-        self.assertEqual(cpu.read(0x801D0024), 5)
-        self.assertEqual([cpu.read(0x801D0000 + x) for x in (0x38, 0x3C)], [0x81, 0x81])
-
     def test_corrupt_summaries_stay_occupied_but_never_supply_display_or_serial(self):
         cpu = self.cpu()
 
@@ -358,7 +329,6 @@ class SavePatch(unittest.TestCase):
         cpu.run(0x80001000, intercept=intercept)
         self.assertEqual(cpu.read(self.address('mod_kinds'), 2), 0)
         self.assertEqual(cpu.read(self.address('mod_valid'), 1), 0)
-        self.assertEqual(cpu.read(self.address('mod_serial')), 0)
         for row in range(1, 14):
             self.assertEqual(cpu.read(self.address('mod_kinds') + row * 2, 2), 255)
 
@@ -376,43 +346,6 @@ class SavePatch(unittest.TestCase):
         for index in (10, 11):
             self.assertEqual(cpu.read(0x8011E804 + index * 4), 0x80)
         self.assertLess(16 + 14 * 17, 262)
-
-    def test_zero_serial_legacy_save_on_second_card_is_selected(self):
-        cpu = self.title_cpu()
-
-        def intercept(c):
-            if c.pc == self.address('mod_o_screen'):
-                c.start(c.r[31])
-                return True
-            if c.pc in (0x80093708, 0x80087198):
-                c.r[2] = 0
-                c.start(c.r[31])
-                return True
-            if c.pc == 0x80087574:
-                c.r[2] = 1 << 3 if c.r[4] else 0xFFFFFFFF
-                c.write(c.r[6] + 3 * 26 + 24, 0, 2)
-                c.start(c.r[31])
-                return True
-            return False
-
-        cpu.start(self.address('mod_o_build'))
-        cpu.run(0x80001000, intercept=intercept)
-        self.assertEqual([cpu.read(0x801D0000 + x) for x in (0x1C, 0x24)], [1, 3])
-
-    def test_serial_stamp_preserves_registers_and_saturates_before_checksum(self):
-        for serial in (0, 42, 65533, 65534):
-            cpu = self.cpu()
-            cpu.load(0x80055C10, bytes([0xA5]) * 0x3F0)  # live CD-system writes
-            cpu.r[30] = 0x801D0000
-            cpu.r[8:10] = [0xAABBCCDD, 0x12345678]
-            cpu.write(cpu.r[30] + 0x12, 1, 1)
-            cpu.write(self.address('mod_serial'), serial)
-            cpu.start(0x8001427C)
-            cpu.run(0x80014284)
-            self.assertEqual(cpu.r[8:10], [0xAABBCCDD, 0x12345678])
-            self.assertEqual(cpu.r[29], 0x801FF000)
-            self.assertEqual(cpu.r[2:4], [1, 2])
-            self.assertEqual(cpu.read(0x8005E398, 2), min(serial + 1, 65534))
 
     def test_empty_title_rows_keep_labels_colons_and_dash_placeholders(self):
         cpu = self.title_cpu()
@@ -453,12 +386,10 @@ class SavePatch(unittest.TestCase):
             self.assertEqual([cpu.read(address + i, 1) for i in (0, 1)], [u, v])
 
     def test_save_state_uses_exclusive_battle_scratch_and_cd_ram_cannot_corrupt_it(self):
-        for name in ('mod_serial', 'mod_kinds', 'mod_valid', 'mod_list'):
+        for name in ('mod_kinds', 'mod_valid', 'mod_list'):
             self.assertGreaterEqual(self.address(name), 0x80057400)
             self.assertLess(self.address(name), 0x80057800)
         self.assertLessEqual(self.address('mod_list') + 2 * 364, 0x80057800)
-        self.assertGreaterEqual(self.address('mod_stamp'), 0x800643C4)
-        self.assertLess(self.address('mod_stamp'), 0x800BC000)
         cpu = self.cpu()
         cpu.load(self.address('mod_list'), b'R' * 26)
         cpu.load(0x80055C10, bytes([0xA5]) * 0x3F0)
@@ -691,61 +622,6 @@ class SavePatch(unittest.TestCase):
         grey = (ROOT / 'build/mod_save_grey_clut.bin').read_bytes()
         self.assertEqual(grey[2:4], data[at + 34:at + 36])
 
-    def test_serial_round_trip_selects_each_new_save_not_erased_card_two_row(self):
-        def summary(serial):
-            data = bytearray(26)
-            data[:8] = bytes([0xB6] * 8)
-            data[8:12] = bytes([5, 1, 2, 3])
-            data[24:26] = serial.to_bytes(2, 'little')
-            return bytes(data)
-
-        cards = {(0, 0, 6): summary(25), (0, 1, 6): summary(40),
-                 (1, 0, 0): b'\xff' * 26,  # checksum-valid erased header, not a save
-                 (1, 0, 1): summary(0xFFFF)}  # legacy unset serial, still a valid save
-
-        def scan(c):
-            if c.pc in (0x80025C98, 0x80093708, 0x80087198):
-                c.r[2] = 0
-            elif c.pc in (0x800139A0, 0x80087574):
-                card, kind, dest = c.r[4:7]
-                mask = 0
-                for (port, typ, slot), data in cards.items():
-                    if (port, typ) == (card, kind):
-                        mask |= 1 << slot
-                        c.load(dest + slot * 26, data)
-                c.r[2] = mask
-            elif c.pc == self.address('mod_o_screen'):
-                pass
-            else:
-                return False
-            c.start(c.r[31])
-            return True
-
-        for row in range(14):
-            cpu = self.cpu()
-            cpu.start(0x8009BB7C)
-            cpu.run(0x80001000, intercept=scan)
-            self.assertEqual(cpu.read(self.address('mod_serial')), 40 + row)
-            if row == 0:
-                self.assertEqual(cpu.read(self.address('mod_valid') + 7, 1), 0)
-                self.assertEqual(cpu.read(self.address('mod_valid') + 8, 1), 1)
-            cpu.r[30] = 0x801D0000
-            cpu.write(cpu.r[30] + 0x12, 0, 1)
-            cpu.start(0x8001427C)
-            cpu.run(0x80014284)
-            number = cpu.read(0x8005E398, 2)
-            self.assertEqual(number, 41 + row)
-            cards[(row // 7, 0, row % 7)] = summary(number)
-
-            title = self.title_cpu()
-            title.r[4] = 0
-            title.start(self.address('mod_o_build'))
-            title.run(0x80001000, intercept=scan)
-            self.assertEqual([title.read(0x801D0000 + x) for x in (0x1C, 0x24)],
-                             [row // 7, row % 7], f'save {number} must select combined row {row}')
-            if row == 0:
-                self.assertEqual(title.read(self.address('mod_o_kind') + 7, 1), 0)
-
     def test_save_patch_is_opt_in(self):
         import build
         self.assertEqual(build.selected_mods([]), [])
@@ -770,8 +646,7 @@ class SavePatch(unittest.TestCase):
             self.skipTest('requires an assembled build')
         if re.search(r'^\S+\s+MOD_UNIFIED_SAVE_MENU\s*$', symbols.read_text(), re.MULTILINE | re.IGNORECASE):
             self.skipTest('checks the default retail-save variant')
-        for name, base, hook in [('SLPS_005.00', 0x8000F800, 0x8001427C),
-                                 ('ADV.BIN', 0x800643C4, 0x8009B0B4),
+        for name, base, hook in [('ADV.BIN', 0x800643C4, 0x8009B0B4),
                                  ('EXE/OPEN.EXE', 0x8007F800, 0x8008306C)]:
             original = (ROOT / 'data/psx' / name).read_bytes()
             built = (ROOT / 'build' / name).read_bytes()

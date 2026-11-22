@@ -1,3 +1,6 @@
+# 2026-11-21-2
+- Fixed saving on a new slot sometimes freezing the game with the Unified Save Menu.
+
 # 2026-11-21
 - Fixed some texts that silently failed to inject. (Missing translations)
 - More mods that let you be faster, if you hate art like me.

@@ -16,21 +16,25 @@
 .definelabel MOD_CARD_DELETE, 0x800144F4          ; CardDeleteFile(chan, slot, kind)
 .definelabel MOD_CARD_CHECKFREE, 0x800137DC          ; CardCheckFree(chan) -> 0 if a 2-block file fits
 .definelabel MOD_VSYNC, 0x80025C98
+.definelabel MOD_CARD_CUR, 0x80055C30          ; the port CardPollPorts asked last (it alternates)
+.definelabel MOD_CARD_RESULT, 0x8005E644       ; per port: 0xFF while its _card_info runs, then the event's state
 
 ;; Save summaries use the battle decoder's bounded runtime scratch while
-;; ADV is active; BTLP and ADV are mutually exclusive. The dialogue ring
-;; starts AFTER this buffer and is not borrowed. Every scan initializes it.
-;; Never use SLPS_FREE_START..SLPS_FREE_END: the CD driver writes there.
+;; ADV is active; BTLP and ADV are mutually exclusive. But ADV itself keeps
+;; the item pickup's name block at the scratch's start (latin-alphabet
+;; adv/chest_name.asm: an 8-byte cel header and ITEM_NAME_MAXLEN cells of 8,
+;; named in a sprite list the room keeps), so the save tables start after
+;; it.
+;; The dialogue ring starts AFTER this buffer and is not borrowed. Every scan
+;; initializes it. Never use SLPS_FREE_START..SLPS_FREE_END: the CD driver
+;; writes there.
 .definelabel MOD_LIST_KIND, 0x16C               ; bytes per kind (14 x 0x1A)
 .definelabel MOD_LIST_ROW, 0x1A                ; bytes per row
-.definelabel MOD_SUM_SERIAL, 0x18                ; u16 inside the summary block, past the fields the game uses
-.definelabel MOD_SAVE_SUM, 0x8005E398          ; g_card_save + 0x18 (the number goes here before the XOR sum)
 .definelabel MOD_ROWS, 14
 .definelabel MOD_ROWS_PER_CARD, 7
 .definelabel MOD_SAVE_EMPTY, 0xFF
-.definelabel MOD_SERIAL_MAX, 0xFFFE       ; FFFF is erased/uninitialized, never an order
-.definelabel mod_serial, BTLEVT_BUF_ADDR
-.definelabel mod_kinds, mod_serial + 4
+.definelabel MOD_SCRATCH, (BTLEVT_BUF_ADDR + 8 + ITEM_NAME_MAXLEN * 8 + 3) & ~3
+.definelabel mod_kinds, MOD_SCRATCH
 .definelabel mod_valid, mod_kinds + MOD_ROWS * 2
 .definelabel mod_list, (mod_valid + MOD_ROWS + 3) & ~3
 .if mod_list + MOD_LIST_KIND * 2 > BTLEVT_BUF_ADDR + BTLEVT_BUF_SIZE

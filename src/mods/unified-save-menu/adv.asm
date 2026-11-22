@@ -14,8 +14,7 @@
 ;; ADV functions. Neither CD RAM nor the live packet area is touched.
 ;;
 ;; Row layout: 16 cells / 128 px. Name on line 1; line 2 uses the
-;; shared offsets in saves.inc (Lv, level, TIME, hh:mm). Serial
-;; numbers are metadata for newest-save selection, not visible text.
+;; shared offsets in saves.inc (Lv, level, TIME, hh:mm).
 ;; =============================================================
 .include "../../unified-save-menu/saves.inc"
 
@@ -89,28 +88,6 @@ mod_slots_ready:
     nop
     jr      ra
     addiu   sp, sp, 0x18
-mod_stamp:
-    addiu   sp, sp, -0x10
-    sw      t0, 0(sp)
-    sw      t1, 4(sp)
-    la      t0, mod_serial
-    lw      t1, 0(t0)
-    ori     t0, zero, MOD_SERIAL_MAX
-    beq     t1, t0, mod_stamp_number
-    nop
-    addiu   t1, t1, 1
-mod_stamp_number:
-    la      t0, mod_serial
-    sw      t1, 0(t0)
-    la      t0, MOD_SAVE_SUM
-    sh      t1, 0(t0)
-    lw      t0, 0(sp)
-    lw      t1, 4(sp)
-    addiu   sp, sp, 0x10
-    lbu     v0, 0x12(fp)
-    ori     v1, zero, 2
-    j       0x80014284
-    nop
 mod_poll_ret:
     lw      ra, 0x14(sp)
     nop
@@ -156,28 +133,19 @@ mod_skip_port:
     sw      t0, 0x10(sp)
     jal     MOD_MENULISTINIT
     nop
-    la t0, MOD_STATE_A    ; the first card that answered
+    la t0, MOD_STATE_A    ; the first card that answered:
     lh      t1, 0(t0)
-    ori     t0, zero, 2             ; CARD_NONE
-    beq     t1, t0, mod_skip_other
     nop
-    move    t1, zero
-    j       mod_skip_chan
-    nop
-mod_skip_other:
-    ori     t1, zero, 1
-mod_skip_chan:
+    xori    t1, t1, 2               ; port 0 unless it is CARD_NONE (2)
+    sltiu   t1, t1, 1
     la t0, MOD_MENU       ; g_menu->unk2D0: lo = hi = cur = chan
     lw      t0, 0(t0)
     nop
     sw      t1, 0x2D0(t0)
     sw      t1, 0x2D4(t0)
     sw      t1, 0x2D8(t0)
-    ori     t2, zero, MOD_ROWS_PER_CARD
-    multu   t1, t2
-    nop
-    nop
-    mflo    t2
+    sll     t2, t1, 3
+    subu    t2, t2, t1              ; card * MOD_ROWS_PER_CARD (7)
     sw      t2, 0x2C0(t0)
     la      t0, mod_col_list
     sw      t1, 0(t0)
@@ -202,11 +170,8 @@ mod_step_cursor:
     lw      t1, 0(t0)               ; column
     la      t0, mod_row_list
     lw      t2, 0(t0)               ; row
-    ori     t3, zero, MOD_ROWS_PER_CARD
-    multu   t1, t3
-    nop
-    nop
-    mflo    t3
+    sll     t3, t1, 3
+    subu    t3, t3, t1              ; column * MOD_ROWS_PER_CARD (7)
     addu    t3, t3, t2              ; the row index the game sees
     la t0, MOD_MENU
     lw      t0, 0(t0)
@@ -221,27 +186,45 @@ mod_step_cursor:
     ori     a0, zero, 0x81
     jal     MOD_CARD_POLL
     ori     a1, zero, 0x81
+    ;; The poll leaves its _card_info running, and a card call that writes
+    ;; the directory on top of it (a new slot's room check, CardCheckFree,
+    ;; creates a dummy file; saving; deleting) fails - and the BIOS's own
+    ;; rollback of a failed create never returns (it links a block to
+    ;; 0xFFFF and walks that link). So the poll is waited out here, while
+    ;; its port's result (MOD_CARD_RESULT[MOD_CARD_CUR]) is 0xFF; the card
+    ;; event's interrupt fills it. Bounded, keeps v0.
+    lui     t3, 0x10                ; about a million turns at most
+    lui     t0, hi(MOD_CARD_CUR)
+    lw      t0, lo(MOD_CARD_CUR)(t0)
+    lui     t1, hi(MOD_CARD_RESULT)
+    sll     t0, t0, 2
+    addu    t1, t1, t0
+mod_poll_wait:
+    lw      t0, lo(MOD_CARD_RESULT)(t1)
+    addiu   t3, t3, -1
+    xori    t0, t0, 0xFF
+    bnez    t0, mod_poll_change
+    nop
+    bnez    t3, mod_poll_wait
+    nop
     j       mod_poll_change
     nop
 
 mod_save_row:
-    ori     t0, zero, MOD_ROWS_PER_CARD
-    divu    a1, t0
-    nop
-    nop
-    mfhi    a1
-    mflo    a0
-    j       MOD_CARD_SAVE
-    nop
+    lui     t8, hi(MOD_CARD_SAVE)
+    b       mod_card_row
+    addiu   t8, t8, lo(MOD_CARD_SAVE)   ; (delay)
 mod_delete_row:
+    lui     t8, hi(MOD_CARD_DELETE)
+    addiu   t8, t8, lo(MOD_CARD_DELETE)
+mod_card_row:                       ; a1 = the row: a0 = its card, a1 = its slot
     ori     t0, zero, MOD_ROWS_PER_CARD
     divu    a1, t0
     nop
     nop
     mfhi    a1
-    mflo    a0
-    j       MOD_CARD_DELETE
-    nop
+    jr      t8
+    mflo    a0                      ; (delay)
     .endarea
 
 ;; --- SaveScanSlots entry; spare space for layer/cursor helpers --
@@ -555,7 +538,7 @@ mod_adv_scan:
     sw      s1, 0x2C(sp)            ; kind
     sw      s2, 0x28(sp)            ; the scan's found bits
     sw      s3, 0x24(sp)            ; slot on the card
-    la      v0, mod_kinds       ; every row starts empty ...
+    la      v0, mod_kinds       ; every row starts empty
     ori     t0, zero, MOD_SAVE_EMPTY
     ori     t1, zero, MOD_ROWS
 mod_scan_clear:
@@ -567,8 +550,6 @@ mod_scan_clear:
     addiu   t1, t1, -1
     bnez    t1, mod_scan_clear
     nop
-    la      t0, mod_serial          ; ... and no save number is known yet
-    sw      zero, 0(t0)
     move    s0, zero
 mod_scan_chan:
     move    s1, zero
@@ -621,14 +602,14 @@ mod_scan_slot:
     nop
     sh      s1, 0(t2)
 mod_scan_metadata:
-    ;; A bad summary still occupies its file slot, but contributes neither
-    ;; stale display bytes nor an arbitrary serial to newest-save ordering.
+    ;; A bad summary still occupies its file slot, but contributes no
+    ;; stale display bytes.
     addiu   t2, s3, 8
     srlv    t2, s2, t2
     andi    t2, t2, 1
     bnez    t2, mod_scan_next
     nop
-    la      t2, mod_list            ; keep the highest save number
+    la      t2, mod_list
     ori     t0, zero, MOD_LIST_KIND
     multu   s1, t0
     nop
@@ -650,22 +631,10 @@ mod_scan_metadata:
     beqz    t3, mod_scan_next
     nop
     la      t3, mod_valid
-    bnez    t7, mod_scan_serial
+    bnez    t7, mod_scan_next
     addu    t3, t3, t1
     ori     t4, zero, 1
     sb      t4, 0(t3)
-mod_scan_serial:
-    lhu     t3, MOD_SUM_SERIAL(t2)
-    ori     t4, zero, 0xFFFF
-    beq     t3, t4, mod_scan_next   ; legacy/erased serial is not the newest save
-    nop
-    la      t4, mod_serial
-    lw      t5, 0(t4)
-    nop
-    sltu    t6, t5, t3
-    beqz    t6, mod_scan_next
-    nop
-    sw      t3, 0(t4)
 mod_scan_next:
     addiu   s3, s3, 1
     slti    v0, s3, MOD_ROWS_PER_CARD
