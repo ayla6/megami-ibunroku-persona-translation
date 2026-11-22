@@ -13,7 +13,11 @@
 ;; a group is BS_SKILLS ticks in summons and skills and BS_ACTIONS in the
 ;; rest of the turn (attacks, the enemies' actions, the messages); while the
 ;; entry camera moves (g_btl_intro_step 4) BS_ENTRY; else 1 (no group:
-;; retail). The three are bytes at bs_vars' fixed address that the
+;; retail). Once the battle is over (the round flow's battle-over branch,
+;; bs_battle_over: BS_OVER) every group is 1 until the next battle: the
+;; results board and the level-up boards are retail, even when the fight
+;; ended on AUTO (AUTO stays on through them). The three are bytes at
+;; bs_vars' fixed address that the
 ;; `skills`, `actions` and `entry` ranges write in the built file
 ;; (values.tsv, 1-4; 1 is retail).
 ;;   tick 0   keeps retail's waits (one vblank, two at half rate unless a
@@ -216,7 +220,10 @@ bs_plan:
     bnez    t1, bs_plan_group
     lbu     a0, -0xF96(s0)              ; (delay) g_btl_stage
     lbu     a1, 0x2250(s0)              ; AUTO
+    lbu     v0, BS_OVER(t0)
     xori    a0, a0, 2                   ; 0 in BtlStageRound (stage 2)
+    bnez    v0, bs_plan_rate            ; the battle is over: the results and level-ups
+    ori     v1, zero, 1                 ; (delay) draw every tick, AUTO or not (no group)
     beqz    a0, bs_plan_turn
     lbu     v1, BS_SKILLS(t0)           ; (delay)
     bnez    a1, bs_plan_turn
@@ -334,6 +341,10 @@ bs_arena:
 .endarea
 
 
+.org 0x8008FB68
+    jal     bs_battle_over              ; was lui v0, 0x800D / lbu v0, 0xB07(v0)
+    nop
+
 ;; BtlDrawObjects' per-object handler call: g_btl_obj_draw[o->draw](o).
 .org 0x80082A9C
     jal     bs_obj_draw                 ; was jalr v0 (delay slot: move a0, s0)
@@ -349,7 +360,7 @@ bs_arena:
 ;; At the area's start, a fixed address: the `actions`, `skills` and `entry`
 ;; ranges write their bytes in the built file (values.tsv).
 bs_vars:
-    .byte   0, 0, 0, 0, 0               ; -, CNT HIDE SHOW -: BTLP is read anew every battle
+    .byte   0, 0, 0, 0, 0               ; -, CNT HIDE SHOW OVER: BTLP is read anew every battle
     .byte   1, 1, 1                     ; ACTIONS SKILLS ENTRY: written by the ranges of the same names
 .align 4
 ;; v0 = the handler, a0 = the object: a hidden tick draws no object.
@@ -385,6 +396,19 @@ bs_plan_turn:
     lbu     v1, BS_ACTIONS(t0)
     j       bs_plan_rate
     nop
+
+;; The round flow's battle-over branch (0x8008FB68, reached once the last
+;; turn's HUD and message box are done, for a victory and a defeat alike):
+;; no more groups, so the results board and the level-ups draw every tick
+;; even when the fight ended on AUTO. Then retail's own first instructions:
+;; v0 = g_btl_party_lost (its consumer's load-delay nop follows the call).
+bs_battle_over:
+    lui     at, hi(bs_vars)
+    ori     v0, zero, 1
+    sb      v0, lo(bs_vars + BS_OVER)(at)
+    lui     v0, 0x800D
+    jr      ra
+    lbu     v0, 0xB07(v0)               ; (delay) g_btl_party_lost, as retail
 
 .endarea
 .if bs_vars != 0x80065D88

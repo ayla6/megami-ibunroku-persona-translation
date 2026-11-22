@@ -741,7 +741,7 @@ FF_ON        equ 0                      ; ff_vars: u8 fast-forward wanted
 FF_CNT       equ 1                      ; u8 the group's ticks still to come (0: this one draws)
 FF_HIDE      equ 2                      ; u8 this tick draws nothing
 FF_SHOW      equ 3                      ; u8 this tick waits for the vblank and shows a frame
-FF_OVER      equ 4                      ; u8 the battle is over: no fast-forward until the next one
+FF_OVER      equ 4                      ; u8 the battle is over: no fast-forward and no groups until the next one
 FF_ACTIONS   equ 5                      ; u8 with battle-speedup, its ranges (same offsets as BS_*): ticks per shown frame in a turn's other actions
 FF_SKILLS    equ 6                      ; u8 ... in summons and skills
 FF_ENTRY     equ 7                      ; u8 ... while the entry camera moves
@@ -753,6 +753,7 @@ FF_ICON_RGB  equ 0x20F0F0F0             ; POLY_F3, light grey
 BS_CNT       equ 1                      ; u8 the group's ticks still to come (0: this one draws)
 BS_HIDE      equ 2                      ; u8 this tick draws nothing
 BS_SHOW      equ 3                      ; u8 this tick waits for the vblank and shows a frame
+BS_OVER      equ 4                      ; u8 the battle is over: every tick drawn again until the next one
 BS_ACTIONS   equ 5                      ; u8 ticks per shown frame in a turn's attacks and other actions (range `actions`)
 BS_SKILLS    equ 6                      ; u8 ... in summons and skills (range `skills`)
 BS_ENTRY     equ 7                      ; u8 ... while the entry camera moves (range `entry`)

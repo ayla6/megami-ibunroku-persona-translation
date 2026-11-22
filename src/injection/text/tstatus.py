@@ -66,6 +66,23 @@ def rows(include_auto=True, reviewed=None):
                 yield n, entry.index, box, ja, en
 
 
+def confirm_rows():
+    """(file, pos, en) of every translated confirm prompt the PSP adds
+    (escript's plan; manual wins, as in etext.load_confirms)."""
+    import escript
+    for n in etext.FILES:
+        plan = [c for c in escript.read_plan() if c.file == n]
+        if not plan:
+            continue
+        rel = f'ADV/{n}'
+        rows = {r['pos']: r.get('en', '') for r in toolbelt.read_generated(rel, optional=True)}
+        rows.update({r['pos']: r['en'] for r in toolbelt.read_manual(rel, optional=True)
+                     if etext.has_text(r.get('en', ''))})
+        for c in plan:
+            if etext.has_text(rows.get(c.pos, '')):
+                yield n, c.pos, rows[c.pos]
+
+
 def code_seq(b):
     """[(code, params)] for the parameter-carrying control codes of an encoded box."""
     out, i = [], 0
@@ -555,6 +572,15 @@ def cmd_qa(limit=40):
             counts[kind] += 1
             if shown < limit:
                 print(f'{n}/{e}/{k} [{kind}] {msg}')
+                shown += 1
+    # the confirm prompts the PSP adds (escript) have no PSX box: judged on
+    # their own, a question box, so no label is required
+    for n, pos, en in confirm_rows():
+        total += 1
+        for kind, msg in check('', en, want_label=None):
+            counts[kind] += 1
+            if shown < limit:
+                print(f'{n}/{pos} [{kind}] {msg}')
                 shown += 1
     # Nothing ships wrapped or scrolled "as is": a row the box cannot show
     # is re-laid-out or does not ship (docs/TEXT_ARCHITECTURE.md's page

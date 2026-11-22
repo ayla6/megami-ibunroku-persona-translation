@@ -48,6 +48,7 @@ import tstatus  # noqa: E402 (classify_deviations: the audit shares QA's gate)
 from text import load_psp  # noqa: E402
 from codec import US_MAP  # noqa: E402
 import story_port_plan  # noqa: E402
+import escript  # noqa: E402  (the PSP's confirm prompts)
 
 ALIGN = os.path.join(toolbelt.MAPPINGS, 'align.tsv')
 
@@ -1924,6 +1925,88 @@ def _slot_pair(f, ei, psx, k):
         return None
 
 
+def lay_dialogue(first_lab, items, ja, joins, flags, counts):
+    """The English of one dialogue box from its PSP items, laid out against
+    the Japanese `ja` it replaces ('' for a box the PSP adds: escript) -
+    None when a variable cannot be carried. `flags` and `counts` collect
+    what convert_entry reports."""
+    def finish(items_in):
+        # the Japanese's own sentence lines (vwf_wrap.orig_beats)
+        e2, used2, rf2 = reflow(first_lab, vwf_wrap.with_orig_breaks(items_in, ja),
+                                joins=joins)
+        flags.extend(rf2)
+        if not e2.endswith('<FF01>'):
+            e2 += '<FF01>' if '<FF01>' not in e2 else ''
+        nwords = sum(1 for it in items_in if it[0] == 'w')
+        if used2 < nwords:
+            got = [it[1] for it in items_in if it[0] == 'w']
+            flags.append('leftover:%s' % ' '.join(got[used2:])[:80])
+        e2, inv1, nons1 = paginate(e2)
+        # Choice options must start their own line (same rule as tstatus
+        # QA): where their break goes is the pen's - vwf_wrap owns it
+        # (a mid-line pen needs its break ("me?Yes"), a full pre-line is
+        # already at line start and a break there skips a line: E0/1/1).
+        if '<FF0E>' in e2:
+            e2 = vwf_wrap.choice_breaks(e2)
+        # strip edge whitespace (JA padding blanks must not leak into EN)
+        e2 = _clean(e2)
+        # enforce can push a page to 4 lines: paginate again so waits split it
+        e2, inv2, nons2 = paginate(e2)
+        inv1 += inv2
+        nons1 += nons2
+        if inv1:
+            # The invented waits are IN the row (<FF02>), so the generated
+            # table already says what the box does; no per-box console
+            # line. cmd_bulk totals them per file and files the mid-
+            # sentence cuts under scratch/translation_reports/.
+            counts[0] += inv1
+            counts[1] += nons1
+        return e2
+
+    items, seams = psp_line_beats(jp_line_beats(items, ja), ja)
+    hard = sentence_pauses(items, ja)
+    soft = sentence_pauses(items, ja, soft=True)
+    kept = (len(flags), list(counts))
+    en = finish(hard)
+    if soft != hard:
+        # the JP's line break at a carried pause, where it costs a press
+        # the box would not need otherwise (a scroll or a box), was only
+        # the JP's line running out: the soft layout
+        hard_flags, hard_counts = flags[kept[0]:], list(counts)
+        del flags[kept[0]:]
+        counts[:] = kept[1]
+        en_soft = finish(soft)
+        if _presses(en_soft) < _presses(en):
+            en = en_soft
+        else:
+            del flags[kept[0]:]
+            flags.extend(hard_flags)
+            counts[:] = hard_counts
+    if any('variable' in flag for flag in flags):
+        return None
+    # A FREE JOIN, DOWN TO THE PSX'S OWN COUNT AND NO FURTHER: the PSX draws
+    # this box as 1 + its own <FF04> pages, the PSP's boxes are kept unless
+    # the pair fits three lines (the count stays in
+    # [psx boxes, psp boxes], never smaller than either).
+    en = merge_boxes(en, min_boxes=1 + ja.count('<FF04>'), joins=joins, ja=ja,
+                     seams=seams)
+    # A carried beat that still lands on a box turn is the press itself:
+    # the player's button IS the pause there (sentence_pauses).
+    en = re.sub(r'(<FF02><FF04>)<FF05><[0-9A-F]{2}><[0-9A-F]{2}>', r'\1', en)
+    en = ellipsis_pauses(en, ja)
+    # THE OPTION BLOCK'S ARMING LINE IS THE LAYOUT'S, NOT THE JP'S. The
+    # JP's wait is a proxy for ITS prompt length; the English prompt is a
+    # different length, so copying the JP's wait either invents a press on
+    # a one-line prompt or leaves a two-line prompt to scroll by itself
+    # under the player. vwf_wrap.choice_breaks owns it: no wait when the prompt
+    # fits above the options, '<FF02>' when it does not (the corpus' own
+    # 463 '<FF02><FF03><FF0E>' rows) - no options until the player
+    # presses, then exactly one scroll.
+    if '<FF0E>' in en:      # an option always starts its own line
+        en = vwf_wrap.choice_breaks(en)
+    return en
+
+
 def convert_entry(f, ei):
     psx = psx_entries(f)[ei]
     usp = usp_entries(f)[ei]
@@ -2135,39 +2218,6 @@ def convert_entry(f, ei):
                     items.append(('u', x[len(US_BRK):]))
                 else:
                     items.append(('w', x))
-        def finish(items_in):
-            # the Japanese's own sentence lines (vwf_wrap.orig_beats)
-            e2, used2, rf2 = reflow(first_lab, vwf_wrap.with_orig_breaks(items_in, ja),
-                                    joins=joins)
-            flags.extend(rf2)
-            if not e2.endswith('<FF01>'):
-                e2 += '<FF01>' if '<FF01>' not in e2 else ''
-            nwords = sum(1 for it in items_in if it[0] == 'w')
-            if used2 < nwords:
-                got = [it[1] for it in items_in if it[0] == 'w']
-                flags.append('leftover:%s' % ' '.join(got[used2:])[:80])
-            e2, inv1, nons1 = paginate(e2)
-            # Choice options must start their own line (same rule as tstatus
-            # QA): where their break goes is the pen's - vwf_wrap owns it
-            # (a mid-line pen needs its break ("me?Yes"), a full pre-line is
-            # already at line start and a break there skips a line: E0/1/1).
-            if '<FF0E>' in e2:
-                e2 = vwf_wrap.choice_breaks(e2)
-            # strip edge whitespace (JA padding blanks must not leak into EN)
-            e2 = _clean(e2)
-            # enforce can push a page to 4 lines: paginate again so waits split it
-            e2, inv2, nons2 = paginate(e2)
-            inv1 += inv2
-            nons1 += nons2
-            if inv1:
-                # The invented waits are IN the row (<FF02>), so the generated
-                # table already says what the box does; no per-box console
-                # line. cmd_bulk totals them per file and files the mid-
-                # sentence cuts under scratch/translation_reports/.
-                counts[0] += inv1
-                counts[1] += nons1
-            return e2
-
         joins = None
         if r is not None and r[5] == 'ok' and str(r[3]).isdigit():
             jidx = int(r[3])
@@ -2178,50 +2228,12 @@ def convert_entry(f, ei):
                     return None
                 return box_joins(ja, jent.box_bytes(jidx))
             joins = story_port_plan.joins(f, ei, k, _live_joins)
-        items, seams = psp_line_beats(jp_line_beats(items, ja), ja)
-        hard = sentence_pauses(items, ja)
-        soft = sentence_pauses(items, ja, soft=True)
-        kept = (len(flags), list(counts))
-        en = finish(hard)
-        if soft != hard:
-            # the JP's line break at a carried pause, where it costs a press
-            # the box would not need otherwise (a scroll or a box), was only
-            # the JP's line running out: the soft layout
-            hard_flags, hard_counts = flags[kept[0]:], list(counts)
-            del flags[kept[0]:]
-            counts[:] = kept[1]
-            en_soft = finish(soft)
-            if _presses(en_soft) < _presses(en):
-                en = en_soft
-            else:
-                del flags[kept[0]:]
-                flags.extend(hard_flags)
-                counts[:] = hard_counts
-        if any('variable' in flag for flag in flags):
+        en = lay_dialogue(first_lab, items, ja, joins, flags, counts)
+        if en is None:
             out.append((k, ja, None, '; '.join(flags)))
             prev_lab = None
             prev_ja = None
             continue
-        # A FREE JOIN, DOWN TO THE PSX'S OWN COUNT AND NO FURTHER: the PSX draws
-        # this box as 1 + its own <FF04> pages, the PSP's boxes are kept unless
-        # the pair fits three lines (the count stays in
-        # [psx boxes, psp boxes], never smaller than either).
-        en = merge_boxes(en, min_boxes=1 + ja.count('<FF04>'), joins=joins, ja=ja,
-                         seams=seams)
-        # A carried beat that still lands on a box turn is the press itself:
-        # the player's button IS the pause there (sentence_pauses).
-        en = re.sub(r'(<FF02><FF04>)<FF05><[0-9A-F]{2}><[0-9A-F]{2}>', r'\1', en)
-        en = ellipsis_pauses(en, ja)
-        # THE OPTION BLOCK'S ARMING LINE IS THE LAYOUT'S, NOT THE JP'S. The
-        # JP's wait is a proxy for ITS prompt length; the English prompt is a
-        # different length, so copying the JP's wait either invents a press on
-        # a one-line prompt or leaves a two-line prompt to scroll by itself
-        # under the player. vwf_wrap.choice_breaks owns it: no wait when the prompt
-        # fits above the options, '<FF02>' when it does not (the corpus' own
-        # 463 '<FF02><FF03><FF0E>' rows) - no options until the player
-        # presses, then exactly one scroll.
-        if '<FF0E>' in en:      # an option always starts its own line
-            en = vwf_wrap.choice_breaks(en)
         # THE PSP'S BOXES ARE THE AUTHOR'S (spec 3.1). A run of PSP boxes is
         # KEPT, not re-flowed to the Japanese word positions or stripped of
         # their waits. The PSX holds as many boxes as the text needs -
@@ -2235,7 +2247,45 @@ def convert_entry(f, ei):
         out.append((k, ja, en, '; '.join(flags)))
         prev_lab = first_lab
         prev_ja = ja_label
+    for c in confirms():
+        if c.file == f and c.entry == ei:
+            out.append(convert_confirm(f, ei, c, counts))
     return out, counts
+
+
+_CONFIRMS = None
+
+
+def confirms():
+    """The PSP's confirm prompts the PSX lacks (escript's plan)."""
+    global _CONFIRMS
+    if _CONFIRMS is None:
+        _CONFIRMS = escript.read_plan()
+    return _CONFIRMS
+
+
+def convert_confirm(f, ei, c, counts):
+    """(c, '', en, errs) for a confirm prompt the PSP adds (escript): its
+    row is keyed by the plan row itself and stored at its added pos. No PSX
+    box stands behind it, so there is no Japanese to lay it out against,
+    and the PSP's own speaker label stays (the speaker is often not the
+    one who asked the choice)."""
+    usp = usp_entries(f)[ei]
+    start = c.confirm - escript.ADDED_BASE
+    k = next(i for i, (s, _e) in enumerate(usp.boxes) if s == start)
+    segments, flags = us_parts(usp.box_bytes(k), ja=None)
+    items = []
+    for si, (lab, w) in enumerate(segments):
+        if si > 0:
+            items.append(('b', lab))
+        for x in w:
+            if isinstance(x, str) and x.startswith(US_BRK):
+                items.append(('u', x[len(US_BRK):]))
+            else:
+                items.append(('w', x))
+    first_lab = segments[0][0] if segments else None
+    en = lay_dialogue(first_lab, items, '', None, flags, counts)
+    return c, '', en, '; '.join(flags)
 
 
 def _one(arg):
@@ -2380,8 +2430,11 @@ def store_generated(ports, replace_entry=None):
             # stored row right on the first pass instead of leaving it to the
             # re-derivation net (which cannot see a box-index pointer).
             en = port_derive.head_marks(en, ja)
-            s, _e = entries[e].boxes[b]
-            pos = f'{e}:{s:#x}'
+            if isinstance(b, escript.Confirm):
+                pos = b.pos
+            else:
+                s, _e = entries[e].boxes[b]
+                pos = f'{e}:{s:#x}'
             # A row that still cannot lay itself out is the source's wording,
             # so it becomes an over-limit draft (the Japanese ships) instead
             # of stopping the build.
@@ -2391,7 +2444,7 @@ def store_generated(ports, replace_entry=None):
                 gap_width.append(f'{f}/{e}/{b}: {reason}')
                 continue
             row = {'pos': pos, 'en': en}
-            psp = psp_of(e, b)
+            psp = b.psp if isinstance(b, escript.Confirm) else psp_of(e, b)
             if psp:                        # missing key keeps any existing pointer on upsert
                 row['psp'] = psp
             auto.append(row)
@@ -2522,6 +2575,8 @@ def cmd_bulk(apply=False, jobs=None):
         # gate. Source controls are translated before writing the row.
         all_devs = {}
         for f, ei, k, ja, en in ported_all:
+            if isinstance(k, escript.Confirm):
+                continue        # an added box: no Japanese to differ from
             devs, ok = tstatus.classify_deviations(ja, en)
             if not ok:
                 all_devs[(f, ei, k)] = [('source-controls', ja, en)]

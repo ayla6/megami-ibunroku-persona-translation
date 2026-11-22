@@ -138,11 +138,13 @@ class Entry:
         return segs
 
     # --- rebuilding ------------------------------------------------------
-    def rebuild(self, new_boxes=None):
+    def rebuild(self, new_boxes=None, extend=None):
         """New raw entry bytes (no sector padding) with boxes replaced.
 
         new_boxes: {box_index: bytes ending in FF 01}. Every segment keeps its start
         offset modulo 4 (the interpreter reads u32 operands with lw), padded with zeros.
+        extend: called as extend(out, newpos) once every pointer is remapped, to append
+        to the image (escript.hook); newpos maps an old offset to its new one.
         Returns raw."""
         new_boxes = new_boxes or {}
         b = self.body
@@ -199,6 +201,8 @@ class Entry:
                 print(f'E?/{self.index}: word at {off:#x} -> mid-box {tg:#x} kept unchanged')
                 continue
             struct.pack_into('<I', out, noff, new)
+        if extend is not None:
+            extend(out, newpos)
         return self._raw(bytes(out), BASE + len(out) + self.short)
 
     def _raw(self, body, end=None):

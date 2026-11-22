@@ -1,3 +1,7 @@
+# 2026-11-22
+- Party join and help confirmations now ask what you actually picked, like in the PSP version. Saying no to Brown no longer asks if you're sure you want him to join. Saying No to the confirmation now takes you back to the question (or turns the help down) instead of just going with whatever you answered last.
+- Fixed the level up screen being hidden behind an empty black bar when a battle was won on AUTO with Battle Speedup or Fast Forward Battle Animations.
+
 # 2026-11-21-2
 - Fixed saving on a new slot sometimes freezing the game with the Unified Save Menu.
 

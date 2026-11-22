@@ -13,8 +13,10 @@
 ;; AUTO off), and for good when
 ;; the battle is over: the round flow's battle-over branch (victory and defeat
 ;; alike, before the experience count, the level-up board or the defeat line)
-;; switches it off and START is the game's again until the next battle. While
-;; it is on, a small ">>" shows at the top right.
+;; switches it off and START is the game's again until the next battle; from
+;; then on every group is 1 (FF_OVER), so the results board and the level-up
+;; boards are retail even when the fight ended on AUTO (AUTO stays on through
+;; them). While it is on, a small ">>" shows at the top right.
 ;;
 ;; Every tick still runs the whole battle: logic, object scripts and
 ;; animation steps, BtlDrawObjects' own state work (positions handed to
@@ -185,9 +187,8 @@
     jal     0x8002B54C                  ; SetDispMask(1)
     ori     a0, zero, 1
 @@mask_done:
-    lw      a0, 0x14(sp)
     jal     ff_present                  ; VSync, PutDispEnv, PutDrawEnv, DrawOTag
-    nop
+    lw      a0, 0x14(sp)                ; (delay) the frame buffer; ff_present reads it 4th
     jal     0x8008E980                  ; BtlPadRead
     nop
     jal     ff_pad                      ; START during a turn: the fast-forward's
@@ -239,7 +240,10 @@ ff_plan:
     bnez    t1, ff_plan_group
     lbu     a0, -0xF96(s0)              ; (delay) g_btl_stage
     lbu     a1, 0x2250(s0)              ; AUTO
+    lbu     v0, FF_OVER(t0)
     xori    a0, a0, 2                   ; 0 in BtlStageRound (stage 2)
+    bnez    v0, ff_plan_rate            ; the battle is over: the results and level-ups
+    ori     v1, zero, 1                 ; (delay) draw every tick, AUTO or not (no group)
     beqz    a0, ff_plan_turn
     lbu     v1, FF_SKILLS(t0)           ; (delay)
     bnez    a1, ff_plan_turn

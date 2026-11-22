@@ -1627,3 +1627,7 @@ id	pos	psp	en
 1625	223:0x1150	E1:1633	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 1626	223:0x117c	E1:1634	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 1627	223:0x11a8	E1:1635	Agastya Tree:<SFF03>Take care<LFF03>on your journey, young ones...<FF02><FF01>
+1628	4:0x12408	E1:79	Yukino: Are you sure<FF03>you want Kei’s help, <FF07><01>?<FF02><FF03><FF0E><00><FF01>
+1629	5:0x123a8	E1:101	Yukino:<FF03>You’re sure you want Eriko to help?<FF03><FF0E><00><FF01>
+1630	9:0x12738	E1:174	Ayase: <FF07><01>... you really,<FF03>actually want Hidehiko along?<FF02><FF03><FF0E><00><FF01>
+1631	12:0x13708	E1:250	Yukino:<FF03>You’re sure you want Eriko to help?<FF03><FF0E><00><FF01>

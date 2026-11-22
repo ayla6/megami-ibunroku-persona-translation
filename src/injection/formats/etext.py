@@ -41,6 +41,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
 import toolbelt  # noqa: E402
 import efile  # noqa: E402
+import escript  # noqa: E402  (the PSP's confirm prompts)
 import strlib  # noqa: E402
 import make_vwf_font  # noqa: E402  (the font's character map)
 
@@ -329,8 +330,9 @@ def load_edits(n, tsvdir=None):
     rel = f'ADV/{n}'
     man = {r['pos']: r.get('en', '')
            for r in toolbelt.read_manual(rel, optional=True)}
+    added = {c.pos for c in escript.read_plan() if c.file == n}
     for pos, text in man.items():
-        if has_text(text) and pos not in pmap:
+        if has_text(text) and pos not in pmap and pos not in added:
             raise SystemExit(f'translation/manual/ADV/{n}.tsv: pos {pos} is '
                              f'stale (the scan has no such box) - re-home it')
     auto = {(e, b): en for (f, e, b), (_ja, en) in auto_event_text().items()
@@ -349,6 +351,43 @@ def load_edits(n, tsvdir=None):
     return edits
 
 
+def load_confirms(n):
+    """{entry: efile rebuild `extend` step} carrying the PSP's confirm prompts
+    (escript; translation/generated_mappings/confirm_port_plan.tsv). A
+    confirm box's English is the row at its added pos, manual winning like
+    any box; a planned confirm with no English is not hooked, so the PSX's
+    own choice runs unchanged."""
+    import toolbelt
+    import vwf_wrap
+    plan = [c for c in escript.read_plan() if c.file == n]
+    if not plan:
+        return {}
+    rel = f'ADV/{n}'
+    rows = {r['pos']: r.get('en', '') for r in toolbelt.read_generated(rel, optional=True)}
+    rows.update({r['pos']: r['en'] for r in toolbelt.read_manual(rel, optional=True)
+                 if has_text(r.get('en', ''))})
+    by_prompt = {}
+    for c in plan:
+        by_prompt.setdefault((c.entry, c.prompt), []).append(c)
+    c = efile.load(path(n))
+    hooks, by_entry = {}, {}
+    for (entry, _prompt), confirms in sorted(by_prompt.items()):
+        if not all(has_text(rows.get(x.pos, '')) for x in confirms):
+            print(f'{n}/{entry}: confirm {", ".join(x.pos for x in confirms)} has no '
+                  f'English - the PSX choice runs unconfirmed')
+            continue
+        by_entry.setdefault(entry, []).extend(confirms)
+    for entry, confirms in by_entry.items():
+        texts = {}
+        for x in confirms:
+            try:
+                texts[x.confirm] = encode(vwf_wrap.edition_layout(rows[x.pos]))
+            except ValueError as ex:
+                raise SystemExit(f'{n}/{x.pos}: {ex}')
+        hooks[entry] = escript.hook(c.entries[entry].body, confirms, texts)
+    return hooks
+
+
 def cmd_layout(grow=False):
     """Reserve a fixed slot (sectors) per entry, once: translation/layout.json.
     slot = max(original sectors, ceil(1.5 * image / 2048) + 1), at most 31 sectors (the game
@@ -360,6 +399,7 @@ def cmd_layout(grow=False):
     for n in FILES:
         c = efile.load(path(n))
         edits = load_edits(n, tsvdir) if grow else {}
+        hooks = load_confirms(n) if grow else {}
         slots = list(cur.get(n, []))
         for e in c.entries:
             orig = c.t[e.index + 1] - c.t[e.index]
@@ -367,8 +407,8 @@ def cmd_layout(grow=False):
                 want = slots[e.index]
             else:
                 want = min(31, max(orig, -(-int((8 + e.size) * 1.5) // S) + 1))
-            if grow and e.index in edits:
-                need = -(-len(e.rebuild(edits[e.index])) // S)
+            if grow and (e.index in edits or e.index in hooks):
+                need = -(-len(e.rebuild(edits.get(e.index), hooks.get(e.index))) // S)
                 want = max(want, min(31, need))
             if e.index < len(slots):
                 slots[e.index] = want
@@ -394,6 +434,7 @@ def cmd_build(tsvdir, outdir, asm=None):
     for n in FILES:
         c = efile.load(path(n))
         edits = load_edits(n, tsvdir)
+        hooks = load_confirms(n)
         out = os.path.join(outdir, f'{n}.BIN')
         slots = layout.get(n)
         if not edits and not slots:
@@ -407,7 +448,7 @@ def cmd_build(tsvdir, outdir, asm=None):
         raws = []
         for e in c.entries:
             try:
-                raws.append(e.rebuild(edits.get(e.index)))
+                raws.append(e.rebuild(edits.get(e.index), hooks.get(e.index)))
             except ValueError as ex:
                 raise SystemExit(f'{n}/{e.index}: {ex}')
         for e, r in zip(c.entries, raws):
@@ -424,6 +465,7 @@ def cmd_build(tsvdir, outdir, asm=None):
         for i in range(0, len(table), 16):
             lines.append('.halfword ' + ', '.join(str(v) for v in table[i:i + 16]))
         print(f'{n}: {sum(len(v) for v in edits.values())} boxes edited, '
+              f'{len(hooks)} entries with PSP confirm prompts, '
               f'{len(c.data)} -> {len(data)} bytes')
     with open(asm, 'w', encoding='utf-8', newline='\n') as f:
         f.write('\n'.join(lines) + '\n')

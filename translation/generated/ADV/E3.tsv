@@ -882,3 +882,4 @@ id	pos	psp	en
 880	127:0x1150	E3:883	Agastya Tree: Young ones...<FF03>Your presence is welcome.<FF02><FF01>
 881	127:0x117c	E3:884	Agastya Tree:<FF03>Will you inscribe your story on me?<FF03><FF0E><00><FF01>
 882	127:0x11a8	E3:885	Agastya Tree:<SFF03>Take care<LFF03>on your journey, young ones...<FF02><FF01>
+883	11:0x12fd8	E3:240	Yukino: Are you sure<FF03>you want Kei’s help, <FF07><01>?<FF02><FF03><FF0E><00><FF01>

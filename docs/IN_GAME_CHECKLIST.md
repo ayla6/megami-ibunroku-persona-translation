@@ -16,6 +16,12 @@ and DualShock analog movement are not included in this particular build.
 
 - [ ] Controller settings: icons and action labels remain correct after
   switching TYPE 1/TYPE 2, leaving the page and reopening it.
+- [ ] PSP confirm prompts (docs/TEXT_ARCHITECTURE.md): at Brown's join
+  (E0/50), "Let them join" asks Nanjo's "...you want to bring Hidehiko
+  along?" and "Don't let them join" asks "...you don't want to...". Answering
+  No asks Mark's choice again, and Yes takes the chosen answer. Repeat for
+  Elly (E0/51), Ayase (E0/55) and one Kei/Eriko help prompt (E1), where No
+  turns the help down.
 
 ## When DualShock movement is implemented
 

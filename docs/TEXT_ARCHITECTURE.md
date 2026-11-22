@@ -46,6 +46,38 @@ Verified against `data/psx/ADV/E0.BIN`; the community notes in
   target is a box start or a gap. A pointer into the middle of a resized
   box is a hard error, not a guess.
 
+### Confirm prompts the PSP adds
+
+Some PSP choices ask again before they take effect: Brown, Elly and Ayase
+joining (E0/50, 51, 55), Kei's and Eriko's help (E1/4, 5, 12, E3/11), and
+Ayase's "you really want Hidehiko along?" (E1/9). The PSP opens the answer's
+branch with a Yes/No box worded for that answer ("...you want to bring
+Hidehiko along?" / "...you don't want to..."). No either asks the choice
+again or takes another answer's branch. The PSX has no such box, so its
+English build gets one:
+
+- `src/porting/confirm_port_plan.py` (a port step) reads the shape off the
+  PSP-US scripts and writes `translation/generated_mappings/confirm_port_plan.tsv`,
+  one row per confirmed answer. It skips a confirm that a PSX box already
+  carries (E1/160's totem prompts) and skips anything that is not a
+  confirm at a branch head. That second rule leaves out the PSP's second try
+  at Mai's questions (E0/118), which is a gameplay change and not a confirm.
+- The added box is an ordinary row in `generated/ADV/E?.tsv` at pos
+  `entry:0x1xxxx`, which is `escript.ADDED_BASE` (0x10000) plus the PSP box
+  offset. An image is at most 0xFFF8 bytes, so no real box sits there.
+  `port_story.convert_confirm` writes it from the PSP box, keeping the PSP's
+  speaker label because there is no Japanese box to lay it out against. A
+  manual row at the same pos wins, as for any box.
+- `etext build` (`escript.hook`) turns the `55` that shows the PSX prompt
+  into a jump to a block appended after the image. The block shows the
+  choice, unless the English already asked it in an earlier box (E0/50's
+  Mark line). Then, for each confirmed answer, it shows the PSP's bust and
+  confirm box. Yes runs the PSX's own post-commands and that answer's
+  branch; No asks again or takes the other answer's branch. Answers the PSP
+  does not confirm run the PSX's own tests. A planned confirm with no
+  English is not hooked.
+- `tstatus qa` checks the added rows like any question box.
+
 ## Print speed
 
 English needs about twice the glyphs of the Japanese line, so each
