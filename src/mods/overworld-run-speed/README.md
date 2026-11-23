@@ -10,5 +10,10 @@ replaces the run's step by the `speed` slider's cycle: 2x is retail's 0x800, 4x 
 cell), 3x 0x1000, 0x1000, 0x800 in turn (three cells in four ticks). Walking is unchanged and
 restarts the 3x cycle.
 
+A one-tick step also does the walking mode's in-progress clear of the forced-step bit (0x80 of
+0x800A560C, set on arriving on a cell flagged 0x1000): retail clears it only in a walking-mode tick
+that finds a step still under way, which a 0x1000 step never leaves, so the forced step would
+otherwise repeat every step and carry the party past the map's edge into the exit events.
+
 The speed byte and the code live in the dead StatusSlotDraw's bytes from `S2D_BSD_ADDR + 0x180`;
 battle-speedup's overworld transition code has the first 0x180.

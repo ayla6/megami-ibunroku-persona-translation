@@ -17,11 +17,24 @@
 ;; cell), 3x passes 0x1000, 0x1000, 0x800 in turn (three cells in four
 ;; ticks). Walking keeps 0x400 and restarts the 3x cycle.
 ;;
+;; A one-tick step must still end the forced step. Arriving on a cell flagged
+;; 0x1000 in the map sets the forced-step bit 0x80 of 0x800A560C, and the
+;; walking mode then starts one more step in the last direction without input.
+;; Retail clears that bit (0x560C &= ~0x81 at 0x8008DDD4) only in a walking
+;; mode tick that finds the step still in progress (0x800A53F8 != 1). A step
+;; of 0x1000 arrives in the tick it starts, so no such tick ever comes: the
+;; forced step would repeat every step, carrying the party past the map's
+;; edge cells into the blocking event cells, whose script ("that's the way
+;; out of town") then runs again after every forced try. owrun_start does
+;; that clear itself whenever it passes 0x1000; nothing between the step
+;; start and the next walking mode tick reads 0x800A560C.
+;;
 ;; owrun_vars sits at a fixed address, the dead StatusSlotDraw's bytes from
 ;; +0x180 (battle-speedup's s2d.asm has the first 0x180): the `speed` range
 ;; writes its first byte in the built file (values.tsv).
 ;; =============================================================
 .definelabel owrun_step_start, 0x8008B2F4   ; step start (a0 = the per-tick step)
+.definelabel owrun_walk_flags, 0x800A560C   ; 0x80: forced step; low nibble: its direction
 
 .org 0x8008D73C                         ; the walking mode's jal step start (delay slot nop stays)
     jal     owrun_start
@@ -45,8 +58,8 @@ owrun_start:
     ori     t0, zero, 4
     bne     t2, t0, @@start             ; 2x: retail's 0x800
     nop
-    j       owrun_step_start
-    ori     a0, zero, 0x1000            ; (delay) 4x: one tick a cell
+    b       @@one_tick                  ; 4x: one tick a cell
+    nop
 @@triple:
     addiu   t4, t3, 1
     xori    at, t4, 3
@@ -58,7 +71,14 @@ owrun_start:
     ori     t0, zero, 2
     beq     t3, t0, @@start             ; the cycle's third: 0x800
     nop
-    ori     a0, zero, 0x1000            ; its first two: 0x1000
+@@one_tick:                             ; its first two, and 4x: 0x1000
+    lui     t0, hi(owrun_walk_flags)
+    lw      t2, lo(owrun_walk_flags)(t0)
+    addiu   at, zero, -0x81
+    and     t2, t2, at                  ; the walking mode's in-progress clear
+    sw      t2, lo(owrun_walk_flags)(t0)
+    j       owrun_step_start
+    ori     a0, zero, 0x1000            ; (delay)
 @@start:
     j       owrun_step_start
     nop
