@@ -1,3 +1,8 @@
+# 2026-11-23
+- Fixed the game freezing when the spell card list opens with a full card pack (discarding or trading a card).
+- Fixed skill and attack names showing an empty box with Battle Speedup on.
+- Skill and attack names now stay up as long as at normal speed with Battle Speedup or Fast Forward Battle Animations.
+
 # 2026-11-22-2
 - Fixed running fast in the overworld with Overworld Run Speed sometimes sliding you out of town and into a loop of "that's the way out of town" messages.
 

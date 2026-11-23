@@ -243,6 +243,9 @@ regenerated after allocation changes.
   holds the battle's original-font advances.
 - BTLP's retail text-window glyph function (`BTLP_GLYPH_FREE_ADDR`, 392 bytes):
   both calls go to the VWF emitter and nothing else reaches it.
+- BTLP's `BtlFxStepOrbitUnused` (`BTLP_ORBIT_FREE_ADDR`, 408 bytes): no
+  record, call, jump or word reaches it. It holds the speed mods' message hold
+  (the late close of a timed message line).
 - The top of RAM above the game's last global (`g_seq_handle`,
   `0x801F537C + 0x40 = 0x801F53BC`) holds no fixed data: the main stack grows
   down from the EXE header's `0x801FFFF0` (about 2.6 KB deep in a measured
@@ -285,6 +288,17 @@ frame. The longer English board text is what fills the POLY_FT4 run while a
 board animates during a turn, so the demand still has to stay low: a row in
 borrowed scratch is filled before its board's first frame, so leftovers are
 never drawn.
+
+The battle's 2D layer has a buffer of its own (`BTL_UI_PRIM_POOL`, two
+0x2800-byte halves, one per frame): message boxes, menus, the HUD and the
+effects append whole primitives to it through `g_btl_prim_next`, and retail
+never checks its end either. An effect row costs a 40-byte POLY_FT4 a glyph,
+and an opening or closing effect frame one an 8x8 piece; a full CONTACT stock
+list (twelve English names) with its opening frame passed the half and wrote
+over the other one while the GPU still read it, which froze the console. The
+effect drawers - `BtlDrawGlyphs` and both kinds of frame piece - now end a row
+or piece that does not fit (`btlp/ui_prim_bound.asm`); they draw last, so the
+other 2D drawers keep their retail room.
 
 `src/mods/base/test_prim_pool_borrowers.py` finds every patched BTLP instruction
 that reaches a cursor and fails unless its source file is registered with a

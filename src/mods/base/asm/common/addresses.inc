@@ -426,6 +426,12 @@ BTLP_IMAGE_LIMIT equ BTLP_NAME_DATA_END
 ;; points at it, so its body holds the original-font helpers (btlp/orig_face.asm).
 BTLP_GLYPH_FREE_ADDR equ 0x8007C754
 BTLP_GLYPH_FREE_END equ 0x8007C8DC
+;; BTLP's BtlFxStepOrbitUnused (decomp src/btlp/fxmotion.c, rev 1 0x800C0840):
+;; no record points at it and nothing calls it, jumps into it or holds its
+;; address, so its body holds the speed mods' message hold
+;; (battle-speedup/btlp.asm, fast-forward-battle-animations/btlp.asm).
+BTLP_ORBIT_FREE_ADDR equ 0x800C2C50
+BTLP_ORBIT_FREE_END equ 0x800C2DE8
 ;; The battle-board ownership directory is allocated by battle_board_text.py
 ;; in reclaimed, immutable source text, never the live stock-number array
 ;; at 0x800F7ED8..0x800F7FF8.
@@ -780,6 +786,15 @@ BTL_POLYF4_NEXT  equ 0x800EEC40         ; g_btl_polyf4_next
 BTL_POLYG4_NEXT  equ 0x800EEC44         ; g_btl_polyg4_next
 BTL_LINEG2_NEXT  equ 0x800EEC48         ; g_btl_lineg2_next
 BTL_DRMODE_NEXT  equ 0x800EEC4C         ; g_btl_drmode_next (not pre-tagged: users write whole DR_MODEs)
+;; --- BTLP's 2D layer buffer (decomp src/btlp/drawui.c; btlp/ui_prim_bound.asm) ---
+;; BtlDrawUi (0x8007AA70) flips g_btl_ot_index and points g_btl_prim_next at
+;; its half of a separate 0x5000-byte buffer every frame; the message boxes,
+;; menus, HUD and the effects (CONTACT lists, their frames) bump it per
+;; primitive with no bound. The background field follows at 0x801B2000.
+BTL_UI_PRIM_POOL equ 0x801AC200         ; half f at + f * BTL_UI_PRIM_HALF
+BTL_UI_PRIM_HALF equ 0x2800
+BTL_UI_PRIM_NEXT equ 0x800F83A8         ; g_btl_prim_next (Rev 1 0x800F5D5C + 0x264C)
+BTL_UI_OT_INDEX  equ 0x800CEC48         ; g_btl_ot_index: this frame's half
 ;; --mods=attack-range (mods/attack-range/btlp.asm): the reach overlay on the battle floor
 RNG_REACH        equ 0x800F7414         ; g_btl_reach[5 lanes][15 rows] (Rev 1 0x800F4DC8 + 0x264C)
 RNG_CELLS        equ 0x800F7FFC         ; g_btl_debug_grid_cells: the retired debug grid's 75 bytes

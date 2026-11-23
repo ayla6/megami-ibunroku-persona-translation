@@ -58,12 +58,24 @@
 ;; reset on shown ticks only, so a group's own time counts), so N ticks per
 ;; shown frame are N times retail speed, at retail's frame rate, with only
 ;; one tick in N drawn.
+;; A timed message line (an enemy's move name, an ailment line) stays up for
+;; retail's time at any speed (the message hold, below).
 ;;
 ;; Buffers: a drawn tick flips g_btl_frame as retail; a hidden tick does not,
 ;; so the next tick builds in the same buffer and a drawn tick always draws
 ;; into the buffer that is not on screen, whatever the group size. A hidden
 ;; tick pre-flips it and waits for its (empty) submit to finish (DrawSync)
 ;; before the next tick rewrites that buffer's ordering table and packets.
+;;
+;; The 2D layer's draw offset: the menus' and the message windows' draw areas
+;; start at g_btl_drawenv.ofs (0x800F8720 + 8), which retail takes with
+;; GetDrawEnv in BtlFlushVramQueues, after this tick's 2D layer is built and
+;; before its PutDrawEnv. A tick reads what the one before it took, the
+;; environment put two ticks back: in retail the buffer it builds itself. With
+;; groups that no longer holds (in a group of two the drawn tick would clip
+;; the message line to the buffer on screen, and the line never shows), so
+;; every tick sets the offset from its own frame buffer at its start, the
+;; value retail has there.
 ;;
 ;; BtlDrawFrame is -O0 code (0x80080F14..0x8008136B); it is rewritten
 ;; compactly with the same calls in the same order, and the fast-forward lives
@@ -123,8 +135,7 @@
     mflo    v0
     addu    v0, v0, v1
     jal     ff_plan                     ; is this tick drawn, is it shown?
-    sw      v0, 0x14(sp)                ; this tick's frame buffer (retail leaves the slot unused)
-    lw      v0, 0x14(sp)
+    sw      v0, 0x14(sp)                ; this tick's frame buffer (retail leaves the slot unused; ff_plan keeps v0)
     ori     a0, zero, 0xD6C0
     addu    a0, v0, a0
     jal     0x8002B99C                  ; ClearOTag(ot, 1000)
@@ -171,12 +182,11 @@
     move    a0, zero
 @@mask_kept:
     lbu     v0, -0xF8C(s0)
-    nop
-    bnez    v0, @@no_clut
-    nop
     lw      a1, -0xFC0(s0)              ; g_btl_actor_clut
+    bnez    v0, @@no_clut
+    addiu   a0, s0, -0xEC4              ; (delay)
     jal     0x8002B810                  ; LoadImage(&g_btl_clut_block, ...)
-    addiu   a0, s0, -0xEC4
+    nop
 @@no_clut:
     jal     0x8002B5E8                  ; DrawSync(0)
     move    a0, zero
@@ -232,17 +242,20 @@
 ;; FF_ACTIONS, during the entry camera FF_ENTRY, else 1 (no group: every
 ;; tick drawn and shown, as retail); times FF_MULT while fast-forwarding
 ;; (ff_plan_mult). FF_CNT counts the group's ticks still to come; the last
-;; one (0) draws. Leaf.
+;; one (0) draws. Leaf; v0 = the frame buffer, kept.
 ff_plan:
+    lw      t2, 8(v0)                   ; this tick's DRAWENV ofs (v0 = its frame buffer)
+    lui     t3, 0x8010
+    sw      t2, -0x78D8(t3)             ; g_btl_drawenv.ofs (see the header)
     lui     t0, hi(ff_vars)
     lbu     t1, lo(ff_vars + FF_CNT)(t0)
     addiu   t0, t0, lo(ff_vars)
     bnez    t1, ff_plan_group
     lbu     a0, -0xF96(s0)              ; (delay) g_btl_stage
     lbu     a1, 0x2250(s0)              ; AUTO
-    lbu     v0, FF_OVER(t0)
+    lbu     a3, FF_OVER(t0)
     xori    a0, a0, 2                   ; 0 in BtlStageRound (stage 2)
-    bnez    v0, ff_plan_rate            ; the battle is over: the results and level-ups
+    bnez    a3, ff_plan_rate            ; the battle is over: the results and level-ups
     ori     v1, zero, 1                 ; (delay) draw every tick, AUTO or not (no group)
     beqz    a0, ff_plan_turn
     lbu     v1, FF_SKILLS(t0)           ; (delay)
@@ -255,9 +268,9 @@ ff_plan:
     ori     v1, zero, 1                 ; no group
 ff_plan_rate:
     addiu   t1, v1, -1                  ; the group's ticks after this one
-    ori     v0, zero, 1
+    ori     a3, zero, 1
     b       ff_plan_store
-    sb      v0, FF_SHOW(t0)             ; tick 0 is shown
+    sb      a3, FF_SHOW(t0)             ; tick 0 is shown
 ff_plan_group:
     addiu   t1, t1, -1
     sb      zero, FF_SHOW(t0)
@@ -376,10 +389,9 @@ ff_pad:
 @@in_turn:
     beqz    v0, @@pad_done
     lbu     v0, lo(ff_vars + FF_OVER)(t0)
-    nop
+    xori    v1, v1, FF_START            ; (the caller reads the edge anew)
     bnez    v0, @@pad_done              ; the battle is over: START is the game's
     lbu     v0, lo(ff_vars + FF_ON)(t0)
-    xori    v1, v1, FF_START
     sh      v1, -0x7710(at)
     xori    v0, v0, 1
     sb      v0, lo(ff_vars + FF_ON)(t0)
@@ -400,6 +412,119 @@ ff_battle_over:
     jr      ra
     lbu     v0, 0xB07(v0)               ; (delay) g_btl_party_lost, as retail
 
+.endarea
+
+;; A timed message line (an enemy's move name, a skill's line, an ailment
+;; line) stays up as long as in retail at any speed. Retail closes one at
+;; whichever comes first: its hold running out (g_btl_msg_timer 0x800F88E4,
+;; set when the line opens: 0x5A or 0xB4 ticks, 0x1E with fast messages,
+;; counted down a tick by the round loop at 0x8009223C, decomp roundflow.c,
+;; which closes the box once it goes below 0), or the turn reaching a point
+;; that closes it (BtlCloseMessage: a move's effect starting, the Persona
+;; coming out, ...). With N ticks to a shown frame both come N times sooner.
+;; So the hold counts shown frames, not ticks (only when the tick about to run
+;; starts a group, FF_CNT 0, the one ff_plan shows), and a close the turn
+;; asks for comes as late as retail's would: ff_msg_debt counts the hidden
+;; ticks since the line opened, which is how many shown frames ahead of
+;; retail the turn is, and the box closes that many frames later
+;; (ff_msg_close). A line opening meanwhile drops that late close and keeps
+;; the hold running, as retail's would. With no group there are no hidden
+;; ticks and this is retail.
+.org 0x8009223C
+.area 0x80092270 - 0x8009223C, 0
+    jal     ff_msg_hold
+    nop
+.endarea
+
+.org 0x8007FEE8                         ; BtlCloseMessage(0)
+    j       ff_msg_close
+    nop
+.org 0x8007FD78                         ; BtlOpenMessage
+    j       ff_msg_open
+    addiu   sp, sp, -0x30               ; (delay) retail's first
+
+;; BtlFxStepOrbitUnused (BTLP_ORBIT_FREE_ADDR): nothing calls it, points at
+;; it or jumps into it.
+.org BTLP_ORBIT_FREE_ADDR
+.area BTLP_ORBIT_FREE_END - BTLP_ORBIT_FREE_ADDR
+ff_msg_vars:
+    .halfword 0                         ; DEBT: hidden ticks since the line opened
+    .halfword 0                         ; LATE_IN: shown frames until the late close
+    .byte   0, 0, 0, 0                  ; LATE: a late close is due
+FF_MSG_DEBT equ 0
+FF_MSG_LATE_IN equ 2
+FF_MSG_LATE equ 4
+
+;; The round loop's hold, once a tick (was: the timer one tick less, and
+;; BtlCloseMessage below 0).
+ff_msg_hold:
+    lui     t0, hi(ff_vars)
+    lbu     t0, lo(ff_vars + FF_CNT)(t0)
+    lui     t2, hi(ff_msg_vars)
+    lui     t3, 0x8010
+    bnez    t0, @@hidden                ; a hidden tick comes next
+    lh      v0, -0x771C(t3)             ; (delay) g_btl_msg_timer
+    lbu     t1, lo(ff_msg_vars + FF_MSG_LATE)(t2)
+    addiu   v0, v0, -1
+    bltz    v0, @@expired
+    sh      v0, -0x771C(t3)             ; (delay) one frame less
+    beqz    t1, @@done
+    lhu     t4, lo(ff_msg_vars + FF_MSG_LATE_IN)(t2) ; (delay)
+    nop
+    addiu   t4, t4, -1
+    bgez    t4, @@done
+    sh      t4, lo(ff_msg_vars + FF_MSG_LATE_IN)(t2) ; (delay)
+    b       @@close                     ; the late close: the hold runs on
+    nop
+@@expired:
+    sh      zero, -0x771C(t3)           ; below 0: 0, and the box closes
+@@close:
+    sb      zero, lo(ff_msg_vars + FF_MSG_LATE)(t2)
+    j       0x8007B4F0                  ; BtlBoxClose (BtlCloseMessage's body)
+    sh      zero, lo(ff_msg_vars + FF_MSG_DEBT)(t2) ; (delay)
+@@hidden:
+    lhu     t1, lo(ff_msg_vars + FF_MSG_DEBT)(t2)
+    blez    v0, @@done                  ; no line holding
+    addiu   t1, t1, 1                   ; (delay)
+    sh      t1, lo(ff_msg_vars + FF_MSG_DEBT)(t2)
+@@done:
+    jr      ra
+    nop
+
+;; BtlCloseMessage: closes now when no hidden tick ran since the line opened
+;; or no line is holding; when the line's own hold ends first it is left to
+;; it; else the box closes FF_MSG_DEBT shown frames from now (the first close
+;; asked for sets it).
+ff_msg_close:
+    lui     t2, hi(ff_msg_vars)
+    lhu     t0, lo(ff_msg_vars + FF_MSG_DEBT)(t2)
+    lui     t1, 0x8010
+    lh      t3, -0x771C(t1)             ; g_btl_msg_timer
+    beqz    t0, @@now
+    lbu     t4, lo(ff_msg_vars + FF_MSG_LATE)(t2) ; (delay)
+    blez    t3, @@now
+    slt     at, t0, t3                  ; (delay) the close before the hold's end
+    beqz    at, @@left
+    nop
+    bnez    t4, @@left                  ; one is due already
+    ori     t5, zero, 1                 ; (delay)
+    sb      t5, lo(ff_msg_vars + FF_MSG_LATE)(t2)
+    sh      t0, lo(ff_msg_vars + FF_MSG_LATE_IN)(t2)
+@@left:
+    jr      ra
+    nop
+@@now:
+    j       0x8007B4F0                  ; BtlBoxClose
+    nop
+
+;; BtlOpenMessage, after retail's first instruction: a new line starts its
+;; debt and drops a late close.
+ff_msg_open:
+    lui     t2, hi(ff_msg_vars)
+    sh      zero, lo(ff_msg_vars + FF_MSG_DEBT)(t2)
+    sb      zero, lo(ff_msg_vars + FF_MSG_LATE)(t2)
+    j       0x8007FD80                  ; retail's third on
+    sw      s2, 0x20(sp)                ; (delay) retail's second
 .endarea
 
 .org 0x8008FB68

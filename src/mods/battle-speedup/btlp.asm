@@ -38,12 +38,24 @@
 ;; So N ticks per shown frame are N times retail speed at retail's frame
 ;; rate, with one tick in N drawn: the speed holds on real hardware too,
 ;; where drawing every tick would not fit in a vblank.
+;; A timed message line (an enemy's move name, an ailment line) stays up for
+;; retail's time at any speed (the message hold, below).
 ;;
 ;; Buffers: a drawn tick flips g_btl_frame as retail; a hidden tick does not,
 ;; so the next tick builds in the same buffer and a drawn tick always draws
 ;; into the buffer that is not on screen, whatever the group size. A hidden
 ;; tick waits for its (empty) submit to finish (DrawSync) before the next
 ;; tick rewrites that buffer's ordering table and packets.
+;;
+;; The 2D layer's draw offset: the menus' and the message windows' draw areas
+;; start at g_btl_drawenv.ofs (0x800F8720 + 8), which retail takes with
+;; GetDrawEnv in BtlFlushVramQueues, after this tick's 2D layer is built and
+;; before its PutDrawEnv. A tick reads what the one before it took, the
+;; environment put two ticks back: in retail the buffer it builds itself. With
+;; groups that no longer holds (in a group of two the drawn tick would clip
+;; the message line to the buffer on screen, and the line never shows), so
+;; every tick sets the offset from its own frame buffer at its start, the
+;; value retail has there.
 ;;
 ;; Sound is not touched: the SPU plays every sample at its own pitch and
 ;; length, so voices ("Persona!") and effect sounds keep their speed and only
@@ -214,6 +226,9 @@
 ;; the header). BS_CNT counts the group's ticks still to come; the last one
 ;; (0) draws. Leaf.
 bs_plan:
+    lw      t2, 8(v0)                   ; this tick's DRAWENV ofs (v0 = its frame buffer)
+    lui     t3, 0x8010
+    sw      t2, -0x78D8(t3)             ; g_btl_drawenv.ofs (see the header)
     lui     t0, hi(bs_vars)
     lbu     t1, lo(bs_vars + BS_CNT)(t0)
     addiu   t0, t0, lo(bs_vars)
@@ -340,6 +355,119 @@ bs_arena:
 
 .endarea
 
+
+;; A timed message line (an enemy's move name, a skill's line, an ailment
+;; line) stays up as long as in retail at any speed. Retail closes one at
+;; whichever comes first: its hold running out (g_btl_msg_timer 0x800F88E4,
+;; set when the line opens: 0x5A or 0xB4 ticks, 0x1E with fast messages,
+;; counted down a tick by the round loop at 0x8009223C, decomp roundflow.c,
+;; which closes the box once it goes below 0), or the turn reaching a point
+;; that closes it (BtlCloseMessage: a move's effect starting, the Persona
+;; coming out, ...). With N ticks to a shown frame both come N times sooner.
+;; So the hold counts shown frames, not ticks (only when the tick about to run
+;; starts a group, BS_CNT 0, the one bs_plan shows), and a close the turn
+;; asks for comes as late as retail's would: bs_msg_debt counts the hidden
+;; ticks since the line opened, which is how many shown frames ahead of
+;; retail the turn is, and the box closes that many frames later
+;; (bs_msg_close). A line opening meanwhile drops that late close and keeps
+;; the hold running, as retail's would. With no group there are no hidden
+;; ticks and this is retail.
+.org 0x8009223C
+.area 0x80092270 - 0x8009223C, 0
+    jal     bs_msg_hold
+    nop
+.endarea
+
+.org 0x8007FEE8                         ; BtlCloseMessage(0)
+    j       bs_msg_close
+    nop
+.org 0x8007FD78                         ; BtlOpenMessage
+    j       bs_msg_open
+    addiu   sp, sp, -0x30               ; (delay) retail's first
+
+;; BtlFxStepOrbitUnused (BTLP_ORBIT_FREE_ADDR): nothing calls it, points at
+;; it or jumps into it.
+.org BTLP_ORBIT_FREE_ADDR
+.area BTLP_ORBIT_FREE_END - BTLP_ORBIT_FREE_ADDR
+bs_msg_vars:
+    .halfword 0                         ; DEBT: hidden ticks since the line opened
+    .halfword 0                         ; LATE_IN: shown frames until the late close
+    .byte   0, 0, 0, 0                  ; LATE: a late close is due
+BS_MSG_DEBT equ 0
+BS_MSG_LATE_IN equ 2
+BS_MSG_LATE equ 4
+
+;; The round loop's hold, once a tick (was: the timer one tick less, and
+;; BtlCloseMessage below 0).
+bs_msg_hold:
+    lui     t0, hi(bs_vars)
+    lbu     t0, lo(bs_vars + BS_CNT)(t0)
+    lui     t2, hi(bs_msg_vars)
+    lui     t3, 0x8010
+    bnez    t0, @@hidden                ; a hidden tick comes next
+    lh      v0, -0x771C(t3)             ; (delay) g_btl_msg_timer
+    lbu     t1, lo(bs_msg_vars + BS_MSG_LATE)(t2)
+    addiu   v0, v0, -1
+    bltz    v0, @@expired
+    sh      v0, -0x771C(t3)             ; (delay) one frame less
+    beqz    t1, @@done
+    lhu     t4, lo(bs_msg_vars + BS_MSG_LATE_IN)(t2) ; (delay)
+    nop
+    addiu   t4, t4, -1
+    bgez    t4, @@done
+    sh      t4, lo(bs_msg_vars + BS_MSG_LATE_IN)(t2) ; (delay)
+    b       @@close                     ; the late close: the hold runs on
+    nop
+@@expired:
+    sh      zero, -0x771C(t3)           ; below 0: 0, and the box closes
+@@close:
+    sb      zero, lo(bs_msg_vars + BS_MSG_LATE)(t2)
+    j       0x8007B4F0                  ; BtlBoxClose (BtlCloseMessage's body)
+    sh      zero, lo(bs_msg_vars + BS_MSG_DEBT)(t2) ; (delay)
+@@hidden:
+    lhu     t1, lo(bs_msg_vars + BS_MSG_DEBT)(t2)
+    blez    v0, @@done                  ; no line holding
+    addiu   t1, t1, 1                   ; (delay)
+    sh      t1, lo(bs_msg_vars + BS_MSG_DEBT)(t2)
+@@done:
+    jr      ra
+    nop
+
+;; BtlCloseMessage: closes now when no hidden tick ran since the line opened
+;; or no line is holding; when the line's own hold ends first it is left to
+;; it; else the box closes BS_MSG_DEBT shown frames from now (the first close
+;; asked for sets it).
+bs_msg_close:
+    lui     t2, hi(bs_msg_vars)
+    lhu     t0, lo(bs_msg_vars + BS_MSG_DEBT)(t2)
+    lui     t1, 0x8010
+    lh      t3, -0x771C(t1)             ; g_btl_msg_timer
+    beqz    t0, @@now
+    lbu     t4, lo(bs_msg_vars + BS_MSG_LATE)(t2) ; (delay)
+    blez    t3, @@now
+    slt     at, t0, t3                  ; (delay) the close before the hold's end
+    beqz    at, @@left
+    nop
+    bnez    t4, @@left                  ; one is due already
+    ori     t5, zero, 1                 ; (delay)
+    sb      t5, lo(bs_msg_vars + BS_MSG_LATE)(t2)
+    sh      t0, lo(bs_msg_vars + BS_MSG_LATE_IN)(t2)
+@@left:
+    jr      ra
+    nop
+@@now:
+    j       0x8007B4F0                  ; BtlBoxClose
+    nop
+
+;; BtlOpenMessage, after retail's first instruction: a new line starts its
+;; debt and drops a late close.
+bs_msg_open:
+    lui     t2, hi(bs_msg_vars)
+    sh      zero, lo(bs_msg_vars + BS_MSG_DEBT)(t2)
+    sb      zero, lo(bs_msg_vars + BS_MSG_LATE)(t2)
+    j       0x8007FD80                  ; retail's third on
+    sw      s2, 0x20(sp)                ; (delay) retail's second
+.endarea
 
 .org 0x8008FB68
     jal     bs_battle_over              ; was lui v0, 0x800D / lbu v0, 0xB07(v0)

@@ -16,6 +16,7 @@ BTLP	30	.include "asm/btlp/demonline_bound.asm"			demon lines: same bound for re
 BTLP	40	.include "asm/btlp/negotiation_frame.asm"	BASE_NEGOTIATION_INSET		CONTACT primary text origin
 BTLP	120	.include "asm/btlp/btlevt_unpack.asm"			unpacker hooked into 0x8007D078 (message box start)
 BTLP	190	.include "asm/btlp/text_slot_bound.asm"	SF_VWF		the battle text renderers stop at the end of their primitive run
+BTLP	195	.include "asm/btlp/ui_prim_bound.asm"			the effect drawers (CONTACT lists, their frames) stop at the end of the 2D layer's half
 CASINO	10	.include "asm/casino/feature.asm"			
 DNG	10	.include "asm/dng/feature.asm"			
 S2D	10	.include "asm/s2d/feature.asm"			
