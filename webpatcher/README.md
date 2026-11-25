@@ -198,8 +198,8 @@ free 100k rows/day.
 ### Dashboard
 
 ```sh
-python tools/patcher-analytics/dashboard.py            # build/patcher-analytics.sqlite
-python tools/patcher-analytics/dashboard.py --remote   # D1 through Wrangler
+python tools/patcher-analytics/dashboard.py            # Cloudflare D1, through Wrangler
+python tools/patcher-analytics/dashboard.py --local    # build/patcher-analytics.sqlite
 python tools/patcher-analytics/dashboard.py --demo     # synthetic data
 ```
 
