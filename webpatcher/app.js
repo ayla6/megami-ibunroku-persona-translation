@@ -482,6 +482,7 @@ function reportPatch(labels, ppf, note = '') {
       folder: Boolean(state.fromFolder && state.folder),
       selection: selectionOf(labels),
       labels: state.rows.map(row => row.label),
+      defaults: defaultTokens,
       note: signedNote(note),
     });
   } catch (_) { /* Never changes a successful build. */ }

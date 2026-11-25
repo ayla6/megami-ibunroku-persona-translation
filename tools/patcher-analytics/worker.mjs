@@ -15,7 +15,8 @@ function modMap(value) {
 }
 
 /* Returns the statements to run, as [sql, ...values] lists, or null if invalid. */
-export function rows(data, visitor, day) {
+export function rows(data, visitor, now) {
+  const day = now.slice(0, 10);
   if (!data || !UUID.test(data.v)) return null;
   const visit = ['INSERT OR IGNORE INTO visits (visit, visitor, day, referrer) VALUES (?, ?, ?, ?)',
     data.v, visitor, day];
@@ -36,13 +37,15 @@ export function rows(data, visitor, day) {
       || typeof data.dir !== 'boolean') return null;
   const mods = modMap(data.mods);
   const was = data.was == null ? null : modMap(data.was);
-  if (!mods || (data.was != null && !was)) return null;
+  const changed = data.chg == null ? new Map() : modMap(data.chg);
+  if (!mods || (data.was != null && !was) || !changed) return null;
   const statements = [[...visit, ''],
-    ['INSERT OR IGNORE INTO builds (build, visit, release, previous, output, source, folder, known) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-     data.id, data.v, data.rel, data.prev, data.out, data.src, data.dir ? 1 : 0, was ? 1 : 0]];
+    ['INSERT OR IGNORE INTO builds (build, visit, release, previous, output, source, folder, known, at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+     data.id, data.v, data.rel, data.prev, data.out, data.src, data.dir ? 1 : 0, was ? 1 : 0, now]];
   for (const mod of new Set([...mods.keys(), ...(was?.keys() ?? [])]))
-    statements.push(['INSERT OR IGNORE INTO build_mods (build, mod, options, was) VALUES (?, ?, ?, ?)',
-      data.id, mod, mods.get(mod) ?? null, was?.get(mod) ?? null]);
+    statements.push(['INSERT OR IGNORE INTO build_mods (build, mod, options, was, changed) VALUES (?, ?, ?, ?, ?)',
+      data.id, mod, mods.get(mod) ?? null, was?.get(mod) ?? null,
+      mods.has(mod) ? changed.get(mod) ?? null : null]);
   return statements;
 }
 
@@ -92,7 +95,7 @@ export default {
     try { data = JSON.parse(body); } catch (_) { return reply(400); }
     if (!UUID.test(data?.b)) return reply(400);
     const visitor = await visitorOf(data.b, env.IDENTITY_SECRET);
-    const statements = rows(data, visitor, new Date().toISOString().slice(0, 10));
+    const statements = rows(data, visitor, new Date().toISOString().slice(0, 19) + 'Z');
     if (!statements) return reply(400);
     try {
       await env.DB.batch(statements.map(([sql, ...values]) => env.DB.prepare(sql).bind(...values)));

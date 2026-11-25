@@ -170,10 +170,11 @@ Tables (`schema.sql`):
   referrer origin.
 - `builds` - one per finished build: release, previous PPF release (`''` when
   none or unknown), output `ppf|disc`, input `bin|chd`, disc-folder write,
-  `known` (the previous PPF's note was read).
+  `known` (the previous PPF's note was read), `at` (UTC time).
 - `build_mods` - one per release mod in the build or in the PPF it replaces:
   `options` and `was` are the sorted option tokens, NULL when the mod is off.
   `options IS NOT was` on a `known` build is a change made while updating.
+  `changed` lists the option keys the patcher saw off the release's default.
 
 A build counts when its download links are ready or its folder writes finish;
 a folder PPF that already matches is not a build. No IP, user agent, file

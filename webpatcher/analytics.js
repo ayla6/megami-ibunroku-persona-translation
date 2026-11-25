@@ -68,14 +68,26 @@ globalThis.PatcherAnalytics = (() => {
     }
     return out;
   }
-  /* build: {release, output, source, folder, selection: {label: [tokens]}, labels, note} */
-  function complete({release, output, source, folder, selection, labels, note = ''}) {
+  /* The option keys of `tokens` not at their default (`speed` of `speed=3`):
+   * a default token missing, or a picked token that is no default. */
+  function changedKeys(tokens, defaults) {
+    const keyOf = token => token.split('=')[0];
+    const keys = new Set([...defaults.filter(token => !tokens.includes(token)),
+                          ...tokens.filter(token => !defaults.includes(token))].map(keyOf));
+    return [...keys].sort().join(',');
+  }
+  /* build: {release, output, source, folder, selection: {label: [tokens]},
+   * labels, defaults(label) -> [tokens], note} */
+  function complete({release, output, source, folder, selection, labels, defaults, note = ''}) {
     const was = noteSettings(note);
-    const mods = {};
-    for (const [label, tokens] of Object.entries(selection))
-      if (labels.includes(label)) mods[label] = tokens.join(',');
+    const mods = {}, chg = {};
+    for (const [label, tokens] of Object.entries(selection)) {
+      if (!labels.includes(label)) continue;
+      mods[label] = tokens.join(',');
+      chg[label] = changedKeys(tokens, defaults(label));
+    }
     send({t: 'build', id: crypto.randomUUID(), rel: release,
-      prev: was ? note.split(/\r?\n/)[0].trim() : '', out: output, src: source, dir: folder, mods, was});
+      prev: was ? note.split(/\r?\n/)[0].trim() : '', out: output, src: source, dir: folder, mods, was, chg});
   }
   return {complete};
 })();

@@ -44,6 +44,9 @@ svg text{fill:var(--ink-2);font-size:11px}
 .heat .col{writing-mode:vertical-rl;transform:rotate(180deg);max-height:120px;align-self:end}
 .cell{aspect-ratio:1;border-radius:3px;min-width:16px}
 .empty{color:var(--ink-2)}
+header label{color:var(--ink-2);display:flex;gap:6px;align-items:center}
+.setup{display:flex;flex-wrap:wrap;gap:4px;margin:2px 0 4px}.setup code{font-size:11px;background:var(--track);border-radius:4px;padding:1px 5px}
+.setups{display:grid;gap:10px}
 #tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--card);padding:5px 8px;border-radius:6px;font-size:12px;white-space:pre;display:none;z-index:9}
 </style>
 <main>
@@ -52,11 +55,13 @@ svg text{fill:var(--ink-2);font-size:11px}
   <span class="tag" id="source">—</span>
   <span id="ranges"><button data-days="7">7d</button> <button data-days="30">30d</button> <button data-days="90">90d</button> <button data-days="all">All</button></span>
   <input type="date" id="start" aria-label="From (UTC)"> <input type="date" id="end" aria-label="Through (UTC)">
+  <label><input type="checkbox" id="last"> each visitor's last build only</label>
 </header>
 <div id="status" role="status"></div>
 <div class="grid">
   <section class="w12 kpis" id="kpis"></section>
   <section class="card w12"><h2>Daily visits</h2><div class="legend"><span><i style="background:var(--s1)"></i>with a build</span><span><i style="background:var(--track)"></i>without</span><span><i style="background:var(--s2);height:3px"></i>unique visitors</span></div><div id="daily"></div></section>
+  <section class="card w12"><h2>Visitors by the release they last built</h2><div class="legend" id="adoption-legend"></div><div id="adoption"></div></section>
   <section class="card w6"><h2>Builds by release</h2><div class="legend"><span><i style="background:var(--s1)"></i>PPF</span><span><i style="background:var(--s2)"></i>disc</span></div><div id="releases"></div></section>
   <section class="card w6"><h2>PPF updates (from → to)</h2><div id="updates"></div></section>
   <section class="card w4"><h2>Output</h2><div id="output"></div></section>
@@ -64,6 +69,8 @@ svg text{fill:var(--ink-2);font-size:11px}
   <section class="card w4"><h2>Writes</h2><div id="folder"></div></section>
   <section class="card w6"><h2>Mods — share of builds</h2><div class="legend">click a mod for its options</div><div id="mods"></div></section>
   <section class="card w6"><h2>Mods together — of builds with row, % also with column</h2><div id="pairs"></div></section>
+  <section class="card w6"><h2>Most common setups</h2><div id="setups"></div></section>
+  <section class="card w6"><h2>Options moved off the default</h2><div class="legend"><span><i style="background:var(--s2)"></i>changed</span><span><i style="background:var(--track)"></i>default</span></div><div id="defaults"></div></section>
   <section class="card w6"><h2>Changes when updating a PPF</h2><div class="legend"><span><i style="background:var(--s3)"></i>added</span><span><i style="background:var(--s2)"></i>removed</span><span><i style="background:var(--s1)"></i>options changed</span></div><div id="changes"></div></section>
   <section class="card w6"><h2>Referrers</h2><div class="legend"><span><i style="background:var(--s1)"></i>visits with a build</span><span><i style="background:var(--track)"></i>without</span></div><div id="referrers"></div></section>
 </div>
@@ -233,17 +240,104 @@ function referrers(rows) {
   }), max);
 }
 
+/* Stacked area: per day, visitors on each release. The newest three
+ * releases keep the first three colours; older ones fold into "older". */
+function adoption(rows, start, end) {
+  const root = $('adoption'), legend = $('adoption-legend');
+  root.replaceChildren(); legend.replaceChildren();
+  if (!rows.length) { root.append(el('div', {className: 'empty', textContent: 'no builds'})); return; }
+  const releases = [...new Set(rows.map(r => r.release))].sort().reverse();
+  const groups = releases.length > 3 ? [...releases.slice(0, 3), 'older'] : releases;
+  const groupOf = rel => groups.includes(rel) ? rel : 'older';
+  const colors = ['var(--s1)', 'var(--s2)', 'var(--s3)', 'var(--ink-2)'];
+  const by = new Map();
+  for (const r of rows) {
+    const day = by.get(r.day) || Object.fromEntries(groups.map(g => [g, 0]));
+    day[groupOf(r.release)] += r.visitors; by.set(r.day, day);
+  }
+  const first = rows[0].day > start ? rows[0].day : start, days = [];
+  let carry = Object.fromEntries(groups.map(g => [g, 0]));
+  for (const d = new Date(first + 'T00:00Z'); d.toISOString().slice(0, 10) <= end && days.length < 1000; d.setUTCDate(d.getUTCDate() + 1)) {
+    const key = d.toISOString().slice(0, 10);
+    if (by.has(key)) carry = by.get(key);  // a day without visits keeps the day before's state
+    days.push({day: key, ...carry});
+  }
+  const W = 1000, H = 200, L = 34, B = 20, ns = 'http://www.w3.org/2000/svg';
+  const total = d => groups.reduce((a, g) => a + d[g], 0);
+  const max = Math.max(1, ...days.map(total)), step = (W - L) / Math.max(1, days.length - 1);
+  const x = i => L + (days.length === 1 ? (W - L) / 2 : i * step), y = v => H - B - v / max * (H - B - 8);
+  const svg = document.createElementNS(ns, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  const add = (tag, a, text) => { const e = document.createElementNS(ns, tag); for (const k in a) e.setAttribute(k, a[k]); if (text != null) e.textContent = text; svg.append(e); return e; };
+  for (const v of [0, Math.round(max / 2), max]) { add('line', {x1: L, x2: W, y1: y(v), y2: y(v), stroke: 'var(--line)'}); add('text', {x: L - 6, y: y(v) + 4, 'text-anchor': 'end'}, fmt(v)); }
+  let below = days.map(() => 0);
+  groups.forEach((g, gi) => {
+    const top = days.map((d, i) => below[i] + d[g]);
+    const points = [...top.map((v, i) => `${x(i)},${y(v)}`), ...below.map((v, i) => `${x(i)},${y(v)}`).reverse()];
+    add('polygon', {points: points.join(' '), fill: colors[gi], stroke: 'var(--card)', 'stroke-width': 2, 'stroke-linejoin': 'round'});
+    below = top;
+    const swatch = el('i'); swatch.style.background = colors[gi];
+    legend.append(el('span', {}, swatch, g));
+  });
+  days.forEach((d, i) => {
+    const t = [d.day, ...groups.map(g => `${g}: ${fmt(d[g])} (${pct(d[g], total(d))})`)].join('\n');
+    add('rect', {x: x(i) - step / 2, y: 0, width: Math.max(step, 4), height: H - B, fill: 'transparent'}).dataset.tip = t;
+  });
+  for (const i of [...new Set([0, Math.floor(days.length / 2), days.length - 1])]) add('text', {x: x(i), y: H - 4, 'text-anchor': 'middle'}, days[i].day.slice(5));
+  root.append(svg);
+}
+
+/* The ten most common whole setups: every mod of a build with its options. */
+function setups(rows, builds) {
+  const root = $('setups'); root.replaceChildren();
+  if (!rows.length) { root.append(el('div', {className: 'empty', textContent: 'none'})); return; }
+  const max = Math.max(...rows.map(r => r.builds)), list = el('div', {className: 'setups'});
+  rows.forEach((r, i) => {
+    const chips = el('div', {className: 'setup'}, ...r.setup.split(' ').map(item => el('code', {textContent: item})));
+    const line = el('div', {className: 'rows'}, el('span', {className: 'k', textContent: '#' + (i + 1)}),
+      bar([[r.builds, 'var(--s1)', `${fmt(r.builds)} builds (${pct(r.builds, builds)})`]], max),
+      el('span', {className: 'n', textContent: `${fmt(r.builds)} · ${pct(r.builds, builds)}`}));
+    list.append(el('div', {}, line, chips));
+  });
+  root.append(list);
+}
+
+/* Per option key, the share of builds with its mod that moved it off the
+ * release's default. Keys come from the options seen; "changed" from the
+ * patcher's own default check. Each bar is its own 100%. */
+function defaults(rows, options) {
+  const keys = new Map();  // mod -> Set(key)
+  for (const r of options) for (const token of (r.options || '').split(',').filter(Boolean)) {
+    if (!keys.has(r.mod)) keys.set(r.mod, new Set());
+    keys.get(r.mod).add(token.split('=')[0]);
+  }
+  const items = [];
+  for (const [mod, rs] of group(rows, 'mod')) {
+    const total = sum(rs);
+    for (const key of keys.get(mod) || []) {
+      const moved = sum(rs.filter(r => (r.changed || '').split(',').includes(key)));
+      items.push([`${mod} · ${key}`, moved, total]);
+    }
+  }
+  items.sort((a, b) => b[1] / b[2] - a[1] / a[2]);
+  rowList('defaults', items.map(([label, moved, total]) => [label,
+    [[100 * moved / total, 'var(--s2)', `${label}\nchanged: ${fmt(moved)} of ${fmt(total)}`],
+     [100 * (total - moved) / total, 'var(--track)', `${label}\ndefault: ${fmt(total - moved)}`]],
+    pct(moved, total)]), 100);
+}
+
 function render(data) {
   last = data;
   $('source').textContent = data.source;
   const t = data.totals[0] || {};
   kpis(t); daily(data.daily, data.start, data.end); releases(data.releases); updates(data.updates);
-  setup(data.setup); mods(data.options, t.builds); pairs(data.pairs); changes(data.changes); referrers(data.referrers);
+  const counted = data.last ? t.builders : t.builds;  // builds the build charts count
+  adoption(data.adoption, data.start, data.end); setups(data.setups, counted); defaults(data.defaults, data.options);
+  setup(data.setup); mods(data.options, counted); pairs(data.pairs); changes(data.changes); referrers(data.referrers);
 }
 async function load() {
   $('status').textContent = '';
   try {
-    const response = await fetch('/api/report?' + new URLSearchParams({start: $('start').value, end: $('end').value}));
+    const response = await fetch('/api/report?' + new URLSearchParams({start: $('start').value, end: $('end').value, last: $('last').checked ? '1' : ''}));
     const data = await response.json();
     if (!response.ok) throw Error(data.error);
     render(data);
@@ -258,6 +352,7 @@ function range(days) {
   load();
 }
 for (const b of document.querySelectorAll('[data-days]')) b.onclick = () => range(b.dataset.days === 'all' ? 'all' : Number(b.dataset.days));
+$('last').onchange = load;
 for (const id of ['start', 'end']) $(id).onchange = () => { for (const b of document.querySelectorAll('[data-days]')) b.classList.remove('on'); load(); };
 range(30);
 </script>

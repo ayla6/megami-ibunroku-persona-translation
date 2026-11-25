@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS visits (
 CREATE INDEX IF NOT EXISTS visits_day ON visits(day);
 -- One row per completed build. previous: release of the PPF being replaced, '' if none/unknown.
 -- known: 1 when the previous PPF's settings were read, so build_mods.was is meaningful.
+-- at: UTC time to the second; NULL on builds recorded before it existed.
 CREATE TABLE IF NOT EXISTS builds (
   build TEXT PRIMARY KEY,
   visit TEXT NOT NULL REFERENCES visits(visit),
@@ -16,14 +17,18 @@ CREATE TABLE IF NOT EXISTS builds (
   output TEXT NOT NULL CHECK (output IN ('ppf', 'disc')),
   source TEXT NOT NULL CHECK (source IN ('bin', 'chd')),
   folder INTEGER NOT NULL,
-  known INTEGER NOT NULL
+  known INTEGER NOT NULL,
+  at TEXT
 ) WITHOUT ROWID;
 -- One row per mod in the build or in the PPF it replaces. options/was: sorted,
--- comma-joined option tokens; NULL = mod not on.
+-- comma-joined option tokens; NULL = mod not on. changed: the option keys
+-- (`speed` of `speed=3`) not at the release's default, as the patcher saw
+-- them; NULL when unknown (mod off, or recorded before it existed).
 CREATE TABLE IF NOT EXISTS build_mods (
   build TEXT NOT NULL REFERENCES builds(build),
   mod TEXT NOT NULL,
   options TEXT,
   was TEXT,
+  changed TEXT,
   PRIMARY KEY (build, mod)
 ) WITHOUT ROWID;

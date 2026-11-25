@@ -20,15 +20,17 @@ HERE: Final = Path(__file__).resolve().parent
 WRANGLER: Final = ['npx', '--no-install', 'wrangler@4.168.0', 'd1', 'execute',
                    'persona-patcher-analytics', '--remote', '--json', '--command']
 
-# {period} is replaced by the date-bounded visits CTE; b = builds in those visits.
+# Every query runs after the period CTEs (see queries()): v = visits in the
+# period, ball = their builds, b = the builds the build charts count (ball,
+# or with "last" each visitor's latest build in the period).
 REPORT: Final = {
     'totals': """SELECT count(*) visits, count(DISTINCT visitor) visitors,
-      (SELECT count(DISTINCT visit) FROM b) build_visits,
-      (SELECT count(DISTINCT visitor) FROM b) builders,
-      (SELECT count(*) FROM b) builds FROM v""",
+      (SELECT count(DISTINCT visit) FROM ball) build_visits,
+      (SELECT count(DISTINCT visitor) FROM ball) builders,
+      (SELECT count(*) FROM ball) builds FROM v""",
     'daily': """SELECT v.day, count(*) visits, count(DISTINCT v.visitor) visitors,
       count(DISTINCT b.visit) build_visits, count(DISTINCT b.visitor) builders
-      FROM v LEFT JOIN (SELECT DISTINCT visit, visitor FROM b) b USING (visit)
+      FROM v LEFT JOIN (SELECT DISTINCT visit, visitor FROM ball) b USING (visit)
       GROUP BY v.day ORDER BY v.day""",
     'releases': """SELECT release, output, count(*) builds FROM b
       GROUP BY release, output ORDER BY release DESC""",
@@ -45,9 +47,28 @@ REPORT: Final = {
       THEN 'removed' ELSE 'changed' END change, count(*) builds
       FROM b JOIN build_mods m USING (build)
       WHERE b.known AND m.options IS NOT m.was GROUP BY m.mod, change""",
+    # A build's whole setup: its mods in name order, each with its options.
+    'setups': """SELECT setup, count(*) builds FROM (
+      SELECT build, group_concat(item, ' ') setup FROM (
+        SELECT m.build, m.mod || CASE WHEN m.options <> '' THEN '(' || m.options || ')' ELSE '' END item
+        FROM b JOIN build_mods m USING (build) WHERE m.options IS NOT NULL ORDER BY m.build, m.mod)
+      GROUP BY build) GROUP BY setup ORDER BY builds DESC LIMIT 10""",
+    # Which option keys builds moved off the default; changed is a key list.
+    'defaults': """SELECT m.mod, m.changed, count(*) builds FROM b JOIN build_mods m USING (build)
+      WHERE m.options IS NOT NULL AND m.changed IS NOT NULL GROUP BY m.mod, m.changed""",
+    # Per day of the period, each visitor's latest release as of that day
+    # (builds from before the period count: the visitor is still on them).
+    'adoption': """SELECT day, release, count(*) visitors FROM (
+      SELECT d.day, x.release, row_number() OVER (PARTITION BY d.day, x.visitor
+        ORDER BY x.day DESC, x.at DESC, x.build) n
+      FROM (SELECT DISTINCT day FROM v) d
+      JOIN (SELECT builds.build, builds.release, builds.at, visits.visitor,
+              coalesce(substr(builds.at, 1, 10), visits.day) day
+            FROM builds JOIN visits USING (visit)) x ON x.day <= d.day)
+      WHERE n = 1 GROUP BY day, release ORDER BY day""",
     'referrers': """SELECT referrer, count(*) visits, count(DISTINCT visitor) visitors,
       count(DISTINCT b.visit) build_visits
-      FROM v LEFT JOIN (SELECT DISTINCT visit FROM b) b USING (visit)
+      FROM v LEFT JOIN (SELECT DISTINCT visit FROM ball) b USING (visit)
       GROUP BY referrer ORDER BY visits DESC""",
 }
 
@@ -59,17 +80,21 @@ class Settings:
     label: str
 
 
-def queries(start: str, end: str) -> list[str]:
-    first, last = date.fromisoformat(start), date.fromisoformat(end)  # validates before SQL
-    if first > last:
+def queries(start: str, end: str, last: bool = False) -> list[str]:
+    first, end_day = date.fromisoformat(start), date.fromisoformat(end)  # validates before SQL
+    if first > end_day:
         raise ValueError('Start is after end.')
-    period = (f"WITH v AS (SELECT * FROM visits WHERE day BETWEEN '{first}' AND '{last}'), "
-              "b AS (SELECT builds.*, v.visitor FROM builds JOIN v USING (visit)) ")
+    # Builds without a time (recorded before builds.at) sort before any timed one.
+    latest = ("SELECT * FROM (SELECT ball.*, row_number() OVER (PARTITION BY visitor "
+              "ORDER BY at DESC, build) n FROM ball) WHERE n = 1") if last else "SELECT * FROM ball"
+    period = (f"WITH v AS (SELECT * FROM visits WHERE day BETWEEN '{first}' AND '{end_day}'), "
+              "ball AS (SELECT builds.*, v.visitor FROM builds JOIN v USING (visit)), "
+              f"b AS ({latest}) ")
     return [period + sql for sql in REPORT.values()]
 
 
-def read_report(settings: Settings, start: str, end: str) -> dict[str, object]:
-    sql = queries(start, end)
+def read_report(settings: Settings, start: str, end: str, last: bool = False) -> dict[str, object]:
+    sql = queries(start, end, last)
     if settings.remote:
         result = subprocess.run(WRANGLER + [';\n'.join(sql)], cwd=HERE, capture_output=True,
                                 text=True, timeout=60, check=False)
@@ -86,7 +111,7 @@ def read_report(settings: Settings, start: str, end: str) -> dict[str, object]:
         with sqlite3.connect(settings.database) as connection:
             connection.row_factory = sqlite3.Row
             rows = [[dict(row) for row in connection.execute(query)] for query in sql]
-    return dict(zip(REPORT, rows)) | {'source': settings.label, 'start': start, 'end': end}
+    return dict(zip(REPORT, rows)) | {'source': settings.label, 'start': start, 'end': end, 'last': last}
 
 
 def seed_demo(database: Path) -> None:
@@ -109,17 +134,21 @@ def seed_demo(database: Path) -> None:
                     release = releases[min(2, offset // 10 + (rng.random() < .3))]
                     previous = rng.choice(['', '', releases[0]]) if release != releases[0] else ''
                     known = int(bool(previous))
-                    connection.execute('INSERT INTO builds VALUES (?,?,?,?,?,?,?,?)', (
+                    at = f'{day}T{rng.randint(0, 23):02}:{rng.randint(0, 59):02}:00Z'
+                    connection.execute('INSERT INTO builds VALUES (?,?,?,?,?,?,?,?,?)', (
                         visit, visit, release, previous, rng.choice(['ppf', 'ppf', 'disc']),
-                        rng.choice(['bin', 'bin', 'chd']), int(rng.random() < .3), known))
+                        rng.choice(['bin', 'bin', 'chd']), int(rng.random() < .3), known, at))
                     for i, mod in enumerate(mods):
                         on = rng.random() < 0.9 - i * 0.08
                         was = rng.random() < 0.9 - i * 0.08 if known else False
-                        options = f'speed={rng.randint(1, 3)}' if i % 3 == 0 else ''
+                        speed = rng.choice([1, 1, 2, 3])
+                        options = f'speed={speed}' if i % 3 == 0 else ''
+                        changed = 'speed' if i % 3 == 0 and speed != 1 else ''
                         if on or was:
-                            connection.execute('INSERT INTO build_mods VALUES (?,?,?,?)', (
+                            connection.execute('INSERT INTO build_mods VALUES (?,?,?,?,?)', (
                                 visit, mod, options if on else None,
-                                (f'speed={rng.randint(1, 3)}' if i % 3 == 0 else '') if was else None))
+                                (f'speed={rng.randint(1, 3)}' if i % 3 == 0 else '') if was else None,
+                                changed if on else None))
 
 
 def handler_for(settings: Settings) -> type[BaseHTTPRequestHandler]:
@@ -151,7 +180,8 @@ def handler_for(settings: Settings) -> type[BaseHTTPRequestHandler]:
                 args = parse_qs(url.query)
                 try:
                     data = read_report(settings, args.get('start', ['2000-01-01'])[0],
-                                       args.get('end', [date.today().isoformat()])[0])
+                                       args.get('end', [date.today().isoformat()])[0],
+                                       args.get('last', [''])[0] == '1')
                     self.reply(200, json.dumps(data).encode(), 'application/json')
                 except ValueError as error:
                     self.reply(400, json.dumps({'error': str(error)}).encode(), 'application/json')

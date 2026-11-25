@@ -44,7 +44,8 @@ class LocalTests(unittest.TestCase):
                 self.assertEqual(post({'t': 'visit', 'b': browser, 'v': visit, 'r': 'https://r.example/x?y'}), 204)
                 build = {'t': 'build', 'b': browser, 'v': visit, 'id': str(uuid4()), 'rel': '2026-11-25',
                          'prev': '2026-11-24', 'out': 'ppf', 'src': 'bin', 'dir': True,
-                         'mods': {'one': 'speed=2', 'two': ''}, 'was': {'one': 'speed=1'}}
+                         'mods': {'one': 'speed=2', 'two': ''}, 'was': {'one': 'speed=1'},
+                         'chg': {'one': 'speed', 'two': ''}}
                 self.assertEqual(post(build), 204)
                 self.assertEqual(post(build), 204)  # resend is deduplicated
                 self.assertEqual(post(build, 'https://other.example'), 403)
@@ -56,6 +57,10 @@ class LocalTests(unittest.TestCase):
                 self.assertEqual({(r['mod'], r['change']) for r in report['changes']},
                                  {('one', 'changed'), ('two', 'added')})
                 self.assertEqual(len(report['pairs']), 4)
+                self.assertEqual(report['setups'], [dict(setup='one(speed=2) two', builds=1)])
+                self.assertEqual({(r['mod'], r['changed']) for r in report['defaults']}, {('one', 'speed'), ('two', '')})
+                self.assertEqual([r['release'] for r in report['adoption']], ['2026-11-25'])
+                self.assertEqual(read_report(settings, '2000-01-01', '2099-01-01', last=True)['totals'][0]['builds'], 1)
                 self.assertEqual(Path(str(database) + '.key').stat().st_mode & 0o777, 0o600)
                 with self.assertRaises(ValueError):
                     queries("2000-01-01' OR 1=1", '2026-01-01')
