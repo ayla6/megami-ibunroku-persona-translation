@@ -59,16 +59,20 @@ function client(store = new Map(), referrer = '') {
 test('opt-out persists and stops builds; the payload passes the worker', () => {
   const c = client(new Map(), 'https://a.example/p');
   assert.equal(c.sent[0].r, 'https://a.example');
-  c.api.complete({release: '2026-11-25', output: 'ppf', source: 'bin', folder: true,
-    selection: {kept: ['b=2'], mine: []}, labels: ['kept', 'gone'], note: '2026-11-24\nkept(b=1)\ngone\nown x.p1mod\n'});
+  const base = {release: '2026-11-25', output: 'ppf', source: 'bin', folder: true,
+    selection: {kept: ['b=2'], mine: []}, labels: ['kept', 'gone']};
+  c.api.complete({...base, note: '2026-11-24\nkept(b=1)\ngone\nown x.p1mod\ncheck 0123abcd\n'});
+  c.api.complete({...base, note: ''});  // unsigned or edited: app.js passes ''
+  assert.equal(c.sent[2].was, null); assert.equal(c.sent[2].prev, '');
   const b = c.sent[1];
   assert.deepEqual({...b.mods}, {kept: 'b=2'});
   assert.deepEqual({...b.was}, {kept: 'b=1', gone: ''});
   assert.equal(b.prev, '2026-11-24');
   assert.ok(rows(b, 'h', 'd'));
   c.toggle.checked = false; c.on.change();
+  const count = c.sent.length;
   c.api.complete({release: 'x', output: 'disc', source: 'bin', folder: false, selection: {}, labels: []});
-  assert.equal(c.sent.length, 2);
+  assert.equal(c.sent.length, count);
   assert.equal(c.store.has('patcher.analytics.browser'), false);
   assert.equal(client(c.store).sent.length, 0);
 });

@@ -55,30 +55,27 @@ globalThis.PatcherAnalytics = (() => {
   });
   pageView();
 
-  /* The settings a PPF companion note records, as {label: 'a=1,b=2'} for the
-   * release's own labels; null when the note is missing or unrecognised. */
-  function noteSettings(note, labels) {
+  /* The settings of the PPF a build replaces, as {label: 'a=1,b=2'}, from
+   * its note; app.js passes only a note it signed itself (unedited), so
+   * every mod line in it counts, even one not in this release. */
+  function noteSettings(note) {
     const lines = (note || '').split(/\r?\n/);
     if (!RELEASE.test(lines[0].trim())) return null;
     const out = {};
     for (const raw of lines.slice(1)) {
-      const line = raw.trim();
-      if (!line || line.startsWith('own ')) continue;
-      const match = /^([a-zA-Z0-9_.-]+)(?:\(([a-zA-Z0-9_=.,-]*)\))?$/.exec(line);
-      if (!match) return null;
-      if (labels.includes(match[1])) out[match[1]] = match[2] || '';
+      const match = /^([a-zA-Z0-9_.-]+)(?:\(([a-zA-Z0-9_=.,-]*)\))?$/.exec(raw.trim());
+      if (match) out[match[1]] = match[2] || '';  // `own <file>` and the check line never match
     }
     return out;
   }
   /* build: {release, output, source, folder, selection: {label: [tokens]}, labels, note} */
   function complete({release, output, source, folder, selection, labels, note = ''}) {
-    const prev = (note.split(/\r?\n/)[0] || '').trim();
+    const was = noteSettings(note);
     const mods = {};
     for (const [label, tokens] of Object.entries(selection))
       if (labels.includes(label)) mods[label] = tokens.join(',');
     send({t: 'build', id: crypto.randomUUID(), rel: release,
-      prev: RELEASE.test(prev) ? prev : '', out: output, src: source, dir: folder,
-      mods, was: noteSettings(note, labels)});
+      prev: was ? note.split(/\r?\n/)[0].trim() : '', out: output, src: source, dir: folder, mods, was});
   }
   return {complete};
 })();

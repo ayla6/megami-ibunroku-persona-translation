@@ -67,7 +67,8 @@ JavaScript twin of `src/pipeline/modpack.py` and `build_disc.py`.
 - The PPF's note (`<disc>.ppf.txt`) is the release on its first line, then
   every layer applied with all of its settings, defaults included
   (`english-translation(font=large,...)`), then `own <file>` per mod of
-  your own.
+  your own, then `check <hash>` of the lines above. Usage analytics reports
+  a note's settings only when its check still matches (the note unedited).
 - With a disc folder (Chrome, Edge), Build disc writes `<disc> (Modded).bin`
   and its cue next to the disc as it goes (nothing held in memory or in
   browser storage, nothing downloaded), and Build PPF writes the PPF and its

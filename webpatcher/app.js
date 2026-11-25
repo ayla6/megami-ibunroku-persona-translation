@@ -442,9 +442,23 @@ function settingLines(labels) {
           ...state.ownMods.filter(mod => mod.on).map(mod => `own ${mod.file}`)];
 }
 
+/* The note's last line, `check <fnv-1a of the lines above>`: a note read
+ * back with a matching check is one this page wrote, unedited, and only
+ * such a note is reported as the PPF a build replaces. */
+const NOTE_CHECK = 'check ';
+function noteCheck(lines) {
+  let hash = 0x811c9dc5;
+  for (const char of lines.join('\n')) hash = Math.imul(hash ^ char.codePointAt(0), 0x01000193) >>> 0;
+  return NOTE_CHECK + hash.toString(16).padStart(8, '0');
+}
+function signedNote(text) {
+  const lines = text.split(/\r?\n/).filter(line => line.trim());
+  return lines.length > 1 && lines.at(-1) === noteCheck(lines.slice(0, -1)) ? text : '';
+}
+
 function ppfNote(info) {
   const lines = [releaseStamp(state.rows) || UNSTAMPED, ...settingLines(info.labels)];
-  return new Blob([lines.join('\n') + '\n'], {type: 'text/plain'});
+  return new Blob([[...lines, noteCheck(lines)].join('\n') + '\n'], {type: 'text/plain'});
 }
 
 /* The same lines as REM comments at the top of the cue, which emulators
@@ -468,7 +482,7 @@ function reportPatch(labels, ppf, note = '') {
       folder: Boolean(state.fromFolder && state.folder),
       selection: selectionOf(labels),
       labels: state.rows.map(row => row.label),
-      note,
+      note: signedNote(note),
     });
   } catch (_) { /* Never changes a successful build. */ }
 }
@@ -572,7 +586,8 @@ async function ppfIntoFolder(labels) {
     // the first line is the release; options follow, one per line
     const [first = '', ...rest] = previousNote.split(/\r?\n/);
     if (first.trim() === stamp
-        && sameOptions(settingLines(labels), rest.map(line => line.trim()).filter(Boolean))) {
+        && sameOptions(settingLines(labels), rest.map(line => line.trim())
+          .filter(line => line && !line.startsWith(NOTE_CHECK)))) {
       $('results').replaceChildren();
       status(`${ppfName} is already ${stamp} with these options`);
       return;
