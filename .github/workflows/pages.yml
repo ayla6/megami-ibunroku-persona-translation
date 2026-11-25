@@ -40,11 +40,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.event.release.tag_name }}
         run: gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref main -f "tag=$TAG"
-  deploy:
+  # Build and deploy are separate jobs, as in GitHub's Pages template: a
+  # deploy in the same job asks for the artifact a split second after the
+  # upload, before GitHub's artifact listing has it ("Found 0 artifact(s)").
+  build:
     if: github.event_name == 'workflow_dispatch'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -89,6 +89,13 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: webpatcher
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
