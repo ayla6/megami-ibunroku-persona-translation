@@ -84,11 +84,13 @@ def queries(start: str, end: str, last: bool = False) -> list[str]:
     first, end_day = date.fromisoformat(start), date.fromisoformat(end)  # validates before SQL
     if first > end_day:
         raise ValueError('Start is after end.')
-    # Builds without a time (recorded before builds.at) sort before any timed one.
+    # Builds recorded before builds.at only have their visit's day: they sort
+    # as the start of that day, and same-day ones among them in no real order.
     latest = ("SELECT * FROM (SELECT ball.*, row_number() OVER (PARTITION BY visitor "
-              "ORDER BY at DESC, build) n FROM ball) WHERE n = 1") if last else "SELECT * FROM ball"
+              "ORDER BY coalesce(at, day || 'T00:00:00Z') DESC, build) n FROM ball) WHERE n = 1"
+              ) if last else "SELECT * FROM ball"
     period = (f"WITH v AS (SELECT * FROM visits WHERE day BETWEEN '{first}' AND '{end_day}'), "
-              "ball AS (SELECT builds.*, v.visitor FROM builds JOIN v USING (visit)), "
+              "ball AS (SELECT builds.*, v.visitor, v.day FROM builds JOIN v USING (visit)), "
               f"b AS ({latest}) ")
     return [period + sql for sql in REPORT.values()]
 
