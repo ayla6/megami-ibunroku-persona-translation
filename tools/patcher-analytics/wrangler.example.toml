@@ -1,0 +1,22 @@
+name = "persona-patcher-analytics"
+main = "worker.mjs"
+compatibility_date = "2026-11-25"
+workers_dev = true
+preview_urls = false
+
+[observability]
+enabled = false
+
+[vars]
+ALLOWED_ORIGIN = "https://ayla6.github.io"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "persona-patcher-analytics"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+# 10 events per IP per minute (Cloudflare only offers 10 s or 60 s windows); over that the Worker drops events silently, before any write.
+[[ratelimits]]
+name = "LIMITER"
+namespace_id = "1001"
+simple = { limit = 10, period = 60 }

@@ -459,6 +459,20 @@ function cueText(discName, labels) {
 /* `done.blob` is the patched disc, `<disc> (Modded).bin` with its cue;
  * `done.ppf` the PPF, named after the disc it patches, with a note of what
  * it holds. */
+function reportPatch(labels, ppf, note = '') {
+  try {
+    globalThis.PatcherAnalytics?.complete({
+      release: releaseStamp(state.rows) || UNSTAMPED,
+      output: ppf ? 'ppf' : 'disc',
+      source: isChd(state.source) ? 'chd' : 'bin',
+      folder: Boolean(state.fromFolder && state.folder),
+      selection: selectionOf(labels),
+      labels: state.rows.map(row => row.label),
+      note,
+    });
+  } catch (_) { /* Never changes a successful build. */ }
+}
+
 function showResult(done, info) {
   const files = [];   // [blob, name]
   if (done.ppf) {
@@ -553,9 +567,10 @@ async function ppfIntoFolder(labels) {
   }
   const stamp = releaseStamp(state.rows);
   const note = await fileIn(folder, noteName);
+  const previousNote = existing && note ? await note.text() : '';
   if (note && existing && stamp) {
     // the first line is the release; options follow, one per line
-    const [first = '', ...rest] = (await note.text()).split(/\r?\n/);
+    const [first = '', ...rest] = previousNote.split(/\r?\n/);
     if (first.trim() === stamp
         && sameOptions(settingLines(labels), rest.map(line => line.trim()).filter(Boolean))) {
       $('results').replaceChildren();
@@ -569,6 +584,7 @@ async function ppfIntoFolder(labels) {
   addHistory({at: new Date().toISOString(), release: stamp, options: labels,
               kind: 'ppf', source: 'Rev 0', file: ppfName});
   $('results').replaceChildren();
+  reportPatch(labels, true, previousNote);
   status(`The PPF was placed alongside the selected disc (${discName}).`);
 }
 
@@ -592,6 +608,7 @@ async function discIntoFolder(labels) {
   addHistory({at: new Date().toISOString(), release: releaseStamp(state.rows), options: labels,
               kind: 'disc', source: 'Rev 0', file: name});
   $('results').replaceChildren();
+  reportPatch(labels, false);
   status(`${name} was placed alongside the selected disc (${discName}).`);
 }
 
@@ -1599,6 +1616,7 @@ async function init() {
       if (state.fromFolder && state.folder) return await discIntoFolder(labels);
       const done = await apply(state.source, ppf, outputBase(labels), labels);
       showResult(done, {labels, sourceName: state.source.name});
+      reportPatch(labels, ppf);
     } catch (err) {
       status(err.message, true);
     } finally {

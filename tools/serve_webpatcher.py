@@ -5,6 +5,7 @@
   python tools/serve_webpatcher.py --patches DIR  # serve that patch set
   python tools/serve_webpatcher.py --port 8137
   python tools/serve_webpatcher.py --debug        # with the debug log
+  python tools/serve_webpatcher.py --analytics    # usage events to local SQLite
 
 This is the offline stand-in for the Pages deploy: the same static page,
 served from webpatcher/ on this machine, with the patch set and the option
@@ -50,6 +51,10 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 import toolpath  # noqa: E402,F401  (every tool folder on sys.path)
 import publish_patches  # noqa: E402  (sync_local_patches + completeness rules)
 import stamp_webpatcher  # noqa: E402
+
+sys.path.insert(0, str(ROOT / 'tools' / 'patcher-analytics'))
+from collector_local import LocalCollector, DEFAULT_DATABASE, EVENT_PATH, MAX_EVENT_BYTES, configure_page
+
 
 SITE = ROOT / 'webpatcher'
 DEBUG_SCRIPT = ROOT / 'tools' / 'webpatcher_debug.js'
@@ -145,9 +150,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         '.js': 'text/javascript',
     }
 
-    def __init__(self, *args, page=None, debug=False, **kwargs):
+    def __init__(self, *args, page=None, debug=False, analytics: LocalCollector | None = None, **kwargs):
         self.page = page
         self.debug = debug
+        self.analytics = analytics
         super().__init__(*args, **kwargs)
 
     def send_bytes(self, body, content_type):
@@ -170,6 +176,28 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         return super().send_head()
 
     def do_POST(self):
+        if self.analytics and urlsplit(self.path).path == EVENT_PATH:
+            origin = self.headers.get('Origin')
+            if (origin and urlsplit(origin).netloc != self.headers.get('Host')) or self.headers.get('Sec-Fetch-Site') == 'cross-site':
+                status = 403
+            elif not self.headers.get('Content-Type', '').startswith('text/plain'):
+                status = 415
+            else:
+                try:
+                    length = int(self.headers.get('Content-Length', '0'))
+                except ValueError:
+                    length = 0
+                if length <= 0:
+                    status = 411
+                elif length > MAX_EVENT_BYTES:
+                    status = 413
+                else:
+                    self.connection.settimeout(10)
+                    status = self.analytics.ingest(self.rfile.read(length))
+            self.send_response(status)
+            self.send_header('Content-Length', '0')
+            self.end_headers()
+            return
         if not (self.debug and urlsplit(self.path).path == '/__debug/log'):
             self.send_error(404)
             return
@@ -187,6 +215,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         super().end_headers()
 
     def log_message(self, fmt, *args):
+        if urlsplit(self.path).path == EVENT_PATH:
+            return  # Do not log addresses or event payloads.
         print(f'webpatcher: {self.address_string()} {fmt % args}')
 
 
@@ -201,6 +231,8 @@ def main(argv=None):
     parser.add_argument('--debug', action='store_true',
                         help='add the debug log panel, mirrored to '
                              'build/webpatcher-debug.log')
+    parser.add_argument('--analytics', nargs='?', type=Path, const=DEFAULT_DATABASE,
+                        metavar='DATABASE', help='record usage events to this SQLite (default build/patcher-analytics.sqlite)')
     args = parser.parse_args(argv)
 
     source = Path(args.patches) if args.patches else publish_patches.DIST
@@ -235,8 +267,12 @@ def main(argv=None):
         DEBUG_LOG.parent.mkdir(exist_ok=True)
         with open(DEBUG_LOG, 'a', encoding='utf-8') as out:
             out.write(f'--- serve_webpatcher --debug {time.strftime("%Y-%m-%d %H:%M:%S")}\n')
+    analytics = LocalCollector.open(args.analytics) if args.analytics is not None else None
+    if analytics:
+        page = configure_page(page)
+        print(f'webpatcher: analytics to {analytics.database}')
     handler = functools.partial(Handler, directory=str(SITE), page=page.encode('utf-8'),
-                                debug=args.debug)
+                                debug=args.debug, analytics=analytics)
     server = http.server.ThreadingHTTPServer(('127.0.0.1', args.port), handler)
     url = f'http://127.0.0.1:{args.port}'
     print(f'webpatcher: serving {SITE.name}/ at {url} '

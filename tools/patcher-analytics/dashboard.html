@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Patcher analytics</title>
+<style>
+:root{color-scheme:light;--bg:#f6f6f4;--card:#fcfcfb;--ink:#0b0b0b;--ink-2:#52514e;--line:#e2e1dc;--track:#ecebe6;
+--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--seq-lo:#e4eefb;--seq-hi:#1c5cab;--bad:#c0392b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#111110;--card:#1a1a19;--ink:#f0efec;--ink-2:#c3c2b7;--line:#33322f;--track:#2a2a28;
+--s1:#3987e5;--s2:#d95926;--s3:#199e70;--seq-lo:#1f2a38;--seq-hi:#6aa8f0;--bad:#ff8a80}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#111110;--card:#1a1a19;--ink:#f0efec;--ink-2:#c3c2b7;--line:#33322f;--track:#2a2a28;
+--s1:#3987e5;--s2:#d95926;--s3:#199e70;--seq-lo:#1f2a38;--seq-hi:#6aa8f0;--bad:#ff8a80}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,sans-serif}
+main{max-width:1200px;margin:auto;padding:20px 16px 40px}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+h1{font-size:20px;margin:0 auto 0 0}
+h2{font-size:13px;font-weight:600;margin:0 0 10px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.04em}
+.tag{border:1px solid var(--line);border-radius:99px;padding:2px 10px;color:var(--ink-2)}
+input,button{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
+button{cursor:pointer}button.on{background:var(--ink);color:var(--card)}
+#status{color:var(--bad);min-height:0}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(12,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;min-width:0}
+.w12{grid-column:span 12}.w8{grid-column:span 8}.w6{grid-column:span 6}.w4{grid-column:span 4}
+@media(max-width:860px){.w8,.w6,.w4{grid-column:span 12}}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi span{color:var(--ink-2)}.kpi b{display:block;font-size:26px;font-variant-numeric:tabular-nums}.kpi small{color:var(--ink-2)}
+svg{display:block;width:100%;overflow:visible}
+svg text{fill:var(--ink-2);font-size:11px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-2);margin-bottom:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.rows{display:grid;grid-template-columns:minmax(90px,max-content) 1fr auto;gap:6px 10px;align-items:center}
+.rows .n{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
+.rows .k{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar{display:flex;gap:2px;height:14px;background:var(--track);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;min-width:2px}
+.bar i:hover,.cell:hover{outline:2px solid var(--ink);outline-offset:-2px}
+.mod{cursor:pointer}.mod.open{font-weight:600}
+.sub{grid-column:1/-1;padding:2px 0 8px 16px}
+.heat{display:grid;gap:2px;font-size:11px;overflow:auto}
+.heat .h{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.heat .col{writing-mode:vertical-rl;transform:rotate(180deg);max-height:120px;align-self:end}
+.cell{aspect-ratio:1;border-radius:3px;min-width:16px}
+.empty{color:var(--ink-2)}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--card);padding:5px 8px;border-radius:6px;font-size:12px;white-space:pre;display:none;z-index:9}
+</style>
+<main>
+<header>
+  <h1>Patcher analytics</h1>
+  <span class="tag" id="source">—</span>
+  <span id="ranges"><button data-days="7">7d</button> <button data-days="30">30d</button> <button data-days="90">90d</button> <button data-days="all">All</button></span>
+  <input type="date" id="start" aria-label="From (UTC)"> <input type="date" id="end" aria-label="Through (UTC)">
+</header>
+<div id="status" role="status"></div>
+<div class="grid">
+  <section class="w12 kpis" id="kpis"></section>
+  <section class="card w12"><h2>Daily visits</h2><div class="legend"><span><i style="background:var(--s1)"></i>with a build</span><span><i style="background:var(--track)"></i>without</span><span><i style="background:var(--s2);height:3px"></i>unique visitors</span></div><div id="daily"></div></section>
+  <section class="card w6"><h2>Builds by release</h2><div class="legend"><span><i style="background:var(--s1)"></i>PPF</span><span><i style="background:var(--s2)"></i>disc</span></div><div id="releases"></div></section>
+  <section class="card w6"><h2>PPF updates (from → to)</h2><div id="updates"></div></section>
+  <section class="card w4"><h2>Output</h2><div id="output"></div></section>
+  <section class="card w4"><h2>Input</h2><div id="input"></div></section>
+  <section class="card w4"><h2>Writes</h2><div id="folder"></div></section>
+  <section class="card w6"><h2>Mods — share of builds</h2><div class="legend">click a mod for its options</div><div id="mods"></div></section>
+  <section class="card w6"><h2>Mods together — of builds with row, % also with column</h2><div id="pairs"></div></section>
+  <section class="card w6"><h2>Changes when updating a PPF</h2><div class="legend"><span><i style="background:var(--s3)"></i>added</span><span><i style="background:var(--s2)"></i>removed</span><span><i style="background:var(--s1)"></i>options changed</span></div><div id="changes"></div></section>
+  <section class="card w6"><h2>Referrers</h2><div class="legend"><span><i style="background:var(--s1)"></i>visits with a build</span><span><i style="background:var(--track)"></i>without</span></div><div id="referrers"></div></section>
+</div>
+</main>
+<div id="tip"></div>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const fmt = n => Number(n || 0).toLocaleString();
+const pct = (a, b) => b ? Math.round(100 * a / b) + '%' : '—';
+const el = (tag, props = {}, ...kids) => { const e = Object.assign(document.createElement(tag), props); e.append(...kids); return e; };
+const sum = (rows, key = 'builds') => rows.reduce((a, r) => a + (r[key] || 0), 0);
+const group = (rows, key) => rows.reduce((m, r) => m.set(r[key], [...(m.get(r[key]) || []), r]), new Map());
+let openMod = null, last = null;
+
+// One tooltip for every mark carrying data-tip.
+const tip = $('tip');
+document.addEventListener('mousemove', e => {
+  const t = e.target.closest?.('[data-tip]');
+  if (!t) { tip.style.display = 'none'; return; }
+  tip.textContent = t.dataset.tip; tip.style.display = 'block';
+  tip.style.left = Math.min(e.clientX + 12, innerWidth - tip.offsetWidth - 8) + 'px';
+  tip.style.top = (e.clientY + 14) + 'px';
+});
+
+/* A stacked bar: parts = [[value, color, tip]], scaled against max. */
+function bar(parts, max) {
+  return el('div', {className: 'bar'}, ...parts.filter(p => p[0] > 0).map(([v, color, t]) => {
+    const i = el('i'); i.style.width = (100 * v / (max || 1)) + '%'; i.style.background = color; i.dataset.tip = t; return i;
+  }));
+}
+function rowList(id, items, max) { // items: [label, parts, number text, extra node?]
+  const root = $(id); root.replaceChildren();
+  if (!items.length) { root.append(el('div', {className: 'empty', textContent: 'none'})); return; }
+  const box = el('div', {className: 'rows'});
+  for (const [label, parts, n, node] of items) {
+    const k = node || el('span', {className: 'k', textContent: label, title: label});
+    box.append(k, bar(parts, max), el('span', {className: 'n', textContent: n}));
+  }
+  root.append(box);
+}
+function split(id, pairs) { // pairs: [label, count]; one 100% bar plus rows
+  const total = pairs.reduce((a, p) => a + p[1], 0), colors = ['var(--s1)', 'var(--s2)', 'var(--s3)'];
+  rowList(id, pairs.map(([l, c], i) => [l, [[c, colors[i], `${l}: ${fmt(c)} (${pct(c, total)})`]], pct(c, total)]), total);
+}
+
+function kpis(t) {
+  const k = (label, value, note) => el('div', {className: 'card kpi'}, el('span', {textContent: label}), el('b', {textContent: fmt(value)}), el('small', {textContent: note || ' '}));
+  $('kpis').replaceChildren(
+    k('Visits', t.visits), k('Unique visitors', t.visitors),
+    k('Visits with a build', t.build_visits, pct(t.build_visits, t.visits) + ' of visits'),
+    k('Unique builders', t.builders, pct(t.builders, t.visitors) + ' of visitors'),
+    k('Builds', t.builds, t.build_visits ? (t.builds / t.build_visits).toFixed(2) + ' per building visit' : ''));
+}
+
+function daily(rows, start, end) {
+  const root = $('daily'); root.replaceChildren();
+  const by = new Map(rows.map(r => [r.day, r])), days = [];
+  const first = rows.length && start < rows[0].day ? rows[0].day : start;
+  for (const d = new Date(first + 'T00:00Z'); d.toISOString().slice(0, 10) <= end && days.length < 1000; d.setUTCDate(d.getUTCDate() + 1)) {
+    const key = d.toISOString().slice(0, 10); days.push(by.get(key) || {day: key, visits: 0, visitors: 0, build_visits: 0});
+  }
+  if (!rows.length) { root.append(el('div', {className: 'empty', textContent: 'no visits'})); return; }
+  const W = 1000, H = 200, L = 34, B = 20, ns = 'http://www.w3.org/2000/svg';
+  const max = Math.max(1, ...days.map(d => d.visits)), step = (W - L) / days.length, bw = Math.max(1, step - 2);
+  const y = v => H - B - v / max * (H - B - 8);
+  const svg = document.createElementNS(ns, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  const add = (tag, a, text) => { const e = document.createElementNS(ns, tag); for (const k in a) e.setAttribute(k, a[k]); if (text != null) e.textContent = text; svg.append(e); return e; };
+  for (const v of [0, Math.round(max / 2), max]) { add('line', {x1: L, x2: W, y1: y(v), y2: y(v), stroke: 'var(--line)'}); add('text', {x: L - 6, y: y(v) + 4, 'text-anchor': 'end'}, fmt(v)); }
+  days.forEach((d, i) => {
+    const x = L + i * step + 1, t = `${d.day}\n${fmt(d.visits)} visits · ${fmt(d.visitors)} unique\n${fmt(d.build_visits)} with a build (${pct(d.build_visits, d.visits)})`;
+    add('rect', {x, y: y(d.visits), width: bw, height: y(d.build_visits) - y(d.visits), fill: 'var(--track)', rx: 2});
+    add('rect', {x, y: y(d.build_visits), width: bw, height: H - B - y(d.build_visits), fill: 'var(--s1)', rx: 2});
+    add('rect', {x: L + i * step, y: 0, width: step, height: H - B, fill: 'transparent'}).dataset.tip = t;
+  });
+  add('polyline', {points: days.map((d, i) => `${L + i * step + step / 2},${y(d.visitors)}`).join(' '), fill: 'none', stroke: 'var(--s2)', 'stroke-width': 2, 'pointer-events': 'none'});
+  const ticks = [...new Set([0, Math.floor(days.length / 2), days.length - 1])];
+  for (const i of ticks) add('text', {x: L + i * step + step / 2, y: H - 4, 'text-anchor': 'middle'}, days[i].day.slice(5));
+  root.append(svg);
+}
+
+function releases(rows) {
+  const by = group(rows, 'release'), max = Math.max(0, ...[...by.values()].map(r => sum(r)));
+  rowList('releases', [...by].map(([rel, rs]) => {
+    const ppf = sum(rs.filter(r => r.output === 'ppf')), disc = sum(rs.filter(r => r.output === 'disc'));
+    return [rel, [[ppf, 'var(--s1)', `${rel}\nPPF: ${fmt(ppf)}`], [disc, 'var(--s2)', `${rel}\ndisc: ${fmt(disc)}`]], fmt(ppf + disc)];
+  }), max);
+}
+function updates(rows) {
+  const max = Math.max(0, ...rows.map(r => r.builds));
+  rowList('updates', rows.map(r => {
+    const label = r.previous === r.release ? `${r.release} (rebuild)` : `${r.previous} → ${r.release}`;
+    return [label, [[r.builds, r.previous === r.release ? 'var(--s2)' : 'var(--s1)', `${label}: ${fmt(r.builds)}`]], fmt(r.builds)];
+  }), max);
+}
+function setup(rows) {
+  const count = f => sum(rows.filter(f));
+  split('output', [['PPF', count(r => r.output === 'ppf')], ['disc', count(r => r.output === 'disc')]]);
+  split('input', [['BIN', count(r => r.source === 'bin')], ['CHD', count(r => r.source === 'chd')]]);
+  split('folder', [['download', count(r => !r.folder)], ['disc folder', count(r => r.folder)]]);
+}
+
+function mods(options, builds) {
+  const by = group(options, 'mod'), colors = ['var(--s1)', 'var(--s2)', 'var(--s3)'];
+  const sorted = [...by].sort((a, b) => sum(b[1]) - sum(a[1]));
+  const root = $('mods'); root.replaceChildren();
+  if (!sorted.length) { root.append(el('div', {className: 'empty', textContent: 'none'})); return; }
+  const box = el('div', {className: 'rows'});
+  for (const [mod, rs] of sorted) {
+    const on = sum(rs);
+    const name = el('span', {className: 'k mod' + (openMod === mod ? ' open' : ''), textContent: (openMod === mod ? '▾ ' : '▸ ') + mod, title: mod});
+    name.onclick = () => { openMod = openMod === mod ? null : mod; render(last); };
+    box.append(name, bar([[on, 'var(--s1)', `${mod}: ${fmt(on)} of ${fmt(builds)} builds`]], builds), el('span', {className: 'n', textContent: pct(on, builds)}));
+    if (openMod !== mod) continue;
+    // Per option key (speed=2 → speed), the share of each value among builds with the mod.
+    const keys = new Map();
+    for (const r of rs) for (const token of (r.options || '').split(',').filter(Boolean)) {
+      const [key, value = 'on'] = token.split('=');
+      const values = keys.get(key) || new Map(); values.set(value, (values.get(value) || 0) + r.builds); keys.set(key, values);
+    }
+    const sub = el('div', {className: 'sub rows'});
+    if (!keys.size) sub.append(el('span', {className: 'empty', textContent: 'no options'}), el('span'), el('span'));
+    for (const [key, values] of keys) {
+      const vs = [...values].sort((a, b) => b[1] - a[1]);
+      sub.append(el('span', {className: 'k', textContent: key}),
+        bar(vs.map(([v, c], i) => [c, i < 3 ? colors[i] : 'var(--ink-2)', `${key}=${v}: ${fmt(c)} (${pct(c, on)})`]), on),
+        el('span', {className: 'n', textContent: vs.slice(0, 3).map(([v, c]) => `${v} ${pct(c, on)}`).join(' · ')}));
+    }
+    box.append(sub);
+  }
+  root.append(box);
+}
+
+function pairs(rows) {
+  const root = $('pairs'); root.replaceChildren();
+  const self = new Map(rows.filter(r => r.a === r.b).map(r => [r.a, r.builds]));
+  const names = [...self].sort((a, b) => b[1] - a[1]).map(r => r[0]);
+  if (names.length < 2) { root.append(el('div', {className: 'empty', textContent: 'needs two mods'})); return; }
+  const both = new Map(rows.map(r => [r.a + '\u0000' + r.b, r.builds]));
+  const grid = el('div', {className: 'heat'}); grid.style.gridTemplateColumns = `minmax(80px,140px) repeat(${names.length}, minmax(16px,1fr))`;
+  grid.append(el('span'), ...names.map(n => el('span', {className: 'h col', textContent: n, title: n})));
+  for (const a of names) {
+    grid.append(el('span', {className: 'h', textContent: a, title: a}));
+    for (const b of names) {
+      const n = both.get(a + '\u0000' + b) || 0, share = n / self.get(a);
+      const cell = el('span', {className: 'cell'});
+      cell.style.background = a === b ? 'var(--track)' : `color-mix(in oklab, var(--seq-hi) ${Math.round(share * 100)}%, var(--seq-lo))`;
+      cell.dataset.tip = a === b ? `${a}: ${fmt(n)} builds` : `${fmt(n)} of ${fmt(self.get(a))} builds with ${a}\nalso had ${b} (${pct(n, self.get(a))})`;
+      grid.append(cell);
+    }
+  }
+  root.append(grid);
+}
+
+function changes(rows) {
+  const by = group(rows, 'mod'), get = (rs, k) => sum(rs.filter(r => r.change === k));
+  const items = [...by].map(([mod, rs]) => [mod, get(rs, 'added'), get(rs, 'removed'), get(rs, 'changed')]).sort((a, b) => (b[1] + b[2] + b[3]) - (a[1] + a[2] + a[3]));
+  const max = Math.max(0, ...items.map(i => i[1] + i[2] + i[3]));
+  rowList('changes', items.map(([mod, a, r, c]) => [mod, [[a, 'var(--s3)', `${mod}\nadded: ${fmt(a)}`], [r, 'var(--s2)', `${mod}\nremoved: ${fmt(r)}`], [c, 'var(--s1)', `${mod}\noptions changed: ${fmt(c)}`]], fmt(a + r + c)]), max);
+}
+function referrers(rows) {
+  const max = Math.max(0, ...rows.map(r => r.visits));
+  rowList('referrers', rows.map(r => {
+    const name = r.referrer ? r.referrer.replace(/^https?:\/\//, '') : 'direct';
+    return [name, [[r.build_visits, 'var(--s1)', `${name}\n${fmt(r.build_visits)} with a build`], [r.visits - r.build_visits, 'var(--track)', `${name}\n${fmt(r.visits - r.build_visits)} without`]],
+      `${fmt(r.visits)} · ${pct(r.build_visits, r.visits)}`];
+  }), max);
+}
+
+function render(data) {
+  last = data;
+  $('source').textContent = data.source;
+  const t = data.totals[0] || {};
+  kpis(t); daily(data.daily, data.start, data.end); releases(data.releases); updates(data.updates);
+  setup(data.setup); mods(data.options, t.builds); pairs(data.pairs); changes(data.changes); referrers(data.referrers);
+}
+async function load() {
+  $('status').textContent = '';
+  try {
+    const response = await fetch('/api/report?' + new URLSearchParams({start: $('start').value, end: $('end').value}));
+    const data = await response.json();
+    if (!response.ok) throw Error(data.error);
+    render(data);
+  } catch (error) { $('status').textContent = error.message; }
+}
+function range(days) {
+  const end = new Date(), start = new Date();
+  start.setUTCDate(start.getUTCDate() - (days === 'all' ? 0 : days - 1));
+  $('end').value = end.toISOString().slice(0, 10);
+  $('start').value = days === 'all' ? '2000-01-01' : start.toISOString().slice(0, 10);
+  for (const b of document.querySelectorAll('[data-days]')) b.classList.toggle('on', b.dataset.days === String(days));
+  load();
+}
+for (const b of document.querySelectorAll('[data-days]')) b.onclick = () => range(b.dataset.days === 'all' ? 'all' : Number(b.dataset.days));
+for (const id of ['start', 'end']) $(id).onchange = () => { for (const b of document.querySelectorAll('[data-days]')) b.classList.remove('on'); load(); };
+range(30);
+</script>
+</html>

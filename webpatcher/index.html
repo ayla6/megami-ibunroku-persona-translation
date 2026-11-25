@@ -169,6 +169,16 @@ Enable it on DuckStation by going Settings -&gt; Console -&gt; CD-ROM Emulation 
   Fetches the newest page and patches past the browser's cache, for browsers without a hard reload (phones).</p>
 </fieldset>
 
+<fieldset>
+  <legend>Analytics</legend>
+  <label><input type="checkbox" id="analytics-enabled"> Share anonymous usage</label>
+  <details><summary>What is sent</summary>
+  <p>Visits, the referring site, and for each build: release, previous PPF release, output, input type,
+  folder use and the release's mods with their options. A random ID in this browser counts repeat visitors.
+  No file names, disc data or custom mods. Unticking removes the ID.</p></details>
+</fieldset>
+<meta name="patcher-analytics" content="">
+<script src="analytics.js"></script>
 <script src="features.js"></script>
 <script src="chd.js"></script>
 <script src="modpack.js"></script>

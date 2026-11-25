@@ -52,3 +52,9 @@ __pycache__/
 !/webpatcher/
 /webpatcher/patches
 /webpatcher/features.js
+
+# Local Cloudflare state and secret overrides for patcher analytics.
+/tools/patcher-analytics/.wrangler/
+/tools/patcher-analytics/.dev.vars*
+/tools/patcher-analytics/.env*
+/tools/patcher-analytics/wrangler.toml

@@ -66,6 +66,23 @@ jobs:
           unzip -q "$RUNNER_TEMP/release/persona-patches.zip" -d webpatcher/patches
       - name: Stamp the page with the patch release
         run: python3 tools/stamp_webpatcher.py webpatcher/index.html webpatcher/patches/manifest.tsv
+      - name: Configure optional analytics collector
+        env:
+          PATCHER_ANALYTICS_URL: ${{ secrets.PATCHER_ANALYTICS_URL }}
+        run: |
+          python3 - <<'PYTHON'
+          import os
+          from pathlib import Path
+          from urllib.parse import urlparse
+          import html
+          url = os.environ.get('PATCHER_ANALYTICS_URL', '')
+          if url and (urlparse(url).scheme != 'https' or urlparse(url).path != '/event'):
+              raise SystemExit('PATCHER_ANALYTICS_URL must be an HTTPS /event URL')
+          page = Path('webpatcher/index.html')
+          page.write_text(page.read_text().replace(
+              'name="patcher-analytics" content=""',
+              'name="patcher-analytics" content="' + html.escape(url, quote=True) + '"'))
+          PYTHON
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload the Pages artifact

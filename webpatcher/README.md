@@ -3,7 +3,8 @@
 A static page that applies the release to the player's own disc in the
 browser: they pick their original Rev 0 disc image (a `.bin`, or a `.chd`
 for a PPF), tick options, and get a patched `.bin` plus a generated `.cue`,
-or a PPF. Nothing is uploaded; everything runs locally. Works on GitHub
+or a PPF. Nothing is uploaded; everything runs locally (apart from the
+optional usage counts below). Works on GitHub
 Pages or any static host.
 
 The release uses three foundation layers: `base.p1mod`,
@@ -151,3 +152,61 @@ example a phone), serve it over real HTTPS with tailscale:
 and open the `https://<machine>.ts.net` URL it prints (run
 `tailscale serve status` to see it again). Both count as secure contexts,
 so `crypto.subtle` is available in both.
+
+## Usage analytics
+
+`analytics.js` posts small JSON events to a Cloudflare Worker
+(`tools/patcher-analytics/worker.mjs`) backed by D1. The page's
+`patcher-analytics` meta is empty in source; the Pages workflow fills it from
+the Actions secret `PATCHER_ANALYTICS_URL` (unset = no collection). The
+"Share anonymous usage" box is on by default; unticking it stops reports and
+deletes the browser ID.
+
+Tables (`schema.sql`):
+
+- `visits` - one per page load: visitor (first 8 bytes of an HMAC of the
+  browser's random ID, keyed by the Worker secret `IDENTITY_SECRET`), UTC day,
+  referrer origin.
+- `builds` - one per finished build: release, previous PPF release (`''` when
+  none or unknown), output `ppf|disc`, input `bin|chd`, disc-folder write,
+  `known` (the previous PPF's note was read).
+- `build_mods` - one per release mod in the build or in the PPF it replaces:
+  `options` and `was` are the sorted option tokens, NULL when the mod is off.
+  `options IS NOT was` on a `known` build is a change made while updating.
+
+A build counts when its download links are ready or its folder writes finish;
+a folder PPF that already matches is not a build. No IP, user agent, file
+name, custom mod or disc byte is stored.
+
+### Deploy (Workers Free)
+
+From `tools/patcher-analytics`:
+
+```sh
+cp wrangler.example.toml wrangler.toml       # gitignored; set database_id, ALLOWED_ORIGIN
+npx wrangler login
+npx wrangler d1 create persona-patcher-analytics
+npx wrangler d1 execute persona-patcher-analytics --remote --file schema.sql
+npx wrangler secret put IDENTITY_SECRET     # 32+ random bytes; changing it resets uniques
+npx wrangler deploy
+```
+
+Then set `PATCHER_ANALYTICS_URL` to `https://<worker>/event` and rerun the
+Pages workflow. A build writes 2 + (mods) rows, a visit 1, well inside the
+free 100k rows/day.
+
+### Dashboard
+
+```sh
+python tools/patcher-analytics/dashboard.py            # build/patcher-analytics.sqlite
+python tools/patcher-analytics/dashboard.py --remote   # D1 through Wrangler
+python tools/patcher-analytics/dashboard.py --demo     # synthetic data
+```
+
+Loopback only, at <http://127.0.0.1:8790>. `python tools/serve_webpatcher.py
+--analytics [DATABASE]` serves the patcher with events going to that local
+SQLite through the same `worker.mjs`, run by one Node 22.13+ process
+(`collect_local.mjs`); its HMAC key sits beside the database as `<db>.key`.
+
+Checks: `node --test tools/patcher-analytics/test.mjs` and
+`python tools/patcher-analytics/test_local.py`.
