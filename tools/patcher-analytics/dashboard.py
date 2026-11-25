@@ -170,11 +170,12 @@ def handler_for(settings: Settings) -> type[BaseHTTPRequestHandler]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
-    mode.add_argument('--remote', action='store_true', help='read Cloudflare D1 through Wrangler')
+    mode.add_argument('--local', action='store_true', help='read a local SQLite instead of Cloudflare D1')
     mode.add_argument('--demo', action='store_true', help='synthetic throwaway data')
-    parser.add_argument('--database', type=Path, default=DEFAULT_DATABASE)
+    parser.add_argument('--database', type=Path, default=DEFAULT_DATABASE, help='SQLite for --local')
     parser.add_argument('--port', type=int, default=8790)
     args = parser.parse_args()
+    args.remote = not (args.local or args.demo)
     with tempfile.TemporaryDirectory(prefix='patcher-analytics-') as temporary:
         database = Path(temporary) / 'demo.sqlite' if args.demo else args.database
         if not args.remote:
